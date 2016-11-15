@@ -32,10 +32,10 @@ class WidgetServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__ . '/../Config/widget.php' => config_path('widget.php'),
+            __DIR__.'/../Config/widget.php' => config_path('widget.php'),
         ]);
         $this->mergeConfigFrom(
-            __DIR__ . '/../Config/widget.php', 'widget'
+            __DIR__.'/../Config/widget.php', 'widget'
         );
     }
 
