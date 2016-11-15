@@ -1,10 +1,6 @@
 @extends('dashboard::layouts.dashboard')
 
-
 @section('title','Roles Page')
-
-
-
 
 @section('content')
 

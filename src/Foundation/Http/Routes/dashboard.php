@@ -15,6 +15,11 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'uses' => 'SettingController@index',
     ]);
 
+    Route::get('localization', [
+        'as' => 'dashboard.systems.localization',
+        'uses' => 'LocalizationController@index',
+    ]);
+
     Route::resource('roles', 'RoleController', ['names' => [
         'index' => 'dashboard.systems.roles',
         'create' => 'dashboard.systems.roles.create',
