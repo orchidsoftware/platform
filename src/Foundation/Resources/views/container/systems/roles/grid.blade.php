@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-6">
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default">Add new</button>
+                        <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-default">Add new</a>
                     </div>
                         </div>
                 </header>
@@ -58,20 +58,10 @@
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.systems.roles.edit',$role->slug) }}"><i
                                                     class="fa fa-bars"></i></a>
-
-                                        {{--
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                                            <a href="{{ route('dashboard.systems.roles.edit',$role->slug) }}"
-                                               class="btn btn-default"><span class="fa fa-edit"></span> </a>
-                                            <a href="#" data-toggle="modal" data-target="#Modal-{{$role->slug}}"
-                                               class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
-                                        --}}
                                     </td>
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->slug }}</td>
+
                                     <td>{{ $role->updated_at or $role->created_at }}</td>
                                 </tr>
 

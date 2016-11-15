@@ -43,7 +43,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerDatabase()
     {
         $this->publishes([
-            __DIR__.'/../Database/Migrations/' => database_path('migrations'),
+            __DIR__ . '/../Database/Migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -52,7 +52,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'dashboard');
     }
 
     /**
@@ -76,7 +76,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $viewPath = base_path('resources/views/vendor/orchid/dashboard');
-        $sourcePath = __DIR__.'/../Resources/views';
+        $sourcePath = __DIR__ . '/../Resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath,
@@ -90,7 +90,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            __DIR__.'/../Resources/dist/' => public_path('orchid'),
+            __DIR__ . '/../Resources/dist/' => public_path('orchid'),
         ], 'public');
     }
 

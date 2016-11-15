@@ -45,16 +45,16 @@ class InstallerServiceProvider extends ServiceProvider
     protected function publishFiles()
     {
         $this->publishes([
-            __DIR__.'/../Views' => base_path('resources/views/vendor/orchid/install'),
+            __DIR__ . '/../Views' => base_path('resources/views/vendor/orchid/install'),
         ]);
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path.'/vendor/orchid/install';
-        }, \Config::get('view.paths')), [  __DIR__.'/../Views']), 'install');
+        }, \Config::get('view.paths')), [__DIR__ . '/../Views']), 'install');
 
 
         $this->publishes([
-            __DIR__.'/../Lang' => base_path('resources/lang'),
+            __DIR__ . '/../Lang' => base_path('resources/lang'),
         ]);
     }
 }

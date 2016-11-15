@@ -43,7 +43,8 @@
     "watson/active": "^2.0"
   },
   "files": [
-    "src/Settings/helpers.php"
+    "src/Settings/helpers.php",
+    "src/Alert/helpers.php"
   ],
   "autoload": {
     "psr-4": {

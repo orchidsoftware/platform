@@ -76,11 +76,12 @@ class BaseRolesForm extends Form
     public function persist($storage = null)
     {
         $role =  Role::firstOrNew([
-            'name' => $this->request->get('name'),
             'slug' => $this->request->get('slug'),
         ]);
+        $role->fill($this->request->all());
+        $role->permissions = $this->request->get('permissions') ?: [];
 
-        $role->permissions = $this->request->get('permissions');
+
         $role->save();
 
         Alert::success('Message');
