@@ -59,7 +59,6 @@ class CreateAdminCommand extends Command
             $permissions[$permission] = 1;
         }
 
-        dd($permissions);
         try {
             User::create([
                 'name' => $this->argument('name'),

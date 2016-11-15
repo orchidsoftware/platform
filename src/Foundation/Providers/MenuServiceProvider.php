@@ -75,7 +75,7 @@ class MenuServiceProvider extends ServiceProvider
         $localizationMenu = [
             'slug' => 'localization',
             'icon' => 'fa fa-language',
-            'route' => route('dashboard.index'),
+            'route' => route('dashboard.systems.localization'),
             'label' => trans('dashboard::menu.Localization'),
             'groupname' => null,
             'childs' => false,
