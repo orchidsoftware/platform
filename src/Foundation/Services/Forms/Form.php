@@ -53,6 +53,17 @@ abstract class Form implements FormContract
 
 
     /**
+     * Validation Rules Method
+     * @return array
+     */
+    public function rules()
+    {
+        return null;
+    }
+
+
+
+    /**
      * Save Form
      * @param null $arg
      * @return mixed|null
@@ -84,7 +95,10 @@ abstract class Form implements FormContract
      */
     protected function isValid()
     {
-        $this->validate($this->request, $this->rules);
+        $rules =  $this->rules() ?: $this->rules;
+
+
+        $this->validate($this->request, $rules);
 
         return true;
     }

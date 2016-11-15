@@ -1,5 +1,10 @@
 <?php namespace Orchid\Foundation\Services\Forms;
 
+/**
+ * Depricated
+ * Class CrudFormTrait
+ * @package Orchid\Foundation\Services\Forms
+ */
 trait CrudFormTrait
 {
 

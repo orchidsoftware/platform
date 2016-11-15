@@ -45,6 +45,7 @@ class RoleController extends Controller
     public function store()
     {
         $this->form->save();
+        return redirect()->back();
     }
 
 

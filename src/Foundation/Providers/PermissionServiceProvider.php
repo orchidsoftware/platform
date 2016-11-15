@@ -27,9 +27,18 @@ class PermissionServiceProvider extends ServiceProvider
     {
         return [
             'Modules - название модуля' => [
-                'dashboard.post' => 'Доступ к постам',
-                'dashboard.post.images' => 'Доступ к изображениям',
-                'dashboard.post.seo' => 'Доступ к SEO параметрам',
+                [
+                    'slug' => 'dashboard.post',
+                    'description' => 'Доступ к постам',
+                ],
+                [
+                    'slug' => 'dashboard.post.images',
+                    'description' => 'Доступ к изображениям',
+                ],
+                [
+                    'slug' => 'dashboard.post.seo',
+                    'description' => 'Доступ к SEO параметрам',
+                ],
                 //etc
             ],
 

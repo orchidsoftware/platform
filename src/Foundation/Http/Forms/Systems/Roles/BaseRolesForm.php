@@ -3,6 +3,7 @@
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Foundation\Facades\Alert;
 
 class BaseRolesForm extends Form
 {
@@ -21,13 +22,16 @@ class BaseRolesForm extends Form
 
     /**
      * Validation Rules Request
-     * @var array
+     * @return array
      */
-    protected $rules = [
-        'name' => 'required|unique:roles|max:255',
-        'slug' => 'required|unique:roles|max:255',
-        'permissions' => 'array'
-    ];
+    public function rules()
+    {
+        return [
+            'name' => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug' => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
+            'permissions' => 'array'
+        ];
+    }
 
 
     /**
@@ -37,11 +41,30 @@ class BaseRolesForm extends Form
      */
     public function get($storage = null)
     {
-        //  dd($storage); Тут мы получим модельку
-       $permission = Dashboard::getPermission();
+        $role = $storage->get('model');
+
+        if (!is_null($role)) {
+            $rolePermission = $role->permissions;
+            $permission = Dashboard::getPermission()->toArray();
+
+
+            foreach ($permission as $name => $array) {
+                foreach ($array as $key => $value) {
+                    if (array_key_exists($value['slug'], $rolePermission)) {
+                        $permission[$name][$key]['active'] = 1;
+                    }
+                }
+            }
+
+            $permission = collect($permission);
+        } else {
+            $permission = Dashboard::getPermission();
+        }
+
 
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
+            'role' => $role
         ]);
     }
 
@@ -52,17 +75,14 @@ class BaseRolesForm extends Form
      */
     public function persist($storage = null)
     {
-        dd($storage);
+        $role =  Role::firstOrNew([
+            'name' => $this->request->get('name'),
+            'slug' => $this->request->get('slug'),
+        ]);
 
-        $test = Role::create($this->request->all());
+        $role->permissions = $this->request->get('permissions');
+        $role->save();
 
-
-
-        return response()->json(
-            [
-                'title' => 'Успешно',
-                'message' => 'Данные сохранены',
-            ]
-        );
+        Alert::success('Message');
     }
 }
