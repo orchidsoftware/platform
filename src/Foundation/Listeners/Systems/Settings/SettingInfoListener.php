@@ -1,11 +1,12 @@
-<?php namespace Orchid\Foundation\Listeners\Systems\Settings;
+<?php
+
+namespace Orchid\Foundation\Listeners\Systems\Settings;
 
 use Orchid\Foundation\Events\Systems\SettingsEvent;
 use Orchid\Foundation\Http\Forms\Systems\Settings\InfoForm;
 
 class SettingInfoListener
 {
-
     /**
      * Create the event listener.
      *
@@ -18,7 +19,8 @@ class SettingInfoListener
     /**
      * Handle the event.
      *
-     * @param  SettingsEvent  $event
+     * @param SettingsEvent $event
+     *
      * @return void
      */
     public function handle(SettingsEvent $event)

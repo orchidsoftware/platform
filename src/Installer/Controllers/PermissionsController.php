@@ -2,13 +2,11 @@
 
 namespace Orchid\Installer\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Routing\Controller;
 use Orchid\Installer\Helpers\PermissionsChecker;
 
 class PermissionsController extends Controller
 {
-
     /**
      * @var PermissionsChecker
      */
@@ -33,7 +31,7 @@ class PermissionsController extends Controller
                 'storage/app/'           => '775',
                 'storage/framework/'     => '775',
                 'storage/logs/'          => '775',
-                'bootstrap/cache/'       => '775'
+                'bootstrap/cache/'       => '775',
         ]);
 
         return view('install::permissions', compact('permissions'));

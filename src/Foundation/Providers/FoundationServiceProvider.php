@@ -2,12 +2,11 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Blade;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Foundation\Http\Composers\DashboardMenuComposer;
 use Orchid\Foundation\Http\Composers\DashboardNotificationComposer;
+use Orchid\Foundation\Kernel\Dashboard;
 use View;
 
 class FoundationServiceProvider extends ServiceProvider
@@ -93,7 +92,6 @@ class FoundationServiceProvider extends ServiceProvider
             __DIR__.'/../Resources/dist/' => public_path('orchid'),
         ], 'public');
     }
-
 
     public function registerProviders()
     {

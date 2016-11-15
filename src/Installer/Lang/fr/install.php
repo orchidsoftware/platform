@@ -2,16 +2,16 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
      */
     'title' => 'Installateur de Laravel',
-    'next' => 'Suivant',
+    'next'  => 'Suivant',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -22,7 +22,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -32,7 +32,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -42,27 +42,27 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
      */
     'environment' => [
-        'title' => 'Paramètres d’environment',
-        'save' => 'Enregistrer .env',
+        'title'   => 'Paramètres d’environment',
+        'save'    => 'Enregistrer .env',
         'success' => 'Votre fichier .env a été sauvegardé.',
-        'errors' => 'Impossible d’enregistrer le fichier .env, il faut que vous le créiez manuellement.',
+        'errors'  => 'Impossible d’enregistrer le fichier .env, il faut que vous le créiez manuellement.',
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *
      */
     'final' => [
-        'title' => 'Terminé',
+        'title'    => 'Terminé',
         'finished' => 'L’application a été installée avec succès.',
-        'exit' => 'Cliquez ici pour quitter',
+        'exit'     => 'Cliquez ici pour quitter',
     ],
 ];

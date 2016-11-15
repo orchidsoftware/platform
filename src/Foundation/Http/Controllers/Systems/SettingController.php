@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Http\Controllers\Systems;
+<?php
+
+namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Settings\SettingFormGroup;

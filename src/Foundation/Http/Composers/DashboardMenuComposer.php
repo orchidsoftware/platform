@@ -25,7 +25,7 @@ class DashboardMenuComposer
      * DashboardMenuComposer constructor.
      *
      * @param \Orchid\Foundation\Services\Menu\DashboardMenu $dashboardMenu
-     * @param \Illuminate\Contracts\Auth\Guard              $guard
+     * @param \Illuminate\Contracts\Auth\Guard               $guard
      */
     public function __construct(Dashboard $dashboard = null, Guard $guard)
     {
@@ -42,7 +42,7 @@ class DashboardMenuComposer
     public function compose(View $view)
     {
         if ($this->guard->check()) {
-            $viewMenu = Cache::remember('dashboard-menu-user-' . $this->guard->user()->id, 10, function () {
+            $viewMenu = Cache::remember('dashboard-menu-user-'.$this->guard->user()->id, 10, function () {
 
                 /*
                  * Тут надо перебрать всю меню на наличие прав, и удалить
@@ -50,7 +50,7 @@ class DashboardMenuComposer
                  */
                 $user = $this->guard->user();
                 $accessCollection = $this->menu->container->filter(function ($item) use ($user) {
-                    return true;//(isset($item['arg']['route'])) ? $user->hasAccess($item['arg']['route']) : true;
+                    return true; //(isset($item['arg']['route'])) ? $user->hasAccess($item['arg']['route']) : true;
                 });
 
                 return $accessCollection;

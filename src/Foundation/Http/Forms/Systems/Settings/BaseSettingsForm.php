@@ -1,42 +1,45 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+<?php
 
-use Orchid\Foundation\Services\Forms\Form;
+namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+
 use Orchid\Foundation\Core\Models\Setting;
+use Orchid\Foundation\Services\Forms\Form;
 
 class BaseSettingsForm extends Form
 {
     public $name = 'Base';
 
     /**
-     * Base Model
+     * Base Model.
+     *
      * @var
      */
     protected $model = Setting::class;
 
 
     /**
-     * Validation Rules Request
+     * Validation Rules Request.
+     *
      * @var array
      */
     protected $rules = [
-        'settings' => 'required|array'
+        'settings' => 'required|array',
     ];
 
-
     /**
-     * Display Settings App
+     * Display Settings App.
      */
     public function get()
     {
         $settings = $this->model->get('base', collect());
 
         return view('dashboard::container.systems.settings.base', [
-            'settings' => $settings
+            'settings' => $settings,
         ]);
     }
 
     /**
-     * Save Base Settings
+     * Save Base Settings.
      */
     public function persist()
     {
@@ -46,11 +49,10 @@ class BaseSettingsForm extends Form
         }
 
         return response()->json([
-            'title' => 'Успешно',
+            'title'   => 'Успешно',
             'message' => 'Данные сохранены',
         ]);
     }
-
 
     public function grid()
     {

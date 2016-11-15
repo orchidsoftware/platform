@@ -1,21 +1,23 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+<?php
 
-use Orchid\Foundation\Services\Forms\Form;
+namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+
 use Orchid\Foundation\Core\Models\Setting;
+use Orchid\Foundation\Services\Forms\Form;
 
 class InfoForm extends Form
 {
     public $name = 'Info';
 
     /**
-     * Base Model
+     * Base Model.
+     *
      * @var
      */
     protected $model = Setting::class;
 
-
     /**
-     * Display Settings App
+     * Display Settings App.
      */
     public function get()
     {
@@ -26,16 +28,14 @@ class InfoForm extends Form
         $settings = $settings->merge($extendSettings);
 
         return view('dashboard::container.systems.settings.info', [
-            'settings' => $settings
+            'settings' => $settings,
         ]);
     }
-
 
     public function persist()
     {
         // TODO: Implement persist() method.
     }
-
 
     public function grid()
     {

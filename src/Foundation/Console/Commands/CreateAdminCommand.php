@@ -30,14 +30,15 @@ class CreateAdminCommand extends Command
 
 
     /**
-     * Permissions
+     * Permissions.
+     *
      * @var
      */
     protected $permissions;
 
-
     /**
      * CreateAdminCommand constructor.
+     *
      * @param Dashboard $dashboard
      */
     public function __construct(Dashboard $dashboard)
@@ -61,9 +62,9 @@ class CreateAdminCommand extends Command
 
         try {
             User::create([
-                'name' => $this->argument('name'),
-                'email' => $this->argument('email'),
-                'password' => bcrypt($this->argument('password')),
+                'name'        => $this->argument('name'),
+                'email'       => $this->argument('email'),
+                'password'    => bcrypt($this->argument('password')),
                 'permissions' => $permissions,
             ]);
 

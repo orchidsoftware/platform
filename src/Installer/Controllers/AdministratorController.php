@@ -1,14 +1,16 @@
-<?php namespace Orchid\Installer\Controllers;
+<?php
 
-use Illuminate\Routing\Redirector;
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+namespace Orchid\Installer\Controllers;
+
 use Artisan;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Routing\Redirector;
 
 class AdministratorController extends Controller
 {
     /**
-     * Administrator view
+     * Administrator view.
      */
     public function administrator()
     {
@@ -16,16 +18,17 @@ class AdministratorController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request    $request
      * @param Redirector $redirect
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function create(Request $request, Redirector $redirect)
     {
         $exitCode = Artisan::call('make:admin', [
-            'name' =>  $request->input('name'),
-            'email' =>  $request->input('email'),
-            'password' =>  $request->input('password'),
+            'name'     => $request->input('name'),
+            'email'    => $request->input('email'),
+            'password' => $request->input('password'),
         ]);
 
         return redirect()->route('install::final')
