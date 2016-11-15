@@ -1,41 +1,46 @@
-<?php namespace Orchid\Foundation\Services\Forms;
+<?php
+
+namespace Orchid\Foundation\Services\Forms;
 
 abstract class FormGroup
 {
-
     /**
-     * Event Hook
+     * Event Hook.
+     *
      * @var
      */
     protected $event;
 
     /**
-     * Collection listeners form
+     * Collection listeners form.
+     *
      * @var \Illuminate\Support\Collection
      */
     public $group;
 
 
     /**
-     * View template form
+     * View template form.
+     *
      * @var
      */
     public $view;
 
 
     /**
-     * Views Render
+     * Views Render.
+     *
      * @var
      */
     private $html;
 
 
     /**
-     * Global Forms Storage
+     * Global Forms Storage.
+     *
      * @var \Illuminate\Support\Collection
      */
     public $storage;
-
 
     /**
      * FormGroup constructor.
@@ -56,7 +61,7 @@ abstract class FormGroup
 
         foreach ($this->group as $form) {
             if (!is_object($form)) {
-                $form = new $form;
+                $form = new $form();
             }
 
             if (method_exists($form, 'get')) {
@@ -69,7 +74,6 @@ abstract class FormGroup
         ]);
     }
 
-
     /**
      * @return string
      */
@@ -77,7 +81,7 @@ abstract class FormGroup
     {
         foreach ($this->group as $form) {
             if (!is_object($form)) {
-                $form = new $form;
+                $form = new $form();
             }
 
             if (method_exists($form, 'save')) {

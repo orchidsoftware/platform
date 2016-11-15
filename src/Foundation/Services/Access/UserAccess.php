@@ -23,6 +23,7 @@ trait UserAccess
     {
         static::$rolesModel = $rolesModel;
     }
+
     /**
      * @return mixed
      */

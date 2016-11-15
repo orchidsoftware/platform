@@ -28,15 +28,15 @@ class PermissionServiceProvider extends ServiceProvider
         return [
             'Modules - название модуля' => [
                 [
-                    'slug' => 'dashboard.post',
+                    'slug'        => 'dashboard.post',
                     'description' => 'Доступ к постам',
                 ],
                 [
-                    'slug' => 'dashboard.post.images',
+                    'slug'        => 'dashboard.post.images',
                     'description' => 'Доступ к изображениям',
                 ],
                 [
-                    'slug' => 'dashboard.post.seo',
+                    'slug'        => 'dashboard.post.seo',
                     'description' => 'Доступ к SEO параметрам',
                 ],
                 //etc

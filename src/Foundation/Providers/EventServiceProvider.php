@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,7 +20,6 @@ class EventServiceProvider extends ServiceProvider
             'Orchid\Foundation\Listeners\Systems\Roles\RoleBaseListener',
         ],
     ];
-
 
     /**
      * Register any events for your application.

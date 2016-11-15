@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Services\Tags;
+<?php
+
+namespace Orchid\Foundation\Services\Tags;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Foundation\Core\Models\Tag;
@@ -254,7 +256,7 @@ trait TaggableTrait
     public function addTag($name)
     {
         $tag = $this->createTagsModel()->firstOrNew([
-            'slug' => $this->generateTagSlug($name),
+            'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
 

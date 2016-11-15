@@ -2,7 +2,7 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
@@ -11,7 +11,7 @@ return [
     'next'         => 'Следующий шаг',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -22,7 +22,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -32,7 +32,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -42,7 +42,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
@@ -55,7 +55,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *

@@ -37,6 +37,6 @@ class SEO extends Model
      */
     protected $casts = [
         'custom' => 'array',
-        'image' => 'array',
+        'image'  => 'array',
     ];
 }

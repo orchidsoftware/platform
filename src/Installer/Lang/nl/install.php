@@ -2,16 +2,16 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
      */
     'title' => 'Laravel Installer',
-    'next' => 'Volgende stap',
+    'next'  => 'Volgende stap',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -22,7 +22,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -32,7 +32,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -42,27 +42,27 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
      */
     'environment' => [
-        'title' => 'Environment Settings',
-        'save' => '.env Opslaan',
+        'title'   => 'Environment Settings',
+        'save'    => '.env Opslaan',
         'success' => 'Uw .env bestand is opgeslagen.',
-        'errors' => 'Het is niet mogelijk om een .env bestand aan te maken, maak a.u.b het bestand zelf aan.',
+        'errors'  => 'Het is niet mogelijk om een .env bestand aan te maken, maak a.u.b het bestand zelf aan.',
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *
      */
     'final' => [
-        'title' => 'Voltooid',
+        'title'    => 'Voltooid',
         'finished' => 'Applicatie is succesvol geïnstalleerd.',
-        'exit' => 'Klik hier om af te sluiten.',
+        'exit'     => 'Klik hier om af te sluiten.',
     ],
 ];

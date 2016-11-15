@@ -1,42 +1,45 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+<?php
+
+namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Core\Models\Role;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
-use Orchid\Foundation\Facades\Alert;
 
 class BaseRolesForm extends Form
 {
-
     /**
      * @var string
      */
     public $name = 'General Info';
 
     /**
-     * Base Model
+     * Base Model.
+     *
      * @var
      */
     protected $model = Role::class;
 
-
     /**
-     * Validation Rules Request
+     * Validation Rules Request.
+     *
      * @return array
      */
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
-            'slug' => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
-            'permissions' => 'array'
+            'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug'        => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
+            'permissions' => 'array',
         ];
     }
 
-
     /**
-     * Display Settings App
+     * Display Settings App.
+     *
      * @param null $storage
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($storage = null)
@@ -64,18 +67,20 @@ class BaseRolesForm extends Form
 
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
-            'role' => $role
+            'role'       => $role,
         ]);
     }
 
     /**
-     * Save Base Role
+     * Save Base Role.
+     *
      * @param null $storage
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function persist($storage = null)
     {
-        $role =  Role::firstOrNew([
+        $role = Role::firstOrNew([
             'name' => $this->request->get('name'),
             'slug' => $this->request->get('slug'),
         ]);

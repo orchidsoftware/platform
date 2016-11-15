@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Events\Systems;
+<?php
+
+namespace Orchid\Foundation\Events\Systems;
 
 use Illuminate\Queue\SerializesModels;
 use Orchid\Foundation\Http\Forms\Systems\Settings\SettingFormGroup;
@@ -15,6 +17,7 @@ class SettingsEvent
     /**
      * Create a new event instance.
      * SomeEvent constructor.
+     *
      * @param SettingFormGroup $form
      */
     public function __construct(SettingFormGroup $form)

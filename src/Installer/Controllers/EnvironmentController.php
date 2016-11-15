@@ -2,14 +2,13 @@
 
 namespace Orchid\Installer\Controllers;
 
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Routing\Redirector;
 use Orchid\Installer\Helpers\EnvironmentManager;
 
 class EnvironmentController extends Controller
 {
-
     /**
      * @var EnvironmentManager
      */
@@ -37,7 +36,7 @@ class EnvironmentController extends Controller
         $envArray = [];
 
         foreach ($dotenv as $key => $value) {
-            $chunk = explode("=", $value);
+            $chunk = explode('=', $value);
             $envArray[$chunk[0]] = $chunk[1];
         }
 
@@ -45,12 +44,12 @@ class EnvironmentController extends Controller
         return view('install::environment', compact('envConfig', 'envArray'));
     }
 
-
     /**
      * Processes the newly saved environment configuration and redirects back.
      *
-     * @param Request $input
+     * @param Request    $input
      * @param Redirector $redirect
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Request $input, Redirector $redirect)

@@ -1,14 +1,13 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Localization;
+<?php
+
+namespace Orchid\Foundation\Http\Forms\Systems\Localization;
 
 use Orchid\Foundation\Core\Models\Language;
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Events\Systems\LocalizationEvent;
-use Orchid\Foundation\Events\Systems\RolesEvent;
 use Orchid\Foundation\Services\Forms\FormGroup;
 
 class LocalizationFormGroup extends FormGroup
 {
-
     /**
      * @var string
      */
@@ -19,7 +18,8 @@ class LocalizationFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function grid() {
+    public function grid()
+    {
         $localization = new Language();
 
         $localizations = $localization->select(
@@ -27,7 +27,7 @@ class LocalizationFormGroup extends FormGroup
         )->paginate();
 
         return view('dashboard::container.systems.localization.grid', [
-            'localizations' => $localizations
+            'localizations' => $localizations,
         ]);
     }
 }

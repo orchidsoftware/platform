@@ -17,10 +17,10 @@ trait NotificationTrait
     {
         Notification::create([
             'user_id' => $this->id,
-            'type' => $type,
-            'url' => $url,
-            'text' => $text,
-            'read' => false,
+            'type'    => $type,
+            'url'     => $url,
+            'text'    => $text,
+            'read'    => false,
         ]);
 
         return $this;

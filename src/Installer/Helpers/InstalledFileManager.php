@@ -2,9 +2,6 @@
 
 namespace Orchid\Installer\Helpers;
 
-use Illuminate\Support\Facades\Storage;
-use Orchid\Installer\Helpers\EnvironmentManager;
-
 class InstalledFileManager
 {
     /**

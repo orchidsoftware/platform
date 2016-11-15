@@ -2,16 +2,16 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
      */
     'title' => 'تنصيب Laravel',
-    'next' => 'متابعة',
+    'next'  => 'متابعة',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -22,7 +22,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -32,7 +32,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -42,27 +42,27 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
      */
     'environment' => [
-        'title' => 'الإعدادات',
-        'save' => 'حفظ ملف .env',
+        'title'   => 'الإعدادات',
+        'save'    => 'حفظ ملف .env',
         'success' => 'تم حفظ الإعدادات بنجاح',
-        'errors' => 'حدث خطأ أثناء إنشاء ملف .env. رجاءا قم بإنشاءه يدويا',
+        'errors'  => 'حدث خطأ أثناء إنشاء ملف .env. رجاءا قم بإنشاءه يدويا',
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *
      */
     'final' => [
-        'title' => 'النهاية',
+        'title'    => 'النهاية',
         'finished' => 'تم تنصيب البرنامج بنجاح...',
-        'exit' => 'إضغط هنا للخروج',
+        'exit'     => 'إضغط هنا للخروج',
     ],
 ];
