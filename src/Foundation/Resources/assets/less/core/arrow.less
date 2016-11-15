@@ -1,0 +1,248 @@
+.arrow {
+  border-width: @arrow-outer-width;
+  z-index: 10;
+  &,
+  &:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+  }
+  &:after {
+    border-width: @arrow-width;
+    content: "";
+  }
+
+  &.top {
+    left: 50%;
+    margin-left: -@arrow-outer-width;
+    border-top-width: 0;
+    border-bottom-color: @arrow-outer-color;
+    top: -@arrow-outer-width;
+    &:after {
+      top: 1px;
+      margin-left: -@arrow-width;
+      border-top-width: 0;
+      border-bottom-color: @arrow-color;
+    }
+    &.arrow-primary {
+      &:after {
+        border-bottom-color: @brand-primary;
+      }
+    }
+    &.arrow-info {
+      &:after {
+        border-bottom-color: @brand-info;
+      }
+    }
+    &.arrow-success {
+      &:after {
+        border-bottom-color: @brand-success;
+      }
+    }
+    &.arrow-danger {
+      &:after {
+        border-bottom-color: @brand-danger;
+      }
+    }
+    &.arrow-warning {
+      &:after {
+        border-bottom-color: @brand-warning;
+      }
+    }
+    &.arrow-light {
+      &:after {
+        border-bottom-color: @brand-light;
+      }
+    }
+    &.arrow-dark {
+      &:after {
+        border-bottom-color: @brand-dark;
+      }
+    }
+    &.arrow-black {
+      &:after {
+        border-bottom-color: @brand-black;
+      }
+    }
+  }
+
+  &.right {
+    top: 50%;
+    right: -@arrow-outer-width;
+    margin-top: -@arrow-outer-width;
+    border-right-width: 0;
+    border-left-color: @arrow-outer-color;
+    &:after {
+      right: 1px;
+      bottom: -@arrow-width;
+      border-right-width: 0;
+      border-left-color: @arrow-color;
+    }
+    &.arrow-primary {
+      &:after {
+        border-left-color: @brand-primary;
+      }
+    }
+    &.arrow-info {
+      &:after {
+        border-left-color: @brand-info;
+      }
+    }
+    &.arrow-success {
+      &:after {
+        border-left-color: @brand-success;
+      }
+    }
+    &.arrow-danger {
+      &:after {
+        border-left-color: @brand-danger;
+      }
+    }
+    &.arrow-warning {
+      &:after {
+        border-left-color: @brand-warning;
+      }
+    }
+    &.arrow-light {
+      &:after {
+        border-left-color: @brand-light;
+      }
+    }
+    &.arrow-dark {
+      &:after {
+        border-left-color: @brand-dark;
+      }
+    }
+    &.arrow-black {
+      &:after {
+        border-left-color: @brand-black;
+      }
+    }
+  }
+
+  &.bottom {
+    left: 50%;
+    bottom: -@arrow-outer-width;
+    margin-left: -@arrow-outer-width;
+    border-bottom-width: 0;
+    border-top-color: @arrow-outer-color;
+    &:after {
+      bottom: 1px;
+      margin-left: -@arrow-width;
+      border-bottom-width: 0;
+      border-top-color: @arrow-color;
+    }
+    &.arrow-primary {
+      &:after {
+        border-top-color: @brand-primary;
+      }
+    }
+    &.arrow-info {
+      &:after {
+        border-top-color: @brand-info;
+      }
+    }
+    &.arrow-success {
+      &:after {
+        border-top-color: @brand-success;
+      }
+    }
+    &.arrow-danger {
+      &:after {
+        border-top-color: @brand-danger;
+      }
+    }
+    &.arrow-warning {
+      &:after {
+        border-top-color: @brand-warning;
+      }
+    }
+    &.arrow-light {
+      &:after {
+        border-top-color: @brand-light;
+      }
+    }
+    &.arrow-dark {
+      &:after {
+        border-top-color: @brand-dark;
+      }
+    }
+    &.arrow-black {
+      &:after {
+        border-top-color: @brand-black;
+      }
+    }
+  }
+
+  &.left {
+    top: 50%;
+    left: -@arrow-outer-width;
+    margin-top: -@arrow-outer-width;
+    border-left-width: 0;
+    border-right-color: @arrow-outer-color;
+    &:after {
+      left: 1px;
+      bottom: -@arrow-width;
+      border-left-width: 0;
+      border-right-color: @arrow-color;
+    }
+    &.arrow-primary {
+      &:after {
+        border-right-color: @brand-primary;
+      }
+    }
+    &.arrow-info {
+      &:after {
+        border-right-color: @brand-info;
+      }
+    }
+    &.arrow-success {
+      &:after {
+        border-right-color: @brand-success;
+      }
+    }
+    &.arrow-danger {
+      &:after {
+        border-right-color: @brand-danger;
+      }
+    }
+    &.arrow-warning {
+      &:after {
+        border-right-color: @brand-warning;
+      }
+    }
+    &.arrow-light {
+      &:after {
+        border-right-color: @brand-light;
+      }
+    }
+    &.arrow-dark {
+      &:after {
+        border-right-color: @brand-dark;
+      }
+    }
+    &.arrow-black {
+      &:after {
+        border-right-color: @brand-black;
+      }
+    }
+  }
+
+  &.pull-left {
+    left: @arrow-outer-width + 10;
+  }
+  &.pull-right {
+    left: auto;
+    right: @arrow-outer-width + 10;
+  }
+  &.pull-up {
+    top: @arrow-outer-width + 10;
+  }
+  &.pull-down {
+    top: auto;
+    bottom: @arrow-outer-width + 10;
+  }
+
+}

@@ -1,0 +1,64 @@
+{
+  "name": "orchid/platform",
+  "description": "Orchid Platform application provides a very flexible and extensible way of building your custom application. ",
+  "keywords": [
+    "framework",
+    "laravel",
+    "orchid",
+    "crud",
+    "cms",
+    "cmf",
+    "access",
+    "alert",
+    "attributes",
+    "log",
+    "menu",
+    "scaffold",
+    "seo",
+    "settings",
+    "tags",
+    "widget",
+    "website",
+    "user",
+    "editor",
+    "permissions",
+    "dashboard",
+    "active",
+    "admin",
+    "bootstrap",
+    "platform"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "homepage": "http://orchid.ga",
+  "authors": [
+    {
+      "name": "Alexandr Chernyaev",
+      "email": "bliz48rus@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.*",
+    "watson/active": "^2.0"
+  },
+  "files": [
+    "src/Settings/helpers.php"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Orchid\\Foundation\\": "src/Foundation",
+      "Orchid\\Installer\\": "src/Installer",
+      "Orchid\\Settings\\": "src/Settings",
+      "Orchid\\Widget\\": "src/Widget",
+      "Orchid\\Alert\\": "src/Alert"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "minimum-stability": "alpha",
+  "prefer-stable": true
+}

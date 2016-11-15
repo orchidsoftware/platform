@@ -1,0 +1,22 @@
+<?php namespace DummyNamespace;
+
+use Orchid\Widget\Service\Widget;
+
+class DummyClass extends Widget {
+
+    /**
+     * Class constructor.
+     */
+    public function __construct(){
+
+    }
+
+    /**
+     * @return mixed
+     */
+     public function run(){
+         return view('',[
+         ]);
+     }
+
+}

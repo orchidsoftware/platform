@@ -1,0 +1,219 @@
+.i-switch {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: @switch-width;
+  height: @switch-height;
+  border-radius: 30px;
+  background-color: @brand-success;
+  margin: 0;
+  input {
+    position: absolute;
+    .opacity(0);
+    &:checked {
+      + i {
+        &:before {
+          top: 50%;
+          bottom: 50%;
+          left: 50%;
+          right: 5px;
+          border-width: 0;
+          border-radius: 5px;
+        }
+        &:after {
+          margin-left: @switch-width - @switch-height + 1;
+        }
+      }
+    }
+  }
+  i {
+    &:before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      background-color: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 30px;
+      .transition(all 0.2s);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: #fff;
+      width: @switch-height - 2;
+      top: 1px;
+      bottom: 1px;
+      border-radius: 50%;
+      .box-shadow(1px 1px 3px rgba(0, 0, 0, 0.25));
+      .transition(margin-left 0.3s);
+    }
+  }
+}
+
+.i-switch-md {
+  width: @switch-md-width;
+  height: @switch-md-height;
+  input {
+    &:checked {
+      + i {
+        &:after {
+          margin-left: @switch-md-width - @switch-md-height + 1;
+        }
+      }
+    }
+  }
+  i {
+    &:after {
+      width: @switch-md-height - 2;
+    }
+  }
+}
+
+.i-switch-lg {
+  width: @switch-lg-width;
+  height: @switch-lg-height;
+  input {
+    &:checked {
+      + i {
+        &:after {
+          margin-left: @switch-lg-width - @switch-lg-height + 1;
+        }
+      }
+    }
+  }
+  i {
+    &:after {
+      width: @switch-lg-height - 2;
+    }
+  }
+}
+
+.i-checks {
+  padding-left: 20px;
+  cursor: pointer;
+  input {
+    opacity: 0;
+    position: absolute;
+    margin-left: -20px;
+    &:checked + i {
+      border-color: @brand-info;
+      &:before {
+        left: 4px;
+        top: 4px;
+        width: 10px;
+        height: 10px;
+        background-color: @brand-info;
+      }
+    }
+    &:checked + span .active {
+      display: inherit;
+    }
+    &[type="radio"] + i {
+      &,
+      &:before {
+        border-radius: 50%;
+      }
+    }
+    &[type="checkbox"]:checked + i:before {
+
+    }
+    &[type="radio"]:checked + i:before {
+
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      & + i {
+        border-color: lighten(@input-border, 5%);
+        &:before {
+          background-color: lighten(@input-border, 5%);
+        }
+      }
+    }
+  }
+  > i {
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    border: 1px solid @input-border;
+    background-color: #fff;
+    margin-left: -20px;
+    margin-top: -2px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0px;
+      height: 0px;
+      background-color: transparent;
+      .transition(all 0.2s);
+    }
+  }
+  > span {
+    margin-left: -20px;
+    .active {
+      display: none;
+    }
+  }
+}
+
+.i-checks-sm {
+  input {
+    &:checked + i {
+      &:before {
+        left: 3px;
+        top: 3px;
+        width: 8px;
+        height: 8px;
+      }
+    }
+  }
+  > i {
+    width: 16px;
+    height: 16px;
+    margin-left: -18px;
+    margin-right: 6px;
+  }
+}
+
+.i-checks-lg {
+  input {
+    &:checked + i {
+      &:before {
+        left: 8px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+  > i {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+// ui.bootstrap datepicker
+.datepicker {
+  margin: 0 5px
+}
+
+.datepicker .btn-default {
+  border-width: 0;
+  box-shadow: none;
+}
+
+.datepicker .btn[disabled] {
+  opacity: 0.4
+}
+
+.datepicker .btn-info .text-info {
+  color: #fff !important;
+}

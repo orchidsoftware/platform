@@ -1,0 +1,52 @@
+@media (max-width: 767px) {
+  .app {
+    overflow-x: hidden;
+  }
+
+  .app-content {
+    .transition-transform(0.2s ease);
+  }
+
+  .off-screen {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: @off-screen-width;
+    display: block !important;
+    visibility: visible;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1010;
+    + * {
+      background-color: @body-bg;
+      .transition-transform(0.2s ease);
+      .backface-visibility(hidden);
+      .translate3d(@off-screen-width, 0px, 0px);
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1015;
+      padding-top: 50px;
+      .off-screen-toggle {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1020;
+      }
+    }
+    &.pull-right {
+      right: 0;
+      + * {
+        .translate3d(-@off-screen-width, 0px, 0px);
+      }
+    }
+  }
+}

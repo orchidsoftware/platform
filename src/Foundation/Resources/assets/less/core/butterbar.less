@@ -1,0 +1,146 @@
+.butterbar {
+  position: relative;
+  margin-bottom: -@butterbar-height;
+  height: @butterbar-height;
+  .bar {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    text-indent: -9999px;
+    background-color: @brand-info;
+    &:before {
+      content: "";
+      height: @butterbar-height;
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      background-color: inherit;
+    }
+  }
+}
+
+.butterbar.active {
+  -webkit-animation: changebar @butterbar-time*3 infinite @butterbar-time;
+  -moz-animation: changebar @butterbar-time*3 infinite @butterbar-time;
+  animation: changebar @butterbar-time*3 infinite @butterbar-time;
+  .bar {
+    -webkit-animation: changebar @butterbar-time*3 infinite;
+    -moz-animation: changebar @butterbar-time*3 infinite;
+    animation: changebar @butterbar-time*3 infinite;
+    &:before {
+      -webkit-animation: movingbar @butterbar-time infinite;
+      -moz-animation: movingbar @butterbar-time infinite;
+      animation: movingbar @butterbar-time infinite;
+    }
+  }
+}
+
+/* Moving bar */
+@-webkit-keyframes movingbar {
+  0% {
+    left: 50%;
+    right: 50%
+  }
+  99.9% {
+    left: 0%;
+    right: 0%
+  }
+  100% {
+    left: 50%;
+    right: 50%
+  }
+}
+
+@-moz-keyframes movingbar {
+  0% {
+    left: 50%;
+    right: 50%
+  }
+  99.9% {
+    left: 0%;
+    right: 0%
+  }
+  100% {
+    left: 50%;
+    right: 50%
+  }
+}
+
+@keyframes movingbar {
+  0% {
+    left: 50%;
+    right: 50%
+  }
+  99.9% {
+    left: 0%;
+    right: 0%
+  }
+  100% {
+    left: 50%;
+    right: 50%
+  }
+}
+
+/* change bar */
+@-webkit-keyframes changebar {
+  0% {
+    background-color: @brand-info
+  }
+  33.3% {
+    background-color: @brand-info
+  }
+  33.33% {
+    background-color: @brand-warning
+  }
+  66.6% {
+    background-color: @brand-warning
+  }
+  66.66% {
+    background-color: @brand-primary
+  }
+  99.9% {
+    background-color: @brand-primary
+  }
+}
+
+@-moz-keyframes changebar {
+  0% {
+    background-color: @brand-info
+  }
+  33.3% {
+    background-color: @brand-info
+  }
+  33.33% {
+    background-color: @brand-warning
+  }
+  66.6% {
+    background-color: @brand-warning
+  }
+  66.66% {
+    background-color: @brand-primary
+  }
+  99.9% {
+    background-color: @brand-primary
+  }
+}
+
+@keyframes changebar {
+  0% {
+    background-color: @brand-info
+  }
+  33.3% {
+    background-color: @brand-info
+  }
+  33.33% {
+    background-color: @brand-warning
+  }
+  66.6% {
+    background-color: @brand-warning
+  }
+  66.66% {
+    background-color: @brand-primary
+  }
+  99.9% {
+    background-color: @brand-primary
+  }
+}

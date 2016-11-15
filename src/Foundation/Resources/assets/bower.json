@@ -1,0 +1,40 @@
+{
+  "name": "OrchidTheme",
+  "version": "0.0.1",
+  "authors": [
+    "tabuna",
+    "mamau"
+  ],
+  "description": "Application template",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.*",
+    "bootstrap-daterangepicker": "1.*",
+    "bootstrap-tagsinput": "0.5.*",
+    "bootstrap-touchspin": "~3.0.1",
+    "bootstrap-wysiwyg": "*",
+    "bootstrap-chosen": "1.*",
+    "chosen": "1.4.*",
+    "flot": "~0.8.3",
+    "flot.orderbars": "*",
+    "flot.tooltip": "~0.8.4",
+    "font-awesome": "4.*",
+    "jquery": "3.*",
+    "jquery-ui": "1.11.*",
+    "jquery.easy-pie-chart": "~2.1.6",
+    "moment": "~2.*",
+    "dropzone": "~4.2.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "vue": "~2.0",
+    "vue-resource": "~0.7.0",
+    "simple-line-icons": "^2.4.1"
+  }
+}

@@ -1,0 +1,129 @@
+@media (min-width: @app-aside-dock-media) {
+  .app-aside-dock {
+    .app-content,
+    .app-footer {
+      margin-left: 0;
+    }
+    .app-aside-footer ~ div {
+      padding-bottom: 0;
+    }
+    &.app-aside-fixed {
+      &.app-header-fixed {
+        padding-top: 115px;
+      }
+      .app-aside {
+        position: fixed;
+        top: 50px;
+        width: 100%;
+        z-index: 1000;
+      }
+    }
+    .app-aside,
+    .aside-wrap,
+    .navi-wrap {
+      float: none;
+      width: 100% !important;
+      position: relative;
+      top: 0;
+      overflow: visible !important;
+    }
+    .navi-wrap > * {
+      width: auto !important;
+    }
+
+    .app-aside {
+      bottom: auto !important;
+      &.b-r {
+        border-right-width: 0;
+        border-bottom: 1px solid @border-color;
+      }
+      &:before {
+        display: none;
+      }
+      nav > .nav {
+        float: left;
+      }
+      .hidden-folded,
+      .line,
+      .navi-wrap > div {
+        display: none !important;
+      }
+      .navi > ul > li {
+        position: relative;
+        float: left;
+        display: inline-block;
+        > a {
+          padding: 10px 15px 12px 15px;
+          text-align: center;
+          height: auto;
+          > .badge,
+          > .label {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            padding: 1px 4px;
+          }
+          > i {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: -7px;
+            margin-top: -10px;
+            display: block;
+            float: none;
+            font-size: 14px;
+            line-height: 40px;
+            width: 40px;
+          }
+          > span.pull-right {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            margin-left: -6px;
+            display: block !important;
+            line-height: 1;
+            i {
+              &.text {
+                .rotate(90deg);
+                line-height: 14px;
+              }
+              line-height: 12px;
+              width: 12px;
+              font-size: 12px;
+            }
+          }
+          > span {
+            font-weight: normal;
+            display: block;
+          }
+        }
+        .nav-sub {
+          height: auto !important;
+          display: none;
+          position: absolute;
+          left: 0;
+          top: auto !important;
+          z-index: 1050;
+          width: @app-aside-width;
+          .box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+        }
+        .nav-sub-header {
+          display: none !important;
+        }
+      }
+      .navi li li a {
+        padding-left: 15px;
+      }
+      .navi li:hover,
+      .navi li:focus,
+      .navi li:active {
+        > .nav-sub {
+          display: block;
+          opacity: 1;
+          margin-left: 0;
+          height: auto !important;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}

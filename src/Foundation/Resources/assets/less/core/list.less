@@ -1,0 +1,143 @@
+/*------------------------------------------------------------------
+[18. List]
+*/
+.list-view-wrapper{
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.list-view-container{
+    position: relative;
+    .list-quickscroll{
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top:0;
+            right: 10px;
+            z-index: 120;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            li a{
+                font-size: 0.7em;
+                vertical-align: baseline;
+            }
+        }
+
+    }
+}
+
+.list-view-group-container {
+	margin: 0;
+	min-height: 1px;
+	overflow: hidden;
+	padding: 26px 0 0 0;
+	position: relative;
+    &:last-child{
+        ul{
+            border: 0;
+        }
+    }
+}
+.list-view-group-header, .list-view-fake-header {
+	background: @gray;
+	color: #232830;
+	font: normal 11px/14px 'Montserrat',Arial;
+    text-transform: uppercase;
+	margin: 0;
+	padding: 6px 0 5px 15px;
+	position: absolute;
+    border-top: 1px solid @border-color;
+    border-bottom: 1px solid @border-color;
+    z-index: 10;
+}
+.list-view-group-header {
+	bottom: auto;
+	min-height: 1px;
+	top: 0;
+	width: 100%;
+    border-top: 0;
+}
+.list-view-fake-header {
+	width: 100%;
+	z-index: 100;
+    font-size: 11px !important;
+    line-height: 14px !important;
+}
+
+.list-view-fake-header.list-view-hidden {
+	visibility: hidden;
+}
+.list-view-group-container.list-view-animated .list-view-group-header {
+	bottom: 0;
+	top: auto;
+}
+
+
+input.list-view-search{
+    font-size: 15px;
+    color: #232830;
+}
+
+.no-top-border{
+    .list-view-fake-header {
+        border-top: 0;
+    }
+}
+
+.list-view {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    }
+    li{
+        padding-left:15px;
+        white-space: nowrap;
+        cursor: pointer;
+        width: 100%;
+        display: table;
+        &:hover {
+            background-color: @gray;
+        }
+        &.active{
+            background-color: @brand-danger;
+        }
+        p{
+            margin: 0;
+            line-height: 19px;
+        }
+        & > a{
+            margin-right: 15px;
+            display: table;
+            width: 100%;
+        }
+    }
+    &.boreded{
+        li{
+            & > a {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            }
+            &:last-child > a{
+                border-bottom: 0;
+            }
+        }
+    }
+    
+}
+
+
+.list-view.boreded li + li {
+	border-top: 0;
+}
+
+[data-ios="true"] .list-view-group-header,
+[data-ios="true"] .list-view-fake-header {
+	width: 288px; /*scrollbars aren't visible in iOS devices, so make the headers wider */
+}

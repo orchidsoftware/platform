@@ -1,0 +1,122 @@
+
+/* Pages Scroll bar
+------------------------------------
+*/
+.scroll-wrapper {
+  & > .scroll-element, > .scroll-element div{
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+  }
+  &  > .scroll-element div {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  & > .scroll-element.scroll-x {
+    bottom: 2px;
+    height: 7px;
+    left: 0;
+    min-width: 100%;
+    width: 100%;
+  }
+
+  & > .scroll-element.scroll-y {
+    height: 100%;
+    min-height: 100%;
+    right: 2px;
+    top: 0;
+    width: 4px;
+  }
+  & > .scroll-element{
+    .scroll-element_outer {
+      opacity: 0.3;
+    }
+    .scroll-element_size {
+      background-color: rgba(0,0,0,0.07);
+      opacity: 0;
+    }
+    .scroll-bar {
+      background-color:#697686;
+    }
+
+    &.scroll-x{
+      .scroll-bar {
+        bottom: 0;
+        height: 4px;
+        min-width: 24px;
+        top: auto;
+      }
+      .scroll-element_outer {
+        bottom: 0;
+        top: auto;
+        left: 2px;
+        -webkit-transition: height 0.2s;
+        transition: height 0.2s;
+      }
+      .scroll-element_size { left: -4px; }
+    }
+    &.scroll-y{
+      .scroll-bar {
+        left: auto;
+        min-height: 24px;
+        right: 0;
+        width: 4px;
+      }
+      .scroll-element_outer {
+        left: auto;
+        right: 0;
+        top: 2px;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+      .scroll-element_size { top: -4px; }
+    }
+  }
+
+  &.auto-hide{
+    & > .scroll-element{
+      .scroll-element_track {
+        display: none;
+      }
+    }
+  }
+}
+
+.scroll-wrapper > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -11px; }
+.scroll-wrapper > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -11px; }
+
+/* hover & drag */
+
+.scroll-wrapper > .scroll-element:hover .scroll-element_outer,
+.scroll-wrapper > .scroll-element.scroll-draggable .scroll-element_outer {
+  overflow: hidden;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+.scroll-wrapper > .scroll-element:hover .scroll-element_outer .scroll-element_size,
+.scroll-wrapper > .scroll-element.scroll-draggable .scroll-element_outer .scroll-element_size {
+  opacity: 1;
+}
+.scroll-wrapper > .scroll-element:hover .scroll-element_outer .scroll-bar,
+.scroll-wrapper > .scroll-element.scroll-draggable .scroll-element_outer .scroll-bar {
+  height: 100%;
+  width: 100%;
+}
+
+.scroll-wrapper > .scroll-element.scroll-x:hover .scroll-element_outer,
+.scroll-wrapper > .scroll-element.scroll-x.scroll-draggable .scroll-element_outer {
+  height: 10px;
+  min-height: 7px;
+}
+.scroll-wrapper > .scroll-element.scroll-y:hover .scroll-element_outer,
+.scroll-wrapper > .scroll-element.scroll-y.scroll-draggable .scroll-element_outer {
+  min-width: 7px;
+  width: 7px;
+}
