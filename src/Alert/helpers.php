@@ -8,7 +8,7 @@ if (!function_exists('alert')) {
      * @param string|null $message
      * @param string      $level
      *
-     * @return \Laracasts\Flash\FlashNotifier
+     * @return \Orchid\Alert\Alert
      */
     function alert($message = null, $level = 'info')
     {
