@@ -25,6 +25,7 @@ class PermissionsChecker
      * Check for the folders permissions.
      *
      * @param array $folders
+     *
      * @return array
      */
     public function check(array $folders)
@@ -44,6 +45,7 @@ class PermissionsChecker
      * Get a folder permission.
      *
      * @param $folder
+     *
      * @return string
      */
     private function getPermission($folder)
@@ -61,9 +63,9 @@ class PermissionsChecker
     private function addFile($folder, $permission, $isSet)
     {
         array_push($this->results['permissions'], [
-            'folder' => $folder,
+            'folder'     => $folder,
             'permission' => $permission,
-            'isSet' => $isSet
+            'isSet'      => $isSet,
         ]);
     }
 

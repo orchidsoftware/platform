@@ -1,13 +1,13 @@
-<?php namespace Orchid\Foundation\Services\Access;
+<?php
+
+namespace Orchid\Foundation\Services\Access;
 
 class Permissions
 {
-
     /**
      * @var
      */
     protected $container;
-
 
     /**
      * Permissions constructor.
@@ -26,7 +26,8 @@ class Permissions
     }
 
     /**
-     * Get Permissons
+     * Get Permissons.
+     *
      * @return \Illuminate\Support\Collection
      */
     public function get()

@@ -31,7 +31,8 @@ trait SettingTrait
     /**
      * @param string|array $key
      * @param string|null  $default
-     * Get values
+     *                              Get values
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -44,6 +45,7 @@ trait SettingTrait
     /**
      * @param $key
      * @param null $default
+     *
      * @return null
      */
     public function getNoCache($key, $default = null)

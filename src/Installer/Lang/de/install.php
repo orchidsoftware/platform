@@ -2,17 +2,17 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
      */
-    'title' => 'Laravel Installer',
-    'next' => 'Nächster Schritt',
+    'title'  => 'Laravel Installer',
+    'next'   => 'Nächster Schritt',
     'finish' => 'Installieren',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -23,7 +23,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -33,7 +33,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -43,27 +43,27 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
      */
     'environment' => [
-        'title' => 'Umgebungsvariablen',
-        'save' => 'Speicher .env',
+        'title'   => 'Umgebungsvariablen',
+        'save'    => 'Speicher .env',
         'success' => 'Ihre .env Konfiguration wurde gespeichert.',
-        'errors' => 'Ihre .env Konfiguration konnte nicht gespeichert werden, Bitte erstellen Sie diese Manuell.',
+        'errors'  => 'Ihre .env Konfiguration konnte nicht gespeichert werden, Bitte erstellen Sie diese Manuell.',
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *
      */
     'final' => [
-        'title' => 'Fertig!',
+        'title'    => 'Fertig!',
         'finished' => 'Die Anwendung wurde erfolgreich Installiert.',
-        'exit' => 'Hier Klicken zum Beenden',
+        'exit'     => 'Hier Klicken zum Beenden',
     ],
 ];

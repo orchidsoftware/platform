@@ -1,11 +1,12 @@
-<?php namespace Orchid\Installer\Controllers;
+<?php
+
+namespace Orchid\Installer\Controllers;
 
 use Illuminate\Routing\Controller;
 use Orchid\Installer\Helpers\DatabaseManager;
 
 class DatabaseController extends Controller
 {
-
     /**
      * @var DatabaseManager
      */

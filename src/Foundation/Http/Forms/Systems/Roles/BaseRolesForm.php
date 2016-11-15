@@ -83,7 +83,6 @@ class BaseRolesForm extends Form
 
 
         $role->save();
-
         Alert::success('Message');
     }
 }

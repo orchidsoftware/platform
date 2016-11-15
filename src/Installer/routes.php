@@ -2,9 +2,9 @@
 
 Route::group(
     [
-        'prefix' => 'install',
-        'as' => 'install::',
-        'namespace' => 'Orchid\Installer\Controllers',
+        'prefix'     => 'install',
+        'as'         => 'install::',
+        'namespace'  => 'Orchid\Installer\Controllers',
         'middleware' => 'web',
     ],
     function () {
@@ -14,7 +14,7 @@ Route::group(
                 Route::get(
                     '/',
                     [
-                        'as' => 'welcome',
+                        'as'   => 'welcome',
                         'uses' => 'WelcomeController@welcome',
                     ]
                 );
@@ -22,7 +22,7 @@ Route::group(
                 Route::get(
                     'environment',
                     [
-                        'as' => 'environment',
+                        'as'   => 'environment',
                         'uses' => 'EnvironmentController@environment',
                     ]
                 );
@@ -30,7 +30,7 @@ Route::group(
                 Route::post(
                     'environment/save',
                     [
-                        'as' => 'environmentSave',
+                        'as'   => 'environmentSave',
                         'uses' => 'EnvironmentController@save',
                     ]
                 );
@@ -38,7 +38,7 @@ Route::group(
                 Route::get(
                     'requirements',
                     [
-                        'as' => 'requirements',
+                        'as'   => 'requirements',
                         'uses' => 'RequirementsController@requirements',
                     ]
                 );
@@ -46,7 +46,7 @@ Route::group(
                 Route::get(
                     'permissions',
                     [
-                        'as' => 'permissions',
+                        'as'   => 'permissions',
                         'uses' => 'PermissionsController@permissions',
                     ]
                 );
@@ -54,21 +54,21 @@ Route::group(
                 Route::get(
                     'database',
                     [
-                        'as' => 'database',
+                        'as'   => 'database',
                         'uses' => 'DatabaseController@database',
                     ]
                 );
                 Route::get(
                     'administrator',
                     [
-                        'as' => 'administrator',
+                        'as'   => 'administrator',
                         'uses' => 'AdministratorController@administrator',
                     ]
                 );
                 Route::post(
                     'administrator/create',
                     [
-                        'as' => 'administratorCreate',
+                        'as'   => 'administratorCreate',
                         'uses' => 'AdministratorController@create',
                     ]
                 );
@@ -76,7 +76,7 @@ Route::group(
                 Route::get(
                     'final',
                     [
-                        'as' => 'final',
+                        'as'   => 'final',
                         'uses' => 'FinalController@finish',
                     ]
                 );

@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Services\Forms;
+<?php
+
+namespace Orchid\Foundation\Services\Forms;
 
 interface FormContract
 {
@@ -16,7 +18,6 @@ interface FormContract
      * @return mixed
      */
     public function save();
-
 
     /**
      * @return mixed

@@ -48,6 +48,7 @@ class EnvironmentManager
      * Save the edited content to the file.
      *
      * @param Request $input
+     *
      * @return string
      */
     public function saveFile(Request $input)
