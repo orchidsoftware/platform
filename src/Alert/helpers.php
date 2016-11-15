@@ -1,23 +1,23 @@
 <?php
 
-if ( ! function_exists('alert')) {
+if (!function_exists('alert')) {
 
     /**
      * Arrange for a flash message.
      *
-     * @param  string|null $message
-     * @param  string      $level
+     * @param string|null $message
+     * @param string      $level
+     *
      * @return \Laracasts\Flash\FlashNotifier
      */
     function alert($message = null, $level = 'info')
     {
         $notifier = app('alert');
 
-        if ( ! is_null($message)) {
+        if (!is_null($message)) {
             return $notifier->message($message, $level);
         }
 
         return $notifier;
     }
-
 }

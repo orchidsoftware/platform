@@ -2,8 +2,8 @@
 
 namespace Orchid\Installer\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App;
+use Illuminate\Support\ServiceProvider;
 
 class InstallerServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class InstallerServiceProvider extends ServiceProvider
     {
         $this->publishFiles();
 
-        include __DIR__ . '/../routes.php';
+        include __DIR__.'/../routes.php';
     }
 
     /**
@@ -50,7 +50,7 @@ class InstallerServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path.'/vendor/orchid/install';
-        }, \Config::get('view.paths')), [  __DIR__.'/../Views']), 'install');
+        }, \Config::get('view.paths')), [__DIR__.'/../Views']), 'install');
 
 
         $this->publishes([
