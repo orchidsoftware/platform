@@ -26,7 +26,7 @@ class LocalizationMainForm extends Form
     {
         return [
             'name'        => 'required|max:255|unique:language,name,'.$this->request->get('name').',name',
-            'code'        => 'required|max:255|unique:language,code,'.$this->request->get('code').',code'
+            'code'        => 'required|max:255|unique:language,code,'.$this->request->get('code').',code',
         ];
     }
 
@@ -36,13 +36,14 @@ class LocalizationMainForm extends Form
     public function get()
     {
         $rendered_view = view('dashboard::container.systems.localization.info', []);
+
         return $rendered_view;
     }
 
     public function persist($storage = null)
     {
         $locale = Language::firstOrNew([
-            'code' => $this->request->get('code')
+            'code' => $this->request->get('code'),
         ]);
         $locale->fill($this->request->all());
 
