@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'edit'   => 'dashboard.systems.users.edit',
         'update'  => 'dashboard.systems.users.update',
         'store'  => 'dashboard.systems.users.store',
-        'destroy' => 'dashboard.systems.users.destroy'
+        'destroy' => 'dashboard.systems.users.destroy',
     ]]);
 
 
@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'edit'   => 'dashboard.systems.roles.edit',
         'update'  => 'dashboard.systems.roles.update',
         'store'  => 'dashboard.systems.roles.store',
-        'destroy' => 'dashboard.systems.roles.destroy'
+        'destroy' => 'dashboard.systems.roles.destroy',
     ]]);
 });
 

@@ -60,7 +60,6 @@ class User extends Authenticatable implements UserInterface
         'permissions' => 'array',
     ];
 
-
     /**
      * Get the route key for the model.
      *
@@ -70,5 +69,4 @@ class User extends Authenticatable implements UserInterface
     {
         return 'id';
     }
-
 }

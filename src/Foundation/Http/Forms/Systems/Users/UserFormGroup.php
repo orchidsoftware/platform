@@ -8,7 +8,6 @@ use Orchid\Foundation\Services\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {
-
     /**
      * @var
      */
@@ -16,7 +15,7 @@ class UserFormGroup extends FormGroup
 
 
     /**
-     * Route available list
+     * Route available list.
      * @var array
      */
     public $route = [
@@ -29,7 +28,7 @@ class UserFormGroup extends FormGroup
     ];
 
     /**
-     * Description Attributes for group
+     * Description Attributes for group.
      * @return array
      */
     public function attributes()
@@ -39,7 +38,6 @@ class UserFormGroup extends FormGroup
             'description' => 'Описание раздела пользователи',
         ];
     }
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -56,6 +54,4 @@ class UserFormGroup extends FormGroup
             ]
         );
     }
-
-
 }
