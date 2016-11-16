@@ -46,7 +46,7 @@ class BaseRolesForm extends Form
     {
         $role = $storage->get('model');
 
-        if (!is_null($role)) {
+        if (! is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission()->toArray();
 

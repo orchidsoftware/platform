@@ -31,7 +31,7 @@ trait NotificationTrait
      */
     public function notificationAllRead()
     {
-        if (!is_null($this->notifications()->first())) {
+        if (! is_null($this->notifications()->first())) {
             return $this->notifications()->update([
                 'read' => true,
             ]);

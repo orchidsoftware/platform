@@ -15,10 +15,12 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'uses' => 'SettingController@index',
     ]);
 
-    Route::get('localization', [
-        'as'   => 'dashboard.systems.localization',
-        'uses' => 'LocalizationController@index',
-    ]);
+    Route::resource('localization', 'LocalizationController', ['names' => [
+        'index' => 'dashboard.systems.localization',
+        'create' => 'dashboard.systems.localization.create',
+        'edit' => 'dashboard.systems.localization.edit',
+        'store' => 'dashboard.systems.localization.store',
+    ]]);
 
 
     Route::resource('users', 'UserController', ['names' => [

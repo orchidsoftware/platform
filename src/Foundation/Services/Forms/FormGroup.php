@@ -95,7 +95,7 @@ abstract class FormGroup
         $this->html = collect();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -123,7 +123,7 @@ abstract class FormGroup
     public function save()
     {
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 

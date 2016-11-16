@@ -18,7 +18,7 @@ class RequirementsChecker
         foreach ($requirements as $requirement) {
             $results['requirements'][$requirement] = true;
 
-            if (!extension_loaded($requirement)) {
+            if (! extension_loaded($requirement)) {
                 $results['requirements'][$requirement] = false;
 
                 $results['errors'] = true;
