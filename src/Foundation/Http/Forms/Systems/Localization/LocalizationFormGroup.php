@@ -28,7 +28,6 @@ class LocalizationFormGroup extends FormGroup
         $this->storage = collect();
     }
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -44,5 +43,4 @@ class LocalizationFormGroup extends FormGroup
             'localizations' => $localizations,
         ]);
     }
-
 }
