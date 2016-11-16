@@ -30,6 +30,6 @@ class LocalizationController extends Controller
 
     public function get()
     {
-        return $this->form->add();
+        return $this->form->render();
     }
 }

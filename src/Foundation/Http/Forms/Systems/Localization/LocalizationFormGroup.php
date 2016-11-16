@@ -19,6 +19,17 @@ class LocalizationFormGroup extends FormGroup
     public $event = LocalizationEvent::class;
 
     /**
+     * LocalizationFormGroup constructor.
+     */
+    public function __construct()
+    {
+        $registerForm = event(new $this->event($this));
+        $this->group = collect($registerForm);
+        $this->storage = collect();
+    }
+
+
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function grid()
@@ -34,11 +45,4 @@ class LocalizationFormGroup extends FormGroup
         ]);
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function add()
-    {
-        return view('dashboard::container.systems.localization.add', []);
-    }
 }

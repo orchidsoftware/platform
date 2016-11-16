@@ -18,7 +18,7 @@ class LocalizationEvent
      * Create a new event instance.
      * SomeEvent constructor.
      *
-     * @param FormGroup $form
+     * @param LocalizationFormGroup $form
      */
     public function __construct(LocalizationFormGroup $form)
     {

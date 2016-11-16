@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'Orchid\Foundation\Events\Systems\RolesEvent' => [
             'Orchid\Foundation\Listeners\Systems\Roles\RoleBaseListener',
         ],
+        'Orchid\Foundation\Events\Systems\LocalizationEvent' => [
+            'Orchid\Foundation\Listeners\Systems\Localization\LocalizationAddListener',
+        ],
     ];
 
     /**
