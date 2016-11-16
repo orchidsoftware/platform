@@ -31,7 +31,7 @@ class PermissionsChecker
     public function check(array $folders)
     {
         foreach ($folders as $folder => $permission) {
-            if (!($this->getPermission($folder) >= $permission)) {
+            if (! ($this->getPermission($folder) >= $permission)) {
                 $this->addFileAndSetErrors($folder, $permission, false);
             } else {
                 $this->addFile($folder, $permission, true);

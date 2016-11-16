@@ -77,7 +77,7 @@ class DatabaseManager
     {
         if (DB::connection() instanceof SQLiteConnection) {
             $database = DB::connection()->getDatabaseName();
-            if (!file_exists($database)) {
+            if (! file_exists($database)) {
                 touch($database);
                 DB::reconnect(Config::get('database.default'));
             }
