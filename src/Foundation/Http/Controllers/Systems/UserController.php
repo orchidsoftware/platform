@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
@@ -61,6 +60,4 @@ class UserController extends Controller
 
         return $this->form->render();
     }
-
-
 }

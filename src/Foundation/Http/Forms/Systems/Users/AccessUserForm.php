@@ -8,7 +8,7 @@ use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
-class BaseUserForm extends Form
+class AccessUserForm extends Form
 {
     /**
      * @var string
@@ -46,7 +46,7 @@ class BaseUserForm extends Form
         $user = $storage->get('model');
 
 
-        if (!is_null($user)) {
+        if (! is_null($user)) {
             $rolePermission = $user->permissions;
             $permission = Dashboard::getPermission()->toArray();
 
@@ -60,7 +60,6 @@ class BaseUserForm extends Form
             }
 
             $permission = collect($permission);
-
         } else {
             $permission = Dashboard::getPermission();
             $roles = Role::all();

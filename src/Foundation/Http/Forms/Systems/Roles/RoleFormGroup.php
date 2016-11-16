@@ -8,16 +8,13 @@ use Orchid\Foundation\Services\Forms\FormGroup;
 
 class RoleFormGroup extends FormGroup
 {
-
     /**
      * @var
      */
     public $event = RolesEvent::class;
 
-
-
     /**
-     * Description Attributes for group
+     * Description Attributes for group.
      * @return array
      */
     public function attributes()
@@ -28,9 +25,8 @@ class RoleFormGroup extends FormGroup
         ];
     }
 
-
     /**
-     * Route available list
+     * Route available list.
      * @var array
      */
     public $route = [
@@ -41,7 +37,6 @@ class RoleFormGroup extends FormGroup
         'store' => 'dashboard.systems.roles.store',
         'destroy' => 'dashboard.systems.roles.destroy',
     ];
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -55,8 +50,4 @@ class RoleFormGroup extends FormGroup
             'roles' => $roles,
         ]);
     }
-
-
-
-
 }

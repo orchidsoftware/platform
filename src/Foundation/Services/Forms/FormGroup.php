@@ -5,14 +5,14 @@ namespace Orchid\Foundation\Services\Forms;
 abstract class FormGroup
 {
     /**
-     * Name form groups
+     * Name form groups.
      * @var
      */
     public $name = '';
 
 
     /**
-     * Description form group
+     * Description form group.
      * @var
      */
     public $description = '';
@@ -57,18 +57,17 @@ abstract class FormGroup
 
     /**
      * Command list button
-     * Send all forms data
+     * Send all forms data.
      * @var
      */
     public $commands;
 
 
     /**
-     * Route CRUD
+     * Route CRUD.
      * @var array
      */
     public $route = [];
-
 
     /**
      * FormGroup constructor.
@@ -81,10 +80,9 @@ abstract class FormGroup
         $this->commands = collect();
 
         // Attributes property
-        if(method_exists($this,'attributes')){
+        if (method_exists($this, 'attributes')) {
             $this->setAttributes($this->attributes());
         }
-
     }
 
     /**
@@ -133,31 +131,32 @@ abstract class FormGroup
         }
     }
 
-
     /**
-     * Set All attributes class
+     * Set All attributes class.
      * @param $array
      */
-    public function setAttributes($array){
-        foreach ($array as $key => $value){
+    public function setAttributes($array)
+    {
+        foreach ($array as $key => $value) {
             $this->$key = $value;
         }
     }
 
-
     /**
-     * Grid Generator
+     * Grid Generator.
      * @return bool
      */
-    public function grid(){
+    public function grid()
+    {
         if (method_exists($this, 'main')) {
             $table = $this->main();
             $table->name = $this->name;
             $table->description = $this->description;
             $table->route = collect($this->route);
+
             return $table;
         }
+
         return false;
     }
-
 }
