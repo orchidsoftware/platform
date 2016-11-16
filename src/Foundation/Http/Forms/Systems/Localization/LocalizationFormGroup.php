@@ -37,7 +37,8 @@ class LocalizationFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function add() {
+    public function add()
+    {
         return view('dashboard::container.systems.localization.add', []);
     }
 }
