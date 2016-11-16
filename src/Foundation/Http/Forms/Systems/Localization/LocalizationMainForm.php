@@ -8,6 +8,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Localization;
 
+use Orchid\Foundation\Core\Models\Language;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Services\Forms\Form;
 
 class LocalizationMainForm extends Form
@@ -16,11 +18,18 @@ class LocalizationMainForm extends Form
     public $name = 'Main';
 
     /**
-     * @return mixed
+     * Base Model.
+     *
+     * @var
      */
-    public function persist()
+    protected $model = Language::class;
+
+    public function rules()
     {
-        // TODO: Implement persist() method.
+        return [
+            'name'        => 'required|max:255|unique:language,name,'.$this->request->get('name').',name',
+            'code'        => 'required|max:255|unique:language,code,'.$this->request->get('code').',code'
+        ];
     }
 
     /**
@@ -28,6 +37,19 @@ class LocalizationMainForm extends Form
      */
     public function get()
     {
-        return view('dashboard::container.systems.localization.info', []);
+        $rendered_view = view('dashboard::container.systems.localization.info', []);
+        return $rendered_view;
+    }
+
+    public function persist($storage = null)
+    {
+        $locale = Language::firstOrNew([
+            'code' => $this->request->get('code')
+        ]);
+        $locale->fill($this->request->all());
+
+        $locale->save();
+
+        Alert::success('Локаль создана');
     }
 }

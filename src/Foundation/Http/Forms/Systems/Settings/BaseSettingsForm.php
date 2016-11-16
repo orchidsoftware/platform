@@ -29,7 +29,7 @@ class BaseSettingsForm extends Form
     /**
      * Display Settings App.
      */
-    public function get()
+    public function get($storage = null)
     {
         $settings = $this->model->get('base', collect());
 

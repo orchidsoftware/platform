@@ -32,4 +32,12 @@ class LocalizationController extends Controller
     {
         return $this->form->render();
     }
+
+    /**]
+     * @return mixed
+     */
+    public function store(){
+        $this->form->save();
+        return redirect()->back();
+    }
 }

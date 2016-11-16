@@ -37,7 +37,7 @@ class LocalizationFormGroup extends FormGroup
         $localization = new Language();
 
         $localizations = $localization->select(
-            'id', 'name', 'status', 'created_at'
+            'id', 'name', 'code', 'status', 'created_at'
         )->paginate();
 
         return view('dashboard::container.systems.localization.grid', [
