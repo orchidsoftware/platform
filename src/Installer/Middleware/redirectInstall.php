@@ -16,8 +16,8 @@ class redirectInstall
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->alreadyInstalled()) {
-            if (!str_contains($request->getRequestUri(), 'install')) {
+        if (! $this->alreadyInstalled()) {
+            if (! str_contains($request->getRequestUri(), 'install')) {
                 return response()->redirectToRoute('install::welcome');
             }
         }
