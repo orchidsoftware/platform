@@ -26,4 +26,8 @@ class LocalizationController extends Controller
     public function index() {
         return $this->form->grid();
     }
+
+    public function get() {
+        return $this->form->add();
+    }
 }

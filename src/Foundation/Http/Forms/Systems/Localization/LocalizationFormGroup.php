@@ -14,6 +14,9 @@ class LocalizationFormGroup extends FormGroup
      */
     public $view = 'dashboard::container.systems.localization.localization';
 
+    /**
+     * @var
+     */
     public $event = LocalizationEvent::class;
 
     /**
@@ -29,5 +32,12 @@ class LocalizationFormGroup extends FormGroup
         return view('dashboard::container.systems.localization.grid', [
             'localizations' => $localizations
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function add() {
+        return view('dashboard::container.systems.localization.add', []);
     }
 }

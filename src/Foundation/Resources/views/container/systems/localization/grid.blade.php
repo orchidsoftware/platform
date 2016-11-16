@@ -16,19 +16,18 @@
 <section class="bg-white-only b-l bg-auto no-border-xs">
         <div class="panel-body row">
             <div class="pull-right m-r-md">
-                <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <a href="{{route('dashboard.systems.localization.add')}}" class="btn btn-success"><i class="fa fa-plus"></i></a>
+                <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </div>
             @if($localizations->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>{{trans('dashboard::common.Manage')}}</th>
-                            <th>Имя</th>
-                            <th>Ссылка</th>
-                            <th>{{trans('dashboard::common.Last edit')}}</th>
-                        </tr>
+                            <tr>
+                                <th>Название</th>
+                                <th>Статус</th>
+                                <th>{{trans('dashboard::common.Manage')}}</th>
+                            </tr>
                         </thead>
                         <tbody>
                         </tbody>
