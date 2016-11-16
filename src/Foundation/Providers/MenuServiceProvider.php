@@ -151,7 +151,7 @@ class MenuServiceProvider extends ServiceProvider
         $usersMenu = [
             'slug'      => 'users',
             'icon'      => 'icon-user',
-            'route'     => route('dashboard.index'),
+            'route'     => route('dashboard.systems.users'),
             'label'     => trans('dashboard::menu.Users'),
             'groupname' => trans('dashboard::menu.Users'),
             'childs'    => false,

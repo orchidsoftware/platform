@@ -6,9 +6,9 @@
 
 
 
-
-
 @section('content')
+
+
 
 
     <!-- main header -->
@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-6 col-xs-12 text-right">
                 <div class="btn-group" role="group">
-                    <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
+                    <a href="{{ route('dashboard.systems.users.create')}}" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <section class="bg-white-only b-l bg-auto no-border-xs">
 
 
-        @if($roles->count() > 0)
+        @if($users->count() > 0)
             <div class="panel">
 
                 <div class="panel-body row">
@@ -49,16 +49,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($users as $user)
                                 <tr>
                                     <td class="text-center">
-                                        <a href="{{ route('dashboard.systems.roles.edit',$role->slug) }}"><i
+                                        <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
                                                     class="fa fa-bars"></i></a>
                                     </td>
-                                    <td>{{ $role->name }}</td>
-                                    <td>{{ $role->slug }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
 
-                                    <td>{{ $role->updated_at or $role->created_at }}</td>
+                                    <td>{{ $user->updated_at or $user->created_at }}</td>
                                 </tr>
 
                             @endforeach
@@ -71,11 +71,11 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-sm-8">
-                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$roles->total()}}
-                                -{{$roles->perPage()}} {{trans('dashboard::common.of')}} {!! $roles->count() !!} {{trans('dashboard::common.elements')}}</small>
+                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$users->total()}}
+                                -{{$users->perPage()}} {{trans('dashboard::common.of')}} {!! $users->count() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
                         <div class="col-sm-4 text-right text-center-xs">
-                            {!! $roles->render() !!}
+                            {!! $users->render() !!}
                         </div>
                     </div>
                 </footer>

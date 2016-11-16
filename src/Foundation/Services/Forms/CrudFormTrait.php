@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Services\Forms;
 
 /**
- * Depricated
  * Class CrudFormTrait.
  */
 trait CrudFormTrait

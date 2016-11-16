@@ -31,6 +31,13 @@ class User extends Authenticatable implements UserInterface
         'email',
         'password',
         'permissions',
+        'about',
+        'phone',
+        'sex',
+        'subscription',
+        'nickname',
+        'website',
+        'avatar',
     ];
 
     /**
@@ -47,6 +54,21 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
+        'sex' => 'boolean',
+        'subscription' => 'boolean',
+        'about' => 'string',
         'permissions' => 'array',
     ];
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
 }

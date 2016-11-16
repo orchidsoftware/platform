@@ -5,6 +5,19 @@ namespace Orchid\Foundation\Services\Forms;
 abstract class FormGroup
 {
     /**
+     * Name form groups
+     * @var
+     */
+    public $name = '';
+
+
+    /**
+     * Description form group
+     * @var
+     */
+    public $description = '';
+
+    /**
      * Event Hook.
      *
      * @var
@@ -24,7 +37,7 @@ abstract class FormGroup
      *
      * @var
      */
-    public $view;
+    public $view = 'dashboard::layouts.form.group';
 
 
     /**
@@ -43,6 +56,21 @@ abstract class FormGroup
     public $storage;
 
     /**
+     * Command list button
+     * Send all forms data
+     * @var
+     */
+    public $commands;
+
+
+    /**
+     * Route CRUD
+     * @var array
+     */
+    public $route = [];
+
+
+    /**
      * FormGroup constructor.
      */
     public function __construct()
@@ -50,6 +78,13 @@ abstract class FormGroup
         $registerForm = event(new $this->event($this));
         $this->group = collect($registerForm);
         $this->storage = collect();
+        $this->commands = collect();
+
+        // Attributes property
+        if(method_exists($this,'attributes')){
+            $this->setAttributes($this->attributes());
+        }
+
     }
 
     /**
@@ -69,8 +104,16 @@ abstract class FormGroup
             }
         }
 
+
         return view($this->view, [
             'forms' => $this->html,
+            'storage' => $this->storage,
+            'name' => $this->name,
+            'description' => $this->description,
+            'route' => collect($this->route),
+            'model' => $this->storage->has('model') ? $this->storage->get('model') : null,
+            'method' => $this->storage->has('model') ? 'update' : 'create',
+            'slug' => $this->storage->has('model') ? $this->storage->get('model')->getRouteKeyName() : null,
         ]);
     }
 
@@ -89,4 +132,32 @@ abstract class FormGroup
             }
         }
     }
+
+
+    /**
+     * Set All attributes class
+     * @param $array
+     */
+    public function setAttributes($array){
+        foreach ($array as $key => $value){
+            $this->$key = $value;
+        }
+    }
+
+
+    /**
+     * Grid Generator
+     * @return bool
+     */
+    public function grid(){
+        if (method_exists($this, 'main')) {
+            $table = $this->main();
+            $table->name = $this->name;
+            $table->description = $this->description;
+            $table->route = collect($this->route);
+            return $table;
+        }
+        return false;
+    }
+
 }

@@ -3,9 +3,9 @@
 namespace Orchid\Foundation\Events\Systems;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
+use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
 
-class RolesEvent
+class UserEvent
 {
     use SerializesModels;
 
@@ -18,9 +18,9 @@ class RolesEvent
      * Create a new event instance.
      * SomeEvent constructor.
      *
-     * @param RoleFormGroup $form
+     * @param UserFormGroup $form
      */
-    public function __construct(RoleFormGroup $form)
+    public function __construct(UserFormGroup $form)
     {
         $this->form = $form;
     }
