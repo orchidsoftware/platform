@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.11.16
- * Time: 11:16
+ * Time: 11:16.
  */
-
 namespace Orchid\Foundation\Listeners\Systems\Localization;
 
 use Orchid\Foundation\Events\Systems\LocalizationEvent;
