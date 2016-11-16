@@ -19,7 +19,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'index' => 'dashboard.systems.localization',
         'create' => 'dashboard.systems.localization.create',
         'edit' => 'dashboard.systems.localization.edit',
-        'store' => 'dashboard.systems.localization.store'
+        'store' => 'dashboard.systems.localization.store',
     ]]);
 
     Route::resource('roles', 'RoleController', ['names' => [
