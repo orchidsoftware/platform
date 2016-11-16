@@ -17,19 +17,16 @@ class Dashboard
      */
     public $permission = null;
 
-
     public function __construct()
     {
         $this->menu = new Menu();
         $this->permission = new Permissions();
     }
 
-
     public function menu()
     {
         return $this->menu;
     }
-
 
     public function getPermission()
     {

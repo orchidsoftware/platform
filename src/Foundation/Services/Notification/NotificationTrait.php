@@ -17,10 +17,10 @@ trait NotificationTrait
     {
         Notification::create([
             'user_id' => $this->id,
-            'type' => $type,
-            'url' => $url,
-            'text' => $text,
-            'read' => false,
+            'type'    => $type,
+            'url'     => $url,
+            'text'    => $text,
+            'read'    => false,
         ]);
 
         return $this;
@@ -31,7 +31,7 @@ trait NotificationTrait
      */
     public function notificationAllRead()
     {
-        if (!is_null($this->notifications()->first())) {
+        if (! is_null($this->notifications()->first())) {
             return $this->notifications()->update([
                 'read' => true,
             ]);

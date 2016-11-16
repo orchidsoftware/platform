@@ -52,9 +52,9 @@ class Tag extends Model
     }
 
     /**
-     * @return bool|null
-     *
      * @throws \Exception
+     *
+     * @return bool|null
      */
     public function delete()
     {

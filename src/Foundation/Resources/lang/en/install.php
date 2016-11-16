@@ -8,7 +8,7 @@ return [
      *
      */
     'title' => 'Laravel Installer',
-    'next' => 'Next Step',
+    'next'  => 'Next Step',
 
     /*
      *
@@ -16,7 +16,7 @@ return [
      *
      */
     'welcome' => [
-        'title' => 'Welcome To The Installer',
+        'title'   => 'Welcome To The Installer',
         'message' => 'Welcome to the setup wizard.',
     ],
 
@@ -44,10 +44,10 @@ return [
      *
      */
     'environment' => [
-        'title' => 'Environment Settings',
-        'save' => 'Save .env',
+        'title'   => 'Environment Settings',
+        'save'    => 'Save .env',
         'success' => 'Your .env file settings have been saved.',
-        'errors' => 'Unable to save the .env file, Please create it manually.',
+        'errors'  => 'Unable to save the .env file, Please create it manually.',
     ],
 
     /*
@@ -56,8 +56,8 @@ return [
      *
      */
     'final' => [
-        'title' => 'Finished',
+        'title'    => 'Finished',
         'finished' => 'Application has been successfully installed.',
-        'exit' => 'Click here to exit',
+        'exit'     => 'Click here to exit',
     ],
 ];

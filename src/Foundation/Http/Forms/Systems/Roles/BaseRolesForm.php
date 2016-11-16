@@ -1,68 +1,93 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+<?php
+
+namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Core\Models\Role;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
 class BaseRolesForm extends Form
 {
-
     /**
      * @var string
      */
     public $name = 'General Info';
 
     /**
-     * Base Model
+     * Base Model.
+     *
      * @var
      */
     protected $model = Role::class;
 
-
     /**
-     * Validation Rules Request
-     * @var array
+     * Validation Rules Request.
+     *
+     * @return array
      */
-    protected $rules = [
-        'name' => 'required|unique:roles|max:255',
-        'slug' => 'required|unique:roles|max:255',
-        'permissions' => 'array'
-    ];
-
+    public function rules()
+    {
+        return [
+            'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug'        => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
+            'permissions' => 'array',
+        ];
+    }
 
     /**
-     * Display Settings App
+     * Display Settings App.
+     *
      * @param null $storage
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($storage = null)
     {
-        //  dd($storage); Тут мы получим модельку
-       $permission = Dashboard::getPermission();
+        $role = $storage->get('model');
+
+        if (! is_null($role)) {
+            $rolePermission = $role->permissions;
+            $permission = Dashboard::getPermission()->toArray();
+
+
+            foreach ($permission as $name => $array) {
+                foreach ($array as $key => $value) {
+                    if (array_key_exists($value['slug'], $rolePermission)) {
+                        $permission[$name][$key]['active'] = 1;
+                    }
+                }
+            }
+
+            $permission = collect($permission);
+        } else {
+            $permission = Dashboard::getPermission();
+        }
+
 
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
+            'role'       => $role,
         ]);
     }
 
     /**
-     * Save Base Role
+     * Save Base Role.
+     *
      * @param null $storage
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function persist($storage = null)
     {
-        dd($storage);
+        $role = Role::firstOrNew([
+            'slug' => $this->request->get('slug'),
+        ]);
+        $role->fill($this->request->all());
+        $role->permissions = $this->request->get('permissions') ?: [];
 
-        $test = Role::create($this->request->all());
 
-
-
-        return response()->json(
-            [
-                'title' => 'Успешно',
-                'message' => 'Данные сохранены',
-            ]
-        );
+        $role->save();
+        Alert::success('Message');
     }
 }

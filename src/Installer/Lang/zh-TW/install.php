@@ -2,17 +2,17 @@
 
 return [
 
-    /**
+    /*
      *
      * Shared translations.
      *
      */
-    'title' => 'Laravel安裝程序',
-    'next' => '下一步',
+    'title'  => 'Laravel安裝程序',
+    'next'   => '下一步',
     'finish' => '安裝',
 
 
-    /**
+    /*
      *
      * Home page translations.
      *
@@ -23,7 +23,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Requirements page translations.
      *
@@ -33,7 +33,7 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Permissions page translations.
      *
@@ -43,27 +43,27 @@ return [
     ],
 
 
-    /**
+    /*
      *
      * Environment page translations.
      *
      */
     'environment' => [
-        'title' => '環境設置',
-        'save' => '保存 .env',
+        'title'   => '環境設置',
+        'save'    => '保存 .env',
         'success' => '.env 文件保存成功.',
-        'errors' => '無法保存 .env 文件, 請手動創建它.',
+        'errors'  => '無法保存 .env 文件, 請手動創建它.',
     ],
 
 
-    /**
+    /*
      *
      * Final page translations.
      *
      */
     'final' => [
-        'title' => '完成',
+        'title'    => '完成',
         'finished' => '應用已成功安裝.',
-        'exit' => '點擊退出',
+        'exit'     => '點擊退出',
     ],
 ];

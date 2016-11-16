@@ -1,4 +1,5 @@
 <?php
+
 namespace Orchid\Installer\Controllers;
 
 use Illuminate\Routing\Controller;
@@ -6,7 +7,6 @@ use Orchid\Installer\Helpers\RequirementsChecker;
 
 class RequirementsController extends Controller
 {
-
     /**
      * @var RequirementsChecker
      */
@@ -31,7 +31,7 @@ class RequirementsController extends Controller
                 'openssl',
                 'pdo',
                 'mbstring',
-                'tokenizer'
+                'tokenizer',
             ]);
 
         return view('install::requirements', compact('requirements'));

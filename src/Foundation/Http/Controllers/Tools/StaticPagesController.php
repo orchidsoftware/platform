@@ -24,7 +24,7 @@ class StaticPagesController extends Controller
             }
 
             return response()->json([
-                'routes' => $staticRoute,
+                'routes'  => $staticRoute,
                 'baseUrl' => Config::get('app.url'),
             ]);
         } else {

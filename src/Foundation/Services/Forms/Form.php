@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Services\Forms;
+<?php
+
+namespace Orchid\Foundation\Services\Forms;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -19,7 +21,8 @@ abstract class Form implements FormContract
 
 
     /**
-     * Laravel Models for Forms
+     * Laravel Models for Forms.
+     *
      * @var
      */
     protected $model;
@@ -29,17 +32,16 @@ abstract class Form implements FormContract
      */
     public $data = [];
 
-
     /**
      * Form constructor.
+     *
      * @param Request|null $request
      */
     public function __construct(Request $request = null)
     {
-        $this->model = $this->model ? new $this->model : null;
+        $this->model = $this->model ? new $this->model() : null;
         $this->request = $request ?: request();
     }
-
 
     /**
      * @return mixed
@@ -51,10 +53,20 @@ abstract class Form implements FormContract
      */
     abstract public function get();
 
+    /**
+     * Validation Rules Method.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+    }
 
     /**
-     * Save Form
+     * Save Form.
+     *
      * @param null $arg
+     *
      * @return mixed|null
      */
     public function save($arg = null)
@@ -65,10 +77,7 @@ abstract class Form implements FormContract
 
             // return true;
         }
-
-        return null;
     }
-
 
     /**
      * @return array
@@ -78,21 +87,22 @@ abstract class Form implements FormContract
         return $this->request->all();
     }
 
-
     /**
      * @return bool
      */
     protected function isValid()
     {
-        $this->validate($this->request, $this->rules);
+        $rules = $this->rules() ?: $this->rules;
+
+
+        $this->validate($this->request, $rules);
 
         return true;
     }
 
-
-
     /**
      * @param $property
+     *
      * @return array|string
      */
     public function __get($property)
@@ -102,23 +112,21 @@ abstract class Form implements FormContract
         }
     }
 
-
     /**
-     * Action of remote element
+     * Action of remote element.
+     *
      * @return mixed
      */
     public function remove()
     {
-        return null;
     }
 
-
     /**
-     * View Grid data
+     * View Grid data.
+     *
      * @return mixed
      */
     public function grid()
     {
-        return null;
     }
 }

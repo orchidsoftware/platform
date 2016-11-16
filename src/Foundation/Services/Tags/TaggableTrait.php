@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Services\Tags;
+<?php
+
+namespace Orchid\Foundation\Services\Tags;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Foundation\Core\Models\Tag;
@@ -182,12 +184,12 @@ trait TaggableTrait
         $tagsToDel = array_diff($entityTags, $tags);
 
         // Detach the tags
-        if (!empty($tagsToDel)) {
+        if (! empty($tagsToDel)) {
             $this->untag($tagsToDel);
         }
 
         // Attach the tags
-        if (!empty($tagsToAdd)) {
+        if (! empty($tagsToAdd)) {
             $this->tag($tagsToAdd);
         }
 
@@ -254,17 +256,17 @@ trait TaggableTrait
     public function addTag($name)
     {
         $tag = $this->createTagsModel()->firstOrNew([
-            'slug' => $this->generateTagSlug($name),
+            'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
 
-        if (!$tag->exists) {
+        if (! $tag->exists) {
             $tag->name = $name;
 
             $tag->save();
         }
 
-        if (!$this->tags->contains($tag->id)) {
+        if (! $this->tags->contains($tag->id)) {
             $tag->update(['count' => $tag->count + 1]);
 
             $this->tags()->attach($tag);

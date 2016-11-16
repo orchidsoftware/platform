@@ -1,11 +1,12 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+<?php
+
+namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Events\Systems\SettingsEvent;
 use Orchid\Foundation\Services\Forms\FormGroup;
 
 class SettingFormGroup extends FormGroup
 {
-
     /**
      * @var string
      */

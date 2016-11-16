@@ -1,9 +1,11 @@
-<?php namespace Orchid\Foundation\Http\Controllers\Systems;
+<?php
+
+namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Services\Forms\CrudFormTrait;
 use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
+use Orchid\Foundation\Services\Forms\CrudFormTrait;
 
 class RoleController extends Controller
 {
@@ -19,7 +21,7 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-        $this->form = new $this->form;
+        $this->form = new $this->form();
     }
 
     /**
@@ -38,15 +40,15 @@ class RoleController extends Controller
         return $this->form->render();
     }
 
-
     /**
      * @return mixed
      */
     public function store()
     {
         $this->form->save();
-    }
 
+        return redirect()->back();
+    }
 
     /**
      * @param Role $role
@@ -54,6 +56,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $this->form->storage->put('model', $role);
+
         return $this->form->render();
     }
 }

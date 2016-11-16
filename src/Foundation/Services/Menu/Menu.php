@@ -27,7 +27,7 @@ class Menu
 
     /**
      * Arguments menu form
-     * For the transfer of Views.
+      * For the transfer of Views.
      *
      * @var
      */
@@ -41,7 +41,7 @@ class Menu
     private $sort;
 
     /**
-     * Synthesis element
+     * Synthesis element.
      *
      * @var
      */
@@ -57,47 +57,56 @@ class Menu
 
     /**
      * Setting the menu position.
+     *
      * @param $location
+     *
      * @return $this
      */
     public function place($location)
     {
         $this->location = $location;
+
         return $this;
     }
 
     /**
      * @param $template
+     *
      * @return $this
      */
     public function template($template)
     {
         $this->template = $template;
+
         return $this;
     }
 
     /**
      * @param $arg
+     *
      * @return $this
      */
     public function with($arg)
     {
         $this->arg = $arg;
+
         return $this;
     }
 
     /**
      * @param $sort
+     *
      * @return $this
      */
     public function sortBy($sort)
     {
         $this->sort = $sort;
+
         return $this;
     }
 
     /**
-     * Adding a new element to the container
+     * Adding a new element to the container.
      *
      * @param null $place
      * @param null $template
@@ -114,24 +123,26 @@ class Menu
         $this->item = [
             'location' => $this->location,
             'template' => $this->template,
-            'arg' => $this->arg,
-            'sort' => $this->sort,
+            'arg'      => $this->arg,
+            'sort'     => $this->sort,
         ];
 
         $this->container->push($this->item);
     }
 
     /**
-     * Generate on the menu display
+     * Generate on the menu display.
+     *
      * @param $location
      * @param null $template
+     *
      * @return string
      */
     public function render($location, $template = null)
     {
         $html = '';
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (!is_null($template)) {
+            if (! is_null($template)) {
                 $value['template'] = $template;
             }
 

@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Events\Systems;
+<?php
+
+namespace Orchid\Foundation\Events\Systems;
 
 use Illuminate\Queue\SerializesModels;
 use Orchid\Foundation\Http\Forms\Systems\Localization\LocalizationFormGroup;
@@ -15,6 +17,7 @@ class LocalizationEvent
     /**
      * Create a new event instance.
      * SomeEvent constructor.
+     *
      * @param FormGroup $form
      */
     public function __construct(LocalizationFormGroup $form)

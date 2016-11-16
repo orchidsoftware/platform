@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
@@ -28,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->middleware('dashboard', AccessMiddleware::class);
         $router->group(['middleware' => ['web', 'dashboard'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],
             function ($router) {
-                require __DIR__ . '/../Http/Routes/dashboard.php';
+                require __DIR__.'/../Http/Routes/dashboard.php';
             });
 
         $router->group(['middleware' => ['web'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],

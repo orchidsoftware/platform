@@ -1,41 +1,43 @@
-<?php namespace Orchid\Foundation\Services\Forms;
+<?php
 
+namespace Orchid\Foundation\Services\Forms;
+
+/**
+ * Depricated
+ * Class CrudFormTrait.
+ */
 trait CrudFormTrait
 {
-
     /**
      * Verb GET
-     * Action index
+     * Action index.
      */
     public function index()
     {
         return $this->get();
     }
 
-
     /**
      * Verb GET
-     * Action create
+     * Action create.
      */
     public function create()
     {
         return $this->get();
     }
 
-
     /**
      * Verb POST
-     * Action store
+     * Action store.
      */
     public function store()
     {
         return $this->save();
     }
 
-
     /**
      * Verb GET
-     * Action show
+     * Action show.
      */
     public function show()
     {
@@ -44,7 +46,7 @@ trait CrudFormTrait
 
     /**
      * Verb GET
-     * Action index
+     * Action index.
      */
     public function edit()
     {
@@ -53,17 +55,16 @@ trait CrudFormTrait
 
     /**
      * Verb PUT/PATCH
-     * Action index
+     * Action index.
      */
     public function update()
     {
         return $this->save();
     }
 
-
     /**
      * Verb DELETE
-     * Action destroy
+     * Action destroy.
      */
     public function destroy()
     {

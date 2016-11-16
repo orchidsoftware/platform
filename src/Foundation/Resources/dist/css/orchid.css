@@ -15526,7 +15526,7 @@ input.list-view-search {
 .login-wrapper .bg-pic > img {
   height: 100%;
   width: 100%;
-  width: calc(-400vw);
+  width: calc(100vw - 500px);
   opacity: 0.75;
   object-fit: cover;
 }

@@ -33,7 +33,7 @@ class EnvironmentManager
      */
     public function getEnvContent()
     {
-        if (!file_exists($this->envPath)) {
+        if (! file_exists($this->envPath)) {
             if (file_exists($this->envExamplePath)) {
                 copy($this->envExamplePath, $this->envPath);
             } else {
@@ -48,6 +48,7 @@ class EnvironmentManager
      * Save the edited content to the file.
      *
      * @param Request $input
+     *
      * @return string
      */
     public function saveFile(Request $input)

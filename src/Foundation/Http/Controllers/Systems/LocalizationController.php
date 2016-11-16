@@ -2,10 +2,9 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Services\Forms\CrudFormTrait;
 use Orchid\Foundation\Http\Forms\Systems\Localization\LocalizationFormGroup;
+use Orchid\Foundation\Services\Forms\CrudFormTrait;
 
 class LocalizationController extends Controller
 {
@@ -19,11 +18,13 @@ class LocalizationController extends Controller
     /**
      * LocalizationController constructor.
      */
-    public function __construct() {
-        $this->form = new $this->form;
+    public function __construct()
+    {
+        $this->form = new $this->form();
     }
 
-    public function index() {
+    public function index()
+    {
         return $this->form->grid();
     }
 

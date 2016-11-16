@@ -28,8 +28,8 @@ trait SeoTrait
             if (is_null(Route::current())) {
                 return [
                     'title' => [],
-                    'meta' => [],
-                    'og' => [],
+                    'meta'  => [],
+                    'og'    => [],
                 ];
             }
 
@@ -45,17 +45,17 @@ trait SeoTrait
         if (is_null($meta)) {
             return [
                 'title' => [],
-                'meta' => [],
-                'og' => [],
+                'meta'  => [],
+                'og'    => [],
             ];
         }
 
         $meta = collect($meta->attributes);
 
         $meta = collect([
-            'title' => $meta->only(['title']),
-            'meta' => $meta->only(['description', 'keywords', 'robots']),
-            'og' => $meta->only(['title', 'description', 'image', 'video', 'audio']),
+            'title'  => $meta->only(['title']),
+            'meta'   => $meta->only(['description', 'keywords', 'robots']),
+            'og'     => $meta->only(['title', 'description', 'image', 'video', 'audio']),
             'custom' => $meta->only(['custom']),
         ]);
 
@@ -90,7 +90,7 @@ trait SeoTrait
         //Get запросы без параметров (Статика!)
         $allowGetRoutes = collect();
         foreach ($routeGetMethodCollection as $key => $value) {
-            if (!preg_match('/\{*\}/', $key) && stripos($key, 'dashboard') === false) {
+            if (! preg_match('/\{*\}/', $key) && stripos($key, 'dashboard') === false) {
                 $allowGetRoutes->push($key);
             }
         }

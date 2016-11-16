@@ -1,7 +1,9 @@
-<?php namespace Orchid\Foundation\Core\Models;
+<?php
 
-use Illuminate\Notifications\Notifiable;
+namespace Orchid\Foundation\Core\Models;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Orchid\Foundation\Services\Access\UserAccess;
 use Orchid\Foundation\Services\Access\UserInterface;
 

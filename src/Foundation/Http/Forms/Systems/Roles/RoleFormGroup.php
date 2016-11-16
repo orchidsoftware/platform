@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Http\Forms\Systems\Roles;
+<?php
+
+namespace Orchid\Foundation\Http\Forms\Systems\Roles;
 
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Events\Systems\RolesEvent;
@@ -6,7 +8,6 @@ use Orchid\Foundation\Services\Forms\FormGroup;
 
 class RoleFormGroup extends FormGroup
 {
-
     /**
      * @var string
      */
@@ -17,7 +18,6 @@ class RoleFormGroup extends FormGroup
      */
     public $event = RolesEvent::class;
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -25,8 +25,9 @@ class RoleFormGroup extends FormGroup
     {
         $role = new Role();
         $roles = $role->select('id', 'name', 'slug', 'created_at')->paginate();
+
         return view('dashboard::container.systems.roles.grid', [
-            'roles' => $roles
+            'roles' => $roles,
         ]);
     }
 }
