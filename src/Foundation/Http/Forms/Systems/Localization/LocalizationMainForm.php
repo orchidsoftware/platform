@@ -3,16 +3,14 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.11.16
- * Time: 11:18
+ * Time: 11:18.
  */
-
 namespace Orchid\Foundation\Http\Forms\Systems\Localization;
 
 use Orchid\Foundation\Services\Forms\Form;
 
 class LocalizationMainForm extends Form
 {
-
     public $name = 'Main';
 
     /**
