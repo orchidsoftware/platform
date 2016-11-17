@@ -60,4 +60,14 @@ class UserController extends Controller
 
         return $this->form->render();
     }
+
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(User $user){
+        $this->form->save($user);
+        return redirect()->back();
+    }
 }

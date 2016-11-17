@@ -57,16 +57,14 @@ class BaseUserForm extends Form
      * Save Base Role.
      *
      * @param null $storage
+     * @param null $user
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($storage = null)
+    public function persist($user = null)
     {
-        $role = User::firstOrNew([
-            'id' => $this->request->get('id'),
-        ]);
-        $role->fill($this->request->all());
-        $role->save();
+        $user->fill($this->request->all());
+        $user->save();
         Alert::success('Message');
     }
 }

@@ -77,8 +77,9 @@ trait UserAccess
      */
     public function roles()
     {
-        return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id')->withTimestamps();
+        return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id');
     }
+
 
     /**
      * @param $Role
@@ -93,13 +94,13 @@ trait UserAccess
      */
     public function removeRole(RoleInterface $Role)
     {
-        $this->roles()->where('slug', $Role)->first()->remove();
+        $this->roles()->where('slug', $Role->getRoleSlug())->first()->remove();
     }
 
     /**
-     * @param array|object $Roles
+     * @param array
      */
-    public function replaceRoles(RoleInterface $Roles)
+    public function replaceRoles($Roles)
     {
         $this->roles()->remove();
         $this->roles()->saveMany($Roles);

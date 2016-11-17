@@ -22,7 +22,7 @@
     "bootstrap-touchspin": "~3.0.1",
     "bootstrap-wysiwyg": "*",
     "bootstrap-chosen": "1.*",
-    "chosen": "1.4.*",
+    "chosen": "~1.6.2",
     "flot": "~0.8.3",
     "flot.orderbars": "*",
     "flot.tooltip": "~0.8.4",

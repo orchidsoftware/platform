@@ -8,12 +8,13 @@ use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
+
 class AccessUserForm extends Form
 {
     /**
      * @var string
      */
-    public $name = 'Общие настройки';
+    public $name = 'Права доступа';
 
     /**
      * Base Model.
@@ -31,6 +32,7 @@ class AccessUserForm extends Form
     {
         return [
             'permissions' => 'array',
+            'roles' => 'array',
         ];
     }
 
@@ -46,48 +48,65 @@ class AccessUserForm extends Form
         $user = $storage->get('model');
 
 
-        if (! is_null($user)) {
+        if (!is_null($user)) {
             $rolePermission = $user->permissions;
-            $permission = Dashboard::getPermission()->toArray();
+            $permission = Dashboard::getPermission();
 
 
-            foreach ($permission as $name => $array) {
-                foreach ($array as $key => $value) {
-                    if (array_key_exists($value['slug'], $rolePermission)) {
-                        $permission[$name][$key]['active'] = 1;
+            $permission->transform(
+                function ($array) use ($rolePermission) {
+                    foreach ($array as $key => $value) {
+                        $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
                     }
+
+                    return $array;
                 }
+            );
+
+
+            $roles = Role::all();
+            $userRoles = $user->getRoles();
+
+
+            if(!$userRoles->isEmpty()) {
+                $roles->transform(
+                    function ($role) use ($userRoles) {
+                        foreach ($userRoles as $userRole) {
+                            $role->active = ($userRole->slug == $role->slug);
+
+                            return $role;
+                        }
+                    }
+                );
             }
 
-            $permission = collect($permission);
         } else {
             $permission = Dashboard::getPermission();
             $roles = Role::all();
         }
 
-        return view('dashboard::container.systems.users.access', [
-            'permission' => $permission,
-            'user'       => $user,
-        ]);
+        return view(
+            'dashboard::container.systems.users.access',
+            [
+                'permission' => $permission,
+                'user' => $user,
+                'roles' => $roles,
+            ]
+        );
     }
 
     /**
      * Save Base Role.
      *
-     * @param null $storage
+     * @param null $user
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($storage = null)
+    public function persist($user = null)
     {
-        $role = Role::firstOrNew([
-            'slug' => $this->request->get('slug'),
-        ]);
-        $role->fill($this->request->all());
-        $role->permissions = $this->request->get('permissions') ?: [];
-
-
-        $role->save();
+        $roles = Role::whereIn('slug',$this->roles)->get();
+        $user->replaceRoles($roles);
+        $user->save();
         Alert::success('Message');
     }
 }

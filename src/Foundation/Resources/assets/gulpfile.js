@@ -13,15 +13,19 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.less('./less/app.less', '../dist/css/orchid.css');
+    mix.copy('./img/', '../dist/img');
     mix.copy('./vendor/bootstrap/dist/fonts/', '../dist/fonts');
     mix.copy('./vendor/font-awesome/fonts/', '../dist/fonts');
     mix.copy('./vendor/simple-line-icons/fonts/', '../dist/fonts');
+
+
 
     mix.scripts([
         "./vendor/jquery/dist/jquery.min.js",
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
         "./vendor/vue/dist/vue.js",
         "./vendor/vue-resource/dist/vue-resource.js",
+        "./vendor/chosen/chosen.jquery.js",
         "./js/app.js",
         "./js/modules/**",
         "./js/components/**",

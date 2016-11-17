@@ -19,12 +19,30 @@ class UserFormGroup extends FormGroup
      * @var array
      */
     public $route = [
-        'index' => 'dashboard.systems.users',
-        'create' => 'dashboard.systems.users.create',
-        'edit' => 'dashboard.systems.users.edit',
-        'update' => 'dashboard.systems.users.update',
-        'store' => 'dashboard.systems.users.store',
-        'destroy' => 'dashboard.systems.users.destroy',
+        'index' => [
+            'method' => 'GET',
+            'name'=>'dashboard.systems.users',
+        ],
+        'create' => [
+            'method' => 'GET',
+            'name'=>'dashboard.systems.users.create',
+        ],
+        'edit' => [
+            'method' => 'GET',
+            'name'=>'dashboard.systems.users.edit',
+        ],
+        'update' => [
+            'method' => 'PUT',
+            'name'=>'dashboard.systems.users.update',
+        ],
+        'store' => [
+            'method' => 'POST',
+            'name'=>'dashboard.systems.users.store',
+        ],
+        'destroy' => [
+            'method' => 'DELETE',
+            'name'=>'dashboard.systems.users.destroy',
+        ],
     ];
 
     /**

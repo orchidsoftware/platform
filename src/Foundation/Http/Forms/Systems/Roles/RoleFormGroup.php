@@ -30,13 +30,32 @@ class RoleFormGroup extends FormGroup
      * @var array
      */
     public $route = [
-        'index' => 'dashboard.systems.roles',
-        'create' => 'dashboard.systems.roles.create',
-        'edit' => 'dashboard.systems.roles.edit',
-        'update' => 'dashboard.systems.roles.update',
-        'store' => 'dashboard.systems.roles.store',
-        'destroy' => 'dashboard.systems.roles.destroy',
+        'index' => [
+            'method' => 'GET',
+            'name' => 'dashboard.systems.roles',
+        ],
+        'create' => [
+            'method' => 'GET',
+            'name' => 'dashboard.systems.roles.create',
+        ],
+        'edit' => [
+            'method' => 'GET',
+            'name' => 'dashboard.systems.roles.edit',
+        ],
+        'update' => [
+            'method' => 'PUT',
+            'name' => 'dashboard.systems.roles.update',
+        ],
+        'store' => [
+            'method' => 'POST',
+            'name' => 'dashboard.systems.roles.store',
+        ],
+        'destroy' => [
+            'method' => 'DELETE',
+            'name' => 'dashboard.systems.roles.destroy',
+        ],
     ];
+
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -46,8 +65,11 @@ class RoleFormGroup extends FormGroup
         $role = new Role();
         $roles = $role->select('name', 'slug', 'created_at')->paginate();
 
-        return view('dashboard::container.systems.roles.grid', [
-            'roles' => $roles,
-        ]);
+        return view(
+            'dashboard::container.systems.roles.grid',
+            [
+                'roles' => $roles,
+            ]
+        );
     }
 }

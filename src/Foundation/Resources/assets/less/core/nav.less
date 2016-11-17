@@ -79,22 +79,31 @@
 
 .aside-wrap-main {
 
-  .navi ul.nav li a {
+  .navi ul.nav li
+  {
 
-    .transition(all .2s ease-in-out 0s);
-    color: @text-muted;
-    padding: 10px 0;
-    text-align: center;
-    font-size: @font-size-sm;
-    font-weight: 300;
-    i {
-      font-size: 1.5em;
-      width: inherit;
-      line-height: inherit;
+    a {
+      .transition(all .2s ease-in-out 0s);
+      color: @text-muted;
+      padding: 10px 0;
+      text-align: center;
+      font-size: @font-size-sm;
+      font-weight: 300;
+      i {
+        font-size: 1.5em;
+        width: inherit;
+        line-height: inherit;
+      }
+      &:hover {
+        color: @brand-white;
+        background-color: @brand-dark;
+      }
     }
-    &:hover {
-      color: @brand-white;
+
+    &.active a{
+      background-color: inherit;
     }
+
   }
 }
 

@@ -69,6 +69,7 @@ abstract class FormGroup
      */
     public $route = [];
 
+
     /**
      * FormGroup constructor.
      */
@@ -116,17 +117,20 @@ abstract class FormGroup
     }
 
     /**
-     * @return string
+     * Action save for sub form
      */
     public function save()
     {
+        $arg = func_get_args();
+        $arg[] = $this->storage;
+
         foreach ($this->group as $form) {
             if (! is_object($form)) {
                 $form = new $form();
             }
 
             if (method_exists($form, 'save')) {
-                $form->save($this->storage);
+                $form->save(...$arg);
             }
         }
     }

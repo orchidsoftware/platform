@@ -69,11 +69,13 @@ abstract class Form implements FormContract
      *
      * @return mixed|null
      */
-    public function save($arg = null)
+    public function save()
     {
+        $arg = func_get_args();
+
         // do validation
         if ($this->isValid()) {
-            return $this->persist($arg);
+            return $this->persist(...$arg);
 
             // return true;
         }
