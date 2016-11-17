@@ -8,7 +8,6 @@ use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
-
 class AccessUserForm extends Form
 {
     /**
@@ -48,7 +47,7 @@ class AccessUserForm extends Form
         $user = $storage->get('model');
 
 
-        if (!is_null($user)) {
+        if (! is_null($user)) {
             $rolePermission = $user->permissions;
             $permission = Dashboard::getPermission();
 
@@ -68,7 +67,7 @@ class AccessUserForm extends Form
             $userRoles = $user->getRoles();
 
 
-            if(!$userRoles->isEmpty()) {
+            if (! $userRoles->isEmpty()) {
                 $roles->transform(
                     function ($role) use ($userRoles) {
                         foreach ($userRoles as $userRole) {
@@ -79,7 +78,6 @@ class AccessUserForm extends Form
                     }
                 );
             }
-
         } else {
             $permission = Dashboard::getPermission();
             $roles = Role::all();
@@ -104,7 +102,7 @@ class AccessUserForm extends Form
      */
     public function persist($user = null)
     {
-        $roles = Role::whereIn('slug',$this->roles)->get();
+        $roles = Role::whereIn('slug', $this->roles)->get();
         $user->replaceRoles($roles);
         $user->save();
         Alert::success('Message');

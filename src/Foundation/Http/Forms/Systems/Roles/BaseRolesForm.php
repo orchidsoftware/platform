@@ -50,13 +50,12 @@ class BaseRolesForm extends Form
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
             $permission->transform(function ($array) use ($rolePermission) {
-                foreach ($array as $key => $value){
+                foreach ($array as $key => $value) {
                     $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
                 }
+
                 return $array;
             });
-
-
         } else {
             $permission = Dashboard::getPermission();
         }
