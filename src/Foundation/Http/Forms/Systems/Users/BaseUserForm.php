@@ -6,7 +6,9 @@ use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
+use Orchid\Foundation\Http\Requests\Request;
 use Orchid\Foundation\Services\Forms\Form;
+use Illuminate\Support\Facades\Hash;
 
 class BaseUserForm extends Form
 {
@@ -30,9 +32,9 @@ class BaseUserForm extends Form
     public function rules()
     {
         return [
-            'name'        => 'required|max:255|unique:users,name,'.$this->request->get('name').',name',
+            'name'        => 'required|max:255',
             'email'        => 'required|email|max:255|unique:users,email,'.$this->request->get('email').',email',
-            'password' => 'max:255|sometimes|required|min:8|confirmed',
+            'password' => 'max:255|sometimes|min:8|confirmed',
         ];
     }
 
@@ -53,18 +55,23 @@ class BaseUserForm extends Form
         ]);
     }
 
+
+
     /**
      * Save Base Role.
      *
-     * @param null $storage
+     * @param null $request
      * @param null $user
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($user = null)
+    public function persist($request = null, $user = null, $storage = null)
     {
         $user->fill($this->request->all());
+        if($this->request->has('password')) {
+            $user->password = Hash::make($this->request->password);
+            $user->permissions = [];
+        }
         $user->save();
+
         Alert::success('Message');
     }
 }

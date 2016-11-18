@@ -1,6 +1,5 @@
 <div class="wrapper-md">
     <div class="bg-white">
-        <form class="form-horizontal" action="{{route('dashboard.systems.roles')}}" method="post">
 
 
 
@@ -56,15 +55,5 @@
 
             @endforeach
 
-
-            <div class="form-group text-center">
-                <div class="col-md-4 col-md-offset-8">
-
-                    {!! csrf_field() !!}
-
-                    <button type="submit" class="btn btn-sm btn-info">Сохранить</button>
-                </div>
-            </div>
-        </form>
     </div>
 </div>

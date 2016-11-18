@@ -135,6 +135,27 @@ abstract class FormGroup
         }
     }
 
+
+    /**
+     * Action save for sub form
+     */
+    public function remove()
+    {
+        $arg = func_get_args();
+        $arg[] = $this->storage;
+
+        foreach ($this->group as $form) {
+            if (! is_object($form)) {
+                $form = new $form();
+            }
+
+            if (method_exists($form, 'delete')) {
+                $form->delete(...$arg);
+            }
+        }
+    }
+
+
     /**
      * Set All attributes class.
      * @param $array

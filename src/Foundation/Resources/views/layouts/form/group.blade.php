@@ -18,7 +18,7 @@
             <div class="col-sm-6 col-xs-12 text-right">
                 <div class="btn-group" role="group" aria-label="...">
                     <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
-                    <button type="submit" class="btn btn-link"  @if($method == 'create') disabled @endif><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
+                    <button type="submit" form="form-group-remove" class="btn btn-link"  @if($method == 'create') disabled @endif><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
                 </div>
             </div>
 
@@ -70,8 +70,10 @@
 
             {{csrf_field()}}
 
-            {{ method_field($route->get($method)['method']) }}
 
+            @if($route->get($method)['method'] != 'GET')
+               {{ method_field( $route->get($method)['method'] )}}
+            @endif
 
         </form>
 
@@ -82,7 +84,7 @@
                 {{ csrf_field() }}
 
 
-                {{ method_field($route->get($method)['method']) }}
+                {{ method_field('delete') }}
             </form>
         @endif
 

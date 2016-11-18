@@ -54,7 +54,35 @@
                 </div>
             </div>
 
-            <div class="line line-dashed b-b line-lg"></div>
+
+
+
+
+        <div class="line line-dashed b-b line-lg"></div>
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="url" name="password" class="form-control" value="{{old('password')}}"
+                       placeholder="********">
+            </div>
+        </div>
+
+
+
+        <div class="line line-dashed b-b line-lg"></div>
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label class="col-sm-2 control-label">Confirmed Password</label>
+            <div class="col-sm-10">
+                <input type="url" name="password_confirmation" class="form-control" value="{{old('password_confirmation')}}"
+                       placeholder="********">
+            </div>
+        </div>
+
+
+
+
+
+        <div class="line line-dashed b-b line-lg"></div>
             <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                 <div class="col-sm-offset-2 col-sm-10">
                     <label class="i-checks i-checks-sm">
@@ -72,7 +100,11 @@
                 </div>
             </div>
 
-            <div class="line line-dashed b-b line-lg"></div>
+
+
+
+
+        <div class="line line-dashed b-b line-lg"></div>
             <div class="form-group{{ $errors->has('subscription') ? ' has-error' : '' }}">
                 <div class="col-sm-offset-2 col-sm-10">
                     <label class="i-checks i-checks-sm">
@@ -90,7 +122,6 @@
                 </div>
             </div>
 
-            <input type="hidden" name="id" value="{{$user->id}}">
 
     </div>
 </div>

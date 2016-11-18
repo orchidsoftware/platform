@@ -98,11 +98,36 @@ trait UserAccess
     }
 
     /**
+     * Remove Role Slug
+     * @param $slug
+     */
+    public function removeRoleBySlug($slug)
+    {
+        $this->roles()->where('slug', $slug)->first()->remove();
+    }
+
+
+    /**
      * @param array
      */
     public function replaceRoles($Roles)
     {
-        $this->roles()->remove();
-        $this->roles()->saveMany($Roles);
+        $this->roles()->detach();
+        $this->roles()->attach($Roles);
     }
+
+    /**
+     * @return mixed
+     */
+    public function delete()
+    {
+        $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
+        if ($this->exists && ! $isSoftDeleted) {
+            $this->roles()->detach();
+        }
+
+        return parent::delete();
+    }
+
+
 }

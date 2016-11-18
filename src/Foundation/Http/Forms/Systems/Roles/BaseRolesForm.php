@@ -87,4 +87,14 @@ class BaseRolesForm extends Form
         $role->save();
         Alert::success('Message');
     }
+
+
+    /**
+     * @param Role $role
+     */
+    public function delete(Role $role){
+        $role->delete();
+        Alert::success('Message');
+    }
+
 }

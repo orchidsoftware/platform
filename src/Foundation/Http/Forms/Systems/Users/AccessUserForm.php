@@ -68,22 +68,19 @@ class AccessUserForm extends Form
             $userRoles = $user->getRoles();
 
 
-            if(!$userRoles->isEmpty()) {
-                $roles->transform(
-                    function ($role) use ($userRoles) {
-                        foreach ($userRoles as $userRole) {
-                            $role->active = ($userRole->slug == $role->slug);
+            $userRoles->transform(function ($role) {
+                    $role->active = true;
+                    return $role;
+            });
 
-                            return $role;
-                        }
-                    }
-                );
-            }
+            $roles = $userRoles->union($roles);
+
 
         } else {
             $permission = Dashboard::getPermission();
             $roles = Role::all();
         }
+
 
         return view(
             'dashboard::container.systems.users.access',
@@ -98,11 +95,11 @@ class AccessUserForm extends Form
     /**
      * Save Base Role.
      *
+     * @param null $request
      * @param null $user
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($user = null)
+    public function persist($request = null, $user = null)
     {
         $roles = Role::whereIn('slug',$this->roles)->get();
         $user->replaceRoles($roles);

@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
+use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
@@ -41,12 +42,13 @@ class UserController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param User|null $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store()
+    public function store(Request $request, User $user = null)
     {
-        $this->form->save();
+        $this->form->save($request,$user);
 
         return redirect()->back();
     }
@@ -63,11 +65,24 @@ class UserController extends Controller
 
 
     /**
+     * @param Request $request
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(User $user){
-        $this->form->save($user);
+    public function update(Request $request,User $user){
+        $this->form->save($request,$user);
         return redirect()->back();
     }
+
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function destroy(User $user)
+    {
+        return $this->form->remove($user);
+    }
+
+
 }
