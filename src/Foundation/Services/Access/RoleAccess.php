@@ -54,7 +54,6 @@ trait RoleAccess
         return $this->users;
     }
 
-
     /**
      * @return mixed
      */
@@ -64,7 +63,7 @@ trait RoleAccess
         if ($this->exists && ! $isSoftDeleted) {
             $this->users()->detach();
         }
+
         return parent::delete();
     }
-
 }
