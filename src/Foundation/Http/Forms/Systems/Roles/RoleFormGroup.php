@@ -56,7 +56,6 @@ class RoleFormGroup extends FormGroup
         ],
     ];
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

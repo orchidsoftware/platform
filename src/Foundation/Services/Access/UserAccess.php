@@ -80,7 +80,6 @@ trait UserAccess
         return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id');
     }
 
-
     /**
      * @param $Role
      */

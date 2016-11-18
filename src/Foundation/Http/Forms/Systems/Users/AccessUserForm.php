@@ -69,8 +69,8 @@ class AccessUserForm extends Form
 
 
             $userRoles->transform(function ($role) {
-                    $role->active = true;
-                    return $role;
+                $role->active = true;
+                return $role;
             });
 
             $roles = $userRoles->union($roles);
