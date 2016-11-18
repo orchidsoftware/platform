@@ -48,6 +48,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->form->save();
+
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
 
@@ -59,9 +60,9 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $this->form->save($role);
+
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
-
 
     /**
      * @param Role $role
@@ -73,7 +74,6 @@ class RoleController extends Controller
         return $this->form->render();
     }
 
-
     /**
      * @param Role $role
      * @return mixed
@@ -81,7 +81,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $this->form->remove($role);
+
         return redirect()->route('dashboard.systems.roles');
     }
-
 }

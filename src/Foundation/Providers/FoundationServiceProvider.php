@@ -123,7 +123,7 @@ class FoundationServiceProvider extends ServiceProvider
             MenuServiceProvider::class,
             PermissionServiceProvider::class,
             EventServiceProvider::class,
-            \Watson\Active\ActiveServiceProvider::class
+            \Watson\Active\ActiveServiceProvider::class,
         ];
     }
 }

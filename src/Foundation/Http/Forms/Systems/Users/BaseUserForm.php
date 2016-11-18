@@ -55,8 +55,6 @@ class BaseUserForm extends Form
         ]);
     }
 
-
-
     /**
      * Save Base Role.
      *
@@ -66,7 +64,7 @@ class BaseUserForm extends Form
     public function persist($request = null, $user = null, $storage = null)
     {
         $user->fill($this->request->all());
-        if($this->request->has('password')) {
+        if ($this->request->has('password')) {
             $user->password = Hash::make($this->request->password);
             $user->permissions = [];
         }
