@@ -33,8 +33,8 @@ class InstallerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app('router')->pushMiddlewareToGroup('web', '\Orchid\Installer\Middleware\redirectInstall');
-        app('router')->middleware('canInstall', '\Orchid\Installer\Middleware\canInstall');
+        app('router')->pushMiddlewareToGroup('web', '\Orchid\Installer\Middleware\RedirectInstall');
+        app('router')->middleware('canInstall', '\Orchid\Installer\Middleware\CanInstall');
     }
 
     /**

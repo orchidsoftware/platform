@@ -21,7 +21,7 @@ trait PresentableTrait
      */
     public function present()
     {
-        if (! $this->presenter or ! class_exists($this->presenter)) {
+        if (! $this->presenter || ! class_exists($this->presenter)) {
             throw new PresenterException('Please set the $presenter property to your presenter path.');
         }
 

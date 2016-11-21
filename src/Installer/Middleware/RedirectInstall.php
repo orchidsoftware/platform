@@ -4,7 +4,7 @@ namespace Orchid\Installer\Middleware;
 
 use Closure;
 
-class redirectInstall
+class RedirectInstall
 {
     /**
      * Handle an incoming request.

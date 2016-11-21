@@ -4,7 +4,7 @@ namespace Orchid\Installer\Middleware;
 
 use Closure;
 
-class canInstall
+class CanInstall
 {
     /**
      * Handle an incoming request.
