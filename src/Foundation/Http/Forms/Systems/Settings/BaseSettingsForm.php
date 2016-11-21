@@ -4,6 +4,7 @@ namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Core\Models\Setting;
 use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Foundation\Facades\Alert;
 
 class BaseSettingsForm extends Form
 {
@@ -23,19 +24,22 @@ class BaseSettingsForm extends Form
      * @var array
      */
     protected $rules = [
-        'settings' => 'required|array',
+        //'settings' => 'required|array',
     ];
 
     /**
      * Display Settings App.
      */
-    public function get($storage = null)
+    public function get()
     {
-        $settings = $this->model->get('base', collect());
-
-        return view('dashboard::container.systems.settings.base', [
-            'settings' => $settings,
+        $settings = $this->model->get([
+            'site_descriptions',
+            'site_adress',
+            'site_phone',
+            'site_email',
         ]);
+
+        return view('dashboard::container.systems.settings.base', $settings);
     }
 
     /**
@@ -43,19 +47,11 @@ class BaseSettingsForm extends Form
      */
     public function persist()
     {
-        $settings = $this->request->input('settings');
+        $settings = $this->request->except('_token');
         foreach ($settings as $key => $value) {
             $this->model->set($key, $value);
         }
-
-        return response()->json([
-            'title'   => 'Успешно',
-            'message' => 'Данные сохранены',
-        ]);
+        Alert::success('Message');
     }
 
-    public function grid()
-    {
-        // TODO: Implement grid() method.
-    }
 }

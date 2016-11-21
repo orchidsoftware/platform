@@ -14,6 +14,13 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'as'   => 'dashboard.systems.settings',
         'uses' => 'SettingController@index',
     ]);
+    Route::post('settings', [
+        'as'   => 'dashboard.systems.settings',
+        'uses' => 'SettingController@store',
+    ]);
+
+
+
 
     Route::resource('localization', 'LocalizationController', ['names' => [
         'index' => 'dashboard.systems.localization',

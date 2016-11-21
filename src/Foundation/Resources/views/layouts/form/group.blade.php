@@ -35,19 +35,15 @@
 
 
                 @foreach($forms as $name => $form)
-
                     <li @if ($loop->first) class="active" @endif>
                         <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
-                            <i class="glyphicon glyphicon-user text-md text-muted wrapper-sm"></i>
                             {{$name}}
                         </a>
                     </li>
-
                 @endforeach
 
             </ul>
         </div>
-
 
 
         <form class="form-horizontal" id="form-group"
@@ -58,6 +54,9 @@
               action="{{route($route->get('update')['name'],$model->$slug)}}"
               @endif
               method="post" enctype="multipart/form-data">
+
+
+
 
             <div class="tab-content">
                 @foreach($forms as $name => $form)

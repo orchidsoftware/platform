@@ -30,6 +30,8 @@ class MenuServiceProvider extends ServiceProvider
             'route' => route('dashboard.index'),
             'label' => trans('dashboard::menu.Dashboard'),
             'main'  => true,
+            'active' => 'dashboard.index',
+            'permission' => 'dashboard.index',
         ];
         $postMenu = [
             'slug'   => 'Posts',
@@ -38,6 +40,8 @@ class MenuServiceProvider extends ServiceProvider
             'label'  => trans('dashboard::menu.Posts'),
             'childs' => true,
             'main'   => true,
+            'active' => 'dashboard.posts.*',
+            'permission' => 'dashboard.posts',
         ];
         $toolsMenu = [
             'slug'   => 'Tools',
@@ -46,6 +50,8 @@ class MenuServiceProvider extends ServiceProvider
             'label'  => trans('dashboard::menu.Tools'),
             'childs' => true,
             'main'   => true,
+            'active' => 'dashboard.tools.*',
+            'permission' => 'dashboard.tools',
         ];
         $systemsMenu = [
             'slug'   => 'Systems',
@@ -54,6 +60,8 @@ class MenuServiceProvider extends ServiceProvider
             'label'  => trans('dashboard::menu.Systems'),
             'childs' => true,
             'main'   => true,
+            'active' => 'dashboard.systems.*',
+            'permission' => 'dashboard.systems',
         ];
 
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $panelMenu, 1);
@@ -111,14 +119,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
-        $CRUDMenu = [
-            'slug'    => 'CRUD',
-            'icon'    => 'fa fa-clone',
-            'route'   => route('dashboard.index'),
-            'label'   => 'CRUD',
-            'childs'  => false,
-            'divider' => false,
-        ];
 
         $typePostMenu = [
             'slug'    => 'types-posts',
@@ -196,7 +196,6 @@ class MenuServiceProvider extends ServiceProvider
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $CRUDMenu, 40);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $localizationMenu, 300);

@@ -2,6 +2,8 @@
 
 namespace Orchid\Foundation\Services\Menu;
 
+use Illuminate\Support\Facades\Auth;
+
 class Menu
 {
     /**
@@ -141,7 +143,18 @@ class Menu
     public function render($location, $template = null)
     {
         $html = '';
+
+        if(!isset($this->user)){
+            $this->user = Auth::user();
+            $user = $this->user;
+            $this->container = $this->container->filter(function ($item) use ($user) {
+                return (isset($item['arg']['permission'])) ? $user->hasAccess($item['arg']['permission']) : true;
+            });
+        }
+
+
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
+
             if (! is_null($template)) {
                 $value['template'] = $template;
             }

@@ -26,20 +26,23 @@ class PermissionServiceProvider extends ServiceProvider
     protected function registerPermissions()
     {
         return [
-            'Modules - название модуля' => [
+            'Главное меню' => [
                 [
-                    'slug'        => 'dashboard.post',
+                    'slug'        => 'dashboard.index',
+                    'description' => 'Главное меню',
+                ],
+                [
+                    'slug'        => 'dashboard.posts',
                     'description' => 'Доступ к постам',
                 ],
                 [
-                    'slug'        => 'dashboard.post.images',
-                    'description' => 'Доступ к изображениям',
+                    'slug'        => 'dashboard.tools',
+                    'description' => 'Доступ к инструментам',
                 ],
                 [
-                    'slug'        => 'dashboard.post.seo',
-                    'description' => 'Доступ к SEO параметрам',
+                    'slug'        => 'dashboard.systems',
+                    'description' => 'Доступ к параметрам системы',
                 ],
-                //etc
             ],
 
         ];

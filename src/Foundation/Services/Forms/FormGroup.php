@@ -12,6 +12,13 @@ abstract class FormGroup
 
 
     /**
+     * Icon tabs
+     * @var string
+     */
+    public $icon = '';
+
+
+    /**
      * Description form group.
      * @var
      */
@@ -102,11 +109,11 @@ abstract class FormGroup
             }
         }
 
-
         return view($this->view, [
             'forms' => $this->html,
             'storage' => $this->storage,
             'name' => $this->name,
+            'icon' => $this->icon,
             'description' => $this->description,
             'route' => collect($this->route),
             'model' => $this->storage->has('model') ? $this->storage->get('model') : null,

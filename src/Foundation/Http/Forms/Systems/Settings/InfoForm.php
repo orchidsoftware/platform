@@ -7,7 +7,15 @@ use Orchid\Foundation\Services\Forms\Form;
 
 class InfoForm extends Form
 {
+    /**
+     * @var string
+     */
     public $name = 'Info';
+
+    /**
+     * @var string
+     */
+    public $icon = 'fa fa-cogs';
 
     /**
      * Base Model.
@@ -34,11 +42,8 @@ class InfoForm extends Form
 
     public function persist()
     {
-        // TODO: Implement persist() method.
+        return;
     }
 
-    public function grid()
-    {
-        // TODO: Implement grid() method.
-    }
+
 }
