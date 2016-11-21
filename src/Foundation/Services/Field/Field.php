@@ -1,9 +1,9 @@
-<?php namespace Orchid\Foundation\Services\Field;
+<?php
 
+namespace Orchid\Foundation\Services\Field;
 
 abstract class Field
 {
-
     /**
      * @var
      */
@@ -36,18 +36,17 @@ abstract class Field
 
     /**
      * The value attribute specifies the value of an <input> element.
-     * The value attribute is used differently for different input types:
+     * The value attribute is used differently for different input types:.
      * @var
      */
     protected $value;
 
 
     /**
-     * View template show
+     * View template show.
      * @var
      */
     public $view;
-
 
     /**
      * Fields constructor.
@@ -61,21 +60,19 @@ abstract class Field
         $this->create($arg);
     }
 
-
     /**
-     * Create function Field
+     * Create function Field.
      */
-    public function create(){}
-
+    public function create()
+    {
+    }
 
     /**
-     * Render view
+     * Render view.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
     {
         return view($this->view, $this);
     }
-
-
 }

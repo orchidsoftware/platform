@@ -194,8 +194,6 @@ class MenuServiceProvider extends ServiceProvider
         $allPost = $dashboard->types();
         $pages = $allPost['pages'];
         foreach ($pages as $key => $page) {
-
-
             $postObject = [
                 'slug' => $page->slug,
                 'icon' => $page->icon,
@@ -209,7 +207,6 @@ class MenuServiceProvider extends ServiceProvider
                 $postObject['groupname'] = 'Страницы!';
             } elseif (end($pages) == $page) {
                 $postObject['divider'] = true;
-
             }
 
 

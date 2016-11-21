@@ -1,10 +1,11 @@
-<?php namespace Orchid\Foundation\Services\Type;
+<?php
+
+namespace Orchid\Foundation\Services\Type;
 
 abstract class Type implements TypeInterface
 {
-
     /**
-     * Name type
+     * Name type.
      * @var
      */
     public $name = '';
@@ -21,28 +22,28 @@ abstract class Type implements TypeInterface
     public $icon = 'ion-ios-paper-outline';
 
     /**
-     * Fields for content
+     * Fields for content.
      * @var array
      */
     public $fields = [];
 
 
     /**
-     * Relations
+     * Relations.
      * @var
      */
-    public $relations =[];
+    public $relations = [];
 
 
     /**
-     * Available templates
+     * Available templates.
      * @var
      */
-    public $templates =[];
+    public $templates = [];
 
 
     /**
-     * To determine the properties by the function
+     * To determine the properties by the function.
      * @var array
      */
     private $method = [
@@ -51,17 +52,16 @@ abstract class Type implements TypeInterface
         'setTemplates',
     ];
 
-
     /**
      * Type constructor.
      */
     public function __construct()
     {
-       $arg = func_get_args();
-       $this->setForm($arg);
+        $arg = func_get_args();
+        $this->setForm($arg);
 
         foreach ($this->method as $value) {
-            if (method_exists($this,$value)) {
+            if (method_exists($this, $value)) {
                 $this->$value();
             }
         }
@@ -72,8 +72,5 @@ abstract class Type implements TypeInterface
      */
     public function setForm(...$arg)
     {
-
     }
-
-
 }

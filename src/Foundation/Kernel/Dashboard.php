@@ -24,7 +24,6 @@ class Dashboard
      */
     public $types = [];
 
-
     /**
      * Dashboard constructor.
      */
@@ -51,12 +50,11 @@ class Dashboard
         return $this->permission->get();
     }
 
-
     /**
      * @return mixed
      */
-    public function types(){
+    public function types()
+    {
         return $this->types->all();
     }
-
 }

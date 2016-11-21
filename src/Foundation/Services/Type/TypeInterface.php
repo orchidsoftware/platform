@@ -4,5 +4,4 @@ namespace Orchid\Foundation\Services\Type;
 
 interface TypeInterface
 {
-
 }

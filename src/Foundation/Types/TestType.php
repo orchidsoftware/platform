@@ -1,12 +1,13 @@
-<?php namespace Orchid\Foundation\Types;
+<?php
 
+namespace Orchid\Foundation\Types;
 
 use Orchid\Foundation\Fields\InputField;
 use Orchid\Foundation\Fields\TextAreaField;
 use Orchid\Foundation\Services\Type\Type;
 
-class TestType extends Type {
-
+class TestType extends Type
+{
     /**
      * @var string
      */
@@ -31,7 +32,4 @@ class TestType extends Type {
      * @var bool
      */
     public $page = true;
-
-
-
 }
