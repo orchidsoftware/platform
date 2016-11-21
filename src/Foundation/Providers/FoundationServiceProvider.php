@@ -59,14 +59,14 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        /*
+
         $this->publishes([
-            __DIR__.'/../Config/dashboard.php' => config_path('dashboard.php'),
+            __DIR__.'/../Config/types.php' => config_path('types.php'),
         ]);
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/dashboard.php', 'dashboard'
+            __DIR__.'/../Config/types.php', 'types'
         );
-        */
+
     }
 
     /**

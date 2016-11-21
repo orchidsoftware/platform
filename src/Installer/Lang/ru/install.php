@@ -7,7 +7,7 @@ return [
      * Shared translations.
      *
      */
-    'title'        => 'Установка Laravel',
+    'title'        => 'Установка Orchid',
     'next'         => 'Следующий шаг',
 
 
@@ -17,7 +17,7 @@ return [
      *
      */
     'welcome'      => [
-        'title'   => 'Установка Laravel',
+        'title'   => 'Установка Orchid',
         'message' => 'Добро пожаловать в первоначальную настройку фреймворка Laravel.',
     ],
 

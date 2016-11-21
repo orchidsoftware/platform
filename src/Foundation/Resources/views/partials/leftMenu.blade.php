@@ -13,7 +13,7 @@
            <i class="fa fa-fw fa-angle-right text"></i>
                   </span>
             <i class="{{$icon}}"></i>
-            <span>{{$label}}</span>
+            <span class="text-ellipsis" title="{{$label}}" >{{$label}}</span>
         </a>
         <ul class="dropdown-menu dropdown-full dropdown-lvl" aria-labelledby="dropdownMenu-{{$slug}}">
             {!! Dashboard::menu()->render($slug) !!}
@@ -37,7 +37,7 @@
     <li>
         <a href="{{$route}}">
             <i class="{{$icon}}"></i>
-            <span>{{$label}}</span>
+            <span title="{{$label}}" class="text-ellipsis">{{$label}}</span>
         </a>
     </li>
 

@@ -20,6 +20,9 @@ class Language extends Model
         'status',
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
         'status' => 'boolean',
     ];

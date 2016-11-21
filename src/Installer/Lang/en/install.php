@@ -7,7 +7,7 @@ return [
      * Shared translations.
      *
      */
-    'title'  => 'Laravel Installer',
+    'title'  => 'Orchid Installer',
     'next'   => 'Next Step',
     'finish' => 'Install',
 

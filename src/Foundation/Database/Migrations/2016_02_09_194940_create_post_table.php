@@ -12,9 +12,14 @@ class CreatePostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type_id');
             $table->integer('user_id');
+            $table->string('type');
+            $table->jsonb('content');
+            $table->boolean('page');
+            $table->string('slug','255')->nullable();
+            $table->timestamp('publish');
             $table->timestamps();
+            $table->softDeletes();
 
             /*
             $table->foreign('user_id')
