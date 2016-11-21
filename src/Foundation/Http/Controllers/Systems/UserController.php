@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request, User $user = null)
     {
-        $this->form->save($request,$user);
+        $this->form->save($request, $user);
 
         return redirect()->back();
     }
@@ -63,17 +63,17 @@ class UserController extends Controller
         return $this->form->render();
     }
 
-
     /**
      * @param Request $request
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,User $user){
-        $this->form->save($request,$user);
+    public function update(Request $request, User $user)
+    {
+        $this->form->save($request, $user);
+
         return redirect()->back();
     }
-
 
     /**
      * @param User $user
@@ -84,6 +84,4 @@ class UserController extends Controller
         $this->form->remove($user);
         return redirect()->route('dashboard.systems.users');
     }
-
-
 }

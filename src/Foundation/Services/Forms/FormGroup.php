@@ -141,9 +141,8 @@ abstract class FormGroup
         }
     }
 
-
     /**
-     * Action save for sub form
+     * Action save for sub form.
      */
     public function remove()
     {
@@ -160,7 +159,6 @@ abstract class FormGroup
             }
         }
     }
-
 
     /**
      * Set All attributes class.

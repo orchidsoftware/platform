@@ -97,14 +97,13 @@ trait UserAccess
     }
 
     /**
-     * Remove Role Slug
+     * Remove Role Slug.
      * @param $slug
      */
     public function removeRoleBySlug($slug)
     {
         $this->roles()->where('slug', $slug)->first()->remove();
     }
-
 
     /**
      * @param array
@@ -127,6 +126,4 @@ trait UserAccess
 
         return parent::delete();
     }
-
-
 }
