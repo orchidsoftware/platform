@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
-
     /**
      * @var
      */
@@ -39,7 +38,7 @@ class SettingController extends Controller
     {
         $this->form->save($request);
         Cache::flush();
+
         return redirect()->back();
     }
-
 }

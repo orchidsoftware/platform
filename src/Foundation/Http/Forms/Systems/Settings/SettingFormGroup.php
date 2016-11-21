@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Events\Systems\SettingsEvent;
 use Orchid\Foundation\Services\Forms\FormGroup;
-use Orchid\Settings\Models\Setting;
 
 class SettingFormGroup extends FormGroup
 {
@@ -34,7 +33,6 @@ class SettingFormGroup extends FormGroup
      */
     public $event = SettingsEvent::class;
 
-
     /**
      * Description Attributes for group.
      * @return array
@@ -46,7 +44,4 @@ class SettingFormGroup extends FormGroup
             'description' => 'Глобавльные настройки системы',
         ];
     }
-
-
-
 }

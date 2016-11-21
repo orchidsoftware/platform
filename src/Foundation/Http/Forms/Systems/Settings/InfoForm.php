@@ -42,8 +42,5 @@ class InfoForm extends Form
 
     public function persist()
     {
-        return;
     }
-
-
 }

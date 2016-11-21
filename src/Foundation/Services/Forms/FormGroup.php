@@ -12,7 +12,7 @@ abstract class FormGroup
 
 
     /**
-     * Icon tabs
+     * Icon tabs.
      * @var string
      */
     public $icon = '';
