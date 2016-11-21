@@ -82,6 +82,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $this->form->remove($user);
+
         return redirect()->route('dashboard.systems.users');
     }
 }

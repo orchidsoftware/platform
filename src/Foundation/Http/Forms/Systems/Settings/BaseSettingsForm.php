@@ -53,5 +53,4 @@ class BaseSettingsForm extends Form
         }
         Alert::success('Message');
     }
-
 }

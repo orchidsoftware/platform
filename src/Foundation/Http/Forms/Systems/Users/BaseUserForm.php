@@ -73,15 +73,12 @@ class BaseUserForm extends Form
         Alert::success('Message');
     }
 
-
-
-
     /**
      * @param User $user
      */
-    public function delete(User $user){
+    public function delete(User $user)
+    {
         $user->delete();
         Alert::success('Message');
     }
-
 }
