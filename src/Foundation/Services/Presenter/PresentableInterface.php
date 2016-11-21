@@ -1,12 +1,13 @@
-<?php namespace Orchid\Foundation\Services\Presenter;
+<?php
 
-interface PresentableInterface {
+namespace Orchid\Foundation\Services\Presenter;
 
+interface PresentableInterface
+{
     /**
-     * Prepare a new or cached presenter instance
+     * Prepare a new or cached presenter instance.
      *
      * @return mixed
      */
     public function present();
-
 }

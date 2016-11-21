@@ -1,8 +1,9 @@
-<?php namespace Orchid\Foundation\Services\Type;
+<?php
 
+namespace Orchid\Foundation\Services\Type;
 
-class TypeStorage{
-
+class TypeStorage
+{
     /**
      * @var
      */
@@ -15,37 +16,37 @@ class TypeStorage{
     {
         $this->container = collect();
 
-        $types = config('types',[]);
+        $types = config('types', []);
 
-        foreach ($types as $type){
-             $this->add($type);
+        foreach ($types as $type) {
+            $this->add($type);
         }
-
-
     }
 
     /**
      * @param $class
      */
-    public function add($class){
+    public function add($class)
+    {
         $this->container->push($class);
     }
-
 
     /**
      * @param bool $sort
      * @return array
      */
-    public function all($sort = false){
-        $this->container->transform(function ($value){
-            if(!is_object($value)){
+    public function all($sort = false)
+    {
+        $this->container->transform(function ($value) {
+            if (! is_object($value)) {
                 $value = new $value;
             }
+
             return $value;
         });
 
 
-        if(!$sort) {
+        if (! $sort) {
             return [
                 'pages' => $this->container->where('page', true)->toArray(),
                 'blocks' => $this->container->where('page', false)->toArray(),
@@ -55,13 +56,12 @@ class TypeStorage{
         return $this->container->all();
     }
 
-
     /**
      * @param $arg
      * @return mixed
      */
-    public function get($arg){
+    public function get($arg)
+    {
         return $this->container->get($arg);
     }
-
 }

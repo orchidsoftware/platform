@@ -1,4 +1,7 @@
-<?php namespace Orchid\Foundation\Exceptions;
+<?php
 
+namespace Orchid\Foundation\Exceptions;
 
-class PresenterException extends \Exception {}
+class PresenterException extends \Exception
+{
+}

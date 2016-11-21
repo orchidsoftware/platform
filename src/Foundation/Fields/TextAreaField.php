@@ -1,39 +1,40 @@
-<?php namespace Orchid\Foundation\Fields;
+<?php
+
+namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-class InputField extends Field
+class TextAreaField extends Field
 {
-
     /**
      * The type attribute specifies the type of <input> element to display.
      * The default type is: text.
      * @var array
      */
     protected $type = [
-        "button",
-        "checkbox",
-        "color",
-        "date",
-        "datetime",
-        "datetime-local",
-        "email",
-        "file",
-        "hidden",
-        "image",
-        "month",
-        "number",
-        "password",
-        "radio",
-        "range",
-        "reset",
-        "search",
-        "submit",
-        "tel",
-        "text",
-        "time",
-        "url",
-        "week",
+        'button',
+        'checkbox',
+        'color',
+        'date',
+        'datetime',
+        'datetime-local',
+        'email',
+        'file',
+        'hidden',
+        'image',
+        'month',
+        'number',
+        'password',
+        'radio',
+        'range',
+        'reset',
+        'search',
+        'submit',
+        'tel',
+        'text',
+        'time',
+        'url',
+        'week',
     ];
 
 
@@ -71,15 +72,13 @@ class InputField extends Field
      */
     protected $view = 'dashboard::field.string';
 
-
     /**
-     * Create Object
+     * Create Object.
      */
     public function create()
     {
-        if(is_array($this->type)){
+        if (is_array($this->type)) {
             $this->type = 'text';
         }
     }
-
 }

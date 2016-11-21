@@ -1,20 +1,17 @@
-<?php namespace Orchid\Foundation\Services\Field;
+<?php
 
+namespace Orchid\Foundation\Services\Field;
 
 interface FieldInterface
 {
-
     /**
-     * Create function Field
+     * Create function Field.
      */
     public function create();
 
-
     /**
-     * Render view
+     * Render view.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view();
-
-
 }
