@@ -18,7 +18,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'Orchid\Foundation\Http\Controllers';
 
-
     /**
      * Define the routes for the application.
      *
@@ -48,23 +47,20 @@ class RouteServiceProvider extends ServiceProvider
 
 
         $this->binding($router);
-
     }
-
 
     /**
      * @param Router $router
      */
-    public function binding(Router $router){
-        $router->bind('type',function($value){
+    public function binding(Router $router)
+    {
+        $router->bind('type', function ($value) {
             $post = new Post();
+
             return $post->getType($value);
         });
-        $router->bind('slug',function($value){
-            return Post::where('slug',$value)->firstOrFail();
+        $router->bind('slug', function ($value) {
+            return Post::where('slug', $value)->firstOrFail();
         });
     }
-
-
-
 }
