@@ -4,7 +4,7 @@ namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-class InputField extends Field
+class InputFieldField extends Field
 {
     /**
      * The type attribute specifies the type of <input> element to display.
