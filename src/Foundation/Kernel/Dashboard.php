@@ -66,7 +66,6 @@ class Dashboard
         return $this->types->all($sort);
     }
 
-
     /**
      * @return mixed
      */
@@ -74,6 +73,4 @@ class Dashboard
     {
         return $this->fields->all();
     }
-
-
 }

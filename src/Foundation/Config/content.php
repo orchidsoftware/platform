@@ -3,7 +3,7 @@
 
 return [
 
-    /**
+    /*
      * Types - an abstract pattern of behavior record
      */
     'types' => [
@@ -11,7 +11,7 @@ return [
     ],
 
 
-    /**
+    /*
      * Available fields to form templates
      */
     'fields' => [

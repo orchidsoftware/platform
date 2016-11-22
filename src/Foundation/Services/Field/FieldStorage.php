@@ -1,8 +1,9 @@
-<?php namespace Orchid\Foundation\Services\Field;
+<?php
 
-class FieldStorage {
+namespace Orchid\Foundation\Services\Field;
 
-
+class FieldStorage
+{
     /**
      * @var
      */
@@ -39,6 +40,7 @@ class FieldStorage {
             if (! is_object($value)) {
                 $value = new $value;
             }
+
             return $value;
         });
 
@@ -53,5 +55,4 @@ class FieldStorage {
     {
         return $this->container->get($arg);
     }
-
 }
