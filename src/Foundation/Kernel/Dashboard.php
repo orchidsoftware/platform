@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Kernel;
 
 use Orchid\Foundation\Services\Access\Permissions;
+use Orchid\Foundation\Services\Field\FieldStorage;
 use Orchid\Foundation\Services\Menu\Menu;
 use Orchid\Foundation\Services\Type\TypeStorage;
 
@@ -38,6 +39,7 @@ class Dashboard
         $this->menu = new Menu();
         $this->permission = new Permissions();
         $this->types = new TypeStorage();
+        $this->fields = new FieldStorage();
     }
 
     /**
@@ -57,10 +59,22 @@ class Dashboard
     }
 
     /**
-     * @return mixed
+     * @param bool $sort
+     * @return array
      */
     public function types($sort = false)
     {
         return $this->types->all($sort);
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function fields()
+    {
+        return $this->fields->all();
+    }
+
+
 }

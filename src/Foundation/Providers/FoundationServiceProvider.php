@@ -60,10 +60,10 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/types.php' => config_path('types.php'),
+            __DIR__.'/../Config/content.php' => config_path('content.php'),
         ]);
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/types.php', 'types'
+            __DIR__.'/../Config/content.php', 'content'
         );
     }
 

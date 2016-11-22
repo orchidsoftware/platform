@@ -1,9 +1,8 @@
-<?php
+<?php namespace Orchid\Foundation\Services\Field;
 
-namespace Orchid\Foundation\Services\Type;
+class FieldStorage {
 
-class TypeStorage
-{
+
     /**
      * @var
      */
@@ -16,9 +15,9 @@ class TypeStorage
     {
         $this->container = collect();
 
-        $types = config('content.types', []);
+        $fields = config('content.field', []);
 
-        foreach ($types as $type) {
+        foreach ($fields as $type) {
             $this->add($type);
         }
     }
@@ -32,26 +31,16 @@ class TypeStorage
     }
 
     /**
-     * @param bool $sort
-     * @return array
+     * @return mixed
      */
-    public function all($sort = false)
+    public function all()
     {
         $this->container->transform(function ($value) {
             if (! is_object($value)) {
                 $value = new $value;
             }
-
             return $value;
         });
-
-
-        if (! $sort) {
-            return [
-                'pages' => $this->container->where('page', true)->toArray(),
-                'blocks' => $this->container->where('page', false)->toArray(),
-            ];
-        }
 
         return $this->container->all();
     }
@@ -64,4 +53,5 @@ class TypeStorage
     {
         return $this->container->get($arg);
     }
+
 }
