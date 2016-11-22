@@ -8,9 +8,8 @@ use Orchid\Foundation\Services\Type\TypeStorage;
 
 class Dashboard
 {
-
     /**
-     * Orchid Version
+     * Orchid Version.
      */
     const VERSION = '0.0.1';
 

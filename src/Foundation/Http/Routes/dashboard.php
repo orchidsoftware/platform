@@ -7,35 +7,33 @@ Route::get('/', [
 
 
 Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
-
-
-    Route::get("{type}/{slug?}",[
-        'as'   => "dashboard.posts.type",
+    Route::get('{type}/{slug?}', [
+        'as'   => 'dashboard.posts.type',
         'uses' => 'PostController@index',
     ]);
 
-    Route::get("{type}/create",[
-        'as'   => "dashboard.posts.type.create",
+    Route::get('{type}/create', [
+        'as'   => 'dashboard.posts.type.create',
         'uses' => 'PostController@index',
     ]);
 
-    Route::get("{type}/edit",[
-        'as'   => "dashboard.posts.type.edit",
+    Route::get('{type}/edit', [
+        'as'   => 'dashboard.posts.type.edit',
         'uses' => 'PostController@index',
     ]);
 
-    Route::post("{type}",[
-        'as'   => "dashboard.posts.type.store",
+    Route::post('{type}', [
+        'as'   => 'dashboard.posts.type.store',
         'uses' => 'PostController@index',
     ]);
 
-    Route::put("{type}/{slug?}",[
-        'as'   => "dashboard.posts.type.update",
+    Route::put('{type}/{slug?}', [
+        'as'   => 'dashboard.posts.type.update',
         'uses' => 'PostController@index',
     ]);
 
-    Route::delete("{type}/{slug?}",[
-        'as'   => "dashboard.posts.type.destroy",
+    Route::delete('{type}/{slug?}', [
+        'as'   => 'dashboard.posts.type.destroy',
         'uses' => 'PostController@index',
     ]);
 
