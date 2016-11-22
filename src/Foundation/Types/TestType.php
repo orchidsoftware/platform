@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Types;
 
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Fields\InputField;
 use Orchid\Foundation\Fields\TextAreaField;
 use Orchid\Foundation\Services\Type\Type;

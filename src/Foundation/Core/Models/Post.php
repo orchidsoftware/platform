@@ -60,30 +60,30 @@ class Post extends Model
      * @return mixed
      * @throws TypeException
      */
-    public function getType($getType){
+    public function getType($getType)
+    {
         $types = Dashboard::types(true);
-        foreach ($types as $type){
-            if($type->slug == $getType){
+        foreach ($types as $type) {
+            if ($type->slug == $getType) {
                 $this->postType = $type;
                 break;
             }
         }
 
-        if(is_null($this->postType)){
+        if (is_null($this->postType)) {
             throw new TypeException('Type is not found');
         }
 
         return $this;
     }
 
-
     /**
      * @return mixed
      */
-    public function whereType(){
-        return $this->where('type',$this->postType->slug);
+    public function whereType()
+    {
+        return $this->where('type', $this->postType->slug);
     }
-
 
     /**
      * @param string $property
@@ -97,7 +97,4 @@ class Post extends Model
 
         return $this->{$property};
     }
-
-
-
 }
