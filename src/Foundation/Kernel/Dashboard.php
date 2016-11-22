@@ -8,6 +8,12 @@ use Orchid\Foundation\Services\Type\TypeStorage;
 
 class Dashboard
 {
+
+    /**
+     * Orchid Version
+     */
+    const VERSION = '0.0.1';
+
     /**
      * @var
      */
@@ -53,8 +59,8 @@ class Dashboard
     /**
      * @return mixed
      */
-    public function types()
+    public function types($sort = false)
     {
-        return $this->types->all();
+        return $this->types->all($sort);
     }
 }

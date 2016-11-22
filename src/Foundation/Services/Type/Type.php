@@ -2,6 +2,9 @@
 
 namespace Orchid\Foundation\Services\Type;
 
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Foundation\Core\Models\Post;
+
 abstract class Type implements TypeInterface
 {
     /**
@@ -41,6 +44,10 @@ abstract class Type implements TypeInterface
      */
     public $templates = [];
 
+    /**
+     * @var Model
+     */
+    public $model = Post::class;
 
     /**
      * To determine the properties by the function.
@@ -54,9 +61,11 @@ abstract class Type implements TypeInterface
 
     /**
      * Type constructor.
+     * @param Model $model
      */
     public function __construct()
     {
+        /*
         $arg = func_get_args();
         $this->setForm($arg);
 
@@ -65,12 +74,9 @@ abstract class Type implements TypeInterface
                 $this->$value();
             }
         }
+        */
     }
 
-    /**
-     * @param array ...$arg
-     */
-    public function setForm(...$arg)
-    {
-    }
+
+
 }

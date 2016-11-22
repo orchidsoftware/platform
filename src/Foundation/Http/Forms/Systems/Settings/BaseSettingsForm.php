@@ -37,7 +37,7 @@ class BaseSettingsForm extends Form
             'site_adress',
             'site_phone',
             'site_email',
-        ]);
+        ],[]);
 
         return view('dashboard::container.systems.settings.base', $settings);
     }

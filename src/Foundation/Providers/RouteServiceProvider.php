@@ -4,6 +4,7 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
@@ -16,6 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'Orchid\Foundation\Http\Controllers';
+
 
     /**
      * Define the routes for the application.
@@ -43,5 +45,26 @@ class RouteServiceProvider extends ServiceProvider
                 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
                 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
             });
+
+
+        $this->binding($router);
+
     }
+
+
+    /**
+     * @param Router $router
+     */
+    public function binding(Router $router){
+        $router->bind('type',function($value){
+            $post = new Post();
+            return $post->getType($value);
+        });
+        $router->bind('slug',function($value){
+            return Post::where('slug',$value)->firstOrFail();
+        });
+    }
+
+
+
 }

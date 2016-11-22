@@ -16,7 +16,7 @@ class CreatePostTable extends Migration
             $table->string('type');
             $table->jsonb('content');
             $table->boolean('page');
-            $table->string('slug', '255')->nullable();
+            $table->string('slug', '255')->unique();
             $table->timestamp('publish');
             $table->timestamps();
             $table->softDeletes();
