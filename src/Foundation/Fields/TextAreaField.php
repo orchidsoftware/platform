@@ -6,9 +6,8 @@ use Orchid\Foundation\Services\Field\Field;
 
 class TextAreaField extends Field
 {
-
     /**
-     * HTML tag
+     * HTML tag.
      * @var string
      */
     protected $tag = 'textarea';
@@ -24,18 +23,15 @@ class TextAreaField extends Field
      */
     public $view = 'dashboard::fields.textarea';
 
-
     public function create($attributes, $data = null)
     {
-
-        if(is_null($data)){
+        if (is_null($data)) {
             $data = collect();
         }
 
-        $attributes->put('data',$data);
+        $attributes->put('data', $data);
 
 
-        return view($this->view,$attributes);
+        return view($this->view, $attributes);
     }
-
 }

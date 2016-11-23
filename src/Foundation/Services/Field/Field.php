@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Services\Field;
 
-abstract class Field  implements FieldInterface
+abstract class Field implements FieldInterface
 {
     /**
      * @var
@@ -47,5 +47,4 @@ abstract class Field  implements FieldInterface
      * @var
      */
     public $view;
-
 }

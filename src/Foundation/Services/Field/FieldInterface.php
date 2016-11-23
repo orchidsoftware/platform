@@ -12,5 +12,4 @@ interface FieldInterface
      * @return mixed
      */
     public function create($attributes, $data = null);
-
 }

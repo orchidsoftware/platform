@@ -10,22 +10,22 @@ class PostController extends Controller
     {
         $name = $type->dataType->name;
 
-        return view('dashboard::container.posts.main',[
-            'name' => $name
+        return view('dashboard::container.posts.main', [
+            'name' => $name,
         ]);
     }
 
     /**
      * @param null $type
      */
-    public function create($type){
+    public function create($type)
+    {
         $type = $type->dataType;
-        return view('dashboard::container.posts.create',[
-            'type' => $type
+
+        return view('dashboard::container.posts.create', [
+            'type' => $type,
         ]);
     }
-
-
 
     public function show($test = null, $test2 = null)
     {
