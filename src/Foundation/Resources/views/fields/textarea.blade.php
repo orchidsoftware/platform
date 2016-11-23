@@ -4,9 +4,9 @@
         <label for="{{$id}}">{{$title}}</label>
     @endif
 
-    <textarea class="form-control" @if(isset($id)) id="{{$id}}" @endif
+    <textarea class="form-control no-resize {{$class or ''}}" @if(isset($id)) id="{{$id}}" @endif
     name="{{$name}}"
-              placeholder="{{$placeholder}}"
+              placeholder="{{$placeholder or ''}}"
     >{!! $value or old($name) !!}</textarea>
 
 

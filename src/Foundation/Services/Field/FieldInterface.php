@@ -6,12 +6,11 @@ interface FieldInterface
 {
     /**
      * Create function Field.
+     *
+     * @param null $attributes
+     * @param null $data
+     * @return mixed
      */
-    public function create();
+    public function create($attributes, $data = null);
 
-    /**
-     * Render view.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function view();
 }

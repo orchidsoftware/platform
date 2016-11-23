@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Services\Field;
 
-abstract class Field
+abstract class Field  implements FieldInterface
 {
     /**
      * @var
@@ -48,31 +48,4 @@ abstract class Field
      */
     public $view;
 
-    /**
-     * Fields constructor.
-     * @param $arg
-     */
-    public function __construct($arg)
-    {
-        foreach ($arg as $key => $item) {
-            $this->$key = $item;
-        }
-        $this->create($arg);
-    }
-
-    /**
-     * Create function Field.
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Render view.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function view()
-    {
-        return view($this->view, $this);
-    }
 }

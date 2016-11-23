@@ -4,8 +4,15 @@ namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-class InputFieldField extends Field
+class InputField extends Field
 {
+
+    /**
+     * HTML tag
+     * @var string
+     */
+    protected $tag = 'input';
+
     /**
      * The type attribute specifies the type of <input> element to display.
      * The default type is: text.
@@ -70,15 +77,28 @@ class InputFieldField extends Field
     /**
      * @var string
      */
-    protected $view = 'dashboard::field.string';
+    public $view = 'dashboard::fields.input';
 
     /**
      * Create Object.
+     *
+     * @param null $attributes
+     * @param null $data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create($attributes, $data = null)
     {
         if (is_array($this->type)) {
             $this->type = 'text';
         }
+
+        if(is_null($data)){
+            $data = collect();
+        }
+
+        $attributes->put('data',$data);
+
+        return view($this->view,$attributes);
+
     }
 }

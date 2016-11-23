@@ -1,11 +1,11 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 
     @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
+        <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-    <input type="{{$type}}" class="form-control" @if(isset($id)) id="{{$id}}" @endif name="{{$name}}" value="{{$value or old($name)}}"
-           placeholder="{{$placeholder}}">
+    <input type="{{$type}}" class="form-control {{$class or ''}}"  id="field-{{$name}}"  name="{{$name}}" value="{{$value or old($name)}}"
+           placeholder="{{$placeholder or ''}}">
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

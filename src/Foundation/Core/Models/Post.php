@@ -17,7 +17,7 @@ class Post extends Model
     /**
      * @var
      */
-    protected $postType = null;
+    protected $dataType = null;
 
     /**
      * @var array
@@ -65,12 +65,12 @@ class Post extends Model
         $types = Dashboard::types(true);
         foreach ($types as $type) {
             if ($type->slug == $getType) {
-                $this->postType = $type;
+                $this->dataType = $type;
                 break;
             }
         }
 
-        if (is_null($this->postType)) {
+        if (is_null($this->dataType)) {
             throw new TypeException('Type is not found');
         }
 
@@ -82,7 +82,7 @@ class Post extends Model
      */
     public function whereType()
     {
-        return $this->where('type', $this->postType->slug);
+        return $this->where('type', $this->dataType->slug);
     }
 
     /**
@@ -91,8 +91,8 @@ class Post extends Model
      */
     public function __get($property)
     {
-        if (method_exists($this->postType, $property)) {
-            return $this->postType->{$property}();
+        if (method_exists($this->dataType, $property)) {
+            return $this->dataType->{$property}();
         }
 
         return $this->{$property};

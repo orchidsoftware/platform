@@ -8,8 +8,24 @@ class PostController extends Controller
 {
     public function index($type = null)
     {
-        dd($type, 'controller');
+        $name = $type->dataType->name;
+
+        return view('dashboard::container.posts.main',[
+            'name' => $name
+        ]);
     }
+
+    /**
+     * @param null $type
+     */
+    public function create($type){
+        $type = $type->dataType;
+        return view('dashboard::container.posts.create',[
+            'type' => $type
+        ]);
+    }
+
+
 
     public function show($test = null, $test2 = null)
     {

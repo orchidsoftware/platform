@@ -4,6 +4,8 @@ namespace Orchid\Foundation\Services\Type;
 
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Core\Models\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 abstract class Type implements TypeInterface
 {
@@ -12,7 +14,6 @@ abstract class Type implements TypeInterface
      * @var
      */
     public $name = '';
-
 
     /**
      * @var string
@@ -30,13 +31,11 @@ abstract class Type implements TypeInterface
      */
     public $fields = [];
 
-
     /**
      * Relations.
      * @var
      */
     public $relations = [];
-
 
     /**
      * Available templates.
@@ -59,21 +58,89 @@ abstract class Type implements TypeInterface
         'setTemplates',
     ];
 
-    /**
-     * Type constructor.
-     * @param Model $model
-     */
-    public function __construct()
-    {
-        /*
-        $arg = func_get_args();
-        $this->setForm($arg);
 
-        foreach ($this->method as $value) {
-            if (method_exists($this, $value)) {
-                $this->$value();
+    abstract public function setFields();
+
+
+    /**
+     * Parse the data fields.
+     *
+     */
+    protected function parseFields()
+    {
+        $data = $this->explodeFields($this->fields);
+
+        foreach ($data as $name => $value) {
+            $newField = collect();
+            foreach ($value as $rule) {
+                $newField[] = $this->parseStringFields($rule);
+            }
+            $this->fields[$name] = $newField->collapse();
+        }
+
+
+    }
+
+
+    /**
+     * Explode the rules into an array of rules.
+     *
+     * @param array $rules
+     * @return array
+     */
+    protected function explodeFields(array $rules)
+    {
+        foreach ($rules as $key => $rule) {
+            if (Str::contains($key, '*')) {
+                $this->each($key, [$rule]);
+                unset($rules[$key]);
+            } else {
+                if (is_string($rule)) {
+                    $rules[$key] = explode('|', $rule);
+                } elseif (is_object($rule)) {
+                    $rules[$key] = [$rule];
+                } else {
+                    $rules[$key] = $rule;
+                }
             }
         }
-        */
+        return $rules;
     }
+
+    /**
+     * @param $rules
+     * @return array
+     */
+    protected function parseStringFields($rules)
+    {
+        $parameters = [];
+        // The format for specifying validation rules and parameters follows an
+        // easy {rule}:{parameters} formatting convention. For instance the
+        // rule "Max:3" states that the value may only be three letters.
+        if (strpos($rules, ':') !== false) {
+            list($rules, $parameter) = explode(':', $rules, 2);
+            $parameters = $this->parseParameters($rules, $parameter);
+        }
+        return [
+            $rules => empty($parameters) ? true : implode(' ', $parameters)
+        ];
+    }
+
+
+    /**
+     * Parse a parameter list.
+     *
+     * @param  string $rule
+     * @param  string $parameter
+     * @return array
+     */
+    protected function parseParameters($rule, $parameter)
+    {
+        if (strtolower($rule) == 'regex') {
+            return [$parameter];
+        }
+        return str_getcsv($parameter);
+    }
+
+
 }
