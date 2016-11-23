@@ -1,4 +1,4 @@
-# platform
+# Platform (On development stage)
 Orchid Platform application provides a very flexible and extensible way of building your custom application.
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d/mini.png)](https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d)
