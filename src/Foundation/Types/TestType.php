@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Types;
+<?php
+
+namespace Orchid\Foundation\Types;
 
 use Orchid\Foundation\Services\Type\Type;
 
@@ -21,22 +23,22 @@ class TestType extends Type
      */
     public $page = true;
 
-
     /**
      * @return array
      */
-    public function setFields(){
+    public function setFields()
+    {
         return [
             'input' => 'type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
             'textarea' =>  'name:content|max:255|required',
         ];
     }
 
-
     /**
      * @return string
      */
-    public function generateForm(){
+    public function generateForm()
+    {
         $this->fields = $this->setFields();
         $this->parseFields();
 
@@ -44,8 +46,8 @@ class TestType extends Type
         $fields = $this->fields;
 
         $form = '';
-        foreach ($fields as $field => $config){
-            $field =config('content.fields.'.$field);
+        foreach ($fields as $field => $config) {
+            $field = config('content.fields.'.$field);
             $field = new $field;
             $field = $field->create($config);
 
@@ -56,5 +58,4 @@ class TestType extends Type
 
         return $form;
     }
-
 }

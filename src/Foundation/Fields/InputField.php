@@ -6,9 +6,8 @@ use Orchid\Foundation\Services\Field\Field;
 
 class InputField extends Field
 {
-
     /**
-     * HTML tag
+     * HTML tag.
      * @var string
      */
     protected $tag = 'input';
@@ -92,13 +91,12 @@ class InputField extends Field
             $this->type = 'text';
         }
 
-        if(is_null($data)){
+        if (is_null($data)) {
             $data = collect();
         }
 
-        $attributes->put('data',$data);
+        $attributes->put('data', $data);
 
-        return view($this->view,$attributes);
-
+        return view($this->view, $attributes);
     }
 }

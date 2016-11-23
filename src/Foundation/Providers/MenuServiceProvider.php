@@ -197,7 +197,7 @@ class MenuServiceProvider extends ServiceProvider
             $postObject = [
                 'slug' => $page->slug,
                 'icon' => $page->icon,
-                'route' => route('dashboard.posts.type',[$page->slug]),
+                'route' => route('dashboard.posts.type', [$page->slug]),
                 'label' => $page->name,
                 'childs' => false,
             ];
@@ -218,7 +218,7 @@ class MenuServiceProvider extends ServiceProvider
             $blockObject = [
                 'slug' => $block->slug,
                 'icon' => $block->icon,
-                'route' => route('dashboard.posts.type',[$block->slug]),
+                'route' => route('dashboard.posts.type', [$block->slug]),
                 'label' => $block->name,
             ];
 

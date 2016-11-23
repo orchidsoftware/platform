@@ -7,7 +7,6 @@ Route::get('/', [
 
 
 Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
-
     Route::get('{type}/create', [
         'as'   => 'dashboard.posts.type.create',
         'uses' => 'PostController@create',

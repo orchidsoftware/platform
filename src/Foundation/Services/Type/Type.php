@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Services\Type;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 
 abstract class Type implements TypeInterface
 {
@@ -58,13 +57,10 @@ abstract class Type implements TypeInterface
         'setTemplates',
     ];
 
-
     abstract public function setFields();
-
 
     /**
      * Parse the data fields.
-     *
      */
     protected function parseFields()
     {
@@ -77,10 +73,7 @@ abstract class Type implements TypeInterface
             }
             $this->fields[$name] = $newField->collapse();
         }
-
-
     }
-
 
     /**
      * Explode the rules into an array of rules.
@@ -104,6 +97,7 @@ abstract class Type implements TypeInterface
                 }
             }
         }
+
         return $rules;
     }
 
@@ -121,11 +115,11 @@ abstract class Type implements TypeInterface
             list($rules, $parameter) = explode(':', $rules, 2);
             $parameters = $this->parseParameters($rules, $parameter);
         }
+
         return [
-            $rules => empty($parameters) ? true : implode(' ', $parameters)
+            $rules => empty($parameters) ? true : implode(' ', $parameters),
         ];
     }
-
 
     /**
      * Parse a parameter list.
@@ -139,8 +133,7 @@ abstract class Type implements TypeInterface
         if (strtolower($rule) == 'regex') {
             return [$parameter];
         }
+
         return str_getcsv($parameter);
     }
-
-
 }
