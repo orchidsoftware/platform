@@ -85,16 +85,15 @@ class Post extends Model
         return $this->where('type', $this->dataType->slug);
     }
 
-
     /**
      * @return null
      */
-    public function getTypeObject(){
+    public function getTypeObject()
+    {
         return $this->dataType;
     }
 
-
-    /**
+    /*
      * @param string $property
      * @return mixed
      */

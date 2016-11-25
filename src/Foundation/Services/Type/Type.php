@@ -50,7 +50,7 @@ abstract class Type implements TypeInterface
 
 
     /**
-     * Request for Type
+     * Request for Type.
      * @var
      */
     public $request = Request::class;
@@ -152,17 +152,12 @@ abstract class Type implements TypeInterface
         return str_getcsv($parameter);
     }
 
-
-
     /**
-     * Validation Request Rules
+     * Validation Request Rules.
      * @return array
      */
-    public function rules(){
+    public function rules()
+    {
         return [];
     }
-
-
-
-
 }
