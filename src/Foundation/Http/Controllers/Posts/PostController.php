@@ -11,12 +11,10 @@ use Orchid\Foundation\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-
     /**
      * @var
      */
     public $locales;
-
 
     /**
      * PostController constructor.
@@ -25,7 +23,6 @@ class PostController extends Controller
     {
         $this->locales = config('content.locales');
     }
-
 
     public function index($type = null)
     {
@@ -72,11 +69,10 @@ class PostController extends Controller
 
         Alert::success('Message');
 
-        return redirect()->route('dashboard.posts.type',[
+        return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
             'slug' => $post->slug,
         ]);
-
     }
 
     public function edit()
