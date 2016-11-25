@@ -3,11 +3,12 @@
 
 return [
 
+
     /*
      * Types - an abstract pattern of behavior record
      */
     'types' => [
-        //\Orchid\Foundation\Types\TestType::class
+        \Orchid\Foundation\Types\TestType::class
     ],
 
 
@@ -20,5 +21,26 @@ return [
     ],
 
 
+    /*
+     *  Available locales
+     */
+    'locales' => [
+
+        'en' => [
+            'name' => 'English',
+            'script' => 'Latn',
+            'dir' => 'ltr',
+            'native' => 'English',
+            'regional' => 'en_GB',
+        ],
+
+        'ru' => [
+            'name' => 'Russian',
+            'script' => 'Cyrl',
+            'dir' => 'ltr',
+            'native' => 'Русский',
+            'regional' => 'ru_RU',
+        ],
+    ],
 
 ];

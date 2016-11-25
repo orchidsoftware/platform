@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Services\Type;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Str;
 
@@ -46,6 +47,20 @@ abstract class Type implements TypeInterface
      * @var Model
      */
     public $model = Post::class;
+
+
+    /**
+     * Request for Type
+     * @var
+     */
+    public $request = Request::class;
+
+
+    /**
+     * @var string
+     */
+    public $prefix = 'content';
+
 
     /**
      * To determine the properties by the function.
@@ -136,4 +151,18 @@ abstract class Type implements TypeInterface
 
         return str_getcsv($parameter);
     }
+
+
+
+    /**
+     * Validation Request Rules
+     * @return array
+     */
+    public function rules(){
+        return [];
+    }
+
+
+
+
 }

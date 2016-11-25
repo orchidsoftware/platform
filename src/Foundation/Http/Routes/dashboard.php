@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
 
     Route::post('{type}', [
         'as'   => 'dashboard.posts.type.store',
-        'uses' => 'PostController@index',
+        'uses' => 'PostController@store',
     ]);
 
     Route::put('{type}/{slug?}', [

@@ -85,10 +85,20 @@ class Post extends Model
         return $this->where('type', $this->dataType->slug);
     }
 
+
+    /**
+     * @return null
+     */
+    public function getTypeObject(){
+        return $this->dataType;
+    }
+
+
     /**
      * @param string $property
      * @return mixed
      */
+   /*
     public function __get($property)
     {
         if (method_exists($this->dataType, $property)) {
@@ -97,4 +107,5 @@ class Post extends Model
 
         return $this->{$property};
     }
+   */
 }
