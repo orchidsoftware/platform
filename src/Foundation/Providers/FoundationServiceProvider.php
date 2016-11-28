@@ -122,6 +122,7 @@ class FoundationServiceProvider extends ServiceProvider
             PermissionServiceProvider::class,
             EventServiceProvider::class,
             \Watson\Active\ActiveServiceProvider::class,
+            \Intervention\Image\ImageServiceProvider::class
         ];
     }
 }

@@ -38,8 +38,8 @@ class TestType extends Type
     {
         return [
             'id' => 'sometimes|integer|unique:posts',
-            'body.*.name' => 'email',
-            'body.*.content' => 'required',
+            'content.*.name' => 'email',
+            'content.*.body' => 'required',
         ];
     }
 

@@ -31,7 +31,7 @@
     "jquery-ui": "1.11.*",
     "jquery.easy-pie-chart": "~2.1.6",
     "moment": "~2.*",
-    "dropzone": "~4.2.0",
+    "dropzone": "^4.3.0",
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "vue": "~2.0",
     "vue-resource": "~0.7.0",

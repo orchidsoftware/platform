@@ -111,5 +111,13 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     ]]);
 });
 
+
+
 Route::group(['namespace' => 'Tools',  'prefix' => 'tools'], function () {
+
+    Route::post('files', [
+        'as'   => 'dashboard.tools.files.upload',
+        'uses' => 'FileController@upload',
+    ]);
+
 });

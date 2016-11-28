@@ -57,7 +57,7 @@ class PostController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        //$this->validate($request, $post->getTypeObject()->rules());
+        $this->validate($request, $post->getTypeObject()->rules());
 
         $post->fill($request->all());
         $post->type = $post->getTypeObject()->slug;
@@ -78,7 +78,7 @@ class PostController extends Controller
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
-            'slug' => $post->slug,
+            'slug' => $post->id,
         ]);
     }
 
@@ -127,7 +127,7 @@ class PostController extends Controller
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
-            'slug' => $post->slug,
+            'slug' => $post->id,
         ]);
     }
 

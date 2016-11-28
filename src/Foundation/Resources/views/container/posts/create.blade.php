@@ -13,9 +13,34 @@
 
     <div class="app-content-body app-content-full">
 
-        <!-- hbox layout -->
-        <form class="hbox hbox-auto-xs bg-light" method="post" action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
-            <!-- column -->
+
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger m-n">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
+    <!-- hbox layout -->
+    <form class="hbox hbox-auto-xs bg-light" method="post" action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- column -->
             <div class="col w lter b-r">
                 <div class="vbox">
                     <div class="wrapper b-b">
@@ -85,6 +110,13 @@
                                     </div>
                                     <div class="tab-pane" id="tab-2">
                                         <div class="wrapper-md">
+
+
+                                            <div action="" class="dropzone" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="file" />
+                                            </div>
+
+
                                             Month report
                                         </div>
                                     </div>

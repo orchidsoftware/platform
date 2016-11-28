@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 abstract class Type implements TypeInterface
 {
@@ -217,4 +218,19 @@ abstract class Type implements TypeInterface
             'type' => $this,
         ];
     }
+
+
+    /**
+     * Reqeust Validation
+     * @return bool
+     */
+    public function isValid()
+    {
+        Validator::make(request()->all(),$this->rules())->validate();
+
+        return true;
+    }
+
+
+
 }
