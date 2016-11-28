@@ -64,9 +64,9 @@ class TestType extends Type
      */
     public function grid(){
         return [
-          'name' => 'Название новости',
-          'publish' => 'Дата публикации',
-          'created_at' => 'Дата создания',
+            'name' => 'Название новости',
+            'publish' => 'Дата публикации',
+            'created_at' => 'Дата создания',
         ];
     }
 

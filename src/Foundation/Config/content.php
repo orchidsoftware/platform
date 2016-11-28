@@ -8,7 +8,7 @@ return [
      * Types - an abstract pattern of behavior record
      */
     'types' => [
-        \Orchid\Foundation\Types\TestType::class
+        \Orchid\Foundation\Types\TestType::class,
     ],
 
 
