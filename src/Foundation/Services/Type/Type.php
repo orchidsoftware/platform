@@ -219,18 +219,14 @@ abstract class Type implements TypeInterface
         ];
     }
 
-
     /**
-     * Reqeust Validation
+     * Reqeust Validation.
      * @return bool
      */
     public function isValid()
     {
-        Validator::make(request()->all(),$this->rules())->validate();
+        Validator::make(request()->all(), $this->rules())->validate();
 
         return true;
     }
-
-
-
 }
