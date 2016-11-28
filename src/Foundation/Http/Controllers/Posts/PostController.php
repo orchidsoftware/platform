@@ -11,12 +11,10 @@ use Orchid\Foundation\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-
     /**
      * @var
      */
     public $locales;
-
 
     /**
      * PostController constructor.
@@ -25,7 +23,6 @@ class PostController extends Controller
     {
         $this->locales = config('content.locales');
     }
-
 
     /**
      * @param Post $post
@@ -67,9 +64,9 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
 
-        $Slugs = $post->where('slug',$post->slug)->count();
-        if($Slugs != 0){
-            $post->slug = $post->slug .'-'. ($Slugs+1);
+        $Slugs = $post->where('slug', $post->slug)->count();
+        if ($Slugs != 0) {
+            $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
         $post->page = $post->getTypeObject()->page;
@@ -79,11 +76,10 @@ class PostController extends Controller
 
         Alert::success('Message');
 
-        return redirect()->route('dashboard.posts.type',[
+        return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
             'slug' => $post->slug,
         ]);
-
     }
 
     /**
@@ -99,7 +95,7 @@ class PostController extends Controller
         return view('dashboard::container.posts.edit', [
             'type' => $type,
             'locales' => $this->locales,
-            'post' => $post
+            'post' => $post,
         ]);
     }
 
@@ -116,12 +112,12 @@ class PostController extends Controller
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
 
         $Slugs = $post
-            ->where('id','!=',$post->id)
-            ->where('slug',$post->slug)
+            ->where('id', '!=', $post->id)
+            ->where('slug', $post->slug)
             ->count();
 
-        if($Slugs > 0){
-            $post->slug = $post->slug .'-'. ($Slugs+1);
+        if ($Slugs > 0) {
+            $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
         $post->page = $type->getTypeObject()->page;
@@ -129,7 +125,7 @@ class PostController extends Controller
 
         Alert::success('Message');
 
-        return redirect()->route('dashboard.posts.type',[
+        return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
             'slug' => $post->slug,
         ]);
@@ -146,7 +142,7 @@ class PostController extends Controller
         $post->delete();
         Alert::success('Message');
 
-        return redirect()->route('dashboard.posts.type',[
+        return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
             'slug' => $post->slug,
         ]);

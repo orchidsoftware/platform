@@ -2,9 +2,7 @@
 
 namespace Orchid\Foundation\Types;
 
-use App\Http\Requests\TestRequest;
 use Orchid\Foundation\Services\Type\Type;
-use Illuminate\Validation\Rule;
 
 class TestType extends Type
 {
@@ -21,7 +19,7 @@ class TestType extends Type
 
 
     /**
-     * Slug url /news/{name}
+     * Slug url /news/{name}.
      * @var string
      */
     public $slugFields = 'name';
@@ -32,9 +30,8 @@ class TestType extends Type
      */
     public $page = true;
 
-
     /**
-     * Rules Validation
+     * Rules Validation.
      * @return array
      */
     public function rules()
@@ -45,7 +42,6 @@ class TestType extends Type
             'body.*.content' => 'required',
         ];
     }
-
 
     /**
      * @return array
@@ -58,18 +54,15 @@ class TestType extends Type
         ];
     }
 
-
     /**
-     * Grid View for post type
+     * Grid View for post type.
      */
-    public function grid(){
+    public function grid()
+    {
         return [
             'name' => 'Название новости',
             'publish' => 'Дата публикации',
             'created_at' => 'Дата создания',
         ];
     }
-
-
-
 }

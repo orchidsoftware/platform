@@ -57,11 +57,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->bind('type', function ($value) {
             $post = new Post();
+
             return $post->getType($value);
         });
         $router->bind('slug', function ($value) {
-
-            if(is_numeric($value)){
+            if (is_numeric($value)) {
                 return Post::where('id', $value)->firstOrFail();
             }
 
