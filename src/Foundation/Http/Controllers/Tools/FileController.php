@@ -2,24 +2,21 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
-use Illuminate\Http\Request;
 use Orchid\Foundation\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
-
-
     /**
      * НАДО ПЕРЕПИСАТЬ!!!
-     * По человечески, а то это полная хуйня
+     * По человечески, а то это полная хуйня.
      * @return mixed
      */
     public function upload()
     {
         $input = Input::all();
-        $rules = array(
+        $rules = [
             'file' => 'image|max:3000',
-        );
+        ];
 
         $validation = Validator::make($input, $rules);
 
@@ -30,8 +27,8 @@ class FileController extends Controller
         $file = Input::file('file');
 
         $extension = File::extension($file['name']);
-        $directory = path('public') . 'uploads/' . sha1(time());
-        $filename = sha1(time() . time()) . ".{$extension}";
+        $directory = path('public').'uploads/'.sha1(time());
+        $filename = sha1(time().time()).".{$extension}";
 
         $upload_success = Input::upload('file', $directory, $filename);
 
@@ -41,6 +38,4 @@ class FileController extends Controller
             return Response::json('error', 400);
         }
     }
-
-
 }
