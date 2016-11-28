@@ -50,7 +50,7 @@ abstract class Type implements TypeInterface
 
 
     /**
-     * Request for Type
+     * Request for Type.
      * @var
      */
     public $request = Request::class;
@@ -75,7 +75,6 @@ abstract class Type implements TypeInterface
     abstract public function setFields();
 
     abstract public function grid();
-
 
     /**
      * Parse the data fields.
@@ -155,16 +154,14 @@ abstract class Type implements TypeInterface
         return str_getcsv($parameter);
     }
 
-
     /**
-     * Validation Request Rules
+     * Validation Request Rules.
      * @return array
      */
     public function rules()
     {
         return [];
     }
-
 
     /**
      * @param string $language
@@ -180,21 +177,20 @@ abstract class Type implements TypeInterface
 
         $form = '';
         foreach ($fields as $field => $config) {
-
-            $field = config('content.fields.' . $config['tag']);
+            $field = config('content.fields.'.$config['tag']);
             $field = new $field;
             $config['lang'] = $language;
 
 
-            if (!is_null($prefix)) {
+            if (! is_null($prefix)) {
                 $config['prefix'] = $prefix;
             } else {
                 $config['prefix'] = $this->prefix;
             }
 
 
-            if(!is_null($post)){
-                $config['value'] = $post->getContent($config['name'],$language);
+            if (! is_null($post)) {
+                $config['value'] = $post->getContent($config['name'], $language);
             }
 
             $field = $field->create($config);
@@ -205,7 +201,6 @@ abstract class Type implements TypeInterface
         return $form;
     }
 
-
     /**
      * @return array
      */
@@ -214,19 +209,12 @@ abstract class Type implements TypeInterface
         $fields = $this->grid();
         $model = new $this->model;
 
-        $data = $model->where('type',$this->slug)->paginate();
+        $data = $model->where('type', $this->slug)->paginate();
 
         return [
             'data' => $data,
             'fields' => $fields,
-            'type' => $this
+            'type' => $this,
         ];
-
     }
-
-
-
-
-
-
 }

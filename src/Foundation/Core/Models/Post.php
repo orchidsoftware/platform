@@ -87,7 +87,6 @@ class Post extends Model
         return $this->where('type', $this->dataType->slug);
     }
 
-
     /**
      * @return null
      */
@@ -96,31 +95,27 @@ class Post extends Model
         return $this->dataType;
     }
 
-
     /**
      * @param $field
      * @param null $lang
      * @return mixed|null
      */
-    public function getContent($field,$lang = null)
+    public function getContent($field, $lang = null)
     {
         try {
-
             if (is_null($lang)) {
                 $lang = App::getLocale();
             }
 
-            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
+            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;
             }
 
-            return null;
-        }catch (\Exception $exception){
-            return null;
+            return;
+        } catch (\Exception $exception) {
+            return;
         }
     }
-
-
 }
