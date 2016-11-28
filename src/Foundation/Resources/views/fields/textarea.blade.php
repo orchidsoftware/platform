@@ -5,6 +5,7 @@
     @endif
 
     <textarea class="form-control no-resize {{$class or ''}}" @if(isset($id)) id="{{$id}}" @endif
+            rows={{$rows or ''}}
 
     @if(isset($prefix))
     name="{{$prefix}}[{{$lang}}][{{$name}}]"

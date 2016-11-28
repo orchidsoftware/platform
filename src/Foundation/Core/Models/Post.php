@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
+use Illuminate\Support\Facades\App;
 
 class Post extends Model
 {
@@ -30,8 +31,9 @@ class Post extends Model
         'page',
         'slug',
         'publish',
+        'created_at',
+        'deleted_at',
     ];
-
 
 
     /**
@@ -42,7 +44,7 @@ class Post extends Model
         'type' => 'string',
         'slug' => 'string',
         'content' => 'array',
-        'publish' => 'timestamp',
+        'publish' => 'time',
     ];
 
     /**
@@ -89,23 +91,36 @@ class Post extends Model
     /**
      * @return null
      */
-    public function getTypeObject(){
+    public function getTypeObject()
+    {
         return $this->dataType;
     }
 
 
     /**
-     * @param string $property
-     * @return mixed
+     * @param $field
+     * @param null $lang
+     * @return mixed|null
      */
-   /*
-    public function __get($property)
+    public function getContent($field,$lang = null)
     {
-        if (method_exists($this->dataType, $property)) {
-            return $this->dataType->{$property}();
-        }
+        try {
 
-        return $this->{$property};
+            if (is_null($lang)) {
+                $lang = App::getLocale();
+            }
+
+            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
+                return $this->content[$lang][$field];
+            } elseif (in_array($field, $this->getFillable())) {
+                return $this->$field;
+            }
+
+            return null;
+        }catch (\Exception $exception){
+            return null;
+        }
     }
-   */
+
+
 }

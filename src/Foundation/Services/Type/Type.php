@@ -74,6 +74,9 @@ abstract class Type implements TypeInterface
 
     abstract public function setFields();
 
+    abstract public function grid();
+
+
     /**
      * Parse the data fields.
      */
@@ -153,14 +156,75 @@ abstract class Type implements TypeInterface
     }
 
 
-
     /**
      * Validation Request Rules
      * @return array
      */
-    public function rules(){
+    public function rules()
+    {
         return [];
     }
+
+
+    /**
+     * @param string $language
+     * @param string $prefix
+     * @return string
+     */
+    public function generateForm($language = 'en', $post = null, $prefix = null)
+    {
+        $this->fields = $this->setFields();
+        $this->parseFields();
+
+        $fields = $this->fields;
+
+        $form = '';
+        foreach ($fields as $field => $config) {
+
+            $field = config('content.fields.' . $config['tag']);
+            $field = new $field;
+            $config['lang'] = $language;
+
+
+            if (!is_null($prefix)) {
+                $config['prefix'] = $prefix;
+            } else {
+                $config['prefix'] = $this->prefix;
+            }
+
+
+            if(!is_null($post)){
+                $config['value'] = $post->getContent($config['name'],$language);
+            }
+
+            $field = $field->create($config);
+            $form .= $field->render();
+        }
+
+
+        return $form;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function generateGrid()
+    {
+        $fields = $this->grid();
+        $model = new $this->model;
+
+        $data = $model->where('type',$this->slug)->paginate();
+
+        return [
+            'data' => $data,
+            'fields' => $fields,
+            'type' => $this
+        ];
+
+    }
+
+
 
 
 

@@ -97,6 +97,8 @@ class InputField extends Field
 
         $attributes->put('data', $data);
 
+
+
         return view($this->view, $attributes);
     }
 }

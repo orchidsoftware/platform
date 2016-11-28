@@ -35,6 +35,10 @@
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "vue": "~2.0",
     "vue-resource": "~0.7.0",
-    "simple-line-icons": "^2.4.1"
+    "simple-line-icons": "^2.4.1",
+    "summernote": "^0.8.2",
+    "bower": "*",
+    "install": "^1.0.4",
+    "froala-wysiwyg-editor": "^2.3.5"
   }
 }

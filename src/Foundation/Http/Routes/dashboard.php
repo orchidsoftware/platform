@@ -12,17 +12,18 @@ Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
         'uses' => 'PostController@create',
     ]);
 
+
+    Route::get('{type}/{slug}/edit', [
+        'as'   => 'dashboard.posts.type.edit',
+        'uses' => 'PostController@edit',
+    ]);
+
+
     Route::get('{type}/{slug?}', [
         'as'   => 'dashboard.posts.type',
         'uses' => 'PostController@index',
     ]);
 
-
-
-    Route::get('{type}/edit', [
-        'as'   => 'dashboard.posts.type.edit',
-        'uses' => 'PostController@index',
-    ]);
 
     Route::post('{type}', [
         'as'   => 'dashboard.posts.type.store',
@@ -31,12 +32,12 @@ Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
 
     Route::put('{type}/{slug?}', [
         'as'   => 'dashboard.posts.type.update',
-        'uses' => 'PostController@index',
+        'uses' => 'PostController@update',
     ]);
 
     Route::delete('{type}/{slug?}', [
         'as'   => 'dashboard.posts.type.destroy',
-        'uses' => 'PostController@index',
+        'uses' => 'PostController@destroy',
     ]);
 
 

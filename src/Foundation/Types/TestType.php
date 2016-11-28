@@ -40,10 +40,12 @@ class TestType extends Type
     public function rules()
     {
         return [
-            'content.*.name' => 'email',
-            'content.*.content' => 'required',
+            'id' => 'sometimes|integer|unique:posts',
+            'body.*.name' => 'email',
+            'body.*.content' => 'required',
         ];
     }
+
 
     /**
      * @return array
@@ -52,43 +54,22 @@ class TestType extends Type
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
-            'content' =>  'tag:textarea|name:content|max:255|required',
+            'body' =>  'tag:textarea|name:body|max:255|required|class:editor|rows:10',
         ];
     }
 
 
     /**
-     * @param string $language
-     * @param string $prefix
-     * @return string
+     * Grid View for post type
      */
-    public function generateForm($language = 'en', $prefix = null)
-    {
-        $this->fields = $this->setFields();
-        $this->parseFields();
-
-        $fields = $this->fields;
-
-        $form = '';
-        foreach ($fields as $field => $config) {
-            $field = config('content.fields.'.$config['tag']);
-            $field = new $field;
-
-            $config['lang'] = $language;
-
-
-            if(!is_null($prefix)){
-                $config['prefix'] = $prefix;
-            }else{
-                $config['prefix'] = $this->prefix;
-            }
-
-
-            $field = $field->create($config);
-            $form .= $field->render();
-        }
-
-
-        return $form;
+    public function grid(){
+        return [
+          'name' => 'Название новости',
+          'publish' => 'Дата публикации',
+          'created_at' => 'Дата создания',
+        ];
     }
+
+
+
 }

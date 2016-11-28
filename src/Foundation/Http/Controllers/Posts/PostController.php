@@ -27,21 +27,22 @@ class PostController extends Controller
     }
 
 
-    public function index($type = null)
+    /**
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Post $post)
     {
-        $name = $type->getTypeObject()->name;
-
-        return view('dashboard::container.posts.main', [
-            'name' => $name,
-        ]);
+        return view('dashboard::container.posts.main', $post->getTypeObject()->generateGrid());
     }
 
     /**
-     * @param null $type
+     * @param $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create($type)
+    public function create($post)
     {
-        $type = $type->getTypeObject();
+        $type = $post->getTypeObject();
 
         return view('dashboard::container.posts.create', [
             'type' => $type,
@@ -65,6 +66,12 @@ class PostController extends Controller
         $post->type = $post->getTypeObject()->slug;
         $post->user_id = Auth::user()->id;
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
+
+        $Slugs = $post->where('slug',$post->slug)->count();
+        if($Slugs != 0){
+            $post->slug = $post->slug .'-'. ($Slugs+1);
+        }
+
         $post->page = $post->getTypeObject()->page;
         $post->save();
 
@@ -79,15 +86,69 @@ class PostController extends Controller
 
     }
 
-    public function edit()
+    /**
+     * @param Request $request
+     * @param Post $type
+     * @param Post $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(Request $request, Post $type, Post $post)
     {
+        $type = $type->getTypeObject();
+
+        return view('dashboard::container.posts.edit', [
+            'type' => $type,
+            'locales' => $this->locales,
+            'post' => $post
+        ]);
     }
 
-    public function update()
+    /**
+     * @param Request $request
+     * @param Post $type
+     * @param Post $post
+     */
+    public function update(Request $request, Post $type, Post $post)
     {
+        $post->fill($request->all());
+        $post->user_id = Auth::user()->id;
+
+        $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
+
+        $Slugs = $post
+            ->where('id','!=',$post->id)
+            ->where('slug',$post->slug)
+            ->count();
+
+        if($Slugs > 0){
+            $post->slug = $post->slug .'-'. ($Slugs+1);
+        }
+
+        $post->page = $type->getTypeObject()->page;
+        $post->save();
+
+        Alert::success('Message');
+
+        return redirect()->route('dashboard.posts.type',[
+            'type' => $post->type,
+            'slug' => $post->slug,
+        ]);
     }
 
-    public function destroy()
+    /**
+     * @param Request $request
+     * @param Post $type
+     * @param Post $post
+     * @return mixed
+     */
+    public function destroy(Request $request, Post $type, Post $post)
     {
+        $post->delete();
+        Alert::success('Message');
+
+        return redirect()->route('dashboard.posts.type',[
+            'type' => $post->type,
+            'slug' => $post->slug,
+        ]);
     }
 }
