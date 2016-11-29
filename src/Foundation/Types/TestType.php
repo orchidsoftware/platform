@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Types;
 
+use \Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Services\Type\Type;
 
 class TestType extends Type
@@ -24,11 +25,6 @@ class TestType extends Type
      */
     public $slugFields = 'name';
 
-
-    /**
-     * @var bool
-     */
-    public $page = true;
 
     /**
      * Rules Validation.
@@ -65,4 +61,15 @@ class TestType extends Type
             'created_at' => 'Дата создания',
         ];
     }
+
+
+    /**
+     * @return array
+     */
+    public function setModules(){
+        return [
+            BasePostForm::class,
+        ];
+    }
+
 }

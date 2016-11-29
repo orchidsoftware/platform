@@ -64,6 +64,12 @@ abstract class Type implements TypeInterface
 
 
     /**
+     * @var null
+     */
+    private $cultivated = null;
+
+
+    /**
      * To determine the properties by the function.
      * @var array
      */
@@ -229,4 +235,52 @@ abstract class Type implements TypeInterface
 
         return true;
     }
+
+
+    /**
+     * @return bool
+     */
+    public function checkModules(){
+        if(method_exists($this,'setModules') && !empty($this->setModules())){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function render()
+    {
+      if(!is_null($this->cultivated)){
+         return $this->cultivated;
+      }
+
+        $html = collect();
+        $groups = $this->setModules();
+
+        $argc =array_values( request()->getRouteResolver()->call($this)->parameters());
+
+        foreach ($groups as $form) {
+            if (! is_object($form)) {
+                $form = new $form();
+            }
+
+            if (method_exists($form, 'get')) {
+                $html->put($form->name, $form->get(...$argc));
+            }
+        }
+
+        $this->cultivated = $html;
+        return $this->cultivated;
+    }
+
+
+
+
+
+
+
 }

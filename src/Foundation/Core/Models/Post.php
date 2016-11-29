@@ -28,7 +28,6 @@ class Post extends Model
         'users_id',
         'type',
         'content',
-        'page',
         'slug',
         'publish',
         'created_at',

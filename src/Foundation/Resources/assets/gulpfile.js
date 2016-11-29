@@ -28,6 +28,7 @@ elixir(function(mix) {
         "./vendor/chosen/chosen.jquery.js",
         "./vendor/froala-wysiwyg-editor/js/froala_editor.min.js",
         "./vendor/dropzone/dist/min/dropzone.min.js",
+        './vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
         "./js/app.js",
         "./js/modules/**",
         "./js/components/**",

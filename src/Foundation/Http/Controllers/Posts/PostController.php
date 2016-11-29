@@ -68,10 +68,7 @@ class PostController extends Controller
         if ($Slugs != 0) {
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
-
-        $post->page = $post->getTypeObject()->page;
         $post->save();
-
 
 
         Alert::success('Message');
