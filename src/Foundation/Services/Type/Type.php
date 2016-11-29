@@ -236,32 +236,31 @@ abstract class Type implements TypeInterface
         return true;
     }
 
-
     /**
      * @return bool
      */
-    public function checkModules(){
-        if(method_exists($this,'setModules') && !empty($this->setModules())){
+    public function checkModules()
+    {
+        if (method_exists($this, 'setModules') && ! empty($this->setModules())) {
             return true;
         }
+
         return false;
     }
-
-
 
     /**
      * @return string
      */
     public function render()
     {
-      if(!is_null($this->cultivated)){
-         return $this->cultivated;
-      }
+        if (! is_null($this->cultivated)) {
+            return $this->cultivated;
+        }
 
         $html = collect();
         $groups = $this->setModules();
 
-        $argc =array_values( request()->getRouteResolver()->call($this)->parameters());
+        $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
             if (! is_object($form)) {
@@ -274,13 +273,7 @@ abstract class Type implements TypeInterface
         }
 
         $this->cultivated = $html;
+
         return $this->cultivated;
     }
-
-
-
-
-
-
-
 }

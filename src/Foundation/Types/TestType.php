@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Types;
 
-use \Orchid\Foundation\Http\Forms\Posts\BasePostForm;
+use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Services\Type\Type;
 
 class TestType extends Type
@@ -24,7 +24,6 @@ class TestType extends Type
      * @var string
      */
     public $slugFields = 'name';
-
 
     /**
      * Rules Validation.
@@ -62,14 +61,13 @@ class TestType extends Type
         ];
     }
 
-
     /**
      * @return array
      */
-    public function setModules(){
+    public function setModules()
+    {
         return [
             BasePostForm::class,
         ];
     }
-
 }

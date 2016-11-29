@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
-use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Services\Forms\Form;
 
@@ -13,7 +12,6 @@ class BasePostForm extends Form
      */
     public $name = 'Общее';
 
-
     /**
      * Display Settings App.
      *
@@ -23,8 +21,8 @@ class BasePostForm extends Form
      */
     public function get($TEST = null, $test2 = null)
     {
+        dd($TEST, $test2);
 
-        dd($TEST,$test2);
         return view('dashboard::container.posts.modules.base');
     }
 
@@ -37,7 +35,6 @@ class BasePostForm extends Form
      */
     public function persist()
     {
-
     }
 
     /**
@@ -45,6 +42,5 @@ class BasePostForm extends Form
      */
     public function delete()
     {
-
     }
 }
