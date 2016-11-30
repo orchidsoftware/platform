@@ -216,7 +216,7 @@ abstract class Type implements TypeInterface
         $fields = $this->grid();
         $model = new $this->model;
 
-        $data = $model->where('type', $this->slug)->orderBy('id','Desc')->paginate();
+        $data = $model->where('type', $this->slug)->orderBy('id', 'Desc')->paginate();
 
         return [
             'data' => $data,

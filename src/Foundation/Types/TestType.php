@@ -69,7 +69,7 @@ class TestType extends Type
     {
         return [
             BasePostForm::class,
-            ImagesPostForm::class
+            ImagesPostForm::class,
         ];
     }
 }
