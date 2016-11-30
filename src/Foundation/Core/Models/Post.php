@@ -118,13 +118,12 @@ class Post extends Model
         }
     }
 
-
     /**
-     * Get the author's posts
+     * Get the author's posts.
      * @return mixed
      */
-    public function getUser(){
-        return $this->belongsTo(User::class,'user_id')->first();
+    public function getUser()
+    {
+        return $this->belongsTo(User::class, 'user_id')->first();
     }
-
 }
