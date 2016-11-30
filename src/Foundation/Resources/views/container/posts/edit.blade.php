@@ -72,7 +72,7 @@
                             <ul class="nav nav-tabs nav-justified">
                                 @foreach($type->render() as $name => $view)
                                     <li @if ($loop->first) class="active" @endif>
-                                        <a data-target="#module-{{$loop->iteration}}" role="tab" data-toggle="tab"
+                                        <a data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
                                            aria-expanded="true">{{$name}}</a>
                                     </li>
                                 @endforeach
@@ -84,7 +84,7 @@
                                     <div class="tab-content">
                                         @foreach($type->render() as $name => $view)
                                             <div class="tab-pane @if($loop->first) active @endif"
-                                                 id="#module-{{$loop->iteration}}">
+                                                 id="module-{{str_slug($name)}}">
                                                 {!! $view !!}
                                             </div>
                                         @endforeach

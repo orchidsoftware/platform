@@ -92,7 +92,7 @@
                                     <div class="tab-content">
                                         @foreach($type->render() as $name => $view)
                                             <div class="tab-pane @if($loop->first) active @endif"
-                                                 id="#module-{{$loop->iteration}}">
+                                                 id="module-{{$loop->iteration}}">
                                                 {!! $view !!}
                                             </div>
                                         @endforeach

@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Controllers\Posts;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -63,6 +64,8 @@ class PostController extends Controller
         $post->type = $post->getTypeObject()->slug;
         $post->user_id = Auth::user()->id;
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
+        $post->publish = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+
 
         $Slugs = $post->where('slug', $post->slug)->count();
         if ($Slugs != 0) {
@@ -107,6 +110,9 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
+        $post->publish = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+
+
 
         $Slugs = $post
             ->where('id', '!=', $post->id)
@@ -117,7 +123,6 @@ class PostController extends Controller
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
-        $post->page = $type->getTypeObject()->page;
         $post->save();
 
         Alert::success('Message');

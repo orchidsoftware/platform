@@ -117,4 +117,14 @@ class Post extends Model
             return;
         }
     }
+
+
+    /**
+     * Get the author's posts
+     * @return mixed
+     */
+    public function getUser(){
+        return $this->belongsTo(User::class,'user_id')->first();
+    }
+
 }

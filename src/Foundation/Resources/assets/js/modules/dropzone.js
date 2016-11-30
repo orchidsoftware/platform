@@ -1,4 +1,5 @@
-$(".dropzone").dropzone({
+
+$("#dropzone").dropzone({
     paramName: "file",
     maxFilesize: 2,
     url: "/dashboard/tools/files",

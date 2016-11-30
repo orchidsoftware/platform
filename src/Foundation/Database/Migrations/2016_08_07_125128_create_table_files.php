@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImages extends Migration
+class CreateTableFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -34,6 +34,6 @@ class CreateImages extends Migration
      */
     public function down()
     {
-        Schema::drop('images');
+        Schema::drop('files');
     }
 }

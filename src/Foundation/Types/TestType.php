@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Types;
 
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
+use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 use Orchid\Foundation\Services\Type\Type;
 
 class TestType extends Type
@@ -33,8 +34,8 @@ class TestType extends Type
     {
         return [
             'id' => 'sometimes|integer|unique:posts',
-            'content.*.name' => 'email',
-            'content.*.body' => 'required',
+            'content.*.name' => 'required|string',
+            'content.*.body' => 'required|string',
         ];
     }
 
@@ -68,6 +69,7 @@ class TestType extends Type
     {
         return [
             BasePostForm::class,
+            ImagesPostForm::class
         ];
     }
 }

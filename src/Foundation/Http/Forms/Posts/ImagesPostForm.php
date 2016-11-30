@@ -6,12 +6,12 @@ use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Services\Forms\Form;
 
-class BasePostForm extends Form
+class ImagesPostForm extends Form
 {
     /**
      * @var string
      */
-    public $name = 'Общее';
+    public $name = 'Изображения';
 
     /**
      * Display Base Options.
@@ -21,7 +21,9 @@ class BasePostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.images',[
+        return view('dashboard::container.posts.modules.base',[
+            'author' => (is_null($post)) ? $post :$post->getUser(),
+            'post' => $post,
         ]);
     }
 
