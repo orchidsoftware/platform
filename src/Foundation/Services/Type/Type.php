@@ -277,8 +277,6 @@ abstract class Type implements TypeInterface
         return $this->cultivated;
     }
 
-
-
     /**
      * Action save for sub form.
      */
@@ -297,7 +295,6 @@ abstract class Type implements TypeInterface
             }
         }
     }
-
 
     /**
      * Action save for sub form.
@@ -318,8 +315,6 @@ abstract class Type implements TypeInterface
         }
     }
 
-
-
     /**
      * Action save for sub form.
      */
@@ -338,6 +333,4 @@ abstract class Type implements TypeInterface
             }
         }
     }
-
-
 }
