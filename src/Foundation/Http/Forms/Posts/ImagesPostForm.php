@@ -21,7 +21,7 @@ class ImagesPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.images',[
+        return view('dashboard::container.posts.modules.images', [
         ]);
     }
 
@@ -41,6 +41,5 @@ class ImagesPostForm extends Form
      */
     public function delete()
     {
-
     }
 }

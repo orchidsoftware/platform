@@ -13,7 +13,6 @@ class SeoPostForm extends Form
      */
     public $name = 'SEO';
 
-
     /**
      * Display Base Options.
      * @param null $type
@@ -22,12 +21,11 @@ class SeoPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.base',[
-            'author' => (is_null($post)) ? $post :$post->getUser(),
+        return view('dashboard::container.posts.modules.base', [
+            'author' => (is_null($post)) ? $post : $post->getUser(),
             'post' => $post,
         ]);
     }
-
 
     /**
      * Save Base Role.
@@ -45,6 +43,5 @@ class SeoPostForm extends Form
      */
     public function delete()
     {
-
     }
 }

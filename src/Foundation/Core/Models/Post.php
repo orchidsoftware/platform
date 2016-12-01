@@ -121,23 +121,21 @@ class Post extends Model
         }
     }
 
-
     /**
-     * Get the author's posts
+     * Get the author's posts.
      * @return mixed
      */
-    public function getUser(){
-        return $this->belongsTo(User::class,'user_id')->first();
+    public function getUser()
+    {
+        return $this->belongsTo(User::class, 'user_id')->first();
     }
 
-
     /**
-     * Get tags for post as string
+     * Get tags for post as string.
      * @return mixed
      */
-    public function getStringTags(){
+    public function getStringTags()
+    {
         return $tags = $this->tags->implode('name', $this->getTagsDelimiter());
     }
-
-
 }
