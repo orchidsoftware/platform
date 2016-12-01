@@ -6,12 +6,12 @@ use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Services\Forms\Form;
 
-class BasePostForm extends Form
+class SeoPostForm extends Form
 {
     /**
      * @var string
      */
-    public $name = 'Общее';
+    public $name = 'SEO';
 
 
     /**
@@ -36,10 +36,8 @@ class BasePostForm extends Form
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($type = null, Post $post = null)
+    public function persist()
     {
-        dd($type,$post);
-        $post->setTags($request->input('tags'));
     }
 
     /**

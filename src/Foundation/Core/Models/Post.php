@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
 use Illuminate\Support\Facades\App;
+use Cartalyst\Tags\TaggableTrait;
 
 class Post extends Model
 {
+    use TaggableTrait;
+
     /**
      * @var string
      */
@@ -126,5 +129,15 @@ class Post extends Model
     public function getUser(){
         return $this->belongsTo(User::class,'user_id')->first();
     }
+
+
+    /**
+     * Get tags for post as string
+     * @return mixed
+     */
+    public function getStringTags(){
+        return $tags = $this->tags->implode('name', $this->getTagsDelimiter());
+    }
+
 
 }

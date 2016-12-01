@@ -23,6 +23,7 @@ elixir(function(mix) {
     mix.scripts([
         "./vendor/jquery/dist/jquery.min.js",
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
+        "./vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
         "./vendor/vue/dist/vue.js",
         "./vendor/vue-resource/dist/vue-resource.js",
         "./vendor/chosen/chosen.jquery.js",

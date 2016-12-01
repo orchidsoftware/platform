@@ -158,7 +158,7 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-                <span translate="header.navbar.new.NEW">New</span> <span class="caret"></span>
+                <span> Создать</span> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" translate="header.navbar.new.PROJECT">Projects</a></li>

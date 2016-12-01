@@ -262,11 +262,11 @@ abstract class Type implements TypeInterface
 
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
+
         foreach ($groups as $form) {
             if (! is_object($form)) {
                 $form = new $form();
             }
-
             if (method_exists($form, 'get')) {
                 $html->put($form->name, $form->get(...$argc));
             }
@@ -276,4 +276,68 @@ abstract class Type implements TypeInterface
 
         return $this->cultivated;
     }
+
+
+
+    /**
+     * Action save for sub form.
+     */
+    public function save()
+    {
+        $arg = func_get_args();
+        $arg[] = $this->storage;
+
+        foreach ($this->group as $form) {
+            if (! is_object($form)) {
+                $form = new $form();
+            }
+
+            if (method_exists($form, 'save')) {
+                $form->save(...$arg);
+            }
+        }
+    }
+
+
+    /**
+     * Action save for sub form.
+     */
+    public function update()
+    {
+        $arg = func_get_args();
+        $arg[] = $this->storage;
+
+        foreach ($this->group as $form) {
+            if (! is_object($form)) {
+                $form = new $form();
+            }
+
+            if (method_exists($form, 'update')) {
+                $form->save(...$arg);
+            }
+        }
+    }
+
+
+
+    /**
+     * Action save for sub form.
+     */
+    public function remove()
+    {
+        $arg = func_get_args();
+        $arg[] = $this->storage;
+
+        foreach ($this->group as $form) {
+            if (! is_object($form)) {
+                $form = new $form();
+            }
+
+            if (method_exists($form, 'delete')) {
+                $form->delete(...$arg);
+            }
+        }
+    }
+
+
 }

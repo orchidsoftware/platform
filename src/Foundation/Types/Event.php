@@ -7,18 +7,18 @@ use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 use Orchid\Foundation\Http\Forms\Posts\SeoPostForm;
 use Orchid\Foundation\Services\Type\Type;
 
-class TestType extends Type
+class Event extends Type
 {
     /**
      * @var string
      */
-    public $name = 'Новости';
+    public $name = 'События';
 
 
     /**
      * @var string
      */
-    public $slug = 'news';
+    public $slug = 'event';
 
 
     /**

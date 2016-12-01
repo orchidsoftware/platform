@@ -18,7 +18,7 @@
   "dependencies": {
     "bootstrap": "3.*",
     "bootstrap-daterangepicker": "1.*",
-    "bootstrap-tagsinput": "0.5.*",
+    "bootstrap-tagsinput": "^0.8.0",
     "bootstrap-touchspin": "~3.0.1",
     "bootstrap-wysiwyg": "*",
     "bootstrap-chosen": "1.*",

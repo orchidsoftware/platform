@@ -7,18 +7,18 @@ use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 use Orchid\Foundation\Http\Forms\Posts\SeoPostForm;
 use Orchid\Foundation\Services\Type\Type;
 
-class TestType extends Type
+class Tour extends Type
 {
     /**
      * @var string
      */
-    public $name = 'Новости';
+    public $name = 'Туры';
 
 
     /**
      * @var string
      */
-    public $slug = 'news';
+    public $slug = 'tour';
 
 
     /**
@@ -48,6 +48,7 @@ class TestType extends Type
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
             'body' =>  'tag:textarea|name:body|max:255|required|class:editor|rows:10',
+            'city' => 'tag:input|type:text|name:city|max:255|required|title:Населённый пункт|help:Упоменение',
         ];
     }
 

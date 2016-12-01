@@ -13,6 +13,18 @@
     </div>
 
 
+
+    <div class="form-group">
+        <label>Теги</label>
+        <input type="text" class="form-control" data-role="tagsinput"
+               name="tags"
+               value="{{-- $post->getStringTags() --}}"
+               placeholder="Введите общие теги">
+    </div>
+
+
+
+
     @if(!is_null($author))
     <p>
         Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>

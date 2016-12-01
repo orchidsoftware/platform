@@ -71,6 +71,7 @@ class PostController extends Controller
         if ($Slugs != 0) {
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
+
         $post->save();
 
 
