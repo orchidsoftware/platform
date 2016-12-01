@@ -21,7 +21,7 @@ class CreateTableCategory extends Migration
         Schema::create('tree_patch', function (Blueprint $table) {
             $table->unsignedBigInteger('ancestor');
             $table->unsignedBigInteger('descendant');
-            $table->primary('ancestor','descendant');
+            $table->primary('ancestor', 'descendant');
             $table->foreign('ancestor')
                 ->references('id')
                 ->on('category')
