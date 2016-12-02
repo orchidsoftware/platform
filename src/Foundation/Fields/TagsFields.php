@@ -4,7 +4,7 @@ namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-class TagsField extends Field
+class TagsFields extends Field
 {
     /**
      * HTML tag.
@@ -31,6 +31,7 @@ class TagsField extends Field
             $data = collect();
         }
         $attributes->put('data', $data);
+
         return view($this->view, $attributes);
     }
 }

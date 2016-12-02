@@ -1,4 +1,5 @@
 <?php
+
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
 use Orchid\Foundation\Core\Models\Category;
@@ -23,8 +24,8 @@ class CategoryMainForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:language,name,' . $this->request->get('name') . ',name',
-            'code' => 'required|max:255|unique:language,code,' . $this->request->get('code') . ',code',
+            'name' => 'required|max:255|unique:language,name,'.$this->request->get('name').',name',
+            'code' => 'required|max:255|unique:language,code,'.$this->request->get('code').',code',
         ];
     }
 
@@ -33,12 +34,11 @@ class CategoryMainForm extends Form
      */
     public function get()
     {
-        return view('dashboard::container.tools.category.info', []);;
+        return view('dashboard::container.tools.category.info', []);
     }
 
     public function persist($storage = null)
     {
-
         Alert::success('Локаль создана');
     }
 }

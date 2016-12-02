@@ -109,7 +109,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
 
 
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
-
     Route::post('files', [
         'as' => 'dashboard.tools.files.upload',
         'uses' => 'FileController@upload',
@@ -124,6 +123,4 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'store' => 'dashboard.systems.users.store',
         'destroy' => 'dashboard.systems.users.destroy',
     ]]);
-
-
 });

@@ -31,6 +31,7 @@ class RobotField extends Field
             $data = collect();
         }
         $attributes->put('data', $data);
+
         return view($this->view, $attributes);
     }
 }
