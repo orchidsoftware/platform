@@ -22,8 +22,8 @@ class SeoPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.base',[
-            'author' => (is_null($post)) ? $post :$post->getUser(),
+        return view('dashboard::container.posts.modules.base', [
+            'author' => (is_null($post)) ? $post : $post->getUser(),
             'post' => $post,
         ]);
     }

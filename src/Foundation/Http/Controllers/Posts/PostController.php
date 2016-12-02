@@ -69,7 +69,7 @@ class PostController extends Controller
 
         $Slugs = $post->where('slug', $post->slug)->count();
         if ($Slugs != 0) {
-            $post->slug = $post->slug.'-'.($Slugs + 1);
+            $post->slug = $post->slug . '-' . ($Slugs + 1);
         }
 
         $post->save();
@@ -114,14 +114,13 @@ class PostController extends Controller
         $post->publish = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
 
-
         $Slugs = $post
             ->where('id', '!=', $post->id)
             ->where('slug', $post->slug)
             ->count();
 
         if ($Slugs > 0) {
-            $post->slug = $post->slug.'-'.($Slugs + 1);
+            $post->slug = $post->slug . '-' . ($Slugs + 1);
         }
 
         $post->save();

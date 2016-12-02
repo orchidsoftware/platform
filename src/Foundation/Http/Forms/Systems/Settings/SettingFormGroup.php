@@ -27,7 +27,6 @@ class SettingFormGroup extends FormGroup
     ];
 
 
-
     /**
      * @var
      */

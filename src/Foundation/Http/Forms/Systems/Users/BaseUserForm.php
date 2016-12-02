@@ -2,13 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
-use Orchid\Foundation\Core\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Facades\Alert;
-use Orchid\Foundation\Facades\Dashboard;
-use Orchid\Foundation\Http\Requests\Request;
 use Orchid\Foundation\Services\Forms\Form;
-use Illuminate\Support\Facades\Hash;
 
 class BaseUserForm extends Form
 {
@@ -32,8 +29,8 @@ class BaseUserForm extends Form
     public function rules()
     {
         return [
-            'name'        => 'required|max:255',
-            'email'        => 'required|email|max:255|unique:users,email,'.$this->request->get('email').',email',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $this->request->get('email') . ',email',
             'password' => 'max:255|sometimes|min:8|confirmed',
         ];
     }
@@ -51,7 +48,7 @@ class BaseUserForm extends Form
 
 
         return view('dashboard::container.systems.users.info', [
-            'user'  => $user,
+            'user' => $user,
         ]);
     }
 

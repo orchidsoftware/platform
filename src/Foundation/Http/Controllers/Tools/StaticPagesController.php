@@ -24,7 +24,7 @@ class StaticPagesController extends Controller
             }
 
             return response()->json([
-                'routes'  => $staticRoute,
+                'routes' => $staticRoute,
                 'baseUrl' => Config::get('app.url'),
             ]);
         } else {
@@ -51,7 +51,7 @@ class StaticPagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string                   $url
+     * @param string $url
      *
      * @return \Illuminate\Http\Response
      */

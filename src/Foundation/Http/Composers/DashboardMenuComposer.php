@@ -25,7 +25,7 @@ class DashboardMenuComposer
      * DashboardMenuComposer constructor.
      *
      * @param \Orchid\Foundation\Services\Menu\DashboardMenu $dashboardMenu
-     * @param \Illuminate\Contracts\Auth\Guard               $guard
+     * @param \Illuminate\Contracts\Auth\Guard $guard
      */
     public function __construct(Dashboard $dashboard = null, Guard $guard)
     {

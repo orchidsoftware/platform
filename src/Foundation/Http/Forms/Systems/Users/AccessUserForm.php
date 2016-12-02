@@ -47,7 +47,7 @@ class AccessUserForm extends Form
         $user = $storage->get('model');
 
 
-        if (! is_null($user)) {
+        if (!is_null($user)) {
             $rolePermission = $user->permissions;
             $permission = Dashboard::getPermission();
 

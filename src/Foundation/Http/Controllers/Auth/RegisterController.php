@@ -30,16 +30,6 @@ class RegisterController extends Controller
     protected $redirectTo = '/dashboard';
 
     /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showRegistrationForm()
-    {
-        return view('dashboard::auth.register');
-    }
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -47,6 +37,16 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('dashboard::auth.register');
     }
 
     /**
@@ -59,8 +59,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -75,8 +75,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

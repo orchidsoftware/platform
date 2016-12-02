@@ -26,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         'Orchid\Foundation\Events\Systems\LocalizationEvent' => [
             'Orchid\Foundation\Listeners\Systems\Localization\LocalizationAddListener',
         ],
+        'Orchid\Foundation\Events\Tools\CategoryEvent' => [
+            'Orchid\Foundation\Listeners\Systems\Localization\LocalizationAddListener',
+        ],
     ];
 
     /**

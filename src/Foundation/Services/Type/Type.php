@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Orchid\Foundation\Exceptions\TypeException;
 
 abstract class Type implements TypeInterface
 {
@@ -185,6 +186,12 @@ abstract class Type implements TypeInterface
         $form = '';
         foreach ($fields as $field => $config) {
             $field = config('content.fields.'.$config['tag']);
+
+
+            if(is_null($field)) {
+                throw new TypeException("Field ". $config['tag'] . " does not exist");
+            }
+
             $field = new $field;
             $config['lang'] = $language;
 

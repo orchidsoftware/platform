@@ -1,42 +1,42 @@
 <?php
 
 Route::get('/', [
-    'as'   => 'dashboard.index',
+    'as' => 'dashboard.index',
     'uses' => 'DashboardController@index',
 ]);
 
 
-Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
+Route::group(['namespace' => 'Posts', 'prefix' => 'posts'], function () {
     Route::get('{type}/create', [
-        'as'   => 'dashboard.posts.type.create',
+        'as' => 'dashboard.posts.type.create',
         'uses' => 'PostController@create',
     ]);
 
 
     Route::get('{type}/{slug}/edit', [
-        'as'   => 'dashboard.posts.type.edit',
+        'as' => 'dashboard.posts.type.edit',
         'uses' => 'PostController@edit',
     ]);
 
 
     Route::get('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type',
+        'as' => 'dashboard.posts.type',
         'uses' => 'PostController@index',
     ]);
 
 
     Route::post('{type}', [
-        'as'   => 'dashboard.posts.type.store',
+        'as' => 'dashboard.posts.type.store',
         'uses' => 'PostController@store',
     ]);
 
     Route::put('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type.update',
+        'as' => 'dashboard.posts.type.update',
         'uses' => 'PostController@update',
     ]);
 
     Route::delete('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type.destroy',
+        'as' => 'dashboard.posts.type.destroy',
         'uses' => 'PostController@destroy',
     ]);
 
@@ -72,16 +72,14 @@ Route::group(['namespace' => 'Posts',  'prefix' => 'posts'], function () {
 
 Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     Route::get('settings', [
-        'as'   => 'dashboard.systems.settings',
+        'as' => 'dashboard.systems.settings',
         'uses' => 'SettingController@index',
     ]);
+
     Route::post('settings', [
-        'as'   => 'dashboard.systems.settings',
+        'as' => 'dashboard.systems.settings',
         'uses' => 'SettingController@store',
     ]);
-
-
-
 
     Route::resource('localization', 'LocalizationController', ['names' => [
         'index' => 'dashboard.systems.localization',
@@ -90,32 +88,42 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'store' => 'dashboard.systems.localization.store',
     ]]);
 
-
     Route::resource('users', 'UserController', ['names' => [
-        'index'  => 'dashboard.systems.users',
+        'index' => 'dashboard.systems.users',
         'create' => 'dashboard.systems.users.create',
-        'edit'   => 'dashboard.systems.users.edit',
-        'update'  => 'dashboard.systems.users.update',
-        'store'  => 'dashboard.systems.users.store',
+        'edit' => 'dashboard.systems.users.edit',
+        'update' => 'dashboard.systems.users.update',
+        'store' => 'dashboard.systems.users.store',
         'destroy' => 'dashboard.systems.users.destroy',
     ]]);
 
-
     Route::resource('roles', 'RoleController', ['names' => [
-        'index'  => 'dashboard.systems.roles',
+        'index' => 'dashboard.systems.roles',
         'create' => 'dashboard.systems.roles.create',
-        'edit'   => 'dashboard.systems.roles.edit',
-        'update'  => 'dashboard.systems.roles.update',
-        'store'  => 'dashboard.systems.roles.store',
+        'edit' => 'dashboard.systems.roles.edit',
+        'update' => 'dashboard.systems.roles.update',
+        'store' => 'dashboard.systems.roles.store',
         'destroy' => 'dashboard.systems.roles.destroy',
     ]]);
 });
 
 
+Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
 
-Route::group(['namespace' => 'Tools',  'prefix' => 'tools'], function () {
     Route::post('files', [
-        'as'   => 'dashboard.tools.files.upload',
+        'as' => 'dashboard.tools.files.upload',
         'uses' => 'FileController@upload',
     ]);
+
+
+    Route::resource('users', 'UserController', ['names' => [
+        'index' => 'dashboard.systems.users',
+        'create' => 'dashboard.systems.users.create',
+        'edit' => 'dashboard.systems.users.edit',
+        'update' => 'dashboard.systems.users.update',
+        'store' => 'dashboard.systems.users.store',
+        'destroy' => 'dashboard.systems.users.destroy',
+    ]]);
+
+
 });

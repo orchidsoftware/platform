@@ -13,12 +13,11 @@
     </div>
 
 
-
     <div class="form-group">
         <label>Теги</label>
         <input type="text" class="form-control" data-role="tagsinput"
                name="tags"
-               value="{{-- $post->getStringTags() --}}"
+               @if(!is_null($post)) value="{{ $post->getStringTags()}}" @endif
                placeholder="Введите общие теги">
     </div>
 

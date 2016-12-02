@@ -22,8 +22,8 @@ class BasePostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.base',[
-            'author' => (is_null($post)) ? $post :$post->getUser(),
+        return view('dashboard::container.posts.modules.base', [
+            'author' => (is_null($post)) ? $post : $post->getUser(),
             'post' => $post,
         ]);
     }
@@ -38,7 +38,7 @@ class BasePostForm extends Form
      */
     public function persist($type = null, Post $post = null)
     {
-        dd($type,$post);
+        dd($type, $post);
         $post->setTags($request->input('tags'));
     }
 

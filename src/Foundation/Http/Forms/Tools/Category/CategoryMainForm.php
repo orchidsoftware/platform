@@ -1,18 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 16.11.16
- * Time: 11:18.
- */
-namespace Orchid\Foundation\Http\Forms\Systems\Localization;
+namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
+use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Language;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Services\Forms\Form;
 
-class LocalizationMainForm extends Form
+class CategoryMainForm extends Form
 {
+    /**
+     * @var string
+     */
     public $name = 'Main';
 
     /**
@@ -20,7 +18,7 @@ class LocalizationMainForm extends Form
      *
      * @var
      */
-    protected $model = Language::class;
+    protected $model = Category::class;
 
     public function rules()
     {
@@ -35,19 +33,11 @@ class LocalizationMainForm extends Form
      */
     public function get()
     {
-        $rendered_view = view('dashboard::container.systems.localization.info', []);
-
-        return $rendered_view;
+        return view('dashboard::container.tools.category.info', []);;
     }
 
     public function persist($storage = null)
     {
-        $locale = Language::firstOrNew([
-            'code' => $this->request->get('code'),
-        ]);
-        $locale->fill($this->request->all());
-
-        $locale->save();
 
         Alert::success('Локаль создана');
     }

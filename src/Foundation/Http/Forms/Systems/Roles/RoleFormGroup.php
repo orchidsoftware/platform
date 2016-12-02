@@ -12,19 +12,6 @@ class RoleFormGroup extends FormGroup
      * @var
      */
     public $event = RolesEvent::class;
-
-    /**
-     * Description Attributes for group.
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            'name' => 'Роли',
-            'description' => 'Разделение прав доступа',
-        ];
-    }
-
     /**
      * Route available list.
      * @var array
@@ -55,6 +42,18 @@ class RoleFormGroup extends FormGroup
             'name' => 'dashboard.systems.roles.destroy',
         ],
     ];
+
+    /**
+     * Description Attributes for group.
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'Роли',
+            'description' => 'Разделение прав доступа',
+        ];
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

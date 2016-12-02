@@ -3,9 +3,9 @@
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Settings\SettingFormGroup;
-use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {

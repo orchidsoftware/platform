@@ -18,6 +18,8 @@ return [
     'fields' => [
         'textarea' => \Orchid\Foundation\Fields\TextAreaField::class,
         'input' => \Orchid\Foundation\Fields\InputField::class,
+        'tags' => \Orchid\Foundation\Fields\TagsField::class,
+        'robot' => \Orchid\Foundation\Fields\RobotField::class,
     ],
 
 
