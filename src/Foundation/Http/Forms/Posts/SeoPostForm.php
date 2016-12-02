@@ -13,7 +13,6 @@ class SeoPostForm extends Form
      */
     public $name = 'SEO';
 
-
     /**
      * Display Base Options.
      * @param null $type
@@ -27,7 +26,6 @@ class SeoPostForm extends Form
             'post' => $post,
         ]);
     }
-
 
     /**
      * Save Base Role.
@@ -45,6 +43,5 @@ class SeoPostForm extends Form
      */
     public function delete()
     {
-
     }
 }

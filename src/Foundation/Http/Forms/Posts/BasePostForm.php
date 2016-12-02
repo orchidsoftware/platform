@@ -13,7 +13,6 @@ class BasePostForm extends Form
      */
     public $name = 'Общее';
 
-
     /**
      * Display Base Options.
      * @param null $type
@@ -27,7 +26,6 @@ class BasePostForm extends Form
             'post' => $post,
         ]);
     }
-
 
     /**
      * Save Base Role.
@@ -47,6 +45,5 @@ class BasePostForm extends Form
      */
     public function delete()
     {
-
     }
 }

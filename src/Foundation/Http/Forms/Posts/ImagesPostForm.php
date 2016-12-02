@@ -41,6 +41,5 @@ class ImagesPostForm extends Form
      */
     public function delete()
     {
-
     }
 }
