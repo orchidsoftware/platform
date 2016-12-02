@@ -29,8 +29,8 @@ class BaseRolesForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:roles,name,' . $this->request->get('name') . ',name',
-            'slug' => 'required|max:255|unique:roles,slug,' . $this->request->get('slug') . ',slug',
+            'name' => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug' => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
             'permissions' => 'array',
         ];
     }
@@ -46,7 +46,7 @@ class BaseRolesForm extends Form
     {
         $role = $storage->get('model');
 
-        if (!is_null($role)) {
+        if (! is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
             $permission->transform(function ($array) use ($rolePermission) {

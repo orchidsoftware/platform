@@ -6,7 +6,6 @@ use Orchid\Foundation\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
-
     /**
      * @var
      */
@@ -39,5 +38,4 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
-
 }

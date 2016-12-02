@@ -24,7 +24,4 @@ class Category extends Model
     protected $casts = [
         'content' => 'array',
     ];
-
-
-
 }

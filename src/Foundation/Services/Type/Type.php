@@ -188,8 +188,8 @@ abstract class Type implements TypeInterface
             $field = config('content.fields.'.$config['tag']);
 
 
-            if(is_null($field)) {
-                throw new TypeException("Field ". $config['tag'] . " does not exist");
+            if (is_null($field)) {
+                throw new TypeException('Field '.$config['tag'].' does not exist');
             }
 
             $field = new $field;

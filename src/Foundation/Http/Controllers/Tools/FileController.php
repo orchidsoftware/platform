@@ -27,8 +27,8 @@ class FileController extends Controller
         $file = Input::file('file');
 
         $extension = File::extension($file['name']);
-        $directory = path('public') . 'uploads/' . sha1(time());
-        $filename = sha1(time() . time()) . ".{$extension}";
+        $directory = path('public').'uploads/'.sha1(time());
+        $filename = sha1(time().time()).".{$extension}";
 
         $upload_success = Input::upload('file', $directory, $filename);
 
