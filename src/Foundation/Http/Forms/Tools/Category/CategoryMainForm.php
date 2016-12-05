@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
+use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Language;
 use Orchid\Foundation\Facades\Alert;
@@ -12,7 +13,7 @@ class CategoryMainForm extends Form
     /**
      * @var string
      */
-    public $name = 'Main';
+    public $name = 'Общее';
 
     /**
      * Base Model.
@@ -21,6 +22,10 @@ class CategoryMainForm extends Form
      */
     protected $model = Category::class;
 
+
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -34,8 +39,22 @@ class CategoryMainForm extends Form
      */
     public function get()
     {
-        return view('dashboard::container.tools.category.info', []);
+        $categories = $this->model->get();
+
+        return view('dashboard::container.tools.category.info', [
+            'categories' => $categories,
+            'locales' => config('content.locales'),
+        ]);
     }
+
+
+
+
+    public function create(){
+
+        dd('test2');
+    }
+
 
     public function persist($storage = null)
     {

@@ -23,12 +23,11 @@ class EventServiceProvider extends ServiceProvider
             'Orchid\Foundation\Listeners\Systems\Users\UserBaseListener',
             'Orchid\Foundation\Listeners\Systems\Users\UserAccessListener',
         ],
-        'Orchid\Foundation\Events\Systems\LocalizationEvent' => [
-            'Orchid\Foundation\Listeners\Systems\Localization\LocalizationAddListener',
-        ],
+
         'Orchid\Foundation\Events\Tools\CategoryEvent' => [
-            'Orchid\Foundation\Listeners\Systems\Localization\LocalizationAddListener',
+            'Orchid\Foundation\Listeners\Tools\Category\CategoryBaseLister',
         ],
+
     ];
 
     /**

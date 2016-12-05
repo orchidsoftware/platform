@@ -7,15 +7,42 @@ use Orchid\Foundation\Services\Forms\FormGroup;
 
 class CategoryFormGroup extends FormGroup
 {
-    /**
-     * @var string
-     */
-    public $view = 'dashboard::container.tools.category.category';
 
     /**
      * @var
      */
     public $event = CategoryEvent::class;
+
+    /**
+     * @var array
+     */
+    public $route = [
+        'index' => [
+            'method' => 'GET',
+            'name' => 'dashboard.tools.category',
+        ],
+        'create' => [
+            'method' => 'GET',
+            'name' => 'dashboard.tools.category.create',
+        ],
+        'edit' => [
+            'method' => 'GET',
+            'name' => 'dashboard.tools.category.edit',
+        ],
+        'update' => [
+            'method' => 'PUT',
+            'name' => 'dashboard.tools.category.update',
+        ],
+        'store' => [
+            'method' => 'POST',
+            'name' => 'dashboard.tools.category.store',
+        ],
+        'destroy' => [
+            'method' => 'DELETE',
+            'name' => 'dashboard.tools.category.destroy',
+        ],
+    ];
+
 
     /**
      * LocalizationFormGroup constructor.
@@ -27,12 +54,14 @@ class CategoryFormGroup extends FormGroup
         $this->storage = collect();
     }
 
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function grid()
     {
-        return view('dashboard::container.systems.categry.grid', [
+        dd('grid');
+        return view('dashboard::container.tools.category.grid', [
         ]);
     }
 }

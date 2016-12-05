@@ -4,7 +4,8 @@ namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-class TagsFields extends Field
+
+class TagsField extends Field
 {
     /**
      * HTML tag.

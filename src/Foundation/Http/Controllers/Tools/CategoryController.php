@@ -3,13 +3,14 @@
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
 
 class CategoryController extends Controller
 {
     /**
      * @var
      */
-    public $form = LocalizationFormGroup::class;
+    public $form = CategoryFormGroup::class;
 
     /**
      * LocalizationController constructor.
@@ -18,6 +19,15 @@ class CategoryController extends Controller
     {
         $this->form = new $this->form();
     }
+
+    /**
+     * @return mixed
+     */
+    public function create(){
+        return $this->form->render();
+    }
+
+
 
     public function index()
     {

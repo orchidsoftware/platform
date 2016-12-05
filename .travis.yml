@@ -1,0 +1,12 @@
+language: php
+
+sudo: false
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+
+script:
+  - composer validate
+  - vendor/bin/phpunit

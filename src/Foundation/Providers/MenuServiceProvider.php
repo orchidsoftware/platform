@@ -80,15 +80,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => false,
         ];
 
-        $localizationMenu = [
-            'slug' => 'localization',
-            'icon' => 'fa fa-language',
-            'route' => route('dashboard.systems.localization'),
-            'label' => trans('dashboard::menu.Localization'),
-            'groupname' => null,
-            'childs' => false,
-            'divider' => true,
-        ];
 
         $errorMenu = [
             'slug' => 'logs',
@@ -132,7 +123,7 @@ class MenuServiceProvider extends ServiceProvider
         $categoryMenu = [
             'slug' => 'categories',
             'icon' => 'icon-briefcase',
-            'route' => route('dashboard.index'),
+            'route' => route('dashboard.tools.category'),
             'label' => trans('dashboard::menu.Categories'),
             'childs' => false,
             'divider' => true,
@@ -241,7 +232,6 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $localizationMenu, 300);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
