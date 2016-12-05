@@ -3,14 +3,12 @@
 
 return [
 
-
     /*
      * Types - an abstract pattern of behavior record
      */
     'types' => [
         \Orchid\Foundation\Types\TestType::class,
     ],
-
 
     /*
      * Available fields to form templates
@@ -21,7 +19,6 @@ return [
         'tags' => \Orchid\Foundation\Fields\TagsField::class,
         'robot' => \Orchid\Foundation\Fields\RobotField::class,
     ],
-
 
     /*
      *  Available locales

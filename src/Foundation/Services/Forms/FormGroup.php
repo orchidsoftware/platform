@@ -10,13 +10,11 @@ abstract class FormGroup
      */
     public $name = '';
 
-
     /**
      * Icon tabs.
      * @var string
      */
     public $icon = '';
-
 
     /**
      * Description form group.
@@ -38,7 +36,6 @@ abstract class FormGroup
      */
     public $group;
 
-
     /**
      * View template form.
      *
@@ -46,14 +43,12 @@ abstract class FormGroup
      */
     public $view = 'dashboard::layouts.form.group';
 
-
     /**
      * Views Render.
      *
      * @var
      */
     private $html;
-
 
     /**
      * Global Forms Storage.
@@ -68,7 +63,6 @@ abstract class FormGroup
      * @var
      */
     public $commands;
-
 
     /**
      * Route CRUD.

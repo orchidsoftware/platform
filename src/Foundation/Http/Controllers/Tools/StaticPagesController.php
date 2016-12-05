@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
+use SEO;
 use Config;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Http\Controllers\Controller;
-use SEO;
 
 class StaticPagesController extends Controller
 {

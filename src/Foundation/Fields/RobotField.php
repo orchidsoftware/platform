@@ -12,7 +12,6 @@ class RobotField extends Field
      */
     protected $tag = 'robot';
 
-
     /**
      * @var string
      */

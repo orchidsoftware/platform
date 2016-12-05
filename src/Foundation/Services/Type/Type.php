@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Services\Type;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Facades\Validator;
 use Orchid\Foundation\Exceptions\TypeException;
 
@@ -50,25 +50,21 @@ abstract class Type implements TypeInterface
      */
     public $model = Post::class;
 
-
     /**
      * Request for Type.
      * @var
      */
     public $request = Request::class;
 
-
     /**
      * @var string
      */
     public $prefix = 'content';
 
-
     /**
      * @var null
      */
     private $cultivated = null;
-
 
     /**
      * To determine the properties by the function.
@@ -187,7 +183,6 @@ abstract class Type implements TypeInterface
         foreach ($fields as $field => $config) {
             $field = config('content.fields.'.$config['tag']);
 
-
             if (is_null($field)) {
                 throw new TypeException('Field '.$config['tag'].' does not exist');
             }
@@ -195,13 +190,11 @@ abstract class Type implements TypeInterface
             $field = new $field;
             $config['lang'] = $language;
 
-
             if (! is_null($prefix)) {
                 $config['prefix'] = $prefix;
             } else {
                 $config['prefix'] = $this->prefix;
             }
-
 
             if (! is_null($post)) {
                 $config['value'] = $post->getContent($config['name'], $language);
@@ -210,7 +203,6 @@ abstract class Type implements TypeInterface
             $field = $field->create($config);
             $form .= $field->render();
         }
-
 
         return $form;
     }
@@ -268,7 +260,6 @@ abstract class Type implements TypeInterface
         $groups = $this->setModules();
 
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
-
 
         foreach ($groups as $form) {
             if (! is_object($form)) {

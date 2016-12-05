@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Auth;
 
+use Validator;
 use App\Core\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Validator;
 
 class RegisterController extends Controller
 {

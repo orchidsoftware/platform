@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Types;
 
+use Orchid\Foundation\Services\Type\Type;
+use Orchid\Foundation\Http\Forms\Posts\SeoPostForm;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
-use Orchid\Foundation\Http\Forms\Posts\SeoPostForm;
-use Orchid\Foundation\Services\Type\Type;
 
 class Tour extends Type
 {
@@ -14,12 +14,10 @@ class Tour extends Type
      */
     public $name = 'Туры';
 
-
     /**
      * @var string
      */
     public $slug = 'tour';
-
 
     /**
      * Slug url /news/{name}.

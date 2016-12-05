@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Middleware;
 
+use Route;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Route;
 
 class AccessMiddleware
 {

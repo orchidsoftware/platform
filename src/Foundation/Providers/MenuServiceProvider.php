@@ -69,7 +69,6 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
 
-
         $settingsMenu = [
             'slug' => 'settings',
             'icon' => 'fa fa-cog',
@@ -79,7 +78,6 @@ class MenuServiceProvider extends ServiceProvider
             'childs' => false,
             'divider' => false,
         ];
-
 
         $errorMenu = [
             'slug' => 'logs',
@@ -109,7 +107,6 @@ class MenuServiceProvider extends ServiceProvider
             'childs' => false,
             'divider' => true,
         ];
-
 
         $typePostMenu = [
             'slug' => 'types-posts',
@@ -181,7 +178,6 @@ class MenuServiceProvider extends ServiceProvider
 
         //$dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $blocksMenu, 2);
 
-
         $allPost = $dashboard->types();
         $pages = $allPost['pages'];
         foreach ($pages as $key => $page) {
@@ -193,13 +189,11 @@ class MenuServiceProvider extends ServiceProvider
                 'childs' => false,
             ];
 
-
             if (reset($pages) == $page) {
                 $postObject['groupname'] = 'Страницы!';
             } elseif (end($pages) == $page) {
                 $postObject['divider'] = true;
             }
-
 
             $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
         }
@@ -219,10 +213,8 @@ class MenuServiceProvider extends ServiceProvider
                 $blockObject['divider'] = true;
             }
 
-
             $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $blockObject, 1);
         }
-
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
         //$dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $typePostMenu, 2);

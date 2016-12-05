@@ -2,11 +2,11 @@
 
 namespace Orchid\Foundation\Core\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Exceptions\TypeException;
-use Orchid\Foundation\Facades\Dashboard;
-use Illuminate\Support\Facades\App;
 use Cartalyst\Tags\TaggableTrait;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Foundation\Facades\Dashboard;
+use Orchid\Foundation\Exceptions\TypeException;
 
 class Post extends Model
 {
@@ -16,7 +16,6 @@ class Post extends Model
      * @var string
      */
     protected $table = 'posts';
-
 
     /**
      * @var
@@ -36,7 +35,6 @@ class Post extends Model
         'created_at',
         'deleted_at',
     ];
-
 
     /**
      * @var array

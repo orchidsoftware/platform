@@ -5,8 +5,8 @@ namespace Orchid\Foundation\Http\Controllers\Systems;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
 use Orchid\Foundation\Services\Forms\CrudFormTrait;
+use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
 
 class RoleController extends Controller
 {

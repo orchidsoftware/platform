@@ -40,7 +40,6 @@ class EnvironmentController extends Controller
             $envArray[$chunk[0]] = $chunk[1];
         }
 
-
         return view('install::environment', compact('envConfig', 'envArray'));
     }
 

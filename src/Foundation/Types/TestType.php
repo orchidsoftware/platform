@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Types;
 
+use Orchid\Foundation\Services\Type\Type;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
-use Orchid\Foundation\Services\Type\Type;
 
 class TestType extends Type
 {
@@ -13,12 +13,10 @@ class TestType extends Type
      */
     public $name = 'Новости';
 
-
     /**
      * @var string
      */
     public $slug = 'news';
-
 
     /**
      * Slug url /news/{name}.

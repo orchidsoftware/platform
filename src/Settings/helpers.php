@@ -15,7 +15,6 @@ if (! function_exists('settings')) {
     }
 }
 
-
 if (! function_exists('settings_set')) {
     /**
      * @param $key

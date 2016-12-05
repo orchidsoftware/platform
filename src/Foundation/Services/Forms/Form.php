@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Services\Forms;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Form implements FormContract
 {
@@ -18,7 +18,6 @@ abstract class Form implements FormContract
      * @var array
      */
     protected $rules = [];
-
 
     /**
      * Laravel Models for Forms.
@@ -95,7 +94,6 @@ abstract class Form implements FormContract
     protected function isValid()
     {
         $rules = $this->rules() ?: $this->rules;
-
 
         $this->validate($this->request, $rules);
 

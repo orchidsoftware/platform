@@ -2,15 +2,15 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Cartalyst\Tags\TagsServiceProvider;
+use View;
 use Illuminate\Routing\Router;
+use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Foundation\Kernel\Dashboard;
+use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
 use Orchid\Foundation\Http\Composers\DashboardMenuComposer;
 use Orchid\Foundation\Http\Composers\DashboardNotificationComposer;
-use Orchid\Foundation\Kernel\Dashboard;
-use View;
-use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {

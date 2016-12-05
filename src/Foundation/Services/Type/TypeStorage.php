@@ -45,7 +45,6 @@ class TypeStorage
             return $value;
         });
 
-
         if (! $sort) {
             return [
                 'pages' => $this->container->where('page', true)->toArray(),

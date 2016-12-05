@@ -28,7 +28,6 @@ class CreateAdminCommand extends Command
      */
     protected $description = 'Create user administrator';
 
-
     /**
      * Permissions.
      *

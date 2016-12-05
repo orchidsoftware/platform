@@ -152,7 +152,6 @@ class Menu
             });
         }
 
-
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
             if (! is_null($template)) {
                 $value['template'] = $template;
