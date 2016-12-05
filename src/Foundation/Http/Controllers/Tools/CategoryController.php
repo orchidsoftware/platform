@@ -23,11 +23,10 @@ class CategoryController extends Controller
     /**
      * @return mixed
      */
-    public function create(){
+    public function create()
+    {
         return $this->form->render();
     }
-
-
 
     public function index()
     {

@@ -5,25 +5,21 @@ Route::get('/', [
     'uses' => 'DashboardController@index',
 ]);
 
-
 Route::group(['namespace' => 'Posts', 'prefix' => 'posts'], function () {
     Route::get('{type}/create', [
         'as' => 'dashboard.posts.type.create',
         'uses' => 'PostController@create',
     ]);
 
-
     Route::get('{type}/{slug}/edit', [
         'as' => 'dashboard.posts.type.edit',
         'uses' => 'PostController@edit',
     ]);
 
-
     Route::get('{type}/{slug?}', [
         'as' => 'dashboard.posts.type',
         'uses' => 'PostController@index',
     ]);
-
 
     Route::post('{type}', [
         'as' => 'dashboard.posts.type.store',
@@ -39,7 +35,6 @@ Route::group(['namespace' => 'Posts', 'prefix' => 'posts'], function () {
         'as' => 'dashboard.posts.type.destroy',
         'uses' => 'PostController@destroy',
     ]);
-
 });
 
 Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
@@ -72,13 +67,11 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     ]]);
 });
 
-
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
     Route::post('files', [
         'as' => 'dashboard.tools.files.upload',
         'uses' => 'FileController@upload',
     ]);
-
 
     Route::resource('category', 'CategoryController', ['names' => [
         'index' => 'dashboard.tools.category',

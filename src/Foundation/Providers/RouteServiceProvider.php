@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -45,7 +45,6 @@ class RouteServiceProvider extends ServiceProvider
                 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
                 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
             });
-
 
         $this->binding($router);
     }

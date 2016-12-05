@@ -13,7 +13,6 @@ class UserFormGroup extends FormGroup
      */
     public $event = UserEvent::class;
 
-
     /**
      * Route available list.
      * @var array

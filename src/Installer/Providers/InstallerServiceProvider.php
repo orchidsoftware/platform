@@ -52,7 +52,6 @@ class InstallerServiceProvider extends ServiceProvider
             return $path.'/vendor/orchid/install';
         }, \Config::get('view.paths')), [__DIR__.'/../Views']), 'install');
 
-
         $this->publishes([
             __DIR__.'/../Lang' => base_path('resources/lang'),
         ]);

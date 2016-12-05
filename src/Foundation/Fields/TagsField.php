@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Fields;
 
 use Orchid\Foundation\Services\Field\Field;
 
-
 class TagsField extends Field
 {
     /**
@@ -12,7 +11,6 @@ class TagsField extends Field
      * @var string
      */
     protected $tag = 'tags';
-
 
     /**
      * @var string

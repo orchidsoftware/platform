@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
-use Orchid\Foundation\Events\Systems\SettingsEvent;
 use Orchid\Foundation\Services\Forms\FormGroup;
+use Orchid\Foundation\Events\Systems\SettingsEvent;
 
 class SettingFormGroup extends FormGroup
 {
@@ -25,7 +25,6 @@ class SettingFormGroup extends FormGroup
             'name' => 'dashboard.systems.settings.update',
         ],
     ];
-
 
     /**
      * @var

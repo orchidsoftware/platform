@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
@@ -46,11 +46,9 @@ class AccessUserForm extends Form
     {
         $user = $storage->get('model');
 
-
         if (! is_null($user)) {
             $rolePermission = $user->permissions;
             $permission = Dashboard::getPermission();
-
 
             $permission->transform(
                 function ($array) use ($rolePermission) {
@@ -62,10 +60,8 @@ class AccessUserForm extends Form
                 }
             );
 
-
             $roles = Role::all();
             $userRoles = $user->getRoles();
-
 
             $userRoles->transform(function ($role) {
                 $role->active = true;
@@ -78,7 +74,6 @@ class AccessUserForm extends Form
             $permission = Dashboard::getPermission();
             $roles = Role::all();
         }
-
 
         return view(
             'dashboard::container.systems.users.access',

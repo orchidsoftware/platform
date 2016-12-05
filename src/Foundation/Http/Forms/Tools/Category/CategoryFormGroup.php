@@ -2,12 +2,11 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
-use Orchid\Foundation\Events\Tools\CategoryEvent;
 use Orchid\Foundation\Services\Forms\FormGroup;
+use Orchid\Foundation\Events\Tools\CategoryEvent;
 
 class CategoryFormGroup extends FormGroup
 {
-
     /**
      * @var
      */
@@ -43,7 +42,6 @@ class CategoryFormGroup extends FormGroup
         ],
     ];
 
-
     /**
      * LocalizationFormGroup constructor.
      */
@@ -54,13 +52,13 @@ class CategoryFormGroup extends FormGroup
         $this->storage = collect();
     }
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function grid()
     {
         dd('grid');
+
         return view('dashboard::container.tools.category.grid', [
         ]);
     }

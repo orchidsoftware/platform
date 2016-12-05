@@ -3,10 +3,10 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
 use Illuminate\Http\Request;
-use Orchid\Foundation\Core\Models\Category;
-use Orchid\Foundation\Core\Models\Language;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Foundation\Core\Models\Category;
+use Orchid\Foundation\Core\Models\Language;
 
 class CategoryMainForm extends Form
 {
@@ -21,7 +21,6 @@ class CategoryMainForm extends Form
      * @var
      */
     protected $model = Category::class;
-
 
     /**
      * @return array
@@ -47,14 +46,10 @@ class CategoryMainForm extends Form
         ]);
     }
 
-
-
-
-    public function create(){
-
+    public function create()
+    {
         dd('test2');
     }
-
 
     public function persist($storage = null)
     {

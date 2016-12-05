@@ -11,7 +11,6 @@ return [
     'next'   => 'Next Step',
     'finish' => 'Install',
 
-
     /*
      *
      * Home page translations.
@@ -22,7 +21,6 @@ return [
         'message' => 'Welcome to the setup wizard.',
     ],
 
-
     /*
      *
      * Requirements page translations.
@@ -32,7 +30,6 @@ return [
         'title' => 'Requirements',
     ],
 
-
     /*
      *
      * Permissions page translations.
@@ -41,7 +38,6 @@ return [
     'permissions' => [
         'title' => 'Permissions',
     ],
-
 
     /*
      *
@@ -56,7 +52,6 @@ return [
     ],
 
     'install' => 'Install',
-
 
     /*
      *

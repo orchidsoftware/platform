@@ -43,7 +43,6 @@ class InputField extends Field
         'week',
     ];
 
-
     /**
      * The max attribute specifies the maximum value for an <input> element.
      * Use the max attribute together with the min attribute to create a range of legal values.
@@ -58,13 +57,11 @@ class InputField extends Field
      */
     protected $min;
 
-
     /**
      * The maxlength attribute specifies the maximum number of characters allowed in the <input> element.
      * @var
      */
     protected $maxlength;
-
 
     /**
      * The checked attribute is a boolean attribute.
@@ -96,8 +93,6 @@ class InputField extends Field
         }
 
         $attributes->put('data', $data);
-
-
 
         return view($this->view, $attributes);
     }

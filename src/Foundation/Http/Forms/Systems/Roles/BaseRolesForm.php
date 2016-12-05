@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Services\Forms\Form;
 
@@ -60,7 +60,6 @@ class BaseRolesForm extends Form
             $permission = Dashboard::getPermission();
         }
 
-
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
             'role' => $role,
@@ -81,7 +80,6 @@ class BaseRolesForm extends Form
         ]);
         $role->fill($this->request->all());
         $role->permissions = $this->request->get('permissions') ?: [];
-
 
         $role->save();
         Alert::success('Message');

@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
 use Illuminate\Support\Facades\Hash;
-use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Services\Forms\Form;
 
 class BaseUserForm extends Form
@@ -45,7 +45,6 @@ class BaseUserForm extends Form
     public function get($storage = null)
     {
         $user = $storage->get('model') ?: new $this->model;
-
 
         return view('dashboard::container.systems.users.info', [
             'user' => $user,

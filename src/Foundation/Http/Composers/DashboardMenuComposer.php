@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Composers;
 
 use Cache;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Auth\Guard;
 use Orchid\Foundation\Kernel\Dashboard;
 
 class DashboardMenuComposer

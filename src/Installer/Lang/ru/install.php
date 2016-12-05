@@ -10,7 +10,6 @@ return [
     'title'        => 'Установка Orchid',
     'next'         => 'Следующий шаг',
 
-
     /*
      *
      * Home page translations.
@@ -21,7 +20,6 @@ return [
         'message' => 'Добро пожаловать в первоначальную настройку фреймворка Laravel.',
     ],
 
-
     /*
      *
      * Requirements page translations.
@@ -31,7 +29,6 @@ return [
         'title' => 'Необходимые модули',
     ],
 
-
     /*
      *
      * Permissions page translations.
@@ -40,7 +37,6 @@ return [
     'permissions'  => [
         'title' => 'Проверка прав на папках',
     ],
-
 
     /*
      *
@@ -53,7 +49,6 @@ return [
         'success' => 'Настройки успешно сохранены в файле .env',
         'errors'  => 'Произошла ошибка при сохранении файла .env, пожалуйста, сохраните его вручную',
     ],
-
 
     /*
      *
