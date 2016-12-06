@@ -1,14 +1,13 @@
 <?php
 
-namespace Orchid\Foundation\Http\Forms\Tools\Category;
+namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
 use Illuminate\Http\Request;
+use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Services\Forms\Form;
-use Orchid\Foundation\Core\Models\Category;
-use Orchid\Foundation\Core\Models\Language;
 
-class CategoryMainForm extends Form
+class SectionMainForm extends Form
 {
     /**
      * @var string
@@ -20,7 +19,7 @@ class CategoryMainForm extends Form
      *
      * @var
      */
-    protected $model = Category::class;
+    protected $model = Section::class;
 
     /**
      * @return array

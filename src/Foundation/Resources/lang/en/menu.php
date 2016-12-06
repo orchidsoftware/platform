@@ -19,6 +19,7 @@ return [
     'Posts Managements'          => 'Posts Managements',
     'Types posts'                => 'Types posts',
     'Categories'                 => 'Categories',
+    'Sections'                 => 'Sections',
     'Tags'                       => 'Tags',
     'Users'                      => 'Users',
     'Groups'                     => 'Groups',

@@ -3,14 +3,14 @@
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
+use Orchid\Foundation\Http\Forms\Tools\Section\SectionFormGroup;
 
-class CategoryController extends Controller
+class SectionController extends Controller
 {
     /**
      * @var
      */
-    public $form = CategoryFormGroup::class;
+    public $form = SectionFormGroup::class;
 
     /**
      * LocalizationController constructor.

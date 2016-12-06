@@ -3,9 +3,9 @@
 namespace Orchid\Foundation\Events\Tools;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
+use Orchid\Foundation\Http\Forms\Tools\Section\SectionFormGroup;
 
-class CategoryEvent
+class SectionEvent
 {
     use SerializesModels;
 
@@ -18,9 +18,9 @@ class CategoryEvent
      * Create a new event instance.
      * SomeEvent constructor.
      *
-     * @param CategoryFormGroup $form
+     * @param SectionFormGroup $form
      */
-    public function __construct(CategoryFormGroup $form)
+    public function __construct(SectionFormGroup $form)
     {
         $this->form = $form;
     }

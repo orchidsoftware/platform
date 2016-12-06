@@ -136,4 +136,15 @@ class Post extends Model
     {
         return $tags = $this->tags->implode('name', $this->getTagsDelimiter());
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+
 }

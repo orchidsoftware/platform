@@ -36,4 +36,23 @@ class Notification extends Model
     {
         return $this->belongsTo(self::class);
     }
+
+
+
+
+
+
+
 }
+
+/*
+Schema::create('notification', function (Blueprint $table) {
+    $table->increments('id');
+    $table->bigInteger('user_id')->index()->unsigned();
+    $table->string('type')->index();
+    $table->string('url')->nullable();
+    $table->string('text')->nullable();
+    $table->boolean('read')->default(0);
+    $table->timestamps();
+});
+*/

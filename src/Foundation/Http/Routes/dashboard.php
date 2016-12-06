@@ -73,12 +73,22 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'uses' => 'FileController@upload',
     ]);
 
-    Route::resource('category', 'CategoryController', ['names' => [
-        'index' => 'dashboard.tools.category',
-        'create' => 'dashboard.tools.category.create',
-        'edit' => 'dashboard.tools.category.edit',
-        'update' => 'dashboard.tools.category.update',
-        'store' => 'dashboard.tools.category.store',
-        'destroy' => 'dashboard.tools.category.destroy',
+    Route::resource('section', 'SectionController', ['names' => [
+        'index' => 'dashboard.tools.section',
+        'create' => 'dashboard.tools.section.create',
+        'edit' => 'dashboard.tools.section.edit',
+        'update' => 'dashboard.tools.section.update',
+        'store' => 'dashboard.tools.section.store',
+        'destroy' => 'dashboard.tools.section.destroy',
     ]]);
+
+
+
+    Route::post('files', [
+        'as' => 'dashboard.tools.files.upload',
+        'uses' => 'FileController@upload',
+    ]);
+
+
+
 });

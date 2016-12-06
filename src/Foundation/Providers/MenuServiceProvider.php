@@ -108,20 +108,11 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
-        $typePostMenu = [
-            'slug' => 'types-posts',
-            'icon' => 'icon-notebook',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Types posts'),
-            'childs' => false,
-            'divider' => false,
-        ];
-
-        $categoryMenu = [
-            'slug' => 'categories',
+        $sectionMenu = [
+            'slug' => 'section',
             'icon' => 'icon-briefcase',
-            'route' => route('dashboard.tools.category'),
-            'label' => trans('dashboard::menu.Categories'),
+            'route' => route('dashboard.tools.section'),
+            'label' => trans('dashboard::menu.Sections'),
             'childs' => false,
             'divider' => true,
         ];
@@ -155,28 +146,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
-        $postMenu = [
-            'slug' => 'post',
-            'icon' => 'fa fa-pencil',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Common posts'),
-            'groupname' => trans('dashboard::menu.The interface and data'),
-            'childs' => true,
-            'divider' => false,
-        ];
-
-        $blocksMenu = [
-            'slug' => 'block',
-            'icon' => 'fa fa-cubes',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Common blocks'),
-            'childs' => true,
-            'divider' => true,
-        ];
-
-        //$dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postMenu, 1);
-
-        //$dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $blocksMenu, 2);
 
         $allPost = $dashboard->types();
         $pages = $allPost['pages'];
@@ -217,8 +186,7 @@ class MenuServiceProvider extends ServiceProvider
         }
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
-        //$dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $typePostMenu, 2);
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $sectionMenu, 3);
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);

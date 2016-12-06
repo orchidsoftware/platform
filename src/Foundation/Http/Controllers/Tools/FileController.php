@@ -2,40 +2,67 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
+use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class FileController extends Controller
 {
+
+
     /**
-     * НАДО ПЕРЕПИСАТЬ!!!
-     * По человечески, а то это полная хуйня.
-     * @return mixed
+     * @param Request $request
      */
-    public function upload()
+    public function upload(Request $request)
     {
-        $input = Input::all();
-        $rules = [
-            'file' => 'image|max:3000',
-        ];
 
-        $validation = Validator::make($input, $rules);
-
-        if ($validation->fails()) {
-            return Response::make($validation->errors->first(), 400);
+        if($request->hasFile('images')){
+            $file = $this->saveImage($request->file('images'));
+            return response()->json($file);
+        }else{
+            dd('Изображение не пришло');
         }
 
-        $file = Input::file('file');
 
-        $extension = File::extension($file['name']);
-        $directory = path('public').'uploads/'.sha1(time());
-        $filename = sha1(time().time()).".{$extension}";
 
-        $upload_success = Input::upload('file', $directory, $filename);
-
-        if ($upload_success) {
-            return Response::json('success', 200);
-        } else {
-            return Response::json('error', 400);
-        }
     }
+
+
+    /**
+     * @param UploadedFile $image
+     * @return static
+     */
+    protected function saveImage(UploadedFile $image) {
+        Storage::disk('public')->makeDirectory(date("Y/m/d"));
+
+
+        $name = sha1(time() . $image->getClientOriginalName());
+        $path = '/' . date("Y/m/d") . '/' . $name;
+
+
+        $full_path = storage_path('app/public/' . '/' . date("Y/m/d") . '/' . $name);
+        Image::make($image)->save($full_path.$name, 75);
+
+
+        $file = File::create([
+            'name' => $name,
+            'original_name' => $image->getClientOriginalName(),
+            'mime' => $image->getMimeType(),
+            'path' => $path,
+            'user_id' => Auth::user()->id,
+        ]);
+        return $file;
+    }
+
+
+    protected function saveImageDataBase(){
+
+    }
+
+
 }

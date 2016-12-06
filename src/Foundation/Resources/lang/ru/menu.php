@@ -20,6 +20,7 @@ return [
     'Posts Managements'          => 'Управление записями',
     'Types posts'                => 'Типы записей',
     'Categories'                 => 'Категории',
+    'Sections'                 => 'Разделы',
     'Tags'                       => 'Теги',
     'Users'                      => 'Пользователи',
     'Groups'                     => 'Группы',

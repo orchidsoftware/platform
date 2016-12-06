@@ -1,16 +1,16 @@
 <?php
 
-namespace Orchid\Foundation\Http\Forms\Tools\Category;
+namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
 use Orchid\Foundation\Services\Forms\FormGroup;
-use Orchid\Foundation\Events\Tools\CategoryEvent;
+use Orchid\Foundation\Events\Tools\SectionEvent;
 
-class CategoryFormGroup extends FormGroup
+class SectionFormGroup extends FormGroup
 {
     /**
      * @var
      */
-    public $event = CategoryEvent::class;
+    public $event = SectionEvent::class;
 
     /**
      * @var array
@@ -18,27 +18,27 @@ class CategoryFormGroup extends FormGroup
     public $route = [
         'index' => [
             'method' => 'GET',
-            'name' => 'dashboard.tools.category',
+            'name' => 'dashboard.tools.section',
         ],
         'create' => [
             'method' => 'GET',
-            'name' => 'dashboard.tools.category.create',
+            'name' => 'dashboard.tools.section.create',
         ],
         'edit' => [
             'method' => 'GET',
-            'name' => 'dashboard.tools.category.edit',
+            'name' => 'dashboard.tools.section.edit',
         ],
         'update' => [
             'method' => 'PUT',
-            'name' => 'dashboard.tools.category.update',
+            'name' => 'dashboard.tools.section.update',
         ],
         'store' => [
             'method' => 'POST',
-            'name' => 'dashboard.tools.category.store',
+            'name' => 'dashboard.tools.section.store',
         ],
         'destroy' => [
             'method' => 'DELETE',
-            'name' => 'dashboard.tools.category.destroy',
+            'name' => 'dashboard.tools.section.destroy',
         ],
     ];
 
