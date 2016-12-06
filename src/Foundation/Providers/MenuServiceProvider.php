@@ -146,7 +146,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
-
         $allPost = $dashboard->types();
         $pages = $allPost['pages'];
         foreach ($pages as $key => $page) {

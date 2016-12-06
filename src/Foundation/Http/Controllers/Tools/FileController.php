@@ -5,49 +5,40 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
 
 class FileController extends Controller
 {
-
-
     /**
      * @param Request $request
      */
     public function upload(Request $request)
     {
-
-        if($request->hasFile('images')){
+        if ($request->hasFile('images')) {
             $file = $this->saveImage($request->file('images'));
+
             return response()->json($file);
-        }else{
+        } else {
             dd('Изображение не пришло');
         }
-
-
-
     }
-
 
     /**
      * @param UploadedFile $image
      * @return static
      */
-    protected function saveImage(UploadedFile $image) {
-        Storage::disk('public')->makeDirectory(date("Y/m/d"));
+    protected function saveImage(UploadedFile $image)
+    {
+        Storage::disk('public')->makeDirectory(date('Y/m/d'));
 
+        $name = sha1(time().$image->getClientOriginalName());
+        $path = '/'.date('Y/m/d').'/'.$name;
 
-        $name = sha1(time() . $image->getClientOriginalName());
-        $path = '/' . date("Y/m/d") . '/' . $name;
-
-
-        $full_path = storage_path('app/public/' . '/' . date("Y/m/d") . '/' . $name);
+        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
         Image::make($image)->save($full_path.$name, 75);
-
 
         $file = File::create([
             'name' => $name,
@@ -56,13 +47,11 @@ class FileController extends Controller
             'path' => $path,
             'user_id' => Auth::user()->id,
         ]);
+
         return $file;
     }
 
-
-    protected function saveImageDataBase(){
-
+    protected function saveImageDataBase()
+    {
     }
-
-
 }
