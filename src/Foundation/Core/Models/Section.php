@@ -1,4 +1,6 @@
-<?php namespace Orchid\Foundation\Core\Models;
+<?php
+
+namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +21,7 @@ class Section extends Model
     protected $casts = [
         'content' => 'array',
         'slug' => 'string',
-        'section_id' => 'integer'
+        'section_id' => 'integer',
     ];
 
     /**
@@ -32,7 +34,6 @@ class Section extends Model
         return 'slug';
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -40,10 +41,4 @@ class Section extends Model
     {
         return $this->hasMany(Post::class);
     }
-
-
-
-
-
 }
-

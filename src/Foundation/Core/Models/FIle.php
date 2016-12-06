@@ -1,8 +1,10 @@
-<?php namespace Orchid\Foundation\Core\Models;
+<?php
+
+namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class FIle extends Model
 {
     /**
      * @var array
@@ -13,27 +15,22 @@ class File extends Model
         'mime',
         'path',
         'user_id',
-        'post_id'
+        'post_id',
     ];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post(){
+    public function post()
+    {
         return $this->belongsTo(Post::class);
     }
-
-
-
-
-
 }
-
