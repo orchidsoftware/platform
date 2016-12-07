@@ -170,8 +170,6 @@
         </div>
     </footer>
     <!-- / footer -->
-
-
 </div>
 
 
@@ -181,7 +179,7 @@
 
 @include('dashboard::partials.quick')
 
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB_9M5O7t88YovZa2mePQ9VX4f79c86cqg"></script>
 <script src="/orchid/js/orchid.js" type="text/javascript"></script>
 
 @stack('scripts')

@@ -129,10 +129,8 @@
     <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
         'type' => $type->slug,
         'slug' => $post->id,
-        ])}}" method="POST" style="display: none;">
+        ])}}" method="POST">
         {{ csrf_field() }}
-
-
         {{ method_field('delete') }}
     </form>
 

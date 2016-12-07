@@ -18262,6 +18262,12 @@ fieldset[disabled] .form-control-grey {
 .form-group-default.form-group-default-selectFx .cs-wrapper .dropdown-placeholder {
   vertical-align: top;
 }
+.dropzone {
+  border: none;
+}
+.pac-logo:after {
+  background-image: none!important;
+}
 .fr-box.fr-basic .fr-element {
   min-height: 500px;
 }

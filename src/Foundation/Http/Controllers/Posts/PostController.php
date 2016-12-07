@@ -120,6 +120,7 @@ class PostController extends Controller
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
+
         $post->save();
 
         Alert::success('Message');
@@ -143,7 +144,6 @@ class PostController extends Controller
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
-            'slug' => $post->slug,
         ]);
     }
 }

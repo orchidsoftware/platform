@@ -32537,12 +32537,15 @@ $("#dropzone").dropzone({
     url: "/dashboard/tools/files",
     clickable: true,
     acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
+    addRemoveLinks: true,
     init:function(){
         var self = this;
         // config
-        self.options.addRemoveLinks = true;
-        self.options.dictRemoveFile = "Delete";
+       // self.options.addRemoveLinks = true;
+        //self.options.dictRemoveFile = "Delete";
         //New file added
+
+        /*
         self.on("addedfile", function (file) {
             console.log('new file added ', file);
         });
@@ -32566,6 +32569,7 @@ $("#dropzone").dropzone({
         self.on("removedfile", function (file) {
             console.log(file);
         });
+        */
     }
 });
 

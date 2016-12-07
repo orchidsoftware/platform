@@ -1,0 +1,91 @@
+<div class="map-place-{{$name}}-{{$lang}}">
+
+    <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
+
+        @if(isset($title))
+            <label for="field-{{$name}}">{{$title}}</label>
+        @endif
+
+        <div class="input-group">
+            <input class="form-control {{$class or ''}}" id="place-{{$name}}-{{$lang}}" name="{{$prefix}}[{{$lang}}][{{$name}}][name]"  value="{{$value['name'] or ''}}" placeholder="Адрес ...">
+            <input type="hidden" id="lat-{{$name}}-{{$lang}}"  name="{{$prefix}}[{{$lang}}][{{$name}}][lat]" value="{{$value['lat'] or ''}}">
+            <input type="hidden" id="lng-{{$name}}-{{$lang}}"  name="{{$prefix}}[{{$lang}}][{{$name}}][lng]" value="{{$value['lng'] or ''}}">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#map-place-{{$name}}-{{$lang}}"><i
+                    class="fa fa-map-marker"></i></button>
+    </span>
+        </div>
+    </div>
+
+
+        @if(isset($help))
+            <p class="help-block">{{$help}}</p>
+        @endif
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="map-place-{{$name}}-{{$lang}}" tabindex="-1" role="dialog" aria-labelledby="map-place-{{$name}}-{{$lang}}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Google Maps</h4>
+            </div>
+            <div class="modal-body">
+                <div id="map-place-{{$name}}-{{$lang}}-canvas" class="google-maps-canvas" style="width: 100%; height: 300px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var input = document.getElementById("place-{{$name}}-{{$lang}}");
+        var autocomplete{{$name}}{{$lang}} = new google.maps.places.Autocomplete(input);
+
+
+        autocomplete{{$name}}{{$lang}}.addListener('place_changed', function() {
+            var cors = autocomplete{{$name}}{{$lang}}.getPlace().geometry.location;
+            $('#lat-{{$name}}-{{$lang}}').val(cors.lat());
+            $('#lng-{{$name}}-{{$lang}}').val(cors.lng());
+        });
+
+
+        $('#map-place-{{$name}}-{{$lang}}').on('show.bs.modal', function (e) {
+
+
+            setTimeout(function () {
+                var myLatLng = {
+                    lat: parseFloat($('#lat-{{$name}}-{{$lang}}').val()),
+                    lng: parseFloat($('#lng-{{$name}}-{{$lang}}').val())
+                };
+
+                // Create a map object and specify the DOM element for display.
+                var map = new google.maps.Map(document.getElementById('map-place-{{$name}}-{{$lang}}-canvas'), {
+                    center: myLatLng,
+                    zoom: 12
+                });
+
+                // Create a marker and set its position.
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: myLatLng,
+                    title: $('#place-{{$name}}-{{$lang}}').val()
+                });
+
+            }, 300);
+
+
+        });
+
+    });
+
+
+
+
+</script>
