@@ -3,16 +3,14 @@
 
 return [
 
-
     /*
      * Types - an abstract pattern of behavior record
      */
     'types' => [
         \Orchid\Foundation\Types\TestType::class,
         \Orchid\Foundation\Types\Event::class,
-        \Orchid\Foundation\Types\Tour::class
+        \Orchid\Foundation\Types\Tour::class,
     ],
-
 
     /*
      * Available fields to form templates
@@ -25,7 +23,6 @@ return [
         'place' => \Orchid\Foundation\Fields\PlaceField::class,
         'datetime' => \Orchid\Foundation\Fields\DateTimerField::class,
     ],
-
 
     /*
      *  Available locales

@@ -120,7 +120,6 @@ class PostController extends Controller
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
-
         $post->save();
 
         Alert::success('Message');
