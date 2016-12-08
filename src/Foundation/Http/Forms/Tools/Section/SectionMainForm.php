@@ -28,10 +28,9 @@ class SectionMainForm extends Form
     public function rules()
     {
         return [
-            'slug' => 'required|max:255|unique:sections,slug,'.$this->request->get('slug').',slug'
+            'slug' => 'required|max:255|unique:sections,slug,'.$this->request->get('slug').',slug',
         ];
     }
-
 
     /**
      * @param null $storage
@@ -42,8 +41,9 @@ class SectionMainForm extends Form
     {
         $section = $storage->get('model') ?: new $this->model;
 
-        $sections = $this->model->where('id','!=',$section->id)->get();
+        $sections = $this->model->where('id', '!=', $section->id)->get();
         $language = App::getLocale();
+
         return view('dashboard::container.tools.section.info', [
             'sections' => $sections,
             'language' => $language,
@@ -52,7 +52,6 @@ class SectionMainForm extends Form
         ]);
     }
 
-
     public function persist($storage = null)
     {
         $section = Section::firstOrNew([
@@ -60,7 +59,7 @@ class SectionMainForm extends Form
         ]);
         $section->fill($this->request->all());
 
-        if(empty($section->section_id)){
+        if (empty($section->section_id)) {
             $section->section_id = null;
         }
 

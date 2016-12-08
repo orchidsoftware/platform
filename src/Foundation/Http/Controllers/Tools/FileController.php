@@ -34,7 +34,7 @@ class FileController extends Controller
     {
         Storage::disk('public')->makeDirectory(date('Y/m/d'));
 
-        $name = sha1(time().$image->getClientOriginalName()) .  '.' . $image->getClientOriginalExtension();
+        $name = sha1(time().$image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
         $path = '/'.date('Y/m/d').'/';
 
         $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
@@ -55,26 +55,26 @@ class FileController extends Controller
     {
     }
 
-
     /**
-     * Delete files
+     * Delete files.
      */
-    public function destroy($id){
-       $file =  File::find($id);
+    public function destroy($id)
+    {
+        $file = File::find($id);
         Storage::disk('public')->delete($file->path.$file->name);
         $file->delete();
+
         return response(200);
     }
-
 
     /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getFilesPost($id){
-        $files = File::where('post_id',$id)->get();
+    public function getFilesPost($id)
+    {
+        $files = File::where('post_id', $id)->get();
+
         return response()->json($files);
     }
-
-
 }

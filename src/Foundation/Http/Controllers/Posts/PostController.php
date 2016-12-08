@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Controllers\Controller;
@@ -77,12 +76,10 @@ class PostController extends Controller
 
         $modules = $post->getTypeObject()->getModules();
 
-        foreach ($modules as $module){
+        foreach ($modules as $module) {
             $module = new $module;
-            $module->save($post->getTypeObject(),$post);
+            $module->save($post->getTypeObject(), $post);
         }
-
-
 
         Alert::success('Message');
 
@@ -132,15 +129,12 @@ class PostController extends Controller
         }
         $post->save();
 
-
         $modules = $type->getTypeObject()->getModules();
 
-        foreach ($modules as $module){
+        foreach ($modules as $module) {
             $module = new $module;
-            $module->save($type->getTypeObject(),$post);
+            $module->save($type->getTypeObject(), $post);
         }
-
-
 
         Alert::success('Message');
 

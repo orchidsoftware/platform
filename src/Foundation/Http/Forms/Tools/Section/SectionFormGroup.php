@@ -43,7 +43,6 @@ class SectionFormGroup extends FormGroup
         ],
     ];
 
-
     /**
      * Description Attributes for group.
      * @return array
@@ -56,14 +55,13 @@ class SectionFormGroup extends FormGroup
         ];
     }
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function main()
     {
         return view('dashboard::container.tools.section.grid', [
-            'sections' => Section::paginate()
+            'sections' => Section::paginate(),
         ]);
     }
 }

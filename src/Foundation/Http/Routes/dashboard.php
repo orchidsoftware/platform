@@ -95,5 +95,4 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'as' => 'dashboard.tools.files.destroy',
         'uses' => 'FileController@getFilesPost',
     ]);
-
 });

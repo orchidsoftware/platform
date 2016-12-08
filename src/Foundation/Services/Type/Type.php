@@ -247,19 +247,17 @@ abstract class Type implements TypeInterface
         return false;
     }
 
-
     /**
      * @return array
      */
-    public function getModules(){
-
-        if($this->checkModules()) {
+    public function getModules()
+    {
+        if ($this->checkModules()) {
             return $this->setModules();
         }
+
         return [];
     }
-
-
 
     /**
      * @return string
