@@ -86,4 +86,14 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'as' => 'dashboard.tools.files.upload',
         'uses' => 'FileController@upload',
     ]);
+    Route::delete('files/{id}', [
+        'as' => 'dashboard.tools.files.destroy',
+        'uses' => 'FileController@destroy',
+    ]);
+
+    Route::get('files/post/{id}', [
+        'as' => 'dashboard.tools.files.destroy',
+        'uses' => 'FileController@getFilesPost',
+    ]);
+
 });

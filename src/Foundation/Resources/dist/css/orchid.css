@@ -18265,6 +18265,11 @@ fieldset[disabled] .form-control-grey {
 .dropzone {
   border: none;
 }
+.dropzone .dz-preview .dz-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 .pac-logo:after {
   background-image: none!important;
 }

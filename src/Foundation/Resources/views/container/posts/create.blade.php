@@ -9,7 +9,7 @@
 @section('content')
 
 
-    <div class="app-content-body app-content-full">
+    <div class="app-content-body app-content-full" id="post">
 
 
         @if (count($errors) > 0)
@@ -69,7 +69,7 @@
                                 <div class="tab-content">
                                     @foreach($locales as $code => $lang)
                                         <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                            <div class="wrapper-md">
+                                            <div class="wrapper-md bg-white">
                                                 {!! $type->generateForm($code) !!}
                                             </div>
                                         </div>

@@ -3,10 +3,10 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Cartalyst\Tags\TaggableTrait;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Facades\Dashboard;
+use Illuminate\Support\Facades\App;
 use Orchid\Foundation\Exceptions\TypeException;
+use Orchid\Foundation\Facades\Dashboard;
 
 class Post extends Model
 {
@@ -29,6 +29,7 @@ class Post extends Model
         'types_id',
         'users_id',
         'type',
+        'section_id',
         'content',
         'slug',
         'publish',
@@ -103,19 +104,13 @@ class Post extends Model
     public function getContent($field, $lang = null)
     {
         try {
-            if (is_null($lang)) {
-                $lang = App::getLocale();
-            }
-
-            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
+            $lang = $lang ?: App::getLocale();
+            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;
             }
-
-            return;
         } catch (\Exception $exception) {
-            return;
         }
     }
 

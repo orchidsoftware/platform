@@ -32540,6 +32540,29 @@ $("#dropzone").dropzone({
     addRemoveLinks: true,
     init:function(){
         var self = this;
+
+
+
+        this.on("removedfile", function(file) {
+
+            console.log(file);
+
+
+            $.ajax({
+                type: 'delete',
+                url: '/dashboard/tools/files',
+                data: {id: file.name, _token: $('#csrf-token').val()},
+                dataType: 'html',
+                success: function(data){
+
+                }
+            });
+
+        } );
+
+
+
+
         // config
        // self.options.addRemoveLinks = true;
         //self.options.dictRemoveFile = "Delete";
@@ -32564,12 +32587,14 @@ $("#dropzone").dropzone({
         self.on("queuecomplete", function (progress) {
             $('.meter').delay(999).slideUp(999);
         });
+         */
+
 
         // On removing file
         self.on("removedfile", function (file) {
             console.log(file);
         });
-        */
+
     }
 });
 
@@ -32615,6 +32640,63 @@ if (document.getElementsByClassName('dropzone')) {
 
         // The setting up of the dropzone
         init: function () {
+            var instanceDropZone = this;
+
+            var id = $('#post').data('post-id');
+            if(id !== undefined){
+
+                $.ajax({
+                    type: 'get',
+                    url: '/dashboard/tools/files/post/' + id,
+                    data: { _token: $("meta[name='csrf_token']").attr('content')},
+                    dataType: 'html',
+                    success: function (data) {
+                        var images = JSON.parse(data);
+
+                        images.forEach(function(item, i, arr) {
+                            var mockFile = {
+                                name: item.original_name,
+                                size: 0,
+                                type: item.mime,
+                                status: Dropzone.ADDED,
+                                url: '/storage/'+ item.path + '/' + item.name,
+                                data: item
+                            };
+
+                            // Call the default addedfile event handler
+                            instanceDropZone.emit("addedfile", mockFile);
+
+                            // And optionally show the thumbnail of the file:
+                            instanceDropZone.emit("thumbnail", mockFile, mockFile.url);
+
+                            instanceDropZone.files.push(mockFile);
+
+
+
+
+                            /*
+                            this.options.addedfile.call(this, mockFile);
+                            this.options.thumbnail.call(this, mockFile, '/storage/'+ item.path + '/' + item.name);
+                            mockFile.previewElement.classList.add('dz-success');
+                            */
+                        });
+
+
+                        $('.dz-progress').remove();
+                        console.log(JSON.parse(data));
+                    }
+                });
+            }
+
+
+
+
+
+
+
+            //mockFile.previewElement.classList.add('dz-complete');
+
+
 
             this.on("sending", function (file, xhr, formData) {
                 formData.append("_token", $("meta[name='csrf_token']").attr('content'))
@@ -32622,18 +32704,17 @@ if (document.getElementsByClassName('dropzone')) {
 
             this.on("removedfile", function (file) {
 
+
+                $( ".files-"+file.data.id).remove();
+
+
                 $.ajax({
-                    type: 'POST',
-                    url: 'upload/delete',
-                    data: {id: file.name, _token: $("meta[name='csrf_token']").attr('content')},
+                    type: 'delete',
+                    url: '/dashboard/tools/files/' + file.data.id,
+                    data: {_token: $("meta[name='csrf_token']").attr('content')},
                     dataType: 'html',
                     success: function (data) {
-                        var rep = JSON.parse(data);
-                        if (rep.code == 200) {
-                            photo_counter--;
-                            $("#photoCounter").text("(" + photo_counter + ")");
-                        }
-
+                        //
                     }
                 });
 
@@ -32653,9 +32734,18 @@ if (document.getElementsByClassName('dropzone')) {
             }
             return _results;
         },
-        success: function (file, done) {
-            photo_counter++;
-            $("#photoCounter").text("(" + photo_counter + ")");
+        success: function (file, response) {
+            file.data = response;
+
+
+
+            $("<input type='hidden' class='files-"+ response.id+"' name='files[]' value='"+ response.id +"'  />").appendTo('.dropzone');
+
+/*
+            var value = $( "#files" ).val() || [];
+            value.push(response.id);
+            $( "#files" ).val(value);
+            */
         },
     }
 

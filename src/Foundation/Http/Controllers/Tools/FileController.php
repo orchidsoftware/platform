@@ -34,11 +34,11 @@ class FileController extends Controller
     {
         Storage::disk('public')->makeDirectory(date('Y/m/d'));
 
-        $name = sha1(time().$image->getClientOriginalName());
-        $path = '/'.date('Y/m/d').'/'.$name;
+        $name = sha1(time().$image->getClientOriginalName()) .  '.' . $image->getClientOriginalExtension();
+        $path = '/'.date('Y/m/d').'/';
 
         $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
-        Image::make($image)->save($full_path.$name, 75);
+        Image::make($image)->save($full_path, 75);
 
         $file = File::create([
             'name' => $name,
@@ -54,4 +54,27 @@ class FileController extends Controller
     protected function saveImageDataBase()
     {
     }
+
+
+    /**
+     * Delete files
+     */
+    public function destroy($id){
+       $file =  File::find($id);
+        Storage::disk('public')->delete($file->path.$file->name);
+        $file->delete();
+        return response(200);
+    }
+
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFilesPost($id){
+        $files = File::where('post_id',$id)->get();
+        return response()->json($files);
+    }
+
+
 }

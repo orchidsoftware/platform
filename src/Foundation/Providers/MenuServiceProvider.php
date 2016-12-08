@@ -147,8 +147,7 @@ class MenuServiceProvider extends ServiceProvider
         ];
 
         $allPost = $dashboard->types();
-        $pages = $allPost['pages'];
-        foreach ($pages as $key => $page) {
+        foreach ($allPost as $key => $page) {
             $postObject = [
                 'slug' => $page->slug,
                 'icon' => $page->icon,
@@ -157,31 +156,13 @@ class MenuServiceProvider extends ServiceProvider
                 'childs' => false,
             ];
 
-            if (reset($pages) == $page) {
+            if (reset($allPost) == $page) {
                 $postObject['groupname'] = 'Страницы!';
-            } elseif (end($pages) == $page) {
+            } elseif (end($allPost) == $page) {
                 $postObject['divider'] = true;
             }
 
             $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
-        }
-
-        $blocks = $allPost['blocks'];
-        foreach ($blocks as $key => $block) {
-            $blockObject = [
-                'slug' => $block->slug,
-                'icon' => $block->icon,
-                'route' => route('dashboard.posts.type', [$block->slug]),
-                'label' => $block->name,
-            ];
-
-            if (reset($blocks) == $block) {
-                $blockObject['groupname'] = 'Блоки!';
-            } elseif (end($blocks) == $block) {
-                $blockObject['divider'] = true;
-            }
-
-            $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $blockObject, 1);
         }
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);

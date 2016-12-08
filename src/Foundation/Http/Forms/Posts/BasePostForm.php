@@ -2,6 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
+use App;
+use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Services\Forms\Form;
@@ -21,9 +23,14 @@ class BasePostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
+
+
+
         return view('dashboard::container.posts.modules.base', [
             'author' => (is_null($post)) ? $post : $post->getUser(),
             'post' => $post,
+            'sections' => Section::get(),
+            'language' => App::getLocale(),
         ]);
     }
 
@@ -36,8 +43,12 @@ class BasePostForm extends Form
      */
     public function persist($type = null, Post $post = null)
     {
-        dd($type, $post);
-        $post->setTags($request->input('tags'));
+        $post->setTags($this->request->input('tags'));
+
+        if($post->section_id == 0){
+            $post->section_id = null;
+        }
+
     }
 
     /**

@@ -24,6 +24,20 @@
 
 
 
+    <div class="form-group">
+        <label class="control-label">Раздел записи</label>
+        <select class="form-control" name="section_id">
+            <option value="0">Без раздела</option>
+            @foreach($sections as $key => $value)
+                <option value="{{$value->id}}"
+                        @if(!is_null($post) &&$post->section_id == $value->id) selected @endif
+                >{{$value->content[$language]['name']}}</option>
+            @endforeach
+        </select>
+    </div>
+
+
+
     @if(!is_null($author))
     <p>
         Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
@@ -35,6 +49,12 @@
         Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
     </p>
     @endif
+
+
+
+
+
+
 
 
 </div>

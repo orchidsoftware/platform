@@ -6,13 +6,12 @@
     </div>
 
     <div class="fallback">
-        <input name="file" type="file" multiple/>
+        <input type="file" value="" multiple/>
     </div>
 
     <div class="dropzone-previews dropzonePreview"></div>
 
 </div>
-
 
 
 {{--

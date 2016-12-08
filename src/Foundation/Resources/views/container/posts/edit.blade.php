@@ -11,7 +11,7 @@
 
 
 
-    <div class="app-content-body app-content-full">
+    <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
 
         <!-- hbox layout -->
         <form class="hbox hbox-auto-xs bg-light" method="post" action="{{route('dashboard.posts.type.update',[
@@ -58,7 +58,7 @@
                                 <div class="tab-content">
                                     @foreach($locales as $code => $lang)
                                         <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                            <div class="wrapper-md">
+                                            <div class="wrapper-md  bg-white">
                                                 {!! $type->generateForm($code,$post) !!}
                                             </div>
                                         </div>
@@ -118,6 +118,17 @@
 
 
 
+
+        <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
+        'type' => $type->slug,
+        'slug' => $post->id,
+        ])}}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('delete') }}
+        </form>
+
+
+
     </div>
 
 
@@ -126,13 +137,6 @@
 
 
 
-    <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
-        'type' => $type->slug,
-        'slug' => $post->id,
-        ])}}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('delete') }}
-    </form>
 
 
 

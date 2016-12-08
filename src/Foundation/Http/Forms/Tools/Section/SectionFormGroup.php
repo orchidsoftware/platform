@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
+use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Services\Forms\FormGroup;
 use Orchid\Foundation\Events\Tools\SectionEvent;
 
@@ -42,24 +43,27 @@ class SectionFormGroup extends FormGroup
         ],
     ];
 
+
     /**
-     * LocalizationFormGroup constructor.
+     * Description Attributes for group.
+     * @return array
      */
-    public function __construct()
+    public function attributes()
     {
-        $registerForm = event(new $this->event($this));
-        $this->group = collect($registerForm);
-        $this->storage = collect();
+        return [
+            'name' => 'Разделы',
+            'description' => 'Разделы веб-сайта',
+        ];
     }
+
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function grid()
+    public function main()
     {
-        dd('grid');
-
-        return view('dashboard::container.tools.category.grid', [
+        return view('dashboard::container.tools.section.grid', [
+            'sections' => Section::paginate()
         ]);
     }
 }

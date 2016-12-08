@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Foundation\Core\Models\File;
 
 class ImagesPostForm extends Form
 {
@@ -26,19 +27,22 @@ class ImagesPostForm extends Form
     }
 
     /**
-     * Save Base Role.
-     *
-     * @param null $storage
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @param null $type
+     * @param null $post
      */
-    public function persist()
+    public function persist($type = null, $post = null)
     {
+        if($this->request->has('files')){
+            $files = $this->request->input('files');
+            foreach ($files as $file){
+                $uploadFile = File::find($file);
+                $uploadFile->post_id = $post->id;
+                $uploadFile->save();
+            }
+        }
     }
 
-    /**
-     * @param Role $role
-     */
+
     public function delete()
     {
     }

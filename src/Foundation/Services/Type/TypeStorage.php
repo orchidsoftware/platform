@@ -32,10 +32,9 @@ class TypeStorage
     }
 
     /**
-     * @param bool $sort
      * @return array
      */
-    public function all($sort = false)
+    public function all()
     {
         $this->container->transform(function ($value) {
             if (! is_object($value)) {
@@ -45,12 +44,6 @@ class TypeStorage
             return $value;
         });
 
-        if (! $sort) {
-            return [
-                'pages' => $this->container->where('page', true)->toArray(),
-                'blocks' => $this->container->where('page', false)->toArray(),
-            ];
-        }
 
         return $this->container->all();
     }
