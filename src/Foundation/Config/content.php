@@ -9,9 +9,6 @@ return [
     'types' => [
         \Orchid\Foundation\Types\TestType::class,
 
-
-
-
         \Orchid\Foundation\Types\NewsType::class,
         \Orchid\Foundation\Types\ExhibitionsType::class,
         \Orchid\Foundation\Types\HolidaysType::class,
@@ -32,7 +29,6 @@ return [
         \Orchid\Foundation\Types\HotelsType::class,
         \Orchid\Foundation\Types\RestaurantsType::class,
         \Orchid\Foundation\Types\PeopleType::class,
-
 
     ],
 

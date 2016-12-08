@@ -44,7 +44,6 @@ class TypeStorage
             return $value;
         });
 
-
         return $this->container->all();
     }
 
