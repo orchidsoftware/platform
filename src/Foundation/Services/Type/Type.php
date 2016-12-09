@@ -67,6 +67,11 @@ abstract class Type implements TypeInterface
     private $cultivated = null;
 
     /**
+     * @var bool
+     */
+    public $display = true;
+
+    /**
      * To determine the properties by the function.
      * @var array
      */

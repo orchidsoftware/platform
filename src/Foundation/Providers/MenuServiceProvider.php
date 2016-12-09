@@ -148,21 +148,23 @@ class MenuServiceProvider extends ServiceProvider
 
         $allPost = $dashboard->types();
         foreach ($allPost as $key => $page) {
-            $postObject = [
-                'slug' => $page->slug,
-                'icon' => $page->icon,
-                'route' => route('dashboard.posts.type', [$page->slug]),
-                'label' => $page->name,
-                'childs' => false,
-            ];
+            if($page->display) {
+                $postObject = [
+                    'slug' => $page->slug,
+                    'icon' => $page->icon,
+                    'route' => route('dashboard.posts.type', [$page->slug]),
+                    'label' => $page->name,
+                    'childs' => false,
+                ];
 
-            if (reset($allPost) == $page) {
-                $postObject['groupname'] = 'Страницы!';
-            } elseif (end($allPost) == $page) {
-                $postObject['divider'] = true;
+                if (reset($allPost) == $page) {
+                    $postObject['groupname'] = 'Страницы!';
+                } elseif (end($allPost) == $page) {
+                    $postObject['divider'] = true;
+                }
+
+                $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
             }
-
-            $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
         }
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
