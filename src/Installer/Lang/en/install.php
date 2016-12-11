@@ -54,7 +54,6 @@ return [
         'errors'  => 'Unable to save the .env file, Please create it manually.',
     ],
 
-
     /*
   *
   * Administrator page translations.
