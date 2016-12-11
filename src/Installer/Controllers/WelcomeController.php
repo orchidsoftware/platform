@@ -15,9 +15,11 @@ class WelcomeController extends Controller
     public function welcome()
     {
         Artisan::call('vendor:publish');
+        Artisan::call('event:generate');
         Artisan::call('config:clear');
         Artisan::call('view:clear');
         Artisan::call('route:clear');
+        Artisan::call('storage:link');
 
         return view('install::welcome');
     }

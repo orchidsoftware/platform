@@ -5,32 +5,21 @@
 @section('description',$description)
 
 
-
+@section('navbar')
+    <div class="col-sm-6 col-xs-12 text-right">
+        <div class="btn-group" role="group">
+            <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
+        </div>
+    </div>
+@stop
 
 
 @section('content')
 
 
-    <!-- main header -->
-    <header class="bg-light lter b-b wrapper-md">
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">{{$name or ''}}</h1>
-                <small class="text-muted">{{$description or ''}}</small>
-            </div>
-            <div class="col-sm-6 col-xs-12 text-right">
-                <div class="btn-group" role="group">
-                    <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- / main header -->
-
-
     <!-- main content -->
-    <section class="bg-white-only b-l bg-auto no-border-xs">
-
+    <section class="wrapper">
+        <div class="bg-white-only bg-auto no-border-xs">
 
         @if($roles->count() > 0)
             <div class="panel">
@@ -91,7 +80,7 @@
 
         @endif
 
-
+        </div>
     </section>
     <!-- / main content -->
 

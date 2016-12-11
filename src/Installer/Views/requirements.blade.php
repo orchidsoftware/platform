@@ -1,6 +1,8 @@
 @extends('install::layouts.install')
 
 @section('title', trans('install.requirements.title'))
+@section('descriptions', trans('install.requirements.message'))
+
 @section('container')
 
 
@@ -18,19 +20,20 @@
     @endforeach
 </ul>
 
-@if(!isset($requirements['errors']))
+
     <div class="text-right">
-        <a href="{{ route('install::permissions') }}" class="btn btn-primary">
-            {{ trans('install.next') }}
+        <a href="{{ route('install::permissions') }}"
+           @if(!isset($requirements['errors']))
+           class="btn btn-link"
+           @else
+           class="btn btn-danger disable" disabled
+               @endif
+        >
+
+            {{ trans('install.next') }} <i
+                    class="ion-ios-arrow-right m-l-xs"> </i>
         </a>
     </div>
-@else
-    <div class="text-right">
-        <a href="#" class="btn btn-danger disable" disabled>
-            {{ trans('install.next') }}
-        </a>
-    </div>
-@endif
 
 
 @stop

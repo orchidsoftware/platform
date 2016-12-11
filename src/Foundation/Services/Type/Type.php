@@ -20,6 +20,11 @@ abstract class Type implements TypeInterface
     /**
      * @var string
      */
+    public $description = '';
+
+    /**
+     * @var string
+     */
     public $slug = '';
 
     /**

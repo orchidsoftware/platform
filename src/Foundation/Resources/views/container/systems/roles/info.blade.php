@@ -39,7 +39,7 @@
                         @foreach($group as $value)
 
 
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4 m-t-xs m-b-xs">
                                 <label class="i-checks m-b-none">
                                     <input type="checkbox" name="permissions[{{$value['slug']}}]" value="1"
                                     @if(array_key_exists('active',$value) && $value['active']) checked="checked" @endif>

@@ -1,6 +1,8 @@
 @extends('install::layouts.install')
 
 @section('title', trans('install.permissions.title'))
+@section('descriptions', trans('install.permissions.message'))
+
 @section('container')
 
 
@@ -8,7 +10,7 @@
 <ul class="list-group center wrapper">
     @foreach($permissions['permissions'] as $permission)
         <li class="m-b-sm">
-            {{ $permission['folder'] }} -
+            <span class="font-thin">{{ $permission['folder'] }}</span> -
             {{ $permission['permission'] }}
 
             @if($permission['isSet'])
@@ -20,19 +22,20 @@
     @endforeach
 </ul>
 
-@if(!isset($permissions['errors']))
+
     <div class="text-right">
-        <a href="{{ route('install::database') }}" class="btn btn-primary">
-            {{ trans('install.next') }}
+        <a
+                @if(!isset($permissions['errors']))
+                href="{{ route('install::database') }}" class="btn btn-link"
+                @else
+                href="#" class="btn btn-danger disable" disabled
+                @endif
+        >
+            {{ trans('install.next') }} <i
+                    class="ion-ios-arrow-right m-l-xs"> </i>
         </a>
     </div>
-@else
-    <div class="text-right">
-        <a href="#" class="btn btn-danger disable" disabled>
-            {{ trans('install.next') }}
-        </a>
-    </div>
-@endif
+
 
 
 @stop

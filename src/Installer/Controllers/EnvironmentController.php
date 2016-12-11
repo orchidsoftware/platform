@@ -55,7 +55,7 @@ class EnvironmentController extends Controller
     {
         $message = $this->EnvironmentManager->saveFile($input);
 
-        return $redirect->route('LaravelInstaller::environment')
+        return $redirect->route('install::environment')
                         ->with(['message' => $message]);
     }
 }

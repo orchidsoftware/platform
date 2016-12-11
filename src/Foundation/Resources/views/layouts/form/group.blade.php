@@ -4,32 +4,24 @@
 @section('title',$name)
 @section('description',$description)
 
+
+
+@section('navbar')
+    <div class="col-sm-6 col-xs-12 text-right">
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
+            <button type="submit" form="form-group-remove" class="btn btn-link"  @if($method == 'create') disabled @endif><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
+        </div>
+    </div>
+@stop
+
+
 @section('content')
 
 
-    <!-- main header -->
-    <header class="bg-light lter b-b wrapper-md">
-        <div class="row">
-            <div class="col-sm-6 col-xs-12">
-                <h1 class="m-n font-thin h3 text-black">{{$name or ''}}</h1>
-                <small class="text-muted">{{$description or ''}}</small>
-            </div>
-
-            <div class="col-sm-6 col-xs-12 text-right">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
-                    <button type="submit" form="form-group-remove" class="btn btn-link"  @if($method == 'create') disabled @endif><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
-                </div>
-            </div>
-
-        </div>
-    </header>
-    <!-- / main header -->
-
-
-
     <!-- main content -->
-    <section class="bg-white-only b-l bg-auto no-border-xs">
+    <section class="wrapper">
+        <div class="bg-white-only bg-auto no-border-xs">
         <div class="nav-tabs-alt">
             <ul class="nav nav-tabs" role="tablist">
 
@@ -87,7 +79,7 @@
             </form>
         @endif
 
-
+        </div>
     </section>
     <!-- / main content -->
 

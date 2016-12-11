@@ -16,6 +16,11 @@ class CompetitionType extends Type
     /**
      * @var string
      */
+    public $description = 'Cоперничество за достижение превосходства.';
+
+    /**
+     * @var string
+     */
     public $slug = 'competition';
 
     /**

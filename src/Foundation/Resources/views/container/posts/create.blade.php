@@ -2,12 +2,21 @@
 
 
 @section('title',$type->name)
+@section('descriptions',$type->description)
 
 
+@section('navbar')
+    <div class="col-md-6 no-padder text-right">
+
+        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+            <button type="submit" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i>
+            </button>
+        </div>
+    </div>
+@stop
 
 
 @section('content')
-
 
     <div class="app-content-body app-content-full" id="post">
 
@@ -31,27 +40,6 @@
             <!-- column -->
             <div class="col w lter b-r">
                 <div class="vbox">
-
-
-
-
-                    <div class="wrapper b-b">
-
-                        <div class="row m-n">
-                            <div class="col-md-6 no-padder">
-                                <h4 class="font-thin">{{$type->name or '' }}</h4>
-                            </div>
-
-                            <div class="col-md-6 no-padder text-right">
-
-                                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                                    <button type="submit" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i>
-                                    </button>
-                                </div>
-                                {{ csrf_field() }}
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="nav-tabs-alt">
                         <ul class="nav nav-tabs nav-justified">
@@ -118,7 +106,7 @@
                 <!-- /column -->
             @endif
 
-
+            {{ csrf_field() }}
         </form>
         <!-- /hbox layout -->
 

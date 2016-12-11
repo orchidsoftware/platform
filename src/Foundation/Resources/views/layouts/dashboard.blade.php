@@ -15,7 +15,7 @@
 
 
 <body>
-<div id="app" class="app app-header-fixed app-aside-fixed">
+<div id="app" class="app app-aside-fixed">
 
     <!-- header -->
     <header id="header" class="app-header navbar" role="menu">
@@ -37,8 +37,87 @@
         <!-- / navbar header -->
 
         <!-- navbar collapse -->
-        @include('dashboard::partials.navbar')
-                <!-- / navbar collapse -->
+        <div class="app-header wrapper navbar-collapse box-shadow bg-white-only">
+
+            <div class="col-xs-6">
+                <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                <small class="text-muted text-ellipsis">@yield('descriptions')</small>
+            </div>
+
+            @section('navbar')
+                <!-- nabar right -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle clear">
+                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNThlZjJlN2ExMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1OGVmMmU3YTExIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQzLjgxMjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+                                <span class="">{{Auth::user()->name}}</span>
+                                <b class="caret"></b>
+                            </a>
+                            <!-- dropdown -->
+                            <ul class="dropdown-menu animated fadeInRight w-full">
+                                <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                                    <div>
+                                        <p>300mb из 500mb</p>
+                                    </div>
+                                    <div class="progress progress-xs m-b-none dker">
+                                        <div class="progress-bar progress-bar-info" data-toggle="tooltip"
+                                             data-original-title="50%" style="width: 50%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <span class="badge bg-danger pull-right">30%</span>
+                                        <span>Настройки</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="app.page.profile">Профиль</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="app.docs">
+                                        <span class="label bg-info pull-right">новое</span>
+                                        Помощь
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{{ url('/dashboard/logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                            <!-- / dropdown -->
+                        </li>
+
+                        {{--
+                        <li>
+                            <a href="#" class="click" data-toggle="open" data-target="#quickview">
+                                <i class="fa fa-bars fa-fw"></i>
+                                <span class="visible-xs-inline">Notifications</span>
+                                <span class="badge badge-sm up bg-danger pull-right-xs">{{
+                                $UserNotification->where('read',false)->count() ? $UserNotification->where('read',false)->count() : ""
+                                }}</span>
+                            </a>
+                        </li>
+                    --}}
+
+                    </ul>
+                <!-- / navbar right -->
+            @show
+
+
+
+        </div>
+        <!-- / navbar collapse -->
     </header>
     <!-- / header -->
 
@@ -94,8 +173,8 @@
             <div class="navi-wrap">
 
                 <!-- nav -->
-                <nav class="navi clearfix h-full">
-                    <ul class="nav h-full b-b b-dark tab-content">
+                <nav class="navi clearfix">
+                    <ul class="nav b-b b-dark tab-content">
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
                     </ul>
                 </nav>
