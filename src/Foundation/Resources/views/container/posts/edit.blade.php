@@ -12,7 +12,7 @@
     <div class="col-md-6 text-right">
 
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
-            <button type="submit" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
+            <button type="submit" form="post-form" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
             <button type="submit" form="form-post-remove" class="btn btn-link"><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
 
         <!-- hbox layout -->
-        <form class="hbox hbox-auto-xs bg-light" method="post" action="{{route('dashboard.posts.type.update',[
+        <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post" action="{{route('dashboard.posts.type.update',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">
