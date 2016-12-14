@@ -4,7 +4,7 @@ namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FIle extends Model
+class File extends Model
 {
     /**
      * @var array
