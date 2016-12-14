@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
+
     /**
      * @var string
      */
@@ -48,6 +49,11 @@ class Section extends Model
         return $this->hasMany(Post::class);
     }
 
+    /**
+     * @param string $delimiter
+     * @param null $local
+     * @return string
+     */
     public function getTree($delimiter = '/', $local = null)
     {
         $local = $local ?: App::getLocale();
@@ -60,6 +66,37 @@ class Section extends Model
 
         return $this->treeName;
     }
+
+
+    /**
+     *
+     */
+    public function breadcrumbs(){
+        $local = App::getLocale();
+        $this->treeName = [];
+        $this->treeName[$this->slug] = $this->content[$local]['name'];
+        $tree = $this->recurse($this, $local);
+        if ($tree !== false) {
+            $this->recurse($this, $local);
+        }
+        return $this->treeName;
+    }
+
+
+    /**
+     * @param $model
+     * @return bool
+     */
+    private function recurse($model, $local)
+    {
+        if (! is_null($model->section_id)) {
+            $parrent = $this->find($model->section_id);
+            $this->treeName[$this->slug] = $parrent->content[$local]['name'];
+        }
+
+        return false;
+    }
+
 
     /**
      * @param $model
@@ -74,4 +111,7 @@ class Section extends Model
 
         return false;
     }
+
+
+
 }

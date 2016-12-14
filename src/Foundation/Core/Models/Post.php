@@ -45,7 +45,6 @@ class Post extends Model
         'type' => 'string',
         'slug' => 'string',
         'content' => 'array',
-        //'publish' => 'time',
     ];
 
 
@@ -153,4 +152,31 @@ class Post extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function breadcrumb(){
+        return $this->section()->first()->breadcrumb();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function attachment(){
+        return $this->hasMany(File::class);
+    }
+
+    /**
+     * Main image (First image)
+     * @return mixed
+     */
+    public function hero(){
+        $first = $this->attachment()->first();
+        return $first ? $first->url(): null;
+    }
+
+
 }
