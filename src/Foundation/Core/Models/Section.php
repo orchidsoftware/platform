@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-
     /**
      * @var string
      */
@@ -67,11 +66,8 @@ class Section extends Model
         return $this->treeName;
     }
 
-
-    /**
-     *
-     */
-    public function breadcrumb(){
+    public function breadcrumb()
+    {
         $local = App::getLocale();
         $this->treeName = [];
         $this->treeName[$this->slug] = $this->content[$local]['name'];
@@ -79,9 +75,9 @@ class Section extends Model
         if ($tree !== false) {
             $this->recurse($this, $local);
         }
+
         return $this->treeName;
     }
-
 
     /**
      * @param $model
@@ -97,7 +93,6 @@ class Section extends Model
         return false;
     }
 
-
     /**
      * @param $model
      * @return bool
@@ -111,7 +106,4 @@ class Section extends Model
 
         return false;
     }
-
-
-
 }
