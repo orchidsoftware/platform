@@ -151,30 +151,30 @@ class Post extends Model
         return $this->belongsTo(Section::class);
     }
 
-
     /**
      * @return mixed
      */
-    public function breadcrumb(){
+    public function breadcrumb()
+    {
         return $this->section()->first()->breadcrumb();
     }
 
-
     /**
      * @return mixed
      */
-    public function attachment(){
+    public function attachment()
+    {
         return $this->hasMany(File::class);
     }
 
     /**
-     * Main image (First image)
+     * Main image (First image).
      * @return mixed
      */
-    public function hero(){
+    public function hero()
+    {
         $first = $this->attachment()->first();
-        return $first ? $first->url(): null;
+
+        return $first ? $first->url() : null;
     }
-
-
 }

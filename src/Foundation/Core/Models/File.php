@@ -39,12 +39,12 @@ class File extends Model
         return $this->belongsTo(Post::class);
     }
 
-
     /**
      * @param string $prefix
      * @return string
      */
-    public function url($prefix = 'storage'){
-        return '/'. $prefix. $this->path . $this->name;
+    public function url($prefix = 'storage')
+    {
+        return '/'.$prefix.$this->path.$this->name;
     }
 }
