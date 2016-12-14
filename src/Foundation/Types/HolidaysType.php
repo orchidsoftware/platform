@@ -45,7 +45,7 @@ class HolidaysType extends Type
     /**
      * @return array
      */
-    public function setFields()
+    public function fields()
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название|help:Главный заголовок',
@@ -77,7 +77,7 @@ class HolidaysType extends Type
     /**
      * @return array
      */
-    public function setModules()
+    public function modules()
     {
         return [
             BasePostForm::class,

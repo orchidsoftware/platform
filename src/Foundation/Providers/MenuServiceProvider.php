@@ -147,7 +147,7 @@ class MenuServiceProvider extends ServiceProvider
         ];
 
         $allPost = $dashboard->types();
-        foreach ($allPost as $key => $page) {
+        foreach ($allPost as $page) {
             if ($page->display) {
                 $postObject = [
                     'slug' => $page->slug,

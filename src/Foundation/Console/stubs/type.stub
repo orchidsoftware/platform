@@ -1,0 +1,61 @@
+<?php namespace DummyNamespace;
+
+use Orchid\Foundation\Services\Type\Type;
+
+class DummyClass extends Type
+{
+
+    /**
+     * @var string
+     */
+    public $name = '';
+
+    /**
+     * @var string
+     */
+    public $slug = '';
+
+    /**
+     * @var string
+     */
+    public $icon = '';
+
+    /**
+     * Slug url /news/{name}.
+     * @var string
+     */
+    public $slugFields = '';
+
+    /**
+     * Rules Validation.
+     * @return array
+     */
+    public function rules()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function fields()
+    {
+        return [];
+    }
+
+    /**
+     * Grid View for post type.
+     */
+    public function grid()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function modules()
+    {
+        return [];
+    }
+}

@@ -33,10 +33,6 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerPublic();
 
         $this->registerProviders();
-        //Композер для меню
-
-        View::composer('dashboard:*', DashboardMenuComposer::class);
-        View::composer('dashboard:*', DashboardNotificationComposer::class);
     }
 
     /**

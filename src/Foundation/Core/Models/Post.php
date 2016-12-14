@@ -140,7 +140,7 @@ class Post extends Model
      */
     public function getStringTags()
     {
-        return $tags = $this->tags->implode('name', $this->getTagsDelimiter());
+        return $this->tags->implode('name', $this->getTagsDelimiter());
     }
 
     /**

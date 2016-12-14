@@ -77,17 +77,13 @@ abstract class Type implements TypeInterface
     public $display = true;
 
     /**
-     * To determine the properties by the function.
-     * @var array
+     * @return mixed
      */
-    private $method = [
-        'setName',
-        'setRelations',
-        'setTemplates',
-    ];
+    abstract public function fields();
 
-    abstract public function setFields();
-
+    /**
+     * @return mixed
+     */
     abstract public function grid();
 
     /**
@@ -179,12 +175,14 @@ abstract class Type implements TypeInterface
 
     /**
      * @param string $language
-     * @param string $prefix
+     * @param null $post
+     * @param null $prefix
      * @return string
+     * @throws TypeException
      */
     public function generateForm($language = 'en', $post = null, $prefix = null)
     {
-        $this->fields = $this->setFields();
+        $this->fields = $this->fields();
         $this->parseFields();
 
         $fields = $this->fields;
@@ -250,7 +248,7 @@ abstract class Type implements TypeInterface
      */
     public function checkModules()
     {
-        if (method_exists($this, 'setModules') && ! empty($this->setModules())) {
+        if (method_exists($this, 'modules') && ! empty($this->modules())) {
             return true;
         }
 
@@ -263,7 +261,7 @@ abstract class Type implements TypeInterface
     public function getModules()
     {
         if ($this->checkModules()) {
-            return $this->setModules();
+            return $this->modules();
         }
 
         return [];
@@ -279,7 +277,7 @@ abstract class Type implements TypeInterface
         }
 
         $html = collect();
-        $groups = $this->setModules();
+        $groups = $this->modules();
 
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 

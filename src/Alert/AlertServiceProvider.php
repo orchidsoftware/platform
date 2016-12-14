@@ -19,8 +19,6 @@ class AlertServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            //'\\Orchid\\Alert\\SessionStore',
-            //'\\Orchid\\Alert\\LaravelSessionStore'
             SessionStoreInterface::class,
             LaravelSessionStore::class
         );

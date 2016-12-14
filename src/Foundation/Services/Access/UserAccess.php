@@ -54,17 +54,17 @@ trait UserAccess
     }
 
     /**
-     * @param $CheckPermissions
+     * @param $сheckPermissions
      *
      * @return bool
      */
-    public function hasAccess($CheckPermissions)
+    public function hasAccess($сheckPermissions)
     {
         $Permissions = $this->roles()->pluck('permissions');
         $Permissions->prepend($this->permissions);
 
         foreach ($Permissions as $Permission) {
-            if (isset($Permission[$CheckPermissions]) && $Permission[$CheckPermissions]) {
+            if (isset($Permission[$сheckPermissions]) && $Permission[$сheckPermissions]) {
                 return true;
             }
         }
@@ -81,19 +81,19 @@ trait UserAccess
     }
 
     /**
-     * @param $Role
+     * @param $role
      */
-    public function addRole(RoleInterface $Role)
+    public function addRole(RoleInterface $role)
     {
-        $this->roles()->save($Role);
+        $this->roles()->save($role);
     }
 
     /**
-     * @param $Role
+     * @param $role
      */
-    public function removeRole(RoleInterface $Role)
+    public function removeRole(RoleInterface $role)
     {
-        $this->roles()->where('slug', $Role->getRoleSlug())->first()->remove();
+        $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
     }
 
     /**
@@ -108,10 +108,10 @@ trait UserAccess
     /**
      * @param array
      */
-    public function replaceRoles($Roles)
+    public function replaceRoles($roles)
     {
         $this->roles()->detach();
-        $this->roles()->attach($Roles);
+        $this->roles()->attach($roles);
     }
 
     /**
