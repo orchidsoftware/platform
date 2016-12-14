@@ -48,7 +48,6 @@ class Post extends Model
         //'publish' => 'time',
     ];
 
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -58,9 +57,8 @@ class Post extends Model
         'created_at',
         'updated_at',
         'deleted_at',
-        'publish'
+        'publish',
     ];
-
 
     /**
      * Get the route key for the model.
