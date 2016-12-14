@@ -37,6 +37,7 @@ class Role extends Model implements RoleInterface
         'permissions' => 'array',
     ];
 
+
     /**
      * Get the route key for the model.
      *

@@ -45,8 +45,22 @@ class Post extends Model
         'type' => 'string',
         'slug' => 'string',
         'content' => 'array',
-        'publish' => 'time',
+        //'publish' => 'time',
     ];
+
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'publish'
+    ];
+
 
     /**
      * Get the route key for the model.
