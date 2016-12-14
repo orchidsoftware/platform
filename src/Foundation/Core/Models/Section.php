@@ -71,7 +71,7 @@ class Section extends Model
     /**
      *
      */
-    public function breadcrumbs(){
+    public function breadcrumb(){
         $local = App::getLocale();
         $this->treeName = [];
         $this->treeName[$this->slug] = $this->content[$local]['name'];
