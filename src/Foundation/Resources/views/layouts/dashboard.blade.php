@@ -137,7 +137,7 @@
 
 
                         <li>
-                            <a href="http://localhost:8000/dashboard" class="navbar-brand text-lt w-full">
+                            <a href="/dashboard" class="navbar-brand text-lt w-full">
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
