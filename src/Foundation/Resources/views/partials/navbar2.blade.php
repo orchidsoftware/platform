@@ -17,9 +17,9 @@
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <i class="fa fa-bars fa-fw"></i>
                 <span class="visible-xs-inline">Notifications</span>
-                <span class="badge badge-sm up bg-danger pull-right-xs">{{
+                <span class="badge badge-sm up bg-danger pull-right-xs">{{--
                 $UserNotification->where('read',false)->count() ? $UserNotification->where('read',false)->count() : ""
-                }}</span>
+                --}}</span>
             </a>
             <!-- dropdown -->
             <div class="dropdown-menu w-xl animated fadeInUp">
@@ -249,9 +249,9 @@
             <a href="#" class="click" data-toggle="open" data-target="#quickview">
                 <i class="fa fa-bars fa-fw"></i>
                 <span class="visible-xs-inline">Notifications</span>
-                <span class="badge badge-sm up bg-danger pull-right-xs">{{
+                <span class="badge badge-sm up bg-danger pull-right-xs">{{--
                 $UserNotification->where('read',false)->count() ? $UserNotification->where('read',false)->count() : ""
-                }}</span>
+                --}}</span>
             </a>
         </li>
 
