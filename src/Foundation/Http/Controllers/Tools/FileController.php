@@ -22,7 +22,7 @@ class FileController extends Controller
 
             return response()->json($file);
         } else {
-            dd('Изображение не пришло');
+            abort(415);
         }
     }
 

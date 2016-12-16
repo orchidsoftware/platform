@@ -9,8 +9,6 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
 use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Orchid\Foundation\Http\Composers\DashboardMenuComposer;
-use Orchid\Foundation\Http\Composers\DashboardNotificationComposer;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -33,10 +31,6 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerPublic();
 
         $this->registerProviders();
-        //Композер для меню
-
-        View::composer('dashboard:*', DashboardMenuComposer::class);
-        View::composer('dashboard:*', DashboardNotificationComposer::class);
     }
 
     /**

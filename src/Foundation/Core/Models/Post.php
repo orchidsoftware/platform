@@ -45,7 +45,18 @@ class Post extends Model
         'type' => 'string',
         'slug' => 'string',
         'content' => 'array',
-        'publish' => 'time',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'publish',
     ];
 
     /**
@@ -129,7 +140,7 @@ class Post extends Model
      */
     public function getStringTags()
     {
-        return $tags = $this->tags->implode('name', $this->getTagsDelimiter());
+        return $this->tags->implode('name', $this->getTagsDelimiter());
     }
 
     /**
@@ -138,5 +149,32 @@ class Post extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function breadcrumb()
+    {
+        return $this->section()->first()->breadcrumb();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function attachment()
+    {
+        return $this->hasMany(File::class);
+    }
+
+    /**
+     * Main image (First image).
+     * @return mixed
+     */
+    public function hero()
+    {
+        $first = $this->attachment()->first();
+
+        return $first ? $first->url() : null;
     }
 }

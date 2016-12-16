@@ -27,6 +27,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'Commands\\CreateAdminCommand',
+        'Commands\\MakeType',
     ];
 
     /**

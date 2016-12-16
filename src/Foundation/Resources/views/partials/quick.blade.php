@@ -223,6 +223,7 @@
 
                         <div class="streamline b-l m-b wrapper">
 
+                            {{--
                             @foreach($UserNotification as $notification)
                                 <div class="sl-item b-l">
                                     <div class="m-l">
@@ -233,6 +234,7 @@
                                     </div>
                                 </div>
                             @endforeach
+                            --}}
                         </div>
 
 

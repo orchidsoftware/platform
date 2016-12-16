@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Services\Forms;
 
-interface FormContract
+interface FormInterface
 {
     /**
      * @return mixed

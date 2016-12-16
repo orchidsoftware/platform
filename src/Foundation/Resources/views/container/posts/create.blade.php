@@ -9,7 +9,7 @@
     <div class="col-md-6 no-padder text-right">
 
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
-            <button type="submit" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i>
+            <button type="submit" form="post-form" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i>
             </button>
         </div>
     </div>
@@ -33,7 +33,7 @@
 
 
     <!-- hbox layout -->
-        <form class="hbox hbox-auto-xs bg-light" method="post"
+        <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post"
               action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
 
 

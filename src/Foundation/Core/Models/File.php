@@ -4,8 +4,13 @@ namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FIle extends Model
+class File extends Model
 {
+    /**
+     * @var string
+     */
+    protected $table = 'files';
+
     /**
      * @var array
      */
@@ -32,5 +37,14 @@ class FIle extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    /**
+     * @param string $prefix
+     * @return string
+     */
+    public function url($prefix = 'storage')
+    {
+        return '/'.$prefix.$this->path.$this->name;
     }
 }

@@ -40,7 +40,7 @@ class TestType extends Type
     /**
      * @return array
      */
-    public function setFields()
+    public function fields()
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
@@ -74,7 +74,7 @@ class TestType extends Type
     /**
      * @return array
      */
-    public function setModules()
+    public function modules()
     {
         return [
             BasePostForm::class,
