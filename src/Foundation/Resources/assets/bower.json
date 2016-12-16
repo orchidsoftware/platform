@@ -39,6 +39,7 @@
     "summernote": "^0.8.2",
     "bower": "*",
     "install": "^1.0.4",
-    "froala-wysiwyg-editor": "^2.3.5"
+    "froala-wysiwyg-editor": "^2.3.5",
+    "g-map-field": "*"
   }
 }

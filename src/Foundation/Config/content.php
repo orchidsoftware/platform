@@ -43,6 +43,7 @@ return [
         'place' => \Orchid\Foundation\Fields\PlaceField::class,
         'datetime' => \Orchid\Foundation\Fields\DateTimerField::class,
         'checkbox' => \Orchid\Foundation\Fields\CheckBoxField::class,
+        'path' => \Orchid\Foundation\Fields\PathField::class,
     ],
 
     /*

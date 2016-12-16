@@ -36,6 +36,7 @@ elixir(function(mix) {
         './vendor/moment/min/locales.js',
         './vendor/moment/min/moment-with-locales.js',
         './vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+        './vendor/g-map-field/dist/js/index.js',
         "./js/app.js",
         "./js/modules/**",
         "./js/components/**",

@@ -49,6 +49,7 @@ class RecreationType extends Type
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название|help:Главный заголовок',
+            'path' => 'tag:path|name:path|required|title:Маршрут|help:Маршрут',
             'body' => 'tag:textarea|name:body|required|class:editor|rows:10',
             'open' => 'tag:datetime|type:text|name:open|max:255|required|title:Дата открытия|help:Открытие мероприятия состоиться',
             'close' => 'tag:datetime|type:text|name:close|max:255|required|title:Дата закрытия',
@@ -58,7 +59,7 @@ class RecreationType extends Type
             'title' => 'tag:input|type:text|name:title|max:255|required|title:Заголовок статьи|help:Упоменение',
             'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Краткое описание',
             'keywords' => 'tag:tags|name:keywords|max:255|required|title:Ключевые слова|help:Упоменение',
-            'robot' => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Разрешить поисковым роботам индесацию страницы',
+            'robot' => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Разрешить поисковым роботам индесацию страницы'
         ];
     }
 
