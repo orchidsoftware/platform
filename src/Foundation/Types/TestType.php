@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Types;
 
-use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Foundation\Services\Type\Type;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
+use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 
 class TestType extends Type
@@ -55,7 +55,6 @@ class TestType extends Type
             'keywords' => 'tag:tags|name:keywords|max:255|required|title:Ключевые слова|help:Упоменение',
             'robot' => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Разрешить поисковым роботам индесацию страницы',
 
-
 //            'route'=> 'tag:path|name:route|title:Маршрут',
 
             'free' => 'tag:checkbox|name:robot|max:255|required|title:Бесплатно|help:Мероприятие бесплатно|placeholder:Мероприятие бесплатно|default:1',
@@ -83,7 +82,7 @@ class TestType extends Type
         return [
             ImagesPostForm::class,
             BasePostForm::class,
-            PathPostForm::class
+            PathPostForm::class,
         ];
     }
 }
