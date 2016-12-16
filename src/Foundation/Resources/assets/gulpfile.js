@@ -22,6 +22,7 @@ elixir(function(mix) {
 
     mix.scripts([
         "./vendor/jquery/dist/jquery.min.js",
+        "./vendor/google-maps/lib/Google.js",
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
         "./vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
         "./vendor/vue/dist/vue.js",
@@ -29,8 +30,6 @@ elixir(function(mix) {
         "./vendor/chosen/chosen.jquery.js",
         "./vendor/froala-wysiwyg-editor/js/froala_editor.min.js",
         "./vendor/dropzone/dist/min/dropzone.min.js",
-
-
 
         './vendor/moment/min/moment.min.js',
         './vendor/moment/min/locales.js',

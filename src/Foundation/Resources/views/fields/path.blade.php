@@ -4,10 +4,8 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-    <div class="input-group">
-        <div style="width: 100%; height: 20vh;">
-            <path-input field-name="{{$prefix}}[{{$lang}}][{{$name}}]" field-value='[]'></path-input>
-        </div>
+    <div class="input-group w-full">
+        <path-input field-name="{{$prefix}}[{{$lang}}][{{$name}}]" field-value='[]'></path-input>
     </div>
 </div>
 

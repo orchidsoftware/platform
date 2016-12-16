@@ -18440,6 +18440,25 @@ fieldset[disabled] .form-control-grey {
 .fr-box.fr-basic .fr-element {
   min-height: 500px;
 }
+.map-container {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.map-container .g-maps {
+  width: 100%;
+  min-height: 40vh;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.map-container .controls {
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+}
 .install {
   display: block;
   -ms-flex-align: center;
