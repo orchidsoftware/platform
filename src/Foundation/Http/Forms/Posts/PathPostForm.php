@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
-use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Services\Forms\Form;
 
 class PathPostForm extends Form
@@ -11,7 +10,6 @@ class PathPostForm extends Form
      * @var string
      */
     public $name = 'Маршрут';
-
 
     /**
      * @param null $type
