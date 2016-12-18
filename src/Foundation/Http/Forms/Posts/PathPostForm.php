@@ -14,6 +14,18 @@ class PathPostForm extends Form
 
 
     /**
+     * Display Base Options.
+     * @param null $type
+     * @param Post|null $post
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function get($type = null, Post $post = null)
+    {
+        return view('dashboard::container.posts.modules.path', [
+        ]);
+    }
+
+    /**
      * @param null $type
      * @param null $post
      */
