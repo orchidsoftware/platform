@@ -45,7 +45,7 @@ class TestType extends Type
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
-            'body' => 'tag:textarea|name:body|max:255|required|class:editor|rows:10',
+            'body' => 'tag:textarea|name:body|max:255|required|class:summernote|rows:10',
 
             'place' => 'tag:place|type:text|name:place|max:255|required|title:Место положение|help:Адрес на карте',
             'datetime' => 'tag:datetime|type:text|name:open|max:255|required|title:Дата открытия|help:Открытие мероприятия состоиться',

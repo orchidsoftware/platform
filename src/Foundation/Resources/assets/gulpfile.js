@@ -17,6 +17,7 @@ elixir(function(mix) {
     mix.copy('./vendor/bootstrap/dist/fonts/', '../dist/fonts');
     mix.copy('./vendor/font-awesome/fonts/', '../dist/fonts');
     mix.copy('./vendor/simple-line-icons/fonts/', '../dist/fonts');
+    mix.copy('./vendor/summernote/dist/font/', '../dist/fonts');
 
 
 
@@ -28,7 +29,7 @@ elixir(function(mix) {
         "./vendor/vue/dist/vue.js",
         "./vendor/vue-resource/dist/vue-resource.js",
         "./vendor/chosen/chosen.jquery.js",
-        "./vendor/froala-wysiwyg-editor/js/froala_editor.min.js",
+        "./vendor/summernote/dist/summernote.js",
         "./vendor/dropzone/dist/min/dropzone.min.js",
 
         './vendor/moment/min/moment.min.js',
