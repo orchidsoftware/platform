@@ -12,7 +12,7 @@ interface FormInterface
     /**
      * @return mixed
      */
-    public function get();
+    //public function get();
 
     /**
      * @return mixed
