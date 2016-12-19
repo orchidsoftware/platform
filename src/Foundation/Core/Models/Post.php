@@ -156,7 +156,8 @@ class Post extends Model
      */
     public function breadcrumb()
     {
-        return $this->section()->first()->breadcrumb();
+        $section = $this->section()->first();
+        return $section ? $section->breadcrumb() : [];
     }
 
     /**
