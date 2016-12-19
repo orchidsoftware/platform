@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Types;
 
-use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Foundation\Services\Type\Type;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
+use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 
 class TestType extends Type
@@ -45,7 +45,7 @@ class TestType extends Type
     {
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Упоменение',
-            'body' => 'tag:textarea|name:body|max:255|required|class:editor|rows:10',
+            'body' => 'tag:textarea|name:body|max:255|required|class:summernote|rows:10',
 
             'place' => 'tag:place|type:text|name:place|max:255|required|title:Место положение|help:Адрес на карте',
             'datetime' => 'tag:datetime|type:text|name:open|max:255|required|title:Дата открытия|help:Открытие мероприятия состоиться',
@@ -54,7 +54,6 @@ class TestType extends Type
             'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Краткое описание',
             'keywords' => 'tag:tags|name:keywords|max:255|required|title:Ключевые слова|help:Упоменение',
             'robot' => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Разрешить поисковым роботам индесацию страницы',
-
 
 //            'route'=> 'tag:path|name:route|title:Маршрут',
 
@@ -83,7 +82,7 @@ class TestType extends Type
         return [
             ImagesPostForm::class,
             BasePostForm::class,
-            PathPostForm::class
+            PathPostForm::class,
         ];
     }
 }

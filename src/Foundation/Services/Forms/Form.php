@@ -50,7 +50,7 @@ abstract class Form implements FormInterface
     /**
      * @return mixed
      */
-    abstract public function get();
+    //abstract public function get();
 
     /**
      * Validation Rules Method.

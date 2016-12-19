@@ -8,28 +8,6 @@ return [
      */
     'types' => [
         \Orchid\Foundation\Types\TestType::class,
-
-        \Orchid\Foundation\Types\NewsType::class,
-        \Orchid\Foundation\Types\ExhibitionsType::class,
-        \Orchid\Foundation\Types\HolidaysType::class,
-        \Orchid\Foundation\Types\ChildrenType::class,
-        \Orchid\Foundation\Types\CinemaType::class,
-        \Orchid\Foundation\Types\ConcertsType::class,
-        \Orchid\Foundation\Types\EventType::class,
-        \Orchid\Foundation\Types\FestivalsType::class,
-        \Orchid\Foundation\Types\TheatricalType::class,
-        \Orchid\Foundation\Types\TradeType::class,
-        \Orchid\Foundation\Types\CompetitionType::class,
-        \Orchid\Foundation\Types\RecreationType::class,
-        \Orchid\Foundation\Types\MonumentsType::class,
-        \Orchid\Foundation\Types\ParksType::class,
-        \Orchid\Foundation\Types\ShrinesType::class,
-        \Orchid\Foundation\Types\MuseumsType::class,
-        \Orchid\Foundation\Types\CenterType::class,
-        \Orchid\Foundation\Types\HotelsType::class,
-        \Orchid\Foundation\Types\RestaurantsType::class,
-        \Orchid\Foundation\Types\PeopleType::class,
-
     ],
 
     /*
