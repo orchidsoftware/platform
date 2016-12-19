@@ -106,4 +106,26 @@ class Section extends Model
 
         return false;
     }
+
+
+
+    /**
+     * @param $field
+     * @param null $lang
+     * @return mixed|null
+     */
+    public function getContent($field, $lang = null)
+    {
+        try {
+            $lang = $lang ?: App::getLocale();
+            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
+                return $this->content[$lang][$field];
+            } elseif (in_array($field, $this->getFillable())) {
+                return $this->$field;
+            }
+        } catch (\Exception $exception) {
+        }
+    }
+
+
 }
