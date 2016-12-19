@@ -107,8 +107,6 @@ class Section extends Model
         return false;
     }
 
-
-
     /**
      * @param $field
      * @param null $lang
@@ -126,6 +124,4 @@ class Section extends Model
         } catch (\Exception $exception) {
         }
     }
-
-
 }
