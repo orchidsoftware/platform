@@ -18,10 +18,11 @@ class PathPostForm extends Form
      * @param Post|null $post
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get($type = null, Post $post = null) {
+    public function get($type = null, Post $post = null)
+    {
         $route_json = null;
 
-        if($post != null) {
+        if ($post != null) {
             $content = $post->getAttribute('content');
 
             $route = $content['route'];
@@ -32,7 +33,7 @@ class PathPostForm extends Form
         }
 
         return view('dashboard::container.posts.modules.path', [
-            'route' => $route_json
+            'route' => $route_json,
         ]);
     }
 
