@@ -1,6 +1,7 @@
+/*
 document.addEventListener('DOMContentLoaded', function () {
     let app = new Vue({
-        el: '#app'
+        el: '#post'
     });
 
     $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
@@ -10,3 +11,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 1000);
     });
 });
+*/

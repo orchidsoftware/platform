@@ -49345,6 +49345,20 @@ $(document).ready(function() {
         minHeight: 300,
     });
 });
+/*
+document.addEventListener('DOMContentLoaded', function () {
+    let app = new Vue({
+        el: '#post'
+    });
+
+    $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
+        console.log('kjbnjbnolbkljb');
+        setTimeout(function () {
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
+    });
+});
+*/
 if (document.querySelector('#static-container')) {
     new Vue({
         el: '#static-container',
@@ -49382,16 +49396,4 @@ if (document.querySelector('#static-container')) {
         }
     });
 }
-document.addEventListener('DOMContentLoaded', function () {
-    let app = new Vue({
-        el: '#app'
-    });
-
-    $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        console.log('kjbnjbnolbkljb');
-        setTimeout(function () {
-            window.dispatchEvent(new Event('resize'));
-        }, 1000);
-    });
-});
 //# sourceMappingURL=orchid.js.map
