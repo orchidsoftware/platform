@@ -1,10 +1,10 @@
+let postApp = null;
 document.addEventListener('DOMContentLoaded', function () {
-    let app = new Vue({
-        el: '#app'
+    postApp = new Vue({
+        el: '#route-app'
     });
 
     $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        console.log('kjbnjbnolbkljb');
         setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
         }, 1000);

@@ -22,7 +22,7 @@ elixir(function(mix) {
 
     mix.scripts([
         "./vendor/jquery/dist/jquery.min.js",
-        "./vendor/google-maps/lib/Google.js",
+        //"./vendor/google-maps/lib/Google.js",
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
         "./vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
         "./vendor/vue/dist/vue.js",
