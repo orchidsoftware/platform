@@ -38,7 +38,6 @@ abstract class Type implements TypeInterface
      */
     public $fields = [];
 
-
     /**
      * Available templates.
      * @var
