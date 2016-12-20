@@ -17,9 +17,7 @@ class FileController extends Controller
      */
     public function __construct()
     {
-
     }
-
 
     /**
      * @param Request $request
@@ -28,9 +26,11 @@ class FileController extends Controller
     {
         if ($request->hasFile('images')) {
             $file = $this->saveImage($request->file('images'));
+
             return response()->json($file);
-        }elseif($request->hasFile('files')){
+        } elseif ($request->hasFile('files')) {
             $file = $this->saveFile($request->file('files'));
+
             return response()->json($file);
         } else {
             abort(415);
@@ -62,7 +62,6 @@ class FileController extends Controller
         return $file;
     }
 
-
     /**
      * @param UploadedFile $image
      * @return static
@@ -88,8 +87,6 @@ class FileController extends Controller
 
         return $file;
     }
-
-
 
     protected function saveImageDataBase()
     {
