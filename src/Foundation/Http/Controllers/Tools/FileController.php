@@ -13,13 +13,24 @@ use Orchid\Foundation\Http\Controllers\Controller;
 class FileController extends Controller
 {
     /**
+     * FileController constructor.
+     */
+    public function __construct()
+    {
+
+    }
+
+
+    /**
      * @param Request $request
      */
     public function upload(Request $request)
     {
         if ($request->hasFile('images')) {
             $file = $this->saveImage($request->file('images'));
-
+            return response()->json($file);
+        }elseif($request->hasFile('files')){
+            $file = $this->saveFile($request->file('files'));
             return response()->json($file);
         } else {
             abort(415);
@@ -50,6 +61,35 @@ class FileController extends Controller
 
         return $file;
     }
+
+
+    /**
+     * @param UploadedFile $image
+     * @return static
+     */
+    protected function saveFile(UploadedFile $file)
+    {
+        Storage::disk('public')->makeDirectory(date('Y/m/d'));
+
+        $name = sha1(time().$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+        $path = '/'.date('Y/m/d').'/';
+
+        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
+
+        $file->move($full_path, $name);
+
+        $file = File::create([
+            'name' => $name,
+            'original_name' => $file->getClientOriginalName(),
+            'mime' => $file->getMimeType(),
+            'path' => $path,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return $file;
+    }
+
+
 
     protected function saveImageDataBase()
     {

@@ -49,7 +49,7 @@ class PathPostForm extends Form
         $content = $post->content;
 
         foreach ($content as $lang => $item) {
-            $content['route'] = json_decode($route);
+            $content[$lang]['route'] = json_decode($route);
         }
 
         $post->content = $content;

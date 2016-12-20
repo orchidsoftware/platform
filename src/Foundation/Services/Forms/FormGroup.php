@@ -52,7 +52,7 @@ abstract class FormGroup
 
     /**
      * Global Forms Storage.
-     *
+     * Deprecated
      * @var \Illuminate\Support\Collection
      */
     public $storage;
