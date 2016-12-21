@@ -8,9 +8,9 @@
 
 
            @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}][{{$name}}]"
+           name="{{$prefix}}[{{$lang}}]{{$name}}"
            @else
-           name="{{$lang}}[{{$name}}]"
+           name="{{$lang}}{{$name}}"
            @endif
 
 

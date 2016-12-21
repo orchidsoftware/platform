@@ -7,9 +7,13 @@
         @endif
 
         <div class="input-group">
-            <input class="form-control {{$class or ''}}" id="place-{{$name}}-{{$lang}}" name="{{$prefix}}[{{$lang}}][{{$name}}][name]"  value="{{$value['name'] or ''}}" placeholder="Адрес ...">
-            <input type="hidden" id="lat-{{$name}}-{{$lang}}"  name="{{$prefix}}[{{$lang}}][{{$name}}][lat]" value="{{$value['lat'] or ''}}">
-            <input type="hidden" id="lng-{{$name}}-{{$lang}}"  name="{{$prefix}}[{{$lang}}][{{$name}}][lng]" value="{{$value['lng'] or ''}}">
+            <input class="form-control {{$class or ''}}" id="place-{{$name}}-{{$lang}}"
+                   name="{{$prefix}}[{{$lang}}]{{$name}}[name]" value="{{$value['name'] or ''}}"
+                   placeholder="Адрес ...">
+            <input type="hidden" id="lat-{{$name}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lat]"
+                   value="{{$value['lat'] or ''}}">
+            <input type="hidden" id="lng-{{$name}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lng]"
+                   value="{{$value['lng'] or ''}}">
             <span class="input-group-btn">
         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#map-place-{{$name}}-{{$lang}}"><i
                     class="fa fa-map-marker"></i></button>

@@ -24,12 +24,8 @@ class PathPostForm extends Form
 
         if ($post != null) {
             $content = $post->getAttribute('content');
-
             $route = $content['route'];
-
             $route_json = json_encode($route);
-
-//            dd($route_json);
         }
 
         return view('dashboard::container.posts.modules.path', [

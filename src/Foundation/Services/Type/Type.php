@@ -2,11 +2,11 @@
 
 namespace Orchid\Foundation\Services\Type;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Core\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Exceptions\TypeException;
 
 abstract class Type implements TypeInterface
@@ -59,26 +59,85 @@ abstract class Type implements TypeInterface
      * @var string
      */
     public $prefix = 'content';
-
+    /**
+     * @var bool
+     */
+    public $display = true;
     /**
      * @var null
      */
     private $cultivated = null;
 
     /**
-     * @var bool
+     * @param string $language
+     * @param null $post
+     * @return string
+     * @throws TypeException
      */
-    public $display = true;
+    public function generateForm($language = 'en', $post = null)
+    {
+        $this->fields = $this->fields();
+        $this->parseFields();
+
+        $form = '';
+        foreach ($this->fields as $field => $config) {
+            $field = config('content.fields.' . $config['tag']);
+
+            if (is_null($field)) {
+                throw new TypeException('Field ' . $config['tag'] . ' does not exist');
+            }
+
+            $field = new $field;
+            $config['lang'] = $language;
+
+
+            if (isset($config['prefix'])) {
+                $prefixArray = array_filter(explode(" ", $config['prefix']));
+
+                foreach ($prefixArray as $prefix) {
+                    $config['prefix'] .= "[" . $prefix . "]";
+                }
+            } else {
+                $config['prefix'] = $this->prefix;
+            }
+
+
+            if (isset($config['name'])) {
+                $nameArray = array_filter(explode(" ", $config['name']));
+
+                if (count($nameArray) > 1) {
+                    $config['name'] = '';
+
+                    if (!is_null($post)) {
+                        $config['value'] = $post->getContent($nameArray[0], $language);
+                    }
+
+
+                    foreach ($nameArray as $name) {
+                        $config['name'] .= "[" . $name . "]";
+                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && key_exists($name, $config['value'])) {
+                            $config['value'] = $config['value'][$name];
+                        }
+                    }
+
+                } else {
+                    $config['value'] = $post->getContent($config['name'], $language);
+                    $config['name'] = "[" . $config['name'] . "]";
+                }
+            }
+
+
+            $field = $field->create($config);
+            $form .= $field->render();
+        }
+
+        return $form;
+    }
 
     /**
      * @return mixed
      */
     abstract public function fields();
-
-    /**
-     * @return mixed
-     */
-    abstract public function grid();
 
     /**
      * Parse the data fields.
@@ -159,57 +218,6 @@ abstract class Type implements TypeInterface
     }
 
     /**
-     * Validation Request Rules.
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
-
-    /**
-     * @param string $language
-     * @param null $post
-     * @param null $prefix
-     * @return string
-     * @throws TypeException
-     */
-    public function generateForm($language = 'en', $post = null, $prefix = null)
-    {
-        $this->fields = $this->fields();
-        $this->parseFields();
-
-        $fields = $this->fields;
-
-        $form = '';
-        foreach ($fields as $field => $config) {
-            $field = config('content.fields.'.$config['tag']);
-
-            if (is_null($field)) {
-                throw new TypeException('Field '.$config['tag'].' does not exist');
-            }
-
-            $field = new $field;
-            $config['lang'] = $language;
-
-            if (! is_null($prefix)) {
-                $config['prefix'] = $prefix;
-            } else {
-                $config['prefix'] = $this->prefix;
-            }
-
-            if (! is_null($post)) {
-                $config['value'] = $post->getContent($config['name'], $language);
-            }
-
-            $field = $field->create($config);
-            $form .= $field->render();
-        }
-
-        return $form;
-    }
-
-    /**
      * @return array
      */
     public function generateGrid()
@@ -227,6 +235,11 @@ abstract class Type implements TypeInterface
     }
 
     /**
+     * @return mixed
+     */
+    abstract public function grid();
+
+    /**
      * Reqeust Validation.
      * @return bool
      */
@@ -238,15 +251,12 @@ abstract class Type implements TypeInterface
     }
 
     /**
-     * @return bool
+     * Validation Request Rules.
+     * @return array
      */
-    public function checkModules()
+    public function rules()
     {
-        if (method_exists($this, 'modules') && ! empty($this->modules())) {
-            return true;
-        }
-
-        return false;
+        return [];
     }
 
     /**
@@ -262,11 +272,23 @@ abstract class Type implements TypeInterface
     }
 
     /**
+     * @return bool
+     */
+    public function checkModules()
+    {
+        if (method_exists($this, 'modules') && !empty($this->modules())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * @return string
      */
     public function render()
     {
-        if (! is_null($this->cultivated)) {
+        if (!is_null($this->cultivated)) {
             return $this->cultivated;
         }
 
@@ -276,7 +298,7 @@ abstract class Type implements TypeInterface
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
             if (method_exists($form, 'get')) {
@@ -298,7 +320,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -317,7 +339,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -336,7 +358,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 

@@ -5,7 +5,7 @@
     @endif
 
     <div class="input-group w-full">
-        <path-input field-name="{{$prefix}}[{{$lang}}][{{$name}}]" field-value='[]'></path-input>
+        <path-input field-name="{{$prefix}}[{{$lang}}]{{$name}}" field-value='[]'></path-input>
     </div>
 </div>
 
