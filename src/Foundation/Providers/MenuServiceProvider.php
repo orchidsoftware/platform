@@ -88,7 +88,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => false,
         ];
 
-
         $errorMenu = [
             'slug' => 'logs',
             'icon' => 'fa fa-bug',
@@ -187,7 +186,6 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $backupMenu, 2);
-
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
