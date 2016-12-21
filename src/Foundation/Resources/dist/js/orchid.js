@@ -49125,7 +49125,7 @@ $(document).ready(function() {
         minHeight: 300,
     });
 });
-if (document.getElementsByClassName('route-app')) {
+if (document.getElementById('route-app')) {
 
     let postApp = null;
     document.addEventListener('DOMContentLoaded', function () {
