@@ -57,7 +57,7 @@
 
 
         autocomplete{{str_slug($name)}}{{$lang}}.addListener('place_changed', function () {
-            var cors = autocomplete{{$name}}{{$lang}}.getPlace().geometry.location;
+            var cors = autocomplete{{str_slug($name)}}{{$lang}}.getPlace().geometry.location;
             $('#lat-{{str_slug($name)}}-{{$lang}}').val(cors.lat());
             $('#lng-{{str_slug($name)}}-{{$lang}}').val(cors.lng());
         });
