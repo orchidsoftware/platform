@@ -48173,7 +48173,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 Vue.component('path-input', {
-    template: "<div class=\"map-container\" xmlns:v-on=\"http://www.w3.org/1999/xhtml\" xmlns:v-bind=\"http://www.w3.org/1999/xhtml\"><div class=\"g-maps\"></div><div class=\"controls\"><div class=\"row\"><ul class=\"list-group\"><li class=\"list-group-item\" v-for=\"(point, index) in currentPath.markers\" :key=\"point.coordsStr\"><div class=\"input-group\"> <span class=\"input-group-addon\">{{point.label}}</span> <input class=\"form-control\" type=\"text\" v-model=\"point.description\"><span class=\"input-group-btn\"><a v-on:click=\"toTop(index)\" class=\"btn btn-default\"><i class=\"glyphicon glyphicon-arrow-up\"></i></a><a v-on:click=\"toDown(index)\" class=\"btn btn-default\"><i class=\"glyphicon glyphicon-arrow-down\"></i></a><a v-on:click=\"remove(index)\" class=\"btn btn-default\"><i class=\"glyphicon glyphicon-remove\"></i></a></span></div></li></ul></div></div> <input type=\"hidden\" v-bind:name=\"fieldName\" v-bind:value=\"currentPath.serial\"></div>",
+    template: "<div class=\"map-container\" xmlns:v-on=\"http://www.w3.org/1999/xhtml\" xmlns:v-bind=\"http://www.w3.org/1999/xhtml\"><div class=\"g-maps\"></div><div class=\"controls\"><div class=\"row\"><ul class=\"list-group\"><li class=\"list-group-item\" v-for=\"(point, index) in currentPath.markers\" :key=\"point.coordsStr\"> <input type=\"text\" v-model=\"point.description\"><h5>{{point.label}} - {{point.coordsStr}}</h5> <button v-on:click=\"toTop(index)\" class=\"btn btn-default\">Вверх</button> <button v-on:click=\"toDown(index)\" class=\"btn btn-default\">Вниз</button> <button v-on:click=\"remove(index)\" class=\"btn btn-default\">Удалить</button></li></ul></div></div> <input type=\"hidden\" v-bind:name=\"fieldName\" v-bind:value=\"currentPath.serial\"></div>",
     mounted: function mounted() {
         this.init();
 
@@ -49125,18 +49125,23 @@ $(document).ready(function() {
         minHeight: 300,
     });
 });
-let postApp = null;
-document.addEventListener('DOMContentLoaded', function () {
-    postApp = new Vue({
-        el: '#route-app'
+if (document.getElementsByClassName('route-app')) {
+
+    let postApp = null;
+    document.addEventListener('DOMContentLoaded', function () {
+        postApp = new Vue({
+            el: '#route-app'
+        });
+
+        $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
+            setTimeout(function () {
+                window.dispatchEvent(new Event('resize'));
+            }, 1000);
+        });
     });
 
-    $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        setTimeout(function () {
-            window.dispatchEvent(new Event('resize'));
-        }, 1000);
-    });
-});
+}
+;
 if (document.querySelector('#static-container')) {
     new Vue({
         el: '#static-container',
