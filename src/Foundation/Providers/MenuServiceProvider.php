@@ -79,6 +79,16 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => false,
         ];
 
+        $backupMenu = [
+            'slug' => 'backup',
+            'icon' => 'fa fa-history',
+            'route' => route('dashboard.systems.backup'),
+            'label' => 'Резервные копии',
+            'childs' => false,
+            'divider' => false,
+        ];
+
+
         $errorMenu = [
             'slug' => 'logs',
             'icon' => 'fa fa-bug',
@@ -175,6 +185,9 @@ class MenuServiceProvider extends ServiceProvider
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
+
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $backupMenu, 2);
+
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
