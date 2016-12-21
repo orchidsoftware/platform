@@ -1,5 +1,4 @@
-if (document.getElementById('route-app')) {
-
+/*
     let postApp = null;
     document.addEventListener('DOMContentLoaded', function () {
         postApp = new Vue({
@@ -12,6 +11,4 @@ if (document.getElementById('route-app')) {
             }, 1000);
         });
     });
-
-}
-;
+ */
