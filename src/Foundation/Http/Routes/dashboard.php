@@ -66,15 +66,12 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.roles.destroy',
     ]]);
 
-
     Route::resource('backup', 'BackupController', ['names' => [
         'index' => 'dashboard.systems.backup',
         'create' => 'dashboard.systems.backup.create',
         'download' => 'dashboard.systems.backup.download',
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
-
-
 });
 
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
