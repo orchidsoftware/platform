@@ -15,7 +15,8 @@
             <input type="hidden" id="lng-{{str_slug($name)}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lng]"
                    value="{{$value['lng'] or ''}}">
             <span class="input-group-btn">
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#map-place-{{$name}}-{{$lang}}"><i
+        <button class="btn btn-default" type="button" data-toggle="modal"
+                data-target="#map-place-{{str_slug($name)}}-{{$lang}}"><i
                     class="fa fa-map-marker"></i></button>
     </span>
         </div>
@@ -31,7 +32,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="map-place-{{str_slug($name)}}-{{$lang}}" tabindex="-1" role="dialog"
-     aria-labelledby="map-place-{{$name}}-{{$lang}}">
+     aria-labelledby="map-place-{{str_slug($name)}}-{{$lang}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
