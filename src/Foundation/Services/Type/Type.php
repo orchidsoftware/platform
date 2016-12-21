@@ -121,7 +121,10 @@ abstract class Type implements TypeInterface
                     }
 
                 } else {
-                    $config['value'] = $post->getContent($config['name'], $language);
+
+                    if (!is_null($post)) {
+                        $config['value'] = $post->getContent($config['name'], $language);
+                    }
                     $config['name'] = "[" . $config['name'] . "]";
                 }
             }
