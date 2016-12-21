@@ -2,13 +2,14 @@
 
 namespace Orchid\Foundation\Providers;
 
-use View;
-use Illuminate\Routing\Router;
 use Cartalyst\Tags\TagsServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Foundation\Kernel\Dashboard;
-use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
+use Orchid\Foundation\Kernel\Dashboard;
+use Spatie\Backup\BackupServiceProvider;
+use View;
+use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -96,16 +97,6 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-        $this->app->singleton(Dashboard::class, function ($app) {
-            return new Dashboard();
-        });
-    }
-
-    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -121,6 +112,17 @@ class FoundationServiceProvider extends ServiceProvider
             ActiveServiceProvider::class,
             ImageServiceProvider::class,
             TagsServiceProvider::class,
+            BackupServiceProvider::class,
         ];
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        $this->app->singleton(Dashboard::class, function ($app) {
+            return new Dashboard();
+        });
     }
 }

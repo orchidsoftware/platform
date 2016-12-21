@@ -32,6 +32,7 @@ class RequirementsController extends Controller
                 'pdo',
                 'mbstring',
                 'tokenizer',
+            'zip'
             ]);
 
         return view('install::requirements', compact('requirements'));

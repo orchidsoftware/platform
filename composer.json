@@ -42,7 +42,8 @@
     "laravel/framework": "5.*",
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
-    "cartalyst/tags" :"^3.0"
+    "cartalyst/tags": "^3.0",
+    "spatie/laravel-backup": "4.*"
   },
   "files": [
     "src/Settings/helpers.php",

@@ -3,8 +3,8 @@
 namespace Orchid\Widget\Providers;
 
 use Blade;
-use Orchid\Widget\Console\MakeWidget;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Widget\Console\MakeWidget;
 
 class WidgetServiceProvider extends ServiceProvider
 {
@@ -21,8 +21,27 @@ class WidgetServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerConfig();
-        Blade::directive('widget', function ($key) {
-            return "<?php echo (new \\Orchid\\Widget\\Service\\Widget)->get({$key}); ?>";
+        Blade::directive('widget', function ($expression) {
+            $segments = explode(',', preg_replace("/[\(\)\\\]/", '', $expression));
+            if (!key_exists(1, $segments)) {
+                return '<?php echo (new \Orchid\Widget\Service\Widget)->get(' . $segments[0] . '); ?>';
+            }
+
+            return '<?php echo (new \Orchid\Widget\Service\Widget)->get(' . $segments[0] . ',' . $segments[1] . '); ?>';
+
+            /*
+            return '<?php $'.trim($segments[0])." = app('".trim($segments[1])."'); ?>";
+
+
+            dd($arguments);
+            list($key, $arguments) = explode(',',str_replace(['(',')',' ', "'"], '', $arguments));
+            $widget = (new Widget())->get($key,$arguments);
+
+
+            return $widget;
+
+            return "<?php echo (new \\Orchid\\Widget\\Service\\Widget)->get({$key},{$arguments}); ?>";
+            */
         });
     }
 
