@@ -52,7 +52,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         var input = document.getElementById("place-{{str_slug($name)}}-{{$lang}}");
-        var autocomplete{{$name}}{{$lang}} = new google.maps.places.Autocomplete(input);
+        var autocomplete{{str_slug($name)}}{{$lang}} = new google.maps.places.Autocomplete(input);
 
 
         autocomplete{{str_slug($name)}}{{$lang}}.addListener('place_changed', function () {
