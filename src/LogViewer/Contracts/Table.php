@@ -1,9 +1,10 @@
-<?php namespace Orchid\LogViewer\Contracts;
+<?php
+
+namespace Orchid\LogViewer\Contracts;
 
 /**
- * Interface  Table
+ * Interface  Table.
  *
- * @package   Orchid\LogViewer\Contracts
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Table
@@ -12,6 +13,7 @@ interface Table
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get table header.
      *

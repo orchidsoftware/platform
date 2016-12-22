@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Facades;
+<?php
+
+namespace Orchid\LogViewer\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class     LogViewer
+ * Class     LogViewer.
  *
- * @package  Orchid\LogViewer\Facades
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogViewer extends Facade

@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Contracts\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 
 /**
- * Interface  LogChecker
+ * Interface  LogChecker.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogChecker
@@ -27,6 +28,7 @@ interface LogChecker
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the config instance.
      *
@@ -49,6 +51,7 @@ interface LogChecker
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get messages.
      *
@@ -71,7 +74,7 @@ interface LogChecker
     public function fails();
 
     /**
-     * Get the requirements
+     * Get the requirements.
      *
      * @return array
      */

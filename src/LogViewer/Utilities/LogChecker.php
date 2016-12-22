@@ -1,13 +1,14 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\LogViewer\Contracts\Utilities\LogChecker as LogCheckerContract;
 
 /**
- * Class     LogChecker
+ * Class     LogChecker.
  *
- * @package  Orchid\LogViewer\Utilities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  *
  * @todo     Adding the translation or not ??
@@ -61,6 +62,7 @@ class LogChecker implements LogCheckerContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * LogChecker constructor.
      *
@@ -79,6 +81,7 @@ class LogChecker implements LogCheckerContract
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the config instance.
      *
@@ -152,7 +155,9 @@ class LogChecker implements LogCheckerContract
      */
     private function checkHandler()
     {
-        if ($this->isDaily()) return;
+        if ($this->isDaily()) {
+            return;
+        }
 
         $this->messages['handler'] = 'You should set the log handler to `daily` mode. Please check the LogViwer wiki page (Requirements) for more details.';
     }
@@ -246,7 +251,9 @@ class LogChecker implements LogCheckerContract
     {
         $pattern = '/laravel-(\d){4}-(\d){2}-(\d){2}.log/';
 
-        if ((bool)preg_match($pattern, $file, $matches) === false) return true;
+        if ((bool) preg_match($pattern, $file, $matches) === false) {
+            return true;
+        }
 
         return false;
     }
@@ -270,7 +277,7 @@ class LogChecker implements LogCheckerContract
      */
     public function fails()
     {
-        return !$this->passes();
+        return ! $this->passes();
     }
 
     /**
@@ -301,7 +308,7 @@ class LogChecker implements LogCheckerContract
         ] : [
             'status' => 'failed',
             'header' => 'Application requirements failed.',
-            'message' => $this->messages['handler']
+            'message' => $this->messages['handler'],
         ];
     }
 }

@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Contracts\Utilities;
 
 use Illuminate\Translation\Translator;
 
 /**
- * Interface  LogLevels
+ * Interface  LogLevels.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogLevels
@@ -14,6 +15,7 @@ interface LogLevels
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get PSR log levels.
      *

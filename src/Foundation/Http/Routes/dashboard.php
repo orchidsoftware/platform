@@ -73,7 +73,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
 
-
     Route::get('/test1', [
         'as' => 'log-viewer::dashboard',
         'uses' => 'LogViewerController@index',
@@ -89,7 +88,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'uses' => 'LogViewerController@delete',
     ]);
 
-
     Route::get('/test3/{test}', [
         'as' => 'log-viewer::logs.show',
         'uses' => 'LogViewerController@show',
@@ -104,10 +102,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'as' => 'log-viewer::logs.filter',
         'uses' => 'LogViewerController@showByLevel',
     ]);
-
-
-
-
 });
 
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {

@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\LogViewer\Contracts\Utilities\LogStyler as LogStylerContract;
 
 class LogStyler implements LogStylerContract
 {
-
     /**
      * The config repository instance.
      *
@@ -48,9 +49,10 @@ class LogStyler implements LogStylerContract
      */
     public function icon($level, $default = null)
     {
-        if (key_exists($level, $this->icons)) {
+        if (array_key_exists($level, $this->icons)) {
             return $this->icons[$level];
         }
+
         return $default;
     }
 
