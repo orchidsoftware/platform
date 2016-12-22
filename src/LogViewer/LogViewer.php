@@ -1,14 +1,15 @@
-<?php namespace Orchid\LogViewer;
+<?php
+
+namespace Orchid\LogViewer;
 
 use Orchid\LogViewer\Contracts\LogViewer as LogViewerContract;
 use Orchid\LogViewer\Contracts\Utilities\Factory as FactoryContract;
-use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 
 /**
- * Class     LogViewer
+ * Class     LogViewer.
  *
- * @package  Orchid\LogViewer
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogViewer implements LogViewerContract
@@ -18,7 +19,7 @@ class LogViewer implements LogViewerContract
      | ------------------------------------------------------------------------------------------------
      */
     /**
-     * LogViewer Version
+     * LogViewer Version.
      */
     const VERSION = '4.1.0';
 
@@ -51,6 +52,7 @@ class LogViewer implements LogViewerContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Create a new instance.
      *
@@ -62,8 +64,7 @@ class LogViewer implements LogViewerContract
         FactoryContract $factory,
         FilesystemContract $filesystem,
         LogLevelsContract $levels
-    )
-    {
+    ) {
         $this->factory = $factory;
         $this->filesystem = $filesystem;
         $this->levels = $levels;
@@ -73,6 +74,7 @@ class LogViewer implements LogViewerContract
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the log levels.
      *
@@ -134,8 +136,7 @@ class LogViewer implements LogViewerContract
         $prefix = FilesystemContract::PATTERN_PREFIX,
         $date = FilesystemContract::PATTERN_DATE,
         $extension = FilesystemContract::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->factory->setPattern($prefix, $date, $extension);
 
         return $this;
@@ -145,6 +146,7 @@ class LogViewer implements LogViewerContract
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get all logs.
      *
@@ -316,6 +318,7 @@ class LogViewer implements LogViewerContract
      |  Check Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Determine if the log folder is empty or not.
      *
@@ -330,6 +333,7 @@ class LogViewer implements LogViewerContract
      |  Other Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the LogViewer version.
      *

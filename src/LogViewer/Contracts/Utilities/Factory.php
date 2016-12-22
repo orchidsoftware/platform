@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Contracts\Utilities;
 
 use Orchid\LogViewer\Contracts\Patternable;
 
 /**
- * Interface  Factory
+ * Interface  Factory.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Factory extends Patternable
@@ -14,6 +15,7 @@ interface Factory extends Patternable
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the filesystem instance.
      *
@@ -66,6 +68,7 @@ interface Factory extends Patternable
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get all logs (alias).
      *
@@ -171,6 +174,7 @@ interface Factory extends Patternable
      |  Check Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Determine if the log folder is empty or not.
      *

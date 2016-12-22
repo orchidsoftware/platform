@@ -1,15 +1,16 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
 
-use Orchid\LogViewer\Contracts\Utilities\Factory as FactoryContract;
-use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
-use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
-use Orchid\LogViewer\Entities\LogCollection;
+namespace Orchid\LogViewer\Utilities;
+
 use Orchid\LogViewer\Tables\StatsTable;
+use Orchid\LogViewer\Entities\LogCollection;
+use Orchid\LogViewer\Contracts\Utilities\Factory as FactoryContract;
+use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 
 /**
- * Class     Factory
+ * Class     Factory.
  *
- * @package  Orchid\LogViewer\Utilities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Factory implements FactoryContract
@@ -34,6 +35,7 @@ class Factory implements FactoryContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Create a new instance.
      *
@@ -43,8 +45,7 @@ class Factory implements FactoryContract
     public function __construct(
         FilesystemContract $filesystem,
         LogLevelsContract $levels
-    )
-    {
+    ) {
         $this->setFilesystem($filesystem);
         $this->setLevels($levels);
     }
@@ -53,6 +54,7 @@ class Factory implements FactoryContract
      |  Getter & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the filesystem instance.
      *
@@ -138,8 +140,7 @@ class Factory implements FactoryContract
         $prefix = FilesystemContract::PATTERN_PREFIX,
         $date = FilesystemContract::PATTERN_DATE,
         $extension = FilesystemContract::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->filesystem->setPattern($prefix, $date, $extension);
 
         return $this;
@@ -301,6 +302,7 @@ class Factory implements FactoryContract
      |  Check Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Determine if the log folder is empty or not.
      *

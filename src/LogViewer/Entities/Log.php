@@ -1,15 +1,16 @@
-<?php namespace Orchid\LogViewer\Entities;
+<?php
 
-use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use JsonSerializable;
+namespace Orchid\LogViewer\Entities;
+
 use SplFileInfo;
+use Carbon\Carbon;
+use JsonSerializable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class     Log
+ * Class     Log.
  *
- * @package  Orchid\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  *
  * @todo     Add a stats method
@@ -36,6 +37,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Log constructor.
      *
@@ -106,7 +108,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
         $pow = min($pow, count($units) - 1);
 
-        return round($bytes / pow(1024, $pow), $precision) . ' ' . $units[$pow];
+        return round($bytes / pow(1024, $pow), $precision).' '.$units[$pow];
     }
 
     /**
@@ -153,7 +155,9 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      */
     public function entries($level = 'all')
     {
-        if ($level === 'all') return $this->entries;
+        if ($level === 'all') {
+            return $this->entries;
+        }
 
         return $this->getByLevel($level);
     }
@@ -231,7 +235,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         return [
             'date' => $this->date,
             'path' => $this->path,
-            'entries' => $this->entries->toArray()
+            'entries' => $this->entries->toArray(),
         ];
     }
 

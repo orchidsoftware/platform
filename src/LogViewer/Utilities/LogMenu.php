@@ -1,14 +1,15 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
 
+namespace Orchid\LogViewer\Utilities;
+
+use Orchid\LogViewer\Entities\Log;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\LogViewer\Contracts\Utilities\LogMenu as LogMenuContract;
 use Orchid\LogViewer\Contracts\Utilities\LogStyler as LogStylerContract;
-use Orchid\LogViewer\Entities\Log;
 
 /**
- * Class     LogMenu
+ * Class     LogMenu.
  *
- * @package  Orchid\LogViewer\Utilities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogMenu implements LogMenuContract
@@ -35,6 +36,7 @@ class LogMenu implements LogMenuContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * LogMenu constructor.
      *
@@ -51,6 +53,7 @@ class LogMenu implements LogMenuContract
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the config instance.
      *
@@ -83,6 +86,7 @@ class LogMenu implements LogMenuContract
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Make log menu.
      *
@@ -106,11 +110,11 @@ class LogMenu implements LogMenuContract
         return $items;
     }
 
-
     /* ------------------------------------------------------------------------------------------------
      |  Other Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get config.
      *

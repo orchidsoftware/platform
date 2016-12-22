@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Helpers;
+<?php
+
+namespace Orchid\LogViewer\Helpers;
 
 use Orchid\LogViewer\Utilities\LogLevels;
 
 /**
- * Class     LogParser
+ * Class     LogParser.
  *
- * @package  Orchid\LogViewer\Helpers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogParser
@@ -25,6 +26,7 @@ class LogParser
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Parse file content.
      *
@@ -38,7 +40,7 @@ class LogParser
         list($headings, $data) = self::parseRawData($raw);
 
         // @codeCoverageIgnoreStart
-        if (!is_array($headings)) {
+        if (! is_array($headings)) {
             return self::$parsed;
         }
         // @codeCoverageIgnoreEnd
@@ -47,7 +49,7 @@ class LogParser
             for ($i = 0, $j = count($heading); $i < $j; $i++) {
                 self::populateEntries($heading, $data, $i);
             }
-        };
+        }
 
         unset($headings, $data);
 
@@ -58,6 +60,7 @@ class LogParser
      |  Other Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Parse raw data.
      *
@@ -67,7 +70,7 @@ class LogParser
      */
     private static function parseRawData($raw)
     {
-        $pattern = '/\[' . REGEX_DATE_PATTERN . ' ' . REGEX_TIME_PATTERN . '\].*/';
+        $pattern = '/\['.REGEX_DATE_PATTERN.' '.REGEX_TIME_PATTERN.'\].*/';
         preg_match_all($pattern, $raw, $headings);
         $data = preg_split($pattern, $raw);
 
@@ -93,7 +96,7 @@ class LogParser
                 self::$parsed[] = [
                     'level' => $level,
                     'header' => $heading[$key],
-                    'stack' => $data[$key]
+                    'stack' => $data[$key],
                 ];
             }
         }
@@ -109,6 +112,6 @@ class LogParser
      */
     private static function hasLogLevel($heading, $level)
     {
-        return str_contains(strtolower($heading), strtolower('.' . $level));
+        return str_contains(strtolower($heading), strtolower('.'.$level));
     }
 }

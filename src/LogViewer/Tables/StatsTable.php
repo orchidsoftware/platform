@@ -1,13 +1,14 @@
-<?php namespace Orchid\LogViewer\Tables;
+<?php
+
+namespace Orchid\LogViewer\Tables;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
 
 /**
- * Class     StatsTable
+ * Class     StatsTable.
  *
- * @package  Orchid\LogViewer\Tables
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class StatsTable extends AbstractTable
@@ -16,6 +17,7 @@ class StatsTable extends AbstractTable
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Make a stats table instance.
      *
@@ -62,7 +64,7 @@ class StatsTable extends AbstractTable
 
         foreach (Arr::except($this->footer(), 'all') as $level => $count) {
             $totals->put($level, [
-                'label' => trans('dashboard::logs.' . $level),
+                'label' => trans('dashboard::logs.'.$level),
                 'value' => $count,
                 'color' => $this->color($level),
                 'highlight' => $this->color($level),
@@ -121,7 +123,7 @@ class StatsTable extends AbstractTable
 
         foreach ($data as $date => $levels) {
             foreach ($levels as $level => $count) {
-                if (!isset($footer[$level])) {
+                if (! isset($footer[$level])) {
                     $footer[$level] = 0;
                 }
 

@@ -1,13 +1,14 @@
-<?php namespace Orchid\LogViewer\Entities;
+<?php
 
-use Illuminate\Pagination\LengthAwarePaginator;
+namespace Orchid\LogViewer\Entities;
+
 use Illuminate\Support\Collection;
 use Orchid\LogViewer\Helpers\LogParser;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
- * Class     LogEntryCollection
+ * Class     LogEntryCollection.
  *
- * @package  Orchid\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogEntryCollection extends Collection
@@ -16,6 +17,7 @@ class LogEntryCollection extends Collection
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Load raw log entries.
      *

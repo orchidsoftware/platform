@@ -1,14 +1,15 @@
-<?php namespace Orchid\LogViewer\Entities;
+<?php
+
+namespace Orchid\LogViewer\Entities;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class     LogEntry
+ * Class     LogEntry.
  *
- * @package  Orchid\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogEntry implements Arrayable, Jsonable, JsonSerializable
@@ -36,6 +37,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Construct the log entry instance.
      *
@@ -54,6 +56,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the entry level.
      *
@@ -114,7 +117,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     private function extractDatetime($header)
     {
-        return preg_replace('/^\[(' . REGEX_DATETIME_PATTERN . ')\].*/', '$1', $header);
+        return preg_replace('/^\[('.REGEX_DATETIME_PATTERN.')\].*/', '$1', $header);
     }
 
     /**
@@ -126,7 +129,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     private function cleanHeader($header)
     {
-        return preg_replace('/\[' . REGEX_DATETIME_PATTERN . '\][ ]/', '', $header);
+        return preg_replace('/\['.REGEX_DATETIME_PATTERN.'\][ ]/', '', $header);
     }
 
     /**
@@ -164,7 +167,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     public function level()
     {
-        return $this->icon() . ' ' . $this->name();
+        return $this->icon().' '.$this->name();
     }
 
     /**
@@ -247,7 +250,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
             'level' => $this->level,
             'datetime' => $this->datetime->format('Y-m-d H:i:s'),
             'header' => $this->header,
-            'stack' => $this->stack
+            'stack' => $this->stack,
         ];
     }
 

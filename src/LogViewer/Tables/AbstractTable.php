@@ -1,12 +1,13 @@
-<?php namespace Orchid\LogViewer\Tables;
+<?php
+
+namespace Orchid\LogViewer\Tables;
 
 use Orchid\LogViewer\Contracts\Table as TableContract;
 use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
 
 /**
- * Class     AbstractTable
+ * Class     AbstractTable.
  *
- * @package  Orchid\LogViewer\Bases
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class AbstractTable implements TableContract
@@ -32,6 +33,7 @@ abstract class AbstractTable implements TableContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Create a table instance.
      *
@@ -51,6 +53,7 @@ abstract class AbstractTable implements TableContract
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set LogLevels instance.
      *
@@ -196,7 +199,7 @@ abstract class AbstractTable implements TableContract
         /** @var \Illuminate\Translation\Translator $translator */
         $translator = trans();
 
-        return $translator->get('log-viewer::' . $key, [], $this->locale);
+        return $translator->get('log-viewer::'.$key, [], $this->locale);
     }
 
     /**

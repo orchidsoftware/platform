@@ -1,9 +1,10 @@
-<?php namespace Orchid\LogViewer\Contracts;
+<?php
+
+namespace Orchid\LogViewer\Contracts;
 
 /**
- * Interface  LogViewer
+ * Interface  LogViewer.
  *
- * @package   Orchid\LogViewer\Contracts
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogViewer extends Patternable
@@ -12,6 +13,7 @@ interface LogViewer extends Patternable
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the log levels.
      *
@@ -43,6 +45,7 @@ interface LogViewer extends Patternable
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get all logs.
      *
@@ -168,6 +171,7 @@ interface LogViewer extends Patternable
      |  Check Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Determine if the log folder is empty or not.
      *
@@ -179,6 +183,7 @@ interface LogViewer extends Patternable
      |  Other Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the LogViewer version.
      *

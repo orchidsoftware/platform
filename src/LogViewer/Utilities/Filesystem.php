@@ -1,13 +1,14 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
 
+namespace Orchid\LogViewer\Utilities;
+
+use Orchid\LogViewer\Exceptions\FilesystemException;
 use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
 use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
-use Orchid\LogViewer\Exceptions\FilesystemException;
 
 /**
- * Class     Filesystem
+ * Class     Filesystem.
  *
- * @package  Orchid\LogViewer\Utilities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Filesystem implements FilesystemContract
@@ -55,6 +56,7 @@ class Filesystem implements FilesystemContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Filesystem constructor.
      *
@@ -100,8 +102,7 @@ class Filesystem implements FilesystemContract
         $prefix = self::PATTERN_PREFIX,
         $date = self::PATTERN_DATE,
         $extension = self::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->setPrefixPattern($prefix);
         $this->setDatePattern($date);
         $this->setExtension($extension);
@@ -168,7 +169,7 @@ class Filesystem implements FilesystemContract
      */
     public function all()
     {
-        return $this->getFiles('*' . $this->extension);
+        return $this->getFiles('*'.$this->extension);
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -186,7 +187,7 @@ class Filesystem implements FilesystemContract
     private function getFiles($pattern)
     {
         $files = $this->filesystem->glob(
-            $this->storagePath . DIRECTORY_SEPARATOR . $pattern, GLOB_BRACE
+            $this->storagePath.DIRECTORY_SEPARATOR.$pattern, GLOB_BRACE
         );
 
         return array_filter(array_map('realpath', $files));
@@ -228,7 +229,7 @@ class Filesystem implements FilesystemContract
      */
     public function getPattern()
     {
-        return $this->prefixPattern . $this->datePattern . $this->extension;
+        return $this->prefixPattern.$this->datePattern.$this->extension;
     }
 
     /**
@@ -281,9 +282,9 @@ class Filesystem implements FilesystemContract
      */
     private function getLogPath($date)
     {
-        $path = $this->storagePath . DIRECTORY_SEPARATOR . $this->prefixPattern . $date . $this->extension;
+        $path = $this->storagePath.DIRECTORY_SEPARATOR.$this->prefixPattern.$date.$this->extension;
 
-        if (!$this->filesystem->exists($path)) {
+        if (! $this->filesystem->exists($path)) {
             throw new FilesystemException("The log(s) could not be located at : $path");
         }
 
@@ -304,7 +305,7 @@ class Filesystem implements FilesystemContract
         $path = $this->getLogPath($date);
 
         // @codeCoverageIgnoreStart
-        if (!$this->filesystem->delete($path)) {
+        if (! $this->filesystem->delete($path)) {
             throw new FilesystemException('There was an error deleting the log.');
         }
         // @codeCoverageIgnoreEnd

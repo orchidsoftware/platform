@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Contracts\Utilities;
 
 use Orchid\LogViewer\Contracts\Patternable;
 
 /**
- * Interface  Filesystem
+ * Interface  Filesystem.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Filesystem extends Patternable
@@ -22,6 +23,7 @@ interface Filesystem extends Patternable
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the files instance.
      *
@@ -69,6 +71,7 @@ interface Filesystem extends Patternable
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get all log files.
      *

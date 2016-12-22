@@ -49,7 +49,6 @@ class BackupController extends Controller
         return view('dashboard::container.systems.backup.index', $this->data);
     }
 
-
     /**
      * @return string
      */
@@ -61,14 +60,14 @@ class BackupController extends Controller
             return response()->json([
                 'title' => 'В очереди',
                 'message' => 'Бэкап поставлен в очередь и будет создан в ближайшее время',
-                'type' => 'success'
+                'type' => 'success',
             ]);
         }
 
         return response()->json([
             'title' => 'Не поддерживается',
             'message' => 'Для ручного создания бэкапа необходимо включить поддежку очереди',
-            'type' => 'error'
+            'type' => 'error',
         ]);
     }
 
@@ -85,7 +84,7 @@ class BackupController extends Controller
             $storage_path = $disk->getDriver()->getAdapter()->getPathPrefix();
 
             if ($disk->exists($file_name)) {
-                return response()->download($storage_path . $file_name);
+                return response()->download($storage_path.$file_name);
             } else {
                 abort(404, 'Бэкап не найден');
             }
@@ -109,7 +108,7 @@ class BackupController extends Controller
             return response()->json([
                 'title' => 'Объект удалён',
                 'message' => 'Бэкап был успешно удалён',
-                'type' => 'success'
+                'type' => 'success',
             ]);
         } else {
             abort(404, 'Бэкап не найден');

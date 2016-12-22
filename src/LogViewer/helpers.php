@@ -2,24 +2,22 @@
 
 use Orchid\LogViewer\Contracts;
 
-
-if (!defined('REGEX_DATE_PATTERN')) {
+if (! defined('REGEX_DATE_PATTERN')) {
     define('REGEX_DATE_PATTERN', '\d{4}(-\d{2}){2}'); // YYYY-MM-DD
 }
 
-if (!defined('REGEX_TIME_PATTERN')) {
+if (! defined('REGEX_TIME_PATTERN')) {
     define('REGEX_TIME_PATTERN', '\d{2}(:\d{2}){2}'); // HH:MM:SS
 }
 
-if (!defined('REGEX_DATETIME_PATTERN')) {
+if (! defined('REGEX_DATETIME_PATTERN')) {
     define(
         'REGEX_DATETIME_PATTERN',
-        REGEX_DATE_PATTERN . ' ' . REGEX_TIME_PATTERN // YYYY-MM-DD HH:MM:SS
+        REGEX_DATE_PATTERN.' '.REGEX_TIME_PATTERN // YYYY-MM-DD HH:MM:SS
     );
 }
 
-
-if (!function_exists('log_viewer')) {
+if (! function_exists('log_viewer')) {
     /**
      * Get the LogViewer instance.
      *
@@ -31,7 +29,7 @@ if (!function_exists('log_viewer')) {
     }
 }
 
-if (!function_exists('log_levels')) {
+if (! function_exists('log_levels')) {
     /**
      * Get the LogLevels instance.
      *
@@ -43,7 +41,7 @@ if (!function_exists('log_levels')) {
     }
 }
 
-if (!function_exists('log_menu')) {
+if (! function_exists('log_menu')) {
     /**
      * Get the LogMenu instance.
      *
@@ -55,7 +53,7 @@ if (!function_exists('log_menu')) {
     }
 }
 
-if (!function_exists('log_styler')) {
+if (! function_exists('log_styler')) {
     /**
      * Get the LogStyler instance.
      *
@@ -67,7 +65,7 @@ if (!function_exists('log_styler')) {
     }
 }
 
-if (!function_exists('extract_date')) {
+if (! function_exists('extract_date')) {
     /**
      * Extract date from string (format : YYYY-MM-DD).
      *
@@ -77,6 +75,6 @@ if (!function_exists('extract_date')) {
      */
     function extract_date($string)
     {
-        return preg_replace('/.*(' . REGEX_DATE_PATTERN . ').*/', '$1', $string);
+        return preg_replace('/.*('.REGEX_DATE_PATTERN.').*/', '$1', $string);
     }
 }

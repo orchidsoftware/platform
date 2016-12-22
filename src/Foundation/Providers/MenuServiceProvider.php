@@ -70,7 +70,6 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
 
-
         $analyticsMenu = [
             'slug' => 'analytics',
             'icon' => 'fa fa-bar-chart',
@@ -80,8 +79,6 @@ class MenuServiceProvider extends ServiceProvider
             'childs' => false,
             'divider' => false,
         ];
-
-
 
         $settingsMenu = [
             'slug' => 'settings',
@@ -189,7 +186,6 @@ class MenuServiceProvider extends ServiceProvider
                 $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
             }
         }
-
 
         $dashboard->menu->add('Dashboard', 'dashboard::partials.leftMenu', $analyticsMenu, 1);
 
