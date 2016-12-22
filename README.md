@@ -1,4 +1,10 @@
-# Platform (On development stage)
+<p align="center">
+<a href="https://github.com/TheOrchid/Platform"><img width="250"  src="https://theorchid.github.io/Platform/dist/img/orchid.svg">
+</a>
+</p>
+
+
+#
 Orchid Platform application provides a very flexible and extensible way of building your custom application.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/80fc1214b05e441eba471c92fafe2c81)](https://www.codacy.com/app/a-r-t-1-s-t/Platform?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TheOrchid/Platform&amp;utm_campaign=Badge_Grade)
@@ -37,11 +43,7 @@ Add the project according
 
 Add the following elements in the configuration file `config/app`
 ```php
-Orchid\Settings\Providers\SettingsServiceProvider::class,
 Orchid\Foundation\Providers\FoundationServiceProvider::class,
-Orchid\Widget\Providers\WidgetServiceProvider::class,
-Orchid\Installer\Providers\InstallerServiceProvider::class,
-Orchid\Alert\AlertServiceProvider::class,
 ```
 
 ```php
@@ -104,6 +106,22 @@ php artisan make:admin nickname email@email.com secretpassword
 
 TODO: Write usage instructions
 
+
+
+## Learn More
+
+Learn more at these links:
+
+- [Website](https://theorchid.github.io/Platform/)
+- [Documentation](https://theorchid.github.io/Platform/)
+- [Support](https://github.com/TheOrchid/Platform/issues)
+- [Laravel](https://laravel.com/)
+
+## Security
+
+If you discover security related issues, please email bliz48rus@gmail.com instead of using the issue tracker.
+
+
 ## Contributing
 
 1. Fork it!
@@ -118,7 +136,10 @@ TODO: Write history
 
 ## Credits
 
-TODO: Write credits
+- [Alexandr Chernyaev](https://github.com/tabuna)
+- [Roman Pertsev](https://github.com/PertsevRoman)
+- [All Contributors](../../contributors)
+
 
 ## License
 

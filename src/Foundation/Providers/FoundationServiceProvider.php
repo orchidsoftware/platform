@@ -2,14 +2,19 @@
 
 namespace Orchid\Foundation\Providers;
 
-use View;
-use Illuminate\Routing\Router;
 use Cartalyst\Tags\TagsServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Foundation\Kernel\Dashboard;
-use Spatie\Backup\BackupServiceProvider;
-use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
+use Orchid\Alert\AlertServiceProvider;
+use Orchid\Foundation\Kernel\Dashboard;
+use Orchid\Installer\Providers\InstallerServiceProvider;
+use Orchid\LogViewer\LogViewerServiceProvider;
+use Orchid\Settings\Providers\SettingsServiceProvider;
+use Orchid\Widget\Providers\WidgetServiceProvider;
+use Spatie\Backup\BackupServiceProvider;
+use View;
+use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -104,6 +109,10 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            InstallerServiceProvider::class,
+            AlertServiceProvider::class,
+            SettingsServiceProvider::class,
+            WidgetServiceProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,
             MenuServiceProvider::class,
@@ -113,6 +122,7 @@ class FoundationServiceProvider extends ServiceProvider
             ImageServiceProvider::class,
             TagsServiceProvider::class,
             BackupServiceProvider::class,
+            LogViewerServiceProvider::class
         ];
     }
 

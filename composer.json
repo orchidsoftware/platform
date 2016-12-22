@@ -43,19 +43,23 @@
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^3.0",
-    "spatie/laravel-backup": "4.*"
+    "spatie/laravel-backup": "4.*",
+    "laravel/scout": "^2.0",
+    "psr/log": "~1.0"
   },
-  "files": [
-    "src/Settings/helpers.php",
-    "src/Alert/helpers.php"
-  ],
   "autoload": {
+    "files": [
+      "src/Settings/helpers.php",
+      "src/Alert/helpers.php",
+      "src/LogViewer/helpers.php"
+    ],
     "psr-4": {
       "Orchid\\Foundation\\": "src/Foundation",
       "Orchid\\Installer\\": "src/Installer",
       "Orchid\\Settings\\": "src/Settings",
       "Orchid\\Widget\\": "src/Widget",
-      "Orchid\\Alert\\": "src/Alert"
+      "Orchid\\Alert\\": "src/Alert",
+      "Orchid\\LogViewer\\": "src/LogViewer"
     }
   },
   "extra": {

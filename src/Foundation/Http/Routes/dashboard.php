@@ -72,6 +72,42 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'download' => 'dashboard.systems.backup.download',
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
+
+
+    Route::get('/test1', [
+        'as' => 'log-viewer::dashboard',
+        'uses' => 'LogViewerController@index',
+    ]);
+
+    Route::get('/test2', [
+        'as' => 'log-viewer::logs.list',
+        'uses' => 'LogViewerController@listLogs',
+    ]);
+
+    Route::delete('delete', [
+        'as' => 'log-viewer::logs.delete',
+        'uses' => 'LogViewerController@delete',
+    ]);
+
+
+    Route::get('/test3/{test}', [
+        'as' => 'log-viewer::logs.show',
+        'uses' => 'LogViewerController@show',
+    ]);
+
+    Route::get('download', [
+        'as' => 'log-viewer::logs.download',
+        'uses' => 'LogViewerController@download',
+    ]);
+
+    $this->get('test4/{level}', [
+        'as' => 'log-viewer::logs.filter',
+        'uses' => 'LogViewerController@showByLevel',
+    ]);
+
+
+
+
 });
 
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {

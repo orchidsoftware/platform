@@ -2,19 +2,23 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Log;
-use Artisan;
-use Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+use Orchid\Foundation\Http\Requests\Request;
 
 class BackupController extends Controller
 {
+    /**
+     * @var
+     */
+    public $data;
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        if (! count(config('laravel-backup.backup.destination.disks'))) {
-            dd(trans('backpack::backup.no_disks_configured'));
-        }
-
         $this->data['backups'] = [];
 
         foreach (config('laravel-backup.backup.destination.disks') as $disk_name) {
@@ -23,14 +27,14 @@ class BackupController extends Controller
             $files = $disk->allFiles();
 
             // make an array of backup files, with their filesize and creation date
-            foreach ($files as $k => $f) {
+            foreach ($files as $file) {
                 // only take the zip files into account
-                if (substr($f, -4) == '.zip' && $disk->exists($f)) {
+                if (substr($file, -4) == '.zip' && $disk->exists($file)) {
                     $this->data['backups'][] = [
-                        'file_path' => $f,
-                        'file_name' => str_replace('backups/', '', $f),
-                        'file_size' => $disk->size($f),
-                        'last_modified' => $disk->lastModified($f),
+                        'file_path' => $file,
+                        'file_name' => str_replace('backups/', '', $file),
+                        'file_size' => $disk->size($file),
+                        'last_modified' => $disk->lastModified($file),
                         'disk' => $disk_name,
                         'download' => ($adapter instanceof \League\Flysystem\Adapter\Local) ? true : false,
                     ];
@@ -45,49 +49,55 @@ class BackupController extends Controller
         return view('dashboard::container.systems.backup.index', $this->data);
     }
 
+
+    /**
+     * @return string
+     */
     public function create()
     {
-        try {
-            ini_set('max_execution_time', 300);
-            // start the backup process
-            Artisan::call('backup:run');
-            $output = Artisan::output();
+        if (config('queue.default' !== 'sync')) {
+            Artisan::queue('backup:run');
 
-            // log the results
-            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
-            // return the results as a response to the ajax call
-            echo $output;
-        } catch (\Exception $e) {
-            Response::make($e->getMessage(), 500);
+            return response()->json([
+                'title' => 'В очереди',
+                'message' => 'Бэкап поставлен в очередь и будет создан в ближайшее время',
+                'type' => 'success'
+            ]);
         }
 
-        return 'success';
+        return response()->json([
+            'title' => 'Не поддерживается',
+            'message' => 'Для ручного создания бэкапа необходимо включить поддежку очереди',
+            'type' => 'error'
+        ]);
     }
 
     /**
      * Downloads a backup zip file.
      */
-    public function download()
+    public function download(Request $request)
     {
-        $disk = Storage::disk(\Request::input('disk'));
-        $file_name = \Request::input('file_name');
+        $disk = Storage::disk($request->input('disk'));
+        $file_name = $request->input('file_name');
         $adapter = $disk->getDriver()->getAdapter();
 
         if ($adapter instanceof \League\Flysystem\Adapter\Local) {
             $storage_path = $disk->getDriver()->getAdapter()->getPathPrefix();
 
             if ($disk->exists($file_name)) {
-                return response()->download($storage_path.$file_name);
+                return response()->download($storage_path . $file_name);
             } else {
-                abort(404, trans('backpack::backup.backup_doesnt_exist'));
+                abort(404, 'Бэкап не найден');
             }
         } else {
-            abort(404, trans('backpack::backup.only_local_downloads_supported'));
+            abort(404, 'Невозможно скачать с внешних ресурсов');
         }
     }
 
     /**
      * Deletes a backup file.
+     * @param $file_name
+     * @return \Illuminate\Http\JsonResponse
      */
     public function delete($file_name)
     {
@@ -96,9 +106,13 @@ class BackupController extends Controller
         if ($disk->exists($file_name)) {
             $disk->delete($file_name);
 
-            return 'success';
+            return response()->json([
+                'title' => 'Объект удалён',
+                'message' => 'Бэкап был успешно удалён',
+                'type' => 'success'
+            ]);
         } else {
-            abort(404, trans('backpack::backup.backup_doesnt_exist'));
+            abort(404, 'Бэкап не найден');
         }
     }
 }

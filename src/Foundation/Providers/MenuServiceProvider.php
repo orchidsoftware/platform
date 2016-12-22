@@ -30,6 +30,7 @@ class MenuServiceProvider extends ServiceProvider
             'route' => route('dashboard.index'),
             'label' => trans('dashboard::menu.Dashboard'),
             'main' => true,
+            'childs' => true,
             'active' => 'dashboard.index',
             'permission' => 'dashboard.index',
         ];
@@ -68,6 +69,19 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $postMenu, 100);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
+
+
+        $analyticsMenu = [
+            'slug' => 'analytics',
+            'icon' => 'fa fa-bar-chart',
+            'route' => '#',
+            'label' => 'Google Analytics',
+            'groupname' => 'Analytics',
+            'childs' => false,
+            'divider' => false,
+        ];
+
+
 
         $settingsMenu = [
             'slug' => 'settings',
@@ -176,6 +190,9 @@ class MenuServiceProvider extends ServiceProvider
                 $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
             }
         }
+
+
+        $dashboard->menu->add('Dashboard', 'dashboard::partials.leftMenu', $analyticsMenu, 1);
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $sectionMenu, 3);
