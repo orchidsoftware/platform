@@ -1,20 +1,20 @@
-<?php namespace Orchid\Search\Elasticsearch;
+<?php
 
-use Elasticsearch\ClientBuilder as Elasticsearch;
-use Illuminate\Support\ServiceProvider;
+namespace Orchid\Search\Elasticsearch;
+
 use Laravel\Scout\EngineManager;
+use Illuminate\Support\ServiceProvider;
+use Elasticsearch\ClientBuilder as Elasticsearch;
 
-class ElasticsearchServiceProvider extends ServiceProvider
+class ElasticsearchServiceProvicer extends ServiceProvider
 {
-
     /**
      * Boot the application events.
      */
     public function boot()
     {
-
         $this->mergeConfigFrom(
-            __DIR__ . '/../Config/scout.php', 'scout'
+            __DIR__.'/../Config/scout.php', 'scout'
         );
 
         resolve(EngineManager::class)->extend('elasticsearch', function () {
@@ -35,5 +35,4 @@ class ElasticsearchServiceProvider extends ServiceProvider
     {
         return [];
     }
-
 }
