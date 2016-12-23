@@ -45,6 +45,8 @@
     "cartalyst/tags": "^3.0",
     "spatie/laravel-backup": "4.*",
     "laravel/scout": "^2.0",
+    "elasticsearch/elasticsearch": "^5.0",
+    "algolia/algoliasearch-client-php": "^1.10",
     "psr/log": "~1.0"
   },
   "autoload": {
@@ -59,7 +61,8 @@
       "Orchid\\Settings\\": "src/Settings",
       "Orchid\\Widget\\": "src/Widget",
       "Orchid\\Alert\\": "src/Alert",
-      "Orchid\\LogViewer\\": "src/LogViewer"
+      "Orchid\\LogViewer\\": "src/LogViewer",
+      "Orchid\\Search\\": "src/Search"
     }
   },
   "extra": {

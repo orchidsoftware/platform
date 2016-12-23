@@ -6,10 +6,12 @@ use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Installer\Providers\InstallerServiceProvider;
 use Orchid\LogViewer\LogViewerServiceProvider;
+use Orchid\Search\Elasticsearch\ElasticsearchServiceProvider;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
@@ -122,7 +124,9 @@ class FoundationServiceProvider extends ServiceProvider
             ImageServiceProvider::class,
             TagsServiceProvider::class,
             BackupServiceProvider::class,
-            LogViewerServiceProvider::class
+            LogViewerServiceProvider::class,
+            ScoutServiceProvider::class,
+            ElasticsearchServiceProvider::class,
         ];
     }
 

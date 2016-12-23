@@ -2,12 +2,15 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Setting;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Services\Forms\Form;
 
 class BaseSettingsForm extends Form
 {
+    /**
+     * @var string
+     */
     public $name = 'Base';
 
     /**
@@ -32,6 +35,8 @@ class BaseSettingsForm extends Form
     public function get()
     {
         $settings = $this->model->get([
+            'site_title',
+            'site_keywords',
             'site_descriptions',
             'site_adress',
             'site_phone',

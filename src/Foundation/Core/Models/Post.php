@@ -3,14 +3,15 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Cartalyst\Tags\TaggableTrait;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Facades\Dashboard;
+use Illuminate\Support\Facades\App;
+use Laravel\Scout\Searchable;
 use Orchid\Foundation\Exceptions\TypeException;
+use Orchid\Foundation\Facades\Dashboard;
 
 class Post extends Model
 {
-    use TaggableTrait;
+    use Searchable, TaggableTrait;
 
     /**
      * @var string
@@ -70,6 +71,26 @@ class Post extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function whereType()
+    {
+        return $this->where('type', $this->dataType->slug);
+    }
+
+    /**
+     * @return null
+     */
+    public function getTypeObject()
+    {
+        if (!is_null($this->dataType)) {
+            return $this->dataType;
+        } else {
+            return $this->getType($this->getAttribute('type'))->dataType;
+        }
+    }
+
+    /**
      * @param $getType
      * @return mixed
      * @throws TypeException
@@ -89,22 +110,6 @@ class Post extends Model
         }
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function whereType()
-    {
-        return $this->where('type', $this->dataType->slug);
-    }
-
-    /**
-     * @return null
-     */
-    public function getTypeObject()
-    {
-        return $this->dataType;
     }
 
     /**
@@ -144,14 +149,6 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function section()
-    {
-        return $this->belongsTo(Section::class);
-    }
-
-    /**
      * @return mixed
      */
     public function breadcrumb()
@@ -162,11 +159,11 @@ class Post extends Model
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function attachment()
+    public function section()
     {
-        return $this->hasMany(File::class);
+        return $this->belongsTo(Section::class);
     }
 
     /**
@@ -178,5 +175,13 @@ class Post extends Model
         $first = $this->attachment()->first();
 
         return $first ? $first->url() : null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function attachment()
+    {
+        return $this->hasMany(File::class);
     }
 }
