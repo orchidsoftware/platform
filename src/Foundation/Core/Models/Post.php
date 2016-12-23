@@ -2,12 +2,12 @@
 
 namespace Orchid\Foundation\Core\Models;
 
-use Cartalyst\Tags\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 use Laravel\Scout\Searchable;
-use Orchid\Foundation\Exceptions\TypeException;
+use Cartalyst\Tags\TaggableTrait;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Facades\Dashboard;
+use Orchid\Foundation\Exceptions\TypeException;
 
 class Post extends Model
 {
@@ -83,7 +83,7 @@ class Post extends Model
      */
     public function getTypeObject()
     {
-        if (!is_null($this->dataType)) {
+        if (! is_null($this->dataType)) {
             return $this->dataType;
         } else {
             return $this->getType($this->getAttribute('type'))->dataType;

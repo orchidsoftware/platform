@@ -1,9 +1,11 @@
-<?php namespace Orchid\Search\Elasticsearch;
+<?php
 
+namespace Orchid\Search\Elasticsearch;
+
+use Laravel\Scout\Builder;
 use Elasticsearch\Client as Elasticsearch;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as BaseCollection;
-use Laravel\Scout\Builder;
 
 //use Laravel\Scout\Engines\Engine; extends Engine
 
@@ -22,7 +24,7 @@ class ElasticsearchEngine
      */
     protected $index;
     /**
-     * The Elasticsearch server version
+     * The Elasticsearch server version.
      *
      * @var string
      */
@@ -81,14 +83,13 @@ class ElasticsearchEngine
             'match' => [
                 '_all' => [
                     'query' => $builder->query,
-                    'fuzziness' => 1
-                ]
-            ]
+                    'fuzziness' => 1,
+                ],
+            ],
         ];
 
         if (array_key_exists('filters', $options) && $options['filters']) {
             foreach ($options['filters'] as $field => $value) {
-
                 if (is_numeric($value)) {
                     $filters[] = [
                         'term' => [
@@ -100,9 +101,9 @@ class ElasticsearchEngine
                         'match' => [
                             $field => [
                                 'query' => $value,
-                                'operator' => 'and'
-                            ]
-                        ]
+                                'operator' => 'and',
+                            ],
+                        ],
                     ];
                 }
             }
@@ -115,8 +116,8 @@ class ElasticsearchEngine
                     'filter' => $filters,
                     'query' => [
                         'bool' => [
-                            'must' => $matches
-                        ]
+                            'must' => $matches,
+                        ],
                     ],
                 ],
             ];
@@ -284,7 +285,7 @@ class ElasticsearchEngine
             'from' => (($page * $perPage) - $perPage),
         ]);
 
-        $result['nbPages'] = (int)ceil($result['hits']['total'] / $perPage);
+        $result['nbPages'] = (int) ceil($result['hits']['total'] / $perPage);
 
         return $result;
     }
