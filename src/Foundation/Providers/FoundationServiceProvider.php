@@ -8,10 +8,8 @@ use Orchid\Alert\AlertServiceProvider;
 use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
-use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Orchid\LogViewer\LogViewerServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Installer\Providers\InstallerServiceProvider;
@@ -121,8 +119,6 @@ class FoundationServiceProvider extends ServiceProvider
             ActiveServiceProvider::class,
             ImageServiceProvider::class,
             TagsServiceProvider::class,
-            BackupServiceProvider::class,
-            LogViewerServiceProvider::class,
         ];
     }
 

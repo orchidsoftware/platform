@@ -98,6 +98,27 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'uses' => 'LogViewerController@download',
     ]);
 
+    Route::get('path-template', [
+        'as' => 'dashboard::partials.path',
+        'uses' => function () {
+            return view('dashboard::partials.path');
+        }
+    ]);
+
+    Route::get('icons', [
+        'as' => 'dashboard::icons',
+        'uses' => function() {
+            $res = [
+                ["code" => "ad", "icon" => "/bower_components/flag-icon-css/flags/1x1/ad.svg", "label" => "Метка 1"],
+                ["code" => "ae", "icon" => "/bower_components/flag-icon-css/flags/1x1/ae.svg", "label" => "Метка 2"],
+                ["code" => "af", "icon" => "/bower_components/flag-icon-css/flags/1x1/af.svg", "label" => "Метка 3"],
+                ["code" => "ag", "icon" => "/bower_components/flag-icon-css/flags/1x1/ag.svg", "label" => "Метка 4"],
+            ];
+
+            return json_encode($res);
+        }
+    ]);
+
     $this->get('test4/{level}', [
         'as' => 'log-viewer::logs.filter',
         'uses' => 'LogViewerController@showByLevel',

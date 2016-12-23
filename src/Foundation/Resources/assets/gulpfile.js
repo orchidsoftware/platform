@@ -23,7 +23,6 @@ elixir(function(mix) {
 
     mix.scripts([
         "./vendor/jquery/dist/jquery.min.js",
-        //"./vendor/google-maps/lib/Google.js",
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
         "./vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
         "./vendor/vue/dist/vue.js",
@@ -36,7 +35,8 @@ elixir(function(mix) {
         './vendor/moment/min/locales.js',
         './vendor/moment/min/moment-with-locales.js',
         './vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-        //'./vendor/g-map-field/dist/js/index.js',
+        './vendor/bootstrap-timepicker/js/bootstrap-timepicker.js',
+        './vendor/g-map-field/dist/js/index.js',
         "./js/app.js",
         "./js/modules/**",
         "./js/components/**",
