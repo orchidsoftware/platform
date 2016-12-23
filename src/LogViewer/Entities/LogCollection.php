@@ -1,14 +1,15 @@
-<?php namespace Orchid\LogViewer\Entities;
+<?php
 
-use Illuminate\Pagination\LengthAwarePaginator;
+namespace Orchid\LogViewer\Entities;
+
 use Illuminate\Support\Collection;
-use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Orchid\LogViewer\Exceptions\LogNotFoundException;
+use Orchid\LogViewer\Contracts\Utilities\Filesystem as FilesystemContract;
 
 /**
- * Class     LogCollection
+ * Class     LogCollection.
  *
- * @package  Orchid\LogViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogCollection extends Collection
@@ -24,6 +25,7 @@ class LogCollection extends Collection
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * LogCollection constructor.
      *
@@ -35,14 +37,16 @@ class LogCollection extends Collection
 
         parent::__construct($items);
 
-        if (empty($items))
+        if (empty($items)) {
             $this->load();
+        }
     }
 
     /* ------------------------------------------------------------------------------------------------
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the filesystem instance.
      *
@@ -61,6 +65,7 @@ class LogCollection extends Collection
      |  Main functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Load all logs.
      *
@@ -124,9 +129,9 @@ class LogCollection extends Collection
      */
     public function get($date, $default = null)
     {
-        if (!$this->has($date))
+        if (! $this->has($date)) {
             throw new LogNotFoundException("Log not found in this date [$date]");
-
+        }
         return parent::get($date, $default);
     }
 
@@ -153,7 +158,7 @@ class LogCollection extends Collection
         $stats = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Orchid\LogViewer\Entities\Log $log */
+            /* @var \Orchid\LogViewer\Entities\Log $log */
             $stats[$date] = $log->stats();
         }
 
@@ -179,7 +184,7 @@ class LogCollection extends Collection
      */
     public function total($level = 'all')
     {
-        return (int)$this->sum(function (Log $log) use ($level) {
+        return (int) $this->sum(function (Log $log) use ($level) {
             return $log->entries($level)->count();
         });
     }
@@ -196,7 +201,7 @@ class LogCollection extends Collection
         $tree = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Orchid\LogViewer\Entities\Log $log */
+            /* @var \Orchid\LogViewer\Entities\Log $log */
             $tree[$date] = $log->tree($trans);
         }
 
@@ -215,7 +220,7 @@ class LogCollection extends Collection
         $menu = [];
 
         foreach ($this->items as $date => $log) {
-            /** @var \Orchid\LogViewer\Entities\Log $log */
+            /* @var \Orchid\LogViewer\Entities\Log $log */
             $menu[$date] = $log->menu($trans);
         }
 

@@ -1,12 +1,13 @@
-<?php namespace Orchid\LogViewer;
+<?php
+
+namespace Orchid\LogViewer;
 
 use Illuminate\Support\ServiceProvider;
 use Orchid\LogViewer\Providers\UtilitiesServiceProvider;
 
 /**
- * Class     LogViewerServiceProvider
+ * Class     LogViewerServiceProvider.
  *
- * @package  Orchid\LogViewer
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogViewerServiceProvider extends ServiceProvider
@@ -26,6 +27,7 @@ class LogViewerServiceProvider extends ServiceProvider
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the base path.
      *
@@ -40,6 +42,7 @@ class LogViewerServiceProvider extends ServiceProvider
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Register the service provider.
      */

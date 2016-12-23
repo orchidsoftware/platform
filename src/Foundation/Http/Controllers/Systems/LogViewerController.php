@@ -1,19 +1,19 @@
-<?php namespace Orchid\Foundation\Http\Controllers\Systems;
+<?php
 
+namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
-use Orchid\LogViewer\Exceptions\LogNotFoundException;
+use Illuminate\Http\Request;
 use Orchid\LogViewer\LogViewer;
+use App\Http\Controllers\Controller;
 use Orchid\LogViewer\Tables\StatsTable;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Orchid\LogViewer\Exceptions\LogNotFoundException;
 
 class LogViewerController extends Controller
 {
-
     /**
-     * The log viewer instance
+     * The log viewer instance.
      *
      * @var \Orchid\LogViewer\Contracts\LogViewer
      */
@@ -29,6 +29,7 @@ class LogViewerController extends Controller
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * LogViewerController constructor.
      */
@@ -41,6 +42,7 @@ class LogViewerController extends Controller
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Show the dashboard.
      *
@@ -160,7 +162,7 @@ class LogViewerController extends Controller
      */
 
     /**
-     * Get a log or fail
+     * Get a log or fail.
      *
      * @param  string $date
      *
@@ -191,21 +193,21 @@ class LogViewerController extends Controller
     {
         $log = $this->getLogOrFail($date);
 
-        if ($level === 'all')
+        if ($level === 'all') {
             return redirect()->route($this->showRoute, [$date]);
+        }
 
         $levels = $this->logViewer->levelsNames();
         $entries = $this->logViewer
             ->entries($date, $level)
             ->paginate($this->perPage);
 
-
         return view('dashboard::container.systems.logs.show', compact('log', 'levels', 'entries'));
         // return $this->view('show', compact('log', 'levels', 'entries'));
     }
 
     /**
-     * Download the log
+     * Download the log.
      *
      * @param  string $date
      *
@@ -225,15 +227,14 @@ class LogViewerController extends Controller
      */
     public function delete(Request $request)
     {
-        if (!$request->ajax())
+        if (! $request->ajax()) {
             abort(405, 'Method Not Allowed');
+        }
 
         $date = $request->get('date');
 
         return response()->json([
-            'result' => $this->logViewer->delete($date) ? 'success' : 'error'
+            'result' => $this->logViewer->delete($date) ? 'success' : 'error',
         ]);
     }
-
-
 }

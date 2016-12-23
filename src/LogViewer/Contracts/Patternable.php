@@ -1,11 +1,12 @@
-<?php namespace Orchid\LogViewer\Contracts;
+<?php
+
+namespace Orchid\LogViewer\Contracts;
 
 use Orchid\LogViewer\Contracts\Utilities\Filesystem;
 
 /**
- * Interface  Patternable
+ * Interface  Patternable.
  *
- * @package   Orchid\LogViewer\Contracts
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface Patternable
@@ -14,6 +15,7 @@ interface Patternable
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Get the log pattern.
      *

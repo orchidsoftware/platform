@@ -1,9 +1,10 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
+
+namespace Orchid\LogViewer\Contracts\Utilities;
 
 /**
- * Interface  LogStyler
+ * Interface  LogStyler.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogStyler
@@ -12,6 +13,7 @@ interface LogStyler
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Make level icon.
      *

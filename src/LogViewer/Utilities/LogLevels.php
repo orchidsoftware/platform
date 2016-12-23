@@ -1,14 +1,15 @@
-<?php namespace Orchid\LogViewer\Utilities;
+<?php
 
+namespace Orchid\LogViewer\Utilities;
+
+use ReflectionClass;
+use Psr\Log\LogLevel;
 use Illuminate\Translation\Translator;
 use Orchid\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
-use Psr\Log\LogLevel;
-use ReflectionClass;
 
 /**
- * Class     LogLevels
+ * Class     LogLevels.
  *
- * @package  Orchid\LogViewer\Utilities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class LogLevels implements LogLevelsContract
@@ -42,6 +43,7 @@ class LogLevels implements LogLevelsContract
      |  Constructor
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * LogLevels constructor.
      *
@@ -58,6 +60,7 @@ class LogLevels implements LogLevelsContract
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the Translator instance.
      *
@@ -138,7 +141,7 @@ class LogLevels implements LogLevelsContract
             $locale = $this->getLocale();
         }
 
-        return trans('dashboard::logs.' . $key);
+        return trans('dashboard::logs.'.$key);
         //return $this->translator->get("log-viewer::levels.$key", [], $locale);
     }
 

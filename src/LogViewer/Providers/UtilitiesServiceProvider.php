@@ -1,13 +1,14 @@
-<?php namespace Orchid\LogViewer\Providers;
+<?php
 
-use Illuminate\Support\ServiceProvider;
+namespace Orchid\LogViewer\Providers;
+
 use Orchid\LogViewer\Contracts;
 use Orchid\LogViewer\Utilities;
+use Illuminate\Support\ServiceProvider;
 
 /**
- * Class     UtilitiesServiceProvider
+ * Class     UtilitiesServiceProvider.
  *
- * @package  Orchid\LogViewer\Providers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class UtilitiesServiceProvider extends ServiceProvider
@@ -16,6 +17,7 @@ class UtilitiesServiceProvider extends ServiceProvider
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Register the service provider.
      */
@@ -36,7 +38,7 @@ class UtilitiesServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Contracts\Utilities\LogLevels::class, function ($app) {
             /**
-             * @var  \Illuminate\Config\Repository $config
+             * @var  \Illuminate\Config\Repository
              * @var  \Illuminate\Translation\Translator $translator
              */
             $translator = $app['translator'];
@@ -77,7 +79,7 @@ class UtilitiesServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Contracts\Utilities\Filesystem::class, function ($app) {
             /**
-             * @var  \Illuminate\Config\Repository $config
+             * @var  \Illuminate\Config\Repository
              * @var  \Illuminate\Filesystem\Filesystem $files
              */
             $files = $app['files'];

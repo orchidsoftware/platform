@@ -20,13 +20,17 @@ class PathPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        $route_json = null;
+        $route = [];
 
         if ($post != null) {
             $content = $post->getAttribute('content');
-            $route = $content['route'];
-            $route_json = json_encode($route);
+
+            if (isset($content['route'])) {
+                $route = $content['route'];
+            }
         }
+
+        $route_json = json_encode($route);
 
         return view('dashboard::container.posts.modules.path', [
             'route' => $route_json,
@@ -44,9 +48,7 @@ class PathPostForm extends Form
 
         $content = $post->content;
 
-        foreach ($content as $lang => $item) {
-            $content[$lang]['route'] = json_decode($route);
-        }
+        $content['route'] = json_decode($route);
 
         $post->content = $content;
         $post->save();

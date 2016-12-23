@@ -1,12 +1,13 @@
-<?php namespace Orchid\LogViewer\Contracts\Utilities;
+<?php
 
-use Illuminate\Contracts\Config\Repository as ConfigContract;
+namespace Orchid\LogViewer\Contracts\Utilities;
+
 use Orchid\LogViewer\Entities\Log;
+use Illuminate\Contracts\Config\Repository as ConfigContract;
 
 /**
- * Interface  LogMenu
+ * Interface  LogMenu.
  *
- * @package   Orchid\LogViewer\Contracts\Utilities
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 interface LogMenu
@@ -15,6 +16,7 @@ interface LogMenu
      |  Getters & Setters
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Set the config instance.
      *
@@ -37,6 +39,7 @@ interface LogMenu
      |  Main Functions
      | ------------------------------------------------------------------------------------------------
      */
+
     /**
      * Make log menu.
      *
