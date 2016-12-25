@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Fields;
 
-use Orchid\Foundation\Services\Field\Field;
+use Orchid\Field\Field;
 
 class RobotField extends Field
 {

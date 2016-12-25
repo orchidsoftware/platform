@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Services\Access\RoleAccess;
-use Orchid\Foundation\Services\Access\RoleInterface;
+use Orchid\Access\RoleAccess;
+use Orchid\Access\RoleInterface;
 
 class Role extends Model implements RoleInterface
 {

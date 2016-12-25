@@ -4,7 +4,7 @@ namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Events\Systems\UserEvent;
-use Orchid\Foundation\Services\Forms\FormGroup;
+use Orchid\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {

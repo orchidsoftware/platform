@@ -6,7 +6,7 @@ use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Facades\Dashboard;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class AccessUserForm extends Form
 {

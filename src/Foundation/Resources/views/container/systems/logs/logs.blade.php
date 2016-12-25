@@ -2,18 +2,9 @@
 
 
 @section('title','Журнал ошибок')
-@section('description','Журнал не системных вызовов')
+@section('descriptions','Журнал не системных вызовов')
 
 
-
-
-@section('navbar')
-    <div class="col-sm-6 col-xs-12 text-right">
-        <div class="btn-group" role="group">
-            <a href="#" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
-        </div>
-    </div>
-@stop
 
 
 
@@ -26,13 +17,8 @@
 
 
             <div class="panel">
-
-                <h1 class="page-header">Logs</h1>
-
-                {!! $rows->render() !!}
-
                 <div class="table-responsive">
-                    <table class="table table-condensed table-hover table-stats">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             @foreach($headers as $key => $header)
@@ -41,12 +27,12 @@
                                         <span class="label label-info">{{ $header }}</span>
                                     @else
                                         <span class="level level-{{ $key }}">
-                                {!! log_styler()->icon($key) . ' ' . $header !!}
+
+                                <i class="{!! log_styler()->icon($key) . ' ' . $header !!}"> </i>
                             </span>
                                     @endif
                                 </th>
                             @endforeach
-                            <th class="text-right">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -66,20 +52,6 @@
                                             @endif
                                         </td>
                                     @endforeach
-                                    <td class="text-right">
-                                        <a href="{{-- route('log-viewer::logs.show', [$date]) --}}"
-                                           class="btn btn-xs btn-info">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                        <a href="{{-- route('log-viewer::logs.download', [$date]) --}}"
-                                           class="btn btn-xs btn-success">
-                                            <i class="fa fa-download"></i>
-                                        </a>
-                                        <a href="#delete-log-modal" class="btn btn-xs btn-danger"
-                                           data-log-date="{{ $date }}">
-                                            <i class="fa fa-trash-o"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -93,98 +65,27 @@
                     </table>
                 </div>
 
-                {!! $rows->render() !!}
 
 
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$rows->total()}}
+                                -{{$rows->perPage()}} {{trans('dashboard::common.of')}} {!! $rows->count() !!} {{trans('dashboard::common.elements')}}</small>
+                        </div>
+                        <div class="col-sm-4 text-right text-center-xs">
+                            {!! $rows->render() !!}
+                        </div>
+                    </div>
+                </footer>
             </div>
+
+
+
+
         </div>
     </section>
     <!-- / main content -->
-
-
-    {{-- DELETE MODAL --}}
-    <div id="delete-log-modal" class="modal fade">
-        <div class="modal-dialog">
-            <form id="delete-log-form" action="{{-- route('log-viewer::logs.delete') --}}" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="date" value="">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">DELETE LOG FILE</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancel
-                        </button>
-                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">DELETE
-                            FILE
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-    <script>
-        $(function () {
-            var deleteLogModal = $('div#delete-log-modal'),
-                deleteLogForm = $('form#delete-log-form'),
-                submitBtn = deleteLogForm.find('button[type=submit]');
-
-            $("a[href=#delete-log-modal]").on('click', function (event) {
-                event.preventDefault();
-                var date = $(this).data('log-date');
-                deleteLogForm.find('input[name=date]').val(date);
-                deleteLogModal.find('.modal-body p').html(
-                    'Are you sure you want to <span class="label label-danger">DELETE</span> this log file <span class="label label-primary">' + date + '</span> ?'
-                );
-
-                deleteLogModal.modal('show');
-            });
-
-            deleteLogForm.on('submit', function (event) {
-                event.preventDefault();
-                submitBtn.button('loading');
-
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    dataType: 'json',
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        submitBtn.button('reset');
-                        if (data.result === 'success') {
-                            deleteLogModal.modal('hide');
-                            location.reload();
-                        }
-                        else {
-                            alert('AJAX ERROR ! Check the console !');
-                            console.error(data);
-                        }
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        alert('AJAX ERROR ! Check the console !');
-                        console.error(errorThrown);
-                        submitBtn.button('reset');
-                    }
-                });
-
-                return false;
-            });
-
-            deleteLogModal.on('hidden.bs.modal', function () {
-                deleteLogForm.find('input[name=date]').val('');
-                deleteLogModal.find('.modal-body p').html('');
-            });
-        });
-    </script>
 
 
 @endsection

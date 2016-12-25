@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Types;
 
-use Orchid\Foundation\Services\Type\Type;
+use Orchid\Type\Type;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 

@@ -4,7 +4,7 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class SeoPostForm extends Form
 {

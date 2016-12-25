@@ -6,7 +6,7 @@ use App;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class BasePostForm extends Form
 {

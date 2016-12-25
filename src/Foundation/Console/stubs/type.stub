@@ -1,6 +1,6 @@
 <?php namespace DummyNamespace;
 
-use Orchid\Foundation\Services\Type\Type;
+use Orchid\Type\Type;
 
 class DummyClass extends Type
 {

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><i class="fa fa-fw fa-flag"></i> Levels</div>
     <ul class="list-group">
-        @foreach([] as $level => $item) {{-- $log->menu()  --}}
+        @foreach($log->menu() as $level => $item) {{-- $log->menu()  --}}
         @if ($item['count'] === 0)
             <a href="#" class="list-group-item disabled">
                     <span class="badge">

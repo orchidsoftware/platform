@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
-use Orchid\Foundation\Services\Forms\FormGroup;
+use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Events\Systems\SettingsEvent;
 
 class SettingFormGroup extends FormGroup

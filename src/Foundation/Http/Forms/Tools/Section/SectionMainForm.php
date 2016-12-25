@@ -6,7 +6,7 @@ use App;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class SectionMainForm extends Form
 {

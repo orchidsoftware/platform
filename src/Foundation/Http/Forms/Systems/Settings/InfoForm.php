@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Foundation\Core\Models\Setting;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class InfoForm extends Form
 {

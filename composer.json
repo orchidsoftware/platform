@@ -56,13 +56,20 @@
       "src/LogViewer/helpers.php"
     ],
     "psr-4": {
-      "Orchid\\Foundation\\": "src/Foundation",
-      "Orchid\\Installer\\": "src/Installer",
-      "Orchid\\Settings\\": "src/Settings",
-      "Orchid\\Widget\\": "src/Widget",
+      "Orchid\\Access\\": "src/Access",
       "Orchid\\Alert\\": "src/Alert",
+      "Orchid\\Field\\": "src/Field",
+      "Orchid\\Forms\\": "src/Forms",
+      "Orchid\\Foundation\\": "src/Foundation",
+      "Orchid\\Image\\": "src/Image",
+      "Orchid\\Installer\\": "src/Installer",
       "Orchid\\LogViewer\\": "src/LogViewer",
-      "Orchid\\Search\\": "src/Search"
+      "Orchid\\Menu\\": "src/Menu",
+      "Orchid\\Presenter\\": "src/Presenter",
+      "Orchid\\Search\\": "src/Search",
+      "Orchid\\Settings\\": "src/Settings",
+      "Orchid\\Type\\": "src/Type",
+      "Orchid\\Widget\\": "src/Widget"
     }
   },
   "extra": {

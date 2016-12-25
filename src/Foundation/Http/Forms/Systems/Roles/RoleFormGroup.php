@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Roles;
 
 use Orchid\Foundation\Core\Models\Role;
-use Orchid\Foundation\Services\Forms\FormGroup;
+use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Events\Systems\RolesEvent;
 
 class RoleFormGroup extends FormGroup

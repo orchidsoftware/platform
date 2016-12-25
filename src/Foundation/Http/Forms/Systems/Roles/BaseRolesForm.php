@@ -5,7 +5,7 @@ namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Dashboard;
-use Orchid\Foundation\Services\Forms\Form;
+use Orchid\Forms\Form;
 
 class BaseRolesForm extends Form
 {

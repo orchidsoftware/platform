@@ -90,7 +90,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
 
     Route::get('/test3/{test}', [
         'as' => 'log-viewer::logs.show',
-        'uses' => 'LogViewerController@show',
+        'uses' => 'LogViewerConqtroller@show',
     ]);
 
     Route::get('download', [
