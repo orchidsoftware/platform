@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Core\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface

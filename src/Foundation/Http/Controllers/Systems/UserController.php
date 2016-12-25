@@ -3,9 +3,9 @@
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
+use Orchid\Forms\CrudFormTrait;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Forms\CrudFormTrait;
 use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserController extends Controller

@@ -2,11 +2,11 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Orchid\Forms\Form;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Facades\Dashboard;
-use Orchid\Forms\Form;
 
 class AccessUserForm extends Form
 {

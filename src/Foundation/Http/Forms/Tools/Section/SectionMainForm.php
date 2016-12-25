@@ -3,10 +3,10 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
 use App;
+use Orchid\Forms\Form;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Forms\Form;
 
 class SectionMainForm extends Form
 {

@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Orchid\Forms\Form;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\User;
-use Orchid\Forms\Form;
 
 class BaseUserForm extends Form
 {

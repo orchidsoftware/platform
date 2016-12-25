@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Events\Systems\UserEvent;
-use Orchid\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {
