@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
 use View;
 use Illuminate\Routing\Router;
 use Orchid\Alert\AlertServiceProvider;
@@ -17,6 +16,7 @@ use Orchid\LogViewer\LogViewerServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Installer\Providers\InstallerServiceProvider;
+use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -126,7 +126,7 @@ class FoundationServiceProvider extends ServiceProvider
             BackupServiceProvider::class,
             LogViewerServiceProvider::class,
             ScoutServiceProvider::class,
-            ElasticsearchServiceProvicer::class
+            ElasticsearchServiceProvicer::class,
         ];
     }
 

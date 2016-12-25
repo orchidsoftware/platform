@@ -132,6 +132,7 @@ class LogCollection extends Collection
         if (! $this->has($date)) {
             throw new LogNotFoundException("Log not found in this date [$date]");
         }
+
         return parent::get($date, $default);
     }
 
