@@ -4,5 +4,4 @@ namespace Orchid\Access;
 
 interface UserInterface
 {
-
 }

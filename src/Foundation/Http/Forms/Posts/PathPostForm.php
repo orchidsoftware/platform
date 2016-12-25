@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
-use Orchid\Foundation\Core\Models\Post;
 use Orchid\Forms\Form;
+use Orchid\Foundation\Core\Models\Post;
 
 class PathPostForm extends Form
 {

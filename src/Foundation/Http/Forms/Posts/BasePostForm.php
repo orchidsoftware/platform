@@ -3,10 +3,10 @@
 namespace Orchid\Foundation\Http\Forms\Posts;
 
 use App;
+use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Forms\Form;
 
 class BasePostForm extends Form
 {

@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Forms\FormGroup;
+use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Events\Tools\SectionEvent;
 
 class SectionFormGroup extends FormGroup

@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
+use Orchid\Forms\Form;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Setting;
-use Orchid\Forms\Form;
 
 class BaseSettingsForm extends Form
 {
