@@ -9,7 +9,6 @@ use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserController extends Controller
 {
-
     /**
      * @var
      */

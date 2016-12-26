@@ -39,6 +39,4 @@ class InfoForm extends Form
             'settings' => $settings,
         ]);
     }
-
-
 }

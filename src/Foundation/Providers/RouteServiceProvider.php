@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->group(['middleware' => ['web', 'dashboard'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],
             function ($router) {
-                foreach (glob(__DIR__ . '/../Routes/Dashboard/*.php') as $file) {
+                foreach (glob(__DIR__.'/../Routes/Dashboard/*.php') as $file) {
                     require $file;
                 }
             });
@@ -39,11 +39,10 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
             'prefix' => 'api',
         ], function ($router) {
-            foreach (glob(__DIR__ . '/../Routes/Api/*.php') as $file) {
+            foreach (glob(__DIR__.'/../Routes/Api/*.php') as $file) {
                 require $file;
             }
         });
-
 
         $router->group(['middleware' => ['web'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],
             function ($router) {
@@ -58,7 +57,6 @@ class RouteServiceProvider extends ServiceProvider
                 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
                 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
             });
-
 
         $this->binding($router);
     }

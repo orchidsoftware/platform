@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
-use Illuminate\Support\Facades\Hash;
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\User;
 
 class BaseUserForm extends Form
 {
@@ -35,7 +35,6 @@ class BaseUserForm extends Form
         ];
     }
 
-
     /**
      * Display Settings App.
      * @param User|null $user
@@ -47,7 +46,6 @@ class BaseUserForm extends Form
             'user' => $user ?: new $this->model,
         ]);
     }
-
 
     /**
      * Save Base Role.

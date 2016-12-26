@@ -5,14 +5,13 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -56,7 +55,6 @@ class FileController extends Controller
 
         return $file;
     }
-
 
     /**
      * @param UploadedFile $file

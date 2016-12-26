@@ -2,8 +2,8 @@
 
 namespace Orchid\Forms;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Form implements FormInterface
 {
@@ -41,7 +41,6 @@ abstract class Form implements FormInterface
         $this->model = $this->model ? new $this->model() : null;
         $this->request = $request ?: request();
     }
-
 
     /**
      * Save Form.
@@ -125,6 +124,4 @@ abstract class Form implements FormInterface
     public function remove()
     {
     }
-
-
 }
