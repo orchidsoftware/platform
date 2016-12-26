@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Setting;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\Setting;
 
 class BaseSettingsForm extends Form
 {
@@ -19,7 +19,6 @@ class BaseSettingsForm extends Form
      * @var
      */
     protected $model = Setting::class;
-
 
     /**
      * Display Settings App.

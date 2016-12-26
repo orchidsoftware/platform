@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Dashboard;
 
 class BaseRolesForm extends Form

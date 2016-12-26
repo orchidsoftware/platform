@@ -16,7 +16,6 @@ return [
         \Orchid\Foundation\Types\TestType::class,
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Available fields to form templates
@@ -36,7 +35,6 @@ return [
         'checkbox' => \Orchid\Field\Fields\CheckBoxField::class,
         'path' => \Orchid\Field\Fields\PathField::class,
     ],
-
 
     /*
     |--------------------------------------------------------------------------

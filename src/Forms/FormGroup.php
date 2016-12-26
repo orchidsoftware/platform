@@ -172,7 +172,6 @@ abstract class FormGroup
         return false;
     }
 
-
     /**
      * @param $method
      * @return $this
@@ -180,6 +179,7 @@ abstract class FormGroup
     public function method($method)
     {
         $this->method = $method;
+
         return $this;
     }
 
@@ -190,6 +190,7 @@ abstract class FormGroup
     public function route($method)
     {
         $this->route = $method;
+
         return $this;
     }
 
@@ -200,7 +201,7 @@ abstract class FormGroup
     public function slug($method)
     {
         $this->slug = $method;
+
         return $this;
     }
-
 }

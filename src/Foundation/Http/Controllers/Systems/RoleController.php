@@ -9,7 +9,6 @@ use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
 
 class RoleController extends Controller
 {
-
     /**
      * @var
      */
@@ -84,6 +83,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $this->form->remove($role);
+
         return redirect()->route('dashboard.systems.roles');
     }
 }
