@@ -30,4 +30,5 @@ return [
     'Errors'                     => 'Errors',
     'Logs'                       => 'Logs',
     'General settings'           => 'General settings',
+    'Backups' => 'Backups',
 ];

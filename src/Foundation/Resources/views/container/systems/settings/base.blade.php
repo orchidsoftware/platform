@@ -29,8 +29,8 @@
             <label class="col-lg-2 control-label">Краткое описание</label>
 
             <div class="col-lg-10">
-                <textarea class="form-control no-resize" name="site_descriptions"
-                          rows="4">{{$site_descriptions or ''}}</textarea>
+                <textarea class="form-control no-resize" name="site_description"
+                          rows="4">{{$site_description or ''}}</textarea>
                 <small class="help-block m-b-none">Объясните в нескольких словах, о чём этот сайт.
                 </small>
             </div>

@@ -6,11 +6,14 @@
 
 
 
+
+
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
-            <button type="submit" form="form-group-remove" class="btn btn-link"  @if($method == 'create') disabled @endif><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
+            <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
+                        class="ion-ios-trash-outline  fa fa-2x"></i></button>
         </div>
     </div>
 @stop
@@ -38,16 +41,8 @@
         </div>
 
 
-        <form class="form-horizontal" id="form-group"
-
-              @if($method == 'create')
-              action="{{route($route->get('store')['name'])}}"
-              @elseif($method == 'update')
-              action="{{route($route->get('update')['name'],$model->$slug)}}"
-              @endif
-              method="post" enctype="multipart/form-data">
-
-
+            <form class="form-horizontal" id="form-group" action="{{route($route,$slug)}}" method="post"
+                  enctype="multipart/form-data">
 
 
             <div class="tab-content">
@@ -60,24 +55,17 @@
 
 
             {{csrf_field()}}
+                {{ method_field($method)}}
 
-
-            @if($route->get($method)['method'] != 'GET')
-               {{ method_field( $route->get($method)['method'] )}}
-            @endif
 
         </form>
 
 
-
-        @if($method != 'create')
-            <form id="form-group-remove" action="{{route($route->get('destroy')['name'],$model->$slug)}}" method="POST" style="display: none;">
+            <form id="form-group-remove" action="{{route($route,$slug)}}" method="POST">
                 {{ csrf_field() }}
-
-
                 {{ method_field('delete') }}
             </form>
-        @endif
+
 
         </div>
     </section>
@@ -85,7 +73,3 @@
 
 
 @stop
-
-
-
-

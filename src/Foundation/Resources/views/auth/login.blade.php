@@ -9,7 +9,7 @@
 
         <div class="bg-pic">
 
-            <img src="https://pp.vk.me/c636021/v636021062/135d5/DwOFFSbohS0.jpg" alt="" class="lazy">
+            <img src="{{config('content.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
 
 
             <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">

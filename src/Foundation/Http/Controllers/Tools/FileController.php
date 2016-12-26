@@ -5,22 +5,17 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
-    /**
-     * FileController constructor.
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function upload(Request $request)
     {
@@ -62,9 +57,10 @@ class FileController extends Controller
         return $file;
     }
 
+
     /**
-     * @param UploadedFile $image
-     * @return static
+     * @param UploadedFile $file
+     * @return UploadedFile|static
      */
     protected function saveFile(UploadedFile $file)
     {
@@ -88,10 +84,6 @@ class FileController extends Controller
         return $file;
     }
 
-    protected function saveImageDataBase()
-    {
-    }
-
     /**
      * Delete files.
      */
@@ -113,5 +105,9 @@ class FileController extends Controller
         $files = File::where('post_id', $id)->get();
 
         return response()->json($files);
+    }
+
+    protected function saveImageDataBase()
+    {
     }
 }

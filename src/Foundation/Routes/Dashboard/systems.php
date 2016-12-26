@@ -1,42 +1,5 @@
 <?php
 
-Route::get('/', [
-    'as' => 'dashboard.index',
-    'uses' => 'DashboardController@index',
-]);
-
-Route::group(['namespace' => 'Posts', 'prefix' => 'posts'], function () {
-    Route::get('{type}/create', [
-        'as' => 'dashboard.posts.type.create',
-        'uses' => 'PostController@create',
-    ]);
-
-    Route::get('{type}/{slug}/edit', [
-        'as' => 'dashboard.posts.type.edit',
-        'uses' => 'PostController@edit',
-    ]);
-
-    Route::get('{type}/{slug?}', [
-        'as' => 'dashboard.posts.type',
-        'uses' => 'PostController@index',
-    ]);
-
-    Route::post('{type}', [
-        'as' => 'dashboard.posts.type.store',
-        'uses' => 'PostController@store',
-    ]);
-
-    Route::put('{type}/{slug?}', [
-        'as' => 'dashboard.posts.type.update',
-        'uses' => 'PostController@update',
-    ]);
-
-    Route::delete('{type}/{slug?}', [
-        'as' => 'dashboard.posts.type.destroy',
-        'uses' => 'PostController@destroy',
-    ]);
-});
-
 Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     Route::get('settings', [
         'as' => 'dashboard.systems.settings',
@@ -90,7 +53,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
 
     Route::get('/test3/{test}', [
         'as' => 'log-viewer::logs.show',
-        'uses' => 'LogViewerConqtroller@show',
+        'uses' => 'LogViewerController@show',
     ]);
 
     Route::get('download', [
@@ -122,35 +85,5 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     $this->get('test4/{level}', [
         'as' => 'log-viewer::logs.filter',
         'uses' => 'LogViewerController@showByLevel',
-    ]);
-});
-
-Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
-    Route::post('files', [
-        'as' => 'dashboard.tools.files.upload',
-        'uses' => 'FileController@upload',
-    ]);
-
-    Route::resource('section', 'SectionController', ['names' => [
-        'index' => 'dashboard.tools.section',
-        'create' => 'dashboard.tools.section.create',
-        'edit' => 'dashboard.tools.section.edit',
-        'update' => 'dashboard.tools.section.update',
-        'store' => 'dashboard.tools.section.store',
-        'destroy' => 'dashboard.tools.section.destroy',
-    ]]);
-
-    Route::post('files', [
-        'as' => 'dashboard.tools.files.upload',
-        'uses' => 'FileController@upload',
-    ]);
-    Route::delete('files/{id}', [
-        'as' => 'dashboard.tools.files.destroy',
-        'uses' => 'FileController@destroy',
-    ]);
-
-    Route::get('files/post/{id}', [
-        'as' => 'dashboard.tools.files.destroy',
-        'uses' => 'FileController@getFilesPost',
     ]);
 });

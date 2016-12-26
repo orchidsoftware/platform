@@ -2,7 +2,7 @@
 
 
 @section('title','Панель управления')
-@section('descriptions','Добро пожаловать в Orchid')
+@section('description','Добро пожаловать в Orchid')
 
 
 

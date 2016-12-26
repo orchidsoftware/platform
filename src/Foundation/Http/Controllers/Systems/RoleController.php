@@ -3,14 +3,12 @@
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Forms\CrudFormTrait;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
 
 class RoleController extends Controller
 {
-    use CrudFormTrait;
 
     /**
      * @var
@@ -36,9 +34,12 @@ class RoleController extends Controller
     /**
      * @return mixed
      */
-    public function get()
+    public function create()
     {
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.systems.roles.update')
+            ->method('POST')
+            ->render();
     }
 
     /**
@@ -69,9 +70,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $this->form->storage->put('model', $role);
-
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.systems.roles.update')
+            ->slug($role->slug)
+            ->method('PUT')
+            ->render($role);
     }
 
     /**
@@ -81,7 +84,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $this->form->remove($role);
-
         return redirect()->route('dashboard.systems.roles');
     }
 }

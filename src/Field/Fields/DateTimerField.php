@@ -1,21 +1,20 @@
 <?php
 
-namespace Orchid\Foundation\Fields;
+namespace Orchid\Field\Fields;
 
 use Orchid\Field\Field;
 
 class DateTimerField extends Field
 {
     /**
+     * @var string
+     */
+    public $view = 'dashboard::fields.datetime';
+    /**
      * HTML tag.
      * @var string
      */
     protected $tag = 'datetime';
-
-    /**
-     * @var string
-     */
-    public $view = 'dashboard::fields.datetime';
 
     /**
      * Create Object.

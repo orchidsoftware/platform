@@ -2,7 +2,7 @@
 
 
 @section('title',$type->name)
-@section('descriptions',$type->description)
+@section('description',$type->description)
 
 
 @section('navbar')

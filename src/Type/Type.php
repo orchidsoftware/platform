@@ -2,10 +2,10 @@
 
 namespace Orchid\Type;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Exceptions\TypeException;
 
 abstract class Type implements TypeInterface
@@ -56,6 +56,12 @@ abstract class Type implements TypeInterface
      * @var bool
      */
     public $display = true;
+
+    /**
+     * @var bool
+     */
+    public $api = false;
+
     /**
      * @var null
      */

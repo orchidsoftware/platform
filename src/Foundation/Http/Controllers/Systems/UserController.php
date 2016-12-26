@@ -3,14 +3,12 @@
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Forms\CrudFormTrait;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserController extends Controller
 {
-    use CrudFormTrait;
 
     /**
      * @var
@@ -36,9 +34,12 @@ class UserController extends Controller
     /**
      * @return mixed
      */
-    public function get()
+    public function create()
     {
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.systems.users.store')
+            ->method('POST')
+            ->render();
     }
 
     /**
@@ -58,9 +59,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->form->storage->put('model', $user);
-
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.systems.users.update')
+            ->method('PUT')
+            ->render($user);
     }
 
     /**

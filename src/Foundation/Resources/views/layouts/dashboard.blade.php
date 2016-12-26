@@ -41,7 +41,7 @@
 
             <div class="col-xs-6">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                <small class="text-muted text-ellipsis">@yield('descriptions')</small>
+                <small class="text-muted text-ellipsis">@yield('description')</small>
             </div>
 
             @section('navbar')

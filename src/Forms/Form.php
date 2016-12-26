@@ -2,12 +2,17 @@
 
 namespace Orchid\Forms;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 
 abstract class Form implements FormInterface
 {
     use ValidatesRequests;
+
+    /**
+     * @var array
+     */
+    public $data = [];
 
     /**
      * @var Request
@@ -27,11 +32,6 @@ abstract class Form implements FormInterface
     protected $model;
 
     /**
-     * @var array
-     */
-    public $data = [];
-
-    /**
      * Form constructor.
      *
      * @param Request|null $request
@@ -42,31 +42,11 @@ abstract class Form implements FormInterface
         $this->request = $request ?: request();
     }
 
-    /**
-     * @return mixed
-     */
-    abstract public function persist();
-
-    /**
-     * @return mixed
-     */
-    //abstract public function get();
-
-    /**
-     * Validation Rules Method.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-    }
 
     /**
      * Save Form.
      *
-     * @param null $arg
-     *
-     * @return mixed|null
+     * @return mixed
      */
     public function save()
     {
@@ -78,14 +58,6 @@ abstract class Form implements FormInterface
 
             // return true;
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function fields()
-    {
-        return $this->request->all();
     }
 
     /**
@@ -101,6 +73,30 @@ abstract class Form implements FormInterface
     }
 
     /**
+     * Validation Rules Method.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function persist()
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function fields()
+    {
+        return $this->request->all();
+    }
+
+    /**
      * @param $property
      *
      * @return array|string
@@ -113,6 +109,15 @@ abstract class Form implements FormInterface
     }
 
     /**
+     * View Grid data.
+     *
+     * @return mixed
+     */
+    public function grid()
+    {
+    }
+
+    /**
      * Action of remote element.
      *
      * @return mixed
@@ -121,12 +126,5 @@ abstract class Form implements FormInterface
     {
     }
 
-    /**
-     * View Grid data.
-     *
-     * @return mixed
-     */
-    public function grid()
-    {
-    }
+
 }

@@ -20,7 +20,7 @@ return [
     'Posts Managements'          => 'Управление записями',
     'Types posts'                => 'Типы записей',
     'Categories'                 => 'Категории',
-    'Sections'                 => 'Разделы',
+    'Sections' => 'Разделы',
     'Tags'                       => 'Теги',
     'Users'                      => 'Пользователи',
     'Groups'                     => 'Группы',
@@ -31,4 +31,5 @@ return [
     'Errors'                     => 'Ошибки',
     'Logs'                       => 'Журнал',
     'General settings'           => 'Общие настройки',
+    'Backups' => 'Резервные копии',
 ];

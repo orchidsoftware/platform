@@ -1,34 +1,33 @@
 <?php
 
-namespace Orchid\Foundation\Fields;
+namespace Orchid\Field\Fields;
 
 use Orchid\Field\Field;
 
-class TextAreaField extends Field
+class TagsField extends Field
 {
+    /**
+     * @var string
+     */
+    public $view = 'dashboard::fields.tags';
     /**
      * HTML tag.
      * @var string
      */
-    protected $tag = 'textarea';
+    protected $tag = 'tags';
 
     /**
-     * The rows attribute specifies the visible height of a text area, in lines.
-     * @var
+     * Create Object.
+     *
+     * @param null $attributes
+     * @param null $data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected $rows;
-
-    /**
-     * @var string
-     */
-    public $view = 'dashboard::fields.textarea';
-
     public function create($attributes, $data = null)
     {
         if (is_null($data)) {
             $data = collect();
         }
-
         $attributes->put('data', $data);
 
         return view($this->view, $attributes);

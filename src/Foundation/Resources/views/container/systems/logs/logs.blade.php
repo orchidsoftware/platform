@@ -2,7 +2,7 @@
 
 
 @section('title','Журнал ошибок')
-@section('descriptions','Журнал не системных вызовов')
+@section('description','Журнал не системных вызовов')
 
 
 

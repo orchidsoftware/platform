@@ -3,9 +3,9 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 
 class AccessUserForm extends Form
@@ -37,16 +37,13 @@ class AccessUserForm extends Form
 
     /**
      * Display Settings App.
-     *
-     * @param null $storage
-     *
+     * @param User|null $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get($storage = null)
+    public function get(User $user = null)
     {
-        $user = $storage->get('model');
 
-        if (! is_null($user)) {
+        if (!is_null($user)) {
             $rolePermission = $user->permissions ?: [];
             $permission = Dashboard::getPermission();
 
@@ -55,7 +52,6 @@ class AccessUserForm extends Form
                     foreach ($array as $key => $value) {
                         $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
                     }
-
                     return $array;
                 }
             );

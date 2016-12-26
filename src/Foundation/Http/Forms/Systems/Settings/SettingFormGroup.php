@@ -11,20 +11,6 @@ class SettingFormGroup extends FormGroup
      * @var string
      */
     public $view = 'dashboard::container.systems.settings.settings';
-    /**
-     * Route available list.
-     * @var array
-     */
-    public $route = [
-        'index' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.settings',
-        ],
-        'update' => [
-            'method' => 'PUT',
-            'name' => 'dashboard.systems.settings.update',
-        ],
-    ];
 
     /**
      * @var

@@ -1,34 +1,32 @@
 <?php
 
-namespace Orchid\Foundation\Fields;
+namespace Orchid\Field\Fields;
 
 use Orchid\Field\Field;
 
-class RobotField extends Field
+class TextAreaField extends Field
 {
+    /**
+     * @var string
+     */
+    public $view = 'dashboard::fields.textarea';
     /**
      * HTML tag.
      * @var string
      */
-    protected $tag = 'robot';
-
+    protected $tag = 'textarea';
     /**
-     * @var string
+     * The rows attribute specifies the visible height of a text area, in lines.
+     * @var
      */
-    public $view = 'dashboard::fields.robot';
+    protected $rows;
 
-    /**
-     * Create Object.
-     *
-     * @param null $attributes
-     * @param null $data
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create($attributes, $data = null)
     {
         if (is_null($data)) {
             $data = collect();
         }
+
         $attributes->put('data', $data);
 
         return view($this->view, $attributes);

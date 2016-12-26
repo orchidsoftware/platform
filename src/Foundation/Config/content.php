@@ -4,29 +4,49 @@
 return [
 
     /*
-     * Types - an abstract pattern of behavior record
-     */
+    |--------------------------------------------------------------------------
+    | Types
+    |--------------------------------------------------------------------------
+    |
+    | An abstract pattern of behavior record
+    |
+    */
+
     'types' => [
         \Orchid\Foundation\Types\TestType::class,
     ],
 
-    /*
-     * Available fields to form templates
-     */
-    'fields' => [
-        'textarea' => \Orchid\Foundation\Fields\TextAreaField::class,
-        'input' => \Orchid\Foundation\Fields\InputField::class,
-        'tags' => \Orchid\Foundation\Fields\TagsField::class,
-        'robot' => \Orchid\Foundation\Fields\RobotField::class,
-        'place' => \Orchid\Foundation\Fields\PlaceField::class,
-        'datetime' => \Orchid\Foundation\Fields\DateTimerField::class,
-        'checkbox' => \Orchid\Foundation\Fields\CheckBoxField::class,
-        'path' => \Orchid\Foundation\Fields\PathField::class,
-    ],
 
     /*
-     *  Available locales
-     */
+    |--------------------------------------------------------------------------
+    | Available fields to form templates
+    |--------------------------------------------------------------------------
+    |
+    | Description
+    |
+    */
+
+    'fields' => [
+        'textarea' => \Orchid\Field\Fields\TextAreaField::class,
+        'input' => \Orchid\Field\Fields\InputField::class,
+        'tags' => \Orchid\Field\Fields\TagsField::class,
+        'robot' => \Orchid\Field\Fields\RobotField::class,
+        'place' => \Orchid\Field\Fields\PlaceField::class,
+        'datetime' => \Orchid\Field\Fields\DateTimerField::class,
+        'checkbox' => \Orchid\Field\Fields\CheckBoxField::class,
+        'path' => \Orchid\Field\Fields\PathField::class,
+    ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | Description
+    |
+    */
+
     'locales' => [
 
         'en' => [

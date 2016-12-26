@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Setting;
+use Orchid\Foundation\Facades\Alert;
 
 class BaseSettingsForm extends Form
 {
@@ -20,14 +20,6 @@ class BaseSettingsForm extends Form
      */
     protected $model = Setting::class;
 
-    /**
-     * Validation Rules Request.
-     *
-     * @var array
-     */
-    protected $rules = [
-        //'settings' => 'required|array',
-    ];
 
     /**
      * Display Settings App.
@@ -37,7 +29,7 @@ class BaseSettingsForm extends Form
         $settings = $this->model->get([
             'site_title',
             'site_keywords',
-            'site_descriptions',
+            'site_description',
             'site_adress',
             'site_phone',
             'site_email',

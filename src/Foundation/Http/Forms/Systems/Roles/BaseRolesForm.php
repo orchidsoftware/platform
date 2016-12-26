@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 
 class BaseRolesForm extends Form
@@ -37,15 +37,11 @@ class BaseRolesForm extends Form
 
     /**
      * Display Settings App.
-     *
-     * @param null $storage
-     *
+     * @param Role|null $role
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get($storage = null)
+    public function get(Role $role = null)
     {
-        $role = $storage->get('model');
-
         if (! is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
@@ -69,11 +65,9 @@ class BaseRolesForm extends Form
     /**
      * Save Base Role.
      *
-     * @param null $storage
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function persist($storage = null)
+    public function persist()
     {
         $role = Role::firstOrNew([
             'slug' => $this->request->get('slug'),

@@ -12,36 +12,6 @@ class RoleFormGroup extends FormGroup
      * @var
      */
     public $event = RolesEvent::class;
-    /**
-     * Route available list.
-     * @var array
-     */
-    public $route = [
-        'index' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.roles',
-        ],
-        'create' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.roles.create',
-        ],
-        'edit' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.roles.edit',
-        ],
-        'update' => [
-            'method' => 'PUT',
-            'name' => 'dashboard.systems.roles.update',
-        ],
-        'store' => [
-            'method' => 'POST',
-            'name' => 'dashboard.systems.roles.store',
-        ],
-        'destroy' => [
-            'method' => 'DELETE',
-            'name' => 'dashboard.systems.roles.destroy',
-        ],
-    ];
 
     /**
      * Description Attributes for group.
@@ -64,7 +34,7 @@ class RoleFormGroup extends FormGroup
         $roles = $role->select('name', 'slug', 'created_at')->paginate();
 
         return view('dashboard::container.systems.roles.grid', [
-                'roles' => $roles,
+            'roles' => $roles,
         ]);
     }
 }

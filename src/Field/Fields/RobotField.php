@@ -1,21 +1,20 @@
 <?php
 
-namespace Orchid\Foundation\Fields;
+namespace Orchid\Field\Fields;
 
 use Orchid\Field\Field;
 
-class PathField extends Field
+class RobotField extends Field
 {
+    /**
+     * @var string
+     */
+    public $view = 'dashboard::fields.robot';
     /**
      * HTML tag.
      * @var string
      */
-    protected $tag = 'path';
-
-    /**
-     * @var string
-     */
-    public $view = 'dashboard::fields.path';
+    protected $tag = 'robot';
 
     /**
      * Create Object.
