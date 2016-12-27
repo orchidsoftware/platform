@@ -36,7 +36,6 @@ return [
         'path' => \Orchid\Field\Fields\PathField::class,
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Images

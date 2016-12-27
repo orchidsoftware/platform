@@ -9,7 +9,6 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 
 class FileController extends Controller
 {
@@ -40,7 +39,7 @@ class FileController extends Controller
     {
         Storage::disk('public')->makeDirectory(date('Y/m/d'));
 
-        foreach (config('content.images',[]) as $key => $value ){
+        foreach (config('content.images', []) as $key => $value) {
             $this->saveImageProcessing(
                 $image,
                 $key,
@@ -50,12 +49,11 @@ class FileController extends Controller
             );
         }
 
-
         $name = sha1(time().$image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
         $path = '/'.date('Y/m/d').'/';
 
         $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
-        Image::make($image)->save($full_path,100);
+        Image::make($image)->save($full_path, 100);
 
         File::create([
             'name' => $name,
@@ -64,9 +62,6 @@ class FileController extends Controller
             'path' => $path,
             'user_id' => Auth::user()->id,
         ]);
-
-
-
     }
 
     /**
@@ -128,7 +123,7 @@ class FileController extends Controller
      */
     protected function saveImageProcessing(UploadedFile $image, $name = null, $width = null, $height = null, $quality = 100)
     {
-        if(!is_null($name)){
+        if (! is_null($name)) {
             $name = '_'.$name;
         }
 
