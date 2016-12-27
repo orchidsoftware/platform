@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 
 class FileController extends Controller
 {
@@ -39,13 +40,24 @@ class FileController extends Controller
     {
         Storage::disk('public')->makeDirectory(date('Y/m/d'));
 
+        foreach (config('content.images',[]) as $key => $value ){
+            $this->saveImageProcessing(
+                $image,
+                $key,
+                $value['width'],
+                $value['height'],
+                $value['quality']
+            );
+        }
+
+
         $name = sha1(time().$image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
         $path = '/'.date('Y/m/d').'/';
 
         $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
-        Image::make($image)->save($full_path, 75);
+        Image::make($image)->save($full_path,100);
 
-        $file = File::create([
+        File::create([
             'name' => $name,
             'original_name' => $image->getClientOriginalName(),
             'mime' => $image->getMimeType(),
@@ -53,7 +65,8 @@ class FileController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return $file;
+
+
     }
 
     /**
@@ -105,7 +118,22 @@ class FileController extends Controller
         return response()->json($files);
     }
 
-    protected function saveImageDataBase()
+    /**
+     * @param UploadedFile $image
+     * @param null $name
+     * @param null $width
+     * @param null $height
+     * @param int $quality
+     * @return static
+     */
+    protected function saveImageProcessing(UploadedFile $image, $name = null, $width = null, $height = null, $quality = 100)
     {
+        if(!is_null($name)){
+            $name = '_'.$name;
+        }
+
+        $name = sha1(time().$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
+        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
+        Image::make($image)->resize($width, $height)->save($full_path, $quality);
     }
 }
