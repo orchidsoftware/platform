@@ -26,6 +26,18 @@ Orchid Platform application provides a very flexible and extensible way of build
 Documentation can be found at [Orchid website](https://theorchid.github.io/Platform/).
 
 
+## Server Requirements
+* PHP >= 7.0
+* Cron
+* Redis >= 3.0
+* Elasticsearch >= 5.0
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Mbstring PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
+* Zip PHP Extension
+
 
 ## Installation
 
