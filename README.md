@@ -117,11 +117,6 @@ run the following command:
 php artisan make:admin nickname email@email.com secretpassword
 ```
 
-## Usage
-
-TODO: Write usage instructions
-
-
 
 ## Learn More
 
