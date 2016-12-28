@@ -2,9 +2,9 @@
 
 namespace Orchid\Widget\Providers;
 
-use Blade;
-use Orchid\Widget\Console\MakeWidget;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Widget\Console\MakeWidget;
 
 class WidgetServiceProvider extends ServiceProvider
 {
@@ -28,20 +28,6 @@ class WidgetServiceProvider extends ServiceProvider
             }
 
             return '<?php echo (new \Orchid\Widget\Service\Widget)->get('.$segments[0].','.$segments[1].'); ?>';
-
-            /*
-            return '<?php $'.trim($segments[0])." = app('".trim($segments[1])."'); ?>";
-
-
-            dd($arguments);
-            list($key, $arguments) = explode(',',str_replace(['(',')',' ', "'"], '', $arguments));
-            $widget = (new Widget())->get($key,$arguments);
-
-
-            return $widget;
-
-            return "<?php echo (new \\Orchid\\Widget\\Service\\Widget)->get({$key},{$arguments}); ?>";
-            */
         });
     }
 

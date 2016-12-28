@@ -2,7 +2,7 @@
 
 namespace Orchid\Settings\Models;
 
-use Cache;
+use Illuminate\Support\Facades\Cache;
 
 trait SettingTrait
 {

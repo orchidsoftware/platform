@@ -2,10 +2,10 @@
 
 namespace Orchid\Installer\Controllers;
 
-use Artisan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Artisan;
 
 class AdministratorController extends Controller
 {
