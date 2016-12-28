@@ -2,21 +2,21 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
-use Intervention\Image\ImageServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
+use Cartalyst\Tags\TagsServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
-use Orchid\Installer\Providers\InstallerServiceProvider;
-use Orchid\LogViewer\LogViewerServiceProvider;
-use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
-use Orchid\Settings\Providers\SettingsServiceProvider;
-use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Intervention\Image\ImageServiceProvider;
+use Orchid\LogViewer\LogViewerServiceProvider;
+use Orchid\Widget\Providers\WidgetServiceProvider;
+use Orchid\Settings\Providers\SettingsServiceProvider;
+use Orchid\Installer\Providers\InstallerServiceProvider;
+use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
 
 class FoundationServiceProvider extends ServiceProvider
 {

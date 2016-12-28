@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
-use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
+use Illuminate\Support\Facades\App;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\Section;

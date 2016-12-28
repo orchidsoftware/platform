@@ -2,11 +2,11 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
+use Orchid\Forms\Form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Facades\Alert;
+use Orchid\Foundation\Core\Models\Section;
 
 class SectionMainForm extends Form
 {
