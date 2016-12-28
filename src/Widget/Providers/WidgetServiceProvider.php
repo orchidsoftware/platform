@@ -3,8 +3,8 @@
 namespace Orchid\Widget\Providers;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Widget\Console\MakeWidget;
+use Illuminate\Support\ServiceProvider;
 
 class WidgetServiceProvider extends ServiceProvider
 {
