@@ -1,13 +1,14 @@
-<?php namespace Orchid\Schema;
+<?php
+
+namespace Orchid\Schema;
 
 use Orchid\Schema\Wrapper\MysqlWrapper;
-use Orchid\Schema\Wrapper\PostgresWrapper;
 use Orchid\Schema\Wrapper\SqliteWrapper;
+use Orchid\Schema\Wrapper\PostgresWrapper;
 use Orchid\Schema\Wrapper\SqlServerWrapper;
 
 /**
- * Class Schema
- * @package Orchid\Schema
+ * Class Schema.
  */
 class Schema extends BaseSchema
 {
@@ -29,9 +30,6 @@ class Schema extends BaseSchema
         $this->switchWrapper();
     }
 
-    /**
-     *
-     */
     public function switchWrapper()
     {
         $driverName = $this->database->getDriverName();

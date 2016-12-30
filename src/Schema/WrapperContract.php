@@ -1,9 +1,9 @@
-<?php namespace Orchid\Schema;
+<?php
 
+namespace Orchid\Schema;
 
 /**
- * Interface WrapperContract
- * @package Orchid\Schema
+ * Interface WrapperContract.
  */
 interface WrapperContract
 {
@@ -22,5 +22,4 @@ interface WrapperContract
      * @return mixed
      */
     public function getSchema();
-
 }

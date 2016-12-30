@@ -1,12 +1,12 @@
-<?php namespace Orchid\Schema\Wrapper;
+<?php
 
+namespace Orchid\Schema\Wrapper;
 
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
 /**
- * Class SqliteWrapper
- * @package Orchid\Schema\Wrapper
+ * Class SqliteWrapper.
  */
 class SqliteWrapper implements WrapperContract
 {
@@ -34,6 +34,7 @@ class SqliteWrapper implements WrapperContract
             $this->schema[$table]['attributes'] = $columns;
             $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
         }
+
         return $this->schema;
     }
 
@@ -43,6 +44,7 @@ class SqliteWrapper implements WrapperContract
     public function getTables()
     {
         $tables = $this->baseSchema->database->select("SELECT name FROM sqlite_master WHERE type='table'");
+
         return array_map(function ($table) {
             return $table->name;
         }, $tables);
@@ -55,11 +57,12 @@ class SqliteWrapper implements WrapperContract
     public function getColumns($tableName)
     {
         $columns = $this->baseSchema->database->select(\DB::raw("pragma table_info($tableName)"));
+
         return $this->transformColumns($columns);
     }
 
     /**
-     * Transform columns
+     * Transform columns.
      * @param $columns
      * @return array
      */
