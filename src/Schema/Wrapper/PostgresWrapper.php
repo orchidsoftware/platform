@@ -1,16 +1,15 @@
-<?php namespace Orchid\Schema\Wrapper;
+<?php
 
+namespace Orchid\Schema\Wrapper;
 
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
 /**
- * Class PostgresWrapper
- * @package Orchid\Schema\Wrapper
+ * Class PostgresWrapper.
  */
 class PostgresWrapper implements WrapperContract
 {
-
     /**
      * @var BaseSchema
      */
@@ -35,6 +34,7 @@ class PostgresWrapper implements WrapperContract
             $this->schema[$table]['attributes'] = $columns;
             $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
         }
+
         return $this->schema;
     }
 
@@ -44,6 +44,7 @@ class PostgresWrapper implements WrapperContract
     public function getTables()
     {
         $tables = $this->baseSchema->database->select("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
+
         return array_map(function ($table) {
             return $table->table_name;
         }, $tables);
@@ -59,7 +60,7 @@ class PostgresWrapper implements WrapperContract
     }
 
     /**
-     * Transform columns
+     * Transform columns.
      * @param $columns
      * @return array
      */

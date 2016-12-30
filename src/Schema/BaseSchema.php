@@ -1,22 +1,23 @@
-<?php namespace Orchid\Schema;
+<?php
 
-use Illuminate\Pagination\Paginator;
+namespace Orchid\Schema;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 /**
- * Class BaseSchema
- * @package Orchid\Schema
+ * Class BaseSchema.
  */
 abstract class BaseSchema
 {
     /**
-     * Database instance
+     * Database instance.
      * @var
      */
     public $database;
 
     /**
-     * Connection name
+     * Connection name.
      * @var
      */
     public $connection;
@@ -36,7 +37,7 @@ abstract class BaseSchema
     }
 
     /**
-     * Set connection
+     * Set connection.
      * @param $connection
      * @return $this
      */
@@ -44,11 +45,12 @@ abstract class BaseSchema
     {
         $this->connection = $connection;
         $this->database = DB::connection($this->connection);
+
         return $this;
     }
 
     /**
-     * Fetch database name
+     * Fetch database name.
      * @return mixed
      */
     public function getDatabaseName()
@@ -57,7 +59,7 @@ abstract class BaseSchema
     }
 
     /**
-     * Get table total row count
+     * Get table total row count.
      * @param $table
      * @return mixed
      */
@@ -67,7 +69,7 @@ abstract class BaseSchema
     }
 
     /**
-     * Perform raw sql query
+     * Perform raw sql query.
      * @param $query
      * @return mixed
      */
@@ -77,7 +79,7 @@ abstract class BaseSchema
     }
 
     /**
-     * Fetch data form table using pagination
+     * Fetch data form table using pagination.
      * @param $tableName
      * @param int $page
      * @param int $limit
@@ -94,8 +96,7 @@ abstract class BaseSchema
         if (null === $orderAttribute) {
             return $data->paginate($limit)->toArray();
         }
+
         return $data->orderBy($orderAttribute, $order)->paginate($limit)->toArray();
     }
-
-
 }

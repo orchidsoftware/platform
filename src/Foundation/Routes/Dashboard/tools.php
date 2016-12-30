@@ -34,6 +34,4 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'as' => 'dashboard.tools.database',
         'uses' => 'DatabaseController@index',
     ]);
-
-
 });
