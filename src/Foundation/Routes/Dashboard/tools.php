@@ -29,4 +29,11 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'as' => 'dashboard.tools.files.destroy',
         'uses' => 'FileController@getFilesPost',
     ]);
+
+    Route::get('database', [
+        'as' => 'dashboard.tools.database',
+        'uses' => 'DatabaseController@index',
+    ]);
+
+
 });
