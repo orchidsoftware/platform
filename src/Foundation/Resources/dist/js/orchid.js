@@ -694,7 +694,7 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 })(window.jQuery);
 
 /*!
- * Vue.js v2.1.6
+ * Vue.js v2.1.8
  * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
@@ -781,10 +781,10 @@ function isPrimitive (value) {
  */
 function cached (fn) {
   var cache = Object.create(null);
-  return function cachedFn (str) {
+    return (function cachedFn(str) {
     var hit = cache[str];
     return hit || (cache[str] = fn(str))
-  }
+    })
 }
 
 /**
@@ -914,13 +914,15 @@ function genStaticKeys (modules) {
  * if they are plain objects, do they have the same shape?
  */
 function looseEqual (a, b) {
-  /* eslint-disable eqeqeq */
-  return a == b || (
-    isObject(a) && isObject(b)
-      ? JSON.stringify(a) === JSON.stringify(b)
-      : false
-  )
-  /* eslint-enable eqeqeq */
+    var isObjectA = isObject(a);
+    var isObjectB = isObject(b);
+    if (isObjectA && isObjectB) {
+        return JSON.stringify(a) === JSON.stringify(b)
+    } else if (!isObjectA && !isObjectB) {
+        return String(a) === String(b)
+    } else {
+        return false
+    }
 }
 
 function looseIndexOf (arr, val) {
@@ -956,7 +958,7 @@ var config = {
   /**
    * Ignore certain custom elements
    */
-  ignoredElements: null,
+  ignoredElements: [],
 
   /**
    * Custom user key aliases for v-on
@@ -1429,7 +1431,7 @@ function copyAugment (target, src, keys) {
  * returns the new observer if successfully observed,
  * or the existing observer if the value already has one.
  */
-function observe (value) {
+function observe(value, asRootData) {
   if (!isObject(value)) {
     return
   }
@@ -1445,6 +1447,9 @@ function observe (value) {
   ) {
     ob = new Observer(value);
   }
+    if (asRootData && ob) {
+        ob.vmCount++;
+    }
   return ob
 }
 
@@ -1911,10 +1916,10 @@ function validateProp (
   var absent = !hasOwn(propsData, key);
   var value = propsData[key];
   // handle boolean props
-  if (isBooleanType(prop.type)) {
+    if (isType(Boolean, prop.type)) {
     if (absent && !hasOwn(prop, 'default')) {
       value = false;
-    } else if (value === '' || value === hyphenate(key)) {
+    } else if (!isType(String, prop.type) && (value === '' || value === hyphenate(key))) {
       value = true;
     }
   }
@@ -1994,7 +1999,7 @@ function assertProp (
     }
     for (var i = 0; i < type.length && !valid; i++) {
       var assertedType = assertType(value, type[i]);
-      expectedTypes.push(assertedType.expectedType);
+        expectedTypes.push(assertedType.expectedType || '');
       valid = assertedType.valid;
     }
   }
@@ -2055,12 +2060,12 @@ function getType (fn) {
   return match && match[1]
 }
 
-function isBooleanType (fn) {
+    function isType(type, fn) {
   if (!Array.isArray(fn)) {
-    return getType(fn) === 'Boolean'
+      return getType(fn) === getType(type)
   }
   for (var i = 0, len = fn.length; i < len; i++) {
-    if (getType(fn[i]) === 'Boolean') {
+      if (getType(fn[i]) === getType(type)) {
       return true
     }
   }
@@ -2305,16 +2310,17 @@ var Watcher = function Watcher (
   cb,
   options
 ) {
-  if ( options === void 0 ) options = {};
-
   this.vm = vm;
   vm._watchers.push(this);
   // options
-  this.deep = !!options.deep;
-  this.user = !!options.user;
-  this.lazy = !!options.lazy;
-  this.sync = !!options.sync;
-  this.expression = expOrFn.toString();
+    if (options) {
+        this.deep = !!options.deep;
+        this.user = !!options.user;
+        this.lazy = !!options.lazy;
+        this.sync = !!options.sync;
+    } else {
+        this.deep = this.user = this.lazy = this.sync = false;
+    }
   this.cb = cb;
   this.id = ++uid$2; // uid for batching
   this.active = true;
@@ -2323,6 +2329,7 @@ var Watcher = function Watcher (
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
+    this.expression = expOrFn.toString();
   // parse expression for getter
   if (typeof expOrFn === 'function') {
     this.getter = expOrFn;
@@ -2419,7 +2426,7 @@ Watcher.prototype.run = function run () {
   if (this.active) {
     var value = this.get();
       if (
-        value !== this.value ||
+          value !== this.value ||
       // Deep watchers and watchers on Object/Arrays should fire even
       // when the value is the same, because the value may
       // have mutated.
@@ -2481,9 +2488,8 @@ Watcher.prototype.teardown = function teardown () {
   if (this.active) {
     // remove self from vm's watcher list
     // this is a somewhat expensive operation so we skip it
-    // if the vm is being destroyed or is performing a v-for
-    // re-render (the watcher list is then filtered by v-for).
-    if (!this.vm._isBeingDestroyed && !this.vm._vForRemoving) {
+      // if the vm is being destroyed.
+      if (!this.vm._isBeingDestroyed) {
       remove$1(this.vm._watchers, this);
     }
     var i = this.deps.length;
@@ -2532,50 +2538,60 @@ function _traverse (val, seen) {
 
 function initState (vm) {
   vm._watchers = [];
-  initProps(vm);
-  initMethods(vm);
-  initData(vm);
-  initComputed(vm);
-  initWatch(vm);
+    var opts = vm.$options;
+    if (opts.props) {
+        initProps(vm, opts.props);
+    }
+    if (opts.methods) {
+        initMethods(vm, opts.methods);
+    }
+    if (opts.data) {
+        initData(vm);
+    } else {
+        observe(vm._data = {}, true /* asRootData */);
+    }
+    if (opts.computed) {
+        initComputed(vm, opts.computed);
+    }
+    if (opts.watch) {
+        initWatch(vm, opts.watch);
+    }
 }
 
 var isReservedProp = { key: 1, ref: 1, slot: 1 };
 
-function initProps (vm) {
-  var props = vm.$options.props;
-  if (props) {
-    var propsData = vm.$options.propsData || {};
-    var keys = vm.$options._propKeys = Object.keys(props);
-    var isRoot = !vm.$parent;
-    // root instance props should be converted
-    observerState.shouldConvert = isRoot;
-    var loop = function ( i ) {
-      var key = keys[i];
-      /* istanbul ignore else */
-      {
-        if (isReservedProp[key]) {
-          warn(
-            ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
-            vm
-          );
-        }
-        defineReactive$$1(vm, key, validateProp(key, props, propsData, vm), function () {
-          if (vm.$parent && !observerState.isSettingProps) {
-            warn(
-              "Avoid mutating a prop directly since the value will be " +
-              "overwritten whenever the parent component re-renders. " +
-              "Instead, use a data or computed property based on the prop's " +
-              "value. Prop being mutated: \"" + key + "\"",
-              vm
-            );
-          }
-        });
-      }
-    };
+    function initProps(vm, props) {
+        var propsData = vm.$options.propsData || {};
+        var keys = vm.$options._propKeys = Object.keys(props);
+        var isRoot = !vm.$parent;
+        // root instance props should be converted
+        observerState.shouldConvert = isRoot;
+        var loop = function (i) {
+            var key = keys[i];
+            /* istanbul ignore else */
+            {
+                if (isReservedProp[key]) {
+                    warn(
+                        ("\"" + key + "\" is a reserved attribute and cannot be used as component prop."),
+                        vm
+                    );
+                }
+                defineReactive$$1(vm, key, validateProp(key, props, propsData, vm), function () {
+                    if (vm.$parent && !observerState.isSettingProps) {
+                        warn(
+                            "Avoid mutating a prop directly since the value will be " +
+                            "overwritten whenever the parent component re-renders. " +
+                            "Instead, use a data or computed property based on the prop's " +
+                            "value. Prop being mutated: \"" + key + "\"",
+                            vm
+                        );
+                    }
+                });
+            }
+        };
 
-    for (var i = 0; i < keys.length; i++) loop( i );
-    observerState.shouldConvert = true;
-  }
+        for (var i = 0; i < keys.length; i++) loop(i);
+        observerState.shouldConvert = true;
 }
 
 function initData (vm) {
@@ -2607,8 +2623,7 @@ function initData (vm) {
     }
   }
   // observe data
-  observe(data);
-  data.__ob__ && data.__ob__.vmCount++;
+    observe(data, true /* asRootData */);
 }
 
 var computedSharedDefinition = {
@@ -2618,26 +2633,31 @@ var computedSharedDefinition = {
   set: noop
 };
 
-function initComputed (vm) {
-  var computed = vm.$options.computed;
-  if (computed) {
-    for (var key in computed) {
-      var userDef = computed[key];
-      if (typeof userDef === 'function') {
-        computedSharedDefinition.get = makeComputedGetter(userDef, vm);
-        computedSharedDefinition.set = noop;
-      } else {
-        computedSharedDefinition.get = userDef.get
-          ? userDef.cache !== false
-            ? makeComputedGetter(userDef.get, vm)
-            : bind$1(userDef.get, vm)
-          : noop;
-        computedSharedDefinition.set = userDef.set
-          ? bind$1(userDef.set, vm)
-          : noop;
-      }
-      Object.defineProperty(vm, key, computedSharedDefinition);
-    }
+    function initComputed(vm, computed) {
+        for (var key in computed) {
+            /* istanbul ignore if */
+            if ("development" !== 'production' && key in vm) {
+                warn(
+                    "existing instance property \"" + key + "\" will be " +
+                    "overwritten by a computed property with the same name.",
+                    vm
+                );
+            }
+            var userDef = computed[key];
+            if (typeof userDef === 'function') {
+                computedSharedDefinition.get = makeComputedGetter(userDef, vm);
+                computedSharedDefinition.set = noop;
+            } else {
+                computedSharedDefinition.get = userDef.get
+                    ? userDef.cache !== false
+                        ? makeComputedGetter(userDef.get, vm)
+                        : bind$1(userDef.get, vm)
+                    : noop;
+                computedSharedDefinition.set = userDef.set
+                    ? bind$1(userDef.set, vm)
+                    : noop;
+            }
+            Object.defineProperty(vm, key, computedSharedDefinition);
   }
 }
 
@@ -2656,34 +2676,28 @@ function makeComputedGetter (getter, owner) {
   }
 }
 
-function initMethods (vm) {
-  var methods = vm.$options.methods;
-  if (methods) {
-    for (var key in methods) {
-      vm[key] = methods[key] == null ? noop : bind$1(methods[key], vm);
-      if ("development" !== 'production' && methods[key] == null) {
-        warn(
-          "method \"" + key + "\" has an undefined value in the component definition. " +
-          "Did you reference the function correctly?",
-          vm
-        );
-      }
+    function initMethods(vm, methods) {
+        for (var key in methods) {
+            vm[key] = methods[key] == null ? noop : bind$1(methods[key], vm);
+            if ("development" !== 'production' && methods[key] == null) {
+                warn(
+                    "method \"" + key + "\" has an undefined value in the component definition. " +
+                    "Did you reference the function correctly?",
+                    vm
+                );
     }
   }
 }
 
-function initWatch (vm) {
-  var watch = vm.$options.watch;
-  if (watch) {
-    for (var key in watch) {
-      var handler = watch[key];
-      if (Array.isArray(handler)) {
-        for (var i = 0; i < handler.length; i++) {
-          createWatcher(vm, key, handler[i]);
-        }
-      } else {
-        createWatcher(vm, key, handler);
-      }
+    function initWatch(vm, watch) {
+        for (var key in watch) {
+            var handler = watch[key];
+            if (Array.isArray(handler)) {
+                for (var i = 0; i < handler.length; i++) {
+                    createWatcher(vm, key, handler[i]);
+                }
+            } else {
+                createWatcher(vm, key, handler);
     }
   }
 }
@@ -2828,6 +2842,278 @@ function cloneVNodes (vnodes) {
 
 /*  */
 
+    function mergeVNodeHook(def, hookKey, hook, key) {
+        key = key + hookKey;
+        var injectedHash = def.__injected || (def.__injected = {});
+        if (!injectedHash[key]) {
+            injectedHash[key] = true;
+            var oldHook = def[hookKey];
+            if (oldHook) {
+                def[hookKey] = function () {
+                    oldHook.apply(this, arguments);
+                    hook.apply(this, arguments);
+                };
+            } else {
+                def[hookKey] = hook;
+            }
+        }
+    }
+
+    /*  */
+
+    function updateListeners(on,
+                             oldOn,
+                             add,
+                             remove$$1,
+                             vm) {
+        var name, cur, old, fn, event, capture, once;
+        for (name in on) {
+            cur = on[name];
+            old = oldOn[name];
+            if (!cur) {
+                "development" !== 'production' && warn(
+                    "Invalid handler for event \"" + name + "\": got " + String(cur),
+                    vm
+                );
+            } else if (!old) {
+                once = name.charAt(0) === '~'; // Prefixed last, checked first
+                event = once ? name.slice(1) : name;
+                capture = event.charAt(0) === '!';
+                event = capture ? event.slice(1) : event;
+                if (Array.isArray(cur)) {
+                    add(event, (cur.invoker = arrInvoker(cur)), once, capture);
+                } else {
+                    if (!cur.invoker) {
+                        fn = cur;
+                        cur = on[name] = {};
+                        cur.fn = fn;
+                        cur.invoker = fnInvoker(cur);
+                    }
+                    add(event, cur.invoker, once, capture);
+                }
+            } else if (cur !== old) {
+                if (Array.isArray(old)) {
+                    old.length = cur.length;
+                    for (var i = 0; i < old.length; i++) {
+                        old[i] = cur[i];
+                    }
+                    on[name] = old;
+                } else {
+                    old.fn = cur;
+                    on[name] = old;
+                }
+            }
+        }
+        for (name in oldOn) {
+            if (!on[name]) {
+                once = name.charAt(0) === '~'; // Prefixed last, checked first
+                event = once ? name.slice(1) : name;
+                capture = event.charAt(0) === '!';
+                event = capture ? event.slice(1) : event;
+                remove$$1(event, oldOn[name].invoker, capture);
+            }
+        }
+    }
+
+    function arrInvoker(arr) {
+        return function (ev) {
+            var arguments$1 = arguments;
+
+            var single = arguments.length === 1;
+            for (var i = 0; i < arr.length; i++) {
+                single ? arr[i](ev) : arr[i].apply(null, arguments$1);
+            }
+        }
+    }
+
+    function fnInvoker(o) {
+        return function (ev) {
+            var single = arguments.length === 1;
+            single ? o.fn(ev) : o.fn.apply(null, arguments);
+        }
+    }
+
+    /*  */
+
+// The template compiler attempts to minimize the need for normalization by
+// statically analyzing the template at compile time.
+//
+// For plain HTML markup, normalization can be completely skipped because the
+// generated render function is guaranteed to return Array<VNode>. There are
+// two cases where extra normalization is needed:
+
+// 1. When the children contains components - because a functional component
+// may return an Array instead of a single root. In this case, just a simple
+// nomralization is needed - if any child is an Array, we flatten the whole
+// thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
+// because functional components already normalize their own children.
+    function simpleNormalizeChildren(children) {
+        for (var i = 0; i < children.length; i++) {
+            if (Array.isArray(children[i])) {
+                return Array.prototype.concat.apply([], children)
+            }
+        }
+        return children
+    }
+
+// 2. When the children contains constrcuts that always generated nested Arrays,
+// e.g. <template>, <slot>, v-for, or when the children is provided by user
+// with hand-written render functions / JSX. In such cases a full normalization
+// is needed to cater to all possible types of children values.
+    function normalizeChildren(children) {
+        return isPrimitive(children)
+            ? [createTextVNode(children)]
+            : Array.isArray(children)
+                ? normalizeArrayChildren(children)
+                : undefined
+    }
+
+    function normalizeArrayChildren(children, nestedIndex) {
+        var res = [];
+        var i, c, last;
+        for (i = 0; i < children.length; i++) {
+            c = children[i];
+            if (c == null || typeof c === 'boolean') {
+                continue
+            }
+            last = res[res.length - 1];
+            //  nested
+            if (Array.isArray(c)) {
+                res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i)));
+            } else if (isPrimitive(c)) {
+                if (last && last.text) {
+                    last.text += String(c);
+                } else if (c !== '') {
+                    // convert primitive to vnode
+                    res.push(createTextVNode(c));
+                }
+            } else {
+                if (c.text && last && last.text) {
+                    res[res.length - 1] = createTextVNode(last.text + c.text);
+                } else {
+                    // default key for nested array children (likely generated by v-for)
+                    if (c.tag && c.key == null && nestedIndex != null) {
+                        c.key = "__vlist" + nestedIndex + "_" + i + "__";
+                    }
+                    res.push(c);
+                }
+            }
+        }
+        return res
+    }
+
+    /*  */
+
+    function getFirstComponentChild(children) {
+        return children && children.filter(function (c) {
+                return c && c.componentOptions;
+            })[0]
+    }
+
+    /*  */
+
+    function initEvents(vm) {
+        vm._events = Object.create(null);
+        vm._hasHookEvent = false;
+        // init parent attached events
+        var listeners = vm.$options._parentListeners;
+        if (listeners) {
+            updateComponentListeners(vm, listeners);
+        }
+    }
+
+    var target;
+
+    function add$1(event, fn, once) {
+        if (once) {
+            target.$once(event, fn);
+        } else {
+            target.$on(event, fn);
+        }
+    }
+
+    function remove$2(event, fn) {
+        target.$off(event, fn);
+    }
+
+    function updateComponentListeners(vm,
+                                      listeners,
+                                      oldListeners) {
+        target = vm;
+        updateListeners(listeners, oldListeners || {}, add$1, remove$2, vm);
+    }
+
+    function eventsMixin(Vue) {
+        var hookRE = /^hook:/;
+        Vue.prototype.$on = function (event, fn) {
+            var vm = this;
+            (vm._events[event] || (vm._events[event] = [])).push(fn);
+            // optimize hook:event cost by using a boolean flag marked at registration
+            // instead of a hash lookup
+            if (hookRE.test(event)) {
+                vm._hasHookEvent = true;
+            }
+            return vm
+        };
+
+        Vue.prototype.$once = function (event, fn) {
+            var vm = this;
+
+            function on() {
+                vm.$off(event, on);
+                fn.apply(vm, arguments);
+            }
+
+            on.fn = fn;
+            vm.$on(event, on);
+            return vm
+        };
+
+        Vue.prototype.$off = function (event, fn) {
+            var vm = this;
+            // all
+            if (!arguments.length) {
+                vm._events = Object.create(null);
+                return vm
+            }
+            // specific event
+            var cbs = vm._events[event];
+            if (!cbs) {
+                return vm
+            }
+            if (arguments.length === 1) {
+                vm._events[event] = null;
+                return vm
+            }
+            // specific handler
+            var cb;
+            var i = cbs.length;
+            while (i--) {
+                cb = cbs[i];
+                if (cb === fn || cb.fn === fn) {
+                    cbs.splice(i, 1);
+                    break
+                }
+            }
+            return vm
+        };
+
+        Vue.prototype.$emit = function (event) {
+            var vm = this;
+            var cbs = vm._events[event];
+            if (cbs) {
+                cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+                var args = toArray(arguments, 1);
+                for (var i = 0, l = cbs.length; i < l; i++) {
+                    cbs[i].apply(vm, args);
+                }
+            }
+            return vm
+        };
+    }
+
+    /*  */
+
 var activeInstance = null;
 
 function initLifecycle (vm) {
@@ -2970,7 +3256,7 @@ function lifecycleMixin (Vue) {
     if (listeners) {
       var oldListeners = vm.$options._parentListeners;
       vm.$options._parentListeners = listeners;
-      vm._updateListeners(listeners, oldListeners);
+        updateComponentListeners(vm, listeners, oldListeners);
     }
     // resolve slots + force update if has children
     if (hasChildren) {
@@ -3032,7 +3318,9 @@ function callHook (vm, hook) {
       handlers[i].call(vm);
     }
   }
-  vm.$emit('hook:' + hook);
+    if (vm._hasHookEvent) {
+        vm.$emit('hook:' + hook);
+    }
 }
 
 /*  */
@@ -3355,172 +3643,36 @@ function mergeHook$1 (one, two) {
 
 /*  */
 
-function mergeVNodeHook (def, hookKey, hook, key) {
-  key = key + hookKey;
-  var injectedHash = def.__injected || (def.__injected = {});
-  if (!injectedHash[key]) {
-    injectedHash[key] = true;
-    var oldHook = def[hookKey];
-    if (oldHook) {
-      def[hookKey] = function () {
-        oldHook.apply(this, arguments);
-        hook.apply(this, arguments);
-      };
-    } else {
-      def[hookKey] = hook;
-    }
-  }
-}
-
-/*  */
-
-function updateListeners (
-  on,
-  oldOn,
-  add,
-  remove$$1,
-  vm
-) {
-  var name, cur, old, fn, event, capture, once;
-  for (name in on) {
-    cur = on[name];
-    old = oldOn[name];
-    if (!cur) {
-      "development" !== 'production' && warn(
-        "Invalid handler for event \"" + name + "\": got " + String(cur),
-        vm
-      );
-    } else if (!old) {
-      once = name.charAt(0) === '~'; // Prefixed last, checked first
-      event = once ? name.slice(1) : name;
-      capture = event.charAt(0) === '!';
-      event = capture ? event.slice(1) : event;
-      if (Array.isArray(cur)) {
-        add(event, (cur.invoker = arrInvoker(cur)), once, capture);
-      } else {
-        if (!cur.invoker) {
-          fn = cur;
-          cur = on[name] = {};
-          cur.fn = fn;
-          cur.invoker = fnInvoker(cur);
-        }
-        add(event, cur.invoker, once, capture);
-      }
-    } else if (cur !== old) {
-      if (Array.isArray(old)) {
-        old.length = cur.length;
-        for (var i = 0; i < old.length; i++) { old[i] = cur[i]; }
-        on[name] = old;
-      } else {
-        old.fn = cur;
-        on[name] = old;
-      }
-    }
-  }
-  for (name in oldOn) {
-    if (!on[name]) {
-      once = name.charAt(0) === '~'; // Prefixed last, checked first
-      event = once ? name.slice(1) : name;
-      capture = event.charAt(0) === '!';
-      event = capture ? event.slice(1) : event;
-      remove$$1(event, oldOn[name].invoker, capture);
-    }
-  }
-}
-
-function arrInvoker (arr) {
-  return function (ev) {
-    var arguments$1 = arguments;
-
-    var single = arguments.length === 1;
-    for (var i = 0; i < arr.length; i++) {
-      single ? arr[i](ev) : arr[i].apply(null, arguments$1);
-    }
-  }
-}
-
-function fnInvoker (o) {
-  return function (ev) {
-    var single = arguments.length === 1;
-    single ? o.fn(ev) : o.fn.apply(null, arguments);
-  }
-}
-
-/*  */
-
-function normalizeChildren (children) {
-  return isPrimitive(children)
-    ? [createTextVNode(children)]
-    : Array.isArray(children)
-      ? normalizeArrayChildren(children)
-      : undefined
-}
-
-function normalizeArrayChildren (children, nestedIndex) {
-  var res = [];
-  var i, c, last;
-  for (i = 0; i < children.length; i++) {
-    c = children[i];
-    if (c == null || typeof c === 'boolean') { continue }
-    last = res[res.length - 1];
-    //  nested
-    if (Array.isArray(c)) {
-      res.push.apply(res, normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i)));
-    } else if (isPrimitive(c)) {
-      if (last && last.text) {
-        last.text += String(c);
-      } else if (c !== '') {
-        // convert primitive to vnode
-        res.push(createTextVNode(c));
-      }
-    } else {
-      if (c.text && last && last.text) {
-        res[res.length - 1] = createTextVNode(last.text + c.text);
-      } else {
-        // default key for nested array children (likely generated by v-for)
-        if (c.tag && c.key == null && nestedIndex != null) {
-          c.key = "__vlist" + nestedIndex + "_" + i + "__";
-        }
-        res.push(c);
-      }
-    }
-  }
-  return res
-}
-
-/*  */
-
-function getFirstComponentChild (children) {
-  return children && children.filter(function (c) { return c && c.componentOptions; })[0]
-}
-
-/*  */
+    var SIMPLE_NORMALIZE = 1;
+    var ALWAYS_NORMALIZE = 2;
 
 // wrapper function for providing a more flexible interface
 // without getting yelled at by flow
 function createElement (
-  context,
-  tag,
-  data,
-  children,
-  needNormalization,
-  alwaysNormalize
+    context,
+    tag,
+    data,
+    children,
+    normalizationType,
+    alwaysNormalize
 ) {
   if (Array.isArray(data) || isPrimitive(data)) {
-    needNormalization = children;
+      normalizationType = children;
     children = data;
     data = undefined;
   }
-  if (alwaysNormalize) { needNormalization = true; }
-  return _createElement(context, tag, data, children, needNormalization)
+    if (alwaysNormalize) {
+        normalizationType = ALWAYS_NORMALIZE;
+    }
+    return _createElement(context, tag, data, children, normalizationType)
 }
 
 function _createElement (
-  context,
-  tag,
-  data,
-  children,
-  needNormalization
+    context,
+    tag,
+    data,
+    children,
+    normalizationType
 ) {
   if (data && data.__ob__) {
     "development" !== 'production' && warn(
@@ -3541,8 +3693,10 @@ function _createElement (
     data.scopedSlots = { default: children[0] };
     children.length = 0;
   }
-  if (needNormalization) {
+    if (normalizationType === ALWAYS_NORMALIZE) {
     children = normalizeChildren(children);
+    } else if (normalizationType === SIMPLE_NORMALIZE) {
+        children = simpleNormalizeChildren(children);
   }
   var vnode, ns;
   if (typeof tag === 'string') {
@@ -3561,7 +3715,6 @@ function _createElement (
       // unknown or unlisted namespaced elements
       // check at runtime because it may get assigned a namespace when its
       // parent normalizes children
-      ns = tag === 'foreignObject' ? 'xhtml' : ns;
       vnode = new VNode(
         tag, data, children,
         undefined, undefined, context
@@ -3581,6 +3734,10 @@ function _createElement (
 
 function applyNS (vnode, ns) {
   vnode.ns = ns;
+    if (vnode.tag === 'foreignObject') {
+        // use default namespace inside foreignObject
+        return
+    }
   if (vnode.children) {
     for (var i = 0, l = vnode.children.length; i < l; i++) {
       var child = vnode.children[i];
@@ -3603,7 +3760,7 @@ function initRender (vm) {
   vm.$scopedSlots = {};
   // bind the createElement fn to this instance
   // so that we get proper render context inside it.
-  // args order: tag, data, children, needNormalization, alwaysNormalize
+    // args order: tag, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
   vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
   // normalization is always applied for the public version, used in
@@ -3747,7 +3904,7 @@ function renderMixin (Vue) {
     render
   ) {
     var ret, i, l, keys, key;
-    if (Array.isArray(val)) {
+      if (Array.isArray(val) || typeof val === 'string') {
       ret = new Array(val.length);
       for (i = 0, l = val.length; i < l; i++) {
         ret[i] = render(val[i], i);
@@ -3770,13 +3927,18 @@ function renderMixin (Vue) {
 
   // renderSlot
   Vue.prototype._t = function (
-    name,
-    fallback,
-    props
+      name,
+      fallback,
+      props,
+      bindObject
   ) {
     var scopedSlotFn = this.$scopedSlots[name];
     if (scopedSlotFn) { // scoped slot
-      return scopedSlotFn(props || {}) || fallback
+        props = props || {};
+        if (bindObject) {
+            extend(props, bindObject);
+        }
+        return scopedSlotFn(props) || fallback
     } else {
       var slotNodes = this.$slots[name];
       // warn duplicate slot usage
@@ -3873,84 +4035,6 @@ function resolveSlots (
     slots.default = defaultSlot;
   }
   return slots
-}
-
-/*  */
-
-function initEvents (vm) {
-  vm._events = Object.create(null);
-  // init parent attached events
-  var listeners = vm.$options._parentListeners;
-  var add = function (event, fn, once) {
-    once ? vm.$once(event, fn) : vm.$on(event, fn);
-  };
-  var remove$$1 = bind$1(vm.$off, vm);
-  vm._updateListeners = function (listeners, oldListeners) {
-    updateListeners(listeners, oldListeners || {}, add, remove$$1, vm);
-  };
-  if (listeners) {
-    vm._updateListeners(listeners);
-  }
-}
-
-function eventsMixin (Vue) {
-  Vue.prototype.$on = function (event, fn) {
-    var vm = this;(vm._events[event] || (vm._events[event] = [])).push(fn);
-    return vm
-  };
-
-  Vue.prototype.$once = function (event, fn) {
-    var vm = this;
-    function on () {
-      vm.$off(event, on);
-      fn.apply(vm, arguments);
-    }
-    on.fn = fn;
-    vm.$on(event, on);
-    return vm
-  };
-
-  Vue.prototype.$off = function (event, fn) {
-    var vm = this;
-    // all
-    if (!arguments.length) {
-      vm._events = Object.create(null);
-      return vm
-    }
-    // specific event
-    var cbs = vm._events[event];
-    if (!cbs) {
-      return vm
-    }
-    if (arguments.length === 1) {
-      vm._events[event] = null;
-      return vm
-    }
-    // specific handler
-    var cb;
-    var i = cbs.length;
-    while (i--) {
-      cb = cbs[i];
-      if (cb === fn || cb.fn === fn) {
-        cbs.splice(i, 1);
-        break
-      }
-    }
-    return vm
-  };
-
-  Vue.prototype.$emit = function (event) {
-    var vm = this;
-    var cbs = vm._events[event];
-    if (cbs) {
-      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
-      var args = toArray(arguments, 1);
-      for (var i = 0, l = cbs.length; i < l; i++) {
-        cbs[i].apply(vm, args);
-      }
-    }
-    return vm
-  };
 }
 
 /*  */
@@ -4282,7 +4366,7 @@ Object.defineProperty(Vue$3.prototype, '$isServer', {
   get: isServerRendering
 });
 
-Vue$3.version = '2.1.6';
+    Vue$3.version = '2.1.8';
 
 /*  */
 
@@ -4398,8 +4482,7 @@ function stringifyClass (value) {
 
 var namespaceMap = {
   svg: 'http://www.w3.org/2000/svg',
-  math: 'http://www.w3.org/1998/Math/MathML',
-  xhtml: 'http://www.w3.org/1999/xhtml'
+    math: 'http://www.w3.org/1998/Math/MathML'
 };
 
 var isHTMLTag = makeMap(
@@ -4669,16 +4752,16 @@ function createPatchFunction (backend) {
   function createRmCb (childElm, listeners) {
     function remove$$1 () {
       if (--remove$$1.listeners === 0) {
-        removeElement(childElm);
+          removeNode(childElm);
       }
     }
     remove$$1.listeners = listeners;
     return remove$$1
   }
 
-  function removeElement (el) {
+    function removeNode(el) {
     var parent = nodeOps.parentNode(el);
-    // element may have already been removed due to v-html
+        // element may have already been removed due to v-html / v-text
     if (parent) {
       nodeOps.removeChild(parent, el);
     }
@@ -4701,8 +4784,7 @@ function createPatchFunction (backend) {
         }
         if (
           !inPre &&
-          !vnode.ns &&
-          !(config.ignoredElements && config.ignoredElements.indexOf(tag) > -1) &&
+          !vnode.ns && !(config.ignoredElements.length && config.ignoredElements.indexOf(tag) > -1) &&
           config.isUnknownElement(tag)
         ) {
           warn(
@@ -4880,7 +4962,7 @@ function createPatchFunction (backend) {
           removeAndInvokeRemoveHook(ch);
           invokeDestroyHook(ch);
         } else { // Text node
-          nodeOps.removeChild(parentElm, ch.elm);
+            removeNode(ch.elm);
         }
       }
     }
@@ -4910,7 +4992,7 @@ function createPatchFunction (backend) {
         rm();
       }
     } else {
-      removeElement(vnode.elm);
+        removeNode(vnode.elm);
     }
   }
 
@@ -5110,6 +5192,8 @@ function createPatchFunction (backend) {
           }
         }
       }
+    } else if (elm.data !== vnode.text) {
+        elm.data = vnode.text;
     }
     return true
   }
@@ -5121,7 +5205,7 @@ function createPatchFunction (backend) {
         vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
       )
     } else {
-      return _toString(vnode.text) === node.data
+        return node.nodeType === (vnode.isComment ? 8 : 3)
     }
   }
 
@@ -5171,7 +5255,6 @@ function createPatchFunction (backend) {
           // create an empty node and replace it
           oldVnode = emptyNodeAt(oldVnode);
         }
-
         // replacing existing element
         elm = oldVnode.elm;
         parent = nodeOps.parentNode(elm);
@@ -5223,6 +5306,7 @@ function updateDirectives (oldVnode, vnode) {
 
 function _update (oldVnode, vnode) {
   var isCreate = oldVnode === emptyNode;
+    var isDestroy = vnode === emptyNode;
   var oldDirs = normalizeDirectives$1(oldVnode.data.directives, oldVnode.context);
   var newDirs = normalizeDirectives$1(vnode.data.directives, vnode.context);
 
@@ -5274,7 +5358,7 @@ function _update (oldVnode, vnode) {
     for (key in oldDirs) {
       if (!newDirs[key]) {
         // no longer present, unbind
-        callHook$1(oldDirs[key], 'unbind', oldVnode);
+          callHook$1(oldDirs[key], 'unbind', oldVnode, oldVnode, isDestroy);
       }
     }
   }
@@ -5306,10 +5390,10 @@ function getRawDirName (dir) {
   return dir.rawName || ((dir.name) + "." + (Object.keys(dir.modifiers || {}).join('.')))
 }
 
-function callHook$1 (dir, hook, vnode, oldVnode) {
+    function callHook$1(dir, hook, vnode, oldVnode, isDestroy) {
   var fn = dir.def && dir.def[hook];
   if (fn) {
-    fn(vnode.elm, dir, vnode, oldVnode);
+      fn(vnode.elm, dir, vnode, oldVnode, isDestroy);
   }
 }
 
@@ -5420,23 +5504,23 @@ var klass = {
 
 /*  */
 
-var target;
+    var target$1;
 
-function add$1 (event, handler, once, capture) {
+    function add$2(event, handler, once, capture) {
   if (once) {
     var oldHandler = handler;
     handler = function (ev) {
-      remove$2(event, handler, capture);
+        remove$3(event, handler, capture);
       arguments.length === 1
         ? oldHandler(ev)
         : oldHandler.apply(null, arguments);
     };
   }
-  target.addEventListener(event, handler, capture);
+        target$1.addEventListener(event, handler, capture);
 }
 
-function remove$2 (event, handler, capture) {
-  target.removeEventListener(event, handler, capture);
+    function remove$3(event, handler, capture) {
+        target$1.removeEventListener(event, handler, capture);
 }
 
 function updateDOMListeners (oldVnode, vnode) {
@@ -5445,8 +5529,8 @@ function updateDOMListeners (oldVnode, vnode) {
   }
   var on = vnode.data.on || {};
   var oldOn = oldVnode.data.on || {};
-  target = vnode.elm;
-  updateListeners(on, oldOn, add$1, remove$2, vnode.context);
+    target$1 = vnode.elm;
+    updateListeners(on, oldOn, add$2, remove$3, vnode.context);
 }
 
 var events = {
@@ -5483,16 +5567,20 @@ function updateDOMProps (oldVnode, vnode) {
       if (vnode.children) { vnode.children.length = 0; }
       if (cur === oldProps[key]) { continue }
     }
+      // #4521: if a click event triggers update before the change event is
+      // dispatched on a checkbox/radio input, the input's checked state will
+      // be reset and fail to trigger another update.
+      /* istanbul ignore next */
+      if (key === 'checked' && !isDirty(elm, cur)) {
+          continue
+      }
     if (key === 'value') {
       // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
       // avoid resetting cursor position when value is the same
       var strCur = cur == null ? '' : String(cur);
-      if (!elm.composing && (
-        (document.activeElement !== elm && elm.value !== strCur) ||
-        isValueChanged(vnode, strCur)
-      )) {
+        if (shouldUpdateValue(elm, vnode, strCur)) {
         elm.value = strCur;
       }
     } else {
@@ -5501,7 +5589,27 @@ function updateDOMProps (oldVnode, vnode) {
   }
 }
 
-function isValueChanged (vnode, newVal) {
+// check platforms/web/util/attrs.js acceptValue
+
+
+    function shouldUpdateValue(elm,
+                               vnode,
+                               checkVal) {
+        if (!elm.composing && (
+                vnode.tag === 'option' ||
+                isDirty(elm, checkVal) ||
+                isInputChanged(vnode, checkVal)
+            )) {
+            return true
+        }
+        return false
+    }
+
+    function isDirty(elm, checkVal) {
+        return document.activeElement !== elm && elm.value !== checkVal
+    }
+
+    function isInputChanged(vnode, newVal) {
   var value = vnode.elm.value;
   var modifiers = vnode.elm._vModifiers; // injected by v-model runtime
   if ((modifiers && modifiers.number) || vnode.elm.type === 'number') {
@@ -5879,8 +5987,10 @@ function enter (vnode, toggleDisplay) {
   var css = data.css;
   var type = data.type;
   var enterClass = data.enterClass;
+    var enterToClass = data.enterToClass;
   var enterActiveClass = data.enterActiveClass;
   var appearClass = data.appearClass;
+    var appearToClass = data.appearToClass;
   var appearActiveClass = data.appearActiveClass;
   var beforeEnter = data.beforeEnter;
   var enter = data.enter;
@@ -5910,6 +6020,7 @@ function enter (vnode, toggleDisplay) {
 
   var startClass = isAppear ? appearClass : enterClass;
   var activeClass = isAppear ? appearActiveClass : enterActiveClass;
+    var toClass = isAppear ? appearToClass : enterToClass;
   var beforeEnterHook = isAppear ? (beforeAppear || beforeEnter) : beforeEnter;
   var enterHook = isAppear ? (typeof appear === 'function' ? appear : enter) : enter;
   var afterEnterHook = isAppear ? (afterAppear || afterEnter) : afterEnter;
@@ -5924,6 +6035,7 @@ function enter (vnode, toggleDisplay) {
 
   var cb = el._enterCb = once(function () {
     if (expectsCSS) {
+        removeTransitionClass(el, toClass);
       removeTransitionClass(el, activeClass);
     }
     if (cb.cancelled) {
@@ -5958,6 +6070,7 @@ function enter (vnode, toggleDisplay) {
     addTransitionClass(el, startClass);
     addTransitionClass(el, activeClass);
     nextFrame(function () {
+        addTransitionClass(el, toClass);
       removeTransitionClass(el, startClass);
       if (!cb.cancelled && !userWantsControl) {
         whenTransitionEnds(el, type, cb);
@@ -5997,6 +6110,7 @@ function leave (vnode, rm) {
   var css = data.css;
   var type = data.type;
   var leaveClass = data.leaveClass;
+    var leaveToClass = data.leaveToClass;
   var leaveActiveClass = data.leaveActiveClass;
   var beforeLeave = data.beforeLeave;
   var leave = data.leave;
@@ -6016,6 +6130,7 @@ function leave (vnode, rm) {
       el.parentNode._pending[vnode.key] = null;
     }
     if (expectsCSS) {
+        removeTransitionClass(el, leaveToClass);
       removeTransitionClass(el, leaveActiveClass);
     }
     if (cb.cancelled) {
@@ -6050,6 +6165,7 @@ function leave (vnode, rm) {
       addTransitionClass(el, leaveClass);
       addTransitionClass(el, leaveActiveClass);
       nextFrame(function () {
+          addTransitionClass(el, leaveToClass);
         removeTransitionClass(el, leaveClass);
         if (!cb.cancelled && !userWantsControl) {
           whenTransitionEnds(el, type, cb);
@@ -6085,6 +6201,9 @@ var autoCssTransition = cached(function (name) {
     enterClass: (name + "-enter"),
     leaveClass: (name + "-leave"),
     appearClass: (name + "-enter"),
+      enterToClass: (name + "-enter-to"),
+      leaveToClass: (name + "-leave-to"),
+      appearToClass: (name + "-enter-to"),
     enterActiveClass: (name + "-enter-active"),
     leaveActiveClass: (name + "-leave-active"),
     appearActiveClass: (name + "-enter-active")
@@ -6296,6 +6415,7 @@ var show = {
       el.style.display = value ? originalDisplay : 'none';
     }
   },
+
   update: function update (el, ref, vnode) {
     var value = ref.value;
     var oldValue = ref.oldValue;
@@ -6318,6 +6438,16 @@ var show = {
     } else {
       el.style.display = value ? el.__vOriginalDisplay : 'none';
     }
+  },
+
+    unbind: function unbind(el,
+                            binding,
+                            vnode,
+                            oldVnode,
+                            isDestroy) {
+        if (!isDestroy) {
+            el.style.display = el.__vOriginalDisplay;
+        }
   }
 };
 
@@ -6339,10 +6469,13 @@ var transitionProps = {
   type: String,
   enterClass: String,
   leaveClass: String,
+    enterToClass: String,
+    leaveToClass: String,
   enterActiveClass: String,
   leaveActiveClass: String,
   appearClass: String,
-  appearActiveClass: String
+    appearActiveClass: String,
+    appearToClass: String
 };
 
 // in case the child is also an abstract component, e.g. <keep-alive>
@@ -6385,6 +6518,10 @@ function hasParentTransition (vnode) {
     }
   }
 }
+
+    function isSameChild(child, oldChild) {
+        return oldChild.key === child.key && oldChild.tag === child.tag
+    }
 
 var Transition = {
   name: 'transition',
@@ -6458,11 +6595,10 @@ var Transition = {
       child.data.show = true;
     }
 
-    if (oldChild && oldChild.data && oldChild.key !== key) {
+      if (oldChild && oldChild.data && !isSameChild(child, oldChild)) {
       // replace old child transition data with fresh one
       // important for dynamic transitions!
-      var oldData = oldChild.data.transition = extend({}, data);
-
+          var oldData = oldChild && (oldChild.data.transition = extend({}, data));
       // handle transition mode
       if (mode === 'out-in') {
         // return placeholder node and queue update when leave finishes
@@ -6673,6 +6809,15 @@ Vue$3.prototype.$mount = function (
   return this._mount(el, hydrating)
 };
 
+    if ("development" !== 'production' &&
+        inBrowser && typeof console !== 'undefined') {
+        console[console.info ? 'info' : 'log'](
+            "You are running Vue in development mode.\n" +
+            "Make sure to turn on production mode when deploying for production.\n" +
+            "See more tips at https://vuejs.org/guide/deployment.html"
+        );
+    }
+
 // devtools global hook
 /* istanbul ignore next */
 setTimeout(function () {
@@ -6683,8 +6828,8 @@ setTimeout(function () {
       "development" !== 'production' &&
       inBrowser && !isEdge && /Chrome\/\d+/.test(window.navigator.userAgent)
     ) {
-      console.log(
-        'Download the Vue Devtools for a better development experience:\n' +
+        console[console.info ? 'info' : 'log'](
+            'Download the Vue Devtools extension for a better development experience:\n' +
         'https://github.com/vuejs/vue-devtools'
       );
     }
@@ -7453,7 +7598,7 @@ function parse (
         "development" !== 'production' && warn$1(
           'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
-          "<" + tag + ">."
+          "<" + tag + ">" + ', as they will not be parsed.'
         );
       }
 
@@ -7590,19 +7735,20 @@ function parse (
           currentParent.attrsMap.placeholder === text) {
         return
       }
+        var children = currentParent.children;
       text = inPre || text.trim()
         ? decodeHTMLCached(text)
         // only preserve whitespace if its not right after a starting tag
-        : preserveWhitespace && currentParent.children.length ? ' ' : '';
+          : preserveWhitespace && children.length ? ' ' : '';
       if (text) {
         var expression;
         if (!inVPre && text !== ' ' && (expression = parseText(text, delimiters))) {
-          currentParent.children.push({
+            children.push({
             type: 2,
             expression: expression,
             text: text
           });
-        } else {
+        } else if (text !== ' ' || children[children.length - 1].text !== ' ') {
           currentParent.children.push({
             type: 3,
             text: text
@@ -7713,6 +7859,23 @@ function processIfConditions (el, parent) {
   }
 }
 
+    function findPrevElement(children) {
+        var i = children.length;
+        while (i--) {
+            if (children[i].type === 1) {
+                return children[i]
+            } else {
+                if ("development" !== 'production' && children[i].text !== ' ') {
+                    warn$1(
+                        "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
+                        "will be ignored."
+                    );
+                }
+                children.pop();
+            }
+        }
+    }
+
 function addIfCondition (el, condition) {
   if (!el.ifConditions) {
     el.ifConditions = [];
@@ -7820,6 +7983,15 @@ function processAttrs (el) {
         }
       }
       addAttr(el, name, JSON.stringify(value));
+        // #4530 also bind special attributes as props even if they are static
+        // so that patches between dynamic/static are consistent
+        if (platformMustUseProp(el.tag, name)) {
+            if (name === 'value') {
+                addProp(el, name, JSON.stringify(value));
+            } else {
+                addProp(el, name, 'true');
+            }
+        }
     }
   }
 }
@@ -7853,13 +8025,6 @@ function makeAttrsMap (attrs) {
     map[attrs[i].name] = attrs[i].value;
   }
   return map
-}
-
-function findPrevElement (children) {
-  var i = children.length;
-  while (i--) {
-    if (children[i].tag) { return children[i] }
-  }
 }
 
 function isForbiddenTag (el) {
@@ -8115,6 +8280,8 @@ function bind$2 (el, dir) {
   };
 }
 
+    /*  */
+
 var baseDirectives = {
   bind: bind$2,
   cloak: noop
@@ -8127,6 +8294,7 @@ var warn$2;
 var transforms$1;
 var dataGenFns;
 var platformDirectives$1;
+    var isPlatformReservedTag$1;
 var staticRenderFns;
 var onceCount;
 var currentOptions;
@@ -8145,6 +8313,7 @@ function generate (
   transforms$1 = pluckModuleFunction(options.modules, 'transformCode');
   dataGenFns = pluckModuleFunction(options.modules, 'genData');
   platformDirectives$1 = options.directives || {};
+    isPlatformReservedTag$1 = options.isReservedTag || no;
   var code = ast ? genElement(ast) : '_c("div")';
   staticRenderFns = prevStaticRenderFns;
   onceCount = prevOnceCount;
@@ -8384,26 +8553,43 @@ function genChildren (el, checkSkip) {
         el$1.tag !== 'slot') {
       return genElement(el$1)
     }
+      var normalizationType = getNormalizationType(children);
     return ("[" + (children.map(genNode).join(',')) + "]" + (checkSkip
-        ? canSkipNormalization(children) ? '' : ',true'
+        ? normalizationType ? ("," + normalizationType) : ''
         : ''))
   }
 }
 
-function canSkipNormalization (children) {
+// determine the normalization needed for the children array.
+// 0: no normalization needed
+// 1: simple normalization needed (possible 1-level deep nested array)
+// 2: full normalization needed
+    function getNormalizationType(children) {
+        var res = 0;
   for (var i = 0; i < children.length; i++) {
     var el = children[i];
     if (needsNormalization(el) ||
         (el.if && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
-      return false
+        res = 2;
+        break
     }
+      if (maybeComponent(el) ||
+          (el.if && el.ifConditions.some(function (c) {
+              return maybeComponent(c.block);
+          }))) {
+          res = 1;
+      }
   }
-  return true
+        return res
 }
 
 function needsNormalization (el) {
   return el.for || el.tag === 'template' || el.tag === 'slot'
 }
+
+    function maybeComponent(el) {
+        return el.type === 1 && !isPlatformReservedTag$1(el.tag)
+    }
 
 function genNode (node) {
   if (node.type === 1) {
@@ -8422,7 +8608,21 @@ function genText (text) {
 function genSlot (el) {
   var slotName = el.slotName || '"default"';
   var children = genChildren(el);
-  return ("_t(" + slotName + (children ? ("," + children) : '') + (el.attrs ? ((children ? '' : ',null') + ",{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}") : '') + ")")
+    var res = "_t(" + slotName + (children ? ("," + children) : '');
+    var attrs = el.attrs && ("{" + (el.attrs.map(function (a) {
+            return ((camelize(a.name)) + ":" + (a.value));
+        }).join(',')) + "}");
+    var bind$$1 = el.attrsMap['v-bind'];
+    if ((attrs || bind$$1) && !children) {
+        res += ",null";
+    }
+    if (attrs) {
+        res += "," + attrs;
+    }
+    if (bind$$1) {
+        res += (attrs ? '' : ',null') + "," + bind$$1;
+    }
+    return res + ')'
 }
 
 // componentName is el.component, take it as argument to shun flow's pessimistic refinement
@@ -8687,8 +8887,11 @@ function genCheckboxModel (
   var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
   addProp(el, 'checked',
     "Array.isArray(" + value + ")" +
-      "?_i(" + value + "," + valueBinding + ")>-1" +
-      ":_q(" + value + "," + trueValueBinding + ")"
+    "?_i(" + value + "," + valueBinding + ")>-1" + (
+        trueValueBinding === 'true'
+            ? (":(" + value + ")")
+            : (":_q(" + value + "," + trueValueBinding + ")")
+    )
   );
   addHandler(el, 'change',
     "var $$a=" + value + "," +
@@ -11944,7 +12147,7 @@ return Vue$3;
         return memo + fn(v);
       }, 0);
     };
-  
+
     /**
      * returns a copy of the collection with array type.
      * @param {Collection} collection - collection eg) node.childNodes, ...
@@ -11963,7 +12166,7 @@ return Vue$3;
     var isEmpty = function (array) {
       return !array || !array.length;
     };
-  
+
     /**
      * cluster elements by predicate function.
      *
@@ -11984,7 +12187,7 @@ return Vue$3;
         return memo;
       }, [[head(array)]]);
     };
-  
+
     /**
      * returns a copy of the array with all false values removed
      *
@@ -12324,13 +12527,13 @@ return Vue$3;
       if (isText(node)) {
         return node.nodeValue.length;
       }
-      
+
       if (node) {
         return node.childNodes.length;
       }
-      
+
       return 0;
-      
+
     };
 
     /**
@@ -13969,7 +14172,7 @@ return Vue$3;
      */
     var textRangeToPoint = function (textRange, isStart) {
       var container = textRange.parentElement(), offset;
-  
+
       var tester = document.body.createTextRange(), prevContainer;
       var childNodes = list.from(container.childNodes);
       for (offset = 0; offset < childNodes.length; offset++) {
@@ -13982,42 +14185,42 @@ return Vue$3;
         }
         prevContainer = childNodes[offset];
       }
-  
+
       if (offset !== 0 && dom.isText(childNodes[offset - 1])) {
         var textRangeStart = document.body.createTextRange(), curTextNode = null;
         textRangeStart.moveToElementText(prevContainer || container);
         textRangeStart.collapse(!prevContainer);
         curTextNode = prevContainer ? prevContainer.nextSibling : container.firstChild;
-  
+
         var pointTester = textRange.duplicate();
         pointTester.setEndPoint('StartToStart', textRangeStart);
         var textCount = pointTester.text.replace(/[\r\n]/g, '').length;
-  
+
         while (textCount > curTextNode.nodeValue.length && curTextNode.nextSibling) {
           textCount -= curTextNode.nodeValue.length;
           curTextNode = curTextNode.nextSibling;
         }
-  
+
         /* jshint ignore:start */
         var dummy = curTextNode.nodeValue; // enforce IE to re-reference curTextNode, hack
         /* jshint ignore:end */
-  
+
         if (isStart && curTextNode.nextSibling && dom.isText(curTextNode.nextSibling) &&
             textCount === curTextNode.nodeValue.length) {
           textCount -= curTextNode.nodeValue.length;
           curTextNode = curTextNode.nextSibling;
         }
-  
+
         container = curTextNode;
         offset = textCount;
       }
-  
+
       return {
         cont: container,
         offset: offset
       };
     };
-    
+
     /**
      * return TextRange from boundary point (inspired by google closure-library)
      * @param {BoundaryPoint} point
@@ -14026,7 +14229,7 @@ return Vue$3;
     var pointToTextRange = function (point) {
       var textRangeInfo = function (container, offset) {
         var node, isCollapseToStart;
-  
+
         if (dom.isText(container)) {
           var prevTextNodes = dom.listPrev(container, func.not(dom.isText));
           var prevContainer = list.last(prevTextNodes).previousSibling;
@@ -14038,27 +14241,27 @@ return Vue$3;
           if (dom.isText(node)) {
             return textRangeInfo(node, 0);
           }
-  
+
           offset = 0;
           isCollapseToStart = false;
         }
-  
+
         return {
           node: node,
           collapseToStart: isCollapseToStart,
           offset: offset
         };
       };
-  
+
       var textRange = document.body.createTextRange();
       var info = textRangeInfo(point.node, point.offset);
-  
+
       textRange.moveToElementText(info.node);
       textRange.collapse(info.collapseToStart);
       textRange.moveStart('character', info.offset);
       return textRange;
     };
-    
+
     /**
      * Wrapped Range
      *
@@ -14073,7 +14276,7 @@ return Vue$3;
       this.so = so;
       this.ec = ec;
       this.eo = eo;
-  
+
       // nativeRange: get nativeRange from sc, so, ec, eo
       var nativeRange = function () {
         if (agent.isW3CRangeSupport) {
@@ -14134,7 +14337,7 @@ return Vue$3;
         } else {
           nativeRng.select();
         }
-        
+
         return this;
       };
 
@@ -14179,7 +14382,7 @@ return Vue$3;
             if (dom.isVisiblePoint(point)) {
               return point;
             }
-            // reverse direction 
+            // reverse direction
             isLeftToRight = !isLeftToRight;
           }
 
@@ -14372,7 +14575,7 @@ return Vue$3;
           point.offset
         ).normalize();
       };
-      
+
       /**
        * makeIsOn: return isOn(pred) function
        */
@@ -14382,7 +14585,7 @@ return Vue$3;
           return !!ancestor && (ancestor === dom.ancestor(ec, pred));
         };
       };
-  
+
       // isOnEditable: judge whether range is on editable or not
       this.isOnEditable = makeIsOn(dom.isEditable);
       // isOnList: judge whether range is on list node or not
@@ -14492,7 +14695,7 @@ return Vue$3;
           return rng.insertNode(childNode);
         }).reverse();
       };
-  
+
       /**
        * returns text in range
        *
@@ -14533,7 +14736,7 @@ return Vue$3;
           endPoint.offset
         );
       };
-  
+
       /**
        * create offsetPath bookmark
        *
@@ -14663,8 +14866,8 @@ return Vue$3;
       },
 
       /**
-       * @method 
-       * 
+       * @method
+       *
        * create WrappedRange from node
        *
        * @param {Node} node
@@ -14713,8 +14916,8 @@ return Vue$3;
       },
 
       /**
-       * @method 
-       * 
+       * @method
+       *
        * create WrappedRange from bookmark
        *
        * @param {Node} editable
@@ -14730,7 +14933,7 @@ return Vue$3;
       },
 
       /**
-       * @method 
+       * @method
        *
        * create WrappedRange from paraBookmark
        *
@@ -14779,7 +14982,7 @@ return Vue$3;
         }).readAsDataURL(file);
       }).promise();
     };
-  
+
     /**
      * @method createImage
      *
@@ -16807,7 +17010,7 @@ return Vue$3;
       if (!options.shortcuts || !shortcut) {
         return '';
       }
-      
+
       if (agent.isMac) {
         shortcut = shortcut.replace('CMD', '⌘').replace('SHIFT', '⇧');
       }
@@ -18501,7 +18704,7 @@ return Vue$3;
       },
 
       buttons: {},
-      
+
       lang: 'en-US',
 
       // toolbar
@@ -18709,6 +18912,468 @@ return Vue$3;
 
 (function(){var a,b,c,d,e,f,g,h,i=[].slice,j={}.hasOwnProperty,k=function(a,b){function c(){this.constructor=a}for(var d in b)j.call(b,d)&&(a[d]=b[d]);return c.prototype=b.prototype,a.prototype=new c,a.__super__=b.prototype,a};g=function(){},b=function(){function a(){}return a.prototype.addEventListener=a.prototype.on,a.prototype.on=function(a,b){return this._callbacks=this._callbacks||{},this._callbacks[a]||(this._callbacks[a]=[]),this._callbacks[a].push(b),this},a.prototype.emit=function(){var a,b,c,d,e,f;if(d=arguments[0],a=2<=arguments.length?i.call(arguments,1):[],this._callbacks=this._callbacks||{},c=this._callbacks[d])for(e=0,f=c.length;f>e;e++)b=c[e],b.apply(this,a);return this},a.prototype.removeListener=a.prototype.off,a.prototype.removeAllListeners=a.prototype.off,a.prototype.removeEventListener=a.prototype.off,a.prototype.off=function(a,b){var c,d,e,f,g;if(!this._callbacks||0===arguments.length)return this._callbacks={},this;if(d=this._callbacks[a],!d)return this;if(1===arguments.length)return delete this._callbacks[a],this;for(e=f=0,g=d.length;g>f;e=++f)if(c=d[e],c===b){d.splice(e,1);break}return this},a}(),a=function(a){function c(a,b){var e,f,g;if(this.element=a,this.version=c.version,this.defaultOptions.previewTemplate=this.defaultOptions.previewTemplate.replace(/\n*/g,""),this.clickableElements=[],this.listeners=[],this.files=[],"string"==typeof this.element&&(this.element=document.querySelector(this.element)),!this.element||null==this.element.nodeType)throw new Error("Invalid dropzone element.");if(this.element.dropzone)throw new Error("Dropzone already attached.");if(c.instances.push(this),this.element.dropzone=this,e=null!=(g=c.optionsForElement(this.element))?g:{},this.options=d({},this.defaultOptions,e,null!=b?b:{}),this.options.forceFallback||!c.isBrowserSupported())return this.options.fallback.call(this);if(null==this.options.url&&(this.options.url=this.element.getAttribute("action")),!this.options.url)throw new Error("No URL provided.");if(this.options.acceptedFiles&&this.options.acceptedMimeTypes)throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");this.options.acceptedMimeTypes&&(this.options.acceptedFiles=this.options.acceptedMimeTypes,delete this.options.acceptedMimeTypes),this.options.method=this.options.method.toUpperCase(),(f=this.getExistingFallback())&&f.parentNode&&f.parentNode.removeChild(f),this.options.previewsContainer!==!1&&(this.previewsContainer=this.options.previewsContainer?c.getElement(this.options.previewsContainer,"previewsContainer"):this.element),this.options.clickable&&(this.clickableElements=this.options.clickable===!0?[this.element]:c.getElements(this.options.clickable,"clickable")),this.init()}var d,e;return k(c,a),c.prototype.Emitter=b,c.prototype.events=["drop","dragstart","dragend","dragenter","dragover","dragleave","addedfile","addedfiles","removedfile","thumbnail","error","errormultiple","processing","processingmultiple","uploadprogress","totaluploadprogress","sending","sendingmultiple","success","successmultiple","canceled","canceledmultiple","complete","completemultiple","reset","maxfilesexceeded","maxfilesreached","queuecomplete"],c.prototype.defaultOptions={url:null,method:"post",withCredentials:!1,parallelUploads:2,uploadMultiple:!1,maxFilesize:256,paramName:"file",createImageThumbnails:!0,maxThumbnailFilesize:10,thumbnailWidth:120,thumbnailHeight:120,filesizeBase:1e3,maxFiles:null,params:{},clickable:!0,ignoreHiddenFiles:!0,acceptedFiles:null,acceptedMimeTypes:null,autoProcessQueue:!0,autoQueue:!0,addRemoveLinks:!1,previewsContainer:null,hiddenInputContainer:"body",capture:null,renameFilename:null,dictDefaultMessage:"Drop files here to upload",dictFallbackMessage:"Your browser does not support drag'n'drop file uploads.",dictFallbackText:"Please use the fallback form below to upload your files like in the olden days.",dictFileTooBig:"File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",dictInvalidFileType:"You can't upload files of this type.",dictResponseError:"Server responded with {{statusCode}} code.",dictCancelUpload:"Cancel upload",dictCancelUploadConfirmation:"Are you sure you want to cancel this upload?",dictRemoveFile:"Remove file",dictRemoveFileConfirmation:null,dictMaxFilesExceeded:"You can not upload any more files.",accept:function(a,b){return b()},init:function(){return g},forceFallback:!1,fallback:function(){var a,b,d,e,f,g;for(this.element.className=""+this.element.className+" dz-browser-not-supported",g=this.element.getElementsByTagName("div"),e=0,f=g.length;f>e;e++)a=g[e],/(^| )dz-message($| )/.test(a.className)&&(b=a,a.className="dz-message");return b||(b=c.createElement('<div class="dz-message"><span></span></div>'),this.element.appendChild(b)),d=b.getElementsByTagName("span")[0],d&&(null!=d.textContent?d.textContent=this.options.dictFallbackMessage:null!=d.innerText&&(d.innerText=this.options.dictFallbackMessage)),this.element.appendChild(this.getFallbackForm())},resize:function(a){var b,c,d;return b={srcX:0,srcY:0,srcWidth:a.width,srcHeight:a.height},c=a.width/a.height,b.optWidth=this.options.thumbnailWidth,b.optHeight=this.options.thumbnailHeight,null==b.optWidth&&null==b.optHeight?(b.optWidth=b.srcWidth,b.optHeight=b.srcHeight):null==b.optWidth?b.optWidth=c*b.optHeight:null==b.optHeight&&(b.optHeight=1/c*b.optWidth),d=b.optWidth/b.optHeight,a.height<b.optHeight||a.width<b.optWidth?(b.trgHeight=b.srcHeight,b.trgWidth=b.srcWidth):c>d?(b.srcHeight=a.height,b.srcWidth=b.srcHeight*d):(b.srcWidth=a.width,b.srcHeight=b.srcWidth/d),b.srcX=(a.width-b.srcWidth)/2,b.srcY=(a.height-b.srcHeight)/2,b},drop:function(){return this.element.classList.remove("dz-drag-hover")},dragstart:g,dragend:function(){return this.element.classList.remove("dz-drag-hover")},dragenter:function(){return this.element.classList.add("dz-drag-hover")},dragover:function(){return this.element.classList.add("dz-drag-hover")},dragleave:function(){return this.element.classList.remove("dz-drag-hover")},paste:g,reset:function(){return this.element.classList.remove("dz-started")},addedfile:function(a){var b,d,e,f,g,h,i,j,k,l,m,n,o;if(this.element===this.previewsContainer&&this.element.classList.add("dz-started"),this.previewsContainer){for(a.previewElement=c.createElement(this.options.previewTemplate.trim()),a.previewTemplate=a.previewElement,this.previewsContainer.appendChild(a.previewElement),l=a.previewElement.querySelectorAll("[data-dz-name]"),f=0,i=l.length;i>f;f++)b=l[f],b.textContent=this._renameFilename(a.name);for(m=a.previewElement.querySelectorAll("[data-dz-size]"),g=0,j=m.length;j>g;g++)b=m[g],b.innerHTML=this.filesize(a.size);for(this.options.addRemoveLinks&&(a._removeLink=c.createElement('<a class="dz-remove" href="javascript:undefined;" data-dz-remove>'+this.options.dictRemoveFile+"</a>"),a.previewElement.appendChild(a._removeLink)),d=function(b){return function(d){return d.preventDefault(),d.stopPropagation(),a.status===c.UPLOADING?c.confirm(b.options.dictCancelUploadConfirmation,function(){return b.removeFile(a)}):b.options.dictRemoveFileConfirmation?c.confirm(b.options.dictRemoveFileConfirmation,function(){return b.removeFile(a)}):b.removeFile(a)}}(this),n=a.previewElement.querySelectorAll("[data-dz-remove]"),o=[],h=0,k=n.length;k>h;h++)e=n[h],o.push(e.addEventListener("click",d));return o}},removedfile:function(a){var b;return a.previewElement&&null!=(b=a.previewElement)&&b.parentNode.removeChild(a.previewElement),this._updateMaxFilesReachedClass()},thumbnail:function(a,b){var c,d,e,f;if(a.previewElement){for(a.previewElement.classList.remove("dz-file-preview"),f=a.previewElement.querySelectorAll("[data-dz-thumbnail]"),d=0,e=f.length;e>d;d++)c=f[d],c.alt=a.name,c.src=b;return setTimeout(function(){return function(){return a.previewElement.classList.add("dz-image-preview")}}(this),1)}},error:function(a,b){var c,d,e,f,g;if(a.previewElement){for(a.previewElement.classList.add("dz-error"),"String"!=typeof b&&b.error&&(b=b.error),f=a.previewElement.querySelectorAll("[data-dz-errormessage]"),g=[],d=0,e=f.length;e>d;d++)c=f[d],g.push(c.textContent=b);return g}},errormultiple:g,processing:function(a){return a.previewElement&&(a.previewElement.classList.add("dz-processing"),a._removeLink)?a._removeLink.textContent=this.options.dictCancelUpload:void 0},processingmultiple:g,uploadprogress:function(a,b){var c,d,e,f,g;if(a.previewElement){for(f=a.previewElement.querySelectorAll("[data-dz-uploadprogress]"),g=[],d=0,e=f.length;e>d;d++)c=f[d],g.push("PROGRESS"===c.nodeName?c.value=b:c.style.width=""+b+"%");return g}},totaluploadprogress:g,sending:g,sendingmultiple:g,success:function(a){return a.previewElement?a.previewElement.classList.add("dz-success"):void 0},successmultiple:g,canceled:function(a){return this.emit("error",a,"Upload canceled.")},canceledmultiple:g,complete:function(a){return a._removeLink&&(a._removeLink.textContent=this.options.dictRemoveFile),a.previewElement?a.previewElement.classList.add("dz-complete"):void 0},completemultiple:g,maxfilesexceeded:g,maxfilesreached:g,queuecomplete:g,addedfiles:g,previewTemplate:'<div class="dz-preview dz-file-preview">\n  <div class="dz-image"><img data-dz-thumbnail /></div>\n  <div class="dz-details">\n    <div class="dz-size"><span data-dz-size></span></div>\n    <div class="dz-filename"><span data-dz-name></span></div>\n  </div>\n  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\n  <div class="dz-error-message"><span data-dz-errormessage></span></div>\n  <div class="dz-success-mark">\n    <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">\n      <title>Check</title>\n      <defs></defs>\n      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">\n        <path d="M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" stroke-opacity="0.198794158" stroke="#747474" fill-opacity="0.816519475" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>\n      </g>\n    </svg>\n  </div>\n  <div class="dz-error-mark">\n    <svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">\n      <title>Error</title>\n      <defs></defs>\n      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">\n        <g id="Check-+-Oval-2" sketch:type="MSLayerGroup" stroke="#747474" stroke-opacity="0.198794158" fill="#FFFFFF" fill-opacity="0.816519475">\n          <path d="M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z" id="Oval-2" sketch:type="MSShapeGroup"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>'},d=function(){var a,b,c,d,e,f,g;for(d=arguments[0],c=2<=arguments.length?i.call(arguments,1):[],f=0,g=c.length;g>f;f++){b=c[f];for(a in b)e=b[a],d[a]=e}return d},c.prototype.getAcceptedFiles=function(){var a,b,c,d,e;for(d=this.files,e=[],b=0,c=d.length;c>b;b++)a=d[b],a.accepted&&e.push(a);return e},c.prototype.getRejectedFiles=function(){var a,b,c,d,e;for(d=this.files,e=[],b=0,c=d.length;c>b;b++)a=d[b],a.accepted||e.push(a);return e},c.prototype.getFilesWithStatus=function(a){var b,c,d,e,f;for(e=this.files,f=[],c=0,d=e.length;d>c;c++)b=e[c],b.status===a&&f.push(b);return f},c.prototype.getQueuedFiles=function(){return this.getFilesWithStatus(c.QUEUED)},c.prototype.getUploadingFiles=function(){return this.getFilesWithStatus(c.UPLOADING)},c.prototype.getAddedFiles=function(){return this.getFilesWithStatus(c.ADDED)},c.prototype.getActiveFiles=function(){var a,b,d,e,f;for(e=this.files,f=[],b=0,d=e.length;d>b;b++)a=e[b],(a.status===c.UPLOADING||a.status===c.QUEUED)&&f.push(a);return f},c.prototype.init=function(){var a,b,d,e,f,g,h;for("form"===this.element.tagName&&this.element.setAttribute("enctype","multipart/form-data"),this.element.classList.contains("dropzone")&&!this.element.querySelector(".dz-message")&&this.element.appendChild(c.createElement('<div class="dz-default dz-message"><span>'+this.options.dictDefaultMessage+"</span></div>")),this.clickableElements.length&&(d=function(a){return function(){return a.hiddenFileInput&&a.hiddenFileInput.parentNode.removeChild(a.hiddenFileInput),a.hiddenFileInput=document.createElement("input"),a.hiddenFileInput.setAttribute("type","file"),(null==a.options.maxFiles||a.options.maxFiles>1)&&a.hiddenFileInput.setAttribute("multiple","multiple"),a.hiddenFileInput.className="dz-hidden-input",null!=a.options.acceptedFiles&&a.hiddenFileInput.setAttribute("accept",a.options.acceptedFiles),null!=a.options.capture&&a.hiddenFileInput.setAttribute("capture",a.options.capture),a.hiddenFileInput.style.visibility="hidden",a.hiddenFileInput.style.position="absolute",a.hiddenFileInput.style.top="0",a.hiddenFileInput.style.left="0",a.hiddenFileInput.style.height="0",a.hiddenFileInput.style.width="0",document.querySelector(a.options.hiddenInputContainer).appendChild(a.hiddenFileInput),a.hiddenFileInput.addEventListener("change",function(){var b,c,e,f;if(c=a.hiddenFileInput.files,c.length)for(e=0,f=c.length;f>e;e++)b=c[e],a.addFile(b);return a.emit("addedfiles",c),d()})}}(this))(),this.URL=null!=(g=window.URL)?g:window.webkitURL,h=this.events,e=0,f=h.length;f>e;e++)a=h[e],this.on(a,this.options[a]);return this.on("uploadprogress",function(a){return function(){return a.updateTotalUploadProgress()}}(this)),this.on("removedfile",function(a){return function(){return a.updateTotalUploadProgress()}}(this)),this.on("canceled",function(a){return function(b){return a.emit("complete",b)}}(this)),this.on("complete",function(a){return function(){return 0===a.getAddedFiles().length&&0===a.getUploadingFiles().length&&0===a.getQueuedFiles().length?setTimeout(function(){return a.emit("queuecomplete")},0):void 0}}(this)),b=function(a){return a.stopPropagation(),a.preventDefault?a.preventDefault():a.returnValue=!1},this.listeners=[{element:this.element,events:{dragstart:function(a){return function(b){return a.emit("dragstart",b)}}(this),dragenter:function(a){return function(c){return b(c),a.emit("dragenter",c)}}(this),dragover:function(a){return function(c){var d;try{d=c.dataTransfer.effectAllowed}catch(e){}return c.dataTransfer.dropEffect="move"===d||"linkMove"===d?"move":"copy",b(c),a.emit("dragover",c)}}(this),dragleave:function(a){return function(b){return a.emit("dragleave",b)}}(this),drop:function(a){return function(c){return b(c),a.drop(c)}}(this),dragend:function(a){return function(b){return a.emit("dragend",b)}}(this)}}],this.clickableElements.forEach(function(a){return function(b){return a.listeners.push({element:b,events:{click:function(d){return(b!==a.element||d.target===a.element||c.elementInside(d.target,a.element.querySelector(".dz-message")))&&a.hiddenFileInput.click(),!0}}})}}(this)),this.enable(),this.options.init.call(this)},c.prototype.destroy=function(){var a;return this.disable(),this.removeAllFiles(!0),(null!=(a=this.hiddenFileInput)?a.parentNode:void 0)&&(this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput),this.hiddenFileInput=null),delete this.element.dropzone,c.instances.splice(c.instances.indexOf(this),1)},c.prototype.updateTotalUploadProgress=function(){var a,b,c,d,e,f,g,h;if(d=0,c=0,a=this.getActiveFiles(),a.length){for(h=this.getActiveFiles(),f=0,g=h.length;g>f;f++)b=h[f],d+=b.upload.bytesSent,c+=b.upload.total;e=100*d/c}else e=100;return this.emit("totaluploadprogress",e,c,d)},c.prototype._getParamName=function(a){return"function"==typeof this.options.paramName?this.options.paramName(a):""+this.options.paramName+(this.options.uploadMultiple?"["+a+"]":"")},c.prototype._renameFilename=function(a){return"function"!=typeof this.options.renameFilename?a:this.options.renameFilename(a)},c.prototype.getFallbackForm=function(){var a,b,d,e;return(a=this.getExistingFallback())?a:(d='<div class="dz-fallback">',this.options.dictFallbackText&&(d+="<p>"+this.options.dictFallbackText+"</p>"),d+='<input type="file" name="'+this._getParamName(0)+'" '+(this.options.uploadMultiple?'multiple="multiple"':void 0)+' /><input type="submit" value="Upload!"></div>',b=c.createElement(d),"FORM"!==this.element.tagName?(e=c.createElement('<form action="'+this.options.url+'" enctype="multipart/form-data" method="'+this.options.method+'"></form>'),e.appendChild(b)):(this.element.setAttribute("enctype","multipart/form-data"),this.element.setAttribute("method",this.options.method)),null!=e?e:b)},c.prototype.getExistingFallback=function(){var a,b,c,d,e,f;for(b=function(a){var b,c,d;for(c=0,d=a.length;d>c;c++)if(b=a[c],/(^| )fallback($| )/.test(b.className))return b},f=["div","form"],d=0,e=f.length;e>d;d++)if(c=f[d],a=b(this.element.getElementsByTagName(c)))return a},c.prototype.setupEventListeners=function(){var a,b,c,d,e,f,g;for(f=this.listeners,g=[],d=0,e=f.length;e>d;d++)a=f[d],g.push(function(){var d,e;d=a.events,e=[];for(b in d)c=d[b],e.push(a.element.addEventListener(b,c,!1));return e}());return g},c.prototype.removeEventListeners=function(){var a,b,c,d,e,f,g;for(f=this.listeners,g=[],d=0,e=f.length;e>d;d++)a=f[d],g.push(function(){var d,e;d=a.events,e=[];for(b in d)c=d[b],e.push(a.element.removeEventListener(b,c,!1));return e}());return g},c.prototype.disable=function(){var a,b,c,d,e;for(this.clickableElements.forEach(function(a){return a.classList.remove("dz-clickable")}),this.removeEventListeners(),d=this.files,e=[],b=0,c=d.length;c>b;b++)a=d[b],e.push(this.cancelUpload(a));return e},c.prototype.enable=function(){return this.clickableElements.forEach(function(a){return a.classList.add("dz-clickable")}),this.setupEventListeners()},c.prototype.filesize=function(a){var b,c,d,e,f,g,h,i;if(d=0,e="b",a>0){for(g=["TB","GB","MB","KB","b"],c=h=0,i=g.length;i>h;c=++h)if(f=g[c],b=Math.pow(this.options.filesizeBase,4-c)/10,a>=b){d=a/Math.pow(this.options.filesizeBase,4-c),e=f;break}d=Math.round(10*d)/10}return"<strong>"+d+"</strong> "+e},c.prototype._updateMaxFilesReachedClass=function(){return null!=this.options.maxFiles&&this.getAcceptedFiles().length>=this.options.maxFiles?(this.getAcceptedFiles().length===this.options.maxFiles&&this.emit("maxfilesreached",this.files),this.element.classList.add("dz-max-files-reached")):this.element.classList.remove("dz-max-files-reached")},c.prototype.drop=function(a){var b,c;a.dataTransfer&&(this.emit("drop",a),b=a.dataTransfer.files,this.emit("addedfiles",b),b.length&&(c=a.dataTransfer.items,c&&c.length&&null!=c[0].webkitGetAsEntry?this._addFilesFromItems(c):this.handleFiles(b)))},c.prototype.paste=function(a){var b,c;if(null!=(null!=a&&null!=(c=a.clipboardData)?c.items:void 0))return this.emit("paste",a),b=a.clipboardData.items,b.length?this._addFilesFromItems(b):void 0},c.prototype.handleFiles=function(a){var b,c,d,e;for(e=[],c=0,d=a.length;d>c;c++)b=a[c],e.push(this.addFile(b));return e},c.prototype._addFilesFromItems=function(a){var b,c,d,e,f;for(f=[],d=0,e=a.length;e>d;d++)c=a[d],f.push(null!=c.webkitGetAsEntry&&(b=c.webkitGetAsEntry())?b.isFile?this.addFile(c.getAsFile()):b.isDirectory?this._addFilesFromDirectory(b,b.name):void 0:null!=c.getAsFile?null==c.kind||"file"===c.kind?this.addFile(c.getAsFile()):void 0:void 0);return f},c.prototype._addFilesFromDirectory=function(a,b){var c,d,e;return c=a.createReader(),d=function(a){return"undefined"!=typeof console&&null!==console&&"function"==typeof console.log?console.log(a):void 0},(e=function(a){return function(){return c.readEntries(function(c){var d,f,g;if(c.length>0){for(f=0,g=c.length;g>f;f++)d=c[f],d.isFile?d.file(function(c){return a.options.ignoreHiddenFiles&&"."===c.name.substring(0,1)?void 0:(c.fullPath=""+b+"/"+c.name,a.addFile(c))}):d.isDirectory&&a._addFilesFromDirectory(d,""+b+"/"+d.name);e()}return null},d)}}(this))()},c.prototype.accept=function(a,b){return a.size>1024*this.options.maxFilesize*1024?b(this.options.dictFileTooBig.replace("{{filesize}}",Math.round(a.size/1024/10.24)/100).replace("{{maxFilesize}}",this.options.maxFilesize)):c.isValidFile(a,this.options.acceptedFiles)?null!=this.options.maxFiles&&this.getAcceptedFiles().length>=this.options.maxFiles?(b(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}",this.options.maxFiles)),this.emit("maxfilesexceeded",a)):this.options.accept.call(this,a,b):b(this.options.dictInvalidFileType)},c.prototype.addFile=function(a){return a.upload={progress:0,total:a.size,bytesSent:0},this.files.push(a),a.status=c.ADDED,this.emit("addedfile",a),this._enqueueThumbnail(a),this.accept(a,function(b){return function(c){return c?(a.accepted=!1,b._errorProcessing([a],c)):(a.accepted=!0,b.options.autoQueue&&b.enqueueFile(a)),b._updateMaxFilesReachedClass()}}(this))},c.prototype.enqueueFiles=function(a){var b,c,d;for(c=0,d=a.length;d>c;c++)b=a[c],this.enqueueFile(b);return null},c.prototype.enqueueFile=function(a){if(a.status!==c.ADDED||a.accepted!==!0)throw new Error("This file can't be queued because it has already been processed or was rejected.");return a.status=c.QUEUED,this.options.autoProcessQueue?setTimeout(function(a){return function(){return a.processQueue()}}(this),0):void 0},c.prototype._thumbnailQueue=[],c.prototype._processingThumbnail=!1,c.prototype._enqueueThumbnail=function(a){return this.options.createImageThumbnails&&a.type.match(/image.*/)&&a.size<=1024*this.options.maxThumbnailFilesize*1024?(this._thumbnailQueue.push(a),setTimeout(function(a){return function(){return a._processThumbnailQueue()}}(this),0)):void 0},c.prototype._processThumbnailQueue=function(){return this._processingThumbnail||0===this._thumbnailQueue.length?void 0:(this._processingThumbnail=!0,this.createThumbnail(this._thumbnailQueue.shift(),function(a){return function(){return a._processingThumbnail=!1,a._processThumbnailQueue()}}(this)))},c.prototype.removeFile=function(a){return a.status===c.UPLOADING&&this.cancelUpload(a),this.files=h(this.files,a),this.emit("removedfile",a),0===this.files.length?this.emit("reset"):void 0},c.prototype.removeAllFiles=function(a){var b,d,e,f;for(null==a&&(a=!1),f=this.files.slice(),d=0,e=f.length;e>d;d++)b=f[d],(b.status!==c.UPLOADING||a)&&this.removeFile(b);return null},c.prototype.createThumbnail=function(a,b){var c;return c=new FileReader,c.onload=function(d){return function(){return"image/svg+xml"===a.type?(d.emit("thumbnail",a,c.result),void(null!=b&&b())):d.createThumbnailFromUrl(a,c.result,b)}}(this),c.readAsDataURL(a)},c.prototype.createThumbnailFromUrl=function(a,b,c,d){var e;return e=document.createElement("img"),d&&(e.crossOrigin=d),e.onload=function(b){return function(){var d,g,h,i,j,k,l,m;return a.width=e.width,a.height=e.height,h=b.options.resize.call(b,a),null==h.trgWidth&&(h.trgWidth=h.optWidth),null==h.trgHeight&&(h.trgHeight=h.optHeight),d=document.createElement("canvas"),g=d.getContext("2d"),d.width=h.trgWidth,d.height=h.trgHeight,f(g,e,null!=(j=h.srcX)?j:0,null!=(k=h.srcY)?k:0,h.srcWidth,h.srcHeight,null!=(l=h.trgX)?l:0,null!=(m=h.trgY)?m:0,h.trgWidth,h.trgHeight),i=d.toDataURL("image/png"),b.emit("thumbnail",a,i),null!=c?c():void 0}}(this),null!=c&&(e.onerror=c),e.src=b},c.prototype.processQueue=function(){var a,b,c,d;if(b=this.options.parallelUploads,c=this.getUploadingFiles().length,a=c,!(c>=b)&&(d=this.getQueuedFiles(),d.length>0)){if(this.options.uploadMultiple)return this.processFiles(d.slice(0,b-c));for(;b>a;){if(!d.length)return;this.processFile(d.shift()),a++}}},c.prototype.processFile=function(a){return this.processFiles([a])},c.prototype.processFiles=function(a){var b,d,e;for(d=0,e=a.length;e>d;d++)b=a[d],b.processing=!0,b.status=c.UPLOADING,this.emit("processing",b);return this.options.uploadMultiple&&this.emit("processingmultiple",a),this.uploadFiles(a)},c.prototype._getFilesWithXhr=function(a){var b,c;return c=function(){var c,d,e,f;for(e=this.files,f=[],c=0,d=e.length;d>c;c++)b=e[c],b.xhr===a&&f.push(b);return f}.call(this)},c.prototype.cancelUpload=function(a){var b,d,e,f,g,h,i;if(a.status===c.UPLOADING){for(d=this._getFilesWithXhr(a.xhr),e=0,g=d.length;g>e;e++)b=d[e],b.status=c.CANCELED;for(a.xhr.abort(),f=0,h=d.length;h>f;f++)b=d[f],this.emit("canceled",b);this.options.uploadMultiple&&this.emit("canceledmultiple",d)}else((i=a.status)===c.ADDED||i===c.QUEUED)&&(a.status=c.CANCELED,this.emit("canceled",a),this.options.uploadMultiple&&this.emit("canceledmultiple",[a]));return this.options.autoProcessQueue?this.processQueue():void 0},e=function(){var a,b;return b=arguments[0],a=2<=arguments.length?i.call(arguments,1):[],"function"==typeof b?b.apply(this,a):b},c.prototype.uploadFile=function(a){return this.uploadFiles([a])},c.prototype.uploadFiles=function(a){var b,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L;for(w=new XMLHttpRequest,x=0,B=a.length;B>x;x++)b=a[x],b.xhr=w;p=e(this.options.method,a),u=e(this.options.url,a),w.open(p,u,!0),w.withCredentials=!!this.options.withCredentials,s=null,g=function(c){return function(){var d,e,f;for(f=[],d=0,e=a.length;e>d;d++)b=a[d],f.push(c._errorProcessing(a,s||c.options.dictResponseError.replace("{{statusCode}}",w.status),w));return f}}(this),t=function(c){return function(d){var e,f,g,h,i,j,k,l,m;if(null!=d)for(f=100*d.loaded/d.total,g=0,j=a.length;j>g;g++)b=a[g],b.upload={progress:f,total:d.total,bytesSent:d.loaded};else{for(e=!0,f=100,h=0,k=a.length;k>h;h++)b=a[h],(100!==b.upload.progress||b.upload.bytesSent!==b.upload.total)&&(e=!1),b.upload.progress=f,b.upload.bytesSent=b.upload.total;if(e)return}for(m=[],i=0,l=a.length;l>i;i++)b=a[i],m.push(c.emit("uploadprogress",b,f,b.upload.bytesSent));return m}}(this),w.onload=function(b){return function(d){var e;if(a[0].status!==c.CANCELED&&4===w.readyState){if(s=w.responseText,w.getResponseHeader("content-type")&&~w.getResponseHeader("content-type").indexOf("application/json"))try{s=JSON.parse(s)}catch(f){d=f,s="Invalid JSON response from server."}return t(),200<=(e=w.status)&&300>e?b._finished(a,s,d):g()}}}(this),w.onerror=function(){return function(){return a[0].status!==c.CANCELED?g():void 0}}(this),r=null!=(G=w.upload)?G:w,r.onprogress=t,j={Accept:"application/json","Cache-Control":"no-cache","X-Requested-With":"XMLHttpRequest"},this.options.headers&&d(j,this.options.headers);for(h in j)i=j[h],i&&w.setRequestHeader(h,i);if(f=new FormData,this.options.params){H=this.options.params;for(o in H)v=H[o],f.append(o,v)}for(y=0,C=a.length;C>y;y++)b=a[y],this.emit("sending",b,w,f);if(this.options.uploadMultiple&&this.emit("sendingmultiple",a,w,f),"FORM"===this.element.tagName)for(I=this.element.querySelectorAll("input, textarea, select, button"),z=0,D=I.length;D>z;z++)if(l=I[z],m=l.getAttribute("name"),n=l.getAttribute("type"),"SELECT"===l.tagName&&l.hasAttribute("multiple"))for(J=l.options,A=0,E=J.length;E>A;A++)q=J[A],q.selected&&f.append(m,q.value);else(!n||"checkbox"!==(K=n.toLowerCase())&&"radio"!==K||l.checked)&&f.append(m,l.value);for(k=F=0,L=a.length-1;L>=0?L>=F:F>=L;k=L>=0?++F:--F)f.append(this._getParamName(k),a[k],this._renameFilename(a[k].name));return this.submitRequest(w,f,a)},c.prototype.submitRequest=function(a,b){return a.send(b)},c.prototype._finished=function(a,b,d){var e,f,g;for(f=0,g=a.length;g>f;f++)e=a[f],e.status=c.SUCCESS,this.emit("success",e,b,d),this.emit("complete",e);return this.options.uploadMultiple&&(this.emit("successmultiple",a,b,d),this.emit("completemultiple",a)),this.options.autoProcessQueue?this.processQueue():void 0},c.prototype._errorProcessing=function(a,b,d){var e,f,g;for(f=0,g=a.length;g>f;f++)e=a[f],e.status=c.ERROR,this.emit("error",e,b,d),this.emit("complete",e);return this.options.uploadMultiple&&(this.emit("errormultiple",a,b,d),this.emit("completemultiple",a)),this.options.autoProcessQueue?this.processQueue():void 0},c}(b),a.version="4.3.0",a.options={},a.optionsForElement=function(b){return b.getAttribute("id")?a.options[c(b.getAttribute("id"))]:void 0},a.instances=[],a.forElement=function(a){if("string"==typeof a&&(a=document.querySelector(a)),null==(null!=a?a.dropzone:void 0))throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");return a.dropzone},a.autoDiscover=!0,a.discover=function(){var b,c,d,e,f,g;for(document.querySelectorAll?d=document.querySelectorAll(".dropzone"):(d=[],b=function(a){var b,c,e,f;for(f=[],c=0,e=a.length;e>c;c++)b=a[c],f.push(/(^| )dropzone($| )/.test(b.className)?d.push(b):void 0);return f},b(document.getElementsByTagName("div")),b(document.getElementsByTagName("form"))),g=[],e=0,f=d.length;f>e;e++)c=d[e],g.push(a.optionsForElement(c)!==!1?new a(c):void 0);return g},a.blacklistedBrowsers=[/opera.*Macintosh.*version\/12/i],a.isBrowserSupported=function(){var b,c,d,e,f;if(b=!0,window.File&&window.FileReader&&window.FileList&&window.Blob&&window.FormData&&document.querySelector)if("classList"in document.createElement("a"))for(f=a.blacklistedBrowsers,d=0,e=f.length;e>d;d++)c=f[d],c.test(navigator.userAgent)&&(b=!1);else b=!1;else b=!1;return b},h=function(a,b){var c,d,e,f;for(f=[],d=0,e=a.length;e>d;d++)c=a[d],c!==b&&f.push(c);return f},c=function(a){return a.replace(/[\-_](\w)/g,function(a){return a.charAt(1).toUpperCase()})},a.createElement=function(a){var b;return b=document.createElement("div"),b.innerHTML=a,b.childNodes[0]},a.elementInside=function(a,b){if(a===b)return!0;for(;a=a.parentNode;)if(a===b)return!0;return!1},a.getElement=function(a,b){var c;if("string"==typeof a?c=document.querySelector(a):null!=a.nodeType&&(c=a),null==c)throw new Error("Invalid `"+b+"` option provided. Please provide a CSS selector or a plain HTML element.");return c},a.getElements=function(a,b){var c,d,e,f,g,h,i,j;if(a instanceof Array){e=[];try{for(f=0,h=a.length;h>f;f++)d=a[f],e.push(this.getElement(d,b))}catch(k){c=k,e=null}}else if("string"==typeof a)for(e=[],j=document.querySelectorAll(a),g=0,i=j.length;i>g;g++)d=j[g],e.push(d);else null!=a.nodeType&&(e=[a]);if(null==e||!e.length)throw new Error("Invalid `"+b+"` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");return e},a.confirm=function(a,b,c){return window.confirm(a)?b():null!=c?c():void 0},a.isValidFile=function(a,b){var c,d,e,f,g;if(!b)return!0;for(b=b.split(","),d=a.type,c=d.replace(/\/.*$/,""),f=0,g=b.length;g>f;f++)if(e=b[f],e=e.trim(),"."===e.charAt(0)){if(-1!==a.name.toLowerCase().indexOf(e.toLowerCase(),a.name.length-e.length))return!0}else if(/\/\*$/.test(e)){if(c===e.replace(/\/.*$/,""))return!0
 }else if(d===e)return!0;return!1},"undefined"!=typeof jQuery&&null!==jQuery&&(jQuery.fn.dropzone=function(b){return this.each(function(){return new a(this,b)})}),"undefined"!=typeof module&&null!==module?module.exports=a:window.Dropzone=a,a.ADDED="added",a.QUEUED="queued",a.ACCEPTED=a.QUEUED,a.UPLOADING="uploading",a.PROCESSING=a.UPLOADING,a.CANCELED="canceled",a.ERROR="error",a.SUCCESS="success",e=function(a){var b,c,d,e,f,g,h,i,j,k;for(h=a.naturalWidth,g=a.naturalHeight,c=document.createElement("canvas"),c.width=1,c.height=g,d=c.getContext("2d"),d.drawImage(a,0,0),e=d.getImageData(0,0,1,g).data,k=0,f=g,i=g;i>k;)b=e[4*(i-1)+3],0===b?f=i:k=i,i=f+k>>1;return j=i/g,0===j?1:j},f=function(a,b,c,d,f,g,h,i,j,k){var l;return l=e(b),a.drawImage(b,c,d,f,g,h,i,j,k/l)},d=function(a,b){var c,d,e,f,g,h,i,j,k;if(e=!1,k=!0,d=a.document,j=d.documentElement,c=d.addEventListener?"addEventListener":"attachEvent",i=d.addEventListener?"removeEventListener":"detachEvent",h=d.addEventListener?"":"on",f=function(c){return"readystatechange"!==c.type||"complete"===d.readyState?(("load"===c.type?a:d)[i](h+c.type,f,!1),!e&&(e=!0)?b.call(a,c.type||c):void 0):void 0},g=function(){var a;try{j.doScroll("left")}catch(b){return a=b,void setTimeout(g,50)}return f("poll")},"complete"!==d.readyState){if(d.createEventObject&&j.doScroll){try{k=!a.frameElement}catch(l){}k&&g()}return d[c](h+"DOMContentLoaded",f,!1),d[c](h+"readystatechange",f,!1),a[c](h+"load",f,!1)}},a._autoDiscoverFunction=function(){return a.autoDiscover?a.discover():void 0},d(window,a._autoDiscoverFunction)}).call(this);
+/*!
+ * Nestable jQuery Plugin - Copyright (c) 2012 David Bushell - http://dbushell.com/
+ * Dual-licensed under the BSD or MIT licenses
+ */
+;(function ($, window, document, undefined) {
+    var hasTouch = 'ontouchstart' in document;
+
+    /**
+     * Detect CSS pointer-events property
+     * events are normally disabled on the dragging element to avoid conflicts
+     * https://github.com/ausi/Feature-detection-technique-for-pointer-events/blob/master/modernizr-pointerevents.js
+     */
+    var hasPointerEvents = (function () {
+        var el = document.createElement('div'),
+            docEl = document.documentElement;
+        if (!('pointerEvents' in el.style)) {
+            return false;
+        }
+        el.style.pointerEvents = 'auto';
+        el.style.pointerEvents = 'x';
+        docEl.appendChild(el);
+        var supports = window.getComputedStyle && window.getComputedStyle(el, '').pointerEvents === 'auto';
+        docEl.removeChild(el);
+        return !!supports;
+    })();
+
+    var defaults = {
+        listNodeName: 'ol',
+        itemNodeName: 'li',
+        rootClass: 'dd',
+        listClass: 'dd-list',
+        itemClass: 'dd-item',
+        dragClass: 'dd-dragel',
+        handleClass: 'dd-handle',
+        collapsedClass: 'dd-collapsed',
+        placeClass: 'dd-placeholder',
+        noDragClass: 'dd-nodrag',
+        emptyClass: 'dd-empty',
+        expandBtnHTML: '<button data-action="expand" type="button">Expand</button>',
+        collapseBtnHTML: '<button data-action="collapse" type="button">Collapse</button>',
+        group: 0,
+        maxDepth: 5,
+        threshold: 20
+    };
+
+    function Plugin(element, options) {
+        this.w = $(document);
+        this.el = $(element);
+        this.options = $.extend({}, defaults, options);
+        this.init();
+    }
+
+    Plugin.prototype = {
+
+        init: function () {
+            var list = this;
+
+            list.reset();
+
+            list.el.data('nestable-group', this.options.group);
+
+            list.placeEl = $('<div class="' + list.options.placeClass + '"/>');
+
+            $.each(this.el.find(list.options.itemNodeName), function (k, el) {
+                list.setParent($(el));
+            });
+
+            list.el.on('click', 'button', function (e) {
+                if (list.dragEl) {
+                    return;
+                }
+                var target = $(e.currentTarget),
+                    action = target.data('action'),
+                    item = target.parent(list.options.itemNodeName);
+                if (action === 'collapse') {
+                    list.collapseItem(item);
+                }
+                if (action === 'expand') {
+                    list.expandItem(item);
+                }
+            });
+
+            var onStartEvent = function (e) {
+                var handle = $(e.target);
+                if (!handle.hasClass(list.options.handleClass)) {
+                    if (handle.closest('.' + list.options.noDragClass).length) {
+                        return;
+                    }
+                    handle = handle.closest('.' + list.options.handleClass);
+                }
+
+                if (!handle.length || list.dragEl) {
+                    return;
+                }
+
+                list.isTouch = /^touch/.test(e.type);
+                if (list.isTouch && e.touches.length !== 1) {
+                    return;
+                }
+
+                e.preventDefault();
+                list.dragStart(e.touches ? e.touches[0] : e);
+            };
+
+            var onMoveEvent = function (e) {
+                if (list.dragEl) {
+                    e.preventDefault();
+                    list.dragMove(e.touches ? e.touches[0] : e);
+                }
+            };
+
+            var onEndEvent = function (e) {
+                if (list.dragEl) {
+                    e.preventDefault();
+                    list.dragStop(e.touches ? e.touches[0] : e);
+                }
+            };
+
+            if (hasTouch) {
+                list.el[0].addEventListener('touchstart', onStartEvent, false);
+                window.addEventListener('touchmove', onMoveEvent, false);
+                window.addEventListener('touchend', onEndEvent, false);
+                window.addEventListener('touchcancel', onEndEvent, false);
+            }
+
+            list.el.on('mousedown', onStartEvent);
+            list.w.on('mousemove', onMoveEvent);
+            list.w.on('mouseup', onEndEvent);
+
+        },
+
+        serialize: function () {
+            var data,
+                depth = 0,
+                list = this;
+            step = function (level, depth) {
+                var array = [],
+                    items = level.children(list.options.itemNodeName);
+                items.each(function () {
+                    var li = $(this),
+                        item = $.extend({}, li.data()),
+                        sub = li.children(list.options.listNodeName);
+                    if (sub.length) {
+                        item.children = step(sub, depth + 1);
+                    }
+                    array.push(item);
+                });
+                return array;
+            };
+            data = step(list.el.find(list.options.listNodeName).first(), depth);
+            return data;
+        },
+
+        serialise: function () {
+            return this.serialize();
+        },
+
+        reset: function () {
+            this.mouse = {
+                offsetX: 0,
+                offsetY: 0,
+                startX: 0,
+                startY: 0,
+                lastX: 0,
+                lastY: 0,
+                nowX: 0,
+                nowY: 0,
+                distX: 0,
+                distY: 0,
+                dirAx: 0,
+                dirX: 0,
+                dirY: 0,
+                lastDirX: 0,
+                lastDirY: 0,
+                distAxX: 0,
+                distAxY: 0
+            };
+            this.isTouch = false;
+            this.moving = false;
+            this.dragEl = null;
+            this.dragRootEl = null;
+            this.dragDepth = 0;
+            this.hasNewRoot = false;
+            this.pointEl = null;
+        },
+
+        expandItem: function (li) {
+            li.removeClass(this.options.collapsedClass);
+            li.children('[data-action="expand"]').hide();
+            li.children('[data-action="collapse"]').show();
+            li.children(this.options.listNodeName).show();
+        },
+
+        collapseItem: function (li) {
+            var lists = li.children(this.options.listNodeName);
+            if (lists.length) {
+                li.addClass(this.options.collapsedClass);
+                li.children('[data-action="collapse"]').hide();
+                li.children('[data-action="expand"]').show();
+                li.children(this.options.listNodeName).hide();
+            }
+        },
+
+        expandAll: function () {
+            var list = this;
+            list.el.find(list.options.itemNodeName).each(function () {
+                list.expandItem($(this));
+            });
+        },
+
+        collapseAll: function () {
+            var list = this;
+            list.el.find(list.options.itemNodeName).each(function () {
+                list.collapseItem($(this));
+            });
+        },
+
+        setParent: function (li) {
+            if (li.children(this.options.listNodeName).length) {
+                li.prepend($(this.options.expandBtnHTML));
+                li.prepend($(this.options.collapseBtnHTML));
+            }
+            li.children('[data-action="expand"]').hide();
+        },
+
+        unsetParent: function (li) {
+            li.removeClass(this.options.collapsedClass);
+            li.children('[data-action]').remove();
+            li.children(this.options.listNodeName).remove();
+        },
+
+        dragStart: function (e) {
+            var mouse = this.mouse,
+                target = $(e.target),
+                dragItem = target.closest(this.options.itemNodeName);
+
+            this.placeEl.css('height', dragItem.height());
+
+            mouse.offsetX = e.offsetX !== undefined ? e.offsetX : e.pageX - target.offset().left;
+            mouse.offsetY = e.offsetY !== undefined ? e.offsetY : e.pageY - target.offset().top;
+            mouse.startX = mouse.lastX = e.pageX;
+            mouse.startY = mouse.lastY = e.pageY;
+
+            this.dragRootEl = this.el;
+
+            this.dragEl = $(document.createElement(this.options.listNodeName)).addClass(this.options.listClass + ' ' + this.options.dragClass);
+            this.dragEl.css('width', dragItem.width());
+
+            dragItem.after(this.placeEl);
+            dragItem[0].parentNode.removeChild(dragItem[0]);
+            dragItem.appendTo(this.dragEl);
+
+            $(document.body).append(this.dragEl);
+            this.dragEl.css({
+                'left': e.pageX - mouse.offsetX,
+                'top': e.pageY - mouse.offsetY
+            });
+            // total depth of dragging item
+            var i, depth,
+                items = this.dragEl.find(this.options.itemNodeName);
+            for (i = 0; i < items.length; i++) {
+                depth = $(items[i]).parents(this.options.listNodeName).length;
+                if (depth > this.dragDepth) {
+                    this.dragDepth = depth;
+                }
+            }
+        },
+
+        dragStop: function (e) {
+            var el = this.dragEl.children(this.options.itemNodeName).first();
+            el[0].parentNode.removeChild(el[0]);
+            this.placeEl.replaceWith(el);
+
+            this.dragEl.remove();
+            this.el.trigger('change');
+            if (this.hasNewRoot) {
+                this.dragRootEl.trigger('change');
+            }
+            this.reset();
+        },
+
+        dragMove: function (e) {
+            var list, parent, prev, next, depth,
+                opt = this.options,
+                mouse = this.mouse;
+
+            this.dragEl.css({
+                'left': e.pageX - mouse.offsetX,
+                'top': e.pageY - mouse.offsetY
+            });
+
+            // mouse position last events
+            mouse.lastX = mouse.nowX;
+            mouse.lastY = mouse.nowY;
+            // mouse position this events
+            mouse.nowX = e.pageX;
+            mouse.nowY = e.pageY;
+            // distance mouse moved between events
+            mouse.distX = mouse.nowX - mouse.lastX;
+            mouse.distY = mouse.nowY - mouse.lastY;
+            // direction mouse was moving
+            mouse.lastDirX = mouse.dirX;
+            mouse.lastDirY = mouse.dirY;
+            // direction mouse is now moving (on both axis)
+            mouse.dirX = mouse.distX === 0 ? 0 : mouse.distX > 0 ? 1 : -1;
+            mouse.dirY = mouse.distY === 0 ? 0 : mouse.distY > 0 ? 1 : -1;
+            // axis mouse is now moving on
+            var newAx = Math.abs(mouse.distX) > Math.abs(mouse.distY) ? 1 : 0;
+
+            // do nothing on first move
+            if (!mouse.moving) {
+                mouse.dirAx = newAx;
+                mouse.moving = true;
+                return;
+            }
+
+            // calc distance moved on this axis (and direction)
+            if (mouse.dirAx !== newAx) {
+                mouse.distAxX = 0;
+                mouse.distAxY = 0;
+            } else {
+                mouse.distAxX += Math.abs(mouse.distX);
+                if (mouse.dirX !== 0 && mouse.dirX !== mouse.lastDirX) {
+                    mouse.distAxX = 0;
+                }
+                mouse.distAxY += Math.abs(mouse.distY);
+                if (mouse.dirY !== 0 && mouse.dirY !== mouse.lastDirY) {
+                    mouse.distAxY = 0;
+                }
+            }
+            mouse.dirAx = newAx;
+
+            /**
+             * move horizontal
+             */
+            if (mouse.dirAx && mouse.distAxX >= opt.threshold) {
+                // reset move distance on x-axis for new phase
+                mouse.distAxX = 0;
+                prev = this.placeEl.prev(opt.itemNodeName);
+                // increase horizontal level if previous sibling exists and is not collapsed
+                if (mouse.distX > 0 && prev.length && !prev.hasClass(opt.collapsedClass)) {
+                    // cannot increase level when item above is collapsed
+                    list = prev.find(opt.listNodeName).last();
+                    // check if depth limit has reached
+                    depth = this.placeEl.parents(opt.listNodeName).length;
+                    if (depth + this.dragDepth <= opt.maxDepth) {
+                        // create new sub-level if one doesn't exist
+                        if (!list.length) {
+                            list = $('<' + opt.listNodeName + '/>').addClass(opt.listClass);
+                            list.append(this.placeEl);
+                            prev.append(list);
+                            this.setParent(prev);
+                        } else {
+                            // else append to next level up
+                            list = prev.children(opt.listNodeName).last();
+                            list.append(this.placeEl);
+                        }
+                    }
+                }
+                // decrease horizontal level
+                if (mouse.distX < 0) {
+                    // we can't decrease a level if an item preceeds the current one
+                    next = this.placeEl.next(opt.itemNodeName);
+                    if (!next.length) {
+                        parent = this.placeEl.parent();
+                        this.placeEl.closest(opt.itemNodeName).after(this.placeEl);
+                        if (!parent.children().length) {
+                            this.unsetParent(parent.parent());
+                        }
+                    }
+                }
+            }
+
+            var isEmpty = false;
+
+            // find list item under cursor
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'hidden';
+            }
+            this.pointEl = $(document.elementFromPoint(e.pageX - document.body.scrollLeft, e.pageY - (window.pageYOffset || document.documentElement.scrollTop)));
+            if (!hasPointerEvents) {
+                this.dragEl[0].style.visibility = 'visible';
+            }
+            if (this.pointEl.hasClass(opt.handleClass)) {
+                this.pointEl = this.pointEl.parent(opt.itemNodeName);
+            }
+            if (this.pointEl.hasClass(opt.emptyClass)) {
+                isEmpty = true;
+            }
+            else if (!this.pointEl.length || !this.pointEl.hasClass(opt.itemClass)) {
+                return;
+            }
+
+            // find parent list of item under cursor
+            var pointElRoot = this.pointEl.closest('.' + opt.rootClass),
+                isNewRoot = this.dragRootEl.data('nestable-id') !== pointElRoot.data('nestable-id');
+
+            /**
+             * move vertical
+             */
+            if (!mouse.dirAx || isNewRoot || isEmpty) {
+                // check if groups match if dragging over new root
+                if (isNewRoot && opt.group !== pointElRoot.data('nestable-group')) {
+                    return;
+                }
+                // check depth limit
+                depth = this.dragDepth - 1 + this.pointEl.parents(opt.listNodeName).length;
+                if (depth > opt.maxDepth) {
+                    return;
+                }
+                var before = e.pageY < (this.pointEl.offset().top + this.pointEl.height() / 2);
+                parent = this.placeEl.parent();
+                // if empty create new list to replace empty placeholder
+                if (isEmpty) {
+                    list = $(document.createElement(opt.listNodeName)).addClass(opt.listClass);
+                    list.append(this.placeEl);
+                    this.pointEl.replaceWith(list);
+                }
+                else if (before) {
+                    this.pointEl.before(this.placeEl);
+                }
+                else {
+                    this.pointEl.after(this.placeEl);
+                }
+                if (!parent.children().length) {
+                    this.unsetParent(parent.parent());
+                }
+                if (!this.dragRootEl.find(opt.itemNodeName).length) {
+                    this.dragRootEl.append('<div class="' + opt.emptyClass + '"/>');
+                }
+                // parent root list has changed
+                if (isNewRoot) {
+                    this.dragRootEl = pointElRoot;
+                    this.hasNewRoot = this.el[0] !== this.dragRootEl[0];
+                }
+            }
+        }
+
+    };
+
+    $.fn.nestable = function (params) {
+        var lists = this,
+            retval = this;
+
+        lists.each(function () {
+            var plugin = $(this).data("nestable");
+
+            if (!plugin) {
+                $(this).data("nestable", new Plugin(this, params));
+                $(this).data("nestable-id", new Date().getTime());
+            } else {
+                if (typeof params === 'string' && typeof plugin[params] === 'function') {
+                    retval = plugin[params]();
+                }
+            }
+        });
+
+        return retval || lists;
+    };
+
+})(window.jQuery || window.Zepto, window, document);
+
 //! moment.js
 //! version : 2.17.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -40796,220 +41461,791 @@ return hooks;
 
 })));
 
-/*! version : 4.17.42
- =========================================================
- bootstrap-datetimejs
- https://github.com/Eonasdan/bootstrap-datetimepicker
- Copyright (c) 2015 Jonathan Peterson
- =========================================================
- */
-/*
- The MIT License (MIT)
-
- Copyright (c) 2015 Jonathan Peterson
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- */
-/*global define:false */
-/*global exports:false */
-/*global require:false */
-/*global jQuery:false */
-/*global moment:false */
-!function(a){"use strict";if("function"==typeof define&&define.amd)
-// AMD is used - Register as an anonymous module.
-define(["jquery","moment"],a);else if("object"==typeof exports)a(require("jquery"),require("moment"));else{
-// Neither AMD nor CommonJS used. Use global variables.
-if("undefined"==typeof jQuery)throw"bootstrap-datetimepicker requires jQuery to be loaded first";if("undefined"==typeof moment)throw"bootstrap-datetimepicker requires Moment.js to be loaded first";a(jQuery,moment)}}(function(a,b){"use strict";if(!b)throw new Error("bootstrap-datetimepicker requires Moment.js to be loaded first");var c=function(c,d){var e,f,g,h,i,j,k,l={},m=!0,n=!1,o=!1,p=0,q=[{clsName:"days",navFnc:"M",navStep:1},{clsName:"months",navFnc:"y",navStep:1},{clsName:"years",navFnc:"y",navStep:10},{clsName:"decades",navFnc:"y",navStep:100}],r=["days","months","years","decades"],s=["top","bottom","auto"],t=["left","right","auto"],u=["default","top","bottom"],v={up:38,38:"up",down:40,40:"down",left:37,37:"left",right:39,39:"right",tab:9,9:"tab",escape:27,27:"escape",enter:13,13:"enter",pageUp:33,33:"pageUp",pageDown:34,34:"pageDown",shift:16,16:"shift",control:17,17:"control",space:32,32:"space",t:84,84:"t","delete":46,46:"delete"},w={},/********************************************************************************
-             *
-             * Private functions
-             *
-             ********************************************************************************/
-x=function(){return void 0!==b.tz&&void 0!==d.timeZone&&null!==d.timeZone&&""!==d.timeZone},y=function(a){var c;return c=void 0===a||null===a?b():x()?b.tz(a,j,d.useStrict,d.timeZone):b(a,j,d.useStrict),x()&&c.tz(d.timeZone),c},z=function(a){if("string"!=typeof a||a.length>1)throw new TypeError("isEnabled expects a single character string parameter");switch(a){case"y":return-1!==i.indexOf("Y");case"M":return-1!==i.indexOf("M");case"d":return-1!==i.toLowerCase().indexOf("d");case"h":case"H":return-1!==i.toLowerCase().indexOf("h");case"m":return-1!==i.indexOf("m");case"s":return-1!==i.indexOf("s");default:return!1}},A=function(){return z("h")||z("m")||z("s")},B=function(){return z("y")||z("M")||z("d")},C=function(){var b=a("<thead>").append(a("<tr>").append(a("<th>").addClass("prev").attr("data-action","previous").append(a("<span>").addClass(d.icons.previous))).append(a("<th>").addClass("picker-switch").attr("data-action","pickerSwitch").attr("colspan",d.calendarWeeks?"6":"5")).append(a("<th>").addClass("next").attr("data-action","next").append(a("<span>").addClass(d.icons.next)))),c=a("<tbody>").append(a("<tr>").append(a("<td>").attr("colspan",d.calendarWeeks?"8":"7")));return[a("<div>").addClass("datepicker-days").append(a("<table>").addClass("table-condensed").append(b).append(a("<tbody>"))),a("<div>").addClass("datepicker-months").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())),a("<div>").addClass("datepicker-years").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())),a("<div>").addClass("datepicker-decades").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone()))]},D=function(){var b=a("<tr>"),c=a("<tr>"),e=a("<tr>");return z("h")&&(b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementHour}).addClass("btn").attr("data-action","incrementHours").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-hour").attr({"data-time-component":"hours",title:d.tooltips.pickHour}).attr("data-action","showHours"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementHour}).addClass("btn").attr("data-action","decrementHours").append(a("<span>").addClass(d.icons.down))))),z("m")&&(z("h")&&(b.append(a("<td>").addClass("separator")),c.append(a("<td>").addClass("separator").html(":")),e.append(a("<td>").addClass("separator"))),b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementMinute}).addClass("btn").attr("data-action","incrementMinutes").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-minute").attr({"data-time-component":"minutes",title:d.tooltips.pickMinute}).attr("data-action","showMinutes"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementMinute}).addClass("btn").attr("data-action","decrementMinutes").append(a("<span>").addClass(d.icons.down))))),z("s")&&(z("m")&&(b.append(a("<td>").addClass("separator")),c.append(a("<td>").addClass("separator").html(":")),e.append(a("<td>").addClass("separator"))),b.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.incrementSecond}).addClass("btn").attr("data-action","incrementSeconds").append(a("<span>").addClass(d.icons.up)))),c.append(a("<td>").append(a("<span>").addClass("timepicker-second").attr({"data-time-component":"seconds",title:d.tooltips.pickSecond}).attr("data-action","showSeconds"))),e.append(a("<td>").append(a("<a>").attr({href:"#",tabindex:"-1",title:d.tooltips.decrementSecond}).addClass("btn").attr("data-action","decrementSeconds").append(a("<span>").addClass(d.icons.down))))),h||(b.append(a("<td>").addClass("separator")),c.append(a("<td>").append(a("<button>").addClass("btn btn-primary").attr({"data-action":"togglePeriod",tabindex:"-1",title:d.tooltips.togglePeriod}))),e.append(a("<td>").addClass("separator"))),a("<div>").addClass("timepicker-picker").append(a("<table>").addClass("table-condensed").append([b,c,e]))},E=function(){var b=a("<div>").addClass("timepicker-hours").append(a("<table>").addClass("table-condensed")),c=a("<div>").addClass("timepicker-minutes").append(a("<table>").addClass("table-condensed")),d=a("<div>").addClass("timepicker-seconds").append(a("<table>").addClass("table-condensed")),e=[D()];return z("h")&&e.push(b),z("m")&&e.push(c),z("s")&&e.push(d),e},F=function(){var b=[];return d.showTodayButton&&b.push(a("<td>").append(a("<a>").attr({"data-action":"today",title:d.tooltips.today}).append(a("<span>").addClass(d.icons.today)))),!d.sideBySide&&B()&&A()&&b.push(a("<td>").append(a("<a>").attr({"data-action":"togglePicker",title:d.tooltips.selectTime}).append(a("<span>").addClass(d.icons.time)))),d.showClear&&b.push(a("<td>").append(a("<a>").attr({"data-action":"clear",title:d.tooltips.clear}).append(a("<span>").addClass(d.icons.clear)))),d.showClose&&b.push(a("<td>").append(a("<a>").attr({"data-action":"close",title:d.tooltips.close}).append(a("<span>").addClass(d.icons.close)))),a("<table>").addClass("table-condensed").append(a("<tbody>").append(a("<tr>").append(b)))},G=function(){var b=a("<div>").addClass("bootstrap-datetimepicker-widget dropdown-menu"),c=a("<div>").addClass("datepicker").append(C()),e=a("<div>").addClass("timepicker").append(E()),f=a("<ul>").addClass("list-unstyled"),g=a("<li>").addClass("picker-switch"+(d.collapse?" accordion-toggle":"")).append(F());return d.inline&&b.removeClass("dropdown-menu"),h&&b.addClass("usetwentyfour"),z("s")&&!h&&b.addClass("wider"),d.sideBySide&&B()&&A()?(b.addClass("timepicker-sbs"),"top"===d.toolbarPlacement&&b.append(g),b.append(a("<div>").addClass("row").append(c.addClass("col-md-6")).append(e.addClass("col-md-6"))),"bottom"===d.toolbarPlacement&&b.append(g),b):("top"===d.toolbarPlacement&&f.append(g),B()&&f.append(a("<li>").addClass(d.collapse&&A()?"collapse in":"").append(c)),"default"===d.toolbarPlacement&&f.append(g),A()&&f.append(a("<li>").addClass(d.collapse&&B()?"collapse":"").append(e)),"bottom"===d.toolbarPlacement&&f.append(g),b.append(f))},H=function(){var b,e={};return b=c.is("input")||d.inline?c.data():c.find("input").data(),b.dateOptions&&b.dateOptions instanceof Object&&(e=a.extend(!0,e,b.dateOptions)),a.each(d,function(a){var c="date"+a.charAt(0).toUpperCase()+a.slice(1);void 0!==b[c]&&(e[a]=b[c])}),e},I=function(){var b,e=(n||c).position(),f=(n||c).offset(),g=d.widgetPositioning.vertical,h=d.widgetPositioning.horizontal;if(d.widgetParent)b=d.widgetParent.append(o);else if(c.is("input"))b=c.after(o).parent();else{if(d.inline)return void(b=c.append(o));b=c,c.children().first().after(o)}if(
-// Top and bottom logic
-"auto"===g&&(g=f.top+1.5*o.height()>=a(window).height()+a(window).scrollTop()&&o.height()+c.outerHeight()<f.top?"top":"bottom"),
-// Left and right logic
-"auto"===h&&(h=b.width()<f.left+o.outerWidth()/2&&f.left+o.outerWidth()>a(window).width()?"right":"left"),"top"===g?o.addClass("top").removeClass("bottom"):o.addClass("bottom").removeClass("top"),"right"===h?o.addClass("pull-right"):o.removeClass("pull-right"),
-// find the first parent element that has a relative css positioning
-"relative"!==b.css("position")&&(b=b.parents().filter(function(){return"relative"===a(this).css("position")}).first()),0===b.length)throw new Error("datetimepicker component should be placed within a relative positioned container");o.css({top:"top"===g?"auto":e.top+c.outerHeight(),bottom:"top"===g?b.outerHeight()-(b===c?0:e.top):"auto",left:"left"===h?b===c?0:e.left:"auto",right:"left"===h?"auto":b.outerWidth()-c.outerWidth()-(b===c?0:e.left)})},J=function(a){"dp.change"===a.type&&(a.date&&a.date.isSame(a.oldDate)||!a.date&&!a.oldDate)||c.trigger(a)},K=function(a){"y"===a&&(a="YYYY"),J({type:"dp.update",change:a,viewDate:f.clone()})},L=function(a){o&&(a&&(k=Math.max(p,Math.min(3,k+a))),o.find(".datepicker > div").hide().filter(".datepicker-"+q[k].clsName).show())},M=function(){var b=a("<tr>"),c=f.clone().startOf("w").startOf("d");for(d.calendarWeeks===!0&&b.append(a("<th>").addClass("cw").text("#"));c.isBefore(f.clone().endOf("w"));)b.append(a("<th>").addClass("dow").text(c.format("dd"))),c.add(1,"d");o.find(".datepicker-days thead").append(b)},N=function(a){return d.disabledDates[a.format("YYYY-MM-DD")]===!0},O=function(a){return d.enabledDates[a.format("YYYY-MM-DD")]===!0},P=function(a){return d.disabledHours[a.format("H")]===!0},Q=function(a){return d.enabledHours[a.format("H")]===!0},R=function(b,c){if(!b.isValid())return!1;if(d.disabledDates&&"d"===c&&N(b))return!1;if(d.enabledDates&&"d"===c&&!O(b))return!1;if(d.minDate&&b.isBefore(d.minDate,c))return!1;if(d.maxDate&&b.isAfter(d.maxDate,c))return!1;if(d.daysOfWeekDisabled&&"d"===c&&-1!==d.daysOfWeekDisabled.indexOf(b.day()))return!1;if(d.disabledHours&&("h"===c||"m"===c||"s"===c)&&P(b))return!1;if(d.enabledHours&&("h"===c||"m"===c||"s"===c)&&!Q(b))return!1;if(d.disabledTimeIntervals&&("h"===c||"m"===c||"s"===c)){var e=!1;if(a.each(d.disabledTimeIntervals,function(){return b.isBetween(this[0],this[1])?(e=!0,!1):void 0}),e)return!1}return!0},S=function(){for(var b=[],c=f.clone().startOf("y").startOf("d");c.isSame(f,"y");)b.push(a("<span>").attr("data-action","selectMonth").addClass("month").text(c.format("MMM"))),c.add(1,"M");o.find(".datepicker-months td").empty().append(b)},T=function(){var b=o.find(".datepicker-months"),c=b.find("th"),g=b.find("tbody").find("span");c.eq(0).find("span").attr("title",d.tooltips.prevYear),c.eq(1).attr("title",d.tooltips.selectYear),c.eq(2).find("span").attr("title",d.tooltips.nextYear),b.find(".disabled").removeClass("disabled"),R(f.clone().subtract(1,"y"),"y")||c.eq(0).addClass("disabled"),c.eq(1).text(f.year()),R(f.clone().add(1,"y"),"y")||c.eq(2).addClass("disabled"),g.removeClass("active"),e.isSame(f,"y")&&!m&&g.eq(e.month()).addClass("active"),g.each(function(b){R(f.clone().month(b),"M")||a(this).addClass("disabled")})},U=function(){var a=o.find(".datepicker-years"),b=a.find("th"),c=f.clone().subtract(5,"y"),g=f.clone().add(6,"y"),h="";for(b.eq(0).find("span").attr("title",d.tooltips.prevDecade),b.eq(1).attr("title",d.tooltips.selectDecade),b.eq(2).find("span").attr("title",d.tooltips.nextDecade),a.find(".disabled").removeClass("disabled"),d.minDate&&d.minDate.isAfter(c,"y")&&b.eq(0).addClass("disabled"),b.eq(1).text(c.year()+"-"+g.year()),d.maxDate&&d.maxDate.isBefore(g,"y")&&b.eq(2).addClass("disabled");!c.isAfter(g,"y");)h+='<span data-action="selectYear" class="year'+(c.isSame(e,"y")&&!m?" active":"")+(R(c,"y")?"":" disabled")+'">'+c.year()+"</span>",c.add(1,"y");a.find("td").html(h)},V=function(){var a,c=o.find(".datepicker-decades"),g=c.find("th"),h=b({y:f.year()-f.year()%100-1}),i=h.clone().add(100,"y"),j=h.clone(),k=!1,l=!1,m="";for(g.eq(0).find("span").attr("title",d.tooltips.prevCentury),g.eq(2).find("span").attr("title",d.tooltips.nextCentury),c.find(".disabled").removeClass("disabled"),(h.isSame(b({y:1900}))||d.minDate&&d.minDate.isAfter(h,"y"))&&g.eq(0).addClass("disabled"),g.eq(1).text(h.year()+"-"+i.year()),(h.isSame(b({y:2e3}))||d.maxDate&&d.maxDate.isBefore(i,"y"))&&g.eq(2).addClass("disabled");!h.isAfter(i,"y");)a=h.year()+12,k=d.minDate&&d.minDate.isAfter(h,"y")&&d.minDate.year()<=a,l=d.maxDate&&d.maxDate.isAfter(h,"y")&&d.maxDate.year()<=a,m+='<span data-action="selectDecade" class="decade'+(e.isAfter(h)&&e.year()<=a?" active":"")+(R(h,"y")||k||l?"":" disabled")+'" data-selection="'+(h.year()+6)+'">'+(h.year()+1)+" - "+(h.year()+12)+"</span>",h.add(12,"y");m+="<span></span><span></span><span></span>",c.find("td").html(m),g.eq(1).text(j.year()+1+"-"+h.year())},W=function(){var b,c,g,h,i=o.find(".datepicker-days"),j=i.find("th"),k=[];if(B()){for(j.eq(0).find("span").attr("title",d.tooltips.prevMonth),j.eq(1).attr("title",d.tooltips.selectMonth),j.eq(2).find("span").attr("title",d.tooltips.nextMonth),i.find(".disabled").removeClass("disabled"),j.eq(1).text(f.format(d.dayViewHeaderFormat)),R(f.clone().subtract(1,"M"),"M")||j.eq(0).addClass("disabled"),R(f.clone().add(1,"M"),"M")||j.eq(2).addClass("disabled"),b=f.clone().startOf("M").startOf("w").startOf("d"),h=0;42>h;h++)//always display 42 days (should show 6 weeks)
-0===b.weekday()&&(c=a("<tr>"),d.calendarWeeks&&c.append('<td class="cw">'+b.week()+"</td>"),k.push(c)),g="",b.isBefore(f,"M")&&(g+=" old"),b.isAfter(f,"M")&&(g+=" new"),b.isSame(e,"d")&&!m&&(g+=" active"),R(b,"d")||(g+=" disabled"),b.isSame(y(),"d")&&(g+=" today"),0!==b.day()&&6!==b.day()||(g+=" weekend"),c.append('<td data-action="selectDay" data-day="'+b.format("L")+'" class="day'+g+'">'+b.date()+"</td>"),b.add(1,"d");i.find("tbody").empty().append(k),T(),U(),V()}},X=function(){var b=o.find(".timepicker-hours table"),c=f.clone().startOf("d"),d=[],e=a("<tr>");for(f.hour()>11&&!h&&c.hour(12);c.isSame(f,"d")&&(h||f.hour()<12&&c.hour()<12||f.hour()>11);)c.hour()%4===0&&(e=a("<tr>"),d.push(e)),e.append('<td data-action="selectHour" class="hour'+(R(c,"h")?"":" disabled")+'">'+c.format(h?"HH":"hh")+"</td>"),c.add(1,"h");b.empty().append(d)},Y=function(){for(var b=o.find(".timepicker-minutes table"),c=f.clone().startOf("h"),e=[],g=a("<tr>"),h=1===d.stepping?5:d.stepping;f.isSame(c,"h");)c.minute()%(4*h)===0&&(g=a("<tr>"),e.push(g)),g.append('<td data-action="selectMinute" class="minute'+(R(c,"m")?"":" disabled")+'">'+c.format("mm")+"</td>"),c.add(h,"m");b.empty().append(e)},Z=function(){for(var b=o.find(".timepicker-seconds table"),c=f.clone().startOf("m"),d=[],e=a("<tr>");f.isSame(c,"m");)c.second()%20===0&&(e=a("<tr>"),d.push(e)),e.append('<td data-action="selectSecond" class="second'+(R(c,"s")?"":" disabled")+'">'+c.format("ss")+"</td>"),c.add(5,"s");b.empty().append(d)},$=function(){var a,b,c=o.find(".timepicker span[data-time-component]");h||(a=o.find(".timepicker [data-action=togglePeriod]"),b=e.clone().add(e.hours()>=12?-12:12,"h"),a.text(e.format("A")),R(b,"h")?a.removeClass("disabled"):a.addClass("disabled")),c.filter("[data-time-component=hours]").text(e.format(h?"HH":"hh")),c.filter("[data-time-component=minutes]").text(e.format("mm")),c.filter("[data-time-component=seconds]").text(e.format("ss")),X(),Y(),Z()},_=function(){o&&(W(),$())},aa=function(a){var b=m?null:e;
-// case of calling setValue(null or false)
-// case of calling setValue(null or false)
-//viewDate = date.clone(); // TODO this doesn't work right on first use
-return a?(a=a.clone().locale(d.locale),x()&&a.tz(d.timeZone),1!==d.stepping&&a.minutes(Math.round(a.minutes()/d.stepping)*d.stepping).seconds(0),void(R(a)?(e=a,g.val(e.format(i)),c.data("date",e.format(i)),m=!1,_(),J({type:"dp.change",date:e.clone(),oldDate:b})):(d.keepInvalid?J({type:"dp.change",date:a,oldDate:b}):g.val(m?"":e.format(i)),J({type:"dp.error",date:a,oldDate:b})))):(m=!0,g.val(""),c.data("date",""),J({type:"dp.change",date:!1,oldDate:b}),void _())},/**
-             * Hides the widget. Possibly will emit dp.hide
-             */
-ba=function(){var b=!1;
-// Ignore event if in the middle of a picker transition
-return o?(o.find(".collapse").each(function(){var c=a(this).data("collapse");return c&&c.transitioning?(b=!0,!1):!0}),b?l:(n&&n.hasClass("btn")&&n.toggleClass("active"),o.hide(),a(window).off("resize",I),o.off("click","[data-action]"),o.off("mousedown",!1),o.remove(),o=!1,J({type:"dp.hide",date:e.clone()}),g.blur(),k=0,f=e.clone(),l)):l},ca=function(){aa(null)},da=function(a){
-//inputDate.locale(options.locale);
-return void 0===d.parseInputDate?b.isMoment(a)||(a=y(a)):a=d.parseInputDate(a),a},/********************************************************************************
-             *
-             * Widget UI interaction functions
-             *
-             ********************************************************************************/
-ea={next:function(){var a=q[k].navFnc;f.add(q[k].navStep,a),W(),K(a)},previous:function(){var a=q[k].navFnc;f.subtract(q[k].navStep,a),W(),K(a)},pickerSwitch:function(){L(1)},selectMonth:function(b){var c=a(b.target).closest("tbody").find("span").index(a(b.target));f.month(c),k===p?(aa(e.clone().year(f.year()).month(f.month())),d.inline||ba()):(L(-1),W()),K("M")},selectYear:function(b){var c=parseInt(a(b.target).text(),10)||0;f.year(c),k===p?(aa(e.clone().year(f.year())),d.inline||ba()):(L(-1),W()),K("YYYY")},selectDecade:function(b){var c=parseInt(a(b.target).data("selection"),10)||0;f.year(c),k===p?(aa(e.clone().year(f.year())),d.inline||ba()):(L(-1),W()),K("YYYY")},selectDay:function(b){var c=f.clone();a(b.target).is(".old")&&c.subtract(1,"M"),a(b.target).is(".new")&&c.add(1,"M"),aa(c.date(parseInt(a(b.target).text(),10))),A()||d.keepOpen||d.inline||ba()},incrementHours:function(){var a=e.clone().add(1,"h");R(a,"h")&&aa(a)},incrementMinutes:function(){var a=e.clone().add(d.stepping,"m");R(a,"m")&&aa(a)},incrementSeconds:function(){var a=e.clone().add(1,"s");R(a,"s")&&aa(a)},decrementHours:function(){var a=e.clone().subtract(1,"h");R(a,"h")&&aa(a)},decrementMinutes:function(){var a=e.clone().subtract(d.stepping,"m");R(a,"m")&&aa(a)},decrementSeconds:function(){var a=e.clone().subtract(1,"s");R(a,"s")&&aa(a)},togglePeriod:function(){aa(e.clone().add(e.hours()>=12?-12:12,"h"))},togglePicker:function(b){var c,e=a(b.target),f=e.closest("ul"),g=f.find(".in"),h=f.find(".collapse:not(.in)");if(g&&g.length){if(c=g.data("collapse"),c&&c.transitioning)return;g.collapse?(// if collapse plugin is available through bootstrap.js then use it
-g.collapse("hide"),h.collapse("show")):(// otherwise just toggle in class on the two views
-g.removeClass("in"),h.addClass("in")),e.is("span")?e.toggleClass(d.icons.time+" "+d.icons.date):e.find("span").toggleClass(d.icons.time+" "+d.icons.date)}},showPicker:function(){o.find(".timepicker > div:not(.timepicker-picker)").hide(),o.find(".timepicker .timepicker-picker").show()},showHours:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-hours").show()},showMinutes:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-minutes").show()},showSeconds:function(){o.find(".timepicker .timepicker-picker").hide(),o.find(".timepicker .timepicker-seconds").show()},selectHour:function(b){var c=parseInt(a(b.target).text(),10);h||(e.hours()>=12?12!==c&&(c+=12):12===c&&(c=0)),aa(e.clone().hours(c)),ea.showPicker.call(l)},selectMinute:function(b){aa(e.clone().minutes(parseInt(a(b.target).text(),10))),ea.showPicker.call(l)},selectSecond:function(b){aa(e.clone().seconds(parseInt(a(b.target).text(),10))),ea.showPicker.call(l)},clear:ca,today:function(){var a=y();R(a,"d")&&aa(a)},close:ba},fa=function(b){return a(b.currentTarget).is(".disabled")?!1:(ea[a(b.currentTarget).data("action")].apply(l,arguments),!1)},/**
-             * Shows the widget. Possibly will emit dp.show and dp.change
-             */
-ga=function(){var b,c={year:function(a){return a.month(0).date(1).hours(0).seconds(0).minutes(0)},month:function(a){return a.date(1).hours(0).seconds(0).minutes(0)},day:function(a){return a.hours(0).seconds(0).minutes(0)},hour:function(a){return a.seconds(0).minutes(0)},minute:function(a){return a.seconds(0)}};// this handles clicks on the widget
-return g.prop("disabled")||!d.ignoreReadonly&&g.prop("readonly")||o?l:(void 0!==g.val()&&0!==g.val().trim().length?aa(da(g.val().trim())):m&&d.useCurrent&&(d.inline||g.is("input")&&0===g.val().trim().length)&&(b=y(),"string"==typeof d.useCurrent&&(b=c[d.useCurrent](b)),aa(b)),o=G(),M(),S(),o.find(".timepicker-hours").hide(),o.find(".timepicker-minutes").hide(),o.find(".timepicker-seconds").hide(),_(),L(),a(window).on("resize",I),o.on("click","[data-action]",fa),o.on("mousedown",!1),n&&n.hasClass("btn")&&n.toggleClass("active"),I(),o.show(),d.focusOnShow&&!g.is(":focus")&&g.focus(),J({type:"dp.show"}),l)},/**
-             * Shows or hides the widget
-             */
-ha=function(){return o?ba():ga()},ia=function(a){var b,c,e,f,g=null,h=[],i={},j=a.which,k="p";w[j]=k;for(b in w)w.hasOwnProperty(b)&&w[b]===k&&(h.push(b),parseInt(b,10)!==j&&(i[b]=!0));for(b in d.keyBinds)if(d.keyBinds.hasOwnProperty(b)&&"function"==typeof d.keyBinds[b]&&(e=b.split(" "),e.length===h.length&&v[j]===e[e.length-1])){for(f=!0,c=e.length-2;c>=0;c--)if(!(v[e[c]]in i)){f=!1;break}if(f){g=d.keyBinds[b];break}}g&&(g.call(l,o),a.stopPropagation(),a.preventDefault())},ja=function(a){w[a.which]="r",a.stopPropagation(),a.preventDefault()},ka=function(b){var c=a(b.target).val().trim(),d=c?da(c):null;return aa(d),b.stopImmediatePropagation(),!1},la=function(){g.on({change:ka,blur:d.debug?"":ba,keydown:ia,keyup:ja,focus:d.allowInputToggle?ga:""}),c.is("input")?g.on({focus:ga}):n&&(n.on("click",ha),n.on("mousedown",!1))},ma=function(){g.off({change:ka,blur:blur,keydown:ia,keyup:ja,focus:d.allowInputToggle?ba:""}),c.is("input")?g.off({focus:ga}):n&&(n.off("click",ha),n.off("mousedown",!1))},na=function(b){
-// Store given enabledDates and disabledDates as keys.
-// This way we can check their existence in O(1) time instead of looping through whole array.
-// (for example: options.enabledDates['2014-02-27'] === true)
-var c={};return a.each(b,function(){var a=da(this);a.isValid()&&(c[a.format("YYYY-MM-DD")]=!0)}),Object.keys(c).length?c:!1},oa=function(b){
-// Store given enabledHours and disabledHours as keys.
-// This way we can check their existence in O(1) time instead of looping through whole array.
-// (for example: options.enabledHours['2014-02-27'] === true)
-var c={};return a.each(b,function(){c[this]=!0}),Object.keys(c).length?c:!1},pa=function(){var a=d.format||"L LT";i=a.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(a){var b=e.localeData().longDateFormat(a)||a;return b.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(a){//temp fix for #740
-return e.localeData().longDateFormat(a)||a})}),j=d.extraFormats?d.extraFormats.slice():[],j.indexOf(a)<0&&j.indexOf(i)<0&&j.push(i),h=i.toLowerCase().indexOf("a")<1&&i.replace(/\[.*?\]/g,"").indexOf("h")<1,z("y")&&(p=2),z("M")&&(p=1),z("d")&&(p=0),k=Math.max(p,k),m||aa(e)};
-// initializing element and component attributes
-if(/********************************************************************************
-         *
-         * Public API functions
-         * =====================
-         *
-         * Important: Do not expose direct references to private objects or the options
-         * object to the outer world. Always return a clone when returning values or make
-         * a clone when setting a private variable.
-         *
-         ********************************************************************************/
-l.destroy=function(){
-///<summary>Destroys the widget and removes all attached event listeners</summary>
-ba(),ma(),c.removeData("DateTimePicker"),c.removeData("date")},l.toggle=ha,l.show=ga,l.hide=ba,l.disable=function(){
-///<summary>Disables the input element, the component is attached to, by adding a disabled="true" attribute to it.
-///If the widget was visible before that call it is hidden. Possibly emits dp.hide</summary>
-return ba(),n&&n.hasClass("btn")&&n.addClass("disabled"),g.prop("disabled",!0),l},l.enable=function(){
-///<summary>Enables the input element, the component is attached to, by removing disabled attribute from it.</summary>
-return n&&n.hasClass("btn")&&n.removeClass("disabled"),g.prop("disabled",!1),l},l.ignoreReadonly=function(a){if(0===arguments.length)return d.ignoreReadonly;if("boolean"!=typeof a)throw new TypeError("ignoreReadonly () expects a boolean parameter");return d.ignoreReadonly=a,l},l.options=function(b){if(0===arguments.length)return a.extend(!0,{},d);if(!(b instanceof Object))throw new TypeError("options() options parameter should be an object");return a.extend(!0,d,b),a.each(d,function(a,b){if(void 0===l[a])throw new TypeError("option "+a+" is not recognized!");l[a](b)}),l},l.date=function(a){
-///<signature helpKeyword="$.fn.datetimepicker.date">
-///<summary>Returns the component's model current date, a moment object or null if not set.</summary>
-///<returns type="Moment">date.clone()</returns>
-///</signature>
-///<signature>
-///<summary>Sets the components model current moment to it. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.</summary>
-///<param name="newDate" locid="$.fn.datetimepicker.date_p:newDate">Takes string, Date, moment, null parameter.</param>
-///</signature>
-if(0===arguments.length)return m?null:e.clone();if(!(null===a||"string"==typeof a||b.isMoment(a)||a instanceof Date))throw new TypeError("date() parameter must be one of [null, string, moment or Date]");return aa(null===a?null:da(a)),l},l.format=function(a){
-///<summary>test su</summary>
-///<param name="newFormat">info about para</param>
-///<returns type="string|boolean">returns foo</returns>
-if(0===arguments.length)return d.format;if("string"!=typeof a&&("boolean"!=typeof a||a!==!1))throw new TypeError("format() expects a string or boolean:false parameter "+a);return d.format=a,i&&pa(),l},l.timeZone=function(a){if(0===arguments.length)return d.timeZone;if("string"!=typeof a)throw new TypeError("newZone() expects a string parameter");return d.timeZone=a,l},l.dayViewHeaderFormat=function(a){if(0===arguments.length)return d.dayViewHeaderFormat;if("string"!=typeof a)throw new TypeError("dayViewHeaderFormat() expects a string parameter");return d.dayViewHeaderFormat=a,l},l.extraFormats=function(a){if(0===arguments.length)return d.extraFormats;if(a!==!1&&!(a instanceof Array))throw new TypeError("extraFormats() expects an array or false parameter");return d.extraFormats=a,j&&pa(),l},l.disabledDates=function(b){
-///<signature helpKeyword="$.fn.datetimepicker.disabledDates">
-///<summary>Returns an array with the currently set disabled dates on the component.</summary>
-///<returns type="array">options.disabledDates</returns>
-///</signature>
-///<signature>
-///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
-///options.enabledDates if such exist.</summary>
-///<param name="dates" locid="$.fn.datetimepicker.disabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
-///</signature>
-if(0===arguments.length)return d.disabledDates?a.extend({},d.disabledDates):d.disabledDates;if(!b)return d.disabledDates=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledDates() expects an array parameter");return d.disabledDates=na(b),d.enabledDates=!1,_(),l},l.enabledDates=function(b){
-///<signature helpKeyword="$.fn.datetimepicker.enabledDates">
-///<summary>Returns an array with the currently set enabled dates on the component.</summary>
-///<returns type="array">options.enabledDates</returns>
-///</signature>
-///<signature>
-///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledDates if such exist.</summary>
-///<param name="dates" locid="$.fn.datetimepicker.enabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
-///</signature>
-if(0===arguments.length)return d.enabledDates?a.extend({},d.enabledDates):d.enabledDates;if(!b)return d.enabledDates=!1,_(),l;if(!(b instanceof Array))throw new TypeError("enabledDates() expects an array parameter");return d.enabledDates=na(b),d.disabledDates=!1,_(),l},l.daysOfWeekDisabled=function(a){if(0===arguments.length)return d.daysOfWeekDisabled.splice(0);if("boolean"==typeof a&&!a)return d.daysOfWeekDisabled=!1,_(),l;if(!(a instanceof Array))throw new TypeError("daysOfWeekDisabled() expects an array parameter");if(d.daysOfWeekDisabled=a.reduce(function(a,b){return b=parseInt(b,10),b>6||0>b||isNaN(b)?a:(-1===a.indexOf(b)&&a.push(b),a)},[]).sort(),d.useCurrent&&!d.keepInvalid){for(var b=0;!R(e,"d");){if(e.add(1,"d"),7===b)throw"Tried 7 times to find a valid date";b++}aa(e)}return _(),l},l.maxDate=function(a){if(0===arguments.length)return d.maxDate?d.maxDate.clone():d.maxDate;if("boolean"==typeof a&&a===!1)return d.maxDate=!1,_(),l;"string"==typeof a&&("now"!==a&&"moment"!==a||(a=y()));var b=da(a);if(!b.isValid())throw new TypeError("maxDate() Could not parse date parameter: "+a);if(d.minDate&&b.isBefore(d.minDate))throw new TypeError("maxDate() date parameter is before options.minDate: "+b.format(i));return d.maxDate=b,d.useCurrent&&!d.keepInvalid&&e.isAfter(a)&&aa(d.maxDate),f.isAfter(b)&&(f=b.clone().subtract(d.stepping,"m")),_(),l},l.minDate=function(a){if(0===arguments.length)return d.minDate?d.minDate.clone():d.minDate;if("boolean"==typeof a&&a===!1)return d.minDate=!1,_(),l;"string"==typeof a&&("now"!==a&&"moment"!==a||(a=y()));var b=da(a);if(!b.isValid())throw new TypeError("minDate() Could not parse date parameter: "+a);if(d.maxDate&&b.isAfter(d.maxDate))throw new TypeError("minDate() date parameter is after options.maxDate: "+b.format(i));return d.minDate=b,d.useCurrent&&!d.keepInvalid&&e.isBefore(a)&&aa(d.minDate),f.isBefore(b)&&(f=b.clone().add(d.stepping,"m")),_(),l},l.defaultDate=function(a){
-///<signature helpKeyword="$.fn.datetimepicker.defaultDate">
-///<summary>Returns a moment with the options.defaultDate option configuration or false if not set</summary>
-///<returns type="Moment">date.clone()</returns>
-///</signature>
-///<signature>
-///<summary>Will set the picker's inital date. If a boolean:false value is passed the options.defaultDate parameter is cleared.</summary>
-///<param name="defaultDate" locid="$.fn.datetimepicker.defaultDate_p:defaultDate">Takes a string, Date, moment, boolean:false</param>
-///</signature>
-if(0===arguments.length)return d.defaultDate?d.defaultDate.clone():d.defaultDate;if(!a)return d.defaultDate=!1,l;"string"==typeof a&&(a="now"===a||"moment"===a?y():y(a));var b=da(a);if(!b.isValid())throw new TypeError("defaultDate() Could not parse date parameter: "+a);if(!R(b))throw new TypeError("defaultDate() date passed is invalid according to component setup validations");return d.defaultDate=b,(d.defaultDate&&d.inline||""===g.val().trim())&&aa(d.defaultDate),l},l.locale=function(a){if(0===arguments.length)return d.locale;if(!b.localeData(a))throw new TypeError("locale() locale "+a+" is not loaded from moment locales!");return d.locale=a,e.locale(d.locale),f.locale(d.locale),i&&pa(),o&&(ba(),ga()),l},l.stepping=function(a){return 0===arguments.length?d.stepping:(a=parseInt(a,10),(isNaN(a)||1>a)&&(a=1),d.stepping=a,l)},l.useCurrent=function(a){var b=["year","month","day","hour","minute"];if(0===arguments.length)return d.useCurrent;if("boolean"!=typeof a&&"string"!=typeof a)throw new TypeError("useCurrent() expects a boolean or string parameter");if("string"==typeof a&&-1===b.indexOf(a.toLowerCase()))throw new TypeError("useCurrent() expects a string parameter of "+b.join(", "));return d.useCurrent=a,l},l.collapse=function(a){if(0===arguments.length)return d.collapse;if("boolean"!=typeof a)throw new TypeError("collapse() expects a boolean parameter");return d.collapse===a?l:(d.collapse=a,o&&(ba(),ga()),l)},l.icons=function(b){if(0===arguments.length)return a.extend({},d.icons);if(!(b instanceof Object))throw new TypeError("icons() expects parameter to be an Object");return a.extend(d.icons,b),o&&(ba(),ga()),l},l.tooltips=function(b){if(0===arguments.length)return a.extend({},d.tooltips);if(!(b instanceof Object))throw new TypeError("tooltips() expects parameter to be an Object");return a.extend(d.tooltips,b),o&&(ba(),ga()),l},l.useStrict=function(a){if(0===arguments.length)return d.useStrict;if("boolean"!=typeof a)throw new TypeError("useStrict() expects a boolean parameter");return d.useStrict=a,l},l.sideBySide=function(a){if(0===arguments.length)return d.sideBySide;if("boolean"!=typeof a)throw new TypeError("sideBySide() expects a boolean parameter");return d.sideBySide=a,o&&(ba(),ga()),l},l.viewMode=function(a){if(0===arguments.length)return d.viewMode;if("string"!=typeof a)throw new TypeError("viewMode() expects a string parameter");if(-1===r.indexOf(a))throw new TypeError("viewMode() parameter must be one of ("+r.join(", ")+") value");return d.viewMode=a,k=Math.max(r.indexOf(a),p),L(),l},l.toolbarPlacement=function(a){if(0===arguments.length)return d.toolbarPlacement;if("string"!=typeof a)throw new TypeError("toolbarPlacement() expects a string parameter");if(-1===u.indexOf(a))throw new TypeError("toolbarPlacement() parameter must be one of ("+u.join(", ")+") value");return d.toolbarPlacement=a,o&&(ba(),ga()),l},l.widgetPositioning=function(b){if(0===arguments.length)return a.extend({},d.widgetPositioning);if("[object Object]"!=={}.toString.call(b))throw new TypeError("widgetPositioning() expects an object variable");if(b.horizontal){if("string"!=typeof b.horizontal)throw new TypeError("widgetPositioning() horizontal variable must be a string");if(b.horizontal=b.horizontal.toLowerCase(),-1===t.indexOf(b.horizontal))throw new TypeError("widgetPositioning() expects horizontal parameter to be one of ("+t.join(", ")+")");d.widgetPositioning.horizontal=b.horizontal}if(b.vertical){if("string"!=typeof b.vertical)throw new TypeError("widgetPositioning() vertical variable must be a string");if(b.vertical=b.vertical.toLowerCase(),-1===s.indexOf(b.vertical))throw new TypeError("widgetPositioning() expects vertical parameter to be one of ("+s.join(", ")+")");d.widgetPositioning.vertical=b.vertical}return _(),l},l.calendarWeeks=function(a){if(0===arguments.length)return d.calendarWeeks;if("boolean"!=typeof a)throw new TypeError("calendarWeeks() expects parameter to be a boolean value");return d.calendarWeeks=a,_(),l},l.showTodayButton=function(a){if(0===arguments.length)return d.showTodayButton;if("boolean"!=typeof a)throw new TypeError("showTodayButton() expects a boolean parameter");return d.showTodayButton=a,o&&(ba(),ga()),l},l.showClear=function(a){if(0===arguments.length)return d.showClear;if("boolean"!=typeof a)throw new TypeError("showClear() expects a boolean parameter");return d.showClear=a,o&&(ba(),ga()),l},l.widgetParent=function(b){if(0===arguments.length)return d.widgetParent;if("string"==typeof b&&(b=a(b)),null!==b&&"string"!=typeof b&&!(b instanceof a))throw new TypeError("widgetParent() expects a string or a jQuery object parameter");return d.widgetParent=b,o&&(ba(),ga()),l},l.keepOpen=function(a){if(0===arguments.length)return d.keepOpen;if("boolean"!=typeof a)throw new TypeError("keepOpen() expects a boolean parameter");return d.keepOpen=a,l},l.focusOnShow=function(a){if(0===arguments.length)return d.focusOnShow;if("boolean"!=typeof a)throw new TypeError("focusOnShow() expects a boolean parameter");return d.focusOnShow=a,l},l.inline=function(a){if(0===arguments.length)return d.inline;if("boolean"!=typeof a)throw new TypeError("inline() expects a boolean parameter");return d.inline=a,l},l.clear=function(){return ca(),l},l.keyBinds=function(a){return 0===arguments.length?d.keyBinds:(d.keyBinds=a,l)},l.getMoment=function(a){return y(a)},l.debug=function(a){if("boolean"!=typeof a)throw new TypeError("debug() expects a boolean parameter");return d.debug=a,l},l.allowInputToggle=function(a){if(0===arguments.length)return d.allowInputToggle;if("boolean"!=typeof a)throw new TypeError("allowInputToggle() expects a boolean parameter");return d.allowInputToggle=a,l},l.showClose=function(a){if(0===arguments.length)return d.showClose;if("boolean"!=typeof a)throw new TypeError("showClose() expects a boolean parameter");return d.showClose=a,l},l.keepInvalid=function(a){if(0===arguments.length)return d.keepInvalid;if("boolean"!=typeof a)throw new TypeError("keepInvalid() expects a boolean parameter");return d.keepInvalid=a,l},l.datepickerInput=function(a){if(0===arguments.length)return d.datepickerInput;if("string"!=typeof a)throw new TypeError("datepickerInput() expects a string parameter");return d.datepickerInput=a,l},l.parseInputDate=function(a){if(0===arguments.length)return d.parseInputDate;if("function"!=typeof a)throw new TypeError("parseInputDate() sholud be as function");return d.parseInputDate=a,l},l.disabledTimeIntervals=function(b){
-///<signature helpKeyword="$.fn.datetimepicker.disabledTimeIntervals">
-///<summary>Returns an array with the currently set disabled dates on the component.</summary>
-///<returns type="array">options.disabledTimeIntervals</returns>
-///</signature>
-///<signature>
-///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
-///options.enabledDates if such exist.</summary>
-///<param name="dates" locid="$.fn.datetimepicker.disabledTimeIntervals_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
-///</signature>
-if(0===arguments.length)return d.disabledTimeIntervals?a.extend({},d.disabledTimeIntervals):d.disabledTimeIntervals;if(!b)return d.disabledTimeIntervals=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledTimeIntervals() expects an array parameter");return d.disabledTimeIntervals=b,_(),l},l.disabledHours=function(b){
-///<signature helpKeyword="$.fn.datetimepicker.disabledHours">
-///<summary>Returns an array with the currently set disabled hours on the component.</summary>
-///<returns type="array">options.disabledHours</returns>
-///</signature>
-///<signature>
-///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
-///options.enabledHours if such exist.</summary>
-///<param name="hours" locid="$.fn.datetimepicker.disabledHours_p:hours">Takes an [ int ] of values and disallows the user to select only from those hours.</param>
-///</signature>
-if(0===arguments.length)return d.disabledHours?a.extend({},d.disabledHours):d.disabledHours;if(!b)return d.disabledHours=!1,_(),l;if(!(b instanceof Array))throw new TypeError("disabledHours() expects an array parameter");if(d.disabledHours=oa(b),d.enabledHours=!1,d.useCurrent&&!d.keepInvalid){for(var c=0;!R(e,"h");){if(e.add(1,"h"),24===c)throw"Tried 24 times to find a valid date";c++}aa(e)}return _(),l},l.enabledHours=function(b){
-///<signature helpKeyword="$.fn.datetimepicker.enabledHours">
-///<summary>Returns an array with the currently set enabled hours on the component.</summary>
-///<returns type="array">options.enabledHours</returns>
-///</signature>
-///<signature>
-///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledHours if such exist.</summary>
-///<param name="hours" locid="$.fn.datetimepicker.enabledHours_p:hours">Takes an [ int ] of values and allows the user to select only from those hours.</param>
-///</signature>
-if(0===arguments.length)return d.enabledHours?a.extend({},d.enabledHours):d.enabledHours;if(!b)return d.enabledHours=!1,_(),l;if(!(b instanceof Array))throw new TypeError("enabledHours() expects an array parameter");if(d.enabledHours=oa(b),d.disabledHours=!1,d.useCurrent&&!d.keepInvalid){for(var c=0;!R(e,"h");){if(e.add(1,"h"),24===c)throw"Tried 24 times to find a valid date";c++}aa(e)}return _(),l},/**
-         * Returns the component's model current viewDate, a moment object or null if not set. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.
-         * @param {Takes string, viewDate, moment, null parameter.} newDate
-         * @returns {viewDate.clone()}
-         */
-l.viewDate=function(a){if(0===arguments.length)return f.clone();if(!a)return f=e.clone(),l;if(!("string"==typeof a||b.isMoment(a)||a instanceof Date))throw new TypeError("viewDate() parameter must be one of [string, moment or Date]");return f=da(a),K(),l},c.is("input"))g=c;else if(g=c.find(d.datepickerInput),0===g.length)g=c.find("input");else if(!g.is("input"))throw new Error('CSS class "'+d.datepickerInput+'" cannot be applied to non input element');if(c.hasClass("input-group")&&(
-// in case there is more then one 'input-group-addon' Issue #48
-n=0===c.find(".datepickerbutton").length?c.find(".input-group-addon"):c.find(".datepickerbutton")),!d.inline&&!g.is("input"))throw new Error("Could not initialize DateTimePicker without an input element");
-// Set defaults for date here now instead of in var declaration
-return e=y(),f=e.clone(),a.extend(!0,d,H()),l.options(d),pa(),la(),g.prop("disabled")&&l.disable(),g.is("input")&&0!==g.val().trim().length?aa(da(g.val().trim())):d.defaultDate&&void 0===g.attr("placeholder")&&aa(d.defaultDate),d.inline&&ga(),l};/********************************************************************************
-     *
-     * jQuery plugin constructor and defaults object
-     *
-     ********************************************************************************/
-/**
-    * See (http://jquery.com/).
-    * @name jQuery
-    * @class
-    * See the jQuery Library  (http://jquery.com/) for full details.  This just
-    * documents the function and classes that are added to jQuery by this plug-in.
-    */
-/**
-     * See (http://jquery.com/)
-     * @name fn
-     * @class
-     * See the jQuery Library  (http://jquery.com/) for full details.  This just
-     * documents the function and classes that are added to jQuery by this plug-in.
-     * @memberOf jQuery
-     */
-/**
-     * Show comments
-     * @class datetimepicker
-     * @memberOf jQuery.fn
-     */
-a.fn.datetimepicker=function(b){b=b||{};var d,e=Array.prototype.slice.call(arguments,1),f=!0,g=["destroy","hide","show","toggle"];if("object"==typeof b)return this.each(function(){var d=a(this);d.data("DateTimePicker")||(b=a.extend(!0,{},a.fn.datetimepicker.defaults,b),d.data("DateTimePicker",c(d,b)))});if("string"==typeof b)return this.each(function(){var c=a(this),g=c.data("DateTimePicker");if(!g)throw new Error('bootstrap-datetimepicker("'+b+'") method was called on an element that is not using DateTimePicker');d=g[b].apply(g,e),f=d===g}),f||a.inArray(b,g)>-1?this:d;throw new TypeError("Invalid arguments for DateTimePicker: "+b)},a.fn.datetimepicker.defaults={timeZone:"",format:!1,dayViewHeaderFormat:"MMMM YYYY",extraFormats:!1,stepping:1,minDate:!1,maxDate:!1,useCurrent:!0,collapse:!0,locale:b.locale(),defaultDate:!1,disabledDates:!1,enabledDates:!1,icons:{time:"glyphicon glyphicon-time",date:"glyphicon glyphicon-calendar",up:"glyphicon glyphicon-chevron-up",down:"glyphicon glyphicon-chevron-down",previous:"glyphicon glyphicon-chevron-left",next:"glyphicon glyphicon-chevron-right",today:"glyphicon glyphicon-screenshot",clear:"glyphicon glyphicon-trash",close:"glyphicon glyphicon-remove"},tooltips:{today:"Go to today",clear:"Clear selection",close:"Close the picker",selectMonth:"Select Month",prevMonth:"Previous Month",nextMonth:"Next Month",selectYear:"Select Year",prevYear:"Previous Year",nextYear:"Next Year",selectDecade:"Select Decade",prevDecade:"Previous Decade",nextDecade:"Next Decade",prevCentury:"Previous Century",nextCentury:"Next Century",pickHour:"Pick Hour",incrementHour:"Increment Hour",decrementHour:"Decrement Hour",pickMinute:"Pick Minute",incrementMinute:"Increment Minute",decrementMinute:"Decrement Minute",pickSecond:"Pick Second",incrementSecond:"Increment Second",decrementSecond:"Decrement Second",togglePeriod:"Toggle Period",selectTime:"Select Time"},useStrict:!1,sideBySide:!1,daysOfWeekDisabled:!1,calendarWeeks:!1,viewMode:"days",toolbarPlacement:"default",showTodayButton:!1,showClear:!1,showClose:!1,widgetPositioning:{horizontal:"auto",vertical:"auto"},widgetParent:null,ignoreReadonly:!1,keepOpen:!1,focusOnShow:!0,inline:!1,keepInvalid:!1,datepickerInput:".datepickerinput",keyBinds:{up:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().subtract(7,"d")):this.date(b.clone().add(this.stepping(),"m"))}},down:function(a){if(!a)return void this.show();var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().add(7,"d")):this.date(b.clone().subtract(this.stepping(),"m"))},"control up":function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().subtract(1,"y")):this.date(b.clone().add(1,"h"))}},"control down":function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")?this.date(b.clone().add(1,"y")):this.date(b.clone().subtract(1,"h"))}},left:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().subtract(1,"d"))}},right:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().add(1,"d"))}},pageUp:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().subtract(1,"M"))}},pageDown:function(a){if(a){var b=this.date()||this.getMoment();a.find(".datepicker").is(":visible")&&this.date(b.clone().add(1,"M"))}},enter:function(){this.hide()},escape:function(){this.hide()},
-//tab: function (widget) { //this break the flow of the form. disabling for now
-//    var toggle = widget.find('.picker-switch a[data-action="togglePicker"]');
-//    if(toggle.length > 0) toggle.click();
-//},
-"control space":function(a){a.find(".timepicker").is(":visible")&&a.find('.btn[data-action="togglePeriod"]').click()},t:function(){this.date(this.getMoment())},"delete":function(){this.clear()}},debug:!1,allowInputToggle:!1,disabledTimeIntervals:!1,disabledHours:!1,enabledHours:!1,viewDate:!1},"undefined"!=typeof module&&(module.exports=a.fn.datetimepicker)});
+!function (a) {
+    "use strict";
+    if ("function" == typeof define && define.amd) define(["jquery", "moment"], a); else if ("object" == typeof exports) module.exports = a(require("jquery"), require("moment")); else {
+        if ("undefined" == typeof jQuery)throw"bootstrap-datetimepicker requires jQuery to be loaded first";
+        if ("undefined" == typeof moment)throw"bootstrap-datetimepicker requires Moment.js to be loaded first";
+        a(jQuery, moment)
+    }
+}(function (a, b) {
+    "use strict";
+    if (!b)throw new Error("bootstrap-datetimepicker requires Moment.js to be loaded first");
+    var c = function (c, d) {
+        var e, f, g, h, i, j, k, l = {}, m = !0, n = !1, o = !1, p = 0, q = [{
+            clsName: "days",
+            navFnc: "M",
+            navStep: 1
+        }, {clsName: "months", navFnc: "y", navStep: 1}, {
+            clsName: "years",
+            navFnc: "y",
+            navStep: 10
+        }, {
+            clsName: "decades",
+            navFnc: "y",
+            navStep: 100
+        }], r = ["days", "months", "years", "decades"], s = ["top", "bottom", "auto"], t = ["left", "right", "auto"], u = ["default", "top", "bottom"], v = {
+            up: 38,
+            38: "up",
+            down: 40,
+            40: "down",
+            left: 37,
+            37: "left",
+            right: 39,
+            39: "right",
+            tab: 9,
+            9: "tab",
+            escape: 27,
+            27: "escape",
+            enter: 13,
+            13: "enter",
+            pageUp: 33,
+            33: "pageUp",
+            pageDown: 34,
+            34: "pageDown",
+            shift: 16,
+            16: "shift",
+            control: 17,
+            17: "control",
+            space: 32,
+            32: "space",
+            t: 84,
+            84: "t",
+            delete: 46,
+            46: "delete"
+        }, w = {}, x = function () {
+            return void 0 !== b.tz && void 0 !== d.timeZone && null !== d.timeZone && "" !== d.timeZone
+        }, y = function (a) {
+            var c;
+            return c = void 0 === a || null === a ? b() : b.isDate(a) || b.isMoment(a) ? b(a) : x() ? b.tz(a, j, d.useStrict, d.timeZone) : b(a, j, d.useStrict), x() && c.tz(d.timeZone), c
+        }, z = function (a) {
+            if ("string" != typeof a || a.length > 1)throw new TypeError("isEnabled expects a single character string parameter");
+            switch (a) {
+                case"y":
+                    return i.indexOf("Y") !== -1;
+                case"M":
+                    return i.indexOf("M") !== -1;
+                case"d":
+                    return i.toLowerCase().indexOf("d") !== -1;
+                case"h":
+                case"H":
+                    return i.toLowerCase().indexOf("h") !== -1;
+                case"m":
+                    return i.indexOf("m") !== -1;
+                case"s":
+                    return i.indexOf("s") !== -1;
+                default:
+                    return !1
+            }
+        }, A = function () {
+            return z("h") || z("m") || z("s")
+        }, B = function () {
+            return z("y") || z("M") || z("d")
+        }, C = function () {
+            var b = a("<thead>").append(a("<tr>").append(a("<th>").addClass("prev").attr("data-action", "previous").append(a("<span>").addClass(d.icons.previous))).append(a("<th>").addClass("picker-switch").attr("data-action", "pickerSwitch").attr("colspan", d.calendarWeeks ? "6" : "5")).append(a("<th>").addClass("next").attr("data-action", "next").append(a("<span>").addClass(d.icons.next)))), c = a("<tbody>").append(a("<tr>").append(a("<td>").attr("colspan", d.calendarWeeks ? "8" : "7")));
+            return [a("<div>").addClass("datepicker-days").append(a("<table>").addClass("table-condensed").append(b).append(a("<tbody>"))), a("<div>").addClass("datepicker-months").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())), a("<div>").addClass("datepicker-years").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone())), a("<div>").addClass("datepicker-decades").append(a("<table>").addClass("table-condensed").append(b.clone()).append(c.clone()))]
+        }, D = function () {
+            var b = a("<tr>"), c = a("<tr>"), e = a("<tr>");
+            return z("h") && (b.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.incrementHour
+            }).addClass("btn").attr("data-action", "incrementHours").append(a("<span>").addClass(d.icons.up)))), c.append(a("<td>").append(a("<span>").addClass("timepicker-hour").attr({
+                "data-time-component": "hours",
+                title: d.tooltips.pickHour
+            }).attr("data-action", "showHours"))), e.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.decrementHour
+            }).addClass("btn").attr("data-action", "decrementHours").append(a("<span>").addClass(d.icons.down))))), z("m") && (z("h") && (b.append(a("<td>").addClass("separator")), c.append(a("<td>").addClass("separator").html(":")), e.append(a("<td>").addClass("separator"))), b.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.incrementMinute
+            }).addClass("btn").attr("data-action", "incrementMinutes").append(a("<span>").addClass(d.icons.up)))), c.append(a("<td>").append(a("<span>").addClass("timepicker-minute").attr({
+                "data-time-component": "minutes",
+                title: d.tooltips.pickMinute
+            }).attr("data-action", "showMinutes"))), e.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.decrementMinute
+            }).addClass("btn").attr("data-action", "decrementMinutes").append(a("<span>").addClass(d.icons.down))))), z("s") && (z("m") && (b.append(a("<td>").addClass("separator")), c.append(a("<td>").addClass("separator").html(":")), e.append(a("<td>").addClass("separator"))), b.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.incrementSecond
+            }).addClass("btn").attr("data-action", "incrementSeconds").append(a("<span>").addClass(d.icons.up)))), c.append(a("<td>").append(a("<span>").addClass("timepicker-second").attr({
+                "data-time-component": "seconds",
+                title: d.tooltips.pickSecond
+            }).attr("data-action", "showSeconds"))), e.append(a("<td>").append(a("<a>").attr({
+                href: "#",
+                tabindex: "-1",
+                title: d.tooltips.decrementSecond
+            }).addClass("btn").attr("data-action", "decrementSeconds").append(a("<span>").addClass(d.icons.down))))), h || (b.append(a("<td>").addClass("separator")), c.append(a("<td>").append(a("<button>").addClass("btn btn-primary").attr({
+                "data-action": "togglePeriod",
+                tabindex: "-1",
+                title: d.tooltips.togglePeriod
+            }))), e.append(a("<td>").addClass("separator"))), a("<div>").addClass("timepicker-picker").append(a("<table>").addClass("table-condensed").append([b, c, e]))
+        }, E = function () {
+            var b = a("<div>").addClass("timepicker-hours").append(a("<table>").addClass("table-condensed")), c = a("<div>").addClass("timepicker-minutes").append(a("<table>").addClass("table-condensed")), d = a("<div>").addClass("timepicker-seconds").append(a("<table>").addClass("table-condensed")), e = [D()];
+            return z("h") && e.push(b), z("m") && e.push(c), z("s") && e.push(d), e
+        }, F = function () {
+            var b = [];
+            return d.showTodayButton && b.push(a("<td>").append(a("<a>").attr({
+                "data-action": "today",
+                title: d.tooltips.today
+            }).append(a("<span>").addClass(d.icons.today)))), !d.sideBySide && B() && A() && b.push(a("<td>").append(a("<a>").attr({
+                "data-action": "togglePicker",
+                title: d.tooltips.selectTime
+            }).append(a("<span>").addClass(d.icons.time)))), d.showClear && b.push(a("<td>").append(a("<a>").attr({
+                "data-action": "clear",
+                title: d.tooltips.clear
+            }).append(a("<span>").addClass(d.icons.clear)))), d.showClose && b.push(a("<td>").append(a("<a>").attr({
+                "data-action": "close",
+                title: d.tooltips.close
+            }).append(a("<span>").addClass(d.icons.close)))), a("<table>").addClass("table-condensed").append(a("<tbody>").append(a("<tr>").append(b)))
+        }, G = function () {
+            var b = a("<div>").addClass("bootstrap-datetimepicker-widget dropdown-menu"), c = a("<div>").addClass("datepicker").append(C()), e = a("<div>").addClass("timepicker").append(E()), f = a("<ul>").addClass("list-unstyled"), g = a("<li>").addClass("picker-switch" + (d.collapse ? " accordion-toggle" : "")).append(F());
+            return d.inline && b.removeClass("dropdown-menu"), h && b.addClass("usetwentyfour"), z("s") && !h && b.addClass("wider"), d.sideBySide && B() && A() ? (b.addClass("timepicker-sbs"), "top" === d.toolbarPlacement && b.append(g), b.append(a("<div>").addClass("row").append(c.addClass("col-md-6")).append(e.addClass("col-md-6"))), "bottom" === d.toolbarPlacement && b.append(g), b) : ("top" === d.toolbarPlacement && f.append(g), B() && f.append(a("<li>").addClass(d.collapse && A() ? "collapse in" : "").append(c)), "default" === d.toolbarPlacement && f.append(g), A() && f.append(a("<li>").addClass(d.collapse && B() ? "collapse" : "").append(e)), "bottom" === d.toolbarPlacement && f.append(g), b.append(f))
+        }, H = function () {
+            var b, e = {};
+            return b = c.is("input") || d.inline ? c.data() : c.find("input").data(), b.dateOptions && b.dateOptions instanceof Object && (e = a.extend(!0, e, b.dateOptions)), a.each(d, function (a) {
+                var c = "date" + a.charAt(0).toUpperCase() + a.slice(1);
+                void 0 !== b[c] && (e[a] = b[c])
+            }), e
+        }, I = function () {
+            var b, e = (n || c).position(), f = (n || c).offset(), g = d.widgetPositioning.vertical, h = d.widgetPositioning.horizontal;
+            if (d.widgetParent) b = d.widgetParent.append(o); else if (c.is("input")) b = c.after(o).parent(); else {
+                if (d.inline)return void(b = c.append(o));
+                b = c, c.children().first().after(o)
+            }
+            if ("auto" === g && (g = f.top + 1.5 * o.height() >= a(window).height() + a(window).scrollTop() && o.height() + c.outerHeight() < f.top ? "top" : "bottom"), "auto" === h && (h = b.width() < f.left + o.outerWidth() / 2 && f.left + o.outerWidth() > a(window).width() ? "right" : "left"), "top" === g ? o.addClass("top").removeClass("bottom") : o.addClass("bottom").removeClass("top"), "right" === h ? o.addClass("pull-right") : o.removeClass("pull-right"), "relative" !== b.css("position") && (b = b.parents().filter(function () {
+                    return "relative" === a(this).css("position")
+                }).first()), 0 === b.length)throw new Error("datetimepicker component should be placed within a relative positioned container");
+            o.css({
+                top: "top" === g ? "auto" : e.top + c.outerHeight(),
+                bottom: "top" === g ? b.outerHeight() - (b === c ? 0 : e.top) : "auto",
+                left: "left" === h ? b === c ? 0 : e.left : "auto",
+                right: "left" === h ? "auto" : b.outerWidth() - c.outerWidth() - (b === c ? 0 : e.left)
+            })
+        }, J = function (a) {
+            "dp.change" === a.type && (a.date && a.date.isSame(a.oldDate) || !a.date && !a.oldDate) || c.trigger(a)
+        }, K = function (a) {
+            "y" === a && (a = "YYYY"), J({type: "dp.update", change: a, viewDate: f.clone()})
+        }, L = function (a) {
+            o && (a && (k = Math.max(p, Math.min(3, k + a))), o.find(".datepicker > div").hide().filter(".datepicker-" + q[k].clsName).show())
+        }, M = function () {
+            var b = a("<tr>"), c = f.clone().startOf("w").startOf("d");
+            for (d.calendarWeeks === !0 && b.append(a("<th>").addClass("cw").text("#")); c.isBefore(f.clone().endOf("w"));)b.append(a("<th>").addClass("dow").text(c.format("dd"))), c.add(1, "d");
+            o.find(".datepicker-days thead").append(b)
+        }, N = function (a) {
+            return d.disabledDates[a.format("YYYY-MM-DD")] === !0
+        }, O = function (a) {
+            return d.enabledDates[a.format("YYYY-MM-DD")] === !0
+        }, P = function (a) {
+            return d.disabledHours[a.format("H")] === !0
+        }, Q = function (a) {
+            return d.enabledHours[a.format("H")] === !0
+        }, R = function (b, c) {
+            if (!b.isValid())return !1;
+            if (d.disabledDates && "d" === c && N(b))return !1;
+            if (d.enabledDates && "d" === c && !O(b))return !1;
+            if (d.minDate && b.isBefore(d.minDate, c))return !1;
+            if (d.maxDate && b.isAfter(d.maxDate, c))return !1;
+            if (d.daysOfWeekDisabled && "d" === c && d.daysOfWeekDisabled.indexOf(b.day()) !== -1)return !1;
+            if (d.disabledHours && ("h" === c || "m" === c || "s" === c) && P(b))return !1;
+            if (d.enabledHours && ("h" === c || "m" === c || "s" === c) && !Q(b))return !1;
+            if (d.disabledTimeIntervals && ("h" === c || "m" === c || "s" === c)) {
+                var e = !1;
+                if (a.each(d.disabledTimeIntervals, function () {
+                        if (b.isBetween(this[0], this[1]))return e = !0, !1
+                    }), e)return !1
+            }
+            return !0
+        }, S = function () {
+            for (var b = [], c = f.clone().startOf("y").startOf("d"); c.isSame(f, "y");)b.push(a("<span>").attr("data-action", "selectMonth").addClass("month").text(c.format("MMM"))), c.add(1, "M");
+            o.find(".datepicker-months td").empty().append(b)
+        }, T = function () {
+            var b = o.find(".datepicker-months"), c = b.find("th"), g = b.find("tbody").find("span");
+            c.eq(0).find("span").attr("title", d.tooltips.prevYear), c.eq(1).attr("title", d.tooltips.selectYear), c.eq(2).find("span").attr("title", d.tooltips.nextYear), b.find(".disabled").removeClass("disabled"), R(f.clone().subtract(1, "y"), "y") || c.eq(0).addClass("disabled"), c.eq(1).text(f.year()), R(f.clone().add(1, "y"), "y") || c.eq(2).addClass("disabled"), g.removeClass("active"), e.isSame(f, "y") && !m && g.eq(e.month()).addClass("active"), g.each(function (b) {
+                R(f.clone().month(b), "M") || a(this).addClass("disabled")
+            })
+        }, U = function () {
+            var a = o.find(".datepicker-years"), b = a.find("th"), c = f.clone().subtract(5, "y"), g = f.clone().add(6, "y"), h = "";
+            for (b.eq(0).find("span").attr("title", d.tooltips.prevDecade), b.eq(1).attr("title", d.tooltips.selectDecade), b.eq(2).find("span").attr("title", d.tooltips.nextDecade), a.find(".disabled").removeClass("disabled"), d.minDate && d.minDate.isAfter(c, "y") && b.eq(0).addClass("disabled"), b.eq(1).text(c.year() + "-" + g.year()), d.maxDate && d.maxDate.isBefore(g, "y") && b.eq(2).addClass("disabled"); !c.isAfter(g, "y");)h += '<span data-action="selectYear" class="year' + (c.isSame(e, "y") && !m ? " active" : "") + (R(c, "y") ? "" : " disabled") + '">' + c.year() + "</span>", c.add(1, "y");
+            a.find("td").html(h)
+        }, V = function () {
+            var a, c = o.find(".datepicker-decades"), g = c.find("th"), h = b({y: f.year() - f.year() % 100 - 1}), i = h.clone().add(100, "y"), j = h.clone(), k = !1, l = !1, m = "";
+            for (g.eq(0).find("span").attr("title", d.tooltips.prevCentury), g.eq(2).find("span").attr("title", d.tooltips.nextCentury), c.find(".disabled").removeClass("disabled"), (h.isSame(b({y: 1900})) || d.minDate && d.minDate.isAfter(h, "y")) && g.eq(0).addClass("disabled"), g.eq(1).text(h.year() + "-" + i.year()), (h.isSame(b({y: 2e3})) || d.maxDate && d.maxDate.isBefore(i, "y")) && g.eq(2).addClass("disabled"); !h.isAfter(i, "y");)a = h.year() + 12, k = d.minDate && d.minDate.isAfter(h, "y") && d.minDate.year() <= a, l = d.maxDate && d.maxDate.isAfter(h, "y") && d.maxDate.year() <= a, m += '<span data-action="selectDecade" class="decade' + (e.isAfter(h) && e.year() <= a ? " active" : "") + (R(h, "y") || k || l ? "" : " disabled") + '" data-selection="' + (h.year() + 6) + '">' + (h.year() + 1) + " - " + (h.year() + 12) + "</span>", h.add(12, "y");
+            m += "<span></span><span></span><span></span>", c.find("td").html(m), g.eq(1).text(j.year() + 1 + "-" + h.year())
+        }, W = function () {
+            var b, c, g, h = o.find(".datepicker-days"), i = h.find("th"), j = [], k = [];
+            if (B()) {
+                for (i.eq(0).find("span").attr("title", d.tooltips.prevMonth), i.eq(1).attr("title", d.tooltips.selectMonth), i.eq(2).find("span").attr("title", d.tooltips.nextMonth), h.find(".disabled").removeClass("disabled"), i.eq(1).text(f.format(d.dayViewHeaderFormat)), R(f.clone().subtract(1, "M"), "M") || i.eq(0).addClass("disabled"), R(f.clone().add(1, "M"), "M") || i.eq(2).addClass("disabled"), b = f.clone().startOf("M").startOf("w").startOf("d"), g = 0; g < 42; g++)0 === b.weekday() && (c = a("<tr>"), d.calendarWeeks && c.append('<td class="cw">' + b.week() + "</td>"), j.push(c)), k = ["day"], b.isBefore(f, "M") && k.push("old"), b.isAfter(f, "M") && k.push("new"), b.isSame(e, "d") && !m && k.push("active"), R(b, "d") || k.push("disabled"), b.isSame(y(), "d") && k.push("today"), 0 !== b.day() && 6 !== b.day() || k.push("weekend"), J({
+                    type: "dp.classify",
+                    date: b,
+                    classNames: k
+                }), c.append('<td data-action="selectDay" data-day="' + b.format("L") + '" class="' + k.join(" ") + '">' + b.date() + "</td>"), b.add(1, "d");
+                h.find("tbody").empty().append(j), T(), U(), V()
+            }
+        }, X = function () {
+            var b = o.find(".timepicker-hours table"), c = f.clone().startOf("d"), d = [], e = a("<tr>");
+            for (f.hour() > 11 && !h && c.hour(12); c.isSame(f, "d") && (h || f.hour() < 12 && c.hour() < 12 || f.hour() > 11);)c.hour() % 4 === 0 && (e = a("<tr>"), d.push(e)), e.append('<td data-action="selectHour" class="hour' + (R(c, "h") ? "" : " disabled") + '">' + c.format(h ? "HH" : "hh") + "</td>"), c.add(1, "h");
+            b.empty().append(d)
+        }, Y = function () {
+            for (var b = o.find(".timepicker-minutes table"), c = f.clone().startOf("h"), e = [], g = a("<tr>"), h = 1 === d.stepping ? 5 : d.stepping; f.isSame(c, "h");)c.minute() % (4 * h) === 0 && (g = a("<tr>"), e.push(g)), g.append('<td data-action="selectMinute" class="minute' + (R(c, "m") ? "" : " disabled") + '">' + c.format("mm") + "</td>"), c.add(h, "m");
+            b.empty().append(e)
+        }, Z = function () {
+            for (var b = o.find(".timepicker-seconds table"), c = f.clone().startOf("m"), d = [], e = a("<tr>"); f.isSame(c, "m");)c.second() % 20 === 0 && (e = a("<tr>"), d.push(e)), e.append('<td data-action="selectSecond" class="second' + (R(c, "s") ? "" : " disabled") + '">' + c.format("ss") + "</td>"), c.add(5, "s");
+            b.empty().append(d)
+        }, $ = function () {
+            var a, b, c = o.find(".timepicker span[data-time-component]");
+            h || (a = o.find(".timepicker [data-action=togglePeriod]"), b = e.clone().add(e.hours() >= 12 ? -12 : 12, "h"), a.text(e.format("A")), R(b, "h") ? a.removeClass("disabled") : a.addClass("disabled")), c.filter("[data-time-component=hours]").text(e.format(h ? "HH" : "hh")), c.filter("[data-time-component=minutes]").text(e.format("mm")), c.filter("[data-time-component=seconds]").text(e.format("ss")), X(), Y(), Z()
+        }, _ = function () {
+            o && (W(), $())
+        }, aa = function (a) {
+            var b = m ? null : e;
+            if (!a)return m = !0, g.val(""), c.data("date", ""), J({type: "dp.change", date: !1, oldDate: b}), void _();
+            if (a = a.clone().locale(d.locale), x() && a.tz(d.timeZone), 1 !== d.stepping)for (a.minutes(Math.round(a.minutes() / d.stepping) * d.stepping).seconds(0); d.minDate && a.isBefore(d.minDate);)a.add(d.stepping, "minutes");
+            R(a) ? (e = a, f = e.clone(), g.val(e.format(i)), c.data("date", e.format(i)), m = !1, _(), J({
+                    type: "dp.change",
+                    date: e.clone(),
+                    oldDate: b
+                })) : (d.keepInvalid ? J({
+                        type: "dp.change",
+                        date: a,
+                        oldDate: b
+                    }) : g.val(m ? "" : e.format(i)), J({type: "dp.error", date: a, oldDate: b}))
+        }, ba = function () {
+            var b = !1;
+            return o ? (o.find(".collapse").each(function () {
+                    var c = a(this).data("collapse");
+                    return !c || !c.transitioning || (b = !0, !1)
+                }), b ? l : (n && n.hasClass("btn") && n.toggleClass("active"), o.hide(), a(window).off("resize", I), o.off("click", "[data-action]"), o.off("mousedown", !1), o.remove(), o = !1, J({
+                        type: "dp.hide",
+                        date: e.clone()
+                    }), g.blur(), k = 0, f = e.clone(), l)) : l
+        }, ca = function () {
+            aa(null)
+        }, da = function (a) {
+            return void 0 === d.parseInputDate ? (!b.isMoment(a) || a instanceof Date) && (a = y(a)) : a = d.parseInputDate(a), a
+        }, ea = {
+            next: function () {
+                var a = q[k].navFnc;
+                f.add(q[k].navStep, a), W(), K(a)
+            }, previous: function () {
+                var a = q[k].navFnc;
+                f.subtract(q[k].navStep, a), W(), K(a)
+            }, pickerSwitch: function () {
+                L(1)
+            }, selectMonth: function (b) {
+                var c = a(b.target).closest("tbody").find("span").index(a(b.target));
+                f.month(c), k === p ? (aa(e.clone().year(f.year()).month(f.month())), d.inline || ba()) : (L(-1), W()), K("M")
+            }, selectYear: function (b) {
+                var c = parseInt(a(b.target).text(), 10) || 0;
+                f.year(c), k === p ? (aa(e.clone().year(f.year())), d.inline || ba()) : (L(-1), W()), K("YYYY")
+            }, selectDecade: function (b) {
+                var c = parseInt(a(b.target).data("selection"), 10) || 0;
+                f.year(c), k === p ? (aa(e.clone().year(f.year())), d.inline || ba()) : (L(-1), W()), K("YYYY")
+            }, selectDay: function (b) {
+                var c = f.clone();
+                a(b.target).is(".old") && c.subtract(1, "M"), a(b.target).is(".new") && c.add(1, "M"), aa(c.date(parseInt(a(b.target).text(), 10))), A() || d.keepOpen || d.inline || ba()
+            }, incrementHours: function () {
+                var a = e.clone().add(1, "h");
+                R(a, "h") && aa(a)
+            }, incrementMinutes: function () {
+                var a = e.clone().add(d.stepping, "m");
+                R(a, "m") && aa(a)
+            }, incrementSeconds: function () {
+                var a = e.clone().add(1, "s");
+                R(a, "s") && aa(a)
+            }, decrementHours: function () {
+                var a = e.clone().subtract(1, "h");
+                R(a, "h") && aa(a)
+            }, decrementMinutes: function () {
+                var a = e.clone().subtract(d.stepping, "m");
+                R(a, "m") && aa(a)
+            }, decrementSeconds: function () {
+                var a = e.clone().subtract(1, "s");
+                R(a, "s") && aa(a)
+            }, togglePeriod: function () {
+                aa(e.clone().add(e.hours() >= 12 ? -12 : 12, "h"))
+            }, togglePicker: function (b) {
+                var c, e = a(b.target), f = e.closest("ul"), g = f.find(".in"), h = f.find(".collapse:not(.in)");
+                if (g && g.length) {
+                    if (c = g.data("collapse"), c && c.transitioning)return;
+                    g.collapse ? (g.collapse("hide"), h.collapse("show")) : (g.removeClass("in"), h.addClass("in")), e.is("span") ? e.toggleClass(d.icons.time + " " + d.icons.date) : e.find("span").toggleClass(d.icons.time + " " + d.icons.date)
+                }
+            }, showPicker: function () {
+                o.find(".timepicker > div:not(.timepicker-picker)").hide(), o.find(".timepicker .timepicker-picker").show()
+            }, showHours: function () {
+                o.find(".timepicker .timepicker-picker").hide(), o.find(".timepicker .timepicker-hours").show()
+            }, showMinutes: function () {
+                o.find(".timepicker .timepicker-picker").hide(), o.find(".timepicker .timepicker-minutes").show()
+            }, showSeconds: function () {
+                o.find(".timepicker .timepicker-picker").hide(), o.find(".timepicker .timepicker-seconds").show()
+            }, selectHour: function (b) {
+                var c = parseInt(a(b.target).text(), 10);
+                h || (e.hours() >= 12 ? 12 !== c && (c += 12) : 12 === c && (c = 0)), aa(e.clone().hours(c)), ea.showPicker.call(l)
+            }, selectMinute: function (b) {
+                aa(e.clone().minutes(parseInt(a(b.target).text(), 10))), ea.showPicker.call(l)
+            }, selectSecond: function (b) {
+                aa(e.clone().seconds(parseInt(a(b.target).text(), 10))), ea.showPicker.call(l)
+            }, clear: ca, today: function () {
+                var a = y();
+                R(a, "d") && aa(a)
+            }, close: ba
+        }, fa = function (b) {
+            return !a(b.currentTarget).is(".disabled") && (ea[a(b.currentTarget).data("action")].apply(l, arguments), !1)
+        }, ga = function () {
+            var b, c = {
+                year: function (a) {
+                    return a.month(0).date(1).hours(0).seconds(0).minutes(0)
+                }, month: function (a) {
+                    return a.date(1).hours(0).seconds(0).minutes(0)
+                }, day: function (a) {
+                    return a.hours(0).seconds(0).minutes(0)
+                }, hour: function (a) {
+                    return a.seconds(0).minutes(0)
+                }, minute: function (a) {
+                    return a.seconds(0)
+                }
+            };
+            return g.prop("disabled") || !d.ignoreReadonly && g.prop("readonly") || o ? l : (void 0 !== g.val() && 0 !== g.val().trim().length ? aa(da(g.val().trim())) : m && d.useCurrent && (d.inline || g.is("input") && 0 === g.val().trim().length) && (b = y(), "string" == typeof d.useCurrent && (b = c[d.useCurrent](b)), aa(b)), o = G(), M(), S(), o.find(".timepicker-hours").hide(), o.find(".timepicker-minutes").hide(), o.find(".timepicker-seconds").hide(), _(), L(), a(window).on("resize", I), o.on("click", "[data-action]", fa), o.on("mousedown", !1), n && n.hasClass("btn") && n.toggleClass("active"), I(), o.show(), d.focusOnShow && !g.is(":focus") && g.focus(), J({type: "dp.show"}), l)
+        }, ha = function () {
+            return o ? ba() : ga()
+        }, ia = function (a) {
+            var b, c, e, f, g = null, h = [], i = {}, j = a.which, k = "p";
+            w[j] = k;
+            for (b in w)w.hasOwnProperty(b) && w[b] === k && (h.push(b), parseInt(b, 10) !== j && (i[b] = !0));
+            for (b in d.keyBinds)if (d.keyBinds.hasOwnProperty(b) && "function" == typeof d.keyBinds[b] && (e = b.split(" "), e.length === h.length && v[j] === e[e.length - 1])) {
+                for (f = !0, c = e.length - 2; c >= 0; c--)if (!(v[e[c]] in i)) {
+                    f = !1;
+                    break
+                }
+                if (f) {
+                    g = d.keyBinds[b];
+                    break
+                }
+            }
+            g && (g.call(l, o), a.stopPropagation(), a.preventDefault())
+        }, ja = function (a) {
+            w[a.which] = "r", a.stopPropagation(), a.preventDefault()
+        }, ka = function (b) {
+            var c = a(b.target).val().trim(), d = c ? da(c) : null;
+            return aa(d), b.stopImmediatePropagation(), !1
+        }, la = function () {
+            g.on({
+                change: ka,
+                blur: d.debug ? "" : ba,
+                keydown: ia,
+                keyup: ja,
+                focus: d.allowInputToggle ? ga : ""
+            }), c.is("input") ? g.on({focus: ga}) : n && (n.on("click", ha), n.on("mousedown", !1))
+        }, ma = function () {
+            g.off({
+                change: ka,
+                blur: blur,
+                keydown: ia,
+                keyup: ja,
+                focus: d.allowInputToggle ? ba : ""
+            }), c.is("input") ? g.off({focus: ga}) : n && (n.off("click", ha), n.off("mousedown", !1))
+        }, na = function (b) {
+            var c = {};
+            return a.each(b, function () {
+                var a = da(this);
+                a.isValid() && (c[a.format("YYYY-MM-DD")] = !0)
+            }), !!Object.keys(c).length && c
+        }, oa = function (b) {
+            var c = {};
+            return a.each(b, function () {
+                c[this] = !0
+            }), !!Object.keys(c).length && c
+        }, pa = function () {
+            var a = d.format || "L LT";
+            i = a.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (a) {
+                var b = e.localeData().longDateFormat(a) || a;
+                return b.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (a) {
+                    return e.localeData().longDateFormat(a) || a
+                })
+            }), j = d.extraFormats ? d.extraFormats.slice() : [], j.indexOf(a) < 0 && j.indexOf(i) < 0 && j.push(i), h = i.toLowerCase().indexOf("a") < 1 && i.replace(/\[.*?\]/g, "").indexOf("h") < 1, z("y") && (p = 2), z("M") && (p = 1), z("d") && (p = 0), k = Math.max(p, k), m || aa(e)
+        };
+        if (l.destroy = function () {
+                ba(), ma(), c.removeData("DateTimePicker"), c.removeData("date")
+            }, l.toggle = ha, l.show = ga, l.hide = ba, l.disable = function () {
+                return ba(), n && n.hasClass("btn") && n.addClass("disabled"), g.prop("disabled", !0), l
+            }, l.enable = function () {
+                return n && n.hasClass("btn") && n.removeClass("disabled"), g.prop("disabled", !1), l
+            }, l.ignoreReadonly = function (a) {
+                if (0 === arguments.length)return d.ignoreReadonly;
+                if ("boolean" != typeof a)throw new TypeError("ignoreReadonly () expects a boolean parameter");
+                return d.ignoreReadonly = a, l
+            }, l.options = function (b) {
+                if (0 === arguments.length)return a.extend(!0, {}, d);
+                if (!(b instanceof Object))throw new TypeError("options() options parameter should be an object");
+                return a.extend(!0, d, b), a.each(d, function (a, b) {
+                    if (void 0 === l[a])throw new TypeError("option " + a + " is not recognized!");
+                    l[a](b)
+                }), l
+            }, l.date = function (a) {
+                if (0 === arguments.length)return m ? null : e.clone();
+                if (!(null === a || "string" == typeof a || b.isMoment(a) || a instanceof Date))throw new TypeError("date() parameter must be one of [null, string, moment or Date]");
+                return aa(null === a ? null : da(a)), l
+            }, l.format = function (a) {
+                if (0 === arguments.length)return d.format;
+                if ("string" != typeof a && ("boolean" != typeof a || a !== !1))throw new TypeError("format() expects a string or boolean:false parameter " + a);
+                return d.format = a, i && pa(), l
+            }, l.timeZone = function (a) {
+                if (0 === arguments.length)return d.timeZone;
+                if ("string" != typeof a)throw new TypeError("newZone() expects a string parameter");
+                return d.timeZone = a, l
+            }, l.dayViewHeaderFormat = function (a) {
+                if (0 === arguments.length)return d.dayViewHeaderFormat;
+                if ("string" != typeof a)throw new TypeError("dayViewHeaderFormat() expects a string parameter");
+                return d.dayViewHeaderFormat = a, l
+            }, l.extraFormats = function (a) {
+                if (0 === arguments.length)return d.extraFormats;
+                if (a !== !1 && !(a instanceof Array))throw new TypeError("extraFormats() expects an array or false parameter");
+                return d.extraFormats = a, j && pa(), l
+            }, l.disabledDates = function (b) {
+                if (0 === arguments.length)return d.disabledDates ? a.extend({}, d.disabledDates) : d.disabledDates;
+                if (!b)return d.disabledDates = !1, _(), l;
+                if (!(b instanceof Array))throw new TypeError("disabledDates() expects an array parameter");
+                return d.disabledDates = na(b), d.enabledDates = !1, _(), l
+            }, l.enabledDates = function (b) {
+                if (0 === arguments.length)return d.enabledDates ? a.extend({}, d.enabledDates) : d.enabledDates;
+                if (!b)return d.enabledDates = !1, _(), l;
+                if (!(b instanceof Array))throw new TypeError("enabledDates() expects an array parameter");
+                return d.enabledDates = na(b), d.disabledDates = !1, _(), l
+            }, l.daysOfWeekDisabled = function (a) {
+                if (0 === arguments.length)return d.daysOfWeekDisabled.splice(0);
+                if ("boolean" == typeof a && !a)return d.daysOfWeekDisabled = !1, _(), l;
+                if (!(a instanceof Array))throw new TypeError("daysOfWeekDisabled() expects an array parameter");
+                if (d.daysOfWeekDisabled = a.reduce(function (a, b) {
+                        return b = parseInt(b, 10), b > 6 || b < 0 || isNaN(b) ? a : (a.indexOf(b) === -1 && a.push(b), a)
+                    }, []).sort(), d.useCurrent && !d.keepInvalid) {
+                    for (var b = 0; !R(e, "d");) {
+                        if (e.add(1, "d"), 31 === b)throw"Tried 31 times to find a valid date";
+                        b++
+                    }
+                    aa(e)
+                }
+                return _(), l
+            }, l.maxDate = function (a) {
+                if (0 === arguments.length)return d.maxDate ? d.maxDate.clone() : d.maxDate;
+                if ("boolean" == typeof a && a === !1)return d.maxDate = !1, _(), l;
+                "string" == typeof a && ("now" !== a && "moment" !== a || (a = y()));
+                var b = da(a);
+                if (!b.isValid())throw new TypeError("maxDate() Could not parse date parameter: " + a);
+                if (d.minDate && b.isBefore(d.minDate))throw new TypeError("maxDate() date parameter is before options.minDate: " + b.format(i));
+                return d.maxDate = b, d.useCurrent && !d.keepInvalid && e.isAfter(a) && aa(d.maxDate), f.isAfter(b) && (f = b.clone().subtract(d.stepping, "m")), _(), l
+            }, l.minDate = function (a) {
+                if (0 === arguments.length)return d.minDate ? d.minDate.clone() : d.minDate;
+                if ("boolean" == typeof a && a === !1)return d.minDate = !1, _(), l;
+                "string" == typeof a && ("now" !== a && "moment" !== a || (a = y()));
+                var b = da(a);
+                if (!b.isValid())throw new TypeError("minDate() Could not parse date parameter: " + a);
+                if (d.maxDate && b.isAfter(d.maxDate))throw new TypeError("minDate() date parameter is after options.maxDate: " + b.format(i));
+                return d.minDate = b, d.useCurrent && !d.keepInvalid && e.isBefore(a) && aa(d.minDate), f.isBefore(b) && (f = b.clone().add(d.stepping, "m")), _(), l
+            }, l.defaultDate = function (a) {
+                if (0 === arguments.length)return d.defaultDate ? d.defaultDate.clone() : d.defaultDate;
+                if (!a)return d.defaultDate = !1, l;
+                "string" == typeof a && (a = "now" === a || "moment" === a ? y() : y(a));
+                var b = da(a);
+                if (!b.isValid())throw new TypeError("defaultDate() Could not parse date parameter: " + a);
+                if (!R(b))throw new TypeError("defaultDate() date passed is invalid according to component setup validations");
+                return d.defaultDate = b, (d.defaultDate && d.inline || "" === g.val().trim()) && aa(d.defaultDate), l
+            }, l.locale = function (a) {
+                if (0 === arguments.length)return d.locale;
+                if (!b.localeData(a))throw new TypeError("locale() locale " + a + " is not loaded from moment locales!");
+                return d.locale = a, e.locale(d.locale), f.locale(d.locale), i && pa(), o && (ba(), ga()), l
+            }, l.stepping = function (a) {
+                return 0 === arguments.length ? d.stepping : (a = parseInt(a, 10), (isNaN(a) || a < 1) && (a = 1), d.stepping = a, l)
+            }, l.useCurrent = function (a) {
+                var b = ["year", "month", "day", "hour", "minute"];
+                if (0 === arguments.length)return d.useCurrent;
+                if ("boolean" != typeof a && "string" != typeof a)throw new TypeError("useCurrent() expects a boolean or string parameter");
+                if ("string" == typeof a && b.indexOf(a.toLowerCase()) === -1)throw new TypeError("useCurrent() expects a string parameter of " + b.join(", "));
+                return d.useCurrent = a, l
+            }, l.collapse = function (a) {
+                if (0 === arguments.length)return d.collapse;
+                if ("boolean" != typeof a)throw new TypeError("collapse() expects a boolean parameter");
+                return d.collapse === a ? l : (d.collapse = a, o && (ba(), ga()), l)
+            }, l.icons = function (b) {
+                if (0 === arguments.length)return a.extend({}, d.icons);
+                if (!(b instanceof Object))throw new TypeError("icons() expects parameter to be an Object");
+                return a.extend(d.icons, b), o && (ba(), ga()), l
+            }, l.tooltips = function (b) {
+                if (0 === arguments.length)return a.extend({}, d.tooltips);
+                if (!(b instanceof Object))throw new TypeError("tooltips() expects parameter to be an Object");
+                return a.extend(d.tooltips, b), o && (ba(), ga()), l
+            }, l.useStrict = function (a) {
+                if (0 === arguments.length)return d.useStrict;
+                if ("boolean" != typeof a)throw new TypeError("useStrict() expects a boolean parameter");
+                return d.useStrict = a, l
+            }, l.sideBySide = function (a) {
+                if (0 === arguments.length)return d.sideBySide;
+                if ("boolean" != typeof a)throw new TypeError("sideBySide() expects a boolean parameter");
+                return d.sideBySide = a, o && (ba(), ga()), l
+            }, l.viewMode = function (a) {
+                if (0 === arguments.length)return d.viewMode;
+                if ("string" != typeof a)throw new TypeError("viewMode() expects a string parameter");
+                if (r.indexOf(a) === -1)throw new TypeError("viewMode() parameter must be one of (" + r.join(", ") + ") value");
+                return d.viewMode = a, k = Math.max(r.indexOf(a), p), L(), l
+            }, l.toolbarPlacement = function (a) {
+                if (0 === arguments.length)return d.toolbarPlacement;
+                if ("string" != typeof a)throw new TypeError("toolbarPlacement() expects a string parameter");
+                if (u.indexOf(a) === -1)throw new TypeError("toolbarPlacement() parameter must be one of (" + u.join(", ") + ") value");
+                return d.toolbarPlacement = a, o && (ba(), ga()), l
+            }, l.widgetPositioning = function (b) {
+                if (0 === arguments.length)return a.extend({}, d.widgetPositioning);
+                if ("[object Object]" !== {}.toString.call(b))throw new TypeError("widgetPositioning() expects an object variable");
+                if (b.horizontal) {
+                    if ("string" != typeof b.horizontal)throw new TypeError("widgetPositioning() horizontal variable must be a string");
+                    if (b.horizontal = b.horizontal.toLowerCase(), t.indexOf(b.horizontal) === -1)throw new TypeError("widgetPositioning() expects horizontal parameter to be one of (" + t.join(", ") + ")");
+                    d.widgetPositioning.horizontal = b.horizontal
+                }
+                if (b.vertical) {
+                    if ("string" != typeof b.vertical)throw new TypeError("widgetPositioning() vertical variable must be a string");
+                    if (b.vertical = b.vertical.toLowerCase(), s.indexOf(b.vertical) === -1)throw new TypeError("widgetPositioning() expects vertical parameter to be one of (" + s.join(", ") + ")");
+                    d.widgetPositioning.vertical = b.vertical
+                }
+                return _(), l
+            }, l.calendarWeeks = function (a) {
+                if (0 === arguments.length)return d.calendarWeeks;
+                if ("boolean" != typeof a)throw new TypeError("calendarWeeks() expects parameter to be a boolean value");
+                return d.calendarWeeks = a, _(), l
+            }, l.showTodayButton = function (a) {
+                if (0 === arguments.length)return d.showTodayButton;
+                if ("boolean" != typeof a)throw new TypeError("showTodayButton() expects a boolean parameter");
+                return d.showTodayButton = a, o && (ba(), ga()), l
+            }, l.showClear = function (a) {
+                if (0 === arguments.length)return d.showClear;
+                if ("boolean" != typeof a)throw new TypeError("showClear() expects a boolean parameter");
+                return d.showClear = a, o && (ba(), ga()), l
+            }, l.widgetParent = function (b) {
+                if (0 === arguments.length)return d.widgetParent;
+                if ("string" == typeof b && (b = a(b)), null !== b && "string" != typeof b && !(b instanceof a))throw new TypeError("widgetParent() expects a string or a jQuery object parameter");
+                return d.widgetParent = b, o && (ba(), ga()), l
+            }, l.keepOpen = function (a) {
+                if (0 === arguments.length)return d.keepOpen;
+                if ("boolean" != typeof a)throw new TypeError("keepOpen() expects a boolean parameter");
+                return d.keepOpen = a, l
+            }, l.focusOnShow = function (a) {
+                if (0 === arguments.length)return d.focusOnShow;
+                if ("boolean" != typeof a)throw new TypeError("focusOnShow() expects a boolean parameter");
+                return d.focusOnShow = a, l
+            }, l.inline = function (a) {
+                if (0 === arguments.length)return d.inline;
+                if ("boolean" != typeof a)throw new TypeError("inline() expects a boolean parameter");
+                return d.inline = a, l
+            }, l.clear = function () {
+                return ca(), l
+            }, l.keyBinds = function (a) {
+                return 0 === arguments.length ? d.keyBinds : (d.keyBinds = a, l)
+            }, l.getMoment = function (a) {
+                return y(a)
+            }, l.debug = function (a) {
+                if ("boolean" != typeof a)throw new TypeError("debug() expects a boolean parameter");
+                return d.debug = a, l
+            }, l.allowInputToggle = function (a) {
+                if (0 === arguments.length)return d.allowInputToggle;
+                if ("boolean" != typeof a)throw new TypeError("allowInputToggle() expects a boolean parameter");
+                return d.allowInputToggle = a, l
+            }, l.showClose = function (a) {
+                if (0 === arguments.length)return d.showClose;
+                if ("boolean" != typeof a)throw new TypeError("showClose() expects a boolean parameter");
+                return d.showClose = a, l
+            }, l.keepInvalid = function (a) {
+                if (0 === arguments.length)return d.keepInvalid;
+                if ("boolean" != typeof a)throw new TypeError("keepInvalid() expects a boolean parameter");
+                return d.keepInvalid = a, l
+            }, l.datepickerInput = function (a) {
+                if (0 === arguments.length)return d.datepickerInput;
+                if ("string" != typeof a)throw new TypeError("datepickerInput() expects a string parameter");
+                return d.datepickerInput = a, l
+            }, l.parseInputDate = function (a) {
+                if (0 === arguments.length)return d.parseInputDate;
+                if ("function" != typeof a)throw new TypeError("parseInputDate() sholud be as function");
+                return d.parseInputDate = a, l
+            }, l.disabledTimeIntervals = function (b) {
+                if (0 === arguments.length)return d.disabledTimeIntervals ? a.extend({}, d.disabledTimeIntervals) : d.disabledTimeIntervals;
+                if (!b)return d.disabledTimeIntervals = !1, _(), l;
+                if (!(b instanceof Array))throw new TypeError("disabledTimeIntervals() expects an array parameter");
+                return d.disabledTimeIntervals = b, _(), l
+            }, l.disabledHours = function (b) {
+                if (0 === arguments.length)return d.disabledHours ? a.extend({}, d.disabledHours) : d.disabledHours;
+                if (!b)return d.disabledHours = !1, _(), l;
+                if (!(b instanceof Array))throw new TypeError("disabledHours() expects an array parameter");
+                if (d.disabledHours = oa(b), d.enabledHours = !1, d.useCurrent && !d.keepInvalid) {
+                    for (var c = 0; !R(e, "h");) {
+                        if (e.add(1, "h"), 24 === c)throw"Tried 24 times to find a valid date";
+                        c++
+                    }
+                    aa(e)
+                }
+                return _(), l
+            }, l.enabledHours = function (b) {
+                if (0 === arguments.length)return d.enabledHours ? a.extend({}, d.enabledHours) : d.enabledHours;
+                if (!b)return d.enabledHours = !1, _(), l;
+                if (!(b instanceof Array))throw new TypeError("enabledHours() expects an array parameter");
+                if (d.enabledHours = oa(b), d.disabledHours = !1, d.useCurrent && !d.keepInvalid) {
+                    for (var c = 0; !R(e, "h");) {
+                        if (e.add(1, "h"), 24 === c)throw"Tried 24 times to find a valid date";
+                        c++
+                    }
+                    aa(e)
+                }
+                return _(), l
+            }, l.viewDate = function (a) {
+                if (0 === arguments.length)return f.clone();
+                if (!a)return f = e.clone(), l;
+                if (!("string" == typeof a || b.isMoment(a) || a instanceof Date))throw new TypeError("viewDate() parameter must be one of [string, moment or Date]");
+                return f = da(a), K(), l
+            }, c.is("input")) g = c; else if (g = c.find(d.datepickerInput), 0 === g.length) g = c.find("input"); else if (!g.is("input"))throw new Error('CSS class "' + d.datepickerInput + '" cannot be applied to non input element');
+        if (c.hasClass("input-group") && (n = 0 === c.find(".datepickerbutton").length ? c.find(".input-group-addon") : c.find(".datepickerbutton")), !d.inline && !g.is("input"))throw new Error("Could not initialize DateTimePicker without an input element");
+        return e = y(), f = e.clone(), a.extend(!0, d, H()), l.options(d), pa(), la(), g.prop("disabled") && l.disable(), g.is("input") && 0 !== g.val().trim().length ? aa(da(g.val().trim())) : d.defaultDate && void 0 === g.attr("placeholder") && aa(d.defaultDate), d.inline && ga(), l
+    };
+    return a.fn.datetimepicker = function (b) {
+        b = b || {};
+        var d, e = Array.prototype.slice.call(arguments, 1), f = !0, g = ["destroy", "hide", "show", "toggle"];
+        if ("object" == typeof b)return this.each(function () {
+            var d, e = a(this);
+            e.data("DateTimePicker") || (d = a.extend(!0, {}, a.fn.datetimepicker.defaults, b), e.data("DateTimePicker", c(e, d)))
+        });
+        if ("string" == typeof b)return this.each(function () {
+            var c = a(this), g = c.data("DateTimePicker");
+            if (!g)throw new Error('bootstrap-datetimepicker("' + b + '") method was called on an element that is not using DateTimePicker');
+            d = g[b].apply(g, e), f = d === g
+        }), f || a.inArray(b, g) > -1 ? this : d;
+        throw new TypeError("Invalid arguments for DateTimePicker: " + b)
+    }, a.fn.datetimepicker.defaults = {
+        timeZone: "",
+        format: !1,
+        dayViewHeaderFormat: "MMMM YYYY",
+        extraFormats: !1,
+        stepping: 1,
+        minDate: !1,
+        maxDate: !1,
+        useCurrent: !0,
+        collapse: !0,
+        locale: b.locale(),
+        defaultDate: !1,
+        disabledDates: !1,
+        enabledDates: !1,
+        icons: {
+            time: "glyphicon glyphicon-time",
+            date: "glyphicon glyphicon-calendar",
+            up: "glyphicon glyphicon-chevron-up",
+            down: "glyphicon glyphicon-chevron-down",
+            previous: "glyphicon glyphicon-chevron-left",
+            next: "glyphicon glyphicon-chevron-right",
+            today: "glyphicon glyphicon-screenshot",
+            clear: "glyphicon glyphicon-trash",
+            close: "glyphicon glyphicon-remove"
+        },
+        tooltips: {
+            today: "Go to today",
+            clear: "Clear selection",
+            close: "Close the picker",
+            selectMonth: "Select Month",
+            prevMonth: "Previous Month",
+            nextMonth: "Next Month",
+            selectYear: "Select Year",
+            prevYear: "Previous Year",
+            nextYear: "Next Year",
+            selectDecade: "Select Decade",
+            prevDecade: "Previous Decade",
+            nextDecade: "Next Decade",
+            prevCentury: "Previous Century",
+            nextCentury: "Next Century",
+            pickHour: "Pick Hour",
+            incrementHour: "Increment Hour",
+            decrementHour: "Decrement Hour",
+            pickMinute: "Pick Minute",
+            incrementMinute: "Increment Minute",
+            decrementMinute: "Decrement Minute",
+            pickSecond: "Pick Second",
+            incrementSecond: "Increment Second",
+            decrementSecond: "Decrement Second",
+            togglePeriod: "Toggle Period",
+            selectTime: "Select Time"
+        },
+        useStrict: !1,
+        sideBySide: !1,
+        daysOfWeekDisabled: !1,
+        calendarWeeks: !1,
+        viewMode: "days",
+        toolbarPlacement: "default",
+        showTodayButton: !1,
+        showClear: !1,
+        showClose: !1,
+        widgetPositioning: {horizontal: "auto", vertical: "auto"},
+        widgetParent: null,
+        ignoreReadonly: !1,
+        keepOpen: !1,
+        focusOnShow: !0,
+        inline: !1,
+        keepInvalid: !1,
+        datepickerInput: ".datepickerinput",
+        keyBinds: {
+            up: function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") ? this.date(b.clone().subtract(7, "d")) : this.date(b.clone().add(this.stepping(), "m"))
+                }
+            }, down: function (a) {
+                if (!a)return void this.show();
+                var b = this.date() || this.getMoment();
+                a.find(".datepicker").is(":visible") ? this.date(b.clone().add(7, "d")) : this.date(b.clone().subtract(this.stepping(), "m"))
+            }, "control up": function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") ? this.date(b.clone().subtract(1, "y")) : this.date(b.clone().add(1, "h"))
+                }
+            }, "control down": function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") ? this.date(b.clone().add(1, "y")) : this.date(b.clone().subtract(1, "h"))
+                }
+            }, left: function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") && this.date(b.clone().subtract(1, "d"))
+                }
+            }, right: function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") && this.date(b.clone().add(1, "d"))
+                }
+            }, pageUp: function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") && this.date(b.clone().subtract(1, "M"))
+                }
+            }, pageDown: function (a) {
+                if (a) {
+                    var b = this.date() || this.getMoment();
+                    a.find(".datepicker").is(":visible") && this.date(b.clone().add(1, "M"))
+                }
+            }, enter: function () {
+                this.hide()
+            }, escape: function () {
+                this.hide()
+            }, "control space": function (a) {
+                a && a.find(".timepicker").is(":visible") && a.find('.btn[data-action="togglePeriod"]').click()
+            }, t: function () {
+                this.date(this.getMoment())
+            }, delete: function () {
+                this.clear()
+            }
+        },
+        debug: !1,
+        allowInputToggle: !1,
+        disabledTimeIntervals: !1,
+        disabledHours: !1,
+        enabledHours: !1,
+        viewDate: !1
+    }, a.fn.datetimepicker
+});
 /*!
  * Timepicker Component for Twitter Bootstrap
  *

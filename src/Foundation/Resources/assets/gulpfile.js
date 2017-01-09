@@ -31,6 +31,8 @@ elixir(function(mix) {
         "./vendor/summernote/dist/summernote.js",
         "./vendor/dropzone/dist/min/dropzone.min.js",
 
+        "./vendor/nestable/jquery.nestable.js",
+
         './vendor/moment/min/moment.min.js',
         './vendor/moment/min/locales.js',
         './vendor/moment/min/moment-with-locales.js',

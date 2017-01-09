@@ -1,5 +1,14 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Systems Web Routes
+|--------------------------------------------------------------------------
+|
+| Base route
+|
+*/
+
 Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
     Route::get('settings', [
         'as' => 'dashboard.systems.settings',
