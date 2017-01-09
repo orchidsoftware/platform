@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Orchid\Foundation\Core\Models\Menu;
 
@@ -17,7 +17,7 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $menuitems = new Menu();
-        $menulist = [];//Menu::lists('name', 'id');
+        $menulist = []; //Menu::lists('name', 'id');
         $menulist[0] = 'Выберите меню';
         if (Input::has('action')) {
             return view('dashboard::container.tools.menu.menu')
@@ -29,11 +29,10 @@ class MenuController extends Controller
             return view('dashboard::container.tools.menu.menu', [
                 'menus' => $menus,
                 'indmenu' => $menu,
-                'menulist' => $menulist
+                'menulist' => $menulist,
             ]);
         }
     }
-
 
     /**
      * @param Request $request
@@ -45,7 +44,7 @@ class MenuController extends Controller
         $menu->name = Input::get('menuname');
         $menu->save();
 
-        return json_encode(array('resp' => $menu->id));
+        return json_encode(['resp' => $menu->id]);
     }
 
     /**
@@ -69,9 +68,9 @@ class MenuController extends Controller
             $menudelete = Menu::find(Input::get('id'));
             $menudelete->delete();
 
-            return json_encode(array('resp' => 'Вы удалили этот элемент'));
+            return json_encode(['resp' => 'Вы удалили этот элемент']);
         } else {
-            return json_encode(array('resp' => 'Вы должны сначала удалить все элементы', 'error' => 1));
+            return json_encode(['resp' => 'Вы должны сначала удалить все элементы', 'error' => 1]);
         }
     }
 
@@ -119,6 +118,6 @@ class MenuController extends Controller
             $menuitem->depth = $value['depth'];
             $menuitem->save();
         }
-        echo json_encode(array('resp' => 1));
+        echo json_encode(['resp' => 1]);
     }
 }
