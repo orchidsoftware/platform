@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-
     /**
      * @var string
      */
@@ -23,7 +22,6 @@ class Menu extends Model
         'depth',
     ];
 
-
     /**
      * @var array
      */
@@ -31,7 +29,6 @@ class Menu extends Model
         'type' => 'string',
         'content' => 'array',
     ];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -43,19 +43,11 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'uses' => 'DatabaseController@index',
     ]);
 
-
-    Route::get('/wmenuindex', array('as' => 'wmenuindex', 'uses' => 'MenuController@index'));
-    Route::post('/addcustommenu', array('as' => 'addcustommenu', 'uses' => 'WmenuController@addcustommenu'));
-    Route::post('/deleteitemmenu', array('as' => 'deleteitemmenu', 'uses' => 'WmenuController@deleteitemmenu'));
-    Route::post('/deletemenug', array('as' => 'deletemenug', 'uses' => 'WmenuController@deletemenug'));
-    Route::post('/createnewmenu', array('as' => 'createnewmenu', 'uses' => 'WmenuController@createnewmenu'));
-    Route::post('/generatemenucontrol', array('as' => 'generatemenucontrol', 'uses' => 'WmenuController@generatemenucontrol'));
-    Route::post('/updateitem', array('as' => 'updateitem', 'uses' => 'WmenuController@updateitem'));
-
-
-
-
-
-
-
+    Route::get('/wmenuindex', ['as' => 'wmenuindex', 'uses' => 'MenuController@index']);
+    Route::post('/addcustommenu', ['as' => 'addcustommenu', 'uses' => 'WmenuController@addcustommenu']);
+    Route::post('/deleteitemmenu', ['as' => 'deleteitemmenu', 'uses' => 'WmenuController@deleteitemmenu']);
+    Route::post('/deletemenug', ['as' => 'deletemenug', 'uses' => 'WmenuController@deletemenug']);
+    Route::post('/createnewmenu', ['as' => 'createnewmenu', 'uses' => 'WmenuController@createnewmenu']);
+    Route::post('/generatemenucontrol', ['as' => 'generatemenucontrol', 'uses' => 'WmenuController@generatemenucontrol']);
+    Route::post('/updateitem', ['as' => 'updateitem', 'uses' => 'WmenuController@updateitem']);
 });
