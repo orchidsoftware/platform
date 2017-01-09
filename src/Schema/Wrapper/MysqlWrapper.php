@@ -1,16 +1,16 @@
-<?php namespace Orchid\Schema\Wrapper;
+<?php
 
-use Orchid\Schema\BaseSchema;
+namespace Orchid\Schema\Wrapper;
+
 use Orchid\Schema\Helper;
+use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
 /**
- * Class MysqlWrapper
- * @package Orchid\Schema\Wrapper
+ * Class MysqlWrapper.
  */
 class MysqlWrapper implements WrapperContract
 {
-
     use Helper;
 
     /**
@@ -37,6 +37,7 @@ class MysqlWrapper implements WrapperContract
             $this->schema[$table]['attributes'] = $columns;
             $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
         }
+
         return $this->schema;
     }
 
@@ -46,7 +47,8 @@ class MysqlWrapper implements WrapperContract
     public function getTables()
     {
         $tables = $this->baseSchema->database->select('SHOW TABLES');
-        $attribute = 'Tables_in_' . $this->baseSchema->getDatabaseName();
+        $attribute = 'Tables_in_'.$this->baseSchema->getDatabaseName();
+
         return array_map(function ($table) use ($attribute) {
             return $table->$attribute;
         }, $tables);
@@ -58,11 +60,11 @@ class MysqlWrapper implements WrapperContract
      */
     public function getColumns($tableName)
     {
-        return $this->transformColumns($this->baseSchema->database->select("SHOW COLUMNS FROM " . $tableName));
+        return $this->transformColumns($this->baseSchema->database->select('SHOW COLUMNS FROM '.$tableName));
     }
 
     /**
-     * Transform columns
+     * Transform columns.
      * @param $columns
      * @return array
      */
@@ -72,16 +74,16 @@ class MysqlWrapper implements WrapperContract
             return [
                 'Field' => $column->Field,
                 'Type' => $column->Type,
-                'Null' => $column->Null,
+                'Null' => $column->null,
                 'Key' => $column->Key,
                 'Default' => $column->Default,
-                'Extra' => $column->Extra
+                'Extra' => $column->Extra,
             ];
         }, $columns);
     }
 
     /**
-     * Generate mysql performance information
+     * Generate mysql performance information.
      * @param int $sleep
      * @return array
      */
@@ -182,77 +184,76 @@ class MysqlWrapper implements WrapperContract
 
         return [
             [
-                'Select', round(($endSelect - $startSelect) / $timeSpan) . ' QPS',
-                'DB', round(($endCreateDb - $startCreateDb) / $timeSpan) . ' PS',
-                'DB', round(($endAlterDb - $startAlterDb) / $timeSpan) . ' PS',
-                'DB', round(($endDropDb - $startDropDb) / $timeSpan) . ' PS'
+                'Select', round(($endSelect - $startSelect) / $timeSpan).' QPS',
+                'DB', round(($endCreateDb - $startCreateDb) / $timeSpan).' PS',
+                'DB', round(($endAlterDb - $startAlterDb) / $timeSpan).' PS',
+                'DB', round(($endDropDb - $startDropDb) / $timeSpan).' PS',
 
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Update', round(($endUpdate - $startUpdate) / $timeSpan) . ' QPS',
-                'Event', round(($endCreateEvent - $startCreateEvent) / $timeSpan) . ' PS',
-                'DB Upgrade', round(($endAlterDbUpgrade - $startAlterDbUpgrade) / $timeSpan) . ' PS',
-                'Event', round(($endDropEvent - $startDropEvent) / $timeSpan) . ' PS'
+                'Update', round(($endUpdate - $startUpdate) / $timeSpan).' QPS',
+                'Event', round(($endCreateEvent - $startCreateEvent) / $timeSpan).' PS',
+                'DB Upgrade', round(($endAlterDbUpgrade - $startAlterDbUpgrade) / $timeSpan).' PS',
+                'Event', round(($endDropEvent - $startDropEvent) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Insert', round(($endInsert - $startInsert) / $timeSpan) . ' QPS',
-                'Function', round(($endCreateFunc - $startCreateFunc) / $timeSpan) . ' PS',
-                'DB Event', round(($endAlterEvent - $startAlterEvent) / $timeSpan) . ' PS',
-                'Function', round(($endDropFunc - $startDropFunc) / $timeSpan) . ' PS'
+                'Insert', round(($endInsert - $startInsert) / $timeSpan).' QPS',
+                'Function', round(($endCreateFunc - $startCreateFunc) / $timeSpan).' PS',
+                'DB Event', round(($endAlterEvent - $startAlterEvent) / $timeSpan).' PS',
+                'Function', round(($endDropFunc - $startDropFunc) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Delete', round(($endDelete - $startDelete) / $timeSpan) . ' QPS',
-                'Procedure', round(($endCreateProcedure - $startCreateProcedure) / $timeSpan) . ' PS',
-                'Function', round(($endAlterFunc - $startAlterFunc) / $timeSpan) . ' PS',
-                'Index', round(($endDropIndex - $startDropIndex) / $timeSpan) . ' PS'
+                'Delete', round(($endDelete - $startDelete) / $timeSpan).' QPS',
+                'Procedure', round(($endCreateProcedure - $startCreateProcedure) / $timeSpan).' PS',
+                'Function', round(($endAlterFunc - $startAlterFunc) / $timeSpan).' PS',
+                'Index', round(($endDropIndex - $startDropIndex) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Payload sent', $this->formatBytes(round(($endByteSent - $startByteSent) / $timeSpan)) . '/s',
-                'Server', round(($endCreateServer - $startCreateServer) / $timeSpan) . ' PS',
-                'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
-                'Procedure', round(($endDropProcedure - $startDropProcedure) / $timeSpan) . ' PS'
+                'Payload sent', $this->formatBytes(round(($endByteSent - $startByteSent) / $timeSpan)).'/s',
+                'Server', round(($endCreateServer - $startCreateServer) / $timeSpan).' PS',
+                'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan).' PS',
+                'Procedure', round(($endDropProcedure - $startDropProcedure) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Payload received', $this->formatBytes(round(($endByteReceived - $startByteReceived) / $timeSpan)) . '/s',
-                'Table', round(($endCreateTable - $startCreateTable) / $timeSpan) . ' PS',
-                'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan) . ' PS',
-                'Server', round(($endDropServer - $startDropServer) / $timeSpan) . ' PS'
+                'Payload received', $this->formatBytes(round(($endByteReceived - $startByteReceived) / $timeSpan)).'/s',
+                'Table', round(($endCreateTable - $startCreateTable) / $timeSpan).' PS',
+                'Procedure', round(($endAlterProcedure - $startAlterProcedure) / $timeSpan).' PS',
+                'Server', round(($endDropServer - $startDropServer) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Connections', round(($endConnections - $startConnections) / $timeSpan) . ' PS ',
-                'Trigger', round(($endCreateTrigger - $startCreateTrigger) / $timeSpan) . ' PS',
-                'Server', round(($endAlterServer - $startAlterServer) / $timeSpan) . ' PS',
-                'Table', round(($endDropTable - $startDropTable) / $timeSpan) . ' PS'
+                'Connections', round(($endConnections - $startConnections) / $timeSpan).' PS ',
+                'Trigger', round(($endCreateTrigger - $startCreateTrigger) / $timeSpan).' PS',
+                'Server', round(($endAlterServer - $startAlterServer) / $timeSpan).' PS',
+                'Table', round(($endDropTable - $startDropTable) / $timeSpan).' PS',
 
             ],
             ['', '', '', '', '', '', '', ''],
             [
                 'Total Connections', round($endConnections),
-                'UDF', round(($endCreateUDF - $startCreateUDF) / $timeSpan) . ' PS',
-                'Table', round(($endAlterTable - $startAlterTable) / $timeSpan) . ' PS',
-                'Trigger', round(($endDropTrigger - $startDropTrigger) / $timeSpan) . ' PS'
+                'UDF', round(($endCreateUDF - $startCreateUDF) / $timeSpan).' PS',
+                'Table', round(($endAlterTable - $startAlterTable) / $timeSpan).' PS',
+                'Trigger', round(($endDropTrigger - $startDropTrigger) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Aborted Clients', round(($endAbortedClients - $startAbortedClients) / $timeSpan) . ' PS',
-                'User', round(($endCreateUser - $startCreateUser) / $timeSpan) . ' PS',
-                'TableSpace', round(($endAlterTableSpace - $startAlterTableSpace) / $timeSpan) . ' PS',
-                'User', round(($endDropUser - $startDropUser) / $timeSpan) . ' PS'
+                'Aborted Clients', round(($endAbortedClients - $startAbortedClients) / $timeSpan).' PS',
+                'User', round(($endCreateUser - $startCreateUser) / $timeSpan).' PS',
+                'TableSpace', round(($endAlterTableSpace - $startAlterTableSpace) / $timeSpan).' PS',
+                'User', round(($endDropUser - $startDropUser) / $timeSpan).' PS',
             ],
             ['', '', '', '', '', '', '', ''],
             [
-                'Aborted Connections', round(($endAbortedConnections - $startAbortedConnections) / $timeSpan) . ' PS',
-                'View', round(($endCreateView - $startCreateView) / $timeSpan) . ' PS',
-                'User', round(($endAlterUser - $startAlterUser) / $timeSpan) . ' PS',
-                'View', round(($endDropView - $startDropView) / $timeSpan) . ' PS'
+                'Aborted Connections', round(($endAbortedConnections - $startAbortedConnections) / $timeSpan).' PS',
+                'View', round(($endCreateView - $startCreateView) / $timeSpan).' PS',
+                'User', round(($endAlterUser - $startAlterUser) / $timeSpan).' PS',
+                'View', round(($endDropView - $startDropView) / $timeSpan).' PS',
             ],
         ];
     }
-
 }

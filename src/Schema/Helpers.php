@@ -1,8 +1,9 @@
-<?php namespace Orchid\Schema;
+<?php
 
-trait Helper
+namespace Orchid\Schema;
+
+trait Helpers
 {
-
     /**
      * @param $namespaceModel
      * @return mixed
@@ -10,11 +11,12 @@ trait Helper
      */
     public function tableNameFromModel($namespaceModel)
     {
-        $modelPath = app()->getNamespace() . $namespaceModel;
+        $modelPath = app()->getNamespace().$namespaceModel;
         $modelPath = class_exists($modelPath) ? $modelPath : $namespaceModel;
-        if (!class_exists($modelPath)) {
+        if (! class_exists($modelPath)) {
             throw new \Exception("Model {$modelPath} not exist!");
         }
+
         return with(new $modelPath())->getTable();
     }
 
@@ -24,53 +26,53 @@ trait Helper
      */
     public function isNamespaceModel($namespaceModel)
     {
-        return str_contains($namespaceModel, "\\");
+        return str_contains($namespaceModel, '\\');
     }
 
     /**
-     * Format bytes
+     * Format bytes.
      * @param $bytes
      * @return string
      */
-    function formatBytes($bytes)
+    public function formatBytes($bytes)
     {
         $bytes = floatval($bytes);
-        $arBytes = array(
-            0 => array(
-                "UNIT" => "TB",
-                "VALUE" => pow(1024, 4)
-            ),
-            1 => array(
-                "UNIT" => "GB",
-                "VALUE" => pow(1024, 3)
-            ),
-            2 => array(
-                "UNIT" => "MB",
-                "VALUE" => pow(1024, 2)
-            ),
-            3 => array(
-                "UNIT" => "KB",
-                "VALUE" => 1024
-            ),
-            4 => array(
-                "UNIT" => "B",
-                "VALUE" => 1
-            ),
-        );
+        $arBytes = [
+            0 => [
+                'UNIT' => 'TB',
+                'VALUE' => pow(1024, 4),
+            ],
+            1 => [
+                'UNIT' => 'GB',
+                'VALUE' => pow(1024, 3),
+            ],
+            2 => [
+                'UNIT' => 'MB',
+                'VALUE' => pow(1024, 2),
+            ],
+            3 => [
+                'UNIT' => 'KB',
+                'VALUE' => 1024,
+            ],
+            4 => [
+                'UNIT' => 'B',
+                'VALUE' => 1,
+            ],
+        ];
 
         foreach ($arBytes as $arItem) {
-            if ($bytes >= $arItem["VALUE"]) {
-                $result = $bytes / $arItem["VALUE"];
-                $result = str_replace(".", ",", strval(round($result, 2))) . " " . $arItem["UNIT"];
+            if ($bytes >= $arItem['VALUE']) {
+                $result = $bytes / $arItem['VALUE'];
+                $result = str_replace('.', ',', strval(round($result, 2))).' '.$arItem['UNIT'];
                 break;
             }
         }
+
         return $result;
     }
 
-
     /**
-     * Fetch queries value if key exist
+     * Fetch queries value if key exist.
      * @param $queries
      * @param $keyString
      * @return mixed

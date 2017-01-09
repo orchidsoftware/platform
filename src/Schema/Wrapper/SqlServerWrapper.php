@@ -1,16 +1,15 @@
-<?php namespace Orchid\Schema\Wrapper;
+<?php
 
+namespace Orchid\Schema\Wrapper;
 
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
 /**
- * Class SqlServerWrapper
- * @package Orchid\Schema\Wrapper
+ * Class SqlServerWrapper.
  */
 class SqlServerWrapper implements WrapperContract
 {
-
     /**
      * @var BaseSchema
      */
@@ -35,6 +34,7 @@ class SqlServerWrapper implements WrapperContract
             $this->schema[$table]['attributes'] = $columns;
             $this->schema[$table]['rowsCount'] = $this->baseSchema->getTableRowCount($table);
         }
+
         return $this->schema;
     }
 
@@ -45,6 +45,7 @@ class SqlServerWrapper implements WrapperContract
     {
         $databaseName = $this->baseSchema->getDatabaseName();
         $tables = $this->baseSchema->database->select("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='$databaseName'");
+
         return array_map(function ($table) {
             return $table->TABLE_NAME;
         }, $tables);
@@ -60,7 +61,7 @@ class SqlServerWrapper implements WrapperContract
     }
 
     /**
-     * Transform columns
+     * Transform columns.
      * @param $columns
      * @return array
      */
@@ -73,7 +74,7 @@ class SqlServerWrapper implements WrapperContract
                 'Null' => $column->IS_NULLABLE,
                 'Key' => $column->ORDINAL_POSITION,
                 'Default' => $column->COLUMN_DEFAULT,
-                'Char max len' => $column->CHARACTER_MAXIMUM_LENGTH
+                'Char max len' => $column->CHARACTER_MAXIMUM_LENGTH,
             ];
         }, $columns);
     }
