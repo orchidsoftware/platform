@@ -15,19 +15,23 @@ class Menu extends Model
      * @var array
      */
     protected $fillable = [
-        'content',
+        'label',
+        'slug',
+        'robot',
+        'style',
+        'target',
+        'auth',
         'parent',
         'sort',
-        'menu',
-        'depth',
+        'type',
     ];
+
 
     /**
      * @var array
      */
     protected $casts = [
         'type' => 'string',
-        'content' => 'array',
     ];
 
     /**

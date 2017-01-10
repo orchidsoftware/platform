@@ -43,11 +43,12 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'uses' => 'DatabaseController@index',
     ]);
 
-    Route::get('/wmenuindex', ['as' => 'wmenuindex', 'uses' => 'MenuController@index']);
-    Route::post('/addcustommenu', ['as' => 'addcustommenu', 'uses' => 'WmenuController@addcustommenu']);
-    Route::post('/deleteitemmenu', ['as' => 'deleteitemmenu', 'uses' => 'WmenuController@deleteitemmenu']);
-    Route::post('/deletemenug', ['as' => 'deletemenug', 'uses' => 'WmenuController@deletemenug']);
-    Route::post('/createnewmenu', ['as' => 'createnewmenu', 'uses' => 'WmenuController@createnewmenu']);
-    Route::post('/generatemenucontrol', ['as' => 'generatemenucontrol', 'uses' => 'WmenuController@generatemenucontrol']);
-    Route::post('/updateitem', ['as' => 'updateitem', 'uses' => 'WmenuController@updateitem']);
+
+    Route::resource('menu', 'MenuController', ['names' => [
+        'index' => 'dashboard.tools.menu',
+        'show' => 'dashboard.tools.show',
+        'update' => 'dashboard.tools.menu.update',
+    ]]);
+
+
 });

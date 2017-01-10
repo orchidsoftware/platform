@@ -12,11 +12,16 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->increments('id');
-            $table->json('content');
+            $table->string('label');
+            $table->string('slug');
+            $table->string('robot')->nullable();
+            $table->string('style')->nullable();
+            $table->string('target')->nullable();
+            $table->boolean('auth')->default(false);
+            $table->string('lang');
             $table->integer('parent');
             $table->integer('sort');
             $table->string('type');
-            $table->integer('depth');
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@ class TestType extends Type
      */
     public $slugFields = 'name';
 
+
     /**
      * Rules Validation.
      * @return array
