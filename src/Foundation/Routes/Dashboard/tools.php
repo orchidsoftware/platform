@@ -43,12 +43,9 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'uses' => 'DatabaseController@index',
     ]);
 
-
     Route::resource('menu', 'MenuController', ['names' => [
         'index' => 'dashboard.tools.menu',
         'show' => 'dashboard.tools.show',
         'update' => 'dashboard.tools.menu.update',
     ]]);
-
-
 });

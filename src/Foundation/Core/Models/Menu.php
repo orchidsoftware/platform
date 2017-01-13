@@ -26,7 +26,6 @@ class Menu extends Model
         'type',
     ];
 
-
     /**
      * @var array
      */
