@@ -2,7 +2,7 @@
 
 namespace Orchid\Schema\Wrapper;
 
-use Orchid\Schema\Helper;
+use Orchid\Schema\Helpers;
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
@@ -11,7 +11,7 @@ use Orchid\Schema\WrapperContract;
  */
 class MysqlWrapper implements WrapperContract
 {
-    use Helper;
+    use Helpers;
 
     /**
      * @var BaseSchema

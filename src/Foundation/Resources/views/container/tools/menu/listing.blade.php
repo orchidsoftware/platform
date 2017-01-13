@@ -28,19 +28,19 @@
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                                     <th>Имя</th>
-                                    <th>{{trans('dashboard::common.Last edit')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($sections as $section)
+
+                                {{dd($menu)}}
+                                @foreach ($menu as $key => $value)
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route('dashboard.tools.section.edit',$section->slug) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{ $section->getTree(' > ') }}</td>
+                                        <td>{{ $value }}</td>
 
-                                        <td>{{ $section->updated_at}}</td>
                                     </tr>
 
                                 @endforeach
