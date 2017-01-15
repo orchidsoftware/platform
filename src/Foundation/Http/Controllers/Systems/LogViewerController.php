@@ -44,11 +44,28 @@ class LogViewerController extends Controller
      */
 
     /**
+     * List all logs.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $stats = $this->logViewer->statsTable();
+        $headers = $stats->header();
+        $rows = $this->paginate($stats->rows(), $request);
+
+        return view('dashboard::container.systems.logs.logs', compact('headers', 'rows', 'footer'));
+    }
+
+
+    /**
      * Show the dashboard.
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function dashboard()
     {
         $stats = $this->logViewer->statsTable();
         $chartData = $this->prepareChartData($stats);
@@ -104,21 +121,7 @@ class LogViewerController extends Controller
         return $percents;
     }
 
-    /**
-     * List all logs.
-     *
-     * @param  \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\View\View
-     */
-    public function listLogs(Request $request)
-    {
-        $stats = $this->logViewer->statsTable();
-        $headers = $stats->header();
-        $rows = $this->paginate($stats->rows(), $request);
 
-        return view('dashboard::container.systems.logs.logs', compact('headers', 'rows', 'footer'));
-    }
 
     /**
      * Paginate logs.
@@ -225,7 +228,7 @@ class LogViewerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         if (! $request->ajax()) {
             abort(405, 'Method Not Allowed');

@@ -24,11 +24,11 @@
                             @foreach($headers as $key => $header)
                                 <th class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                     @if ($key == 'date')
-                                        <span class="label label-info">{{ $header }}</span>
+                                        <p class="text-dark text-center m-n">{{ $header }}</p>
                                     @else
-                                        <span class="level level-{{ $key }}">
+                                        <span class="text-dark level level-{{ $key }}">
 
-                                <i class="{!! log_styler()->icon($key) . ' ' . $header !!}"> </i>
+                                <i class="{!! log_styler()->icon($key) !!}" title="{{$header}}"></i>
                             </span>
                                     @endif
                                 </th>
@@ -42,11 +42,11 @@
                                     @foreach($row as $key => $value)
                                         <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                             @if ($key == 'date')
-                                                <span class="label label-primary">{{ $value }}</span>
+                                                <p class="font-thin text-center m-n">{{ $value }}</p>
                                             @elseif ($value == 0)
                                                 <span class="level level-empty">{{ $value }}</span>
                                             @else
-                                                <a href="{{-- route('log-viewer::logs.filter', [$date, $key]) --}}">
+                                                <a href="{{ route('dashboard.systems.logs.show', [$date, $key])}}">
                                                     <span class="level level-{{ $key }}">{{ $value }}</span>
                                                 </a>
                                             @endif

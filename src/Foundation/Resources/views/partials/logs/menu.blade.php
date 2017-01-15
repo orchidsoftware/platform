@@ -7,7 +7,7 @@
                     <span class="badge">
                         {{ $item['count'] }}
                     </span>
-                {!! $item['icon'] !!} {{ $item['name'] }}
+                <i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}
             </a>
         @else
             <a href="{{ $item['url'] }}" class="list-group-item {{ $level }}">
@@ -15,7 +15,7 @@
                         {{ $item['count'] }}
                     </span>
                 <span class="level level-{{ $level }}">
-                        {!! $item['icon'] !!} {{ $item['name'] }}
+                         <i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}
                     </span>
             </a>
         @endif

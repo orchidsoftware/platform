@@ -102,7 +102,7 @@ class MenuServiceProvider extends ServiceProvider
         $errorMenu = [
             'slug' => 'logs',
             'icon' => 'fa fa-bug',
-            'route' => route('dashboard.index'),
+            'route' => route('dashboard.systems.logs.index'),
             'label' => trans('dashboard::menu.Logs'),
             'groupname' => trans('dashboard::menu.Errors'),
             'childs' => false,
@@ -140,7 +140,7 @@ class MenuServiceProvider extends ServiceProvider
         $menuMenu = [
             'slug' => 'menu',
             'icon' => 'icon-menu',
-            'route' => route('dashboard.index'),
+            'route' => route('dashboard.tools.menu.index'),
             'label' => trans('dashboard::menu.Menu'),
             'groupname' => trans('dashboard::menu.Posts Managements'),
             'childs' => false,

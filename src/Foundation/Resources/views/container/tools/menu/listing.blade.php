@@ -32,11 +32,10 @@
                                 </thead>
                                 <tbody>
 
-                                {{dd($menu)}}
                                 @foreach ($menu as $key => $value)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('dashboard.tools.section.edit',$section->slug) }}"><i
+                                            <a href="{{ route('dashboard.tools.menu.show',$key) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
                                         <td>{{ $value }}</td>

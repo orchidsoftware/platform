@@ -44,8 +44,8 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
     ]);
 
     Route::resource('menu', 'MenuController', ['names' => [
-        'index' => 'dashboard.tools.menu',
-        'show' => 'dashboard.tools.show',
+        'index' => 'dashboard.tools.menu.index',
+        'show' => 'dashboard.tools.menu.show',
         'update' => 'dashboard.tools.menu.update',
     ]]);
 });

@@ -45,12 +45,23 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
 
+
+    /*
+     * Logs Dashboard
     Route::get('/test1', [
         'as' => 'log-viewer::dashboard',
         'uses' => 'LogViewerController@index',
     ]);
+    */
+    Route::resource('logs', 'LogViewerController', ['names' => [
+        'index' => 'dashboard.systems.logs.index',
+        'show' => 'dashboard.systems.logs.show',
+        'download' => 'dashboard.systems.logs.show',
+        'destroy' => 'dashboard.systems.logs.destroy',
+    ]]);
 
-    Route::get('/test2', [
+
+    Route::get('/logs2', [
         'as' => 'log-viewer::logs.list',
         'uses' => 'LogViewerController@listLogs',
     ]);

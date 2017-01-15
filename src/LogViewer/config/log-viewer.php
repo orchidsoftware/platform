@@ -70,7 +70,7 @@ return [
      | ------------------------------------------------------------------------------------------------
      */
     'menu' => [
-        'filter-route' => 'log-viewer::logs.filter',
+        'filter-route' => 'dashboard.partials.logs.menu',
 
         'icons-enabled' => true,
     ],

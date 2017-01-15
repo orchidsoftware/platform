@@ -2,16 +2,28 @@
 
 
 @section('title','Журнал ошибок')
-@section('description','Журнал не системных вызовов')
+@section('description', $log->date )
 
 
 
 
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
-        <div class="btn-group" role="group">
-            <a href="#" class="btn btn-link"><i class="ion-ios-plus-outline fa fa-2x"></i></a>
-        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i class="ion-ios-download-outline fa fa-2x"></i></a>
+            </li>
+
+            <li>
+                <a href="#delete-log-modal" class="btn btn-link " data-toggle="modal">
+                    <i class="ion-ios-trash-outline fa fa-2x"></i>
+                </a>
+            </li>
+
+        </ul>
+
     </div>
 @stop
 
@@ -27,27 +39,12 @@
 
             <div class="panel">
 
-                <h1 class="page-header">Log [{{ $log->date }}]</h1>
-
-                <div class="row">
+                <div class="row wrapper">
                     <div class="col-md-2">
                         @include('dashboard::partials.logs.menu')
                     </div>
                     <div class="col-md-10">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Log info :
-
-                                <div class="group-btns pull-right">
-                                    <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}"
-                                       class="btn btn-xs btn-success">
-                                        <i class="fa fa-download"></i> DOWNLOAD
-                                    </a>
-                                    <a href="#delete-log-modal" class="btn btn-xs btn-danger" data-toggle="modal">
-                                        <i class="fa fa-trash-o"></i> DELETE
-                                    </a>
-                                </div>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table table-condensed">
                                     <thead>
@@ -95,31 +92,28 @@
                                 <table id="entries" class="table table-condensed">
                                     <thead>
                                     <tr>
-                                        <th>ENV</th>
-                                        <th style="width: 120px;">Level</th>
-                                        <th style="width: 65px;">Time</th>
+                                        <th width="10%">ENV</th>
+                                        <th width="10%">Time</th>
                                         <th>Header</th>
-                                        <th class="text-right">Actions</th>
+                                        <th width="10%" class="text-right">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($entries as $key => $entry)
                                         <tr>
                                             <td>
-                                                <span class="label label-env">{{ $entry->env }}</span>
+                                                <span class="label label-env text-dark">
+                                                      <i class="{{$entry->level()}}"></i>
+                                                    {{ $entry->env }}</span>
                                             </td>
-                                            <td>
-                                        <span class="level level-{{ $entry->level }}">
-                                            {!! $entry->level() !!}
-                                        </span>
-                                            </td>
+
                                             <td>
                                         <span class="label label-default">
                                             {{ $entry->datetime->format('H:i:s') }}
                                         </span>
                                             </td>
                                             <td>
-                                                <p>{{ $entry->header }}</p>
+                                                <p class="">{{ $entry->header }}</p>
                                             </td>
                                             <td class="text-right">
                                                 @if ($entry->hasStack())
@@ -133,7 +127,7 @@
                                         </tr>
                                         @if ($entry->hasStack())
                                             <tr>
-                                                <td colspan="5" class="stack">
+                                                <td colspan="4" class="stack">
                                                     <div class="stack-content collapse" id="log-stack-{{ $key }}">
                                                         {!! $entry->stack() !!}
                                                     </div>
