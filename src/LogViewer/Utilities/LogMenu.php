@@ -98,9 +98,7 @@ class LogMenu implements LogMenuContract
     public function make(Log $log, $trans = true)
     {
         $items = [];
-        $route = 'dashboard.systems.logs.show';//$this->config('menu.filter-route');
-
-
+        $route = 'dashboard.systems.logs.show'; //$this->config('menu.filter-route');
 
         foreach ($log->tree($trans) as $level => $item) {
             $items[$level] = array_merge($item, [

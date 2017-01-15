@@ -59,7 +59,6 @@ class LogViewerController extends Controller
         return view('dashboard::container.systems.logs.logs', compact('headers', 'rows', 'footer'));
     }
 
-
     /**
      * Show the dashboard.
      *
@@ -120,8 +119,6 @@ class LogViewerController extends Controller
 
         return $percents;
     }
-
-
 
     /**
      * Paginate logs.
