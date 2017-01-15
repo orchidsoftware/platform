@@ -45,7 +45,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
 
-
     /*
      * Logs Dashboard
     Route::get('/test1', [
@@ -59,7 +58,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'download' => 'dashboard.systems.logs.show',
         'destroy' => 'dashboard.systems.logs.destroy',
     ]]);
-
 
     Route::get('/logs2', [
         'as' => 'log-viewer::logs.list',
