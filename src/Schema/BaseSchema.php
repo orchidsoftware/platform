@@ -4,6 +4,7 @@ namespace Orchid\Schema;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class BaseSchema.
@@ -87,16 +88,19 @@ abstract class BaseSchema
      * @param string $order
      * @return mixed
      */
-    public function getPaginatedData($tableName, $page = 1, $limit = 10, $orderAttribute = null, $order = 'ASC')
+    public function getPaginatedData($tableName, $page = 1, $limit = 15, $orderAttribute = null, $order = 'DESC')
     {
         Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
         $data = $this->database->table($tableName);
         if (null === $orderAttribute) {
-            return $data->paginate($limit)->toArray();
+            return $data->paginate($limit);
         }
 
-        return $data->orderBy($orderAttribute, $order)->paginate($limit)->toArray();
+        return $data->orderBy($orderAttribute, $order)->paginate($limit);
     }
+
+
+
 }

@@ -32,4 +32,5 @@ return [
     'Logs'                       => 'Журнал',
     'General settings'           => 'Общие настройки',
     'Backups' => 'Резервные копии',
+    'Schema' => 'Схема'
 ];

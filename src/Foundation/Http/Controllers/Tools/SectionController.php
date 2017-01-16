@@ -27,14 +27,23 @@ class SectionController extends Controller
      */
     public function create()
     {
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.tools.section.store')
+            ->method('POST')
+            ->render();
     }
 
+    /**
+     * @return mixed
+     */
     public function index()
     {
         return $this->form->grid();
     }
 
+    /**
+     * @return mixed
+     */
     public function get()
     {
         return $this->form->render();
@@ -46,9 +55,12 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        $this->form->storage->put('model', $section);
+        //$this->form->storage->put('model', $section);
 
-        return $this->form->render();
+        return $this->form
+            ->route('dashboard.tools.section.update')
+            ->method('PUT')
+            ->render($section);
     }
 
     /**

@@ -35,21 +35,111 @@
 @section('content')
 
 
-    <div id="menu-vue" class="wrapper-md">
+    <div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
+
+
+
+
+        <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
+            <div class="nav-tabs-alt">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li class="">
+                        <a data-target="#tab-1" role="tab" data-toggle="tab" aria-expanded="false">
+                            <i class="icon-note text-md text-muted wrapper-sm"></i>
+                            Pages
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a data-target="#tab-3" role="tab" data-toggle="tab" aria-expanded="true">
+                            <i class="icon-wrench text-md text-muted wrapper-sm"></i>
+                            Custom
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="tab-1">
+                    <div class="wrapper-md">
+                        <div class="text-center">
+                            <a href="" class="btn btn-sm btn-primary padder-md m-b">Кнопка добавить</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane tab-3 active" id="tab-3">
+                    <div class="wrapper-md">
+
+
+                    <div class="form">
+                        <div class="form-group">
+                            <label>Название</label>
+                            <input type="text" class="form-control" v-model="label" placeholder="О нас">
+                        </div>
+                        <div class="form-group">
+                            <label>Slug</label>
+                            <input type="text" class="form-control" v-model="slug" placeholder="/about">
+                        </div>
+                        <div class="form-group">
+                            <label>Разрешить поисковым роботам переход</label>
+
+                            <select class="form-control" v-model="robot">
+                                <option value="follow" selected>follow</option>
+                                <option value="nofollow">nofollow</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Класс</label>
+                            <input type="text" class="form-control" v-model="style" placeholder="/about">
+                        </div>
+                        <div class="form-group">
+                            <label>Link Target</label>
+                            <select class="form-control" v-model="target">
+                                <option value="_self" selected>Отобразить в текущее окно</option>
+                                <option value="_blank">Отобразить в новом окне</option>
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                        <div class="text-center">
+
+
+                            <div class="btn-group btn-group-sm  btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                <button v-if="exist()" type="button" v-on:click="remove()" class="btn btn-sm btn-danger padder-md m-b text-ellipsis" data-dismiss="modal">Удалить
+                                    элемент
+                                </button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                <button v-if="exist()" type="button" v-on:click="clear()" class="btn btn-sm btn-default padder-md m-b text-ellipsis" data-dismiss="modal">Сбросить
+                                </button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                <button type="button" v-on:click="add()" class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Сохранить изменения</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    <div class="col">
+    <div class="wrapper-md">
 
 
         <div class="row">
-            <div class="col-sm-4">
-
-                <div class="wrapper b-b bg">
-                    <button class="btn btn-sm btn-default pull-right visible-sm visible-xs"><i class="fa fa-bars"></i>
-                    </button>
-                    <a class="btn btn-sm btn-danger font-bold" v-on:click="create()">Универсальный элемент</a>
-                </div>
-
-
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="dd">
                     <ol class="dd-list">
 
@@ -57,7 +147,7 @@
                         <li class="dd-item dd3-item" data-id="13" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
                             <div class="dd-handle dd3-handle">Drag</div>
                             <div class="dd3-content">Элемент 13</div>
-                            <div class="edit"><i class="fa fa-user"></i></div>
+                            <div class="edit"></div>
                         </li>
                         <li class="dd-item dd3-item" data-id="14" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
                             <div class="dd-handle dd3-handle">Drag</div>
@@ -89,115 +179,16 @@
         </div>
 
 
-        <div class="modal fade" id="menuEdit" tabindex="-1" role="dialog">
-            <form class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" v-html="label"></h4>
-                    </div>
-                    <div class="modal-body">
 
-
-                        <div class="form-group">
-                            <label>Название</label>
-                            <input type="text" class="form-control" v-model="label" placeholder="О нас">
-                        </div>
-                        <div class="form-group">
-                            <label>Slug</label>
-                            <input type="text" class="form-control" v-model="slug" placeholder="/about">
-                        </div>
-                        <div class="form-group">
-                            <label>Разрешить поисковым роботам переход</label>
-
-                            <select class="form-control" v-model="robot">
-                                <option value="follow" selected>follow</option>
-                                <option value="nofollow">nofollow</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Класс</label>
-                            <input type="text" class="form-control" v-model="style" placeholder="/about">
-                        </div>
-                        <div class="form-group">
-                            <label>Link Target</label>
-                            <select class="form-control" v-model="target">
-                                <option value="_self" selected>Загружает страницу в текущее окно.</option>
-                                <option value="_blank">Загружает страницу в новое окно браузера.</option>
-                            </select>
-
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" v-on:click="remove()" class="btn btn-default" data-dismiss="modal">Удалить
-                            элемент
-                        </button>
-                        <button type="button" v-on:click="save()" class="btn btn-primary">Сохранить изменения</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-
-        <div class="modal fade" id="menuCreate" tabindex="-1" role="dialog">
-            <form class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" v-html="label"></h4>
-                    </div>
-                    <div class="modal-body">
-
-
-                        <div class="form-group">
-                            <label>Название</label>
-                            <input type="text" class="form-control" v-model="label" placeholder="О нас">
-                        </div>
-                        <div class="form-group">
-                            <label>Slug</label>
-                            <input type="text" class="form-control" v-model="slug" placeholder="/about">
-                        </div>
-                        <div class="form-group">
-                            <label>Разрешить поисковым роботам переход</label>
-
-                            <select class="form-control" v-model="robot">
-                                <option value="follow" selected>follow</option>
-                                <option value="nofollow">nofollow</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Класс</label>
-                            <input type="text" class="form-control" v-model="style" placeholder="/about">
-                        </div>
-                        <div class="form-group">
-                            <label>Link Target</label>
-                            <select class="form-control" v-model="target">
-                                <option value="_self" selected>Загружает страницу в текущее окно.</option>
-                                <option value="_blank">Загружает страницу в новое окно браузера.</option>
-                            </select>
-
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" v-on:click="add()" class="btn btn-primary">Сохранить изменения</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-
+    </div>
     </div>
 
 
 
 
 
+
+</div>
 
 
 
@@ -225,13 +216,10 @@
                         this.style = object.style;
                         this.target = object.target;
                     },
-                    create: function () {
-                        $('#menuCreate').modal('show');
-                    },
                     add: function () {
                         $(".dd > .dd-list").append("<li class='dd-item dd3-item' data-id='" + this.count + "'> " +
                             "<div class='dd-handle dd3-handle'>Drag</div><div class='dd3-content'>" + this.label + "</div> " +
-                            "<div class='edit'><i class='fa fa-user'></i></div>" +
+                            "<div class='edit'></div>" +
                             "</li>");
 
 
@@ -245,13 +233,11 @@
 
                         this.count--;
                         this.clear();
-                        $('#menuCreate').modal('hide');
                     },
                     edit: function (element) {
                         var data = $(element).parent().data();
                         data.label = $(element).prev().text();
 
-                        $('#menuEdit').modal('show');
 
                         this.load(data);
                     },
@@ -283,12 +269,20 @@
                         this.robot = '';
                         this.style = '';
                         this.target = '';
+                        this.id = '';
                     },
                     send: function () {
                         //Отправка данных
                         this.$http.update('/dashboard/tools/menu').then(function () {
 
                         });
+                    },
+                    exist: function(){
+
+                        if( Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0){
+                            return true;
+                        }
+                        return false;
                     }
 
                 }

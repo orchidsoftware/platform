@@ -32,14 +32,14 @@ class SectionMainForm extends Form
         ];
     }
 
+
     /**
-     * @param null $storage
-     * @param null $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Section|null $section
+     * @return mixed
      */
-    public function get($storage = null, $id = null)
+    public function get(Section $section = null)
     {
-        $section = $storage->get('model') ?: new $this->model;
+        $section = $section ?: new $this->model;
 
         $sections = $this->model->where('id', '!=', $section->id)->get();
         $language = App::getLocale();

@@ -24,7 +24,7 @@
                             @foreach($headers as $key => $header)
                                 <th class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                     @if ($key == 'date')
-                                        <p class="text-dark text-center m-n">{{ $header }}</p>
+                                        <span class="text-dark m-n">{{ $header }}</span>
                                     @else
                                         <span class="text-dark level level-{{ $key }}">
 
@@ -42,7 +42,7 @@
                                     @foreach($row as $key => $value)
                                         <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                             @if ($key == 'date')
-                                                <p class="font-thin text-center m-n">{{ $value }}</p>
+                                                <span class="font-thin m-n">{{ $value }}</span>
                                             @elseif ($value == 0)
                                                 <span class="level level-empty">{{ $value }}</span>
                                             @else
