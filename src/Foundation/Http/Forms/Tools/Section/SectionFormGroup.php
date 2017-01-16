@@ -13,7 +13,6 @@ class SectionFormGroup extends FormGroup
      */
     public $event = SectionEvent::class;
 
-
     /**
      * Description Attributes for group.
      * @return array

@@ -28,8 +28,4 @@ trait Helpers
     {
         return str_contains($namespaceModel, '\\');
     }
-
-
-
-
 }
