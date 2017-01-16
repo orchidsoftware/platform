@@ -109,17 +109,14 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => false,
         ];
 
-
         $schemaMenu = [
-            'slug' => 'schema', 
+            'slug' => 'schema',
             'icon' => 'fa fa-database',
             'route' => route('dashboard.systems.schema.index'),
             'label' => trans('dashboard::menu.Schema'),
             'childs' => false,
             'divider' => true,
         ];
-
-
 
         $seoMenu = [
             'slug' => 'static-pages',
@@ -206,8 +203,6 @@ class MenuServiceProvider extends ServiceProvider
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
-
-
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);

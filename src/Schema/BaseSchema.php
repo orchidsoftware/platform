@@ -4,7 +4,6 @@ namespace Orchid\Schema;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class BaseSchema.
@@ -100,7 +99,4 @@ abstract class BaseSchema
 
         return $data->orderBy($orderAttribute, $order)->paginate($limit);
     }
-
-
-
 }
