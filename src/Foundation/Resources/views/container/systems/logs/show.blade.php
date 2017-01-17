@@ -39,7 +39,55 @@
 
 
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
-            @include('dashboard::partials.logs.menu')
+
+            <div class="panel-heading"><i class="fa fa-fw fa-flag"></i> Levels</div>
+            <ul class="list-group">
+                @foreach($log->menu() as $level => $item) {{-- $log->menu()  --}}
+                @if ($item['count'] === 0)
+                    <a href="#" class="list-group-item disabled">
+                <span class="badge">
+                    {{ $item['count'] }}
+                </span>
+                        <i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}
+                    </a>
+                @else
+                    <a href="{{ $item['url'] }}" class="list-group-item {{ $level }}">
+                <span class="badge level-{{ $level }}">
+                    {{ $item['count'] }}
+                </span>
+                        <span class="level level-{{ $level }}">
+                     <i class="{{ $item['icon'] }}"></i> {{ $item['name'] }}
+                </span>
+                    </a>
+                @endif
+                @endforeach
+            </ul>
+
+
+
+
+
+            <ul class="list-group">
+
+                <li class="list-group-item">
+                    <small>File path : {{ $log->getPath() }}</small>
+                </li>
+                <li class="list-group-item">
+                    <small>Log entries : {{ $entries->total() }}</small>
+                </li>
+                <li class="list-group-item">
+                    <small>Size : {{ $log->size() }}</small>
+                </li>
+                <li class="list-group-item">
+                    <small>Created at : {{ $log->createdAt() }}</small>
+                </li>
+                <li class="list-group-item">
+                    <small>Updated at : {{ $log->updatedAt() }}</small>
+                </li>
+            </ul>
+
+
+
         </div>
 
 
@@ -57,40 +105,9 @@
 
                         <div class="row wrapper">
 
-                                <div class="panel panel-default">
-                                    <div class="table-responsive">
-                                        <table class="table table-condensed">
-                                            <thead>
-                                            <tr>
-                                                <td>File path :</td>
-                                                <td colspan="5">{{ $log->getPath() }}</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Log entries :</td>
-                                                <td>
-                                                    <span class="label label-primary">{{ $entries->total() }}</span>
-                                                </td>
-                                                <td>Size :</td>
-                                                <td>
-                                                    <span class="label label-primary">{{ $log->size() }}</span>
-                                                </td>
-                                                <td>Created at :</td>
-                                                <td>
-                                                    <span class="label label-primary">{{ $log->createdAt() }}</span>
-                                                </td>
-                                                <td>Updated at :</td>
-                                                <td>
-                                                    <span class="label label-primary">{{ $log->updatedAt() }}</span>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
 
-                                <div class="panel panel-default">
+
+                                <div class="panel ">
 
                                     <div class="table-responsive">
                                         <table id="entries" class="table table-condensed">
@@ -140,13 +157,17 @@
                                     </div>
 
                                     @if ($entries->hasPages())
-                                        <div class="panel-footer">
-                                            {!! $entries->render() !!}
-
-                                            <span class="label label-info pull-right">
-                            Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
-                        </span>
-                                        </div>
+                                        <footer class="panel-footer">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$entries->total()}}
+                                                        -{{$entries->perPage()}} {{trans('dashboard::common.of')}} {!! $entries->count() !!} {{trans('dashboard::common.elements')}}</small>
+                                                </div>
+                                                <div class="col-sm-4 text-right text-center-xs">
+                                                    {!! $entries->render() !!}
+                                                </div>
+                                            </div>
+                                        </footer>
                                     @endif
                                 </div>
                             </div>

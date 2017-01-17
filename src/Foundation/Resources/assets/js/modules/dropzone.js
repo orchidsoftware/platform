@@ -1,4 +1,5 @@
 
+/*
 $("#dropzone").dropzone({
     paramName: "file",
     maxFilesize: 2,
@@ -59,9 +60,11 @@ $("#dropzone").dropzone({
 
 
         // On removing file
+/*
         self.on("removedfile", function (file) {
             console.log(file);
         });
 
     }
 });
+*/

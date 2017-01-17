@@ -38,7 +38,7 @@
 
 
             <!-- column -->
-            <div class="col w lter b-r">
+            <div class="col lter b-r">
                 <div class="vbox">
 
                     <div class="nav-tabs-alt">
@@ -57,7 +57,7 @@
                                 <div class="tab-content">
                                     @foreach($locales as $code => $lang)
                                         <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                            <div class="wrapper-md bg-white">
+                                            <div class="wrapper-xl bg-white">
                                                 {!! $type->generateForm($code) !!}
                                             </div>
                                         </div>
@@ -75,10 +75,10 @@
 
 
             <!-- column -->
-                <div class="col w lter b-r">
+                <div class="col w-xxl lter b-r">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
-                            <ul class="nav nav-tabs nav-justified">
+                            <ul class="nav nav-tabs">
                                 @foreach($type->render() as $name => $view)
                                     <li @if ($loop->first) class="active" @endif>
                                         <a data-target="#module-{{$loop->iteration}}" role="tab" data-toggle="tab"

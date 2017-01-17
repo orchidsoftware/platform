@@ -55,7 +55,7 @@ class FileController extends Controller
         $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
         Image::make($image)->save($full_path, 100);
 
-        File::create([
+        return File::create([
             'name' => $name,
             'original_name' => $image->getClientOriginalName(),
             'mime' => $image->getMimeType(),
