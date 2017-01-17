@@ -32,7 +32,6 @@ class SectionMainForm extends Form
         ];
     }
 
-
     /**
      * @param Section|null $section
      * @return mixed

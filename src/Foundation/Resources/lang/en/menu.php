@@ -31,5 +31,5 @@ return [
     'Logs'                       => 'Logs',
     'General settings'           => 'General settings',
     'Backups' => 'Backups',
-    'Schema' => 'Schema'
+    'Schema' => 'Schema',
 ];

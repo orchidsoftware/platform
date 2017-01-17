@@ -45,13 +45,10 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.backup.destroy',
     ]]);
 
-
     Route::resource('schema', 'SchemaController', ['names' => [
         'index' => 'dashboard.systems.schema.index',
         'show' => 'dashboard.systems.schema.show',
     ]]);
-
-
 
     /*
      * Logs Dashboard

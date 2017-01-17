@@ -74,12 +74,11 @@ class MysqlWrapper implements WrapperContract
             return [
                 'Field' => $column->Field,
                 'Type' => $column->Type,
-                'Null' => $column->Null,
+                'Null' => $column->null,
                 'Key' => $column->Key,
                 'Default' => $column->Default,
                 'Extra' => $column->Extra,
             ];
         }, $columns);
     }
-
 }
