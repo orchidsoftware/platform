@@ -71,7 +71,6 @@ class MysqlWrapper implements WrapperContract
     private function transformColumns($columns)
     {
         return array_map(function ($column) {
-
             return get_object_vars($column);
             /*
             return [
@@ -83,7 +82,6 @@ class MysqlWrapper implements WrapperContract
                 'Extra' => $column->Extra,
             ];
             */
-
         }, $columns);
     }
 }
