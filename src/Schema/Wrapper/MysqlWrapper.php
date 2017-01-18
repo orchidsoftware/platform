@@ -71,14 +71,19 @@ class MysqlWrapper implements WrapperContract
     private function transformColumns($columns)
     {
         return array_map(function ($column) {
+
+            return get_object_vars($column);
+            /*
             return [
                 'Field' => $column->Field,
                 'Type' => $column->Type,
-                'Null' => $column->null,
+                'Null' => $column->Null,
                 'Key' => $column->Key,
                 'Default' => $column->Default,
                 'Extra' => $column->Extra,
             ];
+            */
+
         }, $columns);
     }
 }
