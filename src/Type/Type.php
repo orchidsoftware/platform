@@ -2,6 +2,7 @@
 
 namespace Orchid\Type;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Core\Models\Post;
@@ -223,9 +224,16 @@ abstract class Type implements TypeInterface
         $search = request('search');
 
         if (is_null($search)) {
-            $data = $model->where('type', $this->slug)->orderBy('id', 'Desc')->paginate();
+            $data = $model->where('type', $this->slug)
+                ->whereNotNull('content->'.App::getLocale())
+                ->orderBy('id', 'Desc')
+                ->paginate();
         } else {
-            $data = $model->search($search)->where('type', $this->slug)->orderBy('id', 'Desc')->paginate();
+            $data = $model->search($search)
+                ->where('type', $this->slug)
+                ->whereNotNull('content->'.App::getLocale())
+                ->orderBy('id', 'Desc')
+                ->paginate();
         }
 
         return [

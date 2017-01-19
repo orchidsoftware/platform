@@ -1,7 +1,15 @@
 <div class="wrapper-md">
 
     <div class="form-group">
-        <p>Время публикации</p>
+        <label>ЧПУ</label>
+        <input type='text' class="form-control"
+                   value="{{$post->slug or ''}}"
+                   placeholder="Уникальное название" name="slug">
+    </div>
+
+
+    <div class="form-group">
+        <label>Время публикации</label>
         <div class='input-group date datetimepicker'>
             <input type='text' class="form-control"
                    value="{{$post->publish or ''}}"

@@ -1,3 +1,6 @@
+/**
+ * Reload GoogleMaps Tabs
+ */
 if (document.getElementsByName('route-app')) {
     var postApp = null;
     document.addEventListener('DOMContentLoaded', function () {
@@ -12,3 +15,13 @@ if (document.getElementsByName('route-app')) {
         });
     });
 }
+
+
+/**
+ * Remove Language
+ */
+$('.close-lang-content').click(function () {
+    var local = $(this).data('local');
+    $('#post a[data-target="#local-'+local+'"]').parent().remove();
+    $('#post #local-'+local).remove();
+});

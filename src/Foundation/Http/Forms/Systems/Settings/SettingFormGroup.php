@@ -25,7 +25,7 @@ class SettingFormGroup extends FormGroup
     {
         return [
             'name' => 'Настройки',
-            'description' => 'Глобавльные настройки системы',
+            'description' => 'Глобальные настройки системы',
         ];
     }
 }

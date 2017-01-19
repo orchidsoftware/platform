@@ -2,17 +2,9 @@
 
 namespace Orchid\Widget\Service;
 
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Config;
 
-class Widget implements WidgetContractInterface
+abstract class Widget implements WidgetContractInterface
 {
-    /**
-     * Cache minutes.
-     *
-     * @var int
-     */
-    public $cache = 0;
 
     /**
      * @param $key
@@ -24,19 +16,12 @@ class Widget implements WidgetContractInterface
         $class = config('widget.widgets.'.$key);
         $widget = new $class();
 
-        if ($widget->cache) {
-            return Cache::remember('widgets-'.$key, $widget->cache, function (Widget $widget) {
-                return $widget->run();
-            });
-        } else {
-            return $widget->run();
-        }
+
+        return $widget->run();
     }
 
     /**
      * Soother.
      */
-    public function run()
-    {
-    }
+    abstract public function run();
 }

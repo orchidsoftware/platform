@@ -46,7 +46,17 @@
                             @foreach($locales as $code => $lang)
                                 <li @if ($loop->first) class="active" @endif>
                                     <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
-                                       aria-expanded="true">{{$lang['native']}}</a>
+                                       aria-expanded="true">{{$lang['native']}}
+
+                                        @if($code != App::getLocale())
+                                            <button type="button" class="close close-lang-content" data-local="{{$code}}">
+                                                <span class="text-md" aria-hidden="true">&times;</span>
+                                            </button>
+                                        @endif
+
+                                    </a>
+
+
                                 </li>
                             @endforeach
                         </ul>
