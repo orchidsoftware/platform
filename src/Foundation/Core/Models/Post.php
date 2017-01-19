@@ -129,7 +129,9 @@ class Post extends Model
         } catch (\ErrorException $exception) {
             $content = collect($this->content)->first();
 
-            return $content[$field];
+            if(key_exists($field,$content)) {
+                return $content[$field];
+            }
         }
     }
 
