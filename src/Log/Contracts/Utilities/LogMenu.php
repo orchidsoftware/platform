@@ -5,17 +5,9 @@ namespace Orchid\Log\Contracts\Utilities;
 use Orchid\Log\Entities\Log;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 
-/**
- * Interface  LogMenu.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface LogMenu
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the config instance.
@@ -35,10 +27,6 @@ interface LogMenu
      */
     public function setLogStyler(LogStyler $styler);
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Make log menu.

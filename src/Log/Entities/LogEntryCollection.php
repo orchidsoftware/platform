@@ -6,17 +6,10 @@ use Illuminate\Support\Collection;
 use Orchid\Log\Helpers\LogParser;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-/**
- * Class     LogEntryCollection.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class LogEntryCollection extends Collection
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
+
 
     /**
      * Load raw log entries.
@@ -109,10 +102,6 @@ class LogEntryCollection extends Collection
         return $counters;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Init stats counters.

@@ -4,17 +4,9 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Orchid\Log\Contracts\Patternable;
 
-/**
- * Interface  Factory.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface Factory extends Patternable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the filesystem instance.
@@ -64,10 +56,6 @@ interface Factory extends Patternable
      */
     public function logs();
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get all logs (alias).
@@ -170,10 +158,6 @@ interface Factory extends Patternable
      */
     public function statsTable($locale = null);
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Determine if the log folder is empty or not.

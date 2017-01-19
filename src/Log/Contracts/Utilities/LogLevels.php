@@ -4,17 +4,8 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Illuminate\Translation\Translator;
 
-/**
- * Interface  LogLevels.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
 interface LogLevels
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get PSR log levels.
@@ -41,10 +32,6 @@ interface LogLevels
      */
     public function getLocale();
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the selected locale.

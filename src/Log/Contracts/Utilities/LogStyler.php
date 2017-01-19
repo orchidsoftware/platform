@@ -2,17 +2,9 @@
 
 namespace Orchid\Log\Contracts\Utilities;
 
-/**
- * Interface  LogStyler.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface LogStyler
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Make level icon.

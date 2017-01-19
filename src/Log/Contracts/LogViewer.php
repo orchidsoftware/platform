@@ -2,17 +2,9 @@
 
 namespace Orchid\Log\Contracts;
 
-/**
- * Interface  Log.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface Log extends Patternable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the log levels.
@@ -41,10 +33,6 @@ interface Log extends Patternable
      */
     public function setPath($path);
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get all logs.
@@ -167,10 +155,6 @@ interface Log extends Patternable
      */
     public function menu($trans = true);
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Determine if the log folder is empty or not.
@@ -179,15 +163,5 @@ interface Log extends Patternable
      */
     public function isEmpty();
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
-    /**
-     * Get the Log version.
-     *
-     * @return string
-     */
-    public function version();
 }

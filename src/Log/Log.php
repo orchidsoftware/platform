@@ -7,26 +7,9 @@ use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-/**
- * Class     Log.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
 class Log implements LogContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Constants
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-     * Log Version.
-     */
-    const VERSION = '4.1.0';
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
     /**
      * The factory instance.
      *
@@ -48,10 +31,6 @@ class Log implements LogContract
      */
     protected $levels;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Create a new instance.
@@ -70,10 +49,6 @@ class Log implements LogContract
         $this->levels = $levels;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the log levels.
@@ -142,10 +117,6 @@ class Log implements LogContract
         return $this;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get all logs.
@@ -314,11 +285,6 @@ class Log implements LogContract
         return $this->factory->menu($trans);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-
     /**
      * Determine if the log folder is empty or not.
      *
@@ -329,18 +295,5 @@ class Log implements LogContract
         return $this->factory->isEmpty();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
-    /**
-     * Get the Log version.
-     *
-     * @return string
-     */
-    public function version()
-    {
-        return self::VERSION;
-    }
 }

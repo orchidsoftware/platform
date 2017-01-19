@@ -4,11 +4,7 @@ namespace Orchid\Log\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * Class     LogStyler.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class LogStyler extends Facade
 {
     /**

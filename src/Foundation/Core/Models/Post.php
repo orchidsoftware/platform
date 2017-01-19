@@ -126,7 +126,9 @@ class Post extends Model
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;
             }
-        } catch (\Exception $exception) {
+        } catch (\ErrorException $exception) {
+                $content = collect($this->content)->first();
+                return $content[$field];
         }
     }
 

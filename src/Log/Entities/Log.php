@@ -8,35 +8,31 @@ use JsonSerializable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * Class     Log.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- *
- * @todo     Add a stats method
- */
+
 class Log implements Arrayable, Jsonable, JsonSerializable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
+
+    /**
+     * @var string
      */
-    /** @var string */
     public $date;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $path;
 
-    /** @var \Orchid\Log\Entities\LogEntryCollection */
+    /**
+     * @var LogEntryCollection
+     */
     private $entries;
 
-    /** @var SplFileInfo */
+    /**
+     * @var SplFileInfo
+     */
     private $file;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
+
 
     /**
      * Log constructor.
@@ -52,11 +48,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         $this->file = new SplFileInfo($path);
         $this->entries = (new LogEntryCollection)->load($raw);
     }
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Make a log object.
@@ -121,10 +112,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         return Carbon::createFromTimestamp($this->file()->getATime());
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get file info.
@@ -196,10 +183,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         return $this->entries->tree($trans);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Convert Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get log entries menu.
@@ -239,10 +222,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         ];
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Serialize the log object to json data.

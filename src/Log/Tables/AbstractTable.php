@@ -5,34 +5,40 @@ namespace Orchid\Log\Tables;
 use Orchid\Log\Contracts\Table as TableContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
-/**
- * Class     AbstractTable.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 abstract class AbstractTable implements TableContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
+
+    /**
+     * @var \Orchid\Log\Contracts\Utilities\LogLevels
      */
-    /** @var \Orchid\Log\Contracts\Utilities\LogLevels */
     protected $levels;
-    /** @var string|null */
+
+    /**
+     * @var string|null
+     */
     protected $locale;
-    /** @var array */
+
+    /**
+     * @var array
+     */
     private $header = [];
-    /** @var array */
+
+    /**
+     * @var array
+     */
     private $rows = [];
-    /** @var array */
+
+    /**
+     * @var array
+     */
     private $footer = [];
-    /** @var array */
+
+    /**
+     * @var array
+     */
     private $data = [];
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Create a table instance.
@@ -49,10 +55,6 @@ abstract class AbstractTable implements TableContract
         $this->init();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set LogLevels instance.
@@ -137,10 +139,6 @@ abstract class AbstractTable implements TableContract
      */
     abstract protected function prepareFooter(array $data);
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get table header.
@@ -182,10 +180,6 @@ abstract class AbstractTable implements TableContract
         return $this->data;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Translate.

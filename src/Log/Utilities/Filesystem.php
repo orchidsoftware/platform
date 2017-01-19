@@ -6,17 +6,10 @@ use Orchid\Log\Exceptions\FilesystemException;
 use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-/**
- * Class     Filesystem.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class Filesystem implements FilesystemContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * The filesystem instance.
      *
@@ -52,10 +45,6 @@ class Filesystem implements FilesystemContract
      */
     protected $extension;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Filesystem constructor.
@@ -70,10 +59,6 @@ class Filesystem implements FilesystemContract
         $this->setPattern();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the log storage path.
@@ -172,10 +157,6 @@ class Filesystem implements FilesystemContract
         return $this->getFiles('*'.$this->extension);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get all files.
@@ -266,10 +247,6 @@ class Filesystem implements FilesystemContract
         }
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the log file path.

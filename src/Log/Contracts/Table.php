@@ -2,17 +2,9 @@
 
 namespace Orchid\Log\Contracts;
 
-/**
- * Interface  Table.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface Table
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get table header.

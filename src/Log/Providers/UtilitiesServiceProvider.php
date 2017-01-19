@@ -6,17 +6,9 @@ use Orchid\Log\Contracts;
 use Orchid\Log\Utilities;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * Class     UtilitiesServiceProvider.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class UtilitiesServiceProvider extends ServiceProvider
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Register the service provider.
@@ -49,10 +41,6 @@ class UtilitiesServiceProvider extends ServiceProvider
         $this->app->singleton('arcanedev.log-viewer.levels', Contracts\Utilities\LogLevels::class);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  The Log Utilities
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Register the log styler.

@@ -8,17 +8,10 @@ use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-/**
- * Class     Factory.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class Factory implements FactoryContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * The filesystem instance.
      *
@@ -31,10 +24,6 @@ class Factory implements FactoryContract
      */
     private $levels;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Create a new instance.
@@ -50,10 +39,6 @@ class Factory implements FactoryContract
         $this->setLevels($levels);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getter & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the filesystem instance.
@@ -156,10 +141,6 @@ class Factory implements FactoryContract
         return $this->logs();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get all logs.
@@ -298,10 +279,6 @@ class Factory implements FactoryContract
         return $this->logs()->menu($trans);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Determine if the log folder is empty or not.

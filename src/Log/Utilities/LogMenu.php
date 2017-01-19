@@ -7,17 +7,10 @@ use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Contracts\Utilities\LogMenu as LogMenuContract;
 use Orchid\Log\Contracts\Utilities\LogStyler as LogStylerContract;
 
-/**
- * Class     LogMenu.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class LogMenu implements LogMenuContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * The config repository instance.
      *
@@ -32,10 +25,6 @@ class LogMenu implements LogMenuContract
      */
     private $styler;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * LogMenu constructor.
@@ -49,10 +38,6 @@ class LogMenu implements LogMenuContract
         $this->setLogStyler($styler);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the config instance.
@@ -82,10 +67,6 @@ class LogMenu implements LogMenuContract
         return $this;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Make log menu.
@@ -110,10 +91,6 @@ class LogMenu implements LogMenuContract
         return $items;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get config.

@@ -6,37 +6,31 @@ use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\Log\Contracts\Utilities\LogChecker as LogCheckerContract;
 
-/**
- * Class     LogChecker.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- *
- * @todo     Adding the translation or not ??
- */
+
 class LogChecker implements LogCheckerContract
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * Log handler mode.
      *
      * @var string
      */
     protected $handler = '';
+
     /**
      * The config repository instance.
      *
      * @var \Illuminate\Contracts\Config\Repository
      */
     private $config;
+
     /**
      * The filesystem instance.
      *
      * @var \Orchid\Log\Contracts\Utilities\Filesystem
      */
     private $filesystem;
+
     /**
      * The check status.
      *
@@ -58,10 +52,6 @@ class LogChecker implements LogCheckerContract
      */
     private $files;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * LogChecker constructor.
@@ -77,10 +67,6 @@ class LogChecker implements LogCheckerContract
         $this->refresh();
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the config instance.
@@ -131,10 +117,6 @@ class LogChecker implements LogCheckerContract
         return $this;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the log handler mode.
@@ -159,7 +141,7 @@ class LogChecker implements LogCheckerContract
             return;
         }
 
-        $this->messages['handler'] = 'You should set the log handler to `daily` mode. Please check the LogViwer wiki page (Requirements) for more details.';
+        $this->messages['handler'] = 'You should set the log handler to `daily` mode.';
     }
 
     /**
@@ -184,10 +166,6 @@ class LogChecker implements LogCheckerContract
         return $this->handler === $handler;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Check all log files.
@@ -223,10 +201,6 @@ class LogChecker implements LogCheckerContract
         $this->files[$file] = compact('filename', 'status', 'message', 'path');
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Check if it's not a single log file.

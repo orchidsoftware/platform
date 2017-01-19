@@ -4,17 +4,10 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 
-/**
- * Interface  LogChecker.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface LogChecker
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Constants
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * @link http://laravel.com/docs/5.1/errors#configuration
      * @link https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md#log-to-files-and-syslog
@@ -24,10 +17,6 @@ interface LogChecker
     const HANDLER_SYSLOG = 'syslog';
     const HANDLER_ERRORLOG = 'errorlog';
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the config instance.
@@ -46,11 +35,6 @@ interface LogChecker
      * @return self
      */
     public function setFilesystem(Filesystem $filesystem);
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get messages.

@@ -5,17 +5,9 @@ namespace Orchid\Log;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Log\Providers\UtilitiesServiceProvider;
 
-/**
- * Class     LogServiceProvider.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
 class LogServiceProvider extends ServiceProvider
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
-     */
+
     /**
      * Package name.
      *
@@ -23,10 +15,6 @@ class LogServiceProvider extends ServiceProvider
      */
     protected $package = 'log-viewer';
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the base path.
@@ -38,10 +26,6 @@ class LogServiceProvider extends ServiceProvider
         return dirname(__DIR__);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Register the service provider.

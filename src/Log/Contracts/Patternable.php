@@ -4,17 +4,9 @@ namespace Orchid\Log\Contracts;
 
 use Orchid\Log\Contracts\Utilities\Filesystem;
 
-/**
- * Interface  Patternable.
- *
- * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 interface Patternable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the log pattern.

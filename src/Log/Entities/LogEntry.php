@@ -7,36 +7,35 @@ use JsonSerializable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * Class     LogEntry.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class LogEntry implements Arrayable, Jsonable, JsonSerializable
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
+
+    /**
+     * @var string
      */
-    /** @var string */
     public $env;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $level;
 
-    /** @var \Carbon\Carbon */
+    /**
+     * @var \Carbon\Carbon
+     */
     public $datetime;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $header;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $stack;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Construct the log entry instance.
@@ -52,10 +51,6 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
         $this->setStack($stack);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the entry level.
@@ -180,10 +175,6 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
         return log_styler()->icon($this->level);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get translated level name.
@@ -195,10 +186,6 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
         return log_levels()->get($this->level);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Convert Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the entry stack.
@@ -234,10 +221,6 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
         return json_encode($this->toArray(), $options);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the log entry as an array.
@@ -254,10 +237,6 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
         ];
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Serialize the log entry object to json data.

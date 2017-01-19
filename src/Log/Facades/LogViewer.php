@@ -4,11 +4,7 @@ namespace Orchid\Log\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * Class     Log.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class Log extends Facade
 {
     /**

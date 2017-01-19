@@ -7,24 +7,15 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Orchid\Log\Exceptions\LogNotFoundException;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-/**
- * Class     LogCollection.
- *
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
- */
+
 class LogCollection extends Collection
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Properties
-     | ------------------------------------------------------------------------------------------------
+
+    /**
+     * @var \Orchid\Log\Contracts\Utilities\Filesystem
      */
-    /** @var \Orchid\Log\Contracts\Utilities\Filesystem */
     private $filesystem;
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * LogCollection constructor.
@@ -42,10 +33,6 @@ class LogCollection extends Collection
         }
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Set the filesystem instance.
@@ -61,10 +48,6 @@ class LogCollection extends Collection
         return $this;
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Load all logs.

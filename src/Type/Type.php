@@ -231,7 +231,8 @@ abstract class Type implements TypeInterface
         } else {
             $data = $model->search($search)
                 ->where('type', $this->slug)
-                ->whereNotNull('content->'.App::getLocale())
+                //Elasticsearch  exists?
+                //->whereNotNull('content->'.App::getLocale())
                 ->orderBy('id', 'Desc')
                 ->paginate();
         }
