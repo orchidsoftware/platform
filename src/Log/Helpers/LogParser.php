@@ -4,17 +4,14 @@ namespace Orchid\Log\Helpers;
 
 use Orchid\Log\Utilities\LogLevels;
 
-
 class LogParser
 {
-
     /**
      * Parsed data.
      *
      * @var array
      */
     protected static $parsed = [];
-
 
     /**
      * Parse file content.
@@ -44,7 +41,6 @@ class LogParser
 
         return array_reverse(self::$parsed);
     }
-
 
     /**
      * Parse raw data.

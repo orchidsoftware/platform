@@ -6,10 +6,8 @@ use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\Log\Contracts\Utilities\LogChecker as LogCheckerContract;
 
-
 class LogChecker implements LogCheckerContract
 {
-
     /**
      * Log handler mode.
      *
@@ -52,7 +50,6 @@ class LogChecker implements LogCheckerContract
      */
     private $files;
 
-
     /**
      * LogChecker constructor.
      *
@@ -66,7 +63,6 @@ class LogChecker implements LogCheckerContract
         $this->setFilesystem($filesystem);
         $this->refresh();
     }
-
 
     /**
      * Set the config instance.
@@ -117,7 +113,6 @@ class LogChecker implements LogCheckerContract
         return $this;
     }
 
-
     /**
      * Set the log handler mode.
      *
@@ -166,7 +161,6 @@ class LogChecker implements LogCheckerContract
         return $this->handler === $handler;
     }
 
-
     /**
      * Check all log files.
      */
@@ -200,7 +194,6 @@ class LogChecker implements LogCheckerContract
 
         $this->files[$file] = compact('filename', 'status', 'message', 'path');
     }
-
 
     /**
      * Check if it's not a single log file.

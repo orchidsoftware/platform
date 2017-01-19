@@ -9,7 +9,6 @@ use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
 class Log implements LogContract
 {
-
     /**
      * The factory instance.
      *
@@ -31,7 +30,6 @@ class Log implements LogContract
      */
     protected $levels;
 
-
     /**
      * Create a new instance.
      *
@@ -48,7 +46,6 @@ class Log implements LogContract
         $this->filesystem = $filesystem;
         $this->levels = $levels;
     }
-
 
     /**
      * Get the log levels.
@@ -116,7 +113,6 @@ class Log implements LogContract
 
         return $this;
     }
-
 
     /**
      * Get all logs.
@@ -294,6 +290,4 @@ class Log implements LogContract
     {
         return $this->factory->isEmpty();
     }
-
-
 }

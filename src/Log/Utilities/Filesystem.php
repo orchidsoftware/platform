@@ -6,10 +6,8 @@ use Orchid\Log\Exceptions\FilesystemException;
 use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-
 class Filesystem implements FilesystemContract
 {
-
     /**
      * The filesystem instance.
      *
@@ -45,7 +43,6 @@ class Filesystem implements FilesystemContract
      */
     protected $extension;
 
-
     /**
      * Filesystem constructor.
      *
@@ -58,7 +55,6 @@ class Filesystem implements FilesystemContract
         $this->setPath($storagePath);
         $this->setPattern();
     }
-
 
     /**
      * Set the log storage path.
@@ -157,7 +153,6 @@ class Filesystem implements FilesystemContract
         return $this->getFiles('*'.$this->extension);
     }
 
-
     /**
      * Get all files.
      *
@@ -246,7 +241,6 @@ class Filesystem implements FilesystemContract
             throw new FilesystemException($e->getMessage());
         }
     }
-
 
     /**
      * Get the log file path.

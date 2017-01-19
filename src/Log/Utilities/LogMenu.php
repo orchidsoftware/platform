@@ -7,10 +7,8 @@ use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Contracts\Utilities\LogMenu as LogMenuContract;
 use Orchid\Log\Contracts\Utilities\LogStyler as LogStylerContract;
 
-
 class LogMenu implements LogMenuContract
 {
-
     /**
      * The config repository instance.
      *
@@ -25,7 +23,6 @@ class LogMenu implements LogMenuContract
      */
     private $styler;
 
-
     /**
      * LogMenu constructor.
      *
@@ -37,7 +34,6 @@ class LogMenu implements LogMenuContract
         $this->setConfig($config);
         $this->setLogStyler($styler);
     }
-
 
     /**
      * Set the config instance.
@@ -67,7 +63,6 @@ class LogMenu implements LogMenuContract
         return $this;
     }
 
-
     /**
      * Make log menu.
      *
@@ -90,7 +85,6 @@ class LogMenu implements LogMenuContract
 
         return $items;
     }
-
 
     /**
      * Get config.

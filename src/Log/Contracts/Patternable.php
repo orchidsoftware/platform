@@ -4,10 +4,8 @@ namespace Orchid\Log\Contracts;
 
 use Orchid\Log\Contracts\Utilities\Filesystem;
 
-
 interface Patternable
 {
-
     /**
      * Get the log pattern.
      *

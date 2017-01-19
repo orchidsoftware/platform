@@ -6,7 +6,6 @@ use Illuminate\Translation\Translator;
 
 interface LogLevels
 {
-
     /**
      * Get PSR log levels.
      *
@@ -31,7 +30,6 @@ interface LogLevels
      * @return string
      */
     public function getLocale();
-
 
     /**
      * Set the selected locale.

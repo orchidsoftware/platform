@@ -2,10 +2,8 @@
 
 namespace Orchid\Log\Contracts;
 
-
-interface Log extends Patternable
+interface LogViewer extends Patternable
 {
-
     /**
      * Get the log levels.
      *
@@ -32,7 +30,6 @@ interface Log extends Patternable
      * @return \Orchid\Log\Log
      */
     public function setPath($path);
-
 
     /**
      * Get all logs.
@@ -155,13 +152,10 @@ interface Log extends Patternable
      */
     public function menu($trans = true);
 
-
     /**
      * Determine if the log folder is empty or not.
      *
      * @return bool
      */
     public function isEmpty();
-
-
 }

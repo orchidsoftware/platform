@@ -2,10 +2,8 @@
 
 namespace Orchid\Log\Contracts;
 
-
 interface Table
 {
-
     /**
      * Get table header.
      *

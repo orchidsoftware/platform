@@ -7,10 +7,8 @@ use Psr\Log\LogLevel;
 use Illuminate\Translation\Translator;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
-
 class LogLevels implements LogLevelsContract
 {
-
     /**
      * The log levels.
      *
@@ -32,7 +30,6 @@ class LogLevels implements LogLevelsContract
      */
     private $locale;
 
-
     /**
      * LogLevels constructor.
      *
@@ -44,7 +41,6 @@ class LogLevels implements LogLevelsContract
         $this->setTranslator($translator);
         $this->setLocale($locale);
     }
-
 
     /**
      * Set the Translator instance.
@@ -88,7 +84,6 @@ class LogLevels implements LogLevelsContract
 
         return $flip ? array_flip(self::$levels) : self::$levels;
     }
-
 
     /**
      * Get translated levels.
