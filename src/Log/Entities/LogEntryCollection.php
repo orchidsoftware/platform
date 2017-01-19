@@ -2,8 +2,8 @@
 
 namespace Orchid\Log\Entities;
 
-use Illuminate\Support\Collection;
 use Orchid\Log\Helpers\LogParser;
+use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**

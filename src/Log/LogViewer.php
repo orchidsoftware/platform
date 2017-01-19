@@ -12,7 +12,7 @@ use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class Log implements LogContract
+class LogViewer implements LogContract
 {
     /* ------------------------------------------------------------------------------------------------
      |  Constants

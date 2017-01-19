@@ -7,6 +7,6 @@ namespace Orchid\Log\Exceptions;
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class LogException extends \Exception
+class LogViewerException extends \Exception
 {
 }
