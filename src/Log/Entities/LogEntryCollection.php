@@ -6,11 +6,8 @@ use Orchid\Log\Helpers\LogParser;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-
 class LogEntryCollection extends Collection
 {
-
-
     /**
      * Load raw log entries.
      *
@@ -101,7 +98,6 @@ class LogEntryCollection extends Collection
 
         return $counters;
     }
-
 
     /**
      * Init stats counters.

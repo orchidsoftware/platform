@@ -2,7 +2,6 @@
 
 namespace Orchid\Log\Exceptions;
 
-
-class LogException extends \Exception
+class LogViewerException extends \Exception
 {
 }

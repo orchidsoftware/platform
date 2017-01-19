@@ -8,10 +8,8 @@ use JsonSerializable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 
-
 class Log implements Arrayable, Jsonable, JsonSerializable
 {
-
     /**
      * @var string
      */
@@ -31,8 +29,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
      * @var SplFileInfo
      */
     private $file;
-
-
 
     /**
      * Log constructor.
@@ -112,7 +108,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         return Carbon::createFromTimestamp($this->file()->getATime());
     }
 
-
     /**
      * Get file info.
      *
@@ -183,7 +178,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         return $this->entries->tree($trans);
     }
 
-
     /**
      * Get log entries menu.
      *
@@ -221,7 +215,6 @@ class Log implements Arrayable, Jsonable, JsonSerializable
             'entries' => $this->entries->toArray(),
         ];
     }
-
 
     /**
      * Serialize the log object to json data.

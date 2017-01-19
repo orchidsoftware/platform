@@ -4,7 +4,6 @@ namespace Orchid\Log\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-
 class LogMenu extends Facade
 {
     /**

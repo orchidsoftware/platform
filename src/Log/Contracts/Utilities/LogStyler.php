@@ -2,10 +2,8 @@
 
 namespace Orchid\Log\Contracts\Utilities;
 
-
 interface LogStyler
 {
-
     /**
      * Make level icon.
      *

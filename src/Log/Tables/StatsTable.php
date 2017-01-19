@@ -6,10 +6,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
-
 class StatsTable extends AbstractTable
 {
-
     /**
      * Make a stats table instance.
      *
@@ -23,7 +21,6 @@ class StatsTable extends AbstractTable
     {
         return new self($data, $levels, $locale);
     }
-
 
     /**
      * Get json totals data.
