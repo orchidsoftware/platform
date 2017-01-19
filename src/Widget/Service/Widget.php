@@ -2,10 +2,8 @@
 
 namespace Orchid\Widget\Service;
 
-
 abstract class Widget implements WidgetContractInterface
 {
-
     /**
      * @param $key
      *
@@ -15,7 +13,6 @@ abstract class Widget implements WidgetContractInterface
     {
         $class = config('widget.widgets.'.$key);
         $widget = new $class();
-
 
         return $widget->run();
     }

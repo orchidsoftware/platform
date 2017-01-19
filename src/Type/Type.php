@@ -2,8 +2,8 @@
 
 namespace Orchid\Type;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Facades\Validator;
