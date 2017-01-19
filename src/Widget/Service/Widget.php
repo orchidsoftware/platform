@@ -2,7 +2,7 @@
 
 namespace Orchid\Widget\Service;
 
-abstract class Widget implements WidgetContractInterface
+class Widget implements WidgetContractInterface
 {
     /**
      * @param $key
@@ -20,5 +20,5 @@ abstract class Widget implements WidgetContractInterface
     /**
      * Soother.
      */
-    abstract public function run();
+    public function run(){}
 }
