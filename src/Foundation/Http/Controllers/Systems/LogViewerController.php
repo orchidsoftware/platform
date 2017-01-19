@@ -2,15 +2,15 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
+use Orchid\Log\Log;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Orchid\Log\Log;
-use App\Http\Controllers\Controller;
 use Orchid\Log\Tables\StatsTable;
+use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Orchid\Log\Exceptions\LogNotFoundException;
 
-class LogController extends Controller
+class LogViewerController extends Controller
 {
     /**
      * The log viewer instance.

@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Routing\Router;
+use Orchid\Log\LogServiceProvider;
 use Illuminate\Support\Facades\View;
 use Orchid\Alert\AlertServiceProvider;
 use Cartalyst\Tags\TagsServiceProvider;
@@ -12,7 +13,6 @@ use Orchid\Foundation\Kernel\Dashboard;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Orchid\Log\LogServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Installer\Providers\InstallerServiceProvider;
