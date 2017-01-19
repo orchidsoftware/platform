@@ -54,10 +54,10 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
      * Logs Dashboard
     Route::get('/test1', [
         'as' => 'log-viewer::dashboard',
-        'uses' => 'LogViewerController@index',
+        'uses' => 'LogController@index',
     ]);
     */
-    Route::resource('logs', 'LogViewerController', ['names' => [
+    Route::resource('logs', 'LogController', ['names' => [
         'index' => 'dashboard.systems.logs.index',
         'show' => 'dashboard.systems.logs.show',
         'download' => 'dashboard.systems.logs.show',
@@ -66,22 +66,22 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
 
     Route::get('/logs2', [
         'as' => 'log-viewer::logs.list',
-        'uses' => 'LogViewerController@listLogs',
+        'uses' => 'LogController@listLogs',
     ]);
 
     Route::delete('delete', [
         'as' => 'log-viewer::logs.delete',
-        'uses' => 'LogViewerController@delete',
+        'uses' => 'LogController@delete',
     ]);
 
     Route::get('/test3/{test}', [
         'as' => 'log-viewer::logs.show',
-        'uses' => 'LogViewerController@show',
+        'uses' => 'LogController@show',
     ]);
 
     Route::get('download', [
         'as' => 'log-viewer::logs.download',
-        'uses' => 'LogViewerController@download',
+        'uses' => 'LogController@download',
     ]);
 
     Route::get('path-template', [
@@ -107,6 +107,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
 
     $this->get('test4/{level}', [
         'as' => 'log-viewer::logs.filter',
-        'uses' => 'LogViewerController@showByLevel',
+        'uses' => 'LogController@showByLevel',
     ]);
 });

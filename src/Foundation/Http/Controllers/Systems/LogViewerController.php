@@ -4,20 +4,20 @@ namespace Orchid\Foundation\Http\Controllers\Systems;
 
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Orchid\LogViewer\LogViewer;
+use Orchid\Log\Log;
 use App\Http\Controllers\Controller;
-use Orchid\LogViewer\Tables\StatsTable;
+use Orchid\Log\Tables\StatsTable;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Orchid\LogViewer\Exceptions\LogNotFoundException;
+use Orchid\Log\Exceptions\LogNotFoundException;
 
-class LogViewerController extends Controller
+class LogController extends Controller
 {
     /**
      * The log viewer instance.
      *
-     * @var \Orchid\LogViewer\Contracts\LogViewer
+     * @var \Orchid\Log\Contracts\Log
      */
-    protected $logViewer;
+    protected $Log;
 
     /** @var int */
     protected $perPage = 30;
@@ -31,11 +31,11 @@ class LogViewerController extends Controller
      */
 
     /**
-     * LogViewerController constructor.
+     * LogController constructor.
      */
-    public function __construct(LogViewer $logViewer)
+    public function __construct(Log $Log)
     {
-        $this->logViewer = app('arcanedev.log-viewer');
+        $this->Log = app('arcanedev.log-viewer');
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ class LogViewerController extends Controller
      */
     public function index(Request $request)
     {
-        $stats = $this->logViewer->statsTable();
+        $stats = $this->Log->statsTable();
         $headers = $stats->header();
         $rows = $this->paginate($stats->rows(), $request);
 
@@ -66,7 +66,7 @@ class LogViewerController extends Controller
      */
     public function dashboard()
     {
-        $stats = $this->logViewer->statsTable();
+        $stats = $this->Log->statsTable();
         $chartData = $this->prepareChartData($stats);
         $percents = $this->calcPercentages($stats->footer(), $stats->header());
 
@@ -76,7 +76,7 @@ class LogViewerController extends Controller
     /**
      * Prepare chart data.
      *
-     * @param  \Orchid\LogViewer\Tables\StatsTable $stats
+     * @param  \Orchid\Log\Tables\StatsTable $stats
      *
      * @return string
      */
@@ -150,7 +150,7 @@ class LogViewerController extends Controller
     public function show($date)
     {
         $log = $this->getLogOrFail($date);
-        $levels = $this->logViewer->levelsNames();
+        $levels = $this->Log->levelsNames();
         $entries = $log->entries()->paginate($this->perPage);
 
         return view('dashboard::container.systems.logs.show', compact('log', 'levels', 'entries'));
@@ -166,14 +166,14 @@ class LogViewerController extends Controller
      *
      * @param  string $date
      *
-     * @return \Orchid\LogViewer\Entities\Log|null
+     * @return \Orchid\Log\Entities\Log|null
      */
     protected function getLogOrFail($date)
     {
         $log = null;
 
         try {
-            $log = $this->logViewer->get($date);
+            $log = $this->Log->get($date);
         } catch (LogNotFoundException $e) {
             abort(404, $e->getMessage());
         }
@@ -197,8 +197,8 @@ class LogViewerController extends Controller
             return redirect()->route($this->showRoute, [$date]);
         }
 
-        $levels = $this->logViewer->levelsNames();
-        $entries = $this->logViewer
+        $levels = $this->Log->levelsNames();
+        $entries = $this->Log
             ->entries($date, $level)
             ->paginate($this->perPage);
 
@@ -215,7 +215,7 @@ class LogViewerController extends Controller
      */
     public function download($date)
     {
-        return $this->logViewer->download($date);
+        return $this->Log->download($date);
     }
 
     /**
@@ -234,7 +234,7 @@ class LogViewerController extends Controller
         $date = $request->get('date');
 
         return response()->json([
-            'result' => $this->logViewer->delete($date) ? 'success' : 'error',
+            'result' => $this->Log->delete($date) ? 'success' : 'error',
         ]);
     }
 }

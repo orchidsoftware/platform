@@ -53,7 +53,7 @@
     "files": [
       "src/Settings/helpers.php",
       "src/Alert/helpers.php",
-      "src/LogViewer/helpers.php"
+      "src/Log/helpers.php"
     ],
     "psr-4": {
       "Orchid\\Access\\": "src/Access",
@@ -63,7 +63,7 @@
       "Orchid\\Foundation\\": "src/Foundation",
       "Orchid\\Image\\": "src/Image",
       "Orchid\\Installer\\": "src/Installer",
-      "Orchid\\LogViewer\\": "src/LogViewer",
+      "Orchid\\Log\\": "src/Log",
       "Orchid\\Menu\\": "src/Menu",
       "Orchid\\Presenter\\": "src/Presenter",
       "Orchid\\Search\\": "src/Search",

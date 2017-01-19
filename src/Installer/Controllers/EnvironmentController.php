@@ -55,10 +55,8 @@ class EnvironmentController extends Controller
     {
         $message = $this->EnvironmentManager->saveFile($input);
 
-        $dotenv = new \Dotenv\Dotenv(base_path());
-        $dotenv->overload();
-
-        return $redirect->route('install::environment')
-                        ->with(['message' => $message]);
+        return $redirect->route('install::environment',[
+            'message' => $message,
+        ]);
     }
 }
