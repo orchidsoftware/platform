@@ -2,8 +2,8 @@
 
 namespace Orchid\Forms;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Form implements FormInterface
 {
@@ -42,7 +42,6 @@ abstract class Form implements FormInterface
         $this->request = $request ?: request();
     }
 
-
     /**
      * @param $property
      *
@@ -54,7 +53,6 @@ abstract class Form implements FormInterface
             return $this->request->input($property);
         }
     }
-
 
     /**
      * Save Form.
@@ -93,7 +91,6 @@ abstract class Form implements FormInterface
         return $this->request->all();
     }
 
-
     /**
      * Validation Rules Method.
      *
@@ -109,7 +106,6 @@ abstract class Form implements FormInterface
     public function persist()
     {
     }
-
 
     /**
      * View Grid data.
