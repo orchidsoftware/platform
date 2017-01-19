@@ -20,5 +20,7 @@ class Widget implements WidgetContractInterface
     /**
      * Soother.
      */
-    public function run(){}
+    public function run()
+    {
+    }
 }
