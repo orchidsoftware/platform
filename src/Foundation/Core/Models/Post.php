@@ -127,8 +127,9 @@ class Post extends Model
                 return $this->$field;
             }
         } catch (\ErrorException $exception) {
-                $content = collect($this->content)->first();
-                return $content[$field];
+            $content = collect($this->content)->first();
+
+            return $content[$field];
         }
     }
 

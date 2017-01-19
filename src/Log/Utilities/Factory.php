@@ -8,10 +8,8 @@ use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 
-
 class Factory implements FactoryContract
 {
-
     /**
      * The filesystem instance.
      *
@@ -23,7 +21,6 @@ class Factory implements FactoryContract
      * @var \Orchid\Log\Contracts\Utilities\LogLevels
      */
     private $levels;
-
 
     /**
      * Create a new instance.
@@ -38,7 +35,6 @@ class Factory implements FactoryContract
         $this->setFilesystem($filesystem);
         $this->setLevels($levels);
     }
-
 
     /**
      * Get the filesystem instance.
@@ -140,7 +136,6 @@ class Factory implements FactoryContract
     {
         return $this->logs();
     }
-
 
     /**
      * Get all logs.
@@ -278,7 +273,6 @@ class Factory implements FactoryContract
     {
         return $this->logs()->menu($trans);
     }
-
 
     /**
      * Determine if the log folder is empty or not.

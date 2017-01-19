@@ -5,10 +5,8 @@ namespace Orchid\Log\Tables;
 use Orchid\Log\Contracts\Table as TableContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
-
 abstract class AbstractTable implements TableContract
 {
-
     /**
      * @var \Orchid\Log\Contracts\Utilities\LogLevels
      */
@@ -39,7 +37,6 @@ abstract class AbstractTable implements TableContract
      */
     private $data = [];
 
-
     /**
      * Create a table instance.
      *
@@ -54,7 +51,6 @@ abstract class AbstractTable implements TableContract
         $this->setData($data);
         $this->init();
     }
-
 
     /**
      * Set LogLevels instance.
@@ -139,7 +135,6 @@ abstract class AbstractTable implements TableContract
      */
     abstract protected function prepareFooter(array $data);
 
-
     /**
      * Get table header.
      *
@@ -179,7 +174,6 @@ abstract class AbstractTable implements TableContract
     {
         return $this->data;
     }
-
 
     /**
      * Translate.

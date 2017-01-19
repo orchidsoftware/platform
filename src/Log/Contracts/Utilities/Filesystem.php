@@ -4,25 +4,22 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Orchid\Log\Contracts\Patternable;
 
-
 interface Filesystem extends Patternable
 {
-
     /**
-     * File prefix
+     * File prefix.
      */
     const PATTERN_PREFIX = 'laravel-';
 
     /**
-     * File pattern date
+     * File pattern date.
      */
     const PATTERN_DATE = '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]';
 
     /**
-     * File pattern extension
+     * File pattern extension.
      */
     const PATTERN_EXTENSION = '.log';
-
 
     /**
      * Get the files instance.
@@ -66,7 +63,6 @@ interface Filesystem extends Patternable
      * @return self
      */
     public function setExtension($extension);
-
 
     /**
      * Get all log files.

@@ -4,10 +4,8 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Orchid\Log\Contracts\Patternable;
 
-
 interface Factory extends Patternable
 {
-
     /**
      * Get the filesystem instance.
      *
@@ -55,7 +53,6 @@ interface Factory extends Patternable
      * @return \Orchid\Log\Entities\LogCollection
      */
     public function logs();
-
 
     /**
      * Get all logs (alias).
@@ -157,7 +154,6 @@ interface Factory extends Patternable
      * @return \Orchid\Log\Tables\StatsTable
      */
     public function statsTable($locale = null);
-
 
     /**
      * Determine if the log folder is empty or not.

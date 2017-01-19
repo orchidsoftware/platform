@@ -7,14 +7,12 @@ use Orchid\Log\Providers\UtilitiesServiceProvider;
 
 class LogServiceProvider extends ServiceProvider
 {
-
     /**
      * Package name.
      *
      * @var string
      */
     protected $package = 'log-viewer';
-
 
     /**
      * Get the base path.
@@ -25,7 +23,6 @@ class LogServiceProvider extends ServiceProvider
     {
         return dirname(__DIR__);
     }
-
 
     /**
      * Register the service provider.
