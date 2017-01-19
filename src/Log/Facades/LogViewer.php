@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class Log extends Facade
+class LogViewer extends Facade
 {
     /**
      * Get the registered name of the component.

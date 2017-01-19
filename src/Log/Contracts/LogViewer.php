@@ -7,7 +7,7 @@ namespace Orchid\Log\Contracts;
  *
  * @author    ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-interface Log extends Patternable
+interface LogViewer extends Patternable
 {
     /* ------------------------------------------------------------------------------------------------
      |  Getters & Setters

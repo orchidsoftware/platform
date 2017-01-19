@@ -55,7 +55,7 @@ class EnvironmentController extends Controller
     {
         $message = $this->EnvironmentManager->saveFile($input);
 
-        return $redirect->route('install::environment',[
+        return $redirect->route('install::environment', [
             'message' => $message,
         ]);
     }
