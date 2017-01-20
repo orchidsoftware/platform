@@ -42,8 +42,9 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request   $request
      * @param User|null $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, User $user = null)
@@ -66,7 +67,8 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     * @param User $user
+     * @param User    $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
@@ -78,6 +80,7 @@ class UserController extends Controller
 
     /**
      * @param User $user
+     *
      * @return mixed
      */
     public function destroy(User $user)

@@ -4,8 +4,8 @@ namespace Orchid\Log;
 
 use Orchid\Log\Contracts\Log as LogContract;
 use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
-use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
+use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
 class Log implements LogContract
 {
@@ -33,9 +33,9 @@ class Log implements LogContract
     /**
      * Create a new instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Factory $factory
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
-     * @param  \Orchid\Log\Contracts\Utilities\LogLevels $levels
+     * @param \Orchid\Log\Contracts\Utilities\Factory    $factory
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\LogLevels  $levels
      */
     public function __construct(
         FactoryContract $factory,
@@ -50,7 +50,7 @@ class Log implements LogContract
     /**
      * Get the log levels.
      *
-     * @param  bool $flip
+     * @param bool $flip
      *
      * @return array
      */
@@ -62,7 +62,7 @@ class Log implements LogContract
     /**
      * Get the translated log levels.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class Log implements LogContract
     /**
      * Set the log storage path.
      *
-     * @param  string $path
+     * @param string $path
      *
      * @return \Orchid\Log\Log
      */
@@ -98,9 +98,9 @@ class Log implements LogContract
     /**
      * Set the log pattern.
      *
-     * @param  string $date
-     * @param  string $prefix
-     * @param  string $extension
+     * @param string $date
+     * @param string $prefix
+     * @param string $extension
      *
      * @return \Orchid\Log\Log
      */
@@ -127,7 +127,7 @@ class Log implements LogContract
     /**
      * Paginate all logs.
      *
-     * @param  int $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -139,7 +139,7 @@ class Log implements LogContract
     /**
      * Get a log.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log
      */
@@ -151,8 +151,8 @@ class Log implements LogContract
     /**
      * Get the log entries.
      *
-     * @param  string $date
-     * @param  string $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -164,9 +164,9 @@ class Log implements LogContract
     /**
      * Download a log file.
      *
-     * @param  string $date
-     * @param  string|null $filename
-     * @param  array $headers
+     * @param string      $date
+     * @param string|null $filename
+     * @param array       $headers
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
@@ -194,7 +194,7 @@ class Log implements LogContract
     /**
      * Get logs statistics table.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return \Orchid\Log\Tables\StatsTable
      */
@@ -206,7 +206,7 @@ class Log implements LogContract
     /**
      * Delete the log.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return bool
      */
@@ -248,7 +248,7 @@ class Log implements LogContract
     /**
      * Get entries total from all logs.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return int
      */
@@ -260,7 +260,7 @@ class Log implements LogContract
     /**
      * Get logs tree.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -272,7 +272,7 @@ class Log implements LogContract
     /**
      * Get logs menu.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */

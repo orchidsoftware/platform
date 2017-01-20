@@ -98,6 +98,7 @@ trait UserAccess
 
     /**
      * Remove Role Slug.
+     *
      * @param $slug
      */
     public function removeRoleBySlug($slug)
@@ -120,7 +121,7 @@ trait UserAccess
     public function delete()
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-        if ($this->exists && ! $isSoftDeleted) {
+        if ($this->exists && !$isSoftDeleted) {
             $this->roles()->detach();
         }
 

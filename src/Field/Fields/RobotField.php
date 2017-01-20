@@ -12,6 +12,7 @@ class RobotField extends Field
     public $view = 'dashboard::fields.robot';
     /**
      * HTML tag.
+     *
      * @var string
      */
     protected $tag = 'robot';
@@ -21,6 +22,7 @@ class RobotField extends Field
      *
      * @param null $attributes
      * @param null $data
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($attributes, $data = null)

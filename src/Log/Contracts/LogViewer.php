@@ -7,7 +7,7 @@ interface LogViewer extends Patternable
     /**
      * Get the log levels.
      *
-     * @param  bool|false $flip
+     * @param bool|false $flip
      *
      * @return array
      */
@@ -16,7 +16,7 @@ interface LogViewer extends Patternable
     /**
      * Get the translated log levels.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return array
      */
@@ -25,7 +25,7 @@ interface LogViewer extends Patternable
     /**
      * Set the log storage path.
      *
-     * @param  string $path
+     * @param string $path
      *
      * @return \Orchid\Log\Log
      */
@@ -41,7 +41,7 @@ interface LogViewer extends Patternable
     /**
      * Paginate all logs.
      *
-     * @param  int $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -50,7 +50,7 @@ interface LogViewer extends Patternable
     /**
      * Get a log.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log
      */
@@ -59,8 +59,8 @@ interface LogViewer extends Patternable
     /**
      * Get the log entries.
      *
-     * @param  string $date
-     * @param  string $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -69,9 +69,9 @@ interface LogViewer extends Patternable
     /**
      * Download a log file.
      *
-     * @param  string $date
-     * @param  string|null $filename
-     * @param  array $headers
+     * @param string      $date
+     * @param string|null $filename
+     * @param array       $headers
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
@@ -87,7 +87,7 @@ interface LogViewer extends Patternable
     /**
      * Get logs statistics table.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return \Orchid\Log\Tables\StatsTable
      */
@@ -96,11 +96,11 @@ interface LogViewer extends Patternable
     /**
      * Delete the log.
      *
-     * @param  string $date
-     *
-     * @return bool
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return bool
      */
     public function delete($date);
 
@@ -128,7 +128,7 @@ interface LogViewer extends Patternable
     /**
      * Get entries total from all logs.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return int
      */
@@ -137,7 +137,7 @@ interface LogViewer extends Patternable
     /**
      * Get logs tree.
      *
-     * @param  bool|false $trans
+     * @param bool|false $trans
      *
      * @return array
      */
@@ -146,7 +146,7 @@ interface LogViewer extends Patternable
     /**
      * Get logs menu.
      *
-     * @param  bool|true $trans
+     * @param bool|true $trans
      *
      * @return array
      */

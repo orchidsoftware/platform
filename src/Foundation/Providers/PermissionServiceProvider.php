@@ -28,19 +28,19 @@ class PermissionServiceProvider extends ServiceProvider
         return [
             'Главное меню' => [
                 [
-                    'slug' => 'dashboard.index',
+                    'slug'        => 'dashboard.index',
                     'description' => 'Главное меню',
                 ],
                 [
-                    'slug' => 'dashboard.posts',
+                    'slug'        => 'dashboard.posts',
                     'description' => 'Доступ к постам',
                 ],
                 [
-                    'slug' => 'dashboard.tools',
+                    'slug'        => 'dashboard.tools',
                     'description' => 'Доступ к инструментам',
                 ],
                 [
-                    'slug' => 'dashboard.systems',
+                    'slug'        => 'dashboard.systems',
                     'description' => 'Доступ к параметрам системы',
                 ],
             ],

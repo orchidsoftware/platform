@@ -5,8 +5,8 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
 
@@ -33,6 +33,7 @@ class FileController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function upload(Request $request)
@@ -52,6 +53,7 @@ class FileController extends Controller
 
     /**
      * @param UploadedFile $image
+     *
      * @return static
      */
     protected function saveImage(UploadedFile $image)
@@ -75,18 +77,19 @@ class FileController extends Controller
         Image::make($image)->save($full_path, 100);
 
         return File::create([
-            'name' => $name,
+            'name'          => $name,
             'original_name' => $image->getClientOriginalName(),
-            'mime' => $image->getMimeType(),
-            'extension' => $image->getClientOriginalExtension(),
-            'size' => $image->getClientSize(),
-            'path' => $path,
-            'user_id' => Auth::user()->id,
+            'mime'          => $image->getMimeType(),
+            'extension'     => $image->getClientOriginalExtension(),
+            'size'          => $image->getClientSize(),
+            'path'          => $path,
+            'user_id'       => Auth::user()->id,
         ]);
     }
 
     /**
      * @param UploadedFile $file
+     *
      * @return UploadedFile|static
      */
     protected function saveFile(UploadedFile $file)
@@ -101,11 +104,11 @@ class FileController extends Controller
         $file->move($full_path, $name);
 
         $file = File::create([
-            'name' => $name,
+            'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
-            'mime' => $file->getMimeType(),
-            'path' => $path,
-            'user_id' => Auth::user()->id,
+            'mime'          => $file->getMimeType(),
+            'path'          => $path,
+            'user_id'       => Auth::user()->id,
         ]);
 
         return $file;
@@ -125,6 +128,7 @@ class FileController extends Controller
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getFilesPost($id)
@@ -136,15 +140,16 @@ class FileController extends Controller
 
     /**
      * @param UploadedFile $image
-     * @param null $name
-     * @param null $width
-     * @param null $height
-     * @param int $quality
+     * @param null         $name
+     * @param null         $width
+     * @param null         $height
+     * @param int          $quality
+     *
      * @return static
      */
     protected function saveImageProcessing(UploadedFile $image, $name = null, $width = null, $height = null, $quality = 100)
     {
-        if (! is_null($name)) {
+        if (!is_null($name)) {
             $name = '_'.$name;
         }
 

@@ -16,7 +16,7 @@ class LogParser
     /**
      * Parse file content.
      *
-     * @param  string $raw
+     * @param string $raw
      *
      * @return array
      */
@@ -26,7 +26,7 @@ class LogParser
         list($headings, $data) = self::parseRawData($raw);
 
         // @codeCoverageIgnoreStart
-        if (! is_array($headings)) {
+        if (!is_array($headings)) {
             return self::$parsed;
         }
         // @codeCoverageIgnoreEnd
@@ -45,7 +45,7 @@ class LogParser
     /**
      * Parse raw data.
      *
-     * @param  string $raw
+     * @param string $raw
      *
      * @return array
      */
@@ -66,18 +66,18 @@ class LogParser
     /**
      * Populate entries.
      *
-     * @param  array $heading
-     * @param  array $data
-     * @param  int $key
+     * @param array $heading
+     * @param array $data
+     * @param int   $key
      */
     private static function populateEntries($heading, $data, $key)
     {
         foreach (LogLevels::all() as $level) {
             if (self::hasLogLevel($heading[$key], $level)) {
                 self::$parsed[] = [
-                    'level' => $level,
+                    'level'  => $level,
                     'header' => $heading[$key],
-                    'stack' => $data[$key],
+                    'stack'  => $data[$key],
                 ];
             }
         }
@@ -86,8 +86,8 @@ class LogParser
     /**
      * Check if header has a log level.
      *
-     * @param  string $heading
-     * @param  string $level
+     * @param string $heading
+     * @param string $level
      *
      * @return bool
      */

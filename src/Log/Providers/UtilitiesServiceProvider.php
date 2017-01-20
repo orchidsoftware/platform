@@ -2,9 +2,9 @@
 
 namespace Orchid\Log\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use Orchid\Log\Contracts;
 use Orchid\Log\Utilities;
-use Illuminate\Support\ServiceProvider;
 
 class UtilitiesServiceProvider extends ServiceProvider
 {
@@ -28,8 +28,8 @@ class UtilitiesServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Contracts\Utilities\LogLevels::class, function ($app) {
             /**
-             * @var  \Illuminate\Config\Repository
-             * @var  \Illuminate\Translation\Translator $translator
+             * @var \Illuminate\Config\Repository
+             * @var \Illuminate\Translation\Translator $translator
              */
             $translator = $app['translator'];
 
@@ -64,8 +64,8 @@ class UtilitiesServiceProvider extends ServiceProvider
     {
         $this->app->singleton(Contracts\Utilities\Filesystem::class, function ($app) {
             /**
-             * @var  \Illuminate\Config\Repository
-             * @var  \Illuminate\Filesystem\Filesystem $files
+             * @var \Illuminate\Config\Repository
+             * @var \Illuminate\Filesystem\Filesystem $files
              */
             $files = $app['files'];
             $filesystem = new Utilities\Filesystem($files, storage_path('logs'));

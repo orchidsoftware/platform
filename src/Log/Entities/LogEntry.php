@@ -3,9 +3,9 @@
 namespace Orchid\Log\Entities;
 
 use Carbon\Carbon;
-use JsonSerializable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
 
 class LogEntry implements Arrayable, Jsonable, JsonSerializable
 {
@@ -37,9 +37,9 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Construct the log entry instance.
      *
-     * @param  string $level
-     * @param  string $header
-     * @param  string $stack
+     * @param string $level
+     * @param string $header
+     * @param string $stack
      */
     public function __construct($level, $header, $stack)
     {
@@ -51,7 +51,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry level.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return self
      */
@@ -65,7 +65,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry header.
      *
-     * @param  string $header
+     * @param string $header
      *
      * @return self
      */
@@ -88,7 +88,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry date time.
      *
-     * @param  string $datetime
+     * @param string $datetime
      *
      * @return \Orchid\Log\Entities\LogEntry
      */
@@ -102,7 +102,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Extract datetime from the header.
      *
-     * @param  string $header
+     * @param string $header
      *
      * @return string
      */
@@ -114,7 +114,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Clean the entry header.
      *
-     * @param  string $header
+     * @param string $header
      *
      * @return string
      */
@@ -126,7 +126,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set entry environment.
      *
-     * @param  string $env
+     * @param string $env
      *
      * @return self
      */
@@ -140,7 +140,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Set the entry stack.
      *
-     * @param  string $stack
+     * @param string $stack
      *
      * @return self
      */
@@ -194,7 +194,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Check if same log level.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return bool
      */
@@ -206,7 +206,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     /**
      * Convert the log entry to its JSON representation.
      *
-     * @param  int $options
+     * @param int $options
      *
      * @return string
      */
@@ -223,10 +223,10 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'level' => $this->level,
+            'level'    => $this->level,
             'datetime' => $this->datetime->format('Y-m-d H:i:s'),
-            'header' => $this->header,
-            'stack' => $this->stack,
+            'header'   => $this->header,
+            'stack'    => $this->stack,
         ];
     }
 

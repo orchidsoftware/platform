@@ -12,6 +12,7 @@ class TagsField extends Field
     public $view = 'dashboard::fields.tags';
     /**
      * HTML tag.
+     *
      * @var string
      */
     protected $tag = 'tags';
@@ -21,6 +22,7 @@ class TagsField extends Field
      *
      * @param null $attributes
      * @param null $data
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($attributes, $data = null)

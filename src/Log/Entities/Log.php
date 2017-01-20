@@ -2,11 +2,11 @@
 
 namespace Orchid\Log\Entities;
 
-use SplFileInfo;
 use Carbon\Carbon;
-use JsonSerializable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
+use SplFileInfo;
 
 class Log implements Arrayable, Jsonable, JsonSerializable
 {
@@ -33,24 +33,24 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Log constructor.
      *
-     * @param  string $date
-     * @param  string $path
-     * @param  string $raw
+     * @param string $date
+     * @param string $path
+     * @param string $raw
      */
     public function __construct($date, $path, $raw)
     {
         $this->date = $date;
         $this->path = $path;
         $this->file = new SplFileInfo($path);
-        $this->entries = (new LogEntryCollection)->load($raw);
+        $this->entries = (new LogEntryCollection())->load($raw);
     }
 
     /**
      * Make a log object.
      *
-     * @param  string $date
-     * @param  string $path
-     * @param  string $raw
+     * @param string $date
+     * @param string $path
+     * @param string $raw
      *
      * @return self
      */
@@ -82,8 +82,8 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Format the file size.
      *
-     * @param  int $bytes
-     * @param  int $precision
+     * @param int $bytes
+     * @param int $precision
      *
      * @return string
      */
@@ -131,7 +131,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get log entries.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -147,7 +147,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get filtered log entries by level.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -169,7 +169,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get the log navigation tree.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -181,7 +181,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Get log entries menu.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -193,7 +193,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int $options
+     * @param int $options
      *
      * @return string
      */
@@ -210,8 +210,8 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'date' => $this->date,
-            'path' => $this->path,
+            'date'    => $this->date,
+            'path'    => $this->path,
             'entries' => $this->entries->toArray(),
         ];
     }

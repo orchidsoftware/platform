@@ -2,10 +2,10 @@
 
 namespace Orchid\Log\Utilities;
 
-use ReflectionClass;
-use Psr\Log\LogLevel;
 use Illuminate\Translation\Translator;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Psr\Log\LogLevel;
+use ReflectionClass;
 
 class LogLevels implements LogLevelsContract
 {
@@ -33,8 +33,8 @@ class LogLevels implements LogLevelsContract
     /**
      * LogLevels constructor.
      *
-     * @param  \Illuminate\Translation\Translator $translator
-     * @param  string $locale
+     * @param \Illuminate\Translation\Translator $translator
+     * @param string                             $locale
      */
     public function __construct(Translator $translator, $locale)
     {
@@ -45,7 +45,7 @@ class LogLevels implements LogLevelsContract
     /**
      * Set the Translator instance.
      *
-     * @param  \Illuminate\Translation\Translator $translator
+     * @param \Illuminate\Translation\Translator $translator
      *
      * @return \Orchid\Log\Utilities\LogLevels
      */
@@ -59,7 +59,7 @@ class LogLevels implements LogLevelsContract
     /**
      * Get the log levels.
      *
-     * @param  bool $flip
+     * @param bool $flip
      *
      * @return array
      */
@@ -71,7 +71,7 @@ class LogLevels implements LogLevelsContract
     /**
      * Get PSR log levels.
      *
-     * @param  bool $flip
+     * @param bool $flip
      *
      * @return array
      */
@@ -88,7 +88,7 @@ class LogLevels implements LogLevelsContract
     /**
      * Get translated levels.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return array
      */
@@ -106,8 +106,8 @@ class LogLevels implements LogLevelsContract
     /**
      * Get the translated level.
      *
-     * @param  string $key
-     * @param  string|null $locale
+     * @param string      $key
+     * @param string|null $locale
      *
      * @return string
      */
@@ -136,7 +136,7 @@ class LogLevels implements LogLevelsContract
     /**
      * Set the selected locale.
      *
-     * @param  string $locale
+     * @param string $locale
      *
      * @return \Orchid\Log\Utilities\LogLevels
      */

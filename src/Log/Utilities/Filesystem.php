@@ -2,9 +2,9 @@
 
 namespace Orchid\Log\Utilities;
 
-use Orchid\Log\Exceptions\FilesystemException;
 use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
+use Orchid\Log\Exceptions\FilesystemException;
 
 class Filesystem implements FilesystemContract
 {
@@ -46,8 +46,8 @@ class Filesystem implements FilesystemContract
     /**
      * Filesystem constructor.
      *
-     * @param  \Illuminate\Filesystem\Filesystem $files
-     * @param  string $storagePath
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param string                            $storagePath
      */
     public function __construct(IlluminateFilesystem $files, $storagePath)
     {
@@ -59,7 +59,7 @@ class Filesystem implements FilesystemContract
     /**
      * Set the log storage path.
      *
-     * @param  string $storagePath
+     * @param string $storagePath
      *
      * @return \Orchid\Log\Utilities\Filesystem
      */
@@ -73,9 +73,9 @@ class Filesystem implements FilesystemContract
     /**
      * Set the log pattern.
      *
-     * @param  string $date
-     * @param  string $prefix
-     * @param  string $extension
+     * @param string $date
+     * @param string $prefix
+     * @param string $extension
      *
      * @return \Orchid\Log\Utilities\Filesystem
      */
@@ -94,7 +94,7 @@ class Filesystem implements FilesystemContract
     /**
      * Set the log prefix pattern.
      *
-     * @param  string $prefixPattern
+     * @param string $prefixPattern
      *
      * @return \Orchid\Log\Utilities\Filesystem
      */
@@ -108,7 +108,7 @@ class Filesystem implements FilesystemContract
     /**
      * Set the log date pattern.
      *
-     * @param  string $datePattern
+     * @param string $datePattern
      *
      * @return \Orchid\Log\Utilities\Filesystem
      */
@@ -122,7 +122,7 @@ class Filesystem implements FilesystemContract
     /**
      * Set the log extension.
      *
-     * @param  string $extension
+     * @param string $extension
      *
      * @return \Orchid\Log\Utilities\Filesystem
      */
@@ -156,7 +156,7 @@ class Filesystem implements FilesystemContract
     /**
      * Get all files.
      *
-     * @param  string $pattern
+     * @param string $pattern
      *
      * @return array
      */
@@ -172,7 +172,7 @@ class Filesystem implements FilesystemContract
     /**
      * List the log files (Only dates).
      *
-     * @param  bool $withPaths
+     * @param bool $withPaths
      *
      * @return array
      */
@@ -211,7 +211,7 @@ class Filesystem implements FilesystemContract
     /**
      * Extract dates from files.
      *
-     * @param  array $files
+     * @param array $files
      *
      * @return array
      */
@@ -225,11 +225,11 @@ class Filesystem implements FilesystemContract
     /**
      * Read the log.
      *
-     * @param  string $date
-     *
-     * @return string
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return string
      */
     public function read($date)
     {
@@ -245,17 +245,17 @@ class Filesystem implements FilesystemContract
     /**
      * Get the log file path.
      *
-     * @param  string $date
-     *
-     * @return string
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return string
      */
     private function getLogPath($date)
     {
         $path = $this->storagePath.DIRECTORY_SEPARATOR.$this->prefixPattern.$date.$this->extension;
 
-        if (! $this->filesystem->exists($path)) {
+        if (!$this->filesystem->exists($path)) {
             throw new FilesystemException("The log(s) could not be located at : $path");
         }
 
@@ -265,18 +265,18 @@ class Filesystem implements FilesystemContract
     /**
      * Delete the log.
      *
-     * @param  string $date
-     *
-     * @return bool
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return bool
      */
     public function delete($date)
     {
         $path = $this->getLogPath($date);
 
         // @codeCoverageIgnoreStart
-        if (! $this->filesystem->delete($path)) {
+        if (!$this->filesystem->delete($path)) {
             throw new FilesystemException('There was an error deleting the log.');
         }
         // @codeCoverageIgnoreEnd
@@ -287,7 +287,7 @@ class Filesystem implements FilesystemContract
     /**
      * Get the log file path.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return string
      */

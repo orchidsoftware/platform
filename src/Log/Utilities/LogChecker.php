@@ -53,8 +53,8 @@ class LogChecker implements LogCheckerContract
     /**
      * LogChecker constructor.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Illuminate\Contracts\Config\Repository    $config
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
      */
     public function __construct(ConfigContract $config, FilesystemContract $filesystem)
     {
@@ -67,7 +67,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Set the config instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      *
      * @return \Orchid\Log\Utilities\LogChecker
      */
@@ -81,7 +81,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Set the Filesystem instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
      *
      * @return \Orchid\Log\Utilities\LogChecker
      */
@@ -103,7 +103,7 @@ class LogChecker implements LogCheckerContract
 
         $this->messages = [
             'handler' => '',
-            'files' => [],
+            'files'   => [],
         ];
         $this->files = [];
 
@@ -116,7 +116,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Set the log handler mode.
      *
-     * @param  string $handler
+     * @param string $handler
      *
      * @return \Orchid\Log\Utilities\LogChecker
      */
@@ -152,7 +152,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Is the handler is the same as the application log handler.
      *
-     * @param  string $handler
+     * @param string $handler
      *
      * @return bool
      */
@@ -174,7 +174,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Check a log file.
      *
-     * @param  string $path
+     * @param string $path
      */
     private function checkLogFile($path)
     {
@@ -198,7 +198,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Check if it's not a single log file.
      *
-     * @param  string $file
+     * @param string $file
      *
      * @return bool
      */
@@ -210,7 +210,7 @@ class LogChecker implements LogCheckerContract
     /**
      * Check the date of the log file.
      *
-     * @param  string $file
+     * @param string $file
      *
      * @return bool
      */
@@ -244,7 +244,7 @@ class LogChecker implements LogCheckerContract
      */
     public function fails()
     {
-        return ! $this->passes();
+        return !$this->passes();
     }
 
     /**
@@ -269,12 +269,12 @@ class LogChecker implements LogCheckerContract
         $this->refresh();
 
         return $this->isDaily() ? [
-            'status' => 'success',
-            'header' => 'Application requirements fulfilled.',
+            'status'  => 'success',
+            'header'  => 'Application requirements fulfilled.',
             'message' => 'Are you ready to rock ?',
         ] : [
-            'status' => 'failed',
-            'header' => 'Application requirements failed.',
+            'status'  => 'failed',
+            'header'  => 'Application requirements failed.',
             'message' => $this->messages['handler'],
         ];
     }

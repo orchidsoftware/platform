@@ -2,10 +2,10 @@
 
 namespace Orchid\Search\Elasticsearch;
 
-use Laravel\Scout\Builder;
 use Elasticsearch\Client as Elasticsearch;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as BaseCollection;
+use Laravel\Scout\Builder;
 
 //use Laravel\Scout\Engines\Engine; extends Engine
 
@@ -33,7 +33,8 @@ class ElasticsearchEngine
     /**
      * Create a new engine instance.
      *
-     * @param  \Elasticsearch\Client $elasticsearch
+     * @param \Elasticsearch\Client $elasticsearch
+     *
      * @return void
      */
     public function __construct(Elasticsearch $elasticsearch, $index, $version = '2.4.1')
@@ -46,7 +47,8 @@ class ElasticsearchEngine
     /**
      * Get the results of the query as a Collection of primary keys.
      *
-     * @param  \Laravel\Scout\Builder $builder
+     * @param \Laravel\Scout\Builder $builder
+     *
      * @return \Illuminate\Support\Collection
      */
     public function keys(Builder $builder)
@@ -57,22 +59,24 @@ class ElasticsearchEngine
     /**
      * Perform the given search on the engine.
      *
-     * @param  Builder $query
+     * @param Builder $query
+     *
      * @return mixed
      */
     public function search(Builder $query)
     {
         return $this->performSearch($query, [
             'filters' => $this->filters($query),
-            'size' => $query->limit ?: 10000,
+            'size'    => $query->limit ?: 10000,
         ]);
     }
 
     /**
      * Perform the given search on the engine.
      *
-     * @param  Builder $builder
-     * @param  array $options
+     * @param Builder $builder
+     * @param array   $options
+     *
      * @return mixed
      */
     protected function performSearch(Builder $builder, array $options = [])
@@ -82,7 +86,7 @@ class ElasticsearchEngine
         $matches[] = [
             'match' => [
                 '_all' => [
-                    'query' => $builder->query,
+                    'query'     => $builder->query,
                     'fuzziness' => 1,
                 ],
             ],
@@ -100,7 +104,7 @@ class ElasticsearchEngine
                     $matches[] = [
                         'match' => [
                             $field => [
-                                'query' => $value,
+                                'query'    => $value,
                                 'operator' => 'and',
                             ],
                         ],
@@ -114,7 +118,7 @@ class ElasticsearchEngine
             $querybody = [
                 'filtered' => [
                     'filter' => $filters,
-                    'query' => [
+                    'query'  => [
                         'bool' => [
                             'must' => $matches,
                         ],
@@ -125,15 +129,15 @@ class ElasticsearchEngine
             $querybody = [
                 'bool' => [
                     'filter' => $filters,
-                    'must' => $matches,
+                    'must'   => $matches,
                 ],
             ];
         }
 
         $query = [
             'index' => $this->index,
-            'type' => $builder->model->searchableAs(),
-            'body' => [
+            'type'  => $builder->model->searchableAs(),
+            'body'  => [
                 'query' => $querybody,
             ],
         ];
@@ -160,7 +164,8 @@ class ElasticsearchEngine
     /**
      * Get the filter array for the query.
      *
-     * @param  Builder $query
+     * @param Builder $query
+     *
      * @return array
      */
     protected function filters(Builder $query)
@@ -171,7 +176,8 @@ class ElasticsearchEngine
     /**
      * Get the results of the given query mapped onto models.
      *
-     * @param  \Laravel\Scout\Builder $builder
+     * @param \Laravel\Scout\Builder $builder
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function get(Builder $builder)
@@ -184,8 +190,9 @@ class ElasticsearchEngine
     /**
      * Map the given results to instances of the given model.
      *
-     * @param  mixed $results
-     * @param  \Illuminate\Database\Eloquent\Model $model
+     * @param mixed                               $results
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
      * @return Collection
      */
     public function map($results, $model)
@@ -212,7 +219,8 @@ class ElasticsearchEngine
     /**
      * Update the given model in the index.
      *
-     * @param  Collection $models
+     * @param Collection $models
+     *
      * @return void
      */
     public function update($models)
@@ -229,8 +237,8 @@ class ElasticsearchEngine
             $body->push([
                 'index' => [
                     '_index' => $this->index,
-                    '_type' => $model->searchableAs(),
-                    '_id' => $model->getKey(),
+                    '_type'  => $model->searchableAs(),
+                    '_id'    => $model->getKey(),
                 ],
             ]);
 
@@ -239,14 +247,15 @@ class ElasticsearchEngine
 
         $this->elasticsearch->bulk([
             'refresh' => true,
-            'body' => $body->all(),
+            'body'    => $body->all(),
         ]);
     }
 
     /**
      * Remove the given model from the index.
      *
-     * @param  Collection $models
+     * @param Collection $models
+     *
      * @return void
      */
     public function delete($models)
@@ -257,32 +266,33 @@ class ElasticsearchEngine
             $body->push([
                 'delete' => [
                     '_index' => $this->index,
-                    '_type' => $model->searchableAs(),
-                    '_id' => $model->getKey(),
+                    '_type'  => $model->searchableAs(),
+                    '_id'    => $model->getKey(),
                 ],
             ]);
         });
 
         $this->elasticsearch->bulk([
             'refresh' => true,
-            'body' => $body->all(),
+            'body'    => $body->all(),
         ]);
     }
 
     /**
      * Perform the given search on the engine.
      *
-     * @param  Builder $query
-     * @param  int $perPage
-     * @param  int $page
+     * @param Builder $query
+     * @param int     $perPage
+     * @param int     $page
+     *
      * @return mixed
      */
     public function paginate(Builder $query, $perPage, $page)
     {
         $result = $this->performSearch($query, [
             'filters' => $this->filters($query),
-            'size' => $perPage,
-            'from' => (($page * $perPage) - $perPage),
+            'size'    => $perPage,
+            'from'    => (($page * $perPage) - $perPage),
         ]);
 
         $result['nbPages'] = (int) ceil($result['hits']['total'] / $perPage);
@@ -293,7 +303,8 @@ class ElasticsearchEngine
     /**
      * Get the total count from a raw result returned by the engine.
      *
-     * @param  mixed $results
+     * @param mixed $results
+     *
      * @return int
      */
     public function getTotalCount($results)

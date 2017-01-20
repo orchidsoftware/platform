@@ -18,21 +18,21 @@ class LogStyler implements LogStylerContract
      * @var array
      */
     protected $icons = [
-        'all' => 'fa fa-fw fa-list',
+        'all'       => 'fa fa-fw fa-list',
         'emergency' => 'fa fa-fw fa-bug',
-        'alert' => 'fa fa-fw fa-bullhorn',
-        'critical' => 'fa fa-fw fa-heartbeat',
-        'error' => 'fa fa-fw fa-times-circle',
-        'warning' => 'fa fa-fw fa-exclamation-triangle',
-        'notice' => 'fa fa-fw fa-exclamation-circle',
-        'info' => 'fa fa-fw fa-info-circle',
-        'debug' => 'fa fa-fw fa-life-ring',
+        'alert'     => 'fa fa-fw fa-bullhorn',
+        'critical'  => 'fa fa-fw fa-heartbeat',
+        'error'     => 'fa fa-fw fa-times-circle',
+        'warning'   => 'fa fa-fw fa-exclamation-triangle',
+        'notice'    => 'fa fa-fw fa-exclamation-circle',
+        'info'      => 'fa fa-fw fa-info-circle',
+        'debug'     => 'fa fa-fw fa-life-ring',
     ];
 
     /**
      * Create a new instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      */
     public function __construct(ConfigContract $config)
     {
@@ -42,8 +42,8 @@ class LogStyler implements LogStylerContract
     /**
      * Make level icon.
      *
-     * @param  string $level
-     * @param  string|null $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */
@@ -59,8 +59,8 @@ class LogStyler implements LogStylerContract
     /**
      * Get level color.
      *
-     * @param  string $level
-     * @param  string|null $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */
@@ -72,8 +72,8 @@ class LogStyler implements LogStylerContract
     /**
      * Get config.
      *
-     * @param  string $key
-     * @param  mixed $default
+     * @param string $key
+     * @param mixed  $default
      *
      * @return mixed
      */

@@ -2,15 +2,15 @@
 
 namespace Orchid\Log\Contracts\Utilities;
 
-use Orchid\Log\Entities\Log;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
+use Orchid\Log\Entities\Log;
 
 interface LogMenu
 {
     /**
      * Set the config instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      *
      * @return self
      */
@@ -19,7 +19,7 @@ interface LogMenu
     /**
      * Set the log styler instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\LogStyler $styler
+     * @param \Orchid\Log\Contracts\Utilities\LogStyler $styler
      *
      * @return self
      */
@@ -28,8 +28,8 @@ interface LogMenu
     /**
      * Make log menu.
      *
-     * @param  \Orchid\Log\Entities\Log $log
-     * @param  bool $trans
+     * @param \Orchid\Log\Entities\Log $log
+     * @param bool                     $trans
      *
      * @return array
      */

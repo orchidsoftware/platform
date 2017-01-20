@@ -33,7 +33,7 @@ class EnvironmentManager
      */
     public function getEnvContent()
     {
-        if (! file_exists($this->envPath)) {
+        if (!file_exists($this->envPath)) {
             if (file_exists($this->envExamplePath)) {
                 copy($this->envExamplePath, $this->envPath);
             } else {

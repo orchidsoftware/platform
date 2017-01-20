@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Core\Models\Role;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Facades\Dashboard;
 
 class BaseRolesForm extends Form
@@ -29,8 +29,8 @@ class BaseRolesForm extends Form
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
-            'slug' => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
+            'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug'        => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
             'permissions' => 'array',
         ];
     }
@@ -44,7 +44,7 @@ class BaseRolesForm extends Form
      */
     public function get(Role $role = null)
     {
-        if (! is_null($role)) {
+        if (!is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
             $permission->transform(function ($array) use ($rolePermission) {
@@ -60,7 +60,7 @@ class BaseRolesForm extends Form
 
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
-            'role' => $role,
+            'role'       => $role,
         ]);
     }
 

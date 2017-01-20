@@ -2,12 +2,12 @@
 
 namespace Orchid\Foundation\Core\Models;
 
-use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Facades\Dashboard;
+use Illuminate\Support\Facades\App;
+use Laravel\Scout\Searchable;
 use Orchid\Foundation\Exceptions\TypeException;
+use Orchid\Foundation\Facades\Dashboard;
 
 class Post extends Model
 {
@@ -42,9 +42,9 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'page' => 'boolean',
-        'type' => 'string',
-        'slug' => 'string',
+        'page'    => 'boolean',
+        'type'    => 'string',
+        'slug'    => 'string',
         'content' => 'array',
     ];
 
@@ -83,7 +83,7 @@ class Post extends Model
      */
     public function getTypeObject()
     {
-        if (! is_null($this->dataType)) {
+        if (!is_null($this->dataType)) {
             return $this->dataType;
         } else {
             return $this->getType($this->getAttribute('type'))->dataType;
@@ -93,9 +93,9 @@ class Post extends Model
     /**
      * @param $getType
      *
-     * @return mixed
-     *
      * @throws TypeException
+     *
+     * @return mixed
      */
     public function getType($getType)
     {
@@ -124,7 +124,7 @@ class Post extends Model
     {
         try {
             $lang = $lang ?: App::getLocale();
-            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
+            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;

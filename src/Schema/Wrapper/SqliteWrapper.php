@@ -17,6 +17,7 @@ class SqliteWrapper implements WrapperContract
 
     /**
      * SqliteWrapper constructor.
+     *
      * @param BaseSchema $baseSchema
      */
     public function __construct(BaseSchema $baseSchema)
@@ -52,6 +53,7 @@ class SqliteWrapper implements WrapperContract
 
     /**
      * @param $tableName
+     *
      * @return array
      */
     public function getColumns($tableName)
@@ -63,18 +65,20 @@ class SqliteWrapper implements WrapperContract
 
     /**
      * Transform columns.
+     *
      * @param $columns
+     *
      * @return array
      */
     private function transformColumns($columns)
     {
         return array_map(function ($column) {
             return [
-                'CID' => $column->cid,
-                'Field' => $column->name,
-                'Type' => $column->type,
-                'Null' => $column->notnull,
-                'Key' => $column->pk,
+                'CID'     => $column->cid,
+                'Field'   => $column->name,
+                'Type'    => $column->type,
+                'Null'    => $column->notnull,
+                'Key'     => $column->pk,
                 'Default' => $column->dflt_value,
             ];
         }, $columns);

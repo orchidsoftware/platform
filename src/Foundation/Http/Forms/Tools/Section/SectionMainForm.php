@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Section;
 
-use Orchid\Forms\Form;
 use Illuminate\Support\Facades\App;
-use Orchid\Foundation\Facades\Alert;
+use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Section;
+use Orchid\Foundation\Facades\Alert;
 
 class SectionMainForm extends Form
 {
@@ -46,8 +46,8 @@ class SectionMainForm extends Form
         return view('dashboard::container.tools.section.info', [
             'sections' => $sections,
             'language' => $language,
-            'section' => $section,
-            'locales' => config('content.locales'),
+            'section'  => $section,
+            'locales'  => config('content.locales'),
         ]);
     }
 

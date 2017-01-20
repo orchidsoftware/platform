@@ -2,13 +2,13 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Log\Log;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use Orchid\Log\Tables\StatsTable;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Arr;
 use Orchid\Log\Exceptions\LogNotFoundException;
+use Orchid\Log\Log;
+use Orchid\Log\Tables\StatsTable;
 
 class LogViewerController extends Controller
 {
@@ -36,7 +36,7 @@ class LogViewerController extends Controller
     /**
      * List all logs.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\View\View
      */
@@ -66,7 +66,7 @@ class LogViewerController extends Controller
     /**
      * Prepare chart data.
      *
-     * @param  \Orchid\Log\Tables\StatsTable $stats
+     * @param \Orchid\Log\Tables\StatsTable $stats
      *
      * @return string
      */
@@ -75,11 +75,11 @@ class LogViewerController extends Controller
         $totals = $stats->totals()->all();
 
         return json_encode([
-            'labels' => Arr::pluck($totals, 'label'),
+            'labels'   => Arr::pluck($totals, 'label'),
             'datasets' => [
                 [
-                    'data' => Arr::pluck($totals, 'value'),
-                    'backgroundColor' => Arr::pluck($totals, 'color'),
+                    'data'                 => Arr::pluck($totals, 'value'),
+                    'backgroundColor'      => Arr::pluck($totals, 'color'),
                     'hoverBackgroundColor' => Arr::pluck($totals, 'highlight'),
                 ],
             ],
@@ -89,8 +89,8 @@ class LogViewerController extends Controller
     /**
      * Calculate the percentage.
      *
-     * @param  array $total
-     * @param  array $names
+     * @param array $total
+     * @param array $names
      *
      * @return array
      */
@@ -101,8 +101,8 @@ class LogViewerController extends Controller
 
         foreach ($total as $level => $count) {
             $percents[$level] = [
-                'name' => $names[$level],
-                'count' => $count,
+                'name'    => $names[$level],
+                'count'   => $count,
                 'percent' => $all ? round(($count / $all) * 100, 2) : 0,
             ];
         }
@@ -113,8 +113,8 @@ class LogViewerController extends Controller
     /**
      * Paginate logs.
      *
-     * @param  array $data
-     * @param  \Illuminate\Http\Request $request
+     * @param array                    $data
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -133,7 +133,7 @@ class LogViewerController extends Controller
     /**
      * Show the log.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Illuminate\View\View
      */
@@ -149,7 +149,7 @@ class LogViewerController extends Controller
     /**
      * Get a log or fail.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log|null
      */
@@ -169,8 +169,8 @@ class LogViewerController extends Controller
     /**
      * Filter the log entries by level.
      *
-     * @param  string $date
-     * @param  string $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
@@ -193,7 +193,7 @@ class LogViewerController extends Controller
     /**
      * Download the log.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
@@ -205,13 +205,13 @@ class LogViewerController extends Controller
     /**
      * Delete a log.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)
     {
-        if (! $request->ajax()) {
+        if (!$request->ajax()) {
             abort(405, 'Method Not Allowed');
         }
 

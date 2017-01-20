@@ -6,14 +6,16 @@ trait Helpers
 {
     /**
      * @param $namespaceModel
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function tableNameFromModel($namespaceModel)
     {
         $modelPath = app()->getNamespace().$namespaceModel;
         $modelPath = class_exists($modelPath) ? $modelPath : $namespaceModel;
-        if (! class_exists($modelPath)) {
+        if (!class_exists($modelPath)) {
             throw new \Exception("Model {$modelPath} not exist!");
         }
 
@@ -22,6 +24,7 @@ trait Helpers
 
     /**
      * @param $namespaceModel
+     *
      * @return bool
      */
     public function isNamespaceModel($namespaceModel)

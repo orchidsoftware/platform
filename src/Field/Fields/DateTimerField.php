@@ -12,6 +12,7 @@ class DateTimerField extends Field
     public $view = 'dashboard::fields.datetime';
     /**
      * HTML tag.
+     *
      * @var string
      */
     protected $tag = 'datetime';
@@ -21,6 +22,7 @@ class DateTimerField extends Field
      *
      * @param null $attributes
      * @param null $data
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($attributes, $data = null)

@@ -2,9 +2,9 @@
 
 namespace Orchid\Search\Elasticsearch;
 
-use Laravel\Scout\EngineManager;
-use Illuminate\Support\ServiceProvider;
 use Elasticsearch\ClientBuilder as Elasticsearch;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\EngineManager;
 
 class ElasticsearchServiceProvicer extends ServiceProvider
 {

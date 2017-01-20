@@ -2,8 +2,8 @@
 
 namespace Orchid\Forms;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 
 abstract class Form implements FormInterface
 {

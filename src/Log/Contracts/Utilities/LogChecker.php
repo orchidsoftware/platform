@@ -18,7 +18,7 @@ interface LogChecker
     /**
      * Set the config instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      *
      * @return self
      */
@@ -27,7 +27,7 @@ interface LogChecker
     /**
      * Set the Filesystem instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
      *
      * @return self
      */

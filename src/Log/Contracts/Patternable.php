@@ -16,9 +16,9 @@ interface Patternable
     /**
      * Set the log pattern.
      *
-     * @param  string $date
-     * @param  string $prefix
-     * @param  string $extension
+     * @param string $date
+     * @param string $prefix
+     * @param string $extension
      *
      * @return self
      */

@@ -2,8 +2,8 @@
 
 namespace Modules\Settings\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class SettingsDatabaseSeeder extends Seeder
 {

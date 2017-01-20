@@ -27,13 +27,13 @@ return [
 
     'fields' => [
         'textarea' => \Orchid\Field\Fields\TextAreaField::class,
-        'input' => \Orchid\Field\Fields\InputField::class,
-        'tags' => \Orchid\Field\Fields\TagsField::class,
-        'robot' => \Orchid\Field\Fields\RobotField::class,
-        'place' => \Orchid\Field\Fields\PlaceField::class,
+        'input'    => \Orchid\Field\Fields\InputField::class,
+        'tags'     => \Orchid\Field\Fields\TagsField::class,
+        'robot'    => \Orchid\Field\Fields\RobotField::class,
+        'place'    => \Orchid\Field\Fields\PlaceField::class,
         'datetime' => \Orchid\Field\Fields\DateTimerField::class,
         'checkbox' => \Orchid\Field\Fields\CheckBoxField::class,
-        'path' => \Orchid\Field\Fields\PathField::class,
+        'path'     => \Orchid\Field\Fields\PathField::class,
     ],
 
     /*
@@ -46,9 +46,9 @@ return [
     */
 
     'menu' => [
-        'header' => 'Верхнее меню',
+        'header'  => 'Верхнее меню',
         'sidebar' => 'Боковое меню',
-        'footer' => 'Нижнее меню',
+        'footer'  => 'Нижнее меню',
     ],
 
     /*
@@ -65,18 +65,18 @@ return [
 
     'images' => [
         'low' => [
-            'width' => '50',
-            'height' => '50',
+            'width'   => '50',
+            'height'  => '50',
             'quality' => '50',
         ],
         'medium' => [
-            'width' => '600',
-            'height' => '300',
+            'width'   => '600',
+            'height'  => '300',
             'quality' => '75',
         ],
         'high' => [
-            'width' => '1000',
-            'height' => '500',
+            'width'   => '1000',
+            'height'  => '500',
             'quality' => '100',
         ],
     ],
@@ -93,18 +93,18 @@ return [
     'locales' => [
 
         'en' => [
-            'name' => 'English',
-            'script' => 'Latn',
-            'dir' => 'ltr',
-            'native' => 'English',
+            'name'     => 'English',
+            'script'   => 'Latn',
+            'dir'      => 'ltr',
+            'native'   => 'English',
             'regional' => 'en_GB',
         ],
 
         'ru' => [
-            'name' => 'Russian',
-            'script' => 'Cyrl',
-            'dir' => 'ltr',
-            'native' => 'Русский',
+            'name'     => 'Russian',
+            'script'   => 'Cyrl',
+            'dir'      => 'ltr',
+            'native'   => 'Русский',
             'regional' => 'ru_RU',
         ],
     ],

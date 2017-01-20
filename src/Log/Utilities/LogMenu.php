@@ -2,10 +2,10 @@
 
 namespace Orchid\Log\Utilities;
 
-use Orchid\Log\Entities\Log;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Contracts\Utilities\LogMenu as LogMenuContract;
 use Orchid\Log\Contracts\Utilities\LogStyler as LogStylerContract;
+use Orchid\Log\Entities\Log;
 
 class LogMenu implements LogMenuContract
 {
@@ -26,8 +26,8 @@ class LogMenu implements LogMenuContract
     /**
      * LogMenu constructor.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
-     * @param  \Orchid\Log\Contracts\Utilities\LogStyler $styler
+     * @param \Illuminate\Contracts\Config\Repository   $config
+     * @param \Orchid\Log\Contracts\Utilities\LogStyler $styler
      */
     public function __construct(ConfigContract $config, LogStylerContract $styler)
     {
@@ -38,7 +38,7 @@ class LogMenu implements LogMenuContract
     /**
      * Set the config instance.
      *
-     * @param  \Illuminate\Contracts\Config\Repository $config
+     * @param \Illuminate\Contracts\Config\Repository $config
      *
      * @return \Orchid\Log\Utilities\LogMenu
      */
@@ -52,7 +52,7 @@ class LogMenu implements LogMenuContract
     /**
      * Set the log styler instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\LogStyler $styler
+     * @param \Orchid\Log\Contracts\Utilities\LogStyler $styler
      *
      * @return \Orchid\Log\Utilities\LogMenu
      */
@@ -66,8 +66,8 @@ class LogMenu implements LogMenuContract
     /**
      * Make log menu.
      *
-     * @param  \Orchid\Log\Entities\Log $log
-     * @param  bool $trans
+     * @param \Orchid\Log\Entities\Log $log
+     * @param bool                     $trans
      *
      * @return array
      */
@@ -78,7 +78,7 @@ class LogMenu implements LogMenuContract
 
         foreach ($log->tree($trans) as $level => $item) {
             $items[$level] = array_merge($item, [
-                'url' => route($route, [$log->date, $level]),
+                'url'  => route($route, [$log->date, $level]),
                 'icon' => $this->styler->icon($level) ?: '',
             ]);
         }
@@ -89,8 +89,8 @@ class LogMenu implements LogMenuContract
     /**
      * Get config.
      *
-     * @param  string $key
-     * @param  mixed $default
+     * @param string $key
+     * @param mixed  $default
      *
      * @return mixed
      */

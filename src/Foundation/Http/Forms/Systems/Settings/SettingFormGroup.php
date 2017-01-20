@@ -25,7 +25,7 @@ class SettingFormGroup extends FormGroup
     public function attributes()
     {
         return [
-            'name' => 'Настройки',
+            'name'        => 'Настройки',
             'description' => 'Глобальные настройки системы',
         ];
     }

@@ -25,7 +25,7 @@ class SeoPostForm extends Form
     {
         return view('dashboard::container.posts.modules.base', [
             'author' => (is_null($post)) ? $post : $post->getUser(),
-            'post' => $post,
+            'post'   => $post,
         ]);
     }
 

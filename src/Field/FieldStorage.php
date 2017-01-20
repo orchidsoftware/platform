@@ -37,8 +37,8 @@ class FieldStorage
     public function all()
     {
         $this->container->transform(function ($value) {
-            if (! is_object($value)) {
-                $value = new $value;
+            if (!is_object($value)) {
+                $value = new $value();
             }
 
             return $value;
@@ -49,6 +49,7 @@ class FieldStorage
 
     /**
      * @param $arg
+     *
      * @return mixed
      */
     public function get($arg)
