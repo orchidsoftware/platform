@@ -78,6 +78,9 @@ class Post extends Model
         return $this->where('type', $this->dataType->slug);
     }
 
+    /**
+     * @return null
+     */
     public function getTypeObject()
     {
         if (!is_null($this->dataType)) {
