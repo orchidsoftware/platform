@@ -25,7 +25,6 @@ class SchemaController extends Controller
      */
     private $limit = 15;
 
-
     /**
      * SchemaController constructor.
      * @param Schema $schema

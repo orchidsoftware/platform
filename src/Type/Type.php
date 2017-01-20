@@ -110,18 +110,18 @@ abstract class Type implements TypeInterface
                 if (count($nameArray) > 1) {
                     $config['name'] = '';
 
-                    if (!is_null($post)) {
+                    if (! is_null($post)) {
                         $config['value'] = $post->getContent($nameArray[0], $language);
                     }
 
                     foreach ($nameArray as $name) {
                         $config['name'] .= '['.$name.']';
-                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name, $config['value'])) {
+                        if (! is_null($post) && ! is_null($config['value']) && is_array($config['value']) && array_key_exists($name, $config['value'])) {
                             $config['value'] = $config['value'][$name];
                         }
                     }
                 } else {
-                    if (!is_null($post)) {
+                    if (! is_null($post)) {
                         $config['value'] = $post->getContent($config['name'], $language);
                     }
                     $config['name'] = '['.$config['name'].']';
@@ -302,7 +302,7 @@ abstract class Type implements TypeInterface
      */
     public function checkModules()
     {
-        if (method_exists($this, 'modules') && !empty($this->modules())) {
+        if (method_exists($this, 'modules') && ! empty($this->modules())) {
             return true;
         }
 
@@ -314,7 +314,7 @@ abstract class Type implements TypeInterface
      */
     public function render()
     {
-        if (!is_null($this->cultivated)) {
+        if (! is_null($this->cultivated)) {
             return $this->cultivated;
         }
 
@@ -324,7 +324,7 @@ abstract class Type implements TypeInterface
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
             if (method_exists($form, 'get')) {
@@ -346,7 +346,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -365,7 +365,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -384,7 +384,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 

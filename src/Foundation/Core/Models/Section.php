@@ -87,7 +87,7 @@ class Section extends Model
      */
     private function recurse($model, $local)
     {
-        if (!is_null($model->section_id)) {
+        if (! is_null($model->section_id)) {
             $parrent = $this->find($model->section_id);
             $this->treeName[$this->slug] = $parrent->content[$local]['name'];
         }
@@ -102,7 +102,7 @@ class Section extends Model
      */
     private function recurseTree($model, $delimiter, $local)
     {
-        if (!is_null($model->section_id)) {
+        if (! is_null($model->section_id)) {
             $parrent = $this->find($model->section_id);
             $this->treeName = $parrent->content[$local]['name'].$delimiter.$this->treeName;
         }
@@ -120,7 +120,7 @@ class Section extends Model
     {
         try {
             $lang = $lang ?: App::getLocale();
-            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
+            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;

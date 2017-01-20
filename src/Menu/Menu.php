@@ -144,7 +144,7 @@ class Menu
     {
         $html = '';
 
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
             $this->container = $this->container->filter(function ($item) use ($user) {
@@ -153,7 +153,7 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (!is_null($template)) {
+            if (! is_null($template)) {
                 $value['template'] = $template;
             }
 
