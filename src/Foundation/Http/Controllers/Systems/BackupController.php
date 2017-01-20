@@ -73,7 +73,9 @@ class BackupController extends Controller
 
     /**
      * Downloads a backup zip file.
+     *
      * @param Request $request
+     *
      * @return
      */
     public function download(Request $request)

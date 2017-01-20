@@ -116,7 +116,9 @@ class FileController extends Controller
 
     /**
      * Delete files.
+     *
      * @param $id
+     *
      * @return
      */
     public function destroy($id)

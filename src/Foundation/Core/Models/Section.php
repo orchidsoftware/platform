@@ -82,8 +82,8 @@ class Section extends Model
 
     /**
      * @param $model
-     *
      * @param $local
+     *
      * @return bool
      */
     private function recurse($model, $local)
@@ -98,9 +98,9 @@ class Section extends Model
 
     /**
      * @param $model
-     *
      * @param $delimiter
      * @param $local
+     *
      * @return bool
      */
     private function recurseTree($model, $delimiter, $local)

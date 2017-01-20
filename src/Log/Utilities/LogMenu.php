@@ -85,5 +85,4 @@ class LogMenu implements LogMenuContract
 
         return $items;
     }
-
 }
