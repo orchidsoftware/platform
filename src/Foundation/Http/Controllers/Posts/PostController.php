@@ -57,6 +57,8 @@ class PostController extends Controller
 
     /**
      * @param Request $request
+     * @param Post $post
+     * @return
      */
     public function store(Request $request, Post $post)
     {

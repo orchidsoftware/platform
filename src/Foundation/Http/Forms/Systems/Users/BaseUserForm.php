@@ -54,6 +54,7 @@ class BaseUserForm extends Form
      *
      * @param null $request
      * @param null $user
+     * @return mixed|void
      */
     public function persist($request = null, $user = null)
     {

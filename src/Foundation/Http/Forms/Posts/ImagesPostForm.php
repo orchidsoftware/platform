@@ -30,6 +30,7 @@ class ImagesPostForm extends Form
     /**
      * @param null $type
      * @param null $post
+     * @return mixed|void
      */
     public function persist($type = null, $post = null)
     {

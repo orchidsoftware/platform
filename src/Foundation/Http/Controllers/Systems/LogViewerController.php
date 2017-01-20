@@ -27,6 +27,7 @@ class LogViewerController extends Controller
 
     /**
      * LogController constructor.
+     * @param Log $Log
      */
     public function __construct(Log $Log)
     {

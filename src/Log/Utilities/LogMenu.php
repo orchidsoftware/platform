@@ -86,16 +86,4 @@ class LogMenu implements LogMenuContract
         return $items;
     }
 
-    /**
-     * Get config.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    private function config($key, $default = null)
-    {
-        return $this->config->get("log-viewer.$key", $default);
-    }
 }

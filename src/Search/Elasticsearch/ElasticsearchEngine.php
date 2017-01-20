@@ -35,7 +35,8 @@ class ElasticsearchEngine
      *
      * @param \Elasticsearch\Client $elasticsearch
      *
-     * @return void
+     * @param $index
+     * @param string $version
      */
     public function __construct(Elasticsearch $elasticsearch, $index, $version = '2.4.1')
     {

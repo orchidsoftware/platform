@@ -154,6 +154,7 @@ abstract class FormGroup
 
     /**
      * Action save for sub form.
+     * @param array $arg
      */
     public function remove(...$arg)
     {

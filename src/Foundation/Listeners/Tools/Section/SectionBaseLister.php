@@ -17,7 +17,8 @@ class SectionBaseLister
     /**
      * Handle the event.
      *
-     * @param SettingsEvent $event
+     * @param SectionEvent|SettingsEvent $event
+     * @return
      */
     public function handle(SectionEvent $event)
     {

@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\Section;
 
 class BasePostForm extends Form
@@ -36,9 +35,10 @@ class BasePostForm extends Form
     /**
      * Save Base Role.
      *
-     * @param null $storage
-     *
+     * @param null $type
+     * @param Post $post
      * @return \Illuminate\Http\JsonResponse
+     * @internal param null $storage
      */
     public function persist($type = null, Post $post = null)
     {
@@ -50,7 +50,7 @@ class BasePostForm extends Form
     }
 
     /**
-     * @param Role $role
+     * @internal param Role $role
      */
     public function delete()
     {

@@ -28,6 +28,7 @@ class FoundationServiceProvider extends ServiceProvider
 
     /**
      * Boot the application events.
+     * @param Router $router
      */
     public function boot(Router $router)
     {

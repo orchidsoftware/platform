@@ -5,7 +5,7 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Orchid\Foundation\Core\Models\Menu;
+
 
 class MenuController extends Controller
 {

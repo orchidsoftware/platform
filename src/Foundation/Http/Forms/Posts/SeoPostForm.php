@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Core\Models\Role;
 
 class SeoPostForm extends Form
 {
@@ -31,17 +30,16 @@ class SeoPostForm extends Form
 
     /**
      * Save Base Role.
-     *
-     * @param null $storage
-     *
      * @return \Illuminate\Http\JsonResponse
+     * @internal param null $storage
+     *
      */
     public function persist()
     {
     }
 
     /**
-     * @param Role $role
+     * @internal param Role $role
      */
     public function delete()
     {
