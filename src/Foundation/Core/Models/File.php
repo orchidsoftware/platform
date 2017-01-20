@@ -42,7 +42,6 @@ class File extends Model
         return $this->belongsTo(Post::class);
     }
 
-
     /**
      * @param string $size
      * @param string $prefix
@@ -50,19 +49,18 @@ class File extends Model
      */
     public function url($size = '', $prefix = 'public')
     {
-        if(!empty($size)){
+        if (! empty($size)) {
             $size = '_'.$size;
 
-            if(!Storage::disk($prefix)->exists(
+            if (! Storage::disk($prefix)->exists(
                 $this->path.
                 $this->name.
                 $size.
                 '.'.
                 $this->extension
-            )){
-                return $this->url(null,$prefix);
+            )) {
+                return $this->url(null, $prefix);
             }
-
         }
 
         return Storage::disk($prefix)->url(
@@ -72,6 +70,5 @@ class File extends Model
             '.'.
             $this->extension
         );
-
     }
 }

@@ -38,7 +38,6 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
         'uses' => 'FileController@getFilesPost',
     ]);
 
-
     Route::resource('menu', 'MenuController', ['names' => [
         'index' => 'dashboard.tools.menu.index',
         'show' => 'dashboard.tools.menu.show',
