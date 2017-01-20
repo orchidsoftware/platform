@@ -27,7 +27,7 @@ abstract class Form implements FormInterface
     /**
      * Laravel Models for Forms.
      *
-     * @var
+     * @var Illuminate\Database\Eloquent\Model;
      */
     protected $model;
 
@@ -98,6 +98,7 @@ abstract class Form implements FormInterface
      */
     public function rules()
     {
+        //
     }
 
     /**
@@ -105,6 +106,7 @@ abstract class Form implements FormInterface
      */
     public function persist()
     {
+        //
     }
 
     /**
@@ -114,6 +116,7 @@ abstract class Form implements FormInterface
      */
     public function grid()
     {
+        //
     }
 
     /**
@@ -123,5 +126,6 @@ abstract class Form implements FormInterface
      */
     public function remove()
     {
+        //
     }
 }

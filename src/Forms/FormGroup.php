@@ -21,22 +21,26 @@ abstract class FormGroup
      * @var
      */
     public $description = '';
+
     /**
      * Collection listeners form.
      *
      * @var \Illuminate\Support\Collection
      */
     public $group;
+
     /**
      * View template form.
      *
      * @var
      */
     public $view = 'dashboard::layouts.form.group';
+
     /**
      * @var
      */
     public $method = 'GET';
+
     /**
      * Command list button
      * Send all forms data.
@@ -48,16 +52,19 @@ abstract class FormGroup
      * @var array
      */
     public $route = '';
+
     /**
      * @var string
      */
     public $slug = '';
+
     /**
      * Event Hook.
      *
      * @var
      */
     protected $event;
+
     /**
      * Views Render.
      *
