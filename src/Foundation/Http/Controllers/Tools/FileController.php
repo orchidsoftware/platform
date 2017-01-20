@@ -5,8 +5,8 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
 
@@ -148,8 +148,11 @@ class FileController extends Controller
             $name = '_'.$name;
         }
 
-        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
-        Image::make($image)->resize($width, $height)->save($full_path, $quality);
+        $name = sha1($this->time . $image->getClientOriginalName()) . $name . '.' . $image->getClientOriginalExtension();
+        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name);
+        Image::make($image)->resize($width, $height, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save($full_path, $quality);
     }
 }
