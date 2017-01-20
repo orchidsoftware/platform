@@ -32,7 +32,7 @@ if (document.getElementsByClassName('dropzone')) {
                         images.forEach(function(item, i, arr) {
                             var mockFile = {
                                 name: item.original_name,
-                                size: 0,
+                                size: item.size,
                                 type: item.mime,
                                 status: Dropzone.ADDED,
                                 url: '/storage/'+ item.path + '/' + item.name,

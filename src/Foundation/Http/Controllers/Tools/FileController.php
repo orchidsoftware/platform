@@ -12,6 +12,27 @@ use Orchid\Foundation\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
+
+    /**
+     * @var int
+     */
+    public $time;
+
+    /**
+     * @var false|string
+     */
+    public $date;
+
+    /**
+     * FileController constructor.
+     */
+    public function __construct()
+    {
+        $this->time = time();
+        $this->date = date('Y/m/d');
+        
+    }
+    
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -37,7 +58,7 @@ class FileController extends Controller
      */
     protected function saveImage(UploadedFile $image)
     {
-        Storage::disk('public')->makeDirectory(date('Y/m/d'));
+        Storage::disk('public')->makeDirectory($this->date);
 
         foreach (config('content.images', []) as $key => $value) {
             $this->saveImageProcessing(
@@ -49,16 +70,18 @@ class FileController extends Controller
             );
         }
 
-        $name = sha1(time().$image->getClientOriginalName()).'.'.$image->getClientOriginalExtension();
-        $path = '/'.date('Y/m/d').'/';
+        $name = sha1($this->time.$image->getClientOriginalName());
+        $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name .'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
 
         return File::create([
             'name' => $name,
             'original_name' => $image->getClientOriginalName(),
             'mime' => $image->getMimeType(),
+            'extension' => $image->extension(),
+            'size' => $image->getSize(),
             'path' => $path,
             'user_id' => Auth::user()->id,
         ]);
@@ -70,12 +93,12 @@ class FileController extends Controller
      */
     protected function saveFile(UploadedFile $file)
     {
-        Storage::disk('public')->makeDirectory(date('Y/m/d'));
+        Storage::disk('public')->makeDirectory($this->date);
 
-        $name = sha1(time().$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
-        $path = '/'.date('Y/m/d').'/';
+        $name = sha1($this->time.$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+        $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
 
         $file->move($full_path, $name);
 
@@ -127,8 +150,8 @@ class FileController extends Controller
             $name = '_'.$name;
         }
 
-        $name = sha1(time().$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
-        $full_path = storage_path('app/public/'.'/'.date('Y/m/d').'/'.$name);
+        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
         Image::make($image)->resize($width, $height)->save($full_path, $quality);
     }
 }

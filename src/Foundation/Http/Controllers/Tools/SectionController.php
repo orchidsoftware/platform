@@ -55,8 +55,6 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //$this->form->storage->put('model', $section);
-
         return $this->form
             ->route('dashboard.tools.section.update')
             ->method('PUT')
@@ -75,7 +73,7 @@ class SectionController extends Controller
         return redirect()->back();
     }
 
-    /**]
+    /**
      * @return mixed
      */
     public function store()

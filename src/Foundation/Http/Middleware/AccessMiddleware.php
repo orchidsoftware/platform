@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\Route;
 
 class AccessMiddleware
 {
+    /**
+     * @var Guard
+     */
     protected $auth;
+
+    /**
+     * @var
+     */
     protected $routeActive;
 
     /**

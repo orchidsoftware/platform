@@ -24,11 +24,7 @@ class LogViewerController extends Controller
 
     /** @var string */
     protected $showRoute = 'log-viewer::logs.show';
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Constructor
-     | ------------------------------------------------------------------------------------------------
-     */
+    
 
     /**
      * LogController constructor.
@@ -38,11 +34,7 @@ class LogViewerController extends Controller
         $this->Log = app('arcanedev.log-viewer');
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-
+    
     /**
      * List all logs.
      *
@@ -156,10 +148,6 @@ class LogViewerController extends Controller
         return view('dashboard::container.systems.logs.show', compact('log', 'levels', 'entries'));
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get a log or fail.
@@ -203,7 +191,6 @@ class LogViewerController extends Controller
             ->paginate($this->perPage);
 
         return view('dashboard::container.systems.logs.show', compact('log', 'levels', 'entries'));
-        // return $this->view('show', compact('log', 'levels', 'entries'));
     }
 
     /**

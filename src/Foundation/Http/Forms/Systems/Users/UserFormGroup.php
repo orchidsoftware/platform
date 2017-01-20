@@ -13,36 +13,6 @@ class UserFormGroup extends FormGroup
      */
     public $event = UserEvent::class;
 
-    /**
-     * Route available list.
-     * @var array
-     */
-    public $route = [
-        'index' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.users',
-        ],
-        'create' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.users.create',
-        ],
-        'edit' => [
-            'method' => 'GET',
-            'name' => 'dashboard.systems.users.edit',
-        ],
-        'update' => [
-            'method' => 'PUT',
-            'name' => 'dashboard.systems.users.update',
-        ],
-        'store' => [
-            'method' => 'POST',
-            'name' => 'dashboard.systems.users.store',
-        ],
-        'destroy' => [
-            'method' => 'DELETE',
-            'name' => 'dashboard.systems.users.destroy',
-        ],
-    ];
 
     /**
      * Description Attributes for group.

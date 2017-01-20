@@ -17,11 +17,15 @@ class CreateTableFiles extends Migration
             $table->text('name');
             $table->text('original_name');
             $table->string('mime');
+            $table->string('extension')->nullable();
+            $table->bigInteger('size')->default(0);
             $table->text('path');
             $table->integer('user_id')->nullable();
             $table->integer('post_id')->nullable();
             $table->timestamps();
         });
+
+
     }
 
     /**

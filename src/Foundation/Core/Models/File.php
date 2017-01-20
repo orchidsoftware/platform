@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
@@ -18,6 +19,8 @@ class File extends Model
         'name',
         'original_name',
         'mime',
+        'extension',
+        'size',
         'path',
         'user_id',
         'post_id',
@@ -39,12 +42,36 @@ class File extends Model
         return $this->belongsTo(Post::class);
     }
 
+
     /**
+     * @param string $size
      * @param string $prefix
      * @return string
      */
-    public function url($prefix = 'storage')
+    public function url($size = '', $prefix = 'public')
     {
-        return '/'.$prefix.$this->path.$this->name;
+        if(!empty($size)){
+            $size = '_'.$size;
+
+            if(!Storage::disk($prefix)->exists(
+                $this->path.
+                $this->name.
+                $size.
+                '.'.
+                $this->extension
+            )){
+                return $this->url(null,$prefix);
+            }
+
+        }
+
+        return Storage::disk($prefix)->url(
+            $this->path.
+            $this->name.
+            $size.
+            '.'.
+            $this->extension
+        );
+
     }
 }
