@@ -78,8 +78,8 @@ class FileController extends Controller
             'name' => $name,
             'original_name' => $image->getClientOriginalName(),
             'mime' => $image->getMimeType(),
-            'extension' => $image->extension(),
-            'size' => $image->getSize(),
+            'extension' => $image->getClientOriginalExtension(),
+            'size' => $image->getClientSize(),
             'path' => $path,
             'user_id' => Auth::user()->id,
         ]);
