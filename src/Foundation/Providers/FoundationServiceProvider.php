@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Routing\Router;
 use Orchid\Log\LogServiceProvider;
-use Illuminate\Support\Facades\View;
 use Orchid\Alert\AlertServiceProvider;
 use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
