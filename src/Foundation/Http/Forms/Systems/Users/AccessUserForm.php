@@ -37,12 +37,14 @@ class AccessUserForm extends Form
 
     /**
      * Display Settings App.
+     *
      * @param User|null $user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get(User $user = null)
     {
-        if (! is_null($user)) {
+        if (!is_null($user)) {
             $rolePermission = $user->permissions ?: [];
             $permission = Dashboard::getPermission();
 
@@ -86,6 +88,7 @@ class AccessUserForm extends Form
      *
      * @param null $request
      * @param null $user
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function persist($request = null, $user = null)

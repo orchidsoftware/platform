@@ -20,12 +20,14 @@ class TestType extends Type
 
     /**
      * Slug url /news/{name}.
+     *
      * @var string
      */
     public $slugFields = 'name';
 
     /**
      * Rules Validation.
+     *
      * @return array
      */
     public function rules()
@@ -87,6 +89,7 @@ class TestType extends Type
 
     /**
      * @param null $search
+     *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
     public function route($search = null)

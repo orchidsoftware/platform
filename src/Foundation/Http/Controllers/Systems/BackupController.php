@@ -95,7 +95,9 @@ class BackupController extends Controller
 
     /**
      * Deletes a backup file.
+     *
      * @param $file_name
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function delete($file_name)

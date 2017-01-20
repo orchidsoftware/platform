@@ -9,8 +9,6 @@ class SectionBaseLister
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -20,8 +18,6 @@ class SectionBaseLister
      * Handle the event.
      *
      * @param SettingsEvent $event
-     *
-     * @return void
      */
     public function handle(SectionEvent $event)
     {

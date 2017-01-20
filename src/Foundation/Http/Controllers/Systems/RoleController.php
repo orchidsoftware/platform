@@ -43,6 +43,7 @@ class RoleController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -54,7 +55,8 @@ class RoleController extends Controller
 
     /**
      * @param Request $request
-     * @param Role $role
+     * @param Role    $role
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Role $role)
@@ -78,6 +80,7 @@ class RoleController extends Controller
 
     /**
      * @param Role $role
+     *
      * @return mixed
      */
     public function destroy(Role $role)

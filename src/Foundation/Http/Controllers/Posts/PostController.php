@@ -27,6 +27,7 @@ class PostController extends Controller
 
     /**
      * @param Post $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Post $post)
@@ -36,6 +37,7 @@ class PostController extends Controller
 
     /**
      * @param $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($post)
@@ -76,7 +78,7 @@ class PostController extends Controller
         $modules = $post->getTypeObject()->getModules();
 
         foreach ($modules as $module) {
-            $module = new $module;
+            $module = new $module();
             $module->save($post->getTypeObject(), $post);
         }
 
@@ -90,8 +92,9 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Post $type
-     * @param Post $post
+     * @param Post    $type
+     * @param Post    $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request, Post $type, Post $post)
@@ -107,8 +110,8 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Post $type
-     * @param Post $post
+     * @param Post    $type
+     * @param Post    $post
      */
     public function update(Request $request, Post $type, Post $post)
     {
@@ -131,7 +134,7 @@ class PostController extends Controller
         $modules = $type->getTypeObject()->getModules();
 
         foreach ($modules as $module) {
-            $module = new $module;
+            $module = new $module();
             $module->save($type->getTypeObject(), $post);
         }
 
@@ -145,8 +148,9 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Post $type
-     * @param Post $post
+     * @param Post    $type
+     * @param Post    $post
+     *
      * @return mixed
      */
     public function destroy(Request $request, Post $type, Post $post)

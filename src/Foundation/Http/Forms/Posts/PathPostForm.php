@@ -14,15 +14,17 @@ class PathPostForm extends Form
 
     /**
      * Display Base Options.
-     * @param null $type
+     *
+     * @param null      $type
      * @param Post|null $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($type = null, Post $post = null)
     {
         $route = [];
 
-        if ($post != null) {
+        if (!is_null($post)) {
             $content = $post->getAttribute('content');
 
             if (isset($content['route'])) {
@@ -40,6 +42,7 @@ class PathPostForm extends Form
     /**
      * @param null $type
      * @param null $post
+     *
      * @return mixed|void
      */
     public function persist($type = null, $post = null)

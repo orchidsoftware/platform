@@ -12,6 +12,7 @@ abstract class Type implements TypeInterface
 {
     /**
      * Name type.
+     *
      * @var
      */
     public $name = '';
@@ -33,12 +34,14 @@ abstract class Type implements TypeInterface
 
     /**
      * Fields for content.
+     *
      * @var array
      */
     public $fields = [];
 
     /**
      * Available templates.
+     *
      * @var
      */
     public $templates = [];
@@ -69,8 +72,10 @@ abstract class Type implements TypeInterface
 
     /**
      * @param string $language
-     * @param null $post
+     * @param null   $post
+     *
      * @return string
+     *
      * @throws TypeException
      */
     public function generateForm($language = 'en', $post = null)
@@ -86,7 +91,7 @@ abstract class Type implements TypeInterface
                 throw new TypeException('Field '.$config['tag'].' does not exist');
             }
 
-            $field = new $field;
+            $field = new $field();
             $config['lang'] = $language;
 
             if (isset($config['prefix'])) {
@@ -105,18 +110,18 @@ abstract class Type implements TypeInterface
                 if (count($nameArray) > 1) {
                     $config['name'] = '';
 
-                    if (! is_null($post)) {
+                    if (!is_null($post)) {
                         $config['value'] = $post->getContent($nameArray[0], $language);
                     }
 
                     foreach ($nameArray as $name) {
                         $config['name'] .= '['.$name.']';
-                        if (! is_null($post) && ! is_null($config['value']) && is_array($config['value']) && array_key_exists($name, $config['value'])) {
+                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name, $config['value'])) {
                             $config['value'] = $config['value'][$name];
                         }
                     }
                 } else {
-                    if (! is_null($post)) {
+                    if (!is_null($post)) {
                         $config['value'] = $post->getContent($config['name'], $language);
                     }
                     $config['name'] = '['.$config['name'].']';
@@ -155,6 +160,7 @@ abstract class Type implements TypeInterface
      * Explode the rules into an array of rules.
      *
      * @param array $rules
+     *
      * @return array
      */
     protected function explodeFields(array $rules)
@@ -179,6 +185,7 @@ abstract class Type implements TypeInterface
 
     /**
      * @param $rules
+     *
      * @return array
      */
     protected function parseStringFields($rules)
@@ -200,8 +207,9 @@ abstract class Type implements TypeInterface
     /**
      * Parse a parameter list.
      *
-     * @param  string $rule
-     * @param  string $parameter
+     * @param string $rule
+     * @param string $parameter
+     *
      * @return array
      */
     protected function parseParameters($rule, $parameter)
@@ -219,7 +227,7 @@ abstract class Type implements TypeInterface
     public function generateGrid()
     {
         $fields = $this->grid();
-        $model = new $this->model;
+        $model = new $this->model();
         $search = request('search');
 
         if (is_null($search)) {
@@ -247,6 +255,7 @@ abstract class Type implements TypeInterface
 
     /**
      * Reqeust Validation.
+     *
      * @return bool
      */
     public function isValid()
@@ -258,6 +267,7 @@ abstract class Type implements TypeInterface
 
     /**
      * Validation Request Rules.
+     *
      * @return array
      */
     public function rules()
@@ -267,6 +277,7 @@ abstract class Type implements TypeInterface
 
     /**
      * Public Client Route Type.
+     *
      * @return string
      */
     public function route()
@@ -291,7 +302,7 @@ abstract class Type implements TypeInterface
      */
     public function checkModules()
     {
-        if (method_exists($this, 'modules') && ! empty($this->modules())) {
+        if (method_exists($this, 'modules') && !empty($this->modules())) {
             return true;
         }
 
@@ -303,7 +314,7 @@ abstract class Type implements TypeInterface
      */
     public function render()
     {
-        if (! is_null($this->cultivated)) {
+        if (!is_null($this->cultivated)) {
             return $this->cultivated;
         }
 
@@ -313,7 +324,7 @@ abstract class Type implements TypeInterface
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
             if (method_exists($form, 'get')) {
@@ -335,7 +346,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -354,7 +365,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -373,7 +384,7 @@ abstract class Type implements TypeInterface
         $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 

@@ -33,11 +33,12 @@ class SectionMainForm extends Form
 
     /**
      * @param Section|null $section
+     *
      * @return mixed
      */
     public function get(Section $section = null)
     {
-        $section = $section ?: new $this->model;
+        $section = $section ?: new $this->model();
 
         $sections = $this->model->where('id', '!=', $section->id)->get();
         $language = App::getLocale();

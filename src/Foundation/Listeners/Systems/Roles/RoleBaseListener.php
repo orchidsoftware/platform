@@ -9,8 +9,6 @@ class RoleBaseListener
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -20,8 +18,6 @@ class RoleBaseListener
      * Handle the event.
      *
      * @param RolesEvent $event
-     *
-     * @return void
      */
     public function handle(RolesEvent $event)
     {

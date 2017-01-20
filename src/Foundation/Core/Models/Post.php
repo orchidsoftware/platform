@@ -78,12 +78,9 @@ class Post extends Model
         return $this->where('type', $this->dataType->slug);
     }
 
-    /**
-     * @return null
-     */
     public function getTypeObject()
     {
-        if (! is_null($this->dataType)) {
+        if (!is_null($this->dataType)) {
             return $this->dataType;
         } else {
             return $this->getType($this->getAttribute('type'))->dataType;
@@ -92,7 +89,9 @@ class Post extends Model
 
     /**
      * @param $getType
+     *
      * @return mixed
+     *
      * @throws TypeException
      */
     public function getType($getType)
@@ -115,13 +114,14 @@ class Post extends Model
     /**
      * @param $field
      * @param null $lang
+     *
      * @return mixed|null
      */
     public function getContent($field, $lang = null)
     {
         try {
             $lang = $lang ?: App::getLocale();
-            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
+            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;
@@ -137,6 +137,7 @@ class Post extends Model
 
     /**
      * Get the author's posts.
+     *
      * @return mixed
      */
     public function getUser()
@@ -146,6 +147,7 @@ class Post extends Model
 
     /**
      * Get tags for post as string.
+     *
      * @return mixed
      */
     public function getStringTags()
@@ -173,7 +175,9 @@ class Post extends Model
 
     /**
      * Main image (First image).
+     *
      * @param null $size
+     *
      * @return mixed
      */
     public function hero($size = null)

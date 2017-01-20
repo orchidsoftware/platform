@@ -45,8 +45,6 @@ trait SettingTrait
     /**
      * @param $key
      * @param null $default
-     *
-     * @return null
      */
     public function getNoCache($key, $default = null)
     {

@@ -58,6 +58,7 @@ class Dashboard
 
     /**
      * @param bool $sort
+     *
      * @return array
      */
     public function types($sort = false)

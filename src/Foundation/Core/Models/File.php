@@ -45,14 +45,15 @@ class File extends Model
     /**
      * @param string $size
      * @param string $prefix
+     *
      * @return string
      */
     public function url($size = '', $prefix = 'public')
     {
-        if (! empty($size)) {
+        if (!empty($size)) {
             $size = '_'.$size;
 
-            if (! Storage::disk($prefix)->exists(
+            if (!Storage::disk($prefix)->exists(
                 $this->path.
                 $this->name.
                 $size.

@@ -37,13 +37,15 @@ class BaseUserForm extends Form
 
     /**
      * Display Settings App.
+     *
      * @param User|null $user
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get(User $user = null)
     {
         return view('dashboard::container.systems.users.info', [
-            'user' => $user ?: new $this->model,
+            'user' => $user ?: new $this->model(),
         ]);
     }
 
@@ -52,7 +54,6 @@ class BaseUserForm extends Form
      *
      * @param null $request
      * @param null $user
-     * @return null
      */
     public function persist($request = null, $user = null)
     {

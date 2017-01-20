@@ -61,9 +61,9 @@ class CreateAdminCommand extends Command
 
         try {
             User::create([
-                'name'        => $this->argument('name'),
-                'email'       => $this->argument('email'),
-                'password'    => bcrypt($this->argument('password')),
+                'name' => $this->argument('name'),
+                'email' => $this->argument('email'),
+                'password' => bcrypt($this->argument('password')),
                 'permissions' => $permissions,
             ]);
 

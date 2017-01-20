@@ -15,6 +15,7 @@ class RoleFormGroup extends FormGroup
 
     /**
      * Description Attributes for group.
+     *
      * @return array
      */
     public function attributes()

@@ -37,12 +37,14 @@ class BaseRolesForm extends Form
 
     /**
      * Display Settings App.
+     *
      * @param Role|null $role
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get(Role $role = null)
     {
-        if (! is_null($role)) {
+        if (!is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
             $permission->transform(function ($array) use ($rolePermission) {

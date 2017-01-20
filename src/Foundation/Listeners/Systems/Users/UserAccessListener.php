@@ -9,8 +9,6 @@ class UserAccessListener
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -20,8 +18,6 @@ class UserAccessListener
      * Handle the event.
      *
      * @param UserEvent $event
-     *
-     * @return void
      */
     public function handle(UserEvent $event)
     {
