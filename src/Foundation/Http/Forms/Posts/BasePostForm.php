@@ -37,7 +37,9 @@ class BasePostForm extends Form
      *
      * @param null $type
      * @param Post $post
+     *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @internal param null $storage
      */
     public function persist($type = null, Post $post = null)

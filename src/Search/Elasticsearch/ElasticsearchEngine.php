@@ -34,7 +34,6 @@ class ElasticsearchEngine
      * Create a new engine instance.
      *
      * @param \Elasticsearch\Client $elasticsearch
-     *
      * @param $index
      * @param string $version
      */

@@ -30,9 +30,10 @@ class SeoPostForm extends Form
 
     /**
      * Save Base Role.
-     * @return \Illuminate\Http\JsonResponse
-     * @internal param null $storage
      *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @internal param null $storage
      */
     public function persist()
     {
