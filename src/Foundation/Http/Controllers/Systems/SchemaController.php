@@ -2,9 +2,9 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Schema\Schema;
-use Orchid\Schema\Helpers;
 use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Schema\Helpers;
+use Orchid\Schema\Schema;
 
 class SchemaController extends Controller
 {
@@ -27,6 +27,7 @@ class SchemaController extends Controller
 
     /**
      * SchemaController constructor.
+     *
      * @param Schema $schema
      */
     public function __construct(Schema $schema)
@@ -49,6 +50,7 @@ class SchemaController extends Controller
 
     /**
      * @param $table
+     *
      * @return bool
      */
     public function show($table)
@@ -62,7 +64,7 @@ class SchemaController extends Controller
         foreach ($columns as $column) {
             if (array_key_exists('Extra', $columns) && $columns['Extra'] == 'auto_increment') {
                 $attributeName = $column['Field'];
-            } elseif (array_key_exists('Key', $columns) && ! empty($columns['Key']) && is_null($attributeName)) {
+            } elseif (array_key_exists('Key', $columns) && !empty($columns['Key']) && is_null($attributeName)) {
                 $attributeName = $column['Field'];
             }
         }
@@ -71,8 +73,8 @@ class SchemaController extends Controller
 
         return view('dashboard::container.systems.schema.show', [
             'columns' => $columns,
-            'rows' => $rows,
-            'table' => $table,
+            'rows'    => $rows,
+            'table'   => $table,
         ]);
     }
 }

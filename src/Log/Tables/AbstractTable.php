@@ -40,9 +40,9 @@ abstract class AbstractTable implements TableContract
     /**
      * Create a table instance.
      *
-     * @param  array $data
-     * @param  \Orchid\Log\Contracts\Utilities\LogLevels $levels
-     * @param  string|null $locale
+     * @param array                                     $data
+     * @param \Orchid\Log\Contracts\Utilities\LogLevels $levels
+     * @param string|null                               $locale
      */
     public function __construct(array $data, LogLevelsContract $levels, $locale = null)
     {
@@ -55,7 +55,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Set LogLevels instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\LogLevels $levels
+     * @param \Orchid\Log\Contracts\Utilities\LogLevels $levels
      *
      * @return \Orchid\Log\Tables\AbstractTable
      */
@@ -69,7 +69,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Set table locale.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return \Orchid\Log\Tables\AbstractTable
      */
@@ -87,7 +87,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Set table data.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return self
      */
@@ -111,7 +111,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Prepare table header.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return array
      */
@@ -120,7 +120,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Prepare table rows.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return array
      */
@@ -129,7 +129,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Prepare table footer.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return array
      */
@@ -178,7 +178,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Translate.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @return string
      */
@@ -193,7 +193,7 @@ abstract class AbstractTable implements TableContract
     /**
      * Get log level color.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return string
      */

@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Core\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -54,10 +54,10 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'sex' => 'boolean',
+        'sex'          => 'boolean',
         'subscription' => 'boolean',
-        'about' => 'string',
-        'permissions' => 'array',
+        'about'        => 'string',
+        'permissions'  => 'array',
     ];
 
     /**

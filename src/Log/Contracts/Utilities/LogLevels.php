@@ -9,7 +9,7 @@ interface LogLevels
     /**
      * Get PSR log levels.
      *
-     * @param  bool $flip
+     * @param bool $flip
      *
      * @return array
      */
@@ -18,7 +18,7 @@ interface LogLevels
     /**
      * Set the Translator instance.
      *
-     * @param  \Illuminate\Translation\Translator $translator
+     * @param \Illuminate\Translation\Translator $translator
      *
      * @return self
      */
@@ -34,7 +34,7 @@ interface LogLevels
     /**
      * Set the selected locale.
      *
-     * @param  string $locale
+     * @param string $locale
      *
      * @return self
      */
@@ -43,7 +43,7 @@ interface LogLevels
     /**
      * Get the log levels.
      *
-     * @param  bool $flip
+     * @param bool $flip
      *
      * @return array
      */
@@ -52,7 +52,7 @@ interface LogLevels
     /**
      * Get translated levels.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return array
      */
@@ -61,8 +61,8 @@ interface LogLevels
     /**
      * Get the translated level.
      *
-     * @param  string $key
-     * @param  string|null $locale
+     * @param string      $key
+     * @param string|null $locale
      *
      * @return string
      */

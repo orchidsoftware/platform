@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Facades;
 
-use Orchid\Alert\Alert as AlertModel;
 use Illuminate\Support\Facades\Facade;
+use Orchid\Alert\Alert as AlertModel;
 
 class Alert extends Facade
 {

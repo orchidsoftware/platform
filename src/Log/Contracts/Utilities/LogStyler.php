@@ -7,8 +7,8 @@ interface LogStyler
     /**
      * Make level icon.
      *
-     * @param  string $level
-     * @param  string|null $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */
@@ -17,8 +17,8 @@ interface LogStyler
     /**
      * Get level color.
      *
-     * @param  string $level
-     * @param  string|null $default
+     * @param string      $level
+     * @param string|null $default
      *
      * @return string
      */

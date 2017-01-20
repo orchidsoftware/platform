@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Providers;
 
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -36,8 +36,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->group([
             'middleware' => 'api',
-            'namespace' => $this->namespace,
-            'prefix' => 'api',
+            'namespace'  => $this->namespace,
+            'prefix'     => 'api',
         ], function ($router) {
             foreach (glob(__DIR__.'/../Routes/Api/*.php') as $file) {
                 require $file;

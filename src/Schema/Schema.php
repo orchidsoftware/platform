@@ -3,8 +3,8 @@
 namespace Orchid\Schema;
 
 use Orchid\Schema\Wrapper\MysqlWrapper;
-use Orchid\Schema\Wrapper\SqliteWrapper;
 use Orchid\Schema\Wrapper\PostgresWrapper;
+use Orchid\Schema\Wrapper\SqliteWrapper;
 use Orchid\Schema\Wrapper\SqlServerWrapper;
 
 /**

@@ -2,8 +2,8 @@
 
 namespace Orchid\Schema;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class BaseSchema.
@@ -12,12 +12,14 @@ abstract class BaseSchema
 {
     /**
      * Database instance.
+     *
      * @var
      */
     public $database;
 
     /**
      * Connection name.
+     *
      * @var
      */
     public $connection;
@@ -38,7 +40,9 @@ abstract class BaseSchema
 
     /**
      * Set connection.
+     *
      * @param $connection
+     *
      * @return $this
      */
     public function setConnection($connection)
@@ -51,6 +55,7 @@ abstract class BaseSchema
 
     /**
      * Fetch database name.
+     *
      * @return mixed
      */
     public function getDatabaseName()
@@ -60,7 +65,9 @@ abstract class BaseSchema
 
     /**
      * Get table total row count.
+     *
      * @param $table
+     *
      * @return mixed
      */
     public function getTableRowCount($table)
@@ -70,7 +77,9 @@ abstract class BaseSchema
 
     /**
      * Perform raw sql query.
+     *
      * @param $query
+     *
      * @return mixed
      */
     public function rawQuery($query)
@@ -80,11 +89,13 @@ abstract class BaseSchema
 
     /**
      * Fetch data form table using pagination.
+     *
      * @param $tableName
-     * @param int $page
-     * @param int $limit
-     * @param null $orderAttribute
+     * @param int    $page
+     * @param int    $limit
+     * @param null   $orderAttribute
      * @param string $order
+     *
      * @return mixed
      */
     public function getPaginatedData($tableName, $page = 1, $limit = 15, $orderAttribute = null, $order = 'DESC')

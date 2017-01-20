@@ -17,6 +17,7 @@ class PostgresWrapper implements WrapperContract
 
     /**
      * PostgresWrapper constructor.
+     *
      * @param BaseSchema $baseSchema
      */
     public function __construct(BaseSchema $baseSchema)
@@ -52,6 +53,7 @@ class PostgresWrapper implements WrapperContract
 
     /**
      * @param $tableName
+     *
      * @return array
      */
     public function getColumns($tableName)
@@ -61,17 +63,19 @@ class PostgresWrapper implements WrapperContract
 
     /**
      * Transform columns.
+     *
      * @param $columns
+     *
      * @return array
      */
     private function transformColumns($columns)
     {
         return array_map(function ($column) {
             return [
-                'Field' => $column->column_name,
-                'Type' => $column->data_type,
-                'Null' => $column->is_nullable,
-                'Key' => $column->ordinal_position,
+                'Field'   => $column->column_name,
+                'Type'    => $column->data_type,
+                'Null'    => $column->is_nullable,
+                'Key'     => $column->ordinal_position,
                 'Default' => $column->column_default,
 //                'Extra' => $column->Extra
             ];

@@ -3,11 +3,11 @@
 namespace Orchid\Foundation\Http\Controllers\Posts;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Foundation\Facades\Alert;
+use Illuminate\Support\Str;
 use Orchid\Foundation\Core\Models\Post;
+use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -45,7 +45,7 @@ class PostController extends Controller
         $type = $post->getTypeObject();
 
         return view('dashboard::container.posts.create', [
-            'type' => $type,
+            'type'    => $type,
             'locales' => $this->locales,
         ]);
     }
@@ -102,9 +102,9 @@ class PostController extends Controller
         $type = $type->getTypeObject();
 
         return view('dashboard::container.posts.edit', [
-            'type' => $type,
+            'type'    => $type,
             'locales' => $this->locales,
-            'post' => $post,
+            'post'    => $post,
         ]);
     }
 

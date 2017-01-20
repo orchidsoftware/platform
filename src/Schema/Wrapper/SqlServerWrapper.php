@@ -17,6 +17,7 @@ class SqlServerWrapper implements WrapperContract
 
     /**
      * SqlServerWrapper constructor.
+     *
      * @param BaseSchema $baseSchema
      */
     public function __construct(BaseSchema $baseSchema)
@@ -53,6 +54,7 @@ class SqlServerWrapper implements WrapperContract
 
     /**
      * @param $tableName
+     *
      * @return array
      */
     public function getColumns($tableName)
@@ -62,18 +64,20 @@ class SqlServerWrapper implements WrapperContract
 
     /**
      * Transform columns.
+     *
      * @param $columns
+     *
      * @return array
      */
     private function transformColumns($columns)
     {
         return array_map(function ($column) {
             return [
-                'Field' => $column->COLUMN_NAME,
-                'Type' => $column->DATA_TYPE,
-                'Null' => $column->IS_NULLABLE,
-                'Key' => $column->ORDINAL_POSITION,
-                'Default' => $column->COLUMN_DEFAULT,
+                'Field'        => $column->COLUMN_NAME,
+                'Type'         => $column->DATA_TYPE,
+                'Null'         => $column->IS_NULLABLE,
+                'Key'          => $column->ORDINAL_POSITION,
+                'Default'      => $column->COLUMN_DEFAULT,
                 'Char max len' => $column->CHARACTER_MAXIMUM_LENGTH,
             ];
         }, $columns);

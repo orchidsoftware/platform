@@ -21,7 +21,7 @@ class SectionFormGroup extends FormGroup
     public function attributes()
     {
         return [
-            'name' => 'Разделы',
+            'name'        => 'Разделы',
             'description' => 'Разделы веб-сайта',
         ];
     }

@@ -51,6 +51,7 @@ class SectionController extends Controller
 
     /**
      * @param Section $section
+     *
      * @return mixed
      */
     public function edit(Section $section)
@@ -64,6 +65,7 @@ class SectionController extends Controller
     /**
      * @param Request $request
      * @param Section $section
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Section $section)

@@ -31,7 +31,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log storage path.
      *
-     * @param  string $storagePath
+     * @param string $storagePath
      *
      * @return self
      */
@@ -40,7 +40,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log date pattern.
      *
-     * @param  string $datePattern
+     * @param string $datePattern
      *
      * @return self
      */
@@ -49,7 +49,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log prefix pattern.
      *
-     * @param  string $prefixPattern
+     * @param string $prefixPattern
      *
      * @return self
      */
@@ -58,7 +58,7 @@ interface Filesystem extends Patternable
     /**
      * Set the log extension.
      *
-     * @param  string $extension
+     * @param string $extension
      *
      * @return self
      */
@@ -81,7 +81,7 @@ interface Filesystem extends Patternable
     /**
      * List the log files (Only dates).
      *
-     * @param  bool $withPaths
+     * @param bool $withPaths
      *
      * @return array
      */
@@ -90,29 +90,29 @@ interface Filesystem extends Patternable
     /**
      * Read the log.
      *
-     * @param  string $date
-     *
-     * @return string
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return string
      */
     public function read($date);
 
     /**
      * Delete the log.
      *
-     * @param  string $date
-     *
-     * @return bool
+     * @param string $date
      *
      * @throws \Orchid\Log\Exceptions\FilesystemException
+     *
+     * @return bool
      */
     public function delete($date);
 
     /**
      * Get the log file path.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return string
      */

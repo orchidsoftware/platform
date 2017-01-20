@@ -31,12 +31,12 @@ class BackupController extends Controller
                 // only take the zip files into account
                 if (substr($file, -4) == '.zip' && $disk->exists($file)) {
                     $this->data['backups'][] = [
-                        'file_path' => $file,
-                        'file_name' => str_replace('backups/', '', $file),
-                        'file_size' => $disk->size($file),
+                        'file_path'     => $file,
+                        'file_name'     => str_replace('backups/', '', $file),
+                        'file_size'     => $disk->size($file),
                         'last_modified' => $disk->lastModified($file),
-                        'disk' => $disk_name,
-                        'download' => ($adapter instanceof \League\Flysystem\Adapter\Local) ? true : false,
+                        'disk'          => $disk_name,
+                        'download'      => ($adapter instanceof \League\Flysystem\Adapter\Local) ? true : false,
                     ];
                 }
             }
@@ -58,16 +58,16 @@ class BackupController extends Controller
             Artisan::queue('backup:run');
 
             return response()->json([
-                'title' => 'В очереди',
+                'title'   => 'В очереди',
                 'message' => 'Бэкап поставлен в очередь и будет создан в ближайшее время',
-                'type' => 'success',
+                'type'    => 'success',
             ]);
         }
 
         return response()->json([
-            'title' => 'Не поддерживается',
+            'title'   => 'Не поддерживается',
             'message' => 'Для ручного создания бэкапа необходимо включить поддежку очереди',
-            'type' => 'error',
+            'type'    => 'error',
         ]);
     }
 
@@ -108,9 +108,9 @@ class BackupController extends Controller
             $disk->delete($file_name);
 
             return response()->json([
-                'title' => 'Объект удалён',
+                'title'   => 'Объект удалён',
                 'message' => 'Бэкап был успешно удалён',
-                'type' => 'success',
+                'type'    => 'success',
             ]);
         } else {
             abort(404, 'Бэкап не найден');

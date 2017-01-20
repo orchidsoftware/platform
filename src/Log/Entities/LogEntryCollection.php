@@ -2,16 +2,16 @@
 
 namespace Orchid\Log\Entities;
 
-use Orchid\Log\Helpers\LogParser;
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Orchid\Log\Helpers\LogParser;
 
 class LogEntryCollection extends Collection
 {
     /**
      * Load raw log entries.
      *
-     * @param  string $raw
+     * @param string $raw
      *
      * @return self
      */
@@ -29,7 +29,7 @@ class LogEntryCollection extends Collection
     /**
      * Paginate log entries.
      *
-     * @param  int $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -50,7 +50,7 @@ class LogEntryCollection extends Collection
     /**
      * Get filtered log entries by level.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -64,7 +64,7 @@ class LogEntryCollection extends Collection
     /**
      * Get the log entries navigation tree.
      *
-     * @param  bool|false $trans
+     * @param bool|false $trans
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class LogEntryCollection extends Collection
 
         array_walk($tree, function (&$count, $level) use ($trans) {
             $count = [
-                'name' => $trans ? log_levels()->get($level) : $level,
+                'name'  => $trans ? log_levels()->get($level) : $level,
                 'count' => $count,
             ];
         });

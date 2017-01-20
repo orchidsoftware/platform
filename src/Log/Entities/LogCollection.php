@@ -2,10 +2,10 @@
 
 namespace Orchid\Log\Entities;
 
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Orchid\Log\Exceptions\LogNotFoundException;
+use Illuminate\Support\Collection;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
+use Orchid\Log\Exceptions\LogNotFoundException;
 
 class LogCollection extends Collection
 {
@@ -17,7 +17,7 @@ class LogCollection extends Collection
     /**
      * LogCollection constructor.
      *
-     * @param  array $items
+     * @param array $items
      */
     public function __construct($items = [])
     {
@@ -33,7 +33,7 @@ class LogCollection extends Collection
     /**
      * Set the filesystem instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
      *
      * @return \Orchid\Log\Entities\LogCollection
      */
@@ -63,7 +63,7 @@ class LogCollection extends Collection
     /**
      * Paginate logs.
      *
-     * @param  int $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -86,7 +86,7 @@ class LogCollection extends Collection
      *
      * @see get()
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log
      */
@@ -98,16 +98,16 @@ class LogCollection extends Collection
     /**
      * Get a log.
      *
-     * @param  string $date
-     * @param  mixed|null $default
-     *
-     * @return \Orchid\Log\Entities\Log
+     * @param string     $date
+     * @param mixed|null $default
      *
      * @throws \Orchid\Log\Exceptions\LogNotFoundException
+     *
+     * @return \Orchid\Log\Entities\Log
      */
     public function get($date, $default = null)
     {
-        if (! $this->has($date)) {
+        if (!$this->has($date)) {
             throw new LogNotFoundException("Log not found in this date [$date]");
         }
 
@@ -117,8 +117,8 @@ class LogCollection extends Collection
     /**
      * Get log entries.
      *
-     * @param  string $date
-     * @param  string $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -157,7 +157,7 @@ class LogCollection extends Collection
     /**
      * Get entries total.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return int
      */
@@ -171,7 +171,7 @@ class LogCollection extends Collection
     /**
      * Get logs tree.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -190,7 +190,7 @@ class LogCollection extends Collection
     /**
      * Get logs menu.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */

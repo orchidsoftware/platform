@@ -2,11 +2,11 @@
 
 namespace Orchid\Log\Utilities;
 
-use Orchid\Log\Tables\StatsTable;
-use Orchid\Log\Entities\LogCollection;
 use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
-use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
+use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Orchid\Log\Entities\LogCollection;
+use Orchid\Log\Tables\StatsTable;
 
 class Factory implements FactoryContract
 {
@@ -25,8 +25,8 @@ class Factory implements FactoryContract
     /**
      * Create a new instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
-     * @param  \Orchid\Log\Contracts\Utilities\LogLevels $levels
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\LogLevels  $levels
      */
     public function __construct(
         FilesystemContract $filesystem,
@@ -49,7 +49,7 @@ class Factory implements FactoryContract
     /**
      * Set the filesystem instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
+     * @param \Orchid\Log\Contracts\Utilities\Filesystem $filesystem
      *
      * @return \Orchid\Log\Utilities\Factory
      */
@@ -73,7 +73,7 @@ class Factory implements FactoryContract
     /**
      * Set the log levels instance.
      *
-     * @param  \Orchid\Log\Contracts\Utilities\LogLevels $levels
+     * @param \Orchid\Log\Contracts\Utilities\LogLevels $levels
      *
      * @return \Orchid\Log\Utilities\Factory
      */
@@ -87,7 +87,7 @@ class Factory implements FactoryContract
     /**
      * Set the log storage path.
      *
-     * @param  string $storagePath
+     * @param string $storagePath
      *
      * @return \Orchid\Log\Utilities\Factory
      */
@@ -111,9 +111,9 @@ class Factory implements FactoryContract
     /**
      * Set the log pattern.
      *
-     * @param  string $date
-     * @param  string $prefix
-     * @param  string $extension
+     * @param string $date
+     * @param string $prefix
+     * @param string $extension
      *
      * @return \Orchid\Log\Utilities\Factory
      */
@@ -150,7 +150,7 @@ class Factory implements FactoryContract
     /**
      * Paginate all logs.
      *
-     * @param  int $perPage
+     * @param int $perPage
      *
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
@@ -162,7 +162,7 @@ class Factory implements FactoryContract
     /**
      * Get a log by date (alias).
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log
      */
@@ -174,7 +174,7 @@ class Factory implements FactoryContract
     /**
      * Get a log by date.
      *
-     * @param  string $date
+     * @param string $date
      *
      * @return \Orchid\Log\Entities\Log
      */
@@ -186,8 +186,8 @@ class Factory implements FactoryContract
     /**
      * Get log entries.
      *
-     * @param  string $date
-     * @param  string $level
+     * @param string $date
+     * @param string $level
      *
      * @return \Orchid\Log\Entities\LogEntryCollection
      */
@@ -199,7 +199,7 @@ class Factory implements FactoryContract
     /**
      * Get logs statistics table.
      *
-     * @param  string|null $locale
+     * @param string|null $locale
      *
      * @return \Orchid\Log\Tables\StatsTable
      */
@@ -241,7 +241,7 @@ class Factory implements FactoryContract
     /**
      * Get total log entries.
      *
-     * @param  string $level
+     * @param string $level
      *
      * @return int
      */
@@ -253,7 +253,7 @@ class Factory implements FactoryContract
     /**
      * Get tree menu.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */
@@ -265,7 +265,7 @@ class Factory implements FactoryContract
     /**
      * Get tree menu.
      *
-     * @param  bool $trans
+     * @param bool $trans
      *
      * @return array
      */

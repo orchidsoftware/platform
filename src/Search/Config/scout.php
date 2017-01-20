@@ -55,7 +55,7 @@ return [
     */
 
     'algolia' => [
-        'id' => env('ALGOLIA_APP_ID', ''),
+        'id'     => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 
@@ -71,9 +71,9 @@ return [
     */
 
     'elasticsearch' => [
-        'index' => env('ELASTICSEARCH_INDEX', 'laravel'),
+        'index'   => env('ELASTICSEARCH_INDEX', 'laravel'),
         'version' => '5.0.0',
-        'config' => [
+        'config'  => [
             'hosts' => [
                 env('ELASTICSEARCH_HOST', 'localhost'),
             ],

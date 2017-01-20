@@ -21,7 +21,7 @@ class RoleFormGroup extends FormGroup
     public function attributes()
     {
         return [
-            'name' => 'Роли',
+            'name'        => 'Роли',
             'description' => 'Разделение прав доступа',
         ];
     }

@@ -12,6 +12,7 @@ class PathField extends Field
     public $view = 'dashboard::fields.path';
     /**
      * HTML tag.
+     *
      * @var string
      */
     protected $tag = 'path';
@@ -21,6 +22,7 @@ class PathField extends Field
      *
      * @param null $attributes
      * @param null $data
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($attributes, $data = null)

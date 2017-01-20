@@ -3,10 +3,10 @@
 namespace Orchid\Installer\Helpers;
 
 use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Database\SQLiteConnection;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseManager
 {
@@ -77,7 +77,7 @@ class DatabaseManager
     {
         if (DB::connection() instanceof SQLiteConnection) {
             $database = DB::connection()->getDatabaseName();
-            if (! file_exists($database)) {
+            if (!file_exists($database)) {
                 touch($database);
                 DB::reconnect(Config::get('database.default'));
             }

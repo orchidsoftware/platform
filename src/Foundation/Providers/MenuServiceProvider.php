@@ -25,43 +25,43 @@ class MenuServiceProvider extends ServiceProvider
     protected function registerMenu(Dashboard $dashboard = null)
     {
         $panelMenu = [
-            'slug' => 'Dashboard',
-            'icon' => 'icon-speedometer',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Dashboard'),
-            'main' => true,
-            'childs' => true,
-            'active' => 'dashboard.index',
+            'slug'       => 'Dashboard',
+            'icon'       => 'icon-speedometer',
+            'route'      => route('dashboard.index'),
+            'label'      => trans('dashboard::menu.Dashboard'),
+            'main'       => true,
+            'childs'     => true,
+            'active'     => 'dashboard.index',
             'permission' => 'dashboard.index',
         ];
         $postMenu = [
-            'slug' => 'Posts',
-            'icon' => 'icon-note',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Posts'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.posts.*',
+            'slug'       => 'Posts',
+            'icon'       => 'icon-note',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Posts'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.posts.*',
             'permission' => 'dashboard.posts',
         ];
         $toolsMenu = [
-            'slug' => 'Tools',
-            'icon' => 'icon-wrench',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Tools'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.tools.*',
+            'slug'       => 'Tools',
+            'icon'       => 'icon-wrench',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Tools'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.tools.*',
             'permission' => 'dashboard.tools',
         ];
         $systemsMenu = [
-            'slug' => 'Systems',
-            'icon' => 'icon-organization',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Systems'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.systems.*',
+            'slug'       => 'Systems',
+            'icon'       => 'icon-organization',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Systems'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.systems.*',
             'permission' => 'dashboard.systems',
         ];
 
@@ -71,107 +71,107 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
 
         $analyticsMenu = [
-            'slug' => 'analytics',
-            'icon' => 'fa fa-bar-chart',
-            'route' => '#',
-            'label' => 'Google Analytics',
+            'slug'      => 'analytics',
+            'icon'      => 'fa fa-bar-chart',
+            'route'     => '#',
+            'label'     => 'Google Analytics',
             'groupname' => 'Analytics',
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $settingsMenu = [
-            'slug' => 'settings',
-            'icon' => 'fa fa-cog',
-            'route' => route('dashboard.systems.settings'),
-            'label' => trans('dashboard::menu.Constants'),
+            'slug'      => 'settings',
+            'icon'      => 'fa fa-cog',
+            'route'     => route('dashboard.systems.settings'),
+            'label'     => trans('dashboard::menu.Constants'),
             'groupname' => trans('dashboard::menu.General settings'),
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $backupMenu = [
-            'slug' => 'backup',
-            'icon' => 'fa fa-history',
-            'route' => route('dashboard.systems.backup'),
-            'label' => 'Резервные копии',
-            'childs' => false,
+            'slug'    => 'backup',
+            'icon'    => 'fa fa-history',
+            'route'   => route('dashboard.systems.backup'),
+            'label'   => 'Резервные копии',
+            'childs'  => false,
             'divider' => false,
         ];
 
         $errorMenu = [
-            'slug' => 'logs',
-            'icon' => 'fa fa-bug',
-            'route' => route('dashboard.systems.logs.index'),
-            'label' => trans('dashboard::menu.Logs'),
+            'slug'      => 'logs',
+            'icon'      => 'fa fa-bug',
+            'route'     => route('dashboard.systems.logs.index'),
+            'label'     => trans('dashboard::menu.Logs'),
             'groupname' => trans('dashboard::menu.Errors'),
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $schemaMenu = [
-            'slug' => 'schema',
-            'icon' => 'fa fa-database',
-            'route' => route('dashboard.systems.schema.index'),
-            'label' => trans('dashboard::menu.Schema'),
-            'childs' => false,
+            'slug'    => 'schema',
+            'icon'    => 'fa fa-database',
+            'route'   => route('dashboard.systems.schema.index'),
+            'label'   => trans('dashboard::menu.Schema'),
+            'childs'  => false,
             'divider' => true,
         ];
 
         $seoMenu = [
-            'slug' => 'static-pages',
-            'icon' => 'icon-book-open',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Static pages'),
+            'slug'      => 'static-pages',
+            'icon'      => 'icon-book-open',
+            'route'     => route('dashboard.index'),
+            'label'     => trans('dashboard::menu.Static pages'),
             'groupname' => trans('dashboard::menu.Search Engine Optimization'),
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $siteMapMenu = [
-            'slug' => 'site-map',
-            'icon' => 'icon-map',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Site Map'),
-            'childs' => false,
+            'slug'    => 'site-map',
+            'icon'    => 'icon-map',
+            'route'   => route('dashboard.index'),
+            'label'   => trans('dashboard::menu.Site Map'),
+            'childs'  => false,
             'divider' => true,
         ];
 
         $sectionMenu = [
-            'slug' => 'section',
-            'icon' => 'icon-briefcase',
-            'route' => route('dashboard.tools.section'),
-            'label' => trans('dashboard::menu.Sections'),
-            'childs' => false,
+            'slug'    => 'section',
+            'icon'    => 'icon-briefcase',
+            'route'   => route('dashboard.tools.section'),
+            'label'   => trans('dashboard::menu.Sections'),
+            'childs'  => false,
             'divider' => true,
         ];
 
         $menuMenu = [
-            'slug' => 'menu',
-            'icon' => 'icon-menu',
-            'route' => route('dashboard.tools.menu.index'),
-            'label' => trans('dashboard::menu.Menu'),
+            'slug'      => 'menu',
+            'icon'      => 'icon-menu',
+            'route'     => route('dashboard.tools.menu.index'),
+            'label'     => trans('dashboard::menu.Menu'),
             'groupname' => trans('dashboard::menu.Posts Managements'),
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $usersMenu = [
-            'slug' => 'users',
-            'icon' => 'icon-user',
-            'route' => route('dashboard.systems.users'),
-            'label' => trans('dashboard::menu.Users'),
+            'slug'      => 'users',
+            'icon'      => 'icon-user',
+            'route'     => route('dashboard.systems.users'),
+            'label'     => trans('dashboard::menu.Users'),
             'groupname' => trans('dashboard::menu.Users'),
-            'childs' => false,
-            'divider' => false,
+            'childs'    => false,
+            'divider'   => false,
         ];
 
         $groupsMenu = [
-            'slug' => 'groups',
-            'icon' => 'fa fa-lock',
-            'route' => route('dashboard.systems.roles'),
-            'label' => trans('dashboard::menu.Groups'),
-            'childs' => false,
+            'slug'    => 'groups',
+            'icon'    => 'fa fa-lock',
+            'route'   => route('dashboard.systems.roles'),
+            'label'   => trans('dashboard::menu.Groups'),
+            'childs'  => false,
             'divider' => true,
         ];
 
@@ -179,10 +179,10 @@ class MenuServiceProvider extends ServiceProvider
         foreach ($allPost as $page) {
             if ($page->display) {
                 $postObject = [
-                    'slug' => $page->slug,
-                    'icon' => $page->icon,
-                    'route' => route('dashboard.posts.type', [$page->slug]),
-                    'label' => $page->name,
+                    'slug'   => $page->slug,
+                    'icon'   => $page->icon,
+                    'route'  => route('dashboard.posts.type', [$page->slug]),
+                    'label'  => $page->name,
                     'childs' => false,
                 ];
 

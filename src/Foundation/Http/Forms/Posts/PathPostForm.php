@@ -24,7 +24,7 @@ class PathPostForm extends Form
     {
         $route = [];
 
-        if (! is_null($post)) {
+        if (!is_null($post)) {
             $content = $post->getAttribute('content');
 
             if (isset($content['route'])) {

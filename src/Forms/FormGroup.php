@@ -6,18 +6,21 @@ abstract class FormGroup
 {
     /**
      * Name form groups.
+     *
      * @var
      */
     public $name = '';
 
     /**
      * Icon tabs.
+     *
      * @var string
      */
     public $icon = '';
 
     /**
      * Description form group.
+     *
      * @var
      */
     public $description = '';
@@ -44,11 +47,13 @@ abstract class FormGroup
     /**
      * Command list button
      * Send all forms data.
+     *
      * @var
      */
     public $commands;
     /**
      * Route CRUD.
+     *
      * @var array
      */
     public $route = '';
@@ -89,6 +94,7 @@ abstract class FormGroup
 
     /**
      * Set All attributes class.
+     *
      * @param $array
      */
     public function setAttributes($array)
@@ -100,6 +106,7 @@ abstract class FormGroup
 
     /**
      * @param array ...$arg
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function render(...$arg)
@@ -107,7 +114,7 @@ abstract class FormGroup
         $this->html = collect();
 
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -117,24 +124,25 @@ abstract class FormGroup
         }
 
         return view($this->view, [
-            'forms' => $this->html,
-            'name' => $this->name,
-            'icon' => $this->icon,
+            'forms'       => $this->html,
+            'name'        => $this->name,
+            'icon'        => $this->icon,
             'description' => $this->description,
-            'route' => $this->route,
-            'slug' => $this->slug,
-            'method' => $this->method,
+            'route'       => $this->route,
+            'slug'        => $this->slug,
+            'method'      => $this->method,
         ]);
     }
 
     /**
      * Action save for sub form.
+     *
      * @param array ...$arg
      */
     public function save(...$arg)
     {
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -150,7 +158,7 @@ abstract class FormGroup
     public function remove(...$arg)
     {
         foreach ($this->group as $form) {
-            if (! is_object($form)) {
+            if (!is_object($form)) {
                 $form = new $form();
             }
 
@@ -162,7 +170,9 @@ abstract class FormGroup
 
     /**
      * Grid Generator.
+     *
      * @param array ...$arg
+     *
      * @return bool
      */
     public function grid(...$arg)
@@ -181,6 +191,7 @@ abstract class FormGroup
 
     /**
      * @param $method
+     *
      * @return $this
      */
     public function method($method)
@@ -192,6 +203,7 @@ abstract class FormGroup
 
     /**
      * @param $method
+     *
      * @return $this
      */
     public function route($method)
@@ -203,6 +215,7 @@ abstract class FormGroup
 
     /**
      * @param $method
+     *
      * @return $this
      */
     public function slug($method)

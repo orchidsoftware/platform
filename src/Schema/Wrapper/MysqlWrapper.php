@@ -2,8 +2,8 @@
 
 namespace Orchid\Schema\Wrapper;
 
-use Orchid\Schema\Helpers;
 use Orchid\Schema\BaseSchema;
+use Orchid\Schema\Helpers;
 use Orchid\Schema\WrapperContract;
 
 /**
@@ -20,6 +20,7 @@ class MysqlWrapper implements WrapperContract
 
     /**
      * MysqlWrapper constructor.
+     *
      * @param BaseSchema $baseSchema
      */
     public function __construct(BaseSchema $baseSchema)
@@ -56,6 +57,7 @@ class MysqlWrapper implements WrapperContract
 
     /**
      * @param $tableName
+     *
      * @return array
      */
     public function getColumns($tableName)
@@ -65,7 +67,9 @@ class MysqlWrapper implements WrapperContract
 
     /**
      * Transform columns.
+     *
      * @param $columns
+     *
      * @return array
      */
     private function transformColumns($columns)

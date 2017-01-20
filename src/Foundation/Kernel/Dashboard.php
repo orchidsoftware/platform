@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Kernel;
 
-use Orchid\Menu\Menu;
-use Orchid\Type\TypeStorage;
 use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
+use Orchid\Menu\Menu;
+use Orchid\Type\TypeStorage;
 
 class Dashboard
 {
