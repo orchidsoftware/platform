@@ -44,7 +44,7 @@ class AccessUserForm extends Form
      */
     public function get(User $user = null)
     {
-        if (!is_null($user)) {
+        if (! is_null($user)) {
             $rolePermission = $user->permissions ?: [];
             $permission = Dashboard::getPermission();
 

@@ -44,7 +44,7 @@ class BaseRolesForm extends Form
      */
     public function get(Role $role = null)
     {
-        if (!is_null($role)) {
+        if (! is_null($role)) {
             $rolePermission = $role->permissions;
             $permission = Dashboard::getPermission();
             $permission->transform(function ($array) use ($rolePermission) {

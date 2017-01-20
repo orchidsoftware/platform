@@ -2,7 +2,7 @@
 
 use Orchid\Settings\Facades\Setting;
 
-if (!function_exists('settings')) {
+if (! function_exists('settings')) {
     /**
      * @param $key
      * @param null $default
@@ -15,7 +15,7 @@ if (!function_exists('settings')) {
     }
 }
 
-if (!function_exists('settings_set')) {
+if (! function_exists('settings_set')) {
     /**
      * @param $key
      * @param $value
@@ -28,7 +28,7 @@ if (!function_exists('settings_set')) {
     }
 }
 
-if (!function_exists('settings_forget')) {
+if (! function_exists('settings_forget')) {
     /**
      * @param $key
      *

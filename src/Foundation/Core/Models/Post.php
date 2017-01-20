@@ -83,7 +83,7 @@ class Post extends Model
      */
     public function getTypeObject()
     {
-        if (!is_null($this->dataType)) {
+        if (! is_null($this->dataType)) {
             return $this->dataType;
         } else {
             return $this->getType($this->getAttribute('type'))->dataType;
@@ -124,7 +124,7 @@ class Post extends Model
     {
         try {
             $lang = $lang ?: App::getLocale();
-            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
+            if (! is_null($this->content) && ! in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
                 return $this->$field;

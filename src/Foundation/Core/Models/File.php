@@ -50,10 +50,10 @@ class File extends Model
      */
     public function url($size = '', $prefix = 'public')
     {
-        if (!empty($size)) {
+        if (! empty($size)) {
             $size = '_'.$size;
 
-            if (!Storage::disk($prefix)->exists(
+            if (! Storage::disk($prefix)->exists(
                 $this->path.
                 $this->name.
                 $size.

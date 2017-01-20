@@ -37,7 +37,7 @@ class TypeStorage
     public function all()
     {
         $this->container->transform(function ($value) {
-            if (!is_object($value)) {
+            if (! is_object($value)) {
                 $value = new $value();
             }
 
