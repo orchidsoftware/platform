@@ -25,15 +25,10 @@ class SchemaController extends Controller
      */
     private $limit = 15;
 
-    /**
-     * @var null
-     */
-    private $orderBy = null;
 
     /**
      * SchemaController constructor.
      * @param Schema $schema
-     * @param Request $request
      */
     public function __construct(Schema $schema)
     {

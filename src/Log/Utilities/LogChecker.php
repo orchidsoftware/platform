@@ -48,7 +48,7 @@ class LogChecker implements LogCheckerContract
      *
      * @var array
      */
-    private $files;
+    //private $files;
 
     /**
      * LogChecker constructor.
