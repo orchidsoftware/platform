@@ -24,8 +24,6 @@ class CreateTableFiles extends Migration
             $table->integer('post_id')->nullable();
             $table->timestamps();
         });
-
-
     }
 
     /**

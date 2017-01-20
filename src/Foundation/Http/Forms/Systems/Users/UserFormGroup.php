@@ -13,7 +13,6 @@ class UserFormGroup extends FormGroup
      */
     public $event = UserEvent::class;
 
-
     /**
      * Description Attributes for group.
      * @return array

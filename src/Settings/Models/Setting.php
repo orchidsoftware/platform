@@ -38,7 +38,6 @@ class Setting extends Model
         'value' => 'array',
     ];
 
-
     /**
      * Get the route key for the model.
      *

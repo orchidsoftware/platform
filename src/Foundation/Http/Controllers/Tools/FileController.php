@@ -12,7 +12,6 @@ use Orchid\Foundation\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
-
     /**
      * @var int
      */
@@ -30,9 +29,8 @@ class FileController extends Controller
     {
         $this->time = time();
         $this->date = date('Y/m/d');
-        
     }
-    
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -73,7 +71,7 @@ class FileController extends Controller
         $name = sha1($this->time.$image->getClientOriginalName());
         $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name .'.'.$image->getClientOriginalExtension());
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
 
         return File::create([
