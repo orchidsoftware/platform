@@ -173,13 +173,14 @@ class Post extends Model
 
     /**
      * Main image (First image).
+     * @param null $size
      * @return mixed
      */
-    public function hero()
+    public function hero($size = null)
     {
         $first = $this->attachment()->first();
 
-        return $first ? $first->url() : null;
+        return $first ? $first->url($size) : null;
     }
 
     /**
