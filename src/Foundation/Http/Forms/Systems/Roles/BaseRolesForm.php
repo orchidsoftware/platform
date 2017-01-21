@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Foundation\Http\Forms\Systems\Settings;
+namespace Orchid\Foundation\Http\Forms\Systems\Roles;
 
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Role;

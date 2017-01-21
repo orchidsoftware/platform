@@ -2,7 +2,7 @@
 
 namespace Orchid\Log;
 
-use Orchid\Log\Contracts\Log as LogContract;
+use Orchid\Log\Contracts\LogViewer as LogContract;
 use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
 use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;

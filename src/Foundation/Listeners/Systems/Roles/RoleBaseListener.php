@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Listeners\Systems\Roles;
 
 use Orchid\Foundation\Events\Systems\RolesEvent;
-use Orchid\Foundation\Http\Forms\Systems\Settings\BaseRolesForm;
+use Orchid\Foundation\Http\Forms\Systems\Roles\BaseRolesForm;
 
 class RoleBaseListener
 {

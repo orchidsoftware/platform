@@ -10,7 +10,7 @@ use Orchid\Log\Exceptions\LogNotFoundException;
 use Orchid\Log\Log;
 use Orchid\Log\Tables\StatsTable;
 
-class LogViewerController extends Controller
+class LogController extends Controller
 {
     /**
      * The log viewer instance.
