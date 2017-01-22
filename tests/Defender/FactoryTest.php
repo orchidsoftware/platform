@@ -1,14 +1,13 @@
 <?php
 
 
-use Orchid\Defender\Utilities\Address\IPv4;
-use Orchid\Defender\Utilities\Address\IPv6;
 use Orchid\Defender\Utilities\Factory;
 
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  validAddressProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -30,13 +29,14 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
             ['0.0.0.0', $v4],
             ['127.0.0.1', $v4],
             ['::1', $v6],
-            ['fe80::', $v6]
+            ['fe80::', $v6],
         ];
     }
 
     /**
      * @dataProvider       invalidAddressProvider
      * @expectedException  UnexpectedValueException
+     *
      * @param $address
      */
     public function testGetInvalidAddress($address)
@@ -49,12 +49,13 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         return [
             ['0.0.0.300'],
             ['abc'],
-            [':hallo:welt::']
+            [':hallo:welt::'],
         ];
     }
 
     /**
      * @dataProvider  expressionProvider
+     *
      * @param $expr
      * @param $expected
      */
@@ -84,7 +85,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
             ['fe*::', $pattern],
             ['::1:*', $pattern],
-            ['127.*.*.0', $pattern]
+            ['127.*.*.0', $pattern],
         ];
     }
 }

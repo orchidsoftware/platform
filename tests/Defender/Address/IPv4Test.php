@@ -1,12 +1,14 @@
-<?php namespace Address;
+<?php
+
+namespace Address;
 
 use Orchid\Defender\Utilities\Address\IPv4;
-use Orchid\Defender\Utilities\Factory;
 
 class IPv4Test extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  addressProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -40,7 +42,7 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
             ['', false],
             ['::1', false],
             ['1.1.1.1/8', false],
-            ['1.-.1.1', false]
+            ['1.-.1.1', false],
         ];
     }
 
@@ -59,11 +61,12 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $addr = new IPv4('127.0.0.1');
-        $this->assertSame('127.0.0.1', (string)$addr);
+        $this->assertSame('127.0.0.1', (string) $addr);
     }
 
     /**
      * @dataProvider  loopbackProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -79,12 +82,13 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
             ['127.0.0.1', true],
             ['127.0.0.2', true],
             ['127.0.1.0', true],
-            ['128.0.0.1', false]
+            ['128.0.0.1', false],
         ];
     }
 
     /**
      * @dataProvider  chunkProvider
+     *
      * @param $address
      * @param array $chunks
      */
@@ -98,12 +102,13 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
     {
         return [
             ['0.0.0.0', ['0', '0', '0', '0']],
-            ['127.0.0.1', ['127', '0', '0', '1']]
+            ['127.0.0.1', ['127', '0', '0', '1']],
         ];
     }
 
     /**
      * @dataProvider  privateProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -123,7 +128,7 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
             ['10.0.1.50', true],
             ['127.0.0.1', false],
             ['172.16.0.1', true],
-            ['172.1.0.1', false]
+            ['172.1.0.1', false],
         ];
     }
 
@@ -134,6 +139,7 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider  multicastProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -147,12 +153,13 @@ class IPv4Test extends \PHPUnit_Framework_TestCase
     {
         return [
             ['224.0.0.1', true],
-            ['220.0.0.2', false]
+            ['220.0.0.2', false],
         ];
     }
 
     /**
      * @dataProvider  linkLocalProvider
+     *
      * @param $address
      * @param $expected
      */

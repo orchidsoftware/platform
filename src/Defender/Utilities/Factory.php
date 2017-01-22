@@ -1,7 +1,6 @@
-<?php namespace Orchid\Defender\Utilities;
+<?php
 
-use Orchid\Defender\Utilities\Address;
-use Orchid\Defender\Utilities\Expression;
+namespace Orchid\Defender\Utilities;
 
 class Factory
 {

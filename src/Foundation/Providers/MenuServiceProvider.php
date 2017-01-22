@@ -65,7 +65,6 @@ class MenuServiceProvider extends ServiceProvider
             'permission' => 'dashboard.systems',
         ];
 
-
         $marketingMenu = [
             'slug'       => 'Marketing',
             'icon'       => 'icon-chart',
@@ -76,7 +75,6 @@ class MenuServiceProvider extends ServiceProvider
             'active'     => 'dashboard.marketing.*',
             'permission' => 'dashboard.marketing',
         ];
-
 
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $panelMenu, 1);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $postMenu, 100);
@@ -197,8 +195,6 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
-
-
         $emailMenu = [
             'slug'      => 'email',
             'icon'      => 'icon-envelope-open',
@@ -206,7 +202,6 @@ class MenuServiceProvider extends ServiceProvider
             'label'     => trans('Email - рассылка'),
             'groupname' => trans('dashboard::menu.Users'),
         ];
-
 
         $advertisingMenu = [
             'slug'      => 'advertising',
@@ -221,8 +216,6 @@ class MenuServiceProvider extends ServiceProvider
             'route'     => route('dashboard.tools.menu.index'),
             'label'     => trans('Обратная связь'),
         ];
-
-
 
         $allPost = $dashboard->types();
         foreach ($allPost as $page) {
@@ -253,7 +246,6 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);
 
-
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
@@ -266,15 +258,10 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
 
-
-
-
-
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 1);
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $advertisingMenu, 5);
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);
-
     }
 
     /**

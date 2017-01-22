@@ -1,13 +1,16 @@
-<?php namespace Expression;
+<?php
 
-use Orchid\Defender\Utilities\Expression\Literal;
+namespace Expression;
+
 use Orchid\Defender\Utilities\Address\IPv4;
 use Orchid\Defender\Utilities\Address\IPv6;
+use Orchid\Defender\Utilities\Expression\Literal;
 
 class LiteralTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  addressProvider
+     *
      * @param $literal
      * @param $address
      * @param $expected
@@ -35,7 +38,7 @@ class LiteralTest extends \PHPUnit_Framework_TestCase
             ['::1', new IPv6('::1'), true],
             ['::1', new IPv6('0:0:0:0:0:0:0:1'), true],
             ['0:0:0:0:0:0:0:1', new IPv6('::1'), true],
-            ['1:0:0:0:0:0:0:1', new IPv6('::1'), false]
+            ['1:0:0:0:0:0:0:1', new IPv6('::1'), false],
         ];
     }
 }

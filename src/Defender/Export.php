@@ -1,16 +1,17 @@
-<?php namespace Orchid\Defender;
+<?php
+
+namespace Orchid\Defender;
 
 use Illuminate\Support\Facades\Storage;
 
 class Export
 {
-
     /**
-     * Current date
+     * Current date.
+     *
      * @var
      */
     public $date;
-
 
     /**
      * Export constructor.
@@ -21,15 +22,15 @@ class Export
         $this->storage = Storage::disk('local');
     }
 
-
     /**
-     * Create log file
+     * Create log file.
+     *
      * @param Defender $defender
      */
     public function export(Defender $defender)
     {
         $content = json_encode($defender->dangerFiles);
-        $name = 'defender/defender-' . $this->date . '.json';
+        $name = 'defender/defender-'.$this->date.'.json';
 
         if ($this->storage->exists($name)) {
             $this->storage->delete($name);
@@ -37,5 +38,4 @@ class Export
 
         $this->storage->put($name, $content);
     }
-
 }

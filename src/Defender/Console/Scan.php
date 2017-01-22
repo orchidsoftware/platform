@@ -1,11 +1,12 @@
-<?php namespace Orchid\Defender\Console;
+<?php
 
-use Illuminate\Console\Command;
+namespace Orchid\Defender\Console;
+
 use App\Defender;
+use Illuminate\Console\Command;
 
 class Scan extends Command
 {
-
     /**
      * @var Defender
      */
@@ -45,5 +46,4 @@ class Scan extends Command
     {
         $this->defender->scan()->export();
     }
-
 }

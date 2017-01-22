@@ -1,13 +1,16 @@
-<?php namespace Expression;
+<?php
 
-use Orchid\Defender\Utilities\Expression\Subnet;
+namespace Expression;
+
 use Orchid\Defender\Utilities\Address\IPv4;
 use Orchid\Defender\Utilities\Address\IPv6;
+use Orchid\Defender\Utilities\Expression\Subnet;
 
 class SubnetTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  addressProvider
+     *
      * @param $subnet
      * @param $address
      * @param $expected
@@ -37,13 +40,14 @@ class SubnetTest extends \PHPUnit_Framework_TestCase
 
             ['2a01:198:603:0::/65', new IPv6('2a01:198:603:0:396e:4789:8e99:890f'), true],
             ['2a01:198:603:0::/65', new IPv6('2a00:198:603:0:396e:4789:8e99:890f'), false],
-            ['2001::/16', new IPv6('2000::1'), false]
+            ['2001::/16', new IPv6('2000::1'), false],
         ];
     }
 
     /**
      * @dataProvider       invalidProvider
      * @expectedException  \Orchid\Defender\Exception\InvalidExpressionException
+     *
      * @param $subnet
      */
     public function testInvalidFormats($subnet)
@@ -68,13 +72,14 @@ class SubnetTest extends \PHPUnit_Framework_TestCase
             ['::1/-1'],
             ['::1/0'],
             ['::1/200'],
-            ['1.2.*.3/1']
+            ['1.2.*.3/1'],
         ];
     }
 
     /**
      * @dataProvider       mixedProvider
      * @expectedException  LogicException
+     *
      * @param $subnet
      * @param $address
      */
@@ -88,7 +93,7 @@ class SubnetTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['::/128', new IPv4('127.0.0.1')],
-            ['1.0.0.0/8', new IPv6('::1')]
+            ['1.0.0.0/8', new IPv6('::1')],
         ];
     }
 }

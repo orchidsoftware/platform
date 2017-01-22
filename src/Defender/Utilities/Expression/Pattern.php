@@ -1,4 +1,6 @@
-<?php namespace Orchid\Defender\Utilities\Expression;
+<?php
+
+namespace Orchid\Defender\Utilities\Expression;
 
 use Orchid\Defender\Utilities\Address\AddressInterface;
 
@@ -15,10 +17,11 @@ class Pattern implements ExpressionInterface
     }
 
     /**
-     * check whether the expression matches an address
+     * check whether the expression matches an address.
      *
-     * @param  AddressInterface $address
-     * @return boolean
+     * @param AddressInterface $address
+     *
+     * @return bool
      */
     public function matches(AddressInterface $address)
     {
@@ -42,7 +45,7 @@ class Pattern implements ExpressionInterface
             } else {
                 $exprChunk = str_replace('*', '[0-9a-f]+?', $exprChunk);
 
-                if (!preg_match('/^' . $exprChunk . '$/', $addrChunk)) {
+                if (!preg_match('/^'.$exprChunk.'$/', $addrChunk)) {
                     return false;
                 }
             }

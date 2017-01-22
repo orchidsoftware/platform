@@ -1,10 +1,11 @@
-<?php namespace Orchid\Defender\Utilities\Expression;
+<?php
 
+namespace Orchid\Defender\Utilities\Expression;
 
+use Orchid\Defender\Exception\InvalidExpressionException;
 use Orchid\Defender\Utilities\Address\AddressInterface;
 use Orchid\Defender\Utilities\Address\IPv4;
 use Orchid\Defender\Utilities\Address\IPv6;
-use Orchid\Defender\Exception\InvalidExpressionException;
 
 class Literal implements ExpressionInterface
 {
@@ -26,10 +27,11 @@ class Literal implements ExpressionInterface
     }
 
     /**
-     * check whether the expression matches an address
+     * check whether the expression matches an address.
      *
-     * @param  AddressInterface $address
-     * @return boolean
+     * @param AddressInterface $address
+     *
+     * @return bool
      */
     public function matches(AddressInterface $address)
     {
