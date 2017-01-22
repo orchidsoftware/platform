@@ -43,6 +43,10 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems',
                     'description' => 'Доступ к параметрам системы',
                 ],
+                [
+                    'slug'        => 'dashboard.marketing',
+                    'description' => 'Доступ к инстументам маркетинга',
+                ],
             ],
 
         ];

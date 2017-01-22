@@ -65,10 +65,25 @@ class MenuServiceProvider extends ServiceProvider
             'permission' => 'dashboard.systems',
         ];
 
+
+        $marketingMenu = [
+            'slug'       => 'Marketing',
+            'icon'       => 'icon-chart',
+            'route'      => '#',
+            'label'      => trans('Маркетинг'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.marketing.*',
+            'permission' => 'dashboard.marketing',
+        ];
+
+
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $panelMenu, 1);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $postMenu, 100);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
+
+        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $marketingMenu, 1500);
 
         $analyticsMenu = [
             'slug'      => 'analytics',
@@ -128,6 +143,13 @@ class MenuServiceProvider extends ServiceProvider
             'divider'   => false,
         ];
 
+        $redirectMenu = [
+            'slug'      => 'redirect',
+            'icon'      => 'icon-direction',
+            'route'     => route('dashboard.index'),
+            'label'     => trans('Переадресация'),
+        ];
+
         $siteMapMenu = [
             'slug'    => 'site-map',
             'icon'    => 'icon-map',
@@ -175,6 +197,33 @@ class MenuServiceProvider extends ServiceProvider
             'divider' => true,
         ];
 
+
+
+        $emailMenu = [
+            'slug'      => 'email',
+            'icon'      => 'icon-envelope-open',
+            'route'     => route('dashboard.tools.menu.index'),
+            'label'     => trans('Email - рассылка'),
+            'groupname' => trans('dashboard::menu.Users'),
+        ];
+
+
+        $advertisingMenu = [
+            'slug'      => 'advertising',
+            'icon'      => 'icon-target',
+            'route'     => route('dashboard.tools.menu.index'),
+            'label'     => trans('Управление рекламой'),
+        ];
+
+        $feedback = [
+            'slug'      => 'advertising',
+            'icon'      => 'icon-call-in',
+            'route'     => route('dashboard.tools.menu.index'),
+            'label'     => trans('Обратная связь'),
+        ];
+
+
+
         $allPost = $dashboard->types();
         foreach ($allPost as $page) {
             if ($page->display) {
@@ -202,6 +251,9 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $sectionMenu, 3);
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);
+
+
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
@@ -213,6 +265,16 @@ class MenuServiceProvider extends ServiceProvider
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
+
+
+
+
+
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 1);
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $advertisingMenu, 5);
+
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);
+
     }
 
     /**

@@ -93,8 +93,10 @@ class AccessUserForm extends Form
      */
     public function persist($request = null, $user = null)
     {
-        $roles = Role::whereIn('slug', $this->roles)->get();
-        $user->replaceRoles($roles);
+        if(!is_null($this->roles)) {
+            $roles = Role::whereIn('slug', $this->roles)->get();
+            $user->replaceRoles($roles);
+        }
         $user->save();
         Alert::success('Message');
     }

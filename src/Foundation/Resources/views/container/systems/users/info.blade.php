@@ -17,6 +17,7 @@
                 </div>
             </div>
 
+        {{--
             <div class="line line-dashed b-b line-lg"></div>
             <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
                 <label class="col-sm-2 control-label">NickName</label>
@@ -53,7 +54,7 @@
                               placeholder="About">{{$user->about or old('about')}}</textarea>
                 </div>
             </div>
-
+--}}
 
 
 
@@ -81,7 +82,7 @@
 
 
 
-
+{{--
         <div class="line line-dashed b-b line-lg"></div>
             <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -121,7 +122,7 @@
 
                 </div>
             </div>
-
+--}}
 
     </div>
 </div>

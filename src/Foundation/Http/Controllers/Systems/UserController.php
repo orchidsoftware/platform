@@ -61,6 +61,7 @@ class UserController extends Controller
     {
         return $this->form
             ->route('dashboard.systems.users.update')
+            ->slug($user->id)
             ->method('PUT')
             ->render($user);
     }
