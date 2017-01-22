@@ -1,18 +1,21 @@
-<?php namespace Orchid\Defender;
+<?php
+
+namespace Orchid\Defender;
 
 class Defender
 {
-
     /**
-     * Name the files to be excluded during the validation
+     * Name the files to be excluded during the validation.
+     *
      * @var array
      */
     public $exceptionsValid = [
-        '.blade.php'
+        '.blade.php',
     ];
 
     /**
-     * File extensions that will be scanned
+     * File extensions that will be scanned.
+     *
      * @var array
      */
     public $extensions = [
@@ -34,12 +37,12 @@ class Defender
         '.ssi',
         '.inc',
         '.pm',
-        '.tpl'
+        '.tpl',
     ];
 
-
     /**
-     * Typical signs of virus
+     * Typical signs of virus.
+     *
      * @var array
      */
     public $signatures = [
@@ -61,10 +64,11 @@ class Defender
         'include_once',
         'require',
         'require_once',
-        'ReflectionFunction'
+        'ReflectionFunction',
     ];
     /**
-     * Scan directory
+     * Scan directory.
+     *
      * @var null|string
      */
     public $dir;
@@ -77,13 +81,15 @@ class Defender
      */
     public $dangerFiles = [];
     /**
-     * Scanned files
+     * Scanned files.
+     *
      * @var array
      */
     private $files = [];
 
     /**
      * Defender constructor.
+     *
      * @param null $dir
      */
     public function __construct($dir = null)
@@ -93,13 +99,13 @@ class Defender
         }
         $this->dir = $dir;
 
-
         $this->getDirContents($this->dir, $this->files);
     }
 
     /**
      * @param $dir
      * @param array $results
+     *
      * @return array
      */
     private function getDirContents($dir, array &$results = [])
@@ -107,11 +113,11 @@ class Defender
         $files = scandir($dir);
 
         foreach ($files as $key => $value) {
-            $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
+            $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
             if (!is_dir($path)) {
                 $results[] = $path;
             } else {
-                if ($value != "." && $value != "..") {
+                if ($value != '.' && $value != '..') {
                     $this->getDirContents($path, $results);
                     $results[] = $path;
                 }
@@ -122,7 +128,8 @@ class Defender
     }
 
     /**
-     * Scans for possible dangerous problems
+     * Scans for possible dangerous problems.
+     *
      * @return $this
      */
     public function scan()
@@ -146,6 +153,7 @@ class Defender
 
     /**
      * @param $files
+     *
      * @return array
      */
     private function extensionsFile(array $files)
@@ -156,11 +164,13 @@ class Defender
                 $extensionsFiles[] = $file;
             }
         }
+
         return $extensionsFiles;
     }
 
     /**
      * @param $content
+     *
      * @return bool
      */
     private function checkForValidPhp($content)
@@ -182,36 +192,43 @@ class Defender
                 }
             }
         }
+
         return $valid;
     }
 
     /**
      * @param array $signatures
+     *
      * @return $this
      */
     public function loadSignatures(array $signatures)
     {
         $this->signatures = $signatures;
+
         return $this;
     }
 
     /**
      * @param array $extensions
+     *
      * @return $this
      */
     public function loadExtensions(array $extensions)
     {
         $this->extensions = $extensions;
+
         return $this;
     }
 
     /**
      * @param array $exceptionsValid
+     *
      * @return $this
      */
     public function loadExceptionsValid(array $exceptionsValid)
     {
         $this->exceptionsValid = $exceptionsValid;
+
         return $this;
     }
 
@@ -226,6 +243,7 @@ class Defender
             $info['mode'] = octdec($stat['mode']);
             $files[] = $stat;
         }
+
         return $files;
     }
 
@@ -236,7 +254,7 @@ class Defender
     {
         $export = new Export();
         $export->export($this);
+
         return $this;
     }
-
 }

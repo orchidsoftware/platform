@@ -11,8 +11,8 @@ class SettingsTest extends TestCase
     {
 
         //Запишем значение
-        $key = 'test-' . str_random(40);
-        $value = 'value-' . str_random(40);
+        $key = 'test-'.str_random(40);
+        $value = 'value-'.str_random(40);
 
         // Пробуем записать одно значение
         Settings::set($key, $value);
@@ -32,9 +32,9 @@ class SettingsTest extends TestCase
     public function manyValue()
     {
         $valueArray = [
-            'test-1' => 'value-' . str_random(40),
-            'test-2' => 'value-' . str_random(40),
-            'test-3' => 'value-' . str_random(40),
+            'test-1' => 'value-'.str_random(40),
+            'test-2' => 'value-'.str_random(40),
+            'test-3' => 'value-'.str_random(40),
         ];
 
         //Добавим несколько значений

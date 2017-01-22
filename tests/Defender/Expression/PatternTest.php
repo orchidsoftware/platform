@@ -1,13 +1,16 @@
-<?php namespace Expression;
+<?php
 
-use Orchid\Defender\Utilities\Expression\Pattern;
+namespace Expression;
+
 use Orchid\Defender\Utilities\Address\IPv4;
 use Orchid\Defender\Utilities\Address\IPv6;
+use Orchid\Defender\Utilities\Expression\Pattern;
 
 class PatternTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  addressProvider
+     *
      * @param $pattern
      * @param $address
      * @param $expected

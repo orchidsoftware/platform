@@ -1,9 +1,11 @@
-<?php namespace Orchid\Defender\Utilities\Expression;
+<?php
 
+namespace Orchid\Defender\Utilities\Expression;
+
+use  Orchid\Defender\Exception\InvalidExpressionException;
 use  Orchid\Defender\Utilities\Address\AddressInterface;
 use  Orchid\Defender\Utilities\Address\IPv4;
 use  Orchid\Defender\Utilities\Address\IPv6;
-use  Orchid\Defender\Exception\InvalidExpressionException;
 
 class Subnet implements ExpressionInterface
 {
@@ -13,7 +15,7 @@ class Subnet implements ExpressionInterface
     public function __construct($expression)
     {
         if (strpos($expression, '/') === false) {
-            throw new InvalidExpressionException('Invalid subnet expression "' . $expression . '" given.');
+            throw new InvalidExpressionException('Invalid subnet expression "'.$expression.'" given.');
         }
 
         list($lower, $netmask) = explode('/', $expression, 2);
@@ -29,12 +31,12 @@ class Subnet implements ExpressionInterface
         } elseif (IPv6::isValid($lower)) {
             $ip = new IPv6($lower);
         } else {
-            throw new InvalidExpressionException('Subnet expression "' . $expression . '" contains an invalid IP.');
+            throw new InvalidExpressionException('Subnet expression "'.$expression.'" contains an invalid IP.');
         }
 
         // now we can properly handle the netmask range
 
-        $netmask = (int)$netmask;
+        $netmask = (int) $netmask;
 
         if (!$ip::isValidNetmask($netmask)) {
             throw new InvalidExpressionException('Invalid or out of range netmask given.');
@@ -45,10 +47,11 @@ class Subnet implements ExpressionInterface
     }
 
     /**
-     * check whether the expression matches an address
+     * check whether the expression matches an address.
      *
-     * @param  AddressInterface $address
-     * @return boolean
+     * @param AddressInterface $address
+     *
+     * @return bool
      */
     public function matches(AddressInterface $address)
     {

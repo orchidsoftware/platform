@@ -93,7 +93,7 @@ class AccessUserForm extends Form
      */
     public function persist($request = null, $user = null)
     {
-        if(!is_null($this->roles)) {
+        if (!is_null($this->roles)) {
             $roles = Role::whereIn('slug', $this->roles)->get();
             $user->replaceRoles($roles);
         }

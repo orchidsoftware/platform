@@ -1,12 +1,14 @@
-<?php namespace Address;
+<?php
+
+namespace Address;
 
 use Orchid\Defender\Utilities\Address\IPv6;
-use Orchid\Defender\Utilities\Factory;
 
 class IPv6Test extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider  addressProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -41,7 +43,7 @@ class IPv6Test extends \PHPUnit_Framework_TestCase
             ['1:foo', false],
             ['1.1.1.1', false],
             ['::1/123', false],
-            [': :1', false]
+            [': :1', false],
         ];
     }
 
@@ -60,11 +62,12 @@ class IPv6Test extends \PHPUnit_Framework_TestCase
     public function testToString()
     {
         $addr = new IPv6('0:0:0:0:0:0:0:1');
-        $this->assertSame('::1', (string)$addr);
+        $this->assertSame('::1', (string) $addr);
     }
 
     /**
      * @dataProvider  loopbackProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -80,12 +83,13 @@ class IPv6Test extends \PHPUnit_Framework_TestCase
             ['0:0:0:0:0:0:0:1', true],
             ['::1', true],
             ['1::1', false],
-            ['2a01:198:603:0::', false]
+            ['2a01:198:603:0::', false],
         ];
     }
 
     /**
      * @dataProvider  chunkProvider
+     *
      * @param $address
      * @param array $chunks
      */
@@ -99,12 +103,13 @@ class IPv6Test extends \PHPUnit_Framework_TestCase
     {
         return [
             ['::1', ['0', '0', '0', '0', '0', '0', '0', '1']],
-            ['2a01:198:603:0::', ['2a01', '198', '603', '0', '0', '0', '0', '0']]
+            ['2a01:198:603:0::', ['2a01', '198', '603', '0', '0', '0', '0', '0']],
         ];
     }
 
     /**
      * @dataProvider  privateProvider
+     *
      * @param $address
      * @param $expected
      */
@@ -126,10 +131,9 @@ class IPv6Test extends \PHPUnit_Framework_TestCase
 
             ['fbff::', false],
             ['fbff::ffff', false],
-            ['fe01::beaf', false]
+            ['fe01::beaf', false],
         ];
     }
-
 
     public function testGetLoopback()
     {
