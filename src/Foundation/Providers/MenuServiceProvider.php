@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
-use Orchid\Menu\RouteMenu;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -225,7 +224,6 @@ class MenuServiceProvider extends ServiceProvider
             'label'     => trans('Опросы'),
         ];
 
-
         $allPost = $dashboard->types();
         foreach ($allPost as $page) {
             if ($page->display) {
@@ -272,9 +270,7 @@ class MenuServiceProvider extends ServiceProvider
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);
 
-
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $polls, 10);
-
     }
 
     /**
@@ -284,8 +280,6 @@ class MenuServiceProvider extends ServiceProvider
     {
         //
     }
-
-
 
     /**
      * Get the services provided by the provider.
