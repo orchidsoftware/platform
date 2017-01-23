@@ -19,22 +19,22 @@ class RouteMenu
         $this->container = collect();
     }
 
-
     /**
-     * Add list element menu
+     * Add list element menu.
+     *
      * @param $name
      * @param $slug
      */
-    public function add($slug,$name){
+    public function add($slug, $name)
+    {
         $this->container->put($slug, $name);
     }
 
-
     /**
-     * Get list
+     * Get list.
      */
-    public function all(){
+    public function all()
+    {
         return $this->container->all();
     }
-
 }

@@ -50,7 +50,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'show'  => 'dashboard.systems.schema.show',
     ]]);
 
-
     Route::resource('logs', 'LogController', ['names' => [
         'index'    => 'dashboard.systems.logs.index',
         'show'     => 'dashboard.systems.logs.show',
@@ -58,13 +57,11 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy'  => 'dashboard.systems.logs.destroy',
     ]]);
 
-
     //Удалить/Изменить
     Route::get('/logs2', [
         'as'   => 'log-viewer::logs.list',
         'uses' => 'LogController@listLogs',
     ]);
-
 
     //Удалить/Изменить
     Route::delete('delete', [
@@ -72,22 +69,17 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'uses' => 'LogController@delete',
     ]);
 
-
     //Удалить/Изменить
     Route::get('/test3/{test}', [
         'as'   => 'log-viewer::logs.show',
         'uses' => 'LogController@show',
     ]);
 
-
     //Удалить/Изменить
     Route::get('download', [
         'as'   => 'log-viewer::logs.download',
         'uses' => 'LogController@download',
     ]);
-
-
-
 
     /*
     * [LogicException]
@@ -117,9 +109,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
        },
    ]);
    */
-
-
-
 
     //Удалить/Изменить
     $this->get('test4/{level}', [

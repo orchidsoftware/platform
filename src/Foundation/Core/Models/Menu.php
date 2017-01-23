@@ -43,14 +43,13 @@ class Menu extends Model
         return $this->hasMany(self::class, 'parent');
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function parent(){
+    public function parent()
+    {
         return $this->hasOne(self::class);
     }
-
 
     /**
      * @param $id

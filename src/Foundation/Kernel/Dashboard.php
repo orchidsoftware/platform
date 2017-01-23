@@ -39,7 +39,7 @@ class Dashboard
         $this->permission = new Permissions();
         $this->types = new TypeStorage();
         $this->fields = new FieldStorage();
-        $this->routeMenu  = new RouteMenu();
+        $this->routeMenu = new RouteMenu();
     }
 
     /**
@@ -83,6 +83,4 @@ class Dashboard
     {
         return $this->routeMenu;
     }
-
-
 }
