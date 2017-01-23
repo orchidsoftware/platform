@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Kernel;
 use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Menu\Menu;
+use Orchid\Menu\RouteMenu;
 use Orchid\Type\TypeStorage;
 
 class Dashboard
@@ -38,6 +39,7 @@ class Dashboard
         $this->permission = new Permissions();
         $this->types = new TypeStorage();
         $this->fields = new FieldStorage();
+        $this->routeMenu  = new RouteMenu();
     }
 
     /**
@@ -73,4 +75,14 @@ class Dashboard
     {
         return $this->fields->all();
     }
+
+    /**
+     * @return RouteMenu
+     */
+    public function routeMenu()
+    {
+        return $this->routeMenu;
+    }
+
+
 }

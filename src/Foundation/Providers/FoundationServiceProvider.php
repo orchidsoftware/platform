@@ -3,14 +3,18 @@
 namespace Orchid\Foundation\Providers;
 
 use Cartalyst\Tags\TagsServiceProvider;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
+use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
+use Orchid\Foundation\Macros\Page;
 use Orchid\Installer\Providers\InstallerServiceProvider;
 use Orchid\Log\LogServiceProvider;
+use Orchid\Page\PageServiceProvider;
 use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
@@ -19,12 +23,14 @@ use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
+
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
+     * @var array
      */
-    protected $defer = false;
+    public $routeMacros = [
+        Page::class
+    ];
+
 
     /**
      * Boot the application events.
@@ -33,12 +39,14 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
         $this->registerPublic();
 
+        $this->macrosRegister($router);
         $this->registerProviders();
     }
 
@@ -140,4 +148,16 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
     }
+
+
+    /**
+     * @param Router $route
+     */
+    public function macrosRegister(Router $route){
+        foreach ($this->routeMacros as $macro) {
+            (new $macro)->register($route);
+        }
+    }
+
+
 }

@@ -2,7 +2,7 @@
 
 
 @section('title','Меню')
-@section('description','Верхнее')
+@section('description',$nameMenu)
 
 
 @section('navbar')
@@ -12,17 +12,26 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Dropdown <span class="caret"></span></a>
+                   aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+
+                    @foreach($locales as $code => $locale)
+                        @if($currentLocale == $code)
+                        <li class="disabled">
+                            <a>{{$locale['native']}}</a>
+                        </li>
+                        @else
+                            <li>
+                                <a href="?lang={{$code}}">{{$locale['native']}}</a>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </li>
 
             <li>
                 <button class="btn btn-link menu-save"><i
-                            class="ion-ios-plus-outline fa fa-2x"></i></button>
+                            class="ion-ios-compose-outline fa fa-2x"></i></button>
             </li>
 
         </ul>
@@ -59,11 +68,23 @@
             </div>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane" id="tab-1">
+
+
                     <div class="wrapper-md">
-                        <div class="text-center">
-                            <a href="" class="btn btn-sm btn-primary padder-md m-b">Кнопка добавить</a>
-                        </div>
+                        <label class="small">Поиск</label>
+                        <input class="form-control form-control-grey input-sm">
                     </div>
+
+
+                    <div class="list-group">
+                        @foreach($staticPage as $slug => $name)
+                            <button type="button" class="list-group-item text-ellipsis" title="{{$name}}">
+                                {{$name}}
+                                <small>({{$slug}})</small>
+                            </button>
+                        @endforeach
+                    </div>
+
                 </div>
 
                 <div role="tabpanel" class="tab-pane tab-3 active" id="tab-3">
@@ -76,9 +97,22 @@
                             <input type="text" class="form-control" v-model="label" placeholder="О нас">
                         </div>
                         <div class="form-group">
+                            <label>Подпись</label>
+                            <input type="text" class="form-control" v-model="title" placeholder="История нашей компании">
+                        </div>
+                        <div class="form-group">
                             <label>Slug</label>
                             <input type="text" class="form-control" v-model="slug" placeholder="/about">
                         </div>
+
+                        <div class="form-group">
+                            <label>Отображение</label>
+                            <select class="form-control" v-model="auth">
+                                <option value="0" selected>Доступно всем</option>
+                                <option value="1">Только авторизованным пользователям</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label>Разрешить поисковым роботам переход</label>
 
@@ -108,17 +142,26 @@
 
 
                             <div class="btn-group btn-group-sm  btn-group-justified" role="group" aria-label="...">
-                                <div class="btn-group" role="group">
-                                <button v-if="exist()" type="button" v-on:click="remove()" class="btn btn-sm btn-danger padder-md m-b text-ellipsis" data-dismiss="modal">Удалить
-                                    элемент
+
+
+                                <div class="btn-group" role="group" v-if="exist()">
+                                <button type="button" v-on:click="remove()" class="btn btn-sm btn-danger padder-md m-b text-ellipsis" data-dismiss="modal">Удалить
+
                                 </button>
                                 </div>
-                                <div class="btn-group" role="group">
-                                <button v-if="exist()" type="button" v-on:click="clear()" class="btn btn-sm btn-default padder-md m-b text-ellipsis" data-dismiss="modal">Сбросить
+
+                                <div class="btn-group" role="group"  v-if="exist()">
+                                    <button type="button" v-on:click="clear()" class="btn btn-sm btn-default padder-md m-b text-ellipsis" data-dismiss="modal">Сбросить
                                 </button>
+
                                 </div>
-                                <div class="btn-group" role="group">
-                                <button type="button" v-on:click="add()" class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Сохранить изменения</button>
+
+                                <div class="btn-group" role="group"  v-if="!exist()">
+                                    <button  type="button" v-on:click="add()" class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Добавить</button>
+                                </div>
+
+                                <div class="btn-group" role="group"  v-if="exist()">
+                                    <button  type="button" v-on:click="save()" class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Сохранить</button>
                                 </div>
 
                             </div>
@@ -140,38 +183,11 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="dd">
+                <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$nameMenu}}">
                     <ol class="dd-list">
-
-                        {{--
-                        <li class="dd-item dd3-item" data-id="13" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                            <div class="dd-handle dd3-handle">Drag</div>
-                            <div class="dd3-content">Элемент 13</div>
-                            <div class="edit"></div>
-                        </li>
-                        <li class="dd-item dd3-item" data-id="14" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                            <div class="dd-handle dd3-handle">Drag</div>
-                            <div class="dd3-content">Элемент 14</div>
-                        </li>
-                        <li class="dd-item dd3-item" data-id="15" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                            <div class="dd-handle dd3-handle">Drag</div>
-                            <div class="dd3-content">Элемент 15</div>
-                            <ol class="dd-list">
-                                <li class="dd-item dd3-item" data-id="16" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                                    <div class="dd-handle dd3-handle">Drag</div>
-                                    <div class="dd3-content">Элемент 16</div>
-                                </li>
-                                <li class="dd-item dd3-item" data-id="17" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                                    <div class="dd-handle dd3-handle">Drag</div>
-                                    <div class="dd3-content">Элемент 17</div>
-                                </li>
-                                <li class="dd-item dd3-item" data-id="18" data-sort="1" data-label="" data-slug="" data-robot="" data-style="" data-target="">
-                                    <div class="dd-handle dd3-handle">Drag</div>
-                                    <div class="dd3-content">Элемент 18</div>
-                                </li>
-                            </ol>
-                        </li>
-                  --}}
+                        @include('dashboard::partials.menu.item',[
+                            'menu'=>$menu
+                        ])
                     </ol>
                 </div>
             </div>
@@ -196,25 +212,29 @@
     <script>
         window.onload = function () {
 
-            menu = new Vue({
+            const menu = new Vue({
                 el: '#menu-vue',
                 data: {
                     count: 0,
                     id: '',
                     label: '',
+                    title: '',
                     slug: '',
-                    robot: '',
+                    auth: 0,
+                    robot: 'follow',
                     style: '',
-                    target: '',
+                    target: '_self'
                 },
                 methods: {
                     load: function (object) {
                         this.id = object.id;
                         this.label = object.label;
                         this.slug = object.slug;
+                        this.auth = object.auth;
                         this.robot = object.robot;
                         this.style = object.style;
                         this.target = object.target;
+                        this.title = object.title;
                     },
                     add: function () {
                         $(".dd > .dd-list").append("<li class='dd-item dd3-item' data-id='" + this.count + "'> " +
@@ -225,10 +245,12 @@
 
                         $('li[data-id=' + this.count + ']').data({
                             'label': this.label,
+                            'title': this.title,
+                            'auth': this.auth,
                             'slug': this.slug,
                             'robot': this.robot,
                             'style': this.style,
-                            'target': this.target,
+                            'target': this.target
                         });
 
                         this.count--;
@@ -246,6 +268,8 @@
 
                         $('li[data-id=' + this.id + ']').data({
                             'label': this.label,
+                            'title': this.title,
+                            'auth': this.auth,
                             'slug': this.slug,
                             'robot': this.robot,
                             'style': this.style,
@@ -265,15 +289,36 @@
                     },
                     clear: function () {
                         this.label = '';
+                        this.title = '';
+                        this.auth = 0;
                         this.slug = '';
-                        this.robot = '';
+                        this.robot = 'follow';
                         this.style = '';
-                        this.target = '';
+                        this.target = '_self';
                         this.id = '';
                     },
                     send: function () {
                         //Отправка данных
-                        this.$http.update('/dashboard/tools/menu').then(function () {
+
+                        var name = $('.dd').attr('data-name');
+
+                        var data = {
+                            'lang': $('.dd').attr('data-lang'),
+                            'data': $('.dd').nestable('serialize')
+                        };
+
+                        this.$http.put('/dashboard/tools/menu/' + name,data).then(function (response) {
+
+                            alert('Сохраненно');
+                            /*
+                            swal({
+                                title: response.data.title,
+                                text: response.data.message,
+                                timer: 2000,
+                                showConfirmButton: false,
+                                type: response.data.type,
+                            });
+                            */
 
                         });
                     },
@@ -291,7 +336,6 @@
 
 
             $('.dd').nestable({});
-
             $('.dd-item').each(function (i, item) {
                 $(item).data('sort', i);
             });

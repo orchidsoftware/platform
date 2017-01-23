@@ -16,11 +16,13 @@ class Menu extends Model
      */
     protected $fillable = [
         'label',
+        'title',
         'slug',
         'robot',
         'style',
         'target',
         'auth',
+        'lang',
         'parent',
         'sort',
         'type',
@@ -36,10 +38,19 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getParent()
+    public function children()
     {
         return $this->hasMany(self::class, 'parent');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function parent(){
+        return $this->hasOne(self::class);
+    }
+
 
     /**
      * @param $id

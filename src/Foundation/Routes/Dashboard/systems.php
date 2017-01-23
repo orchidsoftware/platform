@@ -50,13 +50,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'show'  => 'dashboard.systems.schema.show',
     ]]);
 
-    /*
-     * Logs Dashboard
-    Route::get('/test1', [
-        'as' => 'log-viewer::dashboard',
-        'uses' => 'LogController@index',
-    ]);
-    */
+
     Route::resource('logs', 'LogController', ['names' => [
         'index'    => 'dashboard.systems.logs.index',
         'show'     => 'dashboard.systems.logs.show',
@@ -64,25 +58,42 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy'  => 'dashboard.systems.logs.destroy',
     ]]);
 
+
+    //Удалить/Изменить
     Route::get('/logs2', [
         'as'   => 'log-viewer::logs.list',
         'uses' => 'LogController@listLogs',
     ]);
 
+
+    //Удалить/Изменить
     Route::delete('delete', [
         'as'   => 'log-viewer::logs.delete',
         'uses' => 'LogController@delete',
     ]);
 
+
+    //Удалить/Изменить
     Route::get('/test3/{test}', [
         'as'   => 'log-viewer::logs.show',
         'uses' => 'LogController@show',
     ]);
 
+
+    //Удалить/Изменить
     Route::get('download', [
         'as'   => 'log-viewer::logs.download',
         'uses' => 'LogController@download',
     ]);
+
+
+
+
+    /*
+    * [LogicException]
+    * Unable to prepare route [dashboard/systems/path-template] for serialization. Uses Closure.
+    *
+
 
     Route::get('path-template', [
         'as'   => 'dashboard::partials.path',
@@ -91,20 +102,26 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         },
     ]);
 
-    Route::get('icons', [
-        'as'   => 'dashboard::icons',
-        'uses' => function () {
-            $res = [
-                ['code' => 'ad', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ad.svg', 'label' => 'Метка 1'],
-                ['code' => 'ae', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ae.svg', 'label' => 'Метка 2'],
-                ['code' => 'af', 'icon' => '/bower_components/flag-icon-css/flags/1x1/af.svg', 'label' => 'Метка 3'],
-                ['code' => 'ag', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ag.svg', 'label' => 'Метка 4'],
-            ];
 
-            return json_encode($res);
-        },
-    ]);
+   Route::get('icons', [
+       'as'   => 'dashboard::icons',
+       'uses' => function () {
+           $res = [
+               ['code' => 'ad', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ad.svg', 'label' => 'Метка 1'],
+               ['code' => 'ae', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ae.svg', 'label' => 'Метка 2'],
+               ['code' => 'af', 'icon' => '/bower_components/flag-icon-css/flags/1x1/af.svg', 'label' => 'Метка 3'],
+               ['code' => 'ag', 'icon' => '/bower_components/flag-icon-css/flags/1x1/ag.svg', 'label' => 'Метка 4'],
+           ];
 
+           return json_encode($res);
+       },
+   ]);
+   */
+
+
+
+
+    //Удалить/Изменить
     $this->get('test4/{level}', [
         'as'   => 'log-viewer::logs.filter',
         'uses' => 'LogController@showByLevel',

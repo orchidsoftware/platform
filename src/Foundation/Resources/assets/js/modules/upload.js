@@ -35,7 +35,7 @@ if (document.getElementsByClassName('dropzone')) {
                                 size: item.size,
                                 type: item.mime,
                                 status: Dropzone.ADDED,
-                                url: '/storage/'+ item.path + '/' + item.name,
+                                url: '/storage/'+ item.path + '/' + item.name + '.' + item.extension,
                                 data: item
                             };
 
