@@ -2,8 +2,8 @@
 
 namespace Orchid\Defender\Console;
 
-use Orchid\Defender\Defender;
 use Illuminate\Console\Command;
+use Orchid\Defender\Defender;
 
 class Scan extends Command
 {

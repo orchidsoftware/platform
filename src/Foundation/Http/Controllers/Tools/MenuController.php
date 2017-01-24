@@ -55,7 +55,7 @@ class MenuController extends Controller
             'currentLocale' => $currentLocale,
             'menu'          => $menu,
             'staticPage'    => $staticPage,
-            'url' => config('app.url'),
+            'url'           => config('app.url'),
         ]);
     }
 
