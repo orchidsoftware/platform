@@ -3,6 +3,7 @@
 namespace Orchid\Defender\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Orchid\Defender\Console\Scan;
 
 class DefenderServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class DefenderServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->commands(Scan::class);
     }
 
     /**

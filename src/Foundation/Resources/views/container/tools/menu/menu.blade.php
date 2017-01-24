@@ -53,13 +53,13 @@
             <div class="nav-tabs-alt">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="">
-                        <a data-target="#tab-1" role="tab" data-toggle="tab" aria-expanded="false">
+                        <a data-target="#static-pages" role="tab" data-toggle="tab" aria-expanded="false">
                             <i class="icon-note text-md text-muted wrapper-sm"></i>
                             Pages
                         </a>
                     </li>
                     <li class="active">
-                        <a data-target="#tab-3" role="tab" data-toggle="tab" aria-expanded="true">
+                        <a id="ahref-custom-pages" data-target="#custom-pages" role="tab" data-toggle="tab" aria-expanded="true">
                             <i class="icon-wrench text-md text-muted wrapper-sm"></i>
                             Custom
                         </a>
@@ -67,27 +67,26 @@
                 </ul>
             </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane" id="tab-1">
-
+                <div role="tabpanel" class="tab-pane" id="static-pages">
 
                     <div class="wrapper-md">
                         <label class="small">Поиск</label>
-                        <input class="form-control form-control-grey input-sm">
+                        <input class="form-control form-control-grey input-sm" placeholder="Not Work">
                     </div>
 
 
                     <div class="list-group">
                         @foreach($staticPage as $slug => $name)
-                            <button type="button" class="list-group-item text-ellipsis" title="{{$name}}">
-                                {{$name}}
-                                <small>({{$slug}})</small>
+                            <button v-on:click="addStatic('{{$name}}','{{$slug}}')"  type="button" class="list-group-item text-ellipsis" title="{{$name}}">
+                                <span class="block">{{$name}}</span>
+                                <small>{{$url}}/<span>{{$slug}}</span></small>
                             </button>
                         @endforeach
                     </div>
 
                 </div>
 
-                <div role="tabpanel" class="tab-pane tab-3 active" id="tab-3">
+                <div role="tabpanel" class="tab-pane tab-3 active" id="custom-pages">
                     <div class="wrapper-md">
 
 
@@ -255,6 +254,18 @@
 
                         this.count--;
                         this.clear();
+                    },
+                    addStatic: function (name,slug) {
+
+                        if(slug.charAt(0) != '/'){
+                            slug = '/' + slug;
+                        }
+
+                        this.label = name;
+                        this.slug = slug;
+
+                        $('#ahref-custom-pages').tab('show');
+
                     },
                     edit: function (element) {
                         var data = $(element).parent().data();

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
+use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Foundation\Macros\Page;
 use Orchid\Installer\Providers\InstallerServiceProvider;
@@ -130,6 +131,7 @@ class FoundationServiceProvider extends ServiceProvider
             LogServiceProvider::class,
             ScoutServiceProvider::class,
             ElasticsearchServiceProvicer::class,
+            DefenderServiceProvider::class,
         ];
     }
 
