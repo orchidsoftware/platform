@@ -64,18 +64,6 @@ class TestType extends Type
     }
 
     /**
-     * Grid View for post type.
-     */
-    public function grid()
-    {
-        return [
-            'name'       => 'Название',
-            'publish'    => 'Дата публикации',
-            'created_at' => 'Дата создания',
-        ];
-    }
-
-    /**
      * @return array
      */
     public function modules()
@@ -88,12 +76,17 @@ class TestType extends Type
     }
 
     /**
-     * @param null $search
-     *
-     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     * Grid View for post type.
      */
-    public function route($search = null)
+    public function grid()
     {
-        return url('/search/'.$search);
+        return [
+            'name'       => 'Название',
+            'publish'    => 'Дата публикации',
+            'created_at' => 'Дата создания',
+        ];
     }
+
+
+
 }

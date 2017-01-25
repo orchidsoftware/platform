@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->locales = config('content.locales');
+        $this->locales = collect(config('content.locales'));
     }
 
     /**
@@ -44,9 +44,10 @@ class PostController extends Controller
     {
         $type = $post->getTypeObject();
 
+
         return view('dashboard::container.posts.create', [
             'type'    => $type,
-            'locales' => $this->locales,
+            'locales' => $this->locales->where('required',true),
         ]);
     }
 
@@ -104,9 +105,18 @@ class PostController extends Controller
     {
         $type = $type->getTypeObject();
 
+
+        $locales = $this->locales->map(function($value,$key) use ($post){
+                $value['required'] = (bool) $post->checkLanguage($key);
+                return $value;
+        })->where('required',true);
+
+
+
+
         return view('dashboard::container.posts.edit', [
             'type'    => $type,
-            'locales' => $this->locales,
+            'locales' => $locales,
             'post'    => $post,
         ]);
     }

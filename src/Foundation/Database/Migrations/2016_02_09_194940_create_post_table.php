@@ -15,7 +15,8 @@ class CreatePostTable extends Migration
             $table->integer('user_id');
             $table->string('type');
             $table->integer('section_id')->nullable();
-            $table->jsonb('content');
+            $table->json('content');
+            $table->json('options');
             $table->string('slug', '255')->unique();
             $table->timestamp('publish');
             $table->timestamps();
