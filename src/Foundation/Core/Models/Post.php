@@ -47,7 +47,7 @@ class Post extends Model
         'type'    => 'string',
         'slug'    => 'string',
         'content' => 'array',
-        'options'=> 'array',
+        'options' => 'array',
     ];
 
     /**
@@ -140,13 +140,14 @@ class Post extends Model
         }
     }
 
-
     /**
      * @param $key
      * @param null $default
+     *
      * @return null
      */
-    public function getOption($key,$default = null){
+    public function getOption($key, $default = null)
+    {
         $option = $this->options;
         if (array_key_exists($key, $option)) {
             return $option[$key];
@@ -158,26 +159,26 @@ class Post extends Model
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptions(){
+    public function getOptions()
+    {
         return collect($this->options);
     }
 
-
     /**
      * @param $key
+     *
      * @return bool
      */
-    public function checkLanguage($key){
+    public function checkLanguage($key)
+    {
+        $locale = $this->getOption('locale', []);
 
-        $locale = $this->getOption('locale',[]);
-
-        if(key_exists($key,$locale)){
+        if (array_key_exists($key, $locale)) {
             return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
         }
 
         return false;
     }
-
 
     /**
      * Get the author's posts.

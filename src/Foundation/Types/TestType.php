@@ -86,7 +86,4 @@ class TestType extends Type
             'created_at' => 'Дата создания',
         ];
     }
-
-
-
 }
