@@ -93,19 +93,19 @@ return [
     'locales' => [
 
         'en' => [
-            'name' => 'English',
-            'script' => 'Latn',
-            'dir' => 'ltr',
-            'native' => 'English',
+            'name'     => 'English',
+            'script'   => 'Latn',
+            'dir'      => 'ltr',
+            'native'   => 'English',
             'regional' => 'en_GB',
             'required' => false,
         ],
 
         'ru' => [
-            'name' => 'Russian',
-            'script' => 'Cyrl',
-            'dir' => 'ltr',
-            'native' => 'Русский',
+            'name'     => 'Russian',
+            'script'   => 'Cyrl',
+            'dir'      => 'ltr',
+            'native'   => 'Русский',
             'regional' => 'ru_RU',
             'required' => true,
         ],

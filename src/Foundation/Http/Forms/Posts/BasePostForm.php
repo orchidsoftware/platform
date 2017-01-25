@@ -29,7 +29,7 @@ class BasePostForm extends Form
             'post'     => $post,
             'sections' => Section::get(),
             'language' => App::getLocale(),
-            'locales' => config('content.locales'),
+            'locales'  => config('content.locales'),
         ]);
     }
 
