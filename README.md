@@ -9,15 +9,23 @@
 Orchid Platform application provides a very flexible and extensible way of building your custom application.
 </p>
 
+<p align="center">
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/80fc1214b05e441eba471c92fafe2c81)](https://www.codacy.com/app/a-r-t-1-s-t/Platform?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TheOrchid/Platform&amp;utm_campaign=Badge_Grade)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d/mini.png)](https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d)
-[![StyleCI](https://styleci.io/repos/73781385/shield?branch=master)](https://styleci.io/repos/73781385)
-[![Latest Stable Version](https://poser.pugx.org/orchid/platform/v/stable)](https://packagist.org/packages/orchid/platform)
-[![Total Downloads](https://poser.pugx.org/orchid/platform/downloads)](https://packagist.org/packages/orchid/platform)
-[![License](https://poser.pugx.org/orchid/platform/license)](https://packagist.org/packages/orchid/platform)
+<a href="https://www.codacy.com/app/a-r-t-1-s-t/Platform?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TheOrchid/Platform&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/80fc1214b05e441eba471c92fafe2c81"/></a>
+
+<a href="https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d"><img src="https://insight.sensiolabs.com/projects/b21bd1a3-da88-45e3-ac22-c2b6e5f0ef0d/mini.png"/></a>
+
+<a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
 
 
+<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
+
+<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
+
+<a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
+
+
+</p>
 
 
 
