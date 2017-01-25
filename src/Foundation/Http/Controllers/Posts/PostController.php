@@ -44,10 +44,9 @@ class PostController extends Controller
     {
         $type = $post->getTypeObject();
 
-
         return view('dashboard::container.posts.create', [
             'type'    => $type,
-            'locales' => $this->locales->where('required',true),
+            'locales' => $this->locales->where('required', true),
         ]);
     }
 
@@ -105,14 +104,11 @@ class PostController extends Controller
     {
         $type = $type->getTypeObject();
 
+        $locales = $this->locales->map(function ($value, $key) use ($post) {
+            $value['required'] = (bool) $post->checkLanguage($key);
 
-        $locales = $this->locales->map(function($value,$key) use ($post){
-                $value['required'] = (bool) $post->checkLanguage($key);
-                return $value;
-        })->where('required',true);
-
-
-
+            return $value;
+        })->where('required', true);
 
         return view('dashboard::container.posts.edit', [
             'type'    => $type,
