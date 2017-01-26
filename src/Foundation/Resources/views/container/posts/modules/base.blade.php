@@ -13,7 +13,7 @@
         <label>Время публикации</label>
         <div class='input-group date datetimepicker'>
             <input type='text' class="form-control"
-                   value="{{$post->publish or ''}}"
+                   value="{{$post->publish_at or ''}}"
                    placeholder="Укажите время публикации" name="publish">
             <span class="input-group-addon">
                         <span class="ion-ios-calendar-outline"></span>

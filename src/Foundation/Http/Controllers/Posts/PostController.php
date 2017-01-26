@@ -69,7 +69,7 @@ class PostController extends Controller
         $post->type = $post->getTypeObject()->slug;
         $post->user_id = Auth::user()->id;
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
-        $post->publish = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+        $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
         $Slugs = $post->where('slug', $post->slug)->count();
         if ($Slugs != 0) {
@@ -128,7 +128,7 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
-        $post->publish = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+        $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
         $Slugs = $post
             ->where('id', '!=', $post->id)
