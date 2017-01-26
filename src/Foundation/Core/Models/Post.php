@@ -30,11 +30,12 @@ class Post extends Model
         'types_id',
         'users_id',
         'type',
+        'status',
         'section_id',
         'content',
         'options',
         'slug',
-        'publish',
+        'publish_at',
         'created_at',
         'deleted_at',
     ];
@@ -56,10 +57,10 @@ class Post extends Model
      * @var array
      */
     protected $dates = [
+        'publish_at',
         'created_at',
         'updated_at',
         'deleted_at',
-        'publish_at',
     ];
 
     /**
