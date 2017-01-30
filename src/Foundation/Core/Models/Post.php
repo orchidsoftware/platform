@@ -27,8 +27,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'types_id',
-        'users_id',
+        'user_id',
         'type',
         'status',
         'section_id',
@@ -44,7 +43,6 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'page'    => 'boolean',
         'type'    => 'string',
         'slug'    => 'string',
         'content' => 'array',
