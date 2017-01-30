@@ -61,7 +61,6 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'index'    => 'dashboard.systems.defender.index',
     ]]);
 
-
     //Удалить/Изменить
     Route::get('/logs2', [
         'as'   => 'log-viewer::logs.list',
