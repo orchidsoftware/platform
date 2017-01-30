@@ -57,6 +57,11 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy'  => 'dashboard.systems.logs.destroy',
     ]]);
 
+    Route::resource('defender', 'DefenderController', ['names' => [
+        'index'    => 'dashboard.systems.defender.index',
+    ]]);
+
+
     //Удалить/Изменить
     Route::get('/logs2', [
         'as'   => 'log-viewer::logs.list',

@@ -37,6 +37,7 @@
               action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
 
 
+            @if(count($type->fields()) > 0)
             <!-- column -->
             <div class="col lter b-r">
                 <div class="vbox">
@@ -81,6 +82,7 @@
                 </div>
             </div>
             <!-- /column -->
+            @endif
 
 
         @if($type->checkModules())

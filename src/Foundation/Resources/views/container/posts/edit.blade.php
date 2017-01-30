@@ -31,6 +31,8 @@
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">
+
+        @if(count($type->fields()) > 0)
             <!-- column -->
             <div class="col  lter b-r">
                 <div class="vbox">
@@ -75,6 +77,7 @@
                 </div>
             </div>
             <!-- /column -->
+        @endif
 
 
 

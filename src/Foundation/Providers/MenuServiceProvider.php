@@ -122,6 +122,13 @@ class MenuServiceProvider extends ServiceProvider
             'divider'   => false,
         ];
 
+        $defenderMenu = [
+            'slug'      => 'defender',
+            'icon'      => 'fa fa-shield',
+            'route'     => route('dashboard.systems.defender.index'),
+            'label'     => trans('Защитник'),
+        ];
+
         $schemaMenu = [
             'slug'    => 'schema',
             'icon'    => 'fa fa-database',
@@ -256,6 +263,8 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $defenderMenu, 501);
+
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $backupMenu, 2);
