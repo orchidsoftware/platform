@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 01.02.17
- * Time: 16:36
+ * Time: 16:36.
  */
 
 namespace Orchid\Foundation\Kernel;
-
 
 class Storage
 {
@@ -71,9 +70,11 @@ class Storage
 
     /**
      * @param $name
+     *
      * @return mixed
      */
-    public function find($name){
+    public function find($name)
+    {
         return $this->container->where('slug', $name)->first();
     }
 }
