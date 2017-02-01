@@ -19,8 +19,7 @@ class PostApiController extends Controller {
         'eq' => WhereFilters::class,
         'count' => LimitFilters::class,
         'between' => BetweenFilter::class,
-        'search' => LikeFilters::class,
-        'content' => ContentFilters::class
+        'search' => LikeFilters::class
     ];
 
     public function index($type, $fields) {

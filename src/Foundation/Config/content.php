@@ -36,6 +36,16 @@ return [
         'path'     => \Orchid\Field\Fields\PathField::class,
     ],
 
+    'fieldFilters' => [
+        'eq' => \Orchid\Foundation\Filters\WhereFilters::class,
+        'count' => \Orchid\Foundation\Filters\LimitFilters::class,
+        'between' => \Orchid\Foundation\Filters\BetweenFilter::class,
+        'search' => \Orchid\Foundation\Filters\LikeFilters::class
+    ],
+
+    'contentFilters' => [
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Available menu

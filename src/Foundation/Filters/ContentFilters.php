@@ -11,7 +11,6 @@ namespace Orchid\Foundation\Filters;
 
 class ContentFilters extends Filters
 {
-
     function run() {
     }
 }
