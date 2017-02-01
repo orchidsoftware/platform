@@ -1,11 +1,13 @@
-<?php namespace Orchid\Foundation\Filters;
+<?php
 
-use Illuminate\Database\Eloquent\Builder;
+namespace Orchid\Foundation\Filters;
+
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Foundation\Core\Models\Post;
 
-class WhereFilters extends Filters {
-    function run() {
+class WhereFilters extends Filters
+{
+    public function run()
+    {
         $result = $this->model->where($this->fieldName, $this->parameters);
 
         return $result;

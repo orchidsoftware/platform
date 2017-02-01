@@ -59,10 +59,11 @@ class TypeStorage
 
     /**
      * @param $name
+     *
      * @return mixed
      */
-    public function find($name){
+    public function find($name)
+    {
         return $this->container->where('slug', $name)->first();
     }
-
 }

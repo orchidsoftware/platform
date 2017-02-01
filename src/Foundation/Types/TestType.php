@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Types;
 
-use Orchid\Foundation\Filters\WhereFilters;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
 //use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
@@ -34,7 +33,8 @@ class TestType extends Type
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             'id'             => 'sometimes|integer|unique:posts',
             'content.*.name' => 'required|string',
