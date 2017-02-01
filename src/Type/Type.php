@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Exceptions\TypeException;
-use Orchid\Foundation\Filters\BetweenFilter;
-use Orchid\Foundation\Filters\ContentFilters;
-use Orchid\Foundation\Filters\Filters;
-use Orchid\Foundation\Filters\LikeFilters;
-use Orchid\Foundation\Filters\LimitFilters;
-use Orchid\Foundation\Filters\WhereFilters;
 
 abstract class Type implements TypeInterface
 {
@@ -400,6 +394,4 @@ abstract class Type implements TypeInterface
             }
         }
     }
-
-
 }

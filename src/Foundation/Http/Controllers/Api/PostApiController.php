@@ -1,29 +1,32 @@
-<?php namespace Orchid\Foundation\Http\Controllers\Api;
+<?php
 
+namespace Orchid\Foundation\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
+use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Filters\BetweenFilter;
 use Orchid\Foundation\Filters\ContentFilters;
 use Orchid\Foundation\Filters\LikeFilters;
 use Orchid\Foundation\Filters\LimitFilters;
 use Orchid\Foundation\Filters\WhereFilters;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Orchid\Foundation\Facades\Dashboard;
 
-class PostApiController extends Controller {
+class PostApiController extends Controller
+{
     /**
      * @var array Active filters set
      */
     public $filters = [
-        'eq' => WhereFilters::class,
-        'count' => LimitFilters::class,
+        'eq'      => WhereFilters::class,
+        'count'   => LimitFilters::class,
         'between' => BetweenFilter::class,
-        'search' => LikeFilters::class,
-        'content' => ContentFilters::class
+        'search'  => LikeFilters::class,
+        'content' => ContentFilters::class,
     ];
 
-    public function index($type, $fields) {
+    public function index($type, $fields)
+    {
         $builder = $type->filters($fields);
 
         $posts = $builder->get();
@@ -31,7 +34,8 @@ class PostApiController extends Controller {
         return response()->json($posts);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $model = $this->resolveModel($request);
 
         $fields = $request->get('fields');
@@ -51,14 +55,16 @@ class PostApiController extends Controller {
     /**
      * @param $model
      * @param $fields
+     *
      * @return mixed
      */
-    public function filters($model, $fields) {
-        $post = new $model;
+    public function filters($model, $fields)
+    {
+        $post = new $model();
 
-        foreach($fields as $fieldName => $filterDescriptor) {
-            foreach($filterDescriptor as $filterName => $filterParameters) {
-                if(isset($this->filters[$filterName])) {
+        foreach ($fields as $fieldName => $filterDescriptor) {
+            foreach ($filterDescriptor as $filterName => $filterParameters) {
+                if (isset($this->filters[$filterName])) {
                     $filter = $this->getFilter($post, $filterName, $fieldName, $filterParameters);
                     $post = $filter->run();
                 }
@@ -70,6 +76,7 @@ class PostApiController extends Controller {
 
     /**
      * @param Request $request
+     *
      * @return mixed
      */
     private function resolveModel(Request $request)
@@ -91,13 +98,16 @@ class PostApiController extends Controller {
     }
 
     /**
-     * Создание нового фильтра
+     * Создание нового фильтра.
+     *
      * @param $post
      * @param $fieldName
      * @param $filterParameters
+     *
      * @return mixed
      */
-    private function getFilter($post, $filterName, $fieldName, $filterParameters) {
+    private function getFilter($post, $filterName, $fieldName, $filterParameters)
+    {
         return new $this->filters[$filterName]($post, $fieldName, $filterParameters);
     }
 }
