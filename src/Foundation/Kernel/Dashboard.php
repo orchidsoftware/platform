@@ -71,6 +71,21 @@ class Dashboard
     }
 
     /**
+     * @return FieldStorage
+     */
+    public function getFieldFilters()
+    {
+        return $this->fieldFilters;
+    }
+
+    /**
+     * @return ContentFilterStorage
+     */
+    public function getContentFilters() {
+        return $this->contentFilters;
+    }
+
+    /**
      * @param bool $sort
      *
      * @return array

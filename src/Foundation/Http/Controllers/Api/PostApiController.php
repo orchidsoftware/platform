@@ -36,11 +36,17 @@ class PostApiController extends Controller
 
     public function store(Request $request)
     {
-        $model = $this->resolveModel($request);
+        $builder = $this->resolveModel($request);
 
         $fields = $request->get('fields');
+        if($fields != null) {
+            $builder = $this->applyFieldFilters($builder, $fields);
+        }
 
-        $builder = $this->filters($model, $fields);
+        $content = $request->get('content');
+        if($fields != null) {
+            $builder = $this->applyContentFilters($builder, $content);
+        }
 
         $posts = $builder->get();
 
@@ -58,14 +64,16 @@ class PostApiController extends Controller
      *
      * @return mixed
      */
-    public function filters($model, $fields)
+    public function applyFieldFilters($model, $fields)
     {
         $post = new $model();
 
         foreach ($fields as $fieldName => $filterDescriptor) {
             foreach ($filterDescriptor as $filterName => $filterParameters) {
-                if (isset($this->filters[$filterName])) {
-                    $filter = $this->getFilter($post, $filterName, $fieldName, $filterParameters);
+                $filterClass = Dashboard::getFieldFilters()->find($filterName);
+
+                if ($filterClass != null) {
+                    $filter = new $filterClass($post, $fieldName, $filterParameters);
                     $post = $filter->run();
                 }
             }
@@ -98,16 +106,10 @@ class PostApiController extends Controller
     }
 
     /**
-     * Создание нового фильтра.
-     *
-     * @param $post
-     * @param $fieldName
-     * @param $filterParameters
-     *
-     * @return mixed
+     * @param $builder
+     * @param $content
      */
-    private function getFilter($post, $filterName, $fieldName, $filterParameters)
-    {
-        return new $this->filters[$filterName]($post, $fieldName, $filterParameters);
+    private function applyContentFilters($builder, $content) {
+        return $builder;
     }
 }
