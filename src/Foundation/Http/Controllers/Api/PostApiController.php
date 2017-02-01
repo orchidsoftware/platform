@@ -39,12 +39,12 @@ class PostApiController extends Controller
         $builder = $this->resolveModel($request);
 
         $fields = $request->get('fields');
-        if($fields != null) {
+        if ($fields != null) {
             $builder = $this->applyFieldFilters($builder, $fields);
         }
 
         $content = $request->get('content');
-        if($fields != null) {
+        if ($fields != null) {
             $builder = $this->applyContentFilters($builder, $content);
         }
 
@@ -109,7 +109,8 @@ class PostApiController extends Controller
      * @param $builder
      * @param $content
      */
-    private function applyContentFilters($builder, $content) {
+    private function applyContentFilters($builder, $content)
+    {
         return $builder;
     }
 }
