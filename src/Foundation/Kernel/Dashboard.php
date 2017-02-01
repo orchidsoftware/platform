@@ -58,6 +58,15 @@ class Dashboard
         return $this->permission->get();
     }
 
+
+    /**
+     * @return TypeStorage
+     */
+    public function getTypes(){
+        return $this->types;
+    }
+
+
     /**
      * @param bool $sort
      *

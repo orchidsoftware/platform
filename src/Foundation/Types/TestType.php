@@ -2,8 +2,10 @@
 
 namespace Orchid\Foundation\Types;
 
+use Orchid\Foundation\Filters\WhereFilters;
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
 use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
+//use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Type\Type;
 
 class TestType extends Type
@@ -25,13 +27,14 @@ class TestType extends Type
      */
     public $slugFields = 'name';
 
+    public $api = true;
+
     /**
      * Rules Validation.
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             'id'             => 'sometimes|integer|unique:posts',
             'content.*.name' => 'required|string',
@@ -71,7 +74,7 @@ class TestType extends Type
         return [
             ImagesPostForm::class,
             BasePostForm::class,
-            //PathPostForm::class,
+//            PathPostForm::class,
         ];
     }
 

@@ -76,11 +76,11 @@
                 </label>
             @else
                 <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="true" {{$locale['required'] == 1 ? 'checked' :''}}>
+                    <input type="radio" name="options[locale][{{$key}}]" value="true" {{isset($locale['required']) ? $locale['required'] == 1 ? 'checked' : '' : '' }}>
                     <i></i>
                 </label>
                 <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="false" {{!$locale['required'] == 1 ? 'checked' : ''}}>
+                    <input type="radio" name="options[locale][{{$key}}]" value="false" {{isset($locale['required']) ? !$locale['required'] == 1 ? 'checked' : '' : '' }}>
                     <i></i>
                 </label>
             @endif

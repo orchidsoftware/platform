@@ -148,6 +148,11 @@ class Post extends Model
     public function getOption($key, $default = null)
     {
         $option = $this->options;
+
+        if($option == null) {
+            $option = [];
+        }
+
         if (array_key_exists($key, $option)) {
             return $option[$key];
         }
