@@ -1,10 +1,11 @@
-<?php namespace Orchid\Foundation\Filters;
+<?php
 
-use Illuminate\Database\Eloquent\Builder;
+namespace Orchid\Foundation\Filters;
+
 use Illuminate\Database\Eloquent\Model;
 
-abstract class Filters {
-
+abstract class Filters
+{
     public $model;
 
     public $request;
@@ -13,11 +14,12 @@ abstract class Filters {
 
     public $parameters;
 
-    public function __construct($model, $fieldName, $parameters = null) {
+    public function __construct($model, $fieldName, $parameters = null)
+    {
         $this->model = $model;
         $this->fieldName = $fieldName;
         $this->parameters = $parameters;
     }
 
-    abstract function run();
+    abstract public function run();
 }
