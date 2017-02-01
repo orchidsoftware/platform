@@ -37,10 +37,10 @@ return [
     ],
 
     'fieldFilters' => [
-        'eq' => \Orchid\Foundation\Filters\WhereFilters::class,
-        'count' => \Orchid\Foundation\Filters\LimitFilters::class,
+        'eq'      => \Orchid\Foundation\Filters\WhereFilters::class,
+        'count'   => \Orchid\Foundation\Filters\LimitFilters::class,
         'between' => \Orchid\Foundation\Filters\BetweenFilter::class,
-        'search' => \Orchid\Foundation\Filters\LikeFilters::class
+        'search'  => \Orchid\Foundation\Filters\LikeFilters::class,
     ],
 
     'contentFilters' => [
