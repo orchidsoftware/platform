@@ -71,10 +71,11 @@ class BackupController extends Controller
         ]);
     }
 
-
     /**
      * Downloads a backup zip file.
+     *
      * @param Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function download(Request $request)
