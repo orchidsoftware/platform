@@ -101,12 +101,15 @@ class LogLevels implements LogLevelsContract
         });
 
         return $levels;
-    }/** @noinspection PhpSignatureMismatchDuringInheritanceInspection */
+    }
+
+    /** @noinspection PhpSignatureMismatchDuringInheritanceInspection */
 
     /**
      * Get the translated level.
      *
      * @param string $key
+     *
      * @return string
      */
     public function get($key)

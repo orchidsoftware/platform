@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-
     /**
      * Post relationship.
      *
@@ -24,7 +23,7 @@ class Comment extends Model
      */
     public function original()
     {
-        return $this->belongsTo(Comment::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     /**
@@ -34,7 +33,7 @@ class Comment extends Model
      */
     public function replies()
     {
-        return $this->hasMany(Comment::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     /**
@@ -80,6 +79,4 @@ class Comment extends Model
 
         return $instance->where('comment_post_id', $postId)->get();
     }
-
-
 }

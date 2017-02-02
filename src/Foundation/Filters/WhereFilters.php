@@ -2,8 +2,6 @@
 
 namespace Orchid\Foundation\Filters;
 
-
-
 class WhereFilters extends Filters
 {
     public function run()

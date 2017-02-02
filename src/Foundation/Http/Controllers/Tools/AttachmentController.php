@@ -71,20 +71,20 @@ class AttachmentController extends Controller
             );
         }
 
-        $name = sha1($this->time . $image->getClientOriginalName());
-        $path = '/' . $this->date . '/';
+        $name = sha1($this->time.$image->getClientOriginalName());
+        $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name . '.' . $image->getClientOriginalExtension());
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
 
         return Attachment::create([
-            'name' => $name,
+            'name'          => $name,
             'original_name' => $image->getClientOriginalName(),
-            'mime' => $image->getMimeType(),
-            'extension' => $image->getClientOriginalExtension(),
-            'size' => $image->getClientSize(),
-            'path' => $path,
-            'user_id' => Auth::user()->id,
+            'mime'          => $image->getMimeType(),
+            'extension'     => $image->getClientOriginalExtension(),
+            'size'          => $image->getClientSize(),
+            'path'          => $path,
+            'user_id'       => Auth::user()->id,
         ]);
     }
 
@@ -97,10 +97,10 @@ class AttachmentController extends Controller
     {
         Storage::disk('public')->makeDirectory($this->date);
 
-        $name = sha1($this->time . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
-        $path = '/' . $this->date . '/';
+        $name = sha1($this->time.$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+        $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name);
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
 
         $file->move($full_path, $name);
 
@@ -111,13 +111,13 @@ class AttachmentController extends Controller
         }
 
         return Attachment::create([
-            'name' => $name,
+            'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
-            'mime' => $mimeType,
-            'extension' => $file->getClientOriginalExtension(),
-            'size' => $file->getClientSize(),
-            'path' => $path,
-            'user_id' => Auth::user()->id,
+            'mime'          => $mimeType,
+            'extension'     => $file->getClientOriginalExtension(),
+            'size'          => $file->getClientSize(),
+            'path'          => $path,
+            'user_id'       => Auth::user()->id,
         ]);
     }
 
@@ -125,12 +125,13 @@ class AttachmentController extends Controller
      * Delete files.
      *
      * @param $id
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function destroy($id)
     {
         $file = Attachment::find($id);
-        Storage::disk('public')->delete($file->path . $file->name);
+        Storage::disk('public')->delete($file->path.$file->name);
         $file->delete();
 
         return response(200);
@@ -150,10 +151,10 @@ class AttachmentController extends Controller
 
     /**
      * @param UploadedFile $image
-     * @param null $name
-     * @param null $width
-     * @param null $height
-     * @param int $quality
+     * @param null         $name
+     * @param null         $width
+     * @param null         $height
+     * @param int          $quality
      *
      * @return static
      */
@@ -165,11 +166,11 @@ class AttachmentController extends Controller
         $quality = 100
     ) {
         if (!is_null($name)) {
-            $name = '_' . $name;
+            $name = '_'.$name;
         }
 
-        $name = sha1($this->time . $image->getClientOriginalName()) . $name . '.' . $image->getClientOriginalExtension();
-        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name);
+        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
