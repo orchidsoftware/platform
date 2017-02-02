@@ -1,11 +1,12 @@
-<?php namespace Orchid\Foundation\Http\Controllers\Systems;
+<?php
 
-use Orchid\Foundation\Http\Controllers\Controller;
+namespace Orchid\Foundation\Http\Controllers\Systems;
+
 use Illuminate\Support\Facades\Storage;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class DefenderController extends Controller
 {
-
     /**
      * @return string
      */
@@ -15,11 +16,8 @@ class DefenderController extends Controller
         $list = array_pop($defenderList);
         $list = $list ? json_decode(Storage::get($list)) : [];
 
-
-        return view('dashboard::container.systems.defender.index',[
-           'list' => $list
+        return view('dashboard::container.systems.defender.index', [
+           'list' => $list,
         ]);
-
     }
-
 }
