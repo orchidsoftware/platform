@@ -60,6 +60,7 @@ trait SettingTrait
         }
 
         $result = $this->select('value')->where('key', $key)->first();
+
         return is_null($result) ? $default : $result->value;
     }
 

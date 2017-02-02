@@ -21,7 +21,6 @@ class MenuController extends Controller
      */
     public $menu;
 
-
     /**
      * @return View
      */
