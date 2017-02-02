@@ -39,11 +39,12 @@ class FileController extends Controller
     public function upload(Request $request)
     {
         // this is an image
-        if(substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
+        if (substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
             $file = $this->saveImage($request->file('files'));
-        }else{
+        } else {
             $file = $this->saveFile($request->file('files'));
         }
+
         return response()->json($file);
     }
 
