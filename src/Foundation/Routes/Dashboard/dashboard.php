@@ -11,6 +11,6 @@
 */
 
 Route::get('/', [
-    'as'   => 'dashboard.index',
+    'as' => 'dashboard.index',
     'uses' => 'DashboardController@index',
 ]);

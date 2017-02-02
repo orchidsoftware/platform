@@ -6,12 +6,12 @@ use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Core\Models\Post;
 
-class ImagesPostForm extends Form
+class UploadPostForm extends Form
 {
     /**
      * @var string
      */
-    public $name = 'Изображения';
+    public $name = 'Загрузки';
 
     /**
      * Display Base Options.
@@ -23,7 +23,7 @@ class ImagesPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.images', [
+        return view('dashboard::container.posts.modules.upload', [
         ]);
     }
 

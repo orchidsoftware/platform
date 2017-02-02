@@ -38,17 +38,14 @@ class FileController extends Controller
      */
     public function upload(Request $request)
     {
-        if ($request->hasFile('images')) {
-            $file = $this->saveImage($request->file('images'));
-
-            return response()->json($file);
-        } elseif ($request->hasFile('files')) {
+        dd($request->file('files'));
+        // this is an image
+        if(substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
+            $file = $this->saveImage($request->file('files'));
+        }else{
             $file = $this->saveFile($request->file('files'));
-
-            return response()->json($file);
-        } else {
-            abort(415);
         }
+        return response()->json($file);
     }
 
     /**
