@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\File;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class FileController extends Controller
 {
@@ -39,14 +38,14 @@ class FileController extends Controller
      */
     public function upload(Request $request)
     {
-        try{
+        try {
             // this is an image
             if (substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
                 $file = $this->saveImage($request->file('files'));
             } else {
                 $file = $this->saveFile($request->file('files'));
             }
-        }catch (\LogicException $exception ){
+        } catch (\LogicException $exception) {
             $file = $this->saveFile($request->file('files'));
         }
 
@@ -105,23 +104,21 @@ class FileController extends Controller
 
         $file->move($full_path, $name);
 
-
         try {
             $mimeType = $file->getMimeType();
-        }catch (\Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException $exception){
+        } catch (\Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException $exception) {
             $mimeType = 'unknown';
         }
 
         return File::create([
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
-            'mime'          =>  $mimeType,
+            'mime'          => $mimeType,
             'extension'     => $file->getClientOriginalExtension(),
             'size'          => $file->getClientSize(),
             'path'          => $path,
             'user_id'       => Auth::user()->id,
         ]);
-
     }
 
     /**
