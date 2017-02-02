@@ -38,7 +38,6 @@ class FileController extends Controller
      */
     public function upload(Request $request)
     {
-        dd($request->file('files'));
         // this is an image
         if(substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
             $file = $this->saveImage($request->file('files'));
@@ -100,15 +99,13 @@ class FileController extends Controller
 
         $file->move($full_path, $name);
 
-        $file = File::create([
+        return File::create([
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
             'mime'          => $file->getMimeType(),
             'path'          => $path,
             'user_id'       => Auth::user()->id,
         ]);
-
-        return $file;
     }
 
     /**
