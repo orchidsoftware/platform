@@ -61,7 +61,7 @@ interface LogLevels
     /**
      * Get the translated level.
      *
-     * @param string      $key
+     * @param string $key
      *
      * @return string
      */
