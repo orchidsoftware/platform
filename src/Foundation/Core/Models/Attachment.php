@@ -5,7 +5,7 @@ namespace Orchid\Foundation\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class File extends Model
+class Attachment extends Model
 {
     /**
      * @var string

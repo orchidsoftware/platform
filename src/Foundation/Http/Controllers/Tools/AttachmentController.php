@@ -7,10 +7,10 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Orchid\Foundation\Core\Models\File;
+use Orchid\Foundation\Core\Models\Attachment;
 use Orchid\Foundation\Http\Controllers\Controller;
 
-class FileController extends Controller
+class AttachmentController extends Controller
 {
     /**
      * @var int
@@ -71,20 +71,20 @@ class FileController extends Controller
             );
         }
 
-        $name = sha1($this->time.$image->getClientOriginalName());
-        $path = '/'.$this->date.'/';
+        $name = sha1($this->time . $image->getClientOriginalName());
+        $path = '/' . $this->date . '/';
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
+        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name . '.' . $image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
 
-        return File::create([
-            'name'          => $name,
+        return Attachment::create([
+            'name' => $name,
             'original_name' => $image->getClientOriginalName(),
-            'mime'          => $image->getMimeType(),
-            'extension'     => $image->getClientOriginalExtension(),
-            'size'          => $image->getClientSize(),
-            'path'          => $path,
-            'user_id'       => Auth::user()->id,
+            'mime' => $image->getMimeType(),
+            'extension' => $image->getClientOriginalExtension(),
+            'size' => $image->getClientSize(),
+            'path' => $path,
+            'user_id' => Auth::user()->id,
         ]);
     }
 
@@ -97,10 +97,10 @@ class FileController extends Controller
     {
         Storage::disk('public')->makeDirectory($this->date);
 
-        $name = sha1($this->time.$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
-        $path = '/'.$this->date.'/';
+        $name = sha1($this->time . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+        $path = '/' . $this->date . '/';
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
+        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name);
 
         $file->move($full_path, $name);
 
@@ -110,14 +110,14 @@ class FileController extends Controller
             $mimeType = 'unknown';
         }
 
-        return File::create([
-            'name'          => $name,
+        return Attachment::create([
+            'name' => $name,
             'original_name' => $file->getClientOriginalName(),
-            'mime'          => $mimeType,
-            'extension'     => $file->getClientOriginalExtension(),
-            'size'          => $file->getClientSize(),
-            'path'          => $path,
-            'user_id'       => Auth::user()->id,
+            'mime' => $mimeType,
+            'extension' => $file->getClientOriginalExtension(),
+            'size' => $file->getClientSize(),
+            'path' => $path,
+            'user_id' => Auth::user()->id,
         ]);
     }
 
@@ -125,13 +125,12 @@ class FileController extends Controller
      * Delete files.
      *
      * @param $id
-     *
-     * @return
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function destroy($id)
     {
-        $file = File::find($id);
-        Storage::disk('public')->delete($file->path.$file->name);
+        $file = Attachment::find($id);
+        Storage::disk('public')->delete($file->path . $file->name);
         $file->delete();
 
         return response(200);
@@ -144,28 +143,33 @@ class FileController extends Controller
      */
     public function getFilesPost($id)
     {
-        $files = File::where('post_id', $id)->get();
+        $files = Attachment::where('post_id', $id)->get();
 
         return response()->json($files);
     }
 
     /**
      * @param UploadedFile $image
-     * @param null         $name
-     * @param null         $width
-     * @param null         $height
-     * @param int          $quality
+     * @param null $name
+     * @param null $width
+     * @param null $height
+     * @param int $quality
      *
      * @return static
      */
-    protected function saveImageProcessing(UploadedFile $image, $name = null, $width = null, $height = null, $quality = 100)
-    {
+    protected function saveImageProcessing(
+        UploadedFile $image,
+        $name = null,
+        $width = null,
+        $height = null,
+        $quality = 100
+    ) {
         if (!is_null($name)) {
-            $name = '_'.$name;
+            $name = '_' . $name;
         }
 
-        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
+        $name = sha1($this->time . $image->getClientOriginalName()) . $name . '.' . $image->getClientOriginalExtension();
+        $full_path = storage_path('app/public/' . '/' . $this->date . '/' . $name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();

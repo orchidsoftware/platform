@@ -3,7 +3,6 @@
 namespace Orchid\Type;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Orchid\Foundation\Core\Models\Post;

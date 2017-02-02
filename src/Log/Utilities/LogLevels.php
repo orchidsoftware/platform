@@ -101,24 +101,17 @@ class LogLevels implements LogLevelsContract
         });
 
         return $levels;
-    }
+    }/** @noinspection PhpSignatureMismatchDuringInheritanceInspection */
 
     /**
      * Get the translated level.
      *
-     * @param string      $key
-     * @param string|null $locale
-     *
+     * @param string $key
      * @return string
      */
-    public function get($key, $locale = null)
+    public function get($key)
     {
-        if (is_null($locale) || $locale === 'auto') {
-            $locale = $this->getLocale();
-        }
-
         return trans('dashboard::logs.'.$key);
-        //return $this->translator->get("log-viewer::levels.$key", [], $locale);
     }
 
     /**

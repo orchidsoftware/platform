@@ -4,6 +4,9 @@ namespace Orchid\Alert;
 
 class Alert
 {
+    /**
+     * @var SessionStoreInterface
+     */
     private $session;
 
     /**

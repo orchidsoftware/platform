@@ -241,6 +241,6 @@ class Post extends Model
      */
     public function attachment()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(Attachment::class);
     }
 }

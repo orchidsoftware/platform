@@ -2,7 +2,7 @@
 
 namespace Orchid\Installer\Providers;
 
-use App;
+
 use Illuminate\Support\ServiceProvider;
 
 class InstallerServiceProvider extends ServiceProvider

@@ -67,6 +67,9 @@ class Section extends Model
         return $this->treeName;
     }
 
+    /**
+     * @return array|string
+     */
     public function breadcrumb()
     {
         $local = App::getLocale();

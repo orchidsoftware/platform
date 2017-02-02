@@ -62,9 +62,8 @@ interface LogLevels
      * Get the translated level.
      *
      * @param string      $key
-     * @param string|null $locale
      *
      * @return string
      */
-    public function get($key, $locale = null);
+    public function get($key);
 }

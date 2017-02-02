@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Filters;
 
-use Illuminate\Database\Eloquent\Model;
+
 
 class WhereFilters extends Filters
 {

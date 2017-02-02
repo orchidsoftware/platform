@@ -12,7 +12,7 @@ class CreateTableSettings extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->string('key')->primary();
-            $table->text('value');
+            $table->json('value');
         });
     }
 

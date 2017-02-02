@@ -16,7 +16,13 @@ class Firewall
      */
     public function handle($request, Closure $next)
     {
-        if (!in_array($request->ip(), config('defender.whitelist'))) {
+        $listIp = config('defender');
+
+        if (count($listIp['whitelist']) && !in_array($request->ip(), $listIp['whitelist'])) {
+            abort(503);
+        }
+
+        if (count($listIp['blacklist']) && !in_array($request->ip(), $listIp['blacklist'])) {
             abort(503);
         }
 

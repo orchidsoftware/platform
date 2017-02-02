@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
 
     Route::get('files/post/{id}', [
         'as'   => 'dashboard.tools.files.destroy',
-        'uses' => 'FileController@getFilesPost',
+        'uses' => 'AttachmentController@getFilesPost',
     ]);
 
     Route::resource('menu', 'MenuController', ['names' => [
