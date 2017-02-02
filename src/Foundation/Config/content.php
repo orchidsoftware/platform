@@ -36,12 +36,30 @@ return [
         'path'     => \Orchid\Field\Fields\PathField::class,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Available fields to form templates
+    |--------------------------------------------------------------------------
+    |
+    | Description
+    |
+    */
+
     'fieldFilters' => [
         'eq'      => \Orchid\Foundation\Filters\WhereFilters::class,
         'count'   => \Orchid\Foundation\Filters\LimitFilters::class,
         'between' => \Orchid\Foundation\Filters\BetweenFilter::class,
         'search'  => \Orchid\Foundation\Filters\LikeFilters::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available fields to form templates
+    |--------------------------------------------------------------------------
+    |
+    | Description
+    |
+    */
 
     'contentFilters' => [
     ],

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 01.02.17
- * Time: 11:30.
- */
 
 namespace Orchid\Foundation\Filters;
 

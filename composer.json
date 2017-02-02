@@ -70,7 +70,8 @@
       "Orchid\\Settings\\": "src/Settings",
       "Orchid\\Type\\": "src/Type",
       "Orchid\\Widget\\": "src/Widget",
-      "Orchid\\Defender\\": "src/Defender"
+      "Orchid\\Defender\\": "src/Defender",
+      "Orchid\\Schema\\": "src/Schema"
     }
   },
   "extra": {
