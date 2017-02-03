@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Orchid\Foundation\Core\Models\Post;
+use Illuminate\Support\Facades\Route;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
@@ -18,60 +19,56 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'Orchid\Foundation\Http\Controllers';
 
+
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        $this->binding();
+
+        parent::boot();
+    }
+
+
+
     /**
      * Define the routes for the application.
      *
-     * @param \Illuminate\Routing\Router $router
+     * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->middleware('dashboard', AccessMiddleware::class);
+        //$router->middleware('dashboard', AccessMiddleware::class);
 
-        $router->group(['middleware' => ['web', 'dashboard'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],
-            function ($router) {
-                foreach (glob(__DIR__.'/../Routes/Dashboard/*.php') as $file) {
-                    require $file;
-                }
-            });
 
-        $router->group([
-            'middleware' => 'api',
-            'namespace'  => $this->namespace,
-            'prefix'     => 'api',
-        ], function ($router) {
-            foreach (glob(__DIR__.'/../Routes/Api/*.php') as $file) {
-                require $file;
-            }
-        });
 
-        $router->group(['middleware' => ['web'], 'prefix' => 'dashboard', 'namespace' => $this->namespace],
-            function ($router) {
-                // Authentication Routes...
-                $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-                $this->post('login', 'Auth\LoginController@login');
-                $this->post('logout', 'Auth\LoginController@logout');
 
-                // Password Reset Routes...
-                $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-                $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-                $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-                $this->post('password/reset', 'Auth\ResetPasswordController@reset');
-            });
 
-        $this->binding($router);
+        foreach (glob(__DIR__.'/../Routes/*/*.php') as $file) {
+            $this->loadRoutesFrom($file);
+        }
+
+
+
+
     }
 
     /**
-     * @param Router $router
+     * Route binding
      */
-    public function binding(Router $router)
+    public function binding()
     {
-        $router->bind('type', function ($value) {
+        Route::bind('type', function ($value) {
             $post = new Post();
 
             return $post->getType($value);
         });
-        $router->bind('slug', function ($value) {
+
+        Route::bind('slug', function ($value) {
             if (is_numeric($value)) {
                 return Post::where('id', $value)->firstOrFail();
             }

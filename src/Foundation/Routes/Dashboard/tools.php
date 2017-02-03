@@ -9,38 +9,41 @@
 |
 */
 
-Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
-    Route::post('files', [
-        'as'   => 'dashboard.tools.files.upload',
-        'uses' => 'AttachmentController@upload',
-    ]);
+Route::group(['middleware' => ['web'], 'prefix' => 'dashboard/tools', 'namespace' => 'Orchid\Foundation\Http\Controllers\Tools'],
+    function ($router) {
 
-    Route::resource('section', 'SectionController', ['names' => [
-        'index'   => 'dashboard.tools.section',
-        'create'  => 'dashboard.tools.section.create',
-        'edit'    => 'dashboard.tools.section.edit',
-        'update'  => 'dashboard.tools.section.update',
-        'store'   => 'dashboard.tools.section.store',
-        'destroy' => 'dashboard.tools.section.destroy',
-    ]]);
+        Route::post('files', [
+            'as' => 'dashboard.tools.files.upload',
+            'uses' => 'AttachmentController@upload',
+        ]);
 
-    Route::post('files', [
-        'as'   => 'dashboard.tools.files.upload',
-        'uses' => 'AttachmentController@upload',
-    ]);
-    Route::delete('files/{id}', [
-        'as'   => 'dashboard.tools.files.destroy',
-        'uses' => 'AttachmentController@destroy',
-    ]);
+        Route::resource('section', 'SectionController', ['names' => [
+            'index' => 'dashboard.tools.section',
+            'create' => 'dashboard.tools.section.create',
+            'edit' => 'dashboard.tools.section.edit',
+            'update' => 'dashboard.tools.section.update',
+            'store' => 'dashboard.tools.section.store',
+            'destroy' => 'dashboard.tools.section.destroy',
+        ]]);
 
-    Route::get('files/post/{id}', [
-        'as'   => 'dashboard.tools.files.destroy',
-        'uses' => 'AttachmentController@getFilesPost',
-    ]);
+        Route::post('files', [
+            'as' => 'dashboard.tools.files.upload',
+            'uses' => 'AttachmentController@upload',
+        ]);
+        Route::delete('files/{id}', [
+            'as' => 'dashboard.tools.files.destroy',
+            'uses' => 'AttachmentController@destroy',
+        ]);
 
-    Route::resource('menu', 'MenuController', ['names' => [
-        'index'  => 'dashboard.tools.menu.index',
-        'show'   => 'dashboard.tools.menu.show',
-        'update' => 'dashboard.tools.menu.update',
-    ]]);
-});
+        Route::get('files/post/{id}', [
+            'as' => 'dashboard.tools.files.destroy',
+            'uses' => 'AttachmentController@getFilesPost',
+        ]);
+
+        Route::resource('menu', 'MenuController', ['names' => [
+            'index' => 'dashboard.tools.menu.index',
+            'show' => 'dashboard.tools.menu.show',
+            'update' => 'dashboard.tools.menu.update',
+        ]]);
+
+    });

@@ -9,7 +9,9 @@
 |
 */
 
-Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
+Route::group(['middleware' => ['web'],'prefix' => 'dashboard/systems', 'namespace' => 'Orchid\Foundation\Http\Controllers\Systems'],
+        function ($router) {
+
     Route::get('settings', [
         'as'   => 'dashboard.systems.settings',
         'uses' => 'SettingController@index',

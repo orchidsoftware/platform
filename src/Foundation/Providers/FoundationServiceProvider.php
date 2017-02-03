@@ -9,6 +9,7 @@ use Intervention\Image\ImageServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
+use Orchid\Foundation\Facades\Dash;
 use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Foundation\Macros\Page;
 use Orchid\Installer\Providers\InstallerServiceProvider;
@@ -35,6 +36,15 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+
+
+        $this->app->singleton(Dashboard::class, function ($app) {
+            return new Dashboard();
+        });
+
+
+
+
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
@@ -121,7 +131,6 @@ class FoundationServiceProvider extends ServiceProvider
             WidgetServiceProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,
-            MenuServiceProvider::class,
             PermissionServiceProvider::class,
             EventServiceProvider::class,
             ActiveServiceProvider::class,
@@ -132,6 +141,7 @@ class FoundationServiceProvider extends ServiceProvider
             ScoutServiceProvider::class,
             ElasticsearchServiceProvicer::class,
             DefenderServiceProvider::class,
+            MenuServiceProvider::class,
         ];
     }
 
@@ -140,9 +150,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Dashboard::class, function ($app) {
-            return new Dashboard();
-        });
+
     }
 
     /**

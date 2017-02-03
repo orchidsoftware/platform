@@ -9,7 +9,9 @@
 |
 */
 
-Route::group(['namespace' => 'Posts', 'prefix' => 'posts'], function () {
+
+Route::group(['middleware' => ['web'],'prefix' => 'dashboard/posts', 'namespace' => 'Orchid\Foundation\Http\Controllers\Posts'],
+    function ($router) {
     Route::get('{type}/create', [
         'as'   => 'dashboard.posts.type.create',
         'uses' => 'PostController@create',

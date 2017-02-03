@@ -3,7 +3,10 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Orchid\Foundation\Core\Models\Menu;
+use Orchid\Foundation\Http\Composers\MenuComposer;
 use Orchid\Foundation\Kernel\Dashboard;
+use Illuminate\Support\Facades\View;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -12,14 +15,15 @@ class MenuServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard)
     {
-        $this->registerMenu($dashboard);
+        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        //$this->registerMenu($dashboard);
     }
 
     protected function registerMenu(Dashboard $dashboard = null)
