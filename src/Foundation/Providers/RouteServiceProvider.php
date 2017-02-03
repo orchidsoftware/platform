@@ -3,9 +3,8 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Routing\Router;
-use Orchid\Foundation\Core\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
@@ -18,7 +17,6 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'Orchid\Foundation\Http\Controllers';
-
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -33,8 +31,6 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
     }
 
-
-
     /**
      * Define the routes for the application.
      *
@@ -44,21 +40,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         //$router->middleware('dashboard', AccessMiddleware::class);
 
-
-
-
-
         foreach (glob(__DIR__.'/../Routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
-
-
-
-
     }
 
     /**
-     * Route binding
+     * Route binding.
      */
     public function binding()
     {

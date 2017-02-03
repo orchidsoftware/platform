@@ -46,8 +46,6 @@ class Dashboard
         $this->contentFilters = new ContentFilterStorage();
     }
 
-
-
     /**
      * @return null|Menu
      */
