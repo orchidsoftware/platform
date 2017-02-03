@@ -71,7 +71,7 @@ class Comment extends Model
      */
     public function isApproved()
     {
-        return $this->attributes['comment_approved'] == 1;
+        return $this->attributes['approved'] == 1;
     }
 
     /**
@@ -81,7 +81,7 @@ class Comment extends Model
      */
     public function isReply()
     {
-        return $this->attributes['comment_parent'] > 0;
+        return $this->attributes['parent_id'] > 0;
     }
 
     /**
@@ -105,6 +105,6 @@ class Comment extends Model
     {
         $instance = new static();
 
-        return $instance->where('comment_post_id', $postId)->get();
+        return $instance->where('post_id', $postId)->get();
     }
 }
