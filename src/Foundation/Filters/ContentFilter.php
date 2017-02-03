@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 03.02.17
- * Time: 11:00
+ * Time: 11:00.
  */
 
 namespace Orchid\Foundation\Filters;
-
 
 class ContentFilter
 {
@@ -17,6 +16,7 @@ class ContentFilter
 
     /**
      * ContentFilter constructor.
+     *
      * @param $model
      * @param null $parameters
      */
@@ -31,10 +31,8 @@ class ContentFilter
      */
     public function run()
     {
-        foreach($this->parameters as $methodName => $values)
-        {
-            if(method_exists($this, $methodName))
-            {
+        foreach ($this->parameters as $methodName => $values) {
+            if (method_exists($this, $methodName)) {
                 $this->model = $this->$methodName($this->model, $values);
             }
         }
