@@ -42,9 +42,9 @@
     "laravel/framework": "5.*",
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
-    "cartalyst/tags": "^3.0",
+    "cartalyst/tags": "^4.0",
     "spatie/laravel-backup": "4.*",
-    "laravel/scout": "^2.0",
+    "laravel/scout": "^3.0",
     "elasticsearch/elasticsearch": "^5.0",
     "algolia/algoliasearch-client-php": "^1.10",
     "psr/log": "~1.0"
