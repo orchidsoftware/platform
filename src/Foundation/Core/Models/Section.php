@@ -64,6 +64,7 @@ class Section extends Model
             $this->recurseTree($this, $delimiter, $local);
         }
 
+        //dd($this->treeName);
         return $this->treeName;
     }
 
@@ -111,7 +112,13 @@ class Section extends Model
         if (!is_null($model->section_id)) {
             $parrent = $this->find($model->section_id);
             $this->treeName = $parrent->content[$local]['name'].$delimiter.$this->treeName;
+
+            if(!is_null($parrent->section_id)){
+                return true;
+            }
+
         }
+
 
         return false;
     }

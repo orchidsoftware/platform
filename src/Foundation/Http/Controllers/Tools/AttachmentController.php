@@ -45,7 +45,7 @@ class AttachmentController extends Controller
             } else {
                 $file = $this->saveFile($request->file('files'));
             }
-        } catch (\LogicException $exception) {
+        } catch (\Exception $exception) {
             $file = $this->saveFile($request->file('files'));
         }
 
@@ -106,7 +106,7 @@ class AttachmentController extends Controller
 
         try {
             $mimeType = $file->getMimeType();
-        } catch (\Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException $exception) {
+        } catch (\Exception $exception) {
             $mimeType = 'unknown';
         }
 
