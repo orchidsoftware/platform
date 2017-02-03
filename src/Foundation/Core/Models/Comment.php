@@ -6,6 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+
+    /**
+     * @var string
+     */
+    protected $table = 'comments';
+
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'post_id',
+        'user_id',
+        'parent_id',
+        'type',
+        'content',
+        'approved',
+    ];
+
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'post_id'    => 'integer',
+        'user_id'    => 'integer',
+        'parent_id' => 'integer',
+        'type' => 'string',
+        'approved' => 'boolean'
+    ];
+
+
     /**
      * Post relationship.
      *
