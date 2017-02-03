@@ -39,7 +39,6 @@ class Post extends Model
         'deleted_at',
     ];
 
-
     /**
      * The accessors to append to the model's array form.
      *
@@ -53,7 +52,6 @@ class Post extends Model
         // Terms analysis
         'main_category',
     ];
-
 
     /**
      * @var array
@@ -253,7 +251,7 @@ class Post extends Model
     }
 
     /**
-     * Get attachment
+     * Get attachment.
      *
      * @return mixed
      */
@@ -261,7 +259,6 @@ class Post extends Model
     {
         return $this->hasMany(Attachment::class);
     }
-
 
     /**
      * Taxonomy relationship.
@@ -283,7 +280,6 @@ class Post extends Model
         return $this->hasMany(Comment::class, 'post_id');
     }
 
-
     /**
      *   Author relationship.
      *
@@ -293,7 +289,6 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'post_id');
     }
-
 
     /**
      * Whether the post contains the term or not.
@@ -308,7 +303,6 @@ class Post extends Model
         return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
     }
 
-
     /**
      * Gets the status attribute.
      *
@@ -318,8 +312,6 @@ class Post extends Model
     {
         return $this->status;
     }
-
-
 
     /**
      * Gets all the terms arranged taxonomy => terms[].
@@ -334,10 +326,9 @@ class Post extends Model
             $taxonomyName = $taxonomy['taxonomy'] == 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
             $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term['name'];
         }
+
         return $terms;
     }
-
-
 
     /**
      * Gets the first term of the first taxonomy found.
@@ -354,10 +345,9 @@ class Post extends Model
                 $mainCategory = $terms[0];
             }
         }
+
         return $mainCategory;
     }
-
-
 
     /**
      * Get only posts with a custom status.
@@ -381,7 +371,6 @@ class Post extends Model
         return $this->status('publish');
     }
 
-
     /**
      * Get only posts from a custom post type.
      *
@@ -394,8 +383,6 @@ class Post extends Model
         return $this->where('type', $type);
     }
 
-
-
     /**
      * Get only posts from an array of custom post types.
      *
@@ -407,7 +394,6 @@ class Post extends Model
     {
         return $this->whereIn('type', $type);
     }
-
 
     /**
      * @param string $taxonomy
@@ -423,5 +409,4 @@ class Post extends Model
             });
         });
     }
-
 }

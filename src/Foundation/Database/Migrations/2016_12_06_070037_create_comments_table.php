@@ -21,8 +21,6 @@ class CreateCommentsTable extends Migration
             $table->boolean('approved')->nullable();
             $table->timestamps();
         });
-
-
     }
 
     /**

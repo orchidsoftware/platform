@@ -6,13 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-
-
     /**
      * @var string
      */
     protected $table = 'comments';
-
 
     /**
      * @var array
@@ -26,18 +23,16 @@ class Comment extends Model
         'approved',
     ];
 
-
     /**
      * @var array
      */
     protected $casts = [
         'post_id'    => 'integer',
         'user_id'    => 'integer',
-        'parent_id' => 'integer',
-        'type' => 'string',
-        'approved' => 'boolean'
+        'parent_id'  => 'integer',
+        'type'       => 'string',
+        'approved'   => 'boolean',
     ];
-
 
     /**
      * Post relationship.
