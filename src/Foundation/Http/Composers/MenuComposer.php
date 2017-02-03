@@ -1,31 +1,29 @@
 <?php
 
-namespace Orchid\Foundation\Providers;
+namespace Orchid\Foundation\Http\Composers;
 
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
-use Orchid\Foundation\Core\Models\Menu;
-use Orchid\Foundation\Http\Composers\MenuComposer;
 use Orchid\Foundation\Kernel\Dashboard;
 
-class MenuServiceProvider extends ServiceProvider
+class MenuComposer
 {
     /**
-     * Indicates if loading of the provider is deferred.
+     * MenuComposer constructor.
      *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * @param Dashboard $dashboard
      */
-    public function boot(Dashboard $dashboard)
+    public function __construct(Dashboard $dashboard)
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
-        //$this->registerMenu($dashboard);
+        $this->dashboard = $dashboard;
     }
 
+    public function compose()
+    {
+        $this->registerMenu($this->dashboard);
+    }
+
+    /**
+     * @param Dashboard|null $dashboard
+     */
     protected function registerMenu(Dashboard $dashboard = null)
     {
         $panelMenu = [
@@ -127,10 +125,10 @@ class MenuServiceProvider extends ServiceProvider
         ];
 
         $defenderMenu = [
-            'slug'      => 'defender',
-            'icon'      => 'fa fa-shield',
-            'route'     => route('dashboard.systems.defender.index'),
-            'label'     => trans('Защитник'),
+            'slug'  => 'defender',
+            'icon'  => 'fa fa-shield',
+            'route' => route('dashboard.systems.defender.index'),
+            'label' => trans('Защитник'),
         ];
 
         $schemaMenu = [
@@ -153,10 +151,10 @@ class MenuServiceProvider extends ServiceProvider
         ];
 
         $redirectMenu = [
-            'slug'      => 'redirect',
-            'icon'      => 'icon-direction',
-            'route'     => route('dashboard.index'),
-            'label'     => trans('Переадресация'),
+            'slug'  => 'redirect',
+            'icon'  => 'icon-direction',
+            'route' => route('dashboard.index'),
+            'label' => trans('Переадресация'),
         ];
 
         $siteMapMenu = [
@@ -215,24 +213,24 @@ class MenuServiceProvider extends ServiceProvider
         ];
 
         $advertisingMenu = [
-            'slug'      => 'advertising',
-            'icon'      => 'icon-target',
-            'route'     => route('dashboard.tools.menu.index'),
-            'label'     => trans('Управление рекламой'),
+            'slug'  => 'advertising',
+            'icon'  => 'icon-target',
+            'route' => route('dashboard.tools.menu.index'),
+            'label' => trans('Управление рекламой'),
         ];
 
         $feedback = [
-            'slug'      => 'advertising',
-            'icon'      => 'icon-call-in',
-            'route'     => route('dashboard.tools.menu.index'),
-            'label'     => trans('Обратная связь'),
+            'slug'  => 'advertising',
+            'icon'  => 'icon-call-in',
+            'route' => route('dashboard.tools.menu.index'),
+            'label' => trans('Обратная связь'),
         ];
 
         $polls = [
-            'slug'      => 'pools',
-            'icon'      => 'fa fa-id-card-o',
-            'route'     => route('dashboard.tools.menu.index'),
-            'label'     => trans('Опросы'),
+            'slug'  => 'pools',
+            'icon'  => 'fa fa-id-card-o',
+            'route' => route('dashboard.tools.menu.index'),
+            'label' => trans('Опросы'),
         ];
 
         $allPost = $dashboard->types();
@@ -284,23 +282,5 @@ class MenuServiceProvider extends ServiceProvider
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $polls, 10);
-    }
-
-    /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 }

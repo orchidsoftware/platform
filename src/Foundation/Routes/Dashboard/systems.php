@@ -9,18 +9,19 @@
 |
 */
 
-Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
-    Route::get('settings', [
+Route::group(['middleware' => ['web'], 'prefix' => 'dashboard/systems', 'namespace' => 'Orchid\Foundation\Http\Controllers\Systems'],
+        function ($router) {
+            Route::get('settings', [
         'as'   => 'dashboard.systems.settings',
         'uses' => 'SettingController@index',
     ]);
 
-    Route::post('settings', [
+            Route::post('settings', [
         'as'   => 'dashboard.systems.settings',
         'uses' => 'SettingController@store',
     ]);
 
-    Route::resource('users', 'UserController', ['names' => [
+            Route::resource('users', 'UserController', ['names' => [
         'index'   => 'dashboard.systems.users',
         'create'  => 'dashboard.systems.users.create',
         'edit'    => 'dashboard.systems.users.edit',
@@ -29,7 +30,7 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.users.destroy',
     ]]);
 
-    Route::resource('roles', 'RoleController', ['names' => [
+            Route::resource('roles', 'RoleController', ['names' => [
         'index'   => 'dashboard.systems.roles',
         'create'  => 'dashboard.systems.roles.create',
         'edit'    => 'dashboard.systems.roles.edit',
@@ -38,26 +39,26 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'destroy' => 'dashboard.systems.roles.destroy',
     ]]);
 
-    Route::resource('backup', 'BackupController', ['names' => [
+            Route::resource('backup', 'BackupController', ['names' => [
         'index'    => 'dashboard.systems.backup',
         'create'   => 'dashboard.systems.backup.create',
         'download' => 'dashboard.systems.backup.download',
         'destroy'  => 'dashboard.systems.backup.destroy',
     ]]);
 
-    Route::resource('schema', 'SchemaController', ['names' => [
+            Route::resource('schema', 'SchemaController', ['names' => [
         'index' => 'dashboard.systems.schema.index',
         'show'  => 'dashboard.systems.schema.show',
     ]]);
 
-    Route::resource('logs', 'LogController', ['names' => [
+            Route::resource('logs', 'LogController', ['names' => [
         'index'    => 'dashboard.systems.logs.index',
         'show'     => 'dashboard.systems.logs.show',
         'download' => 'dashboard.systems.logs.show',
         'destroy'  => 'dashboard.systems.logs.destroy',
     ]]);
 
-    Route::resource('defender', 'DefenderController', ['names' => [
+            Route::resource('defender', 'DefenderController', ['names' => [
         'index'    => 'dashboard.systems.defender.index',
     ]]);
 
@@ -119,4 +120,4 @@ Route::group(['namespace' => 'Systems', 'prefix' => 'systems'], function () {
         'as'   => 'log-viewer::logs.filter',
         'uses' => 'LogController@showByLevel',
     ]);
-});
+        });
