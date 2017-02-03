@@ -22,11 +22,9 @@ class MenuController extends Controller
     public $menu;
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
+     * @return View
      */
-    public function index(Request $request)
+    public function index()
     {
         return view('dashboard::container.tools.menu.listing', [
             'menu'    => collect(config('content.menu')),

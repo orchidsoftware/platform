@@ -27,7 +27,7 @@ abstract class Form implements FormInterface
     /**
      * Laravel Models for Forms.
      *
-     * @var Illuminate\Database\Eloquent\Model;
+     * @var \Illuminate\Database\Eloquent\Model;
      */
     protected $model;
 

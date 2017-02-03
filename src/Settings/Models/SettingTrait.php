@@ -57,11 +57,11 @@ trait SettingTrait
                 ->toArray();
 
             return empty($result) ? $default : $result;
-        } else {
-            $result = $this->select('value')->where('key', $key)->first();
-
-            return is_null($result) ? $default : $result->value;
         }
+
+        $result = $this->select('value')->where('key', $key)->first();
+
+        return is_null($result) ? $default : $result->value;
     }
 
     /**

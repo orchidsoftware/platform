@@ -33,7 +33,7 @@ Orchid Platform application provides a very flexible and extensible way of build
 
 ## Official Documentation
 
-Documentation can be found at [Orchid website](https://theorchid.github.io/Platform/).
+Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 
 ## Server Requirements
@@ -133,7 +133,7 @@ php artisan make:admin nickname email@email.com secretpassword
 Learn more at these links:
 
 - [Website](https://theorchid.github.io/Platform/)
-- [Documentation](https://theorchid.github.io/Platform/)
+- [Documentation](https://theorchid.github.io/)
 - [Support](https://github.com/TheOrchid/Platform/issues)
 - [Laravel](https://laravel.com/)
 

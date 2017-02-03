@@ -2,9 +2,6 @@
 
 namespace Orchid\Schema;
 
-/**
- * Interface WrapperContract.
- */
 interface WrapperContract
 {
     /**

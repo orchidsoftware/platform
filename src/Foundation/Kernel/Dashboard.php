@@ -82,7 +82,8 @@ class Dashboard
     /**
      * @return ContentFilterStorage
      */
-    public function getContentFilters() {
+    public function getContentFilters()
+    {
         return $this->contentFilters;
     }
 

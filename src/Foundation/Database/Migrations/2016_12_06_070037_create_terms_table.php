@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionsTable extends Migration
+class CreateTermsTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('terms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('section_id')->nullable();
-            $table->jsonb('content');
+            $table->string('name');
             $table->string('slug')->unique();
+            $table->integer('term_group')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sections');
+        Schema::drop('terms');
     }
 }

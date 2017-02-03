@@ -5,9 +5,6 @@ namespace Orchid\Schema\Wrapper;
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
 
-/**
- * Class SqliteWrapper.
- */
 class SqliteWrapper implements WrapperContract
 {
     /**

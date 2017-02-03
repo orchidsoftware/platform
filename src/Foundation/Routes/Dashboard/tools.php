@@ -12,7 +12,7 @@
 Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
     Route::post('files', [
         'as'   => 'dashboard.tools.files.upload',
-        'uses' => 'FileController@upload',
+        'uses' => 'AttachmentController@upload',
     ]);
 
     Route::resource('section', 'SectionController', ['names' => [
@@ -26,16 +26,16 @@ Route::group(['namespace' => 'Tools', 'prefix' => 'tools'], function () {
 
     Route::post('files', [
         'as'   => 'dashboard.tools.files.upload',
-        'uses' => 'FileController@upload',
+        'uses' => 'AttachmentController@upload',
     ]);
     Route::delete('files/{id}', [
         'as'   => 'dashboard.tools.files.destroy',
-        'uses' => 'FileController@destroy',
+        'uses' => 'AttachmentController@destroy',
     ]);
 
     Route::get('files/post/{id}', [
         'as'   => 'dashboard.tools.files.destroy',
-        'uses' => 'FileController@getFilesPost',
+        'uses' => 'AttachmentController@getFilesPost',
     ]);
 
     Route::resource('menu', 'MenuController', ['names' => [

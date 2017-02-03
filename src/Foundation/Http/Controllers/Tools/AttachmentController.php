@@ -7,10 +7,10 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Orchid\Foundation\Core\Models\File;
+use Orchid\Foundation\Core\Models\Attachment;
 use Orchid\Foundation\Http\Controllers\Controller;
 
-class FileController extends Controller
+class AttachmentController extends Controller
 {
     /**
      * @var int
@@ -23,7 +23,7 @@ class FileController extends Controller
     public $date;
 
     /**
-     * FileController constructor.
+     * AttachmentController constructor.
      */
     public function __construct()
     {
@@ -38,17 +38,18 @@ class FileController extends Controller
      */
     public function upload(Request $request)
     {
-        if ($request->hasFile('images')) {
-            $file = $this->saveImage($request->file('images'));
-
-            return response()->json($file);
-        } elseif ($request->hasFile('files')) {
+        try {
+            // this is an image
+            if (substr($request->file('files')->getMimeType(), 0, 5) == 'image') {
+                $file = $this->saveImage($request->file('files'));
+            } else {
+                $file = $this->saveFile($request->file('files'));
+            }
+        } catch (\Exception $exception) {
             $file = $this->saveFile($request->file('files'));
-
-            return response()->json($file);
-        } else {
-            abort(415);
         }
+
+        return response()->json($file);
     }
 
     /**
@@ -76,7 +77,7 @@ class FileController extends Controller
         $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
 
-        return File::create([
+        return Attachment::create([
             'name'          => $name,
             'original_name' => $image->getClientOriginalName(),
             'mime'          => $image->getMimeType(),
@@ -103,15 +104,21 @@ class FileController extends Controller
 
         $file->move($full_path, $name);
 
-        $file = File::create([
+        try {
+            $mimeType = $file->getMimeType();
+        } catch (\Exception $exception) {
+            $mimeType = 'unknown';
+        }
+
+        return Attachment::create([
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
-            'mime'          => $file->getMimeType(),
+            'mime'          => $mimeType,
+            'extension'     => $file->getClientOriginalExtension(),
+            'size'          => $file->getClientSize(),
             'path'          => $path,
             'user_id'       => Auth::user()->id,
         ]);
-
-        return $file;
     }
 
     /**
@@ -119,11 +126,11 @@ class FileController extends Controller
      *
      * @param $id
      *
-     * @return
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function destroy($id)
     {
-        $file = File::find($id);
+        $file = Attachment::find($id);
         Storage::disk('public')->delete($file->path.$file->name);
         $file->delete();
 
@@ -137,7 +144,7 @@ class FileController extends Controller
      */
     public function getFilesPost($id)
     {
-        $files = File::where('post_id', $id)->get();
+        $files = Attachment::where('post_id', $id)->get();
 
         return response()->json($files);
     }
@@ -151,8 +158,13 @@ class FileController extends Controller
      *
      * @return static
      */
-    protected function saveImageProcessing(UploadedFile $image, $name = null, $width = null, $height = null, $quality = 100)
-    {
+    protected function saveImageProcessing(
+        UploadedFile $image,
+        $name = null,
+        $width = null,
+        $height = null,
+        $quality = 100
+    ) {
         if (!is_null($name)) {
             $name = '_'.$name;
         }

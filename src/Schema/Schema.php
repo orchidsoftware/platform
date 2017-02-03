@@ -7,9 +7,6 @@ use Orchid\Schema\Wrapper\PostgresWrapper;
 use Orchid\Schema\Wrapper\SqliteWrapper;
 use Orchid\Schema\Wrapper\SqlServerWrapper;
 
-/**
- * Class Schema.
- */
 class Schema extends BaseSchema
 {
     /**

@@ -7,7 +7,7 @@ if (document.getElementsByClassName('dropzone')) {
         uploadMultiple: false,
         parallelUploads: 100,
         maxFilesize: 20,
-        paramName: "images",
+        paramName: "files",
         //previewsContainer: '.dropzonePreview',
         //previewTemplate: document.querySelector('.preview-template').innerHTML,
         addRemoveLinks: true,

@@ -3,15 +3,15 @@
 namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\File;
+use Orchid\Foundation\Core\Models\Attachment;
 use Orchid\Foundation\Core\Models\Post;
 
-class ImagesPostForm extends Form
+class UploadPostForm extends Form
 {
     /**
      * @var string
      */
-    public $name = 'Изображения';
+    public $name = 'Загрузки';
 
     /**
      * Display Base Options.
@@ -23,7 +23,7 @@ class ImagesPostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
-        return view('dashboard::container.posts.modules.images', [
+        return view('dashboard::container.posts.modules.upload', [
         ]);
     }
 
@@ -38,7 +38,7 @@ class ImagesPostForm extends Form
         if ($this->request->has('files')) {
             $files = $this->request->input('files');
             foreach ($files as $file) {
-                $uploadFile = File::find($file);
+                $uploadFile = Attachment::find($file);
                 $uploadFile->post_id = $post->id;
                 $uploadFile->save();
             }

@@ -18,54 +18,14 @@ class Defender
      *
      * @var array
      */
-    public $extensions = [
-        '.ph',
-        '.php',
-        '.php3',
-        '.phtml',
-        '.htm',
-        '.htm',
-        '.html',
-        '.txt',
-        '.js',
-        '.pl',
-        '.cgi',
-        '.py',
-        '.bash',
-        '.sh',
-        '.xml',
-        '.ssi',
-        '.inc',
-        '.pm',
-        '.tpl',
-    ];
+    public $extensions = [];
 
     /**
      * Typical signs of virus.
      *
      * @var array
      */
-    public $signatures = [
-        'exec',
-        'passthru',
-        'system',
-        'shell_exec',
-        'popen',
-        'proc_open',
-        'pcntl_exec',
-
-        'eval',
-        'base64',
-        'base64_decode',
-        'assert',
-        'preg_replace',
-        'create_function',
-        'include',
-        'include_once',
-        'require',
-        'require_once',
-        'ReflectionFunction',
-    ];
+    public $signatures = [];
     /**
      * Scan directory.
      *

@@ -21,8 +21,8 @@ class BackupController extends Controller
     {
         $this->data['backups'] = [];
 
-        foreach (config('laravel-backup.backup.destination.disks') as $disk_name) {
-            $disk = Storage::disk($disk_name);
+        foreach (config('laravel-backup.backup.destination.disks') as $diskName) {
+            $disk = Storage::disk($diskName);
             $adapter = $disk->getDriver()->getAdapter();
             $files = $disk->allFiles();
 
@@ -35,7 +35,7 @@ class BackupController extends Controller
                         'file_name'     => str_replace('backups/', '', $file),
                         'file_size'     => $disk->size($file),
                         'last_modified' => $disk->lastModified($file),
-                        'disk'          => $disk_name,
+                        'disk'          => $diskName,
                         'download'      => ($adapter instanceof \League\Flysystem\Adapter\Local) ? true : false,
                     ];
                 }
@@ -76,19 +76,19 @@ class BackupController extends Controller
      *
      * @param Request $request
      *
-     * @return
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function download(Request $request)
     {
         $disk = Storage::disk($request->input('disk'));
-        $file_name = $request->input('file_name');
+        $fileName = $request->input('file_name');
         $adapter = $disk->getDriver()->getAdapter();
 
         if ($adapter instanceof \League\Flysystem\Adapter\Local) {
-            $storage_path = $disk->getDriver()->getAdapter()->getPathPrefix();
+            $storagePath = $disk->getDriver()->getAdapter()->getPathPrefix();
 
-            if ($disk->exists($file_name)) {
-                return response()->download($storage_path.$file_name);
+            if ($disk->exists($fileName)) {
+                return response()->download($storagePath.$fileName);
             } else {
                 abort(404, 'Бэкап не найден');
             }
@@ -100,16 +100,16 @@ class BackupController extends Controller
     /**
      * Deletes a backup file.
      *
-     * @param $file_name
+     * @param $fileName
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($file_name)
+    public function delete($fileName)
     {
         $disk = Storage::disk(\Request::input('disk'));
 
-        if ($disk->exists($file_name)) {
-            $disk->delete($file_name);
+        if ($disk->exists($fileName)) {
+            $disk->delete($fileName);
 
             return response()->json([
                 'title'   => 'Объект удалён',

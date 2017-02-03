@@ -41,11 +41,12 @@ class PostApiController extends Controller
         $builder = new $model();
 
         $fields = $request->get('fields');
-        if($fields != null) {
+        if ($fields != null) {
             $builder = $this->applyFieldFilters($builder, $fields);
         }
 
         $content = $request->get('content');
+
         if($content != null) {
             $builder = $this->applyContentFilters($builder, $content);
         }
@@ -111,6 +112,7 @@ class PostApiController extends Controller
      * @param $post
      * @param $contentFields
      */
+
     private function applyContentFilters($post, $contentFields) {
         $contentFilters = Dashboard::getContentFilters();
 

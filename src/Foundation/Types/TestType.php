@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Types;
 
 use Orchid\Foundation\Http\Forms\Posts\BasePostForm;
-use Orchid\Foundation\Http\Forms\Posts\ImagesPostForm;
+use Orchid\Foundation\Http\Forms\Posts\UploadPostForm;
 //use Orchid\Foundation\Http\Forms\Posts\PathPostForm;
 use Orchid\Type\Type;
 
@@ -72,7 +72,7 @@ class TestType extends Type
     public function modules()
     {
         return [
-            ImagesPostForm::class,
+            UploadPostForm::class,
             BasePostForm::class,
 //            PathPostForm::class,
         ];

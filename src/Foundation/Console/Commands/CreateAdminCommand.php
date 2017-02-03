@@ -55,7 +55,7 @@ class CreateAdminCommand extends Command
     public function fire()
     {
         $permissions = [];
-        foreach ($this->permissions->flatten() as $key => $permission) {
+        foreach ($this->permissions->flatten() as $permission) {
             $permissions[$permission] = 1;
         }
 

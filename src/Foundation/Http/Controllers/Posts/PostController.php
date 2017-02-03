@@ -59,7 +59,7 @@ class PostController extends Controller
      * @param Request $request
      * @param Post    $post
      *
-     * @return
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Post $post)
     {
@@ -121,6 +121,8 @@ class PostController extends Controller
      * @param Request $request
      * @param Post    $type
      * @param Post    $post
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Post $type, Post $post)
     {

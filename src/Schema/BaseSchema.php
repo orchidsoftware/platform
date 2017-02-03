@@ -5,9 +5,6 @@ namespace Orchid\Schema;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
-/**
- * Class BaseSchema.
- */
 abstract class BaseSchema
 {
     /**

@@ -40,6 +40,20 @@ class Post extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+
+        // Terms inside all taxonomies
+        'terms',
+
+        // Terms analysis
+        'main_category',
+    ];
+
+    /**
      * @var array
      */
     protected $casts = [
@@ -237,10 +251,162 @@ class Post extends Model
     }
 
     /**
+     * Get attachment.
+     *
      * @return mixed
      */
     public function attachment()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(Attachment::class);
+    }
+
+    /**
+     * Taxonomy relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function taxonomies()
+    {
+        return $this->belongsToMany(TermTaxonomy::class, 'term_relationships', 'object_id', 'term_taxonomy_id');
+    }
+
+    /**
+     * Comments relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id');
+    }
+
+    /**
+     *   Author relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'post_id');
+    }
+
+    /**
+     * Whether the post contains the term or not.
+     *
+     * @param string $taxonomy
+     * @param string $term
+     *
+     * @return bool
+     */
+    public function hasTerm($taxonomy, $term)
+    {
+        return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
+    }
+
+    /**
+     * Gets the status attribute.
+     *
+     * @return string
+     */
+    public function getStatusAttribute()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Gets all the terms arranged taxonomy => terms[].
+     *
+     * @return array
+     */
+    public function getTermsAttribute()
+    {
+        $taxonomies = $this->taxonomies;
+        $terms = [];
+        foreach ($taxonomies as $taxonomy) {
+            $taxonomyName = $taxonomy['taxonomy'] == 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
+            $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term['name'];
+        }
+
+        return $terms;
+    }
+
+    /**
+     * Gets the first term of the first taxonomy found.
+     *
+     * @return string
+     */
+    public function getMainCategoryAttribute()
+    {
+        $mainCategory = 'Uncategorized';
+        if (!empty($this->terms)) {
+            $taxonomies = array_values($this->terms);
+            if (!empty($taxonomies[0])) {
+                $terms = array_values($taxonomies[0]);
+                $mainCategory = $terms[0];
+            }
+        }
+
+        return $mainCategory;
+    }
+
+    /**
+     * Get only posts with a custom status.
+     *
+     * @param string $status
+     *
+     * @return mixed
+     */
+    public function status($status)
+    {
+        return $this->where('status', $status);
+    }
+
+    /**
+     * Get only published posts.
+     *
+     * @return mixed
+     */
+    public function published()
+    {
+        return $this->status('publish');
+    }
+
+    /**
+     * Get only posts from a custom post type.
+     *
+     * @param string $type
+     *
+     * @return mixed
+     */
+    public function type($type)
+    {
+        return $this->where('type', $type);
+    }
+
+    /**
+     * Get only posts from an array of custom post types.
+     *
+     * @param array $type
+     *
+     * @return mixed
+     */
+    public function typeIn(array $type)
+    {
+        return $this->whereIn('type', $type);
+    }
+
+    /**
+     * @param string $taxonomy
+     * @param mixed  $term
+     *
+     * @return mixed
+     */
+    public function taxonomy($taxonomy, $term)
+    {
+        return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
+            $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
+                $query->where('slug', $term);
+            });
+        });
     }
 }

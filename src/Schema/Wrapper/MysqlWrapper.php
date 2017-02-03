@@ -6,9 +6,6 @@ use Orchid\Schema\BaseSchema;
 use Orchid\Schema\Helpers;
 use Orchid\Schema\WrapperContract;
 
-/**
- * Class MysqlWrapper.
- */
 class MysqlWrapper implements WrapperContract
 {
     use Helpers;

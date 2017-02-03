@@ -54,17 +54,17 @@ trait UserAccess
     }
 
     /**
-     * @param $сheckPermissions
+     * @param $checkPermissions
      *
      * @return bool
      */
-    public function hasAccess($сheckPermissions)
+    public function hasAccess($checkPermissions)
     {
-        $Permissions = $this->roles()->pluck('permissions');
-        $Permissions->prepend($this->permissions);
+        $permissions = $this->roles()->pluck('permissions');
+        $permissions->prepend($this->permissions);
 
-        foreach ($Permissions as $Permission) {
-            if (isset($Permission[$сheckPermissions]) && $Permission[$сheckPermissions]) {
+        foreach ($permissions as $permission) {
+            if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {
                 return true;
             }
         }
