@@ -21,12 +21,11 @@ class TermTaxonomy extends Model
         'parent_id',
     ];
 
-
     /**
      * @var array
      */
     protected $with = [
-        'term'
+        'term',
     ];
 
     /**
@@ -52,7 +51,6 @@ class TermTaxonomy extends Model
         return parent::__get($key);
     }
 
-
     /**
      * Relationship with Term model.
      *
@@ -70,7 +68,7 @@ class TermTaxonomy extends Model
      */
     public function parentTerm()
     {
-        return $this->belongsTo(TermTaxonomy::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     /**
@@ -98,7 +96,6 @@ class TermTaxonomy extends Model
         return $this;
     }
 
-
     /**
      * Set taxonomy type to category.
      *
@@ -109,7 +106,6 @@ class TermTaxonomy extends Model
         return $this->where('taxonomy', 'category');
     }
 
-
     /**
      * Set taxonomy type to nav_menu.
      *
@@ -119,5 +115,4 @@ class TermTaxonomy extends Model
     {
         return $this->where('taxonomy', 'menu');
     }
-
 }

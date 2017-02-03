@@ -25,7 +25,7 @@ class TermRelationship extends Model
      */
     protected $primaryKey = [
         'object_id',
-        'term_taxonomy_id'
+        'term_taxonomy_id',
     ];
 
     /**
