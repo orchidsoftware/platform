@@ -23,7 +23,7 @@ class AttachmentController extends Controller
     public $date;
 
     /**
-     * FileController constructor.
+     * AttachmentController constructor.
      */
     public function __construct()
     {
