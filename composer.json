@@ -53,7 +53,9 @@
     "files": [
       "src/Settings/helpers.php",
       "src/Alert/helpers.php",
-      "src/Log/helpers.php"
+      "src/Log/helpers.php",
+
+      "src/Foundation/Helpers/array.php"
     ],
     "psr-4": {
       "Orchid\\Access\\": "src/Access",

@@ -36,7 +36,9 @@ class PostApiController extends Controller
 
     public function store(Request $request)
     {
-        $builder = $this->resolveModel($request);
+        $model = $this->resolveModel($request);
+
+        $builder = new $model();
 
         $fields = $request->get('fields');
         if($fields != null) {
@@ -44,7 +46,7 @@ class PostApiController extends Controller
         }
 
         $content = $request->get('content');
-        if($fields != null) {
+        if($content != null) {
             $builder = $this->applyContentFilters($builder, $content);
         }
 
@@ -64,13 +66,13 @@ class PostApiController extends Controller
      *
      * @return mixed
      */
-    public function applyFieldFilters($model, $fields)
+    public function applyFieldFilters($post, $fields)
     {
-        $post = new $model();
+        $fieldFilters = Dashboard::getFieldFilters();
 
         foreach ($fields as $fieldName => $filterDescriptor) {
             foreach ($filterDescriptor as $filterName => $filterParameters) {
-                $filterClass = Dashboard::getFieldFilters()->find($filterName);
+                $filterClass = $fieldFilters->get($filterName);
 
                 if ($filterClass != null) {
                     $filter = new $filterClass($post, $fieldName, $filterParameters);
@@ -106,10 +108,24 @@ class PostApiController extends Controller
     }
 
     /**
-     * @param $builder
-     * @param $content
+     * @param $post
+     * @param $contentFields
      */
-    private function applyContentFilters($builder, $content) {
-        return $builder;
+    private function applyContentFilters($post, $contentFields) {
+        $contentFilters = Dashboard::getContentFilters();
+
+//        $as = [];
+        foreach($contentFields as $fieldName => $filtersDescriptor) {
+            $filterClass = $contentFilters->get($fieldName);
+
+            if($filterClass != null) {
+                $filter = new $filterClass($post, $filtersDescriptor);
+                $post = $filter->run();
+            }
+        }
+
+//        dd($as);
+
+        return $post;
     }
 }

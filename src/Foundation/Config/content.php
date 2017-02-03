@@ -44,6 +44,7 @@ return [
     ],
 
     'contentFilters' => [
+        'place' => \Orchid\Foundation\Filters\PlaceFilter::class
     ],
 
     /*

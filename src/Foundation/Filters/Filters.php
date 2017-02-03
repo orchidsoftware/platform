@@ -8,8 +8,6 @@ abstract class Filters
 {
     public $model;
 
-    public $request;
-
     public $fieldName;
 
     public $parameters;

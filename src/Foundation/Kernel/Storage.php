@@ -25,13 +25,9 @@ class Storage
      */
     public function __construct()
     {
-        $this->container = collect();
-
         $types = config($this->configField, []);
 
-        foreach ($types as $type) {
-            $this->add($type);
-        }
+        $this->container = collect($types);
     }
 
     /**

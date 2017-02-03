@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Kernel;
 use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Foundation\Filters\ContentFilterStorage;
+use Orchid\Foundation\Filters\FilterStorage;
 use Orchid\Menu\Menu;
 use Orchid\Menu\RouteMenu;
 use Orchid\Type\TypeStorage;
@@ -42,7 +43,7 @@ class Dashboard
         $this->fields = new FieldStorage();
         $this->routeMenu = new RouteMenu();
 
-        $this->fieldFilters = new FieldStorage();
+        $this->fieldFilters = new FilterStorage();
         $this->contentFilters = new ContentFilterStorage();
     }
 
