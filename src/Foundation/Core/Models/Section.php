@@ -113,12 +113,10 @@ class Section extends Model
             $parrent = $this->find($model->section_id);
             $this->treeName = $parrent->content[$local]['name'].$delimiter.$this->treeName;
 
-            if(!is_null($parrent->section_id)){
+            if (!is_null($parrent->section_id)) {
                 return true;
             }
-
         }
-
 
         return false;
     }
