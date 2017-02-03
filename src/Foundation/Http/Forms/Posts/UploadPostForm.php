@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\File;
+use Orchid\Foundation\Core\Models\Attachment;
 use Orchid\Foundation\Core\Models\Post;
 
 class UploadPostForm extends Form
@@ -38,7 +38,7 @@ class UploadPostForm extends Form
         if ($this->request->has('files')) {
             $files = $this->request->input('files');
             foreach ($files as $file) {
-                $uploadFile = File::find($file);
+                $uploadFile = Attachment::find($file);
                 $uploadFile->post_id = $post->id;
                 $uploadFile->save();
             }
