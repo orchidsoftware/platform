@@ -2,85 +2,82 @@
 
 Route::group(
     [
-        'prefix'     => 'install',
-        'as'         => 'install::',
-        'namespace'  => 'Orchid\Installer\Controllers',
-        'middleware' => 'web',
+        'prefix' => 'install',
+        'as' => 'install::',
+        'namespace' => 'Orchid\Installer\Controllers',
+        'middleware' => ['web', 'install'],
     ],
     function () {
-        Route::group(
-            ['middleware' => 'canInstall'],
-            function () {
-                Route::get(
-                    '/',
-                    [
-                        'as'   => 'welcome',
-                        'uses' => 'WelcomeController@welcome',
-                    ]
-                );
 
-                Route::get(
-                    'environment',
-                    [
-                        'as'   => 'environment',
-                        'uses' => 'EnvironmentController@environment',
-                    ]
-                );
+        Route::get(
+            '/',
+            [
+                'as' => 'welcome',
+                'uses' => 'WelcomeController@welcome',
+            ]
+        );
 
-                Route::post(
-                    'environment/save',
-                    [
-                        'as'   => 'environmentSave',
-                        'uses' => 'EnvironmentController@save',
-                    ]
-                );
+        Route::get(
+            'environment',
+            [
+                'as' => 'environment',
+                'uses' => 'EnvironmentController@environment',
+            ]
+        );
 
-                Route::get(
-                    'requirements',
-                    [
-                        'as'   => 'requirements',
-                        'uses' => 'RequirementsController@requirements',
-                    ]
-                );
+        Route::post(
+            'environment/save',
+            [
+                'as' => 'environmentSave',
+                'uses' => 'EnvironmentController@save',
+            ]
+        );
 
-                Route::get(
-                    'permissions',
-                    [
-                        'as'   => 'permissions',
-                        'uses' => 'PermissionsController@permissions',
-                    ]
-                );
+        Route::get(
+            'requirements',
+            [
+                'as' => 'requirements',
+                'uses' => 'RequirementsController@requirements',
+            ]
+        );
 
-                Route::get(
-                    'database',
-                    [
-                        'as'   => 'database',
-                        'uses' => 'DatabaseController@database',
-                    ]
-                );
-                Route::get(
-                    'administrator',
-                    [
-                        'as'   => 'administrator',
-                        'uses' => 'AdministratorController@administrator',
-                    ]
-                );
-                Route::post(
-                    'administrator/create',
-                    [
-                        'as'   => 'administratorCreate',
-                        'uses' => 'AdministratorController@create',
-                    ]
-                );
+        Route::get(
+            'permissions',
+            [
+                'as' => 'permissions',
+                'uses' => 'PermissionsController@permissions',
+            ]
+        );
 
-                Route::get(
-                    'final',
-                    [
-                        'as'   => 'final',
-                        'uses' => 'FinalController@finish',
-                    ]
-                );
-            }
+        Route::get(
+            'database',
+            [
+                'as' => 'database',
+                'uses' => 'DatabaseController@database',
+            ]
+        );
+        Route::get(
+            'administrator',
+            [
+                'as' => 'administrator',
+                'uses' => 'AdministratorController@administrator',
+            ]
+        );
+        Route::post(
+            'administrator/create',
+            [
+                'as' => 'administratorCreate',
+                'uses' => 'AdministratorController@create',
+            ]
+        );
+
+        Route::get(
+            'final',
+            [
+                'as' => 'final',
+                'uses' => 'FinalController@finish',
+            ]
         );
     }
+
 );

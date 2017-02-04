@@ -2,7 +2,11 @@
 
 namespace Orchid\Installer\Providers;
 
+use Illuminate\Routing\Route;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Installer\Middleware\CanInstall;
+use Orchid\Installer\Middleware\RedirectInstall;
 
 class InstallerServiceProvider extends ServiceProvider
 {
@@ -22,18 +26,23 @@ class InstallerServiceProvider extends ServiceProvider
     {
         $this->publishFiles();
 
-        include __DIR__.'/../routes.php';
+
+        $this->loadRoutesFrom(__DIR__.'/../routes.php');
+
+        //include __DIR__.'/../routes.php';
     }
 
     /**
      * Bootstrap the application events.
      *
-     * @return void
+     * @param Router $router
      */
-    public function boot()
+    public function boot(Router $router)
     {
-        app('router')->pushMiddlewareToGroup('web', '\Orchid\Installer\Middleware\RedirectInstall');
-        app('router')->middleware('canInstall', '\Orchid\Installer\Middleware\CanInstall');
+        $router->pushMiddlewareToGroup('web', RedirectInstall::class);
+        $router->middlewareGroup('install',[
+            CanInstall::class
+        ]);
     }
 
     /**
