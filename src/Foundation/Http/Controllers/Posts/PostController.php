@@ -73,7 +73,7 @@ class PostController extends Controller
 
         $Slugs = $post->where('slug', $post->slug)->count();
         if ($Slugs != 0) {
-            $post->slug = $post->slug.'-'.($Slugs + 1);
+            $post->slug = $post->slug.'-'.($Slugs + $Slugs);
         }
 
         $post->save();
