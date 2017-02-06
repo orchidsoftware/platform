@@ -4,6 +4,7 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
+use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Section;
 
@@ -30,6 +31,8 @@ class BasePostForm extends Form
             'sections' => Section::get(),
             'language' => App::getLocale(),
             'locales'  => config('content.locales'),
+            'category' => Category::get(),
+            'currentCategory' => (is_null($post)) ? [] : $post->taxonomies()->get()->toArray()
         ]);
     }
 
@@ -50,6 +53,7 @@ class BasePostForm extends Form
         if ($post->section_id == 0) {
             $post->section_id = null;
         }
+
     }
 
     /**

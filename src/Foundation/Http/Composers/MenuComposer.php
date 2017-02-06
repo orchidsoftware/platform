@@ -174,6 +174,14 @@ class MenuComposer
             'childs'  => false,
             'divider' => true,
         ];
+        $categoryMenu = [
+            'slug'    => 'section',
+            'icon'    => 'icon-briefcase',
+            'route'   => route('dashboard.tools.category'),
+            'label'   => trans('dashboard::menu.category'),
+            'childs'  => false,
+            'divider' => true,
+        ];
 
         $menuMenu = [
             'slug'      => 'menu',
@@ -258,6 +266,8 @@ class MenuComposer
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $sectionMenu, 3);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
+
 
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);

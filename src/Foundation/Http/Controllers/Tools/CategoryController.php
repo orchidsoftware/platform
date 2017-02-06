@@ -24,6 +24,15 @@ class CategoryController extends Controller
         $this->form = new $this->form();
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        return $this->form->grid();
+    }
+
     /**
      * @return mixed
      */
@@ -35,13 +44,20 @@ class CategoryController extends Controller
             ->render();
     }
 
+
     /**
-     * @return mixed
+     * @param Request $request
+     * @param TermTaxonomy $termTaxonomy
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function store(Request $request, TermTaxonomy $termTaxonomy)
     {
-        return $this->form->grid();
+        $this->form->save($request, $termTaxonomy);
+
+        return redirect()->back();
     }
+
+
 
     /**
      * @return mixed
@@ -56,34 +72,38 @@ class CategoryController extends Controller
      *
      * @return mixed
      */
-    public function edit(TermTaxonomy $termTaxonomy)
+    public function edit(Request $request, TermTaxonomy $termTaxonomy)
     {
         return $this->form
             ->route('dashboard.tools.category.update')
+            ->slug($termTaxonomy->id)
             ->method('PUT')
             ->render($termTaxonomy);
     }
 
+
     /**
      * @param Request $request
-     * @param Section $section
-     *
+     * @param TermTaxonomy $termTaxonomy
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request, TermTaxonomy $termTaxonomy)
     {
-        $this->form->save($request, $section);
+        $this->form->save($request, $termTaxonomy);
 
         return redirect()->back();
     }
 
-    /**
-     * @return mixed
-     */
-    public function store()
-    {
-        $this->form->save();
 
-        return redirect()->back();
+    /**
+     * @param Request $request
+     * @param TermTaxonomy $termTaxonomy
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Request $request, TermTaxonomy $termTaxonomy)
+    {
+        $this->form->remove($request,$termTaxonomy);
+
+        return redirect()->route('dashboard.tools.category');
     }
 }

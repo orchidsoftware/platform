@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Term extends Model
 {

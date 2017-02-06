@@ -38,8 +38,8 @@
                         <label class="col-sm-2 control-label">Описание</label>
                         <div class="col-sm-10">
                             <textarea name="content[{{$code}}][body]"
-                                   value="@if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('body')}}@endif"
                                    required class="form-control summernote" placeholder="Название">
+                                   @if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('body')}}@endif
                             </textarea>
                         </div>
                     </div>
@@ -53,6 +53,8 @@
         <div class="tab-pane" id="tech">
             <div class="wrapper-md">
 
+                <input type="hidden" name="taxonomy" value="category">
+                <input type="hidden" name="term_id" @if($termTaxonomy->exists)value="{{$termTaxonomy->term->id}}" @else value="0" @endif>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Родительская категория</label>
@@ -60,14 +62,16 @@
 
                         <select data-placeholder="Select Category" name="parent_id" class="chosen-select form-control">
 
-                            <option value="">Без секции</option>
+                            <option value="0">Без секции</option>
+
 
 
                             @foreach($category as  $value)
 
+
                                 <option value="{{$value->id}}"
-                                >  @if($termTaxonomy->exist && $termTaxonomy->parent_id == $value->id) selected @endif
-                                    {{$value->term->getContent('name')}}</option>
+                                @if($termTaxonomy->exists && $termTaxonomy->parent_id == $value->id) selected @endif  >
+                                {{$value->term->getContent('name')}}</option>
 
 
                             @endforeach
