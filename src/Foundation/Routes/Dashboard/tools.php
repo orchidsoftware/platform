@@ -25,8 +25,6 @@ Route::group(['middleware' => ['web'], 'prefix' => 'dashboard/tools', 'namespace
             'destroy' => 'dashboard.tools.section.destroy',
         ]]);
 
-
-
         Route::resource('category', 'CategoryController', ['names' => [
             'index'   => 'dashboard.tools.category',
             'create'  => 'dashboard.tools.category.create',
@@ -35,8 +33,6 @@ Route::group(['middleware' => ['web'], 'prefix' => 'dashboard/tools', 'namespace
             'store'   => 'dashboard.tools.category.store',
             'destroy' => 'dashboard.tools.category.destroy',
         ]]);
-
-
 
         Route::post('files', [
             'as'   => 'dashboard.tools.files.upload',

@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\Category;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Events\Tools\CategoryEvent;
 
 class CategoryFormGroup extends FormGroup
@@ -33,7 +32,7 @@ class CategoryFormGroup extends FormGroup
     public function main()
     {
         return view('dashboard::container.tools.category.grid', [
-            'category' => Category::where('parent_id',0)->with('allChildrenTerm')->paginate()
+            'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
         ]);
     }
 }

@@ -26,7 +26,7 @@ class Term extends Model
      */
     protected $casts = [
         'content' => 'array',
-        'slug' => 'string',
+        'slug'    => 'string',
     ];
 
     /**
@@ -46,7 +46,6 @@ class Term extends Model
     {
         return $this->hasOne(TermTaxonomy::class, 'term_id');
     }
-
 
     /**
      * @param $field
@@ -71,5 +70,4 @@ class Term extends Model
             }
         }
     }
-
 }
