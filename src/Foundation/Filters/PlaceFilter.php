@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 03.02.17
- * Time: 10:17.
- */
 
 namespace Orchid\Foundation\Filters;
 
 class PlaceFilter extends ContentFilter
 {
+    /**
+     * @return mixed
+     */
     public function name()
     {
         dd($this->parameters);
@@ -18,6 +15,9 @@ class PlaceFilter extends ContentFilter
         return $result;
     }
 
+    /**
+     * @return mixed
+     */
     public function latLng()
     {
         return $this->model;

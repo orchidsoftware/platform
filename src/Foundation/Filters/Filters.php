@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class Filters
 {
+    /**
+     * @var
+     */
     public $model;
 
     /**

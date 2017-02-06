@@ -1,17 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 03.02.17
- * Time: 11:00.
- */
 
 namespace Orchid\Foundation\Filters;
 
 class ContentFilter
 {
+    /**
+     * @var
+     */
     public $model;
 
+    /**
+     * @var null
+     */
     public $parameters;
 
     /**
