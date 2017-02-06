@@ -21,15 +21,12 @@ class TermTaxonomy extends Model
         'parent_id',
     ];
 
-
     /**
      * @var array
      */
     protected $with = [
         'term',
     ];
-
-
 
     /**
      * @var bool
@@ -74,7 +71,6 @@ class TermTaxonomy extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-
     /**
      * Relationship with children Term model.
      *
@@ -92,7 +88,6 @@ class TermTaxonomy extends Model
     {
         return $this->childrenTerm()->with('childrenTerm');
     }
-
 
     /**
      * Relationship with Posts model.
