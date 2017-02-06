@@ -268,7 +268,6 @@ class MenuComposer
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $sectionMenu, 3);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
 
-
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);
 

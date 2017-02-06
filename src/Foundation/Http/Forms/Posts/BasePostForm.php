@@ -26,13 +26,13 @@ class BasePostForm extends Form
     public function get($type = null, Post $post = null)
     {
         return view('dashboard::container.posts.modules.base', [
-            'author'   => (is_null($post)) ? $post : $post->getUser(),
-            'post'     => $post,
-            'sections' => Section::get(),
-            'language' => App::getLocale(),
-            'locales'  => config('content.locales'),
-            'category' => Category::get(),
-            'currentCategory' => (is_null($post)) ? [] : $post->taxonomies()->get()->toArray()
+            'author'          => (is_null($post)) ? $post : $post->getUser(),
+            'post'            => $post,
+            'sections'        => Section::get(),
+            'language'        => App::getLocale(),
+            'locales'         => config('content.locales'),
+            'category'        => Category::get(),
+            'currentCategory' => (is_null($post)) ? [] : $post->taxonomies()->get()->toArray(),
         ]);
     }
 
@@ -53,7 +53,6 @@ class BasePostForm extends Form
         if ($post->section_id == 0) {
             $post->section_id = null;
         }
-
     }
 
     /**

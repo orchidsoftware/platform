@@ -2,14 +2,13 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Core\Models\Term;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
-use \Illuminate\Http\Request;
 
 class CategoryMainForm extends Form
 {
@@ -43,10 +42,9 @@ class CategoryMainForm extends Form
     public function get(TermTaxonomy $termTaxonomy = null)
     {
         $termTaxonomy = $termTaxonomy ?: new $this->model([
-            'id' => 0
+            'id' => 0,
         ]);
-        $category = Category::where('id','!=',$termTaxonomy->id)->get();
-
+        $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
         $language = App::getLocale();
 
@@ -58,22 +56,20 @@ class CategoryMainForm extends Form
         ]);
     }
 
-
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
-        if(is_null($termTaxonomy)){
-            $termTaxonomy = new $this->model;
+        if (is_null($termTaxonomy)) {
+            $termTaxonomy = new $this->model();
         }
 
-        if($request->get('term_id') ==0){
-            $term =  Term::create($request->all());
-        }else{
+        if ($request->get('term_id') == 0) {
+            $term = Term::create($request->all());
+        } else {
             $term = Term::find($request->get('term_id'));
         }
 
         $termTaxonomy->fill($this->request->all());
         $termTaxonomy->term_id = $term->id;
-
 
         $termTaxonomy->save();
         $term->save();
@@ -81,17 +77,14 @@ class CategoryMainForm extends Form
         Alert::success('success');
     }
 
-
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
      */
-    public function delete(Request $request, TermTaxonomy $termTaxonomy){
-
+    public function delete(Request $request, TermTaxonomy $termTaxonomy)
+    {
         $termTaxonomy->term->delete();
         $termTaxonomy->delete();
         Alert::success('success');
     }
-
-
 }

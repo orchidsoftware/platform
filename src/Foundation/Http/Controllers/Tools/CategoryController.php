@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Category;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
@@ -23,7 +22,6 @@ class CategoryController extends Controller
     {
         $this->form = new $this->form();
     }
-
 
     /**
      * @return mixed
@@ -44,10 +42,10 @@ class CategoryController extends Controller
             ->render();
     }
 
-
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, TermTaxonomy $termTaxonomy)
@@ -56,8 +54,6 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
-
-
 
     /**
      * @return mixed
@@ -81,10 +77,10 @@ class CategoryController extends Controller
             ->render($termTaxonomy);
     }
 
-
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, TermTaxonomy $termTaxonomy)
@@ -94,15 +90,15 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, TermTaxonomy $termTaxonomy)
     {
-        $this->form->remove($request,$termTaxonomy);
+        $this->form->remove($request, $termTaxonomy);
 
         return redirect()->route('dashboard.tools.category');
     }
