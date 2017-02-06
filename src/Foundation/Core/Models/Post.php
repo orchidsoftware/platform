@@ -308,10 +308,10 @@ class Post extends Model
      *
      * @return string
      */
-    public function getStatusAttribute()
-    {
-        return $this->status;
-    }
+//    public function getStatusAttribute()
+//    {
+//        return $this->status;
+//    }
 
     /**
      * Gets all the terms arranged taxonomy => terms[].

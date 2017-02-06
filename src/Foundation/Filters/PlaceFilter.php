@@ -10,15 +10,20 @@ namespace Orchid\Foundation\Filters;
 
 class PlaceFilter extends ContentFilter
 {
-    public function name()
+    protected $chainBase = 'place';
+
+    public function name($model, $values, $chain, $method = 'where')
     {
-        dd($this->parameters);
-        $result = $this->model->where('content->en->place->name', 'LIKE', "%$this->parameters%");
+        $like_token = $values['like'];
+
+        $result = null;
+
+        $result = $model->$method($chain, 'LIKE', "%$like_token%");
 
         return $result;
     }
 
-    public function latLng()
+    public function latLng($model, $values, $chain, $method = 'where')
     {
         return $this->model;
     }

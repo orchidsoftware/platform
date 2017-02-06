@@ -14,6 +14,8 @@ class ContentFilter
 
     public $parameters;
 
+    protected $chainBase = '';
+
     /**
      * ContentFilter constructor.
      *
@@ -33,7 +35,13 @@ class ContentFilter
     {
         foreach ($this->parameters as $methodName => $values) {
             if (method_exists($this, $methodName)) {
-                $this->model = $this->$methodName($this->model, $values);
+                $chain = [];
+
+                $chain[] = $this->chainBase;
+                $chain[] = $methodName;
+
+                $this->model = $this->$methodName($this->model, $values, "content->en->" . implode($chain, '->'));
+                $this->model = $this->$methodName($this->model, $values, "content->ru->" . implode($chain, '->'), 'orWhere');
             }
         }
 

@@ -24,6 +24,6 @@ class CreateTaxonomyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('terms_taxonomy');
+        Schema::drop('term_taxonomy');
     }
 }
