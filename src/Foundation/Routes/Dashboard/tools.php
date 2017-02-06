@@ -25,6 +25,19 @@ Route::group(['middleware' => ['web'], 'prefix' => 'dashboard/tools', 'namespace
             'destroy' => 'dashboard.tools.section.destroy',
         ]]);
 
+
+
+        Route::resource('category', 'CategoryController', ['names' => [
+            'index'   => 'dashboard.tools.category',
+            'create'  => 'dashboard.tools.category.create',
+            'edit'    => 'dashboard.tools.category.edit',
+            'update'  => 'dashboard.tools.category.update',
+            'store'   => 'dashboard.tools.category.store',
+            'destroy' => 'dashboard.tools.category.destroy',
+        ]]);
+
+
+
         Route::post('files', [
             'as'   => 'dashboard.tools.files.upload',
             'uses' => 'AttachmentController@upload',

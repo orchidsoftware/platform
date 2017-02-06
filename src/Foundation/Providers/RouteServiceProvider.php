@@ -5,6 +5,8 @@ namespace Orchid\Foundation\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Foundation\Core\Models\Post;
+use Orchid\Foundation\Core\Models\Term;
+use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider
@@ -50,6 +52,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
+
+        Route::bind('category', function ($value) {
+            return TermTaxonomy::findOrFail($value);
+        });
+
+
         Route::bind('type', function ($value) {
             $post = new Post();
 

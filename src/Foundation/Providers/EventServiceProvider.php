@@ -26,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         'Orchid\Foundation\Events\Tools\SectionEvent' => [
             'Orchid\Foundation\Listeners\Tools\Section\SectionBaseLister',
         ],
+        'Orchid\Foundation\Events\Tools\CategoryEvent' => [
+            'Orchid\Foundation\Listeners\Tools\Category\CategoryBaseLister',
+        ],
     ];
 
     /**

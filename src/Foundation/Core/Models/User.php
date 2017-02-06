@@ -60,13 +60,5 @@ class User extends Authenticatable implements UserInterface
         'permissions'  => 'array',
     ];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'id';
-    }
+
 }

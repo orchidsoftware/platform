@@ -11,7 +11,7 @@ class CreateTaxonomyTable extends Migration
      */
     public function up()
     {
-        Schema::create('terms_taxonomy', function (Blueprint $table) {
+        Schema::create('term_taxonomy', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('term_id');
             $table->string('taxonomy');
