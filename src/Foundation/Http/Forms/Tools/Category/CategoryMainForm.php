@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Foundation\Core\Models\Term;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
 
@@ -34,9 +33,9 @@ class CategoryMainForm extends Form
         ];
     }
 
-
     /**
      * @param TermTaxonomy|null $termTaxonomy
+     *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function get(TermTaxonomy $termTaxonomy = null)
@@ -46,10 +45,10 @@ class CategoryMainForm extends Form
         $language = App::getLocale();
 
         return view('dashboard::container.tools.category.info', [
-            'category' => $category,
-            'language' => $language,
+            'category'      => $category,
+            'language'      => $language,
             'termTaxonomy'  => $termTaxonomy,
-            'locales'  => config('content.locales'),
+            'locales'       => config('content.locales'),
         ]);
     }
 

@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Section;
-use Orchid\Foundation\Core\Models\Term;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
@@ -52,9 +51,9 @@ class CategoryController extends Controller
         return $this->form->render();
     }
 
-
     /**
      * @param TermTaxonomy $termTaxonomy
+     *
      * @return mixed
      */
     public function edit(TermTaxonomy $termTaxonomy)

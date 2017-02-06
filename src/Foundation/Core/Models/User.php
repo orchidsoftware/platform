@@ -59,6 +59,4 @@ class User extends Authenticatable implements UserInterface
         'about'        => 'string',
         'permissions'  => 'array',
     ];
-
-
 }
