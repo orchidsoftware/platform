@@ -71,9 +71,9 @@ class PostController extends Controller
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
-        $Slugs = $post->where('slug', $post->slug)->count();
+        $Slugs = $post->where('slug','like',$post->slug.'%')->count();
         if ($Slugs != 0) {
-            $post->slug = $post->slug.'-'.($Slugs + $Slugs);
+            $post->slug = $post->slug.'-'.($Slugs + 1);
         }
 
         $post->save();
