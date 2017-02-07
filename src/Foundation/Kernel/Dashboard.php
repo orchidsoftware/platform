@@ -85,7 +85,8 @@ class Dashboard
     /**
      * @return PlaceListTransformer
      */
-    public function getTransformers() {
+    public function getTransformers()
+    {
         return $this->transformers;
     }
 
