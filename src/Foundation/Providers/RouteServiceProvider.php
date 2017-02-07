@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
@@ -30,9 +30,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middlewareGroup('dashboard', [
             Firewall::class,
-            AccessMiddleware::class
+            AccessMiddleware::class,
         ]);
-
 
         $this->binding();
 
