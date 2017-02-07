@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Foundation\Core\Models\Menu;
 use Orchid\Foundation\Http\Composers\MenuComposer;
 use Orchid\Foundation\Kernel\Dashboard;
 
