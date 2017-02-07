@@ -15,18 +15,21 @@ class TermRelationship extends Model
      * @var array
      */
     protected $fillable = [
-        'object_id',
-        'tern_taxonomy_id',
+        'post_id',
+        'term_taxonomy_id',
         'term_order',
     ];
 
     /**
      * @var array
      */
+
+    /*
     protected $primaryKey = [
-        'object_id',
-        'term_taxonomy_id',
+        //'post_id',
+        //'term_taxonomy_id',
     ];
+*/
 
     /**
      * @var bool
@@ -38,7 +41,7 @@ class TermRelationship extends Model
      */
     public function post()
     {
-        return $this->belongsTo(Post::class, 'object_id');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
     /**

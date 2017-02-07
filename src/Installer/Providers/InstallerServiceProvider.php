@@ -26,8 +26,6 @@ class InstallerServiceProvider extends ServiceProvider
         $this->publishFiles();
 
         $this->loadRoutesFrom(__DIR__.'/../routes.php');
-
-        //include __DIR__.'/../routes.php';
     }
 
     /**

@@ -12,7 +12,7 @@ class CreateRelationshipsTable extends Migration
     public function up()
     {
         Schema::create('term_relationships', function (Blueprint $table) {
-            $table->integer('object_id');
+            $table->integer('post_id');
             $table->integer('term_taxonomy_id');
             $table->integer('term_order')->default(0);
         });

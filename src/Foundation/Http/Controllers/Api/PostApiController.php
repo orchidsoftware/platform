@@ -25,6 +25,12 @@ class PostApiController extends Controller
         'content' => ContentFilters::class,
     ];
 
+    /**
+     * @param $type
+     * @param $fields
+     *
+     * @return mixed
+     */
     public function index($type, $fields)
     {
         $builder = $type->filters($fields);
@@ -34,6 +40,11 @@ class PostApiController extends Controller
         return response()->json($posts);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $model = $this->resolveModel($request);
@@ -66,6 +77,12 @@ class PostApiController extends Controller
         return $response->json($posts);
     }
 
+    /**
+     * @param Post    $post
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public function show(Post $post, Request $request)
     {
         return $this->index($post, $request);
@@ -98,7 +115,7 @@ class PostApiController extends Controller
     /**
      * @param Request $request
      *
-     * @return mixed
+     * @return null
      */
     private function resolveModel(Request $request)
     {

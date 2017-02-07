@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 03.02.17
- * Time: 11:00.
- */
 
 namespace Orchid\Foundation\Filters;
 
@@ -12,8 +6,14 @@ use Illuminate\Support\Facades\App;
 
 class ContentFilter
 {
+    /**
+     * @var
+     */
     public $model;
 
+    /**
+     * @var null
+     */
     public $parameters;
 
     protected $chainBase = '';

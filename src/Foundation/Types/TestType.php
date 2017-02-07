@@ -26,6 +26,9 @@ class TestType extends Type
      */
     public $slugFields = 'name';
 
+    /**
+     * @var bool
+     */
     public $api = true;
 
     /**
@@ -84,9 +87,9 @@ class TestType extends Type
     public function grid()
     {
         return [
-            'name'       => 'Название',
-            'publish'    => 'Дата публикации',
-            'created_at' => 'Дата создания',
+            'name'          => 'Название',
+            'publish_at'    => 'Дата публикации',
+            'created_at'    => 'Дата создания',
         ];
     }
 }

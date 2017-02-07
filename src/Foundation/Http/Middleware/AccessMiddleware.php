@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Facades\Route;
 
 class AccessMiddleware
 {
@@ -26,7 +25,6 @@ class AccessMiddleware
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->routeActive = Route::currentRouteName();
     }
 
     /**
@@ -43,11 +41,10 @@ class AccessMiddleware
             } else {
                 return redirect()->guest('/dashboard/login');
             }
-        } elseif ($this->auth->user()->hasAccess($this->routeActive)) {
+        } elseif ($this->auth->user()->hasAccess('dashboard.index')) {
             return $next($request);
         } else {
-            return $next($request);
-            //abort(403);
+            abort(404);
         }
     }
 }

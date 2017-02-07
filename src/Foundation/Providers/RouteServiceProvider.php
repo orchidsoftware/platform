@@ -3,7 +3,9 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use Orchid\Defender\Middleware\Firewall;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Http\Middleware\AccessMiddleware;
@@ -22,11 +24,15 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @return void
+     * @param Router $router
      */
     public function boot()
     {
-        //
+        Route::middlewareGroup('dashboard', [
+            Firewall::class,
+            AccessMiddleware::class,
+        ]);
+
         $this->binding();
 
         parent::boot();

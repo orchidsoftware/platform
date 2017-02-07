@@ -46,6 +46,20 @@
         </select>
     </div>
 
+
+    <div class="form-group">
+        <label class="control-label">Показывать в категориях</label>
+        <select  name="category[]"  multiple data-placeholder="Select Category" class="chosen-select form-control">
+                @foreach($category as  $value)
+
+                    <option value="{{$value->id}}"
+                     @if($value->active) selected @endif >
+                        {{$value->term->getContent('name')}}</option>
+
+                @endforeach
+        </select>
+    </div>
+
     @if(!is_null($author))
     <p>
         Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
