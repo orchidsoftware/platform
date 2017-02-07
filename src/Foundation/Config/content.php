@@ -25,6 +25,10 @@ return [
     |
     */
 
+    'transformers' => [
+        'place-list' => \Orchid\Foundation\Filters\Transformer\PlaceListTransformer::class
+    ],
+
     'fields' => [
         'textarea' => \Orchid\Field\Fields\TextAreaField::class,
         'input'    => \Orchid\Field\Fields\InputField::class,

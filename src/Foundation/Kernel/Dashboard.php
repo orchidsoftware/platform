@@ -6,6 +6,8 @@ use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Foundation\Filters\ContentFilterStorage;
 use Orchid\Foundation\Filters\FilterStorage;
+use Orchid\Foundation\Filters\Transformer\PlaceListTransformer;
+use Orchid\Foundation\Filters\Transformer\TransformerStorage;
 use Orchid\Menu\Menu;
 use Orchid\Menu\RouteMenu;
 use Orchid\Type\TypeStorage;
@@ -45,6 +47,7 @@ class Dashboard
 
         $this->fieldFilters = new FilterStorage();
         $this->contentFilters = new ContentFilterStorage();
+        $this->transformers = new TransformerStorage();
     }
 
     /**
@@ -77,6 +80,13 @@ class Dashboard
     public function getFieldFilters()
     {
         return $this->fieldFilters;
+    }
+
+    /**
+     * @return PlaceListTransformer
+     */
+    public function getTransformers() {
+        return $this->transformers;
     }
 
     /**

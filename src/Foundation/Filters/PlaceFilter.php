@@ -16,8 +16,6 @@ class PlaceFilter extends ContentFilter
     {
         $like_token = $values['like'];
 
-        $result = null;
-
         $result = $model->$method($chain, 'LIKE', "%$like_token%");
 
         return $result;

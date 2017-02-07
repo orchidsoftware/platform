@@ -8,6 +8,8 @@
 
 namespace Orchid\Foundation\Filters;
 
+use Illuminate\Support\Facades\App;
+
 class ContentFilter
 {
     public $model;
@@ -40,8 +42,13 @@ class ContentFilter
                 $chain[] = $this->chainBase;
                 $chain[] = $methodName;
 
-                $this->model = $this->$methodName($this->model, $values, "content->en->" . implode($chain, '->'));
-                $this->model = $this->$methodName($this->model, $values, "content->ru->" . implode($chain, '->'), 'orWhere');
+                $locale = App::getLocale();
+
+                if($locale == null) {
+                    $locale = 'en';
+                }
+
+                $this->model = $this->$methodName($this->model, $values, "content->$locale->" . implode($chain, '->'));
             }
         }
 
