@@ -6,7 +6,7 @@
 
 #
 <p align="center">
-Orchid Platform application provides a very flexible and extensible way of building your custom application.
+Laravel Platform application provides a very flexible and extensible way of building your custom application.
 </p>
 
 <p align="center">
