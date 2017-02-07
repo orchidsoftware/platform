@@ -24,11 +24,11 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @return void
+     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $router->middlewareGroup('dashboard', [
+        Route::middlewareGroup('dashboard', [
             Firewall::class,
             AccessMiddleware::class
         ]);

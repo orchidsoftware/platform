@@ -9,7 +9,11 @@
 |
 */
 
-$this->group(['middleware' => ['web'], 'prefix' => 'dashboard', 'namespace' => 'Orchid\Foundation\Http\Controllers\Auth'],
+$this->group([
+    'middleware' => ['web','dashboard'],
+    'prefix' => 'dashboard',
+    'namespace' => 'Orchid\Foundation\Http\Controllers\Auth'
+],
     function ($router) {
         // Authentication Routes...
         $router->get('login', 'LoginController@showLoginForm')->name('login');
