@@ -26,6 +26,9 @@ class TestType extends Type
      */
     public $slugFields = 'name';
 
+    /**
+     * @var bool
+     */
     public $api = true;
 
     /**
