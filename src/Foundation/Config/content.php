@@ -26,7 +26,7 @@ return [
     */
 
     'transformers' => [
-        'place-list' => \Orchid\Foundation\Filters\Transformer\PlaceListTransformer::class
+        'place-list' => \Orchid\Foundation\Filters\Transformer\PlaceListTransformer::class,
     ],
 
     'fields' => [

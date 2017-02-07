@@ -64,10 +64,10 @@ class PostApiController extends Controller
 
         $posts = $builder->get();
 
-        if(($transformField = $request->get('transform')) != null) {
+        if (($transformField = $request->get('transform')) != null) {
             $transformerClass = Dashboard::getTransformers()->get($transformField);
 
-            if($transformerClass != null) {
+            if ($transformerClass != null) {
                 $posts = $transformerClass::transform($posts);
             }
         }
@@ -91,7 +91,9 @@ class PostApiController extends Controller
     /**
      * @param $post
      * @param $fields
+     *
      * @return mixed
+     *
      * @internal param $model
      */
     public function applyFieldFilters($post, $fields)

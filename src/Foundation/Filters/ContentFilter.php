@@ -44,11 +44,11 @@ class ContentFilter
 
                 $locale = App::getLocale();
 
-                if($locale == null) {
+                if ($locale == null) {
                     $locale = 'en';
                 }
 
-                $this->model = $this->$methodName($this->model, $values, "content->$locale->" . implode($chain, '->'));
+                $this->model = $this->$methodName($this->model, $values, "content->$locale->".implode($chain, '->'));
             }
         }
 
