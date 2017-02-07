@@ -45,7 +45,7 @@ class PostApiController extends Controller
      *
      * @return mixed
      */
-    public function store(Post $post,Request $request)
+    public function store(Post $post, Request $request)
     {
         dd($post);
 
