@@ -28,6 +28,7 @@ class PostApiController extends Controller
     /**
      * @param $type
      * @param $fields
+     *
      * @return mixed
      */
     public function index($type, $fields)
@@ -41,6 +42,7 @@ class PostApiController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return mixed
      */
     public function store(Request $request)
@@ -66,8 +68,9 @@ class PostApiController extends Controller
     }
 
     /**
-     * @param Post $post
+     * @param Post    $post
      * @param Request $request
+     *
      * @return mixed
      */
     public function show(Post $post, Request $request)
@@ -75,10 +78,10 @@ class PostApiController extends Controller
         return $this->index($post, $request);
     }
 
-
     /**
      * @param $post
      * @param $fields
+     *
      * @return mixed
      */
     public function applyFieldFilters($post, $fields)
@@ -99,9 +102,9 @@ class PostApiController extends Controller
         return $post;
     }
 
-
     /**
      * @param Request $request
+     *
      * @return null
      */
     private function resolveModel(Request $request)
