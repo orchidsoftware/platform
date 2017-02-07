@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 03.02.17
- * Time: 11:43.
- */
+
 if (!function_exists('is_associative')) {
 
     /**

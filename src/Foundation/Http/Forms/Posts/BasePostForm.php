@@ -7,6 +7,7 @@ use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Core\Models\Section;
+use Orchid\Foundation\Core\Models\TermTaxonomy;
 
 class BasePostForm extends Form
 {
@@ -25,14 +26,25 @@ class BasePostForm extends Form
      */
     public function get($type = null, Post $post = null)
     {
+        $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy','id')->toArray();
+        $category = Category::get();
+
+        $category = $category->map(function ($item) use ($currentCategory){
+                if(key_exists($item->id,$currentCategory)) {
+                    $item->active = true;
+                }else{
+                    $item->active = false;
+                }
+                return $item;
+        });
+
         return view('dashboard::container.posts.modules.base', [
             'author'          => (is_null($post)) ? $post : $post->getUser(),
             'post'            => $post,
             'sections'        => Section::get(),
             'language'        => App::getLocale(),
             'locales'         => config('content.locales'),
-            'category'        => Category::get(),
-            'currentCategory' => (is_null($post)) ? [] : $post->taxonomies()->get()->toArray(),
+            'category'        => $category,
         ]);
     }
 
@@ -48,17 +60,23 @@ class BasePostForm extends Form
      */
     public function persist($type = null, Post $post = null)
     {
-        $post->setTags($this->request->input('tags'));
+        $post->setTags($this->request->get('tags',[]));
 
         if ($post->section_id == 0) {
             $post->section_id = null;
         }
+
+
+        $post->taxonomies()->where('taxonomy','category')->detach();
+
+        $category = [];
+        foreach ($this->request->get('category',[]) as $value){
+            $test = TermTaxonomy::select('id','term_id')->find($value);
+            $category[] = $test;
+        }
+
+        $post->taxonomies()->saveMany($category);
     }
 
-    /**
-     * @internal param Role $role
-     */
-    public function delete()
-    {
-    }
+
 }

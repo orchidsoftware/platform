@@ -178,7 +178,7 @@ class MenuComposer
             'slug'    => 'section',
             'icon'    => 'icon-briefcase',
             'route'   => route('dashboard.tools.category'),
-            'label'   => trans('dashboard::menu.category'),
+            'label'   => trans('dashboard::menu.Sections'),
             'childs'  => false,
             'divider' => true,
         ];

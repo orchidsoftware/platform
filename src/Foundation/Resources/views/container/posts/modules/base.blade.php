@@ -52,11 +52,9 @@
         <select  name="category[]"  multiple data-placeholder="Select Category" class="chosen-select form-control">
                 @foreach($category as  $value)
 
-
                     <option value="{{$value->id}}"
-                     @if($post->exists) selected @endif >
+                     @if($value->active) selected @endif >
                         {{$value->term->getContent('name')}}</option>
-
 
                 @endforeach
         </select>

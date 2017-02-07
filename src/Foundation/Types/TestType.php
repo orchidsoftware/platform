@@ -85,7 +85,7 @@ class TestType extends Type
     {
         return [
             'name'       => 'Название',
-            'publish'    => 'Дата публикации',
+            'publish_at'    => 'Дата публикации',
             'created_at' => 'Дата создания',
         ];
     }
