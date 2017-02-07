@@ -2,6 +2,8 @@
 
 namespace Orchid\Foundation\Filters;
 
+use Illuminate\Support\Facades\App;
+
 class ContentFilter
 {
     /**
@@ -13,6 +15,8 @@ class ContentFilter
      * @var null
      */
     public $parameters;
+
+    protected $chainBase = '';
 
     /**
      * ContentFilter constructor.
@@ -33,7 +37,18 @@ class ContentFilter
     {
         foreach ($this->parameters as $methodName => $values) {
             if (method_exists($this, $methodName)) {
-                $this->model = $this->$methodName($this->model, $values);
+                $chain = [];
+
+                $chain[] = $this->chainBase;
+                $chain[] = $methodName;
+
+                $locale = App::getLocale();
+
+                if ($locale == null) {
+                    $locale = 'en';
+                }
+
+                $this->model = $this->$methodName($this->model, $values, "content->$locale->".implode($chain, '->'));
             }
         }
 

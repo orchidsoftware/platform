@@ -64,7 +64,17 @@ class PostApiController extends Controller
 
         $posts = $builder->get();
 
-        return response()->json($posts);
+        if (($transformField = $request->get('transform')) != null) {
+            $transformerClass = Dashboard::getTransformers()->get($transformField);
+
+            if ($transformerClass != null) {
+                $posts = $transformerClass::transform($posts);
+            }
+        }
+
+        $response = response();
+
+        return $response->json($posts);
     }
 
     /**
@@ -83,6 +93,8 @@ class PostApiController extends Controller
      * @param $fields
      *
      * @return mixed
+     *
+     * @internal param $model
      */
     public function applyFieldFilters($post, $fields)
     {
@@ -133,7 +145,6 @@ class PostApiController extends Controller
     {
         $contentFilters = Dashboard::getContentFilters();
 
-//        $as = [];
         foreach ($contentFields as $fieldName => $filtersDescriptor) {
             $filterClass = $contentFilters->get($fieldName);
 
@@ -142,8 +153,6 @@ class PostApiController extends Controller
                 $post = $filter->run();
             }
         }
-
-//        dd($as);
 
         return $post;
     }

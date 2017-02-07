@@ -304,6 +304,16 @@ class Post extends Model
     }
 
     /**
+     * Gets the status attribute.
+     *
+     * @return string
+     */
+//    public function getStatusAttribute()
+//    {
+//        return $this->status;
+//    }
+
+    /**
      * Gets all the terms arranged taxonomy => terms[].
      *
      * @return array

@@ -55,7 +55,8 @@
       "src/Alert/helpers.php",
       "src/Log/helpers.php",
 
-      "src/Foundation/Helpers/array.php"
+      "src/Foundation/Helpers/array.php",
+      "src/Foundation/Helpers/operators.php"
     ],
     "psr-4": {
       "Orchid\\Access\\": "src/Access",
