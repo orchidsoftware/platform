@@ -45,8 +45,10 @@ class PostApiController extends Controller
      *
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(Post $post,Request $request)
     {
+        dd($post);
+
         $model = $this->resolveModel($request);
 
         $builder = new $model();
