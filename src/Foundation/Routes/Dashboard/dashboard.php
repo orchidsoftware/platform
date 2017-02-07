@@ -11,9 +11,9 @@
 */
 
 $this->group([
-    'middleware' => ['web','dashboard'],
-    'prefix' => 'dashboard',
-    'namespace' => 'Orchid\Foundation\Http\Controllers'
+    'middleware' => ['web', 'dashboard'],
+    'prefix'     => 'dashboard',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers',
 ],
     function ($router) {
         $router->get('/', [

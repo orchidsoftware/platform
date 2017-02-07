@@ -10,9 +10,9 @@
 */
 
 $this->group([
-    'middleware' => ['web','dashboard'],
-    'prefix' => 'dashboard/systems',
-    'namespace' => 'Orchid\Foundation\Http\Controllers\Systems'
+    'middleware' => ['web', 'dashboard'],
+    'prefix'     => 'dashboard/systems',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers\Systems',
 ],
     function ($router) {
         $router->get('settings', [

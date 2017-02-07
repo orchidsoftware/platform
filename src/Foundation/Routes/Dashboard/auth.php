@@ -10,9 +10,9 @@
 */
 
 $this->group([
-    'middleware' => ['web','dashboard'],
-    'prefix' => 'dashboard',
-    'namespace' => 'Orchid\Foundation\Http\Controllers\Auth'
+    'middleware' => ['web', 'dashboard'],
+    'prefix'     => 'dashboard',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers\Auth',
 ],
     function ($router) {
         // Authentication Routes...

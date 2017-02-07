@@ -10,9 +10,9 @@
 */
 
 $this->group([
-    'middleware' => ['web','dashboard'],
-    'prefix' => 'dashboard/tools',
-    'namespace' => 'Orchid\Foundation\Http\Controllers\Tools'
+    'middleware' => ['web', 'dashboard'],
+    'prefix'     => 'dashboard/tools',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers\Tools',
 ],
     function ($router) {
         $router->post('files', [
