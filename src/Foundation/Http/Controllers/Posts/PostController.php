@@ -69,13 +69,18 @@ class PostController extends Controller
 
         $post->type = $post->getTypeObject()->slug;
         $post->user_id = Auth::user()->id;
-        $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
-        $Slugs = $post->where('slug', 'like', $post->slug.'%')->count();
-        if ($Slugs != 0) {
-            $post->slug = $post->slug.'-'.($Slugs + 1);
+
+
+        if ($request->has('slug')) {
+            $slug = $request->get('slug');
+        }else{
+            $slug = $request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields];
         }
+
+        $post->slug = $post->makeSlug($slug);
+
 
         $post->save();
 
@@ -130,14 +135,19 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->user_id = Auth::user()->id;
 
-        $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
 
-        $Slugs = $post->where('id', '!=', $post->id)->where('slug', 'like', $post->slug.'%')->count();
-        if ($Slugs != 0) {
-            $post->slug = $post->slug.'-'.($Slugs + 1);
+        if ($request->has('slug')) {
+            $slug = $request->get('slug');
+        }else{
+            $slug = $request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields];
         }
+
+        $post->slug = $post->makeSlug($slug);
+
+
+
         $post->save();
 
         $modules = $type->getTypeObject()->getModules();
