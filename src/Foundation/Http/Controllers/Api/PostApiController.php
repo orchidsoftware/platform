@@ -2,29 +2,13 @@
 
 namespace Orchid\Foundation\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Dashboard;
-use Orchid\Foundation\Filters\BetweenFilter;
-use Orchid\Foundation\Filters\ContentFilters;
-use Orchid\Foundation\Filters\LikeFilters;
-use Orchid\Foundation\Filters\LimitFilters;
-use Orchid\Foundation\Filters\WhereFilters;
-use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Http\Controllers\ApiController;
+use Orchid\Foundation\Http\Requests\Request;
 
-class PostApiController extends Controller
+class PostApiController extends ApiController
 {
-    /**
-     * @var array Active filters set
-     */
-    public $filters = [
-        'eq'      => WhereFilters::class,
-        'count'   => LimitFilters::class,
-        'between' => BetweenFilter::class,
-        'search'  => LikeFilters::class,
-        'content' => ContentFilters::class,
-    ];
-
     /**
      * @param $type
      * @param $fields
@@ -45,10 +29,8 @@ class PostApiController extends Controller
      *
      * @return mixed
      */
-    public function store(Post $post,Request $request)
+    public function store(Post $post, Request $request)
     {
-        dd($post);
-
         $model = $this->resolveModel($request);
 
         $builder = new $model();
@@ -61,7 +43,7 @@ class PostApiController extends Controller
         $content = $request->get('content');
 
         if ($content != null) {
-            $builder = $this->applyContentFilters($builder, $content);
+            $builder = $this->applyJSONFilters('content', $builder, $content);
         }
 
         $posts = $builder->get();
@@ -91,37 +73,10 @@ class PostApiController extends Controller
     }
 
     /**
-     * @param $post
-     * @param $fields
-     *
-     * @return mixed
-     *
-     * @internal param $model
-     */
-    public function applyFieldFilters($post, $fields)
-    {
-        $fieldFilters = Dashboard::getFieldFilters();
-
-        foreach ($fields as $fieldName => $filterDescriptor) {
-            foreach ($filterDescriptor as $filterName => $filterParameters) {
-                $filterClass = $fieldFilters->get($filterName);
-
-                if ($filterClass != null) {
-                    $filter = new $filterClass($post, $fieldName, $filterParameters);
-                    $post = $filter->run();
-                }
-            }
-        }
-
-        return $post;
-    }
-
-    /**
      * @param Request $request
-     *
      * @return null
      */
-    private function resolveModel(Request $request)
+    protected function resolveModel(Request $request)
     {
         $typeIndex = $request->get('type');
 
@@ -137,25 +92,5 @@ class PostApiController extends Controller
         }
 
         return $model;
-    }
-
-    /**
-     * @param $post
-     * @param $contentFields
-     */
-    private function applyContentFilters($post, $contentFields)
-    {
-        $contentFilters = Dashboard::getContentFilters();
-
-        foreach ($contentFields as $fieldName => $filtersDescriptor) {
-            $filterClass = $contentFilters->get($fieldName);
-
-            if ($filterClass != null) {
-                $filter = new $filterClass($post, $filtersDescriptor);
-                $post = $filter->run();
-            }
-        }
-
-        return $post;
     }
 }

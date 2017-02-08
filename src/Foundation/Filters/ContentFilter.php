@@ -20,14 +20,15 @@ class ContentFilter
 
     /**
      * ContentFilter constructor.
-     *
      * @param $model
+     * @param string $column
      * @param null $parameters
      */
-    public function __construct($model, $parameters = null)
+    public function __construct($model, $column = 'content', $parameters = null)
     {
         $this->model = $model;
         $this->parameters = $parameters;
+        $this->column = $column;
     }
 
     /**
@@ -48,7 +49,7 @@ class ContentFilter
                     $locale = 'en';
                 }
 
-                $this->model = $this->$methodName($this->model, $values, "content->$locale->".implode($chain, '->'));
+                $this->model = $this->$methodName($this->model, $values, "$this->column->$locale->".implode($chain, '->'));
             }
         }
 
