@@ -74,6 +74,7 @@ class PostApiController extends ApiController
 
     /**
      * @param Request $request
+     *
      * @return null
      */
     protected function resolveModel(Request $request)

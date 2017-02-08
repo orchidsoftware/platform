@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 08.02.17
- * Time: 9:24
+ * Time: 9:24.
  */
 
 namespace Orchid\Foundation\Http\Controllers;
-
 
 use Orchid\Foundation\Filters\BetweenFilter;
 use Orchid\Foundation\Filters\ContentFilters;
@@ -32,6 +31,7 @@ abstract class ApiController extends Controller
     /**
      * @param $post
      * @param $fields
+     *
      * @return mixed
      */
     public function applyFieldFilters($post, $fields)
@@ -54,14 +54,16 @@ abstract class ApiController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return mixed
      */
-    protected abstract function resolveModel(Request $request);
+    abstract protected function resolveModel(Request $request);
 
     /**
      * @param $column
      * @param $post
      * @param $contentFields
+     *
      * @return mixed
      */
     protected function applyJSONFilters($column, $post, $contentFields)
