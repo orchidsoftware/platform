@@ -411,16 +411,16 @@ class Post extends Model
         });
     }
 
-
     /**
      * @param $title
+     *
      * @return string
      */
     public function makeSlug($title)
     {
         $slug = Str::slug($title);
-        $count = Post::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+        $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+
         return $count ? "{$slug}-{$count}" : $slug;
     }
-
 }
