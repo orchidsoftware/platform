@@ -66,6 +66,7 @@ class PostController extends Controller
         $this->validate($request, $post->getTypeObject()->rules());
 
         $post->fill($request->all());
+
         $post->type = $post->getTypeObject()->slug;
         $post->user_id = Auth::user()->id;
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields]);
@@ -132,12 +133,9 @@ class PostController extends Controller
         $post->slug = Str::slug($request->get('content')[config('app.locale')][$type->getTypeObject()->slugFields]);
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
-        $Slugs = $post
-            ->where('id', '!=', $post->id)
-            ->where('slug', $post->slug)
-            ->count();
 
-        if ($Slugs > 0) {
+        $Slugs = $post->where('id', '!=', $post->id)->where('slug', 'like', $post->slug.'%')->count();
+        if ($Slugs != 0) {
             $post->slug = $post->slug.'-'.($Slugs + 1);
         }
         $post->save();
