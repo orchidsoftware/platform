@@ -16832,6 +16832,21 @@ a.text-black:hover {
 .no-line {
   border-width: 0;
 }
+@media (min-width: 768px) {
+  .wi-col {
+    width: 200px;
+  }
+}
+@media (min-width: 1280px) {
+  .wi-col {
+    width: 350px;
+  }
+}
+@media (min-width: 1600px) {
+  .wi-col {
+    width: 600px;
+  }
+}
 .no-border,
 .no-borders {
   border-color: transparent;
