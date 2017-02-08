@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Core\Models;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
@@ -408,5 +409,18 @@ class Post extends Model
                 $query->where('slug', $term);
             });
         });
+    }
+
+    /**
+     * @param $title
+     *
+     * @return string
+     */
+    public function makeSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+
+        return $count ? "{$slug}-{$count}" : $slug;
     }
 }
