@@ -20,9 +20,10 @@ class ContentFilter
 
     /**
      * ContentFilter constructor.
+     *
      * @param $model
      * @param string $column
-     * @param null $parameters
+     * @param null   $parameters
      */
     public function __construct($model, $column = 'content', $parameters = null)
     {
