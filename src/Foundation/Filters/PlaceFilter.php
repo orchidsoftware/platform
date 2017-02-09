@@ -14,6 +14,7 @@ class PlaceFilter extends ContentFilter
      * @param $values
      * @param $chain
      * @param string $method
+     *
      * @return mixed
      */
     public function name($model, $values, $chain, $method = 'where')
@@ -30,6 +31,7 @@ class PlaceFilter extends ContentFilter
      * @param $values
      * @param $chain
      * @param string $method
+     *
      * @return mixed
      */
     public function latLng($model, $values, $chain, $method = 'where')

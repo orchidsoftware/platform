@@ -2,11 +2,11 @@
 
 namespace Orchid\Installer\Controllers;
 
+use Dotenv\Dotenv;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Redirector;
 use Orchid\Installer\Helpers\EnvironmentManager;
-use Dotenv\Dotenv;
 
 class EnvironmentController extends Controller
 {
