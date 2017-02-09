@@ -344,7 +344,6 @@ abstract class Type implements TypeInterface
     {
         $arg = func_get_args();
 
-
         foreach ($this->group as $form) {
             if (!is_object($form)) {
                 $form = new $form();

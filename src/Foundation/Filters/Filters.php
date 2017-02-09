@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Filters;
 
-
 abstract class Filters
 {
     /**

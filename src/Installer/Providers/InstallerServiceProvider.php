@@ -3,10 +3,10 @@
 namespace Orchid\Installer\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Installer\Middleware\CanInstall;
 use Orchid\Installer\Middleware\RedirectInstall;
-use Illuminate\Support\Facades\Config;
 
 class InstallerServiceProvider extends ServiceProvider
 {
