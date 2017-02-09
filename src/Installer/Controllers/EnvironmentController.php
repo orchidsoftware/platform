@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Redirector;
 use Orchid\Installer\Helpers\EnvironmentManager;
+use Dotenv\Dotenv;
 
 class EnvironmentController extends Controller
 {
@@ -31,7 +32,7 @@ class EnvironmentController extends Controller
     {
         $envConfig = $this->EnvironmentManager->getEnvContent();
 
-        $dotenv = new \Dotenv\Dotenv(base_path());
+        $dotenv = new Dotenv(base_path());
         $dotenv = $dotenv->load();
         $envArray = [];
 

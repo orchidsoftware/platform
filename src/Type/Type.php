@@ -254,7 +254,7 @@ abstract class Type implements TypeInterface
     abstract public function grid();
 
     /**
-     * Reqeust Validation.
+     * Request Validation.
      *
      * @return bool
      */
@@ -343,7 +343,7 @@ abstract class Type implements TypeInterface
     public function save()
     {
         $arg = func_get_args();
-        $arg[] = $this->storage;
+
 
         foreach ($this->group as $form) {
             if (!is_object($form)) {
@@ -362,7 +362,6 @@ abstract class Type implements TypeInterface
     public function update()
     {
         $arg = func_get_args();
-        $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
             if (!is_object($form)) {
@@ -381,7 +380,6 @@ abstract class Type implements TypeInterface
     public function remove()
     {
         $arg = func_get_args();
-        $arg[] = $this->storage;
 
         foreach ($this->group as $form) {
             if (!is_object($form)) {

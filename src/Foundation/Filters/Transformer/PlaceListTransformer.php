@@ -3,14 +3,7 @@
 namespace Orchid\Foundation\Filters\Transformer;
 
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
 
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 07.02.17
- * Time: 13:12.
- */
 class PlaceListTransformer extends Transformer
 {
     private $locales = [];

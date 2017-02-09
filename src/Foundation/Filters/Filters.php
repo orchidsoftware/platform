@@ -2,17 +2,16 @@
 
 namespace Orchid\Foundation\Filters;
 
-use Illuminate\Database\Eloquent\Model;
 
 abstract class Filters
 {
     /**
-     * @var
+     * @var \Illuminate\Database\Eloquent\Model
      */
     public $model;
 
     /**
-     * @var
+     * @var string
      */
     public $fieldName;
 
