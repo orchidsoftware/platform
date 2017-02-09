@@ -59,7 +59,7 @@ if (document.getElementsByClassName('dropzone')) {
 
 
                         $('.dz-progress').remove();
-                        console.log(JSON.parse(data));
+                        //console.log(JSON.parse(data));
                     }
                 });
             }
