@@ -15,13 +15,14 @@ class PlaceContentFilter extends ContentFilter
      * @param $prefix
      * @param $chain
      * @param string $method
+     *
      * @return mixed
      */
     public function name($model, $values, $prefix, $chain, $method = 'where')
     {
         $like_token = $values['like'];
 
-        $result = $model->$method($prefix . implode($chain, '->'), 'LIKE', "%$like_token%");
+        $result = $model->$method($prefix.implode($chain, '->'), 'LIKE', "%$like_token%");
 
         return $result;
     }
