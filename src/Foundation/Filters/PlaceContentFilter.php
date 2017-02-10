@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Filters;
 
-class PlaceFilter extends ContentFilter
+class PlaceContentFilter extends ContentFilter
 {
     /**
      * @var string
@@ -12,16 +12,16 @@ class PlaceFilter extends ContentFilter
     /**
      * @param $model
      * @param $values
+     * @param $prefix
      * @param $chain
      * @param string $method
-     *
      * @return mixed
      */
-    public function name($model, $values, $chain, $method = 'where')
+    public function name($model, $values, $prefix, $chain, $method = 'where')
     {
         $like_token = $values['like'];
 
-        $result = $model->$method($chain, 'LIKE', "%$like_token%");
+        $result = $model->$method($prefix . implode($chain, '->'), 'LIKE', "%$like_token%");
 
         return $result;
     }
@@ -34,7 +34,7 @@ class PlaceFilter extends ContentFilter
      *
      * @return mixed
      */
-    public function latLng($model, $values, $chain, $method = 'where')
+    public function latLng($model, $values, $prefix, $chain, $method = 'where')
     {
         return $this->model;
     }

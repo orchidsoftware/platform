@@ -53,7 +53,7 @@ class ContentFilter
                     $locale = 'en';
                 }
 
-                $this->model = $this->$methodName($this->model, $values, "$this->column->$locale->".implode($chain, '->'));
+                $this->model = $this->$methodName($this->model, $values, "$this->column->$locale->", $chain);
             }
         }
 

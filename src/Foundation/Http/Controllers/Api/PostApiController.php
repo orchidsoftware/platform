@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Http\Controllers\ApiController;
-use Orchid\Foundation\Http\Requests\Request;
 
 class PostApiController extends ApiController
 {
