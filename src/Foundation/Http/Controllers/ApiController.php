@@ -8,14 +8,13 @@
 
 namespace Orchid\Foundation\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Orchid\Foundation\Facades\Dashboard;
 use Orchid\Foundation\Filters\BetweenFilter;
 use Orchid\Foundation\Filters\ContentFilters;
 use Orchid\Foundation\Filters\LikeFilters;
 use Orchid\Foundation\Filters\LimitFilters;
 use Orchid\Foundation\Filters\WhereFilters;
-
-use Orchid\Foundation\Facades\Dashboard;
-use Illuminate\Http\Request;
 
 abstract class ApiController extends Controller
 {
