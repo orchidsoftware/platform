@@ -29,7 +29,7 @@ class PlaceListTransformer extends Transformer
 
             $exists = !isset($content_locale['place']);
 
-            if ($exists) {
+            if (!$exists) {
                 return
                     empty($content_locale['place']['name']) ||
                     empty($content_locale['place']['lat']) ||
