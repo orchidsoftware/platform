@@ -30,10 +30,10 @@ class PlaceListTransformer extends Transformer
             $content_locale = $item['content'][$locale];
 
             return [
-                'name' => $content_locale['name'],
+                'name'    => $content_locale['name'],
                 'address' => $content_locale['place']['name'],
-                'lat'   => $content_locale['place']['lat'],
-                'lng'   => $content_locale['place']['lng'],
+                'lat'     => $content_locale['place']['lat'],
+                'lng'     => $content_locale['place']['lng'],
             ];
         });
     }
