@@ -32,9 +32,9 @@ class PlaceListTransformer extends Transformer
 
             if($exists) {
                 return
-                    $content_locale['place']['name'] != '' &&
-                    $content_locale['place']['lat'] != '' &&
-                    $content_locale['place']['lng'] != '';
+                    !empty($content_locale['place']['name']) != '' &&
+                    !empty($content_locale['place']['lat']) &&
+                    !empty($content_locale['place']['lng']);
             }
 
             return false;
