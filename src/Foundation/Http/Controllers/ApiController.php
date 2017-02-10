@@ -13,7 +13,9 @@ use Orchid\Foundation\Filters\ContentFilters;
 use Orchid\Foundation\Filters\LikeFilters;
 use Orchid\Foundation\Filters\LimitFilters;
 use Orchid\Foundation\Filters\WhereFilters;
-use Orchid\Foundation\Http\Requests\Request;
+
+use Orchid\Foundation\Facades\Dashboard;
+use Illuminate\Http\Request;
 
 abstract class ApiController extends Controller
 {
