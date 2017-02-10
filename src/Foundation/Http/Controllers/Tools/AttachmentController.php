@@ -97,7 +97,8 @@ class AttachmentController extends Controller
     {
         Storage::disk('public')->makeDirectory($this->date);
 
-        $name = sha1($this->time.$file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+        $hashName = sha1($this->time.$file->getClientOriginalName());
+        $name = $hashName.'.'.$file->getClientOriginalExtension();
         $path = '/'.$this->date.'/';
 
         $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
@@ -111,7 +112,7 @@ class AttachmentController extends Controller
         }
 
         return Attachment::create([
-            'name'          => $name,
+            'name'          => $hashName,
             'original_name' => $file->getClientOriginalName(),
             'mime'          => $mimeType,
             'extension'     => $file->getClientOriginalExtension(),
