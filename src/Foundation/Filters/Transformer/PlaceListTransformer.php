@@ -27,10 +27,9 @@ class PlaceListTransformer extends Transformer
         return $collect->reject(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
-
             $exists = !isset($content_locale['place']);
 
-            if($exists) {
+            if ($exists) {
                 return
                     $content_locale['place']['name'] != '' &&
                     $content_locale['place']['lat'] != '' &&
