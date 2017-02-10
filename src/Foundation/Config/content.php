@@ -67,7 +67,7 @@ return [
 
     'contentFilters' => [
         'place' => \Orchid\Foundation\Filters\PlaceContentFilter::class,
-        'name' => \Orchid\Foundation\Filters\NameContentFilter::class,
+        'name'  => \Orchid\Foundation\Filters\NameContentFilter::class,
     ],
 
     /*
