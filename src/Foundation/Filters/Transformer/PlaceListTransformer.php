@@ -31,12 +31,12 @@ class PlaceListTransformer extends Transformer
 
             if ($exists) {
                 return
-                    !empty($content_locale['place']['name']) &&
-                    !empty($content_locale['place']['lat']) &&
-                    !empty($content_locale['place']['lng']);
+                    empty($content_locale['place']['name']) ||
+                    empty($content_locale['place']['lat']) ||
+                    empty($content_locale['place']['lng']);
             }
 
-            return false;
+            return $exists;
         })->map(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
