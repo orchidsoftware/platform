@@ -16,6 +16,9 @@ class ContentFilter
      */
     public $parameters;
 
+    /**
+     * @var string
+     */
     protected $chainBase = '';
 
     /**

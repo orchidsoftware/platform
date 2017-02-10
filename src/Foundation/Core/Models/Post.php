@@ -101,9 +101,9 @@ class Post extends Model
     {
         if (!is_null($this->dataType)) {
             return $this->dataType;
-        } else {
-            return $this->getType($this->getAttribute('type'))->dataType;
         }
+
+        return $this->getType($this->getAttribute('type'))->dataType;
     }
 
     /**

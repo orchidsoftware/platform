@@ -72,7 +72,7 @@ class Defender
     {
         $files = scandir($dir);
 
-        foreach ($files as $key => $value) {
+        foreach ($files as  $value) {
             $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
             if (!is_dir($path)) {
                 $results[] = $path;
@@ -199,9 +199,7 @@ class Defender
     {
         $files = [];
         foreach ($this->dangerFiles as $file) {
-            $stat = stat($file);
-            $info['mode'] = octdec($stat['mode']);
-            $files[] = $stat;
+            $files[] = stat($file);
         }
 
         return $files;
