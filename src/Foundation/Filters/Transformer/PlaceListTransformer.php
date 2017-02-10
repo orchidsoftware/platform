@@ -26,7 +26,6 @@ class PlaceListTransformer extends Transformer
 
         return $collect->reject(function ($item) use ($locale) {
             return !isset($item['content'][$locale]['place']);
-
         })->map(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
