@@ -36,7 +36,7 @@ class PlaceListTransformer extends Transformer
                     empty($content_locale['place']['lng']);
             }
 
-            return $exists;
+            return false;
         })->map(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
