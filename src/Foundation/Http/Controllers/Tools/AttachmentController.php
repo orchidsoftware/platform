@@ -72,7 +72,6 @@ class AttachmentController extends Controller
         }
 
         $name = sha1($this->time.$image->getClientOriginalName());
-        $path = '/'.$this->date.'/';
 
         $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($full_path, 100);
@@ -83,7 +82,7 @@ class AttachmentController extends Controller
             'mime'          => $image->getMimeType(),
             'extension'     => $image->getClientOriginalExtension(),
             'size'          => $image->getClientSize(),
-            'path'          => $path,
+            'path'          => $this->date.'/',
             'user_id'       => Auth::user()->id,
         ]);
     }
@@ -99,7 +98,6 @@ class AttachmentController extends Controller
 
         $hashName = sha1($this->time.$file->getClientOriginalName());
         $name = $hashName.'.'.$file->getClientOriginalExtension();
-        $path = '/'.$this->date.'/';
 
         $full_path = storage_path('app/public/'.'/'.$this->date.'/');
 
@@ -117,7 +115,7 @@ class AttachmentController extends Controller
             'mime'          => $mimeType,
             'extension'     => $file->getClientOriginalExtension(),
             'size'          => $file->getClientSize(),
-            'path'          => $path,
+            'path'          => $this->date.'/',
             'user_id'       => Auth::user()->id,
         ]);
     }
