@@ -3,6 +3,7 @@
 namespace Orchid\Installer\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Installer\Middleware\CanInstall;
 use Orchid\Installer\Middleware\RedirectInstall;
@@ -54,7 +55,7 @@ class InstallerServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path.'/vendor/orchid/install';
-        }, \Config::get('view.paths')), [__DIR__.'/../Views']), 'install');
+        }, Config::get('view.paths')), [__DIR__.'/../Views']), 'install');
 
         $this->publishes([
             __DIR__.'/../Lang' => base_path('resources/lang'),

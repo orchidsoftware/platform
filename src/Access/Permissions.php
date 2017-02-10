@@ -26,7 +26,7 @@ class Permissions
     }
 
     /**
-     * Get Permissons.
+     * Get Permissions.
      *
      * @return \Illuminate\Support\Collection
      */

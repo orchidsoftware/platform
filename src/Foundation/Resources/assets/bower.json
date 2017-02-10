@@ -40,7 +40,6 @@
     "install": "^1.0.4",
     "froala-wysiwyg-editor": "^2.3.5",
     "google-maps": "^3.2.1",
-    "g-map-field": "*",
     "summernote": "^0.8.2",
     "nestable": "*"
   }

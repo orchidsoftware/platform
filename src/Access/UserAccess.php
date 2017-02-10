@@ -39,7 +39,7 @@ trait UserAccess
      */
     public function inRole($role)
     {
-        $role = array_first($this->roles, function ($index, $instance) use ($role) {
+        $role = array_first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }

@@ -86,7 +86,7 @@
 
 
                 <!-- column -->
-                <div class="col w-xxl lter b-r">
+                <div class="col wi-col lter b-r">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
                             <ul class="nav nav-tabs">

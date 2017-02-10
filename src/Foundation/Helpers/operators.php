@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 07.02.17
- * Time: 13:40.
- */
+
 if (!function_exists('like_match')) {
 
     /**
