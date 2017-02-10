@@ -25,18 +25,26 @@ class PlaceListTransformer extends Transformer
         }
 
         return $collect->reject(function ($item) use ($locale) {
-            if (isset($item['content'][$locale]['place'])) {
-                return true;
+            $content_locale = $item['content'][$locale];
+
+            $exists = !isset($content_locale['place']);
+
+            if (!$exists) {
+                return
+                    empty($content_locale['place']['name']) ||
+                    empty($content_locale['place']['lat']) ||
+                    empty($content_locale['place']['lng']);
             }
 
-            return false;
+            return $exists;
         })->map(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
             return [
-                'title' => $content_locale['place']['name'],
-                'lat'   => $content_locale['place']['lat'],
-                'lng'   => $content_locale['place']['lng'],
+                'name'    => $content_locale['name'],
+                'address' => $content_locale['place']['name'],
+                'lat'     => $content_locale['place']['lat'],
+                'lng'     => $content_locale['place']['lng'],
             ];
         });
     }
