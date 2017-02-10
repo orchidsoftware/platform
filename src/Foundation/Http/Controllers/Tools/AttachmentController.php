@@ -101,7 +101,7 @@ class AttachmentController extends Controller
         $name = $hashName.'.'.$file->getClientOriginalExtension();
         $path = '/'.$this->date.'/';
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
+        $full_path = storage_path('app/public/'.'/'.$this->date.'/');
 
         $file->move($full_path, $name);
 
