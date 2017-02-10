@@ -49,6 +49,13 @@
 
 
 
+
+<div class="line line-dashed b-b line-lg"></div>
+
+
+@push('scripts')
+
+
 <script>
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -72,13 +79,11 @@
                     lng: parseFloat($('#lng-{{str_slug($name)}}-{{$lang}}').val())
                 };
 
-                // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map-place-{{str_slug($name)}}-{{$lang}}-canvas'), {
                     center: myLatLng,
                     zoom: 12
                 });
 
-                // Create a marker and set its position.
                 var marker = new google.maps.Marker({
                     map: map,
                     position: myLatLng,
@@ -97,4 +102,5 @@
 
 </script>
 
-<div class="line line-dashed b-b line-lg"></div>
+
+@endpush
