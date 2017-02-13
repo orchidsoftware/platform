@@ -40,12 +40,22 @@ class PlaceListTransformer extends Transformer
         })->map(function ($item) use ($locale) {
             $content_locale = $item['content'][$locale];
 
-            return [
-                'name'    => $content_locale['name'],
+            $typeObject = $item->getTypeObject();
+
+            $result = [
+                'id' => $item['id'],
+
+                'name' => $content_locale['name'],
                 'address' => $content_locale['place']['name'],
-                'lat'     => $content_locale['place']['lat'],
-                'lng'     => $content_locale['place']['lng'],
+                'lat' => $content_locale['place']['lat'],
+                'lng' => $content_locale['place']['lng'],
             ];
+
+            if(method_exists($typeObject, 'display')) {
+                $result['display'] = $typeObject->display();
+            }
+
+            return $result;
         });
     }
 }
