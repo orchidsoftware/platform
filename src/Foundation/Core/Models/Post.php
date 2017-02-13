@@ -31,7 +31,6 @@ class Post extends Model
         'user_id',
         'type',
         'status',
-        'section_id',
         'content',
         'options',
         'slug',
@@ -224,18 +223,9 @@ class Post extends Model
      */
     public function breadcrumb()
     {
-        $section = $this->section()->first();
-
-        return $section ? $section->breadcrumb() : [];
+        return [];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function section()
-    {
-        return $this->belongsTo(Section::class);
-    }
 
     /**
      * Main image (First image).
@@ -304,15 +294,6 @@ class Post extends Model
         return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
     }
 
-    /**
-     * Gets the status attribute.
-     *
-     * @return string
-     */
-//    public function getStatusAttribute()
-//    {
-//        return $this->status;
-//    }
 
     /**
      * Gets all the terms arranged taxonomy => terms[].

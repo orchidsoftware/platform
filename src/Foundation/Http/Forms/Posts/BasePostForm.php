@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Core\Models\Section;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 
 class BasePostForm extends Form
@@ -42,7 +41,6 @@ class BasePostForm extends Form
         return view('dashboard::container.posts.modules.base', [
             'author'          => (is_null($post)) ? $post : $post->getUser(),
             'post'            => $post,
-            'sections'        => Section::get(),
             'language'        => App::getLocale(),
             'locales'         => config('content.locales'),
             'category'        => $category,
@@ -63,9 +61,6 @@ class BasePostForm extends Form
     {
         $post->setTags($this->request->get('tags', []));
 
-        if ($post->section_id == 0) {
-            $post->section_id = null;
-        }
 
         $post->taxonomies()->where('taxonomy', 'category')->detach();
 

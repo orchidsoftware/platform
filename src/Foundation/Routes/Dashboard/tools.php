@@ -20,15 +20,6 @@ $this->group([
             'uses' => 'AttachmentController@upload',
         ]);
 
-        $router->resource('section', 'SectionController', ['names' => [
-            'index'   => 'dashboard.tools.section',
-            'create'  => 'dashboard.tools.section.create',
-            'edit'    => 'dashboard.tools.section.edit',
-            'update'  => 'dashboard.tools.section.update',
-            'store'   => 'dashboard.tools.section.store',
-            'destroy' => 'dashboard.tools.section.destroy',
-        ]]);
-
         $router->resource('category', 'CategoryController', ['names' => [
             'index'   => 'dashboard.tools.category',
             'create'  => 'dashboard.tools.category.create',
