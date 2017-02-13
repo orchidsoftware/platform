@@ -61,7 +61,6 @@ class BasePostForm extends Form
     {
         $post->setTags($this->request->get('tags', []));
 
-
         $post->taxonomies()->where('taxonomy', 'category')->detach();
 
         $category = [];

@@ -226,7 +226,6 @@ class Post extends Model
         return [];
     }
 
-
     /**
      * Main image (First image).
      *
@@ -293,7 +292,6 @@ class Post extends Model
     {
         return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
     }
-
 
     /**
      * Gets all the terms arranged taxonomy => terms[].
