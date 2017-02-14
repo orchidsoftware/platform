@@ -30,7 +30,7 @@ abstract class Type implements TypeInterface
     /**
      * @var string
      */
-    public $icon = 'ion-ios-paper-outline';
+    public $icon = 'fa fa-folder-o';
 
     /**
      * Fields for content.
