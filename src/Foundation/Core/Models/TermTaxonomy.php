@@ -132,7 +132,6 @@ class TermTaxonomy extends Model
         return $this->where('taxonomy', 'menu');
     }
 
-
     /**
      * Overriding newQuery() to the custom TermTaxonomyBuilder with some interesting methods.
      *
@@ -147,8 +146,7 @@ class TermTaxonomy extends Model
         if (isset($this->taxonomy) and !empty($this->taxonomy) and !is_null($this->taxonomy)) {
             $builder->where('taxonomy', $this->taxonomy);
         }
+
         return $builder;
     }
-
-
 }

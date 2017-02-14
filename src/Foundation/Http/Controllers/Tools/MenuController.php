@@ -83,7 +83,7 @@ class MenuController extends Controller
 
     /**
      * @param array $items
-     * @param null $parent
+     * @param null  $parent
      */
     private function createMenuElement(array $items, $parent = null)
     {

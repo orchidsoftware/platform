@@ -64,8 +64,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
+     *
      * @return mixed
      */
     public function edit(Request $request, TermTaxonomy $termTaxonomy)
