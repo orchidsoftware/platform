@@ -58,8 +58,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type' => 'string',
-        'slug' => 'string',
+        'type'    => 'string',
+        'slug'    => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -311,10 +311,9 @@ class Post extends Model
         return $terms;
     }
 
-
     /**
      * @param string $taxonomy
-     * @param mixed $term
+     * @param mixed  $term
      *
      * @return mixed
      */
@@ -340,7 +339,6 @@ class Post extends Model
         return $count ? "{$slug}-{$count}" : $slug;
     }
 
-
     /**
      * Overriding newQuery() to the custom PostBuilder with some interesting methods.
      *
@@ -361,7 +359,7 @@ class Post extends Model
         if ($excludeDeleted and $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }
+
         return $builder;
     }
-
 }

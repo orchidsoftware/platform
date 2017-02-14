@@ -13,6 +13,7 @@ class LaravelSessionStore implements SessionStoreInterface
 
     /**
      * LaravelSessionStore constructor.
+     *
      * @param Store $session
      */
     public function __construct(Store $session)

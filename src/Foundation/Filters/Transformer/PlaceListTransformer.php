@@ -21,6 +21,7 @@ class PlaceListTransformer extends Transformer
 
     /**
      * @param $collect
+     *
      * @return mixed
      */
     public static function transform($collect)

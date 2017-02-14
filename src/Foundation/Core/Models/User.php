@@ -54,9 +54,9 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'sex' => 'boolean',
+        'sex'          => 'boolean',
         'subscription' => 'boolean',
-        'about' => 'string',
-        'permissions' => 'array',
+        'about'        => 'string',
+        'permissions'  => 'array',
     ];
 }

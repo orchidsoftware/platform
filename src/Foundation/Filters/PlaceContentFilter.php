@@ -33,6 +33,7 @@ class PlaceContentFilter extends ContentFilter
      * @param $prefix
      * @param $chain
      * @param string $method
+     *
      * @return mixed
      */
     public function latLng($model, $values, $prefix, $chain, $method = 'where')

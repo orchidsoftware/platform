@@ -28,11 +28,11 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'post_id' => 'integer',
-        'user_id' => 'integer',
+        'post_id'   => 'integer',
+        'user_id'   => 'integer',
         'parent_id' => 'integer',
-        'type' => 'string',
-        'approved' => 'boolean',
+        'type'      => 'string',
+        'approved'  => 'boolean',
     ];
 
     /**
@@ -123,7 +123,7 @@ class Comment extends Model
         if ($excludeDeleted and $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }
+
         return $builder;
     }
-
 }
