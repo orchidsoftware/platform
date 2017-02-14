@@ -67,7 +67,9 @@ class PlaceListTransformer extends Transformer
             }
 
             foreach ($localeNames as $localeName) {
-                $result['locales'][$localeName] = $item['content'][$localeName]['place']['name'];
+                if(isset($item['content'][$localeName])) {
+                    $result['locales'][$localeName] = $item['content'][$localeName]['place']['name'];
+                }
             }
 
             return $result;
