@@ -31,7 +31,6 @@ class TermTaxonomyBuilder extends Builder
         return $this->where('taxonomy', 'category');
     }
 
-
     /**
      * Set taxonomy type to nav_menu.
      *
