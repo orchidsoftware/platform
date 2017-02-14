@@ -18,14 +18,19 @@ class PlaceListTransformer extends Transformer
 
     public static function transform($collect)
     {
-        $locale = App::getLocale();
+        $currentLocale = App::getLocale();
+        $localeNames = [];
 
-        if ($locale == null) {
-            $locale = 'en';
+        foreach(config('content.locales') as $localeName) {
+            $localeNames[] = $localeName;
         }
 
-        return $collect->reject(function ($item) use ($locale) {
-            $content_locale = $item['content'][$locale];
+        if ($currentLocale == null) {
+            $currentLocale = 'en';
+        }
+
+        return $collect->reject(function ($item) use ($currentLocale) {
+            $content_locale = $item['content'][$currentLocale];
 
             $exists = !isset($content_locale['place']);
 
@@ -37,8 +42,8 @@ class PlaceListTransformer extends Transformer
             }
 
             return $exists;
-        })->map(function ($item) use ($locale) {
-            $content_locale = $item['content'][$locale];
+        })->map(function ($item) use ($currentLocale, $localeNames) {
+            $content_locale = $item['content'][$currentLocale];
 
             $typeObject = $item->getTypeObject();
 
@@ -49,10 +54,16 @@ class PlaceListTransformer extends Transformer
                 'address' => $content_locale['place']['name'],
                 'lat'     => $content_locale['place']['lat'],
                 'lng'     => $content_locale['place']['lng'],
+
+                'locales' => []
             ];
 
             if (method_exists($typeObject, 'display')) {
                 $result['display'] = $typeObject->display();
+            }
+
+            foreach($localeNames as $localeName) {
+                $result['locales'][$localeName] = $item['content'][$localeName]['place']['name'];
             }
 
             return $result;
