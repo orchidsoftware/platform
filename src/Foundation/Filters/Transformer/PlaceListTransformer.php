@@ -27,11 +27,7 @@ class PlaceListTransformer extends Transformer
     public static function transform($collect)
     {
         $currentLocale = App::getLocale();
-        $localeNames = [];
-
-        foreach(config('content.locales') as $localeName) {
-            $localeNames[] = $localeName;
-        }
+        $localeNames = array_keys(config('content.locales'));
 
         if ($currentLocale == null) {
             $currentLocale = 'en';
