@@ -48,10 +48,10 @@ class Post extends Model
     protected $appends = [
 
         // Terms inside all taxonomies
-        'terms',
+        //'terms',
 
         // Terms analysis
-        'main_category',
+        //'main_category',
     ];
 
     /**

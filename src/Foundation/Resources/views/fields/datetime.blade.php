@@ -16,7 +16,7 @@
                 @endif
         >
         <span class="input-group-addon">
-                        <span class="ion-ios-calendar-outline"></span>
+                        <span class="icon-plus"></span>
                     </span>
     </div>
 

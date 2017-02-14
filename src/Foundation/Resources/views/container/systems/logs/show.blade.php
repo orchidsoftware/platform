@@ -13,12 +13,12 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li>
-                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i class="ion-ios-download-outline fa fa-2x"></i></a>
+                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i class="icon-cloud-download fa fa-2x"></i></a>
             </li>
 
             <li>
                 <a href="#delete-log-modal" class="btn btn-link " data-toggle="modal">
-                    <i class="ion-ios-trash-outline fa fa-2x"></i>
+                    <i class="icon-trash fa fa-2x"></i>
                 </a>
             </li>
 

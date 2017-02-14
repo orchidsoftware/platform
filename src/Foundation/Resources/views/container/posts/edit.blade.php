@@ -12,8 +12,8 @@
     <div class="col-md-6 text-right">
 
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
-            <button type="submit" form="post-form" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
-            <button type="submit" form="form-post-remove" class="btn btn-link"><i class="ion-ios-trash-outline  fa fa-2x"></i></button>
+            <button type="submit" form="post-form" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
+            <button type="submit" form="form-post-remove" class="btn btn-link"><i class="icon-trash  fa fa-2x"></i></button>
         </div>
     </div>
 @stop

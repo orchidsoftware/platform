@@ -4,10 +4,10 @@ $(function () {
         format: 'YYYY-MM-DD HH:mm:ss',
         locale:  $('html').attr('lang'),
         icons: {
-            time: "ion-clock",
-            date: "ion-calendar",
-            up: "ion-ios-arrow-up",
-            down: "ion-ios-arrow-down"
+            time: "icon-clock",
+            date: "icon-event",
+            up: "icon-arrow-up",
+            down: "icon-arrow-down"
         }
     });
 });

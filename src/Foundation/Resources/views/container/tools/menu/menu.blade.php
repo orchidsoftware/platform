@@ -31,7 +31,7 @@
 
             <li>
                 <button class="btn btn-link menu-save"><i
-                            class="ion-ios-compose-outline fa fa-2x"></i></button>
+                            class="icon-plus fa fa-2x"></i></button>
             </li>
 
         </ul>

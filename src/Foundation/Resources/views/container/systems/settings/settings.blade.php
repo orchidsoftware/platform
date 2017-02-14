@@ -8,7 +8,7 @@
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
+            <button type="submit" form="form-group" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
         </div>
     </div>
 @stop

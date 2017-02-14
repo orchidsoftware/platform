@@ -11,9 +11,9 @@
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" form="form-group" class="btn btn-link"><i class="ion-ios-compose-outline fa fa-2x"></i></button>
+            <button type="submit" form="form-group" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
-                        class="ion-ios-trash-outline  fa fa-2x"></i></button>
+                        class="icon-trash fa fa-2x"></i></button>
         </div>
     </div>
 @stop

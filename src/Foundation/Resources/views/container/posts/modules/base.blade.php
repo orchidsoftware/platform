@@ -16,7 +16,7 @@
                    value="{{$post->publish_at or ''}}"
                    placeholder="Укажите время публикации" name="publish">
             <span class="input-group-addon">
-                        <span class="ion-ios-calendar-outline"></span>
+                        <span class="icon-calendar"></span>
                     </span>
         </div>
     </div>
