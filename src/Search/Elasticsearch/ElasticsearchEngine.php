@@ -21,7 +21,7 @@ class ElasticsearchEngine extends Engine
      *
      * @param \Elasticsearch\Client $elastic
      *
-     * @return void
+     * @param $index
      */
     public function __construct(Elastic $elastic, $index)
     {

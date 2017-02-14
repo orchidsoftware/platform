@@ -27,7 +27,7 @@ class Term extends Model
      */
     protected $casts = [
         'content' => 'array',
-        'slug'    => 'string',
+        'slug' => 'string',
     ];
 
     /**

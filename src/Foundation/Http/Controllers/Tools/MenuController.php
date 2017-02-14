@@ -81,6 +81,10 @@ class MenuController extends Controller
         ]);
     }
 
+    /**
+     * @param array $items
+     * @param null $parent
+     */
     private function createMenuElement(array $items, $parent = null)
     {
         foreach ($items as $item) {

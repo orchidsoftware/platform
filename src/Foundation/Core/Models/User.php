@@ -9,7 +9,7 @@ use Orchid\Access\UserInterface;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable ,UserAccess;
+    use Notifiable, UserAccess;
 
     /**
      * @var
@@ -54,9 +54,9 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'sex'          => 'boolean',
+        'sex' => 'boolean',
         'subscription' => 'boolean',
-        'about'        => 'string',
-        'permissions'  => 'array',
+        'about' => 'string',
+        'permissions' => 'array',
     ];
 }

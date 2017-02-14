@@ -23,6 +23,11 @@ class CheckBoxField extends Field
      */
     protected $rows;
 
+    /**
+     * @param null $attributes
+     * @param null $data
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
     public function create($attributes, $data = null)
     {
         if (is_null($data)) {

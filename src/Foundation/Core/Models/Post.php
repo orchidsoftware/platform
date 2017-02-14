@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Orchid\Foundation\Core\Builders\PostBuilder;
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
 
@@ -57,8 +58,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type'    => 'string',
-        'slug'    => 'string',
+        'type' => 'string',
+        'slug' => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -154,27 +155,6 @@ class Post extends Model
     }
 
     /**
-     * @param $key
-     * @param null $default
-     *
-     * @return null
-     */
-    public function getOption($key, $default = null)
-    {
-        $option = $this->options;
-
-        if ($option == null) {
-            $option = [];
-        }
-
-        if (array_key_exists($key, $option)) {
-            return $option[$key];
-        }
-
-        return $default;
-    }
-
-    /**
      * @return \Illuminate\Support\Collection
      */
     public function getOptions()
@@ -196,6 +176,27 @@ class Post extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @param $key
+     * @param null $default
+     *
+     * @return null
+     */
+    public function getOption($key, $default = null)
+    {
+        $option = $this->options;
+
+        if ($option == null) {
+            $option = [];
+        }
+
+        if (array_key_exists($key, $option)) {
+            return $option[$key];
+        }
+
+        return $default;
     }
 
     /**
@@ -310,74 +311,10 @@ class Post extends Model
         return $terms;
     }
 
-    /**
-     * Gets the first term of the first taxonomy found.
-     *
-     * @return string
-     */
-    public function getMainCategoryAttribute()
-    {
-        $mainCategory = 'Uncategorized';
-        if (!empty($this->terms)) {
-            $taxonomies = array_values($this->terms);
-            if (!empty($taxonomies[0])) {
-                $terms = array_values($taxonomies[0]);
-                $mainCategory = $terms[0];
-            }
-        }
-
-        return $mainCategory;
-    }
-
-    /**
-     * Get only posts with a custom status.
-     *
-     * @param string $status
-     *
-     * @return mixed
-     */
-    public function status($status)
-    {
-        return $this->where('status', $status);
-    }
-
-    /**
-     * Get only published posts.
-     *
-     * @return mixed
-     */
-    public function published()
-    {
-        return $this->status('publish');
-    }
-
-    /**
-     * Get only posts from a custom post type.
-     *
-     * @param string $type
-     *
-     * @return mixed
-     */
-    public function type($type)
-    {
-        return $this->where('type', $type);
-    }
-
-    /**
-     * Get only posts from an array of custom post types.
-     *
-     * @param array $type
-     *
-     * @return mixed
-     */
-    public function typeIn(array $type)
-    {
-        return $this->whereIn('type', $type);
-    }
 
     /**
      * @param string $taxonomy
-     * @param mixed  $term
+     * @param mixed $term
      *
      * @return mixed
      */
@@ -402,4 +339,29 @@ class Post extends Model
 
         return $count ? "{$slug}-{$count}" : $slug;
     }
+
+
+    /**
+     * Overriding newQuery() to the custom PostBuilder with some interesting methods.
+     *
+     * @param bool $excludeDeleted
+     *
+     * @return PostBuilder
+     */
+    public function newQuery($excludeDeleted = true)
+    {
+        $builder = new PostBuilder($this->newBaseQueryBuilder());
+        $builder->setModel($this)->with($this->with);
+        // disabled the default orderBy because else Post::all()->orderBy(..)
+        // is not working properly anymore.
+        // $builder->orderBy('post_date', 'desc');
+        if (isset($this->postType) and $this->postType) {
+            $builder->type($this->postType);
+        }
+        if ($excludeDeleted and $this->softDelete) {
+            $builder->whereNull($this->getQualifiedDeletedAtColumn());
+        }
+        return $builder;
+    }
+
 }

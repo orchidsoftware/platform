@@ -56,6 +56,10 @@ class CategoryMainForm extends Form
         ]);
     }
 
+    /**
+     * @param Request|null $request
+     * @param TermTaxonomy|null $termTaxonomy
+     */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
         if (is_null($termTaxonomy)) {

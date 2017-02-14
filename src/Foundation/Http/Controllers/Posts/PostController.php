@@ -49,6 +49,10 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @param null $test
+     * @param null $test2
+     */
     public function show($test = null, $test2 = null)
     {
         dd($test, $test2);

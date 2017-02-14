@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Foundation\Core\Builders\CommentBuilder;
 
 class Comment extends Model
 {
@@ -27,12 +28,26 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'post_id'    => 'integer',
-        'user_id'    => 'integer',
-        'parent_id'  => 'integer',
-        'type'       => 'string',
-        'approved'   => 'boolean',
+        'post_id' => 'integer',
+        'user_id' => 'integer',
+        'parent_id' => 'integer',
+        'type' => 'string',
+        'approved' => 'boolean',
     ];
+
+    /**
+     * Find a comment by post ID.
+     *
+     * @param int $postId
+     *
+     * @return Comment
+     */
+    public static function findByPostId($postId)
+    {
+        $instance = new static();
+
+        return $instance->where('post_id', $postId)->get();
+    }
 
     /**
      * Post relationship.
@@ -95,16 +110,20 @@ class Comment extends Model
     }
 
     /**
-     * Find a comment by post ID.
+     * Override the parent newQuery() to the custom CommentBuilder class.
      *
-     * @param int $postId
+     * @param bool $excludeDeleted
      *
-     * @return Comment
+     * @return CommentBuilder
      */
-    public static function findByPostId($postId)
+    public function newQuery($excludeDeleted = true)
     {
-        $instance = new static();
-
-        return $instance->where('post_id', $postId)->get();
+        $builder = new CommentBuilder($this->newBaseQueryBuilder());
+        $builder->setModel($this)->with($this->with);
+        if ($excludeDeleted and $this->softDelete) {
+            $builder->whereNull($this->getQualifiedDeletedAtColumn());
+        }
+        return $builder;
     }
+
 }
