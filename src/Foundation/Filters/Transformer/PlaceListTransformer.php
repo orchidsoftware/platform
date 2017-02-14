@@ -59,14 +59,14 @@ class PlaceListTransformer extends Transformer
                 'lat'     => $content_locale['place']['lat'],
                 'lng'     => $content_locale['place']['lng'],
 
-                'locales' => []
+                'locales' => [],
             ];
 
             if (method_exists($typeObject, 'display')) {
                 $result['display'] = $typeObject->display();
             }
 
-            foreach($localeNames as $localeName) {
+            foreach ($localeNames as $localeName) {
                 $result['locales'][$localeName] = $item['content'][$localeName]['place']['name'];
             }
 
