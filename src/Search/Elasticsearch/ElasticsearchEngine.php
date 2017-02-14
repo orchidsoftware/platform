@@ -20,8 +20,7 @@ class ElasticsearchEngine extends Engine
      * Create a new engine instance.
      *
      * @param \Elasticsearch\Client $elastic
-     *
-     * @return void
+     * @param $index
      */
     public function __construct(Elastic $elastic, $index)
     {

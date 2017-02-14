@@ -59,7 +59,8 @@ class Attachment extends Model
                 $size.
                 '.'.
                 $this->extension
-            )) {
+            )
+            ) {
                 return $this->url(null, $prefix);
             }
         }

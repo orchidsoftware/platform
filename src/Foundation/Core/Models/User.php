@@ -9,7 +9,7 @@ use Orchid\Access\UserInterface;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable ,UserAccess;
+    use Notifiable, UserAccess;
 
     /**
      * @var

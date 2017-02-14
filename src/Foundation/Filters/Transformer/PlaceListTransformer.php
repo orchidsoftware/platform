@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\App;
 
 class PlaceListTransformer extends Transformer
 {
+    /**
+     * @var array|mixed
+     */
     private $locales = [];
 
     /**
@@ -16,6 +19,11 @@ class PlaceListTransformer extends Transformer
         $this->locales = config('content.locales');
     }
 
+    /**
+     * @param $collect
+     *
+     * @return mixed
+     */
     public static function transform($collect)
     {
         $currentLocale = App::getLocale();

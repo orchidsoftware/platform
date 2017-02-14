@@ -24,7 +24,6 @@ class Menu extends Model
         'auth',
         'lang',
         'parent',
-        'sort',
         'type',
     ];
 
@@ -68,6 +67,6 @@ class Menu extends Model
      */
     public function getAll($id)
     {
-        return $this->where('type', $id)->orderBy('sort', 'asc')->get();
+        return $this->where('type', $id)->orderBy('id', 'asc')->get();
     }
 }

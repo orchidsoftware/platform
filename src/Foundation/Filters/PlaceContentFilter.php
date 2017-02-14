@@ -30,6 +30,7 @@ class PlaceContentFilter extends ContentFilter
     /**
      * @param $model
      * @param $values
+     * @param $prefix
      * @param $chain
      * @param string $method
      *

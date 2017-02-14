@@ -3,14 +3,18 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Foundation\Core\Builders\TermTaxonomyBuilder;
 
 class TermTaxonomy extends Model
 {
     /**
+     * @var bool
+     */
+    public $timestamps = false;
+    /**
      * @var string
      */
     protected $table = 'term_taxonomy';
-
     /**
      * @var array
      */
@@ -20,18 +24,12 @@ class TermTaxonomy extends Model
         'taxonomy',
         'parent_id',
     ];
-
     /**
      * @var array
      */
     protected $with = [
         'term',
     ];
-
-    /**
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Magic method to return the meta data like the post original fields.
@@ -72,16 +70,6 @@ class TermTaxonomy extends Model
     }
 
     /**
-     * Relationship with children Term model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function childrenTerm()
-    {
-        return $this->hasMany(self::class, 'parent_id');
-    }
-
-    /**
      * @return mixed
      */
     public function allChildrenTerm()
@@ -90,13 +78,13 @@ class TermTaxonomy extends Model
     }
 
     /**
-     * Relationship with Posts model.
+     * Relationship with children Term model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function posts()
+    public function childrenTerm()
     {
-        return $this->belongsToMany(Post::class, 'term_relationships', 'term_taxonomy_id', 'post_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     /**
@@ -112,6 +100,16 @@ class TermTaxonomy extends Model
         }
 
         return $this;
+    }
+
+    /**
+     * Relationship with Posts model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'term_relationships', 'term_taxonomy_id', 'post_id');
     }
 
     /**
@@ -132,5 +130,23 @@ class TermTaxonomy extends Model
     public function menu()
     {
         return $this->where('taxonomy', 'menu');
+    }
+
+    /**
+     * Overriding newQuery() to the custom TermTaxonomyBuilder with some interesting methods.
+     *
+     * @param bool $excludeDeleted
+     *
+     * @return TermTaxonomyBuilder
+     */
+    public function newQuery($excludeDeleted = true)
+    {
+        $builder = new TermTaxonomyBuilder($this->newBaseQueryBuilder());
+        $builder->setModel($this)->with($this->with);
+        if (isset($this->taxonomy) and !empty($this->taxonomy) and !is_null($this->taxonomy)) {
+            $builder->where('taxonomy', $this->taxonomy);
+        }
+
+        return $builder;
     }
 }

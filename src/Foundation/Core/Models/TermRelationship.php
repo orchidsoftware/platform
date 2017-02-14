@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class TermRelationship extends Model
 {
     /**
+     * @var bool
+     */
+    public $timestamps = false;
+    /**
      * @var string
      */
     protected $table = 'term_relationships';
-
     /**
      * @var array
      */
@@ -19,22 +22,6 @@ class TermRelationship extends Model
         'term_taxonomy_id',
         'term_order',
     ];
-
-    /**
-     * @var array
-     */
-
-    /*
-    protected $primaryKey = [
-        //'post_id',
-        //'term_taxonomy_id',
-    ];
-*/
-
-    /**
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

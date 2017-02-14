@@ -25,6 +25,7 @@ class PostApiController extends ApiController
     }
 
     /**
+     * @param Post    $post
      * @param Request $request
      *
      * @return mixed

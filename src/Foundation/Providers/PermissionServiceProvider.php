@@ -23,6 +23,9 @@ class PermissionServiceProvider extends ServiceProvider
         $dashboard->permission->registerPermissions($permissionService);
     }
 
+    /**
+     * @return array
+     */
     protected function registerPermissions()
     {
         return [
