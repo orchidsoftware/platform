@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CommentBuilder extends Builder
 {
-
     /**
      * Where clause for only approved comments.
      *
@@ -16,5 +15,4 @@ class CommentBuilder extends Builder
     {
         return $this->where('approved', 1);
     }
-
 }

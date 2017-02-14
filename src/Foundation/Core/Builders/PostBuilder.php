@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PostBuilder extends Builder
 {
-
     /**
      * Get only published posts.
      *
@@ -55,7 +54,7 @@ class PostBuilder extends Builder
 
     /**
      * @param string $taxonomy
-     * @param mixed $term
+     * @param mixed  $term
      *
      * @return Builder|static
      */
@@ -79,6 +78,4 @@ class PostBuilder extends Builder
     {
         return $this->where('slug', $slug);
     }
-
-
 }
