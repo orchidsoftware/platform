@@ -113,26 +113,6 @@ class TermTaxonomy extends Model
     }
 
     /**
-     * Set taxonomy type to category.
-     *
-     * @return mixed
-     */
-    public function category()
-    {
-        return $this->where('taxonomy', 'category');
-    }
-
-    /**
-     * Set taxonomy type to nav_menu.
-     *
-     * @return mixed
-     */
-    public function menu()
-    {
-        return $this->where('taxonomy', 'menu');
-    }
-
-    /**
      * Overriding newQuery() to the custom TermTaxonomyBuilder with some interesting methods.
      *
      * @param bool $excludeDeleted
