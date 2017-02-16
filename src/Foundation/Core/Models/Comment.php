@@ -19,7 +19,6 @@ class Comment extends Model
         'post_id',
         'user_id',
         'parent_id',
-        'type',
         'content',
         'approved',
     ];
@@ -31,7 +30,6 @@ class Comment extends Model
         'post_id'   => 'integer',
         'user_id'   => 'integer',
         'parent_id' => 'integer',
-        'type'      => 'string',
         'approved'  => 'boolean',
     ];
 
