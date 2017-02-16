@@ -204,7 +204,6 @@ class MenuComposer
             'divider' => true,
         ];
 
-
         $commentMenu = [
             'slug'      => 'comment',
             'icon'      => 'fa fa-comments-o',
@@ -283,9 +282,6 @@ class MenuComposer
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
-
-
-
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $commentMenu, 1);
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 2);

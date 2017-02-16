@@ -107,7 +107,6 @@ class Comment extends Model
         return count($this->replies) > 0;
     }
 
-
     /**
      *   Author relationship.
      *

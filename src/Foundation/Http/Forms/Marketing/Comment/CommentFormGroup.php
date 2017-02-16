@@ -6,7 +6,6 @@ use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\Comment;
 use Orchid\Foundation\Events\Marketing\CommentEvent;
 
-
 class CommentFormGroup extends FormGroup
 {
     /**
@@ -32,9 +31,9 @@ class CommentFormGroup extends FormGroup
      */
     public function main()
     {
-        $comments = (new Comment())->with(['post'=>function($query){
-            $query->select('id','type','slug');
-        }])->orderBy('id','desc')->paginate();
+        $comments = (new Comment())->with(['post'=> function ($query) {
+            $query->select('id', 'type', 'slug');
+        }])->orderBy('id', 'desc')->paginate();
 
         return view('dashboard::container.marketing.comment.grid', [
             'comments' => $comments,
