@@ -215,12 +215,12 @@ class MenuComposer
         $advertisingMenu = [
             'slug'  => 'advertising',
             'icon'  => 'icon-target',
-            'route' => route('dashboard.tools.menu.index'),
+            'route' => route('dashboard.tools.advertising.index'),
             'label' => trans('Управление рекламой'),
         ];
 
         $feedback = [
-            'slug'  => 'advertising',
+            'slug'  => 'feedback',
             'icon'  => 'icon-call-in',
             'route' => route('dashboard.tools.menu.index'),
             'label' => trans('Обратная связь'),

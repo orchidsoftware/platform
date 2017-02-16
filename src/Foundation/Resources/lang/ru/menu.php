@@ -10,6 +10,7 @@ return [
     'Systems'                    => 'Система',
     'The interface and data'     => 'Интерфейс и данные',
     'Menu'                       => 'Меню',
+    'Advertisements'             => 'Реклама',
     'Common posts'               => 'Общие записи',
     'Common blocks'              => 'Общие блоки',
     'Search Engine Optimization' => 'Поисковая оптимизация',

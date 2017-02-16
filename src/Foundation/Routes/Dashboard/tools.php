@@ -48,4 +48,10 @@ $this->group([
             'show'   => 'dashboard.tools.menu.show',
             'update' => 'dashboard.tools.menu.update',
         ]]);
+
+        $router->resource('advertising', 'AdvertisingController', ['names' => [
+            'index'  => 'dashboard.tools.advertising.index',
+            'show'   => 'dashboard.tools.advertising.show',
+            'update' => 'dashboard.tools.advertising.update',
+        ]]);
     });
