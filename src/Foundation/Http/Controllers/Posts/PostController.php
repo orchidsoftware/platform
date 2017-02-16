@@ -143,10 +143,9 @@ class PostController extends Controller
             $slug = $request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields];
         }
 
-        if($request->has('slug') && $request->get('slug') != $post->slug) {
+        if ($request->has('slug') && $request->get('slug') != $post->slug) {
             $post->slug = $post->makeSlug($slug);
         }
-
 
         $post->save();
 

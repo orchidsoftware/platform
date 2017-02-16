@@ -33,17 +33,19 @@ class CommentController extends Controller
     /**
      * @param Request $request
      * @param Comment $comment
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Comment $comment)
     {
-        $this->form->save($request,$comment);
+        $this->form->save($request, $comment);
 
         return redirect()->route('dashboard.marketing.comment.edit', $comment->id);
     }
 
     /**
      * @param Comment $comment
+     *
      * @return mixed
      */
     public function edit(Comment $comment)
@@ -55,9 +57,9 @@ class CommentController extends Controller
             ->render($comment);
     }
 
-
     /**
      * @param Comment $comment
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Comment $comment)
