@@ -107,6 +107,17 @@ class Comment extends Model
         return count($this->replies) > 0;
     }
 
+
+    /**
+     *   Author relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     /**
      * Override the parent newQuery() to the custom CommentBuilder class.
      *
