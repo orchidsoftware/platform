@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Comment;
 
+use Illuminate\Http\Request;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Comment;
 use Orchid\Foundation\Facades\Alert;
-use Illuminate\Http\Request;
 
 class BaseCommentForm extends Form
 {
@@ -39,16 +39,16 @@ class BaseCommentForm extends Form
      * Display Settings App.
      *
      * @param Comment|null $comment
+     *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function get(Comment $comment)
     {
         return view('dashboard::container.marketing.comment.info', [
             'comment' => $comment,
-            'post' => $post = $comment->post()->first()
+            'post'    => $post = $comment->post()->first(),
         ]);
     }
-
 
     /**
      * @param Request|null $request
@@ -56,12 +56,11 @@ class BaseCommentForm extends Form
      */
     public function persist(Request $request = null, Comment $comment = null)
     {
-       $comment->approved = false;
-       $comment->fill($request->all());
-       $comment->save();
+        $comment->approved = false;
+        $comment->fill($request->all());
+        $comment->save();
         Alert::success('Message');
     }
-
 
     /**
      * @param Comment $comment
