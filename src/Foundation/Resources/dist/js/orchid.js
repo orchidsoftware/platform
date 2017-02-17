@@ -41152,4 +41152,10 @@ $('.close-lang-content').click(function () {
     $('#post a[data-target="#local-'+local+'"]').parent().remove();
     $('#post #local-'+local).remove();
 });
+/**
+ * Created by joker on 17.02.17.
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DATA');
+});
 //# sourceMappingURL=orchid.js.map

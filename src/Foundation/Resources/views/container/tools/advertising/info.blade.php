@@ -36,6 +36,49 @@
                 <input type="checkbox" value="{{$dayCode}}"><i></i> {{$dayLabel}}
             </label>
             @endforeach
+
+
+
+
+            @if(isset($help))
+                <p class="help-block">{{$help}}</p>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Дата и время начала</label>
+
+        <div class="col-sm-10">
+            <div class='input-group date datetimepicker'>
+                <input type='text'  class="form-control"
+                       value=""
+                       placeholder=""
+
+                       name="start-date"
+                >
+                    <span class="input-group-addon">
+                        <span class="icon-plus"></span>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Дата и время окончания</label>
+
+        <div class="col-sm-10">
+            <div class='input-group date datetimepicker'>
+                <input type='text'  class="form-control"
+                       value=""
+                       placeholder=""
+
+                       name="end-date"
+                >
+                    <span class="input-group-addon">
+                        <span class="icon-plus"></span>
+                    </span>
+            </div>
         </div>
     </div>
 </div>
