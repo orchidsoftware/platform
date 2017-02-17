@@ -28,7 +28,6 @@
     "flot.tooltip": "~0.8.4",
     "font-awesome": "4.*",
     "jquery": "3.*",
-    "jquery-ui": "1.11.*",
     "jquery.easy-pie-chart": "~2.1.6",
     "moment": "~2.*",
     "dropzone": "^4.3.0",
@@ -41,6 +40,7 @@
     "froala-wysiwyg-editor": "^2.3.5",
     "google-maps": "^3.2.1",
     "summernote": "^0.8.2",
-    "nestable": "*"
+    "nestable": "*",
+    "jquery-ui": "jquery.ui#^1.12.1"
   }
 }
