@@ -9,9 +9,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Описание</label>
         <div class="col-sm-10">
-            <textarea name="description"
-                      required class="form-control summernote" placeholder="Название">
-            </textarea>
+            <textarea name="description" required class="form-control"></textarea>
         </div>
     </div>
 
