@@ -29,16 +29,13 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-2 control-label">Расписание</div>
+        <div class="col-sm-2 control-label">По дням</div>
         <div class="col-sm-10">
             @foreach($weekDays as $dayCode => $dayLabel)
             <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="{{$dayCode}}"><i></i> {{$dayLabel}}
+                <input type="checkbox" name="dc-{{$dayCode}}" value=""><i></i> {{$dayLabel}}
             </label>
             @endforeach
-
-
-
 
             @if(isset($help))
                 <p class="help-block">{{$help}}</p>
@@ -47,10 +44,10 @@
     </div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Дата и время начала</label>
+        <label class="col-sm-2 control-label">Период</label>
 
-        <div class="col-sm-10">
-            <div class='input-group date datetimepicker'>
+        <div class="col-sm-5">
+            <div class='input-group date date-picker'>
                 <input type='text'  class="form-control"
                        value=""
                        placeholder=""
@@ -62,18 +59,46 @@
                     </span>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Дата и время окончания</label>
-
-        <div class="col-sm-10">
-            <div class='input-group date datetimepicker'>
+        <div class="col-sm-5">
+            <div class='input-group date date-picker'>
                 <input type='text'  class="form-control"
                        value=""
                        placeholder=""
 
                        name="end-date"
+                >
+                    <span class="input-group-addon">
+                        <span class="icon-plus"></span>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Время</label>
+
+        <div class="col-sm-5">
+            <div class='input-group date time-picker'>
+                <input type='text'  class="form-control"
+                       value=""
+                       placeholder=""
+
+                       name="start-time"
+                >
+                    <span class="input-group-addon">
+                        <span class="icon-plus"></span>
+                    </span>
+            </div>
+        </div>
+
+        <div class="col-sm-5">
+            <div class='input-group date time-picker'>
+                <input type='text'  class="form-control"
+                       value=""
+                       placeholder=""
+
+                       name="end-time"
                 >
                     <span class="input-group-addon">
                         <span class="icon-plus"></span>

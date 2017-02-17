@@ -1,5 +1,5 @@
 <div class="wrapper-md code-block-wrapper">
-    <div class="code-block"></div>
+    <div id="code-editor" class="code-block"></div>
 </div>
 
 @push('stylesheet')

@@ -37,6 +37,12 @@ elixir(function(mix) {
         './vendor/moment/min/locales.js',
         './vendor/moment/min/moment-with-locales.js',
         './vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+
+        './vendor/ace-builds/src-noconflict/ace.js',
+        './vendor/ace-builds/src-noconflict/mode-html.js',
+        './vendor/ace-builds/src-noconflict/theme-monokai.js',
+        './vendor/ace-builds/src-noconflict/worker-javascript.js',
+
         "./js/app.js",
         "./js/modules/**",
         "./js/components/**",
