@@ -23,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
             'Orchid\Foundation\Listeners\Systems\Users\UserBaseListener',
             'Orchid\Foundation\Listeners\Systems\Users\UserAccessListener',
         ],
+        'Orchid\Foundation\Events\Tools\AdvertisingEvent' => [
+            'Orchid\Foundation\Listeners\Tools\Advertising\AdvertisingBaseListener',
+        ],
         'Orchid\Foundation\Events\Tools\CategoryEvent' => [
             'Orchid\Foundation\Listeners\Tools\Category\CategoryBaseLister',
         ],
