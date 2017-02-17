@@ -29,6 +29,11 @@ class EventServiceProvider extends ServiceProvider
         'Orchid\Foundation\Events\Tools\CategoryEvent' => [
             'Orchid\Foundation\Listeners\Tools\Category\CategoryBaseLister',
         ],
+
+        'Orchid\Foundation\Events\Marketing\CommentEvent' => [
+            'Orchid\Foundation\Listeners\Marketing\Comment\CommentBaseListener',
+        ],
+
     ];
 
     /**

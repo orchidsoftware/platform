@@ -204,12 +204,19 @@ class MenuComposer
             'divider' => true,
         ];
 
+        $commentMenu = [
+            'slug'      => 'comment',
+            'icon'      => 'fa fa-comments-o',
+            'route'     => route('dashboard.marketing.comment'),
+            'label'     => trans('Комментарии'),
+            'groupname' => trans('dashboard::menu.Users'),
+        ];
+
         $emailMenu = [
             'slug'      => 'email',
             'icon'      => 'icon-envelope-open',
             'route'     => route('dashboard.tools.menu.index'),
             'label'     => trans('Email - рассылка'),
-            'groupname' => trans('dashboard::menu.Users'),
         ];
 
         $advertisingMenu = [
@@ -276,7 +283,8 @@ class MenuComposer
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
 
-        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 1);
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $commentMenu, 1);
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 2);
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $advertisingMenu, 5);
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);

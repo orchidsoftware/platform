@@ -19,7 +19,6 @@ class Comment extends Model
         'post_id',
         'user_id',
         'parent_id',
-        'type',
         'content',
         'approved',
     ];
@@ -31,7 +30,6 @@ class Comment extends Model
         'post_id'   => 'integer',
         'user_id'   => 'integer',
         'parent_id' => 'integer',
-        'type'      => 'string',
         'approved'  => 'boolean',
     ];
 
@@ -107,6 +105,16 @@ class Comment extends Model
     public function hasReplies()
     {
         return count($this->replies) > 0;
+    }
+
+    /**
+     *   Author relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
