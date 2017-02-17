@@ -52,13 +52,13 @@ class AttachmentController extends Controller
         return response()->json($file);
     }
 
-
     /**
      * @param Request $request
      */
-    public function sort(Request $request){
-        $files = $request->get('files',[]);
-        foreach ($files as $id => $sort){
+    public function sort(Request $request)
+    {
+        $files = $request->get('files', []);
+        foreach ($files as $id => $sort) {
             $attachment = Attachment::find($id);
             $attachment->sort = $sort;
             $attachment->save();
