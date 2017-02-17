@@ -18,7 +18,7 @@ class CategoryEvent
      * Create a new event instance.
      * SomeEvent constructor.
      *
-     * @param SectionFormGroup|CategoryFormGroup $form
+     * @param CategoryFormGroup $form
      */
     public function __construct(CategoryFormGroup $form)
     {

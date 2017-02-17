@@ -51,7 +51,8 @@ $this->group([
 
         $router->resource('advertising', 'AdvertisingController', ['names' => [
             'index'  => 'dashboard.tools.advertising.index',
-            'show'   => 'dashboard.tools.advertising.show',
+            'create' => 'dashboard.tools.advertising.create',
             'update' => 'dashboard.tools.advertising.update',
+            'store' => 'dashboard.tools.advertising.store',
         ]]);
     });

@@ -6,7 +6,7 @@
  * Time: 10:43
  */
 
-namespace Orchid\Foundation\Http\Forms\Tools\Category;
+namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Events\Tools\AdvertisingEvent;

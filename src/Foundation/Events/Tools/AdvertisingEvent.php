@@ -9,7 +9,7 @@
 namespace Orchid\Foundation\Events\Tools;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Foundation\Http\Forms\Tools\Category\AdvertisingFormGroup;
+use Orchid\Foundation\Http\Forms\Tools\Advertising\AdvertisingFormGroup;
 
 class AdvertisingEvent
 {

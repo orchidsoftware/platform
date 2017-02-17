@@ -22,17 +22,12 @@
                 @foreach($locales as $code => $lang)
                     <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
                         <div class="wrapper-md">
-
-
-
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Название</label>
                                 <div class="col-sm-10">
                                     <input name="content[{{$code}}][name]" value="{{$section->content[$code]['name'] or ''}}" required class="form-control" placeholder="Название">
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 @endforeach

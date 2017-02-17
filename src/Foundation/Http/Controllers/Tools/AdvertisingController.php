@@ -9,8 +9,10 @@
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 
-use Orchid\Foundation\Http\Forms\Tools\Category\AdvertisingFormGroup;
 use Orchid\Foundation\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Orchid\Foundation\Core\Models\TermTaxonomy;
+use Orchid\Foundation\Http\Forms\Tools\Advertising\AdvertisingFormGroup;
 
 class AdvertisingController extends Controller
 {
@@ -31,11 +33,24 @@ class AdvertisingController extends Controller
         return $this->form->grid();
     }
 
-    public function show()
+    public function create()
     {
+        $formView = $this->form
+            ->route('dashboard.tools.advertising.store')
+            ->method('POST')
+            ->render();
+
+        return $formView;
     }
 
     public function update()
     {
+    }
+
+    public function store(Request $request, TermTaxonomy $termTaxonomy)
+    {
+        $this->form->save($request, $termTaxonomy);
+
+        return redirect()->back();
     }
 }
