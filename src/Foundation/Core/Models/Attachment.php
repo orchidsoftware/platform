@@ -80,7 +80,7 @@ class Attachment extends Model
     public function whereType($type){
 
         if(key_exists($type,$this->types)) {
-          return $this->whereIn('extension',$this->types[$type]);
+            return $this->whereIn('extension',$this->types[$type]);
         }
         return $this;
     }
