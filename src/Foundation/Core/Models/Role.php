@@ -8,6 +8,7 @@ use Orchid\Access\RoleInterface;
 
 class Role extends Model implements RoleInterface
 {
+
     use RoleAccess;
 
     /**

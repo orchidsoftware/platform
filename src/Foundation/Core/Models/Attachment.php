@@ -26,6 +26,37 @@ class Attachment extends Model
         'post_id',
     ];
 
+
+    /**
+     * Attachment types
+     * @var array
+     */
+    protected $types = [
+        'image' => [
+            'png',
+            'jpg',
+            'jpeg',
+            'gif',
+        ],
+        'video' => [
+            'mp4',
+            'mkv',
+        ],
+        'docs' =>[
+            'doc',
+            'docx',
+            'pdf',
+            'xls',
+            'xlsx',
+            'xml',
+            'txt',
+            'zip',
+            'rar',
+            'svg',
+        ]
+    ];
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -40,6 +71,18 @@ class Attachment extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    /**
+     * @param $type
+     * @return $this
+     */
+    public function whereType($type){
+
+        if(key_exists($type,$this->types)) {
+          return $this->whereIn('extension',$this->types[$type]);
+        }
+        return $this;
     }
 
     /**
