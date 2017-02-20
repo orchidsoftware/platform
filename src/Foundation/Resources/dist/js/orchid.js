@@ -75344,8 +75344,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var code = editor.getValue();
             var escapedCode = escape(code);
 
-            //console.log(hiddenCodeVal[0]);
-
             hiddenCodeVal.val(escapedCode);
         });
 

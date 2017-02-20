@@ -13,6 +13,7 @@ return [
         'bottom-block' => 'Реклама в нижнем блоке',
         'invest-block' => 'Реклама в блоке инвесторов',
     ],
+    'path' => dirname(__DIR__) . '/public/ads',
     'days' => [
         0 => 'Пн',
         1 => 'Вт',

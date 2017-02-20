@@ -19,6 +19,8 @@ use Orchid\Foundation\Core\Models\Category;
 
 class AdvertisingMainForm extends Form
 {
+    use CodeOperations;
+
     /**
      * @var string
      */

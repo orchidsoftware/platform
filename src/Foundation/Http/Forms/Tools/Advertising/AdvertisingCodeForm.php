@@ -19,6 +19,8 @@ use Orchid\Foundation\Core\Models\Category;
 
 class AdvertisingCodeForm extends Form
 {
+    use CodeOperations;
+
     /**
      * @var string
      */
@@ -59,7 +61,14 @@ class AdvertisingCodeForm extends Form
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
-        dd($request->all());
+        $totalRequest = $request->all();
+        $code = $totalRequest['code'];
+
+        $path = config('ads.path');
+
+        $fullSavePath = $this->createCodePath($path, $code);
+
+        $this->saveCode($code, $fullSavePath);
 
         Alert::success('success');
     }
