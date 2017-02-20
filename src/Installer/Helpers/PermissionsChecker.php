@@ -9,7 +9,7 @@ class PermissionsChecker
      */
     protected $results = [
         'permissions' => [],
-        'errors' => null,
+        'errors'      => null,
     ];
 
     /**
