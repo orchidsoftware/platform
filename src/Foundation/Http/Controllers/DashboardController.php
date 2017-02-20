@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Http\Controllers;
 
-
 class DashboardController extends Controller
 {
     /**

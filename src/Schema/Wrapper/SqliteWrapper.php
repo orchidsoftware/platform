@@ -2,9 +2,10 @@
 
 namespace Orchid\Schema\Wrapper;
 
+use Illuminate\Support\Facades\DB;
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
-use Illuminate\Support\Facades\DB;
+
 class SqliteWrapper implements WrapperContract
 {
     /**

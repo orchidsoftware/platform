@@ -57,8 +57,9 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param Request|null $request
+     * @param Request|null      $request
      * @param TermTaxonomy|null $termTaxonomy
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)

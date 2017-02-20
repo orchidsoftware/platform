@@ -115,6 +115,4 @@ abstract class Field implements FieldInterface
      * @var
      */
     protected $checked;
-
-
 }
