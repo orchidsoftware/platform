@@ -3,15 +3,14 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 10:41
+ * Time: 10:41.
  */
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
-
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Tools\Advertising\AdvertisingFormGroup;
 
 class AdvertisingController extends Controller
@@ -26,7 +25,6 @@ class AdvertisingController extends Controller
     {
         $this->form = new $this->formClass();
     }
-
 
     public function index()
     {

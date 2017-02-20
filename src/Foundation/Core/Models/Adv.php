@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Adv extends Model
 {
@@ -17,11 +16,11 @@ class Adv extends Model
      */
     protected $fillable = [
         'content',
-        'file_name'
+        'file_name',
     ];
 
     protected $casts = [
         'content'   => 'array',
-        'file_name' => 'string'
+        'file_name' => 'string',
     ];
 }

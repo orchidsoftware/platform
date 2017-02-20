@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 20.02.17
- * Time: 11:13
+ * Time: 11:13.
  */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-
 /**
- * Class CodeOperations
- * @package Orchid\Foundation\Http\Forms\Tools\Advertising
+ * Class CodeOperations.
  */
 trait CodeOperations
 {
@@ -28,11 +26,13 @@ trait CodeOperations
     /**
      * @param $path
      * @param $code
+     *
      * @return string
      */
     private function createCodePath($path, $code)
     {
-        $fullSavePath = $path . '/' . md5($code) . '.html';
+        $fullSavePath = $path.'/'.md5($code).'.html';
+
         return $fullSavePath;
     }
 }

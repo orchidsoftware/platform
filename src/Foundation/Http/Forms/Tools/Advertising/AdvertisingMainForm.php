@@ -3,19 +3,17 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 14:39
+ * Time: 14:39.
  */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-
+use Illuminate\Http\Request;
+use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
+use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Category;
 
 class AdvertisingMainForm extends Form
 {
@@ -50,18 +48,19 @@ class AdvertisingMainForm extends Form
      */
     public function get(TermTaxonomy $termTaxonomy = null)
     {
-        $adsCategory  = collect(config('ads.category'));
-        $weekDays  = collect(config('ads.days'));
+        $adsCategory = collect(config('ads.category'));
+        $weekDays = collect(config('ads.days'));
 
         return view('dashboard::container.tools.advertising.info', [
             'categories' => $adsCategory,
-            'weekDays' => $weekDays
+            'weekDays'   => $weekDays,
         ]);
     }
 
     /**
-     * @param Request|null $request
+     * @param Request|null      $request
      * @param TermTaxonomy|null $termTaxonomy
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
@@ -73,13 +72,12 @@ class AdvertisingMainForm extends Form
 
         $fullSavePath = $this->createCodePath($path, $code);
 
-
         unset($requestContent['_token']);
         unset($requestContent['_method']);
 
         $advRecord = Adv::create([
-            'content' => $requestContent,
-            'file_name' => $fullSavePath
+            'content'   => $requestContent,
+            'file_name' => $fullSavePath,
         ]);
 
         $advRecord->save();
