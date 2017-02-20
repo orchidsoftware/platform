@@ -40,7 +40,6 @@ class Post extends Model
         'deleted_at',
     ];
 
-
     /**
      * @var array
      */
@@ -223,7 +222,7 @@ class Post extends Model
      */
     public function hero($size = null)
     {
-        $first = $this->attachment()->orderBy('sort','asc')->first();
+        $first = $this->attachment()->orderBy('sort', 'asc')->first();
 
         return $first ? $first->url($size) : null;
     }
