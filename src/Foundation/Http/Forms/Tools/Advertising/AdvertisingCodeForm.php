@@ -59,21 +59,7 @@ class AdvertisingCodeForm extends Form
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
-        if (is_null($termTaxonomy)) {
-            $termTaxonomy = new $this->model();
-        }
-
-        if ($request->get('term_id') == 0) {
-            $term = Term::create($request->all());
-        } else {
-            $term = Term::find($request->get('term_id'));
-        }
-
-        $termTaxonomy->fill($this->request->all());
-        $termTaxonomy->term_id = $term->id;
-
-        $termTaxonomy->save();
-        $term->save();
+        dd($request->all());
 
         Alert::success('success');
     }

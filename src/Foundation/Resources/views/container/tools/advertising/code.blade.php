@@ -2,6 +2,8 @@
     <div id="code-editor" class="code-block"></div>
 </div>
 
+<input type="hidden" id="code-data" name="code">
+
 @push('stylesheet')
 <style>
     .code-block-wrapper {

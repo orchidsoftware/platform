@@ -30,9 +30,9 @@
         <div class="col-sm-2 control-label">По дням</div>
         <div class="col-sm-10">
             @foreach($weekDays as $dayCode => $dayLabel)
-            <label class="checkbox-inline i-checks">
-                <input type="checkbox" name="dc-{{$dayCode}}" value=""><i></i> {{$dayLabel}}
-            </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="checkbox" name="days[{{$dayCode}}]"><i></i> {{$dayLabel}}
+                </label>
             @endforeach
 
             @if(isset($help))

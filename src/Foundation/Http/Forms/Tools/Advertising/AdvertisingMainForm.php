@@ -51,13 +51,6 @@ class AdvertisingMainForm extends Form
         $adsCategory  = collect(config('ads.category'));
         $weekDays  = collect(config('ads.days'));
 
-//        $termTaxonomy = $termTaxonomy ?: new $this->model([
-//            'id' => 0,
-//        ]);
-//        $category = Category::where('id', '!=', $termTaxonomy->id)->get();
-//
-//        $language = App::getLocale();
-
         return view('dashboard::container.tools.advertising.info', [
             'categories' => $adsCategory,
             'weekDays' => $weekDays
@@ -71,22 +64,6 @@ class AdvertisingMainForm extends Form
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
-        if (is_null($termTaxonomy)) {
-            $termTaxonomy = new $this->model();
-        }
-
-        if ($request->get('term_id') == 0) {
-            $term = Term::create($request->all());
-        } else {
-            $term = Term::find($request->get('term_id'));
-        }
-
-        $termTaxonomy->fill($this->request->all());
-        $termTaxonomy->term_id = $term->id;
-
-        $termTaxonomy->save();
-        $term->save();
-
         Alert::success('success');
     }
 
