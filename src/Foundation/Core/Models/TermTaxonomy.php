@@ -88,21 +88,6 @@ class TermTaxonomy extends Model
     }
 
     /**
-     * Alias from posts, but made quering nav_items cleaner.
-     * Also only possible to use when Menu model is called or taxonomy is 'nav_menu'.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\Relation | $this
-     */
-    public function nav_items()
-    {
-        if ($this->taxonomy == 'nav_menu') {
-            return $this->posts()->orderBy('menu_order');
-        }
-
-        return $this;
-    }
-
-    /**
      * Relationship with Posts model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
