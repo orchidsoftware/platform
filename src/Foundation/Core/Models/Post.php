@@ -234,7 +234,7 @@ class Post extends Model
      */
     public function attachment($type = null)
     {
-        if(!is_null($type)) {
+        if (!is_null($type)) {
             return $this->hasMany(Attachment::class)->whereIn('extension', Attachment::$types);
         }
 
