@@ -21,6 +21,8 @@ class CreateTableFiles extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('post_id')->nullable();
             $table->timestamps();
+
+            $table->index(['id', 'post_id', 'user_id']);
         });
     }
 
