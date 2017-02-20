@@ -40,7 +40,6 @@ class Post extends Model
         'deleted_at',
     ];
 
-
     /**
      * @var array
      */
@@ -223,7 +222,7 @@ class Post extends Model
      */
     public function hero($size = null)
     {
-        $first = $this->attachment()->whereType('image')->orderBy('sort','asc')->first();
+        $first = $this->attachment('image')->orderBy('sort', 'asc')->first();
 
         return $first ? $first->url($size) : null;
     }
@@ -233,8 +232,12 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function attachment()
+    public function attachment($type = null)
     {
+        if(!is_null($type)) {
+            return $this->hasMany(Attachment::class)->whereIn('extension', Attachment::$types);
+        }
+
         return $this->hasMany(Attachment::class);
     }
 
