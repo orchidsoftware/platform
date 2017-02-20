@@ -348,7 +348,7 @@ class Post extends Model
         if (isset($this->postType) and $this->postType) {
             $builder->type($this->postType);
         }
-        if ($excludeDeleted and $this->softDelete) {
+        if ($excludeDeleted && $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }
 

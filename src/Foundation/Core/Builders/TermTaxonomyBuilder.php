@@ -50,7 +50,7 @@ class TermTaxonomyBuilder extends Builder
      */
     public function slug($slug = null)
     {
-        if (!is_null($slug) and !empty($slug)) {
+        if (!is_null($slug) && !empty($slug)) {
             // set this slug to be used in with callback
             $this->slug = $slug;
 

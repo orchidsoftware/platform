@@ -80,7 +80,7 @@ abstract class Type implements TypeInterface
      */
     public function generateForm($language = 'en', $post = null)
     {
-        $this->fields = $this->fields();
+        $this->fields = (array) $this->fields();
         $this->parseFields();
 
         $form = '';
