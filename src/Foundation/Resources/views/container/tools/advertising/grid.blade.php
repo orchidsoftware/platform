@@ -12,4 +12,54 @@
 @stop
 
 @section('content')
+    <section class="wrapper">
+        <div class="bg-white-only bg-auto no-border-xs">
+
+            @if($ads->count() > 0)
+                <div class="panel">
+
+                    <div class="panel-body row">
+
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
+                                    <th>Имя</th>
+                                    <th>{{trans('dashboard::common.Last edit')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($ads as $item)
+
+                                    <tr>
+                                        <td class="text-center">
+                                            {{--<a href="{{ route('dashboard.tools.category.edit',$item->id) }}"><i--}}
+                                                        {{--class="fa fa-bars"></i></a>--}}
+                                        </td>
+                                        <td>{{$item->content['slug']}}</td>
+
+                                        <td>{{ $item->updated_at}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            @else
+
+                <div class="jumbotron text-center">
+                    <h3 class="font-thin">Вы ещё не создали ни одной секции</h3>
+
+                    {{--<a href="{{ route('dashboard.tools.category.create')}}" class="btn btn-link">Создать</a>--}}
+                </div>
+
+            @endif
+
+        </div>
+    </section>
 @stop

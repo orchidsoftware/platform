@@ -82,8 +82,6 @@ class AdvertisingMainForm extends Form
             'file_name' => $fullSavePath
         ]);
 
-//        dd($advRecord);
-
         $advRecord->save();
 
         Alert::success('success');
