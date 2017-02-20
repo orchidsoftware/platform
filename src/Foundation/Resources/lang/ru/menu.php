@@ -33,4 +33,5 @@ return [
     'General settings'           => 'Общие настройки',
     'Backups'                    => 'Резервные копии',
     'Schema'                     => 'Схема',
+    'Marketing' => 'Маркетинг',
 ];

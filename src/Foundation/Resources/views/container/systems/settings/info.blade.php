@@ -2,43 +2,43 @@
 
     <table class="table">
         <tr>
-            <td>Название сайта</td>
+            <td>{{trans('dashboard::systems/settings.Name of the site')}}</td>
             <td>{{$settings->get('name')}}</td>
         </tr>
         <tr>
-            <td>Окружение</td>
+            <td>{{trans('dashboard::systems/settings.Environment')}}</td>
             <td>{{$settings->get('env')}}</td>
         </tr>
         <tr>
-            <td>Отладка</td>
+            <td>{{trans('dashboard::systems/settings.Debugging')}}</td>
             <td>{{$settings->get('debug')}}</td>
         </tr>
         <tr>
-            <td>Адрес сайта</td>
+            <td>{{trans('dashboard::systems/settings.Website address')}}</td>
             <td>{{$settings->get('url')}}</td>
         </tr>
 
         <tr>
-            <td>Часовой пояс</td>
+            <td>{{trans('dashboard::systems/settings.Timezone')}}</td>
             <td>{{$settings->get('timezone')}}</td>
         </tr>
 
 
         <tr>
-            <td>Язык по умолчанию</td>
+            <td>{{trans('dashboard::systems/settings.Default Language')}}</td>
             <td>{{$settings->get('locale')}}</td>
         </tr>
 
         <tr>
-            <td>Запасной язык</td>
+            <td>{{trans('dashboard::systems/settings.Replacement language')}}</td>
             <td>{{$settings->get('fallback_locale')}}</td>
         </tr>
         <tr>
-            <td>Журнал событий</td>
+            <td>{{trans('dashboard::systems/settings.The event log')}}</td>
             <td>{{$settings->get('log')}}</td>
         </tr>
         <tr>
-            <td>Уровень журнала событий</td>
+            <td>{{trans('dashboard::systems/settings.Level Event Log')}}</td>
             <td>{{$settings->get('log_level')}}</td>
         </tr>
 
