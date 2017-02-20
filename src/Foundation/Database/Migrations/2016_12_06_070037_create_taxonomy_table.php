@@ -19,8 +19,6 @@ class CreateTaxonomyTable extends Migration
 
             $table->index(['id', 'parent_id']);
         });
-
-
     }
 
     /**
