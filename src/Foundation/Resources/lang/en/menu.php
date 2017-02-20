@@ -32,5 +32,5 @@ return [
     'General settings'           => 'General settings',
     'Backups'                    => 'Backups',
     'Schema'                     => 'Schema',
-    'Marketing' => 'Marketing'
+    'Marketing'                  => 'Marketing',
 ];
