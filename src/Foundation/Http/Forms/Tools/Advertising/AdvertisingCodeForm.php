@@ -3,19 +3,15 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 14:39
+ * Time: 14:39.
  */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-
-use Orchid\Foundation\Core\Models\Term;
+use Illuminate\Http\Request;
+use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Category;
 
 class AdvertisingCodeForm extends Form
 {
@@ -50,13 +46,13 @@ class AdvertisingCodeForm extends Form
      */
     public function get(TermTaxonomy $termTaxonomy = null)
     {
-
         return view('dashboard::container.tools.advertising.code');
     }
 
     /**
-     * @param Request|null $request
+     * @param Request|null      $request
      * @param TermTaxonomy|null $termTaxonomy
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)

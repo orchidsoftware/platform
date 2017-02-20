@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 11:20
+ * Time: 11:20.
  */
 
 namespace Orchid\Foundation\Events\Tools;
