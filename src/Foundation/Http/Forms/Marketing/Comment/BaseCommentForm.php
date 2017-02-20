@@ -53,6 +53,7 @@ class BaseCommentForm extends Form
     /**
      * @param Request|null $request
      * @param Comment|null $comment
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, Comment $comment = null)

@@ -5,8 +5,8 @@ namespace Orchid\Foundation\Http\Controllers\Systems;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Adapter\Local;
 use Orchid\Foundation\Http\Requests\Request;
-use \League\Flysystem\Adapter\Local;
 
 class BackupController extends Controller
 {
