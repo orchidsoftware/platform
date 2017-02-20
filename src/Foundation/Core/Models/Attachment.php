@@ -26,9 +26,9 @@ class Attachment extends Model
         'post_id',
     ];
 
-
     /**
-     * Attachment types
+     * Attachment types.
+     *
      * @var array
      */
     protected $types = [
@@ -42,7 +42,7 @@ class Attachment extends Model
             'mp4',
             'mkv',
         ],
-        'docs' =>[
+        'docs' => [
             'doc',
             'docx',
             'pdf',
@@ -53,9 +53,8 @@ class Attachment extends Model
             'zip',
             'rar',
             'svg',
-        ]
+        ],
     ];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -75,13 +74,15 @@ class Attachment extends Model
 
     /**
      * @param $type
+     *
      * @return $this
      */
-    public function whereType($type){
-
-        if(key_exists($type,$this->types)) {
-            return $this->whereIn('extension',$this->types[$type]);
+    public function whereType($type)
+    {
+        if (array_key_exists($type, $this->types)) {
+            return $this->whereIn('extension', $this->types[$type]);
         }
+
         return $this;
     }
 
