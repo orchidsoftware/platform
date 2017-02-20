@@ -108,7 +108,7 @@ class TermTaxonomy extends Model
     {
         $builder = new TermTaxonomyBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);
-        if (isset($this->taxonomy) && !empty($this->taxonomy) and !is_null($this->taxonomy)) {
+        if (isset($this->taxonomy) && !empty($this->taxonomy) && !is_null($this->taxonomy)) {
             $builder->where('taxonomy', $this->taxonomy);
         }
 

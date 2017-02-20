@@ -345,7 +345,7 @@ class Post extends Model
         // disabled the default orderBy because else Post::all()->orderBy(..)
         // is not working properly anymore.
         // $builder->orderBy('post_date', 'desc');
-        if (isset($this->postType) and $this->postType) {
+        if (isset($this->postType) && $this->postType) {
             $builder->type($this->postType);
         }
         if ($excludeDeleted && $this->softDelete) {
