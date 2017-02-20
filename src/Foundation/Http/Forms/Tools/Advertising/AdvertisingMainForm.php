@@ -9,7 +9,7 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
 
-use Orchid\Foundation\Core\Models\Term;
+use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class AdvertisingMainForm extends Form
      *
      * @var
      */
-    protected $model = TermTaxonomy::class;
+    protected $model = Adv::class;
 
     /**
      * @return array
@@ -66,6 +66,20 @@ class AdvertisingMainForm extends Form
      */
     public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
     {
+        $requestContent = $request->all();
+
+        $code = $requestContent['code'];
+        $path = config('ads.path');
+
+        $fullSavePath = $this->createCodePath($path, $code);
+
+        $advRecord = new $this->model();
+
+        $advRecord->content = $requestContent;
+        $advRecord->file_name = $fullSavePath;
+
+        $advRecord->save();
+
         Alert::success('success');
     }
 
