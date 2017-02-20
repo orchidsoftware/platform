@@ -10,7 +10,7 @@ class Adv extends Model
     /**
      * @var string
      */
-    protected $table = 'adv';
+    protected $table = 'ads';
 
     /**
      * @var array
@@ -18,5 +18,10 @@ class Adv extends Model
     protected $fillable = [
         'content',
         'file_name'
+    ];
+
+    protected $casts = [
+        'content'   => 'array',
+        'file_name' => 'string'
     ];
 }

@@ -17,7 +17,7 @@
             <label class="col-sm-2 control-label">Категория</label>
             <div class="col-sm-10">
 
-                <select data-placeholder="Select Category" name="parent_id" class="chosen-select form-control">
+                <select data-placeholder="Select Category" name="category_id" class="chosen-select form-control">
                     @foreach($categories as $categoryCode => $categoryLabel)
                         <option value="{{$categoryCode}}">
                             {{$categoryLabel}}</option>

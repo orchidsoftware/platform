@@ -73,10 +73,16 @@ class AdvertisingMainForm extends Form
 
         $fullSavePath = $this->createCodePath($path, $code);
 
-        $advRecord = new $this->model();
 
-        $advRecord->content = $requestContent;
-        $advRecord->file_name = $fullSavePath;
+        unset($requestContent['_token']);
+        unset($requestContent['_method']);
+
+        $advRecord = Adv::create([
+            'content' => $requestContent,
+            'file_name' => $fullSavePath
+        ]);
+
+//        dd($advRecord);
 
         $advRecord->save();
 
