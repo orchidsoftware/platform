@@ -15,11 +15,6 @@ $this->group([
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Tools',
 ],
     function ($router) {
-        $router->post('files', [
-            'as'   => 'dashboard.tools.files.upload',
-            'uses' => 'AttachmentController@upload',
-        ]);
-
         $router->resource('category', 'CategoryController', ['names' => [
             'index'   => 'dashboard.tools.category',
             'create'  => 'dashboard.tools.category.create',
@@ -33,6 +28,12 @@ $this->group([
             'as'   => 'dashboard.tools.files.upload',
             'uses' => 'AttachmentController@upload',
         ]);
+
+        $router->post('files/sort', [
+            'as'   => 'dashboard.tools.files.sort',
+            'uses' => 'AttachmentController@sort',
+        ]);
+
         $router->delete('files/{id}', [
             'as'   => 'dashboard.tools.files.destroy',
             'uses' => 'AttachmentController@destroy',

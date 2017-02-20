@@ -15,6 +15,8 @@ class CreateRelationshipsTable extends Migration
             $table->integer('post_id');
             $table->integer('term_taxonomy_id');
             $table->integer('term_order')->default(0);
+
+            $table->index(['post_id', 'term_taxonomy_id']);
         });
     }
 

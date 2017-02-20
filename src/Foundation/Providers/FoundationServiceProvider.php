@@ -87,16 +87,11 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = base_path('resources/views/vendor/orchid/dashboard');
-        $sourcePath = __DIR__.'/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ]);
-
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path.'/vendor/orchid/dashboard';
-        }, config('view.paths')), [$sourcePath]), 'dashboard');
+        }, config('view.paths')), [
+            __DIR__.'/../Resources/views',
+        ]), 'dashboard');
     }
 
     protected function registerPublic()

@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->boolean('sex')->nullable();
             $table->boolean('subscription')->default('1');
-            //$table->uuid('key');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -41,20 +41,6 @@ class Post extends Model
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-
-        // Terms inside all taxonomies
-        //'terms',
-
-        // Terms analysis
-        //'main_category',
-    ];
-
-    /**
      * @var array
      */
     protected $casts = [
@@ -236,7 +222,7 @@ class Post extends Model
      */
     public function hero($size = null)
     {
-        $first = $this->attachment()->first();
+        $first = $this->attachment('image')->orderBy('sort', 'asc')->first();
 
         return $first ? $first->url($size) : null;
     }
@@ -246,8 +232,12 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function attachment()
+    public function attachment($type = null)
     {
+        if (!is_null($type)) {
+            return $this->hasMany(Attachment::class)->whereIn('extension', Attachment::$types[$type]);
+        }
+
         return $this->hasMany(Attachment::class);
     }
 

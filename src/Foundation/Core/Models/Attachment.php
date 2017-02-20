@@ -27,6 +27,36 @@ class Attachment extends Model
     ];
 
     /**
+     * Attachment types.
+     *
+     * @var array
+     */
+    public static $types = [
+        'image' => [
+            'png',
+            'jpg',
+            'jpeg',
+            'gif',
+        ],
+        'video' => [
+            'mp4',
+            'mkv',
+        ],
+        'docs' => [
+            'doc',
+            'docx',
+            'pdf',
+            'xls',
+            'xlsx',
+            'xml',
+            'txt',
+            'zip',
+            'rar',
+            'svg',
+        ],
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
@@ -40,6 +70,20 @@ class Attachment extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    /**
+     * @param $type
+     *
+     * @return $this
+     */
+    public function type($type)
+    {
+        if (array_key_exists($type, $this->types)) {
+            return $this->whereIn('extension', $this->types[$type]);
+        }
+
+        return $this;
     }
 
     /**

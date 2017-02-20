@@ -146,12 +146,14 @@
                         {!! Dashboard::menu()->render('Main') !!}
 
 
+                        {{--
                         <li>
                             <a href="#">
                                 <i class="fa fa-send text-info-lter"></i>
                                 <span>Email</span>
                             </a>
                         </li>
+                        --}}
 
 
                     </ul>
@@ -180,6 +182,7 @@
                 </nav>
                 <!-- nav -->
 
+                {{-- To do:
                 <!-- aside footer -->
                 <div class="wrapper m-t">
 
@@ -201,6 +204,10 @@
                     </div>
                 </div>
                 <!-- / aside footer -->
+                --}}
+
+
+
             </div>
         </div>
 

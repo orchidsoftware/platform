@@ -71,7 +71,7 @@ class MenuComposer
             'slug'       => 'Marketing',
             'icon'       => 'icon-chart',
             'route'      => '#',
-            'label'      => trans('Маркетинг'),
+            'label'      => trans('dashboard::menu.Marketing'),
             'childs'     => true,
             'main'       => true,
             'active'     => 'dashboard.marketing.*',
