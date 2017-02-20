@@ -40,19 +40,6 @@ class Post extends Model
         'deleted_at',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-
-        // Terms inside all taxonomies
-        //'terms',
-
-        // Terms analysis
-        //'main_category',
-    ];
 
     /**
      * @var array
@@ -236,7 +223,7 @@ class Post extends Model
      */
     public function hero($size = null)
     {
-        $first = $this->attachment()->first();
+        $first = $this->attachment()->orderBy('sort','asc')->first();
 
         return $first ? $first->url($size) : null;
     }
