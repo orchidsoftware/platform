@@ -284,7 +284,7 @@
                             'slug': this.slug,
                             'robot': this.robot,
                             'style': this.style,
-                            'target': this.target,
+                            'target': this.target
                         });
                         $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
 
@@ -335,10 +335,8 @@
                     },
                     exist: function(){
 
-                        if( Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0){
-                            return true;
-                        }
-                        return false;
+                        return !!(Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0);
+
                     }
 
                 }

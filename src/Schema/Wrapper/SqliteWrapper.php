@@ -4,7 +4,7 @@ namespace Orchid\Schema\Wrapper;
 
 use Orchid\Schema\BaseSchema;
 use Orchid\Schema\WrapperContract;
-
+use Illuminate\Support\Facades\DB;
 class SqliteWrapper implements WrapperContract
 {
     /**
@@ -55,7 +55,7 @@ class SqliteWrapper implements WrapperContract
      */
     public function getColumns($tableName)
     {
-        $columns = $this->baseSchema->database->select(\DB::raw("pragma table_info($tableName)"));
+        $columns = $this->baseSchema->database->select(DB::raw("pragma table_info($tableName)"));
 
         return $this->transformColumns($columns);
     }

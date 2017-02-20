@@ -230,6 +230,7 @@ class Post extends Model
     /**
      * Get attachment.
      *
+     * @param null $type
      * @return mixed
      */
     public function attachment($type = null)

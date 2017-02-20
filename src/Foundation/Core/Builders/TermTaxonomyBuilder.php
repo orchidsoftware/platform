@@ -44,7 +44,7 @@ class TermTaxonomyBuilder extends Builder
     /**
      * Get a term taxonomy by specific slug.
      *
-     * @param string slug
+     * @param string
      *
      * @return \Orchid\Foundation\Core\Builders\TermTaxonomyBuilder
      */

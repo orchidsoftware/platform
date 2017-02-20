@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 16.02.17
- * Time: 14:39.
- */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
 use Illuminate\Http\Request;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
-use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
 

@@ -62,9 +62,7 @@
     content: '';
     position: absolute;
     background-color: #fff;
-    border-color: inherit;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid inherit;
     border-radius: 10px;
     width: 9px;
     height: 9px;
@@ -107,9 +105,8 @@
   display: block;
   margin-left: 6em;
   padding: 15px 0 15px 20px;
-  border-style: solid;
-  border-color: @border-color;
-  border-width: 0 0 0 4px;
+  border: 0 solid @border-color;
+  border-left-width: 4px;
   .clearfix();
   &:before {
     position: relative;
@@ -119,10 +116,8 @@
     margin-left: -27px;
     width: 10px;
     height: 10px;
-    border-color: inherit;
-    border-width: 3px;
     border-radius: 50%;
-    border-style: solid;
+    border: 3px solid inherit;
     background: @brand-light;
     box-shadow: 0 0 0 4px @body-bg;
   }

@@ -75,7 +75,7 @@ class Dashboard
     }
 
     /**
-     * @return FieldStorage
+     * @return FieldStorage|FilterStorage
      */
     public function getFieldFilters()
     {
@@ -83,7 +83,7 @@ class Dashboard
     }
 
     /**
-     * @return PlaceListTransformer
+     * @return PlaceListTransformer|TransformerStorage
      */
     public function getTransformers()
     {

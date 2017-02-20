@@ -74,10 +74,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a ui-sref="app.page.profile">Профиль</a>
+                                    <a>Профиль</a>
                                 </li>
                                 <li>
-                                    <a ui-sref="app.docs">
+                                    <a>
                                         <span class="label bg-info pull-right">новое</span>
                                         Помощь
                                     </a>

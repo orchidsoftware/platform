@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 use Illuminate\Http\Request;
-use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;

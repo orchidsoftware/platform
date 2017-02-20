@@ -120,7 +120,7 @@ $(document).ready(function () {
                 url: '/dashboard/tools/files/sort',
                 data: {
                     _token: $("meta[name='csrf_token']").attr('content'),
-                    files: items,
+                    files: items
                 },
                 dataType: 'html',
                 success: function (response) {

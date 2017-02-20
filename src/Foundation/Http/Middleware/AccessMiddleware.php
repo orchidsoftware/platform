@@ -25,7 +25,7 @@ class AccessMiddleware
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-    }
+    }/** @noinspection PhpInconsistentReturnPointsInspection */
 
     /**
      * @param          $request

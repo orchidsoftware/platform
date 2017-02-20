@@ -187,7 +187,7 @@ class ElasticsearchEngine extends Engine
      * @param mixed                               $results
      * @param \Illuminate\Database\Eloquent\Model $model
      *
-     * @return Collection
+     * @return Collection|\Illuminate\Support\Collection
      */
     public function map($results, $model)
     {
