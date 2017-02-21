@@ -60,6 +60,15 @@ class AdvertisingController extends Controller
             ->render($item);
     }
 
+    public function destroy($item_id)
+    {
+        $item = Adv::where('id', $item_id)->first();
+
+        $item->delete();
+
+        return redirect()->route('dashboard.tools.advertising.index');
+    }
+
     public function store(Request $request, TermTaxonomy $termTaxonomy)
     {
         $this->form->save($request, $termTaxonomy);
