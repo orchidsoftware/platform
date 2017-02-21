@@ -53,7 +53,7 @@ $this->group([
         $router->resource('advertising', 'AdvertisingController', ['names' => [
             'index'  => 'dashboard.tools.advertising.index',
             'create' => 'dashboard.tools.advertising.create',
-            'edit' => 'dashboard.tools.advertising.edit',
+            'edit'   => 'dashboard.tools.advertising.edit',
             'update' => 'dashboard.tools.advertising.update',
             'store'  => 'dashboard.tools.advertising.store',
         ]]);

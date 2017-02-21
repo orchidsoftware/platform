@@ -8,10 +8,9 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-use Orchid\Foundation\Core\Models\Adv;
-use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Illuminate\Http\Request;
 use Orchid\Forms\Form;
+use Orchid\Foundation\Core\Models\TermTaxonomy;
 
 class AdvertisingPreviewForm extends Form
 {
@@ -39,6 +38,7 @@ class AdvertisingPreviewForm extends Form
 
     /**
      * @param $item
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($item = null)
@@ -48,7 +48,8 @@ class AdvertisingPreviewForm extends Form
 
     /**
      * @param Request|null $request
-     * @param null $adv
+     * @param null         $adv
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, $adv = null)
