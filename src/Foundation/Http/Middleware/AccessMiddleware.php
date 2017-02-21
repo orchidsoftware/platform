@@ -27,6 +27,8 @@ class AccessMiddleware
         $this->auth = $auth;
     }
 
+    /** @noinspection PhpInconsistentReturnPointsInspection */
+
     /**
      * @param          $request
      * @param \Closure $next

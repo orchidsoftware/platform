@@ -119,7 +119,7 @@ abstract class FormGroup
             }
 
             if (method_exists($form, 'get')) {
-                $this->html->put($form->name, $form->get(...$arg)); //$this->storage
+                $this->html->put($form->name, $form->get(...$arg));
             }
         }
 

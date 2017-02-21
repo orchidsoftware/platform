@@ -13,7 +13,7 @@
           type='text/css'>
     <link rel="stylesheet" href="{{asset('/orchid/css/orchid.css')}}" type="text/css"/>
 </head>
-
+<body>
 
 
 
@@ -71,7 +71,6 @@
 
 
 <script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
-
 
 </body>
 </html>

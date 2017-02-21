@@ -15,8 +15,8 @@
 
 
                     <div class="btn-group btn-group-justified" role="group">
-                        <a href="/dashboard" class="btn btn-primary">Dashboard</a>
-                        <a href="/" class="btn btn-primary">{{ trans('install.final.exit') }}</a>
+                        <a href="{{url('/dashboard')}}" class="btn btn-primary">Dashboard</a>
+                        <a href="{{url('/')}}" class="btn btn-primary">{{ trans('install.final.exit') }}</a>
                     </div>
 
 

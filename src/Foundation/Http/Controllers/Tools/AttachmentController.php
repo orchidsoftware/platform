@@ -86,8 +86,8 @@ class AttachmentController extends Controller
 
         $name = sha1($this->time.$image->getClientOriginalName());
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
-        Image::make($image)->save($full_path, 100);
+        $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
+        Image::make($image)->save($fullPath, 100);
 
         return Attachment::create([
             'name'          => $name,
@@ -112,9 +112,9 @@ class AttachmentController extends Controller
         $hashName = sha1($this->time.$file->getClientOriginalName());
         $name = $hashName.'.'.$file->getClientOriginalExtension();
 
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/');
+        $fullPath = storage_path('app/public/'.'/'.$this->date.'/');
 
-        $file->move($full_path, $name);
+        $file->move($fullPath, $name);
 
         try {
             $mimeType = $file->getMimeType();
@@ -182,10 +182,10 @@ class AttachmentController extends Controller
         }
 
         $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
-        $full_path = storage_path('app/public/'.'/'.$this->date.'/'.$name);
+        $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
-        })->save($full_path, $quality);
+        })->save($fullPath, $quality);
     }
 }

@@ -70,7 +70,7 @@
         });
 
 
-        $('#map-place-{{str_slug($name)}}-{{$lang}}').on('show.bs.modal', function (e) {
+        $('#map-place-{{str_slug($name)}}-{{$lang}}').on('show.bs.modal', function () {
 
 
             setTimeout(function () {
@@ -84,7 +84,7 @@
                     zoom: 12
                 });
 
-                var marker = new google.maps.Marker({
+                 new google.maps.Marker({
                     map: map,
                     position: myLatLng,
                     title: $('#place-{{str_slug($name)}}-{{$lang}}').val()

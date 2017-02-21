@@ -5,6 +5,7 @@ namespace Orchid\Foundation\Http\Controllers\Systems;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Adapter\Local;
 use Orchid\Foundation\Http\Requests\Request;
 
 class BackupController extends Controller
@@ -36,7 +37,7 @@ class BackupController extends Controller
                         'file_size'     => $disk->size($file),
                         'last_modified' => $disk->lastModified($file),
                         'disk'          => $diskName,
-                        'download'      => ($adapter instanceof \League\Flysystem\Adapter\Local) ? true : false,
+                        'download'      => ($adapter instanceof Local) ? true : false,
                     ];
                 }
             }
@@ -84,7 +85,7 @@ class BackupController extends Controller
         $fileName = $request->input('file_name');
         $adapter = $disk->getDriver()->getAdapter();
 
-        if ($adapter instanceof \League\Flysystem\Adapter\Local) {
+        if ($adapter instanceof Local) {
             $storagePath = $disk->getDriver()->getAdapter()->getPathPrefix();
 
             if ($disk->exists($fileName)) {

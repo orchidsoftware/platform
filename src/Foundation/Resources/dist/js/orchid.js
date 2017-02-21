@@ -75248,18 +75248,10 @@ if (document.getElementsByClassName('dropzone')) {
             });
         },
         error: function (file, response) {
-            if ($.type(response) === "string")
-                var message = response; //dropzone sends it's own error messages in string
-            else
-                var message = response.message;
-            file.previewElement.classList.add("dz-error");
-            _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                node = _ref[_i];
-                _results.push(node.textContent = message);
+            if ($.type(response) === "string") {
+                return response; //dropzone sends it's own error messages in string
             }
-            return _results;
+            return response.message;
         },
         success: function (file, response) {
             file.data = response;
@@ -75288,7 +75280,7 @@ $(document).ready(function () {
                 url: '/dashboard/tools/files/sort',
                 data: {
                     _token: $("meta[name='csrf_token']").attr('content'),
-                    files: items,
+                    files: items
                 },
                 dataType: 'html',
                 success: function (response) {
@@ -75311,6 +75303,27 @@ $(document).ready(function() {
     $('.summernote').summernote({
         minHeight: 300,
     });
+});
+/**
+ * Reload GoogleMaps Tabs
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    $('#post').find('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+        setTimeout(function () {
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
+    });
+});
+
+
+/**
+ * Remove Language
+ */
+$('.close-lang-content').click(function () {
+    var local = $(this).data('local');
+    $('#post').find('a[data-target="#local-'+local+'"]').parent().remove();
+
+    $('#post #local-'+local).remove();
 });
 /**
  * Created by joker on 17.02.17.
@@ -75377,25 +75390,5 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-});
-/**
- * Reload GoogleMaps Tabs
- */
-document.addEventListener('DOMContentLoaded', function () {
-    $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        setTimeout(function () {
-            window.dispatchEvent(new Event('resize'));
-        }, 1000);
-    });
-});
-
-
-/**
- * Remove Language
- */
-$('.close-lang-content').click(function () {
-    var local = $(this).data('local');
-    $('#post a[data-target="#local-'+local+'"]').parent().remove();
-    $('#post #local-'+local).remove();
 });
 //# sourceMappingURL=orchid.js.map

@@ -2,7 +2,7 @@
  * Reload GoogleMaps Tabs
  */
 document.addEventListener('DOMContentLoaded', function () {
-    $('#post a[data-toggle="tab"]').on('shown.bs.tab', function () {
+    $('#post').find('a[data-toggle="tab"]').on('shown.bs.tab', function () {
         setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
         }, 1000);
@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 $('.close-lang-content').click(function () {
     var local = $(this).data('local');
-    $('#post a[data-target="#local-'+local+'"]').parent().remove();
+    $('#post').find('a[data-target="#local-'+local+'"]').parent().remove();
+
     $('#post #local-'+local).remove();
 });

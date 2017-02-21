@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 10:43
+ * Time: 10:43.
  */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
@@ -38,7 +38,7 @@ class AdvertisingFormGroup extends FormGroup
     public function main()
     {
         return view('dashboard::container.tools.advertising.grid', [
-            'ads' => Adv::all()
+            'ads' => Adv::all(),
         ]);
     }
 }

@@ -7,19 +7,10 @@ class PermissionsChecker
     /**
      * @var array
      */
-    protected $results = [];
-
-    /**
-     * Set the result array permissions and errors.
-     *
-     * @return mixed
-     */
-    public function __construct()
-    {
-        $this->results['permissions'] = [];
-
-        $this->results['errors'] = null;
-    }
+    protected $results = [
+        'permissions' => [],
+        'errors'      => null,
+    ];
 
     /**
      * Check for the folders permissions.

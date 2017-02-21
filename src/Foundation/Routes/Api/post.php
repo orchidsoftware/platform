@@ -9,6 +9,10 @@
 |
 */
 
-Route::group(['middleware' => ['api'], 'prefix'=> 'api', 'namespace' => 'Orchid\Foundation\Http\Controllers\Api'], function ($router) {
+$this->group([
+    'middleware' => ['api'],
+    'prefix'     => 'api',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers\Api',
+], function ($router) {
     //    Route::post('route', 'PostApiController@store');
 });

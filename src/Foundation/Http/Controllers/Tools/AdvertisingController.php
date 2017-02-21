@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: joker
  * Date: 16.02.17
- * Time: 10:41
+ * Time: 10:41.
  */
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
-
 
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Http\Controllers\Controller;
@@ -27,7 +26,6 @@ class AdvertisingController extends Controller
     {
         $this->form = new $this->formClass();
     }
-
 
     public function index()
     {

@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
 use Orchid\Foundation\Core\Models\Post;
@@ -24,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param Router $router
+     * @internal param Router $router
      */
     public function boot()
     {

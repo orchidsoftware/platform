@@ -128,7 +128,7 @@ class Comment extends Model
     {
         $builder = new CommentBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);
-        if ($excludeDeleted and $this->softDelete) {
+        if ($excludeDeleted && $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }
 

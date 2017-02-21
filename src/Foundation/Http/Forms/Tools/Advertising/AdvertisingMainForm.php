@@ -1,21 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 16.02.17
- * Time: 14:39
- */
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-
+use Illuminate\Http\Request;
+use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Category;
 
 class AdvertisingMainForm extends Form
 {
@@ -48,21 +39,20 @@ class AdvertisingMainForm extends Form
      */
     public function get($item = null)
     {
-        $adsCategory  = collect(config('ads.category'));
-        $weekDays  = collect(config('ads.days'));
+        $adsCategory = collect(config('ads.category'));
+        $weekDays = collect(config('ads.days'));
 
         return view('dashboard::container.tools.advertising.info', [
             'item' => $item,
             'categories' => $adsCategory,
-            'weekDays' => $weekDays
+            'weekDays'   => $weekDays,
         ]);
     }
 
     /**
      * @param Request|null $request
-     * @param Adv $adv
+     * @param null $adv
      * @return mixed|void
-     * @internal param null|Adv $termTaxonomy
      */
     public function persist(Request $request = null, $adv = null)
     {
@@ -75,7 +65,6 @@ class AdvertisingMainForm extends Form
         unset($requestContent['_token']);
         unset($requestContent['_method']);
         unset($requestContent['code']);
-
         if(!($adv instanceof Adv)) {
             $adv = Adv::create([
                 'content' => $requestContent,

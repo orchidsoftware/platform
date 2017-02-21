@@ -44,13 +44,13 @@ class TermTaxonomyBuilder extends Builder
     /**
      * Get a term taxonomy by specific slug.
      *
-     * @param string slug
+     * @param string
      *
      * @return \Orchid\Foundation\Core\Builders\TermTaxonomyBuilder
      */
     public function slug($slug = null)
     {
-        if (!is_null($slug) and !empty($slug)) {
+        if (!is_null($slug) && !empty($slug)) {
             // set this slug to be used in with callback
             $this->slug = $slug;
 

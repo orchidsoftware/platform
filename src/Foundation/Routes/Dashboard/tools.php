@@ -55,6 +55,6 @@ $this->group([
             'create' => 'dashboard.tools.advertising.create',
             'edit' => 'dashboard.tools.advertising.edit',
             'update' => 'dashboard.tools.advertising.update',
-            'store' => 'dashboard.tools.advertising.store',
+            'store'  => 'dashboard.tools.advertising.store',
         ]]);
     });

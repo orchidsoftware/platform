@@ -199,7 +199,7 @@
                             <!-- BEGIN Header Controler !-->
 
                             <div class="col text-left">
-                                <a href="javascript:;" class="inline action p-l-10 link text-master" data-navigate="view"
+                                <a href="javascript:" class="inline action p-l-10 link text-master" data-navigate="view"
                                    data-view-port="#chat">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </a>
