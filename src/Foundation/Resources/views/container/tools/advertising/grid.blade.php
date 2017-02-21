@@ -32,15 +32,14 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($ads as $item)
-
                                     <tr>
                                         <td class="text-center">
-                                            {{--<a href="{{ route('dashboard.tools.category.edit',$item->id) }}"><i--}}
-                                                        {{--class="fa fa-bars"></i></a>--}}
+                                            <a href="{{ route('dashboard.tools.advertising.edit', $item) }}"><i
+                                                        class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{$item->content['slug']}}</td>
+                                        <td>{{ $item->content['slug'] }}</td>
 
-                                        <td>{{ $item->updated_at}}</td>
+                                        <td>{{ $item->updated_at }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -53,9 +52,9 @@
             @else
 
                 <div class="jumbotron text-center">
-                    <h3 class="font-thin">Вы ещё не создали ни одной секции</h3>
+                    <h3 class="font-thin">Вы ещё не создали ни одного рекламного блока</h3>
 
-                    {{--<a href="{{ route('dashboard.tools.category.create')}}" class="btn btn-link">Создать</a>--}}
+                    <a href="{{ route('dashboard.tools.advertising.create')}}" class="btn btn-link">Создать</a>
                 </div>
 
             @endif

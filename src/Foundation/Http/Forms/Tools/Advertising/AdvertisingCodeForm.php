@@ -9,6 +9,7 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
 
+use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Term;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
@@ -44,22 +45,22 @@ class AdvertisingCodeForm extends Form
     }
 
     /**
-     * @param TermTaxonomy|null $termTaxonomy
-     *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @param $item
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(TermTaxonomy $termTaxonomy = null)
+    public function get($item = null)
     {
-
-        return view('dashboard::container.tools.advertising.code');
+        return view('dashboard::container.tools.advertising.code', [
+            'item' => $item
+        ]);
     }
 
     /**
      * @param Request|null $request
-     * @param TermTaxonomy|null $termTaxonomy
+     * @param Adv|null $adv
      * @return mixed|void
      */
-    public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
+    public function persist(Request $request = null, $adv = null)
     {
         $totalRequest = $request->all();
         $code = $totalRequest['code'];

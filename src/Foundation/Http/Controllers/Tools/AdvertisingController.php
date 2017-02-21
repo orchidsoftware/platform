@@ -9,6 +9,7 @@
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 
+use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
@@ -43,8 +44,22 @@ class AdvertisingController extends Controller
         return $formView;
     }
 
-    public function update()
+    public function update(Request $request, Adv $item)
     {
+        $this->form->save($request, $item);
+
+        return redirect()->back();
+    }
+
+    public function edit($item_id)
+    {
+        $item = Adv::where('id', $item_id)->first();
+
+        return $this->form
+            ->route('dashboard.tools.advertising.update')
+            ->slug($item_id)
+            ->method('PUT')
+            ->render($item);
     }
 
     public function store(Request $request, TermTaxonomy $termTaxonomy)

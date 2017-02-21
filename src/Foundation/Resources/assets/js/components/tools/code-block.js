@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
         editor.getSession().setMode("ace/mode/javascript");
         editor.setFontSize(20);
 
+        var filePath = hiddenCodeVal.val();
+
         var showCode = function(code) {
             $('#' + codePreviewId).html(code);
         };
@@ -50,5 +52,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
+        if(filePath != "") {
+            console.log('Load template...');
+            $.get(filePath, function (inputCode) {
+                if(inputCode != '') {
+                    editor.setValue(inputCode, 0);
+                    hiddenCodeVal.val(escape(inputCode));
+                }
+            });
+        }
     }
 });

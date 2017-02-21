@@ -16,6 +16,7 @@ class Adv extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'content',
         'file_name'
     ];

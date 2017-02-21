@@ -35,4 +35,12 @@ trait CodeOperations
         $fullSavePath = $path . '/' . md5($code) . '.html';
         return $fullSavePath;
     }
+
+    /**
+     * @param $code
+     * @return string
+     */
+    private function createDbPath($code) {
+        return config('ads.rel-path') . '/' . md5($code) . '.html';
+    }
 }

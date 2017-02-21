@@ -39,21 +39,20 @@ class AdvertisingMainForm extends Form
     public function rules()
     {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
         ];
     }
 
     /**
-     * @param TermTaxonomy|null $termTaxonomy
-     *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @param $item
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(TermTaxonomy $termTaxonomy = null)
+    public function get($item = null)
     {
         $adsCategory  = collect(config('ads.category'));
         $weekDays  = collect(config('ads.days'));
 
         return view('dashboard::container.tools.advertising.info', [
+            'item' => $item,
             'categories' => $adsCategory,
             'weekDays' => $weekDays
         ]);
@@ -61,28 +60,38 @@ class AdvertisingMainForm extends Form
 
     /**
      * @param Request|null $request
-     * @param TermTaxonomy|null $termTaxonomy
+     * @param Adv $adv
      * @return mixed|void
+     * @internal param null|Adv $termTaxonomy
      */
-    public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
+    public function persist(Request $request = null, $adv = null)
     {
         $requestContent = $request->all();
 
         $code = $requestContent['code'];
-        $path = config('ads.path');
 
-        $fullSavePath = $this->createCodePath($path, $code);
-
+        $fullSavePath = $this->createDbPath($code);
 
         unset($requestContent['_token']);
         unset($requestContent['_method']);
+        unset($requestContent['code']);
 
-        $advRecord = Adv::create([
-            'content' => $requestContent,
-            'file_name' => $fullSavePath
-        ]);
+        if(!($adv instanceof Adv)) {
+            $adv = Adv::create([
+                'content' => $requestContent,
+                'file_name' => $fullSavePath
+            ]);
+        } else {
+            $segments = $request->segments();
+            $item_id = $segments[count($segments) - 1];
 
-        $advRecord->save();
+            $adv = Adv::where('id', $item_id)->first();
+
+            $adv->content = $requestContent;
+            $adv->file_name = $fullSavePath;
+        }
+
+        $adv->save();
 
         Alert::success('success');
     }

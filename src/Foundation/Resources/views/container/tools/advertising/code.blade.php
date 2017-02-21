@@ -2,7 +2,7 @@
     <div id="code-editor" class="code-block"></div>
 </div>
 
-<input type="hidden" id="code-data" name="code">
+<input type="hidden" id="code-data" name="code" @if(isset($item)) value="{{$item->file_name}}" @endif>
 
 @push('stylesheet')
 <style>

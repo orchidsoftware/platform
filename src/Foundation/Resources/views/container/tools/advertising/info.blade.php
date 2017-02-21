@@ -2,24 +2,23 @@
     <div class="form-group m-t-md">
         <label class="col-sm-2 control-label">Имя</label>
         <div class="col-sm-10">
-            <input type="text" name="slug" required class="form-control">
+            <input type="text" name="slug" required class="form-control" @if(isset($item)) value="{{$item->content['slug']}}" @endif>
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">Описание</label>
         <div class="col-sm-10">
-            <textarea name="description" required class="form-control"></textarea>
+            <textarea name="description" required class="form-control">@if(isset($item)){{$item->content['description']}}@endif</textarea>
         </div>
     </div>
 
     <div class="form-group">
             <label class="col-sm-2 control-label">Категория</label>
             <div class="col-sm-10">
-
-                <select data-placeholder="Select Category" name="category_id" class="chosen-select form-control">
+                <select required data-placeholder="Select Category" name="category_id" class="chosen-select form-control">
                     @foreach($categories as $categoryCode => $categoryLabel)
-                        <option value="{{$categoryCode}}">
+                        <option value="{{$categoryCode}}" @if(isset($item) && $item->content['category_id'] == $categoryCode) selected @endif>
                             {{$categoryLabel}}</option>
                     @endforeach
                 </select>
@@ -31,7 +30,7 @@
         <div class="col-sm-10">
             @foreach($weekDays as $dayCode => $dayLabel)
                 <label class="checkbox-inline i-checks">
-                    <input type="checkbox" name="days[{{$dayCode}}]"><i></i> {{$dayLabel}}
+                    <input type="checkbox" name="days[{{$dayCode}}]" @if(isset($item) && isset($item->content['days']) && in_array($dayCode, array_keys($item->content['days']))) checked="checked" @endif><i></i> {{$dayLabel}}
                 </label>
             @endforeach
 
@@ -46,8 +45,8 @@
 
         <div class="col-sm-5">
             <div class='input-group date date-picker'>
-                <input type='text'  class="form-control"
-                       value=""
+                <input required type='text'  class="form-control"
+                       @if(isset($item)) value="{{$item->content['start-date']}}" @endif
                        placeholder=""
 
                        name="start-date"
@@ -60,8 +59,8 @@
 
         <div class="col-sm-5">
             <div class='input-group date date-picker'>
-                <input type='text'  class="form-control"
-                       value=""
+                <input required type='text'  class="form-control"
+                       @if(isset($item)) value="{{$item->content['end-date']}}" @endif
                        placeholder=""
 
                        name="end-date"
@@ -78,8 +77,8 @@
 
         <div class="col-sm-5">
             <div class='input-group date time-picker'>
-                <input type='text'  class="form-control"
-                       value=""
+                <input required type='text'  class="form-control"
+                       @if(isset($item)) value="{{$item->content['start-time']}}" @endif
                        placeholder=""
 
                        name="start-time"
@@ -92,8 +91,8 @@
 
         <div class="col-sm-5">
             <div class='input-group date time-picker'>
-                <input type='text'  class="form-control"
-                       value=""
+                <input required type='text'  class="form-control"
+                       @if(isset($item)) value="{{$item->content['end-time']}}" @endif
                        placeholder=""
 
                        name="end-time"
