@@ -8,10 +8,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Advertising;
 
-use Orchid\Foundation\Core\Models\TermTaxonomy;
-use Orchid\Foundation\Facades\Alert;
 use Illuminate\Http\Request;
 use Orchid\Forms\Form;
+use Orchid\Foundation\Core\Models\TermTaxonomy;
+use Orchid\Foundation\Facades\Alert;
 
 class AdvertisingCodeForm extends Form
 {
@@ -41,18 +41,20 @@ class AdvertisingCodeForm extends Form
 
     /**
      * @param $item
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($item = null)
     {
         return view('dashboard::container.tools.advertising.code', [
-            'item' => $item
+            'item' => $item,
         ]);
     }
 
     /**
      * @param Request|null $request
-     * @param null $adv
+     * @param null         $adv
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, $adv = null)

@@ -8,10 +8,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
-use Orchid\Foundation\Core\Models\Adv;
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Forms\Tools\Advertising\AdvertisingFormGroup;
 
 class AdvertisingController extends Controller
