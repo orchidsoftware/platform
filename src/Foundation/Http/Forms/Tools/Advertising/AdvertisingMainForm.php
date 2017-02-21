@@ -35,6 +35,7 @@ class AdvertisingMainForm extends Form
 
     /**
      * @param $item
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get($item = null)
@@ -43,7 +44,7 @@ class AdvertisingMainForm extends Form
         $weekDays = collect(config('ads.days'));
 
         return view('dashboard::container.tools.advertising.info', [
-            'item' => $item,
+            'item'       => $item,
             'categories' => $adsCategory,
             'weekDays'   => $weekDays,
         ]);
@@ -51,7 +52,8 @@ class AdvertisingMainForm extends Form
 
     /**
      * @param Request|null $request
-     * @param null $adv
+     * @param null         $adv
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, $adv = null)
@@ -65,10 +67,10 @@ class AdvertisingMainForm extends Form
         unset($requestContent['_token']);
         unset($requestContent['_method']);
         unset($requestContent['code']);
-        if(!($adv instanceof Adv)) {
+        if (!($adv instanceof Adv)) {
             $adv = Adv::create([
-                'content' => $requestContent,
-                'file_name' => $fullSavePath
+                'content'   => $requestContent,
+                'file_name' => $fullSavePath,
             ]);
         } else {
             $segments = $request->segments();

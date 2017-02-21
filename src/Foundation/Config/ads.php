@@ -8,8 +8,8 @@ return [
         'invest-block' => 'Реклама в блоке инвесторов',
     ],
     'rel-path' => '/ads',
-    'path' => dirname(__DIR__) . '/public/ads',
-    'days' => [
+    'path'     => dirname(__DIR__).'/public/ads',
+    'days'     => [
         0 => 'Пн',
         1 => 'Вт',
         2 => 'Ср',
