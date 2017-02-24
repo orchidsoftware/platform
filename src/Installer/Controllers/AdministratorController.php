@@ -19,9 +19,10 @@ class AdministratorController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @internal param Redirector $redirect
      *
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @internal param Redirector $redirect
      */
     public function create(Request $request)
     {

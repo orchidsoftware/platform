@@ -18,6 +18,7 @@ class SettingBaseListener
      * Handle the event.
      *
      * @return
+     *
      * @internal param SettingsEvent $event
      */
     public function handle()

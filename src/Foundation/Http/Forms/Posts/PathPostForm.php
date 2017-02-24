@@ -16,7 +16,9 @@ class PathPostForm extends Form
      * Display Base Options.
      *
      * @param Post|null $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @internal param null $type
      */
     public function get(Post $post = null)

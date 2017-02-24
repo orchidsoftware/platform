@@ -104,7 +104,9 @@ class PostController extends Controller
     /**
      * @param Post $type
      * @param Post $post
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @internal param Request $request
      */
     public function edit(Post $type, Post $post)
@@ -138,8 +140,6 @@ class PostController extends Controller
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
-
-
         if ($request->has('slug')) {
             $slug = $request->get('slug');
         } else {
@@ -170,7 +170,9 @@ class PostController extends Controller
 
     /**
      * @param Post $post
+     *
      * @return mixed
+     *
      * @internal param Request $request
      * @internal param Post $type
      */

@@ -14,7 +14,6 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
-
     /**
      * @var
      */
@@ -39,35 +38,32 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsMain()
     {
-
         return [
             'Главное меню' => [
                 [
-                    'slug' => 'dashboard.index',
+                    'slug'        => 'dashboard.index',
                     'description' => 'Главное меню',
                 ],
                 [
-                    'slug' => 'dashboard.posts',
+                    'slug'        => 'dashboard.posts',
                     'description' => 'Доступ к постам',
                 ],
                 [
-                    'slug' => 'dashboard.tools',
+                    'slug'        => 'dashboard.tools',
                     'description' => 'Доступ к инструментам',
                 ],
                 [
-                    'slug' => 'dashboard.systems',
+                    'slug'        => 'dashboard.systems',
                     'description' => 'Доступ к параметрам системы',
                 ],
                 [
-                    'slug' => 'dashboard.marketing',
+                    'slug'        => 'dashboard.marketing',
                     'description' => 'Доступ к инстументам маркетинга',
                 ],
             ],
 
-
         ];
     }
-
 
     protected function registerPermissionsPost()
     {
@@ -75,36 +71,32 @@ class PermissionServiceProvider extends ServiceProvider
         $showPost = collect();
         foreach ($allPost as $page) {
             if ($page->display) {
-
                 $showPost->push([
-                    'slug' => 'dashboard.posts.type.' . $page->slug,
+                    'slug'        => 'dashboard.posts.type.'.$page->slug,
                     'description' => $page->name,
                 ]);
-
             }
         }
+
         return [
             'Posts' => $showPost->toArray(),
         ];
-
     }
-
 
     protected function registerPermissionsTools()
     {
-
         return [
             'Tools' => [
                 [
-                    'slug' => 'dashboard.tools.menu',
+                    'slug'        => 'dashboard.tools.menu',
                     'description' => 'Доступ к меню',
                 ],
                 [
-                    'slug' => 'dashboard.tools.category',
+                    'slug'        => 'dashboard.tools.category',
                     'description' => 'Доступ к категориям',
                 ],
                 [
-                    'slug' => 'dashboard.tools.attachment',
+                    'slug'        => 'dashboard.tools.attachment',
                     'description' => 'Доступ к загрузке файлов',
                 ],
             ],
@@ -113,36 +105,35 @@ class PermissionServiceProvider extends ServiceProvider
 
     protected function registerPermissionsSystems()
     {
-
         return [
 
             'Systems' => [
                 [
-                    'slug' => 'dashboard.systems.backup',
+                    'slug'        => 'dashboard.systems.backup',
                     'description' => 'Доступ к резервнымым копиям',
                 ],
                 [
-                    'slug' => 'dashboard.systems.category',
+                    'slug'        => 'dashboard.systems.category',
                     'description' => 'Доступ к защитнику',
                 ],
                 [
-                    'slug' => 'dashboard.systems.logs',
+                    'slug'        => 'dashboard.systems.logs',
                     'description' => 'Доступ к журналу событий',
                 ],
                 [
-                    'slug' => 'dashboard.systems.roles',
+                    'slug'        => 'dashboard.systems.roles',
                     'description' => 'Доступ к ролям',
                 ],
                 [
-                    'slug' => 'dashboard.systems.schema',
+                    'slug'        => 'dashboard.systems.schema',
                     'description' => 'Доступ к таблица',
                 ],
                 [
-                    'slug' => 'dashboard.systems.settings',
+                    'slug'        => 'dashboard.systems.settings',
                     'description' => 'Доступ к настройкам',
                 ],
                 [
-                    'slug' => 'dashboard.systems.users',
+                    'slug'        => 'dashboard.systems.users',
                     'description' => 'Доступ к пользователям',
                 ],
             ],
@@ -155,14 +146,14 @@ class PermissionServiceProvider extends ServiceProvider
 
             'Marketing' => [
                 [
-                    'slug' => 'dashboard.marketing.comment',
+                    'slug'        => 'dashboard.marketing.comment',
                     'description' => 'Доступ к комментариям',
                 ],
                 [
-                    'slug' => 'dashboard.marketing.advertising',
+                    'slug'        => 'dashboard.marketing.advertising',
                     'description' => 'Доступ к рекламе',
                 ],
-            ]
+            ],
 
         ];
     }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
-
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
 
@@ -24,7 +23,6 @@ class Post extends Model
      * @var
      */
     protected $dataType = null;
-
 
     /**
      * @var array
@@ -331,9 +329,4 @@ class Post extends Model
 
         return $count ? "{$slug}-{$count}" : $slug;
     }
-
-
-
-
-
 }
