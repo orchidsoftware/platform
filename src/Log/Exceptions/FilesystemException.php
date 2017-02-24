@@ -2,6 +2,6 @@
 
 namespace Orchid\Log\Exceptions;
 
-class FilesystemException extends LogException
+class FilesystemException extends LogViewerException
 {
 }

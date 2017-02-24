@@ -9,14 +9,14 @@ class PlaceListTransformer extends Transformer
     /**
      * @var array|mixed
      */
-    private $locales = [];
+    private $locales;
 
     /**
      * PlaceListTransformer constructor.
      */
     public function __construct()
     {
-        $this->locales = config('content.locales');
+        $this->locales = config('content.locales', []);
     }
 
     /**

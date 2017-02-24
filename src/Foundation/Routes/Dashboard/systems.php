@@ -14,7 +14,7 @@ $this->group([
     'prefix'     => 'dashboard/systems',
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Systems',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         $router->get('settings', [
             'as'   => 'dashboard.systems.settings',
             'uses' => 'SettingController@index',

@@ -3,6 +3,7 @@
 namespace Orchid\Log\Helpers;
 
 use Orchid\Log\Utilities\LogLevels;
+use Illuminate\Support\Str;
 
 class LogParser
 {
@@ -93,6 +94,6 @@ class LogParser
      */
     private static function hasLogLevel($heading, $level)
     {
-        return str_contains(strtolower($heading), strtolower('.'.$level));
+        return Str::contains(strtolower($heading), strtolower('.'.$level));
     }
 }

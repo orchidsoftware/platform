@@ -14,7 +14,7 @@ $this->group([
     'prefix'     => 'dashboard/tools',
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Tools',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         $router->resource('category', 'CategoryController', ['names' => [
             'index'   => 'dashboard.tools.category',
             'create'  => 'dashboard.tools.category.create',

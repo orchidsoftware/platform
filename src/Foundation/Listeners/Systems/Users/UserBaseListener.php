@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Listeners\Systems\Users;
 
-use Orchid\Foundation\Events\Systems\UserEvent;
 use Orchid\Foundation\Http\Forms\Systems\Users\BaseUserForm;
 
 class UserBaseListener

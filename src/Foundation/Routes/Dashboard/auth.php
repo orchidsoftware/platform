@@ -14,7 +14,7 @@ $this->group([
     'prefix'     => 'dashboard',
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Auth',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         // Authentication Routes...
         $router->get('login', 'LoginController@showLoginForm')->name('login');
         $router->post('login', 'LoginController@login');

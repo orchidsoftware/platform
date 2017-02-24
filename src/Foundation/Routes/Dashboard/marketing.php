@@ -15,7 +15,7 @@ $this->group([
     'prefix'     => 'dashboard/marketing',
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Marketing',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         $router->resource('comment', 'CommentController', ['names' => [
             'index'   => 'dashboard.marketing.comment',
             'create'  => 'dashboard.marketing.comment.create',

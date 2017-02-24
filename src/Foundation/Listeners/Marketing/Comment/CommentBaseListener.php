@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Listeners\Marketing\Comment;
 
-use Orchid\Foundation\Events\Marketing\CommentEvent;
 use Orchid\Foundation\Http\Forms\Marketing\Comment\BaseCommentForm;
 
 class CommentBaseListener

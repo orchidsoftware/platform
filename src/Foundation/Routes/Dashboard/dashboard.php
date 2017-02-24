@@ -15,7 +15,7 @@ $this->group([
     'prefix'     => 'dashboard',
     'namespace'  => 'Orchid\Foundation\Http\Controllers',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         $router->get('/', [
             'as'   => 'dashboard.index',
             'uses' => 'DashboardController@index',

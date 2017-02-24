@@ -2,6 +2,6 @@
 
 namespace Orchid\Log\Exceptions;
 
-class LogNotFoundException extends LogException
+class LogNotFoundException extends LogViewerException
 {
 }

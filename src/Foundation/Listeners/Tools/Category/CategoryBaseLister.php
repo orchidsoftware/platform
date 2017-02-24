@@ -2,7 +2,6 @@
 
 namespace Orchid\Foundation\Listeners\Tools\Category;
 
-use Orchid\Foundation\Events\Tools\CategoryEvent;
 use Orchid\Foundation\Http\Forms\Tools\Category\CategoryMainForm;
 
 class CategoryBaseLister

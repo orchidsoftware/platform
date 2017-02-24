@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Attachment;
-use Orchid\Foundation\Core\Models\Post;
 
 class UploadPostForm extends Form
 {

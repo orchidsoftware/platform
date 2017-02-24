@@ -173,7 +173,7 @@ class Post extends Model
     {
         $option = $this->options;
 
-        if ($option == null) {
+        if (is_null($option)) {
             $option = [];
         }
 

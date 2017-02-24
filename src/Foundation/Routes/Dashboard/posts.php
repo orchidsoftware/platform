@@ -14,7 +14,7 @@ $this->group([
     'prefix'     => 'dashboard/posts',
     'namespace'  => 'Orchid\Foundation\Http\Controllers\Posts',
 ],
-    function ($router) {
+    function (\Illuminate\Routing\Router $router) {
         $router->get('{type}/create', [
             'as'   => 'dashboard.posts.type.create',
             'uses' => 'PostController@create',
