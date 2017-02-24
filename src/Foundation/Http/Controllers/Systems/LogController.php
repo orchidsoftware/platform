@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Log\Exceptions\LogNotFoundException;
 use Orchid\Log\Log;
 use Orchid\Log\Tables\StatsTable;

@@ -15,7 +15,9 @@ class UploadPostForm extends Form
 
     /**
      * Display Base Options.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @internal param null $type
      * @internal param null|Post $post
      */

@@ -2,10 +2,10 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Adapter\Local;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Http\Requests\Request;
 
 class BackupController extends Controller
@@ -14,7 +14,6 @@ class BackupController extends Controller
      * @var
      */
     public $data;
-
 
     public function __construct()
     {

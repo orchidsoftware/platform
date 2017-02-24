@@ -29,6 +29,7 @@ class PlaceContentFilter extends ContentFilter
 
     /**
      * @return mixed
+     *
      * @internal param $model
      * @internal param $values
      * @internal param $prefix

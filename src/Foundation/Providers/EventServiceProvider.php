@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -26,11 +25,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         \Orchid\Foundation\Events\Marketing\AdvertisingEvent::class => [
             \Orchid\Foundation\Listeners\Marketing\Advertising\AdvertisingBaseListener::class,
-            \Orchid\Foundation\Listeners\Marketing\Advertising\AdvertisingCodeListener::class
+            \Orchid\Foundation\Listeners\Marketing\Advertising\AdvertisingCodeListener::class,
         ],
         \Orchid\Foundation\Events\Tools\CategoryEvent::class => [
             \Orchid\Foundation\Listeners\Tools\Category\CategoryBaseLister::class,
-            \Orchid\Foundation\Listeners\Tools\Category\CategoryDescLister::class
+            \Orchid\Foundation\Listeners\Tools\Category\CategoryDescLister::class,
         ],
         \Orchid\Foundation\Events\Marketing\CommentEvent::class => [
             \Orchid\Foundation\Listeners\Marketing\Comment\CommentBaseListener::class,

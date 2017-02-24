@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
 use Illuminate\Http\Request;
-
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Term;
@@ -46,7 +45,6 @@ class CategoryMainForm extends Form
         ]);
         $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
-
         return view('dashboard::container.tools.category.info', [
             'category'      => $category,
             'termTaxonomy'  => $termTaxonomy,
@@ -82,6 +80,7 @@ class CategoryMainForm extends Form
 
     /**
      * @param TermTaxonomy $termTaxonomy
+     *
      * @internal param Request $request
      */
     public function delete(TermTaxonomy $termTaxonomy)

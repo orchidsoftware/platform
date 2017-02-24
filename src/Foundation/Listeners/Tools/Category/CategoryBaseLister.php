@@ -16,9 +16,10 @@ class CategoryBaseLister
 
     /**
      * Handle the event.
-     * @return mixed
-     * @internal param CategoryEvent $event
      *
+     * @return mixed
+     *
+     * @internal param CategoryEvent $event
      */
     public function handle()
     {

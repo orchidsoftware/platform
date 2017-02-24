@@ -2,12 +2,12 @@
 
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Foundation\Core\Models\Menu;
 use Orchid\Foundation\Facades\Dashboard;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
@@ -27,6 +27,7 @@ class MenuController extends Controller
     public function index()
     {
         $this->checkPermission('dashboard.tools.menu');
+
         return view('dashboard::container.tools.menu.listing', [
             'menu'    => collect(config('content.menu')),
             'locales' => collect(config('content.locales')),

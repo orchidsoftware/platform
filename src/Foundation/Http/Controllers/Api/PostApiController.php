@@ -26,7 +26,9 @@ class PostApiController extends ApiController
 
     /**
      * @param Request $request
+     *
      * @return mixed
+     *
      * @internal param Post $post
      */
     public function store(Request $request)

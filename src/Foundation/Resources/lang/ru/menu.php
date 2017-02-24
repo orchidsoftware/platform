@@ -24,7 +24,7 @@ return [
     'Sections'                   => 'Разделы',
     'Tags'                       => 'Теги',
     'Users'                      => 'Пользователи',
-    'Roles'                     => 'Группы',
+    'Roles'                      => 'Группы',
     'Settings'                   => 'Настройки',
     'Web domains'                => 'Веб-домены',
     'Constants'                  => 'Константы',

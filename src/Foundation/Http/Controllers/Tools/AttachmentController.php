@@ -5,11 +5,11 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\Attachment;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 
 class AttachmentController extends Controller
 {
