@@ -8,6 +8,14 @@ use Orchid\Foundation\Http\Controllers\Controller;
 class DefenderController extends Controller
 {
     /**
+     * DefenderController constructor.
+     */
+    public function __construct()
+    {
+        $this->checkPermission('dashboard.systems.defender');
+    }
+
+    /**
      * @return string
      */
     public function index()

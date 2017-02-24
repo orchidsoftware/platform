@@ -40,10 +40,9 @@ elixir(function(mix) {
         './vendor/moment/min/moment-with-locales.js',
         './vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
 
-        './vendor/ace-builds/src-noconflict/ace.js',
-        './vendor/ace-builds/src-noconflict/mode-html.js',
-        './vendor/ace-builds/src-noconflict/theme-monokai.js',
-        './vendor/ace-builds/src-noconflict/worker-javascript.js',
+        './vendor/ace-builds/src-min/ace.js',
+        './vendor/ace-builds/src-min/mode-html.js',
+        './vendor/ace-builds/src-min/theme-monokai.js',
 
         "./js/app.js",
         "./js/modules/**",

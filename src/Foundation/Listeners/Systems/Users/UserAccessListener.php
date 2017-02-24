@@ -17,9 +17,10 @@ class UserAccessListener
     /**
      * Handle the event.
      *
-     * @param UserEvent $event
+     * @return
+     * @internal param UserEvent $event
      */
-    public function handle(UserEvent $event)
+    public function handle()
     {
         return AccessUserForm::class;
     }

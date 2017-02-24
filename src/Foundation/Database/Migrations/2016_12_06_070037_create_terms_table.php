@@ -14,7 +14,7 @@ class CreateTermsTable extends Migration
         Schema::create('terms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug')->unique();
-            $table->json('content');
+            $table->jsonb('content');
             $table->integer('term_group')->default(0);
             $table->timestamps();
         });

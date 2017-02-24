@@ -86,43 +86,6 @@
     </div>
 
 
-    <section class="wrapper">
-
-
-
-
-        <div class="row text-center">
-            <div class="col-xs-4">
-                <div class="panel padder-v item box-shadow-lg">
-                    <div class="font-thin h1">129</div>
-                    <span class="text-muted text-xs">Пользователей</span>
-                    <span class="bottom text-right w-full">
-                        <i class="fa fa-users text-dark m-r-sm"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="panel padder-v item box-shadow-lg">
-                    <div class="font-thin h1">129</div>
-                    <span class="text-muted text-xs">Записей</span>
-                    <span class="bottom text-right w-full">
-                        <i class="fa fa-users text-dark m-r-sm"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="panel padder-v item box-shadow-lg">
-                    <div class="font-thin h1">129</div>
-                    <span class="text-muted text-xs">Комментариев</span>
-                    <span class="bottom text-right w-full">
-                        <i class="fa fa-users text-dark m-r-sm"></i>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
 @stop
 
 

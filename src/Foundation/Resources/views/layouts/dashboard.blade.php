@@ -29,7 +29,7 @@
             </button>
             <!-- brand -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
-                <img src="/orchid/img/logo.svg" width="50px">
+                <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
                 <!--<span class="hidden-folded m-l-xs">Orchid</span>-->
             </a>
             <!-- / brand -->
@@ -58,6 +58,7 @@
                             </a>
                             <!-- dropdown -->
                             <ul class="dropdown-menu animated fadeInRight w-full">
+                                {{--
                                 <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
                                     <div>
                                         <p>300mb из 500mb</p>
@@ -83,6 +84,7 @@
                                     </a>
                                 </li>
                                 <li class="divider"></li>
+                                 --}}
                                 <li>
                                     <a href="{{ url('/dashboard/logout') }}"
                                        onclick="event.preventDefault();
@@ -250,7 +252,6 @@
         <div class="wrapper b-t bg-light">
             <span class="pull-right">{{ App::VERSION() }}
                 <a href="" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
-                <a href="" class="m-l-sm text-muted"> <i class="fa fa-long-arrow-up"></i></a>
             </span>
             © {{date("Y")}} Copyright.
         </div>
@@ -266,7 +267,7 @@
 @include('dashboard::partials.quick')
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB_9M5O7t88YovZa2mePQ9VX4f79c86cqg"></script>
-<script src="/orchid/js/orchid.js" type="text/javascript"></script>
+<script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 
 @stack('scripts')
 

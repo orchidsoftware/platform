@@ -22,7 +22,7 @@ return [
     'Sections'                   => 'Sections',
     'Tags'                       => 'Tags',
     'Users'                      => 'Users',
-    'Groups'                     => 'Groups',
+    'Roles'                     => 'Roles',
     'Settings'                   => 'Settings',
     'Web domains'                => 'Web domains',
     'Constants'                  => 'Constants',

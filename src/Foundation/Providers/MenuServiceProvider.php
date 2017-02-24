@@ -17,9 +17,9 @@ class MenuServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * @param Dashboard $dashboard
+     * @internal param Dashboard $dashboard
      */
-    public function boot(Dashboard $dashboard)
+    public function boot()
     {
         View::composer('dashboard::layouts.dashboard', MenuComposer::class);
     }

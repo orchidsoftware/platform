@@ -32,6 +32,7 @@ class SchemaController extends Controller
      */
     public function __construct(Schema $schema)
     {
+        $this->checkPermission('dashboard.systems.schema');
         $this->page = request()->get('page', 1);
         $this->schema = $schema;
     }

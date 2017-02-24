@@ -25,12 +25,11 @@ class PostApiController extends ApiController
     }
 
     /**
-     * @param Post    $post
      * @param Request $request
-     *
      * @return mixed
+     * @internal param Post $post
      */
-    public function store(Post $post, Request $request)
+    public function store(Request $request)
     {
         $model = $this->resolveModel($request);
 

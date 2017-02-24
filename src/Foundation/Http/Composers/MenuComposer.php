@@ -19,12 +19,16 @@ class MenuComposer
     public function compose()
     {
         $this->registerMenu($this->dashboard);
+        $this->registerMenuPost($this->dashboard);
+        $this->registerMenuTools($this->dashboard);
+        $this->registerMenuSystems($this->dashboard);
+        $this->registerMenuMarketing($this->dashboard);
     }
 
     /**
      * @param Dashboard|null $dashboard
      */
-    protected function registerMenu(Dashboard $dashboard = null)
+    protected function registerMenu(Dashboard $dashboard)
     {
         $panelMenu = [
             'slug'       => 'Dashboard',
@@ -95,51 +99,42 @@ class MenuComposer
             'divider'   => false,
         ];
 
-        $settingsMenu = [
-            'slug'      => 'settings',
-            'icon'      => 'fa fa-cog',
-            'route'     => route('dashboard.systems.settings'),
-            'label'     => trans('dashboard::menu.Constants'),
-            'groupname' => trans('dashboard::menu.General settings'),
-            'childs'    => false,
-            'divider'   => false,
-        ];
 
-        $backupMenu = [
-            'slug'    => 'backup',
-            'icon'    => 'fa fa-history',
-            'route'   => route('dashboard.systems.backup'),
-            'label'   => 'Резервные копии',
-            'childs'  => false,
-            'divider' => false,
-        ];
+        $dashboard->menu->add('Dashboard', 'dashboard::partials.leftMenu', $analyticsMenu, 1);
 
-        $errorMenu = [
-            'slug'      => 'logs',
-            'icon'      => 'fa fa-bug',
-            'route'     => route('dashboard.systems.logs.index'),
-            'label'     => trans('dashboard::menu.Logs'),
-            'groupname' => trans('dashboard::menu.Errors'),
-            'childs'    => false,
-            'divider'   => false,
-        ];
 
-        $defenderMenu = [
-            'slug'  => 'defender',
-            'icon'  => 'fa fa-shield',
-            'route' => route('dashboard.systems.defender.index'),
-            'label' => trans('Защитник'),
-        ];
+    }
 
-        $schemaMenu = [
-            'slug'    => 'schema',
-            'icon'    => 'fa fa-database',
-            'route'   => route('dashboard.systems.schema.index'),
-            'label'   => trans('dashboard::menu.Schema'),
-            'childs'  => false,
-            'divider' => true,
-        ];
+    protected function registerMenuPost(Dashboard $dashboard){
+        $allPost = $dashboard->types();
+        foreach ($allPost as $page) {
+            if ($page->display) {
+                $postObject = [
+                    'slug'   => $page->slug,
+                    'icon'   => $page->icon,
+                    'route'  => route('dashboard.posts.type', [$page->slug]),
+                    'label'  => $page->name,
+                    'childs' => false,
+                    'permission' => 'dashboard.posts.type.'.$page->slug,
+                ];
 
+                if (reset($allPost) == $page) {
+                    $postObject['groupname'] = 'Страницы!';
+                } elseif (end($allPost) == $page) {
+                    $postObject['divider'] = true;
+                }
+
+                $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
+            }
+        }
+    }
+
+
+    protected function registerMenuTools(Dashboard $dashboard){
+
+
+
+/*
         $seoMenu = [
             'slug'      => 'static-pages',
             'icon'      => 'icon-book-open',
@@ -165,7 +160,7 @@ class MenuComposer
             'childs'  => false,
             'divider' => true,
         ];
-
+*/
         $categoryMenu = [
             'slug'    => 'section',
             'icon'    => 'icon-briefcase',
@@ -173,6 +168,7 @@ class MenuComposer
             'label'   => trans('dashboard::menu.Sections'),
             'childs'  => false,
             'divider' => true,
+            'permission' => 'dashboard.tools.category',
         ];
 
         $menuMenu = [
@@ -183,7 +179,74 @@ class MenuComposer
             'groupname' => trans('dashboard::menu.Posts Managements'),
             'childs'    => false,
             'divider'   => false,
+            'permission' => 'dashboard.tools.menu',
         ];
+
+
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
+
+        /*
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);
+
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
+        */
+    }
+
+
+    protected function registerMenuSystems(Dashboard $dashboard){
+
+        $settingsMenu = [
+            'slug'      => 'settings',
+            'icon'      => 'fa fa-cog',
+            'route'     => route('dashboard.systems.settings'),
+            'label'     => trans('dashboard::menu.Constants'),
+            'groupname' => trans('dashboard::menu.General settings'),
+            'childs'    => false,
+            'divider'   => false,
+            'permission' => 'dashboard.systems.settings',
+        ];
+
+        $backupMenu = [
+            'slug'    => 'backup',
+            'icon'    => 'fa fa-history',
+            'route'   => route('dashboard.systems.backup'),
+            'label'   => 'Резервные копии',
+            'childs'  => false,
+            'divider' => false,
+            'permission' => 'dashboard.systems.backup',
+        ];
+
+        $errorMenu = [
+            'slug'      => 'logs',
+            'icon'      => 'fa fa-bug',
+            'route'     => route('dashboard.systems.logs.index'),
+            'label'     => trans('dashboard::menu.Logs'),
+            'groupname' => trans('dashboard::menu.Errors'),
+            'childs'    => false,
+            'divider'   => false,
+            'permission' => 'dashboard.systems.logs',
+        ];
+
+        $defenderMenu = [
+            'slug'  => 'defender',
+            'icon'  => 'fa fa-shield',
+            'route' => route('dashboard.systems.defender.index'),
+            'label' => trans('Защитник'),
+            'permission' => 'dashboard.systems.defender',
+        ];
+
+        $schemaMenu = [
+            'slug'    => 'schema',
+            'icon'    => 'fa fa-database',
+            'route'   => route('dashboard.systems.schema.index'),
+            'label'   => trans('dashboard::menu.Schema'),
+            'childs'  => false,
+            'divider' => true,
+            'permission' => 'dashboard.systems.schema',
+        ];
+
 
         $usersMenu = [
             'slug'      => 'users',
@@ -193,16 +256,32 @@ class MenuComposer
             'groupname' => trans('dashboard::menu.Users'),
             'childs'    => false,
             'divider'   => false,
+            'permission' => 'dashboard.systems.users',
         ];
 
         $groupsMenu = [
-            'slug'    => 'groups',
+            'slug'    => 'roles',
             'icon'    => 'fa fa-lock',
             'route'   => route('dashboard.systems.roles'),
-            'label'   => trans('dashboard::menu.Groups'),
+            'label'   => trans('dashboard::menu.Roles'),
             'childs'  => false,
             'divider' => true,
+            'permission' => 'dashboard.systems.roles',
         ];
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $defenderMenu, 501);
+
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
+
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $backupMenu, 2);
+
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $schemaMenu, 3);
+
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
+    }
+    protected function registerMenuMarketing(Dashboard $dashboard){
+
 
         $commentMenu = [
             'slug'      => 'comment',
@@ -210,20 +289,23 @@ class MenuComposer
             'route'     => route('dashboard.marketing.comment'),
             'label'     => trans('Комментарии'),
             'groupname' => trans('dashboard::menu.Users'),
-        ];
-
-        $emailMenu = [
-            'slug'      => 'email',
-            'icon'      => 'icon-envelope-open',
-            'route'     => route('dashboard.tools.menu.index'),
-            'label'     => trans('Email - рассылка'),
+            'permission' => 'dashboard.marketing.comment',
         ];
 
         $advertisingMenu = [
             'slug'  => 'advertising',
             'icon'  => 'icon-target',
-            'route' => route('dashboard.tools.advertising.index'),
+            'route' => route('dashboard.marketing.advertising.index'),
             'label' => trans('Управление рекламой'),
+            'permission' => 'dashboard.marketing.advertising',
+        ];
+
+        /*
+        $emailMenu = [
+            'slug'      => 'email',
+            'icon'      => 'icon-envelope-open',
+            'route'     => route('dashboard.tools.menu.index'),
+            'label'     => trans('Email - рассылка'),
         ];
 
         $feedback = [
@@ -239,56 +321,17 @@ class MenuComposer
             'route' => route('dashboard.tools.menu.index'),
             'label' => trans('Опросы'),
         ];
-
-        $allPost = $dashboard->types();
-        foreach ($allPost as $page) {
-            if ($page->display) {
-                $postObject = [
-                    'slug'   => $page->slug,
-                    'icon'   => $page->icon,
-                    'route'  => route('dashboard.posts.type', [$page->slug]),
-                    'label'  => $page->name,
-                    'childs' => false,
-                ];
-
-                if (reset($allPost) == $page) {
-                    $postObject['groupname'] = 'Страницы!';
-                } elseif (end($allPost) == $page) {
-                    $postObject['divider'] = true;
-                }
-
-                $dashboard->menu->add('Posts', 'dashboard::partials.leftMenu', $postObject, 1);
-            }
-        }
-
-        $dashboard->menu->add('Dashboard', 'dashboard::partials.leftMenu', $analyticsMenu, 1);
-
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
-
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $redirectMenu, 11);
-
-        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $siteMapMenu, 30);
-
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $defenderMenu, 501);
-
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
-
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $backupMenu, 2);
-
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $schemaMenu, 3);
-
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
+*/
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $commentMenu, 1);
-        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 2);
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $advertisingMenu, 5);
+
+        /*
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 2);
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $feedback, 10);
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $polls, 10);
+        */
     }
 }

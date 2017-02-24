@@ -21,6 +21,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.posts');
         $this->locales = collect(config('content.locales'));
     }
 
@@ -77,7 +78,8 @@ class PostController extends Controller
         if ($request->has('slug')) {
             $slug = $request->get('slug');
         } else {
-            $slug = $request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields];
+            $content = $request->get('content');
+            $slug = reset($content)[$post->getTypeObject()->slugFields];
         }
 
         $post->slug = $post->makeSlug($slug);
@@ -100,13 +102,12 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Post    $type
-     * @param Post    $post
-     *
+     * @param Post $type
+     * @param Post $post
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param Request $request
      */
-    public function edit(Request $request, Post $type, Post $post)
+    public function edit(Post $type, Post $post)
     {
         $type = $type->getTypeObject();
 
@@ -137,10 +138,13 @@ class PostController extends Controller
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
+
+
         if ($request->has('slug')) {
             $slug = $request->get('slug');
         } else {
-            $slug = $request->get('content')[config('app.locale')][$post->getTypeObject()->slugFields];
+            $content = $request->get('content');
+            $slug = reset($content)[$post->getTypeObject()->slugFields];
         }
 
         if ($request->has('slug') && $request->get('slug') != $post->slug) {
@@ -165,19 +169,18 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Post    $type
-     * @param Post    $post
-     *
+     * @param Post $post
      * @return mixed
+     * @internal param Request $request
+     * @internal param Post $type
      */
-    public function destroy(Request $request, Post $type, Post $post)
+    public function destroy(Post $type, Post $post)
     {
         $post->delete();
         Alert::success('Message');
 
         return redirect()->route('dashboard.posts.type', [
-            'type' => $post->type,
+            'type' => $type->getTypeObject()->slug,
         ]);
     }
 }

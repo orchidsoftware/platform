@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use App\Http\Controllers\Controller;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
@@ -32,6 +32,7 @@ class LogController extends Controller
      */
     public function __construct(Log $Log)
     {
+        $this->checkPermission('dashboard.systems.logs');
         $this->log = app('arcanedev.log-viewer');
     }
 

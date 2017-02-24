@@ -19,6 +19,7 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.tools.category');
         $this->form = new $this->form();
     }
 
@@ -63,12 +64,11 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
-     *
      * @return mixed
+     * @internal param Request $request
      */
-    public function edit(Request $request, TermTaxonomy $termTaxonomy)
+    public function edit(TermTaxonomy $termTaxonomy)
     {
         return $this->form
             ->route('dashboard.tools.category.update')

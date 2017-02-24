@@ -19,6 +19,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.systems.users');
         $this->form = new $this->form();
     }
 

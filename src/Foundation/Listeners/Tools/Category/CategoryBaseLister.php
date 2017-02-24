@@ -16,12 +16,11 @@ class CategoryBaseLister
 
     /**
      * Handle the event.
-     *
-     * @param CategoryEvent $event
-     *
      * @return mixed
+     * @internal param CategoryEvent $event
+     *
      */
-    public function handle(CategoryEvent $event)
+    public function handle()
     {
         return CategoryMainForm::class;
     }

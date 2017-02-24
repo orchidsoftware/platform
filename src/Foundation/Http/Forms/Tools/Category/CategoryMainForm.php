@@ -3,7 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Term;
@@ -46,13 +46,10 @@ class CategoryMainForm extends Form
         ]);
         $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
-        $language = App::getLocale();
 
         return view('dashboard::container.tools.category.info', [
             'category'      => $category,
-            'language'      => $language,
             'termTaxonomy'  => $termTaxonomy,
-            'locales'       => config('content.locales'),
         ]);
     }
 
@@ -84,10 +81,10 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
+     * @internal param Request $request
      */
-    public function delete(Request $request, TermTaxonomy $termTaxonomy)
+    public function delete(TermTaxonomy $termTaxonomy)
     {
         $termTaxonomy->term->delete();
         $termTaxonomy->delete();

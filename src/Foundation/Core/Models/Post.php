@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
-use Orchid\Foundation\Core\Builders\PostBuilder;
+
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
 
@@ -24,6 +24,7 @@ class Post extends Model
      * @var
      */
     protected $dataType = null;
+
 
     /**
      * @var array
@@ -331,27 +332,8 @@ class Post extends Model
         return $count ? "{$slug}-{$count}" : $slug;
     }
 
-    /**
-     * Overriding newQuery() to the custom PostBuilder with some interesting methods.
-     *
-     * @param bool $excludeDeleted
-     *
-     * @return PostBuilder
-     */
-    public function newQuery($excludeDeleted = true)
-    {
-        $builder = new PostBuilder($this->newBaseQueryBuilder());
-        $builder->setModel($this)->with($this->with);
-        // disabled the default orderBy because else Post::all()->orderBy(..)
-        // is not working properly anymore.
-        // $builder->orderBy('post_date', 'desc');
-        if (isset($this->postType) && $this->postType) {
-            $builder->type($this->postType);
-        }
-        if ($excludeDeleted && $this->softDelete) {
-            $builder->whereNull($this->getQualifiedDeletedAtColumn());
-        }
 
-        return $builder;
-    }
+
+
+
 }

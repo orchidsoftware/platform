@@ -13,7 +13,6 @@ use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Foundation\Macros\Page;
 use Orchid\Installer\Providers\InstallerServiceProvider;
 use Orchid\Log\LogServiceProvider;
-use Orchid\Search\Elasticsearch\ElasticsearchServiceProvicer;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
@@ -35,7 +34,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->app->singleton(Dashboard::class, function ($app) {
+        $this->app->singleton(Dashboard::class, function () {
             return new Dashboard();
         });
 
@@ -130,7 +129,6 @@ class FoundationServiceProvider extends ServiceProvider
             BackupServiceProvider::class,
             LogServiceProvider::class,
             ScoutServiceProvider::class,
-            ElasticsearchServiceProvicer::class,
             DefenderServiceProvider::class,
             MenuServiceProvider::class,
         ];

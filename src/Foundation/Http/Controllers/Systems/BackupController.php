@@ -2,7 +2,7 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-use App\Http\Controllers\Controller;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Adapter\Local;
@@ -14,6 +14,12 @@ class BackupController extends Controller
      * @var
      */
     public $data;
+
+
+    public function __construct()
+    {
+        $this->checkPermission('dashboard.systems.backup');
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -107,7 +113,7 @@ class BackupController extends Controller
      */
     public function delete($fileName)
     {
-        $disk = Storage::disk(\Request::input('disk'));
+        $disk = Storage::disk(Request::input('disk'));
 
         if ($disk->exists($fileName)) {
             $disk->delete($fileName);

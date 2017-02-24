@@ -17,9 +17,10 @@ class RoleBaseListener
     /**
      * Handle the event.
      *
-     * @param RolesEvent $event
+     * @return
+     * @internal param RolesEvent $event
      */
-    public function handle(RolesEvent $event)
+    public function handle()
     {
         return BaseRolesForm::class;
     }

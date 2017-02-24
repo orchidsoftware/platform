@@ -11,7 +11,7 @@ class CreateUsersPermissionsTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('permissions');
+            $table->jsonb('permissions');
         });
     }
 

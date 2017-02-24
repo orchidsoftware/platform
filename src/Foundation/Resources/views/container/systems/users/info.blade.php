@@ -63,7 +63,7 @@
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="url" name="password" class="form-control" value="{{old('password')}}"
+                <input type="password" name="password" class="form-control" value="{{old('password')}}"
                        placeholder="********">
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label">Confirmed Password</label>
             <div class="col-sm-10">
-                <input type="url" name="password_confirmation" class="form-control" value="{{old('password_confirmation')}}"
+                <input type="password" name="password_confirmation" class="form-control" value="{{old('password_confirmation')}}"
                        placeholder="********">
             </div>
         </div>

@@ -19,6 +19,7 @@ class SettingController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.systems.settings');
         $this->form = new $this->form();
     }
 

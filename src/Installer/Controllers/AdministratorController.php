@@ -18,12 +18,12 @@ class AdministratorController extends Controller
     }
 
     /**
-     * @param Request    $request
-     * @param Redirector $redirect
-     *
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @internal param Redirector $redirect
+     *
      */
-    public function create(Request $request, Redirector $redirect)
+    public function create(Request $request)
     {
         $exitCode = Artisan::call('make:admin', [
             'name'     => $request->input('name'),

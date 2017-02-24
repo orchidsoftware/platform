@@ -19,6 +19,7 @@ class CommentController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.marketing.comment');
         $this->form = new $this->form();
     }
 

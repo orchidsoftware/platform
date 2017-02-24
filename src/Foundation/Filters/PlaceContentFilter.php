@@ -28,15 +28,14 @@ class PlaceContentFilter extends ContentFilter
     }
 
     /**
-     * @param $model
-     * @param $values
-     * @param $prefix
-     * @param $chain
-     * @param string $method
-     *
      * @return mixed
+     * @internal param $model
+     * @internal param $values
+     * @internal param $prefix
+     * @internal param $chain
+     * @internal param string $method
      */
-    public function latLng($model, $values, $prefix, $chain, $method = 'where')
+    public function latLng()
     {
         return $this->model;
     }

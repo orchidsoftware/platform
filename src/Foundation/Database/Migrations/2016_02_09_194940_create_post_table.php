@@ -15,13 +15,14 @@ class CreatePostTable extends Migration
             $table->integer('user_id');
             $table->string('type');
             $table->string('status')->nullable();
-            $table->integer('section_id')->nullable();
-            $table->json('content');
-            $table->json('options');
+            $table->jsonb('content');
+            $table->jsonb('options');
             $table->string('slug', '255')->unique();
             $table->timestamp('publish_at');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index(['id', 'user_id']);
 
             /*
             $table->foreign('user_id')

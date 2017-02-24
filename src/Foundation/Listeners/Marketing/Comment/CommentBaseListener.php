@@ -17,9 +17,10 @@ class CommentBaseListener
     /**
      * Handle the event.
      *
-     * @param CommentEvent $event
+     * @return
+     * @internal param CommentEvent $event
      */
-    public function handle(CommentEvent $event)
+    public function handle()
     {
         return BaseCommentForm::class;
     }

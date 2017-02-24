@@ -115,7 +115,7 @@ class Menu
      * @param null $arg
      * @param int  $sort
      */
-    public function add($place = null, $template = null, $arg = null, $sort = 500)
+    public function add($place, $template, $arg, $sort = 500)
     {
         $this->location = $place;
         $this->template = $template;

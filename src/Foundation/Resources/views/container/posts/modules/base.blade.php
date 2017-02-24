@@ -54,7 +54,7 @@
 
     @endif
 
-    @if(!is_null($post))
+    @if($post->exists)
     <p>
         Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
     </p>
@@ -66,22 +66,14 @@
             <label class="col-sm-6 control-label">{{$locale['native']}}</label>
             <div class="col-sm-6">
 
-            @if(!is_null($post))
+            @if($post->exists)
                 <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
-                    <i></i>
-                </label>
-                <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="false" {{!$post->checkLanguage($key)  ? 'checked': ''}}>
+                    <input type="checkbox" name="options[locale][{{$key}}]" value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
                     <i></i>
                 </label>
             @else
                 <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="true" {{isset($locale['required']) ? $locale['required'] == 1 ? 'checked' : '' : '' }}>
-                    <i></i>
-                </label>
-                <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="radio" name="options[locale][{{$key}}]" value="false" {{isset($locale['required']) ? !$locale['required'] == 1 ? 'checked' : '' : '' }}>
+                    <input type="checkbox" name="options[locale][{{$key}}]" value="true" {{isset($locale['required']) ? $locale['required'] == 1 ? 'checked' : '' : '' }}>
                     <i></i>
                 </label>
             @endif

@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var hiddenCodeVal = $('#' + hiddenFieldid);
 
         editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/javascript");
-        editor.setFontSize(20);
+        editor.getSession().setMode("ace/mode/html");
+
 
         var filePath = hiddenCodeVal.val();
 

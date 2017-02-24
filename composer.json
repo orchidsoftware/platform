@@ -30,7 +30,11 @@
   ],
   "type": "library",
   "license": "MIT",
-  "homepage": "http://orchid.ga",
+  "homepage": "https://theorchid.github.io/",
+  "support": {
+    "issues": "https://github.com/theOrchid/Platform/issues",
+    "source": "https://github.com/theOrchid/Platform"
+  },
   "authors": [
     {
       "name": "Alexandr Chernyaev",
@@ -38,15 +42,13 @@
     }
   ],
   "require": {
-    "php": ">=5.5.9",
+    "php": ">=7.0.8",
     "laravel/framework": "5.*",
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^4.0",
     "spatie/laravel-backup": "4.*",
     "laravel/scout": "^3.0",
-    "elasticsearch/elasticsearch": "^5.0",
-    "algolia/algoliasearch-client-php": "^1.10",
     "psr/log": "~1.0"
   },
   "autoload": {
@@ -54,7 +56,6 @@
       "src/Settings/helpers.php",
       "src/Alert/helpers.php",
       "src/Log/helpers.php",
-
       "src/Foundation/Helpers/array.php",
       "src/Foundation/Helpers/operators.php"
     ],
@@ -69,7 +70,6 @@
       "Orchid\\Log\\": "src/Log",
       "Orchid\\Menu\\": "src/Menu",
       "Orchid\\Presenter\\": "src/Presenter",
-      "Orchid\\Search\\": "src/Search",
       "Orchid\\Settings\\": "src/Settings",
       "Orchid\\Type\\": "src/Type",
       "Orchid\\Widget\\": "src/Widget",
@@ -81,6 +81,9 @@
     "branch-alias": {
       "dev-master": "1.0-dev"
     }
+  },
+  "suggest": {
+    "tamayo/laravel-scout-elastic": "Required to use elasticsearch driver for scout."
   },
   "minimum-stability": "alpha",
   "prefer-stable": true

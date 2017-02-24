@@ -13,8 +13,10 @@
         </div>
 
 
+        <div class="line line-dashed b-b line-lg"></div>
+
         <div class="form-group">
-            <label class="col-lg-2 control-label">Краткое описание</label>
+            <label class="col-lg-2 control-label">Ключевые слова</label>
 
             <div class="col-lg-10">
                 <input type="text" data-role="tagsinput" class="form-control" name="site_keywords"
@@ -23,6 +25,9 @@
                 </small>
             </div>
         </div>
+
+
+        <div class="line line-dashed b-b line-lg"></div>
 
 
         <div class="form-group">
