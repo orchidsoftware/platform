@@ -7,7 +7,6 @@ use Orchid\Log\Providers\UtilitiesServiceProvider;
 
 class LogServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      */
