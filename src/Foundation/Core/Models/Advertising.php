@@ -9,10 +9,9 @@ class Advertising extends Post
      */
     protected $postType = 'advertising';
 
-
     public function __construct(array $attributes = [])
     {
-        if (!key_exists('type', $attributes)) {
+        if (!array_key_exists('type', $attributes)) {
             $attributes['type'] = $this->postType;
         }
 

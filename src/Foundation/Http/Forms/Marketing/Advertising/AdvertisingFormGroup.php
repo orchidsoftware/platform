@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
 use Orchid\Forms\FormGroup;
-
 use Orchid\Foundation\Events\Marketing\AdvertisingEvent;
 
 class AdvertisingFormGroup extends FormGroup
@@ -32,7 +31,7 @@ class AdvertisingFormGroup extends FormGroup
     public function main()
     {
         return view('dashboard::container.marketing.advertising.grid', [
-            'ads' => collect(),//Adv::all(),
+            'ads' => collect(), //Adv::all(),
         ]);
     }
 }
