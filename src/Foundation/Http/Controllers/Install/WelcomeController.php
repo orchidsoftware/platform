@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class WelcomeController extends Controller
 {

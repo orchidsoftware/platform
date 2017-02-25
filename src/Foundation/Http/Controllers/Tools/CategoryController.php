@@ -16,6 +16,7 @@ class CategoryController extends Controller
 
     /**
      * CategoryController constructor.
+     *
      * @param CategoryFormGroup $form
      */
     public function __construct(CategoryFormGroup $form)

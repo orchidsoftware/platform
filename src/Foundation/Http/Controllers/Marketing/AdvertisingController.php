@@ -9,7 +9,6 @@ use Orchid\Foundation\Http\Forms\Marketing\Advertising\AdvertisingFormGroup;
 
 class AdvertisingController extends Controller
 {
-
     /**
      * @var AdvertisingFormGroup
      */
@@ -17,6 +16,7 @@ class AdvertisingController extends Controller
 
     /**
      * AdvertisingController constructor.
+     *
      * @param AdvertisingFormGroup $form
      */
     public function __construct(AdvertisingFormGroup $form)

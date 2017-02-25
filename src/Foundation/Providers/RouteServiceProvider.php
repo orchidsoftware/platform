@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
 use Orchid\Foundation\Core\Models\Post;

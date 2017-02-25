@@ -4,9 +4,9 @@ namespace Orchid\Foundation\Http\Controllers\Install;
 
 use Dotenv\Dotenv;
 use Illuminate\Http\Request;
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Orchid\Foundation\Helpers\EnvironmentManager;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class EnvironmentController extends Controller
 {

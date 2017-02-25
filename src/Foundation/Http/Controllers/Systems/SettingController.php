@@ -16,6 +16,7 @@ class SettingController extends Controller
 
     /**
      * SettingController constructor.
+     *
      * @param SettingFormGroup $form
      */
     public function __construct(SettingFormGroup $form)
