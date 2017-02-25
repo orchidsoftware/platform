@@ -3,8 +3,8 @@
 namespace Orchid\Foundation\Http\Controllers\Install;
 
 use Illuminate\Http\Request;
-use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class AdministratorController extends Controller
 {

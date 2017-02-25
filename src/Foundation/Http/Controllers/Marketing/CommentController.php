@@ -14,9 +14,9 @@ class CommentController extends Controller
      */
     public $form;
 
-
     /**
      * CommentController constructor.
+     *
      * @param CommentFormGroup $form
      */
     public function __construct(CommentFormGroup $form)

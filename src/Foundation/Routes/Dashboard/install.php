@@ -12,47 +12,45 @@
 
 $this->group([
     'middleware' => ['install'],
-    'as' => 'install::',
-    'prefix' => 'dashboard/install',
-    'namespace' => 'Orchid\Foundation\Http\Controllers\Install',
+    'as'         => 'install::',
+    'prefix'     => 'dashboard/install',
+    'namespace'  => 'Orchid\Foundation\Http\Controllers\Install',
 ],
     function (\Illuminate\Routing\Router $router) {
         $router->get('/', [
-            'as' => 'welcome',
+            'as'   => 'welcome',
             'uses' => 'WelcomeController@welcome',
         ]);
         $router->get('/environment', [
-            'as' => 'environment',
+            'as'   => 'environment',
             'uses' => 'EnvironmentController@environment',
         ]);
         $router->get('/environment/save', [
-            'as' => 'environmentSave',
+            'as'   => 'environmentSave',
             'uses' => 'EnvironmentController@save',
         ]);
         $router->get('/requirements', [
-            'as' => 'requirements',
+            'as'   => 'requirements',
             'uses' => 'RequirementsController@requirements',
         ]);
         $router->get('/permissions', [
-            'as' => 'permissions',
+            'as'   => 'permissions',
             'uses' => 'PermissionsController@permissions',
         ]);
         $router->get('/database', [
-            'as' => 'database',
+            'as'   => 'database',
             'uses' => 'DatabaseController@database',
         ]);
         $router->get('/administrator', [
-            'as' => 'administrator',
+            'as'   => 'administrator',
             'uses' => 'AdministratorController@administrator',
         ]);
         $router->get('/administrator/create', [
-            'as' => 'administratorCreate',
+            'as'   => 'administratorCreate',
             'uses' => 'AdministratorController@create',
         ]);
         $router->get('/final', [
-            'as' => 'final',
+            'as'   => 'final',
             'uses' => 'FinalController@finish',
         ]);
     });
-
-

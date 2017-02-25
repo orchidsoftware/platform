@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Foundation\Helpers\InstalledFileManager;
+use Orchid\Foundation\Http\Controllers\Controller;
 
 class FinalController extends Controller
 {

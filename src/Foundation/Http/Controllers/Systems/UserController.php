@@ -16,6 +16,7 @@ class UserController extends Controller
 
     /**
      * UserController constructor.
+     *
      * @param UserFormGroup $form
      */
     public function __construct(UserFormGroup $form)
