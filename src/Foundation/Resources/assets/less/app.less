@@ -1,17 +1,13 @@
 // Core variables and mixins
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic';
-
-@import "../vendor/bootstrap/less/bootstrap.less";
-@import "../vendor/font-awesome/less/font-awesome.less";
-@import "../vendor/simple-line-icons/less/simple-line-icons";
-@import "../vendor/eonasdan-bootstrap-datetimepicker/src/less/_bootstrap-datetimepicker";
-@import "../vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput";
-@import (less) "../vendor/summernote/dist/summernote.css";
-
-@import (less) "../vendor/dropzone/dist/min/basic.min.css";
-@import (less) "../vendor/dropzone/dist/min/dropzone.min.css";
-
-
+@import "../node_modules/bootstrap/less/bootstrap";
+@import "../node_modules/font-awesome/less/font-awesome";
+@import "../node_modules/simple-line-icons/less/simple-line-icons";
+@import "../node_modules/eonasdan-bootstrap-datetimepicker/src/less/_bootstrap-datetimepicker";
+@import "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput";
+@import "../node_modules/summernote/src/less/summernote";
+@import (less) "../node_modules/dropzone/dist/min/basic.min.css";
+@import (less) "../node_modules/dropzone/dist/min/dropzone.min.css";
 @import "theme/variables.less";
 @import "core/mixins.less";
 @import "core/reset.less";
@@ -35,7 +31,6 @@
 @import "core/login";
 @import "core/tables";
 @import "core/form";
-
 @import "plugins/dropzone";
 @import "plugins/gmap";
 @import "plugins/timepicker";

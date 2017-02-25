@@ -42,15 +42,13 @@ class AdvertisingCodeForm extends Form
      */
     public function get(Post $adv = null)
     {
-        $adsCategory = collect(config('ads.category'));
-        $weekDays = collect(config('ads.days'));
+        $config = collect(config('content'));
 
         return view('dashboard::container.marketing.advertising.code', [
             'adv'           => $adv,
-            'categories'    => $adsCategory,
-            'weekDays'      => $weekDays,
+            'categories'    => $config->get('advertising',[]),
             'language'      => App::getLocale(),
-            'locales'       => config('content.locales'),
+            'locales'       => $config->get('locales',[]),
         ]);
     }
 

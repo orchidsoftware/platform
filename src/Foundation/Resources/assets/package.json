@@ -1,15 +1,37 @@
 {
   "private": true,
-  "devDependencies": {
-    "gulp": "^3.9.0"
+  "scripts": {
+    "dev": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
-    "bootstrap-less": "^3.3.8",
-    "browserify": "~13.0.0",
-    "laravel-elixir": "^4.2.1",
-    "laravel-elixir-vueify": "~1.0.2",
-    "turbolinks": "^5.0.0",
-    "vue": "~1.0.20",
-    "vue-resource": "^0.7.0"
+    "ace-builds": "^1.2.6",
+    "bootstrap": "^3.3.7",
+    "bootstrap-chosen": "^1.4.2",
+    "bootstrap-tagsinput": "^0.7.1",
+    "brace": "^0.10.0",
+    "chosen": "0.0.2",
+    "codemirror": "^5.24.2",
+    "dropzone": "^4.3.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.46",
+    "font-awesome": "^4.7.0",
+    "google-maps": "^3.2.1",
+    "jquery": "^3.1.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.11.4",
+    "nestable": "^0.2.0",
+    "simple-line-icons": "^2.4.1",
+    "summernote": "^0.8.2",
+    "vue": "^2.1.10",
+    "vue-resource": "^1.2.0"
+  },
+  "devDependencies": {
+    "axios": "^0.15.3",
+    "jquery": "^3.1.1",
+    "laravel-mix": "^0.8.1",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.10"
   }
 }

@@ -16,6 +16,7 @@ use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -95,7 +96,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            __DIR__.'/../Resources/dist/' => public_path('orchid'),
+            __DIR__.'/../Resources/assets/dist/' => public_path('orchid'),
         ], 'public');
     }
 

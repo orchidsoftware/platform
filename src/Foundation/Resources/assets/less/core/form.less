@@ -16,7 +16,7 @@
   .placeholder(@brand-dark);
 
   .transition(background 0.2s linear 0s);
-  &:focus{
+  &:focus {
     border-color: fade(@brand-black, 10%);
     background-color: @brand-grey-light;
     outline: 0 !important;
@@ -25,13 +25,11 @@
   }
   &[disabled],
   &[readonly],
-  fieldset[disabled] &{
+  fieldset[disabled] & {
     background: mix(@brand-grey-light, #fff, 50%);
     color: fade(@brand-grey, 23%);
   }
 }
-
-
 
 .form-group-default {
   background-color: #fff;
@@ -43,7 +41,7 @@
   .transition(background-color .2s ease);
   &.required:after {
     color: @brand-danger;
-    content:"*";
+    content: "*";
     font-size: 20px;
     position: absolute;
     right: 15px;
@@ -53,72 +51,72 @@
     input {
       opacity: .6;
     }
-    background:mix(@brand-light,#fff,50%);
+    background: mix(@brand-light, #fff, 50%);
     color: fade(@brand-dark, 23%);
     &.focused {
-      background:mix(@brand-light,#fff,50%);
+      background: mix(@brand-light, #fff, 50%);
       label {
         opacity: 1;
       }
     }
   }
   &.focused {
-    border-color:rgba(0, 0, 0, 0.1) !important;
-    background-color:@brand-light;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    background-color: @brand-light;
     label {
       opacity: .4;
       .backface-visibility(hidden);
     }
   }
-  &.has-error{
-    background-color: fade(@brand-danger,10%);
+  &.has-error {
+    background-color: fade(@brand-danger, 10%);
   }
-  &.has-success, &.has-error{
-    .form-control-feedback{
+  &.has-success, &.has-error {
+    .form-control-feedback {
       display: none !important;
     }
   }
   &.has-success .form-control,
   &.has-success .form-control:focus,
   &.has-error .form-control,
-  &.has-error .form-control:focus{
+  &.has-error .form-control:focus {
     border: none;
     box-shadow: none;
   }
-  &.input-group{
+  &.input-group {
     padding: 0;
-    & > label{
+    & > label {
       margin-top: 6px;
       padding-left: 12px;
     }
-    & > .form-control{
+    & > .form-control {
       margin-top: -2px;
       margin-bottom: 3px;
       padding-left: 12px;
     }
-    .input-group-addon{
+    .input-group-addon {
       height: calc(@form-group-height - 4px);
-      min-width:calc(@form-group-height - 4px);
+      min-width: calc(@form-group-height - 4px);
       border-radius: 0;
-      border:none;
+      border: none;
     }
     &.focused {
-      .input-group-addon{
+      .input-group-addon {
         border-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
-  & .form-control{
-    border:none;
+  & .form-control {
+    border: none;
     height: 25px;
     min-height: 25px;
     padding: 0;
     margin-top: -4px;
     background: none;
-    &.error{
+    &.error {
       color: @brand-dark;
     }
-    &:focus{
+    &:focus {
       background: none;
     }
   }
@@ -137,10 +135,10 @@
       left: 11px;
       top: 6px;
     }
-    &.highlight{
+    &.highlight {
       opacity: 1;
     }
-    &.fade{
+    &.fade {
       opacity: .5;
       .backface-visibility(hidden);
     }
@@ -155,92 +153,92 @@
     height: 18px;
   }
 
-  &.form-group-default-select2{
+  &.form-group-default-select2 {
     padding: 0;
-    & > label{
+    & > label {
       position: absolute;
       z-index: 10;
       padding: 7px 12px 0 12px;
-      &.label-lg{
+      &.label-lg {
         left: 0;
         top: 0;
       }
-      &.label-sm{
+      &.label-sm {
         left: 0;
         top: 0;
       }
     }
-    .select2-container{
-      .select2-choice{
+    .select2-container {
+      .select2-choice {
         padding-top: 20px;
         height: 52px;
-        .select2-arrow b:before{
+        .select2-arrow b:before {
           top: 20px;
         }
-        .select2-chosen{
+        .select2-chosen {
           padding-left: 3px;
           padding-top: 1px;
         }
       }
-      .select2-choices{
+      .select2-choices {
         padding-top: 20px;
         height: 52px;
-        border:0;
+        border: 0;
       }
 
     }
-    & > .input-lg{
+    & > .input-lg {
       height: auto;
       padding: 0;
-      .select2-choice{
+      .select2-choice {
         padding-top: 20px;
         height: 56px;
       }
     }
-    & > .input-sm{
+    & > .input-sm {
       height: auto;
       padding: 0;
-      .select2-choice{
+      .select2-choice {
         padding-top: 20px;
         height: 46px;
       }
     }
   }
-  &.form-group-default-selectFx{
+  &.form-group-default-selectFx {
     padding: 0;
-    & > label{
+    & > label {
       position: absolute;
       z-index: 10;
       padding: 7px 12px 0 12px;
-      &.label-lg{
+      &.label-lg {
         left: 0;
         top: 0;
       }
-      &.label-sm{
+      &.label-sm {
         left: 0;
         top: 0;
       }
     }
-    .cs-wrapper{
-      .cs-placeholder{
+    .cs-wrapper {
+      .cs-placeholder {
         padding-top: 28px;
         height: 52px;
         padding-left: 12px;
       }
-      .cs-select{
+      .cs-select {
         height: auto;
         > span:after,
         .cs-selected span:after {
           top: 39px;
         }
-        &.input-lg .cs-placeholder{
+        &.input-lg .cs-placeholder {
           height: 60px;
         }
-        &.input-sm .cs-placeholder{
+        &.input-sm .cs-placeholder {
           height: 50px;
         }
       }
-      .dropdown-placeholder{
+      .dropdown-placeholder {
         vertical-align: top;
       }
     }

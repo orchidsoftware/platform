@@ -38,7 +38,7 @@
                        name="start-date"
                 >
                 <span class="input-group-addon">
-                        <span class="icon-plus"></span>
+                        <span class="fa fa-calendar" aria-hidden="true"></span>
                     </span>
             </div>
         </div>
@@ -52,7 +52,7 @@
                        name="end-date"
                 >
                 <span class="input-group-addon">
-                        <span class="icon-plus"></span>
+                        <span class="fa fa-calendar" aria-hidden="true"></span>
                     </span>
             </div>
         </div>

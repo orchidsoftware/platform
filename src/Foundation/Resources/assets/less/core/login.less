@@ -2,62 +2,62 @@
 [22. Login]
 */
 
-
-.login-wrapper{
-	height: 100%;
-	background-color: @brand-primary;
-	& > * {
-		height: 100%;
-	}
-	.bg-pic{
-		position: absolute;
-		width: 100%;
-		overflow: hidden;
-		& > img{
-			height: 100%;
-			width: calc(~"100vw - 500px");
-			opacity: 0.75;
-			object-fit: cover;
-		}
-	}
-	.login-container{
-		width: 500px;
-		display: block;
-		position: relative;
-		float:right;
-		box-shadow: 0 0 3px 1px rgba(0,0,0,.5);
-	}
-	.bg-caption{
-		width: 500px;
-	}
-}
-.register-container{
-	width: 550px;
-	margin: auto;
-	height: 100%;
+.login-wrapper {
+  height: 100%;
+  background-color: @brand-primary;
+  & > * {
+    height: 100%;
+  }
+  .bg-pic {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    & > img {
+      height: 100%;
+      width: calc(~"100vw - 500px");
+      opacity: 0.75;
+      object-fit: cover;
+    }
+  }
+  .login-container {
+    width: 500px;
+    display: block;
+    position: relative;
+    float: right;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, .5);
+  }
+  .bg-caption {
+    width: 500px;
+  }
 }
 
+.register-container {
+  width: 550px;
+  margin: auto;
+  height: 100%;
+}
 
 /* Responsive handlers : Login
 ------------------------------------
 */
 
 @media (max-width: 768px) {
-	.login-wrapper{
-		.login-container{
-			width: 100%;
-		}
-	}
-	.register-container{
-		width: 100%;
-		padding: 15px;
-	}
+  .login-wrapper {
+    .login-container {
+      width: 100%;
+    }
+  }
+
+  .register-container {
+    width: 100%;
+    padding: 15px;
+  }
 }
 
-@media only screen and (max-width : 321px) {
-	.login-wrapper{
-		.login-container{
-			width: 100%;
-		}
-	}
+@media only screen and (max-width: 321px) {
+  .login-wrapper {
+    .login-container {
+      width: 100%;
+    }
+  }
 }

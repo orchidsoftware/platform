@@ -402,32 +402,27 @@
   filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
 }
 
-
-
-
-
-
-
-
-
-
 // Transitions
 .transition(@transition) {
   -webkit-transition: @transition;
   transition: @transition;
 }
+
 .transition-property(@transition-property) {
   -webkit-transition-property: @transition-property;
   transition-property: @transition-property;
 }
+
 .transition-delay(@transition-delay) {
   -webkit-transition-delay: @transition-delay;
   transition-delay: @transition-delay;
 }
+
 .transition-duration(@transition-duration) {
   -webkit-transition-duration: @transition-duration;
   transition-duration: @transition-duration;
 }
+
 .transition-transform(@transition) {
   -webkit-transition: -webkit-transform @transition;
   -moz-transition: -moz-transform @transition;
@@ -435,12 +430,27 @@
   transition: transform @transition;
 }
 
-
 // Placeholder text
 .placeholder(@color: @input-color-placeholder) {
-  &:-moz-placeholder            { color: @color; } // Firefox 4-18
-  &::-moz-placeholder           { color: @color; opacity: 1; } // Firefox 19+
-  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
-  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
-  &.placeholder       					{ color: @color; } // Fallback
+  &:-moz-placeholder {
+    color: @color;
+  }
+  // Firefox 4-18
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1;
+  }
+  // Firefox 19+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+  // Internet Explorer 10+
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  // Safari and Chrome
+  &.placeholder {
+    color: @color;
+  }
+  // Fallback
 }

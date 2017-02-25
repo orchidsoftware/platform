@@ -49,4 +49,5 @@ $this->group([
             'show'   => 'dashboard.tools.menu.show',
             'update' => 'dashboard.tools.menu.update',
         ]]);
+
     });
