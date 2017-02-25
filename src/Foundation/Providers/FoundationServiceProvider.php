@@ -16,7 +16,6 @@ use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
-use Illuminate\Support\Facades\DB;
 
 class FoundationServiceProvider extends ServiceProvider
 {

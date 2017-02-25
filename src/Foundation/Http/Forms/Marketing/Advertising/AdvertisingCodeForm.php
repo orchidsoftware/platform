@@ -46,9 +46,9 @@ class AdvertisingCodeForm extends Form
 
         return view('dashboard::container.marketing.advertising.code', [
             'adv'           => $adv,
-            'categories'    => $config->get('advertising',[]),
+            'categories'    => $config->get('advertising', []),
             'language'      => App::getLocale(),
-            'locales'       => $config->get('locales',[]),
+            'locales'       => $config->get('locales', []),
         ]);
     }
 
