@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
 use Illuminate\Http\Request;
-
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
@@ -12,7 +11,6 @@ use Orchid\Foundation\Facades\Alert;
 
 class AdvertisingMainForm extends Form
 {
-
     /**
      * @var string
      */
@@ -47,7 +45,7 @@ class AdvertisingMainForm extends Form
         $adsCategory = collect(config('ads.category'));
 
         return view('dashboard::container.marketing.advertising.info', [
-            'adv'       => $post,
+            'adv'        => $post,
             'categories' => $adsCategory,
         ]);
     }

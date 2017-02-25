@@ -36,16 +36,6 @@ Laravel Platform application provides a very flexible and extensible way of buil
 Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 
-## Server Requirements
-* PHP >= 7.0
-* OpenSSL PHP Extension
-* PDO PHP Extension
-* Mbstring PHP Extension
-* Tokenizer PHP Extension
-* XML PHP Extension
-* Zip PHP Extension
-
-
 ## Installation
 
 Orchid based off [Laravel Framework](http://laravel.com), so before you put the Orchid, you must install [Laravel](http://laravel.com).
@@ -77,19 +67,9 @@ Orchid\Foundation\Providers\FoundationServiceProvider::class,
 ```
 
 
-#### Config
+#### User
 
-Change the following entry in the configuration file`config/auth.php`
-
-```php
-'providers' => [
-    'users' => [
-        'driver' => 'eloquent',
-        'model' => Orchid\Dashboard\Models\User::class,
-    ],
-```
-
-or inherit model App\User
+Inherit your model App\User
 
 ```php
 namespace App;
@@ -103,26 +83,9 @@ class User extends UserOrchid
 
 ```
 
+#### Finish
 
-#### Publish
-
-To publish a package in your application, use the command
-```php
-php artisan vendor:publish
-php artisan migrate
-```
-
-
-#### Creating administrator
-
-
-To create a user with the maximum (at time of writing) rights
-run the following command:
-
-
-```php
-php artisan make:admin nickname email@email.com secretpassword
-```
+Go to http://your-application/dashboard
 
 
 ## Learn More
