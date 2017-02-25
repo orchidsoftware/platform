@@ -10,17 +10,19 @@ use Orchid\Foundation\Http\Forms\Marketing\Comment\CommentFormGroup;
 class CommentController extends Controller
 {
     /**
-     * @var
+     * @var CommentFormGroup
      */
-    public $form = CommentFormGroup::class;
+    public $form;
+
 
     /**
-     * RoleController constructor.
+     * CommentController constructor.
+     * @param CommentFormGroup $form
      */
-    public function __construct()
+    public function __construct(CommentFormGroup $form)
     {
         $this->checkPermission('dashboard.marketing.comment');
-        $this->form = new $this->form();
+        $this->form = $form;
     }
 
     /**

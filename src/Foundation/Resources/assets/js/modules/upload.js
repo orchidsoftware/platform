@@ -96,7 +96,7 @@ if (document.getElementsByClassName('dropzone')) {
 }
 
 
-$(document).ready(function () {
+$(function () {
 
     $('.sortable-dropzone').sortable({
         update: function( ) {

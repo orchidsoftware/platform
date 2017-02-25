@@ -22,8 +22,11 @@ elixir(function(mix) {
 
 
     mix.scripts([
+
         "./vendor/jquery/dist/jquery.min.js",
         "./vendor/jquery-ui/jquery-ui.min.js",
+        "./vendor/nestable/jquery.nestable.js",
+
         "./vendor/bootstrap/dist/js/bootstrap.min.js",
         "./vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
         "./vendor/vue/dist/vue.js",
@@ -32,8 +35,6 @@ elixir(function(mix) {
         "./vendor/summernote/dist/summernote.js",
         "./vendor/dropzone/dist/min/dropzone.min.js",
 
-
-        "./vendor/nestable/jquery.nestable.js",
 
         './vendor/moment/min/moment.min.js',
         './vendor/moment/min/locales.js',

@@ -1,47 +1,41 @@
 @extends('dashboard::layouts.install')
 
 @section('title', trans('install.permissions.title'))
+@section('descriptions', trans('install.permissions.message'))
+
 @section('container')
 
 
-    <div class="install-body container w-xxl padder-lg">
-        <div class="panel panel-default wrapper-sm">
-            <div class="panel-body">
 
+    <ul class="list-group center wrapper">
+        @foreach($permissions['permissions'] as $permission)
+            <li class="m-b-sm">
+                <span class="font-thin">{{ $permission['folder'] }}</span> -
+                {{ $permission['permission'] }}
 
-                <ul class="list-group center wrapper">
-                    @foreach($permissions['permissions'] as $permission)
-                        <li class="m-b-sm">
-                            {{ $permission['folder'] }} -
-                            {{ $permission['permission'] }}
-
-                            @if($permission['isSet'])
-                                <i class="fa fa-check text-success pull-right" aria-hidden="true"></i>
-                            @else
-                                <i class="fa fa-times text-danger pull-right" aria-hidden="true"></i>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-
-                @if(!isset($permissions['errors']))
-                    <div class="text-right">
-                        <a href="{{ route('dashboard::database') }}" class="btn btn-primary">
-                            {{ trans('install.next') }}
-                        </a>
-                    </div>
+                @if($permission['isSet'])
+                    <i class="fa fa-check text-success pull-right" aria-hidden="true"></i>
                 @else
-                    <div class="text-right">
-                        <a href="#" class="btn btn-danger disable" disabled>
-                            {{ trans('install.next') }}
-                        </a>
-                    </div>
+                    <i class="fa fa-times text-danger pull-right" aria-hidden="true"></i>
                 @endif
+            </li>
+        @endforeach
+    </ul>
 
 
-            </div>
-        </div>
+    <div class="text-right">
+        <a
+                @if(!isset($permissions['errors']))
+                href="{{ route('install::database') }}" class="btn btn-link"
+                @else
+                href="#" class="btn btn-danger disable" disabled
+                @endif
+        >
+            {{ trans('install.next') }} <i
+                    class="ion-ios-arrow-right m-l-xs"> </i>
+        </a>
     </div>
+
 
 
 @stop

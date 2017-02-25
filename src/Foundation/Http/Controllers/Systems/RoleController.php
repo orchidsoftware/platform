@@ -10,17 +10,18 @@ use Orchid\Foundation\Http\Forms\Systems\Roles\RoleFormGroup;
 class RoleController extends Controller
 {
     /**
-     * @var
+     * @var RoleFormGroup
      */
-    public $form = RoleFormGroup::class;
+    public $form;
 
     /**
      * RoleController constructor.
+     * @param RoleFormGroup $form
      */
-    public function __construct()
+    public function __construct(RoleFormGroup $form)
     {
         $this->checkPermission('dashboard.systems.roles');
-        $this->form = new $this->form();
+        $this->form = new $form;
     }
 
     /**

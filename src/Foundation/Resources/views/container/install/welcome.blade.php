@@ -1,40 +1,45 @@
 @extends('dashboard::layouts.install')
 
 @section('title', trans('install.welcome.title'))
+@section('descriptions', trans('install.welcome.message'))
+
 @section('container')
 
 
-    <div class="install-body container w-xxl padder-lg">
-        <div class="panel panel-default wrapper-sm">
-            <div class="panel-body">
 
-                <div class="center w-xs">
-                    <img src="/orchid/img/logo.svg" class="img-responsive">
-                </div>
-                <div class="page-header text-center">
-                    <h1>Orchid</h1>
-                </div>
+    <h4 class="m-b font-thin b-b b-light-cs wrapper-xs">
+        {{ trans('install.welcome.message') }}
+    </h4>
 
-                <p class="padder-v">{{ trans('install.welcome.message') }}</p>
+    <p>
+        Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности требуют определения
+        и уточнения систем массового участия. Задача организации, в особенности же новая модель организационной
+        деятельности влечет за собой процесс внедрения и модернизации позиций, занимаемых участниками в отношении
+        поставленных задач.
+    </p>
 
-                <form class="form" method="get" action="{{ route('dashboard::environment') }}">
-                    <div class="form-group">
-                    <label>Select language</label>
-                        <select class="form-control" name="language">
-                            <option value="en">English</option>
-                            <option value="ru">Русский язык</option>
-                        </select>
-                    </div>
+    <p>
+        Значимость этих проблем настолько очевидна, что новая модель организационной деятельности представляет собой
+        интересный эксперимент проверки дальнейших направлений развития. Разнообразный и богатый опыт рамки и место
+        обучения кадров представляет собой интересный эксперимент проверки форм развития.
+    </p>
 
-                    <div class="text-right">
-                        <button class="btn btn-primary">{{ trans('install.next') }}</button>
-                    </div>
 
-                </form>
 
-            </div>
+    <div class="row m-t-xl m-b-md wrapper-xs v-center block-xs">
+        <div class="col-sm-6 col-xs-12 b-r b-light">
+            <p class="text-xs">
+                The MIT License (MIT) Copyright <br>© Chernyaev Alexandr
+            </p>
+        </div>
+        <div class="col-sm-6 col-xs-12 text-right"><a href="{{ route('install::environment') }}"
+                                                      class="btn btn-link text-ellipsis"> <span
+                        class="text-md text-ellipsis">{{ trans('install.next') }} <i
+                            class="ion-ios-arrow-right m-l-xs"></i> </span></a>
         </div>
     </div>
+
+
 
 
 @stop

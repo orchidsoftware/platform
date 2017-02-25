@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Illuminate\Routing\Controller;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 
 class WelcomeController extends Controller
@@ -21,6 +21,6 @@ class WelcomeController extends Controller
         Artisan::call('route:clear');
         Artisan::call('storage:link');
 
-        return view('install::welcome');
+        return view('dashboard::container.install.welcome');
     }
 }

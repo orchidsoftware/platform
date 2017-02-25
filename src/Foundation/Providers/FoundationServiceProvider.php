@@ -11,7 +11,6 @@ use Orchid\Alert\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Foundation\Kernel\Dashboard;
 use Orchid\Foundation\Macros\Page;
-use Orchid\Installer\Providers\InstallerServiceProvider;
 use Orchid\Log\LogServiceProvider;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
@@ -115,7 +114,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            InstallerServiceProvider::class,
             AlertServiceProvider::class,
             SettingsServiceProvider::class,
             WidgetServiceProvider::class,

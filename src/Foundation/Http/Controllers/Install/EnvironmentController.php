@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
 use Dotenv\Dotenv;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
-use Orchid\Installer\Helpers\EnvironmentManager;
+use Orchid\Foundation\Helpers\EnvironmentManager;
 
 class EnvironmentController extends Controller
 {
@@ -41,7 +41,7 @@ class EnvironmentController extends Controller
             $envArray[$chunk[0]] = $chunk[1];
         }
 
-        return view('install::environment', compact('envConfig', 'envArray'));
+        return view('dashboard::container.install.environment', compact('envConfig', 'envArray'));
     }
 
     /**
@@ -56,7 +56,7 @@ class EnvironmentController extends Controller
     {
         $message = $this->EnvironmentManager->saveFile($input);
 
-        return $redirect->route('install::environment', [
+        return $redirect->route('dashboard::container.install.environment', [
             'message' => $message,
         ]);
     }

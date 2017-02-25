@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Installer\Middleware;
+namespace Orchid\Foundation\Http\Middleware;
 
 use Closure;
 

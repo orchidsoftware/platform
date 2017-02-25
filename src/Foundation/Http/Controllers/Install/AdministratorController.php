@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Orchid\Foundation\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 
 class AdministratorController extends Controller
@@ -31,7 +31,7 @@ class AdministratorController extends Controller
             'password' => $request->input('password'),
         ]);
 
-        return redirect()->route('install::final')
+        return redirect()->route('dashboard::container.install.final')
             ->with(['message' => $exitCode]);
     }
 }

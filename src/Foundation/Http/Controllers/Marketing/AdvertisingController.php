@@ -8,18 +8,20 @@ use Orchid\Foundation\Http\Forms\Marketing\Advertising\AdvertisingFormGroup;
 
 class AdvertisingController extends Controller
 {
-    /**
-     * @var
-     */
-    public $form = AdvertisingFormGroup::class;
 
     /**
-     * RoleController constructor.
+     * @var AdvertisingFormGroup
      */
-    public function __construct()
+    public $form;
+
+    /**
+     * AdvertisingController constructor.
+     * @param AdvertisingFormGroup $form
+     */
+    public function __construct(AdvertisingFormGroup $form)
     {
         $this->checkPermission('dashboard.marketing.advertising');
-        $this->form = new $this->form();
+        $this->form = $form;
     }
 
     /**

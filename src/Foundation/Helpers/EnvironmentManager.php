@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Installer\Helpers;
+namespace Orchid\Foundation\Helpers;
 
 use Exception;
 use Illuminate\Http\Request;

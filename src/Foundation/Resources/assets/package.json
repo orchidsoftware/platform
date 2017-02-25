@@ -8,6 +8,7 @@
     "browserify": "~13.0.0",
     "laravel-elixir": "^4.2.1",
     "laravel-elixir-vueify": "~1.0.2",
+    "turbolinks": "^5.0.0",
     "vue": "~1.0.20",
     "vue-resource": "^0.7.0"
   }

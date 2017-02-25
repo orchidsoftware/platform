@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Illuminate\Routing\Controller;
-use Orchid\Installer\Helpers\InstalledFileManager;
+use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Helpers\InstalledFileManager;
 
 class FinalController extends Controller
 {
@@ -18,6 +18,6 @@ class FinalController extends Controller
     {
         $fileManager->update();
 
-        return view('install::finished');
+        return view('dashboard::container.install.finished');
     }
 }

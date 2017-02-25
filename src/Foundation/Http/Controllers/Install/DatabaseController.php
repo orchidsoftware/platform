@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Illuminate\Routing\Controller;
-use Orchid\Installer\Helpers\DatabaseManager;
+use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Helpers\DatabaseManager;
 
 class DatabaseController extends Controller
 {
@@ -29,7 +29,7 @@ class DatabaseController extends Controller
     {
         $response = $this->databaseManager->migrateAndSeed();
 
-        return redirect()->route('install::administrator')
+        return redirect()->route('dashboard::container.install.administrator')
                          ->with(['message' => $response]);
     }
 }

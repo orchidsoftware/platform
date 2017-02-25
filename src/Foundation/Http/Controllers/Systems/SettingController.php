@@ -10,17 +10,18 @@ use Orchid\Foundation\Http\Forms\Systems\Settings\SettingFormGroup;
 class SettingController extends Controller
 {
     /**
-     * @var
+     * @var SettingFormGroup
      */
-    public $form = SettingFormGroup::class;
+    public $form;
 
     /**
-     * RoleController constructor.
+     * SettingController constructor.
+     * @param SettingFormGroup $form
      */
-    public function __construct()
+    public function __construct(SettingFormGroup $form)
     {
         $this->checkPermission('dashboard.systems.settings');
-        $this->form = new $this->form();
+        $this->form = $form;
     }
 
     /**

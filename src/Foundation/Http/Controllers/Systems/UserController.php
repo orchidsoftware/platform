@@ -10,17 +10,18 @@ use Orchid\Foundation\Http\Forms\Systems\Users\UserFormGroup;
 class UserController extends Controller
 {
     /**
-     * @var
+     * @var UserFormGroup
      */
-    public $form = UserFormGroup::class;
+    public $form;
 
     /**
-     * RoleController constructor.
+     * UserController constructor.
+     * @param UserFormGroup $form
      */
-    public function __construct()
+    public function __construct(UserFormGroup $form)
     {
         $this->checkPermission('dashboard.systems.users');
-        $this->form = new $this->form();
+        $this->form = $form;
     }
 
     /**

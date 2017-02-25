@@ -10,17 +10,18 @@ use Orchid\Foundation\Http\Forms\Tools\Category\CategoryFormGroup;
 class CategoryController extends Controller
 {
     /**
-     * @var
+     * @var CategoryFormGroup
      */
-    public $form = CategoryFormGroup::class;
+    public $form;
 
     /**
-     * LocalizationController constructor.
+     * CategoryController constructor.
+     * @param CategoryFormGroup $form
      */
-    public function __construct()
+    public function __construct(CategoryFormGroup $form)
     {
         $this->checkPermission('dashboard.tools.category');
-        $this->form = new $this->form();
+        $this->form = $form;
     }
 
     /**

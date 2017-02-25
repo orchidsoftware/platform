@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Illuminate\Routing\Controller;
-use Orchid\Installer\Helpers\PermissionsChecker;
+use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Helpers\PermissionsChecker;
 
 class PermissionsController extends Controller
 {
@@ -34,6 +34,6 @@ class PermissionsController extends Controller
                 'bootstrap/cache/'       => '775',
         ]);
 
-        return view('install::permissions', compact('permissions'));
+        return view('dashboard::container.install.permissions', compact('permissions'));
     }
 }

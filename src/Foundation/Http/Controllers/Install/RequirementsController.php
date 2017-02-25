@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Installer\Controllers;
+namespace Orchid\Foundation\Http\Controllers\Install;
 
-use Illuminate\Routing\Controller;
-use Orchid\Installer\Helpers\RequirementsChecker;
+use Orchid\Foundation\Http\Controllers\Controller;
+use Orchid\Foundation\Helpers\RequirementsChecker;
 
 class RequirementsController extends Controller
 {
@@ -35,6 +35,6 @@ class RequirementsController extends Controller
             'zip',
             ]);
 
-        return view('install::requirements', compact('requirements'));
+        return view('dashboard::container.install.requirements', compact('requirements'));
     }
 }
