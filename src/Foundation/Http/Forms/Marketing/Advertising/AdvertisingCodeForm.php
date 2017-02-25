@@ -12,7 +12,6 @@ use Orchid\Foundation\Facades\Alert;
 
 class AdvertisingCodeForm extends Form
 {
-
     /**
      * @var string
      */
@@ -36,7 +35,9 @@ class AdvertisingCodeForm extends Form
 
     /**
      * @param Post $adv
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @internal param $item
      */
     public function get(Post $adv = null)
@@ -45,9 +46,9 @@ class AdvertisingCodeForm extends Form
         $weekDays = collect(config('ads.days'));
 
         return view('dashboard::container.marketing.advertising.code', [
-            'adv'       => $adv,
-            'categories' => $adsCategory,
-            'weekDays'   => $weekDays,
+            'adv'           => $adv,
+            'categories'    => $adsCategory,
+            'weekDays'      => $weekDays,
             'language'      => App::getLocale(),
             'locales'       => config('content.locales'),
         ]);

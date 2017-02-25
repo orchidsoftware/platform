@@ -1,4 +1,5 @@
 <?php
+
 namespace Orchid\Foundation\Http\Controllers\Marketing;
 
 use Illuminate\Http\Request;
@@ -42,8 +43,9 @@ class AdvertisingController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param Request   $request
      * @param Post|null $post
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, Post $post = null)
@@ -53,9 +55,9 @@ class AdvertisingController extends Controller
         return redirect()->back();
     }
 
-
     /**
      * @param Post $post
+     *
      * @return mixed
      */
     public function edit(Post $post)
@@ -67,10 +69,10 @@ class AdvertisingController extends Controller
             ->render($post);
     }
 
-
     /**
      * @param Request $request
-     * @param Post $user
+     * @param Post    $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Post $user)
@@ -80,9 +82,9 @@ class AdvertisingController extends Controller
         return redirect()->back();
     }
 
-
     /**
      * @param Post $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Post $user)
