@@ -38,9 +38,6 @@ Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 ## Server Requirements
 * PHP >= 7.0
-* Cron
-* Redis >= 3.0
-* Elasticsearch >= 5.0
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
