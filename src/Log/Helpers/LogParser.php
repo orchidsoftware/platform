@@ -2,8 +2,8 @@
 
 namespace Orchid\Log\Helpers;
 
-use Orchid\Log\Utilities\LogLevels;
 use Illuminate\Support\Str;
+use Orchid\Log\Utilities\LogLevels;
 
 class LogParser
 {
