@@ -104,25 +104,9 @@ class User extends UserOrchid
 ```
 
 
-#### Publish
+#### Finish
 
-To publish a package in your application, use the command
-```php
-php artisan vendor:publish
-php artisan migrate
-```
-
-
-#### Creating administrator
-
-
-To create a user with the maximum (at time of writing) rights
-run the following command:
-
-
-```php
-php artisan make:admin nickname email@email.com secretpassword
-```
+Go to http://your-application/dashboard
 
 
 ## Learn More
