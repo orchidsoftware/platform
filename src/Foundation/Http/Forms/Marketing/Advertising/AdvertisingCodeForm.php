@@ -39,6 +39,10 @@ class AdvertisingCodeForm extends Form
      */
     public function get(Post $adv = null)
     {
+        if(is_null($adv)){
+            $adv = new Post();
+        }
+
         $config = collect(config('content'));
 
         return view('dashboard::container.marketing.advertising.code', [
