@@ -18,7 +18,7 @@
 
     @stack('stylesheet')
 
-    <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </head>
 
 

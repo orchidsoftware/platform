@@ -34,10 +34,10 @@
                                 @foreach ($ads as $item)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('dashboard.tools.advertising.edit', $item) }}"><i
+                                            <a href="{{ route('dashboard.marketing.advertising.edit', $item->id) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{ $item->content['slug'] }}</td>
+                                        <td>{{ $item->slug }}</td>
 
                                         <td>{{ $item->updated_at }}</td>
                                     </tr>

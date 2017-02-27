@@ -4,17 +4,18 @@ namespace Orchid\Widget\Service;
 
 class Widget implements WidgetContractInterface
 {
+
     /**
      * @param $key
-     *
+     * @param null $arg
      * @return mixed
      */
-    public function get($key)
+    public function get($key, $arg = null)
     {
         $class = config('widget.widgets.'.$key);
         $widget = new $class();
 
-        return $widget->run();
+        return $widget->run($arg);
     }
 
     /**

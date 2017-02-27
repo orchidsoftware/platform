@@ -8,15 +8,16 @@
         </div>
     </div>
 
+
     <div class="line line-dashed b-b line-lg"></div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">Категория</label>
         <div class="col-sm-10">
-            <select required data-placeholder="Select Category" name="category_id" class="chosen-select form-control">
+            <select required data-placeholder="Select Category" name="options[category]" class="chosen-select form-control">
                 @foreach($categories as $categoryCode => $categoryLabel)
                     <option value="{{$categoryCode}}"
-                            @if($adv->getContent('category') == $categoryCode) selected @endif>
+                            @if($adv->getOption('category') == $categoryCode) selected @endif>
                         {{$categoryLabel}}</option>
                 @endforeach
             </select>
@@ -29,13 +30,14 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Период</label>
 
+
         <div class="col-sm-5">
             <div class="input-group">
                 <input required type='text' class="form-control datetimepicker"
-                        value="{{$adv->getContent('start-date')}}"
+                        value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('startDate'))->toDateTimeString()}}"
                        placeholder=""
 
-                       name="start-date"
+                       name="options[startDate]"
                 >
                 <span class="input-group-addon">
                         <span class="fa fa-calendar" aria-hidden="true"></span>
@@ -46,10 +48,10 @@
         <div class="col-sm-5">
             <div class="input-group">
                 <input required type='text' class="form-control datetimepicker"
-                        value="{{$adv->getContent('end-date')}}"
+                        value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('endDate'))->toDateTimeString()}}"
                        placeholder=""
 
-                       name="end-date"
+                       name="options[endDate]"
                 >
                 <span class="input-group-addon">
                         <span class="fa fa-calendar" aria-hidden="true"></span>

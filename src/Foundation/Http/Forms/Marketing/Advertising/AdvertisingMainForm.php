@@ -2,7 +2,9 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
@@ -50,48 +52,39 @@ class AdvertisingMainForm extends Form
         ]);
     }
 
+
     /**
      * @param Request|null $request
-     * @param null         $adv
-     *
-     * @return mixed|void
+     * @param Post|null $post
      */
-    public function persist(Request $request = null, $adv = null)
+    public function persist(Request $request = null, Post $post = null)
     {
-        $requestContent = $request->all();
+        $parameters = $request->all();
 
-        $code = $requestContent['code'];
+        $parameters['type'] = 'advertising';
+        $parameters['options']['startDate'] = Carbon::parse($parameters['options']['startDate'])->timestamp;
+        $parameters['options']['endDate'] = Carbon::parse($parameters['options']['endDate'])->timestamp;
+        $parameters['user_id'] = Auth::user()->id;
 
-        $fullSavePath = $this->createDbPath($code);
-
-        unset($requestContent['_token']);
-        unset($requestContent['_method']);
-        unset($requestContent['code']);
-        if (!($adv instanceof Adv)) {
-            $adv = Adv::create([
-                'content'   => $requestContent,
-                'file_name' => $fullSavePath,
-            ]);
-        } else {
-            $segments = $request->segments();
-            $item_id = $segments[count($segments) - 1];
-
-            $adv = Adv::where('id', $item_id)->first();
-
-            $adv->content = $requestContent;
-            $adv->file_name = $fullSavePath;
+        if(is_null($post)) {
+            Post::created([$parameters]);
         }
-
-        $adv->save();
+        else{
+            $post->fill($parameters);
+            $post->save();
+        }
 
         Alert::success('success');
     }
 
+
     /**
-     * @param Request      $request
-     * @param TermTaxonomy $termTaxonomy
+     * @param Request|null $request
+     * @param Post|null $post
      */
-    public function delete(Request $request, TermTaxonomy $termTaxonomy)
-    {
+    public function delete(Request $request = null, Post $post = null){
+        $post->delete();
+        Alert::success('success');
     }
+
 }

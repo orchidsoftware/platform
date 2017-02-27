@@ -23,6 +23,7 @@ class WidgetServiceProvider extends ServiceProvider
         $this->registerConfig();
         Blade::directive('widget', function ($expression) {
             $segments = explode(',', preg_replace("/[\(\)\\\]/", '', $expression));
+
             if (!array_key_exists(1, $segments)) {
                 return '<?php echo (new \Orchid\Widget\Service\Widget)->get('.$segments[0].'); ?>';
             }
