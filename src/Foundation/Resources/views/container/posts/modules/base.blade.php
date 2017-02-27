@@ -23,6 +23,7 @@
 
     <div class="line line-dashed b-b line-lg"></div>
 
+
     <div class="form-group">
         <label>Теги</label>
         <input type="text" class="form-control" data-role="tagsinput"
@@ -54,7 +55,7 @@
 
     @endif
 
-    @if($post->exists)
+    @if(!is_null($post))
     <p>
         Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
     </p>
@@ -66,7 +67,7 @@
             <label class="col-sm-6 control-label">{{$locale['native']}}</label>
             <div class="col-sm-6">
 
-            @if($post->exists)
+            @if(!is_null($post))
                 <label class="i-switch bg-info m-t-xs m-r">
                     <input type="checkbox" name="options[locale][{{$key}}]" value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
                     <i></i>
