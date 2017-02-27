@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Http\Controllers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Orchid\Foundation\Core\Models\Attachment;
@@ -86,7 +85,7 @@ class AttachmentController extends Controller
             );
         }
 
-        $name = Hash::make($this->time.$image->getClientOriginalName());
+        $name = sha1($this->time.$image->getClientOriginalName());
 
         $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
         Image::make($image)->save($fullPath, 100);
@@ -111,7 +110,7 @@ class AttachmentController extends Controller
     {
         Storage::disk('public')->makeDirectory($this->date);
 
-        $hashName = Hash::make($this->time.$file->getClientOriginalName());
+        $hashName = sha1($this->time.$file->getClientOriginalName());
         $name = $hashName.'.'.$file->getClientOriginalExtension();
 
         $fullPath = storage_path('app/public/'.'/'.$this->date.'/');
@@ -183,7 +182,7 @@ class AttachmentController extends Controller
             $name = '_'.$name;
         }
 
-        $name = Hash::make($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
+        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
         $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
