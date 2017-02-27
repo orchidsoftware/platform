@@ -39,7 +39,7 @@ class AdvertisingCodeForm extends Form
      */
     public function get(Post $adv = null)
     {
-        if(is_null($adv)){
+        if (is_null($adv)) {
             $adv = new Post();
         }
 
