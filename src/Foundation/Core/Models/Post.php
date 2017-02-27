@@ -331,7 +331,6 @@ class Post extends Model
         return $count ? "{$slug}-{$count}" : $slug;
     }
 
-
     /**
      * Overriding newQuery() to the custom PostBuilder with some interesting methods.
      *
@@ -352,7 +351,7 @@ class Post extends Model
         if ($excludeDeleted and $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }
+
         return $builder;
     }
-
 }

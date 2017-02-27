@@ -4,10 +4,10 @@ namespace Orchid\Widget\Service;
 
 class Widget implements WidgetContractInterface
 {
-
     /**
      * @param $key
      * @param null $arg
+     *
      * @return mixed
      */
     public function get($key, $arg = null)
