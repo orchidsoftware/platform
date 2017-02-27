@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('/orchid/css/orchid.css')}}" type="text/css"/>
+    <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </head>
 
 <!-- install bg-dark bg-gd-dk -->
@@ -83,6 +84,5 @@
 </div>
 
 
-<script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </body>
 </html>

@@ -7,11 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,300&subset=latin,cyrillic' rel='stylesheet'
-          type='text/css'>
     <link rel="stylesheet" href="{{asset('/orchid/css/orchid.css')}}" type="text/css"/>
+    <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </head>
 <body>
 
@@ -68,9 +65,6 @@
 </div>
 
 
-
-
-<script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 
 </body>
 </html>

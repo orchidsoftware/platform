@@ -9,8 +9,16 @@
     <meta name="auth" content="{{Auth::check()}}">
     <link rel="stylesheet" href="/orchid/css/orchid.css">
 
+
+    <meta http-equiv="X-DNS-Prefetch-Control" content="on" />
+    <link rel="dns-prefetch" href="{{ config('app.url') }}" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+
+
     @stack('stylesheet')
 
+    <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </head>
 
 
@@ -267,7 +275,6 @@
 @include('dashboard::partials.quick')
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB_9M5O7t88YovZa2mePQ9VX4f79c86cqg"></script>
-<script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 
 @stack('scripts')
 
