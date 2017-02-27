@@ -1,15 +1,14 @@
 <?php
+
 namespace Orchid\Foundation\Http\Widgets;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Widget\Service\Widget;
-use Illuminate\Support\Facades\Cache;
 
 class AdvertisingWidget extends Widget
 {
-
     /**
      * @var static
      */
@@ -20,18 +19,18 @@ class AdvertisingWidget extends Widget
      */
     public function __construct()
     {
-
         $this->date = Carbon::now();
     }
 
     /**
      * @param string $key
+     *
      * @return null
      */
     public function run($key = '')
     {
-        $post = Post::type('advertising')->where('options->lang->' . App::getLocale())
-            ->where('options->category',$key)
+        $post = Post::type('advertising')->where('options->lang->'.App::getLocale())
+            ->where('options->category', $key)
             ->where('options->startDate', '<', $this->date->timestamp)
             ->where('options->endDate', '>', $this->date->timestamp)
             ->first();
@@ -39,7 +38,5 @@ class AdvertisingWidget extends Widget
         if (!is_null($post)) {
             return $post->getContent('code');
         }
-        return null;
     }
-
 }

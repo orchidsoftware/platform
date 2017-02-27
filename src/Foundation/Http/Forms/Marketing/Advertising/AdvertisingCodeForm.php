@@ -2,13 +2,10 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Core\Models\TermTaxonomy;
-use Orchid\Foundation\Facades\Alert;
 
 class AdvertisingCodeForm extends Form
 {
@@ -51,7 +48,4 @@ class AdvertisingCodeForm extends Form
             'locales'       => $config->get('locales', []),
         ]);
     }
-
-
-
 }

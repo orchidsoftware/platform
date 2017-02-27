@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
 
 class AdvertisingMainForm extends Form
@@ -52,10 +51,9 @@ class AdvertisingMainForm extends Form
         ]);
     }
 
-
     /**
      * @param Request|null $request
-     * @param Post|null $post
+     * @param Post|null    $post
      */
     public function persist(Request $request = null, Post $post = null)
     {
@@ -66,10 +64,9 @@ class AdvertisingMainForm extends Form
         $parameters['options']['endDate'] = Carbon::parse($parameters['options']['endDate'])->timestamp;
         $parameters['user_id'] = Auth::user()->id;
 
-        if(is_null($post)) {
+        if (is_null($post)) {
             Post::created([$parameters]);
-        }
-        else{
+        } else {
             $post->fill($parameters);
             $post->save();
         }
@@ -77,14 +74,13 @@ class AdvertisingMainForm extends Form
         Alert::success('success');
     }
 
-
     /**
      * @param Request|null $request
-     * @param Post|null $post
+     * @param Post|null    $post
      */
-    public function delete(Request $request = null, Post $post = null){
+    public function delete(Request $request = null, Post $post = null)
+    {
         $post->delete();
         Alert::success('success');
     }
-
 }
