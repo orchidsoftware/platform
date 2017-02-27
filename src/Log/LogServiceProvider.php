@@ -55,7 +55,8 @@ class LogServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            Contracts\LogViewer::class,
+            'arcanedev.log-viewer',
+            Contracts\Log::class,
         ];
     }
 }
