@@ -2,13 +2,11 @@
 
 namespace Orchid\Foundation\Http\Controllers\Systems;
 
-
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Monitor\Monitor;
 
 class MonitorController extends Controller
 {
-
     /**
      * MonitorController constructor.
      */
@@ -23,13 +21,14 @@ class MonitorController extends Controller
     public function index()
     {
         $monitor = new Monitor();
-        return view('dashboard::container.systems.monitor.index',[
-            'info' => $monitor->info(),
-            'hardware' => $monitor->hardware(),
+
+        return view('dashboard::container.systems.monitor.index', [
+            'info'        => $monitor->info(),
+            'hardware'    => $monitor->hardware(),
             'loadAverage' => $monitor->loadAverage(),
-            'memory' => $monitor->memory(),
-            'network' => $monitor->network(),
-            'storage' => $monitor->storage(),
+            'memory'      => $monitor->memory(),
+            'network'     => $monitor->network(),
+            'storage'     => $monitor->storage(),
         ]);
     }
 }
