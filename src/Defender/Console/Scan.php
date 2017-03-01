@@ -24,7 +24,7 @@ class Scan extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Find malware';
 
     /**
      * Create a new command instance.
