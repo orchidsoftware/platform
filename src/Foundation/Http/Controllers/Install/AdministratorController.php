@@ -13,7 +13,7 @@ class AdministratorController extends Controller
      */
     public function administrator()
     {
-        return view('install::administrator');
+        return view('dashboard::container.install.administrator');
     }
 
     /**
@@ -31,7 +31,7 @@ class AdministratorController extends Controller
             'password' => $request->input('password'),
         ]);
 
-        return redirect()->route('dashboard::container.install.final')
+        return redirect()->route('install::final')
             ->with(['message' => $exitCode]);
     }
 }

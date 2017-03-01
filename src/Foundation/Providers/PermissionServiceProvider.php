@@ -117,6 +117,10 @@ class PermissionServiceProvider extends ServiceProvider
                     'description' => 'Доступ к защитнику',
                 ],
                 [
+                    'slug'        => 'dashboard.systems.monitor',
+                    'description' => 'Доступ к системному монитору',
+                ],
+                [
                     'slug'        => 'dashboard.systems.logs',
                     'description' => 'Доступ к журналу событий',
                 ],

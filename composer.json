@@ -74,7 +74,8 @@
       "Orchid\\Type\\": "src/Type",
       "Orchid\\Widget\\": "src/Widget",
       "Orchid\\Defender\\": "src/Defender",
-      "Orchid\\Schema\\": "src/Schema"
+      "Orchid\\Schema\\": "src/Schema",
+      "Orchid\\Monitor\\": "src/Monitor"
     }
   },
   "extra": {

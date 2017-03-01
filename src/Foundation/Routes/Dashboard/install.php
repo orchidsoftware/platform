@@ -25,7 +25,7 @@ $this->group([
             'as'   => 'environment',
             'uses' => 'EnvironmentController@environment',
         ]);
-        $router->get('/environment/save', [
+        $router->post('/environment/save', [
             'as'   => 'environmentSave',
             'uses' => 'EnvironmentController@save',
         ]);
@@ -45,7 +45,7 @@ $this->group([
             'as'   => 'administrator',
             'uses' => 'AdministratorController@administrator',
         ]);
-        $router->get('/administrator/create', [
+        $router->post('/administrator/create', [
             'as'   => 'administratorCreate',
             'uses' => 'AdministratorController@create',
         ]);

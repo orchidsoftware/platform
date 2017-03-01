@@ -29,7 +29,7 @@ class DatabaseController extends Controller
     {
         $response = $this->databaseManager->migrateAndSeed();
 
-        return redirect()->route('dashboard::container.install.administrator')
+        return redirect()->route('install::administrator')
                          ->with(['message' => $response]);
     }
 }

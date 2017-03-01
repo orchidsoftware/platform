@@ -8,7 +8,6 @@
         </div>
     </div>
 
-
     <div class="line line-dashed b-b line-lg"></div>
 
     <div class="form-group">

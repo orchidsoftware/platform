@@ -230,15 +230,22 @@ abstract class Type implements TypeInterface
         $model = new $this->model();
         $search = request('search');
 
-        if (is_null($search)) {
+        if (is_null($search) || empty($search)) {
             $data = $model->where('type', $this->slug)
                 ->orderBy('id', 'Desc')
                 ->paginate();
         } else {
-            $data = $model->search($search)
-                ->where('type', $this->slug)
-                ->orderBy('id', 'Desc')
-                ->paginate();
+            if(!is_null(config('scout.driver'))) {
+                $data = $model->search($search)
+                    ->where('type', $this->slug)
+                    ->orderBy('id', 'Desc')
+                    ->paginate();
+            }else{
+                $data = $model->where('content', 'LIKE', '%'.$search.'%')
+                    ->where('type', $this->slug)
+                    ->orderBy('id', 'Desc')
+                    ->paginate();
+            }
         }
 
         return [

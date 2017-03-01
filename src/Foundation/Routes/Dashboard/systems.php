@@ -95,4 +95,11 @@ $this->group([
             'as'   => 'log-viewer::logs.filter',
             'uses' => 'LogController@showByLevel',
         ]);
+
+
+        $router->get('monitor', [
+            'as'   => 'dashboard.systems.monitor',
+            'uses' => 'MonitorController@index',
+        ]);
+
     });

@@ -231,6 +231,16 @@ class MenuComposer
             'permission' => 'dashboard.systems.defender',
         ];
 
+
+        $defenderMenu = [
+            'slug'       => 'monitor',
+            'icon'       => 'fa fa-television',
+            'route'      => route('dashboard.systems.monitor'),
+            'label'      => trans('Системный монитор'),
+            'permission' => 'dashboard.systems.monitor',
+        ];
+
+
         $schemaMenu = [
             'slug'       => 'schema',
             'icon'       => 'fa fa-database',
