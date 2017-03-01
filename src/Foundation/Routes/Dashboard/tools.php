@@ -49,4 +49,17 @@ $this->group([
             'show'   => 'dashboard.tools.menu.show',
             'update' => 'dashboard.tools.menu.update',
         ]]);
+
+
+
+        $router->get('/filemanager', 'FileManagerController@getIndex');
+        $router->get('/filemanager/dialog', 'FileManagerController@getDialog');
+        $router->post('/filemanager/get_folder', 'FileManagerController@ajaxGetFilesAndFolders');
+        $router->post('/filemanager/uploadFile', 'FileManagerController@uploadFile');
+        $router->post('/filemanager/createFolder', 'FileManagerController@createFolder');
+        $router->post('/filemanager/delete', 'FileManagerController@delete');
+        $router->get('/filemanager/download', 'FileManagerController@download')->where('path', '.*');
+        $router->post('/filemanager/preview', 'FileManagerController@preview')->where('file', '.*');
+        $router->post('/filemanager/move', 'FileManagerController@move');
+        $router->post('/filemanager/rename', 'FileManagerController@rename')->where('file', '.*');
     });
