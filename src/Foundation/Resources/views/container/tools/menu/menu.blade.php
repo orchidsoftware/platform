@@ -113,11 +113,39 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Разрешить поисковым роботам переход</label>
+                            <label>Отношения между текущим документом и документом, на который ведет ссылка</label>
 
                             <select class="form-control" v-model="robot">
-                                <option value="follow" selected>follow</option>
-                                <option value="nofollow">nofollow</option>
+
+                                <option value="answer">Ответ на вопрос</option>
+                                <option value="chapter">Раздел или глава текущего документа</option>
+                                <option value="co-worker">Ссылка на страницу коллеги по работе</option>
+                                <option value="colleague">Ссылка на страницу коллеги (не по работе)</option>
+                                <option value="contact">Ссылка на страницу с контактной информацией</option>
+                                <option value="details">Ссылка на страницу с подробностями</option>
+                                <option value="edit">Редактируемая версия текущего документа</option>
+                                <option value="friend">Ссылка на страницу друга</option>
+                                <option value="question">Вопрос</option>
+
+                                <option value="archives">Ссылка на архив сайта</option>
+                                <option value="author">Ссылка на страницу об авторе на том же домене</option>
+                                <option value="bookmark">Постоянная ссылка на раздел или запись</option>
+                                <option value="first">Ссылка на первую страницу</option>
+                                <option value="help">Ссылка на документ со справкой</option>
+                                <option value="index">Ссылка на содержание</option>
+                                <option value="last">Ссылка на последнюю страницу</option>
+                                <option value="license">Ссылка на страницу с лицензионным соглашением или авторскими правами</option>
+                                <option value="me">Ссылка на страницу автора на другом домене</option>
+                                <option value="next">Ссылка на следующую страницу или раздел.</option>
+                                <option value="nofollow">Не передавать по ссылке ТИЦ и PR.</option>
+                                <option value="noreferrer">Не передавать по ссылке HTTP-заголовки</option>
+                                <option value="prefetch">Указывает, что надо заранее кэшировать указанный ресурс</option>
+                                <option value="prev">Ссылка на предыдущую страницу или раздел</option>
+                                <option value="search">Ссылка на поиск</option>
+                                <option value="sidebar">Добавить ссылку в избранное браузера</option>
+                                <option value="tag">Указывает, что метка (тег) имеет отношение к текущему документу</option>
+                                <option value="up">Ссылка на родительскую страницу</option>
+
                             </select>
                         </div>
                         <div class="form-group">
