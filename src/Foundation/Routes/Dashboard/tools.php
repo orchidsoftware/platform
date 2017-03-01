@@ -50,8 +50,6 @@ $this->group([
             'update' => 'dashboard.tools.menu.update',
         ]]);
 
-
-
         $router->get('/filemanager', 'FileManagerController@getIndex');
         $router->get('/filemanager/dialog', 'FileManagerController@getDialog');
         $router->post('/filemanager/get_folder', 'FileManagerController@ajaxGetFilesAndFolders');
