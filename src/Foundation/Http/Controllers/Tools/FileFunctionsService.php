@@ -1,13 +1,14 @@
 <?php
+
 namespace Orchid\Foundation\Http\Controllers\Tools;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileFunctionsService
 {
-
     /**
-     * Home Path
+     * Home Path.
+     *
      * @var
      */
     protected $path;
@@ -21,31 +22,34 @@ class FileFunctionsService
     }
 
     /**
-     * Handles Upload File Method
+     * Handles Upload File Method.
+     *
      * @param UploadedFile|null $file
      * @param $folder
+     *
      * @return stringch
      */
     public static function uploadFile(UploadedFile $file = null, $folder)
     {
         $result = self::upload($file, $folder);
+
         return $result;
     }
 
     /**
-     * Handles Upload files
+     * Handles Upload files.
      *
      * @param UploadedFile $file
      * @param $folder
+     *
      * @return stringch
      */
     private static function upload(UploadedFile $file, $folder)
     {
-
         $originalName = $file->getClientOriginalName();
         $originalNameWithoutExt = pathinfo($originalName, PATHINFO_FILENAME);
-        $newName = self::sanitize($originalNameWithoutExt) . "." . $file->getClientOriginalExtension();
-        $path = self::path . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
+        $newName = self::sanitize($originalNameWithoutExt).'.'.$file->getClientOriginalExtension();
+        $path = self::path.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR;
 
 //        $this->checkFileExists($path,$newName);
 
@@ -64,9 +68,9 @@ class FileFunctionsService
                 if (config('filemanager.pngquantPath') != null) {
                     //Compress PNG files
                     if ($ext == 'png') {
-                        $compressed_png_content = self::compress_png($path . $name);
+                        $compressed_png_content = self::compress_png($path.$name);
                         if ($compressed_png_content != false) {
-                            file_put_contents($path . $name, $compressed_png_content);
+                            file_put_contents($path.$name, $compressed_png_content);
                         }
                     }
                 }
@@ -74,10 +78,10 @@ class FileFunctionsService
                 if (config('filemanager.jpegRecompressPath') != null) {
                     //Compress JPG files
                     if ($ext == 'jpg' || $ext == 'jpeg') {
-                        $compressed_jpg_content = self::compress_jpg($path . $name);
+                        $compressed_jpg_content = self::compress_jpg($path.$name);
 
                         if ($compressed_jpg_content != false) {
-                            file_put_contents($path . $name, $compressed_jpg_content);
+                            file_put_contents($path.$name, $compressed_jpg_content);
                         }
                     }
                 }
@@ -87,23 +91,23 @@ class FileFunctionsService
         } else {
             return ['error' => 'Impossible upload this file to this folder'];
         }
-
     }
 
     /**
      * @param $string
      * @param bool $force_lowercase
      * @param bool $anal
+     *
      * @return bool|mixed|string
      */
     private static function sanitize($string, $force_lowercase = true, $anal = true)
     {
-        $strip = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
-            "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
-            "â€”", "â€“", ",", "<", ".", ">", "/", "?"];
-        $clean = trim(str_replace($strip, "-", strip_tags($string)));
-        $clean = preg_replace('/\s+/', "-", $clean);
-        $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "-", $clean) : $clean;
+        $strip = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+', '[', '{', ']',
+            '}', '\\', '|', ';', ':', '"', "'", '&#8216;', '&#8217;', '&#8220;', '&#8221;', '&#8211;', '&#8212;',
+            'â€”', 'â€“', ',', '<', '.', '>', '/', '?', ];
+        $clean = trim(str_replace($strip, '-', strip_tags($string)));
+        $clean = preg_replace('/\s+/', '-', $clean);
+        $clean = ($anal) ? preg_replace('/[^a-zA-Z0-9]/', '-', $clean) : $clean;
 
         return ($force_lowercase) ?
             (function_exists('mb_strtolower')) ?
@@ -113,24 +117,26 @@ class FileFunctionsService
     }
 
     /**
-     * Check if file is on server and returns the name of file plus counter
+     * Check if file is on server and returns the name of file plus counter.
      *
      * @param $folder
      * @param $name
+     *
      * @return bool|string
      */
     private static function checkFileExists($folder, $name)
     {
-
-        if (file_exists($folder . $name)) {
+        if (file_exists($folder.$name)) {
             $withoutExt = pathinfo($name, PATHINFO_FILENAME);
             $ext = pathinfo($name, PATHINFO_EXTENSION);
             $i = 1;
-            while (file_exists($folder . $withoutExt . "-" . $i . "." . $ext)) {
+            while (file_exists($folder.$withoutExt.'-'.$i.'.'.$ext)) {
                 $i++;
             }
-            return $withoutExt . "-" . $i . "." . $ext;
+
+            return $withoutExt.'-'.$i.'.'.$ext;
         }
+
         return false;
     }
 
@@ -142,9 +148,10 @@ class FileFunctionsService
      *
      * @param $path_to_png_file string - path to any PNG file, e.g. $_FILE['file']['tmp_name']
      * @param $max_quality int - conversion quality, useful values from 60 to 100 (smaller number = smaller file)
+     *
      * @return string - content of PNG file after conversion
      */
-    static function compress_png($path_to_png_file, $max_quality = 90)
+    public static function compress_png($path_to_png_file, $max_quality = 90)
     {
         if (!file_exists($path_to_png_file)) {
             return false;
@@ -156,7 +163,7 @@ class FileFunctionsService
         // '-' makes it use stdout, required to save to $compressed_png_content variable
         // '<' makes it read from the given file path
         // escapeshellarg() makes this safe to use with any path
-        $compressed_png_content = shell_exec(config('filemanager.pngquantPath') . " --quality=$min_quality-$max_quality - < " . escapeshellarg($path_to_png_file));
+        $compressed_png_content = shell_exec(config('filemanager.pngquantPath')." --quality=$min_quality-$max_quality - < ".escapeshellarg($path_to_png_file));
 
         if (!$compressed_png_content) {
             return false;
@@ -166,13 +173,14 @@ class FileFunctionsService
     }
 
     /**
-     * Optimizes JPG file with jpg-recompress
+     * Optimizes JPG file with jpg-recompress.
      *
-     * @param  [type]  $path_to_jpg_file [description]
-     * @param  integer $max_quality [description]
-     * @return [type]                    [description]
+     * @param [type] $path_to_jpg_file [description]
+     * @param int    $max_quality      [description]
+     *
+     * @return [type] [description]
      */
-    static function compress_jpg($path_to_jpg_file, $max_quality = 90)
+    public static function compress_jpg($path_to_jpg_file, $max_quality = 90)
     {
         if (!file_exists($path_to_jpg_file)) {
             return false;
@@ -184,7 +192,7 @@ class FileFunctionsService
         // '- -' makes it use stdout, required to save to $compressed_jpg_content variable
         // '<' makes it read from the given file path
         // escapeshellarg() makes this safe to use with any path
-        $compressed_jpg_content = shell_exec(config('filemanager.jpegRecompressPath') . " --quality high --min $min_quality --max $max_quality --quiet - - < " . escapeshellarg($path_to_jpg_file));
+        $compressed_jpg_content = shell_exec(config('filemanager.jpegRecompressPath')." --quality high --min $min_quality --max $max_quality --quiet - - < ".escapeshellarg($path_to_jpg_file));
 
         if (!$compressed_jpg_content) {
             return false;
@@ -194,35 +202,38 @@ class FileFunctionsService
     }
 
     /**
-     * Creates new folder on path
+     * Creates new folder on path.
+     *
      * @param $newName
      * @param $currentFolder
+     *
      * @return array
      */
     public static function createFolder($newName, $currentFolder)
     {
-
-        $path = self::path . DIRECTORY_SEPARATOR . $currentFolder . DIRECTORY_SEPARATOR;
+        $path = self::path.DIRECTORY_SEPARATOR.$currentFolder.DIRECTORY_SEPARATOR;
         if (!is_writable($path)) {
             return ['error' => 'This folder is not writable'];
         }
 
-        if (self::checkFolderExists($path . $newName)) {
+        if (self::checkFolderExists($path.$newName)) {
             return ['error' => 'This folder already exists'];
         }
 
         try {
-            mkdir($path . $newName, 0755);
-            return ['success' => 'Folder ' . $newName . ' created successfully'];
+            mkdir($path.$newName, 0755);
+
+            return ['success' => 'Folder '.$newName.' created successfully'];
         } catch (\Exception $e) {
             return ['error' => 'Error creating folder'];
         }
     }
 
     /**
-     * Check if folder exists
+     * Check if folder exists.
      *
      * @param $folder
+     *
      * @return bool
      */
     private static function checkFolderExists($folder)
@@ -235,56 +246,58 @@ class FileFunctionsService
     }
 
     /**
-     * Move or rename a file or folder
+     * Move or rename a file or folder.
      *
      * @param $oldFile
      * @param $newPath
      * @param $name
      * @param $type
      * @param string $fileOrFolder
+     *
      * @return array
      */
     public static function rename($oldFile, $newPath, $name, $type, $fileOrFolder = 'file')
     {
-
         $permissions = self::checkPerms($newPath);
         if ($permissions == 400 || $permissions == 700) {
             return ['error' => "You don't have permissions to move to this folder"];
         }
 
-
         $name = self::checkValidNameOption($name, $fileOrFolder);
 
         $name = (!self::checkFileExists($newPath, $name)) ? $name : self::checkFileExists($newPath, $name);
 
-        if (rename($oldFile, $newPath . $name)) {
+        if (rename($oldFile, $newPath.$name)) {
             if ($type = 'rename') {
-                return ['success' => ucfirst($fileOrFolder) . ' ' . $name . ' renamed successfully'];
+                return ['success' => ucfirst($fileOrFolder).' '.$name.' renamed successfully'];
             } else {
-                return ['success' => ucfirst($fileOrFolder) . ' ' . $name . ' moved successfully'];
+                return ['success' => ucfirst($fileOrFolder).' '.$name.' moved successfully'];
             }
-
         } else {
-            return ['error' => "Error moving this file"];
+            return ['error' => 'Error moving this file'];
         }
     }
 
     /**
-     * Check permissions of folder
+     * Check permissions of folder.
+     *
      * @param $path
+     *
      * @return string
      */
     private static function checkPerms($path)
     {
         clearstatcache(null, $path);
+
         return decoct(fileperms($path) & 0777);
     }
 
     /**
-     * Check if validName option is true and then sanitize new string
+     * Check if validName option is true and then sanitize new string.
      *
-     * @param  string $name
-     * @param  string $folder
+     * @param string $name
+     * @param string $folder
+     *
      * @return string
      */
     private static function checkValidNameOption($name, $folder)
@@ -293,14 +306,14 @@ class FileFunctionsService
             if ($folder == 'file') {
                 $ext = pathinfo($name, PATHINFO_EXTENSION);
                 $name = pathinfo($name, PATHINFO_FILENAME);
-                return self::sanitize($name) . "." . $ext;
+
+                return self::sanitize($name).'.'.$ext;
             } else {
                 return self::sanitize($name);
             }
         } else {
             return $name;
         }
-
     }
 
     /*********************************
@@ -308,19 +321,22 @@ class FileFunctionsService
      *********************************/
 
     /**
-     * Deletes a file or Folder
+     * Deletes a file or Folder.
+     *
      * @param $data
      * @param $folder
      * @param $type
+     *
      * @return array
      */
     public static function delete($data, $folder, $type)
     {
         if ($type == 'folder') {
             try {
-                $folder = rtrim(self::path . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $data, "/");
+                $folder = rtrim(self::path.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR.$data, '/');
                 self::deleteFolderRecursive($folder);
-                return ['success' => 'Folder ' . $data . ' deleted successfully'];
+
+                return ['success' => 'Folder '.$data.' deleted successfully'];
             } catch (\Exception $e) {
                 return ['error' => 'Error deleting folder'];
             }
@@ -328,9 +344,9 @@ class FileFunctionsService
 
         if ($type == 'file') {
             try {
+                unlink(self::path.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR.$data);
 
-                unlink(self::path . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $data);
-                return ['success' => 'File ' . $data . ' deleted successfully'];
+                return ['success' => 'File '.$data.' deleted successfully'];
             } catch (\Exception $e) {
                 return ['error' => 'Error deleting file'];
             }
@@ -338,7 +354,7 @@ class FileFunctionsService
     }
 
     /**
-     * Removes a folder recursively
+     * Removes a folder recursively.
      *
      * @param $dir
      */
@@ -347,15 +363,15 @@ class FileFunctionsService
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir . "/" . $object))
-                        self::deleteFolderRecursive($dir . "/" . $object);
-                    else
-                        unlink($dir . "/" . $object);
+                if ($object != '.' && $object != '..') {
+                    if (is_dir($dir.'/'.$object)) {
+                        self::deleteFolderRecursive($dir.'/'.$object);
+                    } else {
+                        unlink($dir.'/'.$object);
+                    }
                 }
             }
             rmdir($dir);
         }
     }
-
 }
