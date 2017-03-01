@@ -96,10 +96,8 @@ $this->group([
             'uses' => 'LogController@showByLevel',
         ]);
 
-
         $router->get('monitor', [
             'as'   => 'dashboard.systems.monitor',
             'uses' => 'MonitorController@index',
         ]);
-
     });
