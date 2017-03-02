@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Alert;
 
@@ -53,7 +52,8 @@ class AdvertisingMainForm extends Form
 
     /**
      * @param Request|null $request
-     * @param Post|null    $post
+     * @param Post|null $post
+     * @return mixed|void
      */
     public function persist(Request $request = null, Post $post = null)
     {

@@ -70,7 +70,7 @@ class PostBuilder extends Builder
     /**
      * Get only posts with a specific slug.
      *
-     * @param string slug
+     * @param string $slug
      *
      * @return \Orchid\Foundation\Core\Builders\PostBuilder
      */

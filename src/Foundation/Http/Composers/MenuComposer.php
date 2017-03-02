@@ -231,7 +231,7 @@ class MenuComposer
             'permission' => 'dashboard.systems.defender',
         ];
 
-        $defenderMenu = [
+        $monitorMenu = [
             'slug'       => 'monitor',
             'icon'       => 'fa fa-television',
             'route'      => route('dashboard.systems.monitor'),
@@ -271,6 +271,7 @@ class MenuComposer
         ];
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $defenderMenu, 501);
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $monitorMenu, 502);
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $settingsMenu, 1);
 
@@ -278,7 +279,7 @@ class MenuComposer
 
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $schemaMenu, 3);
 
-        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 501);
+        $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $usersMenu, 503);
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
     }
 

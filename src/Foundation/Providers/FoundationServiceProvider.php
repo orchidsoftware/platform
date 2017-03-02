@@ -72,7 +72,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../Config/content.php' => config_path('content.php'),
-            __DIR__.'/../Config/ads.php'     => config_path('ads.php'),
         ]);
 
         $this->mergeConfigFrom(

@@ -169,10 +169,9 @@ class PostController extends Controller
     }
 
     /**
+     * @param Post $type
      * @param Post $post
-     *
      * @return mixed
-     *
      * @internal param Request $request
      * @internal param Post $type
      */

@@ -106,13 +106,14 @@ class BackupController extends Controller
     /**
      * Deletes a backup file.
      *
+     * @param Request $request
      * @param $fileName
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($fileName)
+    public function delete(Request $request, $fileName)
     {
-        $disk = Storage::disk(Request::input('disk'));
+        $disk = Storage::disk($request->get('disk'));
 
         if ($disk->exists($fileName)) {
             $disk->delete($fileName);

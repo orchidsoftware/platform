@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Http\Forms\Tools\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Term;
 use Orchid\Foundation\Core\Models\TermTaxonomy;
 use Orchid\Foundation\Facades\Alert;
 

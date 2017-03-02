@@ -4,7 +4,6 @@ namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
-use Orchid\Foundation\Core\Models\Adv;
 use Orchid\Foundation\Core\Models\Post;
 
 class AdvertisingCodeForm extends Form
