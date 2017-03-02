@@ -113,7 +113,7 @@ class PermissionServiceProvider extends ServiceProvider
                     'description' => 'Доступ к резервнымым копиям',
                 ],
                 [
-                    'slug'        => 'dashboard.systems.category',
+                    'slug'        => 'dashboard.systems.defender',
                     'description' => 'Доступ к защитнику',
                 ],
                 [
