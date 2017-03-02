@@ -85,7 +85,9 @@ class User extends UserOrchid
 
 #### Finish
 
-Go to http://your-application/dashboard
+
+> **Go to :**  http://your-application/dashboard
+
 
 
 ## Learn More
