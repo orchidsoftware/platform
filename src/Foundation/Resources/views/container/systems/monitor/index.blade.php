@@ -139,7 +139,7 @@
                     <tr>
                         <td class="membar-key">
                             <p class="membar-key-used">
-                                {{ $memory->used->percentage }}%
+                                {{ round ($memory->used->percentage, 2) }}%
                             </p>
                         </td>
                         <td>
@@ -147,7 +147,7 @@
                         </td>
                         <td class="membar-key">
                             <p class="membar-key-buffers">
-                                {{ $memory->buffers->percentage }}%
+                                {{ round ( $memory->buffers->percentage,2) }}%
                             </p>
                         </td>
                         <td>
@@ -158,7 +158,7 @@
                     <tr>
                         <td class="membar-key">
                             <p class="membar-key-cache">
-                                {{ $memory->cache->percentage }}%
+                                {{ round ( $memory->cache->percentage,2) }}%
                             </p>
                         </td>
                         <td>
@@ -166,7 +166,7 @@
                         </td>
                         <td class="membar-key">
                             <p class="membar-key-free">
-                                {{ $memory->free->percentage }}%
+                                {{ round ( $memory->free->percentage,2) }}%
                             </p>
                         </td>
                         <td>
