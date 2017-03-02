@@ -176,7 +176,8 @@ class FileFunctionsService
      * Optimizes JPG file with jpg-recompress.
      *
      * @param [type] $path_to_jpg_file [description]
-     * @param int $max_quality [description]
+     * @param int    $max_quality      [description]
+     *
      * @return bool|string [type] [description]
      */
     public static function compress_jpg($path_to_jpg_file, $max_quality = 90)

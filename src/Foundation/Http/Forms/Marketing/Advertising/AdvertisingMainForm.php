@@ -52,7 +52,8 @@ class AdvertisingMainForm extends Form
 
     /**
      * @param Request|null $request
-     * @param Post|null $post
+     * @param Post|null    $post
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, Post $post = null)
