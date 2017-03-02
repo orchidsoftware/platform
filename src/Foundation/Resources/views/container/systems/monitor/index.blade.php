@@ -10,7 +10,7 @@
 
 
     <!-- main content -->
-    <section class="wrapper-lg bg-white col-md-6">
+    <section class="wrapper-xl bg-white col-md-7">
 
 
         <div class="row">
