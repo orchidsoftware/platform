@@ -7,45 +7,36 @@ use Orchid\Log\Providers\UtilitiesServiceProvider;
 
 class LogServiceProvider extends ServiceProvider
 {
+
+    /**
+     * Get the base path.
+     *
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return dirname(__DIR__);
+    }
+
     /**
      * Register the service provider.
      */
     public function register()
     {
-        //$this->registerConfig();
-
-        // $this->registerProvider(Providers\UtilitiesServiceProvider::class);
-        $this->registerLog();
-        //$this->registerAliases();
-        //$this->registerConsoleServiceProvider(Providers\CommandsServiceProvider::class);
+        $this->app->singleton(Contracts\Log::class, Log::class);
+        $this->app->singleton('arcanedev.log-viewer', Contracts\Log::class);
+        $this->app->alias('arcanedev.log-viewer', Facades\Log::class);
     }
 
-    /**
-     * Register the log data class.
-     */
-    private function registerLog()
-    {
-        $this->app->singleton(Contracts\LogViewer::class, Log::class);
-        $this->app->singleton('arcanedev.log-viewer', Contracts\LogViewer::class);
-        //$this->app->singleton(Log::class);
-        $this->app->alias('arcanedev.log-viewer', Facades\LogViewer::class);
-    }
 
     /**
      * Boot the service provider.
      */
     public function boot()
     {
-        //$this->publishConfig();
-        //$this->publishViews();
-        //$this->publishTranslations();
         $this->app->register(UtilitiesServiceProvider::class);
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Services Functions
-     | ------------------------------------------------------------------------------------------------
-     */
 
     /**
      * Get the services provided by the provider.
@@ -55,7 +46,6 @@ class LogServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'arcanedev.log-viewer',
             Contracts\Log::class,
         ];
     }

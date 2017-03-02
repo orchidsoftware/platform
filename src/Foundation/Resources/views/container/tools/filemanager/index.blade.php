@@ -1,30 +1,29 @@
-@extends('layouts.default')
+@extends('dashboard::layouts.dashboard')
 
-@section('styles')
+
+@section('title','Меню')
+@section('description','Выберите доступное меню')
+
+
+
+@section('custom_css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.plyr.io/1.5.18/plyr.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link type="text/css" rel="stylesheet" href="{{ asset('/filemanager_assets/vendor/dmuploader/css/uploader.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('/filemanager_assets/css/filemanager.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.brighttheme.min.css">
-
     <link type="text/css" rel="stylesheet" href="{{ asset('/filemanager_assets/vendor/contextMenu/dist/jquery.contextMenu.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('/filemanager_assets/vendor/highlight/styles/agate.css') }}">
 @stop
 
 @section('content')
-     @if( view()->exists('vendor.infinety.filemanager.modals') )
-        @include('vendor.infinety.filemanager.modals')
-    @else
-        @include('filemanager::modals')
-    @endif
 
-<div class="container default-views">
-    <div class="panel panel-default customnav">
-        <div class="panel-heading">
+    @include('dashboard::container.tools.filemanager.modals')
+
+    <div class="panel panel-default">
+        <div class="panel-heading customnav">
             <nav class="navbar navbar-default">
-                <div class="container-fluid ">
+                <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -38,20 +37,20 @@
                         <div class="upload_div hide">
                             <input type="file" name="files[]" id="single-upload-file" multiple="multiple" title="Click to add Files">
                         </div>
-                        <li><button class="btn btn-info btn-cons" id="single-upload"<i class="fa fa-upload"></i> Upload</button></li>
-                        <li><button class="btn btn-info btn-cons" data-toggle="modal" data-target="#modalCreateFolder"><i class="fa fa-folder"></i> Create Folder</button></li>
-                        <li class="home"><button class="btn btn-default"><i class="fa fa-home"></i></button></li>
-                        <li class="refresh"><button class="btn btn-default"><i class="fa fa-refresh"></i></button></li>
-                        <li class="move"><button class="btn btn-default"><i class="fa fa-arrows"></i> Move</button></li>
-                        <li class="delete"><button class="btn btn-default"><i class="fa fa-trash"></i> Delete</button></li>
-                        <li class="preview"><button class="btn btn-default"><i class="fa fa-eye"></i> Preview</button></li>
+                        <li><button class="btn btn-complete btn-cons" id="single-upload"><i class="fa fa-upload"></i> Upload</button></li>
+                        <li><button class="btn btn-complete btn-cons" data-toggle="modal" data-target="#modalCreateFolder"><i class="fa fa-folder"></i> Create Folder</button></li>
+                        <li class="home"><button class="btn "><i class="fa fa-home"></i></button></li>
+                        <li class="refresh"><button class="btn "><i class="fa fa-refresh"></i></button></li>
+                        <li class="move"><button class="btn"><i class="fa fa-arrows"></i> Move</button></li>
+                        <li class="delete"><button class="btn"><i class="fa fa-trash"></i> Delete</button></li>
+                        <li class="preview"><button class="btn"><i class="fa fa-eye"></i> Preview</button></li>
                         <li class="find">
                             <div class="navbar-form navbar-left navbar-input-group">
                                 <div class="input-group form-search">
                                     <input type="text" class="form-control search-input" id="search" placeholder="&#61442; Search">
                                     <span class="input-group-addon input-group-search">
-                                        <button class="btn btn-info" id="search-button" type="button"><i class="fa fa-search" aria-hidden="false"></i></button>
-                                        <button class="btn btn-info hide" id="reset-button" type="button"><i class="fa fa-times" aria-hidden="false"></i></button>
+                                        <button class="btn btn-complete" id="search-button" type="button"><i class="fa fa-search" aria-hidden="false"></i></button>
+                                        <button class="btn btn-complete hide" id="reset-button" type="button"><i class="fa fa-times" aria-hidden="false"></i></button>
                                     </span>
                                 </div>
                             </div>
@@ -61,9 +60,9 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                         <ul class="nav navbar-nav navbar-right views">
-                            <li class="list view-type"><button class="btn btn-default"><i class="fa fa-th-list"></i></button></li>
-                            <li class="grid view-type active"><button class="btn btn-default"><i class="fa fa-th"></i></button></li>
-                            <li class="big-grid view-type"><button class="btn btn-default"><i class="fa fa-th-large"></i></button></li>
+                            <li class="list view-type"><button class="btn "><i class="fa fa-th-list"></i></button></li>
+                            <li class="grid view-type active"><button class="btn "><i class="fa fa-th"></i></button></li>
+                            <li class="big-grid view-type"><button class="btn "><i class="fa fa-th-large"></i></button></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -103,16 +102,16 @@
 
         </div>
     </div>
-</div>
+
 @stop
 
-@section('scripts')
+@section('custom_js')
+    <script src="{{ asset('admin_theme/assets/plugins/classie/classie.js') }}" type="text/javascript"></script>
     <script src="https://cdn.plyr.io/1.5.18/plyr.js" type="text/javascript"></script>
     <script src="{{ asset('/filemanager_assets/vendor/pdfobject.js') }}" type="text/javascript"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.fileDownload/1.4.2/jquery.fileDownload.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.buttons.min.js" type="text/javascript"></script>
+
     <script src="{{ asset('/filemanager_assets/vendor/contextMenu/dist/jquery.contextMenu.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/filemanager_assets/vendor/contextMenu/dist/jquery.ui.position.min.js') }}" type="text/javascript"></script>
 

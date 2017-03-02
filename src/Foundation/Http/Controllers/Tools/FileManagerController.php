@@ -47,7 +47,7 @@ class FileManagerController extends BaseController
 //        dump($files);
 //        dd();
 
-        return $this->firstViewThatExists('vendor/infinety/filemanager/index', 'filemanager::index');
+        return $this->firstViewThatExists('vendor/infinety/filemanager/index', 'dashboard::container.tools.filemanager.index');
     }
 
     /**
