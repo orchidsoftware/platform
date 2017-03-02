@@ -7,7 +7,6 @@ use Orchid\Log\Providers\UtilitiesServiceProvider;
 
 class LogServiceProvider extends ServiceProvider
 {
-
     /**
      * Get the base path.
      *
@@ -28,7 +27,6 @@ class LogServiceProvider extends ServiceProvider
         $this->app->alias('arcanedev.log-viewer', Facades\Log::class);
     }
 
-
     /**
      * Boot the service provider.
      */
@@ -36,7 +34,6 @@ class LogServiceProvider extends ServiceProvider
     {
         $this->app->register(UtilitiesServiceProvider::class);
     }
-
 
     /**
      * Get the services provided by the provider.
