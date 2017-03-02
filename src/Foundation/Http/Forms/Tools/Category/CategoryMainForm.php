@@ -79,7 +79,7 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param Request $request
+     * @param Request      $request
      * @param TermTaxonomy $termTaxonomy
      */
     public function delete(Request $request, TermTaxonomy $termTaxonomy)

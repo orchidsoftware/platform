@@ -71,6 +71,7 @@ class RoleController extends Controller
 
     /**
      * @param Role $role
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Role $role)

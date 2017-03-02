@@ -156,6 +156,7 @@ class FileManagerController extends BaseController
      * @param $folder
      * @param $order
      * @param bool $filter
+     *
      * @return array
      */
     private function getFiles($folder, $order, $filter = false)
@@ -343,8 +344,8 @@ class FileManagerController extends BaseController
      * Return the Type of file.
      *
      * @param $file
-     *
      * @param bool $folder
+     *
      * @return bool|string
      */
     private function getThumb($file, $folder = false)
@@ -532,6 +533,7 @@ class FileManagerController extends BaseController
      * Upload the File.
      *
      * @param Request $request
+     *
      * @return stringch
      */
     public function uploadFile(Request $request)

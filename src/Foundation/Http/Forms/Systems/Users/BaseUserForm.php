@@ -50,18 +50,19 @@ class BaseUserForm extends Form
         ]);
     }
 
-
     /**
      * Save Base Role.
+     *
      * @param Request|null $request
-     * @param User|null $user
+     * @param User|null    $user
+     *
      * @return mixed|void
      */
     public function persist(Request $request = null, User $user = null)
     {
         $attributes = $request->all();
 
-        if(key_exists('password',$attributes) && is_null($attributes['password'])){
+        if (array_key_exists('password', $attributes) && is_null($attributes['password'])) {
             unset($attributes['password']);
         }
 
