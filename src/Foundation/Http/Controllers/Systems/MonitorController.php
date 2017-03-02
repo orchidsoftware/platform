@@ -5,7 +5,6 @@ namespace Orchid\Foundation\Http\Controllers\Systems;
 use Orchid\Foundation\Http\Controllers\Controller;
 use Orchid\Monitor\Monitor;
 
-
 class MonitorController extends Controller
 {
     /**
@@ -21,11 +20,9 @@ class MonitorController extends Controller
      */
     public function index()
     {
-
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' || $this->shell_exec_enabled() == false) {
-            return view('dashboard::container.systems.monitor.disable',[]);
+            return view('dashboard::container.systems.monitor.disable', []);
         }
-
 
         $monitor = new Monitor();
 
@@ -39,14 +36,13 @@ class MonitorController extends Controller
         ]);
     }
 
-
     /**
      * @return bool
      */
     private function shell_exec_enabled()
     {
         $disabled = explode(',', ini_get('disable_functions'));
+
         return !in_array('shell_exec', $disabled);
     }
-
 }
