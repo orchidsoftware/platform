@@ -78,7 +78,7 @@ abstract class Type implements TypeInterface
      *
      * @return string
      */
-    public function generateForm( string $language = 'en', $post = null) : string
+    public function generateForm(string $language = 'en', $post = null) : string
     {
         $this->fields = (array) $this->fields();
         $this->parseFields();

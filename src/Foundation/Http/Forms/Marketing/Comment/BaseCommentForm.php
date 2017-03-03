@@ -22,7 +22,6 @@ class BaseCommentForm extends Form
      */
     protected $model = Comment::class;
 
-
     /**
      * Display Settings App.
      *

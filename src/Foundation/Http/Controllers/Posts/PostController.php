@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Alert;
@@ -30,6 +29,7 @@ class PostController extends Controller
 
     /**
      * @param Post $post
+     *
      * @return View
      */
     public function index(Post $post) : View
@@ -39,6 +39,7 @@ class PostController extends Controller
 
     /**
      * @param $post
+     *
      * @return View
      */
     public function create($post) : View
@@ -50,7 +51,6 @@ class PostController extends Controller
             'locales' => $this->locales->where('required', true),
         ]);
     }
-
 
     /**
      * @param Request $request
