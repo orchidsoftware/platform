@@ -44,5 +44,4 @@ class UploadPostForm extends Form
             }
         }
     }
-
 }

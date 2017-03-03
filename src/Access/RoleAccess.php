@@ -2,7 +2,6 @@
 
 namespace Orchid\Access;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RoleAccess

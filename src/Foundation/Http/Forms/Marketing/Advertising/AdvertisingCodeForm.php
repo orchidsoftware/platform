@@ -21,7 +21,6 @@ class AdvertisingCodeForm extends Form
      */
     protected $model = Post::class;
 
-
     /**
      * @param Post $adv
      *

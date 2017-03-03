@@ -23,6 +23,7 @@ class Alert
      * Flash an information message.
      *
      * @param string $message
+     *
      * @return Alert
      */
     public function info(string $message) : Alert
@@ -40,7 +41,7 @@ class Alert
      *
      * @return Alert
      */
-    public function message( string $message, string $level = 'info') : Alert
+    public function message(string $message, string $level = 'info') : Alert
     {
         $this->session->flash('flash_notification.message', $message);
         $this->session->flash('flash_notification.level', $level);

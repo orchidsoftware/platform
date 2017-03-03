@@ -75,7 +75,6 @@ trait UserAccess
         return false;
     }
 
-
     /**
      * @return BelongsToMany
      */
@@ -84,9 +83,9 @@ trait UserAccess
         return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id');
     }
 
-
     /**
      * @param RoleInterface $role
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function addRole(RoleInterface $role) : Model
@@ -94,9 +93,9 @@ trait UserAccess
         return $this->roles()->save($role);
     }
 
-
     /**
      * @param RoleInterface $role
+     *
      * @return bool
      */
     public function removeRole(RoleInterface $role) : bool
@@ -108,6 +107,7 @@ trait UserAccess
      * Remove Role Slug.
      *
      * @param $slug
+     *
      * @return bool
      */
     public function removeRoleBySlug($slug) : bool
