@@ -606,7 +606,7 @@ class FileManagerController extends BaseController
             $cleaned = last($cleaned);
             $generatedZip = storage_path().'/filemanager/'.$cleaned.'.zip';
             $folder = $this->homePath.'/'.$request['path'].'/';
-            Zipper::make($generatedZip)->add($folder)->close();
+            //Zipper::make($generatedZip)->add($folder)->close();
             $headers = [
                 'Content-Type' => 'application/zip',
             ];

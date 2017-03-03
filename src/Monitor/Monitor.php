@@ -2,6 +2,8 @@
 
 namespace Orchid\Monitor;
 
+use stdClass;
+
 class Monitor
 {
     /**
@@ -24,7 +26,7 @@ class Monitor
         $php_version = explode('.', phpversion());
 
         // data object
-        $data = new \stdClass();
+        $data = new stdClass();
 
         $serverAddr = (isset($_SERVER['SERVER_ADDR'])) ? $_SERVER['SERVER_ADDR'] : ' ';
 
@@ -43,14 +45,14 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function hardware()
+    public function hardware() : stdClass
     {
         $output = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
         $temp = round(($output) / 1000, 1);
         $output = shell_exec('echo "$(</proc/uptime awk \'{print $1}\')"');
         $time_alive = StringHelpers::secondsToTime((int) $output);
         // data object
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->temperature = $temp;
         $data->uptime = $time_alive;
 
@@ -65,12 +67,12 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function loadAverage()
+    public function loadAverage() : stdClass
     {
         $output = shell_exec('uptime');
         $loadavg = explode(' ', substr($output, strpos($output, 'load average:') + 14));
         // data object
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->one_min = StringHelpers::prettyLoadAverage($loadavg[0]);
         $data->five_mins = StringHelpers::prettyLoadAverage($loadavg[1]);
         $data->fifteen_mins = StringHelpers::prettyLoadAverage($loadavg[2]);
@@ -92,7 +94,7 @@ class Monitor
      *
      * @return object
      */
-    public function memory()
+    public function memory() : stdClass
     {
         //$mem_free = (int)shell_exec("free -m | awk '/buffers\/cache/ {print $3}'");
         $mem_total = (int) shell_exec("free -m | awk '/Mem/ {print $2}'");
@@ -152,12 +154,12 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function network()
+    public function network() : stdClass
     {
         $output = shell_exec('sh '.__DIR__.'/transfer_rate.sh');
         $rates = explode(' ', $output);
         // data object
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->down = StringHelpers::prettyBaud($rates[0]);
         $data->up = StringHelpers::prettyBaud($rates[1]);
 
@@ -172,7 +174,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function storage()
+    public function storage() : stdClass
     {
         $output = shell_exec('df -H');
         $table_rows = preg_split('/$\R?^/m', $output);
@@ -180,18 +182,18 @@ class Monitor
         $table_rows = array_splice($table_rows, 1);
         $table_header = array_splice($table_header, 0, count($table_header) - 1);
         // data object
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->storage = array_map([$this, 'prepareColumns'], $table_rows);
 
         return $data;
     }
 
     /**
-     * @param $row
+     * @param string $row
      *
      * @return array
      */
-    private function prepareColumns($row)
+    private function prepareColumns(string $row) : array
     {
         return array_values(array_filter(explode(' ', $row), 'strlen'));
     }
