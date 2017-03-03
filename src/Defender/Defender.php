@@ -49,6 +49,7 @@ class Defender
 
     /**
      * Defender constructor.
+     *
      * @param string|null $dir
      */
     public function __construct(string $dir = null)
@@ -63,7 +64,7 @@ class Defender
 
     /**
      * @param string $dir
-     * @param array $results
+     * @param array  $results
      *
      * @return array
      */

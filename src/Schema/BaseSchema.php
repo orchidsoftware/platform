@@ -87,11 +87,11 @@ abstract class BaseSchema
     /**
      * Fetch data form table using pagination.
      *
-     * @param string $tableName
-     * @param int $page
-     * @param int $limit
+     * @param string      $tableName
+     * @param int         $page
+     * @param int         $limit
      * @param string|null $orderAttribute
-     * @param string $order
+     * @param string      $order
      *
      * @return mixed
      */
