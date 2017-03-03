@@ -14,7 +14,7 @@ interface WrapperContract
      *
      * @return mixed
      */
-    public function getColumns($tableName);
+    public function getColumns(string $tableName);
 
     /**
      * @return mixed

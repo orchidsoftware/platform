@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Forms\Form;
@@ -27,7 +28,7 @@ class BaseUserForm extends Form
      *
      * @return array
      */
-    public function rules()
+    public function rules() :array
     {
         return [
             'name'     => 'required|max:255',
@@ -43,7 +44,7 @@ class BaseUserForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(User $user = null)
+    public function get(User $user = null) : View
     {
         return view('dashboard::container.systems.users.info', [
             'user' => $user ?: new $this->model(),

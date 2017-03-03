@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Posts;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
 use Orchid\Foundation\Core\Models\Post;
@@ -24,7 +25,7 @@ class BasePostForm extends Form
      *
      * @internal param null $type
      */
-    public function get(Post $type = null, Post $post = null)
+    public function get(Post $type = null, Post $post = null) : View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();

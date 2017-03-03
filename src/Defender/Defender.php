@@ -49,10 +49,9 @@ class Defender
 
     /**
      * Defender constructor.
-     *
-     * @param null $dir
+     * @param string|null $dir
      */
-    public function __construct($dir = null)
+    public function __construct(string $dir = null)
     {
         if (is_null($dir)) {
             $dir = public_path();
@@ -63,12 +62,12 @@ class Defender
     }
 
     /**
-     * @param $dir
+     * @param string $dir
      * @param array $results
      *
      * @return array
      */
-    private function getDirContents($dir, array &$results = [])
+    private function getDirContents(string $dir, array &$results = []) : array
     {
         $files = scandir($dir);
 
@@ -90,9 +89,9 @@ class Defender
     /**
      * Scans for possible dangerous problems.
      *
-     * @return $this
+     * @return Defender
      */
-    public function scan()
+    public function scan() : Defender
     {
         $files = $this->extensionsFile($this->files);
 
@@ -116,7 +115,7 @@ class Defender
      *
      * @return array
      */
-    private function extensionsFile(array $files)
+    private function extensionsFile(array $files) : array
     {
         $extensionsFiles = [];
         foreach ($files as $file) {
@@ -133,7 +132,7 @@ class Defender
      *
      * @return bool
      */
-    private function checkForValidPhp($content)
+    private function checkForValidPhp($content) : bool
     {
         $len = strlen($content);
         $start = 0;
@@ -159,9 +158,9 @@ class Defender
     /**
      * @param array $signatures
      *
-     * @return $this
+     * @return Defender
      */
-    public function loadSignatures(array $signatures)
+    public function loadSignatures(array $signatures) : Defender
     {
         $this->signatures = $signatures;
 
@@ -171,9 +170,9 @@ class Defender
     /**
      * @param array $extensions
      *
-     * @return $this
+     * @return Defender
      */
-    public function loadExtensions(array $extensions)
+    public function loadExtensions(array $extensions) : Defender
     {
         $this->extensions = $extensions;
 
@@ -183,9 +182,9 @@ class Defender
     /**
      * @param array $exceptionsValid
      *
-     * @return $this
+     * @return Defender
      */
-    public function loadExceptionsValid(array $exceptionsValid)
+    public function loadExceptionsValid(array $exceptionsValid) : Defender
     {
         $this->exceptionsValid = $exceptionsValid;
 
@@ -195,7 +194,7 @@ class Defender
     /**
      * @return array
      */
-    public function infoDanger()
+    public function infoDanger() : array
     {
         $files = [];
         foreach ($this->dangerFiles as $file) {
@@ -206,9 +205,9 @@ class Defender
     }
 
     /**
-     * @return $this
+     * @return Defender
      */
-    public function export()
+    public function export() : Defender
     {
         $export = new Export();
         $export->export($this);

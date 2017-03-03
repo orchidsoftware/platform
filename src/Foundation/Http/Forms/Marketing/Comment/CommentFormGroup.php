@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Comment;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\Comment;
 use Orchid\Foundation\Events\Marketing\CommentEvent;
@@ -18,7 +19,7 @@ class CommentFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'        => 'Комментарии',
@@ -29,7 +30,7 @@ class CommentFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main()
+    public function main() : View
     {
         $comments = (new Comment())->with(['post'=> function ($query) {
             $query->select('id', 'type', 'slug');

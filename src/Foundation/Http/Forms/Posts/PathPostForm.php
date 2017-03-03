@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Post;
 
@@ -22,7 +23,7 @@ class PathPostForm extends Form
      *
      * @internal param null $type
      */
-    public function get(Post $type = null, Post $post = null)
+    public function get(Post $type = null, Post $post = null) : View
     {
         $route = [];
 

@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Tools\Category;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Category;
@@ -26,7 +27,7 @@ class CategoryMainForm extends Form
     /**
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
@@ -38,7 +39,7 @@ class CategoryMainForm extends Form
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function get(TermTaxonomy $termTaxonomy = null)
+    public function get(TermTaxonomy $termTaxonomy = null) : View
     {
         $termTaxonomy = $termTaxonomy ?: new $this->model([
             'id' => 0,

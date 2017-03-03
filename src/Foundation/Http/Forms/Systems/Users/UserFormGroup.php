@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\User;
 use Orchid\Foundation\Events\Systems\UserEvent;
@@ -18,7 +19,7 @@ class UserFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'        => 'Пользователи',
@@ -29,7 +30,7 @@ class UserFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main()
+    public function main() : View
     {
         $user = new User();
         $users = $user->select('id', 'name', 'email', 'created_at', 'updated_at')->paginate();

@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Forms\Form;
@@ -24,20 +25,11 @@ class AdvertisingMainForm extends Form
     protected $model = Post::class;
 
     /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-        ];
-    }
-
-    /**
      * @param $post
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(Post $post = null)
+    public function get(Post $post = null) : View
     {
         if (is_null($post)) {
             $post = new Post();

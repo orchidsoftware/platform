@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Post;
@@ -20,14 +21,6 @@ class AdvertisingCodeForm extends Form
      */
     protected $model = Post::class;
 
-    /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-        ];
-    }
 
     /**
      * @param Post $adv
@@ -36,7 +29,7 @@ class AdvertisingCodeForm extends Form
      *
      * @internal param $item
      */
-    public function get(Post $adv = null)
+    public function get(Post $adv = null) : View
     {
         if (is_null($adv)) {
             $adv = new Post();

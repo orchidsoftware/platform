@@ -2,6 +2,8 @@
 
 namespace Orchid\Access;
 
+use Illuminate\Support\Collection;
+
 class Permissions
 {
     /**
@@ -20,7 +22,7 @@ class Permissions
     /**
      * @param $permission
      */
-    public function registerPermissions($permission)
+    public function registerPermissions(array $permission)
     {
         $this->container->push($permission);
     }
@@ -30,7 +32,7 @@ class Permissions
      *
      * @return \Illuminate\Support\Collection
      */
-    public function get()
+    public function get() : Collection
     {
         return $this->container->collapse();
     }

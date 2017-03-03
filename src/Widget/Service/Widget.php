@@ -10,7 +10,7 @@ class Widget implements WidgetContractInterface
      *
      * @return mixed
      */
-    public function get($key, $arg = null)
+    public function get(string $key, $arg = null)
     {
         $class = config('widget.widgets.'.$key);
         $widget = new $class();

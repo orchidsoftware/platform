@@ -28,7 +28,7 @@ class CanInstall
      *
      * @return bool
      */
-    public function alreadyInstalled()
+    public function alreadyInstalled() : bool
     {
         return env('APP_INSTALL');
     }

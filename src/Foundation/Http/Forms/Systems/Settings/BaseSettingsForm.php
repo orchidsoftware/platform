@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Settings;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Setting;
 use Orchid\Foundation\Facades\Alert;
@@ -23,7 +24,7 @@ class BaseSettingsForm extends Form
     /**
      * Display Settings App.
      */
-    public function get()
+    public function get() :View
     {
         $settings = $this->model->get([
             'site_title',

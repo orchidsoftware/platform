@@ -78,7 +78,7 @@ abstract class Type implements TypeInterface
      *
      * @return string
      */
-    public function generateForm($language = 'en', $post = null)
+    public function generateForm( string $language = 'en', $post = null) : string
     {
         $this->fields = (array) $this->fields();
         $this->parseFields();
@@ -163,7 +163,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    protected function explodeFields(array $rules)
+    protected function explodeFields(array $rules) : array
     {
         foreach ($rules as $key => $rule) {
             if (Str::contains($key, '*')) {
@@ -188,7 +188,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    protected function parseStringFields($rules)
+    protected function parseStringFields(string $rules) : array
     {
         $parameters = [];
         // The format for specifying validation rules and parameters follows an
@@ -212,7 +212,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    protected function parseParameters($rule, $parameter)
+    protected function parseParameters(string $rule, string $parameter): array
     {
         if (strtolower($rule) == 'regex') {
             return [$parameter];
@@ -224,7 +224,7 @@ abstract class Type implements TypeInterface
     /**
      * @return array
      */
-    public function generateGrid()
+    public function generateGrid() : array
     {
         $fields = $this->grid();
         $model = new $this->model();
@@ -265,7 +265,7 @@ abstract class Type implements TypeInterface
      *
      * @return bool
      */
-    public function isValid()
+    public function isValid() : bool
     {
         Validator::make(request()->all(), $this->rules())->validate();
 
@@ -277,7 +277,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [];
     }
@@ -287,7 +287,7 @@ abstract class Type implements TypeInterface
      *
      * @return string
      */
-    public function route()
+    public function route() : string
     {
         return '';
     }
@@ -295,7 +295,7 @@ abstract class Type implements TypeInterface
     /**
      * @return array
      */
-    public function getModules()
+    public function getModules() : array
     {
         if ($this->checkModules()) {
             return $this->modules();
@@ -307,7 +307,7 @@ abstract class Type implements TypeInterface
     /**
      * @return bool
      */
-    public function checkModules()
+    public function checkModules() : bool
     {
         if (method_exists($this, 'modules') && !empty($this->modules())) {
             return true;

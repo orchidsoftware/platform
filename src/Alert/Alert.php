@@ -23,10 +23,9 @@ class Alert
      * Flash an information message.
      *
      * @param string $message
-     *
-     * @return $this
+     * @return Alert
      */
-    public function info($message)
+    public function info(string $message) : Alert
     {
         $this->message($message, 'info');
 
@@ -39,9 +38,9 @@ class Alert
      * @param string $message
      * @param string $level
      *
-     * @return $this
+     * @return Alert
      */
-    public function message($message, $level = 'info')
+    public function message( string $message, string $level = 'info') : Alert
     {
         $this->session->flash('flash_notification.message', $message);
         $this->session->flash('flash_notification.level', $level);
@@ -54,9 +53,9 @@ class Alert
      *
      * @param string $message
      *
-     * @return $this
+     * @return Alert
      */
-    public function success($message)
+    public function success(string $message) : Alert
     {
         $this->message($message, 'success');
 
@@ -68,9 +67,9 @@ class Alert
      *
      * @param string $message
      *
-     * @return $this
+     * @return Alert
      */
-    public function error($message)
+    public function error(string $message) : Alert
     {
         $this->message($message, 'danger');
 
@@ -82,9 +81,9 @@ class Alert
      *
      * @param string $message
      *
-     * @return $this
+     * @return Alert
      */
-    public function warning($message)
+    public function warning(string $message) : Alert
     {
         $this->message($message, 'warning');
 

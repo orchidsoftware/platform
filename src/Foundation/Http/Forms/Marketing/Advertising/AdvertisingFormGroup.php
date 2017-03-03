@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Advertising;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Events\Marketing\AdvertisingEvent;
@@ -18,7 +19,7 @@ class AdvertisingFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'        => 'Реклама',
@@ -29,7 +30,7 @@ class AdvertisingFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main()
+    public function main() : View
     {
         return view('dashboard::container.marketing.advertising.grid', [
             'ads' => Post::type('advertising')->paginate(),

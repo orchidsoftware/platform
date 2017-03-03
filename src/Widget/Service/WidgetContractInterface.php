@@ -9,7 +9,7 @@ interface WidgetContractInterface
      *
      * @return mixed
      */
-    public function get($key);
+    public function get(string $key);
 
     /**
      * @param mixed

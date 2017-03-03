@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Marketing\Comment;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Comment;
@@ -21,19 +22,6 @@ class BaseCommentForm extends Form
      */
     protected $model = Comment::class;
 
-    /**
-     * Validation Rules Request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
-            //'slug'        => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
-            //'permissions' => 'array',
-        ];
-    }
 
     /**
      * Display Settings App.
@@ -42,7 +30,7 @@ class BaseCommentForm extends Form
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function get(Comment $comment)
+    public function get(Comment $comment) : View
     {
         return view('dashboard::container.marketing.comment.info', [
             'comment' => $comment,

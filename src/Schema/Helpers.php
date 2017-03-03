@@ -11,7 +11,7 @@ trait Helpers
      *
      * @return mixed
      */
-    public function tableNameFromModel($namespaceModel)
+    public function tableNameFromModel(string $namespaceModel)
     {
         $modelPath = app()->getNamespace().$namespaceModel;
         $modelPath = class_exists($modelPath) ? $modelPath : $namespaceModel;
@@ -27,7 +27,7 @@ trait Helpers
      *
      * @return bool
      */
-    public function isNamespaceModel($namespaceModel)
+    public function isNamespaceModel(string $namespaceModel) : bool
     {
         return str_contains($namespaceModel, '\\');
     }

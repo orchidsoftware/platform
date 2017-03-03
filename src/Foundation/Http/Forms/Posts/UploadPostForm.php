@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Posts;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Attachment;
 
@@ -15,12 +16,12 @@ class UploadPostForm extends Form
     /**
      * Display Base Options.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      *
      * @internal param null $type
      * @internal param null|Post $post
      */
-    public function get()
+    public function get() : View
     {
         return view('dashboard::container.posts.modules.upload', [
         ]);
@@ -44,7 +45,4 @@ class UploadPostForm extends Form
         }
     }
 
-    public function delete()
-    {
-    }
 }

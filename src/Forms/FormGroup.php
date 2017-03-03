@@ -2,6 +2,8 @@
 
 namespace Orchid\Forms;
 
+use Illuminate\View\View;
+
 abstract class FormGroup
 {
     /**
@@ -109,7 +111,7 @@ abstract class FormGroup
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render(...$arg)
+    public function render(...$arg) : View
     {
         $this->html = collect();
 
@@ -194,9 +196,9 @@ abstract class FormGroup
     /**
      * @param $method
      *
-     * @return $this
+     * @return FormGroup
      */
-    public function method($method)
+    public function method(string $method) : FormGroup
     {
         $this->method = $method;
 
@@ -206,9 +208,9 @@ abstract class FormGroup
     /**
      * @param $method
      *
-     * @return $this
+     * @return FormGroup
      */
-    public function route($method)
+    public function route(string $method) : FormGroup
     {
         $this->route = $method;
 
@@ -218,9 +220,9 @@ abstract class FormGroup
     /**
      * @param $method
      *
-     * @return $this
+     * @return FormGroup
      */
-    public function slug($method)
+    public function slug(string $method) : FormGroup
     {
         $this->slug = $method;
 

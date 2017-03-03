@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Users;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Core\Models\User;
@@ -27,7 +28,7 @@ class AccessUserForm extends Form
      *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'permissions' => 'array',
@@ -42,7 +43,7 @@ class AccessUserForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(User $user = null)
+    public function get(User $user = null) : View
     {
         if (!is_null($user)) {
             $rolePermission = $user->permissions ?: [];

@@ -14,7 +14,7 @@ trait SettingTrait
      *
      * @return bool
      */
-    public function set($key, $value)
+    public function set(string $key, $value) : bool
     {
         $result = $this->firstOrNew([
             'key' => $key,
@@ -48,7 +48,7 @@ trait SettingTrait
      *
      * @return null
      */
-    public function getNoCache($key, $default = null)
+    public function getNoCache(string $key, $default = null)
     {
         if (is_array($key)) {
             $result = $this->select('key', 'value')

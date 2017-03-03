@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Kernel;
 
+use Illuminate\Support\Collection;
 use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Foundation\Filters\ContentFilterStorage;
@@ -53,7 +54,7 @@ class Dashboard
     /**
      * @return null|Menu
      */
-    public function menu()
+    public function menu() : Menu
     {
         return $this->menu;
     }
@@ -61,7 +62,7 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission()
+    public function getPermission() : Collection
     {
         return $this->permission->get();
     }
@@ -103,7 +104,7 @@ class Dashboard
      *
      * @return array
      */
-    public function types($sort = false)
+    public function types($sort = false) : array
     {
         return $this->types->all($sort);
     }
@@ -111,7 +112,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public function fields()
+    public function fields() : array
     {
         return $this->fields->all();
     }
@@ -119,7 +120,7 @@ class Dashboard
     /**
      * @return RouteMenu
      */
-    public function routeMenu()
+    public function routeMenu() : RouteMenu
     {
         return $this->routeMenu;
     }

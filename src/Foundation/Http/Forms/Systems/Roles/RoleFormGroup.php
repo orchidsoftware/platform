@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Roles;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\FormGroup;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Events\Systems\RolesEvent;
@@ -18,7 +19,7 @@ class RoleFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'        => 'Роли',
@@ -29,7 +30,7 @@ class RoleFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main()
+    public function main() : View
     {
         $role = new Role();
         $roles = $role->select('name', 'slug', 'created_at')->paginate();

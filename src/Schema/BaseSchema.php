@@ -40,9 +40,9 @@ abstract class BaseSchema
      *
      * @param $connection
      *
-     * @return $this
+     * @return BaseSchema
      */
-    public function setConnection($connection)
+    public function setConnection(string $connection) : BaseSchema
     {
         $this->connection = $connection;
         $this->database = DB::connection($this->connection);
@@ -55,7 +55,7 @@ abstract class BaseSchema
      *
      * @return mixed
      */
-    public function getDatabaseName()
+    public function getDatabaseName() : string
     {
         return $this->database->getDatabaseName();
     }
@@ -63,11 +63,11 @@ abstract class BaseSchema
     /**
      * Get table total row count.
      *
-     * @param $table
+     * @param string $table
      *
-     * @return mixed
+     * @return int
      */
-    public function getTableRowCount($table)
+    public function getTableRowCount(string $table): int
     {
         return $this->database->table($table)->count();
     }
@@ -75,11 +75,11 @@ abstract class BaseSchema
     /**
      * Perform raw sql query.
      *
-     * @param $query
+     * @param string $query
      *
      * @return mixed
      */
-    public function rawQuery($query)
+    public function rawQuery(string $query)
     {
         return $this->database->select(DB::raw($query));
     }
@@ -87,15 +87,15 @@ abstract class BaseSchema
     /**
      * Fetch data form table using pagination.
      *
-     * @param $tableName
-     * @param int    $page
-     * @param int    $limit
-     * @param null   $orderAttribute
+     * @param string $tableName
+     * @param int $page
+     * @param int $limit
+     * @param string|null $orderAttribute
      * @param string $order
      *
      * @return mixed
      */
-    public function getPaginatedData($tableName, $page = 1, $limit = 15, $orderAttribute = null, $order = 'DESC')
+    public function getPaginatedData(string $tableName, int $page = 1, int $limit = 15, string $orderAttribute = null, string $order = 'DESC')
     {
         Paginator::currentPageResolver(function () use ($page) {
             return $page;

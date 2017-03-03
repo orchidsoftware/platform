@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joker
- * Date: 08.02.17
- * Time: 9:24.
- */
 
 namespace Orchid\Foundation\Http\Controllers;
 

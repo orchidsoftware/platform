@@ -3,7 +3,10 @@
 namespace Orchid\Foundation\Http\Controllers\Posts;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Alert;
@@ -27,20 +30,18 @@ class PostController extends Controller
 
     /**
      * @param Post $post
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return View
      */
-    public function index(Post $post)
+    public function index(Post $post) : View
     {
         return view('dashboard::container.posts.main', $post->getTypeObject()->generateGrid());
     }
 
     /**
      * @param $post
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return View
      */
-    public function create($post)
+    public function create($post) : View
     {
         $type = $post->getTypeObject();
 
@@ -50,14 +51,6 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * @param null $test
-     * @param null $test2
-     */
-    public function show($test = null, $test2 = null)
-    {
-        dd($test, $test2);
-    }
 
     /**
      * @param Request $request
@@ -65,7 +58,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request, Post $post): RedirectResponse
     {
         $this->validate($request, $post->getTypeObject()->rules());
 
@@ -105,11 +98,11 @@ class PostController extends Controller
      * @param Post $type
      * @param Post $post
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return View
      *
      * @internal param Request $request
      */
-    public function edit(Post $type, Post $post)
+    public function edit(Post $type, Post $post) : View
     {
         $type = $type->getTypeObject();
 
@@ -133,7 +126,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Post $type, Post $post)
+    public function update(Request $request, Post $type, Post $post) : RedirectResponse
     {
         $post->fill($request->all());
         $post->user_id = Auth::user()->id;
@@ -177,7 +170,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Post $type, Post $post)
+    public function destroy(Post $type, Post $post) : RedirectResponse
     {
         $post->delete();
         Alert::success('Message');

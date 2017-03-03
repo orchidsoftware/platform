@@ -22,7 +22,7 @@ if (!function_exists('settings_set')) {
      *
      * @return mixed
      */
-    function settings_set($key, $value)
+    function settings_set(string $key, $value)
     {
         return Setting::set($key, $value);
     }
@@ -34,7 +34,7 @@ if (!function_exists('settings_forget')) {
      *
      * @return mixed
      */
-    function settings_forget($key)
+    function settings_forget(string $key)
     {
         return Setting::forget($key);
     }

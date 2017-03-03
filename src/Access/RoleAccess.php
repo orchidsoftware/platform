@@ -2,6 +2,9 @@
 
 namespace Orchid\Access;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 trait RoleAccess
 {
     /**
@@ -25,7 +28,7 @@ trait RoleAccess
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users()
+    public function users() : BelongsToMany
     {
         return $this->belongsToMany(static::$usersModel, 'role_users', 'role_id', 'user_id')->withTimestamps();
     }
@@ -33,7 +36,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function getRoleId()
+    public function getRoleId() : int
     {
         return $this->getKey();
     }
@@ -41,7 +44,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function getRoleSlug()
+    public function getRoleSlug() : string
     {
         return $this->slug;
     }
@@ -57,7 +60,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function delete()
+    public function delete() : bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
         if ($this->exists && !$isSoftDeleted) {

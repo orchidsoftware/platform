@@ -23,14 +23,14 @@ interface RoleInterface
      *
      * @return int
      */
-    public function getRoleId();
+    public function getRoleId() : int ;
 
     /**
      * Returns the role's slug.
      *
      * @return string
      */
-    public function getRoleSlug();
+    public function getRoleSlug() : string ;
 
     /**
      * Returns all users for the role.

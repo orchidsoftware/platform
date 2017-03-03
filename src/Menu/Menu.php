@@ -62,9 +62,9 @@ class Menu
      *
      * @param $location
      *
-     * @return $this
+     * @return Menu
      */
-    public function place($location)
+    public function place(string $location) : Menu
     {
         $this->location = $location;
 
@@ -74,9 +74,9 @@ class Menu
     /**
      * @param $template
      *
-     * @return $this
+     * @return Menu
      */
-    public function template($template)
+    public function template(string $template) : Menu
     {
         $this->template = $template;
 
@@ -98,9 +98,9 @@ class Menu
     /**
      * @param $sort
      *
-     * @return $this
+     * @return Menu
      */
-    public function sortBy($sort)
+    public function sortBy(int $sort) : Menu
     {
         $this->sort = $sort;
 
@@ -110,12 +110,12 @@ class Menu
     /**
      * Adding a new element to the container.
      *
-     * @param null $place
-     * @param null $template
-     * @param null $arg
-     * @param int  $sort
+     * @param string $place
+     * @param string $template
+     * @param $arg
+     * @param int $sort
      */
-    public function add($place, $template, $arg, $sort = 500)
+    public function add( string $place, string $template, array $arg, int $sort = 500)
     {
         $this->location = $place;
         $this->template = $template;
@@ -135,12 +135,12 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param $location
-     * @param null $template
+     * @param string $location
+     * @param string|null $template
      *
      * @return string
      */
-    public function render($location, $template = null)
+    public function render(string $location, string $template = null) : string
     {
         $html = '';
 

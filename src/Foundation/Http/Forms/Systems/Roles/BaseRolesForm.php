@@ -2,6 +2,7 @@
 
 namespace Orchid\Foundation\Http\Forms\Systems\Roles;
 
+use Illuminate\Contracts\View\View;
 use Orchid\Forms\Form;
 use Orchid\Foundation\Core\Models\Role;
 use Orchid\Foundation\Facades\Alert;
@@ -26,7 +27,7 @@ class BaseRolesForm extends Form
      *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
@@ -42,7 +43,7 @@ class BaseRolesForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function get(Role $role = null)
+    public function get(Role $role = null) : View
     {
         if (!is_null($role)) {
             $rolePermission = $role->permissions;
