@@ -8,7 +8,7 @@ class StringHelpers
      * Convert a number of seconds into the
      * Days-Hours-Minutes format.
      */
-    public static function secondsToTime($seconds)
+    public static function secondsToTime(int $seconds) : string
     {
         $dtF = new \DateTime('@0');
         $dtT = new \DateTime("@$seconds");
@@ -20,7 +20,7 @@ class StringHelpers
      * Take a number of bytes and return it
      * either in terms of Gigs or Megs.
      */
-    public static function prettyMemory($total)
+    public static function prettyMemory(int  $total) : string
     {
         $total = (int) $total;
         $ret = 'unknown';
@@ -39,9 +39,8 @@ class StringHelpers
      * Figure out of the baud rate should be
      * shown as MB/s, Kb/s or b/s.
      */
-    public static function prettyBaud($baud)
+    public static function prettyBaud(int $baud) : string
     {
-        $baud = (int) $baud;
         $ret = 'unknown';
 
         if ($baud > 1000000) {
@@ -62,7 +61,7 @@ class StringHelpers
      * uptime command and return it as a percentage
      * with the appropriate formatting.
      */
-    public static function prettyLoadAverage($load_average)
+    public static function prettyLoadAverage(string $load_average) : array
     {
         $load_average = substr($load_average, 0, -1);
         $avg_percent = $load_average * 100;

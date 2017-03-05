@@ -10,10 +10,11 @@ use Laravel\Scout\Searchable;
 use Orchid\Foundation\Core\Builders\PostBuilder;
 use Orchid\Foundation\Exceptions\TypeException;
 use Orchid\Foundation\Facades\Dashboard;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use Searchable, TaggableTrait;
+    use Searchable, TaggableTrait, Sluggable;
 
     /**
      * @var string
@@ -61,6 +62,21 @@ class Post extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'slug'
+            ]
+        ];
+    }
+
 
     /**
      * Get the route key for the model.

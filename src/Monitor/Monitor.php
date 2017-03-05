@@ -15,7 +15,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function info()
+    public function info() : stdClass
     {
         // preparing cpu info
         $uname = shell_exec('uname -r ');
@@ -92,7 +92,7 @@ class Monitor
      * some used up by the bootloader that's not available
      * to the system.
      *
-     * @return object
+     * @return stdClass
      */
     public function memory() : stdClass
     {
@@ -152,7 +152,7 @@ class Monitor
      * Also using one of the scripts in lib/string_helpers.php to
      * print the network speed in either b/s, Kb/s or Gb/s.
      *
-     * @return \stdClass
+     * @return stdClass
      */
     public function network() : stdClass
     {
@@ -160,8 +160,8 @@ class Monitor
         $rates = explode(' ', $output);
         // data object
         $data = new stdClass();
-        $data->down = StringHelpers::prettyBaud($rates[0]);
-        $data->up = StringHelpers::prettyBaud($rates[1]);
+        $data->down = StringHelpers::prettyBaud( (int) $rates[0]);
+        $data->up = StringHelpers::prettyBaud( (int) $rates[1]);
 
         return $data;
     }

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Http\Controllers\Controller;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 class PostController extends Controller
 {
@@ -75,7 +77,10 @@ class PostController extends Controller
             $slug = reset($content)[$post->getTypeObject()->slugFields];
         }
 
-        $post->slug = $post->makeSlug($slug);
+
+        $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
+
+        //$post->slug = $post->makeSlug($slug);
 
         $post->save();
 
@@ -128,7 +133,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $type, Post $post) : RedirectResponse
     {
-        $post->fill($request->all());
+        $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
@@ -141,7 +146,9 @@ class PostController extends Controller
         }
 
         if ($request->has('slug') && $request->get('slug') != $post->slug) {
-            $post->slug = $post->makeSlug($slug);
+            //$post->slug = $post->makeSlug($slug);
+
+            $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 
         $post->save();

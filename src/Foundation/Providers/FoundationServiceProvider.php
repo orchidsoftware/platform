@@ -113,6 +113,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            \Cviebrock\EloquentSluggable\ServiceProvider::class,
             AlertServiceProvider::class,
             SettingsServiceProvider::class,
             WidgetServiceProvider::class,

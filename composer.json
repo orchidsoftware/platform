@@ -47,9 +47,10 @@
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^4.0",
+    "cviebrock/eloquent-sluggable": "^4.2",
     "spatie/laravel-backup": "4.*",
     "laravel/scout": "^3.0",
-    "psr/log": "~1.0"
+    "psr/log": "~1.0",
   },
   "autoload": {
     "files": [
