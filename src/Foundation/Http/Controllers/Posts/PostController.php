@@ -3,6 +3,7 @@
 namespace Orchid\Foundation\Http\Controllers\Posts;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Orchid\Foundation\Core\Models\Post;
 use Orchid\Foundation\Facades\Alert;
 use Orchid\Foundation\Http\Controllers\Controller;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-
 
 class PostController extends Controller
 {
@@ -76,7 +75,6 @@ class PostController extends Controller
             $content = $request->get('content');
             $slug = reset($content)[$post->getTypeObject()->slugFields];
         }
-
 
         $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
 

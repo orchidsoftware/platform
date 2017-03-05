@@ -160,8 +160,8 @@ class Monitor
         $rates = explode(' ', $output);
         // data object
         $data = new stdClass();
-        $data->down = StringHelpers::prettyBaud( (int) $rates[0]);
-        $data->up = StringHelpers::prettyBaud( (int) $rates[1]);
+        $data->down = StringHelpers::prettyBaud((int) $rates[0]);
+        $data->up = StringHelpers::prettyBaud((int) $rates[1]);
 
         return $data;
     }
