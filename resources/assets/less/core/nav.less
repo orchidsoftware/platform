@@ -1,0 +1,309 @@
+.nav-sub {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin-left: -20px;
+  .transition(all .2s ease-in-out 0s);
+
+  .active > &,
+  .app-aside-folded li:hover > &,
+  .app-aside-folded li:focus > &,
+  .app-aside-folded li:active > & {
+    opacity: 1;
+    margin-left: 0;
+    height: auto !important;
+    overflow: auto;
+  }
+}
+
+.nav-sub-header {
+  display: none !important;
+  a {
+    padding: floor((@app-aside-folded-nav-height - @line-height-computed)/2) 20px;
+  }
+}
+
+.app-aside {
+
+  .nav {
+    > li {
+      > a {
+        &:hover,
+        &:focus {
+          background-color: @nav-bg-black;
+        }
+      }
+    }
+    &.nav-lg {
+      > li > a {
+        padding: 20px 20px;
+      }
+    }
+    &.nav-md {
+      > li > a {
+        padding: 15px 15px;
+      }
+    }
+    &.nav-sm {
+      > li > a {
+        padding: 6px 12px;
+      }
+    }
+    &.nav-xs {
+      > li > a {
+        padding: 4px 10px;
+      }
+    }
+    &.nav-xxs {
+      > li > a {
+        padding: 1px 10px;
+      }
+    }
+    &.nav-rounded {
+      > li > a {
+        border-radius: 20px;
+      }
+    }
+    .open {
+      > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: @nav-bg-black;
+        }
+      }
+    }
+  }
+}
+
+.aside-wrap-main {
+
+  .navi ul.nav li {
+
+    a {
+      .transition(all .2s ease-in-out 0s);
+      color: @text-muted;
+      padding: 10px 0;
+      text-align: center;
+      font-size: @font-size-sm;
+      font-weight: 300;
+      i {
+        font-size: 1.5em;
+        width: inherit;
+        line-height: inherit;
+      }
+      &:hover {
+        color: @brand-white;
+        background-color: @brand-dark;
+      }
+    }
+
+    &.active a {
+      background-color: inherit;
+    }
+
+  }
+}
+
+.navi {
+  ul.nav {
+    li {
+      display: block;
+      position: relative;
+      li {
+        a {
+          padding-left: @app-aside-nav-height + 15px;
+        }
+        ul {
+          display: none;
+        }
+        &.active > ul {
+          display: block;
+        }
+      }
+      &.active {
+        a {
+          color: @brand-white;
+          background-color: @brand-light;
+        }
+      }
+      a {
+        color: @brand-light;
+        font-weight: normal;
+        text-transform: none;
+        display: block;
+        padding: floor((@app-aside-nav-height - @line-height-computed)/2) 20px;
+        position: relative;
+        .transition(background-color .2s ease-in-out 0s);
+        .badge,
+        .label {
+          font-size: 11px;
+          padding: 2px 5px;
+          margin-top: 2px;
+        }
+        > i {
+          margin: floor(-(@app-aside-nav-height - @line-height-computed)/2) -10px;
+          line-height: @app-aside-nav-height;
+          width: @app-aside-nav-height;
+          float: left;
+          margin-right: 5px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          &:before {
+            position: relative;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+  ul.nav-footer-fix {
+    font-size: @font-size-sm - 5;
+    position: absolute;
+    color: @text-muted;
+    list-style: none;
+    margin: 20px;
+    padding: 0;
+    overflow: hidden;
+    bottom: 0;
+    li {
+      float: left;
+      padding: 5px;
+      a {
+        .transition(all .2s ease-in-out 0s);
+      }
+      a:hover {
+        color: @brand-light;
+      }
+    }
+
+  }
+}
+
+@media (min-width: 768px) {
+  .app-aside-folded {
+    .nav-sub-header {
+      display: block !important;
+      a {
+        padding: floor((@app-aside-folded-nav-height - @line-height-computed)/2) 20px !important;
+      }
+    }
+    .navi {
+      > ul {
+        > li {
+          > a {
+            position: relative;
+            padding: 0;
+            text-align: center;
+            height: @app-aside-folded-nav-height;
+            border: none;
+            span {
+              display: none;
+              &.pull-right {
+                display: none !important;
+              }
+            }
+            i {
+              width: auto;
+              float: none;
+              display: block;
+              font-size: 16px;
+              margin: 0;
+              line-height: @app-aside-folded-nav-height;
+              border: none !important;
+              b {
+                left: 0 !important;
+              }
+            }
+            .badge,
+            .label {
+              position: absolute;
+              right: 12px;
+              top: 8px;
+              z-index: 3;
+            }
+          }
+        }
+        > li > ul {
+          height: 0 !important;
+          position: absolute;
+          left: 100%;
+          top: 0 !important;
+          z-index: 1050;
+          width: @app-aside-width;
+          .box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+        }
+      }
+      li {
+        li {
+          a {
+            padding-left: 20px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .app-aside-folded.app-aside-fixed .app-aside {
+    > ul.nav {
+      &:before {
+        content: "";
+        width: @app-aside-folded-width;
+        height: @app-aside-folded-nav-height;
+        position: absolute;
+        left: -@app-aside-folded-width;
+        top: 0;
+      }
+      z-index: 1010;
+      opacity: 1;
+      height: auto;
+      overflow: visible;
+      overflow-y: auto;
+      display: block;
+      width: @app-aside-width + @app-aside-folded-width;
+      left: @app-aside-folded-width + 20;
+      position: fixed;
+      -webkit-overflow-scrolling: touch;
+      a {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+    }
+  }
+}
+
+/*
+ *  Мои изменения
+ */
+
+.open {
+  > .dropdown-menu.dropdown-full {
+    display: block;
+    height: 100%;
+    position: fixed;
+    top: 50px;
+    left: 150px;
+    width: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    a {
+      color: @brand-black;
+      padding-left: 20px;
+    }
+  }
+  .dropdown-lvl {
+    margin-left: 199px;
+    .dropdown-lvl {
+      margin-left: 497px;
+      .dropdown-lvl {
+        margin-left: 795px;
+      }
+    }
+
+  }
+
+}
