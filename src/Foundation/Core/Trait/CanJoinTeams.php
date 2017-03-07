@@ -2,8 +2,8 @@
 
 namespace Orchid\Foundation\Core\Models;
 
-use Laravel\Spark\Spark;
 use Laravel\Spark\Events\User\JoinedTeam;
+use Laravel\Spark\Spark;
 
 trait CanJoinTeams
 {
@@ -31,13 +31,14 @@ trait CanJoinTeams
      */
     public function ownedTeams()
     {
-        return $this->teams()->where("owner_id", $this->getKey());
+        return $this->teams()->where('owner_id', $this->getKey());
     }
 
     /**
      * Join the team with the given ID.
      *
-     * @param  int  $teamId
+     * @param int $teamId
+     *
      * @return void
      */
     public function joinTeamById($teamId)
@@ -70,7 +71,7 @@ trait CanJoinTeams
             $this->switchToTeam($this->teams->first());
 
             return $this->currentTeam();
-        } elseif (! is_null($this->current_team_id)) {
+        } elseif (!is_null($this->current_team_id)) {
             $currentTeam = $this->teams->find($this->current_team_id);
 
             return $currentTeam ?: $this->refreshCurrentTeam();
@@ -80,7 +81,8 @@ trait CanJoinTeams
     /**
      * Switch the current team for the user.
      *
-     * @param  \Laravel\Spark\Teams\Team  $team
+     * @param \Laravel\Spark\Teams\Team $team
+     *
      * @return void
      */
     public function switchToTeam($team)
@@ -93,7 +95,7 @@ trait CanJoinTeams
     /**
      * Refresh the current team for the user.
      *
-     * @return  \Laravel\Spark\Teams\Team
+     * @return \Laravel\Spark\Teams\Team
      */
     public function refreshCurrentTeam()
     {
@@ -107,7 +109,8 @@ trait CanJoinTeams
     /**
      * Determine if the given team is owned by the user.
      *
-     * @param  \Laravel\Spark\Teams\Team  $team
+     * @param \Laravel\Spark\Teams\Team $team
+     *
      * @return bool
      */
     public function ownsTeam($team)
@@ -122,7 +125,8 @@ trait CanJoinTeams
     /**
      * Get the user's role on a given team.
      *
-     * @param  \Laravel\Spark\Teams\Team  $team
+     * @param \Laravel\Spark\Teams\Team $team
+     *
      * @return string
      */
     public function teamRole($team)
