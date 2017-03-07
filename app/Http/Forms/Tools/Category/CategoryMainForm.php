@@ -4,11 +4,11 @@ namespace Orchid\Http\Forms\Tools\Category;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Term;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Facades\Alert;
+use Orchid\Forms\Form;
 
 class CategoryMainForm extends Form
 {

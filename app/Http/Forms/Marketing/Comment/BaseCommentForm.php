@@ -4,9 +4,9 @@ namespace Orchid\Http\Forms\Marketing\Comment;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Comment;
 use Orchid\Facades\Alert;
+use Orchid\Forms\Form;
 
 class BaseCommentForm extends Form
 {

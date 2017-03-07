@@ -3,9 +3,9 @@
 namespace Orchid\Http\Forms\Marketing\Advertising;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\FormGroup;
 use Orchid\Core\Models\Post;
 use Orchid\Events\Marketing\AdvertisingEvent;
+use Orchid\Forms\FormGroup;
 
 class AdvertisingFormGroup extends FormGroup
 {

@@ -3,9 +3,9 @@
 namespace Orchid\Http\Forms\Tools\Category;
 
 use Illuminate\View\View;
-use Orchid\Forms\FormGroup;
 use Orchid\Core\Models\Category;
 use Orchid\Events\Tools\CategoryEvent;
+use Orchid\Forms\FormGroup;
 
 class CategoryFormGroup extends FormGroup
 {

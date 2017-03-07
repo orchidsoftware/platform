@@ -3,10 +3,10 @@
 namespace Orchid\Http\Forms\Systems\Roles;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Role;
 use Orchid\Facades\Alert;
 use Orchid\Facades\Dashboard;
+use Orchid\Forms\Form;
 
 class BaseRolesForm extends Form
 {

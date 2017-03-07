@@ -4,9 +4,9 @@ namespace Orchid\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Defender\Middleware\Firewall;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
+use Orchid\Defender\Middleware\Firewall;
 use Orchid\Http\Middleware\AccessMiddleware;
 use Orchid\Http\Middleware\CanInstall;
 use Orchid\Http\Middleware\RedirectInstall;

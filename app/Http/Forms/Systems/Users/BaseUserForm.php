@@ -5,9 +5,9 @@ namespace Orchid\Http\Forms\Systems\Users;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\User;
 use Orchid\Facades\Alert;
+use Orchid\Forms\Form;
 
 class BaseUserForm extends Form
 {
