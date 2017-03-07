@@ -3,7 +3,6 @@
 namespace Orchid\Foundation\Core\Models;
 
 use Carbon\Carbon;
-use Laravel\Spark\Spark;
 use Illuminate\Database\Eloquent\Model;
 
 class Invitation extends Model
