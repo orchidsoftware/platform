@@ -3,9 +3,9 @@
 namespace Orchid\Http\Forms\Systems\Settings;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Setting;
 use Orchid\Facades\Alert;
+use Orchid\Forms\Form;
 
 class BaseSettingsForm extends Form
 {

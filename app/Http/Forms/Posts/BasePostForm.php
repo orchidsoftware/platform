@@ -4,10 +4,10 @@ namespace Orchid\Http\Forms\Posts;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
+use Orchid\Forms\Form;
 
 class BasePostForm extends Form
 {

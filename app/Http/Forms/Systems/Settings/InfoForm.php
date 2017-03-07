@@ -2,8 +2,8 @@
 
 namespace Orchid\Http\Forms\Systems\Settings;
 
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Setting;
+use Orchid\Forms\Form;
 
 class InfoForm extends Form
 {

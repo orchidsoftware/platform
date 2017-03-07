@@ -3,9 +3,9 @@
 namespace Orchid\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\FormGroup;
 use Orchid\Core\Models\User;
 use Orchid\Events\Systems\UserEvent;
+use Orchid\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {

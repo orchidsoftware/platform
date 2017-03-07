@@ -3,11 +3,11 @@
 namespace Orchid\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Role;
 use Orchid\Core\Models\User;
 use Orchid\Facades\Alert;
 use Orchid\Facades\Dashboard;
+use Orchid\Forms\Form;
 
 class AccessUserForm extends Form
 {

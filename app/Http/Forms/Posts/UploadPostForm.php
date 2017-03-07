@@ -3,8 +3,8 @@
 namespace Orchid\Http\Forms\Posts;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Forms\Form;
 use Orchid\Core\Models\Attachment;
+use Orchid\Forms\Form;
 
 class UploadPostForm extends Form
 {
