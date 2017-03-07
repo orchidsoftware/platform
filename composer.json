@@ -56,27 +56,23 @@
     "files": [
       "src/Settings/helpers.php",
       "src/Alert/helpers.php",
-      "src/Log/helpers.php",
-      "src/Foundation/Helpers/array.php",
-      "src/Foundation/Helpers/operators.php"
+      "src/Log/helpers.php"
     ],
     "psr-4": {
-      "Orchid\\Access\\": "src/Access",
-      "Orchid\\Alert\\": "src/Alert",
-      "Orchid\\Field\\": "src/Field",
-      "Orchid\\Forms\\": "src/Forms",
-      "Orchid\\Foundation\\": "src/Foundation",
-      "Orchid\\Image\\": "src/Image",
-      "Orchid\\Installer\\": "src/Installer",
-      "Orchid\\Log\\": "src/Log",
-      "Orchid\\Menu\\": "src/Menu",
-      "Orchid\\Presenter\\": "src/Presenter",
-      "Orchid\\Settings\\": "src/Settings",
-      "Orchid\\Type\\": "src/Type",
-      "Orchid\\Widget\\": "src/Widget",
-      "Orchid\\Defender\\": "src/Defender",
-      "Orchid\\Schema\\": "src/Schema",
-      "Orchid\\Monitor\\": "src/Monitor"
+      "Orchid\\": "app/",
+      "Orchid\\Access\\": "src/Access/",
+      "Orchid\\Alert\\": "src/Alert/",
+      "Orchid\\Field\\": "src/Field/",
+      "Orchid\\Forms\\": "src/Forms/",
+      "Orchid\\Log\\": "src/Log/",
+      "Orchid\\Menu\\": "src/Menu/",
+      "Orchid\\Presenter\\": "src/Presenter/",
+      "Orchid\\Settings\\": "src/Settings/",
+      "Orchid\\Type\\": "src/Type/",
+      "Orchid\\Widget\\": "src/Widget/",
+      "Orchid\\Defender\\": "src/Defender/",
+      "Orchid\\Schema\\": "src/Schema/",
+      "Orchid\\Monitor\\": "src/Monitor/"
     }
   },
   "extra": {

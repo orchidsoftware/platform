@@ -2,7 +2,7 @@
 
 namespace Orchid\Presenter;
 
-use Orchid\Foundation\Exceptions\PresenterException;
+use Orchid\Exceptions\PresenterException;
 
 trait PresentableTrait
 {

@@ -5,8 +5,8 @@ namespace Orchid\Type;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Orchid\Foundation\Core\Models\Post;
-use Orchid\Foundation\Exceptions\TypeException;
+use Orchid\Core\Models\Post;
+use Orchid\Exceptions\TypeException;
 
 abstract class Type implements TypeInterface
 {

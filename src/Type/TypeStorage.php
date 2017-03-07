@@ -2,7 +2,7 @@
 
 namespace Orchid\Type;
 
-use Orchid\Foundation\Kernel\Storage;
+use Orchid\Kernel\Storage;
 
 class TypeStorage extends Storage
 {

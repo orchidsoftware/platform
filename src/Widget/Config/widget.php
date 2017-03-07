@@ -13,6 +13,6 @@ return [
     |
     */
     'widgets' => [
-        'advertising' => \Orchid\Foundation\Http\Widgets\AdvertisingWidget::class,
+        'advertising' => \Orchid\Http\Widgets\AdvertisingWidget::class,
     ],
 ];

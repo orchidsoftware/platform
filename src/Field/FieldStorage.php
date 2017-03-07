@@ -2,7 +2,7 @@
 
 namespace Orchid\Field;
 
-use Orchid\Foundation\Kernel\Storage;
+use Orchid\Kernel\Storage;
 
 class FieldStorage extends Storage
 {
