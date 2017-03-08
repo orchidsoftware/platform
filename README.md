@@ -55,13 +55,13 @@ Add the project according
 
 Add the following elements in the configuration file `config/app`
 ```php
-Orchid\Foundation\Providers\FoundationServiceProvider::class,
+Orchid\Providers\FoundationServiceProvider::class,
 ```
 
 ```php
-'Alert' =>  Orchid\Foundation\Facades\Alert::class,
-'Dashboard' =>  Orchid\Foundation\Facades\Dashboard::class,
-'Setting' =>  Orchid\Foundation\Facades\Setting::class,
+'Alert' =>  Orchid\Facades\Alert::class,
+'Dashboard' =>  Orchid\Facades\Dashboard::class,
+'Setting' =>  Orchid\Facades\Setting::class,
 'Active' => Watson\Active\Facades\Active::class,
 'Image' => Intervention\Image\Facades\Image::class,
 ```
@@ -74,7 +74,7 @@ Inherit your model App\User
 ```php
 namespace App;
 
-use Orchid\Foundation\Core\Models\User as UserOrchid;
+use Orchid\Core\Models\User as UserOrchid;
 
 class User extends UserOrchid
 {
