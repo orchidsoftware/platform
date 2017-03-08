@@ -66,7 +66,6 @@
       "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Log\\": "src/Log/",
       "Orchid\\Menu\\": "src/Menu/",
-      "Orchid\\Presenter\\": "src/Presenter/",
       "Orchid\\Settings\\": "src/Settings/",
       "Orchid\\Type\\": "src/Type/",
       "Orchid\\Widget\\": "src/Widget/",
