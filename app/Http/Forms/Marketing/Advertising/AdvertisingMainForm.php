@@ -7,7 +7,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Core\Models\Post;
-use Orchid\Facades\Alert;
 use Orchid\Forms\Form;
 
 class AdvertisingMainForm extends Form
@@ -63,8 +62,6 @@ class AdvertisingMainForm extends Form
             $post->fill($parameters);
             $post->save();
         }
-
-
     }
 
     /**
@@ -74,6 +71,5 @@ class AdvertisingMainForm extends Form
     public function delete(Request $request = null, Post $post = null)
     {
         $post->delete();
-
     }
 }

@@ -4,9 +4,9 @@ namespace Orchid\Http\Controllers\Marketing;
 
 use Illuminate\Http\Request;
 use Orchid\Core\Models\Post;
+use Orchid\Facades\Alert;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Marketing\Advertising\AdvertisingFormGroup;
-use Orchid\Facades\Alert;
 
 class AdvertisingController extends Controller
 {

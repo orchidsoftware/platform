@@ -6,7 +6,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Core\Models\TermTaxonomy;
-use Orchid\Facades\Alert;
 use Orchid\Forms\Form;
 
 class CategoryDescForm extends Form
@@ -65,7 +64,5 @@ class CategoryDescForm extends Form
 
         $termTaxonomy->term->fill($request->all());
         $termTaxonomy->term->save();
-
-
     }
 }
