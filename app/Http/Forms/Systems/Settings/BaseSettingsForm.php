@@ -4,7 +4,6 @@ namespace Orchid\Http\Forms\Systems\Settings;
 
 use Illuminate\Contracts\View\View;
 use Orchid\Core\Models\Setting;
-use Orchid\Facades\Alert;
 use Orchid\Forms\Form;
 
 class BaseSettingsForm extends Form
@@ -47,6 +46,5 @@ class BaseSettingsForm extends Form
         foreach ($settings as $key => $value) {
             $this->model->set($key, $value);
         }
-
     }
 }

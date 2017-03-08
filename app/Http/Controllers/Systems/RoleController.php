@@ -4,9 +4,9 @@ namespace Orchid\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Core\Models\Role;
+use Orchid\Facades\Alert;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Systems\Roles\RoleFormGroup;
-use Orchid\Facades\Alert;
 
 class RoleController extends Controller
 {

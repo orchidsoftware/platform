@@ -4,7 +4,6 @@ namespace Orchid\Http\Forms\Systems\Roles;
 
 use Illuminate\Contracts\View\View;
 use Orchid\Core\Models\Role;
-use Orchid\Facades\Alert;
 use Orchid\Facades\Dashboard;
 use Orchid\Forms\Form;
 
@@ -79,7 +78,6 @@ class BaseRolesForm extends Form
         $role->permissions = $this->request->get('permissions') ?: [];
 
         $role->save();
-
     }
 
     /**
@@ -88,6 +86,5 @@ class BaseRolesForm extends Form
     public function delete(Role $role)
     {
         $role->delete();
-
     }
 }

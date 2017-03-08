@@ -5,7 +5,6 @@ namespace Orchid\Http\Forms\Marketing\Comment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Orchid\Core\Models\Comment;
-use Orchid\Facades\Alert;
 use Orchid\Forms\Form;
 
 class BaseCommentForm extends Form
@@ -48,7 +47,6 @@ class BaseCommentForm extends Form
         $comment->approved = false;
         $comment->fill($request->all());
         $comment->save();
-
     }
 
     /**
@@ -57,6 +55,5 @@ class BaseCommentForm extends Form
     public function delete(Comment $comment)
     {
         $comment->delete();
-
     }
 }
