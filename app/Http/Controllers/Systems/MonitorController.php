@@ -20,7 +20,7 @@ class MonitorController extends Controller
      */
     public function index()
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' || $this->shell_exec_enabled() == false) {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' || $this->shellExecEnabled() === false) {
             return view('dashboard::container.systems.monitor.disable', []);
         }
 
@@ -39,7 +39,7 @@ class MonitorController extends Controller
     /**
      * @return bool
      */
-    private function shell_exec_enabled()
+    private function shellExecEnabled() : bool
     {
         $disabled = explode(',', ini_get('disable_functions'));
 
