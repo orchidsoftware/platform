@@ -54,6 +54,8 @@ class UserController extends Controller
     {
         $this->form->save($request, $user);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -81,6 +83,8 @@ class UserController extends Controller
     {
         $this->form->save($request, $user);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -92,6 +96,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $this->form->remove($user);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.systems.users');
     }

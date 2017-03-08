@@ -47,6 +47,6 @@ class BaseSettingsForm extends Form
         foreach ($settings as $key => $value) {
             $this->model->set($key, $value);
         }
-        Alert::success('Message');
+
     }
 }

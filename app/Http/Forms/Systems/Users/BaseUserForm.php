@@ -74,7 +74,7 @@ class BaseUserForm extends Form
         }
         $user->save();
 
-        Alert::success('Message');
+
     }
 
     /**
@@ -83,6 +83,6 @@ class BaseUserForm extends Form
     public function delete(User $user)
     {
         $user->delete();
-        Alert::success('Message');
+
     }
 }

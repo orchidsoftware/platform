@@ -64,7 +64,7 @@ class AdvertisingMainForm extends Form
             $post->save();
         }
 
-        Alert::success('success');
+
     }
 
     /**
@@ -74,6 +74,6 @@ class AdvertisingMainForm extends Form
     public function delete(Request $request = null, Post $post = null)
     {
         $post->delete();
-        Alert::success('success');
+
     }
 }

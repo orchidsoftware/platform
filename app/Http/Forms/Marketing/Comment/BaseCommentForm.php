@@ -48,7 +48,7 @@ class BaseCommentForm extends Form
         $comment->approved = false;
         $comment->fill($request->all());
         $comment->save();
-        Alert::success('Message');
+
     }
 
     /**
@@ -57,6 +57,6 @@ class BaseCommentForm extends Form
     public function delete(Comment $comment)
     {
         $comment->delete();
-        Alert::success('Message');
+
     }
 }

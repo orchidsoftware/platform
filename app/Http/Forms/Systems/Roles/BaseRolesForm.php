@@ -79,7 +79,7 @@ class BaseRolesForm extends Form
         $role->permissions = $this->request->get('permissions') ?: [];
 
         $role->save();
-        Alert::success('Message');
+
     }
 
     /**
@@ -88,6 +88,6 @@ class BaseRolesForm extends Form
     public function delete(Role $role)
     {
         $role->delete();
-        Alert::success('Message');
+
     }
 }

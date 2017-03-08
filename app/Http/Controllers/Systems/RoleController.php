@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Orchid\Core\Models\Role;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Systems\Roles\RoleFormGroup;
+use Orchid\Facades\Alert;
 
 class RoleController extends Controller
 {
@@ -53,6 +54,8 @@ class RoleController extends Controller
     {
         $this->form->save();
 
+        Alert::success('success');
+
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
 
@@ -65,6 +68,8 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $this->form->save($role);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
@@ -91,6 +96,8 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $this->form->remove($role);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.systems.roles');
     }

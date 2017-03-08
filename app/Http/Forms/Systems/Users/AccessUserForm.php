@@ -99,6 +99,6 @@ class AccessUserForm extends Form
             $user->replaceRoles($roles);
         }
         $user->save();
-        Alert::success('Message');
+
     }
 }

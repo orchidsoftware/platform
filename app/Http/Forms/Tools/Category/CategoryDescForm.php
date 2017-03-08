@@ -66,6 +66,6 @@ class CategoryDescForm extends Form
         $termTaxonomy->term->fill($request->all());
         $termTaxonomy->term->save();
 
-        Alert::success('success');
+
     }
 }

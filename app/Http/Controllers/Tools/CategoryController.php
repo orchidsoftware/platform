@@ -54,6 +54,8 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -91,6 +93,8 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -103,6 +107,8 @@ class CategoryController extends Controller
     public function destroy(Request $request, TermTaxonomy $termTaxonomy)
     {
         $this->form->remove($request, $termTaxonomy);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.tools.category');
     }

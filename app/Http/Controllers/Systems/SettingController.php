@@ -46,6 +46,8 @@ class SettingController extends Controller
         $this->form->save($request);
         Cache::flush();
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 }

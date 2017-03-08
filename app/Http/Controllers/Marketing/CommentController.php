@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Orchid\Core\Models\Comment;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Marketing\Comment\CommentFormGroup;
+use Orchid\Facades\Alert;
 
 class CommentController extends Controller
 {
@@ -43,6 +44,8 @@ class CommentController extends Controller
     {
         $this->form->save($request, $comment);
 
+        Alert::success('success');
+
         return redirect()->route('dashboard.marketing.comment.edit', $comment->id);
     }
 
@@ -68,6 +71,8 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $this->form->remove($comment);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.marketing.comment');
     }

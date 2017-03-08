@@ -76,7 +76,7 @@ class CategoryMainForm extends Form
         $termTaxonomy->save();
         $term->save();
 
-        Alert::success('success');
+
     }
 
     /**
@@ -87,6 +87,6 @@ class CategoryMainForm extends Form
     {
         $termTaxonomy->term->delete();
         $termTaxonomy->delete();
-        Alert::success('success');
+
     }
 }

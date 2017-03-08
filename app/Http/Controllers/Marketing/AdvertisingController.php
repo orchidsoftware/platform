@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Orchid\Core\Models\Post;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Marketing\Advertising\AdvertisingFormGroup;
+use Orchid\Facades\Alert;
 
 class AdvertisingController extends Controller
 {
@@ -54,6 +55,8 @@ class AdvertisingController extends Controller
     {
         $this->form->save($request, $post);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -81,6 +84,8 @@ class AdvertisingController extends Controller
     {
         $this->form->save($request, $user);
 
+        Alert::success('success');
+
         return redirect()->back();
     }
 
@@ -92,6 +97,8 @@ class AdvertisingController extends Controller
     public function destroy(Post $user)
     {
         $this->form->remove($user);
+
+        Alert::success('success');
 
         return redirect()->route('dashboard.marketing.users');
     }
