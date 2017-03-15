@@ -137,7 +137,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! defined('DASHBOARD_PATH')) {
+        if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
         }
     }
