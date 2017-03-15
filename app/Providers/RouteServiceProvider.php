@@ -52,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         //$router->middleware('dashboard', AccessMiddleware::class);
 
-        foreach (glob(__DIR__.'/../../routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
     }

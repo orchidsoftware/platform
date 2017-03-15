@@ -124,4 +124,19 @@ class Dashboard
     {
         return $this->routeMenu;
     }
+
+
+    /**
+     * Get the class name for a given Spark model.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public static function model($key, $default = null) : object
+    {
+        return array_get(static::$options, 'models.'.$key, $default);
+    }
+
+
 }

@@ -53,7 +53,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerDatabase()
     {
         $this->publishes([
-            __DIR__.'/../resources/stubs/database/migrations/' => database_path('migrations'),
+            DASHBOARD_PATH.'/resources/stubs/database/migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -62,7 +62,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(DASHBOARD_PATH.'/resources/lang', 'dashboard');
     }
 
     /**
@@ -71,11 +71,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../../resources/stubs/config/content.php' => config_path('content.php'),
+            DASHBOARD_PATH.'/resources/stubs/config/content.php' => config_path('content.php'),
         ]);
 
         $this->mergeConfigFrom(
-            __DIR__.'/../../resources/stubs/config/content.php', 'content'
+            DASHBOARD_PATH.'/resources/stubs/config/content.php', 'content'
         );
     }
 
@@ -87,14 +87,14 @@ class FoundationServiceProvider extends ServiceProvider
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path.'/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            __DIR__.'/../../resources/views',
+            DASHBOARD_PATH.'/resources/views',
         ]), 'dashboard');
     }
 
     protected function registerPublic()
     {
         $this->publishes([
-            __DIR__.'/../../resources/assets/dist/' => public_path('orchid'),
+            DASHBOARD_PATH.'/resources/assets/dist/' => public_path('orchid'),
         ], 'public');
     }
 
@@ -137,6 +137,9 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (! defined('DASHBOARD_PATH')) {
+            define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
+        }
     }
 
     /**
