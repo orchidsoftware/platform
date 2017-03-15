@@ -26,7 +26,7 @@ class Dashboard
     public $menu = null;
 
     /**
-     * Permission for applications
+     * Permission for applications.
      *
      * @var null
      */
@@ -40,7 +40,7 @@ class Dashboard
     protected static $options = [];
 
     /**
-     * Content type for applications
+     * Content type for applications.
      *
      * @var array
      */
@@ -136,11 +136,11 @@ class Dashboard
         return $this->routeMenu;
     }
 
-
     /**
      * Configure Dashboard application.
      *
-     * @param  array  $options
+     * @param array $options
+     *
      * @return void
      */
     public static function configure(array $options)
@@ -151,15 +151,15 @@ class Dashboard
     /**
      * Get a Dashboard configuration option.
      *
-     * @param  string  $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public static function option($key, $default)
     {
         return array_get(static::$options, $key, $default);
     }
-
 
     /**
      * Get the class name for a given Dashboard model.

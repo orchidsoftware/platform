@@ -8,7 +8,6 @@ use Orchid\Facades\Dashboard;
 
 trait RoleAccess
 {
-
     /**
      * The Users relationship.
      *
