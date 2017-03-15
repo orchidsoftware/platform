@@ -4,7 +4,6 @@ namespace Orchid\Access;
 
 interface RoleInterface
 {
-
     /**
      * Returns the role's primary key.
      *

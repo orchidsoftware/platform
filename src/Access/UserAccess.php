@@ -9,7 +9,6 @@ use Orchid\Facades\Dashboard;
 
 trait UserAccess
 {
-
     /**
      * @return mixed
      */
