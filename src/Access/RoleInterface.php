@@ -4,19 +4,6 @@ namespace Orchid\Access;
 
 interface RoleInterface
 {
-    /**
-     * Returns the users model.
-     *
-     * @return string
-     */
-    public static function getUsersModel();
-
-    /**
-     * Sets the users model.
-     *
-     * @param string $usersModel
-     */
-    public static function setUsersModel($usersModel);
 
     /**
      * Returns the role's primary key.

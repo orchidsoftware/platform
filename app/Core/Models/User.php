@@ -12,11 +12,6 @@ class User extends Authenticatable implements UserInterface
     use Notifiable, UserAccess;
 
     /**
-     * @var
-     */
-    protected static $rolesModel = Role::class;
-
-    /**
      * The database table used by the model.
      *
      * @var string

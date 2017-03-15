@@ -22,7 +22,7 @@ class SettingFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes()
+    public function attributes() : array
     {
         return [
             'name'        => 'Настройки',

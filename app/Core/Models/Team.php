@@ -5,6 +5,7 @@ namespace Orchid\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use Orchid\Events\User\RemovedFromTeam;
+use Orchid\Facades\Dashboard;
 
 class Team extends Model
 {
@@ -20,7 +21,9 @@ class Team extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name'
+    ];
 
     /**
      * Get all of the users that belong to the team.
@@ -28,7 +31,7 @@ class Team extends Model
     public function users()
     {
         return $this->belongsToMany(
-            config('auth.providers.users.model'), 'user_teams', 'team_id', 'user_id'
+            Dashboard::model('user', User::class), 'user_teams', 'team_id', 'user_id'
         )->withPivot('role');
     }
 
@@ -37,7 +40,7 @@ class Team extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(config('auth.providers.users.model'), 'owner_id');
+        return $this->belongsTo(Dashboard::model('user', User::class), 'owner_id');
     }
 
     /**
@@ -53,11 +56,11 @@ class Team extends Model
      *
      * @param string $email
      *
-     * @return \Laravel\Spark\Teams\Invitation
+     * @return Invitation
      */
     public function inviteUserByEmail($email)
     {
-        $model = config('auth.providers.users.model');
+        $model = Dashboard::model('user', User::class);
 
         $invitedUser = (new $model())->where('email', $email)->first();
 
@@ -94,7 +97,7 @@ class Team extends Model
     {
         $this->users()->detach([$userId]);
 
-        $userModel = config('auth.providers.users.model');
+        $userModel = Dashboard::model('user', User::class);
 
         $removedUser = (new $userModel())->find($userId);
 

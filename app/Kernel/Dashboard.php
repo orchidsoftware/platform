@@ -26,11 +26,22 @@ class Dashboard
     public $menu = null;
 
     /**
+     * Permission for applications
+     *
      * @var null
      */
     public $permission = null;
 
     /**
+     * Dashboard configuration options.
+     *
+     * @var array
+     */
+    protected static $options = [];
+
+    /**
+     * Content type for applications
+     *
      * @var array
      */
     public $types = [];
@@ -125,15 +136,40 @@ class Dashboard
         return $this->routeMenu;
     }
 
+
     /**
-     * Get the class name for a given Spark model.
+     * Configure Dashboard application.
+     *
+     * @param  array  $options
+     * @return void
+     */
+    public static function configure(array $options)
+    {
+        static::$options = $options;
+    }
+
+    /**
+     * Get a Dashboard configuration option.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public static function option($key, $default)
+    {
+        return array_get(static::$options, $key, $default);
+    }
+
+
+    /**
+     * Get the class name for a given Dashboard model.
      *
      * @param string $key
      * @param mixed  $default
      *
      * @return mixed
      */
-    public static function model($key, $default = null) : object
+    public static function model($key, $default = null)
     {
         return array_get(static::$options, 'models.'.$key, $default);
     }

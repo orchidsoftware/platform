@@ -4,6 +4,7 @@ namespace Orchid\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Facades\Dashboard;
 
 class Invitation extends Model
 {
@@ -33,7 +34,7 @@ class Invitation extends Model
      */
     public function team()
     {
-        return $this->belongsTo(Team::class, 'team_id');
+        return $this->belongsTo(Dashboard::model('team', Team::class), 'team_id');
     }
 
     /**
