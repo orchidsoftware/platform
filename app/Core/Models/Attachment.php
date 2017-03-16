@@ -10,11 +10,6 @@ use Orchid\Facades\Dashboard;
 class Attachment extends Model
 {
     /**
-     * @var string
-     */
-    protected $table = 'files';
-
-    /**
      * @var array
      */
     protected $fillable = [

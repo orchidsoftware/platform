@@ -10,7 +10,7 @@ class CreateTableFiles extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->text('original_name');

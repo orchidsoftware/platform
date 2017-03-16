@@ -140,7 +140,7 @@ class Post extends Model
     public function getContent($field, $lang = null)
     {
         try {
-            $lang = $lang ?: App::getLocale();
+            $lang = $lang ?? App::getLocale();
             if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
                 return $this->content[$lang][$field];
             } elseif (in_array($field, $this->getFillable())) {
