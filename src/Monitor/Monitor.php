@@ -6,7 +6,6 @@ use stdClass;
 
 class Monitor
 {
-
     /**
      * The array $_SERVER[] contains a bunch of server and execution
      * environment information.
