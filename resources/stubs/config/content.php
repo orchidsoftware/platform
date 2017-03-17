@@ -13,7 +13,7 @@ return [
     */
 
     'types' => [
-        \Orchid\Foundation\Types\TestType::class,
+        \Orchid\Types\TestType::class,
     ],
 
     /*
@@ -26,7 +26,7 @@ return [
     */
 
     'transformers' => [
-        'place-list' => \Orchid\Foundation\Filters\Transformer\PlaceListTransformer::class,
+        'place-list' => \Orchid\Filters\Transformer\PlaceListTransformer::class,
     ],
 
     'fields' => [
@@ -50,10 +50,10 @@ return [
     */
 
     'fieldFilters' => [
-        'eq'      => \Orchid\Foundation\Filters\WhereFilters::class,
-        'count'   => \Orchid\Foundation\Filters\LimitFilters::class,
-        'between' => \Orchid\Foundation\Filters\BetweenFilter::class,
-        'search'  => \Orchid\Foundation\Filters\LikeFilters::class,
+        'eq'      => \Orchid\Filters\WhereFilters::class,
+        'count'   => \Orchid\Filters\LimitFilters::class,
+        'between' => \Orchid\Filters\BetweenFilter::class,
+        'search'  => \Orchid\Filters\LikeFilters::class,
     ],
 
     /*
@@ -66,8 +66,8 @@ return [
     */
 
     'contentFilters' => [
-        'place' => \Orchid\Foundation\Filters\PlaceContentFilter::class,
-        'name'  => \Orchid\Foundation\Filters\NameContentFilter::class,
+        'place' => \Orchid\Filters\PlaceContentFilter::class,
+        'name'  => \Orchid\Filters\NameContentFilter::class,
     ],
 
     /*
