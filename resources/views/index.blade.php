@@ -9,6 +9,7 @@
 @section('content')
 
 
+    {{--
     <div class="bg-white wrapper-lg box-shadow-lg">
         <ul class="nav nav-pills nav-xxs nav-rounded m-b-lg">
             <li class="active"><a href="">День</a></li>
@@ -84,7 +85,7 @@
                      height="360"></canvas>
         </div>
     </div>
-
+--}}
 
 @stop
 

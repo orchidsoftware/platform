@@ -10,6 +10,7 @@
 
 
         <ul class="nav navbar-nav navbar-right">
+            @if(count($locales) > 1)
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
@@ -28,6 +29,7 @@
                     @endforeach
                 </ul>
             </li>
+            @endif
 
             <li>
                 <button class="btn btn-link menu-save"><i
@@ -52,7 +54,7 @@
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
             <div class="nav-tabs-alt">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li class="">
+                    <li class="hidden">
                         <a data-target="#static-pages" role="tab" data-toggle="tab" aria-expanded="false">
                             <i class="icon-note text-md text-muted wrapper-sm"></i>
                             Pages

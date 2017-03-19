@@ -89,6 +89,7 @@ class MenuComposer
 
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $marketingMenu, 1500);
 
+        /*
         $analyticsMenu = [
             'slug'      => 'analytics',
             'icon'      => 'fa fa-bar-chart',
@@ -100,6 +101,7 @@ class MenuComposer
         ];
 
         $dashboard->menu->add('Dashboard', 'dashboard::partials.leftMenu', $analyticsMenu, 1);
+        */
     }
 
     protected function registerMenuPost(Dashboard $dashboard)

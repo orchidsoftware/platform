@@ -100,4 +100,16 @@ $this->group([
             'as'   => 'dashboard.systems.monitor',
             'uses' => 'MonitorController@index',
         ]);
+
+
+        $router->get('cache', [
+            'as'   => 'dashboard.systems.cache',
+            'uses' => 'CacheController@index',
+        ]);
+
+        $router->post('cache', [
+            'as'   => 'dashboard.systems.cache',
+            'uses' => 'CacheController@store',
+        ]);
+
     });

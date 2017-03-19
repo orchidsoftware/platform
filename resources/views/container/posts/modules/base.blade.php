@@ -61,6 +61,7 @@
     </p>
     @endif
 
+    @if(count($locales) > 1)
     @foreach($locales as $key => $locale)
         <div class="line line-dashed b-b line-lg"></div>
         <div class="form-group">
@@ -83,7 +84,7 @@
             </div>
         </div>
     @endforeach
-
+    @endif
 
 
 
