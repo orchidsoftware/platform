@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Orchid\Core\Models\User;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Systems\Users\UserFormGroup;
+use Orchid\Facades\Alert;
 
 class UserController extends Controller
 {
