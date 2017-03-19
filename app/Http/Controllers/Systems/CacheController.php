@@ -2,9 +2,9 @@
 
 namespace Orchid\Http\Controllers\Systems;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Orchid\Facades\Alert;
-use Illuminate\Http\Request;
 
 class CacheController
 {
@@ -13,25 +13,25 @@ class CacheController
      */
     public function index()
     {
-
         return view('dashboard::container.systems.cache.index');
     }
 
-
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $action = $request->get('action','index');
+        $action = $request->get('action', 'index');
         $this->$action();
         Alert::success('success');
+
         return redirect()->back();
     }
 
     /**
-     *  Flush the application cache
+     *  Flush the application cache.
      */
     protected function cache()
     {
@@ -39,7 +39,7 @@ class CacheController
     }
 
     /**
-     * Create a cache file for faster configuration loading
+     * Create a cache file for faster configuration loading.
      */
     protected function config()
     {
@@ -47,24 +47,25 @@ class CacheController
     }
 
     /**
-     * Create a route cache file for faster route registration
+     * Create a route cache file for faster route registration.
      */
     protected function route()
     {
         try {
             Artisan::call('route:cache');
-        }catch (\Symfony\Component\Debug\Exception\FatalThrowableError $exception){
+        } catch (\Symfony\Component\Debug\Exception\FatalThrowableError $exception) {
             Alert::error('error');
+
             return redirect()->back();
-        }catch (\LogicException $exception){
+        } catch (\LogicException $exception) {
             Alert::error('error');
+
             return redirect()->back();
         }
     }
 
-
     /**
-     * Clear all compiled view files
+     * Clear all compiled view files.
      */
     protected function view()
     {
