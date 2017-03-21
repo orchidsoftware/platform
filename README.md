@@ -40,9 +40,7 @@ Orchid based off [Laravel Framework](http://laravel.com), so before you put the 
 
 Add the project according
 ```php
-"require": {
-    "orchid/platform": "dev-master"
-}
+composer require orchid/platform
 ```
 
 ####  Provider and Facades
