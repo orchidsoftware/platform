@@ -35,7 +35,7 @@ return [
     'Marketing'                  => 'Marketing',
     'Monitor'                    => 'Monitor',
 
-    'Defender' => 'Defender',
-    'Comments' => 'Comments',
-    'Advertising Management' => 'Advertising Management'
+    'Defender'               => 'Defender',
+    'Comments'               => 'Comments',
+    'Advertising Management' => 'Advertising Management',
 ];

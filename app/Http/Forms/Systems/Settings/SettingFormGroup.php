@@ -17,7 +17,6 @@ class SettingFormGroup extends FormGroup
      */
     public $event = SettingsEvent::class;
 
-
     /**
      * Description Attributes for group.
      *

@@ -49,7 +49,6 @@ class ContentFilter
 
                 $locale = App::getLocale();
 
-
                 $this->model = $this->$methodName($this->model, $values, "$this->column->$locale->", $chain);
             }
         }

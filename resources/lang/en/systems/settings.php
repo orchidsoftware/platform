@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Settings' => 'Settings',
+    'Settings'               => 'Settings',
     'Global system settings' => 'Global system settings',
 
     'Name of the site'     => 'Name of the site',
@@ -21,10 +21,9 @@ return [
 
     'address'      => 'Address',
     'address-help' => 'The physical or legal address of the organization',
-    'phone'       => 'Phone',
-    'email'       => 'Email',
-    'email-help'  => 'This address is used for administrative purposes.',
-    'default'     => 'Default',
-
+    'phone'        => 'Phone',
+    'email'        => 'Email',
+    'email-help'   => 'This address is used for administrative purposes.',
+    'default'      => 'Default',
 
 ];
