@@ -35,4 +35,9 @@ return [
     'Backups'                    => 'Резервные копии',
     'Schema'                     => 'Схема',
     'Marketing'                  => 'Маркетинг',
+    'Monitor' => 'Системный монитор',
+    'Defender' => 'Защитник',
+    'Comments' => 'Комментарии',
+    'Advertising Management' => 'Управление рекламой'
+
 ];

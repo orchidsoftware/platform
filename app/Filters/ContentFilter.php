@@ -49,9 +49,6 @@ class ContentFilter
 
                 $locale = App::getLocale();
 
-                if ($locale == null) {
-                    $locale = 'en';
-                }
 
                 $this->model = $this->$methodName($this->model, $values, "$this->column->$locale->", $chain);
             }

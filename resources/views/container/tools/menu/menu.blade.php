@@ -52,9 +52,9 @@
 
 
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
-            <div class="nav-tabs-alt">
+            <div class="nav-tabs-alt hidden">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li class="hidden">
+                    <li>
                         <a data-target="#static-pages" role="tab" data-toggle="tab" aria-expanded="false">
                             <i class="icon-note text-md text-muted wrapper-sm"></i>
                             Pages

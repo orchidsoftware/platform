@@ -4,7 +4,7 @@ namespace Orchid\Log\Tables;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Orchid\Log\Contracts\Utilities\LogLevelsInterface as LogLevelsContract;
+use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 
 class StatsTable extends AbstractTable
 {

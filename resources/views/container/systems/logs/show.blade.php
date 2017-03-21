@@ -2,7 +2,7 @@
 
 
 @section('title','Журнал ошибок')
-@section('description', $log->date )
+@section('description',  $log->getPath() )
 
 
 
@@ -41,7 +41,7 @@
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
 
             <div class="panel-heading"><i class="fa fa-fw fa-flag"></i> Levels</div>
-            <ul class="list-group">
+            <ul class="list-group  m-b-n-xs">
                 @foreach($log->menu() as $level => $item) {{-- $log->menu()  --}}
                 @if ($item['count'] === 0)
                     <a href="#" class="list-group-item disabled">
@@ -69,9 +69,6 @@
 
             <ul class="list-group">
 
-                <li class="list-group-item">
-                    <small>File path : {{ $log->getPath() }}</small>
-                </li>
                 <li class="list-group-item">
                     <small>Log entries : {{ $entries->total() }}</small>
                 </li>

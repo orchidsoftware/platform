@@ -3,6 +3,7 @@
 
 return [
 
+
     /*
     |--------------------------------------------------------------------------
     | Types
@@ -80,9 +81,9 @@ return [
     */
 
     'menu' => [
-        'header'  => 'Верхнее меню',
-        'sidebar' => 'Боковое меню',
-        'footer'  => 'Нижнее меню',
+        'header'  => 'Top Menu',
+        'sidebar' => 'Sidebar Menu',
+        'footer'  => 'Footer Menu',
     ],
 
     /*

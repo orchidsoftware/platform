@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Systems\Settings\SettingFormGroup;
+use Orchid\Facades\Alert;
 
 class SettingController extends Controller
 {

@@ -11,7 +11,7 @@ class BaseSettingsForm extends Form
     /**
      * @var string
      */
-    public $name = 'Base';
+    public $name = 'Settings';
 
     /**
      * Base Model.

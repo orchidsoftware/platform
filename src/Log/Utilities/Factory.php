@@ -2,9 +2,9 @@
 
 namespace Orchid\Log\Utilities;
 
-use Orchid\Log\Contracts\Utilities\FactoryInterface as FactoryContract;
-use Orchid\Log\Contracts\Utilities\FilesystemInterface as FilesystemContract;
-use Orchid\Log\Contracts\Utilities\LogLevelsInterface as LogLevelsContract;
+use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
+use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
+use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Orchid\Log\Entities\LogCollection;
 use Orchid\Log\Tables\StatsTable;
 

@@ -119,7 +119,7 @@ class MenuComposer
                 ];
 
                 if (reset($allPost) == $page) {
-                    $postObject['groupname'] = 'Страницы!';
+                    $postObject['groupname'] = trans('dashboard::menu.Common posts');
                 } elseif (end($allPost) == $page) {
                     $postObject['divider'] = true;
                 }
@@ -208,7 +208,7 @@ class MenuComposer
             'slug'       => 'backup',
             'icon'       => 'fa fa-history',
             'route'      => route('dashboard.systems.backup'),
-            'label'      => 'Резервные копии',
+            'label'      => trans('dashboard::menu.Backups'),
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.systems.backup',
@@ -229,7 +229,7 @@ class MenuComposer
             'slug'       => 'defender',
             'icon'       => 'fa fa-shield',
             'route'      => route('dashboard.systems.defender.index'),
-            'label'      => trans('Защитник'),
+            'label'      => trans('dashboard::menu.Defender'),
             'permission' => 'dashboard.systems.defender',
         ];
 
@@ -237,7 +237,7 @@ class MenuComposer
             'slug'       => 'monitor',
             'icon'       => 'fa fa-television',
             'route'      => route('dashboard.systems.monitor'),
-            'label'      => trans('Системный монитор'),
+            'label'      => trans('dashboard::menu.Monitor'),
             'permission' => 'dashboard.systems.monitor',
         ];
 
@@ -291,7 +291,7 @@ class MenuComposer
             'slug'       => 'comment',
             'icon'       => 'fa fa-comments-o',
             'route'      => route('dashboard.marketing.comment'),
-            'label'      => trans('Комментарии'),
+            'label'      => trans('dashboard::menu.Comments'),
             'groupname'  => trans('dashboard::menu.Users'),
             'permission' => 'dashboard.marketing.comment',
         ];
@@ -300,7 +300,7 @@ class MenuComposer
             'slug'       => 'advertising',
             'icon'       => 'icon-target',
             'route'      => route('dashboard.marketing.advertising.index'),
-            'label'      => trans('Управление рекламой'),
+            'label'      => trans('dashboard::menu.Advertising Management'),
             'permission' => 'dashboard.marketing.advertising',
         ];
 

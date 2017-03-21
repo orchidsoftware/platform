@@ -10,7 +10,7 @@ class InfoForm extends Form
     /**
      * @var string
      */
-    public $name = 'Info';
+    public $name = 'Information';
 
     /**
      * @var string

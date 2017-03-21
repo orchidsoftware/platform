@@ -17,6 +17,7 @@ class SettingFormGroup extends FormGroup
      */
     public $event = SettingsEvent::class;
 
+
     /**
      * Description Attributes for group.
      *
@@ -25,8 +26,8 @@ class SettingFormGroup extends FormGroup
     public function attributes() : array
     {
         return [
-            'name'        => 'Настройки',
-            'description' => 'Глобальные настройки системы',
+            'name'        => trans('dashboard::systems/settings.Settings'),
+            'description' => trans('dashboard::systems/settings.Global system settings'),
         ];
     }
 }

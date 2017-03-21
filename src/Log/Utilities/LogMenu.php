@@ -3,8 +3,8 @@
 namespace Orchid\Log\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
-use Orchid\Log\Contracts\Utilities\LogMenuInterface as LogMenuContract;
-use Orchid\Log\Contracts\Utilities\LogStylerInterface as LogStylerContract;
+use Orchid\Log\Contracts\Utilities\LogMenu as LogMenuContract;
+use Orchid\Log\Contracts\Utilities\LogStyler as LogStylerContract;
 use Orchid\Log\Entities\Log;
 
 class LogMenu implements LogMenuContract

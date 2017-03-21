@@ -1,6 +1,11 @@
 <?php
 
 return [
+
+    'Monitor' => 'Monitor',
+    'description' => 'Server Status Information',
+
+
     'Hardware' => [
         'Title'             => 'Hardware',
         'Uptime'            => 'Uptime',

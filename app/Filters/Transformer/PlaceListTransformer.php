@@ -7,19 +7,6 @@ use Illuminate\Support\Facades\App;
 class PlaceListTransformer extends Transformer
 {
     /**
-     * @var array|mixed
-     */
-    private $locales;
-
-    /**
-     * PlaceListTransformer constructor.
-     */
-    public function __construct()
-    {
-        $this->locales = config('content.locales', []);
-    }
-
-    /**
      * @param $collect
      *
      * @return mixed
@@ -28,10 +15,6 @@ class PlaceListTransformer extends Transformer
     {
         $currentLocale = App::getLocale();
         $localeNames = array_keys(config('content.locales'));
-
-        if ($currentLocale == null) {
-            $currentLocale = 'en';
-        }
 
         return $collect->reject(function ($item) use ($currentLocale) {
             $content_locale = $item['content'][$currentLocale];

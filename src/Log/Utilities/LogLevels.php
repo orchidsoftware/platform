@@ -3,7 +3,7 @@
 namespace Orchid\Log\Utilities;
 
 use Illuminate\Translation\Translator;
-use Orchid\Log\Contracts\Utilities\LogLevelsInterface as LogLevelsContract;
+use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
 use Psr\Log\LogLevel;
 use ReflectionClass;
 

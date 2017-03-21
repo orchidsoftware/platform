@@ -2,8 +2,8 @@
 
 namespace Orchid\Log\Utilities;
 
-use Illuminate\Filesystem\FilesystemInterface as IlluminateFilesystem;
-use Orchid\Log\Contracts\Utilities\FilesystemInterface as FilesystemContract;
+use Illuminate\Filesystem\Filesystem as IlluminateFilesystem;
+use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
 use Orchid\Log\Exceptions\FilesystemException;
 
 class Filesystem implements FilesystemContract

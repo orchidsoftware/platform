@@ -33,4 +33,9 @@ return [
     'Backups'                    => 'Backups',
     'Schema'                     => 'Schema',
     'Marketing'                  => 'Marketing',
+    'Monitor'                    => 'Monitor',
+
+    'Defender' => 'Defender',
+    'Comments' => 'Comments',
+    'Advertising Management' => 'Advertising Management'
 ];

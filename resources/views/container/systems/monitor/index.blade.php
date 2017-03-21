@@ -1,9 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Монитор')
-@section('description','Информация о состоянии сервера')
-
+@section('title',trans('dashboard::systems/monitor.Monitor'))
+@section('description',trans('dashboard::systems/monitor.description'))
 
 
 @section('content')
