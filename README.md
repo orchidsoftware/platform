@@ -26,6 +26,11 @@ Laravel Platform application provides a very flexible and extensible way of buil
 Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 
+
+<a href="https://theorchid.github.io/docs/screenshot/" target="_blank"><img src="https://theorchid.github.io/assets/img/screen/7.png"></a>
+
+
+
 ## Installation
 
 Orchid based off [Laravel Framework](http://laravel.com), so before you put the Orchid, you must install [Laravel](http://laravel.com).
