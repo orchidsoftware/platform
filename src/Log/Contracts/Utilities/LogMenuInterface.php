@@ -5,7 +5,7 @@ namespace Orchid\Log\Contracts\Utilities;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Orchid\Log\Entities\Log;
 
-interface LogMenu
+interface LogMenuInterface
 {
     /**
      * Set the config instance.

@@ -2,10 +2,10 @@
 
 namespace Orchid\Log;
 
-use Orchid\Log\Contracts\LogViewer as LogContract;
-use Orchid\Log\Contracts\Utilities\Factory as FactoryContract;
-use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
-use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Orchid\Log\Contracts\LogViewerInterface as LogContract;
+use Orchid\Log\Contracts\Utilities\FactoryInterface as FactoryContract;
+use Orchid\Log\Contracts\Utilities\FilesystemInterface as FilesystemContract;
+use Orchid\Log\Contracts\Utilities\LogLevelsInterface as LogLevelsContract;
 
 class Log implements LogContract
 {

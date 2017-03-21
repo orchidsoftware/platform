@@ -4,7 +4,7 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Orchid\Log\Contracts\Patternable;
 
-interface Filesystem extends Patternable
+interface FilesystemInterface extends Patternable
 {
     /**
      * File prefix.

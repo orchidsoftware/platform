@@ -4,7 +4,7 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Orchid\Log\Contracts\Patternable;
 
-interface Factory extends Patternable
+interface FactoryInterface extends Patternable
 {
     /**
      * Get the filesystem instance.

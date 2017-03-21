@@ -4,7 +4,7 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 
-interface LogChecker
+interface LogCheckerInterface
 {
     /**
      * @link http://laravel.com/docs/5.1/errors#configuration

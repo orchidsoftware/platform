@@ -3,8 +3,8 @@
 namespace Orchid\Log\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
-use Orchid\Log\Contracts\Utilities\Filesystem as FilesystemContract;
-use Orchid\Log\Contracts\Utilities\LogChecker as LogCheckerContract;
+use Orchid\Log\Contracts\Utilities\FilesystemInterface as FilesystemContract;
+use Orchid\Log\Contracts\Utilities\LogCheckerInterface as LogCheckerContract;
 
 class LogChecker implements LogCheckerContract
 {

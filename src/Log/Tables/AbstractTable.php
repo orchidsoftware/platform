@@ -3,7 +3,7 @@
 namespace Orchid\Log\Tables;
 
 use Orchid\Log\Contracts\Table as TableContract;
-use Orchid\Log\Contracts\Utilities\LogLevels as LogLevelsContract;
+use Orchid\Log\Contracts\Utilities\LogLevelsInterface as LogLevelsContract;
 
 abstract class AbstractTable implements TableContract
 {

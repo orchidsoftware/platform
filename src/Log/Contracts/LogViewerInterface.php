@@ -2,7 +2,7 @@
 
 namespace Orchid\Log\Contracts;
 
-interface LogViewer extends Patternable
+interface LogViewerInterface extends Patternable
 {
     /**
      * Get the log levels.

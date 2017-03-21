@@ -38,22 +38,22 @@ class PostApiController extends ApiController
         $builder = new $model();
 
         $fields = $request->get('fields');
-        if ($fields != null) {
+        if ($fields !== null) {
             $builder = $this->applyFieldFilters($builder, $fields);
         }
 
         $content = $request->get('content');
 
-        if ($content != null) {
+        if ($content !== null) {
             $builder = $this->applyJSONFilters('content', $builder, $content);
         }
 
         $posts = $builder->get();
 
-        if (($transformField = $request->get('transform')) != null) {
+        if (($transformField = $request->get('transform')) !== null) {
             $transformerClass = Dashboard::getTransformers()->get($transformField);
 
-            if ($transformerClass != null) {
+            if ($transformerClass !== null) {
                 $posts = $transformerClass::transform($posts);
             }
         }

@@ -143,7 +143,7 @@ class PostController extends Controller
             $slug = reset($content)[$post->getTypeObject()->slugFields];
         }
 
-        if ($request->has('slug') && $request->get('slug') != $post->slug) {
+        if ($request->has('slug') && $request->get('slug') !== $post->slug) {
             //$post->slug = $post->makeSlug($slug);
 
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);

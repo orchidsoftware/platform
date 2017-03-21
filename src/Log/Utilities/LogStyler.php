@@ -3,7 +3,7 @@
 namespace Orchid\Log\Utilities;
 
 use Illuminate\Contracts\Config\Repository as ConfigContract;
-use Orchid\Log\Contracts\Utilities\LogStyler as LogStylerContract;
+use Orchid\Log\Contracts\Utilities\LogStylerInterface as LogStylerContract;
 
 class LogStyler implements LogStylerContract
 {

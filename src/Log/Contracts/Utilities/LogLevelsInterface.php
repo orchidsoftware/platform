@@ -4,7 +4,7 @@ namespace Orchid\Log\Contracts\Utilities;
 
 use Illuminate\Translation\Translator;
 
-interface LogLevels
+interface LogLevelsInterface
 {
     /**
      * Get PSR log levels.

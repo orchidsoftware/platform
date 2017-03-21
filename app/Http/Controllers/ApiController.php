@@ -37,7 +37,7 @@ abstract class ApiController extends Controller
             foreach ($filterDescriptor as $filterName => $filterParameters) {
                 $filterClass = $fieldFilters->get($filterName);
 
-                if ($filterClass != null) {
+                if ($filterClass !== null) {
                     $filter = new $filterClass($post, $fieldName, $filterParameters);
                     $post = $filter->run();
                 }
@@ -68,7 +68,7 @@ abstract class ApiController extends Controller
         foreach ($contentFields as $fieldName => $filtersDescriptor) {
             $filterClass = $contentFilters->get($fieldName);
 
-            if ($filterClass != null) {
+            if ($filterClass !== null) {
                 $filter = new $filterClass($post, $column, $filtersDescriptor);
                 $post = $filter->run();
             }
