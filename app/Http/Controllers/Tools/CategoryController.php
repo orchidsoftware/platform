@@ -4,9 +4,9 @@ namespace Orchid\Http\Controllers\Tools;
 
 use Illuminate\Http\Request;
 use Orchid\Core\Models\TermTaxonomy;
+use Orchid\Facades\Alert;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Tools\Category\CategoryFormGroup;
-use Orchid\Facades\Alert;
 
 class CategoryController extends Controller
 {

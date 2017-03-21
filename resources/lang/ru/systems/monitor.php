@@ -2,8 +2,7 @@
 
 return [
 
-
-    'Monitor' => 'Монитор',
+    'Monitor'     => 'Монитор',
     'description' => 'Информация о состоянии сервера',
 
     'Hardware' => [

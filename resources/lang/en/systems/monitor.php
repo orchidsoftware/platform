@@ -2,9 +2,8 @@
 
 return [
 
-    'Monitor' => 'Monitor',
+    'Monitor'     => 'Monitor',
     'description' => 'Server Status Information',
-
 
     'Hardware' => [
         'Title'             => 'Hardware',
