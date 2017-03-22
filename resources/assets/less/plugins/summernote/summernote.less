@@ -1,4 +1,3 @@
-
 /* Layout
  ------------------------------------------*/
 .note-editor {
@@ -147,7 +146,7 @@
       max-width: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;    /* for FF */
+      white-space: nowrap; /* for FF */
       vertical-align: middle; /* for FF */
     }
   }
@@ -162,7 +161,7 @@
   margin: 0;
   padding: 0 0 5px 5px;
 
-  &>.btn-group {
+  & > .btn-group {
     margin-top: 5px;
     margin-left: 0;
     margin-right: 5px;
@@ -249,7 +248,7 @@
     .dropdown-menu {
       min-width: 216px;
       padding: 5px;
-      &>div:first-child {
+      & > div:first-child {
         margin-right: 5px;
       }
     }
@@ -264,8 +263,14 @@
     &.right {
       right: 0;
       left: auto;
-      &::before { right: 9px; left: auto !important;  }
-      &::after { right: 10px; left: auto !important;  }
+      &::before {
+        right: 9px;
+        left: auto !important;
+      }
+      &::after {
+        right: 10px;
+        left: auto !important;
+      }
     }
     /* dropdown-menu for selectbox */
     &.note-check {
@@ -305,7 +310,7 @@
 /* Dialog
 ------------------------------------------*/
 .note-dialog {
-  &>div {
+  & > div {
     display: none; /* BS2's hide pacth. */
   }
   .form-group { /* overwrite BS's form-horizontal minus margins */
@@ -351,7 +356,9 @@
     position: absolute;
     display: none;
     border: 1px solid black;
-    &>div { position: absolute; }
+    & > div {
+      position: absolute;
+    }
 
     .note-control-selection-bg {
       width: 100%;
@@ -453,274 +460,190 @@
   }
 }
 
-
-
 @font-face {
-  font-family:"summernote";
-  src:url("/orchid/fonts/summernote.eot");
-  src:url("/orchid/fonts/summernote.eot") format("embedded-opentype"),
+  font-family: "summernote";
+  src: url("/orchid/fonts/summernote.eot");
+  src: url("/orchid/fonts/summernote.eot") format("embedded-opentype"),
   url("/orchid/fonts/summernote.woff") format("woff"),
   url("/orchid/fonts/summernote.ttf") format("truetype");
-  font-weight:normal;
-  font-style:normal;
+  font-weight: normal;
+  font-style: normal;
 }
-
 
 /* Bootstrap Overrides */
 [class^="note-icon-"]:before,
 [class*=" note-icon-"]:before {
-  display:inline-block;
-  vertical-align:middle;
+  display: inline-block;
+  vertical-align: middle;
   font: normal normal normal 14px summernote;
   font-size: inherit;
-  speak:none;
-  text-decoration:inherit;
-  text-transform:none;
-  text-rendering:auto;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-
 
 /* Icons */
 
-
 .note-icon-align-center:before {
-  content:"\f101";
+  content: "\f101";
 }
-
-
 
 .note-icon-align-indent:before {
-  content:"\f102";
+  content: "\f102";
 }
-
-
 
 .note-icon-align-justify:before {
-  content:"\f103";
+  content: "\f103";
 }
-
-
 
 .note-icon-align-left:before {
-  content:"\f104";
+  content: "\f104";
 }
-
-
 
 .note-icon-align-outdent:before {
-  content:"\f105";
+  content: "\f105";
 }
-
-
 
 .note-icon-align-right:before {
-  content:"\f106";
+  content: "\f106";
 }
-
-
 
 .note-icon-align:before {
-  content:"\f107";
+  content: "\f107";
 }
-
-
 
 .note-icon-arrows-alt:before {
-  content:"\f108";
+  content: "\f108";
 }
-
-
 
 .note-icon-bold:before {
-  content:"\f109";
+  content: "\f109";
 }
-
-
 
 .note-icon-caret:before {
-  content:"\f10a";
+  content: "\f10a";
 }
-
-
 
 .note-icon-chain-broken:before {
-  content:"\f10b";
+  content: "\f10b";
 }
-
-
 
 .note-icon-circle:before {
-  content:"\f10c";
+  content: "\f10c";
 }
-
-
 
 .note-icon-close:before {
-  content:"\f10d";
+  content: "\f10d";
 }
-
-
 
 .note-icon-code:before {
-  content:"\f10e";
+  content: "\f10e";
 }
-
-
 
 .note-icon-eraser:before {
-  content:"\f10f";
+  content: "\f10f";
 }
-
-
 
 .note-icon-font:before {
-  content:"\f110";
+  content: "\f110";
 }
-
-
 
 .note-icon-frame:before {
-  content:"\f111";
+  content: "\f111";
 }
-
-
 
 .note-icon-italic:before {
-  content:"\f112";
+  content: "\f112";
 }
-
-
 
 .note-icon-link:before {
-  content:"\f113";
+  content: "\f113";
 }
-
-
 
 .note-icon-magic:before {
-  content:"\f114";
+  content: "\f114";
 }
-
-
 
 .note-icon-menu-check:before {
-  content:"\f115";
+  content: "\f115";
 }
-
-
 
 .note-icon-minus:before {
-  content:"\f116";
+  content: "\f116";
 }
-
-
 
 .note-icon-orderedlist:before {
-  content:"\f117";
+  content: "\f117";
 }
-
-
 
 .note-icon-pencil:before {
-  content:"\f118";
+  content: "\f118";
 }
-
-
 
 .note-icon-picture:before {
-  content:"\f119";
+  content: "\f119";
 }
-
-
 
 .note-icon-question:before {
-  content:"\f11a";
+  content: "\f11a";
 }
-
-
 
 .note-icon-redo:before {
-  content:"\f11b";
+  content: "\f11b";
 }
-
-
 
 .note-icon-special-character:before {
-  content:"\f11c";
+  content: "\f11c";
 }
-
-
 
 .note-icon-square:before {
-  content:"\f11d";
+  content: "\f11d";
 }
-
-
 
 .note-icon-strikethrough:before {
-  content:"\f11e";
+  content: "\f11e";
 }
-
-
 
 .note-icon-subscript:before {
-  content:"\f11f";
+  content: "\f11f";
 }
-
-
 
 .note-icon-summernote:before {
-  content:"\f120";
+  content: "\f120";
 }
-
-
 
 .note-icon-superscript:before {
-  content:"\f121";
+  content: "\f121";
 }
-
-
 
 .note-icon-table:before {
-  content:"\f122";
+  content: "\f122";
 }
-
-
 
 .note-icon-text-height:before {
-  content:"\f123";
+  content: "\f123";
 }
-
-
 
 .note-icon-trash:before {
-  content:"\f124";
+  content: "\f124";
 }
-
-
 
 .note-icon-underline:before {
-  content:"\f125";
+  content: "\f125";
 }
-
-
 
 .note-icon-undo:before {
-  content:"\f126";
+  content: "\f126";
 }
-
-
 
 .note-icon-unorderedlist:before {
-  content:"\f127";
+  content: "\f127";
 }
 
-
-
 .note-icon-video:before {
-  content:"\f128";
+  content: "\f128";
 }
 
