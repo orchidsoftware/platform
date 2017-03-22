@@ -5,7 +5,7 @@
     @endif
 
     <div class='input-group date datetimepicker'>
-        <input type='text'  class="form-control {{$class or ''}}"
+        <input type='text' class="form-control {{$class or ''}}"
                value="{{$value or old($name)}}"
                placeholder="{{$placeholder or ''}}"
 
@@ -21,9 +21,9 @@
     </div>
 
 
-        @if(isset($help))
-            <p class="help-block">{{$help}}</p>
-        @endif
+    @if(isset($help))
+        <p class="help-block">{{$help}}</p>
+    @endif
 
 
 </div>

@@ -4,11 +4,11 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-    <textarea class="form-control no-resize {{$class or ''}}"  id="field-{{$name}}"
-            rows={{$rows or ''}}
+    <textarea class="form-control no-resize {{$class or ''}}" id="field-{{$name}}"
+              rows={{$rows or ''}}
 
-    @if(isset($prefix))
-                    name="{{$prefix}}[{{$lang}}]{{$name}}"
+              @if(isset($prefix))
+                      name="{{$prefix}}[{{$lang}}]{{$name}}"
               @else
               name="{{$lang}}{{$name}}"
               @endif

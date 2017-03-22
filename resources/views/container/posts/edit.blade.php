@@ -13,7 +13,8 @@
 
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
             <button type="submit" form="post-form" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
-            <button type="submit" form="form-post-remove" class="btn btn-link"><i class="icon-trash  fa fa-2x"></i></button>
+            <button type="submit" form="form-post-remove" class="btn btn-link"><i class="icon-trash  fa fa-2x"></i>
+            </button>
         </div>
     </div>
 @stop
@@ -34,45 +35,47 @@
 
         @if(count($type->fields()) > 0)
             <!-- column -->
-            <div class="col  lter b-r">
-                <div class="vbox">
+                <div class="col  lter b-r">
+                    <div class="vbox">
 
-                    @if($locales->count() > 1)
-                        <div class="nav-tabs-alt">
-                            <ul class="nav nav-tabs nav-justified">
-                                @foreach($locales as $code => $lang)
-                                    <li  @if ($loop->first) class="active"  @endif>
-                                        <a data-target="#local-{{$code}}" role="tab" data-toggle="tab" aria-expanded="true">{{$lang['native']}}
-
-                                            @if($code != App::getLocale())
-                                                <button type="button" class="close close-lang-content" data-local="{{$code}}">
-                                                    <span class="text-md" aria-hidden="true">&times;</span>
-                                                </button>
-                                            @endif
-
-                                        </a>
-
-
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                            <div class="bg-white">
-                                <div class="tab-content">
+                        @if($locales->count() > 1)
+                            <div class="nav-tabs-alt">
+                                <ul class="nav nav-tabs nav-justified">
                                     @foreach($locales as $code => $lang)
-                                        <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                            <div class="wrapper-xl  bg-white">
-                                                {!! $type->generateForm($code,$post) !!}
-                                            </div>
-                                        </div>
+                                        <li @if ($loop->first) class="active" @endif>
+                                            <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
+                                               aria-expanded="true">{{$lang['native']}}
+
+                                                @if($code != App::getLocale())
+                                                    <button type="button" class="close close-lang-content"
+                                                            data-local="{{$code}}">
+                                                        <span class="text-md" aria-hidden="true">&times;</span>
+                                                    </button>
+                                                @endif
+
+                                            </a>
+
+
+                                        </li>
                                     @endforeach
-                                </div>
+                                </ul>
                             </div>
+                        @endif
+
+                        <div class="bg-white">
+                            <div class="tab-content">
+                                @foreach($locales as $code => $lang)
+                                    <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
+                                        <div class="wrapper-xl  bg-white">
+                                            {!! $type->generateForm($code,$post) !!}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- /column -->
+                <!-- /column -->
         @endif
 
 
@@ -81,7 +84,7 @@
         @if($type->checkModules())
 
 
-                <!-- column -->
+            <!-- column -->
                 <div class="col wi-col lter b-r">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
@@ -121,8 +124,6 @@
         <!-- /hbox layout -->
 
 
-
-
         <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
         'type' => $type->slug,
         'slug' => $post->id,
@@ -130,7 +131,6 @@
             {{ csrf_field() }}
             {{ method_field('delete') }}
         </form>
-
 
 
     </div>

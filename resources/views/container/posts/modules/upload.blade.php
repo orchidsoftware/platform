@@ -1,7 +1,4 @@
-
 <div class="dropzone" id="real-dropzone">
-
-
 
 
     <div class="fallback">

@@ -13,7 +13,8 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li>
-                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i class="icon-cloud-download fa fa-2x"></i></a>
+                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i
+                            class="icon-cloud-download fa fa-2x"></i></a>
             </li>
 
             <li>
@@ -34,8 +35,6 @@
 
 
     <div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
-
-
 
 
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
@@ -64,9 +63,6 @@
             </ul>
 
 
-
-
-
             <ul class="list-group">
 
                 <li class="list-group-item">
@@ -84,10 +80,7 @@
             </ul>
 
 
-
         </div>
-
-
 
 
         <!-- main content -->
@@ -103,74 +96,74 @@
                         <div class="row wrapper">
 
 
+                            <div class="panel ">
 
-                                <div class="panel ">
-
-                                    <div class="table-responsive">
-                                        <table id="entries" class="table table-condensed">
-                                            <thead>
+                                <div class="table-responsive">
+                                    <table id="entries" class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th width="10%">ENV</th>
+                                            <th width="10%">Time</th>
+                                            <th>Header</th>
+                                            <th width="10%" class="text-right">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($entries as $key => $entry)
                                             <tr>
-                                                <th width="10%">ENV</th>
-                                                <th width="10%">Time</th>
-                                                <th>Header</th>
-                                                <th width="10%" class="text-right">Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($entries as $key => $entry)
-                                                <tr>
-                                                    <td>
+                                                <td>
                                                 <span class="label label-env text-dark">
                                                       <i class="{{$entry->level()}}"></i>
                                                     {{ $entry->env }}</span>
-                                                    </td>
+                                                </td>
 
-                                                    <td>{{ $entry->datetime->format('H:i:s') }}</td>
-                                                    <td>
-                                                        <p class="">{{ $entry->header }}</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        @if ($entry->hasStack())
-                                                            <a class="btn btn-xs btn-default" role="button"
-                                                               data-toggle="collapse" href="#log-stack-{{ $key }}"
-                                                               aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                                <i class="fa fa-toggle-on"></i> Stack
-                                                            </a>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                @if ($entry->hasStack())
-                                                    <tr>
-                                                        <td colspan="4" class="stack">
-                                                            <pre class="stack-content collapse bg-black" id="log-stack-{{ $key }}">
+                                                <td>{{ $entry->datetime->format('H:i:s') }}</td>
+                                                <td>
+                                                    <p class="">{{ $entry->header }}</p>
+                                                </td>
+                                                <td class="text-right">
+                                                    @if ($entry->hasStack())
+                                                        <a class="btn btn-xs btn-default" role="button"
+                                                           data-toggle="collapse" href="#log-stack-{{ $key }}"
+                                                           aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                                            <i class="fa fa-toggle-on"></i> Stack
+                                                        </a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            @if ($entry->hasStack())
+                                                <tr>
+                                                    <td colspan="4" class="stack">
+                                                            <pre class="stack-content collapse bg-black"
+                                                                 id="log-stack-{{ $key }}">
                                                                 {!! $entry->stack() !!}
                                                             </pre>
-                                                        </td>
-                                                    </tr>
-                                                @endif
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    @if ($entries->hasPages())
-                                        <footer class="panel-footer">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$entries->total()}}
-                                                        -{{$entries->perPage()}} {{trans('dashboard::common.of')}} {!! $entries->count() !!} {{trans('dashboard::common.elements')}}</small>
-                                                </div>
-                                                <div class="col-sm-4 text-right text-center-xs">
-                                                    {!! $entries->render() !!}
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
+
+                                @if ($entries->hasPages())
+                                    <footer class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$entries->total()}}
+                                                    -{{$entries->perPage()}} {{trans('dashboard::common.of')}} {!! $entries->count() !!} {{trans('dashboard::common.elements')}}</small>
+                                            </div>
+                                            <div class="col-sm-4 text-right text-center-xs">
+                                                {!! $entries->render() !!}
+                                            </div>
+                                        </div>
+                                    </footer>
+                                @endif
                             </div>
                         </div>
-
                     </div>
+
+                </div>
 
             </section>
 
@@ -189,13 +182,16 @@
                                 <h4 class="modal-title">DELETE LOG FILE</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Are you sure you want to <span class="label label-danger">DELETE</span> this log file <span
+                                <p>Are you sure you want to <span class="label label-danger">DELETE</span> this log file
+                                    <span
                                             class="label label-primary">{{ $log->date }}</span> ?</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancel
+                                <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">
+                                    Cancel
                                 </button>
-                                <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">DELETE
+                                <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">
+                                    DELETE
                                     FILE
                                 </button>
                             </div>
@@ -207,7 +203,7 @@
         </div>
 
 
-        </div>
+    </div>
 
 
 

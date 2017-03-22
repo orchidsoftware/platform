@@ -1,7 +1,7 @@
 @if(isset($childs) && $childs)
 
 
-    <li role="presentation"  @if(isset($active)) class="{{active($active)}}" @endif>
+    <li role="presentation" @if(isset($active)) class="{{active($active)}}" @endif>
         <a href="#{{$slug}}" id="{{$slug}}-tab" role="tab" data-toggle="tab">
             <i class="{{$icon}}"></i>
             <span>{{$label}}</span>

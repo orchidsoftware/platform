@@ -14,7 +14,6 @@
         <input type="hidden" name="token" value="{{ $token }}">
 
 
-
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label class="col-md-4 control-label">E-Mail Address</label>
 
@@ -45,7 +44,6 @@
         </div>
 
 
-
         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
             <label class="col-md-4 control-label">Confirm Password</label>
             <div class="col-md-6">
@@ -60,9 +58,8 @@
         </div>
 
 
-
-
-        <button class="btn btn-primary m-t-md" type="submit">  <i class="fa fa-btn fa-refresh"></i> Reset Password</button>
+        <button class="btn btn-primary m-t-md" type="submit"><i class="fa fa-btn fa-refresh"></i> Reset Password
+        </button>
     </form>
 
 @endsection

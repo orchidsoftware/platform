@@ -4,7 +4,7 @@
         <label class="col-sm-2 control-label">Имя</label>
         <div class="col-sm-10">
             <input type="text" name="slug" required class="form-control"
-                  value="{{$adv->slug}}">
+                   value="{{$adv->slug}}">
         </div>
     </div>
 
@@ -13,7 +13,8 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Категория</label>
         <div class="col-sm-10">
-            <select required data-placeholder="Select Category" name="options[category]" class="chosen-select form-control">
+            <select required data-placeholder="Select Category" name="options[category]"
+                    class="chosen-select form-control">
                 @foreach($categories as $categoryCode => $categoryLabel)
                     <option value="{{$categoryCode}}"
                             @if($adv->getOption('category') == $categoryCode) selected @endif>
@@ -33,7 +34,7 @@
         <div class="col-sm-5">
             <div class="input-group">
                 <input required type='text' class="form-control datetimepicker"
-                        value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('startDate'))->toDateTimeString()}}"
+                       value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('startDate'))->toDateTimeString()}}"
                        placeholder=""
 
                        name="options[startDate]"
@@ -47,7 +48,7 @@
         <div class="col-sm-5">
             <div class="input-group">
                 <input required type='text' class="form-control datetimepicker"
-                        value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('endDate'))->toDateTimeString()}}"
+                       value="{{\Carbon\Carbon::createFromTimestamp($adv->getOption('endDate'))->toDateTimeString()}}"
                        placeholder=""
 
                        name="options[endDate]"
@@ -58,7 +59,6 @@
             </div>
         </div>
     </div>
-
 
 
 </div>

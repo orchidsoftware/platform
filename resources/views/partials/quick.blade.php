@@ -238,7 +238,6 @@
                         </div>
 
 
-
                     </div>
                     <!-- END Alert List !-->
                 </div>

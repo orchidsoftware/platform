@@ -66,7 +66,6 @@
                 </div>
 
 
-
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-sm-8">
@@ -79,8 +78,6 @@
                     </div>
                 </footer>
             </div>
-
-
 
 
         </div>

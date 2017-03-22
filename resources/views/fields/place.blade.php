@@ -23,11 +23,10 @@
     </div>
 
 
-        @if(isset($help))
-            <p class="help-block">{{$help}}</p>
-        @endif
+    @if(isset($help))
+        <p class="help-block">{{$help}}</p>
+    @endif
 </div>
-
 
 
 <!-- Modal -->
@@ -36,7 +35,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title">Google Maps</h4>
             </div>
             <div class="modal-body">
@@ -46,8 +46,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <div class="line line-dashed b-b line-lg"></div>
@@ -84,7 +82,7 @@
                     zoom: 12
                 });
 
-                 new google.maps.Marker({
+                new google.maps.Marker({
                     map: map,
                     position: myLatLng,
                     title: $('#place-{{str_slug($name)}}-{{$lang}}').val()
@@ -96,8 +94,6 @@
         });
 
     });
-
-
 
 
 </script>

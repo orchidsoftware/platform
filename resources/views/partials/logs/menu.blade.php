@@ -1,4 +1,3 @@
-
 <div class="panel-heading"><i class="fa fa-fw fa-flag"></i> Levels</div>
 <ul class="list-group">
     @foreach($log->menu() as $level => $item) {{-- $log->menu()  --}}

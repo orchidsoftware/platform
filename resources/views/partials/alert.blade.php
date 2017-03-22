@@ -3,7 +3,8 @@
         <button type="button"
                 class="close"
                 data-dismiss="alert"
-                aria-hidden="true">&times;</button>
+                aria-hidden="true">&times;
+        </button>
         {!! session('flash_notification.message') !!}
     </div>
 @endif

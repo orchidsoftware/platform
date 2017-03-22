@@ -13,7 +13,7 @@
            <i class="fa fa-fw fa-angle-right text"></i>
                   </span>
             <i class="{{$icon}}"></i>
-            <span class="text-ellipsis" title="{{$label}}" >{{$label}}</span>
+            <span class="text-ellipsis" title="{{$label}}">{{$label}}</span>
         </a>
         <ul class="dropdown-menu dropdown-full dropdown-lvl" aria-labelledby="dropdownMenu-{{$slug}}">
             {!! Dashboard::menu()->render($slug) !!}

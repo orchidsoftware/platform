@@ -3,7 +3,7 @@
     <li class="dd-item dd3-item"
         @foreach($item->getAttributes() as $name => $value)
         data-{{$name}}="{{$value}}"
-        @endforeach
+            @endforeach
     >
         <div class="dd-handle dd3-handle">Drag</div>
         <div class="dd3-content">{{$item->label}}</div>
@@ -11,9 +11,9 @@
 
         @if($item->children->count() > 0)
             <ol class="dd-list">
-               @include('dashboard::partials.menu.item',[
-                    'menu' => $item->children
-               ])
+                @include('dashboard::partials.menu.item',[
+                     'menu' => $item->children
+                ])
             </ol>
         @endif
 

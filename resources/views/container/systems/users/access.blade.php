@@ -18,7 +18,7 @@
         <div class="line line-dashed b-b line-lg"></div>
 
 
-    @foreach($permission as $name => $group)
+        @foreach($permission as $name => $group)
 
 
             <span class="text-muted">{{ $name or '' }}</span>

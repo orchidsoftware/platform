@@ -54,16 +54,17 @@
 
                                         <td>
                                             @if(!is_null($comment->post))
-                                            <a href="{{ route('dashboard.posts.type.edit',[
+                                                <a href="{{ route('dashboard.posts.type.edit',[
                                             $comment->post->type,
                                             $comment->post->id
                                         ]) }}">Перейти</a>
-                                                @else
+                                            @else
                                                 Запись удалена
                                             @endif
                                         </td>
 
-                                        <td><a href="{{ route('dashboard.systems.users.edit',$comment->user_id) }}">Перейти</a></td>
+                                        <td><a href="{{ route('dashboard.systems.users.edit',$comment->user_id) }}">Перейти</a>
+                                        </td>
                                         <td>{{ $comment->updated_at}}</td>
                                     </tr>
 

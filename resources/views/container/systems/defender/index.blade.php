@@ -16,33 +16,32 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
 
-                <div class="panel">
+            <div class="panel">
 
-                    <div class="panel-body row">
+                <div class="panel-body row">
 
 
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Путь к файлу</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($list as $value)
                                 <tr>
-                                    <th>Путь к файлу</th>
+                                    <td>{{$value}}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($list as $value)
-                                    <tr>
-                                        <td>{{$value}}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-
 
                 </div>
 
+
+            </div>
 
 
         </div>

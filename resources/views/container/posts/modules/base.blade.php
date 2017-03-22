@@ -3,8 +3,8 @@
     <div class="form-group">
         <label>ЧПУ</label>
         <input type='text' class="form-control"
-                   value="{{$post->slug or ''}}"
-                   placeholder="Уникальное название" name="slug">
+               value="{{$post->slug or ''}}"
+               placeholder="Уникальное название" name="slug">
     </div>
 
     <div class="line line-dashed b-b line-lg"></div>
@@ -37,62 +37,56 @@
 
     <div class="form-group">
         <label class="control-label">Показывать в категориях</label>
-        <select  name="category[]"  multiple data-placeholder="Select Category" class="chosen-select form-control">
-                @foreach($category as  $value)
+        <select name="category[]" multiple data-placeholder="Select Category" class="chosen-select form-control">
+            @foreach($category as  $value)
 
-                    <option value="{{$value->id}}"
-                     @if($value->active) selected @endif >
-                        {{$value->term->getContent('name')}}</option>
+                <option value="{{$value->id}}"
+                        @if($value->active) selected @endif >
+                    {{$value->term->getContent('name')}}</option>
 
-                @endforeach
+            @endforeach
         </select>
     </div>
 
     @if(!is_null($author))
-    <p>
-        Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
-    </p>
+        <p>
+            Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
+        </p>
 
     @endif
 
     @if(!is_null($post))
-    <p>
-        Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
-    </p>
+        <p>
+            Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
+        </p>
     @endif
 
     @if(count($locales) > 1)
-    @foreach($locales as $key => $locale)
-        <div class="line line-dashed b-b line-lg"></div>
-        <div class="form-group">
-            <label class="col-sm-6 control-label">{{$locale['native']}}</label>
-            <div class="col-sm-6">
+        @foreach($locales as $key => $locale)
+            <div class="line line-dashed b-b line-lg"></div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">{{$locale['native']}}</label>
+                <div class="col-sm-6">
 
-            @if(!is_null($post))
-                <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="checkbox" name="options[locale][{{$key}}]" value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
-                    <i></i>
-                </label>
-            @else
-                <label class="i-switch bg-info m-t-xs m-r">
-                    <input type="checkbox" name="options[locale][{{$key}}]" value="true" {{isset($locale['required']) ? $locale['required'] == 1 ? 'checked' : '' : '' }}>
-                    <i></i>
-                </label>
-            @endif
+                    @if(!is_null($post))
+                        <label class="i-switch bg-info m-t-xs m-r">
+                            <input type="checkbox" name="options[locale][{{$key}}]"
+                                   value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
+                            <i></i>
+                        </label>
+                    @else
+                        <label class="i-switch bg-info m-t-xs m-r">
+                            <input type="checkbox" name="options[locale][{{$key}}]"
+                                   value="true" {{isset($locale['required']) ? $locale['required'] == 1 ? 'checked' : '' : '' }}>
+                            <i></i>
+                        </label>
+                    @endif
 
 
+                </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
     @endif
-
-
-
-
-
-
-
-
 
 
 </div>

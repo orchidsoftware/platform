@@ -4,7 +4,7 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-    <input type="{{$type}}" class="form-control {{$class or ''}}"  id="field-{{$name}}"
+    <input type="{{$type}}" class="form-control {{$class or ''}}" id="field-{{$name}}"
 
 
            @if(isset($prefix))

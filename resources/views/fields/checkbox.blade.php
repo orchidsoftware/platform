@@ -5,30 +5,29 @@
     @endif
 
 
-        <div class="checkbox {{$class or ''}}">
-            <label class="i-checks">
+    <div class="checkbox {{$class or ''}}">
+        <label class="i-checks">
 
 
-                <input type="checkbox"
+            <input type="checkbox"
 
 
-
-                       value="{{$default or old($default)}}"
-
-
-                       @if(isset($value) && $value == $default) checked @endif
+                   value="{{$default or old($default)}}"
 
 
-                       @if(isset($prefix))
-                       name="{{$prefix}}[{{$lang}}]{{$name}}"
-                       @else
-                       name="{{$lang}}{{$name}}"
-                        @endif
+                   @if(isset($value) && $value == $default) checked @endif
 
 
-                ><i></i> {{$placeholder or ''}}
-            </label>
-        </div>
+                   @if(isset($prefix))
+                   name="{{$prefix}}[{{$lang}}]{{$name}}"
+                   @else
+                   name="{{$lang}}{{$name}}"
+                    @endif
+
+
+            ><i></i> {{$placeholder or ''}}
+        </label>
+    </div>
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

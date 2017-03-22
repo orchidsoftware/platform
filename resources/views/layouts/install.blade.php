@@ -30,8 +30,6 @@
 </div>
 
 
-
-
 <div class="container m-t-md m-b-md">
 
     <div class="col-md-8 col-md-offset-2 bg-white b box-shadow no-padder">
