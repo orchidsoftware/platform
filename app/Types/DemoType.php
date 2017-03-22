@@ -61,7 +61,6 @@ class DemoType extends Type
             'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Ключевые слова|help:SEO keywords',
             'robot'       => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Allow search bots to index page',
 
-
             'free' => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
 
         ];
