@@ -80,7 +80,8 @@
     }
   },
   "suggest": {
-    "tamayo/laravel-scout-elastic": "Required to use elasticsearch driver for scout."
+    "tamayo/laravel-scout-elastic": "Required to use elasticsearch driver for scout.",
+    "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
   "minimum-stability": "alpha",
   "prefer-stable": true
