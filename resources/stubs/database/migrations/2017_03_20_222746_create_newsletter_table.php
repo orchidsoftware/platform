@@ -15,7 +15,7 @@ class CreateNewsletterTable extends Migration
         Schema::create('newsletter', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unqiue();
-            $table->string('lang')->default(config_path('app.locale'));
+            $table->string('lang')->default(config('app.locale'));
             $table->timestamps();
         });
     }
