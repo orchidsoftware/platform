@@ -13,7 +13,7 @@ return [
     */
 
     'types' => [
-        \Orchid\Types\TestType::class,
+        \Orchid\Types\DemoType::class,
     ],
 
     /*
