@@ -2,7 +2,7 @@
 
 namespace Orchid\Core\Observers;
 
-class NewslettersObserver
+class NewsletterObserver
 {
     /**
      * @param Newsletter $newsletter
