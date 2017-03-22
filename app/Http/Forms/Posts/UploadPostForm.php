@@ -11,7 +11,7 @@ class UploadPostForm extends Form
     /**
      * @var string
      */
-    public $name = 'Загрузки';
+    public $name = 'Uploads';
 
     /**
      * Display Base Options.

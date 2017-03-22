@@ -9,7 +9,7 @@
         <div class="input-group">
             <input class="form-control {{$class or ''}}" id="place-{{str_slug($name)}}-{{$lang}}"
                    name="{{$prefix}}[{{$lang}}]{{$name}}[name]" value="{{$value['name'] or ''}}"
-                   placeholder="Адрес ...">
+                   placeholder="{{$placeholder or ''}}">
             <input type="hidden" id="lat-{{str_slug($name)}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lat]"
                    value="{{$value['lat'] or ''}}">
             <input type="hidden" id="lng-{{str_slug($name)}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lng]"

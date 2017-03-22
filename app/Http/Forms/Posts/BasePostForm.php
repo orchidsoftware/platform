@@ -14,7 +14,7 @@ class BasePostForm extends Form
     /**
      * @var string
      */
-    public $name = 'Общее';
+    public $name = 'General';
 
     /**
      * Display Base Options.
