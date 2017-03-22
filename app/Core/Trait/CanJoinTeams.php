@@ -8,13 +8,11 @@ use Laravel\Spark\Spark;
 trait CanJoinTeams
 {
     /**
-     * Determine if the user is a member of any teams.
-     *
-     * @return bool
+     * Get all of the teams that the user owns.
      */
-    public function hasTeams()
+    public function ownedTeams()
     {
-        return count($this->teams) > 0;
+        return $this->teams()->where('owner_id', $this->getKey());
     }
 
     /**
@@ -24,14 +22,6 @@ trait CanJoinTeams
     {
         return $this->belongsToMany(Team::class, 'user_teams', 'user_id', 'team_id'
         )->withPivot(['role'])->orderBy('name', 'asc');
-    }
-
-    /**
-     * Get all of the teams that the user owns.
-     */
-    public function ownedTeams()
-    {
-        return $this->teams()->where('owner_id', $this->getKey());
     }
 
     /**
@@ -51,19 +41,9 @@ trait CanJoinTeams
     }
 
     /**
-     * Accessor for the currentTeam method.
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function getCurrentTeamAttribute()
-    {
-        return $this->currentTeam();
-    }
-
-    /**
      * Get the team that user is currently viewing.
      *
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return \Illuminate\Database\Eloquent\Model|\Laravel\Spark\Teams\Team|null
      */
     public function currentTeam()
     {
@@ -76,6 +56,16 @@ trait CanJoinTeams
 
             return $currentTeam ?: $this->refreshCurrentTeam();
         }
+    }
+
+    /**
+     * Determine if the user is a member of any teams.
+     *
+     * @return bool
+     */
+    public function hasTeams()
+    {
+        return count($this->teams) > 0;
     }
 
     /**
@@ -95,7 +85,7 @@ trait CanJoinTeams
     /**
      * Refresh the current team for the user.
      *
-     * @return \Laravel\Spark\Teams\Team
+     * @return \Illuminate\Database\Eloquent\Model|\Laravel\Spark\Teams\Team
      */
     public function refreshCurrentTeam()
     {
@@ -103,6 +93,16 @@ trait CanJoinTeams
 
         $this->save();
 
+        return $this->currentTeam();
+    }
+
+    /**
+     * Accessor for the currentTeam method.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getCurrentTeamAttribute()
+    {
         return $this->currentTeam();
     }
 
