@@ -11,7 +11,7 @@ return [
     | An abstract pattern of behavior record
     |
     */
-    'install' => env('APP_INSTALL',false),
+    'install' => env('APP_INSTALL', false),
 
     /*
     |--------------------------------------------------------------------------
