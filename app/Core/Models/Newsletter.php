@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\App;
 
 class Newsletter extends Model
 {
-
     /**
      * @var array
      */
@@ -29,6 +28,7 @@ class Newsletter extends Model
 
     /**
      * @param Newsletter $newsletter
+     *
      * @return Newsletter
      */
     public function creating(Newsletter $newsletter)
@@ -36,7 +36,7 @@ class Newsletter extends Model
         if (is_null($newsletter->lang)) {
             $newsletter->lang = App::getLocale();
         }
+
         return $newsletter;
     }
-
 }
