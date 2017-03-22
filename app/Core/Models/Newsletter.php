@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\App;
 
 class Newsletter extends Model
 {
+
+    /**
+     * @var string
+     */
+    protected $table = 'newsletter';
+
     /**
      * @var array
      */

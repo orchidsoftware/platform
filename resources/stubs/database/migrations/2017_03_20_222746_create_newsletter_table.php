@@ -12,7 +12,7 @@ class CreateNewsletterTable extends Migration
      */
     public function up()
     {
-        Schema::create('newsletters', function (Blueprint $table) {
+        Schema::create('newsletter', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unqiue();
             $table->string('lang')->default(config_path('app.locale'));
@@ -27,6 +27,6 @@ class CreateNewsletterTable extends Migration
      */
     public function down()
     {
-        Schema::drop('newsletters');
+        Schema::drop('newsletter');
     }
 }
