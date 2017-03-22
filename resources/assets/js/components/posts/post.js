@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 $('.close-lang-content').click(function () {
     var local = $(this).data('local');
-    $('#post').find('a[data-target="#local-'+local+'"]').parent().remove();
+    $('#post').find('a[data-target="#local-' + local + '"]').parent().remove();
 
-    $('#post #local-'+local).remove();
+    $('#post #local-' + local).remove();
 });

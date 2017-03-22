@@ -1,6 +1,5 @@
-
 /*
-(function ($) {
-    $(".chosen-select").chosen();
-})(jQuery);
-    */
+ (function ($) {
+ $(".chosen-select").chosen();
+ })(jQuery);
+ */
