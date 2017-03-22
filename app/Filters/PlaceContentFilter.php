@@ -10,10 +10,10 @@ class PlaceContentFilter extends ContentFilter
     protected $chainBase = 'place';
 
     /**
-     * @param $model
-     * @param $values
-     * @param $prefix
-     * @param $chain
+     * @param        $model
+     * @param        $values
+     * @param        $prefix
+     * @param        $chain
      * @param string $method
      *
      * @return mixed
@@ -22,7 +22,7 @@ class PlaceContentFilter extends ContentFilter
     {
         $like_token = $values['like'];
 
-        $result = $model->$method($prefix.implode($chain, '->'), 'LIKE', "%$like_token%");
+        $result = $model->$method($prefix . implode($chain, '->'), 'LIKE', "%$like_token%");
 
         return $result;
     }

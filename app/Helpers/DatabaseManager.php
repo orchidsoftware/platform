@@ -23,6 +23,20 @@ class DatabaseManager
     }
 
     /**
+     * check database type. If SQLite, then create the database file.
+     */
+    private function sqlite()
+    {
+        if (DB::connection() instanceof SQLiteConnection) {
+            $database = DB::connection()->getDatabaseName();
+            if (!file_exists($database)) {
+                touch($database);
+                DB::reconnect(Config::get('database.default'));
+            }
+        }
+    }
+
+    /**
      * Run the migration and call the seeder.
      *
      * @return array
@@ -39,6 +53,22 @@ class DatabaseManager
     }
 
     /**
+     * Return a formatted error messages.
+     *
+     * @param        $message
+     * @param string $status
+     *
+     * @return array
+     */
+    private function response($message, $status = 'danger')
+    {
+        return [
+            'status' => $status,
+            'message' => $message,
+        ];
+    }
+
+    /**
      * Seed the database.
      *
      * @return array
@@ -52,35 +82,5 @@ class DatabaseManager
         }
 
         return $this->response(trans('messages.final.finished'), 'success');
-    }
-
-    /**
-     * Return a formatted error messages.
-     *
-     * @param $message
-     * @param string $status
-     *
-     * @return array
-     */
-    private function response($message, $status = 'danger')
-    {
-        return [
-            'status'  => $status,
-            'message' => $message,
-        ];
-    }
-
-    /**
-     * check database type. If SQLite, then create the database file.
-     */
-    private function sqlite()
-    {
-        if (DB::connection() instanceof SQLiteConnection) {
-            $database = DB::connection()->getDatabaseName();
-            if (!file_exists($database)) {
-                touch($database);
-                DB::reconnect(Config::get('database.default'));
-            }
-        }
     }
 }

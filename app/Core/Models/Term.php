@@ -27,7 +27,7 @@ class Term extends Model
      */
     protected $casts = [
         'content' => 'array',
-        'slug'    => 'string',
+        'slug' => 'string',
     ];
 
     /**
@@ -49,7 +49,7 @@ class Term extends Model
     }
 
     /**
-     * @param $field
+     * @param      $field
      * @param null $lang
      *
      * @return mixed|null

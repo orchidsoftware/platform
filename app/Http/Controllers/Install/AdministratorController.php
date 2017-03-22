@@ -26,8 +26,8 @@ class AdministratorController extends Controller
     public function create(Request $request)
     {
         $exitCode = Artisan::call('make:admin', [
-            'name'     => $request->input('name'),
-            'email'    => $request->input('email'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
             'password' => $request->input('password'),
         ]);
 

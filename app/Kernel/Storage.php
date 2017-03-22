@@ -5,14 +5,13 @@ namespace Orchid\Kernel;
 class Storage
 {
     /**
-     * @var null
-     */
-    protected $configField = null;
-
-    /**
      * @var
      */
     public $container;
+    /**
+     * @var null
+     */
+    protected $configField = null;
 
     /**
      * TypeStorage constructor.

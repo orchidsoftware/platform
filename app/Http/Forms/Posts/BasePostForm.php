@@ -26,7 +26,7 @@ class BasePostForm extends Form
      *
      * @internal param null $type
      */
-    public function get(Post $type = null, Post $post = null) : View
+    public function get(Post $type = null, Post $post = null): View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();
@@ -42,11 +42,11 @@ class BasePostForm extends Form
         });
 
         return view('dashboard::container.posts.modules.base', [
-            'author'          => (is_null($post)) ? $post : $post->getUser(),
-            'post'            => $post,
-            'language'        => App::getLocale(),
-            'locales'         => config('content.locales'),
-            'category'        => $category,
+            'author' => (is_null($post)) ? $post : $post->getUser(),
+            'post' => $post,
+            'language' => App::getLocale(),
+            'locales' => config('content.locales'),
+            'category' => $category,
         ]);
     }
 

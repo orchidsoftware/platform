@@ -16,10 +16,10 @@ abstract class ApiController extends Controller
      * @var array Active filters set
      */
     public $filters = [
-        'eq'      => WhereFilters::class,
-        'count'   => LimitFilters::class,
+        'eq' => WhereFilters::class,
+        'count' => LimitFilters::class,
         'between' => BetweenFilter::class,
-        'search'  => LikeFilters::class,
+        'search' => LikeFilters::class,
         'content' => ContentFilters::class,
     ];
 

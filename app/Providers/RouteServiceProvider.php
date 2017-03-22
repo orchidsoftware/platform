@@ -44,20 +44,6 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the routes for the application.
-     *
-     * @return void
-     */
-    public function map()
-    {
-        //$router->middleware('dashboard', AccessMiddleware::class);
-
-        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
-            $this->loadRoutesFrom($file);
-        }
-    }
-
-    /**
      * Route binding.
      */
     public function binding()
@@ -87,5 +73,19 @@ class RouteServiceProvider extends ServiceProvider
 
             return Post::where('type', 'advertising')->where('slug', $value)->firstOrFail();
         });
+    }
+
+    /**
+     * Define the routes for the application.
+     *
+     * @return void
+     */
+    public function map()
+    {
+        //$router->middleware('dashboard', AccessMiddleware::class);
+
+        foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
+            $this->loadRoutesFrom($file);
+        }
     }
 }

@@ -16,17 +16,17 @@ class NameContentFilter extends ContentFilter
     protected $chainBase = 'name';
 
     /**
-     * @param $model
-     * @param $values
-     * @param $prefix
-     * @param $chain
+     * @param        $model
+     * @param        $values
+     * @param        $prefix
+     * @param        $chain
      * @param string $method
      *
      * @return mixed
      */
     public function like($model, $values, $prefix, $chain, $method = 'where')
     {
-        $result = $model->$method($prefix.$chain[0], 'LIKE', "%$values%");
+        $result = $model->$method($prefix . $chain[0], 'LIKE', "%$values%");
 
         return $result;
     }

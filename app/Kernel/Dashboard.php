@@ -19,26 +19,22 @@ class Dashboard
      * Orchid Version.
      */
     const VERSION = '0.0.1';
-
-    /**
-     * @var
-     */
-    public $menu = null;
-
-    /**
-     * Permission for applications.
-     *
-     * @var null
-     */
-    public $permission = null;
-
     /**
      * Dashboard configuration options.
      *
      * @var array
      */
     protected static $options = [];
-
+    /**
+     * @var
+     */
+    public $menu = null;
+    /**
+     * Permission for applications.
+     *
+     * @var null
+     */
+    public $permission = null;
     /**
      * Content type for applications.
      *
@@ -63,9 +59,47 @@ class Dashboard
     }
 
     /**
+     * Configure Dashboard application.
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public static function configure(array $options)
+    {
+        static::$options = $options;
+    }
+
+    /**
+     * Get a Dashboard configuration option.
+     *
+     * @param string $key
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public static function option($key, $default)
+    {
+        return array_get(static::$options, $key, $default);
+    }
+
+    /**
+     * Get the class name for a given Dashboard model.
+     *
+     * @param string $key
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public static function model($key, $default = null)
+    {
+        return array_get(static::$options, 'models.' . $key, $default);
+    }
+
+    /**
      * @return null|Menu
      */
-    public function menu() : Menu
+    public function menu(): Menu
     {
         return $this->menu;
     }
@@ -73,7 +107,7 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission() : Collection
+    public function getPermission(): Collection
     {
         return $this->permission->get();
     }
@@ -115,7 +149,7 @@ class Dashboard
      *
      * @return array
      */
-    public function types($sort = false) : array
+    public function types($sort = false): array
     {
         return $this->types->all($sort);
     }
@@ -123,7 +157,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public function fields() : array
+    public function fields(): array
     {
         return $this->fields->all();
     }
@@ -131,46 +165,8 @@ class Dashboard
     /**
      * @return RouteMenu
      */
-    public function routeMenu() : RouteMenu
+    public function routeMenu(): RouteMenu
     {
         return $this->routeMenu;
-    }
-
-    /**
-     * Configure Dashboard application.
-     *
-     * @param array $options
-     *
-     * @return void
-     */
-    public static function configure(array $options)
-    {
-        static::$options = $options;
-    }
-
-    /**
-     * Get a Dashboard configuration option.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public static function option($key, $default)
-    {
-        return array_get(static::$options, $key, $default);
-    }
-
-    /**
-     * Get the class name for a given Dashboard model.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public static function model($key, $default = null)
-    {
-        return array_get(static::$options, 'models.'.$key, $default);
     }
 }

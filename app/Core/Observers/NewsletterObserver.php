@@ -2,6 +2,9 @@
 
 namespace Orchid\Core\Observers;
 
+use Illuminate\Support\Facades\App;
+use Orchid\Core\Models\Newsletter;
+
 class NewsletterObserver
 {
     /**

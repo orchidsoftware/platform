@@ -33,7 +33,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function index(Post $post) : View
+    public function index(Post $post): View
     {
         return view('dashboard::container.posts.main', $post->getTypeObject()->generateGrid());
     }
@@ -43,12 +43,12 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function create($post) : View
+    public function create($post): View
     {
         $type = $post->getTypeObject();
 
         return view('dashboard::container.posts.create', [
-            'type'    => $type,
+            'type' => $type,
             'locales' => $this->locales->where('required', true),
         ]);
     }
@@ -105,20 +105,20 @@ class PostController extends Controller
      *
      * @internal param Request $request
      */
-    public function edit(Post $type, Post $post) : View
+    public function edit(Post $type, Post $post): View
     {
         $type = $type->getTypeObject();
 
         $locales = $this->locales->map(function ($value, $key) use ($post) {
-            $value['required'] = (bool) $post->checkLanguage($key);
+            $value['required'] = (bool)$post->checkLanguage($key);
 
             return $value;
         })->where('required', true);
 
         return view('dashboard::container.posts.edit', [
-            'type'    => $type,
+            'type' => $type,
             'locales' => $locales,
-            'post'    => $post,
+            'post' => $post,
         ]);
     }
 
@@ -129,7 +129,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Post $type, Post $post) : RedirectResponse
+    public function update(Request $request, Post $type, Post $post): RedirectResponse
     {
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
@@ -175,7 +175,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Post $type, Post $post) : RedirectResponse
+    public function destroy(Post $type, Post $post): RedirectResponse
     {
         $post->delete();
         Alert::success('Message');

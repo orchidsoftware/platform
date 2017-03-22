@@ -69,10 +69,10 @@ class PostgresWrapper implements WrapperContract
     {
         return array_map(function ($column) {
             return [
-                'Field'   => $column->column_name,
-                'Type'    => $column->data_type,
-                'Null'    => $column->is_nullable,
-                'Key'     => $column->ordinal_position,
+                'Field' => $column->column_name,
+                'Type' => $column->data_type,
+                'Null' => $column->is_nullable,
+                'Key' => $column->ordinal_position,
                 'Default' => $column->column_default,
 //                'Extra' => $column->Extra
             ];

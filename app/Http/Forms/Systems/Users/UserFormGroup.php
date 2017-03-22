@@ -19,10 +19,10 @@ class UserFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
-            'name'        => 'Пользователи',
+            'name' => 'Пользователи',
             'description' => 'Описание раздела пользователи',
         ];
     }
@@ -30,7 +30,7 @@ class UserFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function main() : View
+    public function main(): View
     {
         $user = new User();
         $users = $user->select('id', 'name', 'email', 'created_at', 'updated_at')->paginate();

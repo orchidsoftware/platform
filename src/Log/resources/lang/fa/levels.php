@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'all'       => 'همه',
+    'all' => 'همه',
     'emergency' => 'اورژانسی',
-    'alert'     => 'اخطار',
-    'critical'  => 'بحرانی',
-    'error'     => 'خطا',
-    'warning'   => 'هشدار',
-    'notice'    => 'اعلان',
-    'info'      => 'اطلاعات',
-    'debug'     => 'دیباگ',
+    'alert' => 'اخطار',
+    'critical' => 'بحرانی',
+    'error' => 'خطا',
+    'warning' => 'هشدار',
+    'notice' => 'اعلان',
+    'info' => 'اطلاعات',
+    'debug' => 'دیباگ',
 ];

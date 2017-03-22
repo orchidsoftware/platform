@@ -10,21 +10,6 @@ use Orchid\Http\Controllers\ApiController;
 class PostApiController extends ApiController
 {
     /**
-     * @param $type
-     * @param $fields
-     *
-     * @return mixed
-     */
-    public function index($type, $fields)
-    {
-        $builder = $type->filters($fields);
-
-        $posts = $builder->get();
-
-        return response()->json($posts);
-    }
-
-    /**
      * @param Request $request
      *
      * @return mixed
@@ -64,17 +49,6 @@ class PostApiController extends ApiController
     }
 
     /**
-     * @param Post    $post
-     * @param Request $request
-     *
-     * @return mixed
-     */
-    public function show(Post $post, Request $request)
-    {
-        return $this->index($post, $request);
-    }
-
-    /**
      * @param Request $request
      *
      * @return null
@@ -87,7 +61,8 @@ class PostApiController extends ApiController
         switch ($typeIndex) {
             case 'post': {
                 $model = Post::class;
-            } break;
+            }
+                break;
             default: {
                 $type = Dashboard::getTypes()->find($typeIndex);
                 $model = $type->model;
@@ -95,5 +70,31 @@ class PostApiController extends ApiController
         }
 
         return $model;
+    }
+
+    /**
+     * @param Post    $post
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function show(Post $post, Request $request)
+    {
+        return $this->index($post, $request);
+    }
+
+    /**
+     * @param $type
+     * @param $fields
+     *
+     * @return mixed
+     */
+    public function index($type, $fields)
+    {
+        $builder = $type->filters($fields);
+
+        $posts = $builder->get();
+
+        return response()->json($posts);
     }
 }

@@ -25,7 +25,7 @@ class DefenderController extends Controller
         $list = $list ? json_decode(Storage::get($list)) : [];
 
         return view('dashboard::container.systems.defender.index', [
-           'list' => $list,
+            'list' => $list,
         ]);
     }
 }

@@ -28,7 +28,7 @@ class AdvertisingMainForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(Post $post = null) : View
+    public function get(Post $post = null): View
     {
         if (is_null($post)) {
             $post = new Post();
@@ -36,7 +36,7 @@ class AdvertisingMainForm extends Form
         $adsCategory = collect(config('content.advertising'));
 
         return view('dashboard::container.marketing.advertising.info', [
-            'adv'        => $post,
+            'adv' => $post,
             'categories' => $adsCategory,
         ]);
     }

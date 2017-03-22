@@ -22,8 +22,8 @@ abstract class Filters
     /**
      * Filters constructor.
      *
-     * @param $model
-     * @param $fieldName
+     * @param      $model
+     * @param      $fieldName
      * @param null $parameters
      */
     public function __construct($model, $fieldName, $parameters = null)

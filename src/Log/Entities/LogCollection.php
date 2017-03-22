@@ -163,7 +163,7 @@ class LogCollection extends Collection
      */
     public function total($level = 'all')
     {
-        return (int) $this->sum(function (Log $log) use ($level) {
+        return (int)$this->sum(function (Log $log) use ($level) {
             return $log->entries($level)->count();
         });
     }

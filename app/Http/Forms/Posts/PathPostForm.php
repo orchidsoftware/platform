@@ -23,7 +23,7 @@ class PathPostForm extends Form
      *
      * @internal param null $type
      */
-    public function get(Post $type = null, Post $post = null) : View
+    public function get(Post $type = null, Post $post = null): View
     {
         $route = [];
 

@@ -19,10 +19,10 @@ class AdvertisingFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
-            'name'        => 'Реклама',
+            'name' => 'Реклама',
             'description' => 'Управление контентом рекламы и его размещением',
         ];
     }
@@ -30,7 +30,7 @@ class AdvertisingFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function main() : View
+    public function main(): View
     {
         return view('dashboard::container.marketing.advertising.grid', [
             'ads' => Post::type('advertising')->paginate(),

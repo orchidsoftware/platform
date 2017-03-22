@@ -25,10 +25,10 @@ class CategoryDescForm extends Form
     /**
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
+            'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
         ];
     }
 
@@ -37,16 +37,16 @@ class CategoryDescForm extends Form
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function get(TermTaxonomy $termTaxonomy = null) : View
+    public function get(TermTaxonomy $termTaxonomy = null): View
     {
         $termTaxonomy = $termTaxonomy ?: new $this->model([
             'id' => 0,
         ]);
 
         return view('dashboard::container.tools.category.desc', [
-            'language'      => App::getLocale(),
-            'termTaxonomy'  => $termTaxonomy,
-            'locales'       => config('content.locales'),
+            'language' => App::getLocale(),
+            'termTaxonomy' => $termTaxonomy,
+            'locales' => config('content.locales'),
         ]);
     }
 

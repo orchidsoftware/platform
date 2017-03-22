@@ -28,7 +28,7 @@ class AdvertisingCodeForm extends Form
      *
      * @internal param $item
      */
-    public function get(Post $adv = null) : View
+    public function get(Post $adv = null): View
     {
         if (is_null($adv)) {
             $adv = new Post();
@@ -37,10 +37,10 @@ class AdvertisingCodeForm extends Form
         $config = collect(config('content'));
 
         return view('dashboard::container.marketing.advertising.code', [
-            'adv'           => $adv,
-            'categories'    => $config->get('advertising', []),
-            'language'      => App::getLocale(),
-            'locales'       => $config->get('locales', []),
+            'adv' => $adv,
+            'categories' => $config->get('advertising', []),
+            'language' => App::getLocale(),
+            'locales' => $config->get('locales', []),
         ]);
     }
 }

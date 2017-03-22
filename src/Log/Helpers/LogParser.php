@@ -52,7 +52,7 @@ class LogParser
      */
     private static function parseRawData($raw)
     {
-        $pattern = '/\['.REGEX_DATE_PATTERN.' '.REGEX_TIME_PATTERN.'\].*/';
+        $pattern = '/\[' . REGEX_DATE_PATTERN . ' ' . REGEX_TIME_PATTERN . '\].*/';
         preg_match_all($pattern, $raw, $headings);
         $data = preg_split($pattern, $raw);
 
@@ -76,9 +76,9 @@ class LogParser
         foreach (LogLevels::all() as $level) {
             if (self::hasLogLevel($heading[$key], $level)) {
                 self::$parsed[] = [
-                    'level'  => $level,
+                    'level' => $level,
                     'header' => $heading[$key],
-                    'stack'  => $data[$key],
+                    'stack' => $data[$key],
                 ];
             }
         }
@@ -94,6 +94,6 @@ class LogParser
      */
     private static function hasLogLevel($heading, $level)
     {
-        return Str::contains(strtolower($heading), strtolower('.'.$level));
+        return Str::contains(strtolower($heading), strtolower('.' . $level));
     }
 }

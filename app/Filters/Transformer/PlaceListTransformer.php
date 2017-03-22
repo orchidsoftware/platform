@@ -37,10 +37,10 @@ class PlaceListTransformer extends Transformer
             $result = [
                 'id' => $item['id'],
 
-                'name'    => $content_locale['name'],
+                'name' => $content_locale['name'],
                 'address' => $content_locale['place']['name'],
-                'lat'     => $content_locale['place']['lat'],
-                'lng'     => $content_locale['place']['lng'],
+                'lat' => $content_locale['place']['lat'],
+                'lng' => $content_locale['place']['lng'],
 
                 'locales' => [],
             ];

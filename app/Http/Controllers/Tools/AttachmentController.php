@@ -54,19 +54,6 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @param Request $request
-     */
-    public function sort(Request $request)
-    {
-        $files = $request->get('files', []);
-        foreach ($files as $id => $sort) {
-            $attachment = Attachment::find($id);
-            $attachment->sort = $sort;
-            $attachment->save();
-        }
-    }
-
-    /**
      * @param UploadedFile $image
      *
      * @return static
@@ -85,81 +72,20 @@ class AttachmentController extends Controller
             );
         }
 
-        $name = sha1($this->time.$image->getClientOriginalName());
+        $name = sha1($this->time . $image->getClientOriginalName());
 
-        $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name.'.'.$image->getClientOriginalExtension());
+        $fullPath = storage_path('app/public/' . '/' . $this->date . '/' . $name . '.' . $image->getClientOriginalExtension());
         Image::make($image)->save($fullPath, 100);
 
         return Attachment::create([
-            'name'          => $name,
+            'name' => $name,
             'original_name' => $image->getClientOriginalName(),
-            'mime'          => $image->getMimeType(),
-            'extension'     => $image->getClientOriginalExtension(),
-            'size'          => $image->getClientSize(),
-            'path'          => $this->date.'/',
-            'user_id'       => Auth::user()->id,
+            'mime' => $image->getMimeType(),
+            'extension' => $image->getClientOriginalExtension(),
+            'size' => $image->getClientSize(),
+            'path' => $this->date . '/',
+            'user_id' => Auth::user()->id,
         ]);
-    }
-
-    /**
-     * @param UploadedFile $file
-     *
-     * @return UploadedFile|static
-     */
-    protected function saveFile(UploadedFile $file)
-    {
-        Storage::disk('public')->makeDirectory($this->date);
-
-        $hashName = sha1($this->time.$file->getClientOriginalName());
-        $name = $hashName.'.'.$file->getClientOriginalExtension();
-
-        $fullPath = storage_path('app/public/'.'/'.$this->date.'/');
-
-        $file->move($fullPath, $name);
-
-        try {
-            $mimeType = $file->getMimeType();
-        } catch (\Exception $exception) {
-            $mimeType = 'unknown';
-        }
-
-        return Attachment::create([
-            'name'          => $hashName,
-            'original_name' => $file->getClientOriginalName(),
-            'mime'          => $mimeType,
-            'extension'     => $file->getClientOriginalExtension(),
-            'size'          => $file->getClientSize(),
-            'path'          => $this->date.'/',
-            'user_id'       => Auth::user()->id,
-        ]);
-    }
-
-    /**
-     * Delete files.
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpResponse
-     */
-    public function destroy($id)
-    {
-        $file = Attachment::find($id);
-        Storage::disk('public')->delete($file->path.$file->name);
-        $file->delete();
-
-        return response(200);
-    }
-
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getFilesPost($id)
-    {
-        $files = Attachment::where('post_id', $id)->get();
-
-        return response()->json($files);
     }
 
     /**
@@ -179,14 +105,88 @@ class AttachmentController extends Controller
         $quality = 100
     ) {
         if (!is_null($name)) {
-            $name = '_'.$name;
+            $name = '_' . $name;
         }
 
-        $name = sha1($this->time.$image->getClientOriginalName()).$name.'.'.$image->getClientOriginalExtension();
-        $fullPath = storage_path('app/public/'.'/'.$this->date.'/'.$name);
+        $name = sha1($this->time . $image->getClientOriginalName()) . $name . '.' . $image->getClientOriginalExtension();
+        $fullPath = storage_path('app/public/' . '/' . $this->date . '/' . $name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save($fullPath, $quality);
+    }
+
+    /**
+     * @param UploadedFile $file
+     *
+     * @return UploadedFile|static
+     */
+    protected function saveFile(UploadedFile $file)
+    {
+        Storage::disk('public')->makeDirectory($this->date);
+
+        $hashName = sha1($this->time . $file->getClientOriginalName());
+        $name = $hashName . '.' . $file->getClientOriginalExtension();
+
+        $fullPath = storage_path('app/public/' . '/' . $this->date . '/');
+
+        $file->move($fullPath, $name);
+
+        try {
+            $mimeType = $file->getMimeType();
+        } catch (\Exception $exception) {
+            $mimeType = 'unknown';
+        }
+
+        return Attachment::create([
+            'name' => $hashName,
+            'original_name' => $file->getClientOriginalName(),
+            'mime' => $mimeType,
+            'extension' => $file->getClientOriginalExtension(),
+            'size' => $file->getClientSize(),
+            'path' => $this->date . '/',
+            'user_id' => Auth::user()->id,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function sort(Request $request)
+    {
+        $files = $request->get('files', []);
+        foreach ($files as $id => $sort) {
+            $attachment = Attachment::find($id);
+            $attachment->sort = $sort;
+            $attachment->save();
+        }
+    }
+
+    /**
+     * Delete files.
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpResponse
+     */
+    public function destroy($id)
+    {
+        $file = Attachment::find($id);
+        Storage::disk('public')->delete($file->path . $file->name);
+        $file->delete();
+
+        return response(200);
+    }
+
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFilesPost($id)
+    {
+        $files = Attachment::where('post_id', $id)->get();
+
+        return response()->json($files);
     }
 }

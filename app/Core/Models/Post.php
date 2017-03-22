@@ -45,8 +45,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type'    => 'string',
-        'slug'    => 'string',
+        'type' => 'string',
+        'slug' => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -132,7 +132,7 @@ class Post extends Model
     }
 
     /**
-     * @param $field
+     * @param      $field
      * @param null $lang
      *
      * @return mixed|null
@@ -180,7 +180,7 @@ class Post extends Model
     }
 
     /**
-     * @param $key
+     * @param      $key
      * @param null $default
      *
      * @return null
@@ -252,7 +252,8 @@ class Post extends Model
     public function attachment($type = null)
     {
         if (!is_null($type)) {
-            return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension', Attachment::$types[$type]);
+            return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension',
+                Attachment::$types[$type]);
         }
 
         return $this->hasMany(Dashboard::model('attachment', Attachment::class));

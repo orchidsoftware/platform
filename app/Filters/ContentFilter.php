@@ -24,7 +24,7 @@ class ContentFilter
     /**
      * ContentFilter constructor.
      *
-     * @param $model
+     * @param        $model
      * @param string $column
      * @param null   $parameters
      */

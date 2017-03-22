@@ -53,7 +53,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerDatabase()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/stubs/database/migrations/' => database_path('migrations'),
+            DASHBOARD_PATH . '/resources/stubs/database/migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -62,7 +62,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(DASHBOARD_PATH.'/resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(DASHBOARD_PATH . '/resources/lang', 'dashboard');
     }
 
     /**
@@ -71,11 +71,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/stubs/config/content.php' => config_path('content.php'),
+            DASHBOARD_PATH . '/resources/stubs/config/content.php' => config_path('content.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH.'/resources/stubs/config/content.php', 'content'
+            DASHBOARD_PATH . '/resources/stubs/config/content.php', 'content'
         );
     }
 
@@ -85,17 +85,27 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/vendor/orchid/dashboard';
+            return $path . '/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            DASHBOARD_PATH.'/resources/views',
+            DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
     }
 
     protected function registerPublic()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/assets/dist/' => public_path('orchid'),
+            DASHBOARD_PATH . '/resources/assets/dist/' => public_path('orchid'),
         ], 'public');
+    }
+
+    /**
+     * @param Router $route
+     */
+    public function macrosRegister(Router $route)
+    {
+        foreach ($this->routeMacros as $macro) {
+            (new $macro())->register($route);
+        }
     }
 
     public function registerProviders()
@@ -138,17 +148,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function register()
     {
         if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
-        }
-    }
-
-    /**
-     * @param Router $route
-     */
-    public function macrosRegister(Router $route)
-    {
-        foreach ($this->routeMacros as $macro) {
-            (new $macro())->register($route);
+            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
         }
     }
 }

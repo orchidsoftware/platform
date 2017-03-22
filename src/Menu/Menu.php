@@ -123,8 +123,8 @@ class Menu
         $this->item = [
             'location' => $this->location,
             'template' => $this->template,
-            'arg'      => $this->arg,
-            'sort'     => $this->sort,
+            'arg' => $this->arg,
+            'sort' => $this->sort,
         ];
 
         $this->container->push($this->item);

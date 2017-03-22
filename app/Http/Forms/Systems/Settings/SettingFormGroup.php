@@ -22,10 +22,10 @@ class SettingFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
-            'name'        => trans('dashboard::systems/settings.Settings'),
+            'name' => trans('dashboard::systems/settings.Settings'),
             'description' => trans('dashboard::systems/settings.Global system settings'),
         ];
     }

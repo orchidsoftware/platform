@@ -29,7 +29,7 @@ class AdvertisingWidget extends Widget
      */
     public function run($key = '')
     {
-        $post = Post::type('advertising')->where('options->lang->'.App::getLocale())
+        $post = Post::type('advertising')->where('options->lang->' . App::getLocale())
             ->where('options->category', $key)
             ->where('options->startDate', '<', $this->date->timestamp)
             ->where('options->endDate', '>', $this->date->timestamp)

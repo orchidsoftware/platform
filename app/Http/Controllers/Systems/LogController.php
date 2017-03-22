@@ -53,6 +53,26 @@ class LogController extends Controller
     }
 
     /**
+     * Paginate logs.
+     *
+     * @param array                    $data
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    protected function paginate(array $data, Request $request)
+    {
+        $page = $request->get('page', 1);
+        $offset = ($page * $this->perPage) - $this->perPage;
+        $items = array_slice($data, $offset, $this->perPage, true);
+        $rows = new LengthAwarePaginator($items, count($data), $this->perPage, $page);
+
+        $rows->setPath($request->url());
+
+        return $rows;
+    }
+
+    /**
      * Show the dashboard.
      *
      * @return \Illuminate\View\View
@@ -78,11 +98,11 @@ class LogController extends Controller
         $totals = $stats->totals()->all();
 
         return json_encode([
-            'labels'   => Arr::pluck($totals, 'label'),
+            'labels' => Arr::pluck($totals, 'label'),
             'datasets' => [
                 [
-                    'data'                 => Arr::pluck($totals, 'value'),
-                    'backgroundColor'      => Arr::pluck($totals, 'color'),
+                    'data' => Arr::pluck($totals, 'value'),
+                    'backgroundColor' => Arr::pluck($totals, 'color'),
                     'hoverBackgroundColor' => Arr::pluck($totals, 'highlight'),
                 ],
             ],
@@ -104,33 +124,13 @@ class LogController extends Controller
 
         foreach ($total as $level => $count) {
             $percents[$level] = [
-                'name'    => $names[$level],
-                'count'   => $count,
+                'name' => $names[$level],
+                'count' => $count,
                 'percent' => $all ? round(($count / $all) * 100, 2) : 0,
             ];
         }
 
         return $percents;
-    }
-
-    /**
-     * Paginate logs.
-     *
-     * @param array                    $data
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Pagination\LengthAwarePaginator
-     */
-    protected function paginate(array $data, Request $request)
-    {
-        $page = $request->get('page', 1);
-        $offset = ($page * $this->perPage) - $this->perPage;
-        $items = array_slice($data, $offset, $this->perPage, true);
-        $rows = new LengthAwarePaginator($items, count($data), $this->perPage, $page);
-
-        $rows->setPath($request->url());
-
-        return $rows;
     }
 
     /**

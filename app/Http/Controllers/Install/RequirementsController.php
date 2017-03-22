@@ -28,12 +28,12 @@ class RequirementsController extends Controller
     public function requirements()
     {
         $requirements = $this->requirements->check([
-                'openssl',
-                'pdo',
-                'mbstring',
-                'tokenizer',
+            'openssl',
+            'pdo',
+            'mbstring',
+            'tokenizer',
             'zip',
-            ]);
+        ]);
 
         return view('dashboard::container.install.requirements', compact('requirements'));
     }

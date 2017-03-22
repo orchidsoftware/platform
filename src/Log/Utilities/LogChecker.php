@@ -103,7 +103,7 @@ class LogChecker implements LogCheckerContract
 
         $this->messages = [
             'handler' => '',
-            'files'   => [],
+            'files' => [],
         ];
         $this->files = [];
 
@@ -218,7 +218,7 @@ class LogChecker implements LogCheckerContract
     {
         $pattern = '/laravel-(\d){4}-(\d){2}-(\d){2}.log/';
 
-        if ((bool) preg_match($pattern, $file, $matches) === false) {
+        if ((bool)preg_match($pattern, $file, $matches) === false) {
             return true;
         }
 
@@ -269,12 +269,12 @@ class LogChecker implements LogCheckerContract
         $this->refresh();
 
         return $this->isDaily() ? [
-            'status'  => 'success',
-            'header'  => 'Application requirements fulfilled.',
+            'status' => 'success',
+            'header' => 'Application requirements fulfilled.',
             'message' => 'Are you ready to rock ?',
         ] : [
-            'status'  => 'failed',
-            'header'  => 'Application requirements failed.',
+            'status' => 'failed',
+            'header' => 'Application requirements failed.',
             'message' => $this->messages['handler'],
         ];
     }

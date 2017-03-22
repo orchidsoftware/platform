@@ -18,15 +18,15 @@ class LogStyler implements LogStylerContract
      * @var array
      */
     protected $icons = [
-        'all'       => 'fa fa-fw fa-list',
+        'all' => 'fa fa-fw fa-list',
         'emergency' => 'fa fa-fw fa-bug',
-        'alert'     => 'fa fa-fw fa-bullhorn',
-        'critical'  => 'fa fa-fw fa-heartbeat',
-        'error'     => 'fa fa-fw fa-times-circle',
-        'warning'   => 'fa fa-fw fa-exclamation-triangle',
-        'notice'    => 'fa fa-fw fa-exclamation-circle',
-        'info'      => 'fa fa-fw fa-info-circle',
-        'debug'     => 'fa fa-fw fa-life-ring',
+        'alert' => 'fa fa-fw fa-bullhorn',
+        'critical' => 'fa fa-fw fa-heartbeat',
+        'error' => 'fa fa-fw fa-times-circle',
+        'warning' => 'fa fa-fw fa-exclamation-triangle',
+        'notice' => 'fa fa-fw fa-exclamation-circle',
+        'info' => 'fa fa-fw fa-info-circle',
+        'debug' => 'fa fa-fw fa-life-ring',
     ];
 
     /**

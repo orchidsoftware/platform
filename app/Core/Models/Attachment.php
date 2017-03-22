@@ -10,20 +10,6 @@ use Orchid\Facades\Dashboard;
 class Attachment extends Model
 {
     /**
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'original_name',
-        'mime',
-        'extension',
-        'size',
-        'path',
-        'user_id',
-        'post_id',
-    ];
-
-    /**
      * Attachment types.
      *
      * @var array
@@ -52,11 +38,24 @@ class Attachment extends Model
             'svg',
         ],
     ];
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'original_name',
+        'mime',
+        'extension',
+        'size',
+        'path',
+        'user_id',
+        'post_id',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model('user', User::class));
     }
@@ -64,7 +63,7 @@ class Attachment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post() : BelongsTo
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model('post', Post::class));
     }
@@ -74,7 +73,7 @@ class Attachment extends Model
      *
      * @return Attachment
      */
-    public function type($type) : Attachment
+    public function type($type): Attachment
     {
         if (array_key_exists($type, $this->types)) {
             return $this->whereIn('extension', $this->types[$type]);
@@ -92,13 +91,13 @@ class Attachment extends Model
     public function url($size = '', $prefix = 'public')
     {
         if (!empty($size)) {
-            $size = '_'.$size;
+            $size = '_' . $size;
 
             if (!Storage::disk($prefix)->exists(
-                $this->path.
-                $this->name.
-                $size.
-                '.'.
+                $this->path .
+                $this->name .
+                $size .
+                '.' .
                 $this->extension
             )
             ) {
@@ -107,10 +106,10 @@ class Attachment extends Model
         }
 
         return Storage::disk($prefix)->url(
-            $this->path.
-            $this->name.
-            $size.
-            '.'.
+            $this->path .
+            $this->name .
+            $size .
+            '.' .
             $this->extension
         );
     }

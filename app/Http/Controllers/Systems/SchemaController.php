@@ -74,8 +74,8 @@ class SchemaController extends Controller
 
         return view('dashboard::container.systems.schema.show', [
             'columns' => $columns,
-            'rows'    => $rows,
-            'table'   => $table,
+            'rows' => $rows,
+            'table' => $table,
         ]);
     }
 }

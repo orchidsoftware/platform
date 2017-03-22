@@ -74,7 +74,7 @@ class LogEntryCollection extends Collection
 
         array_walk($tree, function (&$count, $level) use ($trans) {
             $count = [
-                'name'  => $trans ? log_levels()->get($level) : $level,
+                'name' => $trans ? log_levels()->get($level) : $level,
                 'count' => $count,
             ];
         });

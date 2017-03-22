@@ -95,7 +95,7 @@ class Log implements Arrayable, Jsonable, JsonSerializable
         $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
         $pow = min($pow, count($units) - 1);
 
-        return round($bytes / pow(1024, $pow), $precision).' '.$units[$pow];
+        return round($bytes / pow(1024, $pow), $precision) . ' ' . $units[$pow];
     }
 
     /**
@@ -210,8 +210,8 @@ class Log implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'date'    => $this->date,
-            'path'    => $this->path,
+            'date' => $this->date,
+            'path' => $this->path,
             'entries' => $this->entries->toArray(),
         ];
     }

@@ -40,12 +40,12 @@ class BackupController extends Controller
                 // only take the zip files into account
                 if (substr($file, -4) == '.zip' && $disk->exists($file)) {
                     $this->data['backups'][] = [
-                        'file_path'     => $file,
-                        'file_name'     => str_replace('backups/', '', $file),
-                        'file_size'     => $disk->size($file),
+                        'file_path' => $file,
+                        'file_name' => str_replace('backups/', '', $file),
+                        'file_size' => $disk->size($file),
                         'last_modified' => $disk->lastModified($file),
-                        'disk'          => $diskName,
-                        'download'      => ($adapter instanceof Local) ? true : false,
+                        'disk' => $diskName,
+                        'download' => ($adapter instanceof Local) ? true : false,
                     ];
                 }
             }
@@ -67,16 +67,16 @@ class BackupController extends Controller
             Artisan::queue('backup:run');
 
             return response()->json([
-                'title'   => 'В очереди',
+                'title' => 'В очереди',
                 'message' => 'Бэкап поставлен в очередь и будет создан в ближайшее время',
-                'type'    => 'success',
+                'type' => 'success',
             ]);
         }
 
         return response()->json([
-            'title'   => 'Не поддерживается',
+            'title' => 'Не поддерживается',
             'message' => 'Для ручного создания бэкапа необходимо включить поддежку очереди',
-            'type'    => 'error',
+            'type' => 'error',
         ]);
     }
 
@@ -97,7 +97,7 @@ class BackupController extends Controller
             $storagePath = $disk->getDriver()->getAdapter()->getPathPrefix();
 
             if ($disk->exists($fileName)) {
-                return response()->download($storagePath.$fileName);
+                return response()->download($storagePath . $fileName);
             } else {
                 abort(404, 'Бэкап не найден');
             }
@@ -110,7 +110,7 @@ class BackupController extends Controller
      * Deletes a backup file.
      *
      * @param Request $request
-     * @param $fileName
+     * @param         $fileName
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -122,9 +122,9 @@ class BackupController extends Controller
             $disk->delete($fileName);
 
             return response()->json([
-                'title'   => 'Объект удалён',
+                'title' => 'Объект удалён',
                 'message' => 'Бэкап был успешно удалён',
-                'type'    => 'success',
+                'type' => 'success',
             ]);
         } else {
             abort(404, 'Бэкап не найден');
