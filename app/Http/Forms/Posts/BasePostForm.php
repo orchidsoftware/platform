@@ -23,6 +23,7 @@ class BasePostForm extends Form
      * @param Post|null $post
      *
      * @return \Illuminate\Contracts\View\Factory|View
+     *
      * @internal param null $type
      */
     public function get(Post $type = null, Post $post = null) : View

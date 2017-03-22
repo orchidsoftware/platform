@@ -108,7 +108,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     private function extractDatetime($header)
     {
-        return preg_replace('/^\[(' . REGEX_DATETIME_PATTERN . ')\].*/', '$1', $header);
+        return preg_replace('/^\[('.REGEX_DATETIME_PATTERN.')\].*/', '$1', $header);
     }
 
     /**
@@ -120,7 +120,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     private function cleanHeader($header)
     {
-        return preg_replace('/\[' . REGEX_DATETIME_PATTERN . '\][ ]/', '', $header);
+        return preg_replace('/\['.REGEX_DATETIME_PATTERN.'\][ ]/', '', $header);
     }
 
     /**
@@ -158,7 +158,7 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
      */
     public function level()
     {
-        return $this->icon() . ' ' . $this->name();
+        return $this->icon().' '.$this->name();
     }
 
     /**
@@ -223,10 +223,10 @@ class LogEntry implements Arrayable, Jsonable, JsonSerializable
     public function toArray()
     {
         return [
-            'level' => $this->level,
+            'level'    => $this->level,
             'datetime' => $this->datetime->format('Y-m-d H:i:s'),
-            'header' => $this->header,
-            'stack' => $this->stack,
+            'header'   => $this->header,
+            'stack'    => $this->stack,
         ];
     }
 

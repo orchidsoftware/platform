@@ -126,13 +126,13 @@ abstract class FormGroup
         }
 
         return view($this->view, [
-            'forms' => $this->html,
-            'name' => $this->name,
-            'icon' => $this->icon,
+            'forms'       => $this->html,
+            'name'        => $this->name,
+            'icon'        => $this->icon,
             'description' => $this->description,
-            'route' => $this->route,
-            'slug' => $this->slug,
-            'method' => $this->method,
+            'route'       => $this->route,
+            'slug'        => $this->slug,
+            'method'      => $this->method,
         ]);
     }
 
