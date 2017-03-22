@@ -30,6 +30,6 @@ class CanInstall
      */
     public function alreadyInstalled() : bool
     {
-        return env('APP_INSTALL');
+        return config('content.install');
     }
 }

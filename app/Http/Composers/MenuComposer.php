@@ -108,6 +108,7 @@ class MenuComposer
     {
         $allPost = $dashboard->types();
         foreach ($allPost as $page) {
+
             if ($page->display) {
                 $postObject = [
                     'slug'       => $page->slug,

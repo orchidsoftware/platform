@@ -16,6 +16,11 @@ class DemoType extends Type
     /**
      * @var string
      */
+    public $description = 'Demonstrative type';
+
+    /**
+     * @var string
+     */
     public $slug = 'demo';
 
     /**
