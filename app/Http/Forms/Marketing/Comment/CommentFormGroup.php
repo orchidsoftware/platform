@@ -22,7 +22,7 @@ class CommentFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name' => 'Комментарии',
+            'name'        => 'Комментарии',
             'description' => 'Пользовательские комментарии',
         ];
     }
@@ -35,7 +35,7 @@ class CommentFormGroup extends FormGroup
         $comments = (new Comment())->with([
             'post' => function ($query) {
                 $query->select('id', 'type', 'slug');
-            }
+            },
         ])->orderBy('id', 'desc')->paginate();
 
         return view('dashboard::container.marketing.comment.grid', [

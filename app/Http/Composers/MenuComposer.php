@@ -31,54 +31,54 @@ class MenuComposer
     protected function registerMenu(Dashboard $dashboard)
     {
         $panelMenu = [
-            'slug' => 'Dashboard',
-            'icon' => 'icon-speedometer',
-            'route' => route('dashboard.index'),
-            'label' => trans('dashboard::menu.Dashboard'),
-            'main' => true,
-            'childs' => true,
-            'active' => 'dashboard.index',
+            'slug'       => 'Dashboard',
+            'icon'       => 'icon-speedometer',
+            'route'      => route('dashboard.index'),
+            'label'      => trans('dashboard::menu.Dashboard'),
+            'main'       => true,
+            'childs'     => true,
+            'active'     => 'dashboard.index',
             'permission' => 'dashboard.index',
         ];
         $postMenu = [
-            'slug' => 'Posts',
-            'icon' => 'icon-note',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Posts'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.posts.*',
+            'slug'       => 'Posts',
+            'icon'       => 'icon-note',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Posts'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.posts.*',
             'permission' => 'dashboard.posts',
         ];
         $toolsMenu = [
-            'slug' => 'Tools',
-            'icon' => 'icon-wrench',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Tools'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.tools.*',
+            'slug'       => 'Tools',
+            'icon'       => 'icon-wrench',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Tools'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.tools.*',
             'permission' => 'dashboard.tools',
         ];
         $systemsMenu = [
-            'slug' => 'Systems',
-            'icon' => 'icon-organization',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Systems'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.systems.*',
+            'slug'       => 'Systems',
+            'icon'       => 'icon-organization',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Systems'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.systems.*',
             'permission' => 'dashboard.systems',
         ];
 
         $marketingMenu = [
-            'slug' => 'Marketing',
-            'icon' => 'icon-chart',
-            'route' => '#',
-            'label' => trans('dashboard::menu.Marketing'),
-            'childs' => true,
-            'main' => true,
-            'active' => 'dashboard.marketing.*',
+            'slug'       => 'Marketing',
+            'icon'       => 'icon-chart',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Marketing'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.marketing.*',
             'permission' => 'dashboard.marketing',
         ];
 
@@ -113,12 +113,12 @@ class MenuComposer
         foreach ($allPost as $page) {
             if ($page->display) {
                 $postObject = [
-                    'slug' => $page->slug,
-                    'icon' => $page->icon,
-                    'route' => route('dashboard.posts.type', [$page->slug]),
-                    'label' => $page->name,
-                    'childs' => false,
-                    'permission' => 'dashboard.posts.type.' . $page->slug,
+                    'slug'       => $page->slug,
+                    'icon'       => $page->icon,
+                    'route'      => route('dashboard.posts.type', [$page->slug]),
+                    'label'      => $page->name,
+                    'childs'     => false,
+                    'permission' => 'dashboard.posts.type.'.$page->slug,
                 ];
 
                 if (reset($allPost) == $page) {
@@ -166,23 +166,23 @@ class MenuComposer
                 ];
         */
         $categoryMenu = [
-            'slug' => 'section',
-            'icon' => 'icon-briefcase',
-            'route' => route('dashboard.tools.category'),
-            'label' => trans('dashboard::menu.Sections'),
-            'childs' => false,
-            'divider' => true,
+            'slug'       => 'section',
+            'icon'       => 'icon-briefcase',
+            'route'      => route('dashboard.tools.category'),
+            'label'      => trans('dashboard::menu.Sections'),
+            'childs'     => false,
+            'divider'    => true,
             'permission' => 'dashboard.tools.category',
         ];
 
         $menuMenu = [
-            'slug' => 'menu',
-            'icon' => 'icon-menu',
-            'route' => route('dashboard.tools.menu.index'),
-            'label' => trans('dashboard::menu.Menu'),
-            'groupname' => trans('dashboard::menu.Posts Managements'),
-            'childs' => false,
-            'divider' => false,
+            'slug'       => 'menu',
+            'icon'       => 'icon-menu',
+            'route'      => route('dashboard.tools.menu.index'),
+            'label'      => trans('dashboard::menu.Menu'),
+            'groupname'  => trans('dashboard::menu.Posts Managements'),
+            'childs'     => false,
+            'divider'    => false,
             'permission' => 'dashboard.tools.menu',
         ];
 
@@ -203,81 +203,81 @@ class MenuComposer
     protected function registerMenuSystems(Dashboard $dashboard)
     {
         $settingsMenu = [
-            'slug' => 'settings',
-            'icon' => 'fa fa-cog',
-            'route' => route('dashboard.systems.settings'),
-            'label' => trans('dashboard::menu.Constants'),
-            'groupname' => trans('dashboard::menu.General settings'),
-            'childs' => false,
-            'divider' => false,
+            'slug'       => 'settings',
+            'icon'       => 'fa fa-cog',
+            'route'      => route('dashboard.systems.settings'),
+            'label'      => trans('dashboard::menu.Constants'),
+            'groupname'  => trans('dashboard::menu.General settings'),
+            'childs'     => false,
+            'divider'    => false,
             'permission' => 'dashboard.systems.settings',
         ];
 
         $backupMenu = [
-            'slug' => 'backup',
-            'icon' => 'fa fa-history',
-            'route' => route('dashboard.systems.backup'),
-            'label' => trans('dashboard::menu.Backups'),
-            'childs' => false,
-            'divider' => false,
+            'slug'       => 'backup',
+            'icon'       => 'fa fa-history',
+            'route'      => route('dashboard.systems.backup'),
+            'label'      => trans('dashboard::menu.Backups'),
+            'childs'     => false,
+            'divider'    => false,
             'permission' => 'dashboard.systems.backup',
         ];
 
         $errorMenu = [
-            'slug' => 'logs',
-            'icon' => 'fa fa-bug',
-            'route' => route('dashboard.systems.logs.index'),
-            'label' => trans('dashboard::menu.Logs'),
-            'groupname' => trans('dashboard::menu.Errors'),
-            'childs' => false,
-            'divider' => false,
+            'slug'       => 'logs',
+            'icon'       => 'fa fa-bug',
+            'route'      => route('dashboard.systems.logs.index'),
+            'label'      => trans('dashboard::menu.Logs'),
+            'groupname'  => trans('dashboard::menu.Errors'),
+            'childs'     => false,
+            'divider'    => false,
             'permission' => 'dashboard.systems.logs',
         ];
 
         $defenderMenu = [
-            'slug' => 'defender',
-            'icon' => 'fa fa-shield',
-            'route' => route('dashboard.systems.defender.index'),
-            'label' => trans('dashboard::menu.Defender'),
+            'slug'       => 'defender',
+            'icon'       => 'fa fa-shield',
+            'route'      => route('dashboard.systems.defender.index'),
+            'label'      => trans('dashboard::menu.Defender'),
             'permission' => 'dashboard.systems.defender',
         ];
 
         $monitorMenu = [
-            'slug' => 'monitor',
-            'icon' => 'fa fa-television',
-            'route' => route('dashboard.systems.monitor'),
-            'label' => trans('dashboard::menu.Monitor'),
+            'slug'       => 'monitor',
+            'icon'       => 'fa fa-television',
+            'route'      => route('dashboard.systems.monitor'),
+            'label'      => trans('dashboard::menu.Monitor'),
             'permission' => 'dashboard.systems.monitor',
         ];
 
         $schemaMenu = [
-            'slug' => 'schema',
-            'icon' => 'fa fa-database',
-            'route' => route('dashboard.systems.schema.index'),
-            'label' => trans('dashboard::menu.Schema'),
-            'childs' => false,
-            'divider' => true,
+            'slug'       => 'schema',
+            'icon'       => 'fa fa-database',
+            'route'      => route('dashboard.systems.schema.index'),
+            'label'      => trans('dashboard::menu.Schema'),
+            'childs'     => false,
+            'divider'    => true,
             'permission' => 'dashboard.systems.schema',
         ];
 
         $usersMenu = [
-            'slug' => 'users',
-            'icon' => 'icon-user',
-            'route' => route('dashboard.systems.users'),
-            'label' => trans('dashboard::menu.Users'),
-            'groupname' => trans('dashboard::menu.Users'),
-            'childs' => false,
-            'divider' => false,
+            'slug'       => 'users',
+            'icon'       => 'icon-user',
+            'route'      => route('dashboard.systems.users'),
+            'label'      => trans('dashboard::menu.Users'),
+            'groupname'  => trans('dashboard::menu.Users'),
+            'childs'     => false,
+            'divider'    => false,
             'permission' => 'dashboard.systems.users',
         ];
 
         $groupsMenu = [
-            'slug' => 'roles',
-            'icon' => 'fa fa-lock',
-            'route' => route('dashboard.systems.roles'),
-            'label' => trans('dashboard::menu.Roles'),
-            'childs' => false,
-            'divider' => true,
+            'slug'       => 'roles',
+            'icon'       => 'fa fa-lock',
+            'route'      => route('dashboard.systems.roles'),
+            'label'      => trans('dashboard::menu.Roles'),
+            'childs'     => false,
+            'divider'    => true,
             'permission' => 'dashboard.systems.roles',
         ];
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $errorMenu, 500);
@@ -300,19 +300,19 @@ class MenuComposer
     protected function registerMenuMarketing(Dashboard $dashboard)
     {
         $commentMenu = [
-            'slug' => 'comment',
-            'icon' => 'fa fa-comments-o',
-            'route' => route('dashboard.marketing.comment'),
-            'label' => trans('dashboard::menu.Comments'),
-            'groupname' => trans('dashboard::menu.Users'),
+            'slug'       => 'comment',
+            'icon'       => 'fa fa-comments-o',
+            'route'      => route('dashboard.marketing.comment'),
+            'label'      => trans('dashboard::menu.Comments'),
+            'groupname'  => trans('dashboard::menu.Users'),
             'permission' => 'dashboard.marketing.comment',
         ];
 
         $advertisingMenu = [
-            'slug' => 'advertising',
-            'icon' => 'icon-target',
-            'route' => route('dashboard.marketing.advertising.index'),
-            'label' => trans('dashboard::menu.Advertising Management'),
+            'slug'       => 'advertising',
+            'icon'       => 'icon-target',
+            'route'      => route('dashboard.marketing.advertising.index'),
+            'label'      => trans('dashboard::menu.Advertising Management'),
             'permission' => 'dashboard.marketing.advertising',
         ];
 

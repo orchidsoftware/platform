@@ -32,7 +32,7 @@ class BaseCommentForm extends Form
     {
         return view('dashboard::container.marketing.comment.info', [
             'comment' => $comment,
-            'post' => $comment->post()->first(),
+            'post'    => $comment->post()->first(),
         ]);
     }
 

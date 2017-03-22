@@ -49,9 +49,9 @@ class StatsTable extends AbstractTable
 
         foreach (Arr::except($this->footer(), 'all') as $level => $count) {
             $totals->put($level, [
-                'label' => trans('dashboard::logs.' . $level),
-                'value' => $count,
-                'color' => $this->color($level),
+                'label'     => trans('dashboard::logs.'.$level),
+                'value'     => $count,
+                'color'     => $this->color($level),
                 'highlight' => $this->color($level),
             ]);
         }
@@ -71,7 +71,7 @@ class StatsTable extends AbstractTable
         return array_merge_recursive(
             [
                 'date' => trans('dashboard::logs.date'),
-                'all' => trans('dashboard::logs.all'),
+                'all'  => trans('dashboard::logs.all'),
             ],
             $this->levels->names($this->locale)
         );

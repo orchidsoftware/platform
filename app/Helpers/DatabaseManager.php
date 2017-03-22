@@ -63,7 +63,7 @@ class DatabaseManager
     private function response($message, $status = 'danger')
     {
         return [
-            'status' => $status,
+            'status'  => $status,
             'message' => $message,
         ];
     }

@@ -93,7 +93,7 @@ class Dashboard
      */
     public static function model($key, $default = null)
     {
-        return array_get(static::$options, 'models.' . $key, $default);
+        return array_get(static::$options, 'models.'.$key, $default);
     }
 
     /**

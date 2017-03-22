@@ -29,8 +29,8 @@ class BaseRolesForm extends Form
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255|unique:roles,name,' . $this->request->get('name') . ',name',
-            'slug' => 'required|max:255|unique:roles,slug,' . $this->request->get('slug') . ',slug',
+            'name'        => 'required|max:255|unique:roles,name,'.$this->request->get('name').',name',
+            'slug'        => 'required|max:255|unique:roles,slug,'.$this->request->get('slug').',slug',
             'permissions' => 'array',
         ];
     }
@@ -60,7 +60,7 @@ class BaseRolesForm extends Form
 
         return view('dashboard::container.systems.roles.info', [
             'permission' => $permission,
-            'role' => $role,
+            'role'       => $role,
         ]);
     }
 

@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'all' => 'Összes',
+    'all'       => 'Összes',
     'emergency' => 'Vészhelyzet',
-    'alert' => 'Riasztás',
-    'critical' => 'Kritikus',
-    'error' => 'Hiba',
-    'warning' => 'Figyelmeztetés',
-    'notice' => 'Értesítés',
-    'info' => 'Információ',
-    'debug' => 'Hibakeresés',
+    'alert'     => 'Riasztás',
+    'critical'  => 'Kritikus',
+    'error'     => 'Hiba',
+    'warning'   => 'Figyelmeztetés',
+    'notice'    => 'Értesítés',
+    'info'      => 'Információ',
+    'debug'     => 'Hibakeresés',
 ];

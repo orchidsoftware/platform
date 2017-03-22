@@ -31,7 +31,7 @@ class AccessUserForm extends Form
     {
         return [
             'permissions' => 'array',
-            'roles' => 'array',
+            'roles'       => 'array',
         ];
     }
 
@@ -77,8 +77,8 @@ class AccessUserForm extends Form
             'dashboard::container.systems.users.access',
             [
                 'permission' => $permission,
-                'user' => $user,
-                'roles' => $roles,
+                'user'       => $user,
+                'roles'      => $roles,
             ]
         );
     }

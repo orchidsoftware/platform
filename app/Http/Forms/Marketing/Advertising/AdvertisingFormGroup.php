@@ -22,7 +22,7 @@ class AdvertisingFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name' => 'Реклама',
+            'name'        => 'Реклама',
             'description' => 'Управление контентом рекламы и его размещением',
         ];
     }
