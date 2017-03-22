@@ -44,7 +44,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        
+
         Newsletter::observe(NewslettersObserver::class);
     }
 }

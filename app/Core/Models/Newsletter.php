@@ -3,7 +3,6 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
 class Newsletter extends Model
 {
@@ -25,5 +24,4 @@ class Newsletter extends Model
         'updated_at',
         'created_at',
     ];
-
 }
