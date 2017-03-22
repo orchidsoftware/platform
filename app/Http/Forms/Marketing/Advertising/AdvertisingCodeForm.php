@@ -37,10 +37,10 @@ class AdvertisingCodeForm extends Form
         $config = collect(config('content'));
 
         return view('dashboard::container.marketing.advertising.code', [
-            'adv' => $adv,
+            'adv'        => $adv,
             'categories' => $config->get('advertising', []),
-            'language' => App::getLocale(),
-            'locales' => $config->get('locales', []),
+            'language'   => App::getLocale(),
+            'locales'    => $config->get('locales', []),
         ]);
     }
 }

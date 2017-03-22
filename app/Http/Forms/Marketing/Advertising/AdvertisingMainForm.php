@@ -36,7 +36,7 @@ class AdvertisingMainForm extends Form
         $adsCategory = collect(config('content.advertising'));
 
         return view('dashboard::container.marketing.advertising.info', [
-            'adv' => $post,
+            'adv'        => $post,
             'categories' => $adsCategory,
         ]);
     }

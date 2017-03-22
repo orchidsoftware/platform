@@ -29,7 +29,7 @@ class CategoryMainForm extends Form
     public function rules(): array
     {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
+            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
         ];
     }
 
@@ -46,7 +46,7 @@ class CategoryMainForm extends Form
         $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
         return view('dashboard::container.tools.category.info', [
-            'category' => $category,
+            'category'     => $category,
             'termTaxonomy' => $termTaxonomy,
         ]);
     }

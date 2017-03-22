@@ -72,11 +72,11 @@ class SqliteWrapper implements WrapperContract
     {
         return array_map(function ($column) {
             return [
-                'CID' => $column->cid,
-                'Field' => $column->name,
-                'Type' => $column->type,
-                'Null' => $column->notnull,
-                'Key' => $column->pk,
+                'CID'     => $column->cid,
+                'Field'   => $column->name,
+                'Type'    => $column->type,
+                'Null'    => $column->notnull,
+                'Key'     => $column->pk,
                 'Default' => $column->dflt_value,
             ];
         }, $columns);

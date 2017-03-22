@@ -98,11 +98,11 @@ class LogController extends Controller
         $totals = $stats->totals()->all();
 
         return json_encode([
-            'labels' => Arr::pluck($totals, 'label'),
+            'labels'   => Arr::pluck($totals, 'label'),
             'datasets' => [
                 [
-                    'data' => Arr::pluck($totals, 'value'),
-                    'backgroundColor' => Arr::pluck($totals, 'color'),
+                    'data'                 => Arr::pluck($totals, 'value'),
+                    'backgroundColor'      => Arr::pluck($totals, 'color'),
                     'hoverBackgroundColor' => Arr::pluck($totals, 'highlight'),
                 ],
             ],
@@ -124,8 +124,8 @@ class LogController extends Controller
 
         foreach ($total as $level => $count) {
             $percents[$level] = [
-                'name' => $names[$level],
-                'count' => $count,
+                'name'    => $names[$level],
+                'count'   => $count,
                 'percent' => $all ? round(($count / $all) * 100, 2) : 0,
             ];
         }

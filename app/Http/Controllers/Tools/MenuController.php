@@ -29,7 +29,7 @@ class MenuController extends Controller
         $this->checkPermission('dashboard.tools.menu');
 
         return view('dashboard::container.tools.menu.listing', [
-            'menu' => collect(config('content.menu')),
+            'menu'    => collect(config('content.menu')),
             'locales' => collect(config('content.locales')),
         ]);
     }
@@ -50,12 +50,12 @@ class MenuController extends Controller
             ->where('type', $nameMenu)->with('children')->get();
 
         return view('dashboard::container.tools.menu.menu', [
-            'nameMenu' => $nameMenu,
-            'locales' => config('content.locales'),
+            'nameMenu'      => $nameMenu,
+            'locales'       => config('content.locales'),
             'currentLocale' => $currentLocale,
-            'menu' => $menu,
-            'staticPage' => $staticPage,
-            'url' => config('app.url'),
+            'menu'          => $menu,
+            'staticPage'    => $staticPage,
+            'url'           => config('app.url'),
         ]);
     }
 
@@ -77,9 +77,9 @@ class MenuController extends Controller
         $this->createMenuElement($request->get('data'));
 
         return response()->json([
-            'title' => 'Успешно',
+            'title'   => 'Успешно',
             'message' => 'Данные сохранены',
-            'type' => 'success',
+            'type'    => 'success',
         ]);
     }
 

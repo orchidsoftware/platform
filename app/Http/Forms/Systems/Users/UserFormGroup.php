@@ -22,7 +22,7 @@ class UserFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name' => 'Пользователи',
+            'name'        => 'Пользователи',
             'description' => 'Описание раздела пользователи',
         ];
     }

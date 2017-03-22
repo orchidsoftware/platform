@@ -9,7 +9,7 @@ class PermissionsChecker
      */
     protected $results = [
         'permissions' => [],
-        'errors' => null,
+        'errors'      => null,
     ];
 
     /**
@@ -68,9 +68,9 @@ class PermissionsChecker
     private function addFile($folder, $permission, $isSet)
     {
         array_push($this->results['permissions'], [
-            'folder' => $folder,
+            'folder'     => $folder,
             'permission' => $permission,
-            'isSet' => $isSet,
+            'isSet'      => $isSet,
         ]);
     }
 }

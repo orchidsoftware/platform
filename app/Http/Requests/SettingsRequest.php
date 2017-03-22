@@ -24,7 +24,7 @@ class SettingsRequest extends Request
     public function rules()
     {
         return [
-            'key' => 'required|unique:settings,key,' . $this->get('key'),
+            'key'   => 'required|unique:settings,key,'.$this->get('key'),
             'value' => 'required',
         ];
     }

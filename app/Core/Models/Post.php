@@ -45,8 +45,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type' => 'string',
-        'slug' => 'string',
+        'type'    => 'string',
+        'slug'    => 'string',
         'content' => 'array',
         'options' => 'array',
     ];

@@ -27,12 +27,12 @@ class MonitorController extends Controller
         $monitor = new Monitor();
 
         return view('dashboard::container.systems.monitor.index', [
-            'info' => $monitor->info(),
-            'hardware' => $monitor->hardware(),
+            'info'        => $monitor->info(),
+            'hardware'    => $monitor->hardware(),
             'loadAverage' => $monitor->loadAverage(),
-            'memory' => $monitor->memory(),
-            'network' => $monitor->network(),
-            'storage' => $monitor->storage(),
+            'memory'      => $monitor->memory(),
+            'network'     => $monitor->network(),
+            'storage'     => $monitor->storage(),
         ]);
     }
 

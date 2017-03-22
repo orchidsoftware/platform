@@ -70,11 +70,11 @@ class SqlServerWrapper implements WrapperContract
     {
         return array_map(function ($column) {
             return [
-                'Field' => $column->COLUMN_NAME,
-                'Type' => $column->DATA_TYPE,
-                'Null' => $column->IS_NULLABLE,
-                'Key' => $column->ORDINAL_POSITION,
-                'Default' => $column->COLUMN_DEFAULT,
+                'Field'        => $column->COLUMN_NAME,
+                'Type'         => $column->DATA_TYPE,
+                'Null'         => $column->IS_NULLABLE,
+                'Key'          => $column->ORDINAL_POSITION,
+                'Default'      => $column->COLUMN_DEFAULT,
                 'Char max len' => $column->CHARACTER_MAXIMUM_LENGTH,
             ];
         }, $columns);

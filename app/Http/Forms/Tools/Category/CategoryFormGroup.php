@@ -22,7 +22,7 @@ class CategoryFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name' => 'Разделы',
+            'name'        => 'Разделы',
             'description' => 'Разделы веб-сайта',
         ];
     }

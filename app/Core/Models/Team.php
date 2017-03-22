@@ -52,8 +52,8 @@ class Team extends Model
         if (!$invitation) {
             $invitation = $this->invitations()->create([
                 'user_id' => $invitedUser ? $invitedUser->id : null,
-                'email' => $email,
-                'token' => str_random(40),
+                'email'   => $email,
+                'token'   => str_random(40),
             ]);
         }
 

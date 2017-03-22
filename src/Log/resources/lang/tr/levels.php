@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'all' => 'Tümü',
+    'all'       => 'Tümü',
     'emergency' => 'Acil',
-    'alert' => 'Alarm',
-    'critical' => 'Kritik',
-    'error' => 'Hata',
-    'warning' => 'Uyarı',
-    'notice' => 'Bildirim',
-    'info' => 'Bilgi',
-    'debug' => 'Hata ayıklama',
+    'alert'     => 'Alarm',
+    'critical'  => 'Kritik',
+    'error'     => 'Hata',
+    'warning'   => 'Uyarı',
+    'notice'    => 'Bildirim',
+    'info'      => 'Bilgi',
+    'debug'     => 'Hata ayıklama',
 ];

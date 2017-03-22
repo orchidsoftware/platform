@@ -28,10 +28,10 @@ class PermissionsController extends Controller
     public function permissions()
     {
         $permissions = $this->permissions->check([
-            'storage/app/' => '775',
+            'storage/app/'       => '775',
             'storage/framework/' => '775',
-            'storage/logs/' => '775',
-            'bootstrap/cache/' => '775',
+            'storage/logs/'      => '775',
+            'bootstrap/cache/'   => '775',
         ]);
 
         return view('dashboard::container.install.permissions', compact('permissions'));
