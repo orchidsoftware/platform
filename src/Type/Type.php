@@ -78,17 +78,17 @@ abstract class Type implements TypeInterface
      *
      * @return string
      */
-    public function generateForm(string $language = 'en', $post = null) : string
+    public function generateForm(string $language = 'en', $post = null): string
     {
-        $this->fields = (array) $this->fields();
+        $this->fields = (array)$this->fields();
         $this->parseFields();
 
         $form = '';
         foreach ($this->fields as $field => $config) {
-            $field = config('content.fields.'.$config['tag']);
+            $field = config('content.fields.' . $config['tag']);
 
             if (is_null($field)) {
-                throw new TypeException('Field '.$config['tag'].' does not exist');
+                throw new TypeException('Field ' . $config['tag'] . ' does not exist');
             }
 
             $field = new $field();
@@ -98,7 +98,7 @@ abstract class Type implements TypeInterface
                 $prefixArray = array_filter(explode(' ', $config['prefix']));
 
                 foreach ($prefixArray as $prefix) {
-                    $config['prefix'] .= '['.$prefix.']';
+                    $config['prefix'] .= '[' . $prefix . ']';
                 }
             } else {
                 $config['prefix'] = $this->prefix;
@@ -115,8 +115,10 @@ abstract class Type implements TypeInterface
                     }
 
                     foreach ($nameArray as $name) {
-                        $config['name'] .= '['.$name.']';
-                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name, $config['value'])) {
+                        $config['name'] .= '[' . $name . ']';
+                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name,
+                                $config['value'])
+                        ) {
                             $config['value'] = $config['value'][$name];
                         }
                     }
@@ -124,7 +126,7 @@ abstract class Type implements TypeInterface
                     if (!is_null($post)) {
                         $config['value'] = $post->getContent($config['name'], $language);
                     }
-                    $config['name'] = '['.$config['name'].']';
+                    $config['name'] = '[' . $config['name'] . ']';
                 }
             }
 
@@ -163,7 +165,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    protected function explodeFields(array $rules) : array
+    protected function explodeFields(array $rules): array
     {
         foreach ($rules as $key => $rule) {
             if (Str::contains($key, '*')) {
@@ -188,7 +190,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    protected function parseStringFields(string $rules) : array
+    protected function parseStringFields(string $rules): array
     {
         $parameters = [];
         // The format for specifying validation rules and parameters follows an
@@ -224,7 +226,7 @@ abstract class Type implements TypeInterface
     /**
      * @return array
      */
-    public function generateGrid() : array
+    public function generateGrid(): array
     {
         $fields = $this->grid();
         $model = new $this->model();
@@ -241,7 +243,7 @@ abstract class Type implements TypeInterface
                     ->orderBy('id', 'Desc')
                     ->paginate();
             } else {
-                $data = $model->where('content', 'LIKE', '%'.$search.'%')
+                $data = $model->where('content', 'LIKE', '%' . $search . '%')
                     ->where('type', $this->slug)
                     ->orderBy('id', 'Desc')
                     ->paginate();
@@ -249,9 +251,9 @@ abstract class Type implements TypeInterface
         }
 
         return [
-            'data'   => $data,
+            'data' => $data,
             'fields' => $fields,
-            'type'   => $this,
+            'type' => $this,
         ];
     }
 
@@ -265,7 +267,7 @@ abstract class Type implements TypeInterface
      *
      * @return bool
      */
-    public function isValid() : bool
+    public function isValid(): bool
     {
         Validator::make(request()->all(), $this->rules())->validate();
 
@@ -277,7 +279,7 @@ abstract class Type implements TypeInterface
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [];
     }
@@ -287,7 +289,7 @@ abstract class Type implements TypeInterface
      *
      * @return string
      */
-    public function route() : string
+    public function route(): string
     {
         return '';
     }
@@ -295,7 +297,7 @@ abstract class Type implements TypeInterface
     /**
      * @return array
      */
-    public function getModules() : array
+    public function getModules(): array
     {
         if ($this->checkModules()) {
             return $this->modules();
@@ -307,7 +309,7 @@ abstract class Type implements TypeInterface
     /**
      * @return bool
      */
-    public function checkModules() : bool
+    public function checkModules(): bool
     {
         if (method_exists($this, 'modules') && !empty($this->modules())) {
             return true;

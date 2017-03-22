@@ -6,6 +6,9 @@ use Orchid\Http\Forms\Marketing\Advertising\AdvertisingCodeForm;
 
 class AdvertisingCodeListener
 {
+    /**
+     * @return string
+     */
     public function handle()
     {
         return AdvertisingCodeForm::class;

@@ -19,10 +19,10 @@ class BasePostForm extends Form
     /**
      * Display Base Options.
      *
+     * @param Post|null $type
      * @param Post|null $post
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
+     * @return \Illuminate\Contracts\View\Factory|View
      * @internal param null $type
      */
     public function get(Post $type = null, Post $post = null) : View

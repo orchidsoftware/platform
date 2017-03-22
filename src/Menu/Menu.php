@@ -7,19 +7,17 @@ use Illuminate\Support\Facades\Auth;
 class Menu
 {
     /**
-     *  Position menu.
-     *
-     * @var
-     */
-    private $location;
-
-    /**
      * The contents of the menu.
      *
      * @var
      */
     public $container;
-
+    /**
+     *  Position menu.
+     *
+     * @var
+     */
+    private $location;
     /**
      * Views display.
      *
@@ -29,7 +27,7 @@ class Menu
 
     /**
      * Arguments menu form
-      * For the transfer of Views.
+     *  * For the transfer of Views.
      *
      * @var
      */
@@ -64,7 +62,7 @@ class Menu
      *
      * @return Menu
      */
-    public function place(string $location) : Menu
+    public function place(string $location): Menu
     {
         $this->location = $location;
 
@@ -76,7 +74,7 @@ class Menu
      *
      * @return Menu
      */
-    public function template(string $template) : Menu
+    public function template(string $template): Menu
     {
         $this->template = $template;
 
@@ -100,7 +98,7 @@ class Menu
      *
      * @return Menu
      */
-    public function sortBy(int $sort) : Menu
+    public function sortBy(int $sort): Menu
     {
         $this->sort = $sort;
 
@@ -112,8 +110,8 @@ class Menu
      *
      * @param string $place
      * @param string $template
-     * @param $arg
-     * @param int $sort
+     * @param        $arg
+     * @param int    $sort
      */
     public function add(string $place, string $template, array $arg, int $sort = 500)
     {
@@ -125,8 +123,8 @@ class Menu
         $this->item = [
             'location' => $this->location,
             'template' => $this->template,
-            'arg'      => $this->arg,
-            'sort'     => $this->sort,
+            'arg' => $this->arg,
+            'sort' => $this->sort,
         ];
 
         $this->container->push($this->item);
@@ -140,7 +138,7 @@ class Menu
      *
      * @return string
      */
-    public function render(string $location, string $template = null) : string
+    public function render(string $location, string $template = null): string
     {
         $html = '';
 

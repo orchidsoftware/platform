@@ -104,6 +104,9 @@ class MenuComposer
         */
     }
 
+    /**
+     * @param Dashboard $dashboard
+     */
     protected function registerMenuPost(Dashboard $dashboard)
     {
         $allPost = $dashboard->types();
@@ -129,6 +132,9 @@ class MenuComposer
         }
     }
 
+    /**
+     * @param Dashboard $dashboard
+     */
     protected function registerMenuTools(Dashboard $dashboard)
     {
 
@@ -191,6 +197,9 @@ class MenuComposer
         */
     }
 
+    /**
+     * @param Dashboard $dashboard
+     */
     protected function registerMenuSystems(Dashboard $dashboard)
     {
         $settingsMenu = [
@@ -285,6 +294,9 @@ class MenuComposer
         $dashboard->menu->add('Systems', 'dashboard::partials.leftMenu', $groupsMenu, 601);
     }
 
+    /**
+     * @param Dashboard $dashboard
+     */
     protected function registerMenuMarketing(Dashboard $dashboard)
     {
         $commentMenu = [

@@ -54,7 +54,7 @@ class SqliteWrapper implements WrapperContract
      *
      * @return array
      */
-    public function getColumns(string $tableName) : array
+    public function getColumns(string $tableName): array
     {
         $columns = $this->baseSchema->database->select(DB::raw("pragma table_info($tableName)"));
 
@@ -68,15 +68,15 @@ class SqliteWrapper implements WrapperContract
      *
      * @return array
      */
-    private function transformColumns(array $columns) : array
+    private function transformColumns(array $columns): array
     {
         return array_map(function ($column) {
             return [
-                'CID'     => $column->cid,
-                'Field'   => $column->name,
-                'Type'    => $column->type,
-                'Null'    => $column->notnull,
-                'Key'     => $column->pk,
+                'CID' => $column->cid,
+                'Field' => $column->name,
+                'Type' => $column->type,
+                'Null' => $column->notnull,
+                'Key' => $column->pk,
                 'Default' => $column->dflt_value,
             ];
         }, $columns);

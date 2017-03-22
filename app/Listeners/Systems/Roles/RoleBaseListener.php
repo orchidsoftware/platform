@@ -15,9 +15,7 @@ class RoleBaseListener
 
     /**
      * Handle the event.
-     *
-     * @return
-     *
+     * @return string
      * @internal param RolesEvent $event
      */
     public function handle()

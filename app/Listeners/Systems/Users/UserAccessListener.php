@@ -15,9 +15,7 @@ class UserAccessListener
 
     /**
      * Handle the event.
-     *
-     * @return
-     *
+     * @return string
      * @internal param UserEvent $event
      */
     public function handle()

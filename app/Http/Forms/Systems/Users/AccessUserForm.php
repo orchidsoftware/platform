@@ -40,7 +40,7 @@ class AccessUserForm extends Form
      *
      * @param User|null $user
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
     public function get(User $user = null) : View
     {

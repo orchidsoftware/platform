@@ -25,6 +25,12 @@ class TextAreaField extends Field
      */
     protected $rows;
 
+    /**
+     * @param null $attributes
+     * @param null $data
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create($attributes, $data = null)
     {
         if (is_null($data)) {

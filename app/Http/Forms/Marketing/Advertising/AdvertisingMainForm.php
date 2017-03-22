@@ -24,9 +24,9 @@ class AdvertisingMainForm extends Form
     protected $model = Post::class;
 
     /**
-     * @param $post
+     * @param Post $post
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
     public function get(Post $post = null) : View
     {

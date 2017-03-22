@@ -12,12 +12,12 @@ interface TypeInterface
     /**
      * @return bool
      */
-    public function isValid() : bool;
+    public function isValid(): bool;
 
     /**
      * @return array
      */
-    public function generateGrid() : array;
+    public function generateGrid(): array;
 
     /**
      * @return mixed

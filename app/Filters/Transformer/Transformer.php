@@ -10,5 +10,10 @@ namespace Orchid\Filters\Transformer;
  */
 abstract class Transformer
 {
+    /**
+     * @param $collect
+     *
+     * @return mixed
+     */
     abstract public static function transform($collect);
 }

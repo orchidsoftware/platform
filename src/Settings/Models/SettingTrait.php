@@ -14,7 +14,7 @@ trait SettingTrait
      *
      * @return bool
      */
-    public function set(string $key, $value) : bool
+    public function set(string $key, $value): bool
     {
         $result = $this->firstOrNew([
             'key' => $key,
@@ -37,13 +37,13 @@ trait SettingTrait
      */
     public function get($key, $default = null)
     {
-        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-' . implode(',', (array)$key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }
 
     /**
-     * @param $key
+     * @param      $key
      * @param null $default
      *
      * @return null

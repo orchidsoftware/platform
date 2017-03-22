@@ -15,6 +15,9 @@ class BackupController extends Controller
      */
     public $data;
 
+    /**
+     * BackupController constructor.
+     */
     public function __construct()
     {
         $this->checkPermission('dashboard.systems.backup');

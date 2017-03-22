@@ -84,19 +84,11 @@ abstract class Form implements FormInterface
     }
 
     /**
-     * @return array
-     */
-    public function fields()
-    {
-        return $this->request->all();
-    }
-
-    /**
      * Validation Rules Method.
      *
      * @return array
      */
-    public function rules() :array
+    public function rules(): array
     {
         return [];
     }
@@ -107,6 +99,14 @@ abstract class Form implements FormInterface
     public function persist()
     {
         //
+    }
+
+    /**
+     * @return array
+     */
+    public function fields()
+    {
+        return $this->request->all();
     }
 
     /**

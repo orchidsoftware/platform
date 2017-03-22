@@ -28,7 +28,7 @@ class AdvertisingFormGroup extends FormGroup
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
     public function main() : View
     {

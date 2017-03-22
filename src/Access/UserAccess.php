@@ -22,7 +22,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function inRole($role) :bool
+    public function inRole($role): bool
     {
         $role = array_first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
@@ -43,7 +43,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function hasAccess($checkPermissions) : bool
+    public function hasAccess($checkPermissions): bool
     {
         $permissions = $this->roles()->pluck('permissions');
         $permissions->prepend($this->permissions);
@@ -60,7 +60,7 @@ trait UserAccess
     /**
      * @return BelongsToMany
      */
-    public function roles() : BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model('role', Role::class), 'role_users', 'user_id', 'role_id');
     }
@@ -70,7 +70,7 @@ trait UserAccess
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function addRole(RoleInterface $role) : Model
+    public function addRole(RoleInterface $role): Model
     {
         return $this->roles()->save($role);
     }
@@ -80,7 +80,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function removeRole(RoleInterface $role) : bool
+    public function removeRole(RoleInterface $role): bool
     {
         return $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
     }
@@ -92,7 +92,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function removeRoleBySlug($slug) : bool
+    public function removeRoleBySlug($slug): bool
     {
         $this->roles()->where('slug', $slug)->first()->remove();
     }
@@ -109,7 +109,7 @@ trait UserAccess
     /**
      * @return bool
      */
-    public function delete() : bool
+    public function delete(): bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
         if ($this->exists && !$isSoftDeleted) {

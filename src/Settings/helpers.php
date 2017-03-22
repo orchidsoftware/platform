@@ -4,7 +4,7 @@ use Orchid\Facades\Setting;
 
 if (!function_exists('settings')) {
     /**
-     * @param $key
+     * @param      $key
      * @param null $default
      *
      * @return mixed

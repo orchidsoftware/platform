@@ -40,7 +40,7 @@ class BaseRolesForm extends Form
      *
      * @param Role|null $role
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
     public function get(Role $role = null) : View
     {

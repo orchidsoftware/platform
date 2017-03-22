@@ -54,7 +54,7 @@ class SqlServerWrapper implements WrapperContract
      *
      * @return array
      */
-    public function getColumns(string $tableName) : array
+    public function getColumns(string $tableName): array
     {
         return $this->transformColumns($this->baseSchema->database->select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'ORDER BY ORDINAL_POSITION"));
     }
@@ -66,15 +66,15 @@ class SqlServerWrapper implements WrapperContract
      *
      * @return array
      */
-    private function transformColumns(array $columns) : array
+    private function transformColumns(array $columns): array
     {
         return array_map(function ($column) {
             return [
-                'Field'        => $column->COLUMN_NAME,
-                'Type'         => $column->DATA_TYPE,
-                'Null'         => $column->IS_NULLABLE,
-                'Key'          => $column->ORDINAL_POSITION,
-                'Default'      => $column->COLUMN_DEFAULT,
+                'Field' => $column->COLUMN_NAME,
+                'Type' => $column->DATA_TYPE,
+                'Null' => $column->IS_NULLABLE,
+                'Key' => $column->ORDINAL_POSITION,
+                'Default' => $column->COLUMN_DEFAULT,
                 'Char max len' => $column->CHARACTER_MAXIMUM_LENGTH,
             ];
         }, $columns);

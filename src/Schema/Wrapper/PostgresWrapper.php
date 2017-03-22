@@ -25,7 +25,7 @@ class PostgresWrapper implements WrapperContract
     /**
      * @return mixed
      */
-    public function getSchema() : array
+    public function getSchema(): array
     {
         foreach ($this->getTables() as $table) {
             $columns = $this->getColumns($table);
@@ -39,7 +39,7 @@ class PostgresWrapper implements WrapperContract
     /**
      * @return array
      */
-    public function getTables() : array
+    public function getTables(): array
     {
         $tables = $this->baseSchema->database->select("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
 
@@ -53,7 +53,7 @@ class PostgresWrapper implements WrapperContract
      *
      * @return array
      */
-    public function getColumns(string $tableName) : array
+    public function getColumns(string $tableName): array
     {
         return $this->transformColumns($this->baseSchema->database->select("SELECT ordinal_position, column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_name ='$tableName'"));
     }
@@ -65,14 +65,14 @@ class PostgresWrapper implements WrapperContract
      *
      * @return array
      */
-    private function transformColumns(array $columns) : array
+    private function transformColumns(array $columns): array
     {
         return array_map(function ($column) {
             return [
-                'Field'   => $column->column_name,
-                'Type'    => $column->data_type,
-                'Null'    => $column->is_nullable,
-                'Key'     => $column->ordinal_position,
+                'Field' => $column->column_name,
+                'Type' => $column->data_type,
+                'Null' => $column->is_nullable,
+                'Key' => $column->ordinal_position,
                 'Default' => $column->column_default,
 //                'Extra' => $column->Extra
             ];

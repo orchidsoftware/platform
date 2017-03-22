@@ -65,6 +65,9 @@ class PermissionServiceProvider extends ServiceProvider
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function registerPermissionsPost()
     {
         $allPost = $this->dashboard->types();
@@ -83,6 +86,9 @@ class PermissionServiceProvider extends ServiceProvider
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function registerPermissionsTools()
     {
         return [
@@ -103,6 +109,9 @@ class PermissionServiceProvider extends ServiceProvider
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function registerPermissionsSystems()
     {
         return [
@@ -144,6 +153,9 @@ class PermissionServiceProvider extends ServiceProvider
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function registerPermissionsMarketing()
     {
         return [
