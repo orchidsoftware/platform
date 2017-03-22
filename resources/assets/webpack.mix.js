@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const {mix} = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -22,6 +22,6 @@ mix.copy('./node_modules/summernote/dist/font/', 'dist/fonts');
 
 
 mix.js([
-    './js/app.js',
+        './js/app.js',
     ]
-, 'dist/js/orchid.js');
+    , 'dist/js/orchid.js');

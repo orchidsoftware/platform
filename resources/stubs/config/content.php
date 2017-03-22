@@ -108,7 +108,7 @@ return [
     */
 
     'images' => [
-        'low' => [
+        'low'    => [
             'width'   => '50',
             'height'  => '50',
             'quality' => '50',
@@ -118,7 +118,7 @@ return [
             'height'  => '300',
             'quality' => '75',
         ],
-        'high' => [
+        'high'   => [
             'width'   => '1000',
             'height'  => '500',
             'quality' => '100',

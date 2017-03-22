@@ -5,12 +5,12 @@ return [
     'Monitor'     => 'Монитор',
     'description' => 'Информация о состоянии сервера',
 
-    'Hardware' => [
+    'Hardware'         => [
         'Title'             => 'Аппаратное обеспечение',
         'Uptime'            => 'Время работы',
         'Board Temperature' => 'Тепература',
     ],
-    'Network' => [
+    'Network'          => [
         'Title' => 'Сеть',
         'Down'  => 'Отдачи',
         'Up'    => 'Скачивания',
@@ -19,14 +19,14 @@ return [
         'Title' => 'Процессор',
         'min'   => 'минут',
     ],
-    'Memory' => [
+    'Memory'           => [
         'Title'   => 'Память',
         'Used'    => 'Занято',
         'Cache'   => 'Кэш',
         'Buffers' => 'Временное',
         'Free'    => 'Свободно',
     ],
-    'Storage' => [
+    'Storage'          => [
         'Title'      => 'Жёсткие диски',
         'FILESYSTEM' => 'ФАЙЛОВАЯ СИСТЕМА',
         'AVAILABLE'  => 'ДОСТУПНО',
@@ -34,7 +34,7 @@ return [
         'USED'       => 'ЗАНЯТО',
         'MOUNTED'    => 'ПОДКЛЮЧЕНО',
     ],
-    'Info' => [
+    'Info'             => [
         'Title'       => 'Информация',
         'Linux'       => 'ОС',
         'Web Server'  => 'Веб-сервер',

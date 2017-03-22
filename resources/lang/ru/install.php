@@ -7,15 +7,15 @@ return [
      * Shared translations.
      *
      */
-    'title'        => 'Установка Orchid',
-    'next'         => 'Следующий шаг',
+    'title'         => 'Установка Orchid',
+    'next'          => 'Следующий шаг',
 
     /*
      *
      * Home page translations.
      *
      */
-    'welcome'      => [
+    'welcome'       => [
         'title'   => 'Установка Orchid',
         'message' => 'Добро пожаловать в первоначальную настройку фреймворка.',
     ],
@@ -25,7 +25,7 @@ return [
      * Requirements page translations.
      *
      */
-    'requirements' => [
+    'requirements'  => [
         'title'   => 'Необходимые модули',
         'message' => 'Проверка установленных модулей PHP',
     ],
@@ -35,7 +35,7 @@ return [
      * Permissions page translations.
      *
      */
-    'permissions'  => [
+    'permissions'   => [
         'title'   => 'Проверка прав на папках',
         'message' => 'Необходимы для чтения и записи файлов',
     ],
@@ -45,7 +45,7 @@ return [
      * Environment page translations.
      *
      */
-    'environment'  => [
+    'environment'   => [
         'title'   => 'Настройки окружения',
         'message' => 'Постоянные и основный настройки, которые не подвергаются изменением',
         'save'    => 'Сохранить .env',
@@ -58,9 +58,9 @@ return [
     * Administrator page translations.
     *
     */
-    'administrator'        => [
-        'title'    => 'Создание пользователя',
-        'message'  => 'Созданному администратору будут доступные все права на текущий момент',
+    'administrator' => [
+        'title'   => 'Создание пользователя',
+        'message' => 'Созданному администратору будут доступные все права на текущий момент',
     ],
 
     /*
@@ -68,9 +68,9 @@ return [
      * Final page translations.
      *
      */
-    'final'        => [
-        'title'    => 'Готово',
-        'message'  => 'Приложение успешно настроено.',
-        'exit'     => 'Нажмите для выхода',
+    'final'         => [
+        'title'   => 'Готово',
+        'message' => 'Приложение успешно настроено.',
+        'exit'    => 'Нажмите для выхода',
     ],
 ];

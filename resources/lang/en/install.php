@@ -7,16 +7,16 @@ return [
      * Shared translations.
      *
      */
-    'title'  => 'Orchid Installer',
-    'next'   => 'Next Step',
-    'finish' => 'Install',
+    'title'         => 'Orchid Installer',
+    'next'          => 'Next Step',
+    'finish'        => 'Install',
 
     /*
      *
      * Home page translations.
      *
      */
-    'welcome' => [
+    'welcome'       => [
         'title'   => 'Welcome To The Installer',
         'message' => 'Welcome to the setup wizard.',
     ],
@@ -26,7 +26,7 @@ return [
      * Requirements page translations.
      *
      */
-    'requirements' => [
+    'requirements'  => [
         'title'   => 'Requirements',
         'message' => 'Checking the installed PHP modules',
     ],
@@ -36,7 +36,7 @@ return [
      * Permissions page translations.
      *
      */
-    'permissions' => [
+    'permissions'   => [
         'title'   => 'Permissions',
         'message' => 'Required for reading and writing files',
     ],
@@ -46,7 +46,7 @@ return [
      * Environment page translations.
      *
      */
-    'environment' => [
+    'environment'   => [
         'title'   => 'Environment Settings',
         'message' => 'Permanent and basic settings, which are not subject to change',
         'save'    => 'Save .env',
@@ -59,9 +59,9 @@ return [
   * Administrator page translations.
   *
   */
-    'administrator'        => [
-        'title'    => 'Creating a user',
-        'message'  => 'Created by the administrator will be available to all right at the moment',
+    'administrator' => [
+        'title'   => 'Creating a user',
+        'message' => 'Created by the administrator will be available to all right at the moment',
     ],
 
     'install' => 'Install',
@@ -71,9 +71,9 @@ return [
      * Final page translations.
      *
      */
-    'final' => [
-        'title'    => 'Finished',
-        'message'  => 'Application has been successfully installed.',
-        'exit'     => 'Click here to exit',
+    'final'   => [
+        'title'   => 'Finished',
+        'message' => 'Application has been successfully installed.',
+        'exit'    => 'Click here to exit',
     ],
 ];
