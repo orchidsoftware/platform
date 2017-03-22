@@ -4,7 +4,6 @@ namespace Orchid\Monitor;
 
 class StringHelpers
 {
-
     /**
      * Convert a number of seconds into the
      * Days-Hours-Minutes format.
@@ -21,7 +20,6 @@ class StringHelpers
         return $dtF->diff($dtT)->format('%ad %hh %im');
     }
 
-
     /**
      * Take a number of bytes and return it
      * either in terms of Gigs or Megs.
@@ -32,17 +30,16 @@ class StringHelpers
      */
     public static function prettyMemory(int $total): string
     {
-        $total = (int)$total;
+        $total = (int) $total;
 
         if ($total > 999) {
             $total = round($total / 1024, 2);
+
             return "{$total} GB";
         }
 
         return "{$total} MB";
-
     }
-
 
     /**
      * Figure out of the baud rate should be
@@ -56,11 +53,14 @@ class StringHelpers
     {
         if ($baud > 1000000) {
             $baud = round($baud / 1000000, 2);
+
             return "$baud Mb/s";
         } elseif ($baud > 1000) {
             $baud = round($baud / 1000, 2);
+
             return "$baud Kb/s";
         }
+
         return "$baud b/s";
     }
 

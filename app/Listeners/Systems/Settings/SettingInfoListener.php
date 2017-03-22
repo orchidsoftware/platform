@@ -15,7 +15,9 @@ class SettingInfoListener
 
     /**
      * Handle the event.
+     *
      * @return string
+     *
      * @internal param SettingsEvent $event
      */
     public function handle()

@@ -15,7 +15,9 @@ class CommentBaseListener
 
     /**
      * Handle the event.
+     *
      * @return string
+     *
      * @internal param CommentEvent $event
      */
     public function handle()

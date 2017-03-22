@@ -20,7 +20,7 @@ class DefenderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../Config/defender.php' => config_path('defender.php'),
+            __DIR__.'/../Config/defender.php' => config_path('defender.php'),
         ]);
 
         app('router')->middleware('Firewall', '\Orchid\Defender\Middleware\Firewall');

@@ -25,6 +25,7 @@ class AdvertisingCodeForm extends Form
      * @param Post $adv
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
+     *
      * @internal param $item
      */
     public function get(Post $adv = null) : View
