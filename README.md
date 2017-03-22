@@ -87,7 +87,7 @@ class User extends UserOrchid
 
 Learn more at these links:
 
-- [Website](https://theorchid.github.io/Platform/)
+- [Website](https://theorchid.github.io/)
 - [Documentation](https://theorchid.github.io/)
 - [Support](https://github.com/TheOrchid/Platform/issues)
 - [Laravel](https://laravel.com/)
