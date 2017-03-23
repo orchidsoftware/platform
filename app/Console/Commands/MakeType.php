@@ -34,7 +34,7 @@ class MakeType extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../stubs/type.stub';
+        return __DIR__ . '/../stubs/type.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeType extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Types';
+        return $rootNamespace . '\Types';
     }
 }

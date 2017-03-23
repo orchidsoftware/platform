@@ -118,7 +118,7 @@ class MenuComposer
                     'route'      => route('dashboard.posts.type', [$page->slug]),
                     'label'      => $page->name,
                     'childs'     => false,
-                    'permission' => 'dashboard.posts.type.'.$page->slug,
+                    'permission' => 'dashboard.posts.type.' . $page->slug,
                 ];
 
                 if (reset($allPost) == $page) {

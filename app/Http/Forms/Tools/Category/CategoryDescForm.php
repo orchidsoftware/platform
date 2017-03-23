@@ -28,7 +28,7 @@ class CategoryDescForm extends Form
     public function rules(): array
     {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
+            'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
         ];
     }
 

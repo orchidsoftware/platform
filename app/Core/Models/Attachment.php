@@ -25,7 +25,7 @@ class Attachment extends Model
             'mp4',
             'mkv',
         ],
-        'docs' => [
+        'docs'  => [
             'doc',
             'docx',
             'pdf',
@@ -93,13 +93,13 @@ class Attachment extends Model
     public function url($size = '', $prefix = 'public')
     {
         if (!empty($size)) {
-            $size = '_'.$size;
+            $size = '_' . $size;
 
             if (!Storage::disk($prefix)->exists(
-                $this->path.
-                $this->name.
-                $size.
-                '.'.
+                $this->path .
+                $this->name .
+                $size .
+                '.' .
                 $this->extension
             )
             ) {
@@ -108,10 +108,10 @@ class Attachment extends Model
         }
 
         return Storage::disk($prefix)->url(
-            $this->path.
-            $this->name.
-            $size.
-            '.'.
+            $this->path .
+            $this->name .
+            $size .
+            '.' .
             $this->extension
         );
     }

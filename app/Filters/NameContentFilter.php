@@ -26,7 +26,7 @@ class NameContentFilter extends ContentFilter
      */
     public function like($model, $values, $prefix, $chain, $method = 'where')
     {
-        $result = $model->$method($prefix.$chain[0], 'LIKE', "%$values%");
+        $result = $model->$method($prefix . $chain[0], 'LIKE', "%$values%");
 
         return $result;
     }
