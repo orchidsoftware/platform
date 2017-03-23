@@ -75,7 +75,7 @@ class PermissionServiceProvider extends ServiceProvider
         foreach ($allPost as $page) {
             if ($page->display) {
                 $showPost->push([
-                    'slug'        => 'dashboard.posts.type.' . $page->slug,
+                    'slug'        => 'dashboard.posts.type.'.$page->slug,
                     'description' => $page->name,
                 ]);
             }

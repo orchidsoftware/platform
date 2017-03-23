@@ -30,7 +30,7 @@ class Export
     public function export(Defender $defender)
     {
         $content = json_encode($defender->dangerFiles);
-        $name = 'defender/defender-' . $this->date . '.json';
+        $name = 'defender/defender-'.$this->date.'.json';
 
         if ($this->storage->exists($name)) {
             $this->storage->delete($name);

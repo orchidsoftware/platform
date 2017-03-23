@@ -23,7 +23,7 @@ class InstalledFileManager
     {
         $env = file_get_contents(base_path('.env'));
         if (!str_contains($env, 'APP_INSTALL')) {
-            $env = "APP_INSTALL=true\n" . $env;
+            $env = "APP_INSTALL=true\n".$env;
         } else {
             $env = preg_replace('/APP_INSTALL=false/', 'APP_INSTALL=true', $env);
         }

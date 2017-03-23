@@ -218,7 +218,7 @@ class LogChecker implements LogCheckerContract
     {
         $pattern = '/laravel-(\d){4}-(\d){2}-(\d){2}.log/';
 
-        if ((bool)preg_match($pattern, $file, $matches) === false) {
+        if ((bool) preg_match($pattern, $file, $matches) === false) {
             return true;
         }
 
