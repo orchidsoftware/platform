@@ -36,6 +36,8 @@ class Attachment extends Model
             'zip',
             'rar',
             'svg',
+            'ppt',
+            'pptx',
         ],
     ];
     /**
