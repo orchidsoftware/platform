@@ -38,25 +38,33 @@ Orchid based off [Laravel Framework](http://laravel.com), so before you put the 
 
 #### Via Composer
 
-Add the project according
-```php
-composer require orchid/platform
+Going your project directory on shell and run this command: 
+```sh
+$ composer require orchid/platform
 ```
 
 ####  Provider and Facades
 
+Add to `config/app.php`:
 
-Add the following elements in the configuration file `config/app`
+- Service provider to the 'providers' array:
 ```php
-Orchid\Providers\FoundationServiceProvider::class,
+'providers' => [
+  // ...
+  Orchid\Providers\FoundationServiceProvider::class,
+];
 ```
 
+- Facades aliases to the 'aliases' array:
 ```php
-'Alert' =>  Orchid\Facades\Alert::class,
-'Dashboard' =>  Orchid\Facades\Dashboard::class,
-'Setting' =>  Orchid\Facades\Setting::class,
-'Active' => Watson\Active\Facades\Active::class,
-'Image' => Intervention\Image\Facades\Image::class,
+'aliases' => [
+  // ...
+  'Alert' =>  Orchid\Facades\Alert::class,
+  'Dashboard' =>  Orchid\Facades\Dashboard::class,
+  'Setting' =>  Orchid\Facades\Setting::class,
+  'Active' => Watson\Active\Facades\Active::class,
+  'Image' => Intervention\Image\Facades\Image::class,
+];
 ```
 
 
