@@ -41,12 +41,14 @@ class BasePostForm extends Form
             return $item;
         });
 
+
         return view('dashboard::container.posts.modules.base', [
             'author'   => (is_null($post)) ? $post : $post->getUser(),
             'post'     => $post,
             'language' => App::getLocale(),
             'locales'  => config('content.locales'),
             'category' => $category,
+            'type' => $type->getTypeObject()
         ]);
     }
 

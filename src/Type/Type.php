@@ -399,4 +399,15 @@ abstract class Type implements TypeInterface
             }
         }
     }
+
+    /**
+     * @return array
+     */
+    public function status(){
+        return [
+            'publish' => 'Published',
+            'draft' => 'Draft',
+        ];
+    }
+
 }
