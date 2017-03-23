@@ -73,7 +73,7 @@ class Defender
         $files = scandir($dir);
 
         foreach ($files as $value) {
-            $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
+            $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
             if (!is_dir($path)) {
                 $results[] = $path;
             } else {

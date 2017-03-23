@@ -49,7 +49,7 @@ class StatsTable extends AbstractTable
 
         foreach (Arr::except($this->footer(), 'all') as $level => $count) {
             $totals->put($level, [
-                'label'     => trans('dashboard::logs.' . $level),
+                'label'     => trans('dashboard::logs.'.$level),
                 'value'     => $count,
                 'color'     => $this->color($level),
                 'highlight' => $this->color($level),

@@ -110,7 +110,7 @@ class PostController extends Controller
         $type = $type->getTypeObject();
 
         $locales = $this->locales->map(function ($value, $key) use ($post) {
-            $value['required'] = (bool)$post->checkLanguage($key);
+            $value['required'] = (bool) $post->checkLanguage($key);
 
             return $value;
         })->where('required', true);
