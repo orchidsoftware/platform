@@ -6,9 +6,8 @@ use stdClass;
 
 class Monitor
 {
-
     /**
-     * @var $_SERVER
+     * @var
      */
     public $server;
 
@@ -45,7 +44,7 @@ class Monitor
         $serverAddr = (isset($this->server['SERVER_ADDR'])) ? $this->server['SERVER_ADDR'] : ' ';
 
         $data->uname = $uname;
-        $data->webserver = $this->server['SERVER_NAME'] . ' (' . $serverAddr . ') - ' . $this->server['SERVER_SOFTWARE'];
+        $data->webserver = $this->server['SERVER_NAME'].' ('.$serverAddr.') - '.$this->server['SERVER_SOFTWARE'];
         $data->php_version = 'PHP/'.$php_version[0].'.'.$php_version[1].'.'.$php_version[1];
         $data->cpu = $name[1];
 
