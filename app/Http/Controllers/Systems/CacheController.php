@@ -4,7 +4,7 @@ namespace Orchid\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Orchid\Facades\Alert;
+use Orchid\Alert\Facades\Alert;
 
 class CacheController
 {

@@ -3,8 +3,8 @@
 namespace Orchid\Http\Controllers\Marketing;
 
 use Illuminate\Http\Request;
+use Orchid\Alert\Facades\Alert;
 use Orchid\Core\Models\Comment;
-use Orchid\Facades\Alert;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Marketing\Comment\CommentFormGroup;
 

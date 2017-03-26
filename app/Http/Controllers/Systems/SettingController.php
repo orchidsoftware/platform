@@ -4,7 +4,7 @@ namespace Orchid\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Orchid\Facades\Alert;
+use Orchid\Alert\Facades\Alert;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Http\Forms\Systems\Settings\SettingFormGroup;
 

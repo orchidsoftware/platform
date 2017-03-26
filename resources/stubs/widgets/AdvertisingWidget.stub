@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Widgets;
+namespace App\Http\Widgets;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
