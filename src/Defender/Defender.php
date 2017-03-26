@@ -146,8 +146,8 @@ class Defender
                 $end = $len;
             }
             while (++$start < $end) {
-                $c = ord($content[$start]);
-                if ($c < 9 || ($c >= 14 && $c <= 31) || $c == 11 || $c == 12) {
+                $content = ord($content[$start]);
+                if ($content < 9 || ($content >= 14 && $content <= 31) || $content == 11 || $content == 12) {
                     return false;
                 }
             }

@@ -100,11 +100,9 @@ class TermTaxonomy extends Model
     /**
      * Overriding newQuery() to the custom TermTaxonomyBuilder with some interesting methods.
      *
-     * @param bool $excludeDeleted
-     *
      * @return TermTaxonomyBuilder
      */
-    public function newQuery($excludeDeleted = true)
+    public function newQuery()
     {
         $builder = new TermTaxonomyBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);

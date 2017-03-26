@@ -65,19 +65,19 @@ class StringHelpers
     }
 
     /**
-     * Take in the load_average as returned by the
+     * Take in the $loadAverage as returned by the
      * uptime command and return it as a percentage
      * with the appropriate formatting.
      *
-     * @param string $load_average
+     * @param string $loadAverage
      *
      * @return array
      */
-    public static function prettyLoadAverage(string $load_average): array
+    public static function prettyLoadAverage(string $loadAverage): array
     {
-        $load_average = substr($load_average, 0, -1);
-        $avg_percent = $load_average * 100;
+        $loadAverage = substr($loadAverage, 0, -1);
+        $avgPercent = $loadAverage * 100;
 
-        return ['average' => $load_average, 'percent' => $avg_percent];
+        return ['average' => $avgPercent, 'percent' => $loadAverage];
     }
 }

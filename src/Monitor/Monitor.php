@@ -33,11 +33,11 @@ class Monitor
     {
         // preparing cpu info
         $uname = shell_exec('uname -r ');
-        $name_full = trim(preg_replace('/\s\s+/', ' ', shell_exec('cat /proc/cpuinfo | grep name | head -1')));
-        $name = explode(': ', $name_full);
+        $nameFull = trim(preg_replace('/\s\s+/', ' ', shell_exec('cat /proc/cpuinfo | grep name | head -1')));
+        $name = explode(': ', $nameFull);
 
         //determine php version
-        $php_version = explode('.', phpversion());
+        $phpVersion = explode('.', phpversion());
 
         // data object
         $data = new stdClass();
@@ -46,7 +46,7 @@ class Monitor
 
         $data->uname = $uname;
         $data->webserver = $this->server['SERVER_NAME'] . ' (' . $serverAddr . ') - ' . $this->server['SERVER_SOFTWARE'];
-        $data->php_version = 'PHP/'.$php_version[0].'.'.$php_version[1].'.'.$php_version[1];
+        $data->phpVersion = 'PHP/' . $phpVersion[0] . '.' . $phpVersion[1] . '.' . $phpVersion[1];
         $data->cpu = $name[1];
 
         return $data;
@@ -64,11 +64,11 @@ class Monitor
         $output = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
         $temp = round(($output) / 1000, 1);
         $output = shell_exec('echo "$(</proc/uptime awk \'{print $1}\')"');
-        $time_alive = StringHelpers::secondsToTime((int) $output);
+        $timeAlive = StringHelpers::secondsToTime((int)$output);
         // data object
         $data = new stdClass();
         $data->temperature = $temp;
-        $data->uptime = $time_alive;
+        $data->uptime = $timeAlive;
 
         return $data;
     }
@@ -87,9 +87,9 @@ class Monitor
         $loadavg = explode(' ', substr($output, strpos($output, 'load average:') + 14));
         // data object
         $data = new stdClass();
-        $data->one_min = StringHelpers::prettyLoadAverage($loadavg[0]);
-        $data->five_mins = StringHelpers::prettyLoadAverage($loadavg[1]);
-        $data->fifteen_mins = StringHelpers::prettyLoadAverage($loadavg[2]);
+        $data->oneMin = StringHelpers::prettyLoadAverage($loadavg[0]);
+        $data->fiveMins = StringHelpers::prettyLoadAverage($loadavg[1]);
+        $data->fifteenMins = StringHelpers::prettyLoadAverage($loadavg[2]);
 
         return $data;
     }

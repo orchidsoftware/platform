@@ -68,25 +68,25 @@
                         <tr>
                             <td><p>1 {{trans('dashboard::systems/monitor.CPU Load Average.min')}}:</p></td>
                             <td><p class="text-right"><span
-                                            class="text-muted">{{ $loadAverage->one_min['percent'] }}
+                                            class="text-muted">{{ $loadAverage->oneMin['percent'] }}
                                         %</span>&nbsp;
-                                    &nbsp; &nbsp;{{ $loadAverage->one_min['average'] }}
+                                    &nbsp; &nbsp;{{ $loadAverage->oneMin['average'] }}
                                 </p></td>
                         </tr>
                         <tr>
                             <td><p>5 {{trans('dashboard::systems/monitor.CPU Load Average.min')}}:</p></td>
                             <td><p class="text-right"><span
-                                            class="text-muted">{{ $loadAverage->five_mins['percent'] }}
+                                            class="text-muted">{{ $loadAverage->fiveMins['percent'] }}
                                         %</span>&nbsp;
-                                    &nbsp; &nbsp;{{ $loadAverage->five_mins['average'] }}
+                                    &nbsp; &nbsp;{{ $loadAverage->fiveMins['average'] }}
                                 </p></td>
                         </tr>
                         <tr>
                             <td><p>15 {{trans('dashboard::systems/monitor.CPU Load Average.min')}}:</p></td>
                             <td><p class="text-right"><span
-                                            class="text-muted">{{ $loadAverage->one_min['percent'] }}
+                                            class="text-muted">{{ $loadAverage->oneMin['percent'] }}
                                         %</span>&nbsp;
-                                    &nbsp; &nbsp;{{ $loadAverage->fifteen_mins['average'] }}
+                                    &nbsp; &nbsp;{{ $loadAverage->fifteenMins['average'] }}
                                 </p></td>
                         </tr>
                         </tbody>
@@ -246,7 +246,7 @@
                         </tr>
                         <tr>
                             <td><p>{{trans('dashboard::systems/monitor.Info.PHP Version')}}:</p></td>
-                            <td><p class="text-right small">{{ $info->php_version }}</p></td>
+                            <td><p class="text-right small">{{ $info->phpVersion }}</p></td>
                         </tr>
                         <tr>
                             <td><p>{{trans('dashboard::systems/monitor.Info.CPU')}}:</p></td>

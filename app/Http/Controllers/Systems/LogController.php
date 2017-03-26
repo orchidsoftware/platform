@@ -28,9 +28,9 @@ class LogController extends Controller
     /**
      * LogController constructor.
      *
-     * @param Log $Log
+     * @param Log $log
      */
-    public function __construct(Log $Log)
+    public function __construct(Log $log)
     {
         $this->checkPermission('dashboard.systems.logs');
         $this->log = app('arcanedev.log-viewer');

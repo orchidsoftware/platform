@@ -36,7 +36,7 @@ class EnvironmentController extends Controller
         $dotenv = $dotenv->load();
         $envArray = [];
 
-        foreach ($dotenv as $key => $value) {
+        foreach ($dotenv as $value) {
             $chunk = explode('=', $value);
             $envArray[$chunk[0]] = $chunk[1];
         }
