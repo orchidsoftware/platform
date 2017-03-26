@@ -167,7 +167,7 @@ class AttachmentController extends Controller
      *
      * @param $id
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpResponse
+     * @return \Illuminate\Contracts\Routing\ResponseFactory
      */
     public function destroy($id)
     {

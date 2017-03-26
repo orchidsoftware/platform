@@ -3,7 +3,7 @@
 namespace Orchid\Core\Models;
 
 use Laravel\Spark\Events\User\JoinedTeam;
-use Laravel\Spark\Spark;
+use Orchid\Facades\Dashboard;
 
 trait CanJoinTeams
 {
@@ -33,7 +33,7 @@ trait CanJoinTeams
      */
     public function joinTeamById($teamId)
     {
-        $this->teams()->attach([$teamId], ['role' => Spark::defaultRole()]);
+        $this->teams()->attach([$teamId], ['role' => Dashboard::defaultRole()]);
 
         $this->currentTeam();
 
@@ -43,7 +43,7 @@ trait CanJoinTeams
     /**
      * Get the team that user is currently viewing.
      *
-     * @return \Illuminate\Database\Eloquent\Model|\Laravel\Spark\Teams\Team|null
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function currentTeam()
     {
