@@ -46,13 +46,11 @@ class PostController extends Controller
      */
     public function create(Type $type): View
     {
-
         return view('dashboard::container.posts.create', [
             'type'    => $type,
             'locales' => $this->locales->where('required', true),
         ]);
     }
-
 
     /**
      * @param Request $request
@@ -63,7 +61,6 @@ class PostController extends Controller
      */
     public function store(Request $request, Type $type, Post $post): RedirectResponse
     {
-
         $this->validate($request, $type->rules());
 
         $post->fill($request->all());
@@ -108,7 +105,6 @@ class PostController extends Controller
      */
     public function edit(Type $type, Post $post): View
     {
-
         $locales = $this->locales->map(function ($value, $key) use ($post) {
             $value['required'] = (bool) $post->checkLanguage($key);
 
