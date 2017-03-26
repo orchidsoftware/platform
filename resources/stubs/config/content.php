@@ -23,7 +23,7 @@ return [
     */
 
     'types' => [
-        \Orchid\Types\DemoType::class,
+        App\Types\DemoType::class,
     ],
 
     /*
