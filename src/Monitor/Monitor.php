@@ -6,9 +6,8 @@ use stdClass;
 
 class Monitor
 {
-
     /**
-     * @var $_SERVER
+     * @var
      */
     public $server;
 
@@ -45,8 +44,8 @@ class Monitor
         $serverAddr = (isset($this->server['SERVER_ADDR'])) ? $this->server['SERVER_ADDR'] : ' ';
 
         $data->uname = $uname;
-        $data->webserver = $this->server['SERVER_NAME'] . ' (' . $serverAddr . ') - ' . $this->server['SERVER_SOFTWARE'];
-        $data->phpVersion = 'PHP/' . $phpVersion[0] . '.' . $phpVersion[1] . '.' . $phpVersion[1];
+        $data->webserver = $this->server['SERVER_NAME'].' ('.$serverAddr.') - '.$this->server['SERVER_SOFTWARE'];
+        $data->phpVersion = 'PHP/'.$phpVersion[0].'.'.$phpVersion[1].'.'.$phpVersion[1];
         $data->cpu = $name[1];
 
         return $data;
@@ -64,7 +63,7 @@ class Monitor
         $output = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
         $temp = round(($output) / 1000, 1);
         $output = shell_exec('echo "$(</proc/uptime awk \'{print $1}\')"');
-        $timeAlive = StringHelpers::secondsToTime((int)$output);
+        $timeAlive = StringHelpers::secondsToTime((int) $output);
         // data object
         $data = new stdClass();
         $data->temperature = $temp;

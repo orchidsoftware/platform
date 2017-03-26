@@ -55,6 +55,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('type', function ($value) {
             $post = new Post();
             $type = $post->getType($value)->getTypeObject();
+
             return $type;
         });
 
