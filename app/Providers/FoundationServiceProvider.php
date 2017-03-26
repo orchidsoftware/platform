@@ -37,7 +37,7 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
-        $this->registerTypes();
+        $this->registerCode();
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
@@ -51,7 +51,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register types.
      */
-    protected function registerTypes()
+    protected function registerCode()
     {
         $this->publishes([
             DASHBOARD_PATH.'/resources/stubs/types/DemoType.stub' => app_path('/Types/DemoType.php'),
