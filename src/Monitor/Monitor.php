@@ -6,6 +6,20 @@ use stdClass;
 
 class Monitor
 {
+
+    /**
+     * @var $_SERVER
+     */
+    public $server;
+
+    /**
+     * Monitor constructor.
+     */
+    public function __construct()
+    {
+        $this->server = $_SERVER;
+    }
+
     /**
      * The array $_SERVER[] contains a bunch of server and execution
      * environment information.
@@ -28,10 +42,10 @@ class Monitor
         // data object
         $data = new stdClass();
 
-        $serverAddr = (isset($_SERVER['SERVER_ADDR'])) ? $_SERVER['SERVER_ADDR'] : ' ';
+        $serverAddr = (isset($this->server['SERVER_ADDR'])) ? $this->server['SERVER_ADDR'] : ' ';
 
         $data->uname = $uname;
-        $data->webserver = $_SERVER['SERVER_NAME'].' ('.$serverAddr.') - '.$_SERVER['SERVER_SOFTWARE'];
+        $data->webserver = $this->server['SERVER_NAME'] . ' (' . $serverAddr . ') - ' . $this->server['SERVER_SOFTWARE'];
         $data->php_version = 'PHP/'.$php_version[0].'.'.$php_version[1].'.'.$php_version[1];
         $data->cpu = $name[1];
 
