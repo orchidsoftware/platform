@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Orchid\Alert\Facades\Alert;
 use Orchid\Core\Models\Post;
 use Orchid\Http\Controllers\Controller;
+use Orchid\Type\Type;
 
 class PostController extends Controller
 {
@@ -29,23 +30,22 @@ class PostController extends Controller
     }
 
     /**
-     * @param Post $post
+     * @param Type $type
      *
      * @return View
      */
-    public function index(Post $post): View
+    public function index(Type $type): View
     {
-        return view('dashboard::container.posts.main', $post->getTypeObject()->generateGrid());
+        return view('dashboard::container.posts.main', $type->generateGrid());
     }
 
     /**
-     * @param $post
+     * @param Type $type
      *
      * @return View
      */
-    public function create($post): View
+    public function create(Type $type): View
     {
-        $type = $post->getTypeObject();
 
         return view('dashboard::container.posts.create', [
             'type'    => $type,
@@ -53,19 +53,22 @@ class PostController extends Controller
         ]);
     }
 
+
     /**
      * @param Request $request
      * @param Post    $post
+     * @param Type    $type
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store(Request $request, Post $post): RedirectResponse
+    public function store(Request $request, Type $type, Post $post): RedirectResponse
     {
-        $this->validate($request, $post->getTypeObject()->rules());
+
+        $this->validate($request, $type->rules());
 
         $post->fill($request->all());
 
-        $post->type = $post->getTypeObject()->slug;
+        $post->type = $type->slug;
         $post->user_id = Auth::user()->id;
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
 
@@ -73,20 +76,18 @@ class PostController extends Controller
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = reset($content)[$post->getTypeObject()->slugFields];
+            $slug = reset($content)[$type->slugFields];
         }
 
         $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
 
-        //$post->slug = $post->makeSlug($slug);
-
         $post->save();
 
-        $modules = $post->getTypeObject()->getModules();
+        $modules = $type->getModules();
 
         foreach ($modules as $module) {
             $module = new $module();
-            $module->save($post->getTypeObject(), $post);
+            $module->save($type, $post);
         }
 
         Alert::success('Message');
@@ -98,16 +99,15 @@ class PostController extends Controller
     }
 
     /**
-     * @param Post $type
+     * @param Type $type
      * @param Post $post
      *
      * @return View
      *
      * @internal param Request $request
      */
-    public function edit(Post $type, Post $post): View
+    public function edit(Type $type, Post $post): View
     {
-        $type = $type->getTypeObject();
 
         $locales = $this->locales->map(function ($value, $key) use ($post) {
             $value['required'] = (bool) $post->checkLanguage($key);
@@ -124,12 +124,12 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Post    $type
+     * @param Type    $type
      * @param Post    $post
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Post $type, Post $post): RedirectResponse
+    public function update(Request $request, Type $type, Post $post): RedirectResponse
     {
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
@@ -144,18 +144,16 @@ class PostController extends Controller
         }
 
         if ($request->has('slug') && $request->get('slug') !== $post->slug) {
-            //$post->slug = $post->makeSlug($slug);
-
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 
         $post->save();
 
-        $modules = $type->getTypeObject()->getModules();
+        $modules = $type->getModules();
 
         foreach ($modules as $module) {
             $module = new $module();
-            $module->save($type->getTypeObject(), $post);
+            $module->save($type, $post);
         }
 
         Alert::success('Message');
@@ -167,7 +165,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param Post $type
+     * @param Type $type
      * @param Post $post
      *
      * @return mixed
@@ -175,13 +173,13 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Post $type, Post $post): RedirectResponse
+    public function destroy(Type $type, Post $post): RedirectResponse
     {
         $post->delete();
         Alert::success('Message');
 
         return redirect()->route('dashboard.posts.type', [
-            'type' => $type->getTypeObject()->slug,
+            'type' => $type->slug,
         ]);
     }
 }

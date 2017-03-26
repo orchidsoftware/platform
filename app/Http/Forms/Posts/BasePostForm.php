@@ -8,6 +8,7 @@ use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Forms\Form;
+use Orchid\Type\Type;
 
 class BasePostForm extends Form
 {
@@ -19,14 +20,14 @@ class BasePostForm extends Form
     /**
      * Display Base Options.
      *
-     * @param Post|null $type
+     * @param Type|null $type
      * @param Post|null $post
      *
      * @return \Illuminate\Contracts\View\Factory|View
      *
      * @internal param null $type
      */
-    public function get(Post $type = null, Post $post = null): View
+    public function get(Type $type = null, Post $post = null): View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();
@@ -47,7 +48,7 @@ class BasePostForm extends Form
             'language' => App::getLocale(),
             'locales'  => config('content.locales'),
             'category' => $category,
-            'type'     => $type->getTypeObject(),
+            'type'     => $type,
         ]);
     }
 
