@@ -59,8 +59,8 @@ Add to `config/app.php`:
 ```php
 'aliases' => [
   // ...
-  'Alert' =>  Orchid\Facades\Alert::class,
   'Dashboard' =>  Orchid\Facades\Dashboard::class,
+  'Alert' =>  Orchid\Alert\Facades\Alert::class,
   'Setting' =>  Orchid\Facades\Setting::class,
   'Active' => Watson\Active\Facades\Active::class,
   'Image' => Intervention\Image\Facades\Image::class,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Facades;
+namespace Orchid\Alert\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Orchid\Alert\Alert as AlertModel;
