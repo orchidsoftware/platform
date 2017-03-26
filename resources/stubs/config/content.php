@@ -46,8 +46,6 @@ return [
         'path'     => \Orchid\Field\Fields\PathField::class,
     ],
 
-
-
     /*
     |--------------------------------------------------------------------------
     | Available menu
