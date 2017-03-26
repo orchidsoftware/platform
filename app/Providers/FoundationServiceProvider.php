@@ -37,6 +37,7 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
+        $this->registerTypes();
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
@@ -48,12 +49,22 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register types.
+     */
+    protected function registerTypes()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/stubs/types/DemoType.stub' => app_path('/Types/DemoType.php'),
+        ]);
+    }
+
+    /**
      * Register migrate.
      */
     protected function registerDatabase()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/stubs/database/migrations/' => database_path('migrations'),
+            DASHBOARD_PATH . '/resources/stubs/database/migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -62,7 +73,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(DASHBOARD_PATH.'/resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(DASHBOARD_PATH . '/resources/lang', 'dashboard');
     }
 
     /**
@@ -71,11 +82,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/stubs/config/content.php' => config_path('content.php'),
+            DASHBOARD_PATH . '/resources/stubs/config/content.php' => config_path('content.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH.'/resources/stubs/config/content.php', 'content'
+            DASHBOARD_PATH . '/resources/stubs/config/content.php', 'content'
         );
     }
 
@@ -85,16 +96,19 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/vendor/orchid/dashboard';
+            return $path . '/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            DASHBOARD_PATH.'/resources/views',
+            DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
     }
 
+    /**
+     * Register public
+     */
     protected function registerPublic()
     {
         $this->publishes([
-            DASHBOARD_PATH.'/resources/assets/dist/' => public_path('orchid'),
+            DASHBOARD_PATH . '/resources/assets/dist/' => public_path('orchid'),
         ], 'public');
     }
 
@@ -148,7 +162,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function register()
     {
         if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
+            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Types;
+namespace App\Types;
 
 use Orchid\Http\Forms\Posts\BasePostForm;
 use Orchid\Http\Forms\Posts\UploadPostForm;
