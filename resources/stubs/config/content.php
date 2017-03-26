@@ -35,10 +35,6 @@ return [
     |
     */
 
-    'transformers' => [
-        'place-list' => \Orchid\Filters\Transformer\PlaceListTransformer::class,
-    ],
-
     'fields' => [
         'textarea' => \Orchid\Field\Fields\TextAreaField::class,
         'input'    => \Orchid\Field\Fields\InputField::class,
@@ -50,35 +46,7 @@ return [
         'path'     => \Orchid\Field\Fields\PathField::class,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Available fields to form templates
-    |--------------------------------------------------------------------------
-    |
-    | Description
-    |
-    */
 
-    'fieldFilters' => [
-        'eq'      => \Orchid\Filters\WhereFilters::class,
-        'count'   => \Orchid\Filters\LimitFilters::class,
-        'between' => \Orchid\Filters\BetweenFilter::class,
-        'search'  => \Orchid\Filters\LikeFilters::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Available fields to form templates
-    |--------------------------------------------------------------------------
-    |
-    | Description
-    |
-    */
-
-    'contentFilters' => [
-        'place' => \Orchid\Filters\PlaceContentFilter::class,
-        'name'  => \Orchid\Filters\NameContentFilter::class,
-    ],
 
     /*
     |--------------------------------------------------------------------------

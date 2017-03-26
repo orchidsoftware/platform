@@ -1,14 +1,3 @@
 .idea
 .phpstorm.meta.php
 _ide_helper.php
-Будет удалено resources/assets/
-Будет удалено resources/lang/
-Будет удалено resources/views/
-Будет удалено src/Foundation/Core/Models/Invitation.php
-Будет удалено src/Foundation/Core/Models/Team.php
-Будет удалено src/Foundation/Core/Trait/
-Будет удалено src/Foundation/Events/User/
-Будет удалено src/Frontend/
-Будет удалено assets/
-Будет удалено lang/
-Будет удалено views/

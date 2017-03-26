@@ -5,10 +5,6 @@ namespace Orchid\Kernel;
 use Illuminate\Support\Collection;
 use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
-use Orchid\Filters\ContentFilterStorage;
-use Orchid\Filters\FilterStorage;
-use Orchid\Filters\Transformer\PlaceListTransformer;
-use Orchid\Filters\Transformer\TransformerStorage;
 use Orchid\Menu\Menu;
 use Orchid\Menu\RouteMenu;
 use Orchid\Type\TypeStorage;
@@ -52,10 +48,6 @@ class Dashboard
         $this->types = new TypeStorage();
         $this->fields = new FieldStorage();
         $this->routeMenu = new RouteMenu();
-
-        $this->fieldFilters = new FilterStorage();
-        $this->contentFilters = new ContentFilterStorage();
-        $this->transformers = new TransformerStorage();
     }
 
     /**
@@ -118,30 +110,6 @@ class Dashboard
     public function getTypes()
     {
         return $this->types;
-    }
-
-    /**
-     * @return FieldStorage|FilterStorage
-     */
-    public function getFieldFilters()
-    {
-        return $this->fieldFilters;
-    }
-
-    /**
-     * @return PlaceListTransformer|TransformerStorage
-     */
-    public function getTransformers()
-    {
-        return $this->transformers;
-    }
-
-    /**
-     * @return ContentFilterStorage
-     */
-    public function getContentFilters()
-    {
-        return $this->contentFilters;
     }
 
     /**
