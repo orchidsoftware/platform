@@ -4,7 +4,9 @@ namespace Orchid\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use LogicException;
 use Orchid\Alert\Facades\Alert;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class CacheController
 {
@@ -53,11 +55,11 @@ class CacheController
     {
         try {
             Artisan::call('route:cache');
-        } catch (\Symfony\Component\Debug\Exception\FatalThrowableError $exception) {
+        } catch (FatalThrowableError $exception) {
             Alert::error('error');
 
             return redirect()->back();
-        } catch (\LogicException $exception) {
+        } catch (LogicException $exception) {
             Alert::error('error');
 
             return redirect()->back();
