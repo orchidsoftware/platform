@@ -2,7 +2,7 @@
 
 namespace Orchid\Http\Controllers\Install;
 
-use Orchid\Helpers\PermissionsChecker;
+use Orchid\Http\Controllers\Install\Helpers\PermissionsChecker;
 use Orchid\Http\Controllers\Controller;
 
 class PermissionsController extends Controller

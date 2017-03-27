@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Helpers;
+namespace Orchid\Http\Controllers\Install\Helpers;
 
 class RequirementsChecker
 {

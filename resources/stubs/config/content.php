@@ -14,6 +14,11 @@ return [
     'install' => env('APP_INSTALL', false),
 
     /*
+     * Available settings
+     */
+    'image' => '/background.jpg',
+
+    /*
     |--------------------------------------------------------------------------
     | Types
     |--------------------------------------------------------------------------
@@ -23,7 +28,7 @@ return [
     */
 
     'types' => [
-        App\Types\DemoType::class,
+        //App\Types\DemoType::class,
     ],
 
     /*
@@ -87,7 +92,7 @@ return [
         'high'   => [
             'width'   => '1000',
             'height'  => '500',
-            'quality' => '100',
+            'quality' => '95',
         ],
     ],
 

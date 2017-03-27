@@ -2,7 +2,7 @@
 
 namespace Orchid\Http\Controllers\Install;
 
-use Orchid\Helpers\InstalledFileManager;
+use Orchid\Http\Controllers\Install\Helpers\InstalledFileManager;
 use Orchid\Http\Controllers\Controller;
 
 class FinalController extends Controller

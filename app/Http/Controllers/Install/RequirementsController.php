@@ -2,7 +2,7 @@
 
 namespace Orchid\Http\Controllers\Install;
 
-use Orchid\Helpers\RequirementsChecker;
+use Orchid\Http\Controllers\Install\Helpers\RequirementsChecker;
 use Orchid\Http\Controllers\Controller;
 
 class RequirementsController extends Controller
