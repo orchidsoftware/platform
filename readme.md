@@ -26,7 +26,7 @@ Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 
 
-<a href="https://theorchid.github.io/docs/screenshot/" target="_blank"><img src="https://theorchid.github.io/assets/img/screen/7.png"></a>
+<a href="https://theorchid.github.io/docs/screenshot/" target="_blank"><img src="https://cloud.githubusercontent.com/assets/5102591/24376775/c65c2af8-1345-11e7-8116-73221df469ef.png"></a>
 
 
 
