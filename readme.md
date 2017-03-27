@@ -49,8 +49,16 @@ Add to `config/app.php`:
 - Service provider to the 'providers' array:
 ```php
 'providers' => [
-  // ...
+  // Laravel Framework Service Providers...
+  //...
+
+  // Package Service Providers
   Orchid\Providers\FoundationServiceProvider::class,
+
+  // ...
+
+  // Application Service Providers
+  // ...
 ];
 ```
 
