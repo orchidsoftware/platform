@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/TheOrchid/Platform"><img width="250"  src="https://theorchid.github.io/Platform/dist/img/orchid.svg">
+<a href="https://github.com/TheOrchid/Platform"><img width="250"  src="https://theorchid.github.io/assets/img/orchid.svg">
 </a>
 </p>
 
