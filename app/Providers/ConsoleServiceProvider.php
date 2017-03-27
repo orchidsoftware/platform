@@ -37,7 +37,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             foreach ($this->commands as $command) {
-                $this->commands($this->namespace . $command);
+                $this->commands($this->namespace.$command);
             }
         }
     }
