@@ -186,8 +186,20 @@ class MenuComposer
             'permission' => 'dashboard.tools.menu',
         ];
 
+        $mediaMenu = [
+            'slug'       => 'media',
+            'icon'       => 'icon-folder-alt',
+            'route'      => route('dashboard.tools.media.index'),
+            'label'      => 'Media',
+            'childs'     => false,
+            'divider'    => false,
+            'permission' => 'dashboard.tools.media',
+        ];
+
+
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
+        $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $mediaMenu, 3);
 
         /*
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $seoMenu, 10);

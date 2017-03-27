@@ -49,4 +49,25 @@ $this->group([
             'show'   => 'dashboard.tools.menu.show',
             'update' => 'dashboard.tools.menu.update',
         ]]);
+
+
+
+
+
+        Route::group([
+            'as'     => 'dashboard.tools.media.',
+            'prefix' => 'media',
+        ], function ()  {
+            Route::get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
+            Route::post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
+            Route::post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
+            Route::post('delete_file_folder', ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']);
+            Route::post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'get_all_dirs']);
+            Route::post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'move_file']);
+            Route::post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'rename_file']);
+            Route::post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
+            Route::post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
+        });
+
     });
+

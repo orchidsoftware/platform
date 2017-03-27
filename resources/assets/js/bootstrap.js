@@ -33,6 +33,12 @@ require('brace/mode/javascript');
 require('brace/theme/monokai');
 
 
+require('select2');
+$(() => {
+    $('.select2-enable').select2();
+});
+
+
 require('./modules/chosen');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');

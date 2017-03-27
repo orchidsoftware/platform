@@ -105,6 +105,10 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.tools.attachment',
                     'description' => 'Доступ к загрузке файлов',
                 ],
+                [
+                    'slug'        => 'dashboard.tools.media',
+                    'description' => 'Доступ к файловому менеджеру',
+                ],
             ],
         ];
     }
