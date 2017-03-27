@@ -196,7 +196,6 @@ class MenuComposer
             'permission' => 'dashboard.tools.media',
         ];
 
-
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $menuMenu, 1);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $categoryMenu, 3);
         $dashboard->menu->add('Tools', 'dashboard::partials.leftMenu', $mediaMenu, 3);
