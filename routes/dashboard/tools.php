@@ -50,14 +50,10 @@ $this->group([
             'update' => 'dashboard.tools.menu.update',
         ]]);
 
-
-
-
-
         Route::group([
             'as'     => 'dashboard.tools.media.',
             'prefix' => 'media',
-        ], function ()  {
+        ], function () {
             Route::get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
             Route::post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
             Route::post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
@@ -68,6 +64,4 @@ $this->group([
             Route::post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             Route::post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
-
     });
-
