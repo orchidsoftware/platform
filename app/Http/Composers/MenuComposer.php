@@ -30,6 +30,8 @@ class MenuComposer
      */
     protected function registerMenu(Dashboard $dashboard)
     {
+
+        /*
         $panelMenu = [
             'slug'       => 'Dashboard',
             'icon'       => 'icon-speedometer',
@@ -40,54 +42,8 @@ class MenuComposer
             'active'     => 'dashboard.index',
             'permission' => 'dashboard.index',
         ];
-        $postMenu = [
-            'slug'       => 'Posts',
-            'icon'       => 'icon-note',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.Posts'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.posts.*',
-            'permission' => 'dashboard.posts',
-        ];
-        $toolsMenu = [
-            'slug'       => 'Tools',
-            'icon'       => 'icon-wrench',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.Tools'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.tools.*',
-            'permission' => 'dashboard.tools',
-        ];
-        $systemsMenu = [
-            'slug'       => 'Systems',
-            'icon'       => 'icon-organization',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.Systems'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.systems.*',
-            'permission' => 'dashboard.systems',
-        ];
-
-        $marketingMenu = [
-            'slug'       => 'Marketing',
-            'icon'       => 'icon-chart',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.Marketing'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.marketing.*',
-            'permission' => 'dashboard.marketing',
-        ];
-
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $panelMenu, 1);
-        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $postMenu, 100);
-        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
-        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
-
-        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $marketingMenu, 1500);
+        */
 
         /*
         $analyticsMenu = [
@@ -110,6 +66,21 @@ class MenuComposer
     protected function registerMenuPost(Dashboard $dashboard)
     {
         $allPost = $dashboard->types();
+
+        if (count($allPost) > 0) {
+            $postMenu = [
+                'slug'       => 'Posts',
+                'icon'       => 'icon-note',
+                'route'      => '#',
+                'label'      => trans('dashboard::menu.Posts'),
+                'childs'     => true,
+                'main'       => true,
+                'active'     => 'dashboard.posts.*',
+                'permission' => 'dashboard.posts',
+            ];
+
+            $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $postMenu, 100);
+        }
         foreach ($allPost as $page) {
             if ($page->display) {
                 $postObject = [
@@ -118,7 +89,7 @@ class MenuComposer
                     'route'      => route('dashboard.posts.type', [$page->slug]),
                     'label'      => $page->name,
                     'childs'     => false,
-                    'permission' => 'dashboard.posts.type.'.$page->slug,
+                    'permission' => 'dashboard.posts.type.' . $page->slug,
                 ];
 
                 if (reset($allPost) == $page) {
@@ -137,7 +108,18 @@ class MenuComposer
      */
     protected function registerMenuTools(Dashboard $dashboard)
     {
+        $toolsMenu = [
+            'slug'       => 'Tools',
+            'icon'       => 'icon-wrench',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Tools'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.tools.*',
+            'permission' => 'dashboard.tools',
+        ];
 
+        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $toolsMenu, 500);
         /*
                 $seoMenu = [
                     'slug'      => 'static-pages',
@@ -213,6 +195,21 @@ class MenuComposer
      */
     protected function registerMenuSystems(Dashboard $dashboard)
     {
+
+        $systemsMenu = [
+            'slug'       => 'Systems',
+            'icon'       => 'icon-organization',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Systems'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.systems.*',
+            'permission' => 'dashboard.systems',
+        ];
+
+        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
+
+
         $settingsMenu = [
             'slug'       => 'settings',
             'icon'       => 'fa fa-cog',
@@ -310,6 +307,19 @@ class MenuComposer
      */
     protected function registerMenuMarketing(Dashboard $dashboard)
     {
+        $marketingMenu = [
+            'slug'       => 'Marketing',
+            'icon'       => 'icon-chart',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Marketing'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.marketing.*',
+            'permission' => 'dashboard.marketing',
+        ];
+
+        $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $marketingMenu, 1500);
+
         $commentMenu = [
             'slug'       => 'comment',
             'icon'       => 'fa fa-comments-o',

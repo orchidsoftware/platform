@@ -51,10 +51,7 @@
         /**************************************************/
 
         #toolbar{
-            background:#E0E0E0;
-            padding:20px;
-            border-top-left-radius:3px;
-            border-top-right-radius:3px;
+            padding: 15px;
         }
 
 
@@ -278,6 +275,7 @@
             font-size: 11px;
             position: relative;
             top: -3px;
+            font-weight: 300;
         }
 
         #files li .file_link .link_icon{
@@ -304,7 +302,7 @@
 
         #files li .file_link.selected, #files li .file_link:hover{
             background: #23b7e5 !important;
-            border-color: #2581b8;
+            border-color: #15b3e4;
             color:#fff;
         }
 
