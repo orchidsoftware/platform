@@ -89,7 +89,7 @@ class MenuComposer
                     'route'      => route('dashboard.posts.type', [$page->slug]),
                     'label'      => $page->name,
                     'childs'     => false,
-                    'permission' => 'dashboard.posts.type.' . $page->slug,
+                    'permission' => 'dashboard.posts.type.'.$page->slug,
                 ];
 
                 if (reset($allPost) == $page) {
@@ -195,7 +195,6 @@ class MenuComposer
      */
     protected function registerMenuSystems(Dashboard $dashboard)
     {
-
         $systemsMenu = [
             'slug'       => 'Systems',
             'icon'       => 'icon-organization',
@@ -208,7 +207,6 @@ class MenuComposer
         ];
 
         $dashboard->menu->add('Main', 'dashboard::partials.leftMainMenu', $systemsMenu, 1000);
-
 
         $settingsMenu = [
             'slug'       => 'settings',
