@@ -8,19 +8,16 @@
         <label class="col-sm-2 control-label">Родительская категория</label>
         <div class="col-sm-10">
 
-            <select data-placeholder="Select Category" name="parent_id" class="chosen-select form-control">
+            <select data-placeholder="Select Category" name="parent_id" class="select2 form-control">
 
                 <option value="0">Без секции</option>
 
 
                 @foreach($category as  $value)
 
-
                     <option value="{{$value->id}}"
                             @if($termTaxonomy->exists && $termTaxonomy->parent_id == $value->id) selected @endif >
                         {{$value->term->getContent('name')}}</option>
-
-
                 @endforeach
             </select>
         </div>

@@ -3,7 +3,7 @@
 $(function () {
 
 
-    if (document.getElementsByClassName("dropzone")) {
+    if (document.getElementsByClassName("dropzone").length > 0) {
 
         var postDropzone = new Dropzone(".dropzone", {
             url: '/dashboard/tools/files',

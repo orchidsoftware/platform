@@ -51,6 +51,18 @@ class Dashboard
     }
 
     /**
+     * Get the version number of the application.
+     *
+     * @return string
+     */
+    public static function version()
+    {
+        return static::VERSION;
+    }
+
+
+
+    /**
      * Configure Dashboard application.
      *
      * @param array $options

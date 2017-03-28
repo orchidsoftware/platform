@@ -253,7 +253,7 @@
     <!-- footer -->
     <footer id="footer" class="app-footer" role="footer">
         <div class="wrapper b-t bg-light">
-            <span class="pull-right">{{ App::VERSION() }}
+            <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
                 <a href="" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
             </span>
             © {{date("Y")}} Copyright.
@@ -265,8 +265,6 @@
 
 @include('dashboard::partials.quick')
 
-<script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB_9M5O7t88YovZa2mePQ9VX4f79c86cqg"></script>
 
 @stack('scripts')
 

@@ -51,7 +51,7 @@
 
     <div class="form-group">
         <label class="control-label">Показывать в категориях</label>
-        <select name="category[]" multiple data-placeholder="Select Category" class="chosen-select form-control">
+        <select name="category[]" multiple data-placeholder="Select Category" class="select2 form-control">
             @foreach($category as  $value)
 
                 <option value="{{$value->id}}"

@@ -14,7 +14,7 @@
         <label class="col-sm-2 control-label">Категория</label>
         <div class="col-sm-10">
             <select required data-placeholder="Select Category" name="options[category]"
-                    class="chosen-select form-control">
+                    class="select2 form-control">
                 @foreach($categories as $categoryCode => $categoryLabel)
                     <option value="{{$categoryCode}}"
                             @if($adv->getOption('category') == $categoryCode) selected @endif>
