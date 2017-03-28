@@ -60,8 +60,6 @@ class Dashboard
         return static::VERSION;
     }
 
-
-
     /**
      * Configure Dashboard application.
      *
