@@ -16,7 +16,7 @@ return [
     /*
      * Available settings
      */
-    'image' => '/background.jpg',
+    'image' => '/orchid/img/background.jpg',
 
     /*
     |--------------------------------------------------------------------------
