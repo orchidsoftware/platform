@@ -74,7 +74,6 @@ class Defender
     {
         $files = scandir($dir);
 
-
         foreach ($files as $value) {
             $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
             if (!is_dir($path)) {
@@ -104,10 +103,10 @@ class Defender
 
             if (str_contains($file, '.php') && !str_contains($file, $this->exceptionsValid) && !$this->checkForValidPhp($content)) {
                 $this->notValid[] = $file;
-           }
+            }
 
             if (str_contains($content, $this->signatures)) {
-                $this->dangerFiles[] =$file;
+                $this->dangerFiles[] = $file;
                 /*([
                     'path' => $file,
                     //'meta' => $meta,
@@ -135,6 +134,7 @@ class Defender
                 $extensionsFiles[] = $file;
             }
         }
+
         return $extensionsFiles;
     }
 
