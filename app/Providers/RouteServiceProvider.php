@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::middlewareGroup('access', [
             Firewall::class,
-            AccessMiddleware::class
+            AccessMiddleware::class,
         ]);
 
         Route::middlewareGroup('install', [
