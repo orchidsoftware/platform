@@ -58,8 +58,10 @@ class Defender
             $dir = public_path();
         }
         $this->dir = $dir;
+        $this->extensions = config('defender.extensions');
+        $this->signatures = config('defender.signatures');
 
-        $this->getDirContents($this->dir, $this->files);
+        $this->files = $this->getDirContents($this->dir, $this->files);
     }
 
     /**
@@ -71,6 +73,7 @@ class Defender
     private function getDirContents(string $dir, array &$results = []): array
     {
         $files = scandir($dir);
+
 
         foreach ($files as $value) {
             $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
@@ -99,12 +102,19 @@ class Defender
         foreach ($files as $file) {
             $content = file_get_contents($file);
 
-            if (!str_contains($file, $this->exceptionsValid) && !$this->checkForValidPhp($content)) {
+            if (str_contains($file, '.php') && !str_contains($file, $this->exceptionsValid) && !$this->checkForValidPhp($content)) {
                 $this->notValid[] = $file;
-            }
+           }
 
             if (str_contains($content, $this->signatures)) {
-                $this->dangerFiles[] = $file;
+                $this->dangerFiles[] =$file;
+                /*([
+                    'path' => $file,
+                    //'meta' => $meta,
+                    'date' => date('d.m.Y',$meta['mtime']),
+                    'size' => $meta['size'],
+                ];
+                */
             }
         }
 
@@ -119,12 +129,12 @@ class Defender
     private function extensionsFile(array $files): array
     {
         $extensionsFiles = [];
+
         foreach ($files as $file) {
             if (str_contains($file, $this->extensions)) {
                 $extensionsFiles[] = $file;
             }
         }
-
         return $extensionsFiles;
     }
 
