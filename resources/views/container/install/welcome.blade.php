@@ -1,14 +1,14 @@
 @extends('dashboard::layouts.install')
 
-@section('title', trans('install.welcome.title'))
-@section('descriptions', trans('install.welcome.message'))
+@section('title', trans('dashboard::install.welcome.title'))
+@section('descriptions', trans('dashboard::install.welcome.message'))
 
 @section('container')
 
 
 
     <h4 class="m-b font-thin b-b b-light-cs wrapper-xs">
-        {{ trans('install.welcome.message') }}
+        {{ trans('dashboard::install.welcome.message') }}
     </h4>
 
     <p>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-6 col-xs-12 text-right"><a href="{{ route('install::environment') }}"
                                                       class="btn btn-link text-ellipsis"> <span
-                        class="text-md text-ellipsis">{{ trans('install.next') }} <i
+                        class="text-md text-ellipsis">{{ trans('dashboard::install.next') }} <i
                             class="ion-ios-arrow-right m-l-xs"></i> </span></a>
         </div>
     </div>

@@ -35,11 +35,11 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->runningInConsole()) {
+        //if ($this->app->runningInConsole()) {
             foreach ($this->commands as $command) {
                 $this->commands($this->namespace.$command);
             }
-        }
+        //}
     }
 
     /**

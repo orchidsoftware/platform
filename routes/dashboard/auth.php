@@ -10,7 +10,7 @@
 */
 
 $this->group([
-    'middleware' => ['web'],
+    'middleware' => ['web','dashboard'],
     'prefix'     => 'dashboard',
     'namespace'  => 'Orchid\Http\Controllers\Auth',
 ],

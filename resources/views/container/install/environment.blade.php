@@ -1,6 +1,6 @@
 @extends('dashboard::layouts.install')
-@section('title', trans('install.environment.title'))
-@section('descriptions', trans('install.environment.message'))
+@section('title', trans('dashboard::install.environment.title'))
+@section('descriptions', trans('dashboard::install.environment.message'))
 
 @section('container')
 
@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-md-6">
             <button class="btn btn-default btn-sm" form="env"
-                    type="submit">{{ trans('install.environment.save') }}</button>
+                    type="submit">{{ trans('dashboard::install.environment.save') }}</button>
         </div>
 
         <div class="col-md-6 text-right">
@@ -97,7 +97,7 @@
                class="btn btn-danger disable" disabled
                     @endif
             >
-                {{ trans('install.next') }} <i
+                {{ trans('dashboard::install.next') }} <i
                         class="ion-ios-arrow-right m-l-xs"></i>
             </a>
         </div>

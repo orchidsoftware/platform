@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.install')
 
-@section('title', trans('install.administrator.title'))
-@section('descriptions', trans('install.administrator.message'))
+@section('title', trans('dashboard::install.administrator.title'))
+@section('descriptions', trans('dashboard::install.administrator.message'))
 
 @section('container')
 
@@ -26,7 +26,7 @@
         <div class="form-group">
             <div class="text-right">
                 <button type="submit" class="btn btn-link">
-                    {{ trans('install.next') }} <i
+                    {{ trans('dashboard::install.next') }} <i
                             class="ion-ios-arrow-right m-l-xs"> </i>
                 </button>
             </div>

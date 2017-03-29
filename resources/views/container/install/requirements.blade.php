@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.install')
 
-@section('title', trans('install.requirements.title'))
-@section('descriptions', trans('install.requirements.message'))
+@section('title', trans('dashboard::install.requirements.title'))
+@section('descriptions', trans('dashboard::install.requirements.message'))
 
 @section('container')
 
@@ -30,7 +30,7 @@
                 @endif
         >
 
-            {{ trans('install.next') }} <i
+            {{ trans('dashboard::install.next') }} <i
                     class="ion-ios-arrow-right m-l-xs"> </i>
         </a>
     </div>

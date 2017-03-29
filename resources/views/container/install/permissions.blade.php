@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.install')
 
-@section('title', trans('install.permissions.title'))
-@section('descriptions', trans('install.permissions.message'))
+@section('title', trans('dashboard::install.permissions.title'))
+@section('descriptions', trans('dashboard::install.permissions.message'))
 
 @section('container')
 
@@ -31,7 +31,7 @@
                 href="#" class="btn btn-danger disable" disabled
                 @endif
         >
-            {{ trans('install.next') }} <i
+            {{ trans('dashboard::install.next') }} <i
                     class="ion-ios-arrow-right m-l-xs"> </i>
         </a>
     </div>

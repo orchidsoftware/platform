@@ -31,9 +31,14 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middlewareGroup('dashboard', [
             Firewall::class,
-            AccessMiddleware::class,
+            RedirectInstall::class,
         ]);
-        Route::pushMiddlewareToGroup('dashboard', RedirectInstall::class);
+
+        Route::middlewareGroup('access', [
+            Firewall::class,
+            AccessMiddleware::class
+        ]);
+
         Route::middlewareGroup('install', [
             CanInstall::class,
         ]);
