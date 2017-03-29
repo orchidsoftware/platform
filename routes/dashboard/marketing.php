@@ -11,7 +11,7 @@
 */
 
 $this->group([
-    'middleware' => ['web', 'dashboard','access'],
+    'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/marketing',
     'namespace'  => 'Orchid\Http\Controllers\Marketing',
 ],
