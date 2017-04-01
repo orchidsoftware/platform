@@ -11,4 +11,9 @@ return [
     'elements'  => 'elements',
     'show'      => 'show',
     'of'        => 'of',
+
+    'access_denied' => [
+        'label' => 'Access denied',
+        'help'  => "You don't have the required permissions to view this page.",
+    ],
 ];

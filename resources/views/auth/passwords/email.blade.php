@@ -21,7 +21,8 @@
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
             <label>Email</label>
             <div class="controls">
-                <input type="email" name="email" placeholder="Ваша электронная почта" class="form-control" required
+                <input type="email" name="email" placeholder="{{trans('dashboard::auth/account.enter_email')}}"
+                       class="form-control" required
                        value="{{ old('email') }}">
 
                 @if ($errors->has('email'))

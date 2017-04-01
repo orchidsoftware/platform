@@ -101,7 +101,7 @@ class Monitor
      * The code below pulls the relevant parts out of 'free'
      * and figures out the percentage used of each.
      *
-     * $total_act is a little less than $mem_total as there's
+     * $total_act is a little less than $memTotal as there's
      * some used up by the bootloader that's not available
      * to the system.
      *
@@ -110,8 +110,8 @@ class Monitor
     public function memory(): stdClass
     {
         //$mem_free = (int)shell_exec("free -m | awk '/buffers\/cache/ {print $3}'");
-        $mem_total = (int) shell_exec("free -m | awk '/Mem/ {print $2}'");
-        $mem_total = ($mem_total) ? $mem_total : 1;
+        $memTotal = (int)shell_exec("free -m | awk '/Mem/ {print $2}'");
+        $memTotal = ($memTotal) ? $memTotal : 1;
         $used_act = (int) shell_exec("free | awk '/buffers\/cache/ {print $3}'");
         $used_act = ($used_act) ? $used_act : 1;
         $free = (int) shell_exec("free | awk '/Mem/ {print $4}'");
@@ -128,7 +128,7 @@ class Monitor
         // data object
         $data = (object) [
             'total'   => (object) [
-                'pretty' => StringHelpers::prettyMemory($mem_total),
+                'pretty' => StringHelpers::prettyMemory($memTotal),
                 'actual' => $total_act,
             ],
             'used'    => (object) [
