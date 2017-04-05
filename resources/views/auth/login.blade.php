@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <p class="m-t-lg">Войдите в свой аккаунт</p>
+    <p class="m-t-lg">{{trans('dashboard::auth/account.title')}}</p>
 
     <form class="m-t-md" role="form" method="POST" action="{{  url('/dashboard/login') }}">
         {!! csrf_field() !!}
