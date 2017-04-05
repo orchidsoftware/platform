@@ -7,7 +7,9 @@ $(function () {
             time: "icon-clock",
             date: "icon-event",
             up: "icon-arrow-up",
-            down: "icon-arrow-down"
+            down: "icon-arrow-down",
+            right: "icon-arrow-right",
+            left: "icon-arrow-left"
         }
     });
 });
