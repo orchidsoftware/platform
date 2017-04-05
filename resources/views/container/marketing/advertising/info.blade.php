@@ -1,7 +1,7 @@
 <div class="wrapper-md">
 
     <div class="form-group m-t-md">
-        <label class="col-sm-2 control-label">Имя</label>
+        <label class="col-sm-2 control-label">{{trans('dashboard::marketing/advertising.name')}}</label>
         <div class="col-sm-10">
             <input type="text" name="slug" required class="form-control"
                    value="{{$adv->slug}}">
@@ -11,7 +11,7 @@
     <div class="line line-dashed b-b line-lg"></div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Категория</label>
+        <label class="col-sm-2 control-label">{{trans('dashboard::marketing/advertising.category')}}</label>
         <div class="col-sm-10">
             <select required data-placeholder="Select Category" name="options[category]"
                     class="select2 form-control">
@@ -28,7 +28,7 @@
     <div class="line line-dashed b-b line-lg"></div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Период</label>
+        <label class="col-sm-2 control-label">{{trans('dashboard::marketing/advertising.period')}}</label>
 
 
         <div class="col-sm-5">

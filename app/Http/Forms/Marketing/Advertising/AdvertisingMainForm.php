@@ -14,7 +14,7 @@ class AdvertisingMainForm extends Form
     /**
      * @var string
      */
-    public $name = 'Общее';
+    public $name = 'Information';
 
     /**
      * Base Model.
@@ -22,6 +22,18 @@ class AdvertisingMainForm extends Form
      * @var
      */
     protected $model = Post::class;
+
+
+    /**
+     * AdvertisingMainForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        parent::__construct($request);
+        $this->name = trans('dashboard::marketing/advertising.information');
+    }
 
     /**
      * @param Post $post

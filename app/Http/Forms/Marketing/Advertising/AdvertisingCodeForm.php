@@ -12,7 +12,7 @@ class AdvertisingCodeForm extends Form
     /**
      * @var string
      */
-    public $name = 'Код';
+    public $name = 'Code';
 
     /**
      * Base Model.
@@ -20,6 +20,19 @@ class AdvertisingCodeForm extends Form
      * @var
      */
     protected $model = Post::class;
+
+
+    /**
+     * AdvertisingCodeForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        parent::__construct($request);
+        $this->name = trans('dashboard::marketing/advertising.code');
+    }
+
 
     /**
      * @param Post $adv

@@ -25,7 +25,9 @@
                     <div class="row">
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Статус</label>
+                            <label class="col-sm-2 control-label">
+                                {{trans('dashboard::marketing/advertising.status')}}
+                            </label>
                             <div class="col-sm-10">
 
                                 <label class="i-switch bg-info m-t-xs m-r">

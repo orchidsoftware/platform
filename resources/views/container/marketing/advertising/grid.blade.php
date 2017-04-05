@@ -3,6 +3,8 @@
 @section('title', $name)
 @section('description',$description)
 
+
+
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group">
@@ -27,7 +29,7 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>Имя</th>
+                                    <th>{{trans('dashboard::marketing/advertising.name')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
                                 </tr>
                                 </thead>
@@ -53,9 +55,11 @@
             @else
 
                 <div class="jumbotron text-center">
-                    <h3 class="font-thin">Вы ещё не создали ни одного рекламного блока</h3>
+                    <h3 class="font-thin">
+                        {{trans('dashboard::marketing/advertising.not_found')}}</h3>
 
-                    <a href="{{ route('dashboard.marketing.advertising.create')}}" class="btn btn-link">Создать</a>
+                    <a href="{{ route('dashboard.marketing.advertising.create')}}" class="btn btn-link">
+                        {{trans('dashboard::marketing/advertising.create')}}</a>
                 </div>
 
             @endif

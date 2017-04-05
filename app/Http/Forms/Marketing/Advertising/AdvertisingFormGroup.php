@@ -22,8 +22,8 @@ class AdvertisingFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name'        => 'Реклама',
-            'description' => 'Управление контентом рекламы и его размещением',
+            'name'        => trans('dashboard::marketing/advertising.title'),
+            'description' => trans('dashboard::marketing/advertising.description'),
         ];
     }
 
