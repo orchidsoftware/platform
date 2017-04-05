@@ -1,8 +1,9 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','База данных')
-@section('description','Таблицы')
+@section('title', trans('dashboard::systems/schema.title'))
+@section('description', trans('dashboard::systems/schema.description'))
+
 
 
 
@@ -37,7 +38,7 @@
                                 <button class="btn btn-link" type="button" data-toggle="collapse"
                                         data-parent="#tables-accordion" data-target="#table-{{$name}}"
                                         aria-expanded="false" aria-controls="table-{{$name}}">
-                                    Show Attributes
+                                    {{trans('dashboard::systems/schema.show')}}
                                 </button>
                             </div>
                         </div>

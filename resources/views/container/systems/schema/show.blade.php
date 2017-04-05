@@ -2,7 +2,7 @@
 
 
 @section('title',$table)
-@section('description','Таблица')
+@section('description', trans('dashboard::systems/schema.description'))
 
 
 

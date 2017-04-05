@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'title'       => 'Error log',
+    'description' => 'Log not system calls',
+
     'date'       => 'Дата',
     'empty-logs' => 'Список журналов пуст!',
 

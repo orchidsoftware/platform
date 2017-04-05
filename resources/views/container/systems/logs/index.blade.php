@@ -1,8 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Журнал ошибок')
-@section('description','Журнал не системных вызовов')
+@section('title',trans('dashboard::logs.title'))
+@section('description',trans('dashboard::logs.description'))
 
 
 

@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Журнал ошибок')
+@section('title',trans('dashboard::logs.title'))
 @section('description',  $log->getPath() )
 
 
