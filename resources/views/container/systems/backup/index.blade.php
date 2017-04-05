@@ -1,19 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Резервные копии')
-@section('description','Резервные копии системы')
-
-
-
-
-@section('navbar')
-    <div class="col-sm-6 col-xs-12 text-right">
-        <div class="btn-group" role="group">
-            <a href="#" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></a>
-        </div>
-    </div>
-@stop
+@section('title', trans('dashboard::systems/backup.title') )
+@section('description', trans('dashboard::systems/backup.description'))
 
 
 
@@ -24,7 +13,7 @@
     <section class="wrapper">
         <div class="bg-white-only bg-auto no-border-xs">
 
-            @if(true)
+            @if(count($backups) > 0)
                 <div class="panel">
 
                     <div class="panel-body row">
@@ -35,34 +24,26 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>Размещение</th>
+                                    <th>{{trans('dashboard::systems/backup.location')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
-                                    <th class="text-right">Размер</th>
-                                    <th class="text-right">Действия</th>
+                                    <th class="text-right">{{trans('dashboard::systems/backup.file_size')}}</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($backups as $backup)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="#"><i
-                                                        class="fa fa-bars"></i></a>
+                                            @if ($backup['download'])
+                                                <a class="#"
+                                                   href="#?disk={{ $backup['disk'] }}&path={{ urlencode($backup['file_path']) }}&file_name={{ urlencode($backup['file_name']) }}"><i
+                                                            class="fa fa-cloud-download"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>{{ $backup['disk'] }}</td>
                                         <td>{{ \Carbon\Carbon::createFromTimeStamp($backup['last_modified'])->formatLocalized('%d %B %Y, %H:%M') }}</td>
                                         <td class="text-right">{{ round((int)$backup['file_size']/1048576, 2).' MB' }}</td>
-                                        <td class="text-right">
-                                            @if ($backup['download'])
-                                                <a class="btn btn-xs btn-default"
-                                                   href="#?disk={{ $backup['disk'] }}&path={{ urlencode($backup['file_path']) }}&file_name={{ urlencode($backup['file_name']) }}"><i
-                                                            class="fa fa-cloud-download"></i> {{ trans('backpack::backup.download') }}
-                                                </a>
-                                            @endif
-                                            <a class="btn btn-xs btn-danger" data-button-type="delete"
-                                               href="#{{ $backup['file_name'] }}?disk={{ $backup['disk'] }}"><i
-                                                        class="fa fa-trash-o"></i> {{ trans('backpack::backup.delete') }}
-                                            </a>
-                                        </td>
                                     </tr>
 
                                 @endforeach
@@ -78,8 +59,9 @@
             @else
 
                 <div class="jumbotron text-center">
-                    <h3 class="font-thin">Вы ещё не создали ни одной секции</h3>
-                    <a href="#" class="btn btn-link">Создать</a>
+                    <h3 class="font-thin">
+                        {{trans('dashboard::systems/backup.no_disks_configured')}}
+                    </h3>
                 </div>
 
             @endif
