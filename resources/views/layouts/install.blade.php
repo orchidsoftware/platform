@@ -39,32 +39,32 @@
                     <ul class="nav nav-pills nav-stacked nav-sm">
                         <li class="{{active('install::welcome')}}">
                             <a href="{{route('install::welcome')}}">
-                                {{trans('dashboard::install..welcome.title')}}
+                                {{trans('dashboard::install.welcome.title')}}
                             </a>
                         </li>
                         <li class="{{active('install::environment')}}">
                             <a href="{{route('install::environment')}}">
-                                {{trans('dashboard::install..environment.title')}}
+                                {{trans('dashboard::install.environment.title')}}
                             </a>
                         </li>
                         <li class="{{active('install::requirements')}}">
                             <a href="{{route('install::requirements')}}">
-                                {{trans('dashboard::install..requirements.title')}}
+                                {{trans('dashboard::install.requirements.title')}}
                             </a>
                         </li>
                         <li class="{{active('install::permissions')}}">
                             <a href="{{route('install::permissions')}}">
-                                {{trans('dashboard::install..permissions.title')}}
+                                {{trans('dashboard::install.permissions.title')}}
                             </a>
                         </li>
                         <li class="{{active('install::administrator')}}">
                             <a href="{{route('install::administrator')}}">
-                                {{trans('dashboard::install..administrator.title')}}
+                                {{trans('dashboard::install.administrator.title')}}
                             </a>
                         </li>
                         <li class="{{active('install::final')}}">
                             <a href="{{route('install::final')}}">
-                                {{trans('dashboard::install..final.title')}}
+                                {{trans('dashboard::install.final.title')}}
                             </a>
                         </li>
                     </ul>

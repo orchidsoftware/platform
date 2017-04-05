@@ -19,6 +19,9 @@ return [
     'welcome'       => [
         'title'   => 'Welcome To The Installer',
         'message' => 'Welcome to the setup wizard.',
+        'body'    => 'The basic installation process for Orchid is the same as for most Laravel based applications. The installer calls the Artisan commands to install migrations and related components. Setup coordinates the installation process from start to finish.',
+        'footer'  => 'We try to simplify the installation of the program component in one click. We are proud that this is a simple and effective installer than ever before.',
+
     ],
 
     /*
