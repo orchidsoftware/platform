@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/orchid/mstile-150x150.png"/>
+            <TileColor>#f8f9fa</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>

@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="/orchid/css/orchid.css">
 
 
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/orchid/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/orchid/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/orchid/manifest.json">
+    <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
+    <meta name="theme-color" content="#f8f9fa">
+
+
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
