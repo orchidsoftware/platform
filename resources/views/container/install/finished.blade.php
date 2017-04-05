@@ -15,7 +15,7 @@
 
 
     <div class="btn-group btn-group-justified" role="group">
-        <a href="/" class="btn btn-link">{{ trans('dashboard::install.final.exit') }}</a>
+        <a href="/dashboard" class="btn btn-link">{{ trans('dashboard::install.final.exit') }}</a>
     </div>
 
 

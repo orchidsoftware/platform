@@ -254,7 +254,7 @@
     <footer id="footer" class="app-footer" role="footer">
         <div class="wrapper b-t bg-light">
             <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
-                <a href="" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
+                <a href="https://github.com/TheOrchid/Platform" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
             </span>
             © {{date("Y")}} Copyright.
         </div>
