@@ -1,8 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Панель управления')
-@section('description','Добро пожаловать в Orchid')
+@section('title',trans('dashboard::common.title'))
+@section('description',trans('dashboard::common.description'))
 
 
 

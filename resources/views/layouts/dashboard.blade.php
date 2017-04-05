@@ -107,7 +107,7 @@
                                 <a href="{{ url('/dashboard/logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Logout
+                                    {{trans('dashboard::auth/account.sign_out')}}
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST"

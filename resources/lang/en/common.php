@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'title'       => 'Control Panel',
+    'description' => 'Welcome to Orchid',
+
     'Create'    => 'Create',
     'Delete'    => 'Delete',
     'Find'      => 'Find',

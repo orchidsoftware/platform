@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'title'       => 'Панель управления',
+    'description' => 'Добро пожаловать в Orchid',
+
     'Create'       => 'Cоздать',
     'Delete'       => 'Удалить',
     'Find'         => 'Найти',

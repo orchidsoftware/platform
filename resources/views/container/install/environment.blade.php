@@ -6,9 +6,6 @@
 
 
 
-    @if (session('message'))
-        <p class="alert alert-info">{{ session('message') }}</p>
-    @endif
 
     {{--
         <div class="nav-tabs-alt bg-white m-b-md">
@@ -70,6 +67,10 @@
 
 
     <form class="form" id="env" method="post" action="{{ route('install::environmentSave') }}">
+
+        @if (session('message'))
+            <p class="alert alert-info">{{ session('message') }}</p>
+        @endif
 
         <div class="form-group">
             <label>.env</label>
