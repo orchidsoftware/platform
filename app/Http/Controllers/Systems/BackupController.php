@@ -83,5 +83,4 @@ class BackupController extends Controller
             abort(404, 'Невозможно скачать с внешних ресурсов');
         }
     }
-
 }
