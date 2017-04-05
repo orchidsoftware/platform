@@ -21,6 +21,5 @@ class CategoryFilters extends Filter
      */
     public function display()
     {
-
     }
 }
