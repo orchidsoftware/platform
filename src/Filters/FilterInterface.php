@@ -16,5 +16,4 @@ interface FilterInterface
      * @return mixed
      */
     public function display();
-
 }

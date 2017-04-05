@@ -39,7 +39,6 @@ abstract class Filter implements FilterInterface
      */
     public function filter(PostBuilder $builder): PostBuilder
     {
-
         if (!is_null($this->parameters) && $this->request->has($this->parameters)) {
             return $this->run($builder);
         } elseif (is_null($this->parameters)) {
@@ -60,6 +59,5 @@ abstract class Filter implements FilterInterface
 
     public function display()
     {
-
     }
 }
