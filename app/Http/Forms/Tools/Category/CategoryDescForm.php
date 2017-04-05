@@ -13,7 +13,7 @@ class CategoryDescForm extends Form
     /**
      * @var string
      */
-    public $name = 'Информация';
+    public $name = 'Display';
 
     /**
      * Base Model.
@@ -21,6 +21,17 @@ class CategoryDescForm extends Form
      * @var
      */
     protected $model = TermTaxonomy::class;
+
+    /**
+     * CategoryDescForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        parent::__construct($request);
+        $this->name = trans('dashboard::tools/category.display');
+    }
 
     /**
      * @return array

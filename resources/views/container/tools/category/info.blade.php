@@ -5,7 +5,7 @@
            @else value="0" @endif>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Родительская категория</label>
+        <label class="col-sm-2 control-label">{{trans('dashboard::tools/category.parent')}}</label>
         <div class="col-sm-10">
 
             <select data-placeholder="Select Category" name="parent_id" class="select2 form-control">
@@ -25,7 +25,7 @@
 
 
     <div class="form-group m-t-md">
-        <label class="col-sm-2 control-label">Ссылка</label>
+        <label class="col-sm-2 control-label">{{trans('dashboard::tools/category.slug')}}</label>
         <div class="col-sm-10">
             <input type="text" name="slug" @if($termTaxonomy->exists) value="{{$termTaxonomy->term->slug}}"
                    @endif required class="form-control" placeholder="news">

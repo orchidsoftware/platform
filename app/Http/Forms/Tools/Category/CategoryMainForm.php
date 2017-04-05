@@ -14,7 +14,7 @@ class CategoryMainForm extends Form
     /**
      * @var string
      */
-    public $name = 'Общее';
+    public $name = 'Information';
 
     /**
      * Base Model.
@@ -22,6 +22,17 @@ class CategoryMainForm extends Form
      * @var
      */
     protected $model = TermTaxonomy::class;
+
+    /**
+     * CategoryDescForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        parent::__construct($request);
+        $this->name = trans('dashboard::tools/category.information');
+    }
 
     /**
      * @return array

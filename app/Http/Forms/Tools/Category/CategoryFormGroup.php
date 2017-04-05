@@ -22,8 +22,8 @@ class CategoryFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name'        => 'Разделы',
-            'description' => 'Разделы веб-сайта',
+            'name'        => trans('dashboard::tools/category.title'),
+            'description' => trans('dashboard::tools/category.description'),
         ];
     }
 

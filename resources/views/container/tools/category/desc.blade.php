@@ -22,11 +22,12 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Название</label>
+                        <label class="col-sm-2 control-label">{{trans('dashboard::tools/category.name')}}</label>
                         <div class="col-sm-10">
                             <input name="content[{{$code}}][name]"
                                    value="@if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('name',$code)}}@endif"
-                                   required class="form-control" placeholder="Название">
+                                   required class="form-control"
+                                   placeholder="{{trans('dashboard::tools/category.name')}}">
                         </div>
                     </div>
 
@@ -34,10 +35,11 @@
                     <div class="line line-dashed b-b line-lg"></div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Описание</label>
+                        <label class="col-sm-2 control-label">{{trans('dashboard::tools/category.descriptions')}}</label>
                         <div class="col-sm-10">
                             <textarea name="content[{{$code}}][body]"
-                                      required class="form-control summernote" placeholder="Название">
+                                      required class="form-control summernote"
+                                      placeholder="{{trans('dashboard::tools/category.descriptions')}}">
                                    @if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('body')}}@endif
                             </textarea>
                         </div>
