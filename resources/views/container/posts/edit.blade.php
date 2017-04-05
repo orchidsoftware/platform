@@ -23,8 +23,6 @@
 @section('content')
 
 
-
-
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
 
         <!-- hbox layout -->
