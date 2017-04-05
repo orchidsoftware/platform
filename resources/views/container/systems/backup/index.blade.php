@@ -26,7 +26,7 @@
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                                     <th>{{trans('dashboard::systems/backup.location')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
-                                    <th class="text-right">{{trans('dashboard::systems/backup.file_size')}}</th>
+                                    <th>{{trans('dashboard::systems/backup.file_size')}}</th>
 
                                 </tr>
                                 </thead>
@@ -36,14 +36,21 @@
                                         <td class="text-center">
                                             @if ($backup['download'])
                                                 <a class="#"
-                                                   href="#?disk={{ $backup['disk'] }}&path={{ urlencode($backup['file_path']) }}&file_name={{ urlencode($backup['file_name']) }}"><i
+                                                   href="{{route('dashboard.systems.backup.download',[
+                                                   'disk' =>$backup['disk'],
+                                                   'path'=> urlencode($backup['file_path']),
+                                                   'file_name'=>  urlencode($backup['file_name']),
+
+                                                   ])}}"
+
+                                                ><i
                                                             class="fa fa-cloud-download"></i>
                                                 </a>
                                             @endif
                                         </td>
                                         <td>{{ $backup['disk'] }}</td>
                                         <td>{{ \Carbon\Carbon::createFromTimeStamp($backup['last_modified'])->formatLocalized('%d %B %Y, %H:%M') }}</td>
-                                        <td class="text-right">{{ round((int)$backup['file_size']/1048576, 2).' MB' }}</td>
+                                        <td>{{ round((int)$backup['file_size']/1048576, 2).' MB' }}</td>
                                     </tr>
 
                                 @endforeach

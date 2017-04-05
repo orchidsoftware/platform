@@ -2,11 +2,10 @@
 
 namespace Orchid\Http\Controllers\Systems;
 
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Adapter\Local;
 use Orchid\Http\Controllers\Controller;
-use Orchid\Http\Requests\Request;
 
 class BackupController extends Controller
 {
@@ -59,38 +58,17 @@ class BackupController extends Controller
     }
 
     /**
-     * @return string
-     */
-    public function create()
-    {
-        if (config('queue.default' !== 'sync')) {
-            Artisan::queue('backup:run');
-
-            return response()->json([
-                'title'   => 'В очереди',
-                'message' => 'Бэкап поставлен в очередь и будет создан в ближайшее время',
-                'type'    => 'success',
-            ]);
-        }
-
-        return response()->json([
-            'title'   => 'Не поддерживается',
-            'message' => 'Для ручного создания бэкапа необходимо включить поддежку очереди',
-            'type'    => 'error',
-        ]);
-    }
-
-    /**
      * Downloads a backup zip file.
      *
+     * @param         $disk
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpBinaryFileResponse
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function download(Request $request)
+    public function show($disk, Request $request)
     {
-        $disk = Storage::disk($request->input('disk'));
-        $fileName = $request->input('file_name');
+        $disk = Storage::disk($disk);
+        $fileName = urldecode($request->input('file_name'));
         $adapter = $disk->getDriver()->getAdapter();
 
         if ($adapter instanceof Local) {
@@ -106,28 +84,4 @@ class BackupController extends Controller
         }
     }
 
-    /**
-     * Deletes a backup file.
-     *
-     * @param Request $request
-     * @param         $fileName
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function delete(Request $request, $fileName)
-    {
-        $disk = Storage::disk($request->get('disk'));
-
-        if ($disk->exists($fileName)) {
-            $disk->delete($fileName);
-
-            return response()->json([
-                'title'   => 'Объект удалён',
-                'message' => 'Бэкап был успешно удалён',
-                'type'    => 'success',
-            ]);
-        } else {
-            abort(404, 'Бэкап не найден');
-        }
-    }
 }

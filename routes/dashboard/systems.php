@@ -44,10 +44,8 @@ $this->group([
         ]]);
 
         $router->resource('backup', 'BackupController', ['names' => [
-            'index'    => 'dashboard.systems.backup',
-            'create'   => 'dashboard.systems.backup.create',
-            'download' => 'dashboard.systems.backup.download',
-            'destroy'  => 'dashboard.systems.backup.destroy',
+            'index' => 'dashboard.systems.backup',
+            'show'  => 'dashboard.systems.backup.download',
         ]]);
 
         $router->resource('schema', 'SchemaController', ['names' => [
