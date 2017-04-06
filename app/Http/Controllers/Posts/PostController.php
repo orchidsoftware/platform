@@ -68,6 +68,7 @@ class PostController extends Controller
         $post->type = $type->slug;
         $post->user_id = Auth::user()->id;
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+        $post->options = $post->getOptions();
 
         if ($request->has('slug')) {
             $slug = $request->get('slug');
@@ -131,6 +132,8 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+        $post->options = $post->getOptions();
+
 
         if ($request->has('slug')) {
             $slug = $request->get('slug');

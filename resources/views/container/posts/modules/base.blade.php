@@ -100,6 +100,11 @@
                 </div>
             </div>
         @endforeach
+    @else
+        @foreach($locales as $key => $locale)
+            <input type="hidden" name="options[locale][{{$key}}]"
+                   value="true">
+        @endforeach
     @endif
 
 
