@@ -55,7 +55,7 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->back();
     }
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->back();
     }
@@ -109,7 +109,7 @@ class CategoryController extends Controller
     {
         $this->form->remove($request, $termTaxonomy);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.tools.category');
     }

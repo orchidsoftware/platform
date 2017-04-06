@@ -20,4 +20,9 @@ return [
         'label' => 'Access denied',
         'help'  => "You don't have the required permissions to view this page.",
     ],
+
+    'alert' => [
+        'success' => 'Operation completed successfully',
+    ],
+
 ];

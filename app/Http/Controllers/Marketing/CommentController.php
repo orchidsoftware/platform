@@ -44,7 +44,7 @@ class CommentController extends Controller
     {
         $this->form->save($request, $comment);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.marketing.comment.edit', $comment->id);
     }
@@ -72,7 +72,7 @@ class CommentController extends Controller
     {
         $this->form->remove($comment);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.marketing.comment');
     }

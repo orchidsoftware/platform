@@ -88,7 +88,7 @@ class PostController extends Controller
             $module->save($type, $post);
         }
 
-        Alert::success('Message');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
@@ -155,7 +155,7 @@ class PostController extends Controller
             $module->save($type, $post);
         }
 
-        Alert::success('Message');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
@@ -175,7 +175,7 @@ class PostController extends Controller
     public function destroy(Type $type, Post $post): RedirectResponse
     {
         $post->delete();
-        Alert::success('Message');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.posts.type', [
             'type' => $type->slug,

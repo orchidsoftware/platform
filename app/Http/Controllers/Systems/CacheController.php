@@ -27,7 +27,7 @@ class CacheController
     {
         $action = $request->get('action', 'index');
         $this->$action();
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->back();
     }

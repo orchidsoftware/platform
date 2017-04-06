@@ -55,7 +55,7 @@ class AdvertisingController extends Controller
     {
         $this->form->save($request, $post);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->back();
     }
@@ -84,7 +84,7 @@ class AdvertisingController extends Controller
     {
         $this->form->save($request, $user);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->back();
     }
@@ -98,7 +98,7 @@ class AdvertisingController extends Controller
     {
         $this->form->remove($user);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.marketing.users');
     }

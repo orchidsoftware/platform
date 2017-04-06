@@ -54,7 +54,7 @@ class RoleController extends Controller
     {
         $this->form->save();
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
@@ -69,7 +69,7 @@ class RoleController extends Controller
     {
         $this->form->save($role);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
     }
@@ -97,7 +97,7 @@ class RoleController extends Controller
     {
         $this->form->remove($role);
 
-        Alert::success('success');
+        Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.systems.roles');
     }
