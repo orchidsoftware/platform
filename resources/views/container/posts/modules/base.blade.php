@@ -1,20 +1,20 @@
 <div class="wrapper-md">
 
     <div class="form-group">
-        <label>ЧПУ</label>
+        <label>{{trans('dashboard::post/general.semantic_url')}}</label>
         <input type='text' class="form-control"
                value="{{$post->slug or ''}}"
-               placeholder="Уникальное название" name="slug">
+               placeholder="{{trans('dashboard::post/general.semantic_url_unique_name')}}" name="slug">
     </div>
 
     <div class="line line-dashed b-b line-lg"></div>
 
     <div class="form-group">
-        <label>Время публикации</label>
+        <label>{{trans('dashboard::post/general.time_of_publication')}}</label>
         <div class='input-group date datetimepicker'>
             <input type='text' class="form-control"
                    value="{{$post->publish_at or ''}}"
-                   placeholder="Укажите время публикации" name="publish">
+                   name="publish">
             <span class="input-group-addon">
                         <span class="icon-calendar"></span>
                     </span>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-        <label>Статус</label>
+        <label>{{trans('dashboard::post/general.status')}}</label>
         <select name="status" class="form-control">
             @foreach($type->status() as $key => $value)
 
@@ -39,18 +39,18 @@
 
 
     <div class="form-group">
-        <label>Теги</label>
+        <label>{{trans('dashboard::post/general.tags')}}</label>
         <input type="text" class="form-control" data-role="tagsinput"
                name="tags"
                @if(!is_null($post)) value="{{ $post->getStringTags()}}" @endif
-               placeholder="Введите общие теги">
+               placeholder="{{trans('dashboard::post/general.generic_tags')}}">
     </div>
 
     <div class="line line-dashed b-b line-lg"></div>
 
 
     <div class="form-group">
-        <label class="control-label">Показывать в категориях</label>
+        <label class="control-label">{{trans('dashboard::post/general.show_in_categories')}}</label>
         <select name="category[]" multiple data-placeholder="Select Category" class="select2 form-control">
             @foreach($category as  $value)
 
@@ -62,17 +62,27 @@
         </select>
     </div>
 
+
+    <div class="line line-dashed b-b line-lg"></div>
+
+
     @if(!is_null($author))
         <p>
-            Автор: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
+            {{trans('dashboard::post/general.author')}}: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
         </p>
+
+        <div class="line line-dashed b-b line-lg"></div>
 
     @endif
 
     @if(!is_null($post))
         <p>
-            Измененно: <span title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
+            {{trans('dashboard::post/general.changed')}}: <span
+                    title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
         </p>
+
+        <div class="line line-dashed b-b line-lg"></div>
+
     @endif
 
     @if(count($locales) > 1)

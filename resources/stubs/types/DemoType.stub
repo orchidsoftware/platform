@@ -64,7 +64,7 @@ class DemoType extends Type
             'title'       => 'tag:input|type:text|name:title|max:255|required|title:Article Title|help:SEO title',
             'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Short description',
             'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:SEO keywords',
-            'robot'       => 'tag:robot|name:robot|max:255|required|title:Индексация|help:Allow search bots to index page',
+            'robot'       => 'tag:robot|name:robot|max:255|required|title:Indexing|help:Allow search bots to index page',
 
             'free' => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
 
@@ -77,8 +77,8 @@ class DemoType extends Type
     public function modules()
     {
         return [
-            UploadPostForm::class,
             BasePostForm::class,
+            UploadPostForm::class,
         ];
     }
 
