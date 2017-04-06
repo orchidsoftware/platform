@@ -12,8 +12,8 @@
     <div class="dz-message">
 
         <hr>
-        <p class="font-bold">Перетащите сюда файлы или нажмите, чтобы загрузить.</p>
-        <small>(Файлы обработаются автоматически, вам лишь нужно указать их порядок)</small>
+        <p class="font-bold">{{trans('dashboard::post/post.upload.title')}}</p>
+        <small>{{trans('dashboard::post/post.upload.description')}}</small>
 
     </div>
 
