@@ -2,7 +2,7 @@
 
 return [
 
-    'title'       => 'Control Panel',
+    'title'       => 'Dashboard Panel',
     'description' => 'Welcome to Orchid',
 
     'Create'    => 'Create',
