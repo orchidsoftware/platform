@@ -22,13 +22,15 @@
             <input type="password" class="form-control form-control-grey" placeholder="********" name="password"
                    required>
             {!! csrf_field() !!}
+
+            <span class="help-block small">{{trans('dashboard::install.administrator.help')}}</span>
         </div>
+
 
         <div class="form-group">
             <div class="text-right">
                 <button type="submit" class="btn btn-link">
-                    {{ trans('dashboard::install.next') }} <i
-                            class="ion-ios-arrow-right m-l-xs"> </i>
+                    {{ trans('dashboard::install.final.title') }}
                 </button>
             </div>
         </div>

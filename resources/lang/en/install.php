@@ -30,8 +30,17 @@ return [
      *
      */
     'requirements'  => [
-        'title'   => 'Requirements',
-        'message' => 'Checking the installed PHP modules',
+        'title'      => 'Requirements',
+        'message'    => 'Checking the installed PHP modules',
+        'extensions' => [
+            'openssl'   => 'OpenSSL PHP Extension',
+            'pdo'       => 'PDO PHP Extension',
+            'mbstring'  => 'Mbstring PHP Extension',
+            'tokenizer' => 'Tokenizer PHP Extension',
+            'zip'       => 'ZIP Archive PHP Extension',
+            'xml'       => 'XML PHP Extension',
+            'json'      => 'JSON PHP Extension',
+        ]
     ],
 
     /*
@@ -50,7 +59,7 @@ return [
      *
      */
     'environment'   => [
-        'title'   => 'Environment Settings',
+        'title'   => 'Environment Configuration',
         'message' => 'Permanent and basic settings, which are not subject to change',
         'save'    => 'Save .env',
         'success' => 'Your .env file settings have been saved.',
@@ -65,6 +74,7 @@ return [
     'administrator' => [
         'title'   => 'Creating a user',
         'message' => 'Created by the administrator will be available to all right at the moment',
+        'help'    => 'Later you can create using the artisan command',
     ],
 
     'install' => 'Install',

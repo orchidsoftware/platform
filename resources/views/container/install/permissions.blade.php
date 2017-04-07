@@ -6,7 +6,7 @@
 @section('container')
 
 
-
+    <label>File permission</label>
     <ul class="list-group center wrapper">
         @foreach($permissions['permissions'] as $permission)
             <li class="m-b-sm">
@@ -14,9 +14,9 @@
                 {{ $permission['permission'] }}
 
                 @if($permission['isSet'])
-                    <i class="fa fa-check text-success pull-right" aria-hidden="true"></i>
+                    <i class="icon-check text-success pull-right" aria-hidden="true"></i>
                 @else
-                    <i class="fa fa-times text-danger pull-right" aria-hidden="true"></i>
+                    <i class="icon-close text-danger pull-right" aria-hidden="true"></i>
                 @endif
             </li>
         @endforeach
@@ -31,8 +31,7 @@
                 href="#" class="btn btn-danger disable" disabled
                 @endif
         >
-            {{ trans('dashboard::install.next') }} <i
-                    class="ion-ios-arrow-right m-l-xs"> </i>
+            {{ trans('dashboard::install.next') }}
         </a>
     </div>
 

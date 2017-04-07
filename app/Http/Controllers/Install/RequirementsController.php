@@ -33,6 +33,8 @@ class RequirementsController extends Controller
             'mbstring',
             'tokenizer',
             'zip',
+            'xml',
+            'json',
         ]);
 
         return view('dashboard::container.install.requirements', compact('requirements'));

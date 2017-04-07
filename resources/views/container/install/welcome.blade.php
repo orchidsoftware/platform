@@ -30,8 +30,7 @@
         </div>
         <div class="col-sm-6 col-xs-12 text-right"><a href="{{ route('install::environment') }}"
                                                       class="btn btn-link text-ellipsis"> <span
-                        class="text-md text-ellipsis">{{ trans('dashboard::install.next') }} <i
-                            class="ion-ios-arrow-right m-l-xs"></i> </span></a>
+                        class="text-md text-ellipsis">{{ trans('dashboard::install.next') }}</span></a>
         </div>
     </div>
 

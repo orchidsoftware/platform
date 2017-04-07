@@ -28,8 +28,17 @@ return [
      *
      */
     'requirements'  => [
-        'title'   => 'Необходимые модули',
-        'message' => 'Проверка установленных модулей PHP',
+        'title'      => 'Необходимые модули',
+        'message'    => 'Проверка установленных модулей PHP',
+        'extensions' => [
+            'openssl'   => 'OpenSSL PHP Extension',
+            'pdo'       => 'PDO PHP Extension',
+            'mbstring'  => 'Mbstring PHP Extension',
+            'tokenizer' => 'Tokenizer PHP Extension',
+            'zip'       => 'ZIP Archive PHP Extension',
+            'xml'       => 'XML PHP Extension',
+            'json'      => 'JSON PHP Extension',
+        ]
     ],
 
     /*
@@ -63,6 +72,7 @@ return [
     'administrator' => [
         'title'   => 'Создание пользователя',
         'message' => 'Созданному администратору будут доступные все права на текущий момент',
+        'help'    => 'Позднее можно создать с помощью artisan команды',
     ],
 
     /*

@@ -72,11 +72,6 @@
                                 {{trans('dashboard::install.administrator.title')}}
                             </a>
                         </li>
-                        <li class="{{active('install::final')}}">
-                            <a href="{{route('install::final')}}">
-                                {{trans('dashboard::install.final.title')}}
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>

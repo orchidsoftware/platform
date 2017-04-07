@@ -6,15 +6,16 @@
 @section('container')
 
 
+    <label>Server Requirements</label>
     <ul class="list-group center wrapper">
-        @foreach($requirements['requirements'] as $extention => $enabled)
+        @foreach($requirements['requirements'] as $extension => $enabled)
             <li class="m-b-sm">
-                {{ $extention }}
+                {{ trans('dashboard::install.requirements.extensions.'. $extension) }}
 
                 @if($enabled)
-                    <i class="fa fa-check text-success pull-right" aria-hidden="true"></i>
+                    <i class="icon-check text-success pull-right" aria-hidden="true"></i>
                 @else
-                    <i class="fa fa-times text-danger pull-right" aria-hidden="true"></i>
+                    <i class="icon-close text-danger pull-right" aria-hidden="true"></i>
                 @endif
             </li>
         @endforeach
@@ -30,8 +31,7 @@
                 @endif
         >
 
-            {{ trans('dashboard::install.next') }} <i
-                    class="ion-ios-arrow-right m-l-xs"> </i>
+            {{ trans('dashboard::install.next') }}
         </a>
     </div>
 
