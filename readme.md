@@ -96,7 +96,7 @@ class User extends UserOrchid
 
 > **Go to :**  http://your-application/dashboard
 
-The graphical installation does not work if the server is started using the artisan serve command, if you want to use a local server, please go to the public directory and run
+The graphical installation does not work if the server is started using the `artisan serve` command, if you want to use a local server, please go to the public directory and run
 ```php
 php -S localhost: 8000
 ```
