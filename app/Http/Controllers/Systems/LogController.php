@@ -146,6 +146,7 @@ class LogController extends Controller
         $levels = $this->log->levelsNames();
         $entries = $log->entries()->paginate($this->perPage);
 
+
         return view('dashboard::container.systems.logs.show', compact('log', 'levels', 'entries'));
     }
 

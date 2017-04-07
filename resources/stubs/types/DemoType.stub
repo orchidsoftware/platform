@@ -58,7 +58,7 @@ class DemoType extends Type
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
             'body' => 'tag:textarea|name:body|max:255|required|class:summernote|rows:10',
 
-            'place'    => 'tag:place|type:text|name:place|max:255|required|title:Location|help:Address on the map|placeholder:Location',
+            //'place'    => 'tag:place|type:text|name:place|max:255|required|title:Location|help:Address on the map|placeholder:Location',
             'datetime' => 'tag:datetime|type:text|name:open|max:255|required|title:Opening date|help:The opening event will take place',
 
             'title'       => 'tag:input|type:text|name:title|max:255|required|title:Article Title|help:SEO title',
