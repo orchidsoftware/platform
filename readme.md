@@ -34,6 +34,8 @@ Documentation can be found at [Orchid website](https://theorchid.github.io/).
 
 Orchid based off [Laravel Framework](http://laravel.com), so before you put the Orchid, you must install [Laravel](http://laravel.com).
 
+You can see the installation on [youtube](https://youtu.be/e9B5eVw7yss)
+
 
 #### Via Composer
 
