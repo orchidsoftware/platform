@@ -22,8 +22,8 @@ class CommentFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name'        => 'Комментарии',
-            'description' => 'Пользовательские комментарии',
+            'name'        => trans('dashboard::marketing/comment.title'),
+            'description' => trans('dashboard::marketing/comment.description'),
         ];
     }
 

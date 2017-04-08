@@ -24,10 +24,10 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs text-center">{{trans('dashboard::common.Manage')}}</th>
-                                    <th class="w-xs text-center">Статус</th>
-                                    <th>Содержание</th>
+                                    <th class="w-xs text-center">{{trans('dashboard::marketing/comment.status')}}</th>
+                                    <th>{{trans('dashboard::marketing/comment.content')}}</th>
                                     <th>Материал</th>
-                                    <th>Пользователь</th>
+                                    <th>{{trans('dashboard::marketing/comment.user')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
                                 </tr>
                                 </thead>
@@ -57,9 +57,9 @@
                                                 <a href="{{ route('dashboard.posts.type.edit',[
                                             $comment->post->type,
                                             $comment->post->id
-                                        ]) }}">Перейти</a>
+                                        ]) }}">{{trans('dashboard::marketing/comment.go')}}</a>
                                             @else
-                                                Запись удалена
+                                                {{trans('dashboard::marketing/comment.delete')}}
                                             @endif
                                         </td>
 
@@ -91,7 +91,7 @@
             @else
 
                 <div class="jumbotron text-center">
-                    <h3 class="font-thin">Пока не было создано ни одного комментария</h3>
+                    <h3 class="font-thin">{{trans('dashboard::marketing/comment.not_found')}}</h3>
                 </div>
 
             @endif
