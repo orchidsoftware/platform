@@ -14,23 +14,27 @@ class Dashboard
     /**
      * Orchid Version.
      */
-    const VERSION = '0.0.6';
+    const VERSION = '0.0.8';
+
     /**
      * Dashboard configuration options.
      *
      * @var array
      */
     protected static $options = [];
+
     /**
      * @var
      */
     public $menu = null;
+
     /**
      * Permission for applications.
      *
      * @var null
      */
     public $permission = null;
+
     /**
      * Content type for applications.
      *
