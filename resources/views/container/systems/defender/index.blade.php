@@ -1,8 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Защитник')
-@section('description','Резервные копии системы')
+@section('title',trans('dashboard::systems/defender.title'))
+@section('description',trans('dashboard::systems/defender.description'))
 
 
 
@@ -25,7 +25,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Путь к файлу</th>
+                                <th>{{trans('dashboard::systems/defender.path')}}</th>
                             </tr>
                             </thead>
                             <tbody>

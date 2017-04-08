@@ -81,10 +81,12 @@
 
             @else
 
-                <div class="jumbotron text-center">
+                <div class="jumbotron text-center bg-white not-found">
+                    <div>
                     <h3 class="font-thin">Вы ещё не создали ни одной секции</h3>
 
                     <a href="{{ route('dashboard.tools.category.create')}}" class="btn btn-link">Создать</a>
+                    </div>
                 </div>
 
             @endif

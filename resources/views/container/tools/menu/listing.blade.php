@@ -54,8 +54,10 @@
 
             @else
 
-                <div class="jumbotron text-center">
+                <div class="jumbotron text-center bg-white not-found">
+                    <div>
                     <h3 class="font-thin">Нет доступных меню</h3>
+                    </div>
                 </div>
 
             @endif
