@@ -94,6 +94,26 @@
                 </div>
             </div>
         </section>
+
+
+    @else
+
+
+        <!-- main content -->
+        <section class="wrapper">
+            <div class="bg-white-only bg-auto no-border-xs">
+                <div class="jumbotron text-center bg-white not-found">
+                    <div>
+                        <h3 class="font-thin">{{trans('dashboard::post/general.not_found')}}</h3>
+                        <a href="{{ route('dashboard.posts.type.create',$type->slug)}}"
+                           class="btn btn-link">{{trans('dashboard::post/general.create')}}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
     @endif
 
 

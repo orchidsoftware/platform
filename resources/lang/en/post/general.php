@@ -14,5 +14,6 @@ return [
     'select_category'          => 'Select categories',
     'author'                   => 'Author',
     'changed'                  => 'Changed',
-
+    'not_found'                => 'No records found',
+    'create'                   => 'Create',
 ];
