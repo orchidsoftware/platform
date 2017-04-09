@@ -331,9 +331,18 @@ class MenuComposer
             'slug'       => 'advertising',
             'icon'       => 'icon-target',
             'route'      => route('dashboard.marketing.advertising.index'),
-            'label'      => trans('dashboard::menu.Advertising Management'),
+            'label'      => trans('dashboard::menu.Advertising'),
             'permission' => 'dashboard.marketing.advertising',
         ];
+
+        $utmMenu = [
+            'slug'       => 'utm',
+            'icon'       => 'fa fa-link',
+            'route'      => route('dashboard.marketing.utm.index'),
+            'label'      => trans('dashboard::menu.UTM'),
+            'permission' => 'dashboard.marketing.utm',
+        ];
+
 
         /*
         $emailMenu = [
@@ -360,6 +369,8 @@ class MenuComposer
 
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $commentMenu, 1);
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $advertisingMenu, 5);
+
+        $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $utmMenu, 10);
 
         /*
         $dashboard->menu->add('Marketing', 'dashboard::partials.leftMenu', $emailMenu, 2);

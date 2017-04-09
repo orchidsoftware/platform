@@ -99,7 +99,7 @@
     @else
 
 
-        <!-- main content -->
+
         <section class="wrapper">
             <div class="bg-white-only bg-auto no-border-xs">
                 <div class="jumbotron text-center bg-white not-found">

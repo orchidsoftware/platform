@@ -32,4 +32,7 @@ $this->group([
             'update' => 'dashboard.marketing.advertising.update',
             'store'  => 'dashboard.marketing.advertising.store',
         ]]);
+
+        $router->get('utm', 'UTMController@index')->name('dashboard.marketing.utm.index');
+
     });

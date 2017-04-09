@@ -173,6 +173,10 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.marketing.advertising',
                     'description' => 'Доступ к рекламе',
                 ],
+                [
+                    'slug'        => 'dashboard.marketing.utm',
+                    'description' => 'Генерация UTM',
+                ],
             ],
 
         ];
