@@ -34,5 +34,4 @@ $this->group([
         ]]);
 
         $router->get('utm', 'UTMController@index')->name('dashboard.marketing.utm.index');
-
     });

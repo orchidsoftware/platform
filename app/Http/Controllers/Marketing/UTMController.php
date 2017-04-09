@@ -21,5 +21,4 @@ class UTMController extends Controller
     {
         return view('dashboard::container.marketing.utm.generate');
     }
-
 }
