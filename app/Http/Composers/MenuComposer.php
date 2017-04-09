@@ -323,7 +323,7 @@ class MenuComposer
             'icon'       => 'fa fa-comments-o',
             'route'      => route('dashboard.marketing.comment'),
             'label'      => trans('dashboard::menu.Comments'),
-            'groupname'  => trans('dashboard::menu.Users'),
+            'groupname'  => trans('dashboard::menu.Marketing'),
             'permission' => 'dashboard.marketing.comment',
         ];
 
