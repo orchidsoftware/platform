@@ -229,6 +229,7 @@ abstract class Type implements TypeInterface
     }
 
     /**
+     * Raw data and fields to display
      * @return array
      */
     public function generateGrid(): array
