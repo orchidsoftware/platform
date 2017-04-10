@@ -24,11 +24,19 @@ class MediaController extends Controller
         $this->filesystem = 'public';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('dashboard::container.tools.media.index');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function files(Request $request)
     {
         $folder = $request->folder;
@@ -49,7 +57,45 @@ class MediaController extends Controller
         ]);
     }
 
-    // New Folder with 5.3
+    /**
+     * @param $dir
+     *
+     * @return array
+     */
+    private function getFiles($dir)
+    {
+        $files = [];
+        $storageFiles = Storage::disk($this->filesystem)->files($dir);
+        $storageFolders = Storage::disk($this->filesystem)->directories($dir);
+
+        foreach ($storageFiles as $file) {
+            $files[] = [
+                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
+                'type'          => Storage::disk($this->filesystem)->mimeType($file),
+                'path'          => Storage::disk($this->filesystem)->url($file),
+                'size'          => Storage::disk($this->filesystem)->size($file),
+                'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
+            ];
+        }
+
+        foreach ($storageFolders as $folder) {
+            $files[] = [
+                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
+                'type'          => 'folder',
+                'path'          => Storage::disk($this->filesystem)->url($folder),
+                'items'         => '',
+                'last_modified' => '',
+            ];
+        }
+
+        return $files;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     public function newFolder(Request $request)
     {
         $new_folder = $request->new_folder;
@@ -67,7 +113,11 @@ class MediaController extends Controller
         return compact('success', 'error');
     }
 
-    // Delete File or Folder with 5.3
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     public function deleteFileFolder(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -96,7 +146,11 @@ class MediaController extends Controller
         return compact('success', 'error');
     }
 
-    // GET ALL DIRECTORIES Working with Laravel 5.3
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllDirs(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -112,7 +166,11 @@ class MediaController extends Controller
         );
     }
 
-    // NEEDS TESTING
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     public function moveFile(Request $request)
     {
         $source = $request->source;
@@ -144,7 +202,11 @@ class MediaController extends Controller
         return compact('success', 'error');
     }
 
-    // RENAME FILE WORKING with 5.3
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
     public function renameFile(Request $request)
     {
         $folderLocation = $request->folder_location;
@@ -172,7 +234,11 @@ class MediaController extends Controller
         return compact('success', 'error');
     }
 
-    // Upload Working with 5.3
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function upload(Request $request)
     {
         try {
@@ -192,36 +258,11 @@ class MediaController extends Controller
         return response()->json(compact('success', 'message', 'path'));
     }
 
-    private function getFiles($dir)
-    {
-        $files = [];
-        $storageFiles = Storage::disk($this->filesystem)->files($dir);
-        $storageFolders = Storage::disk($this->filesystem)->directories($dir);
-
-        foreach ($storageFiles as $file) {
-            $files[] = [
-                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
-                'type'          => Storage::disk($this->filesystem)->mimeType($file),
-                'path'          => Storage::disk($this->filesystem)->url($file),
-                'size'          => Storage::disk($this->filesystem)->size($file),
-                'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
-            ];
-        }
-
-        foreach ($storageFolders as $folder) {
-            $files[] = [
-                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
-                'type'          => 'folder',
-                'path'          => Storage::disk($this->filesystem)->url($folder),
-                'items'         => '',
-                'last_modified' => '',
-            ];
-        }
-
-        return $files;
-    }
-
-    // REMOVE FILE
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function remove(Request $request)
     {
         try {

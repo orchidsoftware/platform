@@ -66,11 +66,11 @@ trait UserAccess
     }
 
     /**
-     * @param RoleInterface $role
+     * @param Model $role
      *
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return Model
      */
-    public function addRole(RoleInterface $role): Model
+    public function addRole(Model $role): Model
     {
         return $this->roles()->save($role);
     }

@@ -191,9 +191,10 @@ class Monitor
     {
         $output = shell_exec('df -H');
         $table_rows = preg_split('/$\R?^/m', $output);
-        $table_header = explode(' ', $table_rows[0]);
+        //$table_header = explode(' ', $table_rows[0]);
         $table_rows = array_splice($table_rows, 1);
-        $table_header = array_splice($table_header, 0, count($table_header) - 1);
+        //$table_header = array_splice($table_header, 0, count($table_header) - 1);
+
         // data object
         $data = new stdClass();
         $data->storage = array_map([$this, 'prepareColumns'], $table_rows);

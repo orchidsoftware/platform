@@ -57,6 +57,9 @@ abstract class Filter implements FilterInterface
     abstract public function run(PostBuilder $builder): PostBuilder;
 
 
+    /**
+     * User mapping method
+     */
     public function display()
     {
     }

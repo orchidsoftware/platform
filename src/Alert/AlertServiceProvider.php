@@ -24,7 +24,7 @@ class AlertServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton('alert', function () {
-            return new Alert();
+            return new Alert(request()->session());
         });
     }
 
