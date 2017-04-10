@@ -48,7 +48,14 @@
                             <tr>
                                 <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                                 @foreach($fields as $key => $name)
-                                    <th>{{$name}}</th>
+
+
+                                    @if(is_array($name))
+                                        <th>{{$name['name']}}</th>
+                                    @else
+                                        <th>{{$name}}</th>
+                                    @endif
+
                                 @endforeach
                             </tr>
                             </thead>
@@ -65,7 +72,13 @@
 
                                     @foreach($fields as $key => $name)
                                         <td>
-                                            {{$datum->getContent($key)}}
+                                            @if(is_array($name))
+                                                {{
+                                                   $name['action']($datum->getContent($key),$datum)
+                                                }}
+                                            @else
+                                                {{ $datum->getContent($key) }}
+                                            @endif
                                         </td>
                                     @endforeach
 

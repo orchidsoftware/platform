@@ -25,7 +25,7 @@
     "nestable": "^0.2.0",
     "select2": "^4.0.3",
     "simple-line-icons": "^2.4.1",
-    "summernote": "^0.8.2",
+    "summernote": "0.8.2",
     "vue": "^2.1.10",
     "vue-resource": "^1.2.0"
   },

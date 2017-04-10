@@ -14,8 +14,6 @@ require('vue-resource');
 
 $.fn.chosen = require('chosen');
 
-require('summernote');
-
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 
@@ -37,6 +35,9 @@ require('select2');
 $(() => {
     $('.select2-enable').select2();
 });
+
+
+require('summernote');
 
 
 require('./modules/select');

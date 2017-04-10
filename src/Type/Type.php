@@ -55,6 +55,7 @@ abstract class Type implements TypeInterface
      * @var string
      */
     public $prefix = 'content';
+
     /**
      * @var bool
      */
@@ -64,7 +65,11 @@ abstract class Type implements TypeInterface
      * @var bool
      */
     public $api = false;
-
+    /**
+     * Eloquent Eager Loading
+     * @var array
+     */
+    public $with = [];
     /**
      * @var null
      */
@@ -234,17 +239,20 @@ abstract class Type implements TypeInterface
 
         if (is_null($search) || empty($search)) {
             $data = $model->where('type', $this->slug)
+                ->with($this->with)
                 ->orderBy('id', 'Desc')
                 ->paginate();
         } else {
             if (!is_null(config('scout.driver'))) {
                 $data = $model->search($search)
                     ->where('type', $this->slug)
+                    ->with($this->with)
                     ->orderBy('id', 'Desc')
                     ->paginate();
             } else {
                 $data = $model->where('content', 'LIKE', '%'.$search.'%')
                     ->where('type', $this->slug)
+                    ->with($this->with)
                     ->orderBy('id', 'Desc')
                     ->paginate();
             }

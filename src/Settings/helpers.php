@@ -1,6 +1,6 @@
 <?php
 
-use Orchid\Facades\Setting;
+use Orchid\Settings\Facades\Setting;
 
 if (!function_exists('settings')) {
     /**
