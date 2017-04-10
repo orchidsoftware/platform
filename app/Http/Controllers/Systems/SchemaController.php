@@ -88,7 +88,6 @@ class SchemaController extends Controller
      */
     public function edit($table, Request $request)
     {
-
         $row = DB::table($table);
 
         foreach ($request->get('fields') as $key => $value) {
@@ -100,5 +99,4 @@ class SchemaController extends Controller
 
         dd($table, $request);
     }
-
 }
