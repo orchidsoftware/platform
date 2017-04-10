@@ -51,6 +51,7 @@ $this->group([
         $router->resource('schema', 'SchemaController', ['names' => [
             'index' => 'dashboard.systems.schema.index',
             'show'  => 'dashboard.systems.schema.show',
+            'edit'  => 'dashboard.systems.schema.edit',
         ]]);
 
         $router->resource('logs', 'LogController', ['names' => [
