@@ -74,7 +74,7 @@
                                         <td>
                                             @if(is_array($name))
                                                 {{
-                                                   $name['action']($datum->getContent($key),$datum)
+                                                   $name['action']($datum)
                                                 }}
                                             @else
                                                 {{ $datum->getContent($key) }}

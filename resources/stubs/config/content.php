@@ -8,7 +8,7 @@ return [
     | Install
     |--------------------------------------------------------------------------
     |
-    | An abstract pattern of behavior record
+    | Setup Activation Flag
     |
     */
     'install' => env('APP_INSTALL', false),
@@ -16,7 +16,7 @@ return [
     /*
      * Available settings
      */
-    'image' => '/orchid/img/background.jpg',
+    'image'   => '/orchid/img/background.jpg',
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,8 @@ return [
     | Available fields to form templates
     |--------------------------------------------------------------------------
     |
-    | Description
+    | Declared fields for user filling.
+    | Be shy and add to what you need
     |
     */
 
@@ -56,7 +57,7 @@ return [
     | Available menu
     |--------------------------------------------------------------------------
     |
-    | Description
+    | Marked menu areas
     |
     */
 
@@ -101,11 +102,11 @@ return [
     | Available locales
     |--------------------------------------------------------------------------
     |
-    | Description
+    | Localization of records
     |
     */
 
-    'locales' => [
+    'locales'     => [
 
         'en' => [
             'name'     => 'English',
@@ -116,6 +117,21 @@ return [
             'required' => true,
         ],
 
+    ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Advertising areas
+    |--------------------------------------------------------------------------
+    |
+    | Starred areas for ad units
+    |
+    */
+    'advertising' => [
+        'top'    => 'Top banner',
+        'side'   => 'Side banner',
+        'footer' => 'Banner cellar',
     ],
 
 ];
