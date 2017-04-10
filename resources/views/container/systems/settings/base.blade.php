@@ -6,7 +6,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.title')}}</label>
 
             <div class="col-lg-10">
-                <input type="text" class="form-control" name="site_title" value="{{$site_title or '' }}">
+                <input type="text" class="form-control" name="site_title" required value="{{$site_title or '' }}">
                 <small class="help-block m-b-none">{{trans('dashboard::systems/settings.default')}}
                 </small>
             </div>
@@ -19,7 +19,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.keywords')}}</label>
 
             <div class="col-lg-10">
-                <input type="text" data-role="tagsinput" class="form-control" name="site_keywords"
+                <input type="text" data-role="tagsinput" class="form-control" required name="site_keywords"
                        value="{{$site_keywords or '' }}">
                 <small class="help-block m-b-none">{{trans('dashboard::systems/settings.default')}}
                 </small>
@@ -34,7 +34,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.description')}}</label>
 
             <div class="col-lg-10">
-                <textarea class="form-control no-resize" name="site_description"
+                <textarea class="form-control no-resize" required name="site_description"
                           rows="4">{{$site_description or ''}}</textarea>
                 <small class="help-block m-b-none">{{trans('dashboard::systems/settings.description-help')}}
                 </small>
@@ -47,7 +47,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.address')}}</label>
 
             <div class="col-lg-10">
-                <input type="text" class="form-control" name="site_adress" value="{{$site_adress or '' }}">
+                <input type="text" class="form-control" required name="site_adress" value="{{$site_adress or '' }}">
                 <small class="help-block m-b-none">{{trans('dashboard::systems/settings.address-help')}}</small>
             </div>
         </div>
@@ -59,7 +59,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.phone')}}</label>
 
             <div class="col-lg-10">
-                <input type="text" class="form-control" name="site_phone" value="{{ $site_phone or '' }}">
+                <input type="text" class="form-control" required name="site_phone" value="{{ $site_phone or '' }}">
             </div>
         </div>
 
@@ -70,7 +70,7 @@
             <label class="col-lg-2 control-label">{{trans('dashboard::systems/settings.email')}}</label>
 
             <div class="col-lg-10">
-                <input type="email" class="form-control" name="site_email" value="{{ $site_email or '' }}">
+                <input type="email" class="form-control" name="site_email" required value="{{ $site_email or '' }}">
                 <small class="help-block m-b-none">{{trans('dashboard::systems/settings.email-help')}}
                 </small>
             </div>
