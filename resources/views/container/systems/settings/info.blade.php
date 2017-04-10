@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <td>{{trans('dashboard::systems/settings.Debugging')}}</td>
-            <td>{{$settings->get('debug')}}</td>
+            <td>{{  $settings->get('debug') ? 'true' : 'false' }}</td>
         </tr>
         <tr>
             <td>{{trans('dashboard::systems/settings.Website address')}}</td>
