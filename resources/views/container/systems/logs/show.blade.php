@@ -6,14 +6,14 @@
 
 
 
-
+{{--
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
 
         <ul class="nav navbar-nav navbar-right">
 
             <li>
-                <a href="{{-- route('log-viewer::logs.download', [$log->date]) --}}" class="btn btn-link menu-save"><i
+                <a href="#$log->date)" class="btn btn-link menu-save"><i
                             class="icon-cloud-download fa fa-2x"></i></a>
             </li>
 
@@ -27,7 +27,7 @@
 
     </div>
 @stop
-
+--}}
 
 
 @section('content')
