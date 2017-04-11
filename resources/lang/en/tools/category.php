@@ -11,6 +11,7 @@ return [
     'parent'       => 'Parent Category',
     'slug'         => 'Link',
     'name'         => 'Name',
-    'descriptions' => 'Description'
-
+    'descriptions' => 'Description',
+    'not_found'    => 'You have not created any sections yet',
+    'not_parrent'  => 'Without section',
 ];

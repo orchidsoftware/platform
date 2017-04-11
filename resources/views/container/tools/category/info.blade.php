@@ -10,7 +10,7 @@
 
             <select data-placeholder="Select Category" name="parent_id" class="select2 form-control">
 
-                <option value="0">Без секции</option>
+                <option value="0">{{trans('dashboard::tools/category.not_parrent')}}</option>
 
 
                 @foreach($category as  $value)

@@ -36,7 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>Имя</th>
+                                    <th>{{trans('dashboard::tools/category.name')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
                                 </tr>
                                 </thead>
@@ -83,9 +83,7 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                    <h3 class="font-thin">Вы ещё не создали ни одной секции</h3>
-
-                    <a href="{{ route('dashboard.tools.category.create')}}" class="btn btn-link">Создать</a>
+                        <h3 class="font-thin">{{trans('dashboard::tools/category.not_found')}}</h3>
                     </div>
                 </div>
 
