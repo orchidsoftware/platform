@@ -77,9 +77,9 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                    <h3 class="font-thin">Вы ещё не создали ни одной роли</h3>
+                        <h3 class="font-thin">Вы ещё не создали ни одной роли</h3>
 
-                    <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">Создать</a>
+                        <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">Создать</a>
                     </div>
                 </div>
 

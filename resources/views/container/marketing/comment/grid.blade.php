@@ -92,7 +92,7 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                    <h3 class="font-thin">{{trans('dashboard::marketing/comment.not_found')}}</h3>
+                        <h3 class="font-thin">{{trans('dashboard::marketing/comment.not_found')}}</h3>
                     </div>
                 </div>
 

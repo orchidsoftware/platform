@@ -56,11 +56,11 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                    <h3 class="font-thin">
-                        {{trans('dashboard::marketing/advertising.not_found')}}</h3>
+                        <h3 class="font-thin">
+                            {{trans('dashboard::marketing/advertising.not_found')}}</h3>
 
-                    <a href="{{ route('dashboard.marketing.advertising.create')}}" class="btn btn-link">
-                        {{trans('dashboard::marketing/advertising.create')}}</a>
+                        <a href="{{ route('dashboard.marketing.advertising.create')}}" class="btn btn-link">
+                            {{trans('dashboard::marketing/advertising.create')}}</a>
                     </div>
                 </div>
 

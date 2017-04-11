@@ -67,9 +67,9 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                    <h3 class="font-thin">
-                        {{trans('dashboard::systems/backup.no_disks_configured')}}
-                    </h3>
+                        <h3 class="font-thin">
+                            {{trans('dashboard::systems/backup.no_disks_configured')}}
+                        </h3>
                     </div>
                 </div>
 

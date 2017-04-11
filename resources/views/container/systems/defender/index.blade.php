@@ -16,32 +16,32 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if(count($list))
-            <div class="panel">
+                <div class="panel">
 
-                <div class="panel-body row">
+                    <div class="panel-body row">
 
 
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>{{trans('dashboard::systems/defender.path')}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($list as $value)
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
                                 <tr>
-                                    <td>{{$value}}</td>
+                                    <th>{{trans('dashboard::systems/defender.path')}}</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach ($list as $value)
+                                    <tr>
+                                        <td>{{$value}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
+
                 </div>
-
-
-            </div>
             @else
 
                 <div class="jumbotron text-center bg-white not-found">

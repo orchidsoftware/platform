@@ -250,7 +250,7 @@
 
 @push('scripts')
 <script>
-    $(function() {
+    $(function () {
 
 
         const menu = new Vue({

@@ -54,7 +54,6 @@
 @push('scripts')
 
 
-
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google-maps.key')}}"></script>
 

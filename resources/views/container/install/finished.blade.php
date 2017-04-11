@@ -8,7 +8,8 @@
 
 
     <div class="page-header text-center">
-        <h4><i class="fa text-success fa-check-square-o" aria-hidden="true"></i> {{trans('dashboard::install.final.message')}}</h4>
+        <h4><i class="fa text-success fa-check-square-o"
+               aria-hidden="true"></i> {{trans('dashboard::install.final.message')}}</h4>
     </div>
 
     <p class="padder-v">{{ session('message')['message'] }}</p>

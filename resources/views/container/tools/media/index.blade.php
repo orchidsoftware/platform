@@ -9,85 +9,83 @@
 
 
     <style>
-        .media-section .modal-footer{
-            margin-top:0px;
+        .media-section .modal-footer {
+            margin-top: 0px;
         }
 
-        .media-section .modal .modal-header .close{
-            padding-bottom:2px;
+        .media-section .modal .modal-header .close {
+            padding-bottom: 2px;
         }
 
-        .media-section .modal-content{
-            border:0px;
+        .media-section .modal-content {
+            border: 0px;
         }
 
-        .media-section .modal-header{
-            background:#21A9E1;
+        .media-section .modal-header {
+            background: #21A9E1;
         }
 
-        .media-section #confirm_delete_modal .modal-header{
-            background:#E14421;
+        .media-section #confirm_delete_modal .modal-header {
+            background: #E14421;
         }
 
-        .media-section #move_file_modal .modal-header{
-            background:#FC9A24;
+        .media-section #move_file_modal .modal-header {
+            background: #FC9A24;
         }
 
-        .media-section .modal-header h4{
-            color:#fff;
+        .media-section .modal-header h4 {
+            color: #fff;
         }
 
-        .confirm_delete_name{
-            color:#4DA7E8;
+        .confirm_delete_name {
+            color: #4DA7E8;
         }
 
-        #move_btn{
-            background:#FABE28;
-            border:1px solid #FABE28;
+        #move_btn {
+            background: #FABE28;
+            border: 1px solid #FABE28;
         }
 
         /**************************************************/
         /***				TOOLBAR CSS					***/
         /**************************************************/
 
-        #toolbar{
+        #toolbar {
             padding: 15px;
         }
-
-
 
         /**************************************************/
         /***				BREADCRUMB CSS				***/
         /**************************************************/
 
-        .breadcrumb-container{
-            position:relative;
+        .breadcrumb-container {
+            position: relative;
         }
 
-        .breadcrumb.filemanager{
-            top:0px;
-            background:#f0f0f0;
-            border:1px solid #E0E0E0;
-            border-bottom:0px;
-            border-radius:0px;
-            padding-left:20px;
+        .breadcrumb.filemanager {
+            top: 0px;
+            background: #f0f0f0;
+            border: 1px solid #E0E0E0;
+            border-bottom: 0px;
+            border-radius: 0px;
+            padding-left: 20px;
             width: 100%;
             margin-top: 0;
             left: 0;
             margin-bottom: 0;
         }
 
-        .breadcrumb.filemanager li{
-            cursor:pointer;
-            transition:color 0.1s linear;
-            position:relative;
+        .breadcrumb.filemanager li {
+            cursor: pointer;
+            transition: color 0.1s linear;
+            position: relative;
         }
 
-        .breadcrumb.filemanager li:hover{
-            color:#555;
+        .breadcrumb.filemanager li:hover {
+            color: #555;
         }
 
-        .breadcrumb li .arrow{
+        .breadcrumb li .arrow {
             display: none;
             position: absolute;
             bottom: -14px;
@@ -102,30 +100,30 @@
             border-bottom: 1px solid #efefef;
         }
 
-        .select2-display-none{
-            z-index:999999 !important;
+        .select2-display-none {
+            z-index: 999999 !important;
         }
 
-        .breadcrumb li:last-child .arrow{
-            display:block;
+        .breadcrumb li:last-child .arrow {
+            display: block;
         }
 
-        .breadcrumb li:first-child .arrow{
-            margin-left:-5px;
+        .breadcrumb li:first-child .arrow {
+            margin-left: -5px;
         }
 
-        .breadcrumb li{
-            color:#4DA7E8;
-            cursor:pointer;
-            font-weight:bold;
+        .breadcrumb li {
+            color: #4DA7E8;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .breadcrumb li:last-child{
-            color:#949494;
-            cursor:pointer;
+        .breadcrumb li:last-child {
+            color: #949494;
+            cursor: pointer;
         }
 
-        .breadcrumb-container .toggle{
+        .breadcrumb-container .toggle {
             float: right;
             position: absolute;
             top: 11px;
@@ -133,238 +131,241 @@
             right: 5px;
             color: #bbb;
             transition: color 0.1s linear;
-            overflow:visible;
+            overflow: visible;
         }
 
-        .breadcrumb-container .toggle:hover{
-            color:#aaa;
+        .breadcrumb-container .toggle:hover {
+            color: #aaa;
         }
 
-        .breadcrumb-container .toggle span{
-            font-size:10px;
+        .breadcrumb-container .toggle span {
+            font-size: 10px;
             text-transform: uppercase;
-            float:left;
-            top:2px;
-            position:relative;
-            font-weight:bold;
-            right:10px;
-        }
-        .breadcrumb-container .toggle i{
-            font-size:18px;
-            float:right;
-            margin-right:5px;
-            position:relative;
-            top:-4px;
+            float: left;
+            top: 2px;
+            position: relative;
+            font-weight: bold;
+            right: 10px;
         }
 
+        .breadcrumb-container .toggle i {
+            font-size: 18px;
+            float: right;
+            margin-right: 5px;
+            position: relative;
+            top: -4px;
+        }
 
+        .nothingfound {
+            display: none;
+        }
 
-        .nothingfound{
-            display:none;
+        #filemanager {
+            position: relative;
+            min-height: 200px;
         }
-        #filemanager{
-            position:relative;
-            min-height:200px;
+
+        #filemanager .loader {
+            margin-top: 25px;
         }
-        #filemanager .loader{
-            margin-top:25px;
-        }
-        #filemanager #content{
+
+        #filemanager #content {
             display: block;
-            background:#fff;
+            background: #fff;
         }
 
-        .flex{
-            display:flex;
+        .flex {
+            display: flex;
             flex-wrap: wrap;
-            border:1px solid #E0E0E0;
-            border-top:0px;
+            border: 1px solid #E0E0E0;
+            border-top: 0px;
             min-height: calc(100vh - 260px);
         }
 
-        .flex #left{
-            flex:4;
-            position:relative;
-            min-height:230px;
+        .flex #left {
+            flex: 4;
+            position: relative;
+            min-height: 230px;
         }
 
-        .flex #left #no_files{
-            display:none;
+        .flex #left #no_files {
+            display: none;
         }
 
-        .flex #left #no_files h3{
+        .flex #left #no_files h3 {
             text-align: center;
             margin-top: 55px;
-            margin-bottom:75px;
-            color:#949494;
+            margin-bottom: 75px;
+            color: #949494;
         }
 
-        .flex #right{
-            flex:1;
-            border-left:1px solid #f1f1f1;
+        .flex #right {
+            flex: 1;
+            border-left: 1px solid #f1f1f1;
         }
 
-        #right .right_details{
-            display:block;
+        #right .right_details {
+            display: block;
         }
 
-        #right .right_none_selected{
-            display:none;
-            text-align:center;
+        #right .right_none_selected {
+            display: none;
+            text-align: center;
         }
 
-        #right .right_none_selected i{
+        #right .right_none_selected i {
             width: 100%;
             text-align: center;
             font-size: 30px;
             margin-left: 0;
             padding: 50px;
-            display:block;
+            display: block;
             background: #f9f9f9;
         }
 
-        #right .right_none_selected p{
+        #right .right_none_selected p {
             text-align: center;
             color: #bbb;
             padding: 10px;
             border-bottom: 1px solid #f1f1f1;
         }
 
-        #files{
-            display:flex;
-            list-style:none;
-            width:100%;
-            margin:0px;
-            padding:0px;
-            flex-wrap:wrap;
-            padding:10px;
-            position:relative;
+        #files {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            flex-wrap: wrap;
+            padding: 10px;
+            position: relative;
             -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none;   /* Chrome/Safari/Opera */
-            -khtml-user-select: none;    /* Konqueror */
-            -moz-user-select: none;      /* Firefox */
-            -ms-user-select: none;       /* Internet Explorer/Edge */
+            -webkit-user-select: none; /* Chrome/Safari/Opera */
+            -khtml-user-select: none; /* Konqueror */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
         }
-        #files li{
-            flex:1;
-            width:100%;
-            min-width:200px;
-            max-width:250px;
+
+        #files li {
+            flex: 1;
+            width: 100%;
+            min-width: 200px;
+            max-width: 250px;
         }
-        #files li .file_link{
-            background:#eee;
-            padding:10px;
-            margin:10px;
-            cursor:pointer;
+
+        #files li .file_link {
+            background: #eee;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
             border-radius: 3px;
             border: 1px solid #ecf0f1;
             overflow: hidden;
             background: #f6f8f9;
-            display:flex;
+            display: flex;
             height: 70px;
         }
 
-        #files li .file_link .details{
-            flex:2;
-            overflow:hidden;
-            width:100%;
+        #files li .file_link .details {
+            flex: 2;
+            overflow: hidden;
+            width: 100%;
         }
 
-        #files li .file_link .details small{
+        #files li .file_link .details small {
             font-size: 11px;
             position: relative;
             top: -3px;
             font-weight: 300;
         }
 
-        #files li .file_link .link_icon{
-            flex:1;
+        #files li .file_link .link_icon {
+            flex: 1;
         }
 
-        #files li .file_link img, #files li .file_link .img_icon{
-            display:none;
+        #files li .file_link img, #files li .file_link .img_icon {
+            display: none;
         }
 
-        #files li .file_link.image img, #files li .file_link.image .img_icon{
-            display:block;
+        #files li .file_link.image img, #files li .file_link.image .img_icon {
+            display: block;
         }
 
-        #files li .file_link.image img{
-            height:50px;
+        #files li .file_link.image img {
+            height: 50px;
         }
 
-        #files li .file_link.image .img_icon{
-            width:50px;
-            height:50px;
-            display:block;
+        #files li .file_link.image .img_icon {
+            width: 50px;
+            height: 50px;
+            display: block;
         }
 
-        #files li .file_link.selected, #files li .file_link:hover{
+        #files li .file_link.selected, #files li .file_link:hover {
             background: #23b7e5 !important;
             border-color: #15b3e4;
-            color:#fff;
+            color: #fff;
         }
 
-        #files li .file_link.selected h4, #files li .file_link:hover h4{
-            color:#fff;
+        #files li .file_link.selected h4, #files li .file_link:hover h4 {
+            color: #fff;
         }
 
-        #files li .details h4{
-            margin-bottom:2px;
-            margin-top:10px;
+        #files li .details h4 {
+            margin-bottom: 2px;
+            margin-top: 10px;
             max-height: 17px;
-            height:17px;
+            height: 17px;
             overflow: hidden;
-            font-size:14px;
+            font-size: 14px;
             text-overflow: ellipsis;
         }
 
-        #files li .details.folder h4{
-            margin-top:16px;
+        #files li .details.folder h4 {
+            margin-top: 16px;
         }
 
-        .file_link.folder i.icon{
-            float:left;
-            margin-left:10px;
+        .file_link.folder i.icon {
+            float: left;
+            margin-left: 10px;
         }
 
-        .file_link.folder .num_items{
-            display:block;
+        .file_link.folder .num_items {
+            display: block;
         }
 
-        .file_link .link_icon{
+        .file_link .link_icon {
             text-align: center;
             padding-left: 0;
             margin-left: 0;
             margin-right: 5px;
         }
 
-        .file_link .link_icon i{
-            padding-left:0px;
-            padding-right:0px;
+        .file_link .link_icon i {
+            padding-left: 0px;
+            padding-right: 0px;
             position: relative;
             top: 5px;
         }
 
-        .file_link i.icon:before{
-            font-size:40px;
+        .file_link i.icon:before {
+            font-size: 40px;
         }
 
-
-        .detail_img{
-            border-bottom:1px solid #f1f1f1;
-            background:#eee;
+        .detail_img {
+            border-bottom: 1px solid #f1f1f1;
+            background: #eee;
         }
 
-        .detail_img img{
-            width:100%;
-            height:auto;
-            display:inline-block;
+        .detail_img img {
+            width: 100%;
+            height: auto;
+            display: inline-block;
         }
 
-        .detail_img i{
-            display:block;
+        .detail_img i {
+            display: block;
             width: 100%;
             text-align: center;
             font-size: 70px;
@@ -373,124 +374,138 @@
             background: #f9f9f9;
         }
 
-        .detail_img.folder i.fa-folder{
-            display:block;
+        .detail_img.folder i.fa-folder {
+            display: block;
         }
 
-
-        .detail_img.file i.fa-file{
-            display:block;
+        .detail_img.file i.fa-file {
+            display: block;
         }
 
-        .detail_img.image img{
-            display:block;
+        .detail_img.image img {
+            display: block;
         }
 
-        .detail_info{
-            padding:10px;
+        .detail_info {
+            padding: 10px;
         }
 
-        .detail_info .selected_file_count, .detail_info.folder .selected_file_size{
-            display:none;
+        .detail_info .selected_file_count, .detail_info.folder .selected_file_size {
+            display: none;
         }
 
-        .detail_info.folder .selected_file_count{
-            display:block;
+        .detail_info.folder .selected_file_count {
+            display: block;
         }
 
-        .detail_info span{
-            display:block;
-            clear:both;
+        .detail_info span {
+            display: block;
+            clear: both;
         }
 
-        .detail_info a{
-            color:#4DA7E8;
+        .detail_info a {
+            color: #4DA7E8;
         }
 
-        .detail_info .selected_file_count, .detail_info .selected_file_size{
-            padding-top:0;
+        .detail_info .selected_file_count, .detail_info .selected_file_size {
+            padding-top: 0;
         }
 
-        .detail_info h4{
-            float:left;
-            color:#bbb;
-            margin:0;
-            font-size:13px;
-            margin-top:3px;
-            margin-right:8px;
-            padding-bottom:2px;
-            font-weight:300;
+        .detail_info h4 {
+            float: left;
+            color: #bbb;
+            margin: 0;
+            font-size: 13px;
+            margin-top: 3px;
+            margin-right: 8px;
+            padding-bottom: 2px;
+            font-weight: 300;
         }
 
-        .detail_info p{
-            float:left;
-            color:#444;
-            padding-bottom:3px;
-            font-size:13px;
-            font-weight:400;
+        .detail_info p {
+            float: left;
+            color: #444;
+            padding-bottom: 3px;
+            font-size: 13px;
+            font-weight: 400;
         }
 
         /********** file upload progress **********/
 
-        #filemanager .progress{
-            border-radius:0;
-            margin-bottom:0;
+        #filemanager .progress {
+            border-radius: 0;
+            margin-bottom: 0;
         }
 
-        #uploadProgress{
-            display:none;
-            background:#eee;
+        #uploadProgress {
+            display: none;
+            background: #eee;
         }
 
         /********** end file upload progress **********/
 
-        #file_loader{
-            position:absolute;
-            width:100%;
-            height:100%;
-            left:0;
-            top:0;
+        #file_loader {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
             background: rgba(255, 255, 255, 0.7);
             z-index: 9;
-            text-align:center;
+            text-align: center;
         }
 
-        #file_loader #file_loader_inner{
-            width:60px;
-            height:60px;
-            position:absolute;
-            top:50%;
-            left:50%;
-            margin-left:-30px;
-            margin-top:-30px;
-
-        }
-
-        #file_loader img{
-            width:80px;
-            height:80px;
-            margin-top:50px;
-            opacity:0.5;
-            -webkit-animation:spin 1.2s ease-in-out infinite;
-            -moz-animation:spin 1.2s ease-in-out infinite;
-            animation:spin 1.2s ease-in-out infinite;
+        #file_loader #file_loader_inner {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -30px;
+            margin-top: -30px;
 
         }
 
-        #file_loader p{
+        #file_loader img {
+            width: 80px;
+            height: 80px;
+            margin-top: 50px;
+            opacity: 0.5;
+            -webkit-animation: spin 1.2s ease-in-out infinite;
+            -moz-animation: spin 1.2s ease-in-out infinite;
+            animation: spin 1.2s ease-in-out infinite;
+
+        }
+
+        #file_loader p {
             margin-top: 40px;
             position: absolute;
             text-align: center;
             width: 100%;
-            top:50%;
+            top: 50%;
             font-weight: 400;
             font-size: 12px;
         }
 
-        @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-        </style>
+        @-moz-keyframes spin {
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 
 
 
@@ -538,14 +553,15 @@
                                 <li data-folder="/" data-index="0"><span class="arrow"></span><strong>Media
                                         Library</strong></li>
 
-                                    <li v-for="(folder,index) in folders" v-bind:data-folder="folder"  v-bind:data-index="index+1">
-                                        <span class="arrow"></span>@{{ folder }}
-                                    </li>
+                                <li v-for="(folder,index) in folders" v-bind:data-folder="folder"
+                                    v-bind:data-index="index+1">
+                                    <span class="arrow"></span>@{{ folder }}
+                                </li>
                             </ol>
 
                             <div class="toggle"><span>Close</span><i class="fa fa-double-right"></i></div>
                         </div>
-                         <div class="flex">
+                        <div class="flex">
 
                             <div id="left">
 
@@ -555,24 +571,27 @@
                                         <div class="file_link" v-bind:data-folder="file.name" v-bind:data-index="index">
                                             <div class="link_icon">
 
-                                                    <div v-if="file.type.includes('image')" class="img_icon"
-                                                         style="background-size: cover; background-repeat:no-repeat; background-position:center center;display:inline-block; width:100%; height:100%;"
-                                                         v-bind:style="{ backgroundImage: 'encodeURI(file.path)' }"
-                                                    >
-                                                    </div>
+                                                <div v-if="file.type.includes('image')" class="img_icon"
+                                                     style="background-size: cover; background-repeat:no-repeat; background-position:center center;display:inline-block; width:100%; height:100%;"
+                                                     v-bind:style="{ backgroundImage: 'encodeURI(file.path)' }"
+                                                >
+                                                </div>
 
-                                                    <i v-if="file.type  === 'object' && file.type.includes('video')" class="icon fa fa-video"></i>
+                                                <i v-if="file.type  === 'object' && file.type.includes('video')"
+                                                   class="icon fa fa-video"></i>
 
-                                                    <i v-if="file.type.includes('audio')" class="icon fa fa-music"></i>
+                                                <i v-if="file.type.includes('audio')" class="icon fa fa-music"></i>
 
-                                                    <i v-if="file.type == 'folder'" class="icon fa fa-folder"></i>
+                                                <i v-if="file.type == 'folder'" class="icon fa fa-folder"></i>
 
-                                                    <i v-if="file.type != 'folder' && !file.type.includes('image') && !file.type.includes('video') && !file.type.includes('audio')" class="icon fa fa-file-text"></i>
+                                                <i v-if="file.type != 'folder' && !file.type.includes('image') && !file.type.includes('video') && !file.type.includes('audio')"
+                                                   class="icon fa fa-file-text"></i>
 
                                             </div>
                                             <div class="details" v-bind:class="file.type"><h4>@{{ file.name }}</h4>
                                                 <small>
-                                                        <span v-if="file.type != 'folder'" class="file_size">@{{ file.size }}</span>
+                                                    <span v-if="file.type != 'folder'"
+                                                          class="file_size">@{{ file.size }}</span>
                                                 </small>
                                             </div>
                                         </div>
@@ -598,27 +617,31 @@
                                 <div class="right_details">
                                     <div class="detail_img" v-bind:class="selected_file.type">
 
-                                            <img v-if="selected_file.type  === 'object' && selected_file.type.includes('image')" v-bind:src="selected_file.path"/>
+                                        <img v-if="selected_file.type  === 'object' && selected_file.type.includes('image')"
+                                             v-bind:src="selected_file.path"/>
 
 
-                                            <video v-if="selected_file.type  === 'object' && selected_file.type.includes('video')" width="100%" height="auto" controls>
-                                                <source v-bind:src="selected_file.path" type="video/mp4">
-                                                <source v-bind:src="selected_file.path" type="video/ogg">
-                                                <source v-bind:src="selected_file.path" type="video/webm">
-                                                Your browser does not support the video tag.
-                                            </video>
+                                        <video v-if="selected_file.type  === 'object' && selected_file.type.includes('video')"
+                                               width="100%" height="auto" controls>
+                                            <source v-bind:src="selected_file.path" type="video/mp4">
+                                            <source v-bind:src="selected_file.path" type="video/ogg">
+                                            <source v-bind:src="selected_file.path" type="video/webm">
+                                            Your browser does not support the video tag.
+                                        </video>
 
 
-                                            <audio v-if="selected_file.type  === 'object' &&selected_file.type.includes('audio')" controls style="width:100%; margin-top:5px;">
-                                                <source v-bind:src="selected_file.path" type="audio/ogg">
-                                                <source v-bind:src="selected_file.path" type="audio/mpeg">
-                                                Your browser does not support the audio element.
-                                            </audio>
+                                        <audio v-if="selected_file.type  === 'object' &&selected_file.type.includes('audio')"
+                                               controls style="width:100%; margin-top:5px;">
+                                            <source v-bind:src="selected_file.path" type="audio/ogg">
+                                            <source v-bind:src="selected_file.path" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
 
 
-                                            <i v-if="selected_file.type == 'folder'" class="fa fa-folder"></i>
+                                        <i v-if="selected_file.type == 'folder'" class="fa fa-folder"></i>
 
-                                            <i v-if="selected_file.type  === 'object' && selected_file.type != 'folder' && !selected_file.type.includes('audio') && !selected_file.type.includes('video') && !selected_file.type.includes('image')" class="fa fa-file-text-o"></i>
+                                        <i v-if="selected_file.type  === 'object' && selected_file.type != 'folder' && !selected_file.type.includes('audio') && !selected_file.type.includes('video') && !selected_file.type.includes('image')"
+                                           class="fa fa-file-text-o"></i>
 
 
                                     </div>
@@ -657,7 +680,8 @@
 
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
+                                            aria-hidden="true">&times;
+                                    </button>
                                     <h4 class="modal-title"><i class="fa fa-move"></i> Move File/Folder</h4>
                                 </div>
 
@@ -665,8 +689,8 @@
                                     <h4>Destination Folder</h4>
                                     <select id="move_folder_dropdown">
 
-                                            <option v-if="folders.length" value="/../">../</option>
-                                            <option v-for="dir in directories" v-bind:value="dir">@{{ dir }}</option>
+                                        <option v-if="folders.length" value="/../">../</option>
+                                        <option v-for="dir in directories" v-bind:value="dir">@{{ dir }}</option>
 
                                     </select>
                                 </div>
@@ -687,7 +711,8 @@
 
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
-                                            aria-hidden="true">&times;</button>
+                                            aria-hidden="true">&times;
+                                    </button>
                                     <h4 class="modal-title"><i class="fa fa-character"></i> Rename File/Folder</h4>
                                 </div>
 
@@ -715,7 +740,8 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
+                                        aria-hidden="true">&times;
+                                </button>
                                 <h4 class="modal-title"><i class="fa fa-folder"></i> Add New Folder</h4>
                             </div>
 
@@ -741,7 +767,8 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
+                                        aria-hidden="true">&times;
+                                </button>
                                 <h4 class="modal-title"><i class="fa fa-warning"></i> Are You Sure</h4>
                             </div>
 
@@ -769,7 +796,8 @@
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
+                                        aria-hidden="true">&times;
+                                </button>
                                 <h4 class="modal-title"><i class="fa fa-warning"></i> Drag and drop files or click
                                     below to upload</h4>
                             </div>
@@ -794,7 +822,7 @@
 
     <input type="hidden" id="storage_path" value="{{ storage_path() }}">
 
-@push('scripts')
+    @push('scripts')
     <script type="text/javascript">
 
 
@@ -812,7 +840,6 @@
                 console.log('Ready manager');
             }
         });
-
 
 
         console.log('test2');
@@ -1171,5 +1198,5 @@
             media.init();
         });
     </script>
-@endpush
+    @endpush
 @stop
