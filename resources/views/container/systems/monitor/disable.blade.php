@@ -1,8 +1,9 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Монитор')
-@section('description','Информация о состоянии сервера')
+
+@section('title',trans('dashboard::systems/monitor.Monitor'))
+@section('description',trans('dashboard::systems/monitor.description'))
 
 
 
@@ -15,7 +16,7 @@
 
         <div class="jumbotron text-center bg-white not-found">
             <div>
-            <h3 class="font-thin">Операционная система или настройки PHP не поддерживаются монитором</h3>
+                <h3 class="font-thin">{{trans("dashboard::systems/monitor.disabled")}}</h3>
             </div>
         </div>
 

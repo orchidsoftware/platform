@@ -15,7 +15,10 @@ return [
     'elements'     => 'элементов',
     'show'         => 'показано',
     'of'           => 'из',
-    'search posts' => 'Поиск записей..',
+    'search_posts' => 'Поиск записей..',
+
+    'website' => 'Веб-сайт',
+    'profile' => 'Мой профиль',
 
     'access_denied' => [
         'label' => 'Доступ запрещен',

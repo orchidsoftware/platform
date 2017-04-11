@@ -4,6 +4,7 @@ return [
 
     'Monitor'     => 'Monitor',
     'description' => 'Server Status Information',
+    'disabled'    => 'The operating system or PHP settings are not supported by the monitor',
 
     'Hardware'         => [
         'Title'             => 'Hardware',

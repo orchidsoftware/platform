@@ -103,7 +103,24 @@
                             </li>
                             <li class="divider"></li>
                              --}}
+
+
                             <li>
+                                <a href="{{url(config('app.url'))}}">
+                                    <span>{{trans('dashboard::common.website')}}</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('dashboard.systems.users.edit',Auth::user()->id)}}">
+                                    <span>{{trans('dashboard::common.profile')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+
                                 <a href="{{ url('/dashboard/logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

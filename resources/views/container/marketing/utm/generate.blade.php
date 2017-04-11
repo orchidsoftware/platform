@@ -1,8 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','UTM метки')
-@section('description','Генерация UTM меток для рекламных кампаний')
+@section('title',trans('dashboard::marketing/utm.title'))
+@section('description',trans('dashboard::marketing/utm.description'))
 
 
 @section('content')

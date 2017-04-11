@@ -46,7 +46,7 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">Опасных файлов не найдено или проверка ещё не проводилась</h3>
+                        <h3 class="font-thin">{{trans('dashboard::systems/defender.not_found')}}</h3>
                     </div>
                 </div>
 
