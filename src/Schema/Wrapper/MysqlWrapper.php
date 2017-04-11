@@ -45,7 +45,7 @@ class MysqlWrapper implements WrapperContract
     public function getTables(): array
     {
         $tables = $this->baseSchema->database->select('SHOW TABLES');
-        $attribute = 'Tables_in_'.$this->baseSchema->getDatabaseName();
+        $attribute = 'Tables_in_' . $this->baseSchema->getDatabaseName();
 
         return array_map(function ($table) use ($attribute) {
             return $table->$attribute;
@@ -59,7 +59,7 @@ class MysqlWrapper implements WrapperContract
      */
     public function getColumns(string $tableName): array
     {
-        return $this->transformColumns($this->baseSchema->database->select('SHOW COLUMNS FROM '.$tableName));
+        return $this->transformColumns($this->baseSchema->database->select('SHOW COLUMNS FROM ' . $tableName));
     }
 
     /**

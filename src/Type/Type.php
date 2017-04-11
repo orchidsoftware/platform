@@ -85,15 +85,15 @@ abstract class Type implements TypeInterface
      */
     public function generateForm(string $language = 'en', $post = null): string
     {
-        $this->fields = (array) $this->fields();
+        $this->fields = (array)$this->fields();
         $this->parseFields();
 
         $form = '';
         foreach ($this->fields as $field => $config) {
-            $field = config('content.fields.'.$config['tag']);
+            $field = config('content.fields.' . $config['tag']);
 
             if (is_null($field)) {
-                throw new TypeException('Field '.$config['tag'].' does not exist');
+                throw new TypeException('Field ' . $config['tag'] . ' does not exist');
             }
 
             $field = new $field();
@@ -103,7 +103,7 @@ abstract class Type implements TypeInterface
                 $prefixArray = array_filter(explode(' ', $config['prefix']));
 
                 foreach ($prefixArray as $prefix) {
-                    $config['prefix'] .= '['.$prefix.']';
+                    $config['prefix'] .= '[' . $prefix . ']';
                 }
             } else {
                 $config['prefix'] = $this->prefix;
@@ -120,7 +120,7 @@ abstract class Type implements TypeInterface
                     }
 
                     foreach ($nameArray as $name) {
-                        $config['name'] .= '['.$name.']';
+                        $config['name'] .= '[' . $name . ']';
                         if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name,
                                 $config['value'])
                         ) {
@@ -131,7 +131,7 @@ abstract class Type implements TypeInterface
                     if (!is_null($post)) {
                         $config['value'] = $post->getContent($config['name'], $language);
                     }
-                    $config['name'] = '['.$config['name'].']';
+                    $config['name'] = '[' . $config['name'] . ']';
                 }
             }
 
@@ -251,7 +251,7 @@ abstract class Type implements TypeInterface
                     ->orderBy('id', 'Desc')
                     ->paginate();
             } else {
-                $data = $model->where('content', 'LIKE', '%'.$search.'%')
+                $data = $model->where('content', 'LIKE', '%' . $search . '%')
                     ->where('type', $this->slug)
                     ->with($this->with)
                     ->orderBy('id', 'Desc')

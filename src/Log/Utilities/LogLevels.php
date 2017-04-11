@@ -114,7 +114,7 @@ class LogLevels implements LogLevelsContract
      */
     public function get($key)
     {
-        return trans('dashboard::logs.'.$key);
+        return trans('dashboard::logs.' . $key);
     }
 
     /**

@@ -44,8 +44,8 @@ class Monitor
         $serverAddr = (isset($this->server['SERVER_ADDR'])) ? $this->server['SERVER_ADDR'] : ' ';
 
         $data->uname = $uname;
-        $data->webserver = $this->server['SERVER_NAME'].' ('.$serverAddr.') - '.$this->server['SERVER_SOFTWARE'];
-        $data->phpVersion = 'PHP/'.$phpVersion[0].'.'.$phpVersion[1].'.'.$phpVersion[1];
+        $data->webserver = $this->server['SERVER_NAME'] . ' (' . $serverAddr . ') - ' . $this->server['SERVER_SOFTWARE'];
+        $data->phpVersion = 'PHP/' . $phpVersion[0] . '.' . $phpVersion[1] . '.' . $phpVersion[1];
         $data->cpu = $name[1];
 
         return $data;
@@ -63,7 +63,7 @@ class Monitor
         $output = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
         $temp = round(($output) / 1000, 1);
         $output = shell_exec('echo "$(</proc/uptime awk \'{print $1}\')"');
-        $timeAlive = StringHelpers::secondsToTime((int) $output);
+        $timeAlive = StringHelpers::secondsToTime((int)$output);
         // data object
         $data = new stdClass();
         $data->temperature = $temp;
@@ -112,13 +112,13 @@ class Monitor
         //$mem_free = (int)shell_exec("free -m | awk '/buffers\/cache/ {print $3}'");
         $memTotal = (int)shell_exec("free -m | awk '/Mem/ {print $2}'");
         $memTotal = ($memTotal) ? $memTotal : 1;
-        $used_act = (int) shell_exec("free | awk '/buffers\/cache/ {print $3}'");
+        $used_act = (int)shell_exec("free | awk '/buffers\/cache/ {print $3}'");
         $used_act = ($used_act) ? $used_act : 1;
-        $free = (int) shell_exec("free | awk '/Mem/ {print $4}'");
+        $free = (int)shell_exec("free | awk '/Mem/ {print $4}'");
         $free = ($free) ? $free : 1;
-        $buffers = (int) shell_exec("free | awk '/Mem/ {print $6}'");
+        $buffers = (int)shell_exec("free | awk '/Mem/ {print $6}'");
         $buffers = ($buffers) ? $buffers : 1;
-        $cache = (int) shell_exec("free | awk '/Mem/ {print $7}'");
+        $cache = (int)shell_exec("free | awk '/Mem/ {print $7}'");
         $cache = ($cache) ? $cache : 1;
         $total_act = $used_act + $free + $buffers + $cache;
         $free_p = 100 * ($free / $total_act);
@@ -126,28 +126,28 @@ class Monitor
         $cache_p = 100 * ($cache / $total_act);
         $used_act_p = 100 * ($used_act / $total_act);
         // data object
-        $data = (object) [
-            'total'   => (object) [
+        $data = (object)[
+            'total'   => (object)[
                 'pretty' => StringHelpers::prettyMemory($memTotal),
                 'actual' => $total_act,
             ],
-            'used'    => (object) [
-                'pretty'     => (string) round($used_act_p, 2),
+            'used'    => (object)[
+                'pretty'     => (string)round($used_act_p, 2),
                 'percentage' => $used_act_p,
                 'actual'     => $used_act,
             ],
-            'buffers' => (object) [
-                'pretty'     => (string) round($buffers_p, 2),
+            'buffers' => (object)[
+                'pretty'     => (string)round($buffers_p, 2),
                 'percentage' => $buffers_p,
                 'actual'     => $buffers,
             ],
-            'cache'   => (object) [
-                'pretty'     => (string) round($cache_p, 2),
+            'cache'   => (object)[
+                'pretty'     => (string)round($cache_p, 2),
                 'percentage' => $cache_p,
                 'actual'     => $cache,
             ],
-            'free'    => (object) [
-                'pretty'     => (string) round($free_p, 2),
+            'free'    => (object)[
+                'pretty'     => (string)round($free_p, 2),
                 'percentage' => $free_p,
                 'actual'     => $free,
             ],
@@ -169,12 +169,12 @@ class Monitor
      */
     public function network(): stdClass
     {
-        $output = shell_exec('sh '.__DIR__.'/transfer_rate.sh');
+        $output = shell_exec('sh ' . __DIR__ . '/transfer_rate.sh');
         $rates = explode(' ', $output);
         // data object
         $data = new stdClass();
-        $data->down = StringHelpers::prettyBaud((int) $rates[0]);
-        $data->up = StringHelpers::prettyBaud((int) $rates[1]);
+        $data->down = StringHelpers::prettyBaud((int)$rates[0]);
+        $data->up = StringHelpers::prettyBaud((int)$rates[1]);
 
         return $data;
     }

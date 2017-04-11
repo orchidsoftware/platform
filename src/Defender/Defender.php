@@ -75,7 +75,7 @@ class Defender
         $files = scandir($dir);
 
         foreach ($files as $value) {
-            $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
+            $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
             if (!is_dir($path)) {
                 $results[] = $path;
             } else {
@@ -101,7 +101,9 @@ class Defender
         foreach ($files as $file) {
             $content = file_get_contents($file);
 
-            if (str_contains($file, '.php') && !str_contains($file, $this->exceptionsValid) && !$this->checkForValidPhp($content)) {
+            if (str_contains($file, '.php') && !str_contains($file,
+                    $this->exceptionsValid) && !$this->checkForValidPhp($content)
+            ) {
                 $this->notValid[] = $file;
             }
 
