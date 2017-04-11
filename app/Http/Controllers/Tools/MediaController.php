@@ -45,7 +45,7 @@ class MediaController extends Controller
             $folder = '';
         }
 
-        $dir = $this->directory.$folder;
+        $dir = $this->directory . $folder;
 
         return response()->json([
             'name'          => 'files',
@@ -186,7 +186,7 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination, '/../') !== false
-            ? $this->directory.'/'.dirname($folderLocation).'/'.str_replace('/../', '', $destination)
+            ? $this->directory . '/' . dirname($folderLocation) . '/' . str_replace('/../', '', $destination)
             : "{$location}/{$destination}";
 
         if (!file_exists($destination)) {
@@ -250,7 +250,7 @@ class MediaController extends Controller
             $message = $e->getMessage();
         }
 
-        $realPath = Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix().$path;
+        $realPath = Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix() . $path;
         Image::make($realPath)->orientate()->save();
 
         $path = preg_replace('/^public\//', '', $path);

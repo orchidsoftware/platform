@@ -31,7 +31,7 @@ class BaseUserForm extends Form
     {
         return [
             'name'  => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$this->request->get('email').',email',
+            'email' => 'required|email|max:255|unique:users,email,' . $this->request->get('email') . ',email',
             //'password' => 'max:255|sometimes|min:8|confirmed',
         ];
     }

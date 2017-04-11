@@ -107,7 +107,7 @@ class PostController extends Controller
     public function edit(Type $type, Post $post): View
     {
         $locales = $this->locales->map(function ($value, $key) use ($post) {
-            $value['required'] = (bool) $post->checkLanguage($key);
+            $value['required'] = (bool)$post->checkLanguage($key);
 
             return $value;
         })->where('required', true);

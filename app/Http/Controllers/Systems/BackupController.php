@@ -75,7 +75,7 @@ class BackupController extends Controller
             $storagePath = $disk->getDriver()->getAdapter()->getPathPrefix();
 
             if ($disk->exists($fileName)) {
-                return response()->download($storagePath.$fileName);
+                return response()->download($storagePath . $fileName);
             } else {
                 abort(404, 'Бэкап не найден');
             }
