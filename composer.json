@@ -52,6 +52,10 @@
     "laravel/scout": "^3.0",
     "psr/log": "~1.0"
   },
+  "require-dev": {
+    "mockery/mockery": "~0.9.4",
+    "phpunit/phpunit": "~5.7"
+  },
   "autoload": {
     "files": [
       "src/Settings/helpers.php",
@@ -72,6 +76,11 @@
       "Orchid\\Defender\\": "src/Defender/",
       "Orchid\\Schema\\": "src/Schema/",
       "Orchid\\Monitor\\": "src/Monitor/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
     }
   },
   "extra": {
