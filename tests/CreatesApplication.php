@@ -4,7 +4,7 @@ namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 
-trait CreatesApplicationOrchid
+trait CreatesApplication
 {
     /**
      * Creates the application.
