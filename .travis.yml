@@ -1,18 +1,21 @@
+sudo: required
+dist: trusty
 language: php
-
-services:
-  - mysql
-
-sudo: true
 
 php:
   - 7.0
   - 7.1
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+services:
+  - mysql
+
 before_install:
   -  chmod +x ./scripts/*
   - ./scripts/travis_mysql_5.7.sh
-  - ./scripts/mysql-reset-root-password.sh
   - composer self-update
   - composer create-project laravel/laravel
   - cd ./laravel
