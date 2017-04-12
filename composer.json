@@ -42,7 +42,7 @@
     }
   ],
   "require": {
-    "php": ">=7.0.8",
+    "php": ">=7.0",
     "laravel/framework": "5.*",
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
