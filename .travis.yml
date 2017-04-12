@@ -1,12 +1,23 @@
 language: php
 
-sudo: false
-
 php:
-  - 5.6
   - 7.0
   - 7.1
 
-script:
-  - composer validate
-  - vendor/bin/phpunit
+before_install:
+  - composer self-update
+  - composer create-project laravel/laravel
+  - cd ./laravel
+  - composer config repositories.orchid vcs https://github.com/theOrchid/Platform.git
+  - composer require orchid/platform dev-master
+  - composer update
+  - cp ./vendor/orchid/platform/tests/config/.env ./
+  - rm ./config/app.php
+  - cp ./vendor/orchid/platform/tests/config/app.php ./config
+  - php artisan key:generate
+  - php artisan vendor:publish
+  - mysql -e "create database IF NOT EXISTS test;" -uroot
+  - php artisan migrate
+  - cd ./vendor/orchid/platform
+
+script: "phpunit"
