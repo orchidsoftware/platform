@@ -11,8 +11,8 @@ php:
 
 before_install:
   -  chmod +x ./scripts/*
-  - ./script/travis_mysql_5.7.sh
-  - ./script/mysql-reset-root-password.sh
+  - ./scripts/travis_mysql_5.7.sh
+  - ./scripts/mysql-reset-root-password.sh
   - composer self-update
   - composer create-project laravel/laravel
   - cd ./laravel
