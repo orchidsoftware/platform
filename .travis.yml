@@ -15,8 +15,8 @@ services:
   - mysql
 
 before_install:
-  -  chmod +x ./scripts/*
-  - ./scripts/travis_mysql_5.7.sh
+  - chmod +x ./scripts/*
+  - sudo sh ./scripts/travis_mysql_5.7.sh
   - composer self-update
   - composer create-project laravel/laravel
   - cd ./laravel
