@@ -1,5 +1,4 @@
 sudo: required
-
 dist: trusty
 
 language: php
@@ -34,3 +33,6 @@ before_install:
   - cd ./vendor/orchid/platform
 
 script: "phpunit"
+
+notifications:
+  email: false
