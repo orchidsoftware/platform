@@ -1,8 +1,16 @@
 language: php
 
+services:
+  - mysql
+
+sudo: true
+
 php:
   - 7.0
   - 7.1
+
+before_script:
+  - bash ./tests/script/.travis.install-mysql-5.7.sh
 
 before_install:
   - composer self-update
