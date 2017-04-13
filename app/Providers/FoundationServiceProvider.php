@@ -6,7 +6,6 @@ use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Kernel\Dashboard;
@@ -152,7 +151,6 @@ class FoundationServiceProvider extends ServiceProvider
             TagsServiceProvider::class,
             BackupServiceProvider::class,
             LogServiceProvider::class,
-            ScoutServiceProvider::class,
             DefenderServiceProvider::class,
             MenuServiceProvider::class,
         ];
