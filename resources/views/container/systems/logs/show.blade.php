@@ -119,14 +119,14 @@
 
                                                 <td>{{ $entry->datetime->format('H:i:s') }}</td>
                                                 <td>
-                                                    <p class="">{{ $entry->header }}</p>
+                                                    <p class="text-ellipsis">{{ $entry->header }}</p>
                                                 </td>
                                                 <td class="text-right">
                                                     @if ($entry->hasStack())
                                                         <a class="btn btn-xs btn-default" role="button"
                                                            data-toggle="collapse" href="#log-stack-{{ $key }}"
                                                            aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                            <i class="fa fa-toggle-on"></i> Stack
+                                                            <i class="fa fa-history" aria-hidden="true"></i> Stack
                                                         </a>
                                                     @endif
                                                 </td>
