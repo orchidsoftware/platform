@@ -49,7 +49,6 @@
     "cartalyst/tags": "^4.0",
     "cviebrock/eloquent-sluggable": "^4.2",
     "spatie/laravel-backup": "4.*",
-    "laravel/scout": "^3.0",
     "psr/log": "~1.0"
   },
   "require-dev": {
@@ -89,7 +88,6 @@
     }
   },
   "suggest": {
-    "tamayo/laravel-scout-elastic": "Required to use elasticsearch driver for scout.",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
   "minimum-stability": "alpha",

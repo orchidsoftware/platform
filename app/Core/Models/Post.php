@@ -7,14 +7,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use Laravel\Scout\Searchable;
 use Orchid\Core\Builders\PostBuilder;
 use Orchid\Exceptions\TypeException;
 use Orchid\Facades\Dashboard;
 
 class Post extends Model
 {
-    use Searchable, TaggableTrait, Sluggable;
+    use TaggableTrait, Sluggable;
 
     /**
      * @var string
