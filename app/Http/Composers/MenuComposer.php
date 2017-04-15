@@ -74,7 +74,6 @@ class MenuComposer
      */
     protected function registerMenuTools(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'Tools',
             'icon'       => 'icon-wrench',
@@ -120,7 +119,6 @@ class MenuComposer
             'permission' => 'dashboard.tools.media',
             'sort'       => 3
         ]);
-
     }
 
     /**
@@ -128,7 +126,6 @@ class MenuComposer
      */
     protected function registerMenuSystems(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'Systems',
             'icon'       => 'icon-organization',
@@ -227,7 +224,6 @@ class MenuComposer
             'permission' => 'dashboard.systems.roles',
             'sort'       => 601
         ]);
-
     }
 
     /**
@@ -235,7 +231,6 @@ class MenuComposer
      */
     protected function registerMenuMarketing(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'Marketing',
             'icon'       => 'icon-chart',
@@ -275,6 +270,5 @@ class MenuComposer
             'permission' => 'dashboard.marketing.utm',
             'sort'       => 10
         ]);
-
     }
 }

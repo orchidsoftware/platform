@@ -155,8 +155,6 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-
-
             if (!key_exists('template', $value)) {
                 $value['template'] = 'dashboard::partials.leftMainMenu';
             }
@@ -168,7 +166,6 @@ class Menu
             $html .= view($value['template'],
                 collect($value['arg'])
             );
-
         }
 
         return $html;
