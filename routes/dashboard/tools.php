@@ -50,18 +50,19 @@ $this->group([
             'update' => 'dashboard.tools.menu.update',
         ]]);
 
-        Route::group([
+        $router->group([
             'as'     => 'dashboard.tools.media.',
             'prefix' => 'media',
         ], function () {
-            Route::get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
-            Route::post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
-            Route::post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
-            Route::post('delete_file_folder', ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']);
-            Route::post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'get_all_dirs']);
-            Route::post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'move_file']);
-            Route::post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'rename_file']);
-            Route::post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
-            Route::post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
+            $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
+            $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
+            $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
+            $this->post('delete_file_folder',
+                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']);
+            $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'get_all_dirs']);
+            $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'move_file']);
+            $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'rename_file']);
+            $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
+            $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
     });
