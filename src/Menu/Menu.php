@@ -109,20 +109,21 @@ class Menu
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param string $template
      * @param        $arg
-     * @param int    $sort
      */
-    public function add(string $place, string $template, array $arg, int $sort = 500)
+    public function add(string $place, array $arg)
     {
+        $arg = array_merge([
+            'sort' => 0
+        ], $arg);
+
         $this->location = $place;
-        $this->template = $template;
         $this->arg = $arg;
-        $this->sort = $sort;
+        $this->sort = $arg['sort'];
+
 
         $this->item = [
             'location' => $this->location,
-            'template' => $this->template,
             'arg'      => $this->arg,
             'sort'     => $this->sort,
         ];
@@ -151,6 +152,12 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
+
+
+            if (!key_exists('template', $value)) {
+                $value['template'] = 'dashboard::partials.leftMainMenu';
+            }
+
             if (!is_null($template)) {
                 $value['template'] = $template;
             }
@@ -158,6 +165,7 @@ class Menu
             $html .= view($value['template'],
                 collect($value['arg'])
             );
+
         }
 
         return $html;
