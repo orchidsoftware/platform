@@ -51,28 +51,28 @@ Add to `config/app.php`:
 - Service provider to the 'providers' array:
 ```php
 'providers' => [
-  // Laravel Framework Service Providers...
-  //...
-
-  // Package Service Providers
-  Orchid\Providers\FoundationServiceProvider::class,
-
-  // ...
-
-  // Application Service Providers
-  // ...
+    // Laravel Framework Service Providers...
+    //...
+    
+    // Package Service Providers
+    Orchid\Providers\FoundationServiceProvider::class,
+    
+    // ...
+    
+    // Application Service Providers
+    // ...
 ];
 ```
 
 - Facades aliases to the 'aliases' array:
 ```php
 'aliases' => [
-  // ...
-  'Dashboard' =>  Orchid\Facades\Dashboard::class,
-  'Alert' =>  Orchid\Alert\Facades\Alert::class,
-  'Setting' =>  Orchid\Settings\Facades\Setting::class,
-  'Active' => Watson\Active\Facades\Active::class,
-  'Image' => Intervention\Image\Facades\Image::class,
+    // ...
+    
+    'Alert'     => Orchid\Alert\Facades\Alert::class,
+    'Dashboard' => Orchid\Facades\Dashboard::class,
+    'Setting'   => Orchid\Settings\Facades\Setting::class,
+    'Active'    => Watson\Active\Facades\Active::class,
 ];
 ```
 
