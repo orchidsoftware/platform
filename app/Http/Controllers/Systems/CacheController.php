@@ -4,9 +4,7 @@ namespace Orchid\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use LogicException;
 use Orchid\Alert\Facades\Alert;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class CacheController
 {
@@ -26,9 +24,12 @@ class CacheController
     public function store(Request $request)
     {
         $action = $request->get('action', 'index');
-        $this->$action();
-        Alert::success(trans('dashboard::common.alert.success'));
-
+        try {
+            $this->$action();
+            Alert::success(trans('dashboard::common.alert.success'));
+        } catch (\Exception $exception) {
+            Alert::warning($exception->getMessage());
+        }
         return redirect()->back();
     }
 
@@ -53,17 +54,7 @@ class CacheController
      */
     protected function route()
     {
-        try {
-            Artisan::call('route:cache');
-        } catch (FatalThrowableError $exception) {
-            Alert::error('error');
-
-            return redirect()->back();
-        } catch (LogicException $exception) {
-            Alert::error('error');
-
-            return redirect()->back();
-        }
+        Artisan::call('route:cache');
     }
 
     /**
