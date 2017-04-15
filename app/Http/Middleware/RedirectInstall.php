@@ -32,6 +32,6 @@ class RedirectInstall
      */
     public function alreadyInstalled()
     {
-        return env('APP_INSTALL');
+        return config('content.install');
     }
 }
