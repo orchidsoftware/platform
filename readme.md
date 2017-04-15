@@ -48,7 +48,7 @@ $ composer require orchid/platform
 
 Add to `config/app.php`:
 
-- Service provider to the 'providers' array:
+Service provider to the 'providers' array:
 ```php
 'providers' => [
     // Laravel Framework Service Providers...
@@ -64,7 +64,7 @@ Add to `config/app.php`:
 ];
 ```
 
-- Facades aliases to the 'aliases' array:
+Facades aliases to the 'aliases' array:
 ```php
 'aliases' => [
     // ...
