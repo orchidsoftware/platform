@@ -114,7 +114,10 @@ class Menu
     public function add(string $place, array $arg)
     {
         $arg = array_merge([
-            'sort' => 0
+            'icon'    => 'fa fa-file-o',
+            'childs'  => false,
+            'divider' => false,
+            'sort'    => 0
         ], $arg);
 
         $this->location = $place;
