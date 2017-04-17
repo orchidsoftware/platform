@@ -64,6 +64,4 @@ abstract class Type implements TypeInterface
      * @return mixed
      */
     abstract public function grid();
-
-
 }

@@ -6,6 +6,4 @@ use Orchid\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
-
-
 }
