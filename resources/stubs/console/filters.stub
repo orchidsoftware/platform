@@ -1,9 +1,9 @@
-<?php namespace App\Http\Filters;
+<?php namespace DummyNamespace;
 
 use Orchid\Core\Builders\PostBuilder;
 use Orchid\Filters\Filter;
 
-class CategoryFilters extends Filter
+class DummyClass extends Filter
 {
     /**
      * @param PostBuilder $builder
@@ -21,5 +21,6 @@ class CategoryFilters extends Filter
      */
     public function display()
     {
+        // return view();
     }
 }

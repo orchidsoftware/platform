@@ -20,6 +20,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Pages
+    |--------------------------------------------------------------------------
+    |
+    | Static pages
+    |
+    */
+
+    'pages' => [
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Types
     |--------------------------------------------------------------------------
     |
@@ -50,6 +63,7 @@ return [
         'datetime' => \Orchid\Field\Fields\DateTimerField::class,
         'checkbox' => \Orchid\Field\Fields\CheckBoxField::class,
         'path'     => \Orchid\Field\Fields\PathField::class,
+        'code'     => \Orchid\Field\Fields\CodeField::class,
     ],
 
     /*
