@@ -38,6 +38,7 @@ class TextAreaField extends Field
         }
 
         $attributes->put('data', $data);
+        $attributes->put('slug', str_slug($attributes->get('name')));
 
         return view($this->view, $attributes);
     }

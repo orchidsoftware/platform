@@ -1,7 +1,7 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="field-{{$slug}}">{{$title}}</label>
     @endif
 
 
@@ -11,7 +11,7 @@
 
             <input type="checkbox"
 
-
+                   id="field-{{$slug}}"
                    value="{{$default or old($default)}}"
 
 

@@ -12,7 +12,7 @@
             name="{{$lang}}{{$name}}"
             @endif
 
-            class="form-control {{$class or ''}}" id="field-{{$name}}">
+            class="form-control {{$class or ''}}" id="field-{{$slug}}">
         <option value="index">Index</option>
         <option value="noindex">Noindex</option>
     </select>

@@ -1,11 +1,12 @@
 <div class="form-group">
 
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="field-{{$slug}}">{{$title}}</label>
     @endif
 
     <div class='input-group date datetimepicker'>
         <input type='text' class="form-control {{$class or ''}}"
+               id="field-{{$slug}}"
                value="{{$value or old($name)}}"
                placeholder="{{$placeholder or ''}}"
 

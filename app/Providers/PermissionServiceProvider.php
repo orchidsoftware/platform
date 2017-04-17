@@ -27,6 +27,7 @@ class PermissionServiceProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         $dashboard->permission->registerPermissions($this->registerPermissionsMain());
+        $dashboard->permission->registerPermissions($this->registerPermissionsPages());
         $dashboard->permission->registerPermissions($this->registerPermissionsPost());
         $dashboard->permission->registerPermissions($this->registerPermissionsTools());
         $dashboard->permission->registerPermissions($this->registerPermissionsSystems());
@@ -43,6 +44,10 @@ class PermissionServiceProvider extends ServiceProvider
                 [
                     'slug'        => 'dashboard.index',
                     'description' => 'Главное меню',
+                ],
+                [
+                    'slug'        => 'dashboard.pages',
+                    'description' => 'Доступ к страницам',
                 ],
                 [
                     'slug'        => 'dashboard.posts',
@@ -63,6 +68,14 @@ class PermissionServiceProvider extends ServiceProvider
             ],
 
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsPages()
+    {
+        return [];
     }
 
     /**

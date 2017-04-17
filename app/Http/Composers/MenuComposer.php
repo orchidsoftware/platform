@@ -19,6 +19,7 @@ class MenuComposer
     public function compose()
     {
         $this->registerMenuPost($this->dashboard);
+        $this->registerMenuPage($this->dashboard);
         $this->registerMenuTools($this->dashboard);
         $this->registerMenuSystems($this->dashboard);
         $this->registerMenuMarketing($this->dashboard);
@@ -35,7 +36,7 @@ class MenuComposer
         if (count($allPost) > 0) {
             $postMenu = [
                 'slug'       => 'Posts',
-                'icon'       => 'icon-note',
+                'icon'       => 'fa fa-file-o',
                 'route'      => '#',
                 'label'      => trans('dashboard::menu.Posts'),
                 'childs'     => true,
@@ -67,6 +68,26 @@ class MenuComposer
                 $dashboard->menu->add('Posts', $postObject);
             }
         }
+    }
+
+    /**
+     * @param Dashboard $dashboard
+     */
+    protected function registerMenuPage(Dashboard $dashboard)
+    {
+        $pageMenu = [
+            'slug'       => 'Pages',
+            'icon'       => 'icon-notebook',
+            'route'      => '#',
+            'label'      => trans('dashboard::menu.Pages'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => 'dashboard.pages.*',
+            'permission' => 'dashboard.pages',
+            'sort'       => 1,
+        ];
+
+        $dashboard->menu->add('Main', $pageMenu);
     }
 
     /**

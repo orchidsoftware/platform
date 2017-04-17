@@ -31,6 +31,7 @@ class PathField extends Field
             $data = collect();
         }
         $attributes->put('data', $data);
+        $attributes->put('slug', str_slug($attributes->get('name')));
 
         return view($this->view, $attributes);
     }
