@@ -40,7 +40,7 @@ class AdvertisingMainForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(Post $post = null): View
+    public function get(Post $post = null) : View
     {
         if (is_null($post)) {
             $post = new Post();

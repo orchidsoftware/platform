@@ -28,7 +28,7 @@ class BaseCommentForm extends Form
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function get(Comment $comment): View
+    public function get(Comment $comment) : View
     {
         return view('dashboard::container.marketing.comment.info', [
             'comment' => $comment,

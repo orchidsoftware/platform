@@ -2,7 +2,7 @@
 
 namespace Orchid\Type;
 
-interface TypeInterface
+interface PageInterface
 {
     /**
      * @return array
@@ -13,11 +13,6 @@ interface TypeInterface
      * @return bool
      */
     public function isValid() : bool;
-
-    /**
-     * @return array
-     */
-    public function generateGrid() : array;
 
     /**
      * @return mixed

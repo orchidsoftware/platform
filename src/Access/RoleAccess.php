@@ -11,7 +11,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function getRoleId(): int
+    public function getRoleId() : int
     {
         return $this->getKey();
     }
@@ -19,7 +19,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function getRoleSlug(): string
+    public function getRoleSlug() : string
     {
         return $this->slug;
     }
@@ -35,7 +35,7 @@ trait RoleAccess
     /**
      * @return mixed
      */
-    public function delete(): bool
+    public function delete() : bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
         if ($this->exists && !$isSoftDeleted) {
@@ -50,7 +50,7 @@ trait RoleAccess
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users(): BelongsToMany
+    public function users() : BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model('user', User::class), 'role_users', 'role_id',
             'user_id')->withTimestamps();

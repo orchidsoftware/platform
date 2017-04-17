@@ -111,7 +111,7 @@ abstract class FormGroup
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function render(...$arg): View
+    public function render(...$arg) : View
     {
         $this->html = collect();
 
@@ -198,7 +198,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function method(string $method): FormGroup
+    public function method(string $method) : FormGroup
     {
         $this->method = $method;
 
@@ -210,7 +210,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function route(string $method): FormGroup
+    public function route(string $method) : FormGroup
     {
         $this->route = $method;
 
@@ -222,7 +222,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function slug(string $method): FormGroup
+    public function slug(string $method) : FormGroup
     {
         $this->slug = $method;
 

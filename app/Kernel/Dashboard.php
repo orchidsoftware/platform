@@ -105,7 +105,7 @@ class Dashboard
     /**
      * @return null|Menu
      */
-    public function menu(): Menu
+    public function menu() : Menu
     {
         return $this->menu;
     }
@@ -113,7 +113,7 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission(): Collection
+    public function getPermission() : Collection
     {
         return $this->permission->get();
     }
@@ -131,7 +131,7 @@ class Dashboard
      *
      * @return array
      */
-    public function types($sort = false): array
+    public function types($sort = false) : array
     {
         return $this->types->all($sort);
     }
@@ -139,7 +139,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public function fields(): array
+    public function fields() : array
     {
         return $this->fields->all();
     }
@@ -147,7 +147,7 @@ class Dashboard
     /**
      * @return RouteMenu
      */
-    public function routeMenu(): RouteMenu
+    public function routeMenu() : RouteMenu
     {
         return $this->routeMenu;
     }

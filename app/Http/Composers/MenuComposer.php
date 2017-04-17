@@ -83,7 +83,7 @@ class MenuComposer
             'main'       => true,
             'active'     => 'dashboard.tools.*',
             'permission' => 'dashboard.tools',
-            'sort'       => 500
+            'sort'       => 500,
         ]);
 
         $dashboard->menu->add('Tools', [
@@ -94,7 +94,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => true,
             'permission' => 'dashboard.tools.category',
-            'sort'       => 2
+            'sort'       => 2,
         ]);
 
         $dashboard->menu->add('Tools', [
@@ -106,7 +106,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.tools.menu',
-            'sort'       => 1
+            'sort'       => 1,
         ]);
 
         $dashboard->menu->add('Tools', [
@@ -117,7 +117,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.tools.media',
-            'sort'       => 3
+            'sort'       => 3,
         ]);
     }
 
@@ -135,7 +135,7 @@ class MenuComposer
             'main'       => true,
             'active'     => 'dashboard.systems.*',
             'permission' => 'dashboard.systems',
-            'sort'       => 1000
+            'sort'       => 1000,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -147,7 +147,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.systems.settings',
-            'sort'       => 1
+            'sort'       => 1,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -158,7 +158,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.systems.backup',
-            'sort'       => 2
+            'sort'       => 2,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -170,7 +170,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.systems.logs',
-            'sort'       => 500
+            'sort'       => 500,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -179,7 +179,7 @@ class MenuComposer
             'route'      => route('dashboard.systems.defender.index'),
             'label'      => trans('dashboard::menu.Defender'),
             'permission' => 'dashboard.systems.defender',
-            'sort'       => 501
+            'sort'       => 501,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -188,7 +188,7 @@ class MenuComposer
             'route'      => route('dashboard.systems.monitor'),
             'label'      => trans('dashboard::menu.Monitor'),
             'permission' => 'dashboard.systems.monitor',
-            'sort'       => 502
+            'sort'       => 502,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -199,7 +199,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => true,
             'permission' => 'dashboard.systems.schema',
-            'sort'       => 3
+            'sort'       => 3,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -211,7 +211,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.systems.users',
-            'sort'       => 503
+            'sort'       => 503,
         ]);
 
         $dashboard->menu->add('Systems', [
@@ -222,7 +222,7 @@ class MenuComposer
             'childs'     => false,
             'divider'    => true,
             'permission' => 'dashboard.systems.roles',
-            'sort'       => 601
+            'sort'       => 601,
         ]);
     }
 
@@ -240,7 +240,7 @@ class MenuComposer
             'main'       => true,
             'active'     => 'dashboard.marketing.*',
             'permission' => 'dashboard.marketing',
-            'sort'       => 1500
+            'sort'       => 1500,
         ]);
 
         $dashboard->menu->add('Marketing', [
@@ -250,7 +250,7 @@ class MenuComposer
             'label'      => trans('dashboard::menu.Comments'),
             'groupname'  => trans('dashboard::menu.Marketing'),
             'permission' => 'dashboard.marketing.comment',
-            'sort'       => 1
+            'sort'       => 1,
         ]);
 
         $dashboard->menu->add('Marketing', [
@@ -259,7 +259,7 @@ class MenuComposer
             'route'      => route('dashboard.marketing.advertising.index'),
             'label'      => trans('dashboard::menu.Advertising'),
             'permission' => 'dashboard.marketing.advertising',
-            'sort'       => 5
+            'sort'       => 5,
         ]);
 
         $dashboard->menu->add('Marketing', [
@@ -268,7 +268,7 @@ class MenuComposer
             'route'      => route('dashboard.marketing.utm.index'),
             'label'      => trans('dashboard::menu.UTM'),
             'permission' => 'dashboard.marketing.utm',
-            'sort'       => 10
+            'sort'       => 10,
         ]);
     }
 }

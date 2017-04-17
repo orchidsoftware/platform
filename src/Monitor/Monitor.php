@@ -28,7 +28,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function info(): stdClass
+    public function info() : stdClass
     {
         // preparing cpu info
         $uname = shell_exec('uname -r ');
@@ -58,7 +58,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function hardware(): stdClass
+    public function hardware() : stdClass
     {
         $output = shell_exec('cat /sys/class/thermal/thermal_zone0/temp');
         $temp = round(($output) / 1000, 1);
@@ -80,7 +80,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function loadAverage(): stdClass
+    public function loadAverage() : stdClass
     {
         $output = shell_exec('uptime');
         $loadavg = explode(' ', substr($output, strpos($output, 'load average:') + 14));
@@ -107,7 +107,7 @@ class Monitor
      *
      * @return stdClass
      */
-    public function memory(): stdClass
+    public function memory() : stdClass
     {
         //$mem_free = (int)shell_exec("free -m | awk '/buffers\/cache/ {print $3}'");
         $memTotal = (int)shell_exec("free -m | awk '/Mem/ {print $2}'");
@@ -167,7 +167,7 @@ class Monitor
      *
      * @return stdClass
      */
-    public function network(): stdClass
+    public function network() : stdClass
     {
         $output = shell_exec('sh ' . __DIR__ . '/transfer_rate.sh');
         $rates = explode(' ', $output);
@@ -187,7 +187,7 @@ class Monitor
      *
      * @return \stdClass
      */
-    public function storage(): stdClass
+    public function storage() : stdClass
     {
         $output = shell_exec('df -H');
         $table_rows = preg_split('/$\R?^/m', $output);
@@ -207,7 +207,7 @@ class Monitor
      *
      * @return array
      */
-    private function prepareColumns(string $row): array
+    private function prepareColumns(string $row) : array
     {
         return array_values(array_filter(explode(' ', $row), 'strlen'));
     }

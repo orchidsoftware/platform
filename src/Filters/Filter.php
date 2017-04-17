@@ -37,7 +37,7 @@ abstract class Filter implements FilterInterface
      *
      * @return PostBuilder
      */
-    public function filter(PostBuilder $builder): PostBuilder
+    public function filter(PostBuilder $builder) : PostBuilder
     {
         if (!is_null($this->parameters) && $this->request->has($this->parameters)) {
             return $this->run($builder);
@@ -54,7 +54,7 @@ abstract class Filter implements FilterInterface
      *
      * @return mixed
      */
-    abstract public function run(PostBuilder $builder): PostBuilder;
+    abstract public function run(PostBuilder $builder) : PostBuilder;
 
 
     /**

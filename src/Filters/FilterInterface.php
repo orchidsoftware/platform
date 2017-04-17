@@ -10,7 +10,7 @@ interface FilterInterface
      *
      * @return PostBuilder
      */
-    public function run(PostBuilder $builder): PostBuilder;
+    public function run(PostBuilder $builder) : PostBuilder;
 
     /**
      * @return mixed

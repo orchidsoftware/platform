@@ -57,7 +57,7 @@ class Attachment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(Dashboard::model('user', User::class));
     }
@@ -65,7 +65,7 @@ class Attachment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post(): BelongsTo
+    public function post() : BelongsTo
     {
         return $this->belongsTo(Dashboard::model('post', Post::class));
     }
@@ -75,7 +75,7 @@ class Attachment extends Model
      *
      * @return Attachment
      */
-    public function type($type): Attachment
+    public function type($type) : Attachment
     {
         if (array_key_exists($type, $this->types)) {
             return $this->whereIn('extension', $this->types[$type]);

@@ -30,6 +30,7 @@ class CacheController
         } catch (\Exception $exception) {
             Alert::warning($exception->getMessage());
         }
+
         return redirect()->back();
     }
 

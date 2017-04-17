@@ -27,7 +27,7 @@ class BasePostForm extends Form
      *
      * @internal param null $type
      */
-    public function get(Type $type = null, Post $post = null): View
+    public function get(Type $type = null, Post $post = null) : View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();

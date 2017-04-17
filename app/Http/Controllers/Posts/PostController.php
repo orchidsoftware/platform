@@ -34,7 +34,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function index(Type $type): View
+    public function index(Type $type) : View
     {
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
@@ -44,7 +44,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function create(Type $type): View
+    public function create(Type $type) : View
     {
         return view('dashboard::container.posts.create', [
             'type'    => $type,
@@ -59,7 +59,7 @@ class PostController extends Controller
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, Type $type, Post $post): RedirectResponse
+    public function store(Request $request, Type $type, Post $post) : RedirectResponse
     {
         $this->validate($request, $type->rules());
 
@@ -104,7 +104,7 @@ class PostController extends Controller
      *
      * @internal param Request $request
      */
-    public function edit(Type $type, Post $post): View
+    public function edit(Type $type, Post $post) : View
     {
         $locales = $this->locales->map(function ($value, $key) use ($post) {
             $value['required'] = (bool)$post->checkLanguage($key);
@@ -126,7 +126,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Type $type, Post $post): RedirectResponse
+    public function update(Request $request, Type $type, Post $post) : RedirectResponse
     {
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
@@ -172,7 +172,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Type $type, Post $post): RedirectResponse
+    public function destroy(Type $type, Post $post) : RedirectResponse
     {
         $post->delete();
         Alert::success(trans('dashboard::common.alert.success'));

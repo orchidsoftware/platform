@@ -14,7 +14,7 @@ trait SettingTrait
      *
      * @return bool
      */
-    public function set(string $key, $value): bool
+    public function set(string $key, $value) : bool
     {
         $result = $this->firstOrNew([
             'key' => $key,

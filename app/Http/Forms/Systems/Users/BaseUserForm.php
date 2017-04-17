@@ -27,7 +27,7 @@ class BaseUserForm extends Form
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [
             'name'  => 'required|max:255',
@@ -43,7 +43,7 @@ class BaseUserForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(User $user = null): View
+    public function get(User $user = null) : View
     {
         return view('dashboard::container.systems.users.info', [
             'user' => $user ?: new $this->model(),

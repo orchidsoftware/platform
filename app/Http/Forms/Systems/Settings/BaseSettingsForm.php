@@ -23,7 +23,7 @@ class BaseSettingsForm extends Form
     /**
      * Display Settings App.
      */
-    public function get(): View
+    public function get() : View
     {
         $settings = $this->model->get([
             'site_title',
