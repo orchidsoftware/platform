@@ -358,5 +358,4 @@ trait Structure
     {
         return '';
     }
-
 }
