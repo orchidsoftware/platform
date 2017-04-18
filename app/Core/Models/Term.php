@@ -50,5 +50,4 @@ class Term extends Model
     {
         return $this->hasOne(TermTaxonomy::class, 'term_id');
     }
-
 }

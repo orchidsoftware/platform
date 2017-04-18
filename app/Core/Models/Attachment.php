@@ -37,7 +37,7 @@ class Attachment extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->types = config('content.attachment',[]);
+        $this->types = config('content.attachment', []);
         parent::__construct($attributes);
     }
 
