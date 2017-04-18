@@ -91,7 +91,7 @@ class MenuComposer
             ]);
         }
         foreach ($allPage as $page) {
-                $postObject = [
+            $postObject = [
                     'slug'       => $page->slug,
                     'icon'       => $page->icon,
                     'route'      => '',//route('dashboard.posts.type', [$page->slug]),
@@ -100,17 +100,14 @@ class MenuComposer
                     'permission' => 'dashboard.posts.type.' . $page->slug,
                 ];
 
-                if (reset($allPage) == $page) {
-                    $postObject['groupname'] = trans('dashboard::menu.Static pages');
-                } elseif (end($allPage) == $page) {
-                    $postObject['divider'] = true;
-                }
+            if (reset($allPage) == $page) {
+                $postObject['groupname'] = trans('dashboard::menu.Static pages');
+            } elseif (end($allPage) == $page) {
+                $postObject['divider'] = true;
+            }
 
-                $dashboard->menu->add('Pages', $postObject);
+            $dashboard->menu->add('Pages', $postObject);
         }
-
-
-
     }
 
     /**
