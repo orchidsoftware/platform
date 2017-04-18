@@ -14,32 +14,8 @@ class Attachment extends Model
      *
      * @var array
      */
-    public static $types = [
-        'image' => [
-            'png',
-            'jpg',
-            'jpeg',
-            'gif',
-        ],
-        'video' => [
-            'mp4',
-            'mkv',
-        ],
-        'docs'  => [
-            'doc',
-            'docx',
-            'pdf',
-            'xls',
-            'xlsx',
-            'xml',
-            'txt',
-            'zip',
-            'rar',
-            'svg',
-            'ppt',
-            'pptx',
-        ],
-    ];
+    public $types = [];
+
     /**
      * @var array
      */
@@ -53,6 +29,17 @@ class Attachment extends Model
         'user_id',
         'post_id',
     ];
+
+    /**
+     * Attachment constructor.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->types = config('content.attachment',[]);
+        parent::__construct($attributes);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -90,7 +77,7 @@ class Attachment extends Model
      *
      * @return string
      */
-    public function url($size = '', $prefix = 'public')
+    public function url($size = '', $prefix = 'public') : string
     {
         if (!empty($size)) {
             $size = '_' . $size;

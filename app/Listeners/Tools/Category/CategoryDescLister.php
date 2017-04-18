@@ -20,7 +20,7 @@ class CategoryDescLister
      *
      * @internal param CategoryEvent $event
      */
-    public function handle()
+    public function handle() : string
     {
         return CategoryDescForm::class;
     }

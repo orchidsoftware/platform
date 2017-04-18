@@ -11,7 +11,7 @@ class PostBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\PostBuilder
      */
-    public function published()
+    public function published() : PostBuilder
     {
         return $this->status('publish');
     }
@@ -23,7 +23,7 @@ class PostBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\PostBuilder
      */
-    public function status($postStatus)
+    public function status($postStatus) : PostBuilder
     {
         return $this->where('status', $postStatus);
     }
@@ -35,7 +35,7 @@ class PostBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\PostBuilder
      */
-    public function type($type)
+    public function type($type) : PostBuilder
     {
         return $this->where('type', $type);
     }
@@ -47,7 +47,7 @@ class PostBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\PostBuilder
      */
-    public function typeIn(array $type)
+    public function typeIn(array $type) : PostBuilder
     {
         return $this->whereIn('type', $type);
     }
@@ -58,7 +58,7 @@ class PostBuilder extends Builder
      *
      * @return Builder|static
      */
-    public function taxonomy($taxonomy, $term)
+    public function taxonomy($taxonomy, $term) : Builder
     {
         return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
             $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
@@ -74,7 +74,7 @@ class PostBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\PostBuilder
      */
-    public function slug($slug)
+    public function slug($slug) : PostBuilder
     {
         return $this->where('slug', $slug);
     }

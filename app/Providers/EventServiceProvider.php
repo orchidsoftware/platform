@@ -4,7 +4,7 @@ namespace Orchid\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Orchid\Core\Models\Newsletter;
-use Orchid\Core\Observers\NewslettersObserver;
+use Orchid\Core\Observers\NewsletterObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -45,6 +45,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Newsletter::observe(NewslettersObserver::class);
+        Newsletter::observe(NewsletterObserver::class);
     }
 }

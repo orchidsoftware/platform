@@ -16,7 +16,7 @@ class TermTaxonomyBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\TermTaxonomyBuilder
      */
-    public function posts()
+    public function posts() : TermTaxonomyBuilder
     {
         return $this->with('posts');
     }
@@ -26,7 +26,7 @@ class TermTaxonomyBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\TermTaxonomyBuilder
      */
-    public function category()
+    public function category() : TermTaxonomyBuilder
     {
         return $this->where('taxonomy', 'category');
     }
@@ -48,7 +48,7 @@ class TermTaxonomyBuilder extends Builder
      *
      * @return \Orchid\Core\Builders\TermTaxonomyBuilder
      */
-    public function slug($slug = null)
+    public function slug($slug = null) : TermTaxonomyBuilder
     {
         if (!is_null($slug) && !empty($slug)) {
             // set this slug to be used in with callback

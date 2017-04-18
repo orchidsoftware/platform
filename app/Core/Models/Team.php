@@ -3,6 +3,9 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Mail;
 use Orchid\Events\User\RemovedFromTeam;
 use Orchid\Facades\Dashboard;
@@ -27,8 +30,10 @@ class Team extends Model
 
     /**
      * Get the owner of the team.
+     *
+     * @return BelongsTo
      */
-    public function owner()
+    public function owner() : BelongsTo
     {
         return $this->belongsTo(Dashboard::model('user', User::class), 'owner_id');
     }
@@ -40,7 +45,7 @@ class Team extends Model
      *
      * @return Invitation
      */
-    public function inviteUserByEmail($email)
+    public function inviteUserByEmail($email) : Invitation
     {
         $model = Dashboard::model('user', User::class);
 
@@ -70,8 +75,10 @@ class Team extends Model
 
     /**
      * Get all of the pending invitations for the team.
+     *
+     * @return HasMany
      */
-    public function invitations()
+    public function invitations() : HasMany
     {
         return $this->hasMany(Invitation::class)->orderBy('created_at', 'desc');
     }
@@ -100,11 +107,12 @@ class Team extends Model
 
     /**
      * Get all of the users that belong to the team.
+     *
+     * @return BelongsToMany
      */
-    public function users()
+    public function users() : BelongsToMany
     {
         return $this->belongsToMany(
-            Dashboard::model('user', User::class), 'user_teams', 'team_id', 'user_id'
-        )->withPivot('role');
+            Dashboard::model('user', User::class), 'user_teams', 'team_id', 'user_id')->withPivot('role');
     }
 }

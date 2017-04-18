@@ -3,6 +3,8 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Core\Builders\CommentBuilder;
 
 class Comment extends Model
@@ -40,7 +42,7 @@ class Comment extends Model
      *
      * @return Comment
      */
-    public static function findByPostId($postId)
+    public static function findByPostId($postId) : Comment
     {
         $instance = new static();
 
@@ -52,7 +54,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post()
+    public function post() : BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
@@ -62,7 +64,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function original()
+    public function original() : BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
@@ -72,7 +74,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies()
+    public function replies() : HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
@@ -82,7 +84,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function isApproved()
+    public function isApproved() : bool
     {
         return $this->attributes['approved'] == 1;
     }
@@ -92,7 +94,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function isReply()
+    public function isReply() : bool
     {
         return $this->attributes['parent_id'] > 0;
     }
@@ -102,7 +104,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function hasReplies()
+    public function hasReplies() : bool
     {
         return count($this->replies) > 0;
     }
@@ -112,7 +114,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author() : BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -124,7 +126,7 @@ class Comment extends Model
      *
      * @return CommentBuilder
      */
-    public function newQuery($excludeDeleted = true)
+    public function newQuery($excludeDeleted = true) : CommentBuilder
     {
         $builder = new CommentBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);

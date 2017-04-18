@@ -3,6 +3,9 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Core\Builders\TermTaxonomyBuilder;
 
 class TermTaxonomy extends Model
@@ -11,10 +14,12 @@ class TermTaxonomy extends Model
      * @var bool
      */
     public $timestamps = false;
+
     /**
      * @var string
      */
     protected $table = 'term_taxonomy';
+
     /**
      * @var array
      */
@@ -24,6 +29,7 @@ class TermTaxonomy extends Model
         'taxonomy',
         'parent_id',
     ];
+
     /**
      * @var array
      */
@@ -36,7 +42,7 @@ class TermTaxonomy extends Model
      *
      * @param string $key
      *
-     * @return string
+     * @return string|object
      */
     public function __get($key)
     {
@@ -54,7 +60,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function term()
+    public function term() : BelongsTo
     {
         return $this->belongsTo(Term::class, 'term_id');
     }
@@ -64,7 +70,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parentTerm()
+    public function parentTerm() : BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
@@ -82,7 +88,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function childrenTerm()
+    public function childrenTerm() : HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
@@ -92,7 +98,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function posts()
+    public function posts() : BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'term_relationships', 'term_taxonomy_id', 'post_id');
     }
@@ -102,7 +108,7 @@ class TermTaxonomy extends Model
      *
      * @return TermTaxonomyBuilder
      */
-    public function newQuery()
+    public function newQuery() : TermTaxonomyBuilder
     {
         $builder = new TermTaxonomyBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);

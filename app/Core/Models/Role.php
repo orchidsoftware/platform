@@ -37,7 +37,7 @@ class Role extends Model implements RoleInterface
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName() : string
     {
         return 'slug';
     }

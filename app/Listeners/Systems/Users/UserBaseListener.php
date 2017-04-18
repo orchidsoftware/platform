@@ -20,7 +20,7 @@ class UserBaseListener
      *
      * @internal param UserEvent $event
      */
-    public function handle()
+    public function handle() : string
     {
         return BaseUserForm::class;
     }

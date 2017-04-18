@@ -37,7 +37,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsMain()
+    protected function registerPermissionsMain() : array
     {
         return [
             'Главное меню' => [
@@ -73,15 +73,27 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsPages()
+    protected function registerPermissionsPages() : array
     {
-        return [];
+        $allPage = $this->dashboard->pages();
+
+        $showPost = collect();
+        foreach ($allPage as $page) {
+            $showPost->push([
+                'slug'        => 'dashboard.posts.type.' . $page->slug,
+                'description' => $page->name,
+            ]);
+        }
+
+        return [
+            'Pages' => $showPost->toArray(),
+        ];
     }
 
     /**
      * @return array
      */
-    protected function registerPermissionsPost()
+    protected function registerPermissionsPost() : array
     {
         $allPost = $this->dashboard->types();
         $showPost = collect();
@@ -102,7 +114,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsTools()
+    protected function registerPermissionsTools() : array
     {
         return [
             'Tools' => [
@@ -129,7 +141,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsSystems()
+    protected function registerPermissionsSystems() : array
     {
         return [
 
@@ -173,7 +185,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsMarketing()
+    protected function registerPermissionsMarketing() : array
     {
         return [
 

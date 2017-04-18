@@ -5,15 +5,20 @@ namespace Orchid\Core\Models;
 use Cartalyst\Tags\TaggableTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Orchid\Core\Builders\PostBuilder;
+use Orchid\Core\Traits\MultiLanguage;
 use Orchid\Exceptions\TypeException;
 use Orchid\Facades\Dashboard;
 
 class Post extends Model
 {
-    use TaggableTrait, Sluggable;
+    use TaggableTrait, Sluggable, MultiLanguage;
 
     /**
      * @var string
@@ -81,12 +86,14 @@ class Post extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName() : string
     {
         return 'slug';
     }
 
     /**
+     * Deprecated
+     *
      * @return mixed
      */
     public function whereType()
@@ -130,34 +137,11 @@ class Post extends Model
         return $this;
     }
 
-    /**
-     * @param      $field
-     * @param null $lang
-     *
-     * @return mixed|null
-     */
-    public function getContent($field, $lang = null)
-    {
-        try {
-            $lang = $lang ?? App::getLocale();
-            if (!is_null($this->content) && !in_array($field, $this->getFillable())) {
-                return $this->content[$lang][$field];
-            } elseif (in_array($field, $this->getFillable())) {
-                return $this->$field;
-            }
-        } catch (\ErrorException $exception) {
-            $content = collect($this->content)->first();
-
-            if (array_key_exists($field, $content)) {
-                return $content[$field];
-            }
-        }
-    }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptions()
+    public function getOptions() : Collection
     {
         return collect($this->options);
     }
@@ -167,7 +151,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function checkLanguage($key)
+    public function checkLanguage($key) : bool
     {
         $locale = $this->getOption('locale', []);
 
@@ -202,7 +186,7 @@ class Post extends Model
     /**
      * Get the author's posts.
      *
-     * @return mixed
+     * @return User|null
      */
     public function getUser()
     {
@@ -248,7 +232,7 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function attachment($type = null)
+    public function attachment($type = null) : HasMany
     {
         if (!is_null($type)) {
             return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension',
@@ -263,7 +247,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function taxonomies()
+    public function taxonomies() : BelongsToMany
     {
         return $this->belongsToMany(TermTaxonomy::class, 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
@@ -273,7 +257,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
+    public function comments() : HasMany
     {
         return $this->hasMany(Dashboard::model('comment', Comment::class), 'post_id');
     }
@@ -283,7 +267,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author() : BelongsTo
     {
         return $this->belongsTo(Dashboard::model('user', User::class), 'post_id');
     }
@@ -296,7 +280,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function hasTerm($taxonomy, $term)
+    public function hasTerm($taxonomy, $term) : bool
     {
         return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
     }
@@ -306,7 +290,7 @@ class Post extends Model
      *
      * @return array
      */
-    public function getTermsAttribute()
+    public function getTermsAttribute() : array
     {
         $taxonomies = $this->taxonomies;
         $terms = [];
@@ -338,7 +322,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function makeSlug($title)
+    public function makeSlug($title) : string
     {
         $slug = Str::slug($title);
         $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
@@ -353,7 +337,7 @@ class Post extends Model
      *
      * @return PostBuilder
      */
-    public function newQuery($excludeDeleted = true)
+    public function newQuery($excludeDeleted = true) : PostBuilder
     {
         $builder = new PostBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);

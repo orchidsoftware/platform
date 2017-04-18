@@ -7,6 +7,7 @@ use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Menu\Menu;
 use Orchid\Menu\RouteMenu;
+use Orchid\Type\PageStorage;
 use Orchid\Type\TypeStorage;
 
 class Dashboard
@@ -43,12 +44,20 @@ class Dashboard
     public $types = [];
 
     /**
+     *  List register pages
+     *
+     * @var array|PageStorage
+     */
+    public $pages = [];
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
     {
         $this->menu = new Menu();
         $this->permission = new Permissions();
+        $this->pages = new PageStorage();
         $this->types = new TypeStorage();
         $this->fields = new FieldStorage();
         $this->routeMenu = new RouteMenu();
@@ -59,7 +68,7 @@ class Dashboard
      *
      * @return string
      */
-    public static function version()
+    public static function version() : string
     {
         return static::VERSION;
     }
@@ -121,7 +130,7 @@ class Dashboard
     /**
      * @return TypeStorage
      */
-    public function getTypes()
+    public function getTypes() : TypeStorage
     {
         return $this->types;
     }
@@ -134,6 +143,24 @@ class Dashboard
     public function types($sort = false) : array
     {
         return $this->types->all($sort);
+    }
+
+    /**
+     * @return PageStorage
+     */
+    public function getPages() : PageStorage
+    {
+        return $this->pages;
+    }
+
+    /**
+     * @param bool $sort
+     *
+     * @return array
+     */
+    public function pages($sort = false) : array
+    {
+        return $this->pages->all($sort);
     }
 
     /**

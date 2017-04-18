@@ -34,7 +34,7 @@ class Storage
     /**
      * @return array
      */
-    public function all()
+    public function all() : array
     {
         $this->container->transform(function ($value) {
             if (!is_object($value)) {

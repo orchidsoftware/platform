@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Core\Models;
+namespace Orchid\Core\Traits;
 
 use Laravel\Spark\Events\User\JoinedTeam;
 use Orchid\Facades\Dashboard;

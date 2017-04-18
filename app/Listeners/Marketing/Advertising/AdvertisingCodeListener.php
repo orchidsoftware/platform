@@ -9,7 +9,7 @@ class AdvertisingCodeListener
     /**
      * @return string
      */
-    public function handle()
+    public function handle() : string
     {
         return AdvertisingCodeForm::class;
     }

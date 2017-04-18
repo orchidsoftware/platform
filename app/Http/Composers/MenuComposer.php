@@ -75,19 +75,42 @@ class MenuComposer
      */
     protected function registerMenuPage(Dashboard $dashboard)
     {
-        $pageMenu = [
-            'slug'       => 'Pages',
-            'icon'       => 'icon-notebook',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.Pages'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.pages.*',
-            'permission' => 'dashboard.pages',
-            'sort'       => 1,
-        ];
+        $allPage = $dashboard->pages();
 
-        $dashboard->menu->add('Main', $pageMenu);
+        if (count($allPage) > 0) {
+            $dashboard->menu->add('Main', [
+                'slug'       => 'Pages',
+                'icon'       => 'icon-notebook',
+                'route'      => '#',
+                'label'      => trans('dashboard::menu.Pages'),
+                'childs'     => true,
+                'main'       => true,
+                'active'     => 'dashboard.pages.*',
+                'permission' => 'dashboard.pages',
+                'sort'       => 1,
+            ]);
+        }
+        foreach ($allPage as $page) {
+                $postObject = [
+                    'slug'       => $page->slug,
+                    'icon'       => $page->icon,
+                    'route'      => '',//route('dashboard.posts.type', [$page->slug]),
+                    'label'      => $page->name,
+                    'childs'     => false,
+                    'permission' => 'dashboard.posts.type.' . $page->slug,
+                ];
+
+                if (reset($allPage) == $page) {
+                    $postObject['groupname'] = trans('dashboard::menu.Static pages');
+                } elseif (end($allPage) == $page) {
+                    $postObject['divider'] = true;
+                }
+
+                $dashboard->menu->add('Pages', $postObject);
+        }
+
+
+
     }
 
     /**

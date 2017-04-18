@@ -140,9 +140,7 @@
                         <a href="#" class="click" data-toggle="open" data-target="#quickview">
                             <i class="fa fa-bars fa-fw"></i>
                             <span class="visible-xs-inline">Notifications</span>
-                            <span class="badge badge-sm up bg-danger pull-right-xs">{{
-                            $UserNotification->where('read',false)->count() ? $UserNotification->where('read',false)->count() : ""
-                            }}</span>
+                            <span class="badge badge-sm up bg-danger pull-right-xs">12</span>
                         </a>
                     </li>
                 --}}

@@ -21,6 +21,7 @@
         </div>
     </div>
 
+
     <div class="form-group">
         <label>{{trans('dashboard::post/general.status')}}</label>
         <select name="status" class="form-control">
@@ -53,7 +54,6 @@
         <label class="control-label">{{trans('dashboard::post/general.show_in_categories')}}</label>
         <select name="category[]" multiple data-placeholder="Select Category" class="select2 form-control">
             @foreach($category as  $value)
-
                 <option value="{{$value->id}}"
                         @if($value->active) selected @endif >
                     {{$value->term->getContent('name')}}</option>

@@ -3,6 +3,9 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 class Menu extends Model
 {
@@ -37,7 +40,7 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function children()
+    public function children() : HasMany
     {
         return $this->hasMany(self::class, 'parent');
     }
@@ -45,7 +48,7 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function parent()
+    public function parent() : HasOne
     {
         return $this->hasOne(self::class);
     }
@@ -55,7 +58,7 @@ class Menu extends Model
      *
      * @return mixed
      */
-    public function getSons($id)
+    public function getSons($id) : Collection
     {
         return $this->where('parent', $id)->get();
     }
@@ -65,7 +68,7 @@ class Menu extends Model
      *
      * @return mixed
      */
-    public function getAll($id)
+    public function getAll($id) : Collection
     {
         return $this->where('type', $id)->orderBy('id', 'asc')->get();
     }

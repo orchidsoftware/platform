@@ -3,6 +3,7 @@
 namespace Orchid\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TermRelationship extends Model
 {
@@ -10,10 +11,12 @@ class TermRelationship extends Model
      * @var bool
      */
     public $timestamps = false;
+
     /**
      * @var string
      */
     protected $table = 'term_relationships';
+
     /**
      * @var array
      */
@@ -26,7 +29,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post()
+    public function post() : BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
@@ -34,7 +37,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonomy()
+    public function taxonomy() : BelongsTo
     {
         return $this->belongsTo(TermTaxonomy::class, 'term_taxonomy_id');
     }
