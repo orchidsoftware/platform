@@ -19,10 +19,6 @@ class Post extends Model
 {
     use TaggableTrait, Sluggable, MultiLanguage;
 
-    /**
-     * @var string
-     */
-    public $primaryKey = 'slug';
 
     /**
      * @var string
@@ -266,7 +262,7 @@ class Post extends Model
     {
         if (!is_null($type)) {
             return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension',
-                Attachment::$types[$type]);
+                config('content.attachment.'.$type));
         }
 
         return $this->hasMany(Dashboard::model('attachment', Attachment::class));

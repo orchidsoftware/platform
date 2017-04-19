@@ -33,7 +33,10 @@ class PageController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($slug){
-        $page = Page::findOrNew($slug)->getBehavior($slug);
+
+        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
+
+
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject(),
@@ -50,7 +53,7 @@ class PageController extends Controller
      */
     public function update($slug, Request $request){
 
-        $page = Page::findOrNew($slug)->getBehavior($slug);
+        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
         $type = $page->getBehaviorObject();
 
 
