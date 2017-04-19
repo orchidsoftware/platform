@@ -5,9 +5,10 @@ namespace Orchid\Http\Controllers\Posts;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Alert\Facades\Alert;
 use Orchid\Core\Models\Page;
+use Orchid\Facades\Dashboard;
 use Orchid\Http\Controllers\Controller;
+use Orchid\Alert\Facades\Alert;
 
 class PageController extends Controller
 {
@@ -33,16 +34,13 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-        $page = Page::where('slug', $slug)->firstOrCreate([
-            'user_id'    => Auth::user()->id,
-            'type'       => 'page',
-            'slug'       => $slug,
-            'status'     => 'publish',
-            'content'    => [],
-            'options'    => [],
-            'publish_at' => Carbon::now(),
-        ])->getBehavior($slug);
+        $page = Page::where('slug', $slug)->first();
 
+        if(!is_null($page)){
+            $page = new Page();
+        }
+
+        $page->getBehavior($slug);
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject(),
@@ -66,12 +64,12 @@ class PageController extends Controller
         $page->fill($request->all());
 
         $page->fill([
-            'user_id'    => Auth::user()->id,
-            'type'       => 'page',
-            'slug'       => $slug,
-            'status'     => 'publish',
-            'options'    => $page->getOptions(),
-            'publish_at' => Carbon::now(),
+            'user_id' => Auth::user()->id,
+            'type' => 'page',
+            'slug' => $slug,
+            'status' => 'publish',
+            'options' => $page->getOptions(),
+            'publish_at' => Carbon::now()
         ]);
 
         $page->save();
@@ -85,9 +83,6 @@ class PageController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return redirect()->route('dashboard.posts.type', [
-            'type' => $page->type,
-            'slug' => $page->id,
-        ]);
+        return redirect()->back();
     }
 }
