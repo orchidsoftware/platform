@@ -71,6 +71,4 @@ $this->group([
             'as'   => 'dashboard.pages.update',
             'uses' => 'PageController@update',
         ]);
-
     });
-
