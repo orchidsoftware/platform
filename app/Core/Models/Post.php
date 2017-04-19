@@ -131,6 +131,14 @@ class Post extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function breadcrumb()
+    {
+        return [];
+    }
+
+    /**
      * Get Behavior Class
      *
      * @return null|object
