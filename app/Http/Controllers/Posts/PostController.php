@@ -139,7 +139,7 @@ class PostController extends Controller
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = reset($content)[$post->getTypeObject()->slugFields];
+            $slug = reset($content)[$post->getBehaviorObject()->slugFields];
         }
 
         if ($request->has('slug') && $request->get('slug') !== $post->slug) {

@@ -163,6 +163,7 @@ class Dashboard
         return $this->pages->all($sort);
     }
 
+
     /**
      * @return mixed
      */

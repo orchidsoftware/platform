@@ -59,17 +59,17 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('type', function ($value) {
             $post = new Post();
-            $type = $post->getType($value)->getTypeObject();
+            $type = $post->getBehavior($value)->getBehaviorObject();
 
             return $type;
         });
 
-        Route::bind('slug', function ($value, $test) {
+        Route::bind('slug', function ($value) {
             if (is_numeric($value)) {
                 return Post::where('id', $value)->firstOrFail();
             }
 
-            return Post::where('slug', $value)->firstOrFail();
+            return Post::findOrFail($value);
         });
 
         Route::bind('advertising', function ($value) {
@@ -88,8 +88,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        //$router->middleware('dashboard', AccessMiddleware::class);
-
         foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }

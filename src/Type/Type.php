@@ -23,12 +23,10 @@ abstract class Type implements TypeInterface
      */
     public $with = [];
 
-
     /**
      * @return mixed
      */
     abstract public function fields();
-
 
     /**
      * Raw data and fields to display

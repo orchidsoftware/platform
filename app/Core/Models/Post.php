@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Orchid\Core\Builders\PostBuilder;
 use Orchid\Core\Traits\MultiLanguage;
@@ -23,12 +22,26 @@ class Post extends Model
     /**
      * @var string
      */
+    public $primaryKey = 'slug';
+
+    /**
+     * @var string
+     */
     protected $table = 'posts';
 
     /**
-     * @var
+     * @deprecated
+     * @deprecated 0.0.11
+     * @deprecated No longer used by internal code and not recommended.
+     * @deprecated 0.0.11 No longer used by internal code and not recommended.
      */
     protected $dataType = null;
+
+    /**
+     * Recording behavior
+     * @var null
+     */
+    protected $behavior = null;
 
     /**
      * @var array
@@ -92,7 +105,10 @@ class Post extends Model
     }
 
     /**
-     * Deprecated
+     * @deprecated
+     * @deprecated 0.0.11
+     * @deprecated No longer used by internal code and not recommended.
+     * @deprecated 0.0.11 No longer used by internal code and not recommended.
      *
      * @return mixed
      */
@@ -102,15 +118,46 @@ class Post extends Model
     }
 
     /**
+     * @param $slug
+     *
+     * @return $this
+     * @throws TypeException
+     */
+    public function getBehavior($slug){
+
+        $this->behavior = Dashboard::getTypes()->find($slug);
+
+        if (is_null($this->behavior)) {
+            throw new TypeException("{$slug} Type is not found");
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get Behavior Class
+     *
+     * @return null|object
+     */
+    public function getBehaviorObject(){
+        if (!is_null($this->behavior)) {
+            return $this->behavior;
+        }
+        return $this->getBehavior($this->getAttribute('type'))->behavior;
+
+    }
+
+    /**
+     * @deprecated
+     * @deprecated 0.0.11
+     * @deprecated No longer used by internal code and not recommended.
+     * @deprecated 0.0.11 No longer used by internal code and not recommended.
+     *
      * @return null
      */
     public function getTypeObject()
     {
-        if (!is_null($this->dataType)) {
-            return $this->dataType;
-        }
-
-        return $this->getType($this->getAttribute('type'))->dataType;
+        return $this->getBehaviorObject();
     }
 
     /**
@@ -122,19 +169,10 @@ class Post extends Model
      */
     public function getType($getType)
     {
-        $types = Dashboard::types(true);
-        foreach ($types as $type) {
-            if ($type->slug == $getType) {
-                $this->dataType = $type;
-                break;
-            }
-        }
+       $behavior = $this->getBehavior($getType);
+       $this->dataType = $this->behavior;
 
-        if (is_null($this->dataType)) {
-            throw new TypeException('Type is not found');
-        }
-
-        return $this;
+        return $behavior;
     }
 
 
@@ -201,14 +239,6 @@ class Post extends Model
     public function getStringTags()
     {
         return $this->tags->implode('name', $this->getTagsDelimiter());
-    }
-
-    /**
-     * @return mixed
-     */
-    public function breadcrumb()
-    {
-        return [];
     }
 
     /**

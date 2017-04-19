@@ -36,7 +36,7 @@ class MenuComposer
         if (count($allPost) > 0) {
             $postMenu = [
                 'slug'       => 'Posts',
-                'icon'       => 'fa fa-file-o',
+                'icon'       => 'icon-notebook',
                 'route'      => '#',
                 'label'      => trans('dashboard::menu.Posts'),
                 'childs'     => true,
@@ -80,7 +80,7 @@ class MenuComposer
         if (count($allPage) > 0) {
             $dashboard->menu->add('Main', [
                 'slug'       => 'Pages',
-                'icon'       => 'icon-notebook',
+                'icon'       => 'fa fa-file-o',
                 'route'      => '#',
                 'label'      => trans('dashboard::menu.Pages'),
                 'childs'     => true,
@@ -94,7 +94,7 @@ class MenuComposer
             $postObject = [
                     'slug'       => $page->slug,
                     'icon'       => $page->icon,
-                    'route'      => '',//route('dashboard.posts.type', [$page->slug]),
+                    'route'      => route('dashboard.pages.show', [$page->slug]),
                     'label'      => $page->name,
                     'childs'     => false,
                     'permission' => 'dashboard.posts.type.' . $page->slug,

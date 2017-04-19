@@ -45,3 +45,32 @@ $this->group([
             'uses' => 'PostController@destroy',
         ]);
     });
+
+
+/*
+|--------------------------------------------------------------------------
+| Page Web Routes
+|--------------------------------------------------------------------------
+|
+| Base route
+|
+*/
+
+$this->group([
+    'middleware' => ['web', 'dashboard', 'access'],
+    'prefix'     => 'dashboard/pages',
+    'namespace'  => 'Orchid\Http\Controllers\Posts',
+],
+    function (\Illuminate\Routing\Router $router) {
+        $router->get('{page}', [
+            'as'   => 'dashboard.pages.show',
+            'uses' => 'PageController@show',
+        ]);
+
+        $router->put('{page}', [
+            'as'   => 'dashboard.pages.update',
+            'uses' => 'PageController@update',
+        ]);
+
+    });
+
