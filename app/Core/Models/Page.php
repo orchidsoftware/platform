@@ -19,8 +19,8 @@ class Page extends Post
      * @return $this
      * @throws TypeException
      */
-    public function getBehavior($slug){
-
+    public function getBehavior($slug)
+    {
         $this->behavior = Dashboard::getPages()->find($slug);
 
         if (is_null($this->behavior)) {
@@ -29,5 +29,4 @@ class Page extends Post
 
         return $this;
     }
-
 }
