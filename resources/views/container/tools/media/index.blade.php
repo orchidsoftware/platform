@@ -573,7 +573,7 @@
 
                                                 <div v-if="file.type.includes('image')" class="img_icon"
                                                      style="background-size: cover; background-repeat:no-repeat; background-position:center center;display:inline-block; width:100%; height:100%;"
-                                                     v-bind:style="{ backgroundImage: 'encodeURI(file.path)' }"
+                                                     v-bind:style="{ backgroundImage: 'url(' + encodeURI(file.path) + ')' }"
                                                 >
                                                 </div>
 
