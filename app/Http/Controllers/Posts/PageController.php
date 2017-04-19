@@ -36,7 +36,7 @@ class PageController extends Controller
     {
         $page = Page::where('slug', $slug)->first();
 
-        if(!is_null($page)){
+        if (!is_null($page)) {
             $page = new Page();
         }
 
