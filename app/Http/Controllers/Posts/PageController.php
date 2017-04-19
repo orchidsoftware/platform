@@ -5,9 +5,9 @@ namespace Orchid\Http\Controllers\Posts;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Orchid\Alert\Facades\Alert;
 use Orchid\Core\Models\Page;
 use Orchid\Http\Controllers\Controller;
-use Orchid\Alert\Facades\Alert;
 
 class PageController extends Controller
 {
@@ -35,11 +35,9 @@ class PageController extends Controller
     {
         $page = Page::where('slug', $slug)->first();
 
-        if (!is_null($page)) {
+        if (is_null($page)) {
             $page = new Page();
         }
-
-        $page->getBehavior($slug);
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject(),
@@ -63,12 +61,12 @@ class PageController extends Controller
         $page->fill($request->all());
 
         $page->fill([
-            'user_id' => Auth::user()->id,
-            'type' => 'page',
-            'slug' => $slug,
-            'status' => 'publish',
-            'options' => $page->getOptions(),
-            'publish_at' => Carbon::now()
+            'user_id'    => Auth::user()->id,
+            'type'       => 'page',
+            'slug'       => $slug,
+            'status'     => 'publish',
+            'options'    => $page->getOptions(),
+            'publish_at' => Carbon::now(),
         ]);
 
         $page->save();
