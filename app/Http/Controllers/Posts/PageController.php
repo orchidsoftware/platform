@@ -32,9 +32,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($slug){
-
-        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
+    public function show($slug)
+    {
+        $page = Page::where('slug', $slug)->firstOrCreate([])->getBehavior($slug);
 
 
 
@@ -51,9 +51,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update($slug, Request $request){
-
-        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
+    public function update($slug, Request $request)
+    {
+        $page = Page::where('slug', $slug)->firstOrCreate([])->getBehavior($slug);
         $type = $page->getBehaviorObject();
 
 
@@ -83,8 +83,5 @@ class PageController extends Controller
             'type' => $page->type,
             'slug' => $page->id,
         ]);
-
-
     }
-
 }
