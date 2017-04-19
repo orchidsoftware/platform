@@ -33,7 +33,6 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-
         $page = Page::where('slug', $slug)->firstOrCreate([
             'user_id'    => Auth::user()->id,
             'type'       => 'page',
@@ -60,7 +59,6 @@ class PageController extends Controller
      */
     public function update($slug, Request $request)
     {
-
         $page = Page::where('slug', $slug)->firstOrFail()->getBehavior($slug);
         $type = $page->getBehaviorObject();
 
@@ -91,8 +89,5 @@ class PageController extends Controller
             'type' => $page->type,
             'slug' => $page->id,
         ]);
-
-
     }
-
 }
