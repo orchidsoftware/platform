@@ -5,10 +5,9 @@ namespace Orchid\Http\Controllers\Posts;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Core\Models\Page;
-use Orchid\Facades\Dashboard;
-use Orchid\Http\Controllers\Controller;
 use Orchid\Alert\Facades\Alert;
+use Orchid\Core\Models\Page;
+use Orchid\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -32,10 +31,18 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($slug){
+    public function show($slug)
+    {
 
-        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
-
+        $page = Page::where('slug', $slug)->firstOrCreate([
+            'user_id'    => Auth::user()->id,
+            'type'       => 'page',
+            'slug'       => $slug,
+            'status'     => 'publish',
+            'content'    => [],
+            'options'    => [],
+            'publish_at' => Carbon::now(),
+        ])->getBehavior($slug);
 
 
         return view('dashboard::container.posts.page', [
@@ -51,21 +58,22 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update($slug, Request $request){
+    public function update($slug, Request $request)
+    {
 
-        $page = Page::where('slug',$slug)->firstOrCreate([])->getBehavior($slug);
+        $page = Page::where('slug', $slug)->firstOrFail()->getBehavior($slug);
         $type = $page->getBehaviorObject();
 
 
         $page->fill($request->all());
 
         $page->fill([
-            'user_id' => Auth::user()->id,
-            'type' => 'page',
-            'slug' => $slug,
-            'status' => 'publish',
-            'options' => $page->getOptions(),
-            'publish_at' => Carbon::now()
+            'user_id'    => Auth::user()->id,
+            'type'       => 'page',
+            'slug'       => $slug,
+            'status'     => 'publish',
+            'options'    => $page->getOptions(),
+            'publish_at' => Carbon::now(),
         ]);
 
         $page->save();
