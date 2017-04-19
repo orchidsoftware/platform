@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Core\Models\Page;
-use Orchid\Facades\Dashboard;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Alert\Facades\Alert;
 
