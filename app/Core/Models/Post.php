@@ -119,8 +119,8 @@ class Post extends Model
      * @return $this
      * @throws TypeException
      */
-    public function getBehavior($slug){
-
+    public function getBehavior($slug)
+    {
         $this->behavior = Dashboard::getTypes()->find($slug);
 
         if (is_null($this->behavior)) {
@@ -135,12 +135,12 @@ class Post extends Model
      *
      * @return null|object
      */
-    public function getBehaviorObject(){
+    public function getBehaviorObject()
+    {
         if (!is_null($this->behavior)) {
             return $this->behavior;
         }
         return $this->getBehavior($this->getAttribute('type'))->behavior;
-
     }
 
     /**
@@ -165,8 +165,8 @@ class Post extends Model
      */
     public function getType($getType)
     {
-       $behavior = $this->getBehavior($getType);
-       $this->dataType = $this->behavior;
+        $behavior = $this->getBehavior($getType);
+        $this->dataType = $this->behavior;
 
         return $behavior;
     }
