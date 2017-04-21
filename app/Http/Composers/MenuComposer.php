@@ -23,6 +23,10 @@ class MenuComposer
         $this->registerMenuTools($this->dashboard);
         $this->registerMenuSystems($this->dashboard);
         $this->registerMenuMarketing($this->dashboard);
+
+        //Experimentally!
+        $this->registerMenuCRM($this->dashboard);
+        $this->registerMenuCommerce($this->dashboard);
     }
 
 
@@ -87,7 +91,7 @@ class MenuComposer
                 'main'       => true,
                 'active'     => 'dashboard.pages.*',
                 'permission' => 'dashboard.pages',
-                'sort'       => 1,
+                'sort'       => 50,
             ]);
         }
         foreach ($allPage as $page) {
@@ -169,7 +173,7 @@ class MenuComposer
     {
         $dashboard->menu->add('Main', [
             'slug'       => 'Systems',
-            'icon'       => 'icon-organization',
+            'icon'       => 'icon-layers',
             'route'      => '#',
             'label'      => trans('dashboard::menu.Systems'),
             'childs'     => true,
@@ -312,4 +316,45 @@ class MenuComposer
             'sort'       => 10,
         ]);
     }
+
+    /**
+     * @param Dashboard $dashboard
+     */
+    public function registerMenuCRM(Dashboard $dashboard)
+    {
+
+        $dashboard->menu->add('Main', [
+            'slug'       => 'CRM',
+            'icon'       => 'icon-organization',
+            'route'      => '#',
+            'label'      => 'CRM',//trans('dashboard::menu.Systems'),
+            'childs'     => true,
+            'main'       => true,
+            //'active'     => 'dashboard.systems.*',
+            'permission' => 'dashboard.index',
+            'sort'       => 10,
+        ]);
+
+    }
+
+    /**
+     * @param Dashboard $dashboard
+     */
+    public function registerMenuCommerce(Dashboard $dashboard)
+    {
+
+        $dashboard->menu->add('Main', [
+            'slug'       => 'Commerce',
+            'icon'       => 'icon-bag',
+            'route'      => '#',
+            'label'      => 'eCommerce',//trans('dashboard::menu.Systems'),
+            'childs'     => true,
+            'main'       => true,
+            //'active'     => 'dashboard.systems.*',
+            'permission' => 'dashboard.index',
+            'sort'       => 20,
+        ]);
+
+    }
+
 }

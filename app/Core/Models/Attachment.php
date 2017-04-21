@@ -10,12 +10,17 @@ use Orchid\Facades\Dashboard;
 class Attachment extends Model
 {
     /**
+     * The relationships entities model.
+     *
+     * @var string
+     */
+    protected static $relationshipsModel = 'Orchid\Core\Models\AttachmentRelationships';
+    /**
      * Attachment types.
      *
      * @var array
      */
     public $types = [];
-
     /**
      * @var array
      */
@@ -47,6 +52,16 @@ class Attachment extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(Dashboard::model('user', User::class));
+    }
+
+    /**
+     * Returns the polymorphic relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function attachmentRelationships()
+    {
+        return $this->morphTo();
     }
 
     /**
@@ -101,5 +116,27 @@ class Attachment extends Model
             '.' .
             $this->extension
         );
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function delete()
+    {
+        if ($this->exists) {
+            $this->relationships()->delete();
+        }
+
+        return parent::delete();
+    }
+
+    /**
+     * Returns this tag tagged entities.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function relationships()
+    {
+        return $this->hasMany(static::$relationshipsModel, 'attachment_id');
     }
 }

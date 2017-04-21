@@ -25,6 +25,19 @@ class CreateTableFiles extends Migration
 
             $table->index(['id', 'post_id', 'user_id']);
         });
+
+
+        Schema::create('attachment_relationships', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('attachmentable_type');
+            $table->id('attachmentable_id');
+            $table->id('attachment_id');
+
+
+            $table->index(['attachmentable_type', 'attachmentable_id']);
+        });
+
+
     }
 
     /**
@@ -32,6 +45,7 @@ class CreateTableFiles extends Migration
      */
     public function down()
     {
-        Schema::drop('files');
+        Schema::drop('attachments');
+        Schema::drop('attachment_relationships');
     }
 }
