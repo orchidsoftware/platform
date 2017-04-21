@@ -47,6 +47,4 @@ trait Attachment
         return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachment_relationships',
             'attachmentable_id', 'attachment_id');
     }
-
-
 }

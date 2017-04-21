@@ -322,7 +322,6 @@ class MenuComposer
      */
     public function registerMenuCRM(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'CRM',
             'icon'       => 'icon-organization',
@@ -334,7 +333,6 @@ class MenuComposer
             'permission' => 'dashboard.index',
             'sort'       => 10,
         ]);
-
     }
 
     /**
@@ -342,7 +340,6 @@ class MenuComposer
      */
     public function registerMenuCommerce(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'Commerce',
             'icon'       => 'icon-bag',
@@ -354,7 +351,5 @@ class MenuComposer
             'permission' => 'dashboard.index',
             'sort'       => 20,
         ]);
-
     }
-
 }

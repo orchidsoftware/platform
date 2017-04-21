@@ -36,8 +36,6 @@ class CreateTableFiles extends Migration
 
             $table->index(['attachmentable_type', 'attachmentable_id']);
         });
-
-
     }
 
     /**
