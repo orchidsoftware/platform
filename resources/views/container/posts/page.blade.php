@@ -1,37 +1,24 @@
 @extends('dashboard::layouts.dashboard')
-
-
 @section('title',$type->name)
 @section('description',$type->description)
-
-
 @section('navbar')
-
     <div class="col-md-6 text-right">
-
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
             <button type="submit" form="post-form" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
         </div>
     </div>
 @stop
-
-
 @section('content')
-
-
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
-
         <!-- hbox layout -->
         <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post" action="{{route('dashboard.pages.update',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">
-
         @if(count($type->fields()) > 0)
             <!-- column -->
                 <div class="col  lter b-r">
                     <div class="vbox">
-
                         @if($locales->count() > 1)
                             <div class="nav-tabs-alt">
                                 <ul class="nav nav-tabs nav-justified">
@@ -39,23 +26,18 @@
                                         <li @if ($loop->first) class="active" @endif>
                                             <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
                                                aria-expanded="true">{{$lang['native']}}
-
                                                 @if($code != App::getLocale())
                                                     <button type="button" class="close close-lang-content"
                                                             data-local="{{$code}}">
                                                         <span class="text-md" aria-hidden="true">&times;</span>
                                                     </button>
                                                 @endif
-
                                             </a>
-
-
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
-
                         <div class="bg-white">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
@@ -71,13 +53,7 @@
                 </div>
                 <!-- /column -->
         @endif
-
-
-
-
         @if($type->checkModules())
-
-
             <!-- column -->
                 <div class="col wi-col lter b-r">
                     <div class="vbox">
@@ -109,32 +85,9 @@
                 </div>
                 <!-- /column -->
             @endif
-
             {{ csrf_field() }}
             {{ method_field('PUT') }}
-
-
         </form>
         <!-- /hbox layout -->
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
 @stop
-
-
-
-

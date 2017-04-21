@@ -1,8 +1,4 @@
-
-
 $(function () {
-
-
     if (document.getElementsByClassName("dropzone").length > 0) {
 
         var postDropzone = new Dropzone(".dropzone", {

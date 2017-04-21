@@ -1,11 +1,8 @@
 <div class="map-place-{{$name}}-{{$lang}}">
-
     <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
-
         @if(isset($title))
             <label for="field-{{$slug}}">{{$title}}</label>
         @endif
-
         <div class="input-group">
             <input class="form-control {{$class or ''}}" id="place-{{$slug}}-{{$lang}}"
                    name="{{$prefix}}[{{$lang}}]{{$name}}[name]" value="{{$value['name'] or ''}}"
@@ -15,27 +12,24 @@
             <input type="hidden" id="lng-{{$slug}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lng]"
                    value="{{$value['lng'] or ''}}">
             <span class="input-group-btn">
-        <button class="btn btn-default" type="button" data-toggle="modal"
-                data-target="#map-place-{{$slug}}-{{$lang}}"><i
-                    class="fa fa-map-marker"></i></button>
-    </span>
+            <button class="btn btn-default" type="button" data-toggle="modal"
+                    data-target="#map-place-{{$slug}}-{{$lang}}"><i
+                        class="fa fa-map-marker"></i></button>
+            </span>
         </div>
     </div>
-
-
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif
 </div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="map-place-{{$slug}}-{{$lang}}" tabindex="-1" role="dialog"
      aria-labelledby="map-place-{{$slug}}-{{$lang}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">Google Maps</h4>
             </div>
@@ -46,19 +40,11 @@
         </div>
     </div>
 </div>
-
-
 <div class="line line-dashed b-b line-lg"></div>
-
-
 @push('scripts')
-
-
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google-maps.key')}}"></script>
-
 <script>
-
     document.addEventListener("DOMContentLoaded", function () {
         var input = document.getElementById("place-{{$slug}}-{{$lang}}");
         var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
@@ -100,6 +86,4 @@
 
 
 </script>
-
-
 @endpush

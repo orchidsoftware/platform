@@ -33,6 +33,8 @@ class Attachment extends Model
         'path',
         'user_id',
         'post_id',
+        'description',
+        'alt',
     ];
 
     /**

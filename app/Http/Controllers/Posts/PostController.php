@@ -164,7 +164,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param Type $type
+     * @param PostBehavior $type
      * @param Post $post
      *
      * @return mixed
@@ -172,7 +172,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Type $type, Post $post) : RedirectResponse
+    public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
         $post->delete();
         Alert::success(trans('dashboard::common.alert.success'));

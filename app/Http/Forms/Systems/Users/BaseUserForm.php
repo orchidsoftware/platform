@@ -62,7 +62,7 @@ class BaseUserForm extends Form
     {
         $attributes = $request->all();
 
-        if (array_key_exists('password', $attributes) && is_null($attributes['password'])) {
+        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
             unset($attributes['password']);
         }
 

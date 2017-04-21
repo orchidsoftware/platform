@@ -14,10 +14,11 @@ use Orchid\Core\Builders\PostBuilder;
 use Orchid\Core\Traits\MultiLanguage;
 use Orchid\Exceptions\TypeException;
 use Orchid\Facades\Dashboard;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use TaggableTrait, Sluggable, MultiLanguage;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage;
 
 
     /**

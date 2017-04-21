@@ -1,4 +1,4 @@
-(function ($) {
+$(function () {
     $(document).ready(function () {
         $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
             event.preventDefault();
@@ -7,4 +7,4 @@
             $(this).parent().toggleClass('open');
         });
     });
-})(jQuery);
+});

@@ -5,7 +5,6 @@
 @section('description',  $log->getPath() )
 
 
-
 {{--
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">

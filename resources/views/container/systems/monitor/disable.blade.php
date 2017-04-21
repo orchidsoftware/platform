@@ -1,7 +1,6 @@
 @extends('dashboard::layouts.dashboard')
 
 
-
 @section('title',trans('dashboard::systems/monitor.Monitor'))
 @section('description',trans('dashboard::systems/monitor.description'))
 
