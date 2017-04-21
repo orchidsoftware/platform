@@ -8,7 +8,7 @@ use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Forms\Form;
-use Orchid\Type\Type;
+use Orchid\Behaviors\Post as PostBehaviors;
 
 class BasePostForm extends Form
 {
@@ -20,14 +20,14 @@ class BasePostForm extends Form
     /**
      * Display Base Options.
      *
-     * @param Type|null $type
+     * @param PostBehaviors|null $type
      * @param Post|null $post
      *
      * @return \Illuminate\Contracts\View\Factory|View
      *
      * @internal param null $type
      */
-    public function get(Type $type = null, Post $post = null) : View
+    public function get(PostBehaviors $type = null, Post $post = null) : View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();

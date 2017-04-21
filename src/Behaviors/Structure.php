@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Type;
+namespace Orchid\Behaviors;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;

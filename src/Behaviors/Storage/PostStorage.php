@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\Type;
+namespace Orchid\Behaviors\Storage;
 
 use Orchid\Kernel\Storage;
 
-class TypeStorage extends Storage
+class PostStorage extends Storage
 {
     /**
      * @var string

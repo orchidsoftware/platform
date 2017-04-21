@@ -95,7 +95,7 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsPost() : array
     {
-        $allPost = $this->dashboard->types();
+        $allPost = $this->dashboard->posts();
         $showPost = collect();
         foreach ($allPost as $page) {
             if ($page->display) {

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Orchid\Alert\Facades\Alert;
 use Orchid\Core\Models\Post;
 use Orchid\Http\Controllers\Controller;
-use Orchid\Type\Type;
+use Orchid\Behaviors\Post as PostBehavior;
 
 class PostController extends Controller
 {
@@ -30,21 +30,21 @@ class PostController extends Controller
     }
 
     /**
-     * @param Type $type
+     * @param PostBehavior $type
      *
      * @return View
      */
-    public function index(Type $type) : View
+    public function index(PostBehavior $type) : View
     {
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
 
     /**
-     * @param Type $type
+     * @param PostBehavior $type
      *
      * @return View
      */
-    public function create(Type $type) : View
+    public function create(PostBehavior $type) : View
     {
         return view('dashboard::container.posts.create', [
             'type'    => $type,
@@ -55,11 +55,11 @@ class PostController extends Controller
     /**
      * @param Request $request
      * @param Post    $post
-     * @param Type    $type
+     * @param PostBehavior    $type
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, Type $type, Post $post) : RedirectResponse
+    public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->validate($request, $type->rules());
 
@@ -97,14 +97,14 @@ class PostController extends Controller
     }
 
     /**
-     * @param Type $type
+     * @param PostBehavior $type
      * @param Post $post
      *
      * @return View
      *
      * @internal param Request $request
      */
-    public function edit(Type $type, Post $post) : View
+    public function edit(PostBehavior $type, Post $post) : View
     {
         $locales = $this->locales->map(function ($value, $key) use ($post) {
             $value['required'] = (bool)$post->checkLanguage($key);
@@ -121,12 +121,12 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Type    $type
+     * @param PostBehavior    $type
      * @param Post    $post
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Type $type, Post $post) : RedirectResponse
+    public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;

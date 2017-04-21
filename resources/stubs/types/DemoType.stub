@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Types;
+namespace App\Http\Behaviors\Post;
 
 use Orchid\Http\Forms\Posts\BasePostForm;
 use Orchid\Http\Forms\Posts\UploadPostForm;
-use Orchid\Type\Type;
+use Orchid\Behaviors\Post;
 
-class DemoType extends Type
+class DemoPost extends Post
 {
     /**
      * @var string
      */
-    public $name = 'Demo type';
+    public $name = 'Demo post';
 
     /**
      * @var string
      */
-    public $description = 'Demonstrative type';
+    public $description = 'Demonstrative post';
 
     /**
      * @var string

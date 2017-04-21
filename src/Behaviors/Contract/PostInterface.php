@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Type;
+namespace Orchid\Behaviors\Contract;
 
-interface TypeInterface
+interface PostInterface
 {
     /**
      * @return array

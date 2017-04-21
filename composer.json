@@ -70,7 +70,7 @@
       "Orchid\\Log\\": "src/Log/",
       "Orchid\\Menu\\": "src/Menu/",
       "Orchid\\Settings\\": "src/Settings/",
-      "Orchid\\Type\\": "src/Type/",
+      "Orchid\\Behaviors\\": "src/Behaviors/",
       "Orchid\\Widget\\": "src/Widget/",
       "Orchid\\Defender\\": "src/Defender/",
       "Orchid\\Schema\\": "src/Schema/",

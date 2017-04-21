@@ -90,28 +90,6 @@ class Post extends Model
         ];
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName() : string
-    {
-        return 'slug';
-    }
-
-    /**
-     * @deprecated
-     * @deprecated 0.0.11
-     * @deprecated No longer used by internal code and not recommended.
-     * @deprecated 0.0.11 No longer used by internal code and not recommended.
-     *
-     * @return mixed
-     */
-    public function whereType()
-    {
-        return $this->where('type', $this->dataType->slug);
-    }
 
     /**
      * @param $slug
@@ -121,7 +99,7 @@ class Post extends Model
      */
     public function getBehavior($slug)
     {
-        $this->behavior = Dashboard::getTypes()->find($slug);
+        $this->behavior = Dashboard::getPosts()->find($slug);
 
         if (is_null($this->behavior)) {
             throw new TypeException("{$slug} Type is not found");
@@ -149,34 +127,6 @@ class Post extends Model
             return $this->behavior;
         }
         return $this->getBehavior($this->getAttribute('type'))->behavior;
-    }
-
-    /**
-     * @deprecated
-     * @deprecated 0.0.11
-     * @deprecated No longer used by internal code and not recommended.
-     * @deprecated 0.0.11 No longer used by internal code and not recommended.
-     *
-     * @return null
-     */
-    public function getTypeObject()
-    {
-        return $this->getBehaviorObject();
-    }
-
-    /**
-     * @param $getType
-     *
-     * @throws TypeException
-     *
-     * @return mixed
-     */
-    public function getType($getType)
-    {
-        $behavior = $this->getBehavior($getType);
-        $this->dataType = $this->behavior;
-
-        return $behavior;
     }
 
 

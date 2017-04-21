@@ -7,8 +7,8 @@ use Orchid\Access\Permissions;
 use Orchid\Field\FieldStorage;
 use Orchid\Menu\Menu;
 use Orchid\Menu\RouteMenu;
-use Orchid\Type\PageStorage;
-use Orchid\Type\TypeStorage;
+use Orchid\Behaviors\Storage\PageStorage;
+use Orchid\Behaviors\Storage\PostStorage;
 
 class Dashboard
 {
@@ -37,11 +37,11 @@ class Dashboard
     public $permission = null;
 
     /**
-     * Content type for applications.
+     * Content post for applications.
      *
      * @var array
      */
-    public $types = [];
+    public $posts = [];
 
     /**
      *  List register pages
@@ -58,7 +58,7 @@ class Dashboard
         $this->menu = new Menu();
         $this->permission = new Permissions();
         $this->pages = new PageStorage();
-        $this->types = new TypeStorage();
+        $this->posts = new PostStorage();
         $this->fields = new FieldStorage();
         $this->routeMenu = new RouteMenu();
     }
@@ -128,11 +128,11 @@ class Dashboard
     }
 
     /**
-     * @return TypeStorage
+     * @return PostStorage
      */
-    public function getTypes() : TypeStorage
+    public function getPosts() : PostStorage
     {
-        return $this->types;
+        return $this->posts;
     }
 
     /**
@@ -140,9 +140,9 @@ class Dashboard
      *
      * @return array
      */
-    public function types($sort = false) : array
+    public function posts($sort = false) : array
     {
-        return $this->types->all($sort);
+        return $this->posts->all($sort);
     }
 
     /**

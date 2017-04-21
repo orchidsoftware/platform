@@ -35,7 +35,7 @@ class MenuComposer
      */
     protected function registerMenuPost(Dashboard $dashboard)
     {
-        $allPost = $dashboard->types();
+        $allPost = $dashboard->posts();
 
         if (count($allPost) > 0) {
             $postMenu = [

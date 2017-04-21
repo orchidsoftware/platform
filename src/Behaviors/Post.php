@@ -1,8 +1,10 @@
 <?php
 
-namespace Orchid\Type;
+namespace Orchid\Behaviors;
 
-abstract class Type implements TypeInterface
+use Orchid\Behaviors\Contract\PostInterface;
+
+abstract class Post implements PostInterface
 {
     use Structure;
 

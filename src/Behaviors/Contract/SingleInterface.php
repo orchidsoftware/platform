@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Type;
+namespace Orchid\Behaviors\Contract;
 
-interface PageInterface
+interface SingleInterface
 {
     /**
      * @return array
