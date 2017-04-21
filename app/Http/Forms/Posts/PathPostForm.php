@@ -7,7 +7,6 @@ use Orchid\Core\Models\Post;
 use Orchid\Forms\Form;
 use Orchid\Behaviors\Post as PostBehaviors;
 
-
 class PathPostForm extends Form
 {
     /**
