@@ -1,15 +1,15 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class PlaceField extends Field
+class InputField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.place';
+    public $view = 'dashboard::fields.input';
 
     /**
      * Create Object.

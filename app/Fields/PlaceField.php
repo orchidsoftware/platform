@@ -1,31 +1,19 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class TextAreaField extends Field
+class PlaceField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.textarea';
+    public $view = 'dashboard::fields.place';
 
     /**
-     * HTML tag.
+     * Create Object.
      *
-     * @var string
-     */
-    protected $tag = 'textarea';
-
-    /**
-     * The rows attribute specifies the visible height of a text area, in lines.
-     *
-     * @var
-     */
-    protected $rows;
-
-    /**
      * @param null $attributes
      * @param null $data
      *
@@ -33,6 +21,10 @@ class TextAreaField extends Field
      */
     public function create($attributes, $data = null)
     {
+        if (is_array($this->type)) {
+            $this->type = 'text';
+        }
+
         if (is_null($data)) {
             $data = collect();
         }

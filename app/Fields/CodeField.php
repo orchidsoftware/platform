@@ -1,21 +1,15 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class RobotField extends Field
+class CodeField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.robot';
-    /**
-     * HTML tag.
-     *
-     * @var string
-     */
-    protected $tag = 'robot';
+    public $view = 'dashboard::fields.code';
 
     /**
      * Create Object.
@@ -30,6 +24,7 @@ class RobotField extends Field
         if (is_null($data)) {
             $data = collect();
         }
+
         $attributes->put('data', $data);
         $attributes->put('slug', str_slug($attributes->get('name')));
 

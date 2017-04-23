@@ -1,15 +1,21 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class CodeField extends Field
+class TagsField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.code';
+    public $view = 'dashboard::fields.tags';
+    /**
+     * HTML tag.
+     *
+     * @var string
+     */
+    protected $tag = 'tags';
 
     /**
      * Create Object.
@@ -24,7 +30,6 @@ class CodeField extends Field
         if (is_null($data)) {
             $data = collect();
         }
-
         $attributes->put('data', $data);
         $attributes->put('slug', str_slug($attributes->get('name')));
 

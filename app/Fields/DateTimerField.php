@@ -1,15 +1,21 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class InputField extends Field
+class DateTimerField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.input';
+    public $view = 'dashboard::fields.datetime';
+    /**
+     * HTML tag.
+     *
+     * @var string
+     */
+    protected $tag = 'datetime';
 
     /**
      * Create Object.
@@ -21,14 +27,9 @@ class InputField extends Field
      */
     public function create($attributes, $data = null)
     {
-        if (is_array($this->type)) {
-            $this->type = 'text';
-        }
-
         if (is_null($data)) {
             $data = collect();
         }
-
         $attributes->put('data', $data);
         $attributes->put('slug', str_slug($attributes->get('name')));
 

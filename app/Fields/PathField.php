@@ -1,40 +1,35 @@
 <?php
 
-namespace Orchid\Field\Fields;
+namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class CheckBoxField extends Field
+class PathField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.checkbox';
+    public $view = 'dashboard::fields.path';
     /**
      * HTML tag.
      *
      * @var string
      */
-    protected $tag = 'checkbox';
-    /**
-     * The rows attribute specifies the visible height of a text area, in lines.
-     *
-     * @var
-     */
-    protected $rows;
+    protected $tag = 'path';
 
     /**
+     * Create Object.
+     *
      * @param null $attributes
      * @param null $data
      *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($attributes, $data = null)
     {
         if (is_null($data)) {
             $data = collect();
         }
-
         $attributes->put('data', $data);
         $attributes->put('slug', str_slug($attributes->get('name')));
 

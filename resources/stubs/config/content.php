@@ -55,15 +55,16 @@ return [
     */
 
     'fields' => [
-        'textarea' => \Orchid\Field\Fields\TextAreaField::class,
-        'input'    => \Orchid\Field\Fields\InputField::class,
-        'tags'     => \Orchid\Field\Fields\TagsField::class,
-        'robot'    => \Orchid\Field\Fields\RobotField::class,
-        'place'    => \Orchid\Field\Fields\PlaceField::class,
-        'datetime' => \Orchid\Field\Fields\DateTimerField::class,
-        'checkbox' => \Orchid\Field\Fields\CheckBoxField::class,
-        'path'     => \Orchid\Field\Fields\PathField::class,
-        'code'     => \Orchid\Field\Fields\CodeField::class,
+        'textarea' => Orchid\Fields\TextAreaField::class,
+        'input'    => Orchid\Fields\InputField::class,
+        'tags'     => Orchid\Fields\TagsField::class,
+        'robot'    => Orchid\Fields\RobotField::class,
+        'place'    => Orchid\Fields\PlaceField::class,
+        'datetime' => Orchid\Fields\DateTimerField::class,
+        'checkbox' => Orchid\Fields\CheckBoxField::class,
+        'path'     => Orchid\Fields\PathField::class,
+        'code'     => Orchid\Fields\CodeField::class,
+        'seo'      => Orchid\Fields\SEOField::class,
     ],
 
     /*
