@@ -9,9 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Alert\Facades\Alert;
+use Orchid\Behaviors\Post as PostBehavior;
 use Orchid\Core\Models\Post;
 use Orchid\Http\Controllers\Controller;
-use Orchid\Behaviors\Post as PostBehavior;
 
 class PostController extends Controller
 {
@@ -36,6 +36,7 @@ class PostController extends Controller
      */
     public function index(PostBehavior $type) : View
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
 
@@ -46,6 +47,7 @@ class PostController extends Controller
      */
     public function create(PostBehavior $type) : View
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         return view('dashboard::container.posts.create', [
             'type'    => $type,
             'locales' => $this->locales->where('required', true),
@@ -61,6 +63,7 @@ class PostController extends Controller
      */
     public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         $this->validate($request, $type->rules());
 
         $post->fill($request->all());
@@ -106,6 +109,7 @@ class PostController extends Controller
      */
     public function edit(PostBehavior $type, Post $post) : View
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         $locales = $this->locales->map(function ($value, $key) use ($post) {
             $value['required'] = (bool)$post->checkLanguage($key);
 
@@ -128,6 +132,7 @@ class PostController extends Controller
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
@@ -174,6 +179,7 @@ class PostController extends Controller
      */
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
+        $this->checkPermission('dashboard.posts.' . $type->slug);
         $post->delete();
         Alert::success(trans('dashboard::common.alert.success'));
 

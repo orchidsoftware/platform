@@ -33,6 +33,7 @@ class PageController extends Controller
      */
     public function show($slug)
     {
+        $this->checkPermission('dashboard.pages.' . $slug);
         $page = Page::where('slug', $slug)->first();
 
         if (is_null($page)) {
@@ -54,6 +55,7 @@ class PageController extends Controller
      */
     public function update($slug, Request $request)
     {
+        $this->checkPermission('dashboard.pages.' . $slug);
         $page = Page::where('slug', $slug)->firstOrFail()->getBehavior($slug);
         $type = $page->getBehaviorObject();
 
