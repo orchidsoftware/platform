@@ -25,8 +25,8 @@ class MenuComposer
         $this->registerMenuMarketing($this->dashboard);
 
         //Experimentally!
-        $this->registerMenuCRM($this->dashboard);
-        $this->registerMenuCommerce($this->dashboard);
+        //$this->registerMenuCRM($this->dashboard);
+        //$this->registerMenuCommerce($this->dashboard);
     }
 
 
