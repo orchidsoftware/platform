@@ -74,7 +74,7 @@ class AttachmentController extends Controller
 
         $name = sha1($this->time . $image->getClientOriginalName());
 
-        $fullPath = storage_path('app/public/' . '/' . $this->date . '/' . $name . '.' . $image->getClientOriginalExtension());
+        $fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR . $name . '.' . $image->getClientOriginalExtension());
         Image::make($image)->save($fullPath, 100);
 
         return Attachment::create([
@@ -83,7 +83,7 @@ class AttachmentController extends Controller
             'mime'          => $image->getMimeType(),
             'extension'     => $image->getClientOriginalExtension(),
             'size'          => $image->getClientSize(),
-            'path'          => $this->date . '/',
+            'path'          => $this->date . DIRECTORY_SEPARATOR,
             'user_id'       => Auth::user()->id,
         ]);
     }
@@ -109,7 +109,7 @@ class AttachmentController extends Controller
         }
 
         $name = sha1($this->time . $image->getClientOriginalName()) . $name . '.' . $image->getClientOriginalExtension();
-        $fullPath = storage_path('app/public/' . '/' . $this->date . '/' . $name);
+        $fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR . $name);
         Image::make($image)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
@@ -128,7 +128,7 @@ class AttachmentController extends Controller
         $hashName = sha1($this->time . $file->getClientOriginalName());
         $name = $hashName . '.' . $file->getClientOriginalExtension();
 
-        $fullPath = storage_path('app/public/' . '/' . $this->date . '/');
+        $fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR);
 
         $file->move($fullPath, $name);
 
@@ -144,7 +144,7 @@ class AttachmentController extends Controller
             'mime'          => $mimeType,
             'extension'     => $file->getClientOriginalExtension(),
             'size'          => $file->getClientSize(),
-            'path'          => $this->date . '/',
+            'path'          => $this->date . DIRECTORY_SEPARATOR,
             'user_id'       => Auth::user()->id,
         ]);
     }

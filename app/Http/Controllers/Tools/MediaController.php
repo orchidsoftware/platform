@@ -41,7 +41,7 @@ class MediaController extends Controller
     {
         $folder = $request->folder;
 
-        if ($folder == '/') {
+        if ($folder == DIRECTORY_SEPARATOR) {
             $folder = '';
         }
 
@@ -70,7 +70,7 @@ class MediaController extends Controller
 
         foreach ($storageFiles as $file) {
             $files[] = [
-                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
+                'name'          => strpos($file, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '', strrchr($file, DIRECTORY_SEPARATOR)) : $file,
                 'type'          => Storage::disk($this->filesystem)->mimeType($file),
                 'path'          => Storage::disk($this->filesystem)->url($file),
                 'size'          => Storage::disk($this->filesystem)->size($file),
@@ -80,7 +80,7 @@ class MediaController extends Controller
 
         foreach ($storageFolders as $folder) {
             $files[] = [
-                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
+                'name'          => strpos($folder, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '', strrchr($folder, DIRECTORY_SEPARATOR)) : $folder,
                 'type'          => 'folder',
                 'path'          => Storage::disk($this->filesystem)->url($folder),
                 'items'         => '',
@@ -127,7 +127,7 @@ class MediaController extends Controller
         $error = '';
 
         if (is_array($folderLocation)) {
-            $folderLocation = rtrim(implode('/', $folderLocation), '/');
+            $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
         $location = "{$this->directory}/{$folderLocation}";
@@ -156,7 +156,7 @@ class MediaController extends Controller
         $folderLocation = $request->folder_location;
 
         if (is_array($folderLocation)) {
-            $folderLocation = rtrim(implode('/', $folderLocation), '/');
+            $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
         $location = "{$this->directory}/{$folderLocation}";
@@ -180,13 +180,13 @@ class MediaController extends Controller
         $error = '';
 
         if (is_array($folderLocation)) {
-            $folderLocation = rtrim(implode('/', $folderLocation), '/');
+            $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination, '/../') !== false
-            ? $this->directory . '/' . dirname($folderLocation) . '/' . str_replace('/../', '', $destination)
+            ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../', '', $destination)
             : "{$location}/{$destination}";
 
         if (!file_exists($destination)) {
@@ -216,7 +216,7 @@ class MediaController extends Controller
         $error = false;
 
         if (is_array($folderLocation)) {
-            $folderLocation = rtrim(implode('/', $folderLocation), '/');
+            $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
         $location = "{$this->directory}/{$folderLocation}";
