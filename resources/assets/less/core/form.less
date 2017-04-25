@@ -265,7 +265,7 @@ http://ivaynberg.github.io/select2/
       right: 0;
       left: auto;
       background: transparent;
-      border-left: 0px;
+      border-left: 0;
       .transition(all 0.3s ease);
       b {
         &:before {
@@ -313,9 +313,8 @@ http://ivaynberg.github.io/select2/
 
 .select2-dropdown-open.select2-drop-above .select2-selection,
 .select2-dropdown-open.select2-drop-above .select2-selections {
-  background-image: none !important;
   border: 1px solid @form-control-border-color;
-  background: @form-control-border-color;
+  background: none !important;
 }
 
 .select2-dropdown-open {
@@ -336,7 +335,7 @@ http://ivaynberg.github.io/select2/
       border: 1px solid @form-control-border-color;
       border-bottom: none;
       border-radius: 2px;
-      padding-top: 0px;
+      padding-top: 0;
     }
   }
 }
@@ -392,7 +391,7 @@ http://ivaynberg.github.io/select2/
     color: @brand-primary;
     font-size: 12px;
     padding-left: 8px;
-    padding-top: 0px;
+    padding-top: 0;
     position: relative;
     top: -5px;
   }
@@ -413,8 +412,7 @@ http://ivaynberg.github.io/select2/
     border: 1px solid @form-control-border-color;
     border-radius: 2px;
     .select2-search-choice {
-      background-color: @brand-grey-light;
-      background-image: none;
+      background: @brand-grey-light none;
       border: none;
       box-shadow: none;
       color: inherit;

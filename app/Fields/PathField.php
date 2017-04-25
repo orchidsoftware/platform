@@ -10,12 +10,6 @@ class PathField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.path';
-    /**
-     * HTML tag.
-     *
-     * @var string
-     */
-    protected $tag = 'path';
 
     /**
      * Create Object.

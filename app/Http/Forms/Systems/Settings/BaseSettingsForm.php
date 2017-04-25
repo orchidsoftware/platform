@@ -22,6 +22,8 @@ class BaseSettingsForm extends Form
 
     /**
      * Display Settings App.
+     *
+     * @return View
      */
     public function get() : View
     {

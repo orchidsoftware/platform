@@ -11,7 +11,6 @@ abstract class Filter implements FilterInterface
      */
     public $request;
 
-
     /**
      * @var null
      */
@@ -31,7 +30,6 @@ abstract class Filter implements FilterInterface
         $this->lang = App::getLocale();
     }
 
-
     /**
      * @param PostBuilder $builder
      *
@@ -48,7 +46,6 @@ abstract class Filter implements FilterInterface
         return $builder;
     }
 
-
     /**
      * @param PostBuilder $builder
      *
@@ -56,11 +53,11 @@ abstract class Filter implements FilterInterface
      */
     abstract public function run(PostBuilder $builder) : PostBuilder;
 
-
     /**
      * User mapping method
      */
     public function display()
     {
+        //
     }
 }

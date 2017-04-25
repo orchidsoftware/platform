@@ -19,10 +19,14 @@ class LogController extends Controller
      */
     protected $log;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $perPage = 30;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $showRoute = 'log-viewer::logs.show';
 
     /**

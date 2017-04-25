@@ -74,7 +74,6 @@ class PostgresWrapper implements WrapperContract
                 'Null'    => $column->is_nullable,
                 'Key'     => $column->ordinal_position,
                 'Default' => $column->column_default,
-//                'Extra' => $column->Extra
             ];
         }, $columns);
     }

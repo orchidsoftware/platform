@@ -26,6 +26,8 @@ class InfoForm extends Form
 
     /**
      * Display Settings App.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function get()
     {

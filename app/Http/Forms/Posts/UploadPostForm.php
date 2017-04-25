@@ -23,8 +23,7 @@ class UploadPostForm extends Form
      */
     public function get() : View
     {
-        return view('dashboard::container.posts.modules.upload', [
-        ]);
+        return view('dashboard::container.posts.modules.upload');
     }
 
     /**

@@ -12,20 +12,6 @@ class TextAreaField extends Field
     public $view = 'dashboard::fields.textarea';
 
     /**
-     * HTML tag.
-     *
-     * @var string
-     */
-    protected $tag = 'textarea';
-
-    /**
-     * The rows attribute specifies the visible height of a text area, in lines.
-     *
-     * @var
-     */
-    protected $rows;
-
-    /**
      * @param null $attributes
      * @param null $data
      *

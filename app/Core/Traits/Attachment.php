@@ -14,7 +14,6 @@ trait Attachment
      */
     protected static $attachmentModel = 'Orchid\Core\Models\Attachment';
 
-
     /**
      * @return string
      */

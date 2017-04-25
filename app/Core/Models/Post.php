@@ -8,31 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Orchid\Core\Builders\PostBuilder;
 use Orchid\Core\Traits\MultiLanguage;
 use Orchid\Exceptions\TypeException;
 use Orchid\Facades\Dashboard;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage;
 
-
     /**
      * @var string
      */
     protected $table = 'posts';
-
-    /**
-     * @deprecated
-     * @deprecated 0.0.11
-     * @deprecated No longer used by internal code and not recommended.
-     * @deprecated 0.0.11 No longer used by internal code and not recommended.
-     */
-    protected $dataType = null;
 
     /**
      * Recording behavior
@@ -91,24 +82,6 @@ class Post extends Model
         ];
     }
 
-
-    /**
-     * @param $slug
-     *
-     * @return $this
-     * @throws TypeException
-     */
-    public function getBehavior($slug)
-    {
-        $this->behavior = Dashboard::getPosts()->find($slug);
-
-        if (is_null($this->behavior)) {
-            throw new TypeException("{$slug} Type is not found");
-        }
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -130,6 +103,22 @@ class Post extends Model
         return $this->getBehavior($this->getAttribute('type'))->behavior;
     }
 
+    /**
+     * @param $slug
+     *
+     * @return $this
+     * @throws TypeException
+     */
+    public function getBehavior($slug)
+    {
+        $this->behavior = Dashboard::getPosts()->find($slug);
+
+        if (is_null($this->behavior)) {
+            throw new TypeException("{$slug} Type is not found");
+        }
+
+        return $this;
+    }
 
     /**
      * @return \Illuminate\Support\Collection
@@ -326,12 +315,11 @@ class Post extends Model
     {
         $builder = new PostBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);
-        // disabled the default orderBy because else Post::all()->orderBy(..)
-        // is not working properly anymore.
-        // $builder->orderBy('post_date', 'desc');
+
         if (isset($this->postType) && $this->postType) {
             $builder->type($this->postType);
         }
+
         if ($excludeDeleted && $this->softDelete) {
             $builder->whereNull($this->getQualifiedDeletedAtColumn());
         }

@@ -10,7 +10,7 @@
 
     <style>
         .media-section .modal-footer {
-            margin-top: 0px;
+            margin-top: 0;
         }
 
         .media-section .modal .modal-header .close {
@@ -18,7 +18,7 @@
         }
 
         .media-section .modal-content {
-            border: 0px;
+            border: 0;
         }
 
         .media-section .modal-header {
@@ -63,11 +63,11 @@
         }
 
         .breadcrumb.filemanager {
-            top: 0px;
+            top: 0;
             background: #f0f0f0;
             border: 1px solid #E0E0E0;
-            border-bottom: 0px;
-            border-radius: 0px;
+            border-bottom: 0;
+            border-radius: 0;
             padding-left: 20px;
             width: 100%;
             margin-top: 0;
@@ -178,7 +178,7 @@
             display: flex;
             flex-wrap: wrap;
             border: 1px solid #E0E0E0;
-            border-top: 0px;
+            border-top: 0;
             min-height: calc(100vh - 260px);
         }
 
@@ -234,8 +234,8 @@
             display: flex;
             list-style: none;
             width: 100%;
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             flex-wrap: wrap;
             padding: 10px;
             position: relative;
@@ -343,8 +343,8 @@
         }
 
         .file_link .link_icon i {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-left: 0;
+            padding-right: 0;
             position: relative;
             top: 5px;
         }
@@ -414,10 +414,8 @@
         .detail_info h4 {
             float: left;
             color: #bbb;
-            margin: 0;
             font-size: 13px;
-            margin-top: 3px;
-            margin-right: 8px;
+            margin: 3px 8px 0 0;
             padding-bottom: 2px;
             font-weight: 300;
         }
@@ -572,7 +570,7 @@
                                             <div class="link_icon">
 
                                                 <div v-if="file.type.includes('image')" class="img_icon"
-                                                     style="background-size: cover; background-repeat:no-repeat; background-position:center center;display:inline-block; width:100%; height:100%;"
+                                                     style="background-size: cover; background: no-repeat center center;display:inline-block; width:100%; height:100%;"
                                                      v-bind:style="{ backgroundImage: 'url(' + encodeURI(file.path) + ')' }"
                                                 >
                                                 </div>

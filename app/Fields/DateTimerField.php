@@ -10,12 +10,6 @@ class DateTimerField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.datetime';
-    /**
-     * HTML tag.
-     *
-     * @var string
-     */
-    protected $tag = 'datetime';
 
     /**
      * Create Object.

@@ -10,12 +10,6 @@ class TagsField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.tags';
-    /**
-     * HTML tag.
-     *
-     * @var string
-     */
-    protected $tag = 'tags';
 
     /**
      * Create Object.

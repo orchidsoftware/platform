@@ -73,16 +73,6 @@ class MysqlWrapper implements WrapperContract
     {
         return array_map(function ($column) {
             return get_object_vars($column);
-            /*
-            return [
-                'Field' => $column->Field,
-                'Type' => $column->Type,
-                'Null' => $column->Null,
-                'Key' => $column->Key,
-                'Default' => $column->Default,
-                'Extra' => $column->Extra,
-            ];
-            */
         }, $columns);
     }
 }
