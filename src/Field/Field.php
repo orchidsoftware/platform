@@ -10,5 +10,4 @@ abstract class Field implements FieldInterface
      * @var
      */
     public $view;
-
 }
