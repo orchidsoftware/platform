@@ -82,6 +82,6 @@ class PageController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return redirect()->back();
+        return back();
     }
 }

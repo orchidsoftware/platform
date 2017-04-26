@@ -31,7 +31,7 @@ class CacheController
             Alert::warning($exception->getMessage());
         }
 
-        return redirect()->back();
+        return back();
     }
 
     /**

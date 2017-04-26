@@ -57,7 +57,7 @@ class AdvertisingController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -86,7 +86,7 @@ class AdvertisingController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
