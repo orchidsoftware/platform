@@ -168,5 +168,4 @@ class Dashboard
     {
         return $this->fields->all();
     }
-
 }
