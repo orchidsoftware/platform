@@ -4,7 +4,7 @@
 @section('navbar')
     <div class="col-md-6 text-right">
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
-            <button type="submit" form="post-form" class="btn btn-link"><i class="icon-plus fa fa-2x"></i></button>
+            <button type="submit" form="post-form" class="btn btn-link"><i class="icon-check fa fa-2x"></i></button>
         </div>
     </div>
 @stop
