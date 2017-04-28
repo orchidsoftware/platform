@@ -2,8 +2,8 @@
 
 namespace Orchid\Core\Models;
 
-use Orchid\Facades\Dashboard;
 use Orchid\Exceptions\TypeException;
+use Orchid\Facades\Dashboard;
 
 class Page extends Post
 {

@@ -100,6 +100,7 @@ class Post extends Model
         if (!is_null($this->behavior)) {
             return $this->behavior;
         }
+
         return $this->getBehavior($this->getAttribute('type'))->behavior;
     }
 
@@ -210,7 +211,7 @@ class Post extends Model
     {
         if (!is_null($type)) {
             return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension',
-                config('content.attachment.'.$type));
+                config('content.attachment.' . $type));
         }
 
         return $this->hasMany(Dashboard::model('attachment', Attachment::class));
