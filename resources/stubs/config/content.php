@@ -65,6 +65,7 @@ return [
         'path'     => Orchid\Fields\PathField::class,
         'code'     => Orchid\Fields\CodeField::class,
         'seo'      => Orchid\Fields\SEOField::class,
+        'wysiwyg'  => \Orchid\Fields\SummernoteField::class,
     ],
 
     /*

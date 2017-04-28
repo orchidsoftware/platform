@@ -21,10 +21,6 @@ class PlaceField extends Field
      */
     public function create($attributes, $data = null)
     {
-        if (is_array($this->type)) {
-            $this->type = 'text';
-        }
-
         if (is_null($data)) {
             $data = collect();
         }
