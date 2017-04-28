@@ -4,7 +4,7 @@ namespace Orchid\Behaviors;
 
 use Orchid\Behaviors\Contract\PostInterface;
 
-abstract class Post implements PostInterface
+abstract class Many implements PostInterface
 {
     use Structure;
 

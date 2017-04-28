@@ -5,7 +5,7 @@ namespace Orchid\Http\Forms\Posts;
 use Illuminate\Contracts\View\View;
 use Orchid\Core\Models\Post;
 use Orchid\Forms\Form;
-use Orchid\Behaviors\Post as PostBehaviors;
+use Orchid\Behaviors\Many as PostBehaviors;
 
 class PathPostForm extends Form
 {

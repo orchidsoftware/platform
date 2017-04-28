@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Behaviors\Post;
+namespace App\Core\Behaviors\Many;
 
 use Orchid\Http\Forms\Posts\BasePostForm;
 use Orchid\Http\Forms\Posts\UploadPostForm;
-use Orchid\Behaviors\Post;
+use Orchid\Behaviors\Many;
 
-class DemoPost extends Post
+class DemoPost extends Many
 {
     /**
      * @var string
@@ -31,11 +31,6 @@ class DemoPost extends Post
     public $slugFields = 'name';
 
     /**
-     * @var bool
-     */
-    public $api = true;
-
-    /**
      * Rules Validation.
      *
      * @return array
@@ -57,17 +52,13 @@ class DemoPost extends Post
         return [
             'name' => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
             'body' => 'tag:textarea|name:body|max:255|required|class:summernote|rows:10',
-
-            //'place'    => 'tag:place|type:text|name:place|max:255|required|title:Location|help:Address on the map|placeholder:Location',
             'datetime' => 'tag:datetime|type:text|name:open|max:255|required|title:Opening date|help:The opening event will take place',
+            'free' => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
 
             'title'       => 'tag:input|type:text|name:title|max:255|required|title:Article Title|help:SEO title',
             'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Short description',
             'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:SEO keywords',
             'robot'       => 'tag:robot|name:robot|max:255|required|title:Indexing|help:Allow search bots to index page',
-
-            'free' => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
-
         ];
     }
 

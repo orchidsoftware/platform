@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Alert\Facades\Alert;
-use Orchid\Behaviors\Post as PostBehavior;
+use Orchid\Behaviors\Many as PostBehavior;
 use Orchid\Core\Models\Post;
 use Orchid\Http\Controllers\Controller;
 

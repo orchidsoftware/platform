@@ -8,7 +8,7 @@ use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Forms\Form;
-use Orchid\Behaviors\Post as PostBehaviors;
+use Orchid\Behaviors\Many as PostBehaviors;
 
 class BasePostForm extends Form
 {

@@ -4,16 +4,14 @@ namespace Orchid\Fields;
 
 use Orchid\Field\Field;
 
-class InputField extends Field
+class SummernoteField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.input';
+    public $view = 'dashboard::fields.summernote';
 
     /**
-     * Create Object.
-     *
      * @param null $attributes
      * @param null $data
      *

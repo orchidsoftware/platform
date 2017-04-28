@@ -53,7 +53,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerCode()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/types/DemoType.stub' => app_path('/Http/Behaviors/Posts/DemoPost.php'),
+            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPost.stub' => app_path('/Core/Behaviors/Many/DemoPost.php'),
 
             DASHBOARD_PATH . '/resources/stubs/widgets/AdvertisingWidget.stub' => app_path('/Http/Widgets/AdvertisingWidget.php'),
         ]);
