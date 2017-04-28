@@ -3,14 +3,12 @@
 namespace Orchid\Providers;
 
 use Cartalyst\Tags\TagsServiceProvider;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Kernel\Dashboard;
 use Orchid\Log\LogServiceProvider;
-use Orchid\Macros\Page;
 use Orchid\Settings\Providers\SettingsServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
@@ -19,18 +17,9 @@ use Watson\Active\ActiveServiceProvider;
 class FoundationServiceProvider extends ServiceProvider
 {
     /**
-     * @var array
-     */
-    public $routeMacros = [
-        Page::class,
-    ];
-
-    /**
      * Boot the application events.
-     *
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
         $this->app->singleton(Dashboard::class, function () {
             return new Dashboard();
@@ -43,7 +32,6 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerPublic();
 
-        $this->macrosRegister($router);
         $this->registerProviders();
     }
 
@@ -113,15 +101,6 @@ class FoundationServiceProvider extends ServiceProvider
         ], 'public');
     }
 
-    /**
-     * @param Router $route
-     */
-    public function macrosRegister(Router $route)
-    {
-        foreach ($this->routeMacros as $macro) {
-            (new $macro())->register($route);
-        }
-    }
 
     public function registerProviders()
     {

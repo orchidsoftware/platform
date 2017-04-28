@@ -4,11 +4,10 @@ namespace Orchid\Kernel;
 
 use Illuminate\Support\Collection;
 use Orchid\Access\Permissions;
-use Orchid\Field\FieldStorage;
-use Orchid\Menu\Menu;
-use Orchid\Menu\RouteMenu;
 use Orchid\Behaviors\Storage\PageStorage;
 use Orchid\Behaviors\Storage\PostStorage;
+use Orchid\Field\FieldStorage;
+use Orchid\Menu\Menu;
 
 class Dashboard
 {
@@ -60,7 +59,6 @@ class Dashboard
         $this->pages = new PageStorage();
         $this->posts = new PostStorage();
         $this->fields = new FieldStorage();
-        $this->routeMenu = new RouteMenu();
     }
 
     /**
@@ -163,7 +161,6 @@ class Dashboard
         return $this->pages->all($sort);
     }
 
-
     /**
      * @return mixed
      */
@@ -172,11 +169,4 @@ class Dashboard
         return $this->fields->all();
     }
 
-    /**
-     * @return RouteMenu
-     */
-    public function routeMenu() : RouteMenu
-    {
-        return $this->routeMenu;
-    }
 }
