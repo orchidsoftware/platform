@@ -31,11 +31,6 @@
                 </li>
             @endif
 
-            <li>
-                <button class="btn btn-link menu-save"><i
-                            class="icon-plus fa fa-2x"></i></button>
-            </li>
-
         </ul>
 
     </div>
@@ -45,9 +40,7 @@
 
 @section('content')
 
-
     <div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
-
 
         <div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
             <div class="nav-tabs-alt hidden">
@@ -296,6 +289,7 @@
 
                     this.count--;
                     this.clear();
+                    this.send();
                 },
                 addStatic: function (name, slug) {
 
@@ -339,6 +333,7 @@
                     $('li[data-id=' + this.id + ']').remove();
                     $('#menuEdit').modal('hide');
                     this.clear();
+                    this.send();
                 },
                 clear: function () {
                     this.label = '';
@@ -362,7 +357,7 @@
 
                     this.$http.put('/dashboard/tools/menu/' + name, data).then(function (response) {
 
-                        alert('Сохраненно');
+
                         /*
                          swal({
                          title: response.data.title,
@@ -391,10 +386,13 @@
             $(item).data('sort', i);
         });
 
+        $('.dd').on('change', function () {
+            menu.send();
+        });
+
         $('.dd').on('click', '.edit', function () {
             menu.edit(this);
         });
-
 
         $('.menu-save').click(function () {
             menu.send();
