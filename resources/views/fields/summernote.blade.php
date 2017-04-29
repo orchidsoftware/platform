@@ -22,7 +22,7 @@
 <script>
     $(document).ready(function () {
         $('.summernote').summernote({
-            minHeight: 300,
+            minHeight: 300
         });
 
     });

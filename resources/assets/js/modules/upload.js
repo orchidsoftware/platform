@@ -90,7 +90,7 @@ $(function () {
                 file.data = response;
                 $(".dz-preview:last-child").attr('data-file-id', response.id).addClass('file-sort');
                 $("<input type='hidden' class='files-" + response.id + "' name='files[]' value='" + response.id + "'  />").appendTo('.dropzone');
-            },
+            }
         });
 
 
