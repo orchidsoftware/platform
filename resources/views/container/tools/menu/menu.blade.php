@@ -224,18 +224,10 @@
                             </ol>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-
-
     </div>
-
-
-
 @stop
 
 
@@ -244,8 +236,6 @@
 @push('scripts')
 <script>
     $(function () {
-
-
         const menu = new Vue({
             el: '#menu-vue',
             data: {
@@ -276,7 +266,6 @@
                         "<div class='edit'></div>" +
                         "</li>");
 
-
                     $('li[data-id=' + this.count + ']').data({
                         'label': this.label,
                         'title': this.title,
@@ -301,17 +290,13 @@
                     this.slug = slug;
 
                     $('#ahref-custom-pages').tab('show');
-
                 },
                 edit: function (element) {
                     var data = $(element).parent().data();
                     data.label = $(element).prev().text();
-
-
                     this.load(data);
                 },
                 save: function () {
-
 
                     $('li[data-id=' + this.id + ']').data({
                         'label': this.label,
@@ -324,10 +309,8 @@
                     });
                     $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
 
-
                     this.clear();
                     $('#menuEdit').modal('hide');
-
                 },
                 remove: function () {
                     $('li[data-id=' + this.id + ']').remove();
@@ -371,17 +354,13 @@
                     });
                 },
                 exist: function () {
-
                     return !!(Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0);
-
                 }
-
             }
-
         });
 
-
         $('.dd').nestable({});
+
         $('.dd-item').each(function (i, item) {
             $(item).data('sort', i);
         });
@@ -397,7 +376,6 @@
         $('.menu-save').click(function () {
             menu.send();
         });
-
 
     });
 </script>

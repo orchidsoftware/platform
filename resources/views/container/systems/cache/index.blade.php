@@ -66,6 +66,19 @@
                     </form>
 
                 </div>
+                <div class="row">
+
+                    <form action="{{route('dashboard.systems.cache')}}" method="POST">
+                        <button class="panel padder-v item  w-full" type="submit">
+                            <div class="h4 text-info font-thin">Очистить opcache</div>
+                            <span class="text-muted text-xs">Resets the contents of the opcode cache</span>
+
+                        </button>
+                        <input name="action" type="hidden" value="opcache">
+                        {{csrf_field()}}
+                    </form>
+
+                </div>
             </div>
 
 
