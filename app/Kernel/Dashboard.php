@@ -97,19 +97,6 @@ class Dashboard
     }
 
     /**
-     * Get the class name for a given Dashboard model.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public static function model($key, $default = null)
-    {
-        return array_get(static::$options, 'models.' . $key, $default);
-    }
-
-    /**
      * @return null|Menu
      */
     public function menu() : Menu

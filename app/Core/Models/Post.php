@@ -173,7 +173,7 @@ class Post extends Model
      */
     public function getUser()
     {
-        return $this->belongsTo(Dashboard::model('user', User::class), 'user_id')->first();
+        return $this->belongsTo(User::class, 'user_id')->first();
     }
 
     /**
@@ -210,11 +210,11 @@ class Post extends Model
     public function attachment($type = null) : HasMany
     {
         if (!is_null($type)) {
-            return $this->hasMany(Dashboard::model('attachment', Attachment::class))->whereIn('extension',
+            return $this->hasMany(Attachment::class)->whereIn('extension',
                 config('content.attachment.' . $type));
         }
 
-        return $this->hasMany(Dashboard::model('attachment', Attachment::class));
+        return $this->hasMany(Attachment::class);
     }
 
     /**
@@ -234,7 +234,7 @@ class Post extends Model
      */
     public function comments() : HasMany
     {
-        return $this->hasMany(Dashboard::model('comment', Comment::class), 'post_id');
+        return $this->hasMany(Comment::class, 'post_id');
     }
 
     /**
@@ -244,7 +244,7 @@ class Post extends Model
      */
     public function author() : BelongsTo
     {
-        return $this->belongsTo(Dashboard::model('user', User::class), 'post_id');
+        return $this->belongsTo(User::class, 'post_id');
     }
 
     /**

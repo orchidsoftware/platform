@@ -5,7 +5,6 @@ namespace Orchid\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Facades\Dashboard;
 
 class Attachment extends Model
 {
@@ -15,12 +14,14 @@ class Attachment extends Model
      * @var string
      */
     protected static $relationshipsModel = 'Orchid\Core\Models\AttachmentRelationships';
+
     /**
      * Attachment types.
      *
      * @var array
      */
     public $types = [];
+
     /**
      * @var array
      */
@@ -53,7 +54,7 @@ class Attachment extends Model
      */
     public function user() : BelongsTo
     {
-        return $this->belongsTo(Dashboard::model('user', User::class));
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -71,7 +72,7 @@ class Attachment extends Model
      */
     public function post() : BelongsTo
     {
-        return $this->belongsTo(Dashboard::model('post', Post::class));
+        return $this->belongsTo(Post::class);
     }
 
     /**

@@ -64,6 +64,7 @@ class Monitor
         $temp = round(($output) / 1000, 1);
         $output = shell_exec('echo "$(</proc/uptime awk \'{print $1}\')"');
         $timeAlive = StringHelpers::secondsToTime((int) $output);
+
         // data object
         $data = new stdClass();
         $data->temperature = $temp;
@@ -84,6 +85,7 @@ class Monitor
     {
         $output = shell_exec('uptime');
         $loadavg = explode(' ', substr($output, strpos($output, 'load average:') + 14));
+
         // data object
         $data = new stdClass();
         $data->oneMin = StringHelpers::prettyLoadAverage($loadavg[0]);
@@ -101,7 +103,7 @@ class Monitor
      * The code below pulls the relevant parts out of 'free'
      * and figures out the percentage used of each.
      *
-     * $total_act is a little less than $memTotal as there's
+     * $totalAct is a little less than $memTotal as there's
      * some used up by the bootloader that's not available
      * to the system.
      *
@@ -112,38 +114,38 @@ class Monitor
         //$mem_free = (int)shell_exec("free -m | awk '/buffers\/cache/ {print $3}'");
         $memTotal = (int) shell_exec("free -m | awk '/Mem/ {print $2}'");
         $memTotal = ($memTotal) ? $memTotal : 1;
-        $used_act = (int) shell_exec("free | awk '/buffers\/cache/ {print $3}'");
-        $used_act = ($used_act) ? $used_act : 1;
+        $usedAct = (int) shell_exec("free | awk '/buffers\/cache/ {print $3}'");
+        $usedAct = ($usedAct) ? $usedAct : 1;
         $free = (int) shell_exec("free | awk '/Mem/ {print $4}'");
         $free = ($free) ? $free : 1;
         $buffers = (int) shell_exec("free | awk '/Mem/ {print $6}'");
         $buffers = ($buffers) ? $buffers : 1;
         $cache = (int) shell_exec("free | awk '/Mem/ {print $7}'");
         $cache = ($cache) ? $cache : 1;
-        $total_act = $used_act + $free + $buffers + $cache;
-        $free_p = 100 * ($free / $total_act);
-        $buffers_p = 100 * ($buffers / $total_act);
-        $cache_p = 100 * ($cache / $total_act);
-        $used_act_p = 100 * ($used_act / $total_act);
+        $totalAct = $usedAct + $free + $buffers + $cache;
+        $free_p = 100 * ($free / $totalAct);
+        $buffersPercent = 100 * ($buffers / $totalAct);
+        $cachePercent = 100 * ($cache / $totalAct);
+        $usedAct_p = 100 * ($usedAct / $totalAct);
         // data object
         $data = (object) [
             'total'   => (object) [
                 'pretty' => StringHelpers::prettyMemory($memTotal),
-                'actual' => $total_act,
+                'actual' => $totalAct,
             ],
             'used'    => (object) [
-                'pretty'     => (string) round($used_act_p, 2),
-                'percentage' => $used_act_p,
-                'actual'     => $used_act,
+                'pretty'     => (string) round($usedAct_p, 2),
+                'percentage' => $usedAct_p,
+                'actual'     => $usedAct,
             ],
             'buffers' => (object) [
-                'pretty'     => (string) round($buffers_p, 2),
-                'percentage' => $buffers_p,
+                'pretty'     => (string) round($buffersPercent, 2),
+                'percentage' => $buffersPercent,
                 'actual'     => $buffers,
             ],
             'cache'   => (object) [
-                'pretty'     => (string) round($cache_p, 2),
-                'percentage' => $cache_p,
+                'pretty'     => (string) round($cachePercent, 2),
+                'percentage' => $cachePercent,
                 'actual'     => $cache,
             ],
             'free'    => (object) [
@@ -191,9 +193,7 @@ class Monitor
     {
         $output = shell_exec('df -H');
         $table_rows = preg_split('/$\R?^/m', $output);
-        //$table_header = explode(' ', $table_rows[0]);
         $table_rows = array_splice($table_rows, 1);
-        //$table_header = array_splice($table_header, 0, count($table_header) - 1);
 
         // data object
         $data = new stdClass();
