@@ -37,6 +37,7 @@ class PostController extends Controller
     public function index(PostBehavior $type) : View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
+
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
 
@@ -48,6 +49,7 @@ class PostController extends Controller
     public function create(PostBehavior $type) : View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
+
         return view('dashboard::container.posts.create', [
             'type'    => $type,
             'locales' => $this->locales->where('required', true),
@@ -55,9 +57,9 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Post    $post
-     * @param PostBehavior    $type
+     * @param Request      $request
+     * @param Post         $post
+     * @param PostBehavior $type
      *
      * @return RedirectResponse
      */
@@ -101,7 +103,7 @@ class PostController extends Controller
 
     /**
      * @param PostBehavior $type
-     * @param Post $post
+     * @param Post         $post
      *
      * @return View
      *
@@ -111,7 +113,7 @@ class PostController extends Controller
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
         $locales = $this->locales->map(function ($value, $key) use ($post) {
-            $value['required'] = (bool)$post->checkLanguage($key);
+            $value['required'] = (bool) $post->checkLanguage($key);
 
             return $value;
         })->where('required', true);
@@ -124,9 +126,9 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param PostBehavior    $type
-     * @param Post    $post
+     * @param Request      $request
+     * @param PostBehavior $type
+     * @param Post         $post
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -170,7 +172,7 @@ class PostController extends Controller
 
     /**
      * @param PostBehavior $type
-     * @param Post $post
+     * @param Post         $post
      *
      * @return mixed
      *

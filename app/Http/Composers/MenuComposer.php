@@ -96,13 +96,13 @@ class MenuComposer
         }
         foreach ($allPage as $page) {
             $postObject = [
-                    'slug'       => $page->slug,
-                    'icon'       => $page->icon,
-                    'route'      => route('dashboard.pages.show', [$page->slug]),
-                    'label'      => $page->name,
-                    'childs'     => false,
-                    'permission' => 'dashboard.posts.type.' . $page->slug,
-                ];
+                'slug'       => $page->slug,
+                'icon'       => $page->icon,
+                'route'      => route('dashboard.pages.show', [$page->slug]),
+                'label'      => $page->name,
+                'childs'     => false,
+                'permission' => 'dashboard.posts.type.' . $page->slug,
+            ];
 
             if (reset($allPage) == $page) {
                 $postObject['groupname'] = trans('dashboard::menu.Static pages');

@@ -4,11 +4,11 @@ namespace Orchid\Http\Forms\Posts;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
+use Orchid\Behaviors\Many as PostBehaviors;
 use Orchid\Core\Models\Category;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Forms\Form;
-use Orchid\Behaviors\Many as PostBehaviors;
 
 class BasePostForm extends Form
 {
@@ -21,7 +21,7 @@ class BasePostForm extends Form
      * Display Base Options.
      *
      * @param PostBehaviors|null $type
-     * @param Post|null $post
+     * @param Post|null          $post
      *
      * @return \Illuminate\Contracts\View\Factory|View
      *

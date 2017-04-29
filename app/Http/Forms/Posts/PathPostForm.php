@@ -3,9 +3,9 @@
 namespace Orchid\Http\Forms\Posts;
 
 use Illuminate\Contracts\View\View;
+use Orchid\Behaviors\Many as PostBehaviors;
 use Orchid\Core\Models\Post;
 use Orchid\Forms\Form;
-use Orchid\Behaviors\Many as PostBehaviors;
 
 class PathPostForm extends Form
 {
@@ -17,8 +17,8 @@ class PathPostForm extends Form
     /**
      * Display Base Options.
      *
-     * @param PostBehaviors      $type
-     * @param Post|null $post
+     * @param PostBehaviors $type
+     * @param Post|null     $post
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      *

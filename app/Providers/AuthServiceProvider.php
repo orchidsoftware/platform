@@ -3,7 +3,6 @@
 namespace Orchid\Providers;
 
 use Illuminate\Auth\AuthServiceProvider as AuthProvider;
-use Illuminate\Auth\Access\Gate;
 
 class AuthServiceProvider extends AuthProvider
 {

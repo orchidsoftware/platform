@@ -30,7 +30,7 @@ class StringHelpers
      */
     public static function prettyMemory(int $total) : string
     {
-        $total = (int)$total;
+        $total = (int) $total;
 
         if ($total > 999) {
             $total = round($total / 1024, 2);

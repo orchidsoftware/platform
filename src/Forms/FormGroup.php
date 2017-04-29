@@ -114,7 +114,7 @@ abstract class FormGroup
     public function render(...$arg) : View
     {
         $this->html = collect();
-        
+
         foreach ($this->group as $form) {
             if (!is_object($form)) {
                 $form = new $form();
