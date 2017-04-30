@@ -1,4 +1,23 @@
 #filemanager {
+
+  position: relative;
+  min-height: 200px;
+
+  .loader {
+    margin-top: 25px;
+  }
+
+  #content {
+    display: block;
+    background: #fff;
+  }
+
+  .progress {
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+
   .media-section .modal-footer {
     margin-top: 0;
   }
@@ -54,8 +73,6 @@
 
   .breadcrumb.filemanager {
     top: 0;
-    background: #f0f0f0;
-    border: 1px solid #E0E0E0;
     border-bottom: 0;
     border-radius: 0;
     padding-left: 20px;
@@ -67,7 +84,7 @@
 
   .breadcrumb.filemanager li {
     cursor: pointer;
-    transition: color 0.1s linear;
+    transition: color 340ms linear;
     position: relative;
   }
 
@@ -103,9 +120,8 @@
   }
 
   .breadcrumb li {
-    color: #4DA7E8;
+    color: @oc-gray-6;
     cursor: pointer;
-    font-weight: bold;
   }
 
   .breadcrumb li:last-child {
@@ -113,63 +129,17 @@
     cursor: pointer;
   }
 
-  .breadcrumb-container .toggle {
-    float: right;
-    position: absolute;
-    top: 11px;
-    cursor: pointer;
-    right: 5px;
-    color: #bbb;
-    transition: color 0.1s linear;
-    overflow: visible;
-  }
-
-  .breadcrumb-container .toggle:hover {
-    color: #aaa;
-  }
-
-  .breadcrumb-container .toggle span {
-    font-size: 10px;
-    text-transform: uppercase;
-    float: left;
-    top: 2px;
-    position: relative;
-    font-weight: bold;
-    right: 10px;
-  }
-
-  .breadcrumb-container .toggle i {
-    font-size: 18px;
-    float: right;
-    margin-right: 5px;
-    position: relative;
-    top: -4px;
-  }
-
   .nothingfound {
     display: none;
   }
 
-  #filemanager {
-    position: relative;
-    min-height: 200px;
-  }
-
-  #filemanager .loader {
-    margin-top: 25px;
-  }
-
-  #filemanager #content {
-    display: block;
-    background: #fff;
-  }
-
   .flex {
+    transition: 340ms;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #E0E0E0;
+    .bg-white;
     border-top: 0;
-    min-height: calc(100vh - 260px);
+    min-height: calc(~"100vh - 230px");
   }
 
   .flex #left {
@@ -225,7 +195,6 @@
     list-style: none;
     width: 100%;
     margin: 0;
-    padding: 0;
     flex-wrap: wrap;
     padding: 10px;
     position: relative;
@@ -245,7 +214,6 @@
   }
 
   #files li .file_link {
-    background: #eee;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
@@ -292,14 +260,16 @@
     display: block;
   }
 
-  #files li .file_link.selected, #files li .file_link:hover {
-    background: #23b7e5 !important;
-    border-color: #15b3e4;
-    color: #fff;
-  }
-
-  #files li .file_link.selected h4, #files li .file_link:hover h4 {
-    color: #fff;
+  #files li .file_link {
+    transition: all 340ms;
+    &:hover, &.selected {
+      background: @oc-gray-6 !important;
+      border-color: @oc-gray-5;
+      color: #fff;
+      h4 {
+        color: #fff;
+      }
+    }
   }
 
   #files li .details h4 {
@@ -419,11 +389,6 @@
   }
 
   /********** file upload progress **********/
-
-  #filemanager .progress {
-    border-radius: 0;
-    margin-bottom: 0;
-  }
 
   #uploadProgress {
     display: none;

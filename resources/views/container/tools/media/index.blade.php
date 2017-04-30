@@ -15,23 +15,23 @@
                 <div id="filemanager">
 
                     <div id="toolbar">
-                        <div class="btn-group offset-right">
+                        <div class="btn-group">
                             <button type="button" class="btn btn-info" id="upload"><i class="fa fa-upload"></i>
                                 Upload
                             </button>
-                            <button type="button" class="btn btn-info" id="new_folder"
+                            <button type="button" class="btn btn-default" id="new_folder"
                                     onclick="jQuery('#new_folder_modal').modal('show');"><i class="fa fa-folder"></i>
                                 Add folder
                             </button>
                         </div>
                         <button type="button" class="btn btn-default" id="refresh"><i class="fa fa-refresh"></i>
                         </button>
-                        <div class="btn-group offset-right">
-                            <button type="button" class="btn btn-default" id="move"><i class="fa fa-move"></i> Move
-                            </button>
-                            <button type="button" class="btn btn-default" id="rename"><i class="fa fa fa-font"></i>
+                        <div class="btn-group">
+                            {{-- <button type="button" class="btn btn-default" id="move"><i class="fa fa-move"></i> Move
+                            </button> --}}
+                            {{--<button type="button" class="btn btn-default" id="rename"><i class="fa fa fa-font"></i>
                                 Rename
-                            </button>
+                            </button> --}}
                             <button type="button" class="btn btn-default" id="delete"><i class="fa fa-trash"></i>
                                 Delete
                             </button>
@@ -48,9 +48,10 @@
 
 
                         <div class="breadcrumb-container">
-                            <ol class="breadcrumb filemanager">
-                                <li data-folder="/" data-index="0"><span class="arrow"></span><strong>Media
-                                        Library</strong></li>
+                            <ol class="breadcrumb filemanager b-t small">
+                                <li data-folder="/" data-index="0"><span class="arrow"></span>
+                                    <span>Media Library</span>
+                                </li>
 
                                 <li v-for="(folder,index) in folders" v-bind:data-folder="folder"
                                     v-bind:data-index="index+1">
@@ -58,7 +59,6 @@
                                 </li>
                             </ol>
 
-                            <div class="toggle"><span>Close</span><i class="fa fa-double-right"></i></div>
                         </div>
                         <div class="flex">
 
@@ -67,7 +67,8 @@
                                 <ul id="files">
 
                                     <li v-for="(file,index) in files.items">
-                                        <div class="file_link" v-bind:data-folder="file.name" v-bind:data-index="index">
+                                        <div class="file_link" v-bind:data-folder="file.name" v-bind:data-index="index"
+                                             v-bind:title="file.name">
                                             <div class="link_icon">
 
                                                 <div v-if="file.type.includes('image')" class="img_icon"
@@ -374,7 +375,7 @@
                     },
                     success: function (e, res) {
                         if (res.success) {
-                            alert("Sweet Success!");
+                            //alert("Sweet Success!");
 
                         } else {
                             alert("Whoopsie!");
@@ -411,13 +412,6 @@
                     var index = $(this).data('index');
                     manager.folders = manager.folders.splice(0, index);
                     getFiles(manager.folders);
-                });
-
-                $('.breadcrumb-container .toggle').click(function () {
-                    $('.flex #right').toggle();
-                    var toggle_text = $('.breadcrumb-container .toggle span').text();
-                    $('.breadcrumb-container .toggle span').text(toggle_text == "Close" ? "Open" : "Close");
-                    $('.breadcrumb-container .toggle .icon').toggleClass('fa-toggle-right').toggleClass('fa-toggle-left');
                 });
 
 
@@ -506,7 +500,7 @@
                         _token: CSRF_TOKEN
                     }, function (data) {
                         if (data.success == true) {
-                            alert('successfully created ' + $('#new_folder_name').val(), "Sweet Success!");
+                            //alert('successfully created ' + $('#new_folder_name').val(), "Sweet Success!");
                             getFiles(manager.folders);
                         } else {
                             alert("Whoops!");
@@ -535,7 +529,7 @@
                         _token: CSRF_TOKEN
                     }, function (data) {
                         if (data.success == true) {
-                            alert('successfully deleted ' + manager.selected_file.name, "Sweet Success!");
+                            //alert('successfully deleted ' + manager.selected_file.name, "Sweet Success!");
                             getFiles(manager.folders);
                             $('#confirm_delete_modal').modal('hide');
                         } else {
@@ -572,7 +566,7 @@
                         _token: CSRF_TOKEN
                     }, function (data) {
                         if (data.success == true) {
-                            alert('Successfully moved file/folder', "Sweet Success!");
+                            //alert('Successfully moved file/folder', "Sweet Success!");
                             getFiles(manager.folders);
                         } else {
                             alert(data.error, "Whoops!");
@@ -592,7 +586,7 @@
                         _token: CSRF_TOKEN
                     }, function (data) {
                         if (data.success == true) {
-                            alert('Successfully renamed file/folder', "Sweet Success!");
+                            //alert('Successfully renamed file/folder', "Sweet Success!");
                             getFiles(manager.folders);
                         } else {
                             alert(data.error, "Whoops!");
