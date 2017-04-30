@@ -4,28 +4,28 @@ namespace Orchid\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeType extends GeneratorCommand
+class MakeSingleBehavior extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:type';
+    protected $name = 'make:singleBehavior';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new type class';
+    protected $description = 'Create a new Behavior class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Type';
+    protected $type = 'Behavior';
 
     /**
      * Get the stub file for the generator.
@@ -34,7 +34,7 @@ class MakeType extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/type.stub';
+        return DASHBOARD_PATH . '/resources/stubs/console/single.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeType extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Types';
+        return $rootNamespace . '\Core\Behaviors\Single';
     }
 }

@@ -27,7 +27,8 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'Commands\\CreateAdminCommand',
-        'Commands\\MakeType',
+        'Commands\\MakeManyBehavior',
+        'Commands\\MakeSingleBehavior',
         'Commands\\MakeFilter',
     ];
 
@@ -36,11 +37,9 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //if ($this->app->runningInConsole()) {
         foreach ($this->commands as $command) {
             $this->commands($this->namespace . $command);
         }
-        //}
     }
 
     /**

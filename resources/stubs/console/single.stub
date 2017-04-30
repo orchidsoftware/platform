@@ -1,10 +1,9 @@
 <?php namespace DummyNamespace;
 
-use Orchid\Type\Type;
+use Orchid\Behaviors\Single;
 
-class DummyClass extends Type
+class DummyClass extends Single
 {
-
     /**
      * @var string
      */
@@ -13,7 +12,7 @@ class DummyClass extends Type
     /**
      * @var string
      */
-    public $slug = '';
+    public $description = '';
 
     /**
      * @var string
@@ -21,16 +20,23 @@ class DummyClass extends Type
     public $icon = '';
 
     /**
+     * @var string
+     */
+    public $slug = '';
+
+    /**
      * Slug url /news/{name}.
+     *
      * @var string
      */
     public $slugFields = '';
 
     /**
      * Rules Validation.
+     *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
@@ -39,14 +45,6 @@ class DummyClass extends Type
      * @return array
      */
     public function fields()
-    {
-        return [];
-    }
-
-    /**
-     * Grid View for post type.
-     */
-    public function grid()
     {
         return [];
     }

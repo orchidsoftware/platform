@@ -41,7 +41,7 @@ class PageController extends Controller
         }
 
         return view('dashboard::container.posts.page', [
-            'type'    => $page->getBehaviorObject(),
+            'type'    => $page->getBehaviorObject($slug),
             'locales' => $this->locales->where('required', true),
             'post'    => $page,
         ]);
@@ -57,7 +57,7 @@ class PageController extends Controller
     {
         $this->checkPermission('dashboard.pages.' . $slug);
         $page = Page::where('slug', $slug)->firstOrFail()->getBehavior($slug);
-        $type = $page->getBehaviorObject();
+        $type = $page->getBehaviorObject($slug);
 
 
         $page->fill($request->all());

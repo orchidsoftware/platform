@@ -4,14 +4,14 @@
 @section('title','Меню')
 @section('description',$nameMenu)
 
-
+@if(count($locales) > 1)
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
 
 
         <ul class="nav navbar-nav navbar-right">
-            @if(count($locales) > 1)
-                <li class="dropdown">
+
+            <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -29,13 +29,11 @@
                         @endforeach
                     </ul>
                 </li>
-            @endif
-
         </ul>
 
     </div>
 @stop
-
+@endif
 
 
 @section('content')
@@ -339,18 +337,6 @@
                     };
 
                     this.$http.put('/dashboard/tools/menu/' + name, data).then(function (response) {
-
-
-                        /*
-                         swal({
-                         title: response.data.title,
-                         text: response.data.message,
-                         timer: 2000,
-                         showConfirmButton: false,
-                         type: response.data.type,
-                         });
-                         */
-
                     });
                 },
                 exist: function () {

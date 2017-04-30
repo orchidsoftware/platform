@@ -93,15 +93,17 @@ class Post extends Model
     /**
      * Get Behavior Class
      *
-     * @return null|object
+     * @param null $slug
+     *
+     * @return null
      */
-    public function getBehaviorObject()
+    public function getBehaviorObject($slug = null)
     {
         if (!is_null($this->behavior)) {
             return $this->behavior;
         }
 
-        return $this->getBehavior($this->getAttribute('type'))->behavior;
+        return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
     }
 
     /**
