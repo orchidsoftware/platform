@@ -122,7 +122,6 @@ return [
     */
 
     'locales'     => [
-
         'en' => [
             'name'     => 'English',
             'script'   => 'Latn',
@@ -131,7 +130,6 @@ return [
             'regional' => 'en_GB',
             'required' => true,
         ],
-
     ],
 
 
