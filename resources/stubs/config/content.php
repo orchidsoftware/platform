@@ -28,7 +28,7 @@ return [
     */
 
     'pages' => [
-
+        //App\Core\Behaviors\Single\DemoPage::class,
     ],
 
     /*
@@ -41,7 +41,7 @@ return [
     */
 
     'types' => [
-        //App\Types\DemoType::class,
+        //App\Core\Behaviors\Many\DemoPost::class,
     ],
 
     /*
