@@ -2,8 +2,8 @@
 
 namespace Orchid\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Orchid\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {
