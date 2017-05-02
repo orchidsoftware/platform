@@ -10,6 +10,7 @@ Laravel Platform application provides a very flexible and extensible way of buil
 </p>
 
 <p align="center">
+<a href="https://www.paypal.me/tabuna/10usd"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg"></a>
 <a href="https://www.codacy.com/app/a-r-t-1-s-t/Platform?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TheOrchid/Platform&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/80fc1214b05e441eba471c92fafe2c81"/></a>
 <a href="https://codeclimate.com/github/TheOrchid/Platform"><img src="https://codeclimate.com/github/TheOrchid/Platform/badges/gpa.svg" /></a>
 <a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
