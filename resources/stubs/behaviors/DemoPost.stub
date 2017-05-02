@@ -2,9 +2,9 @@
 
 namespace App\Core\Behaviors\Many;
 
+use Orchid\Behaviors\Many;
 use Orchid\Http\Forms\Posts\BasePostForm;
 use Orchid\Http\Forms\Posts\UploadPostForm;
-use Orchid\Behaviors\Many;
 
 class DemoPost extends Many
 {
@@ -35,7 +35,7 @@ class DemoPost extends Many
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [
             'id'             => 'sometimes|integer|unique:posts',
@@ -50,11 +50,11 @@ class DemoPost extends Many
     public function fields()
     {
         return [
-            'name' => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
-            'body' => 'tag:textarea|name:body|max:255|required|class:summernote|rows:10',
-            'datetime' => 'tag:datetime|type:text|name:open|max:255|required|title:Opening date|help:The opening event will take place',
-            'free' => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
-            'block' => 'tag:code|name:block|title:Code Block|help:Simple web editor',
+            'name'        => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
+            'body'        => 'tag:wysiwyg|name:body|max:255|required|rows:10',
+            'datetime'    => 'tag:datetime|type:text|name:open|max:255|required|title:Opening date|help:The opening event will take place',
+            'free'        => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',
+            'block'       => 'tag:code|name:block|title:Code Block|help:Simple web editor',
             'title'       => 'tag:input|type:text|name:title|max:255|required|title:Article Title|help:SEO title',
             'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Short description',
             'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:SEO keywords',
