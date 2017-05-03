@@ -3,11 +3,11 @@
 
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <label class="col-lg-2 control-label">Название</label>
+            <label class="col-lg-2 control-label">{{trans('dashboard::systems/roles.name')}}</label>
 
             <div class="col-lg-10">
                 <input type="text" name="name" class="form-control" value="{{$role->name or ''}}">
-                <small class="help-block m-b-none">Отображаемое имя роли пользователя
+                <small class="help-block m-b-none">{{trans('dashboard::systems/roles.name_help')}}
                 </small>
             </div>
         </div>
@@ -15,11 +15,11 @@
         <div class="line line-dashed b-b line-lg"></div>
 
         <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
-            <label class="col-lg-2 control-label">Ссылка</label>
+            <label class="col-lg-2 control-label">{{trans('dashboard::systems/roles.slug')}}</label>
 
             <div class="col-lg-10">
                 <input type="text" class="form-control" name="slug" value="{{$role->slug or ''}}">
-                <small class="help-block m-b-none">Фактическое название в системе</small>
+                <small class="help-block m-b-none">{{trans('dashboard::systems/roles.slug_help')}}</small>
             </div>
         </div>
 

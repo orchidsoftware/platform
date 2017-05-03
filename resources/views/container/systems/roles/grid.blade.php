@@ -33,8 +33,8 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>Имя</th>
-                                    <th>Ссылка</th>
+                                    <th>{{trans('dashboard::systems/roles.name')}}</th>
+                                    <th>{{trans('dashboard::systems/roles.slug')}}</th>
                                     <th>{{trans('dashboard::common.Last edit')}}</th>
                                 </tr>
                                 </thead>
@@ -75,9 +75,9 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">Вы ещё не создали ни одной роли</h3>
+                        <h3 class="font-thin">{{trans('dashboard::systems/roles.not_found')}}</h3>
 
-                        <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">Создать</a>
+                        <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">{{trans('dashboard::systems/roles.create')}}</a>
                     </div>
                 </div>
 
