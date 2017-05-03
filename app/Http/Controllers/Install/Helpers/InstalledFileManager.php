@@ -28,14 +28,6 @@ class InstalledFileManager
             $env = preg_replace('/APP_INSTALL=false/', 'APP_INSTALL=true', $env);
         }
 
-        /*
-         * Fix problem
-         * algolia default enabled
-         */
-        if (!str_contains($env, 'SCOUT_DRIVER')) {
-            $env = "SCOUT_DRIVER=null\n" . $env;
-        }
-
         file_put_contents(base_path('.env'), $env);
     }
 }
