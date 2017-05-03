@@ -53,3 +53,15 @@
     </div>
 
 </div>
+
+
+
+<script src="/orchid/summernote/summernote.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            minHeight: 300
+        });
+
+    });
+</script>

@@ -22,8 +22,8 @@ class UserFormGroup extends FormGroup
     public function attributes() : array
     {
         return [
-            'name'        => 'Пользователи',
-            'description' => 'Описание раздела пользователи',
+            'name'        => trans('dashboard::systems/users.title'),
+            'description' => trans('dashboard::systems/users.description'),
         ];
     }
 

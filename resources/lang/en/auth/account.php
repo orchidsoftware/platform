@@ -26,5 +26,5 @@ return [
     'apply'              => 'Apply',
     'cancel'             => 'Cancel',
     'delete'             => 'Delete',
-    'ok'                 => 'OK'
+    'ok'                 => 'OK',
 ];

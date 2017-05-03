@@ -38,7 +38,7 @@ return [
             'zip'       => 'ZIP Archive PHP Extension',
             'xml'       => 'XML PHP Extension',
             'json'      => 'JSON PHP Extension',
-        ]
+        ],
     ],
 
     /*

@@ -13,7 +13,7 @@ class BaseUserForm extends Form
     /**
      * @var string
      */
-    public $name = 'Общие настройки';
+    public $name = 'Information';
 
     /**
      * Base Model.

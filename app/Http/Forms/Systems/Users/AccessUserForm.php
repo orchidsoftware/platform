@@ -13,7 +13,7 @@ class AccessUserForm extends Form
     /**
      * @var string
      */
-    public $name = 'Права доступа';
+    public $name = 'Permission';
 
     /**
      * Base Model.
