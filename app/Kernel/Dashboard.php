@@ -102,7 +102,8 @@ class Dashboard
      * @param                  $property
      * @param StorageInterface $storage
      */
-    public function registerStorage($property, StorageInterface $storage ){
+    public function registerStorage($property, StorageInterface $storage)
+    {
         $this->$property = $storage;
     }
 

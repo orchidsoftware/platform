@@ -2,7 +2,6 @@
 
 namespace Orchid\Kernel;
 
-
 interface StorageInterface
 {
 
@@ -29,5 +28,4 @@ interface StorageInterface
      * @return mixed
      */
     public function find($name);
-
 }
