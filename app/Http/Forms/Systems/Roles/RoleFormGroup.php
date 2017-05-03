@@ -22,8 +22,8 @@ class RoleFormGroup extends FormGroup
     public function attributes() : array
     {
         return [
-            'name'        => 'Роли',
-            'description' => 'Разделение прав доступа',
+            'name'        => trans('dashboard::systems/roles.title'),
+            'description' => trans('dashboard::systems/roles.description'),
         ];
     }
 
