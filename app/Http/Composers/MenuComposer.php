@@ -16,6 +16,10 @@ class MenuComposer
         $this->dashboard = $dashboard;
     }
 
+
+    /**
+     * Registering the main menu items
+     */
     public function compose()
     {
         $this->registerMenuPost($this->dashboard);

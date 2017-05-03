@@ -2,7 +2,7 @@
 
 namespace Orchid\Kernel;
 
-class Storage
+class Storage implements StorageInterface
 {
     /**
      * @var
@@ -25,6 +25,8 @@ class Storage
     }
 
     /**
+     * Add to storage
+     *
      * @param $class
      */
     public function add($class)
@@ -33,6 +35,8 @@ class Storage
     }
 
     /**
+     * Return all data to the repository
+     *
      * @return array
      */
     public function all() : array

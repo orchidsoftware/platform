@@ -12,23 +12,29 @@ trait Structure
 {
 
     /**
-     * Name type.
+     * Visible name of behavior
      *
      * @var
      */
     public $name = '';
 
     /**
+     * Visible description of behavior
+     *
      * @var string
      */
     public $description = '';
 
     /**
+     * A unique name for behavior
+     *
      * @var string
      */
     public $slug = '';
 
     /**
+     * Display Icon
+     *
      * @var string
      */
     public $icon = 'fa fa-folder-o';
@@ -63,6 +69,8 @@ trait Structure
     private $cultivated = null;
 
     /**
+     * Generate a ready-made html form for display to the user
+     *
      * @param string $language
      * @param null   $post
      *
@@ -233,6 +241,8 @@ trait Structure
     }
 
     /**
+     * All registered extensions specified in the behavior
+     *
      * @return array
      */
     public function getModules() : array
@@ -245,6 +255,8 @@ trait Structure
     }
 
     /**
+     * Check for a registered extension in the behavior
+     *
      * @return bool
      */
     public function checkModules() : bool
@@ -257,6 +269,8 @@ trait Structure
     }
 
     /**
+     * Display html forms of registered extensions
+     *
      * @return string
      */
     public function render()
@@ -303,7 +317,7 @@ trait Structure
     }
 
     /**
-     * Action save for sub form.
+     * Action update for sub form.
      */
     public function update()
     {
@@ -321,7 +335,7 @@ trait Structure
     }
 
     /**
-     * Action save for sub form.
+     * Action remove for sub form.
      */
     public function remove()
     {
@@ -339,6 +353,8 @@ trait Structure
     }
 
     /**
+     * Basic statuses possible for the object
+     *
      * @return array
      */
     public function status()

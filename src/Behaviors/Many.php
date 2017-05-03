@@ -9,11 +9,15 @@ abstract class Many implements PostInterface
     use Structure;
 
     /**
+     * Show the data to the user
+     *
      * @var bool
      */
     public $display = true;
 
     /**
+     * Is it possible to give data on api
+     *
      * @var bool
      */
     public $api = false;
@@ -26,12 +30,15 @@ abstract class Many implements PostInterface
     public $with = [];
 
     /**
+     * Registered fields for filling
+     *
      * @return mixed
      */
     abstract public function fields();
 
     /**
      * Raw data and fields to display
+     *
      * @return array
      */
     public function generateGrid() : array
@@ -61,6 +68,8 @@ abstract class Many implements PostInterface
     }
 
     /**
+     * Registered fields to display in the table
+     *
      * @return mixed
      */
     abstract public function grid();

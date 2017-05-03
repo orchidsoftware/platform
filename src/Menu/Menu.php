@@ -12,12 +12,14 @@ class Menu
      * @var
      */
     public $container;
+
     /**
      *  Position menu.
      *
      * @var
      */
     private $location;
+
     /**
      * Views display.
      *

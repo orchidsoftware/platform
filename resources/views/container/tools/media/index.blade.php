@@ -72,7 +72,7 @@
                                             <div class="link_icon">
 
                                                 <div v-if="file.type.includes('image')" class="img_icon"
-                                                     style="background-size: cover; background: no-repeat center center;display:inline-block; width:100%; height:100%;"
+                                                     style="background: no-repeat center center;display:inline-block; width:100%; height:100%;background-size: cover;"
                                                      v-bind:style="{ backgroundImage: 'url(' + encodeURI(file.path) + ')' }"
                                                 >
                                                 </div>

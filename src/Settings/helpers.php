@@ -2,39 +2,39 @@
 
 use Orchid\Settings\Facades\Setting;
 
-if (!function_exists('settings')) {
+if (!function_exists('setting')) {
     /**
      * @param      $key
      * @param null $default
      *
      * @return mixed
      */
-    function settings($key, $default = null)
+    function setting($key, $default = null)
     {
         return Setting::get($key, $default);
     }
 }
 
-if (!function_exists('settings_set')) {
+if (!function_exists('setting_set')) {
     /**
      * @param $key
      * @param $value
      *
      * @return mixed
      */
-    function settings_set(string $key, $value)
+    function setting_set(string $key, $value)
     {
         return Setting::set($key, $value);
     }
 }
 
-if (!function_exists('settings_forget')) {
+if (!function_exists('setting_forget')) {
     /**
      * @param $key
      *
      * @return mixed
      */
-    function settings_forget(string $key)
+    function setting_forget(string $key)
     {
         return Setting::forget($key);
     }

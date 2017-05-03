@@ -43,7 +43,7 @@ class Dashboard
     public $posts = [];
 
     /**
-     *  List register pages
+     * List register pages
      *
      * @var array|PageStorage
      */
@@ -94,6 +94,16 @@ class Dashboard
     public static function option($key, $default)
     {
         return array_get(static::$options, $key, $default);
+    }
+
+    /**
+     * Register storage of data
+     *
+     * @param                  $property
+     * @param StorageInterface $storage
+     */
+    public function registerStorage($property, StorageInterface $storage ){
+        $this->$property = $storage;
     }
 
     /**
