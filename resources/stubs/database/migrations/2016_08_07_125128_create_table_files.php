@@ -32,8 +32,8 @@ class CreateTableFiles extends Migration
         Schema::create('attachment_relationships', function (Blueprint $table) {
             $table->increments('id');
             $table->text('attachmentable_type');
-            $table->id('attachmentable_id');
-            $table->id('attachment_id');
+            $table->integer('attachmentable_id');
+            $table->integer('attachment_id');
 
 
             //$table->index(['attachmentable_type', 'attachmentable_id']);
