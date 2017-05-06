@@ -68,6 +68,8 @@ class Attachment extends Model
     }
 
     /**
+     * Relation Post
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function post() : BelongsTo
@@ -90,6 +92,8 @@ class Attachment extends Model
     }
 
     /**
+     * Return the address by which you can access the file
+     *
      * @param string $size
      * @param string $prefix
      *
@@ -130,6 +134,8 @@ class Attachment extends Model
             $this->relationships()->delete();
         }
 
+        $this->removePhysicalFile($this);
+
         return parent::delete();
     }
 
@@ -142,4 +148,21 @@ class Attachment extends Model
     {
         return $this->hasMany(static::$relationshipsModel, 'attachment_id');
     }
+
+    /**
+     * Physical removal of all copies of a file
+     *
+     * @param Attachment $attachment
+     */
+    private function removePhysicalFile(Attachment $attachment)
+    {
+        $storage = Storage::disk('public');
+
+        $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
+
+        foreach (array_keys(config('content.images', [])) as $format) {
+            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
+        }
+    }
+
 }

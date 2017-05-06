@@ -171,9 +171,7 @@ class AttachmentController extends Controller
      */
     public function destroy($id)
     {
-        $file = Attachment::find($id);
-        Storage::disk('public')->delete($file->path . $file->name);
-        $file->delete();
+        Attachment::find($id)->delete();
 
         return response(200);
     }
