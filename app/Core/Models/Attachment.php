@@ -164,5 +164,4 @@ class Attachment extends Model
             $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
         }
     }
-
 }
