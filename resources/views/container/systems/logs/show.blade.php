@@ -118,7 +118,7 @@
 
                                                 <td>{{ $entry->datetime->format('H:i:s') }}</td>
                                                 <td>
-                                                    <p class="text-ellipsis">{{ $entry->header }}</p>
+                                                    <span class="text-ellipsis">{{ $entry->header }}</span>
                                                 </td>
                                                 <td class="text-right">
                                                     @if ($entry->hasStack())
@@ -132,7 +132,7 @@
                                             @if ($entry->hasStack())
                                                 <tr>
                                                     <td colspan="4" class="no-padder">
-                                                            <pre class="collapse bg-black"
+                                                            <pre class="collapse bg-black no-border m-n no-radius"
                                                                  id="log-stack-{{ $key }}">
                                                                 {!! $entry->stack() !!}
                                                             </pre>
