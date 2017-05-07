@@ -122,18 +122,17 @@
                                                 </td>
                                                 <td class="text-right">
                                                     @if ($entry->hasStack())
-                                                        <a class="btn btn-xs btn-default" role="button"
+                                                        <a class="btn btn-xs btn-link" role="button"
                                                            data-toggle="collapse" href="#log-stack-{{ $key }}"
-                                                           aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                            <i class="fa fa-history" aria-hidden="true"></i> Stack
+                                                           aria-expanded="false" aria-controls="log-stack-{{ $key }}">Stack
                                                         </a>
                                                     @endif
                                                 </td>
                                             </tr>
                                             @if ($entry->hasStack())
                                                 <tr>
-                                                    <td colspan="4" class="stack">
-                                                            <pre class="stack-content collapse bg-black"
+                                                    <td colspan="4" class="no-padder">
+                                                            <pre class="collapse bg-black"
                                                                  id="log-stack-{{ $key }}">
                                                                 {!! $entry->stack() !!}
                                                             </pre>
