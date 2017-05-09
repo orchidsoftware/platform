@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Settings\Models;
+namespace Orchid\Setting\Models;
 
 use Illuminate\Support\Facades\Cache;
 

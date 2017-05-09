@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Settings\Models;
+namespace Orchid\Setting\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,13 +38,4 @@ class Setting extends Model
         'value' => 'array',
     ];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'key';
-    }
 }

@@ -69,7 +69,7 @@
       "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Log\\": "src/Log/",
       "Orchid\\Menu\\": "src/Menu/",
-      "Orchid\\Settings\\": "src/Settings/",
+      "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Behaviors\\": "src/Behaviors/",
       "Orchid\\Widget\\": "src/Widget/",
       "Orchid\\Defender\\": "src/Defender/",
