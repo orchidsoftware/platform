@@ -9,7 +9,7 @@ use Orchid\Alert\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Kernel\Dashboard;
 use Orchid\Log\LogServiceProvider;
-use Orchid\Settings\Providers\SettingsServiceProvider;
+use Orchid\Setting\Providers\SettingServiceProvider;
 use Orchid\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
@@ -120,7 +120,7 @@ class FoundationServiceProvider extends ServiceProvider
         return [
             \Cviebrock\EloquentSluggable\ServiceProvider::class,
             AlertServiceProvider::class,
-            SettingsServiceProvider::class,
+            SettingServiceProvider::class,
             WidgetServiceProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,

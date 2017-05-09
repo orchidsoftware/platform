@@ -4,7 +4,7 @@ namespace Orchid\Setting\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class SettingsServiceProvider extends ServiceProvider
+class SettingServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
