@@ -129,7 +129,6 @@ If you discover security related issues, please email bliz48rus@gmail.com instea
 ## Credits
 
 - [Alexandr Chernyaev](https://github.com/tabuna)
-- [Roman Pertsev](https://github.com/PertsevRoman)
 - [All Contributors](../../contributors)
 
 
