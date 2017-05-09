@@ -37,5 +37,4 @@ class Setting extends Model
     protected $casts = [
         'value' => 'array',
     ];
-
 }
