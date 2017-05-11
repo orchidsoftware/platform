@@ -3,7 +3,7 @@
 
 return [
 
-    'main'      => [
+    'main' => [
         'main'      => 'Главное меню',
         'tools'     => 'Инструменты',
         'pages'     => 'Страницы',
@@ -12,14 +12,14 @@ return [
         'marketing' => 'Маркетинг',
     ],
 
-    'tools'     => [
-        'menu'    => 'Меню',
-        'media'   => 'Медиа',
-        'category' => 'Категориям',
-        'attachment'  => 'Загрузка файлов',
+    'tools' => [
+        'menu'       => 'Меню',
+        'media'      => 'Медиа',
+        'category'   => 'Категориям',
+        'attachment' => 'Загрузка файлов',
     ],
 
-    'systems'   => [
+    'systems' => [
         'backup'   => 'Резервное копирование',
         'logs'     => 'Журнал событий',
         'settings' => 'Настройки',
@@ -34,6 +34,7 @@ return [
         'comment'     => 'Комментарии',
         'advertising' => 'Реклама',
         'utm'         => 'Генерация UTM',
+        'robots'      => 'Robots.txt',
     ],
 
 ];

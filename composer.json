@@ -57,7 +57,7 @@
   },
   "autoload": {
     "files": [
-      "src/Settings/helpers.php",
+      "src/Setting/helpers.php",
       "src/Alert/helpers.php",
       "src/Log/helpers.php"
     ],

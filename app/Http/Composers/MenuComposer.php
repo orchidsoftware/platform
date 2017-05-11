@@ -319,6 +319,16 @@ class MenuComposer
             'permission' => 'dashboard.marketing.utm',
             'sort'       => 10,
         ]);
+
+        $dashboard->menu->add('Marketing', [
+            'slug'       => 'robots',
+            'icon'       => 'fa fa-keyboard-o',
+            'route'      => route('dashboard.marketing.robots.index'),
+            'label'      => trans('dashboard::menu.Robots'),
+            'permission' => 'dashboard.marketing.robots',
+            'sort'       => 15,
+        ]);
+
     }
 
     /**

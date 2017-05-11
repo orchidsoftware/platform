@@ -202,6 +202,10 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.marketing.utm',
                     'description' => trans('dashboard::permission.marketing.utm'),
                 ],
+                [
+                    'slug'        => 'dashboard.marketing.robots',
+                    'description' => trans('dashboard::permission.marketing.robots'),
+                ],
             ],
 
         ];

@@ -34,6 +34,7 @@ return [
         'comment'     => 'Comments',
         'advertising' => 'Advertising',
         'utm'         => 'UTM tags',
+        'robots'      => 'Robots.txt',
     ],
 
 ];

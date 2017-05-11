@@ -16,22 +16,35 @@ $this->group([
     'namespace'  => 'Orchid\Http\Controllers\Marketing',
 ],
     function (\Illuminate\Routing\Router $router) {
-        $router->resource('comment', 'CommentController', ['names' => [
-            'index'   => 'dashboard.marketing.comment',
-            'create'  => 'dashboard.marketing.comment.create',
-            'edit'    => 'dashboard.marketing.comment.edit',
-            'update'  => 'dashboard.marketing.comment.update',
-            'store'   => 'dashboard.marketing.comment.store',
-            'destroy' => 'dashboard.marketing.comment.destroy',
-        ]]);
+        $router->resource('comment', 'CommentController', [
+            'names' => [
+                'index'   => 'dashboard.marketing.comment',
+                'create'  => 'dashboard.marketing.comment.create',
+                'edit'    => 'dashboard.marketing.comment.edit',
+                'update'  => 'dashboard.marketing.comment.update',
+                'store'   => 'dashboard.marketing.comment.store',
+                'destroy' => 'dashboard.marketing.comment.destroy',
+            ],
+        ]);
 
-        $router->resource('advertising', 'AdvertisingController', ['names' => [
-            'index'  => 'dashboard.marketing.advertising.index',
-            'create' => 'dashboard.marketing.advertising.create',
-            'edit'   => 'dashboard.marketing.advertising.edit',
-            'update' => 'dashboard.marketing.advertising.update',
-            'store'  => 'dashboard.marketing.advertising.store',
-        ]]);
+        $router->resource('advertising', 'AdvertisingController', [
+            'names' => [
+                'index'  => 'dashboard.marketing.advertising.index',
+                'create' => 'dashboard.marketing.advertising.create',
+                'edit'   => 'dashboard.marketing.advertising.edit',
+                'update' => 'dashboard.marketing.advertising.update',
+                'store'  => 'dashboard.marketing.advertising.store',
+            ],
+        ]);
 
         $router->get('utm', 'UTMController@index')->name('dashboard.marketing.utm.index');
+
+        $router->resource('robots', 'RobotsController', [
+            'names' => [
+                'index' => 'dashboard.marketing.robots.index',
+                'store' => 'dashboard.marketing.robots.store',
+            ],
+        ]);
+
+
     });
