@@ -46,5 +46,4 @@ class RobotsController extends Controller
 
         return redirect()->back();
     }
-
 }

@@ -328,7 +328,6 @@ class MenuComposer
             'permission' => 'dashboard.marketing.robots',
             'sort'       => 15,
         ]);
-
     }
 
     /**
