@@ -45,6 +45,4 @@ $this->group([
                 'store' => 'dashboard.marketing.robots.store',
             ],
         ]);
-
-
     });
