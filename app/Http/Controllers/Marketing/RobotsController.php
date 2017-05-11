@@ -3,7 +3,6 @@
 namespace Orchid\Http\Controllers\Marketing;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Orchid\Http\Controllers\Controller;
 
 class RobotsController extends Controller
@@ -12,7 +11,7 @@ class RobotsController extends Controller
     /**
      * @var
      */
-    public $storage;
+    public $path;
 
     /**
      * RobotsController constructor.
@@ -20,7 +19,7 @@ class RobotsController extends Controller
     public function __construct()
     {
         $this->checkPermission('dashboard.marketing.robots');
-        $this->storage = Storage::disk('public');
+        $this->path = public_path('robots.txt');
     }
 
     /**
@@ -28,7 +27,7 @@ class RobotsController extends Controller
      */
     public function index()
     {
-        $content = $this->storage->exists('file.jpg') ? $this->storage->get('robots.txt') : '';
+        $content = file_exists($this->path) ? file_get_contents($this->path) : '';
 
         return view('dashboard::container.marketing.robots.index', [
             'content' => $content,
@@ -42,7 +41,15 @@ class RobotsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->storage->put('robots.txt', $request->get('content', ''));
+        $file = fopen($this->path, "w");
+
+        fwrite($file, $request->get('content', ''));
+        fclose($file);
+
+
+        //$test = $this->storage->put('robots.txt', $request->get('content', ''));
+
+        //dd($test);
 
         return redirect()->back();
     }
