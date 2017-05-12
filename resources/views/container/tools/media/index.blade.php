@@ -326,9 +326,6 @@
     @push('scripts')
     <script type="text/javascript">
 
-
-        console.log('test');
-
         const manager = new Vue({
             el: '#filemanager',
             data: {
@@ -342,11 +339,7 @@
             }
         });
 
-
-        console.log('test2');
-
         CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
-
 
         var managerMedia = function (o) {
             var files = $('#files');
