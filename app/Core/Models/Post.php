@@ -359,6 +359,4 @@ class Post extends Model
     {
         return $query->whereIn('type', $type);
     }
-
-
 }
