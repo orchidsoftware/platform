@@ -4,6 +4,7 @@ namespace Orchid\Core\Models;
 
 use Cartalyst\Tags\TaggableTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -27,6 +28,7 @@ class Post extends Model
 
     /**
      * Recording behavior
+     *
      * @var null
      */
     protected $behavior = null;
@@ -308,25 +310,55 @@ class Post extends Model
     }
 
     /**
-     * Overriding newQuery() to the custom PostBuilder with some interesting methods.
+     * Get only published posts.
      *
-     * @param bool $excludeDeleted
+     * @param Builder $query
      *
-     * @return PostBuilder
+     * @return Builder
      */
-    public function newQuery($excludeDeleted = true) : PostBuilder
+    public function scopePublished(Builder $query) : Builder
     {
-        $builder = new PostBuilder($this->newBaseQueryBuilder());
-        $builder->setModel($this)->with($this->with);
-
-        if (isset($this->postType) && $this->postType) {
-            $builder->type($this->postType);
-        }
-
-        if ($excludeDeleted && $this->softDelete) {
-            $builder->whereNull($this->getQualifiedDeletedAtColumn());
-        }
-
-        return $builder;
+        return $query->status('publish');
     }
+
+    /**
+     * Get only posts with a custom status.
+     *
+     * @param Builder $query
+     * @param string  $postStatus
+     *
+     * @return Builder
+     */
+    public function scopeStatus(Builder $query, string $postStatus) : Builder
+    {
+        return $query->where('status', $postStatus);
+    }
+
+    /**
+     * Get only posts from a custom post type.
+     *
+     * @param Builder $query
+     * @param string  $type
+     *
+     * @return Builder
+     */
+    public function scopeType(Builder $query, string $type) : Builder
+    {
+        return $query->where('type', $type);
+    }
+
+    /**
+     * Get only posts from an array of custom post types.
+     *
+     * @param Builder $query
+     * @param array   $type
+     *
+     * @return Builder
+     */
+    public function scopeTypeIn(Builder $query, array $type) : Builder
+    {
+        return $query->whereIn('type', $type);
+    }
+
+
 }
