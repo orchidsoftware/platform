@@ -30,23 +30,8 @@
                             </tr>
                             </thead>
                             <tbody>
-
                             @foreach ($rows as $row)
                                 <tr>
-                                    {{--
-                                    <td>
-                                        <form action="{{route('dashboard.systems.schema.edit',$table)}}" method="post">
-
-                                            @foreach($row as $key => $value)
-                                                    <input type="hidden" name="fields[{{$key}}]" value="{{$value}}">
-                                            @endforeach
-
-                                            <input type="hidden" name="_method" value="get">
-                                            <button type="submit">Отправить</button>
-                                        </form>
-                                    </td>
-                                    --}}
-
                                     @foreach($row as $key => $value)
                                         <td><span class="text-ellipsis">{{ str_limit($value,100)}}</span></td>
                                     @endforeach

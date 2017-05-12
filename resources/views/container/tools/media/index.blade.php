@@ -320,6 +320,7 @@
     </div><!-- .page-content container-fluid -->
 
 
+
     <input type="hidden" id="storage_path" value="{{ storage_path() }}">
 
     @push('scripts')
@@ -349,10 +350,7 @@
 
         var managerMedia = function (o) {
             var files = $('#files');
-            var defaults = {
-                baseUrl: "/admin"
-            };
-            var options = $.extend(true, defaults, o);
+            var options = $.extend(true, {}, o);
             this.init = function () {
                 $("#upload").dropzone({
                     url: options.baseUrl + "/media/upload",

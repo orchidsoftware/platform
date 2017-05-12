@@ -70,10 +70,13 @@ class PostController extends Controller
 
         $post->fill($request->all());
 
-        $post->type = $type->slug;
-        $post->user_id = Auth::user()->id;
-        $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
-        $post->options = $post->getOptions();
+        $post->fill([
+            'type'       => $type->slug,
+            'user_id'    => Auth::user()->id,
+            'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
+            'options'    => $post->getOptions(),
+        ]);
+
 
         if ($request->has('slug')) {
             $slug = $request->get('slug');

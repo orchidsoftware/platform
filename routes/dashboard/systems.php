@@ -51,7 +51,6 @@ $this->group([
         $router->resource('schema', 'SchemaController', ['names' => [
             'index' => 'dashboard.systems.schema.index',
             'show'  => 'dashboard.systems.schema.show',
-            'edit'  => 'dashboard.systems.schema.edit',
         ]]);
 
         $router->resource('logs', 'LogController', ['names' => [
@@ -64,36 +63,6 @@ $this->group([
         $router->resource('defender', 'DefenderController', ['names' => [
             'index' => 'dashboard.systems.defender.index',
         ]]);
-
-        //Удалить/Изменить
-        $router->get('/logs2', [
-            'as'   => 'log-viewer::logs.list',
-            'uses' => 'LogController@listLogs',
-        ]);
-
-        //Удалить/Изменить
-        $router->delete('delete', [
-            'as'   => 'log-viewer::logs.delete',
-            'uses' => 'LogController@delete',
-        ]);
-
-        //Удалить/Изменить
-        $router->get('/test3/{test}', [
-            'as'   => 'log-viewer::logs.show',
-            'uses' => 'LogController@show',
-        ]);
-
-        //Удалить/Изменить
-        $router->get('download', [
-            'as'   => 'log-viewer::logs.download',
-            'uses' => 'LogController@download',
-        ]);
-
-        //Удалить/Изменить
-        $router->get('test4/{level}', [
-            'as'   => 'log-viewer::logs.filter',
-            'uses' => 'LogController@showByLevel',
-        ]);
 
         $router->get('monitor', [
             'as'   => 'dashboard.systems.monitor',

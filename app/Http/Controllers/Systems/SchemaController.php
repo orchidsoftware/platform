@@ -2,8 +2,6 @@
 
 namespace Orchid\Http\Controllers\Systems;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Orchid\Http\Controllers\Controller;
 use Orchid\Schema\Helpers;
 use Orchid\Schema\Schema;
@@ -79,24 +77,5 @@ class SchemaController extends Controller
             'rows'    => $rows,
             'table'   => $table,
         ]);
-    }
-
-
-    /**
-     * @param         $table
-     * @param Request $request
-     */
-    public function edit($table, Request $request)
-    {
-        $row = DB::table($table);
-
-        foreach ($request->get('fields') as $key => $value) {
-            $row = $row->where($key, $value);
-        }
-        $test = $row->limit(1)->first();
-
-        dd($test, 2);
-
-        dd($table, $request);
     }
 }

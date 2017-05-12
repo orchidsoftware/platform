@@ -10,10 +10,14 @@ use Orchid\Http\Controllers\Controller;
 
 class MediaController extends Controller
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $filesystem;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $directory = '';
 
     /**
