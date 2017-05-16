@@ -1,16 +1,16 @@
 <?php namespace Orchid\Filters;
 
-use Orchid\Core\Builders\PostBuilder;
+use Illuminate\Database\Eloquent\Builder;
 
 interface FilterInterface
 {
 
     /**
-     * @param PostBuilder $builder
+     * @param Builder $builder
      *
-     * @return PostBuilder
+     * @return Builder
      */
-    public function run(PostBuilder $builder) : PostBuilder;
+    public function run(Builder $builder) : Builder;
 
     /**
      * @return mixed

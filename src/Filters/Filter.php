@@ -1,8 +1,8 @@
 <?php namespace Orchid\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Orchid\Core\Builders\PostBuilder;
 
 abstract class Filter implements FilterInterface
 {
@@ -31,11 +31,11 @@ abstract class Filter implements FilterInterface
     }
 
     /**
-     * @param PostBuilder $builder
+     * @param Builder $builder
      *
-     * @return PostBuilder
+     * @return Builder
      */
-    public function filter(PostBuilder $builder) : PostBuilder
+    public function filter(Builder $builder) : Builder
     {
         if (!is_null($this->parameters) && $this->request->has($this->parameters)) {
             return $this->run($builder);
@@ -47,11 +47,11 @@ abstract class Filter implements FilterInterface
     }
 
     /**
-     * @param PostBuilder $builder
+     * @param Builder $builder
      *
      * @return mixed
      */
-    abstract public function run(PostBuilder $builder) : PostBuilder;
+    abstract public function run(Builder $builder) : Builder;
 
     /**
      * User mapping method
