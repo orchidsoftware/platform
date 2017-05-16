@@ -3,7 +3,7 @@
 
 return [
 
-    'main'      => [
+    'main' => [
         'main'      => 'Main menu',
         'tools'     => 'Tools',
         'pages'     => 'Pages',
@@ -12,14 +12,14 @@ return [
         'marketing' => 'Marketing',
     ],
 
-    'tools'     => [
-        'menu'    => 'Menu',
-        'media'   => 'Media',
-        'category' => 'Category',
-        'attachment'  => 'File upload',
+    'tools' => [
+        'menu'       => 'Menu',
+        'media'      => 'Media',
+        'category'   => 'Category',
+        'attachment' => 'File upload',
     ],
 
-    'systems'   => [
+    'systems' => [
         'backup'   => 'Backups',
         'logs'     => 'Logs',
         'settings' => 'Settings',

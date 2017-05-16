@@ -162,7 +162,7 @@ class MenuComposer
             'slug'       => 'media',
             'icon'       => 'icon-folder-alt',
             'route'      => route('dashboard.tools.media.index'),
-            'label'      => 'Media',
+            'label'      => trans('dashboard::menu.Media'),
             'childs'     => false,
             'divider'    => false,
             'permission' => 'dashboard.tools.media',
