@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Orchid\Core\Builders\PostBuilder;
 use Orchid\Core\Traits\MultiLanguage;
 use Orchid\Exceptions\TypeException;
 use Orchid\Facades\Dashboard;

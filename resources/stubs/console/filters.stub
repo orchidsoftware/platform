@@ -1,16 +1,16 @@
 <?php namespace DummyNamespace;
 
-use Orchid\Core\Builders\PostBuilder;
 use Orchid\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 
 class DummyClass extends Filter
 {
     /**
-     * @param PostBuilder $builder
+     * @param  Builder $builder
      *
-     * @return PostBuilder
+     * @return Builder
      */
-    public function run(PostBuilder $builder): PostBuilder
+    public function run(Builder $builder): Builder
     {
         return $builder;
     }
