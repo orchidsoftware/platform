@@ -17,91 +17,9 @@ Laravel Platform application provides a very flexible and extensible way of buil
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
-
-
 ## Official Documentation
 
 Documentation can be found at [Orchid website](https://theorchid.github.io/).
-
-
-
-<a href="https://theorchid.github.io/docs/screenshot/" target="_blank"><img src="https://cloud.githubusercontent.com/assets/5102591/24754053/901a3364-1add-11e7-993e-5bd8974de1c4.png"></a>
-
-
-
-## Installation
-
-Orchid based off [Laravel Framework](http://laravel.com), so before you put the Orchid, you must install [Laravel](http://laravel.com).
-
-You can see the installation on [youtube](https://youtu.be/e9B5eVw7yss)
-
-
-#### Via Composer
-
-Going your project directory on shell and run this command: 
-```sh
-$ composer require orchid/platform
-```
-
-####  Provider and Facades
-
-Add to `config/app.php`:
-
-Service provider to the 'providers' array:
-```php
-'providers' => [
-    // Laravel Framework Service Providers...
-    //...
-    
-    // Package Service Providers
-    Orchid\Providers\FoundationServiceProvider::class,
-    
-    // ...
-    
-    // Application Service Providers
-    // ...
-];
-```
-
-Facades aliases to the 'aliases' array:
-```php
-'aliases' => [
-    // ...
-    
-    'Alert'     => Orchid\Alert\Facades\Alert::class,
-    'Dashboard' => Orchid\Facades\Dashboard::class,
-    'Setting'   => Orchid\Setting\Facades\Setting::class,
-    'Active'    => Watson\Active\Facades\Active::class,
-];
-```
-
-
-#### User
-
-Inherit your model App\User
-
-```php
-namespace App;
-
-use Orchid\Core\Models\User as UserOrchid;
-
-class User extends UserOrchid
-{
-
-}
-
-```
-
-#### Finish
-
-
-> **Go to :**  http://your-application/dashboard
-
-The graphical installation does not work if the server is started using the `artisan serve` command, if you want to use a local server, please go to the public directory and run
-```php
-php -S localhost:8000
-```
-
 
 ## Learn More
 
