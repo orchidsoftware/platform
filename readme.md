@@ -5,9 +5,6 @@
 
 
 #
-<p align="center">
-Laravel Platform application provides a very flexible and extensible way of building your custom application.
-</p>
 
 <p align="center">
 <a href="https://www.paypal.me/tabuna/10usd"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg"></a>
