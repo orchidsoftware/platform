@@ -1,6 +1,6 @@
 {
   "name": "orchid/platform",
-  "description": "Orchid Platform application provides a very flexible and extensible way of building your custom application. ",
+  "description": "The Laravel CMS for website.",
   "keywords": [
     "framework",
     "laravel",
