@@ -16,7 +16,7 @@
 
 ## Official Documentation
 
-Documentation can be found at [Orchid website](https://theorchid.github.io/).
+Documentation can be found at [Orchid website](https://theorchid.github.io/docs/).
 
 ## Learn More
 
