@@ -22,6 +22,13 @@ abstract class Filter implements FilterInterface
     public $display = true;
 
     /**
+     * Current app language
+     *
+     * @var
+     */
+    public $lang;
+
+    /**
      * Filters constructor.
      */
     public function __construct()

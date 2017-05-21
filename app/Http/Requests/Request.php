@@ -2,7 +2,7 @@
 
 namespace Orchid\Http\Requests;
 
-use Illuminate\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 abstract class Request extends FormRequest
 {
