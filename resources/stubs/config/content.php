@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'locales'     => [
+    'locales'      => [
         'en' => [
             'name'     => 'English',
             'script'   => 'Latn',
@@ -141,7 +141,7 @@ return [
     | Starred areas for ad units
     |
     */
-    'advertising' => [
+    'advertising'  => [
         'top'    => 'Top banner',
         'side'   => 'Side banner',
         'footer' => 'Banner cellar',
@@ -156,7 +156,7 @@ return [
     | ...
     |
     */
-    'attachment'  => [
+    'attachment'   => [
         'image' => [
             'png',
             'jpg',
@@ -183,5 +183,16 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Widgets
+    |--------------------------------------------------------------------------
+    |
+    | Widgets that will be displayed on the main screen
+    |
+    */
+    'main_widgets' => [
+
+    ],
 
 ];
