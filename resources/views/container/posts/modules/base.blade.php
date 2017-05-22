@@ -31,7 +31,7 @@
 
     @if(!empty($type->views))
         <div class="form-group">
-            <label>{{trans('dashboard::post/general.status')}}</label>
+            <label>{{trans('dashboard::post/general.view')}}</label>
             <select name="options[view]" class="form-control">
                 @foreach($type->templates as $key => $value)
                     <option value="{{$key}}"

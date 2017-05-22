@@ -16,4 +16,5 @@ return [
     'changed'                  => '变',
     'not_found'                => '没有找到记录',
     'create'                   => '创建',
+    'view'                     => '显示模板',
 ];
