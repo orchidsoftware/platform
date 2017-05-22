@@ -2,9 +2,9 @@
 
 namespace Orchid\Behaviors;
 
-use Orchid\Behaviors\Contract\PostInterface;
+use Orchid\Behaviors\Contract\ManyInterface;
 
-abstract class Many implements PostInterface
+abstract class Many implements ManyInterface
 {
     use Structure;
 

@@ -2,7 +2,7 @@
 
 namespace Orchid\Behaviors\Contract;
 
-interface PostInterface
+interface ManyInterface
 {
     /**
      * @return array

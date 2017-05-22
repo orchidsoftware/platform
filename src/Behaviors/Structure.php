@@ -51,7 +51,7 @@ trait Structure
      *
      * @var
      */
-    public $templates = [];
+    public $views = [];
 
     /**
      * @var Model
