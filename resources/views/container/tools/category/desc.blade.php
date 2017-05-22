@@ -40,7 +40,7 @@
                             <textarea name="content[{{$code}}][body]"
                                       required class="form-control summernote"
                                       placeholder="{{trans('dashboard::tools/category.descriptions')}}">
-                                   @if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('body')}}@endif
+                                   @if($termTaxonomy->exists) {{$termTaxonomy->term->getContent('body',$code)}}@endif
                             </textarea>
                         </div>
                     </div>
