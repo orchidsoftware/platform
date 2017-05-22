@@ -33,7 +33,7 @@
         <div class="form-group">
             <label>{{trans('dashboard::post/general.view')}}</label>
             <select name="options[view]" class="form-control">
-                @foreach($type->templates as $key => $value)
+                @foreach($type->views as $key => $value)
                     <option value="{{$key}}"
                             @if(!is_null($post) && $post->getOption('view') == $key) selected @endif >
                         {{$value}}</option>
