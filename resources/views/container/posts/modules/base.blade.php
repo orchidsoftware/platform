@@ -28,6 +28,21 @@
         </select>
     </div>
     <div class="line line-dashed b-b line-lg"></div>
+
+    @if(!empty($type->templates))
+        <div class="form-group">
+            <label>{{trans('dashboard::post/general.status')}}</label>
+            <select name="meta[templates]" class="form-control">
+                @foreach($type->templates as $key => $value)
+                    <option value="{{$key}}"
+                            @if(!is_null($post) && $post->getMeta('templates') == $key) selected @endif >
+                        {{$value}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="line line-dashed b-b line-lg"></div>
+    @endif
+
     <div class="form-group">
         <label>{{trans('dashboard::post/general.tags')}}</label>
         <input type="text" class="form-control" data-role="tagsinput"
