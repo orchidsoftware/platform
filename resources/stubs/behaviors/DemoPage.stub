@@ -46,7 +46,7 @@ class DemoPage extends Single
     /**
      * @return array
      */
-    public function fields()
+    public function fields() : array
     {
         return [
             'name'        => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
@@ -64,7 +64,7 @@ class DemoPage extends Single
     /**
      * @return array
      */
-    public function modules()
+    public function modules() : array
     {
         return [
             UploadPostForm::class,

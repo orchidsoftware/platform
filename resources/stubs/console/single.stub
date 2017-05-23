@@ -44,7 +44,7 @@ class DummyClass extends Single
     /**
      * @return array
      */
-    public function fields()
+    public function fields() : array
     {
         return [];
     }
@@ -52,7 +52,7 @@ class DummyClass extends Single
     /**
      * @return array
      */
-    public function modules()
+    public function modules() : array
     {
         return [];
     }

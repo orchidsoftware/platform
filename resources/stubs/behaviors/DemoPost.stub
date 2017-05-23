@@ -47,7 +47,7 @@ class DemoPost extends Many
     /**
      * @return array
      */
-    public function fields()
+    public function fields() : array
     {
         return [
             'name'        => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
@@ -65,7 +65,7 @@ class DemoPost extends Many
     /**
      * @return array
      */
-    public function modules()
+    public function modules() : array
     {
         return [
             BasePostForm::class,
@@ -76,7 +76,7 @@ class DemoPost extends Many
     /**
      * Grid View for post type.
      */
-    public function grid()
+    public function grid() : array
     {
         return [
             'name'       => 'Name',

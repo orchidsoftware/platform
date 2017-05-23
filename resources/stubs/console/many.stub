@@ -30,7 +30,7 @@ class DummyClass extends Many
      * Rules Validation.
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [];
     }
@@ -38,7 +38,7 @@ class DummyClass extends Many
     /**
      * @return array
      */
-    public function fields()
+    public function fields() : array
     {
         return [];
     }
@@ -46,7 +46,7 @@ class DummyClass extends Many
     /**
      * Grid View for post type.
      */
-    public function grid()
+    public function grid() : array
     {
         return [];
     }
@@ -54,7 +54,7 @@ class DummyClass extends Many
     /**
      * @return array
      */
-    public function modules()
+    public function modules() : array
     {
         return [];
     }
