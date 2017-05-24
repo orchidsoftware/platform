@@ -1,9 +1,82 @@
 .dropzone {
   border: none;
-  .dz-preview .dz-image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+  .dz-preview {
+    margin: 0.7em;
+
+    .dz-image {
+
+      .img-rounded;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        .b;
+        .box-shadow;
+      }
+    }
+
+    .btn-remove {
+      .btn;
+      .btn-default;
+      .btn-sm;
+      position: absolute;
+      top: -10px;
+      z-index: 50;
+      right: -10px;
+      border-radius: 50px;
+    }
+
+    .btn-edit {
+      .btn;
+      position: absolute;
+      bottom: 0;
+      z-index: 50;
+      left: 0;
+      width: 100%;
+      display: none;
+      background-color: rgba(255, 255, 255, .4);
+      padding: 0 .6em;
+      border-radius: 3px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    &:hover {
+      .btn-edit {
+        display: block;
+      }
+    }
+
   }
+
+  img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .bg-light;
+  }
+
+  img:after {
+    content: "\f127";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    .fa-2x;
+  }
+
+
 
 }

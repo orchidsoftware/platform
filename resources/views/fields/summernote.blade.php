@@ -22,7 +22,31 @@
 <script>
     $(document).ready(function () {
         $('.summernote').summernote({
-            minHeight: 300
+            minHeight: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            /* all tools
+             toolbar: [
+             ['font', [
+             'fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript' , 'clear'
+             ]],
+             ['style', [
+             'style', 'ol', 'ul', 'paragraph', 'height'
+             ]],
+             ['insert', [
+             'picture', 'link', 'video', 'table', 'hr',
+             ]],
+             ['misc', [
+             'fullscreen', 'codeview', 'undo', 'redo',
+             ]],
+             ] */
         });
 
     });

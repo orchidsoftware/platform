@@ -10,16 +10,35 @@ $(function () {
             paramName: "files",
             maxThumbnailFilesize: 99999,
             previewsContainer: '.visual-dropzone',
-            addRemoveLinks: true,
+            //previewTemplate: document.getElementById('preview-template').innerHTML,
+            addRemoveLinks: false,
             dictFileTooBig: 'File is big',
 
+
             init: function () {
+
+                this.on("addedfile", function (e) {
+                    var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'><i class='fa fa-times' aria-hidden='true'></i></a>"),
+                        t = this;
+                    n.addEventListener("click", function (n) {
+                        n.preventDefault(), n.stopPropagation(), t.removeFile(e)
+                    }), e.previewElement.appendChild(n)
+
+                    /*
+                     var n = Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"),
+                     t = this;
+                     n.addEventListener("click", function (n) {
+                     alert('Редактирование будет позднее');
+                     }), e.previewElement.appendChild(n)
+                     */
+
+                });
+
                 this.on('completemultiple', function (file, json) {
                     $('.sortable-dropzone').sortable('enable');
                 });
 
                 var instanceDropZone = this;
-
 
                 var id = $('#post').data('post-id');
                 if (id !== undefined) {
@@ -51,7 +70,6 @@ $(function () {
 
                             });
 
-
                             $('.dz-progress').remove();
                         }
                     });
@@ -64,9 +82,7 @@ $(function () {
 
                 this.on("removedfile", function (file) {
 
-
                     $(".files-" + file.data.id).remove();
-
 
                     $.ajax({
                         type: 'delete',
@@ -116,16 +132,9 @@ $(function () {
                     }
                 });
 
-
             }
         });
 
 
     }
 });
-
-
-
-
-
-
