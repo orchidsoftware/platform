@@ -12,24 +12,24 @@
         <section class="wrapper">
             <div class="bg-white-only bg-auto no-border-xs">
                 <div class="wrapper-lg">
-                    <header>
+                    <header class="m-b-md">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                                 <h1 class="font-thin m-n" id="view-name"></h1>
-                                <div id="embed-api-auth-container" class="small"></div>
+                                <div id="embed-api-auth-container" class="small text-muted m-t-xs"></div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div id="active-users-container" class="pull-right text-right"></div>
                             </div>
                     </div>
 
-                        <div id="view-selector-container"></div>
+                        <div id="view-selector-container" class="row padder-v m-t-md"></div>
                     </header>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="Chartjs">
-                                <h3 class="font-thin">This Week vs Last Week <br>
-                                    <small>(by sessions)</small>
+                                <h3 class="font-thin m-b-md">This Week vs Last Week <br>
+                                    <small class="text-xs">(by sessions)</small>
                                 </h3>
                                 <figure class="Chartjs-figure" id="chart-1-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-1-container"></ol>
@@ -37,8 +37,8 @@
                     </div>
                         <div class="col-md-6">
                             <div class="Chartjs">
-                                <h3 class="font-thin">This Year vs Last Year <br>
-                                    <small> (by users)</small>
+                                <h3 class="font-thin m-b-md">This Year vs Last Year <br>
+                                    <small class="text-xs">(by users)</small>
                                 </h3>
                                 <figure class="Chartjs-figure" id="chart-2-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-2-container"></ol>
@@ -48,8 +48,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="Chartjs">
-                                <h3 class="font-thin">Top Browsers <br>
-                                    <small>(by pageview)</small>
+                                <h3 class="font-thin m-b-md">Top Browsers <br>
+                                    <small class="text-xs">(by pageview)</small>
                                 </h3>
                                 <figure class="Chartjs-figure" id="chart-3-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-3-container"></ol>
@@ -57,8 +57,8 @@
                     </div>
                         <div class="col-md-6">
                             <div class="Chartjs">
-                                <h3 class="font-thin">Top Countries <br>
-                                    <small>(by sessions)</small>
+                                <h3 class="font-thin m-b-md">Top Countries <br>
+                                    <small class="text-xs">(by sessions)</small>
                                 </h3>
                                 <figure class="Chartjs-figure" id="chart-4-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-4-container"></ol>
@@ -339,7 +339,6 @@
                  * show the top 5 browsers over the past seven days.
                  */
                 function renderTopBrowsersChart(ids) {
-
                     query({
                         'ids': ids,
                         'dimensions': 'ga:browser',
