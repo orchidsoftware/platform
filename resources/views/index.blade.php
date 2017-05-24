@@ -9,7 +9,7 @@
     @if(config('services.google.analytics.key'))
 
         <!-- Step 1: Create the containing elements. -->
-        <section class="wrapper">
+        <section class="wrapper google-analytics">
             <div class="bg-white-only bg-auto no-border-xs">
                 <div class="wrapper-lg">
                     <header class="m-b-md">
