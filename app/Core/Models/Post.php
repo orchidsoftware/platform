@@ -214,10 +214,10 @@ class Post extends Model
     {
         if (!is_null($type)) {
             return $this->hasMany(Attachment::class)->whereIn('extension',
-                config('content.attachment.' . $type));
+                config('content.attachment.' . $type))->orderBy('sort', 'asc');
         }
 
-        return $this->hasMany(Attachment::class);
+        return $this->hasMany(Attachment::class)->orderBy('sort', 'asc');
     }
 
     /**

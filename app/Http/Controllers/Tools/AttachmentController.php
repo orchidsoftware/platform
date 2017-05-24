@@ -183,7 +183,7 @@ class AttachmentController extends Controller
      */
     public function getFilesPost($id)
     {
-        $files = Attachment::where('post_id', $id)->get();
+        $files = Attachment::where('post_id', $id)->orderBy('sort', 'asc')->get();
 
         return response()->json($files);
     }
