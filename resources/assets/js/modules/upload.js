@@ -1,6 +1,50 @@
 $(function () {
     if (document.getElementsByClassName("dropzone").length > 0) {
 
+
+        var attachmentDescription = new Vue({
+            el: '#modalAttachment',
+            data: {
+                attachment: {},
+                active: null,
+            },
+            methods: {
+                loadInfo: function (data) {
+
+                    let name = data.name + data.id;
+
+                    if (!this.attachment.hasOwnProperty(name)) {
+                        this.attachment[name] = data;
+                    }
+                    this.active = name;
+                },
+                save: function () {
+
+                    let data = this.attachment[this.active];
+
+                    $('#modalAttachment').modal('toggle');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/dashboard/tools/files/post/' + data.id,
+                        data: {
+                            _token: $("meta[name='csrf_token']").attr('content'),
+                            attachment: data,
+                            _method: "PUT"
+                        },
+                        dataType: 'html',
+                        success: function (data) {
+                            alert('всё гуд');
+                        }
+                    });
+
+
+                }
+            }
+        });
+
+
+
         var postDropzone = new Dropzone(".dropzone", {
             url: '/dashboard/tools/files',
             method: "post",
@@ -24,13 +68,13 @@ $(function () {
                         n.preventDefault(), n.stopPropagation(), t.removeFile(e)
                     }), e.previewElement.appendChild(n)
 
-                    /*
+
                      var n = Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"),
                      t = this;
                      n.addEventListener("click", function (n) {
-                     alert('Редактирование будет позднее');
+                         attachmentDescription.loadInfo(e.data);
+                         $('#modalAttachment').modal('show')
                      }), e.previewElement.appendChild(n)
-                     */
 
                 });
 

@@ -44,6 +44,11 @@ $this->group([
             'uses' => 'AttachmentController@getFilesPost',
         ]);
 
+        $router->put('files/post/{id}', [
+            'as'   => 'dashboard.tools.files.update',
+            'uses' => 'AttachmentController@update',
+        ]);
+
         $router->resource('menu', 'MenuController', ['names' => [
             'index'  => 'dashboard.tools.menu.index',
             'show'   => 'dashboard.tools.menu.show',

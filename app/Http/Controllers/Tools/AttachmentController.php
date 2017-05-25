@@ -103,7 +103,8 @@ class AttachmentController extends Controller
         $width = null,
         $height = null,
         $quality = 100
-    ) {
+    )
+    {
         if (!is_null($name)) {
             $name = '_' . $name;
         }
@@ -186,5 +187,20 @@ class AttachmentController extends Controller
         $files = Attachment::where('post_id', $id)->orderBy('sort', 'asc')->get();
 
         return response()->json($files);
+    }
+
+    /**
+     * @param         $id
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function update($id, Request $request)
+    {
+        $files = Attachment::findOrFail($id);
+        $files->fill($request->get('attachment', []));
+        $files->save();
+
+        return response(200);
     }
 }
