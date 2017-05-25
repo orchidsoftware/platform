@@ -55,7 +55,6 @@
 </div>
 
 
-
 <script src="/orchid/summernote/summernote.min.js"></script>
 <script>
     $(document).ready(function () {

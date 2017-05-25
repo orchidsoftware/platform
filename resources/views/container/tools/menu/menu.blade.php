@@ -12,23 +12,23 @@
         <ul class="nav navbar-nav navbar-right">
 
             <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
 
-                        @foreach($locales as $code => $locale)
-                            @if($currentLocale == $code)
-                                <li class="disabled">
-                                    <a>{{$locale['native']}}</a>
-                                </li>
-                            @else
-                                <li>
-                                    <a href="?lang={{$code}}">{{$locale['native']}}</a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </li>
+                    @foreach($locales as $code => $locale)
+                        @if($currentLocale == $code)
+                            <li class="disabled">
+                                <a>{{$locale['native']}}</a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="?lang={{$code}}">{{$locale['native']}}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
         </ul>
 
     </div>

@@ -77,7 +77,8 @@
                     <div>
                         <h3 class="font-thin">{{trans('dashboard::systems/roles.not_found')}}</h3>
 
-                        <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">{{trans('dashboard::systems/roles.create')}}</a>
+                        <a href="{{ route('dashboard.systems.roles.create')}}"
+                           class="btn btn-link">{{trans('dashboard::systems/roles.create')}}</a>
                     </div>
                 </div>
 

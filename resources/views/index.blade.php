@@ -21,7 +21,7 @@
                             <div class="col-md-3">
                                 <div id="active-users-container" class="pull-right text-right"></div>
                             </div>
-                    </div>
+                        </div>
 
                         <div id="view-selector-container" class="row padder-v m-t-md"></div>
                     </header>
@@ -34,7 +34,7 @@
                                 <figure class="Chartjs-figure" id="chart-1-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-1-container"></ol>
                             </div>
-                    </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="Chartjs">
                                 <h3 class="font-thin m-b-md">This Year vs Last Year <br>
@@ -43,7 +43,7 @@
                                 <figure class="Chartjs-figure" id="chart-2-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-2-container"></ol>
                             </div>
-                    </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -54,7 +54,7 @@
                                 <figure class="Chartjs-figure" id="chart-3-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-3-container"></ol>
                             </div>
-                    </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="Chartjs">
                                 <h3 class="font-thin m-b-md">Top Countries <br>
@@ -63,7 +63,7 @@
                                 <figure class="Chartjs-figure" id="chart-4-container"></figure>
                                 <ol class="Chartjs-legend" id="legend-4-container"></ol>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
