@@ -70,7 +70,7 @@ class Defender
      *
      * @return array
      */
-    private function getDirContents(string $dir, array &$results = []) : array
+    private function getDirContents(string $dir, array &$results = []): array
     {
         $files = scandir($dir);
 
@@ -94,7 +94,7 @@ class Defender
      *
      * @return Defender
      */
-    public function scan() : Defender
+    public function scan(): Defender
     {
         $files = $this->extensionsFile($this->files);
 
@@ -127,7 +127,7 @@ class Defender
      *
      * @return array
      */
-    private function extensionsFile(array $files) : array
+    private function extensionsFile(array $files): array
     {
         $extensionsFiles = [];
 
@@ -145,7 +145,7 @@ class Defender
      *
      * @return bool
      */
-    private function checkForValidPhp($content) : bool
+    private function checkForValidPhp($content): bool
     {
         $len = strlen($content);
         $start = 0;
@@ -173,7 +173,7 @@ class Defender
      *
      * @return Defender
      */
-    public function loadSignatures(array $signatures) : Defender
+    public function loadSignatures(array $signatures): Defender
     {
         $this->signatures = $signatures;
 
@@ -185,7 +185,7 @@ class Defender
      *
      * @return Defender
      */
-    public function loadExtensions(array $extensions) : Defender
+    public function loadExtensions(array $extensions): Defender
     {
         $this->extensions = $extensions;
 
@@ -197,7 +197,7 @@ class Defender
      *
      * @return Defender
      */
-    public function loadExceptionsValid(array $exceptionsValid) : Defender
+    public function loadExceptionsValid(array $exceptionsValid): Defender
     {
         $this->exceptionsValid = $exceptionsValid;
 
@@ -207,7 +207,7 @@ class Defender
     /**
      * @return array
      */
-    public function infoDanger() : array
+    public function infoDanger(): array
     {
         $files = [];
         foreach ($this->dangerFiles as $file) {
@@ -220,7 +220,7 @@ class Defender
     /**
      * @return Defender
      */
-    public function export() : Defender
+    public function export(): Defender
     {
         $export = new Export();
         $export->export($this);

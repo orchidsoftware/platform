@@ -28,7 +28,7 @@ class MysqlWrapper implements WrapperContract
     /**
      * @return mixed
      */
-    public function getSchema() : array
+    public function getSchema(): array
     {
         foreach ($this->getTables() as $table) {
             $columns = $this->getColumns($table);
@@ -42,7 +42,7 @@ class MysqlWrapper implements WrapperContract
     /**
      * @return array
      */
-    public function getTables() : array
+    public function getTables(): array
     {
         $tables = $this->baseSchema->database->select('SHOW TABLES');
         $attribute = 'Tables_in_' . $this->baseSchema->getDatabaseName();
@@ -57,7 +57,7 @@ class MysqlWrapper implements WrapperContract
      *
      * @return array
      */
-    public function getColumns(string $tableName) : array
+    public function getColumns(string $tableName): array
     {
         return $this->transformColumns($this->baseSchema->database->select('SHOW COLUMNS FROM ' . $tableName));
     }
@@ -69,7 +69,7 @@ class MysqlWrapper implements WrapperContract
      *
      * @return array
      */
-    private function transformColumns(array $columns) : array
+    private function transformColumns(array $columns): array
     {
         return array_map(function ($column) {
             return get_object_vars($column);

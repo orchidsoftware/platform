@@ -78,9 +78,9 @@ trait Structure
      *
      * @return string
      */
-    public function generateForm(string $language = 'en', $post = null) : string
+    public function generateForm(string $language = 'en', $post = null): string
     {
-        $this->fields = (array) $this->fields();
+        $this->fields = (array)$this->fields();
         $this->parseFields();
 
         $form = '';
@@ -160,7 +160,7 @@ trait Structure
      *
      * @return array
      */
-    protected function explodeFields(array $rules) : array
+    protected function explodeFields(array $rules): array
     {
         foreach ($rules as $key => $rule) {
             if (Str::contains($key, '*')) {
@@ -185,7 +185,7 @@ trait Structure
      *
      * @return array
      */
-    protected function parseStringFields(string $rules) : array
+    protected function parseStringFields(string $rules): array
     {
         $parameters = [];
         // The format for specifying validation rules and parameters follows an
@@ -209,7 +209,7 @@ trait Structure
      *
      * @return array
      */
-    protected function parseParameters(string $rule, string $parameter) : array
+    protected function parseParameters(string $rule, string $parameter): array
     {
         if (strtolower($rule) == 'regex') {
             return [$parameter];
@@ -223,7 +223,7 @@ trait Structure
      *
      * @return bool
      */
-    public function isValid() : bool
+    public function isValid(): bool
     {
         Validator::make(request()->all(), $this->rules())->validate();
 
@@ -235,7 +235,7 @@ trait Structure
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [];
     }
@@ -245,7 +245,7 @@ trait Structure
      *
      * @return array
      */
-    public function getModules() : array
+    public function getModules(): array
     {
         if ($this->checkModules()) {
             return $this->modules();
@@ -259,7 +259,7 @@ trait Structure
      *
      * @return bool
      */
-    public function checkModules() : bool
+    public function checkModules(): bool
     {
         if (method_exists($this, 'modules') && !empty($this->modules())) {
             return true;
@@ -370,7 +370,7 @@ trait Structure
      *
      * @return string
      */
-    public function route() : string
+    public function route(): string
     {
         return '';
     }

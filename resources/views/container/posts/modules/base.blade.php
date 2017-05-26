@@ -53,7 +53,8 @@
     <div class="line line-dashed b-b line-lg"></div>
     <div class="form-group">
         <label class="control-label">{{trans('dashboard::post/general.show_in_categories')}}</label>
-        <select name="category[]" multiple data-placeholder="Select Category" class="select2 form-control">
+        <select name="category[]" multiple data-placeholder="{{trans('dashboard::post/general.select_category')}}"
+                class="select2 form-control">
             @foreach($category as  $value)
                 <option value="{{$value->id}}"
                         @if($value->active) selected @endif >

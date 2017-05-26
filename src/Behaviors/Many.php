@@ -41,7 +41,7 @@ abstract class Many implements ManyInterface
      *
      * @return array
      */
-    public function generateGrid() : array
+    public function generateGrid(): array
     {
         $fields = $this->grid();
         $model = new $this->model();

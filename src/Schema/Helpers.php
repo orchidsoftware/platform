@@ -27,7 +27,7 @@ trait Helpers
      *
      * @return bool
      */
-    public function isNamespaceModel(string $namespaceModel) : bool
+    public function isNamespaceModel(string $namespaceModel): bool
     {
         return str_contains($namespaceModel, '\\');
     }

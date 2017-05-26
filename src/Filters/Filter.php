@@ -42,7 +42,7 @@ abstract class Filter implements FilterInterface
      *
      * @return Builder
      */
-    public function filter(Builder $builder) : Builder
+    public function filter(Builder $builder): Builder
     {
         if (!is_null($this->parameters) && $this->request->has($this->parameters)) {
             return $this->run($builder);
@@ -58,7 +58,7 @@ abstract class Filter implements FilterInterface
      *
      * @return mixed
      */
-    abstract public function run(Builder $builder) : Builder;
+    abstract public function run(Builder $builder): Builder;
 
     /**
      * User mapping method
