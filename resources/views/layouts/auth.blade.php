@@ -33,7 +33,7 @@
 
     <div class="bg-pic">
 
-        <img src="{{config('content.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
+        <img src="{{config('content.auth.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
 
 
         <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">

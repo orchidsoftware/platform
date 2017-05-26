@@ -14,9 +14,17 @@ return [
     'install' => env('APP_INSTALL', false),
 
     /*
-     * Available settings
-     */
-    'image'   => '/orchid/img/background.jpg',
+    |--------------------------------------------------------------------------
+    | Auth
+    |--------------------------------------------------------------------------
+    |
+    | Available settings
+    |
+    */
+    'auth'    => [
+        'display' => true,
+        'image'   => '/orchid/img/background.jpg',
+    ],
 
     /*
     |--------------------------------------------------------------------------

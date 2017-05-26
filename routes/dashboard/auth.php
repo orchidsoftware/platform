@@ -16,13 +16,17 @@ $this->group([
 ],
     function (\Illuminate\Routing\Router $router) {
         // Authentication Routes...
-        $router->get('login', 'LoginController@showLoginForm')->name('login');
-        $router->post('login', 'LoginController@login');
+        if (config('content.auth.display', true)) {
+            $router->get('login', 'LoginController@showLoginForm')->name('login');
+            $router->post('login', 'LoginController@login');
+        }
         $router->post('logout', 'LoginController@logout');
 
         // Password Reset Routes...
-        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm');
-        $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm');
-        $router->post('password/reset', 'ResetPasswordController@reset');
+        if (config('content.auth.display', true)) {
+            $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm');
+            $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+            $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm');
+            $router->post('password/reset', 'ResetPasswordController@reset');
+        }
     });
