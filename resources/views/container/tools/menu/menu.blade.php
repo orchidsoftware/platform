@@ -309,6 +309,7 @@
 
                     this.clear();
                     $('#menuEdit').modal('hide');
+                    menu.send();
                 },
                 remove: function () {
                     $('li[data-id=' + this.id + ']').remove();
