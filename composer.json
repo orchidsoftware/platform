@@ -79,7 +79,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Orchid\\Tests\\": "tests"
     }
   },
   "extra": {

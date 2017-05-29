@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Settings;
+namespace Orchid\Tests\Settings;
 
 use Illuminate\Foundation\Testing\TestCase;
-use Orchid\Settings\Facades\Setting;
-use Tests\CreatesApplicationOrchid;
+use Orchid\Setting\Facades\Setting;
+use Orchid\Tests\CreatesApplicationOrchid;
 
 class SettingsTest extends TestCase
 {
