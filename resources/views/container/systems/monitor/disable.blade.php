@@ -9,7 +9,7 @@
 @section('content')
 
 
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper-lg bg-white col-md-6">
 
 

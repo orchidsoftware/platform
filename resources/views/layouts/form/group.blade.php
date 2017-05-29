@@ -11,7 +11,7 @@
     </div>
 @stop
 @section('content')
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper">
         <div class="bg-white-only bg-auto no-border-xs">
             <div class="nav-tabs-alt">
@@ -44,5 +44,5 @@
             </form>
         </div>
     </section>
-    <!-- / main content -->
+    <!-- / main content  -->
 @stop

@@ -9,7 +9,7 @@ class AdvertisingBaseListener
     /**
      * @return string
      */
-    public function handle() : string
+    public function handle(): string
     {
         return AdvertisingMainForm::class;
     }

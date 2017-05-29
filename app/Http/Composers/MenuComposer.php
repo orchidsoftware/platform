@@ -27,10 +27,6 @@ class MenuComposer
         $this->registerMenuTools($this->dashboard);
         $this->registerMenuSystems($this->dashboard);
         $this->registerMenuMarketing($this->dashboard);
-
-        //Experimentally!
-        //$this->registerMenuCRM($this->dashboard);
-        //$this->registerMenuCommerce($this->dashboard);
     }
 
 
@@ -327,42 +323,6 @@ class MenuComposer
             'label'      => trans('dashboard::menu.robots'),
             'permission' => 'dashboard.marketing.robots',
             'sort'       => 15,
-        ]);
-    }
-
-    /**
-     * @param Dashboard $dashboard
-     */
-    public function registerMenuCRM(Dashboard $dashboard)
-    {
-        $dashboard->menu->add('Main', [
-            'slug'       => 'CRM',
-            'icon'       => 'icon-organization',
-            'route'      => '#',
-            'label'      => 'CRM',//trans('dashboard::menu.Systems'),
-            'childs'     => true,
-            'main'       => true,
-            //'active'     => 'dashboard.systems.*',
-            'permission' => 'dashboard.index',
-            'sort'       => 10,
-        ]);
-    }
-
-    /**
-     * @param Dashboard $dashboard
-     */
-    public function registerMenuCommerce(Dashboard $dashboard)
-    {
-        $dashboard->menu->add('Main', [
-            'slug'       => 'Commerce',
-            'icon'       => 'icon-bag',
-            'route'      => '#',
-            'label'      => 'eCommerce',//trans('dashboard::menu.Systems'),
-            'childs'     => true,
-            'main'       => true,
-            //'active'     => 'dashboard.systems.*',
-            'permission' => 'dashboard.index',
-            'sort'       => 20,
         ]);
     }
 }

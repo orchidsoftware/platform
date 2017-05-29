@@ -45,7 +45,7 @@ class ConsoleServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    public function provides() : array
+    public function provides(): array
     {
         $provides = [];
         foreach ($this->commands as $command) {

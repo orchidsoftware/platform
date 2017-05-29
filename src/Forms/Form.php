@@ -67,7 +67,7 @@ abstract class Form implements FormInterface
         if ($this->isValid()) {
             return $this->persist(...$arg);
 
-            // return true;
+            // return true
         }
     }
 

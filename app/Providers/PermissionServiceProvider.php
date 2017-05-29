@@ -37,7 +37,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsMain() : array
+    protected function registerPermissionsMain(): array
     {
         return [
             'Main' => [
@@ -73,7 +73,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsPages() : array
+    protected function registerPermissionsPages(): array
     {
         $allPage = $this->dashboard->pages();
 
@@ -93,7 +93,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsPost() : array
+    protected function registerPermissionsPost(): array
     {
         $allPost = $this->dashboard->posts();
         $showPost = collect();
@@ -114,7 +114,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsTools() : array
+    protected function registerPermissionsTools(): array
     {
         return [
             'Tools' => [
@@ -141,7 +141,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsSystems() : array
+    protected function registerPermissionsSystems(): array
     {
         return [
 
@@ -185,7 +185,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsMarketing() : array
+    protected function registerPermissionsMarketing(): array
     {
         return [
 

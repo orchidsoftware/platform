@@ -20,7 +20,7 @@
 @section('content')
 
 
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper">
         <div class="bg-white-only bg-auto no-border-xs">
 
@@ -59,22 +59,22 @@
 
 
                                     <!--
-                                                <div class="info-box level level-{{ $level }} {{ $item['count'] === 0 ? 'level-empty' : '' }}">
+                                                <div  class="info-box level level-{{ $level }} {{ $item['count'] === 0 ? 'level-empty' : '' }}">
                                 <span class="info-box-icon">
                                     {!! log_styler()->icon($level) !!}
                                             </span>
 
-                                                                <div class="info-box-content">
+                                                                <div  class="info-box-content">
                                                                     <span class="info-box-text">{{ $item['name'] }}</span>
                                                         <span class="info-box-number">
                                         {{ $item['count'] }} entries - {!! $item['percent'] !!} %
                                     </span>
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
+                                                        <div  class="progress">
+                                                            <div  class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                -->
+                                                 -->
                                     </div>
                                 @endforeach
                             </div>
@@ -89,7 +89,7 @@
 
         </div>
     </section>
-    <!-- / main content -->
+    <!-- / main content  -->
 
     <script>
         window.onload = function () {

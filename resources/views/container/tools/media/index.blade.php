@@ -173,7 +173,7 @@
 
                     </div>
 
-                    <!-- Move File Modal -->
+                    <!-- Move File Modal  -->
                     <div class="modal fade modal-warning" id="move_file_modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -202,9 +202,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Move File Modal -->
+                    <!-- End Move File Modal  -->
 
-                    <!-- Rename File Modal -->
+                    <!-- Rename File Modal  -->
                     <div class="modal fade modal-warning" id="rename_file_modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -229,11 +229,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Move File Modal -->
+                    <!-- End Move File Modal  -->
 
-                </div><!-- #filemanager -->
+                </div><!-- #filemanager  -->
 
-                <!-- New Folder Modal -->
+                <!-- New Folder Modal  -->
                 <div class="modal fade modal-info" id="new_folder_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -258,9 +258,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- End New Folder Modal -->
+                <!-- End New Folder Modal  -->
 
-                <!-- Delete File Modal -->
+                <!-- Delete File Modal  -->
                 <div class="modal fade modal-danger" id="confirm_delete_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -286,10 +286,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Delete File Modal -->
+                <!-- End Delete File Modal  -->
 
                 <div id="dropzone"></div>
-                <!-- Delete File Modal -->
+                <!-- Delete File Modal  -->
                 <div class="modal fade" id="upload_files_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -312,12 +312,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Delete File Modal -->
+                <!-- End Delete File Modal  -->
 
 
-            </div><!-- .row -->
-        </div><!-- .col-md-12 -->
-    </div><!-- .page-content container-fluid -->
+            </div><!-- .row  -->
+        </div><!-- .col-md-12  -->
+    </div><!-- .page-content container-fluid  -->
 
 
 

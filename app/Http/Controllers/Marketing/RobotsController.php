@@ -46,11 +46,6 @@ class RobotsController extends Controller
         fwrite($file, $request->get('content', ''));
         fclose($file);
 
-
-        //$test = $this->storage->put('robots.txt', $request->get('content', ''));
-
-        //dd($test);
-
         return redirect()->back();
     }
 }

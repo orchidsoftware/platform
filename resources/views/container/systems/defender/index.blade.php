@@ -11,7 +11,7 @@
 @section('content')
 
 
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper">
         <div class="bg-white-only bg-auto no-border-xs">
 
@@ -54,7 +54,7 @@
 
         </div>
     </section>
-    <!-- / main content -->
+    <!-- / main content  -->
 
 
 @stop

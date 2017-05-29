@@ -1,6 +1,6 @@
 @extends('dashboard::layouts.auth')
 
-<!-- Main Content -->
+<!-- Main Content  -->
 @section('content')
 
 

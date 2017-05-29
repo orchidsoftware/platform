@@ -8,7 +8,7 @@
 
     @if(config('services.google.analytics.key'))
 
-        <!-- Step 1: Create the containing elements. -->
+        <!-- Step 1: Create the containing elements.  -->
         <section class="wrapper google-analytics">
             <div class="bg-white-only bg-auto no-border-xs">
                 <div class="wrapper-lg">
@@ -88,22 +88,22 @@
         </script>
 
 
-        <!-- Step 2: Load the library. -->
+        <!-- Step 2: Load the library.  -->
         <!-- This demo uses the Chart.js graphing library and Moment.js to do date
-             formatting and manipulation. -->
+             formatting and manipulation.  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
-        <!-- Include the ViewSelector2 component script. -->
+        <!-- Include the ViewSelector2 component script.  -->
         <script src="https://ga-dev-tools.appspot.com/public/javascript/embed-api/components/view-selector2.js"></script>
 
-        <!-- Include the DateRangeSelector component script. -->
+        <!-- Include the DateRangeSelector component script.  -->
         <script src="https://ga-dev-tools.appspot.com/public/javascript/embed-api/components/date-range-selector.js"></script>
 
-        <!-- Include the ActiveUsers component script. -->
+        <!-- Include the ActiveUsers component script.  -->
         <script src="https://ga-dev-tools.appspot.com/public/javascript/embed-api/components/active-users.js"></script>
 
-        <!-- Include the CSS that styles the charts. -->
+        <!-- Include the CSS that styles the charts.  -->
         <link rel="stylesheet" href="https://ga-dev-tools.appspot.com/public/css/chartjs-visualizations.css">
 
 

@@ -1,5 +1,5 @@
 <div id="quickview" class="quickview-wrapper" data-pages="quickview">
-    <!-- Nav tabs -->
+    <!-- Nav tabs  -->
     <ul class="nav nav-tabs bg-black">
         <li class="">
             <a href="#quickview-notes" data-toggle="tab">Notes</a>
@@ -10,7 +10,7 @@
     </ul>
     <a class="btn-link quickview-toggle click" data-toggle="open" data-target="#quickview"><i
                 class="fa fa-times"></i></a>
-    <!-- Tab panes -->
+    <!-- Tab panes  -->
     <div class="tab-content">
         <!-- BEGIN Notes !-->
         <div class="tab-pane fade  no-padding" id="quickview-notes">
@@ -225,9 +225,9 @@
 
                             {{--
                             @foreach($UserNotification as $notification)
-                                <div class="sl-item b-l">
-                                    <div class="m-l">
-                                        <div class="text-muted">
+                                <div  class="sl-item b-l">
+                                    <div  class="m-l">
+                                        <div  class="text-muted">
                                             <abbr title="{{$notification->created_at}}">{{$notification->created_at->diffForHumans()}}</abbr>
                                         </div>
                                         <p>{{$notification->text}}</p>

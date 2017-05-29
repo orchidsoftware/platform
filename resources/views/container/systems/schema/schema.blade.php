@@ -10,7 +10,7 @@
 @section('content')
 
 
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper">
 
 
@@ -90,7 +90,7 @@
 
 
     </section>
-    <!-- / main content -->
+    <!-- / main content  -->
 
 
 @stop

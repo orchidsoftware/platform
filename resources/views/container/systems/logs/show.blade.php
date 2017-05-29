@@ -7,7 +7,7 @@
 
 {{--
 @section('navbar')
-    <div class="col-sm-6 col-xs-12 text-right">
+    <div  class="col-sm-6 col-xs-12 text-right">
 
         <ul class="nav navbar-nav navbar-right">
 
@@ -82,7 +82,7 @@
         </div>
 
 
-        <!-- main content -->
+        <!-- main content  -->
         <div class="col">
             <section class="wrapper-md">
 

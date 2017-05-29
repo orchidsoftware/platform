@@ -19,6 +19,5 @@ class FinalController extends Controller
         $fileManager->update();
 
         return redirect()->to('/dashboard');
-        //return view('dashboard::container.install.finished');
     }
 }

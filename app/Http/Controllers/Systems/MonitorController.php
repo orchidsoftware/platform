@@ -39,7 +39,7 @@ class MonitorController extends Controller
     /**
      * @return bool
      */
-    private function shellExecEnabled() : bool
+    private function shellExecEnabled(): bool
     {
         $disabled = explode(',', ini_get('disable_functions'));
 

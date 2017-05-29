@@ -64,7 +64,7 @@
             Robot Index </label>
 
 
-        <!-- Dropdown -->
+        <!-- Dropdown  -->
         <select id="Form-field-Post-robot_index" name="Post[robot_index]"
                 class="form-control custom-select  select2-hidden-accessible" data-disposable="data-disposable"
                 tabindex="-1" aria-hidden="true">
@@ -86,7 +86,7 @@
             Robot Follow </label>
 
 
-        <!-- Dropdown -->
+        <!-- Dropdown  -->
         <select id="Form-field-Post-robot_follow" name="Post[robot_follow]"
                 class="form-control custom-select  select2-hidden-accessible" data-disposable="data-disposable"
                 tabindex="-1" aria-hidden="true">

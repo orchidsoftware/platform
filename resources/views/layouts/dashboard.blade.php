@@ -32,9 +32,9 @@
 <body>
 <div id="app" class="app app-aside-fixed">
 
-    <!-- header -->
+    <!-- header  -->
     <header id="header" class="app-header navbar" role="menu">
-        <!-- navbar header -->
+        <!-- navbar header  -->
         <div class="navbar-header bg-black">
             <button class="pull-right visible-xs dk">
                 <i class="fa fa-cog"></i>
@@ -42,16 +42,16 @@
             <button class="pull-right visible-xs">
                 <i class="fa fa-bars"></i>
             </button>
-            <!-- brand -->
+            <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
                 <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
                 <!--<span class="hidden-folded m-l-xs">Orchid</span>-->
             </a>
-            <!-- / brand -->
+            <!-- / brand  -->
         </div>
-        <!-- / navbar header -->
+        <!-- / navbar header  -->
 
-        <!-- navbar collapse -->
+        <!-- navbar collapse  -->
         <div class="app-header wrapper navbar-collapse box-shadow bg-white-only">
 
             <div class="col-xs-6">
@@ -60,7 +60,7 @@
             </div>
 
         @section('navbar')
-            <!-- nabar right -->
+            <!-- nabar right  -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle clear">
@@ -73,15 +73,15 @@
                             <span class="">{{Auth::user()->name}}</span>
                             <b class="caret"></b>
                         </a>
-                        <!-- dropdown -->
+                        <!-- dropdown  -->
                         <ul class="dropdown-menu animated fadeInRight w-full">
                             {{--
                             <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
                                 <div>
                                     <p>300mb из 500mb</p>
                                 </div>
-                                <div class="progress progress-xs m-b-none dker">
-                                    <div class="progress-bar progress-bar-info" data-toggle="tooltip"
+                                <div  class="progress progress-xs m-b-none dker">
+                                    <div  class="progress-bar progress-bar-info" data-toggle="tooltip"
                                          data-original-title="50%" style="width: 50%"></div>
                                 </div>
                             </li>
@@ -132,7 +132,7 @@
                                 </form>
                             </li>
                         </ul>
-                        <!-- / dropdown -->
+                        <!-- / dropdown  -->
                     </li>
 
                     {{--
@@ -146,24 +146,24 @@
                 --}}
 
                 </ul>
-                <!-- / navbar right -->
+                <!-- / navbar right  -->
             @show
 
 
         </div>
-        <!-- / navbar collapse -->
+        <!-- / navbar collapse  -->
     </header>
-    <!-- / header -->
+    <!-- / header  -->
 
 
-    <!-- aside -->
+    <!-- aside  -->
     <aside id="aside" class="app-aside hidden-xs">
         <div class="aside-wrap-main  b-b b-dark">
 
 
             <div class="navi-wrap">
 
-                <!-- nav -->
+                <!-- nav  -->
                 <nav class="navi clearfix">
                     <ul class="nav" role="tablist">
 
@@ -197,7 +197,7 @@
                     </ul>
 
                 </nav>
-                <!-- nav -->
+                <!-- nav  -->
             </div>
 
 
@@ -206,36 +206,36 @@
         <div class="aside-wrap">
             <div class="navi-wrap">
 
-                <!-- nav -->
+                <!-- nav  -->
                 <nav class="navi clearfix">
                     <ul class="nav b-b b-dark tab-content">
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
                     </ul>
                 </nav>
-                <!-- nav -->
+                <!-- nav  -->
 
                 {{-- To do:
-                <!-- aside footer -->
-                <div class="wrapper m-t">
+                <!-- aside footer  -->
+                <div  class="wrapper m-t">
 
-                    <div class="text-center-folded">
+                    <div  class="text-center-folded">
                         <span class="pull-right pull-none-folded">60%</span>
                         <span class="hidden-folded">Закрытых заказов</span>
                     </div>
-                    <div class="progress progress-xxs m-t-sm lter">
-                        <div class="progress-bar progress-bar-info" style="width: 60%;">
+                    <div  class="progress progress-xxs m-t-sm lter">
+                        <div  class="progress-bar progress-bar-info" style="width: 60%;">
                         </div>
                     </div>
-                    <div class="text-center-folded">
+                    <div  class="text-center-folded">
                         <span class="pull-right pull-none-folded">35%</span>
                         <span class="hidden-folded">Заказов в процессе</span>
                     </div>
-                    <div class="progress progress-xxs m-t-sm lter">
-                        <div class="progress-bar progress-bar-primary" style="width: 35%;">
+                    <div  class="progress progress-xxs m-t-sm lter">
+                        <div  class="progress-bar progress-bar-primary" style="width: 35%;">
                         </div>
                     </div>
                 </div>
-                <!-- / aside footer -->
+                <!-- / aside footer  -->
                 --}}
 
 
@@ -244,10 +244,10 @@
 
 
     </aside>
-    <!-- / aside -->
+    <!-- / aside  -->
 
 
-    <!-- content -->
+    <!-- content  -->
     <div id="content" class="app-content" role="main">
         <div class="app-content-body" id="app-content-body">
 
@@ -271,9 +271,9 @@
             @yield('content')
         </div>
     </div>
-    <!-- /content -->
+    <!-- /content  -->
 
-    <!-- footer -->
+    <!-- footer  -->
     <footer id="footer" class="app-footer" role="footer">
         <div class="wrapper b-t bg-light">
             <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
@@ -282,7 +282,7 @@
             © {{date("Y")}} Copyright.
         </div>
     </footer>
-    <!-- / footer -->
+    <!-- / footer  -->
 </div>
 
 

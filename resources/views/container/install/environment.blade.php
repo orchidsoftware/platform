@@ -8,7 +8,7 @@
 
 
     {{--
-            <div class="nav-tabs-alt bg-white m-b-md">
+            <div  class="nav-tabs-alt bg-white m-b-md">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="active">
                         <a data-target="#simple" role="tab" data-toggle="tab">
@@ -29,14 +29,14 @@
 
 
 
-                    <div class="tab-content">
-                        <div class="tab-pane fade in active" role="tabpanel" id="simple" aria-labelledby="simple-tab">
+                    <div  class="tab-content">
+                        <div  class="tab-pane fade in active" role="tabpanel" id="simple" aria-labelledby="simple-tab">
 
                             <form class="form-horizontal" method="post" action="{{ route('install::environmentSave') }}">
                             @foreach($envArray as $key => $value)
-                                <div class="form-group">
+                                <div  class="form-group">
                                     <label for="inputEmail3" class="col-sm-3 text-left control-label">{{$key}}</label>
-                                    <div class="col-sm-9">
+                                    <div  class="col-sm-9">
                                         <input class="form-control form-control-grey no-resize"  name="config[{{$key}}]" value="{{$value}}">
                                     </div>
                                 </div>
@@ -44,19 +44,19 @@
                             </form>
 
                         </div>
-                        <div class="tab-pane fade" role="tabpanel" id="expert" aria-labelledby="expert-tab">
+                        <div  class="tab-pane fade" role="tabpanel" id="expert" aria-labelledby="expert-tab">
 
                             <form class="form" method="post" action="{{ route('install::environmentSave') }}">
 
 
 
-                                <div class="form-group">
+                                <div  class="form-group">
                                     <label>.env</label>
                                     <textarea class="form-control  form-control-grey no-resize" rows="40" name="envConfig">{{ $envConfig }}</textarea>
                                     {!! csrf_field() !!}
                                 </div>
-                                <div class="form-group">
-                                    <div class="text-right">
+                                <div  class="form-group">
+                                    <div  class="text-right">
                                         <button class="btn btn-default btn-sm"
                                                 type="submit">{{ trans('install.environment.save') }}</button>
                                     </div>
@@ -103,13 +103,13 @@
 
 
     {{--
-        <div class="row">
-            <div class="col-md-6">
+        <div  class="row">
+            <div  class="col-md-6">
                 <button class="btn btn-default btn-sm" form="env"
                         type="submit">{{ trans('dashboard::install.environment.save') }}</button>
             </div>
 
-            <div class="col-md-6 text-right">
+            <div  class="col-md-6 text-right">
                 <a href="{{ route('install::requirements') }}"
                    @if(!isset($environment['errors']))
                    class="btn btn-link"

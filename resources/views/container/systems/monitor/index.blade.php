@@ -8,12 +8,12 @@
 @section('content')
 
 
-    <!-- main content -->
+    <!-- main content  -->
     <section class="wrapper-xl bg-white col-md-7">
 
 
         <div class="row">
-            <!-- Hardware -->
+            <!-- Hardware  -->
             <div class="col-lg-6">
                 <h4><i class="fa m-r-sm fa-server"></i> {{trans('dashboard::systems/monitor.Hardware.Title')}}
                 </h4>
@@ -34,7 +34,7 @@
                     </table>
                 </div>
             </div>
-            <!-- Network -->
+            <!-- Network  -->
             <div class="col-lg-6">
                 <h4><i class="fa m-r-sm fa-exchange"></i> {{trans('dashboard::systems/monitor.Network.Title')}}
                 </h4>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="row">
-            <!-- Load Average -->
+            <!-- Load Average  -->
             <div class="col-lg-6">
                 <h4>
                     <i class="fa m-r-sm fa-area-chart"></i> {{trans('dashboard::systems/monitor.CPU Load Average.Title')}}
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <!-- Memory -->
+                <!-- Memory  -->
                 <h4><i class="fa m-r-sm fa-sliders"></i> {{trans('dashboard::systems/monitor.Memory.Title')}}
                 </h4>
 
@@ -179,7 +179,7 @@
             </div>
         </div>
         <div class="row">
-            <!-- Storage -->
+            <!-- Storage  -->
             <div class="col-lg-12 widget-less-padding">
                 <h4><i class="fa m-r-sm fa-database"></i> {{trans('dashboard::systems/monitor.Storage.Title')}}
                 </h4>

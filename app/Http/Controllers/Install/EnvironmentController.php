@@ -57,7 +57,5 @@ class EnvironmentController extends Controller
         $message = $this->EnvironmentManager->saveFile($input);
 
         return $redirect->route('install::requirements')->with(['message' => $message]);
-
-        //return $redirect->back()->with(['message' => $message]);
     }
 }

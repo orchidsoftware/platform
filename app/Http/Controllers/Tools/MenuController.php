@@ -42,7 +42,6 @@ class MenuController extends Controller
     public function show($nameMenu, Request $request)
     {
         $currentLocale = $request->get('lang', App::getLocale());
-        //$staticPage = Dashboard::routeMenu()->all();
 
         $menu = Menu::where('lang', $currentLocale)
             ->whereNull('parent')

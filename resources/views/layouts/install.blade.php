@@ -20,7 +20,7 @@
     <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
 </head>
 
-<!-- install bg-dark bg-gd-dk -->
+<!-- install bg-dark bg-gd-dk  -->
 <body class="">
 
 

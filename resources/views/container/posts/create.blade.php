@@ -20,11 +20,11 @@
                 </ul>
             </div>
     @endif
-    <!-- hbox layout -->
+    <!-- hbox layout  -->
         <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post"
               action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
-            <!-- column -->
+            <!-- column  -->
                 <div class="col lter b-r">
                     <div class="vbox">
                         @if($locales->count() > 1)
@@ -59,10 +59,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /column -->
+                <!-- /column  -->
         @endif
         @if($type->checkModules())
-            <!-- column -->
+            <!-- column  -->
                 <div class="col wi-col lter b-r">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
@@ -91,10 +91,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /column -->
+                <!-- /column  -->
             @endif
             {{ csrf_field() }}
         </form>
-        <!-- /hbox layout -->
+        <!-- /hbox layout  -->
     </div>
 @stop

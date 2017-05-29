@@ -19,7 +19,7 @@ class CommentFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
             'name'        => trans('dashboard::marketing/comment.title'),
@@ -30,7 +30,7 @@ class CommentFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function main() : View
+    public function main(): View
     {
         $comments = (new Comment())->with([
             'post' => function ($query) {
