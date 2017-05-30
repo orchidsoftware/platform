@@ -34,7 +34,7 @@ $(function () {
                         },
                         dataType: 'html',
                         success: function (data) {
-                            alert('всё гуд');
+                           console.log('file update');
                         }
                     });
 
