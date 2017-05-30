@@ -54,12 +54,10 @@ class RequirementsController extends Controller
 
             return $results;
         } catch (\Exception $exception) {
-
             $results['errors'] = true;
             $results['requirements']['bd_connect'] = false;
 
             return $results;
         }
     }
-
 }
