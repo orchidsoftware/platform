@@ -51,9 +51,7 @@
                                     @foreach($fields as $key => $name)
                                         <td>
                                             @if(is_array($name))
-                                                {{
-                                                $name['action']($datum)
-                                                }}
+                                                {!! $name['action']($datum) !!}
                                             @else
                                                 {{ $datum->getContent($key) }}
                                             @endif
