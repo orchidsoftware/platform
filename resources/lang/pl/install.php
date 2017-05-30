@@ -33,13 +33,15 @@ return [
         'title'      => 'Wymagania',
         'message'    => 'Sprawdzanie zainstalowanych modułów PHP',
         'extensions' => [
-            'openssl'   => 'OpenSSL PHP Rozbudowa',
-            'pdo'       => 'PDO PHP Rozbudowa',
-            'mbstring'  => 'Mbstring PHP Rozbudowa',
-            'tokenizer' => 'Tokenizer PHP Rozbudowa',
-            'zip'       => 'ZIP Archive PHP Rozbudowa',
-            'xml'       => 'XML PHP Rozbudowa',
-            'json'      => 'JSON PHP Rozbudowa',
+            'openssl'    => 'OpenSSL PHP Rozbudowa',
+            'pdo'        => 'PDO PHP Rozbudowa',
+            'mbstring'   => 'Mbstring PHP Rozbudowa',
+            'tokenizer'  => 'Tokenizer PHP Rozbudowa',
+            'zip'        => 'ZIP Archive PHP Rozbudowa',
+            'xml'        => 'XML PHP Rozbudowa',
+            'json'       => 'JSON PHP Rozbudowa',
+            'bd_connect' => 'Połączenia z bazą danych',
+
         ],
     ],
 

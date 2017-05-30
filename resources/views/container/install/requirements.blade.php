@@ -23,10 +23,12 @@
 
 
     <div class="text-right">
-        <a href="{{ route('install::permissions') }}"
+        <a
            @if(!isset($requirements['errors']))
+           href="{{ route('install::permissions') }}"
            class="btn btn-link"
            @else
+           href="#"
            class="btn btn-danger disable" disabled
                 @endif
         >
