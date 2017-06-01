@@ -28,7 +28,7 @@
 
                     @foreach($forms as $name => $form)
                         <li @if ($loop->first) class="active" @endif>
-                            <a data-target="#tab-{{$name}}" role="tab" data-toggle="tab">
+                            <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
                                 {{$name}}
                             </a>
                         </li>
@@ -43,7 +43,7 @@
 
                 <div class="tab-content">
                     @foreach($forms as $name => $form)
-                        <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif" id="tab-{{$name}}">
+                        <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif" id="tab-{{str_slug($name)}}">
                             {!! $form !!}
                         </div>
                     @endforeach
