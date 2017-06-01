@@ -82,7 +82,7 @@ class PhpInfoForm extends Form
             foreach ($parts as $row) {
                 if (!isset($row[2])) {
                     continue;
-                } else if ((!isset($row[3]) || $row[2] == $row[3])) {
+                } elseif ((!isset($row[3]) || $row[2] == $row[3])) {
                     $value = $row[2];
                 } else {
                     $value = array_slice($row, 2);
