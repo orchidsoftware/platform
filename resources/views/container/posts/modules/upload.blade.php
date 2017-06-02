@@ -31,22 +31,26 @@
                                 <div class="form-group">
                                     <label>{{trans('dashboard::post/post.upload.information.system_name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].name" readonly
+                                           maxlength="255"
                                            placeholder="{{trans('dashboard::post/post.upload.information.system_name')}}">
                                 </div>
                                 <div class="form-group">
                                     <label>{{trans('dashboard::post/post.upload.information.name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].original_name"
+                                           maxlength="255"
                                            placeholder="{{trans('dashboard::post/post.upload.information.name')}}">
                                 </div>
                                 <div class="form-group">
                                     <label>{{trans('dashboard::post/post.upload.information.alt')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].alt"
+                                           maxlength="255"
                                            placeholder="{{trans('dashboard::post/post.upload.information.alt')}}">
                                 </div>
                                 <div class="form-group">
                                     <label>{{trans('dashboard::post/post.upload.information.description')}}</label>
                                     <textarea class="form-control no-resize" v-model="attachment[active].description"
                                               placeholder="{{trans('dashboard::post/post.upload.information.description')}}"
+                                              maxlength="255"
                                               rows="3"></textarea>
                                 </div>
 
