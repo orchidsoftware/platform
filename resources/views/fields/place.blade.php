@@ -43,7 +43,7 @@
 <div class="line line-dashed b-b line-lg"></div>
 @push('scripts')
 <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google-maps.key')}}"></script>
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var input = document.getElementById("place-{{$slug}}-{{$lang}}");
