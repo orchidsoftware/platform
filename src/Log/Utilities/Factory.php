@@ -31,8 +31,7 @@ class Factory implements FactoryContract
     public function __construct(
         FilesystemContract $filesystem,
         LogLevelsContract $levels
-    )
-    {
+    ) {
         $this->setFilesystem($filesystem);
         $this->setLevels($levels);
     }
@@ -122,8 +121,7 @@ class Factory implements FactoryContract
         $prefix = FilesystemContract::PATTERN_PREFIX,
         $date = FilesystemContract::PATTERN_DATE,
         $extension = FilesystemContract::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->filesystem->setPattern($prefix, $date, $extension);
 
         return $this;
