@@ -41,8 +41,7 @@ class Log implements LogContract
         FactoryContract $factory,
         FilesystemContract $filesystem,
         LogLevelsContract $levels
-    )
-    {
+    ) {
         $this->factory = $factory;
         $this->filesystem = $filesystem;
         $this->levels = $levels;
@@ -109,8 +108,7 @@ class Log implements LogContract
         $prefix = FilesystemContract::PATTERN_PREFIX,
         $date = FilesystemContract::PATTERN_DATE,
         $extension = FilesystemContract::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->factory->setPattern($prefix, $date, $extension);
 
         return $this;

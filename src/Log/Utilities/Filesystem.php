@@ -83,8 +83,7 @@ class Filesystem implements FilesystemContract
         $prefix = self::PATTERN_PREFIX,
         $date = self::PATTERN_DATE,
         $extension = self::PATTERN_EXTENSION
-    )
-    {
+    ) {
         $this->setPrefixPattern($prefix);
         $this->setDatePattern($date);
         $this->setExtension($extension);

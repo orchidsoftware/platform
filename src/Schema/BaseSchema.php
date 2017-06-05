@@ -101,8 +101,7 @@ abstract class BaseSchema
         int $limit = 15,
         string $orderAttribute = null,
         string $order = 'DESC'
-    )
-    {
+    ) {
         Paginator::currentPageResolver(function () use ($page) {
             return $page;
         });
