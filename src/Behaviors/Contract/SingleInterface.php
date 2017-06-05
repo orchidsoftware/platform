@@ -7,12 +7,12 @@ interface SingleInterface
     /**
      * @return array
      */
-    public function rules(): array;
+    public function rules() : array;
 
     /**
      * @return bool
      */
-    public function isValid(): bool;
+    public function isValid() : bool;
 
     /**
      * @return mixed

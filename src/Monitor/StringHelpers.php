@@ -12,7 +12,7 @@ class StringHelpers
      *
      * @return string
      */
-    public static function secondsToTime(int $seconds): string
+    public static function secondsToTime(int $seconds) : string
     {
         $dtF = new \DateTime('@0');
         $dtT = new \DateTime("@$seconds");
@@ -28,7 +28,7 @@ class StringHelpers
      *
      * @return string
      */
-    public static function prettyMemory(int $total): string
+    public static function prettyMemory(int $total) : string
     {
         $total = (int)$total;
 
@@ -49,7 +49,7 @@ class StringHelpers
      *
      * @return string
      */
-    public static function prettyBaud(int $baud): string
+    public static function prettyBaud(int $baud) : string
     {
         if ($baud > 1000000) {
             $baud = round($baud / 1000000, 2);
@@ -73,7 +73,7 @@ class StringHelpers
      *
      * @return array
      */
-    public static function prettyLoadAverage(string $loadAverage): array
+    public static function prettyLoadAverage(string $loadAverage) : array
     {
         $loadAverage = substr($loadAverage, 0, -1);
         $avgPercent = $loadAverage * 100;

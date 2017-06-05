@@ -10,7 +10,7 @@ interface FilterInterface
      *
      * @return Builder
      */
-    public function run(Builder $builder): Builder;
+    public function run(Builder $builder) : Builder;
 
     /**
      * @return mixed

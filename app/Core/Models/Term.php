@@ -38,7 +38,7 @@ class Term extends Model
      *
      * @return string
      */
-    public function getRouteKeyName(): string
+    public function getRouteKeyName() : string
     {
         return 'slug';
     }
@@ -46,7 +46,7 @@ class Term extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function taxonomy(): HasOne
+    public function taxonomy() : HasOne
     {
         return $this->hasOne(TermTaxonomy::class, 'term_id');
     }

@@ -34,7 +34,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function index(PostBehavior $type): View
+    public function index(PostBehavior $type) : View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
 
@@ -46,7 +46,7 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function create(PostBehavior $type): View
+    public function create(PostBehavior $type) : View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
 
@@ -63,7 +63,7 @@ class PostController extends Controller
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, PostBehavior $type, Post $post): RedirectResponse
+    public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
         $this->validate($request, $type->rules());
@@ -112,7 +112,7 @@ class PostController extends Controller
      *
      * @internal param Request $request
      */
-    public function edit(PostBehavior $type, Post $post): View
+    public function edit(PostBehavior $type, Post $post) : View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
         $locales = $this->locales->map(function ($value, $key) use ($post) {
@@ -135,7 +135,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, PostBehavior $type, Post $post): RedirectResponse
+    public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
         $post->fill($request->except('slug'));
@@ -182,7 +182,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(PostBehavior $type, Post $post): RedirectResponse
+    public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
         $post->delete();

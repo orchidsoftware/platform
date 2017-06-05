@@ -41,7 +41,7 @@ class AdvertisingCodeForm extends Form
      *
      * @internal param $item
      */
-    public function get(Post $adv = null): View
+    public function get(Post $adv = null) : View
     {
         if (is_null($adv)) {
             $adv = new Post();

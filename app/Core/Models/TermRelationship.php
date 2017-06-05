@@ -29,7 +29,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post(): BelongsTo
+    public function post() : BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
@@ -37,7 +37,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonomy(): BelongsTo
+    public function taxonomy() : BelongsTo
     {
         return $this->belongsTo(TermTaxonomy::class, 'term_taxonomy_id');
     }

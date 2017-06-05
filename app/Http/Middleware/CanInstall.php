@@ -28,7 +28,7 @@ class CanInstall
      *
      * @return bool
      */
-    public function alreadyInstalled(): bool
+    public function alreadyInstalled() : bool
     {
         return config('content.install');
     }

@@ -127,7 +127,7 @@ class Post extends Model
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptions(): Collection
+    public function getOptions() : Collection
     {
         return collect($this->options);
     }
@@ -137,7 +137,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function checkLanguage($key): bool
+    public function checkLanguage($key) : bool
     {
         $locale = $this->getOption('locale', []);
 
@@ -210,7 +210,7 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function attachment($type = null): HasMany
+    public function attachment($type = null) : HasMany
     {
         if (!is_null($type)) {
             return $this->hasMany(Attachment::class)->whereIn('extension',
@@ -225,7 +225,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function taxonomies(): BelongsToMany
+    public function taxonomies() : BelongsToMany
     {
         return $this->belongsToMany(TermTaxonomy::class, 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
@@ -235,7 +235,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments(): HasMany
+    public function comments() : HasMany
     {
         return $this->hasMany(Comment::class, 'post_id');
     }
@@ -245,7 +245,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author(): BelongsTo
+    public function author() : BelongsTo
     {
         return $this->belongsTo(User::class, 'post_id');
     }
@@ -258,7 +258,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function hasTerm($taxonomy, $term): bool
+    public function hasTerm($taxonomy, $term) : bool
     {
         return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
     }
@@ -268,7 +268,7 @@ class Post extends Model
      *
      * @return array
      */
-    public function getTermsAttribute(): array
+    public function getTermsAttribute() : array
     {
         $taxonomies = $this->taxonomies;
         $terms = [];
@@ -300,7 +300,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function makeSlug($title): string
+    public function makeSlug($title) : string
     {
         $slug = Str::slug($title);
         $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
@@ -315,7 +315,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopePublished(Builder $query): Builder
+    public function scopePublished(Builder $query) : Builder
     {
         return $query->status('publish');
     }
@@ -328,7 +328,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopeStatus(Builder $query, string $postStatus): Builder
+    public function scopeStatus(Builder $query, string $postStatus) : Builder
     {
         return $query->where('status', $postStatus);
     }
@@ -341,7 +341,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopeType(Builder $query, string $type): Builder
+    public function scopeType(Builder $query, string $type) : Builder
     {
         return $query->where('type', $type);
     }
@@ -354,7 +354,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopeTypeIn(Builder $query, array $type): Builder
+    public function scopeTypeIn(Builder $query, array $type) : Builder
     {
         return $query->whereIn('type', $type);
     }

@@ -11,10 +11,13 @@ class Role extends Model implements RoleInterface
     use RoleAccess;
 
     /**
+     * @var bool
+     */
+    public $timestamps = false;
+    /**
      * @var string
      */
     protected $table = 'roles';
-
     /**
      * @var array
      */
@@ -32,13 +35,4 @@ class Role extends Model implements RoleInterface
         'permissions' => 'array',
     ];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 }

@@ -20,7 +20,7 @@ class SettingInfoListener
      *
      * @internal param SettingsEvent $event
      */
-    public function handle(): string
+    public function handle() : string
     {
         return InfoForm::class;
     }

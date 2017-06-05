@@ -26,7 +26,7 @@ class BaseRolesForm extends Form
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [
             'name'        => 'required|max:255|unique:roles,name,' . $this->request->get('name') . ',name',
@@ -42,7 +42,7 @@ class BaseRolesForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(Role $role = null): View
+    public function get(Role $role = null) : View
     {
         if (!is_null($role)) {
             $rolePermission = $role->permissions;

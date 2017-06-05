@@ -88,7 +88,7 @@ abstract class Form implements FormInterface
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [];
     }

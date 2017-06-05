@@ -64,7 +64,7 @@ class Menu
      *
      * @return Menu
      */
-    public function place(string $location): Menu
+    public function place(string $location) : Menu
     {
         $this->location = $location;
 
@@ -76,7 +76,7 @@ class Menu
      *
      * @return Menu
      */
-    public function template(string $template): Menu
+    public function template(string $template) : Menu
     {
         $this->template = $template;
 
@@ -100,7 +100,7 @@ class Menu
      *
      * @return Menu
      */
-    public function sortBy(int $sort): Menu
+    public function sortBy(int $sort) : Menu
     {
         $this->sort = $sort;
 
@@ -144,7 +144,7 @@ class Menu
      *
      * @return string
      */
-    public function render(string $location, string $template = null): string
+    public function render(string $location, string $template = null) : string
     {
         $html = '';
 

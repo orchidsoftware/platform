@@ -20,7 +20,7 @@ class CategoryBaseLister
      *
      * @internal param CategoryEvent $event
      */
-    public function handle(): string
+    public function handle() : string
     {
         return CategoryMainForm::class;
     }
