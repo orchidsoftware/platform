@@ -60,7 +60,6 @@ abstract class Many implements ManyInterface
                 ->with($this->with)
                 ->orderBy('id', 'Desc')
                 ->paginate();
-
         } else {
             $data = $model->where('content', 'LIKE', '%' . $search . '%')
                 ->filtersApplyDashboard($this->slug)
