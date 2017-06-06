@@ -365,13 +365,13 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopeFiltersApply(Builder $query, $behavior = null)
+    public function scopeFiltersApply(Builder $query, $behavior = null): Builder
     {
         if (!is_null($behavior)) {
             $this->getBehavior($behavior);
         }
 
-        return $this->filter($query, false);
+        return $this->filter($query);
     }
 
     /**
@@ -380,13 +380,12 @@ class Post extends Model
      *
      * @return Builder
      */
-    private function filter(Builder $query, $dashboard = false)
+    private function filter(Builder $query, $dashboard = false): Builder
     {
-
         foreach ($this->behavior->filters as $filter) {
             $filter = new $filter;
 
-            if ($dashboard === $filter->dashboard) {
+            if ($dashboard != $filter->dashboard) {
                 continue;
             }
 
@@ -402,7 +401,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null)
+    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null): Builder
     {
         if (!is_null($behavior)) {
             $this->getBehavior($behavior);
