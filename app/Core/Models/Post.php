@@ -367,22 +367,48 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $behavior = null)
     {
-
         if (!is_null($behavior)) {
             $this->getBehavior($behavior);
         }
 
+        return $this->filter($query, false);
+    }
+
+    /**
+     * @param Builder $query
+     * @param bool    $dashboard
+     *
+     * @return Builder
+     */
+    private function filter(Builder $query, $dashboard = false)
+    {
+
         foreach ($this->behavior->filters as $filter) {
-            //Apply filter to the panel
             $filter = new $filter;
 
-            if (!$filter->dashboard) {
+            if ($dashboard === $filter->dashboard) {
                 continue;
             }
+
             $query = $filter->filter($query);
         }
 
         return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @param null    $behavior
+     *
+     * @return Builder
+     */
+    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null)
+    {
+        if (!is_null($behavior)) {
+            $this->getBehavior($behavior);
+        }
+
+        return $this->filter($query, true);
     }
 
 }

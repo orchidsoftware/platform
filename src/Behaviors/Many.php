@@ -56,14 +56,14 @@ abstract class Many implements ManyInterface
 
         if (is_null($search) || empty($search)) {
             $data = $model->type($this->slug)
-                ->filtersApply($this->slug)
+                ->filtersApplyDashboard($this->slug)
                 ->with($this->with)
                 ->orderBy('id', 'Desc')
                 ->paginate();
 
         } else {
             $data = $model->where('content', 'LIKE', '%' . $search . '%')
-                ->filtersApply($this->slug)
+                ->filtersApplyDashboard($this->slug)
                 ->type($this->slug)
                 ->with($this->with)
                 ->orderBy('id', 'Desc')
