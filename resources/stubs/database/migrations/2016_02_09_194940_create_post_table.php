@@ -21,20 +21,7 @@ class CreatePostTable extends Migration
             $table->timestamp('publish_at');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index(['id', 'user_id']);
-
-            /*
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-
-            $table->foreign('type_id')
-                ->references('id')
-                ->on('types')
-                ->onDelete('cascade');
-            */
+            $table->index(['status', 'type']);
         });
     }
 

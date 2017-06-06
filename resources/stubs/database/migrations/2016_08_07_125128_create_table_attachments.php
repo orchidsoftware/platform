@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTableFiles extends Migration
+class CreateTableAttachments extends Migration
 {
     /**
      * Run the migrations.
@@ -25,7 +25,7 @@ class CreateTableFiles extends Migration
             $table->integer('post_id')->nullable();
             $table->timestamps();
 
-            $table->index(['id', 'post_id', 'user_id']);
+            $table->index([ 'post_id', 'user_id']);
         });
 
 
@@ -34,7 +34,6 @@ class CreateTableFiles extends Migration
             $table->text('attachmentable_type');
             $table->integer('attachmentable_id');
             $table->integer('attachment_id');
-
 
             //$table->index(['attachmentable_type', 'attachmentable_id']);
         });

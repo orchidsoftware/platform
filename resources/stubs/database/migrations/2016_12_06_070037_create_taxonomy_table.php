@@ -17,7 +17,7 @@ class CreateTaxonomyTable extends Migration
             $table->string('taxonomy');
             $table->integer('parent_id')->default(0);
 
-            $table->index(['id', 'parent_id']);
+            $table->index(['id', 'taxonomy']);
         });
     }
 

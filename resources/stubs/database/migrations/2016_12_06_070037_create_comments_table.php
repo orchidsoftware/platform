@@ -20,7 +20,9 @@ class CreateCommentsTable extends Migration
             $table->boolean('approved')->nullable();
             $table->timestamps();
 
-            $table->index(['id', 'post_id', 'user_id', 'parent_id']);
+            $table->index(['approved', 'post_id']);
+            $table->index('post_id');
+            $table->index('parent_id');
         });
     }
 
