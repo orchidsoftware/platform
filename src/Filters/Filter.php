@@ -29,6 +29,13 @@ abstract class Filter implements FilterInterface
     public $lang;
 
     /**
+     * Apply a filter in the administration panel
+     *
+     * @var bool
+     */
+    public $dashboard = false;
+
+    /**
      * Filters constructor.
      */
     public function __construct()
@@ -42,7 +49,7 @@ abstract class Filter implements FilterInterface
      *
      * @return Builder
      */
-    public function filter(Builder $builder) : Builder
+    public function filter(Builder $builder): Builder
     {
         if (!is_null($this->parameters) && $this->request->has($this->parameters)) {
             return $this->run($builder);

@@ -358,4 +358,31 @@ class Post extends Model
     {
         return $query->whereIn('type', $type);
     }
+
+    /**
+     * @param Builder $query
+     * @param null    $behavior
+     *
+     * @return Builder
+     */
+    public function scopeFiltersApply(Builder $query, $behavior = null)
+    {
+
+        if (!is_null($behavior)) {
+            $this->getBehavior($behavior);
+        }
+
+        foreach ($this->behavior->filters as $filter) {
+            //Apply filter to the panel
+            $filter = new $filter;
+
+            if (!$filter->dashboard) {
+                continue;
+            }
+            $query = $filter->filter($query);
+        }
+
+        return $query;
+    }
+
 }

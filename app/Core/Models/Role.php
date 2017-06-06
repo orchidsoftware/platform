@@ -14,10 +14,12 @@ class Role extends Model implements RoleInterface
      * @var bool
      */
     public $timestamps = false;
+
     /**
      * @var string
      */
     protected $table = 'roles';
+
     /**
      * @var array
      */

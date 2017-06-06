@@ -67,6 +67,7 @@
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Field\\": "src/Field/",
       "Orchid\\Forms\\": "src/Forms/",
+      "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Log\\": "src/Log/",
       "Orchid\\Menu\\": "src/Menu/",
       "Orchid\\Setting\\": "src/Setting/",

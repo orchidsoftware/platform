@@ -30,6 +30,13 @@ abstract class Many implements ManyInterface
     public $with = [];
 
     /**
+     * HTTP data filters
+     *
+     * @var array
+     */
+    public $filters = [];
+
+    /**
      * Registered fields for filling
      *
      * @return mixed
@@ -41,20 +48,23 @@ abstract class Many implements ManyInterface
      *
      * @return array
      */
-    public function generateGrid() : array
+    public function generateGrid(): array
     {
         $fields = $this->grid();
         $model = new $this->model();
         $search = request('search');
 
         if (is_null($search) || empty($search)) {
-            $data = $model->where('type', $this->slug)
+            $data = $model->type($this->slug)
+                ->filtersApply($this->slug)
                 ->with($this->with)
                 ->orderBy('id', 'Desc')
                 ->paginate();
+
         } else {
             $data = $model->where('content', 'LIKE', '%' . $search . '%')
-                ->where('type', $this->slug)
+                ->filtersApply($this->slug)
+                ->type($this->slug)
                 ->with($this->with)
                 ->orderBy('id', 'Desc')
                 ->paginate();

@@ -5,6 +5,7 @@ namespace Orchid\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Core\Models\Post;
+use Orchid\Core\Models\Role;
 use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Defender\Middleware\Firewall;
 use Orchid\Http\Middleware\AccessMiddleware;
@@ -64,6 +65,9 @@ class RouteServiceProvider extends ServiceProvider
             return $type;
         });
 
+        Route::bind('role', function ($value) {
+            return Role::where('slug', $value)->firstOrFail();
+        });
 
         Route::bind('slug', function ($value) {
             if (is_numeric($value)) {
@@ -75,10 +79,10 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('advertising', function ($value) {
             if (is_numeric($value)) {
-                return Post::where('type', 'advertising')->where('id', $value)->firstOrFail();
+                return Post::type('advertising')->where('id', $value)->firstOrFail();
             }
 
-            return Post::where('type', 'advertising')->where('slug', $value)->firstOrFail();
+            return Post::type('advertising')->where('slug', $value)->firstOrFail();
         });
     }
 

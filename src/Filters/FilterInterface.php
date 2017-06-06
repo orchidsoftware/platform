@@ -4,7 +4,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 interface FilterInterface
 {
-
     /**
      * @param Builder $builder
      *
