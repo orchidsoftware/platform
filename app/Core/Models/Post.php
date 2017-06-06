@@ -367,7 +367,6 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $behavior = null)
     {
-
         if (!is_null($behavior)) {
             $this->getBehavior($behavior);
         }
@@ -384,5 +383,4 @@ class Post extends Model
 
         return $query;
     }
-
 }
