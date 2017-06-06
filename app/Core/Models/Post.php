@@ -409,5 +409,4 @@ class Post extends Model
 
         return $this->filter($query, true);
     }
-
 }
