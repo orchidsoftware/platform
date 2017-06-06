@@ -382,7 +382,6 @@ class Post extends Model
      */
     private function filter(Builder $query, $dashboard = false)
     {
-
         foreach ($this->behavior->filters as $filter) {
             $filter = new $filter;
 
@@ -410,5 +409,4 @@ class Post extends Model
 
         return $this->filter($query, true);
     }
-
 }
