@@ -2,6 +2,8 @@
 
 namespace Orchid\Behaviors;
 
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Behaviors\Contract\ManyInterface;
 
 abstract class Many implements ManyInterface
@@ -51,23 +53,12 @@ abstract class Many implements ManyInterface
     public function generateGrid(): array
     {
         $fields = $this->grid();
-        $model = new $this->model();
-        $search = request('search');
 
-        if (is_null($search) || empty($search)) {
-            $data = $model->type($this->slug)
-                ->filtersApplyDashboard($this->slug)
-                ->with($this->with)
-                ->orderBy('id', 'Desc')
-                ->paginate();
-        } else {
-            $data = $model->where('content', 'LIKE', '%' . $search . '%')
-                ->filtersApplyDashboard($this->slug)
-                ->type($this->slug)
-                ->with($this->with)
-                ->orderBy('id', 'Desc')
-                ->paginate();
-        }
+        $data = (new $this->model())->type($this->slug)
+            ->filtersApplyDashboard($this->slug)
+            ->with($this->with)
+            ->orderBy('id', 'Desc')
+            ->paginate();
 
         return [
             'data'   => $data,
@@ -82,4 +73,41 @@ abstract class Many implements ManyInterface
      * @return mixed
      */
     abstract public function grid();
+
+    /**
+     * Display form for filtering
+     *
+     * @return View
+     */
+    public function showFilterDashboard(): View
+    {
+
+        $dashboardFilter = $this->getFilterDashboard();
+        $chunk = round($dashboardFilter->count() / 4);
+
+        return view('dashboard::container.posts.filter', [
+            'filters' => $dashboardFilter,
+            'chunk'   => $chunk,
+        ]);
+    }
+
+    /**
+     * Get all the filters that need to be implemented in the control panel
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFilterDashboard(): Collection
+    {
+
+        $dashboardFilter = collect();
+        foreach ($this->filters as $filter) {
+            $filter = new $filter;
+            if ($filter->dashboard) {
+                $dashboardFilter->push($filter);
+            }
+        }
+
+        return $dashboardFilter;
+    }
+
 }

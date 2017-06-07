@@ -4,7 +4,7 @@ namespace Orchid\Widget\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Widget\Console\MakeWidget;
+use Orchid\Widget\Console\MakeFilter;
 
 class WidgetServiceProvider extends ServiceProvider
 {
@@ -50,6 +50,6 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands(MakeWidget::class);
+        $this->commands(MakeFilter::class);
     }
 }

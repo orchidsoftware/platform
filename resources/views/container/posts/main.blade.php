@@ -24,6 +24,10 @@
     @if($data->count() > 0)
         <section class="wrapper">
             <div class="bg-white-only  bg-auto no-border-xs">
+
+
+                {!! $type->showFilterDashboard() !!}
+
                 <div class="panel-body row">
                     <div class="table-responsive">
                         <table class="table table-striped">
