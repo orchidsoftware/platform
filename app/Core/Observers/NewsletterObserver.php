@@ -12,7 +12,7 @@ class NewsletterObserver
      *
      * @return Newsletter
      */
-    public function creating(Newsletter $newsletter) : Newsletter
+    public function creating(Newsletter $newsletter): Newsletter
     {
         if (is_null($newsletter->lang)) {
             $newsletter->lang = App::getLocale();

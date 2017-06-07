@@ -36,10 +36,18 @@ abstract class Filter implements FilterInterface
     public $dashboard = false;
 
     /**
-     * Filters constructor.
+     * @var null
      */
-    public function __construct()
+    public $behavior = null;
+
+    /**
+     * Filter constructor.
+     *
+     * @param $behavior
+     */
+    public function __construct($behavior = null)
     {
+        $this->behavior = $behavior;
         $this->request = request();
         $this->lang = App::getLocale();
     }

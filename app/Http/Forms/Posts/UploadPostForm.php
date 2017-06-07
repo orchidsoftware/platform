@@ -21,7 +21,7 @@ class UploadPostForm extends Form
      * @internal param null $type
      * @internal param null|Post $post
      */
-    public function get() : View
+    public function get(): View
     {
         return view('dashboard::container.posts.modules.upload');
     }

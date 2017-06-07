@@ -52,7 +52,7 @@ class Attachment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -72,7 +72,7 @@ class Attachment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post() : BelongsTo
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }
@@ -82,7 +82,7 @@ class Attachment extends Model
      *
      * @return Attachment
      */
-    public function type($type) : Attachment
+    public function type($type): Attachment
     {
         if (array_key_exists($type, $this->types)) {
             return $this->whereIn('extension', $this->types[$type]);
@@ -99,7 +99,7 @@ class Attachment extends Model
      *
      * @return string
      */
-    public function url($size = '', $prefix = 'public') : string
+    public function url($size = '', $prefix = 'public'): string
     {
         if (!empty($size)) {
             $size = '_' . $size;

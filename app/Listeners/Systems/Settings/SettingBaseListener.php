@@ -20,7 +20,7 @@ class SettingBaseListener
      *
      * @internal param SettingsEvent $event
      */
-    public function handle() : string
+    public function handle(): string
     {
         return BaseSettingsForm::class;
     }

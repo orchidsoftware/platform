@@ -66,7 +66,7 @@ class Dashboard
      *
      * @return string
      */
-    public static function version() : string
+    public static function version(): string
     {
         return static::VERSION;
     }
@@ -110,7 +110,7 @@ class Dashboard
     /**
      * @return null|Menu
      */
-    public function menu() : Menu
+    public function menu(): Menu
     {
         return $this->menu;
     }
@@ -118,7 +118,7 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission() : Collection
+    public function getPermission(): Collection
     {
         return $this->permission->get();
     }
@@ -126,7 +126,7 @@ class Dashboard
     /**
      * @return PostStorage
      */
-    public function getPosts() : PostStorage
+    public function getPosts(): PostStorage
     {
         return $this->posts;
     }
@@ -136,7 +136,7 @@ class Dashboard
      *
      * @return array
      */
-    public function posts($sort = false) : array
+    public function posts($sort = false): array
     {
         return $this->posts->all($sort);
     }
@@ -144,7 +144,7 @@ class Dashboard
     /**
      * @return PageStorage
      */
-    public function getPages() : PageStorage
+    public function getPages(): PageStorage
     {
         return $this->pages;
     }
@@ -154,7 +154,7 @@ class Dashboard
      *
      * @return array
      */
-    public function pages($sort = false) : array
+    public function pages($sort = false): array
     {
         return $this->pages->all($sort);
     }
@@ -162,7 +162,7 @@ class Dashboard
     /**
      * @return mixed
      */
-    public function fields() : array
+    public function fields(): array
     {
         return $this->fields->all();
     }

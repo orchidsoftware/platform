@@ -60,7 +60,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function term() : BelongsTo
+    public function term(): BelongsTo
     {
         return $this->belongsTo(Term::class, 'term_id');
     }
@@ -70,7 +70,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parentTerm() : BelongsTo
+    public function parentTerm(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
@@ -88,7 +88,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function childrenTerm() : HasMany
+    public function childrenTerm(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
@@ -98,7 +98,7 @@ class TermTaxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function posts() : BelongsToMany
+    public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'term_relationships', 'term_taxonomy_id', 'post_id');
     }
@@ -108,7 +108,7 @@ class TermTaxonomy extends Model
      *
      * @return TermTaxonomyBuilder
      */
-    public function newQuery() : TermTaxonomyBuilder
+    public function newQuery(): TermTaxonomyBuilder
     {
         $builder = new TermTaxonomyBuilder($this->newBaseQueryBuilder());
         $builder->setModel($this)->with($this->with);

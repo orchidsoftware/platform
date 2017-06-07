@@ -1,15 +1,16 @@
-<?php namespace DummyNamespace;
+<?php namespace Orchid\Http\Filters;
 
-use Orchid\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Filters\Filter;
 
-class DummyClass extends Filter
+class StatusFilter extends Filter
 {
 
     /**
+     *
      * @var array
      */
-    public $parameters = [];
+    public $parameters = ['status'];
 
     /**
      * @var bool
@@ -19,7 +20,7 @@ class DummyClass extends Filter
     /**
      * @var bool
      */
-    public $dashboard = false;
+    public $dashboard = true;
 
     /**
      * @param Builder $builder
@@ -28,7 +29,7 @@ class DummyClass extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        //
+        return $builder->status($this->request->get('status'));
     }
 
     /**
@@ -36,6 +37,9 @@ class DummyClass extends Filter
      */
     public function display()
     {
-        //
+        return view('dashboard::container.posts.filters.status', [
+            'request'  => $this->request,
+            'behavior' => $this->behavior,
+        ]);
     }
 }

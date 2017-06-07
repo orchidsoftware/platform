@@ -15,7 +15,7 @@ return [
     'elements'     => 'elements',
     'show'         => 'show',
     'of'           => 'of',
-    'search_posts' => 'Search post..',
+    'search_posts' => 'Search post...',
 
     'website' => 'Website',
     'profile' => 'Profile',

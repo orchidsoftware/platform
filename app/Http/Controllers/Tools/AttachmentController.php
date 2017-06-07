@@ -103,7 +103,8 @@ class AttachmentController extends Controller
         $width = null,
         $height = null,
         $quality = 100
-    ) {
+    )
+    {
         if (!is_null($name)) {
             $name = '_' . $name;
         }

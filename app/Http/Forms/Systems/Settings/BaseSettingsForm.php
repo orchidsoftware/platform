@@ -25,7 +25,7 @@ class BaseSettingsForm extends Form
      *
      * @return View
      */
-    public function get() : View
+    public function get(): View
     {
         $settings = $this->model->get([
             'site_title',

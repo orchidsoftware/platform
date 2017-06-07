@@ -7,17 +7,6 @@
             <a href="{{ route('dashboard.posts.type.create',$type->slug)}}" class="btn btn-link"><i
                         class="icon-plus fa fa-2x"></i></a>
         </div>
-        <form class="navbar-form navbar-form-sm navbar-right shift" role="search">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control input-sm bg-light no-border rounded padder" name="search"
-                           value="{{request('search')}}" placeholder="{{trans('dashboard::common.search_posts')}}">
-                    <span class="input-group-btn">
-                <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
-                </span>
-                </div>
-            </div>
-        </form>
     </div>
 @stop
 @section('content')
@@ -83,6 +72,11 @@
     @else
         <section class="wrapper">
             <div class="bg-white-only bg-auto no-border-xs">
+
+
+                {!! $type->showFilterDashboard() !!}
+
+
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
                         <h3 class="font-thin">{{trans('dashboard::post/general.not_found')}}</h3>

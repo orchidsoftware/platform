@@ -1,16 +1,15 @@
-<?php namespace App\Http\Filters\Exhibitions;
+<?php namespace Orchid\Http\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
 
-class DummyClass extends Filter
+class SearchFilter extends Filter
 {
 
     /**
-     *
      * @var array
      */
-    public $parameters = [];
+    public $parameters = ['search'];
 
     /**
      * @var bool
@@ -20,7 +19,7 @@ class DummyClass extends Filter
     /**
      * @var bool
      */
-    public $dashboard = false;
+    public $dashboard = true;
 
     /**
      * @param Builder $builder
@@ -29,13 +28,16 @@ class DummyClass extends Filter
      */
     public function run(Builder $builder): Builder
     {
+        return $builder->where('content', 'LIKE', '%' . $this->request->get('search') . '%');
     }
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function display()
     {
+        return view('dashboard::container.posts.filters.search', [
+            'request' => $this->request,
+        ]);
     }
 }
