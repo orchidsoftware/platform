@@ -5,6 +5,9 @@ namespace Orchid\Behaviors;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Behaviors\Contract\ManyInterface;
+use Orchid\Http\Filters\CreatedFilter;
+use Orchid\Http\Filters\SearchFilter;
+use Orchid\Http\Filters\StatusFilter;
 
 abstract class Many implements ManyInterface
 {
@@ -36,7 +39,11 @@ abstract class Many implements ManyInterface
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        SearchFilter::class,
+        StatusFilter::class,
+        CreatedFilter::class,
+    ];
 
     /**
      * Registered fields for filling
