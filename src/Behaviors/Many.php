@@ -88,7 +88,7 @@ abstract class Many implements ManyInterface
      */
     public function showFilterDashboard(): View
     {
-        $dashboardFilter = $this->getFilterDashboard();
+        $dashboardFilter = $this->getFilter(true);
         $chunk = ceil($dashboardFilter->count() / 4);
 
         return view('dashboard::container.posts.filter', [
@@ -98,20 +98,22 @@ abstract class Many implements ManyInterface
     }
 
     /**
-     * Get all the filters that need to be implemented in the control panel
+     * Get all the filters
      *
-     * @return \Illuminate\Support\Collection
+     * @param bool $dashboard
+     *
+     * @return Collection
      */
-    public function getFilterDashboard(): Collection
+    public function getFilter($dashboard = false): Collection
     {
-        $dashboardFilter = collect();
+        $filters = collect();
         foreach ($this->filters as $filter) {
             $filter = new $filter($this);
-            if ($filter->dashboard) {
-                $dashboardFilter->push($filter);
+            if ($filter->dashboard == $dashboard) {
+                $filters->push($filter);
             }
         }
 
-        return $dashboardFilter;
+        return $filters;
     }
 }
