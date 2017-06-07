@@ -29,7 +29,6 @@ class DummyClass extends Filter
      */
     public function run(Builder $builder): Builder
     {
-
     }
 
 
@@ -38,6 +37,5 @@ class DummyClass extends Filter
      */
     public function display()
     {
-
     }
 }

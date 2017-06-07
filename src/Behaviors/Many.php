@@ -81,7 +81,6 @@ abstract class Many implements ManyInterface
      */
     public function showFilterDashboard(): View
     {
-
         $dashboardFilter = $this->getFilterDashboard();
         $chunk = round($dashboardFilter->count() / 4);
 
@@ -98,7 +97,6 @@ abstract class Many implements ManyInterface
      */
     public function getFilterDashboard(): Collection
     {
-
         $dashboardFilter = collect();
         foreach ($this->filters as $filter) {
             $filter = new $filter;
@@ -109,5 +107,4 @@ abstract class Many implements ManyInterface
 
         return $dashboardFilter;
     }
-
 }
