@@ -382,7 +382,7 @@ class Post extends Model
      */
     private function filter(Builder $query, $dashboard = false): Builder
     {
-        $filters = $this->behavior->getFilter($dashboard);
+        $filters = $this->behavior->getFilters($dashboard);
 
         foreach ($filters as $filter) {
             $query = $filter->filter($query);
