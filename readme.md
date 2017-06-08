@@ -19,6 +19,16 @@
 
 Documentation can be found at [Orchid website](https://theorchid.github.io/docs/).
 
+
+## System requirements
+
+Make sure your server meets the following requirements.
+
+- Apache 2.2+ or nginx
+- MySQL Server 5.7.8+ or PostgreSQL
+- PHP Version 7.0+
+
+
 ## Learn More
 
 Learn more at these links:
