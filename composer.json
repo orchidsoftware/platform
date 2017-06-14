@@ -86,6 +86,16 @@
   "extra": {
     "branch-alias": {
       "dev-master": "1.0-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Orchid\\Providers\\FoundationServiceProvider"
+      ],
+      "aliases": {
+        "Alert": "Orchid\\Alert\\Facades\\Alert",
+        "Dashboard": "Orchid\\Facades\\Dashboard",
+        "Setting": "Orchid\\Setting\\Facades\\Setting"
+      }
     }
   },
   "suggest": {
