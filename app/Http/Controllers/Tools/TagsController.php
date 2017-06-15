@@ -15,11 +15,9 @@ class TagsController extends Controller
      */
     public function show($tag = null)
     {
-
         if (is_null($tag)) {
-
             $tags = Post::allTags()->orderBy('count', 'desc')->limit(10)->get();
-        }else{
+        } else {
             $tags = Post::allTags()->orderBy('count', 'desc')->where('name', 'like', '%' . $tag . '%')->limit(10)->get();
         }
 
@@ -32,5 +30,4 @@ class TagsController extends Controller
 
         return response()->json($tags);
     }
-
 }
