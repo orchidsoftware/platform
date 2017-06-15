@@ -45,11 +45,15 @@
 
     <div class="form-group">
         <label>{{trans('dashboard::post/general.tags')}}</label>
-        <input type="text" class="form-control" data-role="tagsinput"
-               name="tags"
-               @if(!is_null($post)) value="{{ $post->getStringTags()}}" @endif
-               placeholder="{{trans('dashboard::post/general.generic_tags')}}">
+        <select class="form-control select2-tags" name="tags[]" multiple="multiple" placeholder="{{trans('dashboard::post/general.generic_tags')}}">
+            @if(!is_null($post))
+                @foreach($post->tags as $tag)
+                    <option value="{{$tag->name}}" selected="selected">{{$tag->name}}</option>
+                 @endforeach
+            @endif
+        </select>
     </div>
+
     <div class="line line-dashed b-b line-lg"></div>
     <div class="form-group">
         <label class="control-label">{{trans('dashboard::post/general.show_in_categories')}}</label>

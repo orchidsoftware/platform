@@ -55,6 +55,13 @@ $this->group([
             'update' => 'dashboard.tools.menu.update',
         ]]);
 
+
+        $router->get('tags/{tags?}', [
+            'as'   => 'dashboard.tools.tag.search',
+            'uses' => 'TagsController@show',
+        ]);
+
+
         $router->group([
             'as'     => 'dashboard.tools.media.',
             'prefix' => 'media',

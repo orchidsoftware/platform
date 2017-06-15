@@ -16,7 +16,6 @@ class MenuComposer
         $this->dashboard = $dashboard;
     }
 
-
     /**
      * Registering the main menu items
      */
@@ -28,7 +27,6 @@ class MenuComposer
         $this->registerMenuSystems($this->dashboard);
         $this->registerMenuMarketing($this->dashboard);
     }
-
 
     /**
      * @param Dashboard $dashboard
