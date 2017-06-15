@@ -25,6 +25,7 @@ class TagsController extends Controller
             return  [
                 'id' => $item['name'],
                 'text' => $item['name'],
+                'count' => $item['count']
             ];
         });
 

@@ -7,8 +7,24 @@ $(function () {
 
 $(function () {
     $('.select2-tags').select2({
+        theme: "classic",
+        templateResult: function formatState (state) {
+            if (!state.id || !state.count) { return state.text; }
+
+            var str ='<span>' + state.text + '</span>' +' <span class="pull-right badge bg-info">' + state.count + '</span>';
+
+
+            return  $(str);
+
+            //return $('<span>').html(state).append($('<i>').html(state.count));
+            return  state.text  +' <span class="pull-right badge bg-info">' + state.count + '</span>';
+        },
+        escapeMarkup: function(m) {
+            return m;
+        },
         width: '100%',
         tags: true,
+        cache: true,
         ajax: {
             url: function (params) {
                 return '/dashboard/tools/tags/' + params.term;
