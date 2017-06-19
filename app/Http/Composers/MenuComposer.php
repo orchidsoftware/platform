@@ -50,7 +50,7 @@ class MenuComposer
 
             $dashboard->menu->add('Main', $postMenu);
         }
-        foreach ($allPost as $page) {
+        foreach ($allPost as $key => $page) {
             if ($page->display) {
                 $postObject = [
                     'slug'       => $page->slug,
@@ -59,6 +59,7 @@ class MenuComposer
                     'label'      => $page->name,
                     'childs'     => false,
                     'permission' => 'dashboard.posts.type.' . $page->slug,
+                    'sort'       => $key,
                 ];
 
                 if (reset($allPost) == $page) {
@@ -92,7 +93,7 @@ class MenuComposer
                 'sort'       => 50,
             ]);
         }
-        foreach ($allPage as $page) {
+        foreach ($allPage as $key => $page) {
             $postObject = [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
@@ -100,6 +101,7 @@ class MenuComposer
                 'label'      => $page->name,
                 'childs'     => false,
                 'permission' => 'dashboard.posts.type.' . $page->slug,
+                'sort'       => $key,
             ];
 
             if (reset($allPage) == $page) {
