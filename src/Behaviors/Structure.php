@@ -62,7 +62,18 @@ trait Structure
      * @var string
      */
     public $prefix = 'content';
-
+    /**
+     * Menu group name
+     *
+     * @var null
+     */
+    public $groupname = null;
+    /**
+     * Status divider
+     *
+     * @var bool
+     */
+    public $divider = false;
     /**
      * @var null
      */

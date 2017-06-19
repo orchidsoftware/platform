@@ -60,6 +60,8 @@ class MenuComposer
                     'childs'     => false,
                     'permission' => 'dashboard.posts.type.' . $page->slug,
                     'sort'       => $key,
+                    'groupname'  => $page->groupname,
+                    'divider'    => $page->divider,
                 ];
 
                 if (reset($allPost) == $page) {
@@ -102,6 +104,8 @@ class MenuComposer
                 'childs'     => false,
                 'permission' => 'dashboard.posts.type.' . $page->slug,
                 'sort'       => $key,
+                'groupname'  => $page->groupname,
+                'divider'    => $page->divider,
             ];
 
             if (reset($allPage) == $page) {
