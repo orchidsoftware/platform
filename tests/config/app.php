@@ -231,7 +231,7 @@ return [
 
         'Alert'     => Orchid\Alert\Facades\Alert::class,
         'Dashboard' => Orchid\Facades\Dashboard::class,
-        'Setting'   => Orchid\Settings\Facades\Setting::class,
+        'Setting'   => Orchid\Setting\Facades\Setting::class,
         'Active'    => Watson\Active\Facades\Active::class,
     ],
 
