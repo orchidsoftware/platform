@@ -118,8 +118,11 @@
                                     <div class="detail_img"
                                          v-if="selected_file != undefined && selected_file.type != undefined">
 
-                                        <img v-if="selected_file.type.indexOf('image')  !== -1"
-                                             v-bind:src="selected_file.path"/>
+
+                                        <a v-bind:href="selected_file.path" target="_blank"
+                                           v-if="selected_file.type.indexOf('image')  !== -1">
+                                            <img v-bind:src="selected_file.path"/>
+                                        </a>
 
 
                                         <video v-if="selected_file.type.indexOf('video')  !== -1"
