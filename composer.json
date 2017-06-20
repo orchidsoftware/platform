@@ -51,7 +51,8 @@
     "spatie/laravel-backup": "4.*",
     "psr/log": "~1.0",
     "orchid/defender": "dev-master",
-    "orchid/settings": "dev-master"
+    "orchid/settings": "dev-master",
+    "orchid/alert": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
@@ -59,14 +60,12 @@
   },
   "autoload": {
     "files": [
-      "src/Setting/helpers.php",
       "src/Alert/helpers.php",
       "src/Log/helpers.php"
     ],
     "psr-4": {
       "Orchid\\": "app/",
       "Orchid\\Access\\": "src/Access/",
-      "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Field\\": "src/Field/",
       "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Filters\\": "src/Filters/",
@@ -92,9 +91,7 @@
         "Orchid\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
-        "Alert": "Orchid\\Alert\\Facades\\Alert",
-        "Dashboard": "Orchid\\Facades\\Dashboard",
-        "Setting": "Orchid\\Setting\\Facades\\Setting"
+        "Dashboard": "Orchid\\Facades\\Dashboard"
       }
     }
   },
