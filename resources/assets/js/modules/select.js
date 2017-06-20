@@ -15,9 +15,6 @@ $(function () {
 
 
             return  $(str);
-
-            //return $('<span>').html(state).append($('<i>').html(state.count));
-            return  state.text  +' <span class="pull-right badge bg-info">' + state.count + '</span>';
         },
         escapeMarkup: function(m) {
             return m;
