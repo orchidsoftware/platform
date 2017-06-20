@@ -5,7 +5,7 @@ namespace Orchid\Providers;
 use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Orchid\Alert\AlertServiceProvider;
+use Orchid\Alert\Laravel\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Kernel\Dashboard;
 use Orchid\Log\LogServiceProvider;
