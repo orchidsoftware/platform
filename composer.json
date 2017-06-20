@@ -60,7 +60,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\": "src/"
+      "Orchid\\": "src/Orchid"
     }
   },
   "autoload-dev": {
