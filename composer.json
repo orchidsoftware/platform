@@ -14,7 +14,6 @@
     "log",
     "menu",
     "scaffold",
-    "seo",
     "settings",
     "tags",
     "widget",
@@ -25,7 +24,6 @@
     "dashboard",
     "active",
     "admin",
-    "bootstrap",
     "platform"
   ],
   "type": "library",
@@ -52,29 +50,17 @@
     "psr/log": "~1.0",
     "orchid/defender": "dev-master",
     "orchid/settings": "dev-master",
-    "orchid/alert": "dev-master"
+    "orchid/alert": "dev-master",
+    "orchid/widget": "dev-master",
+    "orchid/log" : "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
     "phpunit/phpunit": "~5.7"
   },
   "autoload": {
-    "files": [
-      "src/Alert/helpers.php",
-      "src/Log/helpers.php"
-    ],
     "psr-4": {
-      "Orchid\\": "app/",
-      "Orchid\\Access\\": "src/Access/",
-      "Orchid\\Field\\": "src/Field/",
-      "Orchid\\Forms\\": "src/Forms/",
-      "Orchid\\Filters\\": "src/Filters/",
-      "Orchid\\Log\\": "src/Log/",
-      "Orchid\\Menu\\": "src/Menu/",
-      "Orchid\\Behaviors\\": "src/Behaviors/",
-      "Orchid\\Widget\\": "src/Widget/",
-      "Orchid\\Schema\\": "src/Schema/",
-      "Orchid\\Monitor\\": "src/Monitor/"
+      "Orchid\\": "src/"
     }
   },
   "autoload-dev": {
