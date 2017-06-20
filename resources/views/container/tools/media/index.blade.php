@@ -115,13 +115,17 @@
                                     <p>No File or Folder Selected</p>
                                 </div>
                                 <div class="right_details">
-                                    <div class="detail_img" v-bind:class="selected_file.type">
-
-                                        <img v-if="selected_file.type  === 'object' && selected_file.type.includes('image')"
-                                             v-bind:src="selected_file.path"/>
+                                    <div class="detail_img"
+                                         v-if="selected_file != undefined && selected_file.type != undefined">
 
 
-                                        <video v-if="selected_file.type  === 'object' && selected_file.type.includes('video')"
+                                        <a v-bind:href="selected_file.path" target="_blank"
+                                           v-if="selected_file.type.indexOf('image')  !== -1">
+                                            <img v-bind:src="selected_file.path"/>
+                                        </a>
+
+
+                                        <video v-if="selected_file.type.indexOf('video')  !== -1"
                                                width="100%" height="auto" controls>
                                             <source v-bind:src="selected_file.path" type="video/mp4">
                                             <source v-bind:src="selected_file.path" type="video/ogg">
@@ -130,7 +134,7 @@
                                         </video>
 
 
-                                        <audio v-if="selected_file.type  === 'object' &&selected_file.type.includes('audio')"
+                                        <audio v-if="selected_file.type.indexOf('audio')  !== -1"
                                                controls style="width:100%; margin-top:5px;">
                                             <source v-bind:src="selected_file.path" type="audio/ogg">
                                             <source v-bind:src="selected_file.path" type="audio/mpeg">
@@ -140,21 +144,21 @@
 
                                         <i v-if="selected_file.type == 'folder'" class="fa fa-folder"></i>
 
-                                        <i v-if="selected_file.type  === 'object' && selected_file.type != 'folder' && !selected_file.type.includes('audio') && !selected_file.type.includes('video') && !selected_file.type.includes('image')"
+                                        <i v-if="selected_file.type.indexOf('text')  !== -1"
                                            class="fa fa-file-text-o"></i>
 
 
                                     </div>
                                     <div class="detail_info" v-bind:class="selected_file.type">
 							<span><h4>Title:</h4>
-							<p>@{{selected_file.name}}</p></span>
+                                       <p>@{{selected_file.name}}</p></span>
                                         <span><h4>Type:</h4>
-							<p>@{{selected_file.type}}</p></span>
+                                            <p>@{{selected_file.type}}</p></span>
                                         <div v-if="selected_file.type != 'folder'">
 								<span><h4>Size:</h4>
 								<p><span class="selected_file_count">@{{ selected_file.items }} item(s)</span><span
-                                            class="selected_file_size">@{{selected_file.size}}</span></p></span>
-                                            <span><h4>Public URL:</h4>
+                                            class="selected_file_size">@{{selected_file.size}}</span></p>
+                                    <span><h4>Public URL:</h4></span>
 								<p><a v-bind:href="selected_file.path" target="_blank">Click Here</a></p></span>
                                             <span><h4>Last Modified:</h4>
 								<p>@{{selected_file.last_modified}}</p></span>

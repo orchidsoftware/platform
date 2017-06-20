@@ -29,7 +29,7 @@ class Menu
 
     /**
      * Arguments menu form
-     *  * For the transfer of Views.
+     * For the transfer of Views.
      *
      * @var
      */

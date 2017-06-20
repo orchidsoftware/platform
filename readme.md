@@ -38,9 +38,13 @@ Learn more at these links:
 - [Support](https://github.com/TheOrchid/Platform/issues)
 - [Laravel](https://laravel.com/)
 
+
+## Examples
+* [Create blog](https://github.com/tabuna/SimpleBlogOrchid)
+
 ## Security
 
-If you discover security related issues, please email bliz48rus@gmail.com instead of using the issue tracker.
+If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
 
 
 ## Contributing
