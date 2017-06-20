@@ -49,7 +49,9 @@
     "cartalyst/tags": "^4.0",
     "cviebrock/eloquent-sluggable": "^4.2",
     "spatie/laravel-backup": "4.*",
-    "psr/log": "~1.0"
+    "psr/log": "~1.0",
+    "orchid/defender": "dev-master",
+    "orchid/settings": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
@@ -70,10 +72,8 @@
       "Orchid\\Filters\\": "src/Filters/",
       "Orchid\\Log\\": "src/Log/",
       "Orchid\\Menu\\": "src/Menu/",
-      "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Behaviors\\": "src/Behaviors/",
       "Orchid\\Widget\\": "src/Widget/",
-      "Orchid\\Defender\\": "src/Defender/",
       "Orchid\\Schema\\": "src/Schema/",
       "Orchid\\Monitor\\": "src/Monitor/"
     }
