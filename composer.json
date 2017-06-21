@@ -1,31 +1,7 @@
 {
   "name": "orchid/platform",
   "description": "The Laravel CMS for website.",
-  "keywords": [
-    "framework",
-    "laravel",
-    "orchid",
-    "crud",
-    "cms",
-    "cmf",
-    "access",
-    "alert",
-    "attributes",
-    "log",
-    "menu",
-    "scaffold",
-    "settings",
-    "tags",
-    "widget",
-    "website",
-    "user",
-    "editor",
-    "permissions",
-    "dashboard",
-    "active",
-    "admin",
-    "platform"
-  ],
+  "keywords": ["framework", "laravel", "orchid", "crud", "cms", "log", "menu", "scaffold", "settings", "website", "platform"],
   "type": "library",
   "license": "MIT",
   "homepage": "https://theorchid.github.io/",
@@ -81,6 +57,6 @@
   "suggest": {
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "prefer-stable": true
 }
