@@ -50,7 +50,7 @@
     "psr/log": "~1.0",
     "orchid/defender": "dev-master",
     "orchid/settings": "dev-master",
-    "orchid/alert": "dev-master",
+    "orchid/alert": "^1.0",
     "orchid/widget": "dev-master",
     "orchid/log" : "dev-master"
   },
