@@ -23,7 +23,6 @@
     "cartalyst/tags": "^4.0",
     "cviebrock/eloquent-sluggable": "^4.2",
     "spatie/laravel-backup": "4.*",
-    "psr/log": "~1.0",
     "orchid/defender": "dev-master",
     "orchid/settings": "^2.0",
     "orchid/alert": "^1.0",
