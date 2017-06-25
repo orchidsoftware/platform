@@ -23,11 +23,11 @@
     "cartalyst/tags": "^4.0",
     "cviebrock/eloquent-sluggable": "^4.2",
     "spatie/laravel-backup": "4.*",
-    "orchid/defender": "dev-master",
+    "orchid/defender": "^1.0",
     "orchid/settings": "^2.0",
     "orchid/alert": "^1.0",
     "orchid/widget": "^1.0",
-    "orchid/log" : "dev-master"
+    "orchid/log" : "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
