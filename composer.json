@@ -38,11 +38,6 @@
       "Orchid\\": "src/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Orchid\\Tests\\": "tests"
-    }
-  },
   "extra": {
     "laravel": {
       "providers": [
