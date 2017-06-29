@@ -4,6 +4,7 @@ namespace Orchid\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Orchid\Core\Models\Page;
 use Orchid\Core\Models\Post;
 use Orchid\Core\Models\Role;
 use Orchid\Core\Models\TermTaxonomy;
