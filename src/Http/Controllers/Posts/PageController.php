@@ -40,9 +40,15 @@ class PageController extends Controller
             $page = new Page();
         }
 
+        $locales = $this->locales->map(function ($value, $key) use ($page) {
+            $value['required'] = (bool)$page->checkLanguage($key);
+
+            return $value;
+        })->where('required', true);
+
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($slug),
-            'locales' => $this->locales->where('required', true),
+            'locales' => $locales,
             'post'    => $page,
         ]);
     }
