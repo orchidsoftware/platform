@@ -25,39 +25,38 @@ class PageController extends Controller
         $this->locales = collect(config('content.locales'));
     }
 
-
     /**
-     * @param $slug
+     * @param Page $page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($slug)
+    public function show(Page $page = null)
     {
-        $this->checkPermission('dashboard.pages.' . $slug);
-        $page = Page::where('slug', $slug)->first();
+        $this->checkPermission('dashboard.pages.' . $page->slug);
 
-        if (is_null($page)) {
-            $page = new Page();
-        }
+        $locales = $this->locales->map(function ($value, $key) use ($page) {
+            $value['required'] = (bool) $page->checkLanguage($key);
+
+            return $value;
+        })->where('required', true);
 
         return view('dashboard::container.posts.page', [
-            'type'    => $page->getBehaviorObject($slug),
-            'locales' => $this->locales->where('required', true),
+            'type'    => $page->getBehaviorObject($page->slug),
+            'locales' => $locales,
             'post'    => $page,
         ]);
     }
 
     /**
-     * @param         $slug
+     * @param         $page
      * @param Request $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update($slug, Request $request)
+    public function update(Page $page, Request $request)
     {
-        $this->checkPermission('dashboard.pages.' . $slug);
-        $page = Page::where('slug', $slug)->firstOrFail()->getBehavior($slug);
-        $type = $page->getBehaviorObject($slug);
+        $this->checkPermission('dashboard.pages.' . $page->slug);
+        $type = $page->getBehaviorObject($page->slug);
 
 
         $page->fill($request->all());
@@ -65,7 +64,7 @@ class PageController extends Controller
         $page->fill([
             'user_id'    => Auth::user()->id,
             'type'       => 'page',
-            'slug'       => $slug,
+            'slug'       => $page->slug,
             'status'     => 'publish',
             'options'    => $page->getOptions(),
             'publish_at' => Carbon::now(),
