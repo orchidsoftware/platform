@@ -27,7 +27,8 @@
     "orchid/settings": "^2.0",
     "orchid/alert": "^1.0",
     "orchid/widget": "^1.0",
-    "orchid/log" : "^1.0"
+    "orchid/log": "^1.0",
+    "orchid/monitor": "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
