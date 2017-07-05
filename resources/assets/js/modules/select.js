@@ -13,8 +13,13 @@ $(function () {
 
             var str ='<span>' + state.text + '</span>' +' <span class="pull-right badge bg-info">' + state.count + '</span>';
 
-
             return  $(str);
+        },
+        createTag: function (tag) {
+            return {
+                id: tag.term,
+                text: tag.term,
+            };
         },
         escapeMarkup: function(m) {
             return m;
