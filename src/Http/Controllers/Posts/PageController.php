@@ -61,6 +61,19 @@ class PageController extends Controller
 
         $page->fill($request->all());
 
+        $locales = collect(config('content.locales'));
+        $locales = $locales->map(function ($item) {
+            if ($item['required'] == true) {
+                return true;
+            }
+
+            return false;
+        })->toArray();
+
+        $page->options = [
+            'locale' => $request->get('options', $locales),
+        ];
+
         $page->fill([
             'user_id'    => Auth::user()->id,
             'type'       => 'page',

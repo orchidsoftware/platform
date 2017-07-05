@@ -70,6 +70,19 @@ class PostController extends Controller
 
         $post->fill($request->all());
 
+        $locales = collect(config('content.locales'));
+        $locales = $locales->map(function ($item) {
+            if ($item['required'] == true) {
+                return true;
+            }
+
+            return false;
+        })->toArray();
+
+        $post->options = [
+            'locale' => $request->get('options', $locales),
+        ];
+
         $post->fill([
             'type'       => $type->slug,
             'user_id'    => Auth::user()->id,
