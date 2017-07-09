@@ -158,13 +158,25 @@ trait Structure
     {
         $data = $this->explodeFields($this->fields);
 
+        //string parse
         foreach ($data as $name => $value) {
+
             $newField = collect();
             foreach ($value as $rule) {
-                $newField[] = $this->parseStringFields($rule);
+                if (array_key_exists(0, $value)) {
+                    $newField[] = $this->parseStringFields($rule);
+                }
             }
             $this->fields[$name] = $newField->collapse();
         }
+
+        //parse array
+        foreach ($data as $name => $value) {
+            if (!array_key_exists(0, $value)) {
+                $this->fields[$name] = collect($value);
+            }
+        }
+
     }
 
     /**
