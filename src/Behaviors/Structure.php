@@ -160,7 +160,6 @@ trait Structure
 
         //string parse
         foreach ($data as $name => $value) {
-
             $newField = collect();
             foreach ($value as $rule) {
                 if (array_key_exists(0, $value)) {
@@ -176,7 +175,6 @@ trait Structure
                 $this->fields[$name] = collect($value);
             }
         }
-
     }
 
     /**
