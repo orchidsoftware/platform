@@ -1,8 +1,8 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Меню')
-@section('description','Выберите доступное меню')
+@section('title',trans('dashboard::tools/menu.title'))
+@section('description',trans('dashboard::tools/menu.description'))
 
 
 
@@ -27,7 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>Имя</th>
+                                    <th>{{trans('dashboard::tools/menu.form.title')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +56,7 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">Нет доступных меню</h3>
+                        <h3 class="font-thin">{{trans('dashboard::tools/menu.not_found')}}</h3>
                     </div>
                 </div>
 

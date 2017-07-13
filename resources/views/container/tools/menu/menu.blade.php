@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.dashboard')
 
 
-@section('title','Меню')
+@section('title',trans('dashboard::tools/menu.title'))
 @section('description',$nameMenu)
 
 @if(count($locales) > 1)
@@ -62,7 +62,7 @@
                 <div role="tabpanel" class="tab-pane" id="static-pages">
 
                     <div class="wrapper-md">
-                        <label class="small">Поиск</label>
+                        <label class="small">Search</label>
                         <input class="form-control form-control-grey input-sm" placeholder="Not Work">
                     </div>
 
@@ -85,77 +85,69 @@
 
                         <div class="form">
                             <div class="form-group">
-                                <label>Название</label>
-                                <input type="text" class="form-control" v-model="label" placeholder="О нас">
+                                <label>{{trans('dashboard::tools/menu.form.title')}}</label>
+                                <input type="text" class="form-control" v-model="label" placeholder="{{trans('dashboard::tools/menu.form.title_description')}}">
                             </div>
                             <div class="form-group">
-                                <label>Подпись</label>
+                                <label>{{trans('dashboard::tools/menu.form.alt')}}</label>
                                 <input type="text" class="form-control" v-model="title"
-                                       placeholder="История нашей компании">
+                                       placeholder="{{trans('dashboard::tools/menu.form.alt_description')}}">
                             </div>
                             <div class="form-group">
-                                <label>Slug</label>
-                                <input type="text" class="form-control" v-model="slug" placeholder="/about">
+                                <label>{{trans('dashboard::tools/menu.form.url')}}</label>
+                                <input type="text" class="form-control" v-model="slug" placeholder="{{trans('dashboard::tools/menu.form.url_description')}}">
                             </div>
 
                             <div class="form-group">
-                                <label>Отображение</label>
+                                <label>{{trans('dashboard::tools/menu.form.display.name')}}</label>
                                 <select class="form-control" v-model="auth">
-                                    <option value="0" selected>Доступно всем</option>
-                                    <option value="1">Только авторизованным пользователям</option>
+                                    <option value="0" selected>{{trans('dashboard::tools/menu.form.display.variables.no_auth')}}</option>
+                                    <option value="1">{{trans('dashboard::tools/menu.form.display.variables.auth')}}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Отношения между текущим документом и документом, на который ведет ссылка</label>
+                                <label>{{trans('dashboard::tools/menu.form.relations.name')}}</label>
 
                                 <select class="form-control" v-model="robot">
-
-                                    <option value="answer">Ответ на вопрос</option>
-                                    <option value="chapter">Раздел или глава текущего документа</option>
-                                    <option value="co-worker">Ссылка на страницу коллеги по работе</option>
-                                    <option value="colleague">Ссылка на страницу коллеги (не по работе)</option>
-                                    <option value="contact">Ссылка на страницу с контактной информацией</option>
-                                    <option value="details">Ссылка на страницу с подробностями</option>
-                                    <option value="edit">Редактируемая версия текущего документа</option>
-                                    <option value="friend">Ссылка на страницу друга</option>
-                                    <option value="question">Вопрос</option>
-
-                                    <option value="archives">Ссылка на архив сайта</option>
-                                    <option value="author">Ссылка на страницу об авторе на том же домене</option>
-                                    <option value="bookmark">Постоянная ссылка на раздел или запись</option>
-                                    <option value="first">Ссылка на первую страницу</option>
-                                    <option value="help">Ссылка на документ со справкой</option>
-                                    <option value="index">Ссылка на содержание</option>
-                                    <option value="last">Ссылка на последнюю страницу</option>
-                                    <option value="license">Ссылка на страницу с лицензионным соглашением или авторскими
-                                        правами
-                                    </option>
-                                    <option value="me">Ссылка на страницу автора на другом домене</option>
-                                    <option value="next">Ссылка на следующую страницу или раздел.</option>
-                                    <option value="nofollow">Не передавать по ссылке ТИЦ и PR.</option>
-                                    <option value="noreferrer">Не передавать по ссылке HTTP-заголовки</option>
-                                    <option value="prefetch">Указывает, что надо заранее кэшировать указанный ресурс
-                                    </option>
-                                    <option value="prev">Ссылка на предыдущую страницу или раздел</option>
-                                    <option value="search">Ссылка на поиск</option>
-                                    <option value="sidebar">Добавить ссылку в избранное браузера</option>
-                                    <option value="tag">Указывает, что метка (тег) имеет отношение к текущему
-                                        документу
-                                    </option>
-                                    <option value="up">Ссылка на родительскую страницу</option>
-
+                                    <option value="answer">{{trans('dashboard::tools/menu.form.relations.variables.answer')}}</option>
+                                    <option value="chapter">{{trans('dashboard::tools/menu.form.relations.variables.chapter')}}</option>
+                                    <option value="co-worker">{{trans('dashboard::tools/menu.form.relations.variables.co-worker')}}</option>
+                                    <option value="colleague">{{trans('dashboard::tools/menu.form.relations.variables.colleague')}}</option>
+                                    <option value="contact">{{trans('dashboard::tools/menu.form.relations.variables.contact')}}</option>
+                                    <option value="details">{{trans('dashboard::tools/menu.form.relations.variables.details')}}</option>
+                                    <option value="edit">{{trans('dashboard::tools/menu.form.relations.variables.edit')}}</option>
+                                    <option value="friend">{{trans('dashboard::tools/menu.form.relations.variables.friend')}}</option>
+                                    <option value="question">{{trans('dashboard::tools/menu.form.relations.variables.question')}}</option>
+                                    <option value="archives">{{trans('dashboard::tools/menu.form.relations.variables.archives')}}</option>
+                                    <option value="author">{{trans('dashboard::tools/menu.form.relations.variables.author')}}</option>
+                                    <option value="bookmark">{{trans('dashboard::tools/menu.form.relations.variables.bookmark')}}</option>
+                                    <option value="first">{{trans('dashboard::tools/menu.form.relations.variables.first')}}</option>
+                                    <option value="help">{{trans('dashboard::tools/menu.form.relations.variables.help')}}</option>
+                                    <option value="index">{{trans('dashboard::tools/menu.form.relations.variables.index')}}</option>
+                                    <option value="last">{{trans('dashboard::tools/menu.form.relations.variables.last')}}</option>
+                                    <option value="license">{{trans('dashboard::tools/menu.form.relations.variables.license')}}</option>
+                                    <option value="me">{{trans('dashboard::tools/menu.form.relations.variables.me')}}</option>
+                                    <option value="next">{{trans('dashboard::tools/menu.form.relations.variables.next')}}</option>
+                                    <option value="nofollow">{{trans('dashboard::tools/menu.form.relations.variables.nofollow')}}</option>
+                                    <option value="noreferrer">{{trans('dashboard::tools/menu.form.relations.variables.noreferrer')}}</option>
+                                    <option value="prefetch">{{trans('dashboard::tools/menu.form.relations.variables.prefetch')}}</option>
+                                    <option value="prev">{{trans('dashboard::tools/menu.form.relations.variables.prev')}}</option>
+                                    <option value="search">{{trans('dashboard::tools/menu.form.relations.variables.search')}}</option>
+                                    <option value="sidebar">{{trans('dashboard::tools/menu.form.relations.variables.sidebar')}}</option>
+                                    <option value="tag">{{trans('dashboard::tools/menu.form.relations.variables.tag')}}</option>
+                                    <option value="up">{{trans('dashboard::tools/menu.form.relations.variables.up')}}</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Класс</label>
-                                <input type="text" class="form-control" v-model="style" placeholder="/about">
+                                <label>{{trans('dashboard::tools/menu.form.class')}}</label>
+                                <input type="text" class="form-control" v-model="style" placeholder="red">
                             </div>
                             <div class="form-group">
-                                <label>Link Target</label>
+                                <label>{{trans('dashboard::tools/menu.form.target.name')}}</label>
                                 <select class="form-control" v-model="target">
-                                    <option value="_self" selected>Отобразить в текущее окно</option>
-                                    <option value="_blank">Отобразить в новом окне</option>
+                                    <option value="_self" selected>{{trans('dashboard::tools/menu.form.target.variables.self')}}</option>
+                                    <option value="_blank">{{trans('dashboard::tools/menu.form.target.variables.blank')}}</option>
                                 </select>
 
                             </div>
@@ -173,7 +165,7 @@
                                 <div class="btn-group" role="group" v-if="exist()">
                                     <button type="button" v-on:click="remove()"
                                             class="btn btn-sm btn-danger padder-md m-b text-ellipsis"
-                                            data-dismiss="modal">Удалить
+                                            data-dismiss="modal">{{trans('dashboard::tools/menu.form.control.remove')}}
 
                                     </button>
                                 </div>
@@ -181,20 +173,20 @@
                                 <div class="btn-group" role="group" v-if="exist()">
                                     <button type="button" v-on:click="clear()"
                                             class="btn btn-sm btn-default padder-md m-b text-ellipsis"
-                                            data-dismiss="modal">Сбросить
+                                            data-dismiss="modal">{{trans('dashboard::tools/menu.form.control.reset')}}
                                     </button>
 
                                 </div>
 
                                 <div class="btn-group" role="group" v-if="!exist()">
                                     <button type="button" v-on:click="add()"
-                                            class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Добавить
+                                            class="btn btn-sm btn-primary padder-md m-b text-ellipsis">{{trans('dashboard::tools/menu.form.control.create')}}
                                     </button>
                                 </div>
 
                                 <div class="btn-group" role="group" v-if="exist()">
                                     <button type="button" v-on:click="save()"
-                                            class="btn btn-sm btn-primary padder-md m-b text-ellipsis">Сохранить
+                                            class="btn btn-sm btn-primary padder-md m-b text-ellipsis">{{trans('dashboard::tools/menu.form.control.save')}}
                                     </button>
                                 </div>
 

@@ -1,59 +1,69 @@
 <?php
 
 return [
-    'Menu'        => 'Menu',
+    'title'       => 'Menu',
     'description' => 'Choose an accessible menu',
 
-    'Title'      => 'Title',
-    'title-desc' => 'About',
-
-    'Alt'      => 'Alt',
-    'alt-desc' => 'History of our company',
-
-    'Url'      => 'Link',
-    'url-desc' => '/about',
-
-    'Display' => [
-        'name'      => 'Display',
-        'variables' => [
-            'no-auth' => 'Visible to everyone',
-            'auth'    => 'Only authorized users',
+    'not_found' => 'No menu available',
+    'form'      => [
+        'title'             => 'Name',
+        'title_description' => 'About us',
+        'alt'               => 'Alternative name',
+        'alt_description'   => 'History of the company',
+        'url'               => 'URL',
+        'url_description'   => '/about',
+        'display'           => [
+            'name'      => 'Display',
+            'variables' => [
+                'no_auth' => 'Visible to everyone',
+                'auth'    => 'Only authorized users',
+            ],
+        ],
+        'class'             => 'Class',
+        'relations'         => [
+            'name'      => 'Relations',
+            'variables' => [
+                'answer'     => 'Answer to the question',
+                'chapter'    => 'Section or chapter of the current document',
+                'co-worker'  => "Link to a colleague's page",
+                'colleague'  => "Link to a colleague's page (not at work)",
+                'contact'    => 'Link to the page with contact information',
+                'details'    => 'Link to page with details',
+                'edit'       => 'Editable version of the current document',
+                'friend'     => 'Link to friend page',
+                'question'   => 'Question',
+                'archives'   => 'Link to the site archive',
+                'author'     => 'Link to the page about the author on the same domain',
+                'bookmark'   => 'Permanent link to a section or entry',
+                'first'      => 'Link to the first page',
+                'help'       => 'Link to a document with help',
+                'index'      => 'Link to content',
+                'last'       => 'Link to the last page',
+                'license'    => 'Link to a page with a license agreement or copyrights',
+                'me'         => 'Link to author page on another domain',
+                'next'       => 'Link to next page or section',
+                'nofollow'   => 'Do not pass on the link TIC and PR.',
+                'noreferrer' => 'Do not pass HTTP headers over the link',
+                'prefetch'   => 'Indicates that you must cache the specified resource in advance',
+                'prev'       => 'Link to the previous page or section',
+                'search'     => 'Link to search',
+                'sidebar'    => 'Add link to browser favorites',
+                'tag'        => 'Indicates that the tag (tag) is relevant to the current document',
+                'up'         => 'Link to the parent page',
+            ],
+        ],
+        'target'            => [
+            'name'      => 'Link Target',
+            'variables' => [
+                'self'  => 'In the current window',
+                'blank' => 'In a new window',
+            ],
+        ],
+        'control'           => [
+            'remove' => 'Remove',
+            'reset'  => 'Reset',
+            'create' => 'Create',
+            'save'   => 'Save',
         ],
     ],
-
-    'Relations' => [
-        'name'      => 'Relations',
-        'variables' => [
-            'Answer the question'                                                => 'Answer the question',
-            'Section or chapter of the current document'                         => 'Section or chapter of the current document',
-            'Link to colleague\'s work page'                                     => 'Link to colleague\'s work page',
-            'Link to a colleague\'s page (not at work)'                          => 'Link to a colleague\'s page (not at work)',
-            'Link to the page with contact information'                          => 'Link to the page with contact information',
-            'Link to the page with details'                                      => 'Link to the page with details',
-            'Editable version of the current document'                           => 'Editable version of the current document',
-            'Link to friend page'                                                => 'Link to friend page',
-            'Question'                                                           => 'Question',
-            'Link to the site archive'                                           => 'Link to the site archive',
-            'Link to the page about the author on the same domain'               => 'Link to the page about the author on the same domain',
-            'Permalink to a section or entry'                                    => 'Permalink to a section or entry',
-            'Link to the first page'                                             => 'Link to the first page',
-            'Link to a document with help'                                       => 'Link to a document with help',
-            'Content link'                                                       => 'Content link',
-            'Link to the last page'                                              => 'Link to the last page',
-            'Link to a page with a license agreement or copyrights'              => 'Link to a page with a license agreement or copyrights',
-            'Link to the author\'s page on another domain'                       => 'Link to the author\'s page on another domain',
-            'Link to the next page or section'                                   => 'Link to the next page or section',
-            'Do not pass on TIC and PR.'                                         => 'Do not pass on TIC and PR.',
-            'Do not send HTTP headers'                                           => 'Do not send HTTP headers',
-            'Specifies that you must cache the specified resource in advance'    => 'Specifies that you must cache the specified resource in advance',
-            'Link to the previous page or section'                               => 'Link to the previous page or section',
-            'Search reference'                                                   => 'Search reference',
-            'Add link to browser favorites'                                      => 'Add link to browser favorites',
-            'Specifies that the label (tag) is relevant to the current document' => 'Specifies that the label (tag) is relevant to the current document',
-            'Link to parent page'                                                => 'Link to parent page',
-        ],
-    ],
-
-    'Class' => 'Class',
-
 ];
