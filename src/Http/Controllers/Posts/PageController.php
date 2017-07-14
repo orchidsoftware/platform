@@ -34,11 +34,13 @@ class PageController extends Controller
     {
         $this->checkPermission('dashboard.pages.' . $page->slug);
 
-        $locales = $this->locales->map(function ($value, $key) use ($page) {
-            $value['required'] = (bool) $page->checkLanguage($key);
+        $locales = $this->locales->map(function ($item) {
+            if ($item['required'] == true) {
+                return true;
+            }
 
-            return $value;
-        })->where('required', true);
+            return false;
+        });
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
@@ -61,8 +63,7 @@ class PageController extends Controller
 
         $page->fill($request->all());
 
-        $locales = collect(config('content.locales'));
-        $locales = $locales->map(function ($item) {
+        $locales = $this->locales->map(function ($item) {
             if ($item['required'] == true) {
                 return true;
             }
