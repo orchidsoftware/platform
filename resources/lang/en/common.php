@@ -29,4 +29,10 @@ return [
         'success' => 'Operation completed successfully',
     ],
 
+    'filters' => [
+        'date_created' => 'Date of creation',
+        'search'       => 'Search by content',
+        'status'       => 'Status',
+    ],
+
 ];

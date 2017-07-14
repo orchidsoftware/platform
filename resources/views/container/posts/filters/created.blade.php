@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label class="control-label">Дата создания</label>
+    <label class="control-label">{{trans('dashboard::common.filters.date_created')}}</label>
 
     <div class="row">
         <div class="col-md-6">

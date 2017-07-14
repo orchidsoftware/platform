@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label class="control-label">Статус</label>
+    <label class="control-label">{{trans('dashboard::common.filters.status')}}</label>
     <select name="status" class="form-control">
         <option></option>
         @foreach($behavior->status() as $key => $status)
