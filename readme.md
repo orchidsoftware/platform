@@ -19,7 +19,7 @@
 
 Documentation can be found at [Orchid website](https://theorchid.github.io/docs/).
 
-You can watch live https://demo-orchid.tk
+You can watch [live](https://demo-orchid.tk)
 
 **Login**: admin@admin.com **Password**: password
 
