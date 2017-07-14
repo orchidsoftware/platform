@@ -128,11 +128,13 @@ class PostController extends Controller
     public function edit(PostBehavior $type, Post $post): View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
-        $locales = $this->locales->map(function ($value, $key) use ($post) {
-            $value['required'] = (bool)$post->checkLanguage($key);
+        $locales = $this->locales->map(function ($item) {
+            if ($item['required'] == true) {
+                return true;
+            }
 
-            return $value;
-        })->where('required', true);
+            return false;
+        });
 
         return view('dashboard::container.posts.edit', [
             'type'    => $type,
