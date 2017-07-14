@@ -10,11 +10,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+        Schema::table('users', function (Blueprint $table) {
             $table->timestamp('last_login')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -25,8 +21,6 @@ class CreateUsersTable extends Migration
             $table->boolean('sex')->nullable();
             $table->boolean('subscription')->default('1');
             $table->jsonb('permissions');
-            $table->rememberToken();
-            $table->timestamps();
         });
     }
 
@@ -35,6 +29,17 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('last_login');
+            $table->dropColumn('first_name');
+            $table->dropColumn('last_name');
+            $table->dropColumn('avatar');
+            $table->dropColumn('website');
+            $table->dropColumn('about');
+            $table->dropColumn('phone');
+            $table->dropColumn('sex');
+            $table->dropColumn('subscription');
+            $table->dropColumn('permissions');
+        });
     }
 }
