@@ -20,6 +20,7 @@ class WelcomeController extends Controller
         Artisan::call('view:clear');
         Artisan::call('route:clear');
         Artisan::call('storage:link');
+        Artisan::call('notifications:table');
 
         return view('dashboard::container.install.welcome');
     }

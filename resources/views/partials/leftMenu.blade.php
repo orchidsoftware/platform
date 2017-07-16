@@ -8,6 +8,9 @@
     <span class="pull-right text-muted">
     <i class="fa fa-fw fa-angle-right text"></i>
     </span>
+            @if(isset($badge))
+                <b class="label {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+            @endif
             <i class="{{$icon}}"></i>
             <span class="text-ellipsis" title="{{$label}}">{{$label}}</span>
         </a>
@@ -24,6 +27,10 @@
     @endif
     <li>
         <a href="{{$route}}">
+
+            @if(isset($badge))
+                <b class="label {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+            @endif
             <i class="{{$icon}}"></i>
             <span title="{{$label}}" class="text-ellipsis">{{$label}}</span>
         </a>

@@ -221,21 +221,20 @@
                     <!-- BEGIN Alert List !-->
                     <div class="list-view-wrapper list-view b-t">
 
-                        <div class="streamline b-l m-b wrapper">
+                     <div class="list-group list-group-lg list-group-sp">
+                            <a herf="#" class="list-group-item clearfix m-b-none b">
 
-                            {{--
-                            @foreach($UserNotification as $notification)
-                                <div  class="sl-item b-l">
-                                    <div  class="m-l">
-                                        <div  class="text-muted">
-                                            <abbr title="{{$notification->created_at}}">{{$notification->created_at->diffForHumans()}}</abbr>
-                                        </div>
-                                        <p>{{$notification->text}}</p>
-                                    </div>
-                                </div>
-                            @endforeach
-                            --}}
-                        </div>
+                              <i class="fa fa-circle text-danger pull-left m-t-sm text-sm"></i>
+                                <span class="clear m-l-md">
+                                <span>Error!</span>
+                                <small class="text-muted clear text-ellipsis">Do not make a backup copy</small>
+                              </span>
+                            </a>
+                    </div>
+
+                     <div class="v-center" style="height: 80vh;">
+                         <h5 class="text-center w-full">No notifications</h5>
+                     </div>
 
 
                     </div>
