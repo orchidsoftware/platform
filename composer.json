@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "laravel/framework": "5.4",
+    "laravel/framework": "5.4.*",
     "watson/active": "^2.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^4.0",
