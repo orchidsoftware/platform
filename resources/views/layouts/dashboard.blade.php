@@ -22,7 +22,6 @@
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
-
     @stack('stylesheet')
 
     <script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
@@ -64,20 +63,32 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li>
-                        <a href="#" class="click" data-toggle="open"  data-target="#quickview">
+                        <a href="#" class="click" data-toggle="open"  title="Notifications" data-target="#quickview">
                             <i class="icon-bell"></i>
                             <span class="visible-xs-inline">Notifications</span>
-                            <span class="badge badge-sm up bg-danger pull-right-xs">2</span>
+
+
+                            @php
+                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Notifications\DashboardNotification::class)->count();
+                            @endphp
+
+                            @if($unreadNotificationsCount > 0)
+                                <span class="badge badge-sm up bg-danger pull-right-xs">
+                                    {{$unreadNotificationsCount}}
+                                </span>
+                            @endif
                         </a>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle clear">
 
+                            {{--
             <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
             <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNThlZjJlN2ExMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1OGVmMmU3YTExIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQzLjgxMjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="...">
             <i class="on md b-white bottom"></i>
           </span>
+          --}}
 
                             <span class="">{{Auth::user()->name}}</span>
                             <b class="caret"></b>
@@ -96,7 +107,7 @@
                             </li>
                             <li>
                                 <a href="">
-                                    <span class="badge bg-danger pull-right">30%</span>
+                                    <span class="badge bg-danger pull-right">New/span>
                                     <span>Настройки</span>
                                 </a>
                             </li>
@@ -145,9 +156,6 @@
                     </li>
 
 
-
-
-
                 </ul>
                 <!-- / navbar right  -->
             @show
@@ -163,20 +171,17 @@
     <aside id="aside" class="app-aside hidden-xs">
         <div class="aside-wrap-main  b-b b-dark">
 
-
             <div class="navi-wrap">
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
                     <ul class="nav" role="tablist">
 
-
                         <li>
                             <a href="/dashboard" class="navbar-brand text-lt w-full">
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
-
 
                         {!! Dashboard::menu()->render('Main') !!}
 
@@ -244,11 +249,10 @@
 
             @include('dashboard::partials.alert')
 
-
             @if (count($errors) > 0)
-                <div class="alert alert-danger m-b-none" role="alert"><strong>Oh snap!</strong> Change a few things up
-                    and try
-                    submitting again.
+                <div class="alert alert-danger m-b-none" role="alert">
+                    <strong>Oh snap!</strong>
+                    Change a few things up and try submitting again.
                     <ul class="m-t-xs">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -256,7 +260,6 @@
                     </ul>
                 </div>
             @endif
-
 
 
             @yield('content')

@@ -329,4 +329,5 @@ class MenuComposer
             'sort'       => 15,
         ]);
     }
+
 }

@@ -14,4 +14,5 @@ $this->group([
     'prefix'     => 'api',
     'namespace'  => 'Orchid\Http\Controllers\Api',
 ], function ($router) {
+
 });
