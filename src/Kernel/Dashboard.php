@@ -14,7 +14,7 @@ class Dashboard
     /**
      * Orchid Version.
      */
-    const VERSION = '0.0.24';
+    const VERSION = '0.0.29';
 
     /**
      * Dashboard configuration options.
