@@ -37,6 +37,9 @@ class EventServiceProvider extends ServiceProvider
         \Orchid\Events\Marketing\CommentEvent::class     => [
             \Orchid\Listeners\Marketing\Comment\CommentBaseListener::class,
         ],
+        \Illuminate\Auth\Events\Login::class => [
+            \Orchid\Listeners\Systems\Users\LogSuccessfulLogin::class,
+        ],
     ];
 
     /**
