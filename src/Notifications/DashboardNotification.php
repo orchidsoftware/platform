@@ -15,6 +15,13 @@ class DashboardNotification extends Notification
      */
     public $message;
 
+    public $type = [
+        'info' => 'text-info',
+        'success' => 'text-success',
+        'error' => 'text-danger',
+        'warning' => 'text-warning',
+    ];
+
     /**
      * DashboardNotification constructor.
      *
@@ -27,6 +34,8 @@ class DashboardNotification extends Notification
         if (!key_exists('type', $message)) {
             $message['type'] = 'info';
         }
+
+        $message['type'] = $this->type[$message['type']];
 
         $this->message = $message;
     }

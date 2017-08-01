@@ -46,25 +46,26 @@
                          <div class="list-group list-group-lg list-group-sp">
                          @forelse (Auth::user()->notifications->where('type',\Orchid\Notifications\DashboardNotification::class) as $notification)
 
-                            <a herf="#" class="list-group-item clearfix m-b-none b">
+                                 <a href="{{$notification->data['action'] or '#'}}"
+                                    class="list-group-item clearfix m-b-none b">
 
-                              <i class="fa fa-circle text-danger pull-left m-t-sm text-sm"></i>
+                              <i class="fa fa-circle {{ $notification->data['type'] }} pull-left m-t-sm text-sm"></i>
                                 <span class="clear m-l-md">
                                     @if($notification->read())
-                                        <span>{{$notification->data['title']}}</span>
+                                        <span>{{$notification->data['title']  or ''}}</span>
                                     @else
-                                        <b>{{$notification->data['title']}}</b>
+                                        <b>{{$notification->data['title']   or ''}}</b>
                                     @endif
-                                    <small class="text-muted clear text-ellipsis">{{$notification->data['message']}}</small>
+                                    <small class="text-muted clear text-ellipsis">{{$notification->data['message']   or ''}}</small>
                               </span>
                             </a>
-                        @empty
+                             @empty
 
                                  <div class="v-center" style="height: 80vh;">
-                                     <h5 class="text-center w-full">No notifications</h5>
-                                 </div>
+                                 <h5 class="text-center w-full">No notifications</h5>
+                             </div>
 
-                        @endforelse
+                             @endforelse
  </div>
 
 
