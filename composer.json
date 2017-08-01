@@ -1,6 +1,6 @@
 {
   "name": "orchid/platform",
-  "description": "The Laravel CMS for website.",
+  "description": "Laravel CMS for website.",
   "keywords": ["framework", "laravel", "orchid", "crud", "cms", "log", "menu", "scaffold", "settings", "website", "platform"],
   "type": "library",
   "license": "MIT",
