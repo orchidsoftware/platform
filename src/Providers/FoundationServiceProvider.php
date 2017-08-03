@@ -76,7 +76,8 @@ class FoundationServiceProvider extends ServiceProvider
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH . '/resources/stubs/config/content.php', 'content'
+            DASHBOARD_PATH . '/resources/stubs/config/content.php',
+            'content'
         );
     }
 
@@ -85,12 +86,11 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-    	
-    	$this->publishes([
-    		DASHBOARD_PATH . '/resources/views' => resource_path('views/orchid')
-	    ]);
-    	
-	    $this->loadViewsFrom(resource_path('views/orchid'), 'dashboard');
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/views' => resource_path('views/orchid')
+        ]);
+        
+        $this->loadViewsFrom(resource_path('views/orchid'), 'dashboard');
     }
 
     /**

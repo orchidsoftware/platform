@@ -10,7 +10,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard',
     'namespace'  => 'Orchid\Http\Controllers',
@@ -20,4 +21,5 @@ $this->group([
             'as'   => 'dashboard.index',
             'uses' => 'DashboardController@index',
         ]);
-    });
+    }
+);

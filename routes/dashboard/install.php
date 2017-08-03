@@ -10,7 +10,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['install'],
     'as'         => 'install::',
     'prefix'     => 'dashboard/install',
@@ -53,4 +54,5 @@ $this->group([
             'as'   => 'final',
             'uses' => 'FinalController@finish',
         ]);
-    });
+    }
+);

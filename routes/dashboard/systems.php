@@ -9,7 +9,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/systems',
     'namespace'  => 'Orchid\Http\Controllers\Systems',
@@ -78,4 +79,5 @@ $this->group([
             'as'   => 'dashboard.systems.cache',
             'uses' => 'CacheController@store',
         ]);
-    });
+    }
+);

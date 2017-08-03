@@ -9,7 +9,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/posts',
     'namespace'  => 'Orchid\Http\Controllers\Posts',
@@ -44,7 +45,8 @@ $this->group([
             'as'   => 'dashboard.posts.type.destroy',
             'uses' => 'PostController@destroy',
         ]);
-    });
+    }
+);
 
 
 /*
@@ -56,7 +58,8 @@ $this->group([
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/pages',
     'namespace'  => 'Orchid\Http\Controllers\Posts',
@@ -71,4 +74,5 @@ $this->group([
             'as'   => 'dashboard.pages.update',
             'uses' => 'PageController@update',
         ]);
-    });
+    }
+);

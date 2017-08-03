@@ -9,7 +9,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/tools',
     'namespace'  => 'Orchid\Http\Controllers\Tools',
@@ -69,12 +70,15 @@ $this->group([
             $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
             $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
             $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
-            $this->post('delete_file_folder',
-                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']);
+            $this->post(
+                'delete_file_folder',
+                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']
+            );
             $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'get_all_dirs']);
             $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'move_file']);
             $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'rename_file']);
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
-    });
+    }
+);

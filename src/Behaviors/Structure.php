@@ -130,8 +130,10 @@ trait Structure
 
                     foreach ($nameArray as $name) {
                         $config['name'] .= '[' . $name . ']';
-                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name,
-                                $config['value'])
+                        if (!is_null($post) && !is_null($config['value']) && is_array($config['value']) && array_key_exists(
+                            $name,
+                                $config['value']
+                        )
                         ) {
                             $config['value'] = $config['value'][$name];
                         }

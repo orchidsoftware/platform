@@ -9,7 +9,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard'],
     'prefix'     => 'dashboard',
     'namespace'  => 'Orchid\Http\Controllers\Auth',
@@ -29,4 +30,5 @@ $this->group([
             $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm');
             $router->post('password/reset', 'ResetPasswordController@reset');
         }
-    });
+    }
+);

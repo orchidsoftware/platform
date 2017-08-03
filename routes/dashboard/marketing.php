@@ -10,7 +10,8 @@
 |
 */
 
-$this->group([
+$this->group(
+    [
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard/marketing',
     'namespace'  => 'Orchid\Http\Controllers\Marketing',
@@ -45,4 +46,5 @@ $this->group([
                 'store' => 'dashboard.marketing.robots.store',
             ],
         ]);
-    });
+    }
+);
