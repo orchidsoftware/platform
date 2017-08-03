@@ -10,5 +10,4 @@ class SummernoteField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.summernote';
-
 }

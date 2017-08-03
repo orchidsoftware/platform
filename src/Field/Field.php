@@ -28,5 +28,4 @@ abstract class Field implements FieldInterface
 
         return view($this->view, $attributes);
     }
-
 }
