@@ -15,7 +15,6 @@ $this->group([
     'namespace'  => 'Orchid\Http\Controllers\Systems',
 ],
     function (\Illuminate\Routing\Router $router) {
-
         $router->resource('users', 'UserController', ['names' => [
             'index'   => 'dashboard.systems.users',
             'create'  => 'dashboard.systems.users.create',

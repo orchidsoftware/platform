@@ -10,5 +10,4 @@ class InputField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.input';
-
 }

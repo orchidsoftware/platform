@@ -10,5 +10,4 @@ class CodeField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.code';
-
 }

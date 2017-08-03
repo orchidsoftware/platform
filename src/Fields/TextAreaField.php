@@ -10,5 +10,4 @@ class TextAreaField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.textarea';
-
 }
