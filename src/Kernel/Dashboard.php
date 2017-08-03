@@ -56,8 +56,8 @@ class Dashboard
     {
         $this->menu = new Menu();
         $this->permission = new Permissions();
-        $this->pages = new PageStorage();
-        $this->posts = new PostStorage();
+        //$this->pages = new PageStorage();
+        //$this->posts = new PostStorage();
         $this->fields = new FieldStorage();
     }
 
@@ -123,45 +123,55 @@ class Dashboard
         return $this->permission->get();
     }
 
+
+
     /**
      * @return PostStorage
      */
+    /*
     public function getPosts(): PostStorage
     {
         return $this->posts;
     }
+    */
 
     /**
      * @param bool $sort
      *
      * @return array
      */
-    public function posts($sort = false): array
-    {
-        return $this->posts->all($sort);
-    }
+    /*
+ public function posts($sort = false): array
+ {
+     return $this->posts->all($sort);
+ }
+    */
 
-    /**
-     * @return PageStorage
-     */
+ /**
+  * @return PageStorage
+  */
+    /*
     public function getPages(): PageStorage
     {
         return $this->pages;
     }
+    */
 
     /**
      * @param bool $sort
      *
      * @return array
      */
-    public function pages($sort = false): array
-    {
-        return $this->pages->all($sort);
-    }
+    /*
+ public function pages($sort = false): array
+ {
+     return $this->pages->all($sort);
+ }
+    */
 
-    /**
-     * @return mixed
-     */
+ /**
+  * @return mixed
+  */
     public function fields(): array
     {
         return $this->fields->all();

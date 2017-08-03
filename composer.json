@@ -1,7 +1,7 @@
 {
   "name": "orchid/platform",
-  "description": "Laravel CMS for website.",
-  "keywords": ["framework", "laravel", "orchid", "crud", "cms", "log", "menu", "scaffold", "settings", "website", "platform"],
+  "description": "Laravel Orchid Platform.",
+  "keywords": ["framework", "laravel", "orchid", "platform"],
   "type": "library",
   "license": "MIT",
   "homepage": "https://theorchid.github.io/",
@@ -17,18 +17,10 @@
   ],
   "require": {
     "php": ">=7.0",
-    "laravel/framework": "5.4.*",
+    "orchid/foundation": "dev-master",
     "watson/active": "^2.0",
-    "intervention/image": "^2.3",
-    "cartalyst/tags": "^4.0",
-    "cviebrock/eloquent-sluggable": "^4.2",
-    "spatie/laravel-backup": "4.*",
     "orchid/defender": "^1.0",
-    "orchid/settings": "^2.0",
-    "orchid/alert": "^1.0",
-    "orchid/widget": "^1.0",
-    "orchid/log": "^1.0",
-    "orchid/monitor": "^1.0"
+    "orchid/alert": "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
@@ -50,6 +42,9 @@
     }
   },
   "suggest": {
+
+    "orchid/cms": "Laravel package CMS",
+    "orchid/remote": "Admin Panel for Microservices",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
   "minimum-stability": "dev",

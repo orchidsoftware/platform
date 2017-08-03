@@ -37,8 +37,6 @@ $(() => {
 });
 
 
-require('./modules/select');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-require('./modules/upload');
