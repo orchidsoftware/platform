@@ -19,7 +19,7 @@ return [
                 'auth'    => '只限权限用户',
             ],
         ],
-        'class'             => 'Class',
+        'class'             => '样式',
         'relations'         => [
             'name'      => '关系',
             'variables' => [
