@@ -33,34 +33,86 @@ Make sure your server meets the following requirements.
 - PHP Version 7.0+
 
 
-## FAQ
+## Install
 
 
-#### What is Orchid?
-Orchid is a package for Laravel which helps with the administration of the application on Laravel, allowing you to write code as you want, control of routing/themes/plugins/etc - none of this and will not be! The package only gives a good set of tools that will be in demand in almost every project.
+#### Via Composer
 
-#### Is it necessary to use the built-in recordings?
-We assume that most of your records will be stored in json, which will allow you to do the translation and the universal structure, but if the rails have goals like a CRM system with harsh conditions, then of course you can use the classic CRUD yourself, orchids will not stop you.
+Going your project directory on shell and run this command: 
+```php
+$ composer require orchid/platform
+```
 
-#### Are there any additional system requirements from Laravel?
-Yes, you need a PHP extension for image processing and support for json type your database.
+####  Provider and Facades
 
-#### How much does it cost?
-Orchid is free, but we appreciate donations.
+Add to `config/app.php`:
+
+Service provider to the 'providers' array:
+```php
+'providers' => [
+  // Laravel Framework Service Providers...
+  //...
+
+  // Package Service Providers
+  Orchid\Providers\FoundationServiceProvider::class,
+
+  // ...
+
+  // Application Service Providers
+  // ...
+];
+```
+
+Facades aliases to the 'aliases' array:
+```php
+'aliases' => [
+  // ...
+  'Dashboard' =>  Orchid\Facades\Dashboard::class,
+  'Alert' =>  Orchid\Alert\Facades\Alert::class,
+  'Active' => Watson\Active\Facades\Active::class,
+];
+```
 
 
-## Learn More
+#### User
 
-Learn more at these links:
+Inherit your model App\User
 
-- [Website](https://theorchid.github.io/)
-- [Documentation](https://theorchid.github.io/)
-- [Support](https://github.com/TheOrchid/Platform/issues)
-- [Laravel](https://laravel.com/)
+```php
+namespace App;
 
+use Orchid\Core\Models\User as UserOrchid;
 
-## Examples
-* [Create blog](https://github.com/tabuna/SimpleBlogOrchid)
+class User extends UserOrchid
+{
+
+}
+
+```
+
+#### Migration and Publish
+
+```php
+php artisan vendor:publish
+php artisan notifications:table 
+php artisan migrate
+php artisan make:admin admin admin@admin.com password
+```
+
+#### .env
+
+add .evn
+
+```php
+APP_INSTALL=true
+```
+
+#### finish
+
+go http://you.app/dashboard
+login : admin@admin.com
+password: password
+
 
 ## Security
 
