@@ -46,11 +46,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-
         Route::bind('role', function ($value) {
             return Role::where('slug', $value)->firstOrFail();
         });
-
     }
 
     /**
