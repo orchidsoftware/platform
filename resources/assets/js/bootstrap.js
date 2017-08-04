@@ -26,6 +26,7 @@ window.moment = require('moment');
 $.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
 
 
+require('./modules/select');
 window.ace = require('brace');
 require('brace/mode/javascript');
 require('brace/theme/monokai');
