@@ -20,9 +20,10 @@
 Documentation can be found at [Orchid website](https://theorchid.github.io/en/docs/).
 
 ## Online Demo
-You can view a demo at[http://demo-orchid.tk](http://demo-orchid.tk)
+You can view a demo at [http://demo-orchid.tk](http://demo-orchid.tk)
 
 **Email**: admin@admin.com
+
 **Password**: password
 
 
