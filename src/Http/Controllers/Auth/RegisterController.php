@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Http\Controllers\Auth;
+namespace Orchid\Platform\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
-use Orchid\Core\Models\User;
-use Orchid\Http\Controllers\Controller;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {

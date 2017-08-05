@@ -28,16 +28,16 @@
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\": "src/"
+      "Orchid\\Platform": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platfrorm\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Facades\\Dashboard"
+        "Dashboard": "Orchid\\Platfrorm\\Facades\\Dashboard"
       }
     }
   },

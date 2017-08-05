@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Core\Models;
+namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Orchid\Access\UserAccess;
-use Orchid\Access\UserInterface;
+use Orchid\Platform\Platform\Access\UserAccess;
+use Orchid\Platform\Platform\Access\UserInterface;
 
 class User extends Authenticatable implements UserInterface
 {

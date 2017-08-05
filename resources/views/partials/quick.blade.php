@@ -44,7 +44,7 @@
 
 
                          <div class="list-group list-group-lg list-group-sp">
-                         @forelse (Auth::user()->notifications->where('type',\Orchid\Notifications\DashboardNotification::class) as $notification)
+                         @forelse (Auth::user()->notifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class) as $notification)
 
                                  <a href="{{$notification->data['action'] or '#'}}"
                                     class="list-group-item clearfix m-b-none b">

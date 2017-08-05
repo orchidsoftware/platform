@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Listeners\Systems\Users;
+namespace Orchid\Platform\Listeners\Systems\Users;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;

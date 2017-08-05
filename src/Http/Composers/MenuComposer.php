@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Http\Composers;
+namespace Orchid\Platform\Http\Composers;
 
-use Orchid\Kernel\Dashboard;
+use Orchid\Platform\Kernel\Dashboard;
 
 class MenuComposer
 {

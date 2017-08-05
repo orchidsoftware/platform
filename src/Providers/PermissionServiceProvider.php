@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Kernel\Dashboard;
+use Orchid\Platform\Kernel\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

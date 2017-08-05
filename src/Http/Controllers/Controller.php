@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Controllers;
+namespace Orchid\Platform\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

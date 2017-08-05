@@ -1,20 +1,20 @@
 <?php
 
-namespace Orchid\Kernel;
+namespace Orchid\Platform\Kernel;
 
 use Illuminate\Support\Collection;
-use Orchid\Access\Permissions;
-use Orchid\Behaviors\Storage\PageStorage;
-use Orchid\Behaviors\Storage\PostStorage;
-use Orchid\Field\FieldStorage;
-use Orchid\Menu\Menu;
+use Orchid\Platform\Access\Permissions;
+use Orchid\Platform\Behaviors\Storage\PageStorage;
+use Orchid\Platform\Behaviors\Storage\PostStorage;
+use Orchid\Platform\Field\FieldStorage;
+use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
     /**
      * Orchid Version.
      */
-    const VERSION = '0.0.29';
+    const VERSION = '1.0.0';
 
     /**
      * Dashboard configuration options.

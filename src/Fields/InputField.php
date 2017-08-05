@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Fields;
+namespace Orchid\Platform\Fields;
 
-use Orchid\Field\Field;
+use Orchid\Platform\Field\Field;
 
 class InputField extends Field
 {

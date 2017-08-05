@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Http\Controllers\Auth;
+namespace Orchid\Platform\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Orchid\Http\Controllers\Controller;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {

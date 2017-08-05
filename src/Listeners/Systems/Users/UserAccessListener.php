@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Listeners\Systems\Users;
+namespace Orchid\Platform\Listeners\Systems\Users;
 
-use Orchid\Http\Forms\Systems\Users\AccessUserForm;
+use Orchid\Platform\Http\Forms\Systems\Users\AccessUserForm;
 
 class UserAccessListener
 {

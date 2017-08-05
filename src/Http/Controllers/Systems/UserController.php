@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
-use Orchid\Core\Models\User;
-use Orchid\Http\Controllers\Controller;
-use Orchid\Http\Forms\Systems\Users\UserFormGroup;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserController extends Controller
 {

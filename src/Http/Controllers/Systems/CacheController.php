@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
-use Orchid\Http\Middleware\AccessMiddleware;
-use Orchid\Http\Middleware\RedirectInstall;
+use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Http\Middleware\RedirectInstall;
 
 class RouteServiceProvider extends ServiceProvider
 {

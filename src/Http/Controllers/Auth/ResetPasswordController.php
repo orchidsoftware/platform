@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\Http\Controllers\Auth;
+namespace Orchid\Platform\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use Orchid\Http\Controllers\Controller;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {

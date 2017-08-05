@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Field;
+namespace Orchid\Platform\Field;
 
 abstract class Field implements FieldInterface
 {

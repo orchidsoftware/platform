@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -12,15 +12,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \Orchid\Events\Systems\RolesEvent::class         => [
-            \Orchid\Listeners\Systems\Roles\RoleBaseListener::class,
+        \Orchid\Platform\Events\Systems\RolesEvent::class         => [
+            \Orchid\Platform\Listeners\Systems\Roles\RoleBaseListener::class,
         ],
-        \Orchid\Events\Systems\UserEvent::class          => [
-            \Orchid\Listeners\Systems\Users\UserBaseListener::class,
-            \Orchid\Listeners\Systems\Users\UserAccessListener::class,
+        \Orchid\Platform\Events\Systems\UserEvent::class          => [
+            \Orchid\Platform\Listeners\Systems\Users\UserBaseListener::class,
+            \Orchid\Platform\Listeners\Systems\Users\UserAccessListener::class,
         ],
         \Illuminate\Auth\Events\Login::class => [
-            \Orchid\Listeners\Systems\Users\LogSuccessfulLogin::class,
+            \Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin::class,
         ],
     ];
 

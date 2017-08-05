@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Forms;
+namespace Orchid\Platform\Forms;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;

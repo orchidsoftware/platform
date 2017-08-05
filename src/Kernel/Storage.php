@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Kernel;
+namespace Orchid\Platform\Kernel;
 
 class Storage implements StorageInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Exceptions;
+namespace Orchid\Platform\Exceptions;
 
 class TypeException extends \Exception
 {

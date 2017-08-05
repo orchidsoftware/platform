@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Http\Composers\MenuComposer;
+use Orchid\Platform\Http\Composers\MenuComposer;
 
 class MenuServiceProvider extends ServiceProvider
 {

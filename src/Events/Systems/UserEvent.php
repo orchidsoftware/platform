@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Events\Systems;
+namespace Orchid\Platform\Events\Systems;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Http\Forms\Systems\Users\UserFormGroup;
+use Orchid\Platform\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserEvent
 {

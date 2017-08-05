@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Notifications;
+namespace Orchid\Platform\Notifications;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;

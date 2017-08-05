@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Controllers;
+namespace Orchid\Platform\Http\Controllers;
 
 class DashboardController extends Controller
 {

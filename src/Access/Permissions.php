@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Access;
+namespace Orchid\Platform\Platform\Access;
 
 use Illuminate\Support\Collection;
 

@@ -12,7 +12,7 @@
 $this->group([
     'middleware' => ['web', 'dashboard'],
     'prefix'     => 'dashboard',
-    'namespace'  => 'Orchid\Http\Controllers\Auth',
+    'namespace'  => 'Orchid\Platform\Http\Controllers\Auth',
 ],
     function (\Illuminate\Routing\Router $router) {
         // Authentication Routes...

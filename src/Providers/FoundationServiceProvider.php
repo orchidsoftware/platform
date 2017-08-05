@@ -1,16 +1,16 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
 use Orchid\Alert\Laravel\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
-use Orchid\Kernel\Dashboard;
+use Orchid\Platform\Kernel\Dashboard;
 use Orchid\Log\LogServiceProvider;
 use Orchid\Setting\Providers\SettingServiceProvider;
-use Orchid\Widget\Providers\WidgetServiceProvider;
+use Orchid\Platform\Widget\Providers\WidgetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 

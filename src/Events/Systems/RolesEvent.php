@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Events\Systems;
+namespace Orchid\Platform\Events\Systems;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Http\Forms\Systems\Roles\RoleFormGroup;
+use Orchid\Platform\Http\Forms\Systems\Roles\RoleFormGroup;
 
 class RolesEvent
 {

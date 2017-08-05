@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
-use Orchid\Core\Models\Role;
-use Orchid\Http\Controllers\Controller;
-use Orchid\Http\Forms\Systems\Roles\RoleFormGroup;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Forms\Systems\Roles\RoleFormGroup;
 
 class RoleController extends Controller
 {

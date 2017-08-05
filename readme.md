@@ -54,7 +54,7 @@ Service provider to the 'providers' array:
   //...
 
   // Package Service Providers
-  Orchid\Providers\FoundationServiceProvider::class,
+  Orchid\Platfrorm\Providers\FoundationServiceProvider::class,
 
   // ...
 
@@ -67,7 +67,7 @@ Facades aliases to the 'aliases' array:
 ```php
 'aliases' => [
   // ...
-  'Dashboard' =>  Orchid\Facades\Dashboard::class,
+  'Dashboard' =>  Orchid\Platfrorm\Facades\Dashboard::class,
   'Alert' =>  Orchid\Alert\Facades\Alert::class,
   'Active' => Watson\Active\Facades\Active::class,
 ];
@@ -81,7 +81,7 @@ Inherit your model App\User
 ```php
 namespace App;
 
-use Orchid\Core\Models\User as UserOrchid;
+use Orchid\Platfrorm\Core\Models\User as UserOrchid;
 
 class User extends UserOrchid
 {

@@ -63,16 +63,16 @@ return [
     */
 
     'fields' => [
-        'textarea' => Orchid\Fields\TextAreaField::class,
-        'input'    => Orchid\Fields\InputField::class,
-        'tags'     => Orchid\Fields\TagsField::class,
-        'robot'    => Orchid\Fields\RobotField::class,
-        'place'    => Orchid\Fields\PlaceField::class,
-        'datetime' => Orchid\Fields\DateTimerField::class,
-        'checkbox' => Orchid\Fields\CheckBoxField::class,
-        'path'     => Orchid\Fields\PathField::class,
-        'code'     => Orchid\Fields\CodeField::class,
-        'wysiwyg'  => \Orchid\Fields\SummernoteField::class,
+        'textarea' => Orchid\Platform\Fields\TextAreaField::class,
+        'input'    => Orchid\Platform\Fields\InputField::class,
+        'tags'     => Orchid\Platform\Fields\TagsField::class,
+        'robot'    => Orchid\Platform\Fields\RobotField::class,
+        'place'    => Orchid\Platform\Fields\PlaceField::class,
+        'datetime' => Orchid\Platform\Fields\DateTimerField::class,
+        'checkbox' => Orchid\Platform\Fields\CheckBoxField::class,
+        'path'     => Orchid\Platform\Fields\PathField::class,
+        'code'     => Orchid\Platform\Fields\CodeField::class,
+        'wysiwyg'  => Orchid\Platform\Fields\SummernoteField::class,
     ],
 
     /*

@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Http\Forms\Systems\Users;
+namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Orchid\Core\Models\User;
-use Orchid\Forms\Form;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Forms\Form;
 
 class BaseUserForm extends Form
 {
