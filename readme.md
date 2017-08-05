@@ -49,7 +49,7 @@ Service provider to the 'providers' array:
 ```php
 'providers' => [
     // ...
-    Orchid\Providers\FoundationServiceProvider::class,
+    Orchid\Platform\Providers\FoundationServiceProvider::class,
 ];
 ```
 
@@ -57,7 +57,7 @@ And the Facades Aliases to the 'aliases' array:
 ```php
 'aliases' => [
   // ...
-  'Dashboard' =>  Orchid\Facades\Dashboard::class,
+  'Dashboard' =>  Orchid\Platform\Facades\Dashboard::class,
   'Alert' =>  Orchid\Alert\Facades\Alert::class,
   'Active' => Watson\Active\Facades\Active::class,
 ];
@@ -68,7 +68,7 @@ Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
 ```php
 namespace App;
 
-use Orchid\Core\Models\User as UserOrchid;
+use Orchid\Platform\Core\Models\User as UserOrchid;
 
 class User extends UserOrchid
 {
@@ -80,7 +80,7 @@ class User extends UserOrchid
 Publish ORCHID's vendor files
 
 ```php
-php artisan vendor:publish --provider="Orchid\Providers\FoundationServiceProvider"
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
 ```
 
 Create the notification table
