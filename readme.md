@@ -19,9 +19,12 @@
 
 Documentation can be found at [Orchid website](https://theorchid.github.io/en/docs/).
 
-You can watch [live](http://demo-orchid.tk)
+## Online Demo
+You can view a demo at [http://demo-orchid.tk](http://demo-orchid.tk)
 
-**Login**: admin@admin.com **Password**: password
+**Email**: admin@admin.com
+
+**Password**: password
 
 
 ## System requirements
@@ -33,55 +36,39 @@ Make sure your server meets the following requirements.
 - PHP Version 7.0+
 
 
-## Install
+## Installation
 
-
-#### Via Composer
-
-Going your project directory on shell and run this command: 
+Firstly, download the Laravel installer using Composer:
 ```php
 $ composer require orchid/platform
 ```
 
-####  Provider and Facades
-
-Add to `config/app.php`:
+Now add the service provider in  `config/app.php` file:
 
 Service provider to the 'providers' array:
 ```php
 'providers' => [
-  // Laravel Framework Service Providers...
-  //...
-
-  // Package Service Providers
-  Orchid\Platfrorm\Providers\FoundationServiceProvider::class,
-
-  // ...
-
-  // Application Service Providers
-  // ...
+    // ...
+    Orchid\Providers\FoundationServiceProvider::class,
 ];
 ```
 
-Facades aliases to the 'aliases' array:
+And the Facades Aliases to the 'aliases' array:
 ```php
 'aliases' => [
   // ...
-  'Dashboard' =>  Orchid\Platfrorm\Facades\Dashboard::class,
+  'Dashboard' =>  Orchid\Facades\Dashboard::class,
   'Alert' =>  Orchid\Alert\Facades\Alert::class,
   'Active' => Watson\Active\Facades\Active::class,
 ];
 ```
 
-
-#### User
-
-Inherit your model App\User
+Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
 
 ```php
 namespace App;
 
-use Orchid\Platfrorm\Core\Models\User as UserOrchid;
+use Orchid\Core\Models\User as UserOrchid;
 
 class User extends UserOrchid
 {
@@ -90,28 +77,42 @@ class User extends UserOrchid
 
 ```
 
-#### Migration and Publish
+Publish ORCHID's vendor files
 
 ```php
-php artisan vendor:publish
-php artisan notifications:table 
+php artisan vendor:publish --provider="Orchid\Providers\FoundationServiceProvider"
+```
+
+Create the notification table
+```php
+php artisan notifications:table
+```
+
+Run your database migration
+```php
 php artisan migrate
+```
+
+Create your admin user
+```php
 php artisan make:admin admin admin@admin.com password
 ```
 
-#### .env
-
-add .evn
+Add the following to your `.env` file
 
 ```php
 APP_INSTALL=true
 ```
 
-#### finish
+#### Usage
 
-go http://you.app/dashboard
-login : admin@admin.com
-password: password
+To view ORCHID's dashboard go to:
+```php
+http://your.app/dashboard
+```
+and use
+**Email**: admin@admin.com
+**Password**: password
 
 
 ## Security
