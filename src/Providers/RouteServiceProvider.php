@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Orchid\Platform\Http\Middleware\RedirectInstall;
+use Orchid\Platform\Core\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Orchid\Http\Controllers';
+    protected $namespace = 'Orchid\Platform\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
