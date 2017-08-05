@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Platform\Platform\Console\Commands;
+namespace Orchid\Platform\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
-use Orchid\Platform\Platform\Core\Models\User;
-use Orchid\Platform\Platform\Kernel\Dashboard;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Kernel\Dashboard;
 
 class CreateAdminCommand extends Command
 {

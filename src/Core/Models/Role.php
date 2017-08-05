@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\Platform\Platform\Core\Models;
+namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Platform\Access\RoleAccess;
-use Orchid\Platform\Platform\Access\RoleInterface;
+use Orchid\Platform\Access\RoleAccess;
+use Orchid\Platform\Access\RoleInterface;
 
 class Role extends Model implements RoleInterface
 {

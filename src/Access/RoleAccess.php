@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Platform\Platform\Access;
+namespace Orchid\Platform\Access;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Orchid\Platform\Platform\Core\Models\User;
+use Orchid\Platform\Core\Models\User;
 
 trait RoleAccess
 {
