@@ -34,17 +34,9 @@ class PageController extends Controller
     {
         $this->checkPermission('dashboard.pages.' . $page->slug);
 
-        $locales = $this->locales->map(function ($item) {
-            if ($item['required'] == true) {
-                return true;
-            }
-
-            return false;
-        });
-
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
-            'locales' => $locales,
+            'locales' => $this->locales,
             'post'    => $page,
         ]);
     }
@@ -58,18 +50,12 @@ class PageController extends Controller
     public function update(Page $page, Request $request)
     {
         $this->checkPermission('dashboard.pages.' . $page->slug);
+        
         $type = $page->getBehaviorObject($page->slug);
-
 
         $page->fill($request->all());
 
-        $locales = $this->locales->map(function ($item) {
-            if ($item['required'] == true) {
-                return true;
-            }
-
-            return false;
-        })->toArray();
+        $locales = $this->locales->where('required', true)->toArray();
 
         $page->options = [
             'locale' => $request->get('options', $locales),

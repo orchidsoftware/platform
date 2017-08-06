@@ -52,7 +52,7 @@ class PostController extends Controller
 
         return view('dashboard::container.posts.create', [
             'type'    => $type,
-            'locales' => $this->locales->where('required', true),
+            'locales' => $this->locales,
         ]);
     }
 
@@ -70,14 +70,7 @@ class PostController extends Controller
 
         $post->fill($request->all());
 
-        $locales = collect(config('content.locales'));
-        $locales = $locales->map(function ($item) {
-            if ($item['required'] == true) {
-                return true;
-            }
-
-            return false;
-        })->toArray();
+        $locales = $this->locales->where('required', true)->toArray();
 
         $post->options = [
             'locale' => $request->get('options', $locales),
@@ -128,17 +121,10 @@ class PostController extends Controller
     public function edit(PostBehavior $type, Post $post): View
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
-        $locales = $this->locales->map(function ($item) {
-            if ($item['required'] == true) {
-                return true;
-            }
-
-            return false;
-        });
 
         return view('dashboard::container.posts.edit', [
             'type'    => $type,
-            'locales' => $locales,
+            'locales' => $this->locales,
             'post'    => $post,
         ]);
     }
