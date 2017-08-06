@@ -74,8 +74,9 @@ class Dashboard
      * @param string $key
      * @param string $value
      */
-    public function registerResource( string $key, string $value){
-        array_push($this->resources[$key],$value);
+    public function registerResource(string $key, string $value)
+    {
+        array_push($this->resources[$key], $value);
     }
 
     /**
