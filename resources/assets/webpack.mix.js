@@ -23,6 +23,5 @@ mix.copy('./node_modules/summernote/dist/', 'dist/summernote');
 
 
 mix.js([
-        './js/app.js',
-    ]
-    , 'dist/js/orchid.js');
+    './js/app.js',
+], 'dist/js/orchid.js');
