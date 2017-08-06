@@ -22,9 +22,21 @@
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
-    @stack('stylesheet')
 
-    <script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
+    @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
+        <link rel="stylesheet" href="{{$stylesheet}}">
+    @endforeach
+
+    @stack('stylesheets')
+
+    <script src="/orchid/js/orchid.js" type="text/javascript"></script>
+
+    @foreach(Dashboard::getProperty('resources')['scripts'] as $stylesheet)
+        <link rel="stylesheet" href="{{$stylesheet}}">
+    @endforeach
+
+    @stack('scripts')
+
 </head>
 
 
@@ -282,8 +294,6 @@
 
 @include('dashboard::partials.quick')
 
-
-@stack('scripts')
 
 </body>
 </html>
