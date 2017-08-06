@@ -53,24 +53,24 @@ class BaseUserForm extends Form
     /**
      * Save Base Role.
      *
-     * @param Request|null $request
-     * @param User|null    $user
-     *
-     * @return mixed|void
+     * @param User|null $user
      */
-    public function persist(Request $request = null, User $user = null)
+    public function persist(User $user = null)
     {
-        $attributes = $request->all();
+        $attributes = $this->request->all();
+
+        // We save permissions in AccessUserForm so we don't need them here
+        $attributes['permissions'] = [];
 
         if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
             unset($attributes['password']);
         }
 
         $user->fill($attributes);
-        if ($request->has('password')) {
-            $user->password = Hash::make($request->password);
-            $user->permissions = [];
+        if (isset($attributes['password'])) {
+            $user->password = Hash::make($attributes['password']);
         }
+
         $user->save();
     }
 

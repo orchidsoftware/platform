@@ -86,17 +86,21 @@ class AccessUserForm extends Form
     /**
      * Save Base Role.
      *
-     * @param null $request
-     * @param null $user
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @param User|null $user
      */
-    public function persist($request = null, $user = null)
+    public function persist(User $user = null)
     {
-        if (!is_null($this->roles)) {
+        if (is_null($this->roles)) {
+            $roles = [];
+        } else {
             $roles = Role::whereIn('slug', $this->roles)->get();
-            $user->replaceRoles($roles);
         }
+
+        $permissions = $this->permissions ?: [];
+
+        $user->replaceRoles($roles);
+        $user->permissions = $permissions;
+
         $user->save();
     }
 }

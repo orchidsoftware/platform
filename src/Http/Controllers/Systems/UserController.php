@@ -46,14 +46,13 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request   $request
-     * @param User|null $user
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, User $user = null)
+    public function store(User $user)
     {
-        $this->form->save($request, $user);
+        $this->form->save($user);
 
         Alert::success(trans('dashboard::common.alert.success'));
 
@@ -75,14 +74,13 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param User    $user
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(User $user)
     {
-        $this->form->save($request, $user);
+        $this->form->save($user);
 
         Alert::success(trans('dashboard::common.alert.success'));
 
@@ -92,7 +90,7 @@ class UserController extends Controller
     /**
      * @param User $user
      *
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {
