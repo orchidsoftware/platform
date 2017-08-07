@@ -24,15 +24,15 @@
 
 
     @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
-        <link rel="stylesheet" href="{{$stylesheet}}">
+    <link rel="stylesheet" href="{{$stylesheet}}">
     @endforeach
 
     @stack('stylesheets')
 
     <script src="/orchid/js/orchid.js" type="text/javascript"></script>
 
-    @foreach(Dashboard::getProperty('resources')['scripts'] as $stylesheet)
-        <link rel="stylesheet" href="{{$stylesheet}}">
+    @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
+    <script src="{{$scripts}}" type="text/javascript"></script>
     @endforeach
 
     @stack('scripts')
