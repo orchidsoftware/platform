@@ -4,8 +4,6 @@ namespace Orchid\Platform\Kernel;
 
 use Illuminate\Support\Collection;
 use Orchid\Platform\Access\Permissions;
-use Orchid\Platform\Behaviors\Storage\PageStorage;
-use Orchid\Platform\Behaviors\Storage\PostStorage;
 use Orchid\Platform\Field\FieldStorage;
 use Orchid\Platform\Menu\Menu;
 
@@ -30,6 +28,11 @@ class Dashboard
 
 
     /**
+     * @var array
+     */
+    public $storage = null;
+
+    /**
      * JS and CSS resources for implementation in the panel
      *
      * @var array
@@ -47,6 +50,8 @@ class Dashboard
         $this->menu = new Menu();
         $this->permission = new Permissions();
         $this->fields = new FieldStorage();
+
+        $this->storage = collect();
     }
 
     /**
@@ -67,7 +72,7 @@ class Dashboard
      */
     public function registerStorage($property, StorageInterface $storage)
     {
-        $this->$property = $storage;
+        $this->storage->put($property,$storage);
     }
 
     /**
@@ -80,6 +85,27 @@ class Dashboard
     }
 
     /**
+     * Return Storage
+     *
+     * @param      $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function getStorage($key, $default = null)
+    {
+        return $this->storage->get($key,$default);
+    }
+
+    /**
+     * @return null|Menu
+     */
+    public function menu() : Menu
+    {
+        return $this->menu;
+    }
+
+    /**
      * Return Property
      *
      * @param $property
@@ -89,14 +115,6 @@ class Dashboard
     public function getProperty($property)
     {
         return $this->$property;
-    }
-
-    /**
-     * @return null|Menu
-     */
-    public function menu() : Menu
-    {
-        return $this->menu;
     }
 
     /**

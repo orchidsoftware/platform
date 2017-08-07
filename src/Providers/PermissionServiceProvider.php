@@ -57,7 +57,6 @@ class PermissionServiceProvider extends ServiceProvider
     protected function registerPermissionsSystems(): array
     {
         return [
-
             'Systems' => [
                 [
                     'slug'        => 'dashboard.systems.roles',

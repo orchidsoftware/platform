@@ -54,10 +54,14 @@ class CreateAdminCommand extends Command
      */
     public function fire()
     {
-        $permissions = [];
-        foreach ($this->permissions->flatten() as $permission) {
-            $permissions[$permission] = 1;
-        }
+        $permissions = collect();
+
+
+        $this->permissions->each(function ($items) use ($permissions) {
+            foreach ($items as $item){
+                $permissions->put($item['slug'],1);
+            }
+        });
 
         try {
             User::create([
