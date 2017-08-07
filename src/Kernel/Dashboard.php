@@ -72,7 +72,7 @@ class Dashboard
      */
     public function registerStorage($property, StorageInterface $storage)
     {
-        $this->storage->put($property,$storage);
+        $this->storage->put($property, $storage);
     }
 
     /**
@@ -94,7 +94,7 @@ class Dashboard
      */
     public function getStorage($key, $default = null)
     {
-        return $this->storage->get($key,$default);
+        return $this->storage->get($key, $default);
     }
 
     /**

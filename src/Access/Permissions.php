@@ -24,9 +24,9 @@ class Permissions
      */
     public function registerPermissions(array $permission)
     {
-        $old = $this->container->get(key($permission),[]);
+        $old = $this->container->get(key($permission), []);
 
-        $this->container->put(key($permission),array_merge_recursive($old,$permission));
+        $this->container->put(key($permission), array_merge_recursive($old, $permission));
 
 
         return $this->container;
