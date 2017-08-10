@@ -10,7 +10,6 @@ use Watson\Active\Facades\Active;
 
 abstract class TestCase extends Orchestra
 {
-
     /**
      * Setup the test environment.
      */
@@ -56,9 +55,7 @@ abstract class TestCase extends Orchestra
             'prefix'   => '',
         ]
         */
-
     }
-
 
     /**
      * @param \Illuminate\Foundation\Application $app
@@ -86,6 +83,4 @@ abstract class TestCase extends Orchestra
             'Active'    => Active::class,
         ];
     }
-
-
 }
