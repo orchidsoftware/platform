@@ -11,6 +11,12 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS platform;'
+
 install:
   - composer install --prefer-source
 
