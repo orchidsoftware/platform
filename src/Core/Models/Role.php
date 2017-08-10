@@ -11,11 +11,6 @@ class Role extends Model implements RoleInterface
     use RoleAccess;
 
     /**
-     * @var bool
-     */
-    public $timestamps = false;
-
-    /**
      * @var string
      */
     protected $table = 'roles';
