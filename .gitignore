@@ -1,4 +1,5 @@
 .idea
+node_modules
 .phpstorm.meta.php
 _ide_helper.php
 composer.lock
