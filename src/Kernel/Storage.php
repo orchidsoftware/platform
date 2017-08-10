@@ -25,7 +25,7 @@ class Storage implements StorageInterface
     }
 
     /**
-     * Add to storage
+     * Add to storage.
      *
      * @param $class
      */
@@ -35,7 +35,7 @@ class Storage implements StorageInterface
     }
 
     /**
-     * Return all data to the repository
+     * Return all data to the repository.
      *
      * @return array
      */

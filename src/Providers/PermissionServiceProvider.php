@@ -50,7 +50,6 @@ class PermissionServiceProvider extends ServiceProvider
         ];
     }
 
-
     /**
      * @return array
      */

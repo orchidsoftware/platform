@@ -177,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
         Orchid\Providers\FoundationServiceProvider::class,
     ],
 
@@ -227,7 +226,6 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
-
 
         'Alert'     => Orchid\Alert\Facades\Alert::class,
         'Dashboard' => Orchid\Facades\Dashboard::class,

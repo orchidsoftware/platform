@@ -5,9 +5,9 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Defender\Middleware\Firewall;
+use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Orchid\Platform\Http\Middleware\RedirectInstall;
-use Orchid\Platform\Core\Models\Role;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
     }

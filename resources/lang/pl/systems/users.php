@@ -10,7 +10,6 @@ return [
     'information' => 'Informacja',
     'permission'  => 'Pozwolenie',
 
-
     'name'               => 'Nazwa',
     'email'              => 'E-mail',
     'password'           => 'Hasło',
@@ -18,6 +17,5 @@ return [
 
     'roles'        => 'Role',
     'select_roles' => 'Wybierz role',
-
 
 ];

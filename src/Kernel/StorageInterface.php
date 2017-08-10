@@ -4,7 +4,6 @@ namespace Orchid\Platform\Kernel;
 
 interface StorageInterface
 {
-
     /**
      * @param $class
      */

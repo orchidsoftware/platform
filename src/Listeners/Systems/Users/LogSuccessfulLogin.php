@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Listeners\Systems\Users;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 class LogSuccessfulLogin implements ShouldQueue
 {
@@ -13,7 +13,8 @@ class LogSuccessfulLogin implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  Login  $event
+     * @param Login $event
+     *
      * @return void
      */
     public function handle(Login $event)

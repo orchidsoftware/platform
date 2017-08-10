@@ -10,7 +10,6 @@ return [
     'information' => '信息',
     'permission'  => '允许',
 
-
     'name'               => '名称',
     'email'              => '电子邮件',
     'password'           => '密码',
@@ -18,6 +17,5 @@ return [
 
     'roles'        => '角色',
     'select_roles' => '选择角色',
-
 
 ];

@@ -17,7 +17,7 @@ class MenuComposer
     }
 
     /**
-     * Registering the main menu items
+     * Registering the main menu items.
      */
     public function compose()
     {
