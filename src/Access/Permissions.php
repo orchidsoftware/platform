@@ -28,10 +28,8 @@ class Permissions
 
         $this->container->put(key($permission), array_merge_recursive($old, $permission));
 
-
         return $this->container;
         //$this->container = array_merge_recursive($permission,$this->container->toArray()));
-
 
         //if($this->container->has(key($permission)) || key_exists(key($permission),$this->container)){
         //    dd('test');

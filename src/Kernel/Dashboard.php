@@ -32,13 +32,13 @@ class Dashboard
     public $storage = null;
 
     /**
-     * JS and CSS resources for implementation in the panel
+     * JS and CSS resources for implementation in the panel.
      *
      * @var array
      */
     public $resources = [
         'stylesheets' => [],
-        'scripts'  => [],
+        'scripts'     => [],
     ];
 
     /**
@@ -64,7 +64,7 @@ class Dashboard
     }
 
     /**
-     * Register storage of data
+     * Register storage of data.
      *
      * @param                  $property
      * @param StorageInterface $storage
@@ -84,7 +84,7 @@ class Dashboard
     }
 
     /**
-     * Return Storage
+     * Return Storage.
      *
      * @param      $key
      * @param null $default
@@ -105,7 +105,7 @@ class Dashboard
     }
 
     /**
-     * Return Property
+     * Return Property.
      *
      * @param $property
      *

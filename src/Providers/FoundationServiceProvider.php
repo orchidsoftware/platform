@@ -2,16 +2,10 @@
 
 namespace Orchid\Platform\Providers;
 
-use Cartalyst\Tags\TagsServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Intervention\Image\ImageServiceProvider;
 use Orchid\Alert\Laravel\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Log\LogServiceProvider;
-use Orchid\Setting\Providers\SettingServiceProvider;
-use Orchid\Platform\Widget\Providers\WidgetServiceProvider;
-use Spatie\Backup\BackupServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
@@ -34,14 +28,13 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerProviders();
     }
 
-
     /**
      * Register migrate.
      */
     protected function registerDatabase()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/database/migrations/' => database_path('migrations'),
+            DASHBOARD_PATH.'/resources/stubs/database/migrations/' => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -50,7 +43,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(DASHBOARD_PATH . '/resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(DASHBOARD_PATH.'/resources/lang', 'dashboard');
     }
 
     /**
@@ -59,11 +52,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/config/content.php' => config_path('content.php'),
+            DASHBOARD_PATH.'/config/content.php' => config_path('content.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH . '/config/content.php', 'content'
+            DASHBOARD_PATH.'/config/content.php', 'content'
         );
     }
 
@@ -73,9 +66,9 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/vendor/orchid/dashboard';
+            return $path.'/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            DASHBOARD_PATH . '/resources/views',
+            DASHBOARD_PATH.'/resources/views',
         ]), 'dashboard');
     }
 
@@ -85,10 +78,9 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/public/' => public_path('orchid'),
+            DASHBOARD_PATH.'/public/' => public_path('orchid'),
         ], 'public');
     }
-
 
     public function registerProviders()
     {
@@ -122,7 +114,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function register()
     {
         if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
+            define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
         }
     }
 }

@@ -10,7 +10,6 @@ return [
     'information' => 'Information',
     'permission'  => 'Permission',
 
-
     'name'               => 'Name',
     'email'              => 'Email',
     'password'           => 'Password',
@@ -18,6 +17,5 @@ return [
 
     'roles'        => 'Roles',
     'select_roles' => 'Select roles',
-
 
 ];
