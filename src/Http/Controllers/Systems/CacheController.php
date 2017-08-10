@@ -67,7 +67,7 @@ class CacheController
     }
 
     /**
-     * Resets the contents of the opcode cache
+     * Resets the contents of the opcode cache.
      */
     protected function opcache()
     {

@@ -27,7 +27,7 @@ return [
     'delete_confirmation_message'    => 'Plik kopii zapasowej został usunięty.',
     'delete_error_title'             => 'Błąd',
     'delete_error_message'           => 'Plik kopii zapasowej NIE został usunięty.',
-    'delete_cancel_title'            => "W porządku",
+    'delete_cancel_title'            => 'W porządku',
     'delete_cancel_message'          => 'Plik kopii zapasowej NIE został usunięty.',
     'create_confirmation_title'      => 'Zakończono tworzenie kopii zapasowej',
     'create_confirmation_message'    => 'Ponowne wczytywanie strony w 3 sekundy.',
@@ -37,6 +37,6 @@ return [
     'create_warning_message'         => 'Nie można utworzyć kopii zapasowej. Proszę sprawdzić pliki dzienników, aby uzyskać szczegółowe informacje.',
     'location'                       => 'Lokalizacja',
     'no_disks_configured'            => 'Brak kopii zapasowych dysków skonfigurowanych w konfiguracji/laravel-backup.php',
-    'backup_doesnt_exist'            => "Plik kopii zapasowej nie istnieje.",
+    'backup_doesnt_exist'            => 'Plik kopii zapasowej nie istnieje.',
     'only_local_downloads_supported' => 'Obsługiwane są tylko pliki do pobrania z lokalnego systemu plików.',
 ];

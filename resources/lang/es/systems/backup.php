@@ -27,7 +27,7 @@ return [
     'delete_confirmation_message'    => 'Se ha eliminado el archivo de copia de seguridad.',
     'delete_error_title'             => 'Error',
     'delete_error_message'           => 'El archivo de copia de seguridad no ha sido eliminado.',
-    'delete_cancel_title'            => "Está bien",
+    'delete_cancel_title'            => 'Está bien',
     'delete_cancel_message'          => 'El archivo de copia de seguridad no ha sido eliminado.',
     'create_confirmation_title'      => 'Respaldo completado',
     'create_confirmation_message'    => 'Recargar la página en 3 segundos.',
@@ -37,6 +37,6 @@ return [
     'create_warning_message'         => 'Es posible que su copia de seguridad no se haya creado. Compruebe los archivos de registro para obtener más detalles.',
     'location'                       => 'Ubicación',
     'no_disks_configured'            => 'No hay discos de copia de seguridad configurados en config/laravel-backup.php',
-    'backup_doesnt_exist'            => "El archivo de copia de seguridad no existe.",
+    'backup_doesnt_exist'            => 'El archivo de copia de seguridad no existe.',
     'only_local_downloads_supported' => 'Sólo se admiten las descargas del sistema de archivos local.',
 ];

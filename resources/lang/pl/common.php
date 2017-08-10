@@ -22,7 +22,7 @@ return [
 
     'access_denied' => [
         'label' => 'Brak dostępu',
-        'help'  => "Nie masz wymaganych uprawnień, aby wyświetlić tę stronę.",
+        'help'  => 'Nie masz wymaganych uprawnień, aby wyświetlić tę stronę.',
     ],
 
     'alert' => [
