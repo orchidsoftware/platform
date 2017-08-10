@@ -12,8 +12,6 @@ window.Vue = require('vue');
 require('vue-resource');
 
 
-$.fn.chosen = require('chosen');
-
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 

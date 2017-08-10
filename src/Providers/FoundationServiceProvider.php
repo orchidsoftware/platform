@@ -59,11 +59,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/config/content.php' => config_path('content.php'),
+            DASHBOARD_PATH . '/config/content.php' => config_path('content.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH . '/resources/stubs/config/content.php', 'content'
+            DASHBOARD_PATH . '/config/content.php', 'content'
         );
     }
 
@@ -85,7 +85,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerPublic()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/assets/dist/' => public_path('orchid'),
+            DASHBOARD_PATH . '/public/' => public_path('orchid'),
         ], 'public');
     }
 

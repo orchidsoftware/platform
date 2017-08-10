@@ -8,14 +8,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 1000);
     });
 });
-
-
-/**
- * Remove Language
- */
-$('.close-lang-content').click(function () {
-    var local = $(this).data('local');
-    $('#post').find('a[data-target="#local-' + local + '"]').parent().remove();
-
-    $('#post #local-' + local).remove();
-});

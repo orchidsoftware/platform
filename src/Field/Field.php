@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Field;
 
-abstract class Field implements FieldInterface
+abstract class Field
 {
     /**
      * View template show.

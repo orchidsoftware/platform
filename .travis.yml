@@ -11,28 +11,10 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-services:
-  - mysql
+install:
+  - composer install --prefer-source
 
-before_install:
-  - chmod +x ./scripts/*
-  - sudo sh ./scripts/travis_mysql_5.7.sh
-  - composer self-update
-  - composer create-project laravel/laravel
-  - cd ./laravel
-  - composer config repositories.orchid vcs https://github.com/theOrchid/Platform.git
-  - composer require orchid/platform dev-master
-  - composer update
-  - cp ./vendor/orchid/platform/tests/config/.env ./
-  - rm ./config/app.php
-  - cp ./vendor/orchid/platform/tests/config/app.php ./config
-  - php artisan key:generate
-  - php artisan vendor:publish
-  - mysql -e "create database IF NOT EXISTS test;" -uroot
-  - php artisan migrate
-  - cd ./vendor/orchid/platform
-
-script: "phpunit"
+script: phpunit
 
 notifications:
   email: false
