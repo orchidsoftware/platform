@@ -6,9 +6,8 @@ use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 class TestServiceProvider extends LaravelServiceProvider
 {
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $defer = false;
 
@@ -18,7 +17,7 @@ class TestServiceProvider extends LaravelServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(
-            __DIR__ . '/database/migrations'
+            __DIR__.'/database/migrations'
         );
     }
 }
