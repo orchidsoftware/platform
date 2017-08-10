@@ -35,28 +35,10 @@ abstract class TestCase extends Orchestra
         // set up database configuration
         $app['config']->set('database.default', 'test');
         $app['config']->set('database.connections.test', [
-            'driver'      => 'mysql',
-            'host'        => 'localhost',
-            'port'        => '3306',
-            'database'    => 'orchid_testing',
-            'username'    => 'root',
-            'password'    => '03af4d',
-            'unix_socket' => '',
-            'charset'     => 'utf8mb4',
-            'collation'   => 'utf8mb4_unicode_ci',
-            'prefix'      => '',
-            'strict'      => true,
-            'engine'      => null,
-        ]);
-
-        /*
-        [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',
-        ]
-        */
-
+        ]);
     }
 
 
