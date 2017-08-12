@@ -52,11 +52,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/config/platform.php' => config_path('platform.php'),
+            DASHBOARD_PATH.'/config/platform.php' => config_path('platform.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH . '/config/platform.php', 'platform'
+            DASHBOARD_PATH.'/config/platform.php', 'platform'
         );
     }
 

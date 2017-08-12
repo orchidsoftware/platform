@@ -24,6 +24,7 @@ class CacheController
     public function store(Request $request)
     {
         $action = $request->get('action', 'index');
+
         try {
             $this->$action();
             Alert::success(trans('dashboard::common.alert.success'));
