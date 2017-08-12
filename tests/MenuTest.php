@@ -36,9 +36,6 @@ class MenuTest extends TestCase
             'sort'    => 503,
         ]);
 
-
         $this->assertEquals(!is_null($menu->render('Test')), true);
-
     }
-
 }
