@@ -28,7 +28,7 @@ trait RoleAccess
      */
     public function getUsers()
     {
-        return $this->users;
+        return $this->users()->get();
     }
 
     /**

@@ -32,6 +32,6 @@ class RedirectInstall
      */
     public function alreadyInstalled()
     {
-        return config('content.install');
+        return config('platform.install');
     }
 }

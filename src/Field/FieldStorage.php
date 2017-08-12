@@ -9,5 +9,5 @@ class FieldStorage extends Storage
     /**
      * @var string
      */
-    protected $configField = 'content.fields';
+    protected $configField = 'platform.fields';
 }

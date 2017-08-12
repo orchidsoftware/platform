@@ -4,6 +4,8 @@ namespace Orchid\Platform\Tests;
 
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Kernel\Dashboard;
+
 
 class PermissionTest extends TestCase
 {
@@ -14,17 +16,25 @@ class PermissionTest extends TestCase
     {
         $user = $this->createUser();
 
+        // User permissions
         $this->assertEquals($user->hasAccess('access.to.public.data'), true);
         $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
         $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
 
+
         $role = $this->createRole();
-
-        //$this->assertEquals($user->inRole($role),false);
-
         $user->addRole($role);
 
+
+        // User of role
+        $this->assertEquals($user->getRoles()->count(), 1);
+        $this->assertEquals($role->getUsers()->count(), 1);
+        $this->assertEquals($user->inRole('admin'), true);
+
+
+        // Role permissions
         $this->assertEquals($user->hasAccess('access.roles.to.public.data'), true);
+
     }
 
     /**
@@ -56,5 +66,25 @@ class PermissionTest extends TestCase
                 'access.roles.to.secret.data' => 0,
             ],
         ]);
+    }
+
+    /**
+     * Dashboard registered permission
+     */
+    public function test_is_registered_permission()
+    {
+        $dashboard = new Dashboard();
+
+        $dashboard->permission->registerPermissions([
+            'Test' => [
+                [
+                    'slug'        => 'test',
+                    'description' => 'Test Description',
+                ],
+            ],
+        ]);
+
+
+        $this->assertEquals($dashboard->permission->get()->count(), 1);
     }
 }

@@ -30,6 +30,6 @@ class CanInstall
      */
     public function alreadyInstalled(): bool
     {
-        return config('content.install');
+        return config('platform.install');
     }
 }

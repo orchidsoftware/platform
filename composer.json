@@ -20,7 +20,8 @@
     "laravel/framework": "5.4.*",
     "watson/active": "^2.0",
     "orchid/defender": "^1.0",
-    "orchid/alert": "^1.0"
+    "orchid/alert": "^1.0",
+    "orchid/widget": "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
@@ -48,7 +49,6 @@
     }
   },
   "suggest": {
-
     "orchid/cms": "Laravel package CMS",
     "orchid/remote": "Admin Panel for Microservices",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
