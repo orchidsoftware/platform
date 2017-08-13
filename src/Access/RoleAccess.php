@@ -7,7 +7,6 @@ use Orchid\Platform\Core\Models\User;
 
 trait RoleAccess
 {
-
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
