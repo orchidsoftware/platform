@@ -10,6 +10,7 @@ return [
     | Setup Activation Flag
     |
     */
+
     'install' => env('APP_INSTALL', false),
 
     /*
@@ -20,6 +21,7 @@ return [
     | Available settings
     |
     */
+
     'auth'    => [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
@@ -34,6 +36,7 @@ return [
     | Be shy and add to what you need
     |
     */
+
     'fields' => [
         'textarea' => Orchid\Platform\Fields\TextAreaField::class,
         'input'    => Orchid\Platform\Fields\InputField::class,
@@ -54,6 +57,7 @@ return [
     | Widgets that will be displayed on the main screen
     |
     */
+
     'main_widgets' => [
 
     ],
