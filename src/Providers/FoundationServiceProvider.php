@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Alert\Laravel\AlertServiceProvider;
 use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Widget\Providers\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
@@ -105,6 +106,7 @@ class FoundationServiceProvider extends ServiceProvider
             ActiveServiceProvider::class,
             DefenderServiceProvider::class,
             MenuServiceProvider::class,
+            WidgetServiceProvider::class,
         ];
     }
 
