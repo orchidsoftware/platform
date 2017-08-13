@@ -16,7 +16,7 @@ class DashboardNotification extends Notification
     public $message;
 
     /**
-     * Status
+     * Status.
      *
      * @var array
      */
