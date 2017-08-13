@@ -88,7 +88,6 @@ class RoleController extends Controller
             ->render($role);
     }
 
-
     /**
      * @param Role $role
      *
