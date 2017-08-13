@@ -13,9 +13,9 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * @param $permission
+     * @param string $permission
      */
-    protected function checkPermission($permission)
+    protected function checkPermission(string $permission)
     {
         $this->middleware(function ($request, $next) use ($permission) {
             if (Auth::user()->hasAccess($permission)) {

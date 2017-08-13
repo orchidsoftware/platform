@@ -27,7 +27,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function index()
     {
@@ -88,10 +88,11 @@ class RoleController extends Controller
             ->render($role);
     }
 
+
     /**
      * @param Role $role
      *
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Role $role)
     {

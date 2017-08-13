@@ -15,6 +15,11 @@ class DashboardNotification extends Notification
      */
     public $message;
 
+    /**
+     * Status
+     *
+     * @var array
+     */
     public $type = [
         'info'    => 'text-info',
         'success' => 'text-success',
@@ -45,7 +50,7 @@ class DashboardNotification extends Notification
      *
      * @param mixed $notifiable
      *
-     * @return array
+     * @return string[]
      */
     public function via($notifiable)
     {

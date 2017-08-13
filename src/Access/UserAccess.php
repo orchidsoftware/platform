@@ -9,7 +9,7 @@ use Orchid\Platform\Core\Models\Role;
 trait UserAccess
 {
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getRoles()
     {
