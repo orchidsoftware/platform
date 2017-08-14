@@ -3,8 +3,6 @@ require('jquery-ui-bundle');
 
 
 require('bootstrap');
-
-
 require('bootstrap-tagsinput');
 
 
@@ -36,6 +34,7 @@ $(() => {
 });
 
 
+require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
