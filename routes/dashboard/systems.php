@@ -42,4 +42,16 @@ $this->group([
             'as'   => 'dashboard.systems.cache',
             'uses' => 'CacheController@store',
         ]);
+
+        $router->post('notification/read', [
+            'as'   => 'dashboard.notification.read',
+            'uses' => 'NotificationController@markAllAsRead',
+        ]);
+
+        $router->post('notification/remove', [
+            'as'   => 'dashboard.notification.remove',
+            'uses' => 'NotificationController@remove',
+        ]);
+
+
     });

@@ -76,7 +76,7 @@
 
 
                             @php
-                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Platfrorm\Notifications\DashboardNotification::class)->count();
+                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class)->count();
                             @endphp
 
                             @if($unreadNotificationsCount > 0)
