@@ -12,7 +12,7 @@ class NotificationController
      */
     public function markAllAsRead()
     {
-        Auth::user()->unreadNotifications->where('type',DashboardNotification::class)->markAsRead();
+        Auth::user()->unreadNotifications->where('type', DashboardNotification::class)->markAsRead();
 
         return redirect()->back();
     }
@@ -22,7 +22,7 @@ class NotificationController
      */
     public function remove()
     {
-        Auth::user()->notifications()->where('type',DashboardNotification::class)->delete();
+        Auth::user()->notifications()->where('type', DashboardNotification::class)->delete();
 
         return redirect()->back();
     }
