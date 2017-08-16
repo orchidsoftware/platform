@@ -21,13 +21,6 @@ class Menu
     private $location;
 
     /**
-     * Views display.
-     *
-     * @var
-     */
-    private $template;
-
-    /**
      * Arguments menu form
      * For the transfer of Views.
      *

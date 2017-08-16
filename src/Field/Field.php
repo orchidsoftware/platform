@@ -2,6 +2,8 @@
 
 namespace Orchid\Platform\Field;
 
+use Illuminate\Support\Collection;
+
 abstract class Field
 {
     /**
@@ -12,12 +14,12 @@ abstract class Field
     public $view;
 
     /**
-     * @param null $attributes
+     * @param Collection $attributes
      * @param null $data
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function create($attributes, $data = null)
+    public function create(Collection $attributes, $data = null)
     {
         if (is_null($data)) {
             $data = collect();

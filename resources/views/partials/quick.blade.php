@@ -30,9 +30,7 @@
                                 Notications
                             </div>
 
-                            <form action="{{route('dashboard.notification.remove')}}"
-                                  method="post"
-                                  class="col text-right">
+                            <form action="{{route('dashboard.notification.remove')}}" method="post" class="col text-right">
                                 <button class="btn btn-link btn-xs inline">
                                     <i class="fa fa-trash"></i>
                                 </button>

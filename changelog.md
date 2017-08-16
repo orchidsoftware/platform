@@ -8,3 +8,5 @@
 - Removing the Content Management System
 - Rename config file "content" to "platform"
 - Removed auxiliary functions
+- Remove unusing fields
+- Remove news subscription
