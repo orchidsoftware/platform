@@ -52,6 +52,4 @@ $this->group([
             'as'   => 'dashboard.notification.remove',
             'uses' => 'NotificationController@remove',
         ]);
-
-
     });
