@@ -43,12 +43,12 @@ $this->group([
             'uses' => 'CacheController@store',
         ]);
 
-        $router->post('notification/read',[
+        $router->post('notification/read', [
             'as'   => 'dashboard.notification.read',
             'uses' => 'NotificationController@markAllAsRead',
         ]);
 
-        $router->post('notification/remove',[
+        $router->post('notification/remove', [
             'as'   => 'dashboard.notification.remove',
             'uses' => 'NotificationController@remove',
         ]);

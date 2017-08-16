@@ -15,7 +15,7 @@ abstract class Field
 
     /**
      * @param Collection $attributes
-     * @param null $data
+     * @param null       $data
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
