@@ -17,10 +17,10 @@
 
 ## Official Documentation
 
-Documentation can be found at [Orchid website](https://theorchid.github.io/en/docs/).
+Documentation can be found at [Orchid website](http://orchid.software).
 
 ## Online Demo
-You can view a demo at [http://demo-orchid.tk](http://demo-orchid.tk)
+You can view a demo at [http://demo.orchid.software](http://demo.orchid.software)
 
 **Email**: admin@admin.com
 
