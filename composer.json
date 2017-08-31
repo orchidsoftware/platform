@@ -50,7 +50,6 @@
   },
   "suggest": {
     "orchid/cms": "Laravel package CMS",
-    "orchid/remote": "Admin Panel for Microservices",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
   "minimum-stability": "dev",
