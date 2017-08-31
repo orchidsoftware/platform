@@ -51,7 +51,5 @@
   "suggest": {
     "orchid/cms": "Laravel package CMS",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }
