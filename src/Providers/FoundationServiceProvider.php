@@ -3,11 +3,7 @@
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Alert\Laravel\AlertServiceProvider;
-use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Widget\Providers\WidgetServiceProvider;
-use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -97,17 +93,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
-            AlertServiceProvider::class,
-            RouteServiceProvider::class,
-            ConsoleServiceProvider::class,
-            PermissionServiceProvider::class,
-            EventServiceProvider::class,
-            ActiveServiceProvider::class,
-            DefenderServiceProvider::class,
-            MenuServiceProvider::class,
-            WidgetServiceProvider::class,
-        ];
+        return [];
     }
 
     /**
