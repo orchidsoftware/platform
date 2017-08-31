@@ -43,26 +43,6 @@ Firstly, download the Laravel installer using Composer:
 $ composer require orchid/platform
 ```
 
-Now add the service provider in  `config/app.php` file:
-
-Service provider to the 'providers' array:
-```php
-'providers' => [
-    // ...
-    Orchid\Platform\Providers\FoundationServiceProvider::class,
-];
-```
-
-And the Facades Aliases to the 'aliases' array:
-```php
-'aliases' => [
-  // ...
-  'Dashboard' =>  Orchid\Platform\Facades\Dashboard::class,
-  'Alert' =>  Orchid\Alert\Facades\Alert::class,
-  'Active' => Watson\Active\Facades\Active::class,
-];
-```
-
 Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
 
 ```php
