@@ -33,8 +33,6 @@ $(() => {
     $('.select2-enable').select2();
 });
 
-require('summernote');
-
 require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');

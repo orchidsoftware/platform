@@ -18,9 +18,8 @@ mix.copy('resources/assets/img/', 'public/img');
 mix.copy('./node_modules/bootstrap/dist/fonts/', 'public/fonts');
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
 mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
-mix.copy('./node_modules/summernote/dist/font/', 'public/fonts');
-
+mix.copy('./node_modules/summernote/dist/', 'public/summernote');
 
 mix.js([
-        'resources/assets/js/app.js',
+    'resources/assets/js/app.js',
 ], 'public/js/orchid.js');
