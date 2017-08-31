@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -24,6 +24,7 @@ class CacheController
     public function store(Request $request)
     {
         $action = $request->get('action', 'index');
+
         try {
             $this->$action();
             Alert::success(trans('dashboard::common.alert.success'));
@@ -67,7 +68,7 @@ class CacheController
     }
 
     /**
-     * Resets the contents of the opcode cache
+     * Resets the contents of the opcode cache.
      */
     protected function opcache()
     {

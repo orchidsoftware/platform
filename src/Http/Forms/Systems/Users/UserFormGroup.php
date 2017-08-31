@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Http\Forms\Systems\Users;
+namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Core\Models\User;
-use Orchid\Events\Systems\UserEvent;
-use Orchid\Forms\FormGroup;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Events\Systems\UserEvent;
+use Orchid\Platform\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {

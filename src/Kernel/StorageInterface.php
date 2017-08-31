@@ -1,10 +1,9 @@
 <?php
 
-namespace Orchid\Kernel;
+namespace Orchid\Platform\Kernel;
 
 interface StorageInterface
 {
-
     /**
      * @param $class
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +18,7 @@ class ConsoleServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Orchid\\Console\\';
+    protected $namespace = 'Orchid\\Platform\\Console\\';
 
     /**
      * The available command shortname.
@@ -27,9 +27,6 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'Commands\\CreateAdminCommand',
-        'Commands\\MakeManyBehavior',
-        'Commands\\MakeSingleBehavior',
-        'Commands\\MakeFilter',
     ];
 
     /**
@@ -38,7 +35,7 @@ class ConsoleServiceProvider extends ServiceProvider
     public function register()
     {
         foreach ($this->commands as $command) {
-            $this->commands($this->namespace . $command);
+            $this->commands($this->namespace.$command);
         }
     }
 
@@ -49,7 +46,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $provides = [];
         foreach ($this->commands as $command) {
-            $provides[] = $this->namespace . $command;
+            $provides[] = $this->namespace.$command;
         }
 
         return $provides;

@@ -1,10 +1,10 @@
 {
   "name": "orchid/platform",
-  "description": "Laravel CMS for website.",
-  "keywords": ["framework", "laravel", "orchid", "crud", "cms", "log", "menu", "scaffold", "settings", "website", "platform"],
+  "description": "Laravel Orchid Platform.",
+  "keywords": ["framework", "laravel", "orchid", "platform"],
   "type": "library",
   "license": "MIT",
-  "homepage": "https://theorchid.github.io/",
+  "homepage": "http://orchid.software",
   "support": {
     "issues": "https://github.com/theOrchid/Platform/issues",
     "source": "https://github.com/theOrchid/Platform"
@@ -19,37 +19,38 @@
     "php": ">=7.0",
     "laravel/framework": "5.4.*",
     "watson/active": "^2.0",
-    "intervention/image": "^2.3",
-    "cartalyst/tags": "^4.0",
-    "cviebrock/eloquent-sluggable": "^4.2",
-    "spatie/laravel-backup": "4.*",
     "orchid/defender": "^1.0",
-    "orchid/settings": "^2.0",
     "orchid/alert": "^1.0",
-    "orchid/widget": "^1.0",
-    "orchid/log": "^1.0",
-    "orchid/monitor": "^1.0"
+    "orchid/widget": "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
-    "phpunit/phpunit": "~5.7"
+    "phpunit/phpunit": "~6.0",
+    "orchestra/testbench": "~3.0"
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\": "src/"
+      "Orchid\\Platform\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Orchid\\Platform\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platfrorm\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Facades\\Dashboard"
+        "Dashboard": "Orchid\\Platfrorm\\Facades\\Dashboard"
       }
     }
   },
   "suggest": {
+    "orchid/cms": "Laravel package CMS",
+    "orchid/remote": "Admin Panel for Microservices",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   },
   "minimum-stability": "dev",

@@ -7,10 +7,8 @@ return [
     'not_found'   => 'Пользователи ненайдены',
     'create'      => 'Создать',
 
-
     'information' => 'Информация',
     'permission'  => 'Доступы',
-
 
     'name'               => 'Имя',
     'email'              => 'Email',
@@ -19,6 +17,5 @@ return [
 
     'roles'        => 'Роли',
     'select_roles' => 'Выберите роли',
-
 
 ];

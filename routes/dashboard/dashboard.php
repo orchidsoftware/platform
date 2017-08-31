@@ -1,6 +1,5 @@
 <?php
 
-
 /*
 |--------------------------------------------------------------------------
 | Dashboard Web Routes
@@ -13,7 +12,7 @@
 $this->group([
     'middleware' => ['web', 'dashboard', 'access'],
     'prefix'     => 'dashboard',
-    'namespace'  => 'Orchid\Http\Controllers',
+    'namespace'  => 'Orchid\Platform\Http\Controllers',
 ],
     function (\Illuminate\Routing\Router $router) {
         $router->get('/', [

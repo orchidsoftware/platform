@@ -17,11 +17,14 @@
 
 ## Official Documentation
 
-Documentation can be found at [ORCHID website](https://theorchid.github.io/en/docs/).
+Documentation can be found at [Orchid website](http://orchid.software).
 
-You can watch [live](http://demo-orchid.tk)
+## Online Demo
+You can view a demo at [http://demo.orchid.software](http://demo.orchid.software)
 
-**Login**: admin@admin.com **Password**: password
+**Email**: admin@admin.com
+
+**Password**: password
 
 
 ## System requirements
@@ -33,40 +36,84 @@ Make sure your server meets the following requirements.
 - PHP Version 7.0+
 
 
-## FAQ
+## Installation
 
+Firstly, download the Laravel installer using Composer:
+```php
+$ composer require orchid/platform
+```
 
-#### What is ORCHID?
-ORCHID is a package for Laravel which helps with the administration of the application on Laravel, allowing you to write code as you want, control of routing/themes/plugins/etc - none of this and will not be! The package only gives a good set of tools that will be in demand in almost every project.
+Now add the service provider in  `config/app.php` file:
 
-#### Is it necessary to use the built-in recordings?
-We assume that most of your records will be stored in json, which will allow you to do the translation and the universal structure, but if the rails have goals like a CRM system with harsh conditions, then of course you can use the classic CRUD yourself, orchids will not stop you.
+Service provider to the 'providers' array:
+```php
+'providers' => [
+    // ...
+    Orchid\Platform\Providers\FoundationServiceProvider::class,
+];
+```
 
-#### Are there any additional system requirements from Laravel?
-Yes, you need a PHP extension for image processing and support for json type your database.
+And the Facades Aliases to the 'aliases' array:
+```php
+'aliases' => [
+  // ...
+  'Dashboard' =>  Orchid\Platform\Facades\Dashboard::class,
+  'Alert' =>  Orchid\Alert\Facades\Alert::class,
+  'Active' => Watson\Active\Facades\Active::class,
+];
+```
 
-#### How much does it cost?
-ORCHID is free, but we appreciate donations.
+Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
 
+```php
+namespace App;
 
+use Orchid\Platform\Core\Models\User as UserOrchid;
 
-## Community
+class User extends UserOrchid
+{
 
-If you have questions or suggestions you are welcome to our Slack channel:
-[https://lara-orchid.slack.com](https://join.slack.com/t/lara-orchid/shared_invite/MjIxODM3MDcxODcyLTE1MDE4NzY0MzctMzRiZTBlMzYxZg)
+}
 
-## Learn More
+```
 
-Learn more at these links:
+Publish ORCHID's vendor files
 
-- [Website](https://theorchid.github.io/)
-- [Documentation](https://theorchid.github.io/)
-- [Support](https://github.com/TheOrchid/Platform/issues)
-- [Laravel](https://laravel.com/)
+```php
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
+```
 
+Create the notification table
+```php
+php artisan notifications:table
+```
 
-## Examples
-* [Create blog](https://github.com/tabuna/SimpleBlogOrchid)
+Run your database migration
+```php
+php artisan migrate
+```
+
+Create your admin user
+```php
+php artisan make:admin admin admin@admin.com password
+```
+
+Add the following to your `.env` file
+
+```php
+APP_INSTALL=true
+```
+
+#### Usage
+
+To view ORCHID's dashboard go to:
+```php
+http://your.app/dashboard
+```
+and use
+**Email**: admin@admin.com
+**Password**: password
+
 
 ## Security
 

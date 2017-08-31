@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Access;
+namespace Orchid\Platform\Access;
 
 interface UserInterface
 {

@@ -1,17 +1,13 @@
 <?php
 
-namespace Orchid\Providers;
+namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Core\Models\Page;
-use Orchid\Core\Models\Post;
-use Orchid\Core\Models\Role;
-use Orchid\Core\Models\TermTaxonomy;
 use Orchid\Defender\Middleware\Firewall;
-use Orchid\Http\Middleware\AccessMiddleware;
-use Orchid\Http\Middleware\CanInstall;
-use Orchid\Http\Middleware\RedirectInstall;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Http\Middleware\RedirectInstall;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -22,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Orchid\Http\Controllers';
+    protected $namespace = 'Orchid\Platform\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -41,10 +37,6 @@ class RouteServiceProvider extends ServiceProvider
             AccessMiddleware::class,
         ]);
 
-        Route::middlewareGroup('install', [
-            CanInstall::class,
-        ]);
-
         $this->binding();
 
         parent::boot();
@@ -55,50 +47,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('category', function ($value) {
-            return TermTaxonomy::findOrFail($value);
-        });
-
-        Route::bind('type', function ($value) {
-            $post = new Post();
-            $type = $post->getBehavior($value)->getBehaviorObject();
-
-            return $type;
-        });
-
         Route::bind('role', function ($value) {
             return Role::where('slug', $value)->firstOrFail();
-        });
-
-        Route::bind('slug', function ($value) {
-            if (is_numeric($value)) {
-                return Post::where('id', $value)->firstOrFail();
-            }
-
-            return Post::findOrFail($value);
-        });
-
-        Route::bind('page', function ($value) {
-            if (is_numeric($value)) {
-                $page = Page::where('id', $value)->first();
-            } else {
-                $page = Page::where('slug', $value)->first();
-            }
-            if (is_null($page)) {
-                return new Page([
-                    'slug' => $value,
-                ]);
-            }
-
-            return $page;
-        });
-
-        Route::bind('advertising', function ($value) {
-            if (is_numeric($value)) {
-                return Post::type('advertising')->where('id', $value)->firstOrFail();
-            }
-
-            return Post::type('advertising')->where('slug', $value)->firstOrFail();
         });
     }
 
@@ -109,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
     }

@@ -19,22 +19,23 @@
                         <div class="hbox">
                             <!-- BEGIN Header Controler !-->
 
-                            <div class="col text-left">
-                                <a href="javascript:" class="inline action p-l-10 link text-master" data-navigate="view"
-                                   data-view-port="#chat">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </a>
-                            </div>
+                            <form action="{{route('dashboard.notification.read')}}" method="post" class="col text-left">
+                                <button class="btn btn-link btn-xs inline">
+                                    <i class="fa fa-eye-slash"></i>
+                                </button>
+                                {{ csrf_field() }}
+                            </form>
                             <!-- END Header Controler !-->
                             <div class="col text-center">
                                 Notications
                             </div>
 
-                            <div class="col text-right">
-                                <a href="#" class="inline action p-r-10 pull-right link text-master">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                            <form action="{{route('dashboard.notification.remove')}}" method="post" class="col text-right">
+                                <button class="btn btn-link btn-xs inline">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                {{ csrf_field() }}
+                            </form>
 
                         </div>
                     </div>
@@ -44,7 +45,7 @@
 
 
                          <div class="list-group list-group-lg list-group-sp">
-                         @forelse (Auth::user()->notifications->where('type',\Orchid\Notifications\DashboardNotification::class) as $notification)
+                         @forelse (Auth::user()->notifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class) as $notification)
 
                                  <a href="{{$notification->data['action'] or '#'}}"
                                     class="list-group-item clearfix m-b-none b">

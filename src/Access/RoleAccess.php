@@ -1,38 +1,22 @@
 <?php
 
-namespace Orchid\Access;
+namespace Orchid\Platform\Access;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Orchid\Core\Models\User;
+use Orchid\Platform\Core\Models\User;
 
 trait RoleAccess
 {
     /**
-     * @return mixed
-     */
-    public function getRoleId() : int
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRoleSlug() : string
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getUsers()
     {
-        return $this->users;
+        return $this->users()->get();
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function delete() : bool
     {

@@ -4,7 +4,9 @@
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" form="form-group" class="btn btn-link"><i class="icon-check fa fa-2x"></i></button>
+            <button type="submit"
+                    form="form-group"
+                    class="btn btn-link btn-save"><i class="icon-check fa fa-2x"></i></button>
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
                         class="icon-trash fa fa-2x"></i></button>
         </div>

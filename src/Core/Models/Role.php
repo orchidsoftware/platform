@@ -1,19 +1,14 @@
 <?php
 
-namespace Orchid\Core\Models;
+namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Access\RoleAccess;
-use Orchid\Access\RoleInterface;
+use Orchid\Platform\Access\RoleAccess;
+use Orchid\Platform\Access\RoleInterface;
 
 class Role extends Model implements RoleInterface
 {
     use RoleAccess;
-
-    /**
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * @var string

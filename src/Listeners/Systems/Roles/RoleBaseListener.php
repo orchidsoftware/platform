@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Listeners\Systems\Roles;
+namespace Orchid\Platform\Listeners\Systems\Roles;
 
-use Orchid\Http\Forms\Systems\Roles\BaseRolesForm;
+use Orchid\Platform\Http\Forms\Systems\Roles\BaseRolesForm;
 
 class RoleBaseListener
 {

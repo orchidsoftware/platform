@@ -29,7 +29,6 @@
 
                     <div class="panel-body row">
 
-
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>

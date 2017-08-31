@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Menu;
+namespace Orchid\Platform\Menu;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +19,6 @@ class Menu
      * @var
      */
     private $location;
-
-    /**
-     * Views display.
-     *
-     * @var
-     */
-    private $template;
 
     /**
      * Arguments menu form
@@ -126,7 +119,6 @@ class Menu
         $this->arg = $arg;
         $this->sort = $arg['sort'];
 
-
         $this->item = [
             'location' => $this->location,
             'arg'      => $this->arg,
@@ -157,7 +149,7 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (!key_exists('template', $value)) {
+            if (!array_key_exists('template', $value)) {
                 $value['template'] = 'dashboard::partials.leftMainMenu';
             }
 

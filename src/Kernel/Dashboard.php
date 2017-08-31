@@ -1,27 +1,18 @@
 <?php
 
-namespace Orchid\Kernel;
+namespace Orchid\Platform\Kernel;
 
 use Illuminate\Support\Collection;
-use Orchid\Access\Permissions;
-use Orchid\Behaviors\Storage\PageStorage;
-use Orchid\Behaviors\Storage\PostStorage;
-use Orchid\Field\FieldStorage;
-use Orchid\Menu\Menu;
+use Orchid\Platform\Access\Permissions;
+use Orchid\Platform\Field\FieldStorage;
+use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
     /**
      * Orchid Version.
      */
-    const VERSION = '0.0.29';
-
-    /**
-     * Dashboard configuration options.
-     *
-     * @var array
-     */
-    protected static $options = [];
+    const VERSION = '1.1.0';
 
     /**
      * @var
@@ -36,18 +27,19 @@ class Dashboard
     public $permission = null;
 
     /**
-     * Content post for applications.
+     * @var array
+     */
+    public $storage = null;
+
+    /**
+     * JS and CSS resources for implementation in the panel.
      *
      * @var array
      */
-    public $posts = [];
-
-    /**
-     * List register pages
-     *
-     * @var array|PageStorage
-     */
-    public $pages = [];
+    public $resources = [
+        'stylesheets' => [],
+        'scripts'     => [],
+    ];
 
     /**
      * Dashboard constructor.
@@ -56,9 +48,9 @@ class Dashboard
     {
         $this->menu = new Menu();
         $this->permission = new Permissions();
-        $this->pages = new PageStorage();
-        $this->posts = new PostStorage();
         $this->fields = new FieldStorage();
+
+        $this->storage = collect();
     }
 
     /**
@@ -66,103 +58,76 @@ class Dashboard
      *
      * @return string
      */
-    public static function version(): string
+    public static function version() : string
     {
         return static::VERSION;
     }
 
     /**
-     * Configure Dashboard application.
-     *
-     * @param array $options
-     *
-     * @return void
-     */
-    public static function configure(array $options)
-    {
-        static::$options = $options;
-    }
-
-    /**
-     * Get a Dashboard configuration option.
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
-     */
-    public static function option($key, $default)
-    {
-        return array_get(static::$options, $key, $default);
-    }
-
-    /**
-     * Register storage of data
+     * Register storage of data.
      *
      * @param                  $property
      * @param StorageInterface $storage
      */
     public function registerStorage($property, StorageInterface $storage)
     {
-        $this->$property = $storage;
+        $this->storage->put($property, $storage);
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     */
+    public function registerResource(string $key, string $value)
+    {
+        array_push($this->resources[$key], $value);
+    }
+
+    /**
+     * Return Storage.
+     *
+     * @param      $key
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function getStorage($key, $default = null)
+    {
+        return $this->storage->get($key, $default);
     }
 
     /**
      * @return null|Menu
      */
-    public function menu(): Menu
+    public function menu() : Menu
     {
         return $this->menu;
     }
 
     /**
+     * Return Property.
+     *
+     * @param $property
+     *
+     * @return mixed
+     */
+    public function getProperty($property)
+    {
+        return $this->$property;
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission(): Collection
+    public function getPermission() : Collection
     {
         return $this->permission->get();
     }
 
     /**
-     * @return PostStorage
-     */
-    public function getPosts(): PostStorage
-    {
-        return $this->posts;
-    }
-
-    /**
-     * @param bool $sort
-     *
      * @return array
      */
-    public function posts($sort = false): array
-    {
-        return $this->posts->all($sort);
-    }
-
-    /**
-     * @return PageStorage
-     */
-    public function getPages(): PageStorage
-    {
-        return $this->pages;
-    }
-
-    /**
-     * @param bool $sort
-     *
-     * @return array
-     */
-    public function pages($sort = false): array
-    {
-        return $this->pages->all($sort);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function fields(): array
+    public function fields() : array
     {
         return $this->fields->all();
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Console\Commands;
+namespace Orchid\Platform\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
-use Orchid\Core\Models\User;
-use Orchid\Kernel\Dashboard;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Kernel\Dashboard;
 
 class CreateAdminCommand extends Command
 {
@@ -54,10 +54,13 @@ class CreateAdminCommand extends Command
      */
     public function fire()
     {
-        $permissions = [];
-        foreach ($this->permissions->flatten() as $permission) {
-            $permissions[$permission] = 1;
-        }
+        $permissions = collect();
+
+        $this->permissions->each(function ($items) use ($permissions) {
+            foreach ($items as $item) {
+                $permissions->put($item['slug'], 1);
+            }
+        });
 
         try {
             User::create([

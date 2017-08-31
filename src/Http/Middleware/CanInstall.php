@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Middleware;
+namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 
@@ -30,6 +30,6 @@ class CanInstall
      */
     public function alreadyInstalled(): bool
     {
-        return config('content.install');
+        return config('platform.install');
     }
 }

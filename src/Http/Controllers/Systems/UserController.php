@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Http\Controllers\Systems;
+namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
-use Orchid\Core\Models\User;
-use Orchid\Http\Controllers\Controller;
-use Orchid\Http\Forms\Systems\Users\UserFormGroup;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Forms\Systems\Users\UserFormGroup;
 
 class UserController extends Controller
 {
@@ -46,13 +46,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $user
+     * @param Request   $request
+     * @param User|null $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(User $user)
+    public function store(Request $request, User $user = null)
     {
-        $this->form->save($user);
+        $this->form->save($request, $user);
 
         Alert::success(trans('dashboard::common.alert.success'));
 
@@ -74,13 +75,14 @@ class UserController extends Controller
     }
 
     /**
-     * @param User $user
+     * @param Request $request
+     * @param User    $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(User $user)
+    public function update(Request $request, User $user)
     {
-        $this->form->save($user);
+        $this->form->save($request, $user);
 
         Alert::success(trans('dashboard::common.alert.success'));
 
@@ -90,7 +92,7 @@ class UserController extends Controller
     /**
      * @param User $user
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return mixed
      */
     public function destroy(User $user)
     {

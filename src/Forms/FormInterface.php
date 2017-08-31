@@ -1,25 +1,25 @@
 <?php
 
-namespace Orchid\Forms;
+namespace Orchid\Platform\Forms;
 
 interface FormInterface
 {
     /**
-     * The form of displaying many records in the table
+     * The form of displaying many records in the table.
      *
      * @return mixed
      */
     public function grid();
 
     /**
-     * Action when saving
+     * Action when saving.
      *
      * @return mixed
      */
     public function save();
 
     /**
-     * Deleting action
+     * Deleting action.
      *
      * @return mixed
      */

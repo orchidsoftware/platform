@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Http\Forms\Systems\Users;
+namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Core\Models\Role;
-use Orchid\Core\Models\User;
-use Orchid\Facades\Dashboard;
-use Orchid\Forms\Form;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Facades\Dashboard;
+use Orchid\Platform\Forms\Form;
 
 class AccessUserForm extends Form
 {
@@ -86,21 +86,17 @@ class AccessUserForm extends Form
     /**
      * Save Base Role.
      *
-     * @param User|null $user
+     * @param null $request
+     * @param null $user
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function persist(User $user = null)
+    public function persist($request = null, $user = null)
     {
-        if (is_null($this->roles)) {
-            $roles = [];
-        } else {
+        if (!is_null($this->roles)) {
             $roles = Role::whereIn('slug', $this->roles)->get();
+            $user->replaceRoles($roles);
         }
-
-        $permissions = $this->permissions ?: [];
-
-        $user->replaceRoles($roles);
-        $user->permissions = $permissions;
-
         $user->save();
     }
 }

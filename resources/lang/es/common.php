@@ -22,7 +22,7 @@ return [
 
     'access_denied' => [
         'label' => 'Acceso denegado',
-        'help'  => "No tiene los permisos necesarios para ver esta página.",
+        'help'  => 'No tiene los permisos necesarios para ver esta página.',
     ],
 
     'alert' => [

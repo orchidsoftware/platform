@@ -22,9 +22,16 @@
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
-    @stack('stylesheet')
 
-    <script src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
+    @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
+        <link rel="stylesheet" href="{{$stylesheet}}">
+    @endforeach
+
+    @stack('stylesheets')
+
+
+    <script src="/orchid/js/orchid.js" type="text/javascript"></script>
+
 </head>
 
 
@@ -69,7 +76,7 @@
 
 
                             @php
-                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Notifications\DashboardNotification::class)->count();
+                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class)->count();
                             @endphp
 
                             @if($unreadNotificationsCount > 0)
@@ -282,6 +289,12 @@
 
 @include('dashboard::partials.quick')
 
+
+
+
+@foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
+    <script src="{{$scripts}}" type="text/javascript"></script>
+@endforeach
 
 @stack('scripts')
 

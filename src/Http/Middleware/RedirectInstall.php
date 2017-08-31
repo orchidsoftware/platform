@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Http\Middleware;
+namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 
@@ -32,6 +32,6 @@ class RedirectInstall
      */
     public function alreadyInstalled()
     {
-        return config('content.install');
+        return config('platform.install');
     }
 }

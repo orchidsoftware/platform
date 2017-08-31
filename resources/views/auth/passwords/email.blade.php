@@ -3,8 +3,6 @@
 <!-- Main Content  -->
 @section('content')
 
-
-
     <p class="m-t-lg">Reset Password</p>
 
     @if (session('status'))

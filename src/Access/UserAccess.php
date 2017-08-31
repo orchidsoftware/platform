@@ -1,19 +1,19 @@
 <?php
 
-namespace Orchid\Access;
+namespace Orchid\Platform\Access;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Orchid\Core\Models\Role;
+use Orchid\Platform\Core\Models\Role;
 
 trait UserAccess
 {
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getRoles()
     {
-        return $this->roles;
+        return $this->roles()->get();
     }
 
     /**
@@ -48,6 +48,10 @@ trait UserAccess
         $permissions->prepend($this->permissions);
 
         foreach ($permissions as $permission) {
+            if (isset($permission['superuser'])) {
+                return true;
+            }
+
             if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {
                 return true;
             }

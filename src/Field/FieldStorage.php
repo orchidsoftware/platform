@@ -1,13 +1,13 @@
 <?php
 
-namespace Orchid\Field;
+namespace Orchid\Platform\Field;
 
-use Orchid\Kernel\Storage;
+use Orchid\Platform\Kernel\Storage;
 
 class FieldStorage extends Storage
 {
     /**
      * @var string
      */
-    protected $configField = 'content.fields';
+    protected $configField = 'platform.fields';
 }

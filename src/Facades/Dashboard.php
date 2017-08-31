@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Facades;
+namespace Orchid\Platform\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Kernel\Dashboard as Dash;
+use Orchid\Platform\Kernel\Dashboard as Dash;
 
 class Dashboard extends Facade
 {
