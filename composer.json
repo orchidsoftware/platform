@@ -41,10 +41,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platfrorm\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Platfrorm\\Facades\\Dashboard"
+        "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
       }
     }
   },
