@@ -41,12 +41,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Platform\\Providers\\RouteServiceProvider",
-        "Orchid\\Platform\\Providers\\ConsoleServiceProvider",
-        "Orchid\\Platform\\Providers\\PermissionServiceProvider",
-        "Orchid\\Platform\\Providers\\EventServiceProvider",
-        "Orchid\\Platform\\Providers\\MenuServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
         "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
