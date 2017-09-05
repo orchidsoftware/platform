@@ -67,7 +67,7 @@ class BaseUserForm extends Form
         }
 
         $user->fill($attributes);
-        if (!is_null($request->get('password',null))) {
+        if (!is_null($request->get('password', null))) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
