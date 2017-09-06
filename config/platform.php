@@ -59,7 +59,7 @@ return [
     */
 
     'main_widgets' => [
-
+        Orchid\Platform\Http\Widgets\GoogleAnalyticsWidget::class,
     ],
 
 ];

@@ -1,6 +1,7 @@
 # 1.1.2 (06.09.2017)
 - fix bug create user
 - removing unused methods
+- move google analytics to widget
 
 # 1.1.1
 - Support Laravel 5.5
