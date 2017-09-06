@@ -11,7 +11,7 @@ class FieldsTest extends TestCase
      */
     public function test_is_field()
     {
-        $config = config('content.fields');
+        $config = config('platform.fields');
 
         foreach ($config as $key => $value) {
             $field = new $value();
