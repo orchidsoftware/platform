@@ -31,9 +31,26 @@ class PermissionServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
      * @return array
      */
-    protected function registerPermissionsMain(): array
+    public function provides()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsMain() : array
     {
         return [
             'Main' => [
@@ -53,7 +70,7 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsSystems(): array
+    protected function registerPermissionsSystems() : array
     {
         return [
             'Systems' => [
@@ -71,22 +88,5 @@ class PermissionServiceProvider extends ServiceProvider
                 ],
             ],
         ];
-    }
-
-    /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 }

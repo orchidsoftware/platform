@@ -29,35 +29,11 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register migrate.
-     */
-    protected function registerDatabase()
-    {
-        $this->publishes([
-            DASHBOARD_PATH.'/resources/stubs/database/migrations/' => database_path('migrations'),
-        ], 'migrations');
-    }
-
-    /**
      * Register translations.
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(DASHBOARD_PATH.'/resources/lang', 'dashboard');
-    }
-
-    /**
-     * Register config.
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            DASHBOARD_PATH.'/config/platform.php' => config_path('platform.php'),
-        ]);
-
-        $this->mergeConfigFrom(
-            DASHBOARD_PATH.'/config/platform.php', 'platform'
-        );
+        $this->loadTranslationsFrom(DASHBOARD_PATH . '/resources/lang', 'dashboard');
     }
 
     /**
@@ -66,20 +42,10 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/vendor/orchid/dashboard';
+            return $path . '/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            DASHBOARD_PATH.'/resources/views',
+            DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
-    }
-
-    /**
-     * Register public.
-     */
-    protected function registerPublic()
-    {
-        $this->publishes([
-            DASHBOARD_PATH.'/public/' => public_path('orchid'),
-        ], 'public');
     }
 
     public function registerProviders()
@@ -111,7 +77,41 @@ class FoundationServiceProvider extends ServiceProvider
     public function register()
     {
         if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__.'/../../'));
+            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
         }
+    }
+
+    /**
+     * Register migrate.
+     */
+    protected function registerDatabase()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/stubs/database/migrations/' => database_path('migrations'),
+        ], 'migrations');
+    }
+
+    /**
+     * Register config.
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/config/platform.php' => config_path('platform.php'),
+        ]);
+
+        $this->mergeConfigFrom(
+            DASHBOARD_PATH . '/config/platform.php', 'platform'
+        );
+    }
+
+    /**
+     * Register public.
+     */
+    protected function registerPublic()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/public/' => public_path('orchid'),
+        ], 'public');
     }
 }

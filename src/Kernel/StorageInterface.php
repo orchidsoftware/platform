@@ -12,7 +12,7 @@ interface StorageInterface
     /**
      * @return array
      */
-    public function all(): array;
+    public function all() : array;
 
     /**
      * @param $arg

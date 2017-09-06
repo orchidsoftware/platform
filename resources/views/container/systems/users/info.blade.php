@@ -28,6 +28,7 @@
             </div>
         </div>
 
+        {{--
         <div class="line line-dashed b-b line-lg"></div>
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label">{{trans('dashboard::systems/users.confirmed_password')}}</label>
@@ -37,6 +38,7 @@
                        placeholder="********">
             </div>
         </div>
+        --}}
 
     </div>
 </div>

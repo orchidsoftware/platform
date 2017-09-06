@@ -72,18 +72,6 @@ abstract class Form implements FormInterface
     }
 
     /**
-     * @return bool
-     */
-    protected function isValid()
-    {
-        $rules = $this->rules() ?: $this->rules;
-
-        $this->validate($this->request, $rules);
-
-        return true;
-    }
-
-    /**
      * Validation Rules Method.
      *
      * @return array
@@ -127,5 +115,17 @@ abstract class Form implements FormInterface
     public function remove()
     {
         //
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isValid()
+    {
+        $rules = $this->rules() ?: $this->rules;
+
+        $this->validate($this->request, $rules);
+
+        return true;
     }
 }
