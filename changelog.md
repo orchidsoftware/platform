@@ -1,5 +1,11 @@
-# 1.1 (31.08.2017)
+# 1.1.2 (06.09.2017)
+- fix bug create user
+- removing unused methods
+
+# 1.1.1
 - Support Laravel 5.5
+
+# 1.1 (31.08.2017)
 - fix config display auth
 - added global permission for superadmin
 - summernote supports "media"
