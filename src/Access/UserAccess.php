@@ -79,10 +79,9 @@ trait UserAccess
     {
         $result =  $this->roles()->save($role);
 
-        event(new AddRoleEvent($this,$role));
+        event(new AddRoleEvent($this, $role));
 
         return $result;
-
     }
 
     /**
@@ -94,7 +93,7 @@ trait UserAccess
     {
         $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
 
-        event(new RemoveRoleEvent($this,$role));
+        event(new RemoveRoleEvent($this, $role));
 
         return $result;
     }
@@ -108,7 +107,7 @@ trait UserAccess
      */
     public function removeRoleBySlug($slug) : bool
     {
-        $role = $this->roles()->where('slug',$slug)->first();
+        $role = $this->roles()->where('slug', $slug)->first();
 
         return $this->removeRole($role);
     }
@@ -120,11 +119,11 @@ trait UserAccess
     {
         $this->roles()->detach();
 
-        event(new RemoveRoleEvent($this,$roles));
+        event(new RemoveRoleEvent($this, $roles));
 
         $this->roles()->attach($roles);
 
-        event(new AddRoleEvent($this,$roles));
+        event(new AddRoleEvent($this, $roles));
     }
 
     /**
