@@ -33,9 +33,9 @@ class AddRoleEvent
     {
         $this->user = $user;
 
-        if(is_array($role)){
+        if (is_array($role)) {
             $this->roles = $role;
-        }else{
+        } else {
             $this->roles[] = $role;
         }
     }
