@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Events\Systems\Roles;
 
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Core\Models\User;
 
 class AddRoleEvent
@@ -19,9 +20,9 @@ class AddRoleEvent
     /**
      * Roles
      *
-     * @var array
+     * @var Collection
      */
-    public $roles = [];
+    public $roles;
 
     /**
      * Create a new event instance.
@@ -33,10 +34,10 @@ class AddRoleEvent
     {
         $this->user = $user;
 
-        if (is_array($role)) {
-            $this->roles = $role;
+        if (is_array($role) || $role instanceof Collection) {
+            $this->roles = collect($role);
         } else {
-            $this->roles[] = $role;
+            $this->roles = collect($role);
         }
     }
 }
