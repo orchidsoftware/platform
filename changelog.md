@@ -1,4 +1,4 @@
-# 1.1.3 (11.09.2017)
+# 1.1.4 (12.09.2017)
 - Added events for role assignment and deletion
 
 
