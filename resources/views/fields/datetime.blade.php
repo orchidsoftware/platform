@@ -11,7 +11,8 @@
                name="{{$prefix}}[{{$lang}}]{{$name}}"
                @else
                name="{{$lang}}{{$name}}"
-                @endif
+               @endif
+               data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
         >
         <span class="input-group-addon">
         <span class="fa fa-calendar" aria-hidden="true"></span>
