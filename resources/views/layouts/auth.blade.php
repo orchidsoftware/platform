@@ -33,12 +33,12 @@
 
     <div class="bg-pic">
 
-        <img src="{{config('content.auth.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
+        <img src="{{config('platform.auth.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
 
 
         <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">
             <h2 class="text-white">
-                {{trans('dashboard::auth/account.slogan')}}
+                {{config('platform.auth.slogan')}}
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>

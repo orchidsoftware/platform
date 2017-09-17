@@ -48,8 +48,6 @@ class Dashboard
     {
         $this->menu = new Menu();
         $this->permission = new Permissions();
-        $this->fields = new FieldStorage();
-
         $this->storage = collect();
     }
 
@@ -122,13 +120,5 @@ class Dashboard
     public function getPermission() : Collection
     {
         return $this->permission->get();
-    }
-
-    /**
-     * @return array
-     */
-    public function fields() : array
-    {
-        return $this->fields->all();
     }
 }

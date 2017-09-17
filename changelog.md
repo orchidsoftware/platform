@@ -1,3 +1,8 @@
+# 2.0 (dev) (17.09.2017)
+- Removing Fields
+- Removing Shortcut
+
+
 # 1.1.4 - 1.1.5 (12.09.2017)
 - Added events for role assignment and deletion
 

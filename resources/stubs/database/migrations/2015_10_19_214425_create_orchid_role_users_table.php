@@ -22,6 +22,6 @@ class CreateOrchidRoleUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('role_users');
+        Schema::dropIfExists('role_users');
     }
 }

@@ -22,7 +22,7 @@ class CreateOrchidUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::dropIfExists('users', function (Blueprint $table) {
             $table->dropColumn('last_login');
             $table->dropColumn('avatar');
             $table->dropColumn('permissions');
