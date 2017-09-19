@@ -38,7 +38,7 @@
 
         <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">
             <h2 class="text-white">
-                {{config('platform.auth.slogan')}}
+                {{config('platform.auth.slogan',trans('dashboard::auth/account.slogan'))}}
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>

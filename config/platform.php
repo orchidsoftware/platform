@@ -25,7 +25,7 @@ return [
     'auth'    => [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
-        'slogan'  => trans('dashboard::auth/account.slogan'),
+        'slogan'  => null,
     ],
 
     /*
