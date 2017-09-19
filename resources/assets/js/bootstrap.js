@@ -37,3 +37,5 @@ require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
+
+window.MediumEditor = require('medium-editor');

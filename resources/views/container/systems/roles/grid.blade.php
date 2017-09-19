@@ -65,7 +65,7 @@
                                     -{{$roles->perPage()}} {{trans('dashboard::common.of')}} {!! $roles->count() !!} {{trans('dashboard::common.elements')}}</small>
                             </div>
                             <div class="col-sm-4 text-right text-center-xs">
-                                {!! $roles->render() !!}
+                                {!! $roles->links('dashboard::partials.pagination') !!}
                             </div>
                         </div>
                     </footer>

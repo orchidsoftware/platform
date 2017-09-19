@@ -66,7 +66,7 @@
                                     -{{$users->perPage()}} {{trans('dashboard::common.of')}} {!! $users->count() !!} {{trans('dashboard::common.elements')}}</small>
                             </div>
                             <div class="col-sm-4 text-right text-center-xs">
-                                {!! $users->render() !!}
+                                {!! $users->links('dashboard::partials.pagination') !!}
                             </div>
                         </div>
                     </footer>

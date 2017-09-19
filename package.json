@@ -22,6 +22,8 @@
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-bundle": "^1.11.4",
+    "medium-editor": "^5.23.2",
+    "medium-editor-insert-plugin": "^2.4.1",
     "nestable": "^0.2.0",
     "open-color": "^1.5.1",
     "select2": "^4.0.3",
