@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        if(config('platform.enable',true)) {
+        if (config('platform.enable', true)) {
             foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
                 $this->loadRoutesFrom($file);
             }
