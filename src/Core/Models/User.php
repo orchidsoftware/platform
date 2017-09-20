@@ -6,10 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Access\UserInterface;
+use Orchid\CMS\Core\Traits\Attachment;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess;
+    use Notifiable, UserAccess, Attachment;
 
     /**
      * The database table used by the model.

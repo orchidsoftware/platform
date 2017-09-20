@@ -5,10 +5,11 @@ namespace Orchid\Platform\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Access\RoleAccess;
 use Orchid\Platform\Access\RoleInterface;
+use Orchid\CMS\Core\Traits\Attachment;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess;
+    use RoleAccess, Attachment;
 
     /**
      * @var string
