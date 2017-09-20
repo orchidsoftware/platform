@@ -7,6 +7,7 @@
     <title>@yield('title') - Orchid</title>
     <meta name="csrf_token" content="{{csrf_token()}}">
     <meta name="auth" content="{{Auth::check()}}">
+    <meta name="prefix" content="{{config('platform.prefix')}}">
     <link rel="stylesheet" href="/orchid/css/orchid.css">
 
 

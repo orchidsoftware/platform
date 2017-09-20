@@ -33,9 +33,12 @@ $(() => {
     $('.select2-enable').select2();
 });
 
+require('croppie');
+
 require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
 
 window.MediumEditor = require('medium-editor');
+window.MediumEditorInsert = require('medium-editor-insert-plugin-es6');
