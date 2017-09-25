@@ -41,6 +41,10 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
+        if (config('platform.headless')) {
+            return null;
+        }
+
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/vendor/orchid/dashboard';
         }, config('view.paths')), [

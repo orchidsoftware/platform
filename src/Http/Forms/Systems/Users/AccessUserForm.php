@@ -23,6 +23,17 @@ class AccessUserForm extends Form
     protected $model = User::class;
 
     /**
+     * AccessUserForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::systems/users.permission');
+        parent::__construct($request);
+    }
+
+    /**
      * Validation Rules Request.
      *
      * @return array

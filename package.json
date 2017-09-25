@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "ace-builds": "^1.2.6",
+    "blueimp-file-upload": "^9.19.1",
     "bootstrap": "^3.3.7",
     "bootstrap-tagsinput": "^0.7.1",
     "brace": "^0.10.0",
@@ -23,15 +24,13 @@
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-bundle": "^1.11.4",
-    "medium-editor": "^5.0",
     "nestable": "^0.2.0",
     "open-color": "^1.5.1",
     "select2": "^4.0.3",
     "simple-line-icons": "^2.4.1",
+    "summernote": "^0.8.3",
     "vue": "^2.1.10",
-    "vue-resource": "^1.2.0",
-    "blueimp-file-upload": "^9.19.1",
-    "medium-editor-insert-plugin-es6": "^3.0.1"
+    "vue-resource": "^1.2.0"
   },
   "devDependencies": {
     "axios": "^0.16.2",

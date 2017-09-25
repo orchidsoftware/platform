@@ -23,6 +23,17 @@ class BaseUserForm extends Form
     protected $model = User::class;
 
     /**
+     * BaseUserForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::systems/users.information');
+        parent::__construct($request);
+    }
+
+    /**
      * Validation Rules Request.
      *
      * @return array

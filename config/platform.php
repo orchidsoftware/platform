@@ -16,15 +16,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable
+    | Headless
     |--------------------------------------------------------------------------
     |
-    | If the dashboard is turned off, then all routes stop working,
+    | If the dashboard is turned true, then all routes stop working,
     | this is required if you are building your control panel or you do not need it
     |
     */
 
-    'enable' => true,
+    'headless' => false,
 
     /*
     |--------------------------------------------------------------------------

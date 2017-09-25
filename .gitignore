@@ -4,3 +4,5 @@ _ide_helper.php
 composer.lock
 build
 vendor
+.DS_Store
+.lock
