@@ -15,7 +15,6 @@ $this->group([
     'namespace'  => 'Orchid\Platform\Http\Controllers\Auth',
 ],
     function (\Illuminate\Routing\Router $router) {
-
         if (config('platform.auth.display', true)) {
             // Authentication Routes...
             $router->get('login', 'LoginController@showLoginForm')->name('dashboard.login');
@@ -29,5 +28,4 @@ $this->group([
         }
 
         $router->post('logout', 'LoginController@logout')->name('dashboard.logout');
-
     });
