@@ -67,3 +67,5 @@ require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
+
+require('../../../node_modules/tinymce/tinymce.min');
