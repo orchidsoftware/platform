@@ -125,7 +125,7 @@ class Menu
             'sort'     => $this->sort,
         ];
 
-        $this->container->push($this->item);
+        $this->container[$this->arg['slug']] = $this->item;
     }
 
     /**
