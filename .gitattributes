@@ -9,3 +9,6 @@
 /.scrutinizer.yml   export-ignore
 /tests              export-ignore
 /docs               export-ignore
+
+*.php linguist-language=PHP
+*.js linguist-language=PHP

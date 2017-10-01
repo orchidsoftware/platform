@@ -5,6 +5,8 @@ namespace Orchid\Platform\Access;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Events\Systems\Roles\AddRoleEvent;
+use Orchid\Platform\Events\Systems\Roles\RemoveRoleEvent;
 
 trait UserAccess
 {
@@ -75,7 +77,11 @@ trait UserAccess
      */
     public function addRole(Model $role) : Model
     {
-        return $this->roles()->save($role);
+        $result =  $this->roles()->save($role);
+
+        event(new AddRoleEvent($this, $role));
+
+        return $result;
     }
 
     /**
@@ -85,7 +91,11 @@ trait UserAccess
      */
     public function removeRole(RoleInterface $role) : bool
     {
-        return $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
+        $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
+
+        event(new RemoveRoleEvent($this, $role));
+
+        return $result;
     }
 
     /**
@@ -97,7 +107,9 @@ trait UserAccess
      */
     public function removeRoleBySlug($slug) : bool
     {
-        $this->roles()->where('slug', $slug)->first()->remove();
+        $role = $this->roles()->where('slug', $slug)->first();
+
+        return $this->removeRole($role);
     }
 
     /**
@@ -106,7 +118,12 @@ trait UserAccess
     public function replaceRoles($roles)
     {
         $this->roles()->detach();
+
+        event(new RemoveRoleEvent($this, $roles));
+
         $this->roles()->attach($roles);
+
+        event(new AddRoleEvent($this, $roles));
     }
 
     /**

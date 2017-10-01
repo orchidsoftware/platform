@@ -12,14 +12,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \Orchid\Platform\Events\Systems\RolesEvent::class         => [
+        \Orchid\Platform\Events\Systems\RolesEvent::class => [
             \Orchid\Platform\Listeners\Systems\Roles\RoleBaseListener::class,
         ],
-        \Orchid\Platform\Events\Systems\UserEvent::class          => [
+        \Orchid\Platform\Events\Systems\UserEvent::class  => [
             \Orchid\Platform\Listeners\Systems\Users\UserBaseListener::class,
             \Orchid\Platform\Listeners\Systems\Users\UserAccessListener::class,
         ],
-        \Illuminate\Auth\Events\Login::class => [
+        \Illuminate\Auth\Events\Login::class              => [
             \Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin::class,
         ],
     ];

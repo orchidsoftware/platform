@@ -25,14 +25,9 @@ class User extends Authenticatable implements UserInterface
         'name',
         'email',
         'password',
-        'permissions',
-        'about',
-        'phone',
-        'sex',
-        'subscription',
-        'nickname',
-        'website',
+        'last_login',
         'avatar',
+        'permissions',
     ];
 
     /**
@@ -49,9 +44,6 @@ class User extends Authenticatable implements UserInterface
      * @var array
      */
     protected $casts = [
-        'sex'          => 'boolean',
-        'subscription' => 'boolean',
-        'about'        => 'string',
         'permissions'  => 'array',
     ];
 }

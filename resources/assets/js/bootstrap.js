@@ -33,7 +33,6 @@ $(() => {
     $('.select2-enable').select2();
 });
 
-
 require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');

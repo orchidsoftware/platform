@@ -27,12 +27,11 @@ class BaseUserForm extends Form
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [
             'name'  => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$this->request->get('email').',email',
-            //'password' => 'max:255|sometimes|min:8|confirmed',
+            'email' => 'required|email|max:255|unique:users,email,' . $this->request->get('email') . ',email',
         ];
     }
 
@@ -43,7 +42,7 @@ class BaseUserForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(User $user = null): View
+    public function get(User $user = null) : View
     {
         return view('dashboard::container.systems.users.info', [
             'user' => $user ?: new $this->model(),
@@ -62,15 +61,19 @@ class BaseUserForm extends Form
     {
         $attributes = $request->all();
 
+        if (is_null($user)) {
+            $user = new User();
+        }
+
         if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
             unset($attributes['password']);
         }
 
         $user->fill($attributes);
-        if ($request->has('password')) {
+        if ($request->filled('password', null)) {
             $user->password = Hash::make($request->password);
-            $user->permissions = [];
         }
+
         $user->save();
     }
 

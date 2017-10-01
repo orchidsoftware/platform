@@ -6,12 +6,6 @@ use Orchid\Platform\Http\Forms\Systems\Roles\BaseRolesForm;
 
 class RoleBaseListener
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * Handle the event.
@@ -20,7 +14,7 @@ class RoleBaseListener
      *
      * @internal param RolesEvent $event
      */
-    public function handle(): string
+    public function handle() : string
     {
         return BaseRolesForm::class;
     }

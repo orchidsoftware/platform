@@ -2,8 +2,7 @@
     @if(isset($title))
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
-    <button class="btn btn-sm btn-media" data-id="field-{{$slug}}">Add Media</button>
-    <textarea class="form-control no-resize summernote {{$class or ''}}" id="field-{{$slug}}"
+    <textarea class="form-control no-resize summernote {{$class or ''}}" id="field-{{$lang}}-{{$slug}}"
               rows={{$rows or ''}}
               @if(isset($prefix))
                       name="{{$prefix}}[{{$lang}}]{{$name}}"
@@ -21,12 +20,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="media-modal">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Select media to add</h4>
-            </div>
-            <div class="modal-body">
-                <div class="page-content container-fluid">
+            <div class="page-content container-fluid">
                     <div class="row">
                         <div class="">
 
@@ -255,7 +249,7 @@
 
                             </div><!-- #filemanager  -->
 
-                            <!-- New Folder Modal  -->
+                                  <!-- New Folder Modal  -->
                             <div class="modal fade modal-info" id="new_folder_modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -280,9 +274,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- End New Folder Modal  -->
+                                  <!-- End New Folder Modal  -->
 
-                            <!-- Delete File Modal  -->
+                                  <!-- Delete File Modal  -->
                             <div class="modal fade modal-danger" id="confirm_delete_modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -308,10 +302,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Delete File Modal  -->
+                                  <!-- End Delete File Modal  -->
 
                             <div id="dropzone"></div>
-                            <!-- Delete File Modal  -->
+                                  <!-- Delete File Modal  -->
                             <div class="modal fade" id="upload_files_modal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -334,15 +328,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Delete File Modal  -->
+                                  <!-- End Delete File Modal  -->
 
 
                         </div><!-- .row  -->
                     </div><!-- .col-md-12  -->
                 </div><!-- .page-content container-fluid  -->
 
-                <input type="hidden" id="storage_path" value="{{ storage_path() }}">
-            </div>
+            <input type="hidden" id="storage_path" value="{{ storage_path() }}">
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" id="media-add">Add Media</button>
@@ -351,10 +344,25 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
 <script src="/orchid/summernote/summernote.min.js"></script>
 <script>
     $(document).ready(function () {
+
+        var mediaButton = function (context) {
+            var ui = $.summernote.ui;
+
+            var button = ui.button({
+                contents: '<i class="icon-folder-alt"/>',
+                tooltip: 'Media',
+                click: function () {
+                    $('#media-add').attr('data-id', window.activeSummernote);
+                    $('#media-modal').modal('show');
+                }
+            });
+            return button.render();
+        }
+
+
         $('.summernote').summernote({
             minHeight: 300,
             toolbar: [
@@ -363,36 +371,25 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview']]
+                ['insert', ['link', 'picture', 'video', 'media']],
+                ['view', ['fullscreen', 'codeview', 'undo', 'redo',]]
             ],
-            /* all tools
-             toolbar: [
-             ['font', [
-             'fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript' , 'clear'
-             ]],
-             ['style', [
-             'style', 'ol', 'ul', 'paragraph', 'height'
-             ]],
-             ['insert', [
-             'picture', 'link', 'video', 'table', 'hr',
-             ]],
-             ['misc', [
-             'fullscreen', 'codeview', 'undo', 'redo',
-             ]],
-             ] */
+            callbacks: {
+                onBlur: function (event) {
+                    window.activeSummernote = $(this).attr('id');
+                }
+            },
+            buttons: {
+                media: mediaButton
+            }
         });
-        $('.btn-media').on('click', function (e) {
-            e.preventDefault();
-            $('#media-add').attr('data-id', $(this).data('id'));
-            $('#media-modal').modal('show');
-        });
+
 
         $('#media-add').on('click', function (e) {
             e.preventDefault();
             var image = '/storage/' + $('#files li .selected').data('folder');
 
-            $('#' + $(this).data('id')).summernote('insertImage', image, function ($image) {
+            $('#' + window.activeSummernote).summernote('insertImage', image, function ($image) {
                 $image.css('width', 200);
             });
 

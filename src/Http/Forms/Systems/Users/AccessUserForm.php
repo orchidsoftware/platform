@@ -27,7 +27,7 @@ class AccessUserForm extends Form
      *
      * @return array
      */
-    public function rules(): array
+    public function rules() : array
     {
         return [
             'permissions' => 'array',
@@ -42,7 +42,7 @@ class AccessUserForm extends Form
      *
      * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View
      */
-    public function get(User $user = null): View
+    public function get(User $user = null) : View
     {
         if (!is_null($user)) {
             $rolePermission = $user->permissions ?: [];
@@ -93,6 +93,10 @@ class AccessUserForm extends Form
      */
     public function persist($request = null, $user = null)
     {
+        if (is_null($user)) {
+            $user = User::where('email', $request->get('email'))->firstOrFail();
+        }
+
         if (!is_null($this->roles)) {
             $roles = Role::whereIn('slug', $this->roles)->get();
             $user->replaceRoles($roles);

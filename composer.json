@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "laravel/framework": "5.4.*",
+    "laravel/framework": "5.5.*",
     "watson/active": "^2.0",
     "orchid/defender": "^1.0",
     "orchid/alert": "^1.0",
@@ -41,18 +41,15 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platfrorm\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Platfrorm\\Facades\\Dashboard"
+        "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
       }
     }
   },
   "suggest": {
     "orchid/cms": "Laravel package CMS",
-    "orchid/remote": "Admin Panel for Microservices",
     "orchid/socket": "Laravel library for asynchronously serving WebSockets."
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }

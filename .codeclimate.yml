@@ -1,2 +1,4 @@
 exclude_paths:
-- "public/**/*"
+- "resources/assets/dist/"
+- "resources/lang/"
+- "resources/stubs/"

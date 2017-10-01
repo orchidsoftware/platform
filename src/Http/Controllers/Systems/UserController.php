@@ -57,7 +57,7 @@ class UserController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return back();
+        return redirect()->route('dashboard.systems.users');
     }
 
     /**
