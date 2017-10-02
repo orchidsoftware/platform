@@ -12290,7 +12290,7 @@ body {
 .app-content-full {
   position: absolute;
   top: 80px;
-  bottom: 50px;
+  /*bottom: @app-footer-height;*/
   height: auto;
   width: auto !important;
   padding: 0 !important;

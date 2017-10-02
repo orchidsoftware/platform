@@ -125,7 +125,7 @@ class MenuComposer2
     {
         $dashboard->menu->add('Systems', [
             'slug'       => 'settings',
-            'icon'       => 'fa fa-cog',
+            'icon'       => 'icon-settings',
             'route'      => route('dashboard.systems.settings'),
             'label'      => trans('dashboard::menu.constants'),
             'groupname'  => trans('dashboard::menu.general settings'),

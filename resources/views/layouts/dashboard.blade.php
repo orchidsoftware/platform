@@ -272,7 +272,9 @@
     </div>
     <!-- /content  -->
 
+
     <!-- footer  -->
+    {{--
     <footer id="footer" class="app-footer" role="footer">
         <div class="wrapper b-t bg-light">
             <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
@@ -281,6 +283,7 @@
             © {{date("Y")}} Copyright.
         </div>
     </footer>
+    --}}
     <!-- / footer  -->
 </div>
 
