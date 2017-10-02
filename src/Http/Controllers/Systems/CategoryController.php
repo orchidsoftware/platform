@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryFormGroup $form)
     {
-        $this->checkPermission('dashboard.tools.category');
+        $this->checkPermission('dashboard.systems.category');
         $this->form = $form;
     }
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function create()
     {
         return $this->form
-            ->route('dashboard.tools.category.store')
+            ->route('dashboard.systems.category.store')
             ->method('POST')
             ->render();
     }
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function edit(TermTaxonomy $termTaxonomy)
     {
         return $this->form
-            ->route('dashboard.tools.category.update')
+            ->route('dashboard.systems.category.update')
             ->slug($termTaxonomy->id)
             ->method('PUT')
             ->render($termTaxonomy);
@@ -111,6 +111,6 @@ class CategoryController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return redirect()->route('dashboard.tools.category');
+        return redirect()->route('dashboard.systems.category');
     }
 }

@@ -25,7 +25,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $this->checkPermission('dashboard.tools.menu');
+        $this->checkPermission('dashboard.systems.menu');
 
         return view('dashboard::container.tools.menu.listing', [
             'menu'    => collect(config('platform.menu')),

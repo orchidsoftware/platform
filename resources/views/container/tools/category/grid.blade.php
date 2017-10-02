@@ -10,7 +10,7 @@
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group">
-            <a href="{{ route('dashboard.tools.category.create')}}" class="btn btn-link"><i
+            <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link"><i
                         class="icon-plus fa fa-2x"></i></a>
         </div>
     </div>
@@ -45,7 +45,7 @@
 
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('dashboard.tools.category.edit',$item->id) }}"><i
+                                            <a href="{{ route('dashboard.systems.category.edit',$item->id) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
                                         <td>{{$item->term->getContent('name')}}</td>

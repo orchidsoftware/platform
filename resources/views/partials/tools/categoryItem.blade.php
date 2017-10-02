@@ -2,7 +2,7 @@
     @foreach($item as $value)
         <tr>
             <td class="text-center">
-                <a href="{{ route('dashboard.tools.category.edit',$value->id) }}">
+                <a href="{{ route('dashboard.systems.category.edit',$value->id) }}">
                     <i class="fa fa-bars"></i>
                 </a>
             </td>

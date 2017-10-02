@@ -28,7 +28,7 @@ class AttachmentController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.tools.attachment');
+        $this->checkPermission('dashboard.systems.attachment');
         $this->time = time();
         $this->date = date('Y/m/d');
     }

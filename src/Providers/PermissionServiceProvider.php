@@ -145,23 +145,23 @@ class PermissionServiceProvider extends ServiceProvider
         return [
             'Tools' => [
                 [
-                    'slug'        => 'dashboard.tools.menu',
+                    'slug'        => 'dashboard.systems.menu',
                     'description' => trans('dashboard::permission.tools.menu'),
                 ],
                 [
-                    'slug'        => 'dashboard.tools.category',
+                    'slug'        => 'dashboard.systems.category',
                     'description' => trans('dashboard::permission.tools.category'),
                 ],
                 [
-                    'slug'        => 'dashboard.tools.comment',
+                    'slug'        => 'dashboard.systems.comment',
                     'description' => trans('dashboard::permission.tools.comment'),
                 ],
                 [
-                    'slug'        => 'dashboard.tools.attachment',
+                    'slug'        => 'dashboard.systems.attachment',
                     'description' => trans('dashboard::permission.tools.attachment'),
                 ],
                 [
-                    'slug'        => 'dashboard.tools.media',
+                    'slug'        => 'dashboard.systems.media',
                     'description' => trans('dashboard::permission.tools.media'),
                 ],
             ],
