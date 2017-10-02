@@ -63,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
             $path = str_replace("..", "", $path);
             $path = realpath(DASHBOARD_PATH . '/public/' . $path);
 
-            if($path !== false){
+            if ($path !== false) {
                 return $path;
             }
 
