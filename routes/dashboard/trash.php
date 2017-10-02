@@ -15,7 +15,6 @@ $this->group([
     'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
 ],
     function (\Illuminate\Routing\Router $router) {
-
         $router->resource('backup', 'BackupController', ['names' => [
             'index' => 'dashboard.systems.backup',
             'show'  => 'dashboard.systems.backup.download',
@@ -49,7 +48,6 @@ $this->group([
     'namespace'  => 'Orchid\Platform\Http\Controllers\Marketing',
 ],
     function (\Illuminate\Routing\Router $router) {
-
         $router->get('utm', 'UTMController@index')->name('dashboard.marketing.utm.index');
 
         $router->resource('robots', 'RobotsController', [

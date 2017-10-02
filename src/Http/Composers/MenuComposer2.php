@@ -177,8 +177,6 @@ class MenuComposer2
             'permission' => 'dashboard.systems.media',
             'sort'       => 5,
         ]);
-
-
     }
 
     /**
@@ -186,7 +184,6 @@ class MenuComposer2
      */
     protected function registerMenuTrash(Dashboard $dashboard)
     {
-
         $dashboard->menu->add('Main', [
             'slug'       => 'Trash',
             'icon'       => 'icon-trash',
@@ -268,6 +265,5 @@ class MenuComposer2
             'permission' => 'dashboard.systems.schema',
             'sort'       => 3,
         ]);
-
     }
 }

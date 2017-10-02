@@ -103,7 +103,6 @@ class RouteServiceProvider extends ServiceProvider
 
             return $page;
         });
-
     }
 
     /**

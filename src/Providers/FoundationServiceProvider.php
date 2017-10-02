@@ -77,7 +77,6 @@ class FoundationServiceProvider extends ServiceProvider
                 DASHBOARD_PATH . '/resources/stubs/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
             ]);
         }
-
     }
 
     public function registerProviders()
