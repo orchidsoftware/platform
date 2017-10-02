@@ -8,25 +8,26 @@ return [
         'tools'     => 'Herramientas',
         'pages'     => 'Páginas',
         'systems'   => 'Sistemas',
-        'posts'     => 'Mensajes',
-        'marketing' => 'Márketing',
+        'posts'     => 'Entradas',
+        'marketing' => 'Marketing',
     ],
 
     'tools' => [
         'menu'       => 'Menú',
-        'media'      => 'Medios de comunicación',
+        'media'      => 'Multimedia',
         'category'   => 'Categoría',
-        'attachment' => 'Subir archivo',
+        'attachment' => 'Adjuntar archivo',
     ],
 
     'systems' => [
+        'superuser' => 'Superusuario',
         'backup'   => 'Copias de seguridad',
         'logs'     => 'Registros',
         'settings' => 'Ajustes',
         'defender' => 'Defensor',
         'roles'    => 'Roles',
         'users'    => 'Usuarios',
-        'monitor'  => 'Monitor',
+        'monitor'  => 'Monitoreo',
         'schema'   => 'Esquema',
     ],
 

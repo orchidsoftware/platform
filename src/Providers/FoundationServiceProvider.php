@@ -23,6 +23,7 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerCode();
 
         $this->registerProviders();
     }
@@ -33,6 +34,19 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerTranslations()
     {
         $this->loadTranslationsFrom(realpath(DASHBOARD_PATH . '/resources/lang'), 'dashboard');
+    }
+
+
+    /**
+     * Register types.
+     */
+    protected function registerCode()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPost.stub'        => app_path('/Core/Behaviors/Many/DemoPost.php'),
+            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPage.stub'        => app_path('/Core/Behaviors/Single/DemoPage.php'),
+            DASHBOARD_PATH . '/resources/stubs/widgets/AdvertisingWidget.stub' => app_path('/Http/Widgets/AdvertisingWidget.php'),
+        ]);
     }
 
     /**
@@ -49,6 +63,21 @@ class FoundationServiceProvider extends ServiceProvider
         }, config('view.paths')), [
             DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
+
+
+
+        $this->loadViewsFrom(array_merge(array_map(function ($path) {
+            return $path . '/vendor/orchid/dashboard';
+        }, config('view.paths')), [
+            DASHBOARD_PATH . '/resources/views',
+        ]), 'cms');
+
+        if (!config('platform.install')) {
+            $this->publishes([
+                DASHBOARD_PATH . '/resources/stubs/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
+            ]);
+        }
+
     }
 
     public function registerProviders()
@@ -66,6 +95,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            DashboardProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,
             PermissionServiceProvider::class,
@@ -100,6 +130,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
+            DASHBOARD_PATH . '/config/scout.php' => config_path('scout.php'),
             realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
         ]);
 

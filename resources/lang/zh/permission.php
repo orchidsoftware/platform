@@ -20,6 +20,7 @@ return [
     ],
 
     'systems' => [
+        'superuser' => '超級用戶',
         'backup'   => '备份',
         'logs'     => '日志',
         'settings' => '设置',

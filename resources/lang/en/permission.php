@@ -20,6 +20,7 @@ return [
     ],
 
     'systems' => [
+        'superuser' => 'Superuser',
         'backup'   => 'Backups',
         'logs'     => 'Logs',
         'settings' => 'Settings',

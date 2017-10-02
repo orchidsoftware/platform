@@ -7,22 +7,22 @@ return [
 
     'Create'       => 'Crear',
     'Delete'       => 'Borrar',
-    'Find'         => 'Encontrar',
+    'Find'         => 'Buscar',
     'Apply'        => 'Aplicar',
     'Manage'       => 'Gestionar',
     'Last edit'    => 'Última edición',
     'Created'      => 'Creado',
     'elements'     => 'elementos',
-    'show'         => 'espectáculo',
+    'show'         => 'Mostrar',
     'of'           => 'de',
-    'search_posts' => 'Buscar publicación ...',
+    'search_posts' => 'Buscar entrada ...',
 
     'website' => 'Sitio web',
     'profile' => 'Perfil',
 
     'access_denied' => [
         'label' => 'Acceso denegado',
-        'help'  => 'No tiene los permisos necesarios para ver esta página.',
+        'help'  => "No tiene los permisos necesarios para ver esta página.",
     ],
 
     'alert' => [

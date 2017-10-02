@@ -4,7 +4,6 @@ namespace Orchid\Platform\Kernel;
 
 use Illuminate\Support\Collection;
 use Orchid\Platform\Access\Permissions;
-use Orchid\Platform\Field\FieldStorage;
 use Orchid\Platform\Menu\Menu;
 
 class Dashboard
@@ -12,7 +11,7 @@ class Dashboard
     /**
      * Orchid Version.
      */
-    const VERSION = '1.1.5';
+    const VERSION = '2.0';
 
     /**
      * @var

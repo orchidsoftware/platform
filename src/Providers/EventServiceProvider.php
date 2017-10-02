@@ -22,6 +22,19 @@ class EventServiceProvider extends ServiceProvider
         \Illuminate\Auth\Events\Login::class              => [
             \Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin::class,
         ],
+
+        \Orchid\Platform\Events\SettingsEvent::class => [
+            \Orchid\Platform\Listeners\Settings\SettingInfoListener::class,
+            \Orchid\Platform\Listeners\Settings\SettingBaseListener::class,
+            \Orchid\Platform\Listeners\Settings\SettingPhpInfoListener::class,
+        ],
+        \Orchid\Platform\Events\CategoryEvent::class   => [
+            \Orchid\Platform\Listeners\Category\CategoryBaseLister::class,
+            \Orchid\Platform\Listeners\Category\CategoryDescLister::class,
+        ],
+        \Orchid\Platform\Events\CommentEvent::class    => [
+            \Orchid\Platform\Listeners\Comment\CommentBaseListener::class,
+        ],
     ];
 
     /**

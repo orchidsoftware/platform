@@ -28,6 +28,13 @@ class PermissionServiceProvider extends ServiceProvider
 
         $dashboard->permission->registerPermissions($this->registerPermissionsMain());
         $dashboard->permission->registerPermissions($this->registerPermissionsSystems());
+
+        $dashboard->permission->registerPermissions($this->registerPermissionsMain());
+        $dashboard->permission->registerPermissions($this->registerPermissionsPages());
+        $dashboard->permission->registerPermissions($this->registerPermissionsPost());
+        $dashboard->permission->registerPermissions($this->registerPermissionsTools());
+        $dashboard->permission->registerPermissions($this->registerPermissionsSystems());
+        $dashboard->permission->registerPermissions($this->registerPermissionsMarketing());
     }
 
     /**
@@ -47,6 +54,7 @@ class PermissionServiceProvider extends ServiceProvider
         return [];
     }
 
+
     /**
      * @return array
      */
@@ -62,8 +70,101 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems',
                     'description' => trans('dashboard::permission.main.systems'),
                 ],
+                [
+                    'slug'        => 'dashboard.index',
+                    'description' => trans('dashboard::permission.main.main'),
+                ],
+                [
+                    'slug'        => 'dashboard.pages',
+                    'description' => trans('dashboard::permission.main.pages'),
+                ],
+                [
+                    'slug'        => 'dashboard.posts',
+                    'description' => trans('dashboard::permission.main.posts'),
+                ],
+                [
+                    'slug'        => 'dashboard.tools',
+                    'description' => trans('dashboard::permission.main.tools'),
+                ],
+                [
+                    'slug'        => 'dashboard.marketing',
+                    'description' => trans('dashboard::permission.main.marketing'),
+                ],
             ],
 
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsPages() : array
+    {
+        $allPage = $this->dashboard->getStorage('pages')->all();
+
+        $showPost = collect();
+        foreach ($allPage as $page) {
+            $showPost->push([
+                'slug'        => 'dashboard.posts.type.' . $page->slug,
+                'description' => $page->name,
+            ]);
+        }
+
+        return [
+            'Pages' => $showPost->toArray(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsPost() : array
+    {
+        $allPost = $this->dashboard->getStorage('posts')->all();
+
+        $showPost = collect();
+        foreach ($allPost as $page) {
+            if ($page->display) {
+                $showPost->push([
+                    'slug'        => 'dashboard.posts.type.' . $page->slug,
+                    'description' => $page->name,
+                ]);
+            }
+        }
+
+        return [
+            'Posts' => $showPost->toArray(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsTools() : array
+    {
+        return [
+            'Tools' => [
+                [
+                    'slug'        => 'dashboard.tools.menu',
+                    'description' => trans('dashboard::permission.tools.menu'),
+                ],
+                [
+                    'slug'        => 'dashboard.tools.category',
+                    'description' => trans('dashboard::permission.tools.category'),
+                ],
+                [
+                    'slug'        => 'dashboard.tools.comment',
+                    'description' => trans('dashboard::permission.tools.comment'),
+                ],
+                [
+                    'slug'        => 'dashboard.tools.attachment',
+                    'description' => trans('dashboard::permission.tools.attachment'),
+                ],
+                [
+                    'slug'        => 'dashboard.tools.media',
+                    'description' => trans('dashboard::permission.tools.media'),
+                ],
+            ],
         ];
     }
 
@@ -86,7 +187,60 @@ class PermissionServiceProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems.users',
                     'description' => trans('dashboard::permission.systems.users'),
                 ],
+                [
+                    'slug'        => 'superuser',
+                    'description' => trans('dashboard::permission.systems.superuser'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.backup',
+                    'description' => trans('dashboard::permission.systems.backup'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.defender',
+                    'description' => trans('dashboard::permission.systems.defender'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.monitor',
+                    'description' => trans('dashboard::permission.systems.monitor'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.logs',
+                    'description' => trans('dashboard::permission.systems.logs'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.schema',
+                    'description' => trans('dashboard::permission.systems.schema'),
+                ],
+                [
+                    'slug'        => 'dashboard.systems.settings',
+                    'description' => trans('dashboard::permission.systems.settings'),
+                ],
             ],
         ];
     }
+
+    /**
+     * @return array
+     */
+    protected function registerPermissionsMarketing() : array
+    {
+        return [
+
+            'Marketing' => [
+                [
+                    'slug'        => 'dashboard.marketing.utm',
+                    'description' => trans('dashboard::permission.marketing.utm'),
+                ],
+                [
+                    'slug'        => 'dashboard.marketing.robots',
+                    'description' => trans('dashboard::permission.marketing.robots'),
+                ],
+            ],
+
+        ];
+    }
+
+
+
+
 }
