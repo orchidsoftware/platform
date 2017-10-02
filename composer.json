@@ -21,7 +21,8 @@
     "watson/active": "^2.0",
     "orchid/defender": "^1.0",
     "orchid/alert": "^1.0",
-    "orchid/widget": "^1.0"
+    "orchid/widget": "^1.0",
+    "ralouphie/mimey": "^1.0"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
@@ -47,9 +48,5 @@
         "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
       }
     }
-  },
-  "suggest": {
-    "orchid/cms": "Laravel package CMS",
-    "orchid/socket": "Laravel library for asynchronously serving WebSockets."
   }
 }

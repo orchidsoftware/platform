@@ -23,7 +23,6 @@ class FoundationServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerPublic();
 
         $this->registerProviders();
     }
@@ -33,7 +32,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(DASHBOARD_PATH . '/resources/lang', 'dashboard');
+        $this->loadTranslationsFrom(realpath(DASHBOARD_PATH . '/resources/lang'), 'dashboard');
     }
 
     /**
@@ -91,7 +90,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerDatabase()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/database/migrations/' => database_path('migrations'),
+            realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations/') => database_path('migrations'),
         ], 'migrations');
     }
 
@@ -101,21 +100,11 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/config/platform.php' => config_path('platform.php'),
+            realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
         ]);
 
         $this->mergeConfigFrom(
-            DASHBOARD_PATH . '/config/platform.php', 'platform'
+            realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform'
         );
-    }
-
-    /**
-     * Register public.
-     */
-    protected function registerPublic()
-    {
-        $this->publishes([
-            DASHBOARD_PATH . '/public/' => public_path('orchid'),
-        ], 'public');
     }
 }

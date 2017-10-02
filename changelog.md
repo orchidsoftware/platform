@@ -1,6 +1,7 @@
 # 2.0 (dev) (17.09.2017)
 - Removing Fields
 - Removing Shortcut
+- Remote publication of public files, the location of this is used by the proxy controller 
 
 
 # 1.1.4 - 1.1.5 (12.09.2017)
