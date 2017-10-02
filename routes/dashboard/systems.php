@@ -153,6 +153,4 @@ $this->group([
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
-
-
     });
