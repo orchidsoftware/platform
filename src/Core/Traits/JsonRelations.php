@@ -33,7 +33,6 @@ trait JsonRelations
      */
     private function jsonRelationInit()
     {
-
         $options = $this->getAttribute($this->jsonRelationColumn);
 
         if (key_exists('relations', $options)) {
@@ -73,5 +72,4 @@ trait JsonRelations
 
         return self::whereIn('id', $option[$name]);
     }
-
 }
