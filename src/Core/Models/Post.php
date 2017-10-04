@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Core\Traits\Attachment;
+use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Exceptions\TypeException;
@@ -21,7 +22,7 @@ use Orchid\Platform\Facades\Dashboard;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
 
     /**
      * @var string
