@@ -71,19 +71,7 @@ trait JsonRelations
             $option[$name] = [];
         }
 
-        return Post::whereIn('id', $option[$name]);
+        return self::whereIn('id', $option[$name]);
     }
-
-    /*
-    public function lezyJsonLoadTest(){
-        $test = $pdo = DB::connection()->getPdo()->query('
-    SELECT posts.* FROM posts JOIN posts as relationPost 
-    ON JSON_CONTAINS(JSON_ARRAY(relationPost.options->"$.relations"), CAST(posts.id AS CHAR))
-    where relationPost.id = 1
-    ');
-
-        dd($test->fetchAll());
-    }
-    */
 
 }
