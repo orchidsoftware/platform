@@ -146,5 +146,4 @@ class PermissionServiceProvider extends ServiceProvider
             ],
         ];
     }
-
 }
