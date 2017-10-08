@@ -2,7 +2,7 @@
     @if(isset($title))
         <label for="field-{{$lang}}-{{$slug}}">{{$title}}</label>
     @endif
-    <div id="ace-code-block-{{$lang}}-{{$slug}}" style="width: 100%; min-height: 300px;"></div>
+    <div id="ace-code-block-{{$lang}}-{{$slug}}" style="width: 100%; min-height: 500px;"></div>
     <input type="hidden" class="form-control {{$class or ''}}" id="field-{{$lang}}-{{$slug}}"
            @if(isset($prefix))
            name="{{$prefix}}[{{$lang}}]{{$name}}"

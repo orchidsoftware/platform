@@ -39,6 +39,6 @@ class TermRelationship extends Model
      */
     public function taxonomy() : BelongsTo
     {
-        return $this->belongsTo(TermTaxonomy::class, 'term_taxonomy_id');
+        return $this->belongsTo(Taxonomy::class, 'term_taxonomy_id');
     }
 }

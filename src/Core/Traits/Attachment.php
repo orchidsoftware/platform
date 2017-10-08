@@ -38,12 +38,12 @@ trait Attachment
     public function attachment($type = null) : MorphToMany
     {
         if (!is_null($type)) {
-            return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachment_relationships',
+            return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachmentable',
                 'attachmentable_id', 'attachment_id')
                 ->whereIn('extension', config('platform.attachment.' . $type));
         }
 
-        return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachment_relationships',
+        return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachmentable',
             'attachmentable_id', 'attachment_id');
     }
 }

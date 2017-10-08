@@ -27,7 +27,7 @@ class MenuController extends Controller
     {
         $this->checkPermission('dashboard.systems.menu');
 
-        return view('dashboard::container.tools.menu.listing', [
+        return view('dashboard::container.systems.menu.listing', [
             'menu'    => collect(config('platform.menu')),
             'locales' => collect(config('platform.locales')),
         ]);
@@ -47,7 +47,7 @@ class MenuController extends Controller
             ->whereNull('parent')
             ->where('type', $nameMenu)->with('children')->get();
 
-        return view('dashboard::container.tools.menu.menu', [
+        return view('dashboard::container.systems.menu.menu', [
             'nameMenu'      => $nameMenu,
             'locales'       => config('platform.locales'),
             'currentLocale' => $currentLocale,

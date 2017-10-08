@@ -3,7 +3,7 @@
 return [
 
     'title'       => 'Панель управления',
-    'description' => 'Добро пожаловать в Orchid',
+    'description' => 'Добро пожаловать в ORCHID',
 
     'Create'       => 'Создать',
     'Delete'       => 'Удалить',

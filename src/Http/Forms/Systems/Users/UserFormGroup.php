@@ -35,11 +35,8 @@ class UserFormGroup extends FormGroup
         $user = new User();
         $users = $user->select('id', 'name', 'email', 'created_at', 'updated_at')->paginate();
 
-        return view(
-            'dashboard::container.systems.users.grid',
-            [
-                'users' => $users,
-            ]
-        );
+        return view('dashboard::container.systems.users.grid', [
+            'users' => $users,
+        ]);
     }
 }

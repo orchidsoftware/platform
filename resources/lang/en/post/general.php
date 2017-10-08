@@ -17,4 +17,9 @@ return [
     'not_found'                => 'No records found',
     'create'                   => 'Create',
     'view'                     => 'Template for display',
+    'status_list'              => [
+        'publish' => 'Published',
+        'draft'   => 'Draft',
+    ],
+
 ];

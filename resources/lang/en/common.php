@@ -3,7 +3,7 @@
 return [
 
     'title'       => 'Dashboard Panel',
-    'description' => 'Welcome to Orchid',
+    'description' => 'Welcome to ORCHID',
 
     'Create'       => 'Create',
     'Delete'       => 'Delete',

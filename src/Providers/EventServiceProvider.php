@@ -26,7 +26,6 @@ class EventServiceProvider extends ServiceProvider
         \Orchid\Platform\Events\SettingsEvent::class => [
             \Orchid\Platform\Listeners\Settings\SettingInfoListener::class,
             \Orchid\Platform\Listeners\Settings\SettingBaseListener::class,
-            \Orchid\Platform\Listeners\Settings\SettingPhpInfoListener::class,
         ],
         \Orchid\Platform\Events\CategoryEvent::class   => [
             \Orchid\Platform\Listeners\Category\CategoryBaseLister::class,

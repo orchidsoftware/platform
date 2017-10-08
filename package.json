@@ -30,6 +30,7 @@
     "simple-line-icons": "^2.4.1",
     "summernote": "^0.8.3",
     "tinymce": "^4.6.7",
+    "turbolinks": "^5.0.3",
     "vue": "^2.1.10",
     "vue-resource": "^1.2.0"
   },

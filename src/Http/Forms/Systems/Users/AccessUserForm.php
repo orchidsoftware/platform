@@ -10,10 +10,6 @@ use Orchid\Platform\Forms\Form;
 
 class AccessUserForm extends Form
 {
-    /**
-     * @var string
-     */
-    public $name = 'Permission';
 
     /**
      * Base Model.
@@ -84,8 +80,7 @@ class AccessUserForm extends Form
             $roles = Role::all();
         }
 
-        return view(
-            'dashboard::container.systems.users.access',
+        return view('dashboard::container.systems.users.access',
             [
                 'permission' => $permission,
                 'user'       => $user,

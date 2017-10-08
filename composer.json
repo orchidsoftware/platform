@@ -18,18 +18,15 @@
   "require": {
     "php": ">=7.0",
     "laravel/framework": "5.5.*",
+    "laravel/scout": "^3.0",
     "watson/active": "^2.0",
     "orchid/defender": "^1.0",
     "orchid/alert": "^1.0",
     "orchid/widget": "^1.0",
     "orchid/settings": "^2.0",
-    "orchid/log": "^1.0",
-    "orchid/monitor": "^1.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^5.0",
     "cviebrock/eloquent-sluggable": "^4.2",
-    "spatie/laravel-backup": "^5.0",
-    "teamtnt/laravel-scout-tntsearch-driver": "^3.0",
     "ralouphie/mimey": "^1.0"
   },
   "require-dev": {

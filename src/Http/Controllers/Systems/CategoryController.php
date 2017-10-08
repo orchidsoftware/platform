@@ -4,7 +4,7 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
-use Orchid\Platform\Core\Models\TermTaxonomy;
+use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -47,11 +47,11 @@ class CategoryController extends Controller
 
     /**
      * @param Request      $request
-     * @param TermTaxonomy $termTaxonomy
+     * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, TermTaxonomy $termTaxonomy)
+    public function store(Request $request, Taxonomy $termTaxonomy)
     {
         $this->form->save($request, $termTaxonomy);
 
@@ -69,13 +69,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param TermTaxonomy $termTaxonomy
+     * @param Taxonomy $termTaxonomy
      *
      * @return mixed
      *
      * @internal param Request $request
      */
-    public function edit(TermTaxonomy $termTaxonomy)
+    public function edit(Taxonomy $termTaxonomy)
     {
         return $this->form
             ->route('dashboard.systems.category.update')
@@ -86,11 +86,11 @@ class CategoryController extends Controller
 
     /**
      * @param Request      $request
-     * @param TermTaxonomy $termTaxonomy
+     * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, TermTaxonomy $termTaxonomy)
+    public function update(Request $request, Taxonomy $termTaxonomy)
     {
         $this->form->save($request, $termTaxonomy);
 
@@ -101,11 +101,11 @@ class CategoryController extends Controller
 
     /**
      * @param Request      $request
-     * @param TermTaxonomy $termTaxonomy
+     * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, TermTaxonomy $termTaxonomy)
+    public function destroy(Request $request, Taxonomy $termTaxonomy)
     {
         $this->form->remove($request, $termTaxonomy);
 

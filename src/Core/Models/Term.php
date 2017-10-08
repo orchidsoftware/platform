@@ -48,6 +48,6 @@ class Term extends Model
      */
     public function taxonomy() : HasOne
     {
-        return $this->hasOne(TermTaxonomy::class, 'term_id');
+        return $this->hasOne(Taxonomy::class, 'term_id');
     }
 }

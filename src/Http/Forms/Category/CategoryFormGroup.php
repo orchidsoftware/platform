@@ -22,8 +22,8 @@ class CategoryFormGroup extends FormGroup
     public function attributes() : array
     {
         return [
-            'name'        => trans('dashboard::tools/category.title'),
-            'description' => trans('dashboard::tools/category.description'),
+            'name'        => trans('dashboard::systems/category.title'),
+            'description' => trans('dashboard::systems/category.description'),
         ];
     }
 
@@ -32,7 +32,7 @@ class CategoryFormGroup extends FormGroup
      */
     public function main() : View
     {
-        return view('dashboard::container.tools.category.grid', [
+        return view('dashboard::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
         ]);
     }

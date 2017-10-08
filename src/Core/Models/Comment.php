@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Platform\Core\Builders\CommentBuilder;
 use Orchid\Platform\Core\Traits\Attachment;
-use Orchid\Platform\Core\Models\User;
 
 class Comment extends Model
 {

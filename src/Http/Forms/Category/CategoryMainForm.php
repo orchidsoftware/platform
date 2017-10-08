@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Term;
-use Orchid\Platform\Core\Models\TermTaxonomy;
+use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Forms\Form;
 
 class CategoryMainForm extends Form
@@ -21,7 +21,7 @@ class CategoryMainForm extends Form
      *
      * @var
      */
-    protected $model = TermTaxonomy::class;
+    protected $model = Taxonomy::class;
 
     /**
      * CategoryDescForm constructor.
@@ -30,7 +30,7 @@ class CategoryMainForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::tools/category.information');
+        $this->name = trans('dashboard::systems/category.information');
         parent::__construct($request);
     }
 
@@ -45,18 +45,18 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param TermTaxonomy|null $termTaxonomy
+     * @param Taxonomy|null $termTaxonomy
      *
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function get(TermTaxonomy $termTaxonomy = null) : View
+    public function get(Taxonomy $termTaxonomy = null) : View
     {
         $termTaxonomy = $termTaxonomy ?: new $this->model([
             'id' => 0,
         ]);
         $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
-        return view('dashboard::container.tools.category.info', [
+        return view('dashboard::container.systems.category.info', [
             'category'     => $category,
             'termTaxonomy' => $termTaxonomy,
         ]);
@@ -64,11 +64,11 @@ class CategoryMainForm extends Form
 
     /**
      * @param Request|null      $request
-     * @param TermTaxonomy|null $termTaxonomy
+     * @param Taxonomy|null $termTaxonomy
      *
      * @return mixed|void
      */
-    public function persist(Request $request = null, TermTaxonomy $termTaxonomy = null)
+    public function persist(Request $request = null, Taxonomy $termTaxonomy = null)
     {
         if (is_null($termTaxonomy)) {
             $termTaxonomy = new $this->model();
@@ -89,9 +89,9 @@ class CategoryMainForm extends Form
 
     /**
      * @param Request      $request
-     * @param TermTaxonomy $termTaxonomy
+     * @param Taxonomy $termTaxonomy
      */
-    public function delete(Request $request, TermTaxonomy $termTaxonomy)
+    public function delete(Request $request, Taxonomy $termTaxonomy)
     {
         $termTaxonomy->term->delete();
         $termTaxonomy->delete();

@@ -4,18 +4,11 @@ namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Platform\Core\Models\User;
 
 class Attachment extends Model
 {
-    /**
-     * The relationships entities model.
-     *
-     * @var string
-     */
-    protected static $relationshipsModel = 'Orchid\Platform\Core\Models\AttachmentRelationships';
-
     /**
      * Attachment types.
      *
@@ -59,23 +52,15 @@ class Attachment extends Model
     }
 
     /**
-     * Returns the polymorphic relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function attachmentRelationships()
-    {
-        return $this->morphTo();
-    }
-
-    /**
      * Relation Post
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function post() : BelongsTo
+    public function post() : MorphMany
     {
-        return $this->belongsTo(Post::class);
+        //TODO: сделать
+        return $this->morphToMany(self::class, 'attachmentable', 'attachmentable',
+            'attachmentable_id', 'attachment_id');
     }
 
     /**
@@ -140,15 +125,6 @@ class Attachment extends Model
         return parent::delete();
     }
 
-    /**
-     * Returns this tag tagged entities.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function relationships()
-    {
-        return $this->hasMany(static::$relationshipsModel, 'attachment_id');
-    }
 
     /**
      * Physical removal of all copies of a file

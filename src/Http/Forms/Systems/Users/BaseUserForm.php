@@ -10,10 +10,6 @@ use Orchid\Platform\Forms\Form;
 
 class BaseUserForm extends Form
 {
-    /**
-     * @var string
-     */
-    public $name = 'Information';
 
     /**
      * Base Model.

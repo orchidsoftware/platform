@@ -10,7 +10,7 @@ use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Orchid\Platform\Http\Middleware\RedirectInstall;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\TermTaxonomy;
+use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Http\Middleware\CanInstall;
 
 class RouteServiceProvider extends ServiceProvider
@@ -32,16 +32,16 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::middlewareGroup('install', [
-            CanInstall::class,
+            //CanInstall::class,
         ]);
 
         Route::middlewareGroup('dashboard', [
-            Firewall::class,
-            RedirectInstall::class,
+            //Firewall::class,
+           // RedirectInstall::class,
         ]);
 
         Route::middlewareGroup('access', [
-            Firewall::class,
+           // Firewall::class,
             AccessMiddleware::class,
         ]);
 
@@ -63,6 +63,7 @@ class RouteServiceProvider extends ServiceProvider
             $path = str_replace("..", "", $path);
             $path = realpath(DASHBOARD_PATH . '/public/' . $path);
 
+
             if ($path !== false) {
                 return $path;
             }
@@ -71,7 +72,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::bind('category', function ($value) {
-            return TermTaxonomy::findOrFail($value);
+            return Taxonomy::findOrFail($value);
         });
 
         Route::bind('type', function ($value) {

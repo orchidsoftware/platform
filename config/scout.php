@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'tntsearch'),
+    'driver' => env('SCOUT_DRIVER', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -73,28 +73,6 @@ return [
     'algolia' => [
         'id'     => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
-    ],
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | TNTSearch Configuration
-    |--------------------------------------------------------------------------
-    |
-    | A fully featured full text search engine written in PHP
-    |
-    */
-
-    'tntsearch' => [
-        'storage'       => storage_path(), //place where the index files will be stored
-        'fuzziness'     => env('TNTSEARCH_FUZZINESS', false),
-        'fuzzy'         => [
-            'prefix_length'  => 2,
-            'max_expansions' => 50,
-            'distance'       => 2,
-        ],
-        'asYouType'     => false,
-        'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
     ],
 
 ];

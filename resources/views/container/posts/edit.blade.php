@@ -86,6 +86,7 @@
                 <div class="col wi-col lter b-r">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
+                            @if(count($type->render() ) > 1)
                             <ul class="nav nav-tabs">
                                 @foreach($type->render() as $name => $view)
                                     <li @if ($loop->first) class="active" @endif>
@@ -94,6 +95,7 @@
                                     </li>
                                 @endforeach
                             </ul>
+                            @endif
                         </div>
                         <div class="row-row">
                             <div class="cell scrollable hover">

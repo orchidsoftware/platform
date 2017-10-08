@@ -16,6 +16,7 @@
     <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
     <meta name="theme-color" content="#f8f9fa">
 
+    <meta name="turbolinks-root" content="/dashboard">
 
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>

@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use Orchid\Platform\Behaviors\Many as PostBehaviors;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\TermTaxonomy;
+use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Forms\Form;
 
 class BasePostForm extends Form
@@ -70,7 +70,7 @@ class BasePostForm extends Form
 
         $category = [];
         foreach ($this->request->get('category', []) as $value) {
-            $test = TermTaxonomy::select('id', 'term_id')->find($value);
+            $test = Taxonomy::select('id', 'term_id')->find($value);
             $category[] = $test;
         }
 

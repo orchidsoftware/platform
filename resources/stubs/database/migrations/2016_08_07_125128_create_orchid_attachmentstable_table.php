@@ -23,18 +23,15 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->text('alt')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
-
-            $table->index([ 'post_id', 'user_id']);
         });
 
-
-        Schema::create('attachment_relationships', function (Blueprint $table) {
+        Schema::create('attachmentable', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('attachmentable_type');
+            $table->string('attachmentable_type');
             $table->integer('attachmentable_id');
             $table->integer('attachment_id');
 
-            //$table->index(['attachmentable_type', 'attachmentable_id']);
+            $table->index(['attachmentable_type', 'attachmentable_id']);
         });
     }
 

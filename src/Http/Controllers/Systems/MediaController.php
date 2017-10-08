@@ -33,7 +33,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('dashboard::container.tools.media.index');
+        return view('dashboard::container.systems.media.index');
     }
 
     /**

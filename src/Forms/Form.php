@@ -10,6 +10,11 @@ abstract class Form implements FormInterface
     use ValidatesRequests;
 
     /**
+     * @var string
+     */
+    public $name;
+
+    /**
      * @var array
      */
     public $data = [];

@@ -4,11 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
+//var Turbolinks = require("turbolinks");
+//Turbolinks.start();
 
-$(function () {
-    $.ajaxSetup({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')}
-    });
-});
+//document.addEventListener("turbolinks:load", function() {
+    require('./bootstrap');
+//});

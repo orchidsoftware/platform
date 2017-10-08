@@ -15,23 +15,27 @@ $this->group([
     'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
 ],
     function (\Illuminate\Routing\Router $router) {
-        $router->resource('users', 'UserController', ['names' => [
-            'index'   => 'dashboard.systems.users',
-            'create'  => 'dashboard.systems.users.create',
-            'edit'    => 'dashboard.systems.users.edit',
-            'update'  => 'dashboard.systems.users.update',
-            'store'   => 'dashboard.systems.users.store',
-            'destroy' => 'dashboard.systems.users.destroy',
-        ]]);
+        $router->resource('users', 'UserController', [
+            'names' => [
+                'index'   => 'dashboard.systems.users',
+                'create'  => 'dashboard.systems.users.create',
+                'edit'    => 'dashboard.systems.users.edit',
+                'update'  => 'dashboard.systems.users.update',
+                'store'   => 'dashboard.systems.users.store',
+                'destroy' => 'dashboard.systems.users.destroy',
+            ],
+        ]);
 
-        $router->resource('roles', 'RoleController', ['names' => [
-            'index'   => 'dashboard.systems.roles',
-            'create'  => 'dashboard.systems.roles.create',
-            'edit'    => 'dashboard.systems.roles.edit',
-            'update'  => 'dashboard.systems.roles.update',
-            'store'   => 'dashboard.systems.roles.store',
-            'destroy' => 'dashboard.systems.roles.destroy',
-        ]]);
+        $router->resource('roles', 'RoleController', [
+            'names' => [
+                'index'   => 'dashboard.systems.roles',
+                'create'  => 'dashboard.systems.roles.create',
+                'edit'    => 'dashboard.systems.roles.edit',
+                'update'  => 'dashboard.systems.roles.update',
+                'store'   => 'dashboard.systems.roles.store',
+                'destroy' => 'dashboard.systems.roles.destroy',
+            ],
+        ]);
 
         $router->get('cache', [
             'as'   => 'dashboard.systems.cache',
@@ -52,24 +56,8 @@ $this->group([
             'as'   => 'dashboard.notification.remove',
             'uses' => 'NotificationController@remove',
         ]);
-    });
 
 
-/*
-|--------------------------------------------------------------------------
-| Systems Web Routes
-|--------------------------------------------------------------------------
-|
-| Base route
-|
-*/
-
-$this->group([
-    'middleware' => ['web', 'dashboard', 'access'],
-    'prefix'     => 'dashboard/systems',
-    'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
-],
-    function (\Illuminate\Routing\Router $router) {
         $router->get('settings', [
             'as'   => 'dashboard.systems.settings',
             'uses' => 'SettingController@index',
@@ -80,14 +68,16 @@ $this->group([
             'uses' => 'SettingController@store',
         ]);
 
-        $router->resource('category', 'CategoryController', ['names' => [
-            'index'   => 'dashboard.systems.category',
-            'create'  => 'dashboard.systems.category.create',
-            'edit'    => 'dashboard.systems.category.edit',
-            'update'  => 'dashboard.systems.category.update',
-            'store'   => 'dashboard.systems.category.store',
-            'destroy' => 'dashboard.systems.category.destroy',
-        ]]);
+        $router->resource('category', 'CategoryController', [
+            'names' => [
+                'index'   => 'dashboard.systems.category',
+                'create'  => 'dashboard.systems.category.create',
+                'edit'    => 'dashboard.systems.category.edit',
+                'update'  => 'dashboard.systems.category.update',
+                'store'   => 'dashboard.systems.category.store',
+                'destroy' => 'dashboard.systems.category.destroy',
+            ],
+        ]);
 
         $router->resource('comment', 'CommentController', [
             'names' => [
@@ -125,11 +115,13 @@ $this->group([
             'uses' => 'AttachmentController@update',
         ]);
 
-        $router->resource('menu', 'MenuController', ['names' => [
-            'index'  => 'dashboard.systems.menu.index',
-            'show'   => 'dashboard.systems.menu.show',
-            'update' => 'dashboard.systems.menu.update',
-        ]]);
+        $router->resource('menu', 'MenuController', [
+            'names' => [
+                'index'  => 'dashboard.systems.menu.index',
+                'show'   => 'dashboard.systems.menu.show',
+                'update' => 'dashboard.systems.menu.update',
+            ],
+        ]);
 
 
         $router->get('tags/{tags?}', [
@@ -153,4 +145,6 @@ $this->group([
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
+
+
     });

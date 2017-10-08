@@ -4,7 +4,7 @@ namespace Orchid\Platform\Core\Models;
 
 use Orchid\Platform\Core\Traits\Attachment;
 
-class Category extends TermTaxonomy
+class Category extends Taxonomy
 {
     use Attachment;
 

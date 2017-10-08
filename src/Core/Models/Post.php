@@ -16,7 +16,6 @@ use Laravel\Scout\Searchable;
 use Orchid\Platform\Core\Traits\Attachment;
 use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
-use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Facades\Dashboard;
 
@@ -271,7 +270,7 @@ class Post extends Model
      */
     public function scopeTaxonomies() : BelongsToMany
     {
-        return $this->belongsToMany(TermTaxonomy::class, 'term_relationships', 'post_id', 'term_taxonomy_id');
+        return $this->belongsToMany(Taxonomy::class, 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
 
     /**

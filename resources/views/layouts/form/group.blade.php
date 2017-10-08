@@ -21,7 +21,7 @@
                     @foreach($forms as $name => $form)
                         <li @if ($loop->first) class="active" @endif>
                             <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
-                                {{$name}}
+                                {!! $name !!}
                             </a>
                         </li>
                     @endforeach
