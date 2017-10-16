@@ -40,7 +40,7 @@ class PermissionTest extends TestCase
     {
         return User::firstOrCreate([
             'email' => 'test@test.com'
-        ],[
+        ], [
             'name'        => 'test',
             'email'       => 'test@test.com',
             'password'    => 'password',
@@ -58,7 +58,7 @@ class PermissionTest extends TestCase
     {
         return Role::firstOrCreate([
             'slug' => 'admin'
-        ],[
+        ], [
             'slug'        => 'admin',
             'name'        => 'admin',
             'permissions' => [

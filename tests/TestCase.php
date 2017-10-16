@@ -28,7 +28,6 @@ abstract class TestCase extends Orchestra
         ]);
 
         $this->withFactories(__DIR__.'/database/factories');
-
     }
 
     /**
@@ -52,8 +51,6 @@ abstract class TestCase extends Orchestra
             'engine'      => null,
         ]);
         $app['config']->set('database.default', 'orchid');
-
-
     }
 
     /**
