@@ -96,8 +96,6 @@ class File
                     );
                 }
             }
-
-
         }
 
         return $file;
@@ -116,7 +114,6 @@ class File
      */
     private function save()
     {
-
         Storage::disk('public')->makeDirectory($this->date);
 
         $hashName = sha1($this->time . $this->file->getClientOriginalName());

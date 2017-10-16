@@ -257,7 +257,6 @@ class MediaController extends Controller
     public function upload(Request $request)
     {
         try {
-
             $path = $request->file->store($request->upload_path, $this->filesystem);
             $success = true;
             $message = 'Successfully uploaded new file!';

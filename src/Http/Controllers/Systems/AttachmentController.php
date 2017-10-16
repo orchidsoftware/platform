@@ -26,11 +26,11 @@ class AttachmentController extends Controller
     public function upload(Request $request)
     {
         $attachment = [];
-        foreach ($request->allFiles() as $file){
+        foreach ($request->allFiles() as $file) {
             $attachment[] = (new File($file))->load();
         }
 
-        if(count($attachment) > 1){
+        if (count($attachment) > 1) {
             return response()->json($attachment);
         }
 
@@ -90,5 +90,4 @@ class AttachmentController extends Controller
 
         return response(200);
     }
-
 }

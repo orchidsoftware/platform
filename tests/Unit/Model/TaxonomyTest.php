@@ -141,4 +141,3 @@ class TaxonomyTest extends TestCase
         return $taxonomy;
     }
 }
-
