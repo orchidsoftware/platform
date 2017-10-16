@@ -42,45 +42,47 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 @push('scripts')
-<script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var input = document.getElementById("place-{{$slug}}-{{$lang}}");
-        var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
+    $(function() {
+
+        $.getScript( "https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function( data, textStatus, jqxhr ) {
+            var input = document.getElementById("place-{{$slug}}-{{$lang}}");
+            var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
 
 
-        autocomplete{{$slug}}{{$lang}}.addListener('place_changed', function () {
-            var cors = autocomplete{{$slug}}{{$lang}}.getPlace().geometry.location;
-            $('#lat-{{$slug}}-{{$lang}}').val(cors.lat());
-            $('#lng-{{$slug}}-{{$lang}}').val(cors.lng());
+            autocomplete{{$slug}}{{$lang}}.addListener('place_changed', function () {
+                var cors = autocomplete{{$slug}}{{$lang}}.getPlace().geometry.location;
+                $('#lat-{{$slug}}-{{$lang}}').val(cors.lat());
+                $('#lng-{{$slug}}-{{$lang}}').val(cors.lng());
+            });
+
+
+            $('#map-place-{{$slug}}-{{$lang}}').on('show.bs.modal', function () {
+
+
+                setTimeout(function () {
+                    var myLatLng = {
+                        lat: parseFloat($('#lat-{{$slug}}-{{$lang}}').val()),
+                        lng: parseFloat($('#lng-{{$slug}}-{{$lang}}').val())
+                    };
+
+                    var map = new google.maps.Map(document.getElementById('map-place-{{$slug}}-{{$lang}}-canvas'), {
+                        center: myLatLng,
+                        zoom: 12
+                    });
+
+                    new google.maps.Marker({
+                        map: map,
+                        position: myLatLng,
+                        title: $('#place-{{$slug}}-{{$lang}}').val()
+                    });
+
+                }, 300);
+
+
+            });
         });
 
-
-        $('#map-place-{{$slug}}-{{$lang}}').on('show.bs.modal', function () {
-
-
-            setTimeout(function () {
-                var myLatLng = {
-                    lat: parseFloat($('#lat-{{$slug}}-{{$lang}}').val()),
-                    lng: parseFloat($('#lng-{{$slug}}-{{$lang}}').val())
-                };
-
-                var map = new google.maps.Map(document.getElementById('map-place-{{$slug}}-{{$lang}}-canvas'), {
-                    center: myLatLng,
-                    zoom: 12
-                });
-
-                new google.maps.Marker({
-                    map: map,
-                    position: myLatLng,
-                    title: $('#place-{{$slug}}-{{$lang}}').val()
-                });
-
-            }, 300);
-
-
-        });
 
     });
 

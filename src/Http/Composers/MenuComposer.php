@@ -182,14 +182,14 @@ class MenuComposer
         if (count($allPage) > 0) {
             $dashboard->menu->add('Main', [
                 'slug'       => 'Pages',
-                'icon'       => 'fa fa-file-o',
+                'icon'       => 'icon-docs',
                 'route'      => '#',
                 'label'      => trans('dashboard::menu.pages'),
                 'childs'     => true,
                 'main'       => true,
                 'active'     => 'dashboard.pages.*',
                 'permission' => 'dashboard.pages',
-                'sort'       => 50,
+                'sort'       => 150,
             ]);
         }
         foreach ($allPage as $key => $page) {

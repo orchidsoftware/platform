@@ -50,9 +50,6 @@ trait UserAccess
         $permissions->prepend($this->permissions);
 
         foreach ($permissions as $permission) {
-            if (isset($permission['superuser'])) {
-                return true;
-            }
 
             if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {
                 return true;

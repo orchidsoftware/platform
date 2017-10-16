@@ -2,7 +2,7 @@
     @if(isset($title))
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
-    <input type="text" class="form-control {{$class or ''}}" data-role="tagsinput" id="field-{{$slug}}"
+    <input type="text" class="form-control tagsinput {{$class or ''}}" data-role="tagsinput" id="field-{{$slug}}"
            @if(isset($prefix))
            name="{{$prefix}}[{{$lang}}]{{$name}}"
            @else

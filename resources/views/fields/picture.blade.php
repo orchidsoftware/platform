@@ -2,29 +2,30 @@
     @if(isset($title))
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
+
+
     <div class="picture-container m-b-md">
         @if(isset($value) && strlen($value) || strlen(old($name)))
             <img src="{{$value or old($name)}}" class="img-responsive img-thumbnail" alt=""/>
         @endif
     </div>
+
+    <div class="picture-actions">
+            <label class="btn btn-info">
+                Browse <input type="file" class="picture-input-file hidden">
+            </label>
+            <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
+    </div>
     <input class="picture-path"
            type="hidden"
            data-width="{{$width}}"
            data-height="{{$height}}"
-           data-upload-path="{{$uploadPath or "pictures"}}"
            @if(isset($prefix))
            name="{{$prefix}}[{{$lang}}]{{$name}}"
            @else
            name="{{$lang}}{{$name}}"
            @endif
            value="{{$value or old($name)}}"/>
-
-           <div class="picture-actions">
-        <label class="btn btn-info">
-            Browse <input type="file" class="picture-input-file" style="display: none;">
-        </label>
-        <a href="#" class="btn btn-danger picture-action-remove">Remove</a>
-    </div>
 </div>
 
 
@@ -51,8 +52,8 @@
 </div>
 
 @push('scripts')
-    <script>
-$(function () {
+<script>
+$(function() {
 
     var $cropPanel = $('#picture-crop-modal .upload-panel');
     var $formGroup;
@@ -101,21 +102,32 @@ $(function () {
 
     $('#picture-crop-modal .crop').on('click', function (ev) {
         $cropPanel.croppie('result', {
-            type: 'base64',
+            type: 'blob',
             size: 'viewport'
         }).then(function (blob) {
-            $.post('/dashboard/systems/media/upload', {
-                data: blob,
-                upload_path: $formGroup.find('.picture-path').data('upload-path')
-            }, function (data) {
-                $formGroup.find('.picture-container')
-                    .html('<img src="' + data.path + '" class="img-responsive img-thumbnail" alt="" />');
 
-                $formGroup.find('.picture-path').val(data.path);
+            let data = new FormData();
+            data.append('file', blob);
 
-                $('#picture-crop-modal').modal('hide');
-                $formGroup.find('.picture-input-file').value = '';
-            }, 'json');
+            axios.post('/dashboard/systems/files', data)
+                .then(function (response) {
+
+                    let image = '/storage/' + response.data.path + response.data.name + '.' + response.data.extension;
+
+                    $formGroup.find('.picture-container')
+                        .html('<img src="' + image + '" class="img-responsive img-thumbnail" alt="" />');
+
+                    $formGroup.find('.picture-path').val(image);
+
+                    $('#picture-crop-modal').modal('hide');
+                    $formGroup.find('.picture-input-file').value = '';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+
+
         });
     });
 });

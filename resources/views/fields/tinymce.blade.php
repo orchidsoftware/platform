@@ -25,36 +25,48 @@
 
 
 <script>
-    tinymce.init({
-        selector: '.tinymce-{{$lang}}-{{$slug}}',
-        theme: 'inlite',
-        min_height: 600,
-        //language: 'ru',
-        plugins: 'image media table link paste contextmenu textpattern autolink codesample',
-        insert_toolbar: 'quickimage quicktable media codesample fullscreen',
-        selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
-        inline: true,
-        convert_urls: false,
-        image_caption: true,
-        image_title: true,
+$(function() {
+        tinymce.init({
+            selector: '.tinymce-{{$lang}}-{{$slug}}',
+            theme: 'inlite',
+            min_height: 600,
+            //language: 'ru',
+            plugins: 'image media table link paste contextmenu textpattern autolink codesample',
+            insert_toolbar: 'quickimage quicktable media codesample fullscreen',
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
+            inline: true,
+            convert_urls: false,
+            image_caption: true,
+            image_title: true,
+            image_class_list: [
+                {title: 'None', value: ''},
+                {title: 'Responsive', value: 'img-responsive'},
+            ],
+            // without images_upload_url set, Upload tab won't show up
+            //images_upload_url: 'postAcceptor.php',
 
-        // without images_upload_url set, Upload tab won't show up
-        images_upload_url: 'postAcceptor.php',
+            setup: function (ed) {
+                ed.on('change', function (e) {
+                    $('#field-{{$lang}}-{{$slug}}').val(ed.getContent());
+                });
+            },
+            // we override default upload handler to simulate successful upload
+            images_upload_handler: function (blobInfo, success, failure) {
 
-        setup:function(ed) {
-            ed.on('change', function(e) {
-                $('#field-{{$lang}}-{{$slug}}').val(ed.getContent());
-            });
-        },
-        // we override default upload handler to simulate successful upload
-        images_upload_handler: function (blobInfo, success, failure) {
-            setTimeout(function() {
-                // no matter what you upload, we will turn it into TinyMCE logo :)
-                success('http://moxiecode.cachefly.net/tinymce/v9/images/logo.png');
-            }, 2000);
-        },
+                let data = new FormData();
+                data.append('file', blobInfo.blob());
+
+                axios.post('/dashboard/systems/files', data)
+                    .then(function (response) {
+                        success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension,);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
 
 
+        });
     });
 </script>
 

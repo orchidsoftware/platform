@@ -21,6 +21,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->text('path');
             $table->text('description')->nullable();
             $table->text('alt')->nullable();
+            $table->text('hash')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });
@@ -41,6 +42,6 @@ class CreateOrchidAttachmentstableTable extends Migration
     public function down()
     {
         Schema::drop('attachments');
-        Schema::drop('attachment_relationships');
+        Schema::drop('attachmentable');
     }
 }

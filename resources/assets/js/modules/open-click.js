@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("turbolinks:load", function() {
     $('.click').click(function () {
         var target = $(this).data("target");
         var toggle = $(this).data("toggle");

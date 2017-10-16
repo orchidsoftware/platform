@@ -11,7 +11,7 @@
 @stop
 @section('content')
     @if($data->count() > 0)
-        <section class="wrapper">
+        <section class="wrapper-md">
             <div class="bg-white-only  bg-auto no-border-xs">
 
 
@@ -70,7 +70,7 @@
             </div>
         </section>
     @else
-        <section class="wrapper">
+        <section class="wrapper-md">
             <div class="bg-white-only bg-auto no-border-xs">
 
 

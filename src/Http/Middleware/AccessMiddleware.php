@@ -4,6 +4,7 @@ namespace Orchid\Platform\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Carbon\Carbon;
 
 class AccessMiddleware
 {
@@ -37,6 +38,8 @@ class AccessMiddleware
      */
     public function handle($request, Closure $next)
     {
+        Carbon::setLocale(config('app.locale'));
+
         if ($this->auth->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);

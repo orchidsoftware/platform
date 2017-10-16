@@ -5,8 +5,6 @@
 @section('description',$description)
 
 
-
-
 @section('navbar')
     <div class="col-sm-6 col-xs-12 text-right">
         <div class="btn-group" role="group" aria-label="...">
@@ -17,26 +15,21 @@
 
 
 @section('content')
-
+    <div class="nav-tabs-alt bg-white-only">
+        <ul class="nav nav-tabs padder" role="tablist">
+            @foreach($forms as $name => $form)
+                <li @if ($loop->first) class="active" @endif>
+                    <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
+                        {!! $name !!}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
     <!-- main content  -->
-    <section class="wrapper">
+    <section class="wrapper-md">
         <div class="bg-white-only bg-auto no-border-xs">
-            <div class="nav-tabs-alt">
-                <ul class="nav nav-tabs" role="tablist">
-
-
-                    @foreach($forms as $name => $form)
-                        <li @if ($loop->first) class="active" @endif>
-                            <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
-                                {!! $name !!}
-                            </a>
-                        </li>
-                    @endforeach
-
-                </ul>
-            </div>
-
 
             <form class="form-horizontal" action="{{route('dashboard.systems.settings')}}" id="form-group"
                   method="post">

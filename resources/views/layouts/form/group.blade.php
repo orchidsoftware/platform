@@ -13,20 +13,22 @@
     </div>
 @stop
 @section('content')
+    <div class="nav-tabs-alt bg-white-only">
+        <ul class="nav nav-tabs padder" role="tablist">
+            @foreach($forms as $name => $form)
+                <li @if ($loop->first) class="active" @endif>
+                    <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
+                        {!! $name !!}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+
     <!-- main content  -->
-    <section class="wrapper">
+    <section class="wrapper-md">
         <div class="bg-white-only bg-auto no-border-xs">
-            <div class="nav-tabs-alt">
-                <ul class="nav nav-tabs" role="tablist">
-                    @foreach($forms as $name => $form)
-                        <li @if ($loop->first) class="active" @endif>
-                            <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
-                                {!! $name !!}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
             <form class="form-horizontal" id="form-group" action="{{route($route,$slug)}}" method="post"
                   enctype="multipart/form-data">
                 <div class="tab-content">

@@ -7,7 +7,7 @@
 
 
     <!-- main content  -->
-    <section class="wrapper">
+    <section class="wrapper-md">
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($menu->count() > 0)

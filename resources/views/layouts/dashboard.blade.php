@@ -196,6 +196,41 @@
                     <ul class="nav-footer-fix">
                         <li><a href="#"><i class="icon-grid" aria-hidden="true"></i></a></li>
                         <li><a href="{{route('dashboard.systems.cache')}}"><i class="icon-settings" aria-hidden="true"></i></a></li>
+
+
+                    <li>
+                        <a href="#" class="click" data-toggle="open"  title="Notifications" data-target="#quickview">
+                            <i class="icon-bell"></i>
+                            <span class="visible-xs-inline">Notifications</span>
+
+
+                            @php
+                                $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class)->count();
+                            @endphp
+
+                            @if($unreadNotificationsCount > 0)
+                                <span class="badge badge-sm up bg-danger pull-right-xs">
+                                    {{$unreadNotificationsCount}}
+                                </span>
+                            @endif
+                        </a>
+                    </li>
+
+                        <li>
+
+                                <a href="{{ url('/dashboard/logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="icon-logout"></i>
+                                </a>
+
+                                <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                        </li>
+
+
                     </ul>
 
                 </nav>

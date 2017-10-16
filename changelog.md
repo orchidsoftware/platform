@@ -1,7 +1,75 @@
-# 2.0 (dev) (17.09.2017)
+# 1.2 (dev) (17.09.2017)
 - Removing Fields
+- Removing Footer
 - Removing Shortcut
+- Removing summernote
 - Remote publication of public files, the location of this is used by the proxy controller 
+- Removing submodules (Will be in separate packages):
+    - Graphical installation
+    - Backups
+    - Defender
+    - Viewing logs
+    - Monitor
+    - Robot.txt Editor
+    - Scheme
+    - UTM Tag Generator
+    - View all php settings (Form)
+- Added TinyMCE
+- Added support fulltext search:
+```php
+namespace DummyNamespace;
+
+use Orchid\Platform\Behaviors\Many;
+
+class DummyClass extends Many
+{
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @param $array
+     *
+     * @return mixed
+     */
+    public function toSearchableArray($array)
+    {
+        // Customize array...
+    
+        return $array;
+    }
+}
+
+```
+- Added attachments any models :
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Core\Traits\Attachment;
+
+class Idea extends Model
+{
+    use Attachment;
+}
+```
+
+- Added SPA emulation (turbolinks)
+- Added experimental json relation:
+
+```php
+
+$post = Post::find(1);
+
+$post->addJsonRelation('movie',4);
+
+$post->save();
+
+$movie = $post->loadJsonRelation('movie')->get()
+```
+
 
 
 # 1.1.4 - 1.1.5 (12.09.2017)

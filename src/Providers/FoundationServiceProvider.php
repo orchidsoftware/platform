@@ -117,9 +117,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations'));
+
+        /*
         $this->publishes([
             realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations/') => database_path('migrations'),
         ], 'migrations');
+        */
     }
 
     /**

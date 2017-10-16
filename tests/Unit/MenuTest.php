@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Tests\Unit;
 
 use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Tests\TestCase;
 
 class MenuTest extends TestCase
 {

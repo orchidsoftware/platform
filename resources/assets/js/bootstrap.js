@@ -1,14 +1,15 @@
 window.$ = window.jQuery = require('jquery');
+window.Vue = require('vue');
 require('jquery-ui-bundle');
-
 
 require('bootstrap');
 require('bootstrap-tagsinput');
 
 
-window.Vue = require('vue');
-//require('vue-resource');
 
+document.addEventListener("turbolinks:load", function() {
+    $("input[data-role='tagsinput']").tagsinput('refresh');
+});
 
 
 /**

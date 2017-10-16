@@ -340,7 +340,7 @@
     @push('scripts')
     <script type="text/javascript">
 
-        const manager = new Vue({
+        var manager = new Vue({
             el: '#filemanager',
             data: {
                 files: '',

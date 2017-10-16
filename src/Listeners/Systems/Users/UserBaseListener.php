@@ -7,13 +7,6 @@ use Orchid\Platform\Http\Forms\Systems\Users\BaseUserForm;
 class UserBaseListener
 {
     /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Handle the event.
      *
      * @return string

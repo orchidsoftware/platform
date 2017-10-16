@@ -30,6 +30,7 @@ class Attachment extends Model
         'post_id',
         'description',
         'alt',
+        'hash',
     ];
 
     /**
