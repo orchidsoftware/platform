@@ -7,5 +7,4 @@ use Orchid\Platform\Core\Models\Attachment;
 
 class AttachmentTest extends TestCase
 {
-
 }

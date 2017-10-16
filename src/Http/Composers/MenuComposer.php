@@ -120,8 +120,6 @@ class MenuComposer
             'permission' => 'dashboard.systems.roles',
             'sort'       => 10,
         ]);
-
-
     }
 
 
@@ -214,5 +212,4 @@ class MenuComposer
             $dashboard->menu->add('Pages', $postObject);
         }
     }
-
 }
