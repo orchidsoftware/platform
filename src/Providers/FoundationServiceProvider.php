@@ -64,13 +64,6 @@ class FoundationServiceProvider extends ServiceProvider
         ]), 'dashboard');
 
 
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/vendor/orchid/dashboard';
-        }, config('view.paths')), [
-            DASHBOARD_PATH . '/resources/views',
-        ]), 'cms');
-
         if (!config('platform.install')) {
             $this->publishes([
                 DASHBOARD_PATH . '/resources/stubs/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),

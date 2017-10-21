@@ -112,6 +112,15 @@ class Attachment extends Model
         );
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function relationships(){
+
+        return $this->hasMany(Attachmentable::class, 'attachment_id');
+    }
+
     /**
      * @return bool|null
      */
