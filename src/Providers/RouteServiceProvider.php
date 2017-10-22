@@ -4,9 +4,10 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Core\Models\{
-    Page, Post, Role, Taxonomy
-};
+use Orchid\Platform\Core\Models\Page;
+use Orchid\Platform\Core\Models\Post;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 
 class RouteServiceProvider extends ServiceProvider

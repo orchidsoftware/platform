@@ -23,9 +23,3 @@ class DashboardProvider extends ServiceProvider
         $dashboard->registerStorage('posts', new ManyBehaviorStorage);
     }
 }
-
-
-
-
-
-
