@@ -4,7 +4,6 @@ namespace Orchid\Platform\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
 
-
 class UsersRequest extends Request
 {
     /**
