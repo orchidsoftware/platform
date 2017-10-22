@@ -19,7 +19,7 @@
         </ul>
     </li>
     @if(isset($divider) && $divider == true)
-        <li class="divider"></li>
+        <li class="divider b-t b-dark"></li>
     @endif
 @else
     @if(isset($groupname))
@@ -36,6 +36,6 @@
         </a>
     </li>
     @if(isset($divider) && $divider == true)
-        <li class="divider"></li>
+        <li class="divider b-t b-dark"></li>
     @endif
 @endif

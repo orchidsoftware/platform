@@ -6,7 +6,7 @@
 
 @if(count($locales) > 1)
     @section('navbar')
-        <div class="col-sm-6 col-xs-12 text-right">
+        <div class="text-right">
 
 
             <ul class="nav navbar-nav navbar-right">

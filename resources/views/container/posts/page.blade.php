@@ -2,15 +2,15 @@
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
-    <div class="col-md-6">
-
-
-        <ul class="nav navbar-nav navbar-right v-center">
+    <ul class="nav navbar-nav navbar-right v-center">
 
             @if($locales->count() > 1)
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-globe m-r-xs"></i> EN<span class="caret"></span></a>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
+                    <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu">
 
                     @foreach($locales as $code => $lang)
@@ -18,6 +18,7 @@
                             <a data-target="#local-{{$code}}"
                                role="tab"
                                data-toggle="tab"
+                               onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
                                aria-controls="local-{{$code}}"
                                aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
                             </a>
@@ -25,7 +26,7 @@
                     @endforeach
                 </ul>
             </li>
-            @endif
+        @endif
 
             <li>
                 <button type="submit"
@@ -34,8 +35,6 @@
             </li>
 
         </ul>
-
-    </div>
 @stop
 @section('content')
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">

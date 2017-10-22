@@ -12,7 +12,7 @@
 
     <div class="picture-actions">
             <label class="btn btn-info">
-                Browse <input type="file" class="picture-input-file hidden">
+                Browse <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} hidden">
             </label>
             <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
     </div>
@@ -29,7 +29,7 @@
 </div>
 
 
-<div id="picture-crop-modal" class="modal" role="dialog">
+<div id="picture-crop-modal-{{$lang}}-{{$slug}}" class="modal" role="dialog">
    <div class="modal-dialog modal-lg">
       <div class="modal-content-wrapper">
          <div class="modal-content">
@@ -51,20 +51,21 @@
    </div>
 </div>
 
+
 @push('scripts')
 <script>
 $(function() {
 
-    var $cropPanel = $('#picture-crop-modal .upload-panel');
+    var $cropPanel = $('#picture-crop-modal-{{$lang}}-{{$slug}} .upload-panel');
     var $formGroup;
 
-    $('.picture-input-file').on('change', function () {
+    $('.picture-input-file-{{$lang}}-{{$slug}}').on('change', function () {
         $formGroup = $(this).parents('.form-group');
 
         if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#picture-crop-modal').modal();
+                $('#picture-crop-modal-{{$lang}}-{{$slug}}').modal();
 
                 $cropPanel.croppie({
                     viewport: {
@@ -96,11 +97,11 @@ $(function() {
         return false;
     });
 
-    $('#picture-crop-modal').on('hidden.bs.modal', function () {
+    $('#picture-crop-modal-{{$lang}}-{{$slug}}').on('hidden.bs.modal', function () {
         $cropPanel.croppie('destroy');
     });
 
-    $('#picture-crop-modal .crop').on('click', function (ev) {
+    $('#picture-crop-modal-{{$lang}}-{{$slug}} .crop').on('click', function (ev) {
         $cropPanel.croppie('result', {
             type: 'blob',
             size: 'viewport'
@@ -119,8 +120,8 @@ $(function() {
 
                     $formGroup.find('.picture-path').val(image);
 
-                    $('#picture-crop-modal').modal('hide');
-                    $formGroup.find('.picture-input-file').value = '';
+                    $('#picture-crop-modal-{{$lang}}-{{$slug}}').modal('hide');
+                    $formGroup.find('.picture-input-file-{{$lang}}-{{$slug}}').value = '';
                 })
                 .catch(function (error) {
                     console.log(error);

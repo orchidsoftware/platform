@@ -73,7 +73,7 @@ class MenuComposer
             'route'      => route('dashboard.systems.category'),
             'label'      => trans('dashboard::menu.sections'),
             'childs'     => false,
-            'divider'    => true,
+            'divider'    => false,
             'permission' => 'dashboard.systems.category',
             'sort'       => 3,
         ]);

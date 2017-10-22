@@ -1,22 +1,12 @@
-@extends('dashboard::layouts.dashboard')
-@section('title',$type->name)
-@section('description',$type->description)
-@section('navbar')
-    <div class="text-right">
-        <div class="btn-group" role="group">
-            <a href="{{ route('dashboard.posts.type.create',$type->slug)}}" class="btn btn-link"><i
-                        class="icon-plus fa fa-2x"></i></a>
-        </div>
-    </div>
-@stop
-@section('content')
-    @if($data->count() > 0)
-        <section class="wrapper-md">
+<section class="wrapper-md">
             <div class="bg-white-only  bg-auto no-border-xs">
 
 
-                {!! $type->showFilterDashboard() !!}
 
+                {{--
+                {!! $layout->showFilterDashboard() !!}
+--}}
+                {{--
                 <div class="panel-body row">
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -67,24 +57,6 @@
                         </div>
                     </footer>
                 </div>
+                --}}
             </div>
         </section>
-    @else
-        <section class="wrapper-md">
-            <div class="bg-white-only bg-auto no-border-xs">
-
-
-                {!! $type->showFilterDashboard() !!}
-
-
-                <div class="jumbotron text-center bg-white not-found">
-                    <div>
-                        <h3 class="font-thin">{{trans('dashboard::post/general.not_found')}}</h3>
-                        <a href="{{ route('dashboard.posts.type.create',$type->slug)}}"
-                           class="btn btn-link">{{trans('dashboard::post/general.create')}}</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-@stop

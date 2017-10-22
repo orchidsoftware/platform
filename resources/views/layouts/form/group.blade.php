@@ -2,7 +2,7 @@
 @section('title',$name)
 @section('description',$description)
 @section('navbar')
-    <div class="col-sm-6 col-xs-12 text-right">
+    <div class="text-right">
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit"
                     form="form-group"
