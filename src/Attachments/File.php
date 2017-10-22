@@ -72,7 +72,7 @@ class File
      */
     public function getHashFile()
     {
-        return sha1_file($this->file->getPath());
+        return sha1_file($this->file->getRealPath());
     }
 
     /**
@@ -80,7 +80,7 @@ class File
      */
     public function load()
     {
-        $file =null; //$this->getMatchesHash();
+        $file = $this->getMatchesHash();
 
         if (is_null($file)) {
             $file = $this->save();
@@ -96,7 +96,15 @@ class File
                     );
                 }
             }
+
+            return $file;
         }
+
+        $file = $file->replicate()->fill([
+            'sort'    => 0,
+            'user_id' => Auth::id(),
+        ]);
+        $file->save();
 
         return $file;
     }
