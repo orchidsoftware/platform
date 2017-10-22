@@ -27,11 +27,11 @@ class EventServiceProvider extends ServiceProvider
             \Orchid\Platform\Listeners\Settings\SettingInfoListener::class,
             \Orchid\Platform\Listeners\Settings\SettingBaseListener::class,
         ],
-        \Orchid\Platform\Events\CategoryEvent::class   => [
+        \Orchid\Platform\Events\CategoryEvent::class => [
             \Orchid\Platform\Listeners\Category\CategoryBaseLister::class,
             \Orchid\Platform\Listeners\Category\CategoryDescLister::class,
         ],
-        \Orchid\Platform\Events\CommentEvent::class    => [
+        \Orchid\Platform\Events\CommentEvent::class  => [
             \Orchid\Platform\Listeners\Comment\CommentBaseListener::class,
         ],
     ];

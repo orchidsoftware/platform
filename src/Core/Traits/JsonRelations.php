@@ -2,8 +2,6 @@
 
 namespace Orchid\Platform\Core\Traits;
 
-use Orchid\Platform\Core\Models\Post;
-
 trait JsonRelations
 {
     /**

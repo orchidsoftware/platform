@@ -5,8 +5,8 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
 use Orchid\Platform\Core\Models\Comment;
-use Orchid\Platform\Http\Forms\Comment\CommentFormGroup;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Forms\Comment\CommentFormGroup;
 
 class CommentController extends Controller
 {

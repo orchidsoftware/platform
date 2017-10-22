@@ -81,9 +81,9 @@ class AccessUserForm extends Form
         }
 
         return view('dashboard::container.systems.users.access', [
-                'permission' => $permission,
-                'user'       => $user,
-                'roles'      => $roles,
+            'permission' => $permission,
+            'user'       => $user,
+            'roles'      => $roles,
         ]);
     }
 

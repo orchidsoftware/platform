@@ -3,10 +3,10 @@
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
+use Orchid\Platform\Attachments\File;
 use Orchid\Platform\Core\Models\Attachment;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Attachments\File;
 
 class AttachmentController extends Controller
 {

@@ -32,6 +32,16 @@ trait RoleAccess
     }
 
     /**
+     * The Users relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users() : BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'role_users', 'role_id', 'user_id');
+    }
+
+    /**
      * @return bool
      */
     public function delete() : bool
@@ -42,15 +52,5 @@ trait RoleAccess
         }
 
         return parent::delete();
-    }
-
-    /**
-     * The Users relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function users() : BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'role_users', 'role_id', 'user_id');
     }
 }

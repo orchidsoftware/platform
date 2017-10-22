@@ -5,8 +5,8 @@ namespace Orchid\Platform\Http\Forms\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Orchid\Platform\Core\Models\Category;
-use Orchid\Platform\Core\Models\Term;
 use Orchid\Platform\Core\Models\Taxonomy;
+use Orchid\Platform\Core\Models\Term;
 use Orchid\Platform\Forms\Form;
 
 class CategoryMainForm extends Form
@@ -63,7 +63,7 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param Request|null      $request
+     * @param Request|null  $request
      * @param Taxonomy|null $termTaxonomy
      *
      * @return mixed|void
@@ -88,7 +88,7 @@ class CategoryMainForm extends Form
     }
 
     /**
-     * @param Request      $request
+     * @param Request  $request
      * @param Taxonomy $termTaxonomy
      */
     public function delete(Request $request, Taxonomy $termTaxonomy)

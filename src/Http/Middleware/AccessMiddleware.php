@@ -2,9 +2,9 @@
 
 namespace Orchid\Platform\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Carbon\Carbon;
 
 class AccessMiddleware
 {

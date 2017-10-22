@@ -5,8 +5,8 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Illuminate\Http\Request;
 use Orchid\Alert\Facades\Alert;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
 
 class CategoryController extends Controller
 {
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request      $request
+     * @param Request  $request
      * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request      $request
+     * @param Request  $request
      * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -100,7 +100,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request      $request
+     * @param Request  $request
      * @param Taxonomy $termTaxonomy
      *
      * @return \Illuminate\Http\RedirectResponse

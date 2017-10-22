@@ -3,10 +3,7 @@
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Alert\Laravel\AlertServiceProvider;
-use Orchid\Defender\Providers\DefenderServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
-use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -29,6 +26,20 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register migrate.
+     */
+    protected function registerDatabase()
+    {
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations'));
+
+        /*
+        $this->publishes([
+            realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations/') => database_path('migrations'),
+        ], 'migrations');
+        */
+    }
+
+    /**
      * Register translations.
      */
     public function registerTranslations()
@@ -36,16 +47,19 @@ class FoundationServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(realpath(DASHBOARD_PATH . '/resources/lang'), 'dashboard');
     }
 
-
     /**
-     * Register types.
+     * Register config.
      */
-    protected function registerCode()
+    protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPost.stub'        => app_path('/Core/Behaviors/Many/DemoPost.php'),
-            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPage.stub'        => app_path('/Core/Behaviors/Single/DemoPage.php'),
+            DASHBOARD_PATH . '/config/scout.php'              => config_path('scout.php'),
+            realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
         ]);
+
+        $this->mergeConfigFrom(
+            realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform'
+        );
     }
 
     /**
@@ -69,6 +83,17 @@ class FoundationServiceProvider extends ServiceProvider
                 DASHBOARD_PATH . '/resources/stubs/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
             ]);
         }
+    }
+
+    /**
+     * Register types.
+     */
+    protected function registerCode()
+    {
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPost.stub' => app_path('/Core/Behaviors/Many/DemoPost.php'),
+            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPage.stub' => app_path('/Core/Behaviors/Single/DemoPage.php'),
+        ]);
     }
 
     public function registerProviders()
@@ -103,34 +128,5 @@ class FoundationServiceProvider extends ServiceProvider
         if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
         }
-    }
-
-    /**
-     * Register migrate.
-     */
-    protected function registerDatabase()
-    {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations'));
-
-        /*
-        $this->publishes([
-            realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations/') => database_path('migrations'),
-        ], 'migrations');
-        */
-    }
-
-    /**
-     * Register config.
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            DASHBOARD_PATH . '/config/scout.php' => config_path('scout.php'),
-            realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
-        ]);
-
-        $this->mergeConfigFrom(
-            realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform'
-        );
     }
 }

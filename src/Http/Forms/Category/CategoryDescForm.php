@@ -62,7 +62,7 @@ class CategoryDescForm extends Form
     }
 
     /**
-     * @param Request|null      $request
+     * @param Request|null  $request
      * @param Taxonomy|null $termTaxonomy
      *
      * @return mixed|void

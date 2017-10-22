@@ -112,15 +112,6 @@ class Attachment extends Model
         );
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
-    public function relationships()
-    {
-        return $this->hasMany(Attachmentable::class, 'attachment_id');
-    }
-
     /**
      * @return bool|null
      */
@@ -135,6 +126,13 @@ class Attachment extends Model
         return parent::delete();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function relationships()
+    {
+        return $this->hasMany(Attachmentable::class, 'attachment_id');
+    }
 
     /**
      * Physical removal of all copies of a file

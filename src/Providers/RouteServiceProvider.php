@@ -4,14 +4,10 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Defender\Middleware\Firewall;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Core\Models\{
+    Page, Post, Role, Taxonomy
+};
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
-use Orchid\Platform\Http\Middleware\RedirectInstall;
-use Orchid\Platform\Core\Models\Page;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Http\Middleware\CanInstall;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -31,17 +27,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::middlewareGroup('install', [
-            //CanInstall::class,
-        ]);
-
-        Route::middlewareGroup('dashboard', [
-            //Firewall::class,
-           // RedirectInstall::class,
-        ]);
-
         Route::middlewareGroup('access', [
-           // Firewall::class,
             AccessMiddleware::class,
         ]);
 

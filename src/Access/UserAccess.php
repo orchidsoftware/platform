@@ -19,6 +19,14 @@ trait UserAccess
     }
 
     /**
+     * @return BelongsToMany
+     */
+    public function roles() : BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'role_users', 'user_id', 'role_id');
+    }
+
+    /**
      * @param $role
      *
      * @return bool
@@ -59,37 +67,15 @@ trait UserAccess
     }
 
     /**
-     * @return BelongsToMany
-     */
-    public function roles() : BelongsToMany
-    {
-        return $this->belongsToMany(Role::class, 'role_users', 'user_id', 'role_id');
-    }
-
-    /**
      * @param Model $role
      *
      * @return Model
      */
     public function addRole(Model $role) : Model
     {
-        $result =  $this->roles()->save($role);
+        $result = $this->roles()->save($role);
 
         event(new AddRoleEvent($this, $role));
-
-        return $result;
-    }
-
-    /**
-     * @param RoleInterface $role
-     *
-     * @return bool
-     */
-    public function removeRole(RoleInterface $role) : bool
-    {
-        $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
-
-        event(new RemoveRoleEvent($this, $role));
 
         return $result;
     }
@@ -106,6 +92,20 @@ trait UserAccess
         $role = $this->roles()->where('slug', $slug)->first();
 
         return $this->removeRole($role);
+    }
+
+    /**
+     * @param RoleInterface $role
+     *
+     * @return bool
+     */
+    public function removeRole(RoleInterface $role) : bool
+    {
+        $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
+
+        event(new RemoveRoleEvent($this, $role));
+
+        return $result;
     }
 
     /**
