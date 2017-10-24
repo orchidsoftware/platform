@@ -37,7 +37,10 @@
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                                     <th>{{trans('dashboard::systems/category.name')}}</th>
-                                    <th>{{trans('dashboard::common.Last edit')}}</th>
+
+                                    @foreach($grid as $key => $column)
+                                        <th>{{$column}}</th>
+                                    @endforeach
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,6 +54,10 @@
                                         <td>{{$item->term->getContent('name')}}</td>
 
                                         <td>{{ $item->term->updated_at}}</td>
+
+                                        @foreach($grid as $key => $column)
+                                            <td>{{$item->term->getContent($key)}}</td>
+                                        @endforeach
                                     </tr>
 
 

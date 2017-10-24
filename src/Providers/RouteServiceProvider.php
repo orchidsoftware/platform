@@ -28,6 +28,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::middlewareGroup('install', [
+            //CanInstall::class,
+        ]);
+        Route::middlewareGroup('dashboard', [
+            //Firewall::class,
+            // RedirectInstall::class,
+        ]);
+
         Route::middlewareGroup('access', [
             AccessMiddleware::class,
         ]);

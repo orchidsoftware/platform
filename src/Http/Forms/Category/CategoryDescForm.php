@@ -23,6 +23,11 @@ class CategoryDescForm extends Form
     protected $model = Taxonomy::class;
 
     /**
+     * @var null
+     */
+    protected $categoryBehavior;
+
+    /**
      * CategoryDescForm constructor.
      *
      * @param null $request
@@ -30,6 +35,9 @@ class CategoryDescForm extends Form
     public function __construct($request = null)
     {
         $this->name = trans('dashboard::systems/category.display');
+
+        $category = config('platform.category');
+        $this->categoryBehavior = (new $category);
         parent::__construct($request);
     }
 
@@ -38,9 +46,9 @@ class CategoryDescForm extends Form
      */
     public function rules() : array
     {
-        return [
+        return array_merge([
             'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
-        ];
+        ], $this->categoryBehavior->rules());
     }
 
     /**
@@ -58,6 +66,7 @@ class CategoryDescForm extends Form
             'language'     => App::getLocale(),
             'termTaxonomy' => $termTaxonomy,
             'locales'      => config('platform.locales'),
+            'fields'       => $this->categoryBehavior->fields(),
         ]);
     }
 

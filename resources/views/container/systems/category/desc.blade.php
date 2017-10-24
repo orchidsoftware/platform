@@ -18,33 +18,11 @@
 
         @foreach($locales as $code => $lang)
             <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                <div class="wrapper-md">
+                <div class="wrapper-lg">
 
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">{{trans('dashboard::systems/category.name')}}</label>
-                        <div class="col-sm-10">
-                            <input name="content[{{$code}}][name]"
-                                   value="{{optional($termTaxonomy->term)->getContent('name',$code)}}"
-                                   required class="form-control"
-                                   placeholder="{{trans('dashboard::systems/category.name')}}">
-                        </div>
+                    <div class="container">
+                        {!! \Orchid\Platform\Behaviors\Helpers::generateForm($fields, optional($termTaxonomy->term), $code) !!}
                     </div>
-
-
-                    <div class="line line-dashed b-b line-lg"></div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">{{trans('dashboard::systems/category.descriptions')}}</label>
-                        <div class="col-sm-10">
-                            <textarea name="content[{{$code}}][body]"
-                                      required class="form-control summernote"
-                                      placeholder="{{trans('dashboard::systems/category.descriptions')}}">
-                                   {{optional($termTaxonomy->term)->getContent('body',$code)}}
-                            </textarea>
-                        </div>
-                    </div>
-
 
                 </div>
             </div>

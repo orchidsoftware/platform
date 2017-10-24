@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'auth'    => [
+    'auth' => [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
         //'slogan'  => '',
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'locales'    => [
+    'locales' => [
         'en' => [
             'name'     => 'English',
             'script'   => 'Latn',
@@ -104,15 +104,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'category'   => [
-        'grid'   => [
-            'name',
-        ],
-        'fields' => [
-            'name' => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
-            'body' => 'tag:wysiwyg|name:body|max:255|required|title:Name Articles',
-        ],
-    ],
+    'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
 
     /*
     |--------------------------------------------------------------------------

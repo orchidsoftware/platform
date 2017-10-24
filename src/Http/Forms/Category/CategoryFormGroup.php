@@ -15,6 +15,11 @@ class CategoryFormGroup extends FormGroup
     public $event = CategoryEvent::class;
 
     /**
+     * @var
+     */
+    protected $categoryBehavior;
+
+    /**
      * Description Attributes for group.
      *
      * @return array
@@ -32,8 +37,12 @@ class CategoryFormGroup extends FormGroup
      */
     public function main() : View
     {
+        $category = config('platform.category');
+        $category = (new $category);
+
         return view('dashboard::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
+            'grid'     => $category->grid(),
         ]);
     }
 }
