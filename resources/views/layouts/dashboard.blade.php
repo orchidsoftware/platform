@@ -70,7 +70,7 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li>
-                            <a href="#" class="click" data-toggle="open"  title="Notifications" data-target="#quickview">
+                            <a href="#" class="click" data-turbolinks="false" data-toggle="open"  title="Notifications" data-target="#quickview">
                                 <i class="icon-bell"></i>
                                 <span class="visible-xs-inline">Notifications</span>
 

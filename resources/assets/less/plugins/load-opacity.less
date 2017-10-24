@@ -4,8 +4,25 @@
 }
 
 #content {
-  animation: fadein 340ms ease-out;
+  animation: blurin 500ms ease-in;
 }
+
+
+@keyframes blurin {
+  0% {
+    filter: blur(16px);
+  }
+  25% {
+    filter: blur(8px);
+  }
+  50% {
+    filter: blur(4px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
 
 @keyframes fadein {
   0% {
