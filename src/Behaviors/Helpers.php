@@ -183,6 +183,4 @@ class Helpers
 
         return str_getcsv($parameter);
     }
-
-
 }
