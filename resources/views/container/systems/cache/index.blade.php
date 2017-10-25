@@ -8,7 +8,6 @@
 @section('content')
 
 
-
     <!-- main content -->
     <section class="wrapper-md">
         <div class="bg-white-only bg-auto no-border-xs text-center">
@@ -19,8 +18,8 @@
                 <div class="row">
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item w-full" type="submit">
-                            <div class="h4 text-info font-thin ">Очистить кэш</div>
-                            <span class="text-muted text-xs">Flush the application cache</span>
+                            <div class="h4 text-info font-thin ">{{trans('dashboard::systems/cache.cache')}}</div>
+                            <span class="text-muted text-xs">{{trans('dashboard::systems/cache.cache.description')}}</span>
                         </button>
                         <input name="action" type="hidden" value="cache">
                         {{csrf_field()}}
@@ -30,8 +29,8 @@
                 <div class="row">
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item  w-full" type="submit">
-                            <div class="h4 text-info font-thin">Очистить настройки конфигурации</div>
-                            <span class="text-muted text-xs">Create a cache file for faster configuration loading</span>
+                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.config')}}</div>
+                            <span class="text-muted text-xs">{{trans('dashboard::systems/cache.config.description')}}</span>
                         </button>
                         <input name="action" type="hidden" value="config">
                         {{csrf_field()}}
@@ -42,8 +41,8 @@
 
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item  w-full" type="submit">
-                            <div class="h4 text-info font-thin">Очистить маршруты</div>
-                            <span class="text-muted text-xs">Create a route cache file for faster route registration</span>
+                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/route.cache')}}</div>
+                            <span class="text-muted text-xs">{{trans('dashboard::systems/cache.route.description')}}</span>
 
                         </button>
                         <input name="action" type="hidden" value="route">
@@ -55,8 +54,8 @@
 
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item  w-full" type="submit">
-                            <div class="h4 text-info font-thin">Очистить отображаемые файлы</div>
-                            <span class="text-muted text-xs">Clear all compiled view files</span>
+                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.view')}}</div>
+                            <span class="text-muted text-xs">{{trans('dashboard::systems/cache.view.description')}}</span>
 
                         </button>
                         <input name="action" type="hidden" value="view">
@@ -68,8 +67,8 @@
 
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item  w-full" type="submit">
-                            <div class="h4 text-info font-thin">Очистить opcache</div>
-                            <span class="text-muted text-xs">Resets the contents of the opcode cache</span>
+                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.opcache')}}</div>
+                            <span class="text-muted text-xs">{{trans('dashboard::systems/cache.opcache.description')}}</span>
 
                         </button>
                         <input name="action" type="hidden" value="opcache">

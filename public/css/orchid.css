@@ -19148,8 +19148,46 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   background-color: #1c7cd6;
 }
 #content {
-  -webkit-animation: fadein 340ms ease-out;
-          animation: fadein 340ms ease-out;
+    -webkit-animation : blurin 500ms ease-in;
+    animation         : blurin 500ms ease-in;
+}
+
+@-webkit-keyframes blurin {
+    0% {
+        -webkit-filter : blur(16px);
+        filter         : blur(16px);
+    }
+    25% {
+        -webkit-filter : blur(8px);
+        filter         : blur(8px);
+    }
+    50% {
+        -webkit-filter : blur(4px);
+        filter         : blur(4px);
+    }
+    100% {
+        -webkit-filter : blur(0px);
+        filter         : blur(0px);
+    }
+}
+
+@keyframes blurin {
+    0% {
+        -webkit-filter : blur(16px);
+        filter         : blur(16px);
+    }
+    25% {
+        -webkit-filter : blur(8px);
+        filter         : blur(8px);
+    }
+    50% {
+        -webkit-filter : blur(4px);
+        filter         : blur(4px);
+    }
+    100% {
+        -webkit-filter : blur(0px);
+        filter         : blur(0px);
+    }
 }
 @keyframes fadein {
   0% {

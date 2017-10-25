@@ -116,9 +116,9 @@ return [
     */
 
     'menu' => [
-        'header'  => 'Top Menu',
-        'sidebar' => 'Sidebar Menu',
-        'footer'  => 'Footer Menu',
+        'header'  => 'Header menu',
+        'sidebar' => 'Sidebar menu',
+        'footer'  => 'Footer menu',
     ],
 
     /*

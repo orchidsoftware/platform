@@ -14,7 +14,6 @@ const {mix} = require('laravel-mix');
 mix.setPublicPath('public');
 mix.less('resources/assets/less/app.less', 'public/css/orchid.css');
 
-mix.copy('resources/assets/img/', 'public/img');
 mix.copy('./node_modules/bootstrap/dist/fonts/', 'public/fonts');
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
 mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
