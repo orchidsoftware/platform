@@ -35,7 +35,5 @@ abstract class Colums
         ])->render();
 
         return $view;
-
     }
-
 }

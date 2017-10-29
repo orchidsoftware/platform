@@ -40,7 +40,6 @@ abstract class Table
      */
     private function generatedTable($post)
     {
-
         $data = $post->paginate();
 
         return [
@@ -48,5 +47,4 @@ abstract class Table
             'fields' => $this->fields(),
         ];
     }
-
 }

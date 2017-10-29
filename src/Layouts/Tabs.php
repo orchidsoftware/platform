@@ -35,6 +35,5 @@ abstract class Tabs
         ])->render();
 
         return $view;
-
     }
 }

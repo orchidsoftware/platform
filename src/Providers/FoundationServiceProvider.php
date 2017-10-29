@@ -126,7 +126,6 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         if (!Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen) {
                 return Route::any($url . "/{method?}/{argument?}", "$screen@handle");
