@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
             AccessMiddleware::class,
         ]);
 
+
         $this->binding();
 
         parent::boot();
@@ -117,4 +118,5 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($file);
         }
     }
+
 }

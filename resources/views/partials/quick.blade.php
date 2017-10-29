@@ -44,7 +44,7 @@
                     <div class="list-view-wrapper list-view b-t">
 
 
-                         <div class="list-group list-group-lg list-group-sp">
+                         <div class="list-group list-group-lg list-group-sp m-b-xxl">
                          @forelse (Auth::user()->notifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class) as $notification)
 
                                  <a href="{{$notification->data['action'] or '#'}}"
@@ -67,11 +67,7 @@
                              </div>
 
                              @endforelse
- </div>
-
-
-
-
+                        </div>
 
 
                     </div>

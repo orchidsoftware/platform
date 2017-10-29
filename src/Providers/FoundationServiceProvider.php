@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
 
@@ -125,6 +126,14 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        if (!Route::hasMacro('screen')) {
+            Route::macro('screen', function ($url, $screen) {
+                return Route::any($url . "/{method?}/{argument?}", "$screen@handle");
+            });
+        }
+
+
         if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
         }

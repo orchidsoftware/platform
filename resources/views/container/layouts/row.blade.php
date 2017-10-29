@@ -1,7 +1,9 @@
-<div class="row bg-white">
-    <div class="col-md-12">
-        <div class="wrapper-md">
-        {!! $layout->generateForm() !!}
+<div class="bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrapper-md">
+            {!! $form ?? '' !!}
+            </div>
         </div>
     </div>
 </div>

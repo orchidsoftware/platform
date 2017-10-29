@@ -12302,7 +12302,6 @@ body {
   height: auto;
 }
 .app-content-body {
-  padding-bottom: 50px;
   float: left;
   width: 100%;
 }
@@ -12837,17 +12836,17 @@ body {
  *  Мои изменения
  */
 .open > .dropdown-menu.dropdown-full {
-  display: block;
-  height: 100%;
-  position: fixed;
-  top: 50px;
-  left: 150px;
-  width: 300px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-top: 0;
+  display       : block;
+  height        : 100%;
+  position      : fixed;
+    top         : 0;
+  left          : 150px;
+  width         : 300px;
+  overflow-y    : auto;
+  overflow-x    : hidden;
+  margin-right  : 0;
+  margin-bottom : 0;
+  margin-top    : 0;
 }
 .open > .dropdown-menu.dropdown-full a {
   color: #1c2b36;
@@ -15081,6 +15080,10 @@ fieldset[disabled] .bootstrap-tagsinput {
 }
 .bootstrap-tagsinput {
   width: 100%;
+}
+
+.select2-search__field {
+    width : 100% !important;
 }
 .item {
   position: relative;
@@ -19151,7 +19154,6 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
     -webkit-animation : blurin 500ms ease-in;
     animation         : blurin 500ms ease-in;
 }
-
 @-webkit-keyframes blurin {
     0% {
         -webkit-filter : blur(16px);
@@ -19170,7 +19172,6 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
         filter         : blur(0px);
     }
 }
-
 @keyframes blurin {
     0% {
         -webkit-filter : blur(16px);
@@ -19309,17 +19310,17 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   color: #555;
 }
 #filemanager .breadcrumb li .arrow {
-  display: none;
-  position: absolute;
-  bottom: -14px;
-  width: 12px;
-  height: 12px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #f0f0f0;
-  left: 50%;
-  border-right: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
+  display           : none;
+  position          : absolute;
+  bottom            : -14px;
+  width             : 12px;
+  height            : 12px;
+  -webkit-transform : rotate(45deg);
+  transform         : rotate(45deg);
+  background        : #f0f0f0;
+  left              : 50%;
+    border-right    : 1px solid #dadfe4;
+    border-bottom   : 1px solid #dadfe4;
 }
 #filemanager .select2-display-none {
   z-index: 999999 !important;
@@ -19386,10 +19387,10 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   color: #949494;
 }
 #filemanager .flex #right {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  border-left: 1px solid #f1f1f1;
+  -webkit-box-flex : 1;
+      -ms-flex     : 1;
+          flex     : 1;
+    border-left    : 1px solid #dadfe4;
 }
 #filemanager #right .right_details {
   display: block;
