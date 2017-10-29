@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Screen;
 
 use Orchid\Platform\Core\Models\Post;
-use Illuminate\Http\Request;
 
 abstract class Screen
 {
@@ -27,8 +26,7 @@ abstract class Screen
      *
      * @return array
      */
-    public function commandBar()
-    : array
+    public function commandBar() : array
     {
         return [];
     }
@@ -36,8 +34,7 @@ abstract class Screen
     /**
      * @return array
      */
-    public function build()
-    : array
+    public function build() : array
     {
         //TODO : Вмето Post должег быть какой то класс обёртка
         $post = new Post($this->query());
@@ -54,8 +51,7 @@ abstract class Screen
      *
      * @return array
      */
-    public function query()
-    : array
+    public function query() : array
     {
         return [];
     }
@@ -65,8 +61,7 @@ abstract class Screen
      *
      * @return array
      */
-    public function layout()
-    : array
+    public function layout() : array
     {
         return [];
     }
