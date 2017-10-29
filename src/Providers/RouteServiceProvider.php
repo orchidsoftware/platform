@@ -118,5 +118,4 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($file);
         }
     }
-
 }

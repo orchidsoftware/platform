@@ -78,7 +78,6 @@ abstract class Screen
      */
     public function handle(...$arg)
     {
-
         if (!empty($arg) && request()->method() === 'POST') {
             $method = array_shift($arg);
 
