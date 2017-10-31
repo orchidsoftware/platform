@@ -12,3 +12,4 @@
 
 *.php linguist-language=PHP
 *.js linguist-language=PHP
+*.blade.php linguist-language=HTML
