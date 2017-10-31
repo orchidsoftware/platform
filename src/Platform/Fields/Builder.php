@@ -47,7 +47,6 @@ class Builder
         $this->data = $data;
         $this->language = $language;
         $this->prefix = $prefix;
-
     }
 
     /**
@@ -238,7 +237,6 @@ class Builder
      */
     private function buildPrefix($config)
     {
-
         if (isset($config['prefix'])) {
             $prefixArray = array_filter(explode(' ', $config['prefix']));
 
