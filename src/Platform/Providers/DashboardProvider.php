@@ -5,7 +5,7 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Behaviors\Storage\ManyBehaviorStorage;
 use Orchid\Platform\Behaviors\Storage\SingleBehaviorStorage;
-use Orchid\Platform\Field\FieldStorage;
+use Orchid\Platform\Fields\FieldStorage;
 use Orchid\Platform\Kernel\Dashboard;
 
 class DashboardProvider extends ServiceProvider

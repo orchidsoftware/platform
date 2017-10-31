@@ -36,10 +36,11 @@ abstract class Screen
      */
     public function build() : array
     {
-        //TODO : Вмето Post должег быть какой то класс обёртка
-        $post = new Post($this->query());
+        $query = $this->query();
 
         foreach ($this->layout() as $layout) {
+            //TODO : Вмето Post должег быть какой то класс обёртка
+            $post = new Post($query[$layout]);
             $build[] = (new $layout)->build($post);
         }
 

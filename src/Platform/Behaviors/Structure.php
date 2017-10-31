@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Fields\Builder;
 
 trait Structure
 {
@@ -93,7 +94,9 @@ trait Structure
      */
     public function generateForm(string $language = 'en', $post = null) : string
     {
-        return Helpers::generateForm($this->fields(), $post, $language, 'content');
+        $form = new Builder($this->fields(), $post, $language, 'content');
+
+        return $form->generateForm();
     }
 
     /**

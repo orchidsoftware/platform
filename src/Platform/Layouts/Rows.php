@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Layouts;
 
 use Orchid\Platform\Behaviors\Helpers;
+use Orchid\Platform\Fields\Builder;
 
 abstract class Rows
 {
@@ -26,10 +27,10 @@ abstract class Rows
      */
     public function build($post)
     {
-        $form = Helpers::generateForm($this->fields(), $post);
+        $form = new Builder($this->fields(), $post);
 
         $view = view($this->template, [
-            'form' => $form,
+            'form' => $form->generateForm(),
             //'build' => $this->recustiveBuild($layout,$post)
         ])->render();
 
