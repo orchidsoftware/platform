@@ -21,7 +21,11 @@
                 <div class="wrapper-lg">
 
                     <div class="container">
-                        {!! \Orchid\Platform\Behaviors\Helpers::generateForm($fields, optional($termTaxonomy->term), $code) !!}
+                        @php
+                            $form = new \Orchid\Platform\Fields\Builder($fields, optional($termTaxonomy->term), $code)
+                        @endphp
+
+                        {!! $form->generateForm() !!}
                     </div>
 
                 </div>
