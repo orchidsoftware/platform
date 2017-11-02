@@ -10,7 +10,7 @@
 */
 
 $this->group([
-    'middleware' => ['web', 'dashboard', 'access'],
+    'middleware' => config('platform.middleware.private'),
     'prefix'     => 'dashboard/systems',
     'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
 ],

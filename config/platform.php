@@ -16,6 +16,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Provide a convenient mechanism for filtering HTTP
+    | requests entering your application.
+    |
+    */
+
+    'middleware' => [
+        'public'  => ['web', 'dashboard'],
+        'private' => ['web', 'dashboard', 'access'],
+    ],
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Auth
     |--------------------------------------------------------------------------
     |
@@ -27,6 +43,7 @@ return [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
         //'slogan'  => '',
+
     ],
 
     /*
@@ -59,17 +76,17 @@ return [
     */
 
     'fields' => [
-        'textarea' => Orchid\Platform\Fields\TextAreaField::class,
-        'input'    => Orchid\Platform\Fields\InputField::class,
-        'list'     => Orchid\Platform\Fields\ListField::class,
-        'tags'     => Orchid\Platform\Fields\TagsField::class,
-        'robot'    => Orchid\Platform\Fields\RobotField::class,
-        'place'    => Orchid\Platform\Fields\PlaceField::class,
-        'picture'  => Orchid\Platform\Fields\PictureField::class,
-        'datetime' => Orchid\Platform\Fields\DateTimerField::class,
-        'checkbox' => Orchid\Platform\Fields\CheckBoxField::class,
-        'code'     => Orchid\Platform\Fields\CodeField::class,
-        'wysiwyg'  => Orchid\Platform\Fields\TinyMCEField::class,
+        'textarea' => Orchid\Platform\Fields\Types\TextAreaField::class,
+        'input'    => Orchid\Platform\Fields\Types\InputField::class,
+        'list'     => Orchid\Platform\Fields\Types\ListField::class,
+        'tags'     => Orchid\Platform\Fields\Types\TagsField::class,
+        'robot'    => Orchid\Platform\Fields\Types\RobotField::class,
+        'place'    => Orchid\Platform\Fields\Types\PlaceField::class,
+        'picture'  => Orchid\Platform\Fields\Types\PictureField::class,
+        'datetime' => Orchid\Platform\Fields\Types\DateTimerField::class,
+        'checkbox' => Orchid\Platform\Fields\Types\CheckBoxField::class,
+        'code'     => Orchid\Platform\Fields\Types\CodeField::class,
+        'wysiwyg'  => Orchid\Platform\Fields\Types\TinyMCEField::class,
     ],
 
     /*
@@ -156,7 +173,7 @@ return [
     | Attachment types
     |--------------------------------------------------------------------------
     |
-    | ...
+    | Grouping attachments by file extension type
     |
     */
 
