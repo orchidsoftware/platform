@@ -45,7 +45,8 @@ class Builder
     public function __construct(array $fields, $data, string $language = null, string $prefix = null)
     {
         $this->fields = self::parseFields($fields);
-        $this->data = $data ?? $data = new Repository([]);;
+        $this->data = $data ?? $data = new Repository([]);
+        ;
         $this->language = $language;
         $this->prefix = $prefix;
     }
@@ -215,7 +216,6 @@ class Builder
      */
     private function fill($config)
     {
-
         $name = array_filter(explode(' ', $config['name']));
         $name = array_shift($name);
 
@@ -233,7 +233,6 @@ class Builder
      */
     private function getValue(string $key, $value = null)
     {
-
         $data = $this->data->getContent($key, $this->language);
 
         if (!is_null($value) && $value instanceof \Closure) {
