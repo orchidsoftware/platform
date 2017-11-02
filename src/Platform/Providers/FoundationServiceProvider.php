@@ -134,7 +134,7 @@ class FoundationServiceProvider extends ServiceProvider
 
 
         if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../'));
+            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../../'));
         }
     }
 }
