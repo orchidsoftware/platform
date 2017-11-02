@@ -2,8 +2,6 @@
 
 namespace Orchid\Platform\Screen;
 
-use Orchid\Platform\Core\Models\Post;
-
 abstract class Screen
 {
 
@@ -39,8 +37,7 @@ abstract class Screen
         $query = $this->query();
 
         foreach ($this->layout() as $layout) {
-            //TODO : Вмето Post должег быть какой то класс обёртка
-            $post = new Post($query[$layout]);
+            $post = new Repository($query[$layout]);
             $build[] = (new $layout)->build($post);
         }
 

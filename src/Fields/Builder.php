@@ -4,6 +4,7 @@ namespace Orchid\Platform\Fields;
 
 use Illuminate\Support\Str;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Screen\Repository;
 
 class Builder
 {
@@ -44,7 +45,7 @@ class Builder
     public function __construct(array $fields, $data, string $language = null, string $prefix = null)
     {
         $this->fields = self::parseFields($fields);
-        $this->data = $data;
+        $this->data = $data ?? $data = new Repository([]);;
         $this->language = $language;
         $this->prefix = $prefix;
     }
@@ -187,35 +188,11 @@ class Builder
                 throw new TypeException('Field ' . $config['tag'] . ' does not exist');
             }
 
-            $field = new $fieldClass();
+
             $config['lang'] = $this->language;
-
             $config['prefix'] = $this->buildPrefix($config);
+            $config = $this->fill($config);
 
-            if (isset($config['name'])) {
-                $nameArray = array_filter(explode(' ', $config['name']));
-
-                if (count($nameArray) > 1) {
-                    $config['name'] = '';
-
-                    if (!is_null($this->data)) {
-                        $config['value'] = $this->data->getContent($nameArray[0], $this->language);
-                    }
-
-                    foreach ($nameArray as $name) {
-                        $config['name'] .= '[' . $name . ']';
-                        if (!is_null($this->data) && !is_null($config['value']) && is_array($config['value']) && array_key_exists($name,
-                                $config['value'])) {
-                            $config['value'] = $config['value'][$name];
-                        }
-                    }
-                } else {
-                    if (!is_null($this->data)) {
-                        $config['value'] = $this->data->getContent($config['name'], $this->language);
-                    }
-                    $config['name'] = '[' . $config['name'] . ']';
-                }
-            }
 
             $firstTimeRender = false;
             if (!in_array($fieldClass, $availableFormFields)) {
@@ -223,11 +200,47 @@ class Builder
                 $firstTimeRender = true;
             }
 
-            $field = $field->create($config, $firstTimeRender);
+            $field = (new $fieldClass())->create($config, $firstTimeRender);
             $this->form .= $field->render();
         }
 
         return $this->form;
+    }
+
+
+    /**
+     * @param $config
+     *
+     * @return mixed
+     */
+    private function fill($config)
+    {
+
+        $name = array_filter(explode(' ', $config['name']));
+        $name = array_shift($name);
+
+        $config['value'] = $this->getValue($name, $config['value'] ?? null);
+        $config['name'] = '[' . $name . ']';
+
+        return $config;
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     * @return mixed
+     */
+    private function getValue(string $key, $value = null)
+    {
+
+        $data = $this->data->getContent($key, $this->language);
+
+        if (!is_null($value) && $value instanceof \Closure) {
+            return $value($data);
+        }
+
+        return $data;
     }
 
     /**
