@@ -56,7 +56,7 @@ $this->group([
 */
 
 $this->group([
-    'middleware' => ['web', 'dashboard', 'access'],
+    'middleware' => config('platform.middleware.private'),
     'prefix'     => 'dashboard/pages',
     'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
 ],

@@ -57,7 +57,6 @@ $this->group([
             'uses' => 'NotificationController@remove',
         ]);
 
-
         $router->get('settings', [
             'as'   => 'dashboard.systems.settings',
             'uses' => 'SettingController@index',
@@ -123,13 +122,11 @@ $this->group([
             ],
         ]);
 
-
         $router->get('tags/{tags?}', [
             'as'   => 'dashboard.systems.tag.search',
             'uses' => 'TagsController@show',
         ]);
-
-
+        
         $router->group([
             'as'     => 'dashboard.systems.media.',
             'prefix' => 'media',
