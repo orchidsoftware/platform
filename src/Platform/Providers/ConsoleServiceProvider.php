@@ -30,6 +30,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'Commands\\MakeManyBehavior',
         'Commands\\MakeSingleBehavior',
         'Commands\\MakeFilter',
+        'Commands\\PublicLinkCommand',
     ];
 
     /**

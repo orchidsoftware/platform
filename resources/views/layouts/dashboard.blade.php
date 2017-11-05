@@ -40,12 +40,22 @@
     <!-- header  -->
     <header id="header" class="app-header navbar" role="menu">
         <!-- navbar header  -->
-        <div class="navbar-header bg-black">
-            <button class="pull-right visible-xs dk">
-                <i class="fa fa-cog"></i>
+        <div class="navbar-header bg-black dk">
+
+            <button class="pull-right visible-xs"
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="icon-logout"></i>
             </button>
-            <button class="pull-right visible-xs">
-                <i class="fa fa-bars"></i>
+
+            <button class="pull-right visible-xs click"
+                    data-turbolinks="false"
+                    data-toggle="open"
+                    title="Notifications"
+                    data-target="#quickview">
+                <i class="icon-bell"></i>
+            </button>
+            <button class="pull-right visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
+                <i class="icon-menu"></i>
             </button>
             <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
@@ -59,15 +69,15 @@
         <!-- navbar collapse  -->
         <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                 <small class="text-muted text-ellipsis">@yield('description')</small>
             </div>
 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-md-6">
                 @section('navbar')
                     <!-- nabar right  -->
-                    <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right hidden-xs">
 
                         <li>
                             <a href="#" class="click" data-turbolinks="false" data-toggle="open"  title="Notifications" data-target="#quickview">

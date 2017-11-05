@@ -6,3 +6,4 @@ build
 vendor
 .DS_Store
 .lock
+node_modules

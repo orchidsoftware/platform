@@ -10,35 +10,19 @@ class CreateOrchidPostTable extends Migration
      */
     public function up()
     {
-        try {
-            Schema::create('posts', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('user_id');
-                $table->string('type');
-                $table->string('status')->nullable();
-                $table->jsonb('content');
-                $table->jsonb('options');
-                $table->string('slug', '255')->unique();
-                $table->timestamp('publish_at');
-                $table->timestamps();
-                $table->softDeletes();
-                $table->index(['status', 'type']);
-            });
-        } catch (\Exception $exception) {
-            Schema::create('posts', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('user_id');
-                $table->string('type');
-                $table->string('status')->nullable();
-                $table->text('content');
-                $table->text('options');
-                $table->string('slug', '255')->unique();
-                $table->timestamp('publish_at');
-                $table->timestamps();
-                $table->softDeletes();
-                $table->index(['status', 'type']);
-            });
-        }
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('type');
+            $table->string('status')->nullable();
+            $table->jsonb('content');
+            $table->jsonb('options');
+            $table->string('slug', '255')->unique();
+            $table->timestamp('publish_at');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->index(['status', 'type']);
+        });
     }
 
     /**

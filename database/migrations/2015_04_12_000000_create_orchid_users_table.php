@@ -13,7 +13,7 @@ class CreateOrchidUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('last_login')->nullable();
             $table->string('avatar')->nullable();
-            $table->text('permissions')->nullable();
+            $table->jsonb('permissions')->nullable();
         });
     }
 

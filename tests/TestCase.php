@@ -20,14 +20,13 @@ abstract class TestCase extends Orchestra
 
         Schema::defaultStringLength(191);
 
-
         $this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate', [
             '--database' => 'orchid',
         ]);
 
-        $this->withFactories(__DIR__.'/database/factories');
+        $this->withFactories(__DIR__ . '/../database/factories');
     }
 
     /**
@@ -40,9 +39,9 @@ abstract class TestCase extends Orchestra
             'driver'      => 'mysql',
             'host'        => 'localhost',
             'port'        => '3306',
-            'database'    => 'new_test2',//'platform',
+            'database'    => 'platform',
             'username'    => 'root',
-            'password'    => '03af4d',
+            'password'    => '',
             'unix_socket' => '',
             'charset'     => 'utf8mb4',
             'collation'   => 'utf8mb4_unicode_ci',

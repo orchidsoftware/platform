@@ -13,7 +13,7 @@
         <div class="bg-white-only bg-auto no-border-xs text-center">
 
 
-            <div class="col-xs-4">
+            <div class="col-md-4 col-xs-12">
 
                 <div class="row">
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
@@ -41,7 +41,7 @@
 
                     <form action="{{route('dashboard.systems.cache')}}" method="POST">
                         <button class="panel padder-v item  w-full" type="submit">
-                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/route.cache')}}</div>
+                            <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.route')}}</div>
                             <span class="text-muted text-xs">{{trans('dashboard::systems/cache.route.description')}}</span>
 
                         </button>

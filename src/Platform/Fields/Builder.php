@@ -236,7 +236,7 @@ class Builder
         $data = $this->data->getContent($key, $this->language);
 
         if (!is_null($value) && $value instanceof \Closure) {
-            return $value($data);
+            return $value($data, $this->data);
         }
 
         return $data;
