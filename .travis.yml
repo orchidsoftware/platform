@@ -1,11 +1,10 @@
-sudo: required
-dist: trusty
-
 language: php
 
 php:
   - 7.0
   - 7.1
+
+sudo: false
 
 cache:
   directories:
@@ -20,7 +19,7 @@ before_install:
 install:
   - composer install --prefer-source
 
-script: phpunit
+script: vendor/bin/phpunit
 
 notifications:
   email: false
