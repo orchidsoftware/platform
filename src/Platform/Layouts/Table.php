@@ -10,6 +10,11 @@ abstract class Table
     public $template = "dashboard::container.layouts.table";
 
     /**
+     * @var string
+     */
+    public $data;
+
+    /**
      * @return array
      */
     public function fields() : array
@@ -28,7 +33,6 @@ abstract class Table
 
         $view = view($this->template, [
             'form' => $form,
-            //'build' => $this->recustiveBuild($layout,$post)
         ])->render();
 
         return $view;
@@ -40,7 +44,16 @@ abstract class Table
      */
     private function generatedTable($post)
     {
-        $data = $post->paginate();
+        $data = $post->get($this->data);
+        //$data = $post->paginate();
+        //$data = $post[$this->data];
+
+        //if(!is_array($data)){
+        //    $data = $data->toArray();
+        //}
+
+        //dd($data);
+
 
         return [
             'data'   => $data,

@@ -10,7 +10,7 @@ trait MultiLanguage
      * Name row localization
      * @var string
      */
-    public $rowName = 'content';
+    public $jsonColumnName = 'content';
 
     /**
      * @param      $field
@@ -22,17 +22,25 @@ trait MultiLanguage
     {
         try {
             $lang = $lang ?? App::getLocale();
-            if (!is_null($this->{$this->rowName}) && !in_array($field, $this->getFillable())) {
-                return $this->{$this->rowName}[$lang][$field];
-            } elseif (in_array($field, $this->getFillable())) {
+            $attributes = array_keys($this->getAttributes());
+
+
+            if (!is_null($this->{$this->jsonColumnName}) && !in_array($field, $attributes)) {
+                return $this->{$this->jsonColumnName}[$lang][$field];
+            }
+
+            if (in_array($field, $attributes)) {
                 return $this->$field;
             }
+
         } catch (\ErrorException $exception) {
-            $content = collect($this->{$this->rowName})->first();
+            $content = collect($this->{$this->jsonColumnName})->first();
 
             if (array_key_exists($field, $content)) {
                 return $content[$field];
             }
         }
+
+        return null;
     }
 }
