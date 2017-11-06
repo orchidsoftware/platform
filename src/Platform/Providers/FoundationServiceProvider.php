@@ -69,7 +69,6 @@ class FoundationServiceProvider extends ServiceProvider
         }, config('view.paths')), [
             DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
-
     }
 
     /**
