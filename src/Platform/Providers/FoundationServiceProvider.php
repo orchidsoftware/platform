@@ -32,12 +32,6 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerDatabase()
     {
         $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/database/migrations'));
-
-        /*
-        $this->publishes([
-            realpath(DASHBOARD_PATH . '/resources/stubs/database/migrations/') => database_path('migrations'),
-        ], 'migrations');
-        */
     }
 
     /**
@@ -58,9 +52,7 @@ class FoundationServiceProvider extends ServiceProvider
             realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
         ]);
 
-        $this->mergeConfigFrom(
-            realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform'
-        );
+        $this->mergeConfigFrom(realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform');
     }
 
     /**
@@ -78,12 +70,6 @@ class FoundationServiceProvider extends ServiceProvider
             DASHBOARD_PATH . '/resources/views',
         ]), 'dashboard');
 
-
-        if (!config('platform.install')) {
-            $this->publishes([
-                DASHBOARD_PATH . '/resources/stubs/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
-            ]);
-        }
     }
 
     /**
@@ -131,7 +117,6 @@ class FoundationServiceProvider extends ServiceProvider
                 return Route::any($url . "/{method?}/{argument?}", "$screen@handle");
             });
         }
-
 
         if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__ . '/../../../'));

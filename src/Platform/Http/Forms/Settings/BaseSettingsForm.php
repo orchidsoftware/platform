@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Http\Forms\Settings;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Orchid\Setting\Models\Setting;
 
@@ -19,6 +20,17 @@ class BaseSettingsForm extends Form
      * @var
      */
     protected $model = Setting::class;
+
+    /**
+     * BaseSettingsForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::systems/settings.tabs.settings');
+        parent::__construct($request);
+    }
 
     /**
      * Display Settings App.

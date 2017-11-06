@@ -73,6 +73,7 @@
                                 <label>{{trans('dashboard::systems/menu.form.relations.name')}}</label>
 
                                 <select class="form-control" v-model="robot">
+                                    <option value=""></option>
                                     <option value="answer">{{trans('dashboard::systems/menu.form.relations.variables.answer')}}</option>
                                     <option value="chapter">{{trans('dashboard::systems/menu.form.relations.variables.chapter')}}</option>
                                     <option value="co-worker">{{trans('dashboard::systems/menu.form.relations.variables.co-worker')}}</option>

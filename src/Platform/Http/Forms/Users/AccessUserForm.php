@@ -25,7 +25,7 @@ class AccessUserForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::systems/users.permission');
+        $this->name = trans('dashboard::systems/users.tabs.permission');
         parent::__construct($request);
     }
 

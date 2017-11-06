@@ -2,6 +2,11 @@
 
 return [
 
+    'tabs' => [
+        'information' => 'Информация',
+        'settings'    => 'Настройки',
+    ],
+
     'Settings'               => 'Настройки',
     'Global system settings' => 'Глобальные настройки системы',
 

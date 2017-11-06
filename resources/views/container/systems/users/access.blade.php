@@ -1,18 +1,16 @@
 <div class="wrapper-md">
-    <div class="bg-white">
+    <div class="bg-white padder-md">
 
 
         <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-            <label class="col-sm-2 control-label">{{trans('dashboard::systems/users.roles')}}</label>
-            <div class="col-sm-10">
-                <select data-placeholder="{{trans('dashboard::systems/users.select_roles')}}" name="roles[]" multiple
-                        class="select2 form-control w-full">
-                    @foreach($roles as $role)
-                        <option value="{{$role->slug}}" @if($role->active) selected @endif>{{$role->name}}</option>
-                    @endforeach
-                </select>
+            <label class="control-label">{{trans('dashboard::systems/users.roles')}}</label>
 
-            </div>
+            <select data-placeholder="{{trans('dashboard::systems/users.select_roles')}}" name="roles[]" multiple
+                    class="select2 form-control w-full">
+                @foreach($roles as $role)
+                    <option value="{{$role->slug}}" @if($role->active) selected @endif>{{$role->name}}</option>
+                @endforeach
+            </select>
         </div>
 
 

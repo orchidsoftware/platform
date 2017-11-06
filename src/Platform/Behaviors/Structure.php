@@ -241,8 +241,8 @@ trait Structure
     public function status()
     {
         return [
-            'publish' => trans('dashboard::post/general.status_list.publish'),
-            'draft'   => trans('dashboard::post/general.status_list.draft'),
+            'publish' => trans('dashboard::post/base.status_list.publish'),
+            'draft'   => trans('dashboard::post/base.status_list.draft'),
         ];
     }
 

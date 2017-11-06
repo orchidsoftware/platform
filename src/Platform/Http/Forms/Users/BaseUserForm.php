@@ -25,7 +25,7 @@ class BaseUserForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::systems/users.information');
+        $this->name = trans('dashboard::systems/users.tabs.information');
         parent::__construct($request);
     }
 

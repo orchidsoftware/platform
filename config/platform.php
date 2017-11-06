@@ -25,8 +25,8 @@ return [
     */
 
     'middleware' => [
-        'public'  => ['web', 'dashboard'],
-        'private' => ['web', 'dashboard', 'access'],
+        'public'  => ['web'],
+        'private' => ['web', 'dashboard'],
     ],
 
 

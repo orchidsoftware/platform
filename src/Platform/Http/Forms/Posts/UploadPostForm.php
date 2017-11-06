@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Http\Forms\Posts;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 
 class UploadPostForm extends Form
@@ -11,6 +12,17 @@ class UploadPostForm extends Form
      * @var string
      */
     public $name = 'Uploads';
+
+    /**
+     * UploadPostForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::post/uploads.tabs.uploads');
+        parent::__construct($request);
+    }
 
     /**
      * Display Base Options.

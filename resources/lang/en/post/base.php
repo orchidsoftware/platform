@@ -2,6 +2,9 @@
 
 return [
 
+    'tabs'                     => [
+        'information' => 'Information',
+    ],
     'semantic_url'             => 'Semantic URL',
     'semantic_url_unique_name' => 'Unique name',
     'time_of_publication'      => 'Time of publication',

@@ -12,7 +12,7 @@ class BaseRolesForm extends Form
     /**
      * @var string
      */
-    public $name = 'General Info';
+    public $name = 'Information';
 
     /**
      * Base Model.
@@ -20,6 +20,17 @@ class BaseRolesForm extends Form
      * @var
      */
     protected $model = Role::class;
+
+    /**
+     * BaseRolesForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::systems/roles.tabs.information');
+        parent::__construct($request);
+    }
 
     /**
      * Validation Rules Request.

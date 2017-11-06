@@ -1,6 +1,12 @@
 <?php
 
 return [
+
+    'tabs' => [
+        'information' => 'Information',
+        'settings'    => 'Settings',
+    ],
+
     'Settings'               => 'Settings',
     'Global system settings' => 'Global system settings',
 

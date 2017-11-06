@@ -6,8 +6,8 @@
     </div>
     <div class="dz-message">
         <hr>
-        <p class="font-bold">{{trans('dashboard::post/post.upload.title')}}</p>
-        <small>{{trans('dashboard::post/post.upload.description')}}</small>
+        <p class="font-bold">{{trans('dashboard::post/uploads.title')}}</p>
+        <small>{{trans('dashboard::post/uploads.description')}}</small>
     </div>
 </div>
 
@@ -20,8 +20,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
                                 class="fa fa-times"></i>
                     </button>
-                    <h5>{{trans('dashboard::post/post.upload.information.title')}}</h5>
-                    <p class="m-b-md">{{trans('dashboard::post/post.upload.information.sub_title')}}</p>
+                    <h5>{{trans('dashboard::post/uploads.information.title')}}</h5>
+                    <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
                 </div>
                 <div class="modal-body" v-if="active != null">
                     <div class="row">
@@ -29,27 +29,27 @@
                             <div class="wrapper">
 
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/post.upload.information.system_name')}}</label>
+                                    <label>{{trans('dashboard::post/uploads.information.system_name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].name" readonly
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/post.upload.information.system_name')}}">
+                                           placeholder="{{trans('dashboard::post/uploads.information.system_name')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/post.upload.information.name')}}</label>
+                                    <label>{{trans('dashboard::post/uploads.information.name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].original_name"
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/post.upload.information.name')}}">
+                                           placeholder="{{trans('dashboard::post/uploads.information.name')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/post.upload.information.alt')}}</label>
+                                    <label>{{trans('dashboard::post/uploads.information.alt')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].alt"
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/post.upload.information.alt')}}">
+                                           placeholder="{{trans('dashboard::post/uploads.information.alt')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/post.upload.information.description')}}</label>
+                                    <label>{{trans('dashboard::post/uploads.information.description')}}</label>
                                     <textarea class="form-control no-resize" v-model="attachment[active].description"
-                                              placeholder="{{trans('dashboard::post/post.upload.information.description')}}"
+                                              placeholder="{{trans('dashboard::post/uploads.information.description')}}"
                                               maxlength="255"
                                               rows="3"></textarea>
                                 </div>

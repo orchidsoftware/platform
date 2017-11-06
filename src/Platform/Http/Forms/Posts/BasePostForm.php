@@ -15,7 +15,18 @@ class BasePostForm extends Form
     /**
      * @var string
      */
-    public $name = 'General';
+    public $name = 'Information';
+
+    /**
+     * BasePostForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::post/base.tabs.information');
+        parent::__construct($request);
+    }
 
     /**
      * Display Base Options.

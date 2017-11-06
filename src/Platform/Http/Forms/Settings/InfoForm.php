@@ -25,6 +25,17 @@ class InfoForm extends Form
     protected $model = Setting::class;
 
     /**
+     * InfoForm constructor.
+     *
+     * @param null $request
+     */
+    public function __construct($request = null)
+    {
+        $this->name = trans('dashboard::systems/settings.tabs.information');
+        parent::__construct($request);
+    }
+
+    /**
      * Display Settings App.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

@@ -65,18 +65,15 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsPages() : array
     {
-        $allPage = $this->dashboard->getStorage('pages')->all();
-
-        $showPost = collect();
-        foreach ($allPage as $page) {
-            $showPost->push([
+        foreach ($this->dashboard->getStorage('pages')->all() as $page) {
+            $pages[] = [
                 'slug'        => 'dashboard.posts.type.' . $page->slug,
                 'description' => $page->name,
-            ]);
+            ];
         }
 
         return [
-            'Pages' => $showPost->toArray(),
+            'Pages' => $pages ?? [],
         ];
     }
 
@@ -85,20 +82,17 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsPost() : array
     {
-        $allPost = $this->dashboard->getStorage('posts')->all();
-
-        $showPost = collect();
-        foreach ($allPost as $page) {
+        foreach ($this->dashboard->getStorage('posts')->all() as $page) {
             if ($page->display) {
-                $showPost->push([
+                $posts[] = [
                     'slug'        => 'dashboard.posts.type.' . $page->slug,
                     'description' => $page->name,
-                ]);
+                ];
             }
         }
 
         return [
-            'Posts' => $showPost->toArray(),
+            'Posts' => $posts ?? [],
         ];
     }
 
