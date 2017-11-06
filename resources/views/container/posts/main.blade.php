@@ -79,9 +79,9 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">{{trans('dashboard::post/general.not_found')}}</h3>
+                        <h3 class="font-thin">{{trans('dashboard::post/base.not_found')}}</h3>
                         <a href="{{ route('dashboard.posts.type.create',$type->slug)}}"
-                           class="btn btn-link">{{trans('dashboard::post/general.create')}}</a>
+                           class="btn btn-link">{{trans('dashboard::post/base.create')}}</a>
                     </div>
                 </div>
             </div>
