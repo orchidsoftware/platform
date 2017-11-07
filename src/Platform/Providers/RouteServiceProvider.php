@@ -49,18 +49,6 @@ class RouteServiceProvider extends ServiceProvider
             return Role::where('slug', $value)->firstOrFail();
         });
 
-        Route::bind('orchid_public', function ($path) {
-            $path = str_replace("..", "", $path);
-            $path = realpath(DASHBOARD_PATH . '/public/' . $path);
-
-
-            if ($path !== false) {
-                return $path;
-            }
-
-            abort(404);
-        });
-
         Route::bind('category', function ($value) {
             return Taxonomy::findOrFail($value);
         });

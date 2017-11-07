@@ -12613,7 +12613,7 @@ body {
   float: none !important;
 }
 .app-header {
-    min-height : 80px;
+  min-height: 80px;
 }
 .nav-sub {
   opacity: 0;
@@ -12835,17 +12835,17 @@ body {
  *  Мои изменения
  */
 .open > .dropdown-menu.dropdown-full {
-    display       : block;
-    height        : 100%;
-    position      : fixed;
-    top           : 0;
-    left          : 150px;
-    width         : 300px;
-    overflow-y    : auto;
-    overflow-x    : hidden;
-    margin-right  : 0;
-    margin-bottom : 0;
-    margin-top    : 0;
+  display: block;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 150px;
+  width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 .open > .dropdown-menu.dropdown-full a {
   color: #1c2b36;
@@ -12861,19 +12861,18 @@ body {
   margin-left: 795px;
 }
 @media (max-width: 767px) {
-    .app-aside.open {
+  .app-aside.open {
     display: block !important;
   }
-
-    .app-aside.open .aside-wrap {
-    position       : fixed;
-        z-index    : 10000;
-    width          : 100%;
-        background : #1d2839;
-        min-height : 100vh;
-        left       : 100px;
-    top            : 0;
-        bottom     : 0;
+  .app-aside.open .aside-wrap {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    background: #1d2839;
+    min-height: 100vh;
+    left: 100px;
+    top: 0;
+    bottom: 0;
   }
 }
 .arrow {
@@ -14917,7 +14916,7 @@ fieldset[disabled] .bootstrap-tagsinput {
   width: 100%;
 }
 .select2-search__field {
-    width : 100% !important;
+  width: 100% !important;
 }
 .item {
   position: relative;
@@ -18985,44 +18984,44 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   background-color: #1c7cd6;
 }
 #content {
-    -webkit-animation : blurin 500ms ease-in;
-    animation         : blurin 500ms ease-in;
+  -webkit-animation: blurin 500ms ease-in;
+          animation: blurin 500ms ease-in;
 }
 @-webkit-keyframes blurin {
-    0% {
-        -webkit-filter : blur(16px);
-        filter         : blur(16px);
-    }
-    25% {
-        -webkit-filter : blur(8px);
-        filter         : blur(8px);
-    }
-    50% {
-        -webkit-filter : blur(4px);
-        filter         : blur(4px);
-    }
-    100% {
-        -webkit-filter : blur(0px);
-        filter         : blur(0px);
-    }
+  0% {
+    -webkit-filter: blur(16px);
+            filter: blur(16px);
+  }
+  25% {
+    -webkit-filter: blur(8px);
+            filter: blur(8px);
+  }
+  50% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
 }
 @keyframes blurin {
-    0% {
-        -webkit-filter : blur(16px);
-        filter         : blur(16px);
-    }
-    25% {
-        -webkit-filter : blur(8px);
-        filter         : blur(8px);
-    }
-    50% {
-        -webkit-filter : blur(4px);
-        filter         : blur(4px);
-    }
-    100% {
-        -webkit-filter : blur(0px);
-        filter         : blur(0px);
-    }
+  0% {
+    -webkit-filter: blur(16px);
+            filter: blur(16px);
+  }
+  25% {
+    -webkit-filter: blur(8px);
+            filter: blur(8px);
+  }
+  50% {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+  }
 }
 .not-found {
   height: calc(100vh - 400px);
@@ -19115,17 +19114,17 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   color: #555;
 }
 #filemanager .breadcrumb li .arrow {
-    display           : none;
-    position          : absolute;
-    bottom            : -14px;
-    width             : 12px;
-    height            : 12px;
-    -webkit-transform : rotate(45deg);
-    transform         : rotate(45deg);
-    background        : #f0f0f0;
-    left              : 50%;
-    border-right      : 1px solid #dadfe4;
-    border-bottom     : 1px solid #dadfe4;
+  display: none;
+  position: absolute;
+  bottom: -14px;
+  width: 12px;
+  height: 12px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: #f0f0f0;
+  left: 50%;
+  border-right: 1px solid #dadfe4;
+  border-bottom: 1px solid #dadfe4;
 }
 #filemanager .select2-display-none {
   z-index: 999999 !important;
@@ -19192,10 +19191,10 @@ fieldset[disabled] a.dropzone .dz-preview .btn-edit {
   color: #949494;
 }
 #filemanager .flex #right {
-    -webkit-box-flex : 1;
-    -ms-flex         : 1;
-    flex             : 1;
-    border-left      : 1px solid #dadfe4;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border-left: 1px solid #dadfe4;
 }
 #filemanager #right .right_details {
   display: block;

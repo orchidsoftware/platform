@@ -220,8 +220,32 @@ class Builder
         $name = array_shift($name);
 
         $config['value'] = $this->getValue($name, $config['value'] ?? null);
-        $config['name'] = '[' . $name . ']';
 
+
+        //if(is_null($config['prefix']) && is_null($config['lang'])){
+        //    $config['name'] = $name;
+        //    return $config;
+        //}
+
+        $binding = explode(".", $name);
+        if(!is_array($binding)){
+            return $config;
+        }
+
+
+        $config['name'] = '';
+        foreach ($binding as $key => $bind){
+
+            if($key === 0){
+                $config['name'] .= $bind;
+                continue;
+            }
+
+            $config['name'] .= '[' . $bind . ']';
+        }
+
+
+        //$config['name'] = '[' . $name . ']';
         return $config;
     }
 

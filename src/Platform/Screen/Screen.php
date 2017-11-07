@@ -20,6 +20,11 @@ abstract class Screen
     public $description;
 
     /**
+     * @var array
+     */
+    private $arguments = [];
+
+    /**
      * Button commands
      *
      * @return array
@@ -34,7 +39,7 @@ abstract class Screen
      */
     public function build() : array
     {
-        $query = $this->query();
+        $query = call_user_func_array([$this, 'query'], $this->arguments);
 
         foreach ($this->layout() as $layout) {
             $post = new Repository($query[$layout]);
@@ -67,22 +72,43 @@ abstract class Screen
     /**
      * @param array ...$arg
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function handle(...$arg)
     {
-        if (!empty($arg) && request()->method() === 'POST') {
-            $method = array_shift($arg);
+        $this->arguments = $arg;
 
-            return $this->$method(request());
-        } elseif (!empty($arg) && request()->method() !== 'POST') {
-            return abort(404);
+
+        // first
+        $method = array_shift($arg);
+        if (method_exists($this, $method)) {
+            array_unshift($this->arguments,request());
+            return call_user_func_array([$this, $method], $this->arguments);
         }
 
+        //last
+        $method = array_pop($arg);
+        if (method_exists($this, $method)) {
+            array_unshift($this->arguments,request());
+            return call_user_func_array([$this, $method], $this->arguments);
+        }
+
+
+        return $this->view();
+    }
+
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function view()
+    {
         return view('dashboard::container.layouts.base', [
             'name'        => $this->name,
             'description' => $this->description,
             'screen'      => $this,
         ]);
     }
+
+
 }
