@@ -228,15 +228,14 @@ class Builder
         //}
 
         $binding = explode(".", $name);
-        if(!is_array($binding)){
+        if (!is_array($binding)) {
             return $config;
         }
 
 
         $config['name'] = '';
-        foreach ($binding as $key => $bind){
-
-            if($key === 0){
+        foreach ($binding as $key => $bind) {
+            if ($key === 0) {
                 $config['name'] .= $bind;
                 continue;
             }
