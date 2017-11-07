@@ -32,7 +32,6 @@ trait MultiLanguage
             if (in_array($field, $attributes)) {
                 return $this->$field;
             }
-
         } catch (\ErrorException $exception) {
             $content = collect($this->{$this->jsonColumnName})->first();
 
