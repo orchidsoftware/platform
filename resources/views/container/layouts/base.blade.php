@@ -9,7 +9,7 @@
         @foreach($screen->commandBar() as $command)
             <li>
                 <button type="submit"
-                        formaction="{{url()->current()}}/{{$command['method'] or ''}}"
+                        formaction="{{route(Route::currentRouteName())}}/{{$command['method'] or ''}}"
                         form="post-form"
                         class="btn btn-sm btn-link">
                     <i class="{{$command['icon'] or ''}}"></i>{{$command['displayName'] or ''}}
