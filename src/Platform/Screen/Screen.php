@@ -115,12 +115,12 @@ abstract class Screen
      */
     public function getArguments(){
 
-       foreach ($this->arguments as $argument){
-           if(method_exists($this, $argument)){
-               $arguments[] =  $argument;
-           }
-       }
+        foreach ($this->arguments as $argument){
+            if(method_exists($this, $argument)){
+                $arguments[] =  $argument;
+            }
+        }
 
-       return $arguments ?? [];
+        return $arguments ?? [];
     }
 }

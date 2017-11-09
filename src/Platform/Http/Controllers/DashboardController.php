@@ -14,5 +14,4 @@ class DashboardController extends Controller
             'widgets' => config('platform.main_widgets', []),
         ]);
     }
-
 }
