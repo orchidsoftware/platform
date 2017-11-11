@@ -63,12 +63,10 @@ class UpdateWidget extends Widget
             $versions = json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
 
             foreach ($versions as $key => $version) {
-
                 if (Comparator::greaterThan($version['version_normalized'],
                         $this->currentVersion) && $key != 'dev-master') {
                     return true;
                 }
-
             }
 
             return false;
