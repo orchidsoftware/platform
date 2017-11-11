@@ -82,14 +82,14 @@ abstract class Screen
         // first
         $method = array_shift($arg);
         if (method_exists($this, $method)) {
-            array_unshift($this->arguments,request());
+            array_unshift($this->arguments, request());
             return call_user_func_array([$this, $method], $this->arguments);
         }
 
         //last
         $method = array_pop($arg);
         if (method_exists($this, $method)) {
-            array_unshift($this->arguments,request());
+            array_unshift($this->arguments, request());
             return call_user_func_array([$this, $method], $this->arguments);
         }
 
@@ -113,10 +113,10 @@ abstract class Screen
     /**
      * @return array
      */
-    public function getArguments(){
-
-        foreach ($this->arguments as $argument){
-            if(method_exists($this, $argument)){
+    public function getArguments()
+    {
+        foreach ($this->arguments as $argument) {
+            if (method_exists($this, $argument)) {
                 $arguments[] =  $argument;
             }
         }
