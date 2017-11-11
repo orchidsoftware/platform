@@ -27,7 +27,8 @@
     "intervention/image": "^2.3",
     "cartalyst/tags": "^5.0",
     "cviebrock/eloquent-sluggable": "^4.2",
-    "ralouphie/mimey": "^1.0"
+    "ralouphie/mimey": "^1.0",
+    "composer/semver": "^1.4"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",

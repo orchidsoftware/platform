@@ -214,6 +214,7 @@ return [
     */
 
     'main_widgets' => [
+        Orchid\Platform\Http\Widgets\UpdateWidget::class,
         Orchid\Platform\Http\Widgets\GoogleAnalyticsWidget::class,
     ],
 
