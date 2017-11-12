@@ -60,8 +60,8 @@ class Attachment extends Model
     public function post() : MorphMany
     {
         //TODO: сделать
-        return $this->morphToMany(self::class, 'attachmentable', 'attachmentable',
-            'attachmentable_id', 'attachment_id');
+        return $this->morphToMany(self::class, 'attachmentable', 'attachmentable', 'attachmentable_id',
+            'attachment_id');
     }
 
     /**
@@ -91,25 +91,12 @@ class Attachment extends Model
         if (!empty($size)) {
             $size = '_' . $size;
 
-            if (!Storage::disk($prefix)->exists(
-                $this->path .
-                $this->name .
-                $size .
-                '.' .
-                $this->extension
-            )
-            ) {
+            if (!Storage::disk($prefix)->exists($this->path . $this->name . $size . '.' . $this->extension)) {
                 return $this->url(null, $prefix);
             }
         }
 
-        return Storage::disk($prefix)->url(
-            $this->path .
-            $this->name .
-            $size .
-            '.' .
-            $this->extension
-        );
+        return Storage::disk($prefix)->url($this->path . $this->name . $size . '.' . $this->extension);
     }
 
     /**

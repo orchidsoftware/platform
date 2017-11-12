@@ -2,6 +2,8 @@
 
 namespace Orchid\Platform\Screen;
 
+use Illuminate\Http\Request;
+
 abstract class Screen
 {
 
@@ -18,11 +20,22 @@ abstract class Screen
      * @var string
      */
     public $description;
-
+    /**
+     * @var array|Request|string
+     */
+    public $request;
     /**
      * @var array
      */
     private $arguments = [];
+
+    /**
+     * Screen constructor.
+     */
+    public function __construct()
+    {
+        $this->request = request();
+    }
 
     /**
      * Button commands
@@ -30,6 +43,16 @@ abstract class Screen
      * @return array
      */
     public function commandBar() : array
+    {
+        return [];
+    }
+
+    /**
+     * Query data
+     *
+     * @return array
+     */
+    public function query() : array
     {
         return [];
     }
@@ -50,16 +73,6 @@ abstract class Screen
     }
 
     /**
-     * Query data
-     *
-     * @return array
-     */
-    public function query() : array
-    {
-        return [];
-    }
-
-    /**
      * Views
      *
      * @return array
@@ -70,31 +83,43 @@ abstract class Screen
     }
 
     /**
-     * @param array ...$arg
+     * @param $method
+     * @param $parameters
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function handle(...$arg)
+    public function handle($method = null, $parameters = null)
     {
-        $this->arguments = $arg;
+        if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
+            if (!is_array($method)) {
+                $method = [$method];
+            }
+            $this->arguments = $method;
 
-
-        // first
-        $method = array_shift($arg);
-        if (method_exists($this, $method)) {
-            array_unshift($this->arguments, request());
-            return call_user_func_array([$this, $method], $this->arguments);
-        }
-
-        //last
-        $method = array_pop($arg);
-        if (method_exists($this, $method)) {
-            array_unshift($this->arguments, request());
-            return call_user_func_array([$this, $method], $this->arguments);
+            return $this->view();
         }
 
 
-        return $this->view();
+        if (!is_null($parameters)) {
+            if (!is_array($method)) {
+                $method = [$method];
+            }
+            $this->arguments = $method;
+
+            $this->reflectionParams($parameters);
+
+            return call_user_func_array([$this, $parameters], $this->arguments);
+        }
+
+
+        if (!is_array($parameters)) {
+            $parameters = [$parameters];
+        }
+        $this->arguments = $parameters;
+
+        $this->reflectionParams($method);
+
+        return call_user_func_array([$this, $method], $this->arguments);
     }
 
 
@@ -106,21 +131,25 @@ abstract class Screen
         return view('dashboard::container.layouts.base', [
             'name'        => $this->name,
             'description' => $this->description,
+            'arguments'   => $this->arguments,
             'screen'      => $this,
         ]);
     }
 
     /**
-     * @return array
+     * @param $method
      */
-    public function getArguments()
+    public function reflectionParams($method)
     {
-        foreach ($this->arguments as $argument) {
-            if (method_exists($this, $argument)) {
-                $arguments[] =  $argument;
+        $class = new \ReflectionClass($this);
+
+        foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
+            if (!is_null($parameter->getClass())) {
+                $arg[] = app()->make($parameter->getClass()->name);
             }
         }
 
-        return $arguments ?? [];
+        $this->arguments = array_merge($arg ?? [], $this->arguments);
     }
+
 }

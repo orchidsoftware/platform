@@ -10,14 +10,6 @@ abstract class Colums
     public $template = "dashboard::container.layouts.colums";
 
     /**
-     * @return array
-     */
-    public function layout() : array
-    {
-        return [];
-    }
-
-    /**
      * @param $post
      *
      * @return array
@@ -35,5 +27,13 @@ abstract class Colums
         ])->render();
 
         return $view;
+    }
+
+    /**
+     * @return array
+     */
+    public function layout() : array
+    {
+        return [];
     }
 }

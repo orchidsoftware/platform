@@ -62,22 +62,22 @@
         </section>
 
     <script>
-            (function (w, d, s, g, js, fs) {
-                g = w.gapi || (w.gapi = {});
-                g.analytics = {
-                    q: [], ready: function (f) {
-                        this.q.push(f);
-                    }
-                };
-                js = d.createElement(s);
-                fs = d.getElementsByTagName(s)[0];
-                js.src = 'https://apis.google.com/js/platform.js';
-                fs.parentNode.insertBefore(js, fs);
-                js.onload = function () {
-                    g.load('analytics');
-                };
-            }(window, document, 'script'));
-        </script>
+             (function (w, d, s, g, js, fs) {
+                 g = w.gapi || (w.gapi = {});
+                 g.analytics = {
+                     q: [], ready: function (f) {
+                         this.q.push(f);
+                     }
+                 };
+                 js = d.createElement(s);
+                 fs = d.getElementsByTagName(s)[0];
+                 js.src = 'https://apis.google.com/js/platform.js';
+                 fs.parentNode.insertBefore(js, fs);
+                 js.onload = function () {
+                     g.load('analytics');
+                 };
+             }(window, document, 'script'));
+    </script>
 
 
     <!-- Step 2: Load the library.  -->
@@ -105,7 +105,7 @@
             // == NOTE ==
             // This code uses ES6 promises. If you want to use this code in a browser
             // that doesn't supporting promises natively, you'll have to include a polyfill.
-            document.addEventListener("turbolinks:load", function() {
+
                 gapi.analytics.ready(function () {
 
                     /**
@@ -461,7 +461,6 @@
                     }
 
                 });
-            });
         </script>
 
 @else

@@ -45,8 +45,7 @@ class Builder
     public function __construct(array $fields, $data, string $language = null, string $prefix = null)
     {
         $this->fields = self::parseFields($fields);
-        $this->data = $data ?? $data = new Repository([]);
-        ;
+        $this->data = $data ?? $data = new Repository([]);;
         $this->language = $language;
         $this->prefix = $prefix;
     }
@@ -208,6 +207,25 @@ class Builder
         return $this->form;
     }
 
+    /**
+     * @param $config
+     *
+     * @return string
+     */
+    private function buildPrefix($config)
+    {
+        if (isset($config['prefix'])) {
+            $prefixArray = array_filter(explode(' ', $config['prefix']));
+
+            foreach ($prefixArray as $prefix) {
+                $config['prefix'] .= '[' . $prefix . ']';
+            }
+
+            return $config['prefix'];
+        }
+
+        return $this->prefix;
+    }
 
     /**
      * @param $config
@@ -235,6 +253,13 @@ class Builder
 
         $config['name'] = '';
         foreach ($binding as $key => $bind) {
+
+            if (!is_null($config['prefix'])) {
+                $config['name'] .= '[' . $bind . ']';
+                continue;
+            }
+
+
             if ($key === 0) {
                 $config['name'] .= $bind;
                 continue;
@@ -242,7 +267,6 @@ class Builder
 
             $config['name'] .= '[' . $bind . ']';
         }
-
 
         //$config['name'] = '[' . $name . ']';
         return $config;
@@ -263,25 +287,5 @@ class Builder
         }
 
         return $data;
-    }
-
-    /**
-     * @param $config
-     *
-     * @return string
-     */
-    private function buildPrefix($config)
-    {
-        if (isset($config['prefix'])) {
-            $prefixArray = array_filter(explode(' ', $config['prefix']));
-
-            foreach ($prefixArray as $prefix) {
-                $config['prefix'] .= '[' . $prefix . ']';
-            }
-
-            return $config['prefix'];
-        }
-
-        return $this->prefix;
     }
 }

@@ -88,12 +88,7 @@ class File
 
             if (substr($file->mine, 0, 5) == 'image') {
                 foreach (config('platform.images', []) as $key => $value) {
-                    $this->saveImageProcessing(
-                        $key,
-                        $value['width'],
-                        $value['height'],
-                        $value['quality']
-                    );
+                    $this->saveImageProcessing($key, $value['width'], $value['height'], $value['quality']);
                 }
             }
 

@@ -55,15 +55,13 @@ class AccessUserForm extends Form
             $rolePermission = $user->permissions ?: [];
             $permission = Dashboard::getPermission();
 
-            $permission->transform(
-                function ($array) use ($rolePermission) {
-                    foreach ($array as $key => $value) {
-                        $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-                    }
-
-                    return $array;
+            $permission->transform(function ($array) use ($rolePermission) {
+                foreach ($array as $key => $value) {
+                    $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
                 }
-            );
+
+                return $array;
+            });
 
             $roles = Role::all();
             $userRoles = $user->getRoles();
@@ -80,13 +78,11 @@ class AccessUserForm extends Form
             $roles = Role::all();
         }
 
-        return view('dashboard::container.systems.users.access',
-            [
+        return view('dashboard::container.systems.users.access', [
                 'permission' => $permission,
                 'user'       => $user,
                 'roles'      => $roles,
-            ]
-        );
+            ]);
     }
 
     /**

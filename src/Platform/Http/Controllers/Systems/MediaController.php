@@ -175,9 +175,7 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        return response()->json(
-            str_replace($location, '', Storage::disk($this->filesystem)->directories($location))
-        );
+        return response()->json(str_replace($location, '', Storage::disk($this->filesystem)->directories($location)));
     }
 
     /**
@@ -199,10 +197,9 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
-        $destination = strpos($destination, '/../') !== false
-            ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
-                '', $destination)
-            : "{$location}/{$destination}";
+        $destination = strpos($destination,
+            '/../') !== false ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
+                '', $destination) : "{$location}/{$destination}";
 
         if (!file_exists($destination)) {
             if (Storage::disk($this->filesystem)->move($source, $destination)) {

@@ -8,12 +8,11 @@ class Attachmentable extends Model
 {
 
     /**
-     * @var string
-     */
-    protected $table = 'attachmentable';
-
-    /**
      * @var bool
      */
     public $timestamps = false;
+    /**
+     * @var string
+     */
+    protected $table = 'attachmentable';
 }

@@ -12,14 +12,6 @@ abstract class Rows
     public $template = "dashboard::container.layouts.row";
 
     /**
-     * @return array
-     */
-    public function fields() : array
-    {
-        return [];
-    }
-
-    /**
      * @param $post
      *
      * @return array
@@ -34,5 +26,13 @@ abstract class Rows
         ])->render();
 
         return $view;
+    }
+
+    /**
+     * @return array
+     */
+    public function fields() : array
+    {
+        return [];
     }
 }

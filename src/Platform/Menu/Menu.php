@@ -157,9 +157,7 @@ class Menu
                 $value['template'] = $template;
             }
 
-            $html .= view($value['template'],
-                collect($value['arg'])
-            );
+            $html .= view($value['template'], collect($value['arg']));
         }
 
         return $html;

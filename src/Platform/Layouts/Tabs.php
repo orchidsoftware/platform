@@ -10,14 +10,6 @@ abstract class Tabs
     public $template = "dashboard::container.layouts.tabs";
 
     /**
-     * @return array
-     */
-    public function layout() : array
-    {
-        return [];
-    }
-
-    /**
      * @param $post
      *
      * @return array
@@ -35,5 +27,13 @@ abstract class Tabs
         ])->render();
 
         return $view;
+    }
+
+    /**
+     * @return array
+     */
+    public function layout() : array
+    {
+        return [];
     }
 }

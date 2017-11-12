@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Http\Forms\Settings;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Orchid\Setting\Models\Setting;
 

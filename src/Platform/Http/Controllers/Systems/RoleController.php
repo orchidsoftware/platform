@@ -39,10 +39,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return $this->form
-            ->route('dashboard.systems.roles.update')
-            ->method('POST')
-            ->render();
+        return $this->form->route('dashboard.systems.roles.update')->method('POST')->render();
     }
 
     /**
@@ -81,11 +78,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return $this->form
-            ->route('dashboard.systems.roles.update')
-            ->slug($role->slug)
-            ->method('PUT')
-            ->render($role);
+        return $this->form->route('dashboard.systems.roles.update')->slug($role->slug)->method('PUT')->render($role);
     }
 
     /**

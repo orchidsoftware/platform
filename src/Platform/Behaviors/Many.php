@@ -61,11 +61,8 @@ abstract class Many implements ManyInterface
     {
         $fields = $this->grid();
 
-        $data = (new $this->model())->type($this->slug)
-            ->filtersApplyDashboard($this->slug)
-            ->with($this->with)
-            ->orderBy('id', 'Desc')
-            ->paginate();
+        $data = (new $this->model())->type($this->slug)->filtersApplyDashboard($this->slug)->with($this->with)->orderBy('id',
+                'Desc')->paginate();
 
         return [
             'data'   => $data,

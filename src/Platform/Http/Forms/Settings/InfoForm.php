@@ -42,9 +42,7 @@ class InfoForm extends Form
      */
     public function get()
     {
-        $settings = collect(
-            config('app')
-        );
+        $settings = collect(config('app'));
         $extendSettings = $this->model->get('base', collect());
         $settings = $settings->merge($extendSettings);
 

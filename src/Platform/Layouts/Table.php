@@ -15,14 +15,6 @@ abstract class Table
     public $data;
 
     /**
-     * @return array
-     */
-    public function fields() : array
-    {
-        return [];
-    }
-
-    /**
      * @param $post
      *
      * @return array
@@ -38,9 +30,10 @@ abstract class Table
         return $view;
     }
 
-
     /**
+     * @param $post
      *
+     * @return array
      */
     private function generatedTable($post)
     {
@@ -59,5 +52,13 @@ abstract class Table
             'data'   => $data,
             'fields' => $this->fields(),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function fields() : array
+    {
+        return [];
     }
 }

@@ -112,8 +112,6 @@ class Taxonomy extends Model
     {
         $builder = new TaxonomyBuilder($query);
 
-        return isset($this->taxonomy) && $this->taxonomy ?
-            $builder->where('taxonomy', $this->taxonomy) :
-            $builder;
+        return isset($this->taxonomy) && $this->taxonomy ? $builder->where('taxonomy', $this->taxonomy) : $builder;
     }
 }
