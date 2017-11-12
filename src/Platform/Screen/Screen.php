@@ -151,5 +151,4 @@ abstract class Screen
 
         $this->arguments = array_merge($arg ?? [], $this->arguments);
     }
-
 }

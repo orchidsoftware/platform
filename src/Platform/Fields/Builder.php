@@ -45,7 +45,8 @@ class Builder
     public function __construct(array $fields, $data, string $language = null, string $prefix = null)
     {
         $this->fields = self::parseFields($fields);
-        $this->data = $data ?? $data = new Repository([]);;
+        $this->data = $data ?? $data = new Repository([]);
+        ;
         $this->language = $language;
         $this->prefix = $prefix;
     }
@@ -253,7 +254,6 @@ class Builder
 
         $config['name'] = '';
         foreach ($binding as $key => $bind) {
-
             if (!is_null($config['prefix'])) {
                 $config['name'] .= '[' . $bind . ']';
                 continue;
