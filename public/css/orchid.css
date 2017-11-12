@@ -14918,6 +14918,9 @@ fieldset[disabled] .bootstrap-tagsinput {
 .select2-search__field {
   width: 100% !important;
 }
+.mce-content-body .img {
+  max-width: 100%;
+}
 .item {
   position: relative;
 }

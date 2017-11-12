@@ -45,7 +45,7 @@ require('brace/theme/monokai');
 
 require('select2');
 $(() => {
-    $('.select2-enable';).select2();
+    $('.select2-enable').select2();
 })
 require('croppie');
 
@@ -58,6 +58,3 @@ require('../../../node_modules/tinymce/tinymce.min');
 
 
 tinyMCE.baseURL = "/orchid/js/";
-
-
-window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
