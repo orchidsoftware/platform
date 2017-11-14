@@ -7,7 +7,7 @@ if (!function_exists('alert')) {
      * @param string|null $message
      * @param string      $level
      *
-     * @return \Orchid\Alert\Alert
+     * @return \Orchid\Platform\Alert\Alert
      */
     function alert($message = null, $level = 'info')
     {

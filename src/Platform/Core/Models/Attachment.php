@@ -55,9 +55,9 @@ class Attachment extends Model
     /**
      * Relation Post
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function post() : MorphMany
+    public function post() : \Illuminate\Database\Eloquent\Relations\MorphToMany
     {
         //TODO: сделать
         return $this->morphToMany(self::class, 'attachmentable', 'attachmentable', 'attachmentable_id',
@@ -114,7 +114,7 @@ class Attachment extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function relationships()
     {
