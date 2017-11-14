@@ -52,7 +52,7 @@ abstract class Screen
      *
      * @return array
      */
-    public function query() : array
+    public function query()
     {
         return [];
     }
@@ -124,6 +124,7 @@ abstract class Screen
 
 
     /**
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
@@ -144,6 +145,11 @@ abstract class Screen
         $class = new \ReflectionClass($this);
 
         foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
+
+            if(!$this->checkClassInArray($key,$parameter->getClass()->getName())){
+                continue;
+            }
+
             if (!is_null($parameter->getClass())) {
                 $arg[] = app()->make($parameter->getClass()->name);
             }
@@ -151,4 +157,34 @@ abstract class Screen
 
         $this->arguments = array_merge($arg ?? [], $this->arguments);
     }
+
+    /**
+     * @param $class
+     *
+     * @return bool
+     */
+    private function checkClassInArray($class){
+        foreach ($this->arguments as $value){
+            if(is_object($value) && get_class($value) == $class){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * @param $key
+     * @param $class
+     *
+     * @return bool
+     */
+    private function checkClassInArrayByKey($key,$class){
+
+        if(array_key_exists($key,$this->arguments) && get_class($this->arguments[$key]) == $class){
+            return true;
+        }
+        return false;
+    }
+
 }

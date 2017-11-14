@@ -5,7 +5,7 @@ namespace Orchid\Platform\Http\Widgets;
 use Composer\Semver\Comparator;
 use Illuminate\Support\Facades\Cache;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Widget\Service\Widget;
+use Orchid\Platform\Widget\Widget;
 
 class UpdateWidget extends Widget
 {

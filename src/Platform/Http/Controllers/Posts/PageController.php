@@ -5,7 +5,7 @@ namespace Orchid\Platform\Http\Controllers\Posts;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Alert\Facades\Alert;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Http\Controllers\Controller;
 

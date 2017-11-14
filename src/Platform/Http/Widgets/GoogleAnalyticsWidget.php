@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Http\Widgets;
 
-use Orchid\Widget\Service\Widget;
+use Orchid\Platform\Widget\Widget;
 
 class GoogleAnalyticsWidget extends Widget
 {

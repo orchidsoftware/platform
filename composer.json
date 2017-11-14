@@ -20,10 +20,6 @@
     "laravel/framework": "5.5.*",
     "laravel/scout": "^3.0",
     "watson/active": "^2.0",
-    "orchid/defender": "^1.0",
-    "orchid/alert": "^1.0",
-    "orchid/widget": "^1.0",
-    "orchid/settings": "^2.0",
     "intervention/image": "^2.3",
     "cartalyst/tags": "^5.0",
     "cviebrock/eloquent-sluggable": "^4.2",
@@ -39,7 +35,10 @@
   "autoload": {
     "psr-4": {
       "Orchid\\Platform\\": "src/Platform/"
-    }
+    },
+    "files": [
+      "src/Orchid/Platform/Support/helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {

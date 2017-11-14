@@ -1,6 +1,5 @@
 <div class="bg-white-only  bg-auto no-border-xs">
-    <div class="container">
-        <div class="panel-body row">
+    <div class="panel-body row">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -42,7 +41,6 @@
                 </div>
             </div>
         </footer>
-    </div>
     </div>
 </div>
 

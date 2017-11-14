@@ -48,8 +48,9 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            DASHBOARD_PATH . '/config/scout.php'              => config_path('scout.php'),
+            realpath(DASHBOARD_PATH . '/config/scout.php')    => config_path('scout.php'),
             realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
+            realpath(DASHBOARD_PATH . '/config/widget.php')   => config_path('widget.php'),
         ]);
 
         $this->mergeConfigFrom(realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform');
@@ -97,6 +98,8 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            AlertServiceProvider::class,
+            WidgetServiceProvider::class,
             DashboardProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,

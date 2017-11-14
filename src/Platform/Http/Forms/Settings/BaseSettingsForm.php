@@ -4,7 +4,7 @@ namespace Orchid\Platform\Http\Forms\Settings;
 
 use Illuminate\Contracts\View\View;
 use Orchid\Platform\Forms\Form;
-use Orchid\Setting\Models\Setting;
+use Orchid\Platform\Core\Models\Setting;
 
 class BaseSettingsForm extends Form
 {

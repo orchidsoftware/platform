@@ -3,20 +3,17 @@
 namespace Orchid\Platform\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Kernel\Dashboard as Dash;
+use Orchid\Platform\Core\Models\Setting as SettingModel;
 
-/**
- * Class Dashboard
- *
- * @package Orchid\Platform\Facades
- */
-class Dashboard extends Facade
+class Setting extends Facade
 {
     /**
+     * Model of Setting.
+     *
      * @return mixed
      */
     protected static function getFacadeAccessor()
     {
-        return Dash::class;
+        return SettingModel::class;
     }
 }

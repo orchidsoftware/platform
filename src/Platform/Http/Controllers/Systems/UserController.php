@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Alert\Facades\Alert;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Forms\Systems\Users\UserFormGroup;

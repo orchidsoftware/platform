@@ -3,20 +3,21 @@
 namespace Orchid\Platform\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Kernel\Dashboard as Dash;
+
+use Orchid\Platform\Alert\Alert as AlertClass;
 
 /**
- * Class Dashboard
+ * Class Alert
  *
  * @package Orchid\Platform\Facades
  */
-class Dashboard extends Facade
+class Alert extends Facade
 {
     /**
      * @return mixed
      */
     protected static function getFacadeAccessor()
     {
-        return Dash::class;
+        return AlertClass::class;
     }
 }
