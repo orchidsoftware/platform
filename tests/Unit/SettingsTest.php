@@ -24,7 +24,6 @@ class SettingsTest extends TestCase
     /** @test */
     public function testOneValue()
     {
-
         $setting = new Setting();
         $setting->cache = false;
         $this->setting = $setting;

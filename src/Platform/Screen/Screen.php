@@ -145,8 +145,7 @@ abstract class Screen
         $class = new \ReflectionClass($this);
 
         foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
-
-            if(!$this->checkClassInArray($key,$parameter->getClass()->getName())){
+            if (!$this->checkClassInArray($key, $parameter->getClass()->getName())) {
                 continue;
             }
 
@@ -163,9 +162,10 @@ abstract class Screen
      *
      * @return bool
      */
-    private function checkClassInArray($class){
-        foreach ($this->arguments as $value){
-            if(is_object($value) && get_class($value) == $class){
+    private function checkClassInArray($class)
+    {
+        foreach ($this->arguments as $value) {
+            if (is_object($value) && get_class($value) == $class) {
                 return true;
             }
         }
@@ -179,12 +179,11 @@ abstract class Screen
      *
      * @return bool
      */
-    private function checkClassInArrayByKey($key,$class){
-
-        if(array_key_exists($key,$this->arguments) && get_class($this->arguments[$key]) == $class){
+    private function checkClassInArrayByKey($key, $class)
+    {
+        if (array_key_exists($key, $this->arguments) && get_class($this->arguments[$key]) == $class) {
             return true;
         }
         return false;
     }
-
 }
