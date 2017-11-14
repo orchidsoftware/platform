@@ -6,9 +6,8 @@ use Orchid\Platform\Alert\Alert;
 use Orchid\Platform\Alert\SessionStoreInterface;
 use Orchid\Platform\Tests\TestCase;
 
-class MenuTest extends TestCase
+class AlertTest extends TestCase
 {
-
     protected $store;
     protected $alert;
 

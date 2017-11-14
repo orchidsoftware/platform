@@ -29,5 +29,4 @@ class WidgetServiceProvider extends ServiceProvider
             return '<?php echo (new \Orchid\Platform\Widget\Widget)->get('.$segments[0].','.$segments[1].'); ?>';
         });
     }
-
 }

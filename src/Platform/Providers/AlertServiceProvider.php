@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Alert\Alert;
 use Orchid\Platform\Alert\SessionStoreInterface;
 use Orchid\Platform\Alert\LaravelSessionStore;
+
 /**
  * Class AlertServiceProvider.
  *
