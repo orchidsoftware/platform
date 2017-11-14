@@ -15,8 +15,28 @@ $ composer create-project --prefer-dist laravel/laravel orchid
 
 Перейдите в каталог проекта и выполните команду:
 ```php
-$ composer require orchid/cms
+$ composer require orchid/platform
 ```
+
+#### Настройте
+
+Опубликуем настройки и вспомогательные файлы в наше приложение:
+```php
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
+```
+
+Применим все наши миграции, что бы собрать базу данных:
+```php
+php artisan migrate
+```
+
+Сделаем доступными css/js/etc файлы
+```php
+php artisan storage:link
+php artisan orchid:link
+
+```
+
 
 #### Пользователь
 
@@ -25,9 +45,9 @@ $ composer require orchid/cms
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as UserOrchid;
+use Orchid\Platform\Core\Models\User as BaseUser;
 
-class User extends UserOrchid
+class User extends BaseUser
 {
 
 }
@@ -36,10 +56,4 @@ class User extends UserOrchid
 
 #### Конец
 
-
- **Перейти к URL-адресу:**  localhost:8000/dashboard
-
-Графическая установка не работает, если сервер запускается с помощью команды `artisan serve`, если вы хотите использовать локальный сервер, перейдите в общий каталог (public) и запустите
-```php
-php -S localhost:8000
-```
+Панель управления будет доступна по адресу 'http://www.exemple.com/dashboard'
