@@ -28,8 +28,6 @@ $this->group([
             $this->get('password/reset/{token}',
                 'ResetPasswordController@showResetForm')->name('dashboard.password.reset');
             $this->post('password/reset', 'ResetPasswordController@reset');
-
-
         }
 
         $router->post('logout', 'LoginController@logout')->name('dashboard.logout');
