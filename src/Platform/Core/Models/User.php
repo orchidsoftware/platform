@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Access\UserInterface;
+use Orchid\Platform\Notifications\ResetPassword;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -46,4 +47,17 @@ class User extends Authenticatable implements UserInterface
     protected $casts = [
         'permissions' => 'array',
     ];
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string $token
+     *
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
 }

@@ -32,8 +32,9 @@
         </div>
 
 
-        <button class="btn btn-primary m-t-md" type="submit"><i class="fa fa-btn fa-envelope"></i> Send Password Reset
-            Link
+
+        <button class="btn btn-default btn-block m-t-md" type="submit">
+            <i class="icon-envelope text-xs m-r-xs"></i> Send Password Reset Link
         </button>
     </form>
 

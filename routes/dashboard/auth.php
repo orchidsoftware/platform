@@ -21,10 +21,15 @@ $this->group([
             $router->post('login', 'LoginController@login');
 
             // Password Reset Routes...
-            $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm');
-            $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-            $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm');
-            $router->post('password/reset', 'ResetPasswordController@reset');
+            $this->get('password/reset',
+                'ForgotPasswordController@showLinkRequestForm')->name('dashboard.password.request');
+            $this->post('password/email',
+                'ForgotPasswordController@sendResetLinkEmail')->name('dashboard.password.email');
+            $this->get('password/reset/{token}',
+                'ResetPasswordController@showResetForm')->name('dashboard.password.reset');
+            $this->post('password/reset', 'ResetPasswordController@reset');
+
+
         }
 
         $router->post('logout', 'LoginController@logout')->name('dashboard.logout');

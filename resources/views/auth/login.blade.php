@@ -53,7 +53,12 @@
         </div>
 
 
-        <button class="btn btn-primary m-t-md" type="submit">{{trans('dashboard::auth/account.login')}}</button>
+
+
+        <button class="btn btn-default btn-block m-t-md" type="submit">
+            <i class="icon-login text-xs m-r-xs"></i> {{trans('dashboard::auth/account.login')}}
+        </button>
+
     </form>
 
 

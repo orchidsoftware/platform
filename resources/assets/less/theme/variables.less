@@ -2,163 +2,163 @@
 
 */
 
-@assets-url: "../../assets";
-@base-img-url: "/orchid/img/";
-@icon-font-path: "/orchid/fonts/";
-@fa-font-path: "/orchid/fonts/";
-@simple-line-font-path: "/orchid/fonts/";
+@assets-url : "../../assets";
+@base-img-url : "/orchid/img/";
+@icon-font-path : "/orchid/fonts/";
+@fa-font-path : "/orchid/fonts/";
+@simple-line-font-path : "/orchid/fonts/";
 
-@brand-primary : @oc-violet-8;
+@brand-primary : #ac5ca0; //@oc-violet-8;
 @brand-complete : @oc-indigo-8;
 @brand-info : @oc-blue-7;
 @brand-success : @oc-green-8;
 @brand-warning : @oc-yellow-5;
 @brand-danger : @oc-red-8;
 @brand-light : @oc-gray-2;
-@brand-dark: #3a3f51;
+@brand-dark : #3a3f51;
 @brand-grey : @oc-gray-7;
 
-@brand-white: #fff;
-@brand-black: #1c2b36;
+@brand-white : #ffffff;
+@brand-black : #1c2b36;
 
 //Mixing Color varriable for creating both light and dark colors
-@mix-percentage-dark: 81%;
-@mix-percentage-darker: 60%;
-@mix-percentage-light: 80%;
-@mix-percentage-lighter: 20%;
+@mix-percentage-dark : 81%;
+@mix-percentage-darker : 60%;
+@mix-percentage-light : 80%;
+@mix-percentage-lighter : 20%;
 
 //Lighter colors
-@brand-success-light: mix(@brand-success, @brand-white, @mix-percentage-light);
-@brand-success-lighter: mix(@brand-success, @brand-white, @mix-percentage-lighter);
+@brand-success-light : mix(@brand-success, @brand-white, @mix-percentage-light);
+@brand-success-lighter : mix(@brand-success, @brand-white, @mix-percentage-lighter);
 
-@brand-complete-light: mix(@brand-complete, @brand-white, @mix-percentage-light);
-@brand-complete-lighter: mix(@brand-complete, @brand-white, @mix-percentage-lighter);
+@brand-complete-light : mix(@brand-complete, @brand-white, @mix-percentage-light);
+@brand-complete-lighter : mix(@brand-complete, @brand-white, @mix-percentage-lighter);
 
-@brand-primary-light: mix(@brand-primary, @brand-white, @mix-percentage-light);
-@brand-primary-lighter: mix(@brand-primary, @brand-white, @mix-percentage-lighter);
+@brand-primary-light : mix(@brand-primary, @brand-white, @mix-percentage-light);
+@brand-primary-lighter : mix(@brand-primary, @brand-white, @mix-percentage-lighter);
 
-@brand-warning-light: mix(@brand-warning, @brand-white, @mix-percentage-light);
-@brand-warning-lighter: mix(@brand-warning, @brand-white, @mix-percentage-lighter);
+@brand-warning-light : mix(@brand-warning, @brand-white, @mix-percentage-light);
+@brand-warning-lighter : mix(@brand-warning, @brand-white, @mix-percentage-lighter);
 
-@brand-danger-light: mix(@brand-danger, @brand-white, @mix-percentage-light);
-@brand-danger-lighter: mix(@brand-danger, @brand-white, @mix-percentage-lighter);
+@brand-danger-light : mix(@brand-danger, @brand-white, @mix-percentage-light);
+@brand-danger-lighter : mix(@brand-danger, @brand-white, @mix-percentage-lighter);
 
-@brand-info-light: mix(@brand-info, @brand-white, @mix-percentage-light);
-@brand-info-lighter: mix(@brand-info, @brand-white, @mix-percentage-lighter);
+@brand-info-light : mix(@brand-info, @brand-white, @mix-percentage-light);
+@brand-info-lighter : mix(@brand-info, @brand-white, @mix-percentage-lighter);
 
 //Darker colors
-@brand-success-dark: mix(@brand-success, @brand-black, @mix-percentage-dark);
-@brand-success-darker: mix(@brand-success, @brand-black, @mix-percentage-darker);
+@brand-success-dark : mix(@brand-success, @brand-black, @mix-percentage-dark);
+@brand-success-darker : mix(@brand-success, @brand-black, @mix-percentage-darker);
 
-@brand-complete-dark: mix(@brand-complete, @brand-black, @mix-percentage-dark);
-@brand-complete-darker: mix(@brand-complete, @brand-black, @mix-percentage-darker);
+@brand-complete-dark : mix(@brand-complete, @brand-black, @mix-percentage-dark);
+@brand-complete-darker : mix(@brand-complete, @brand-black, @mix-percentage-darker);
 
-@brand-primary-dark: mix(@brand-primary, @brand-black, @mix-percentage-dark);
-@brand-primary-darker: mix(@brand-primary, @brand-black, @mix-percentage-darker);
+@brand-primary-dark : mix(@brand-primary, @brand-black, @mix-percentage-dark);
+@brand-primary-darker : mix(@brand-primary, @brand-black, @mix-percentage-darker);
 
-@brand-warning-dark: mix(@brand-warning, @brand-black, @mix-percentage-dark);
-@brand-warning-darker: mix(@brand-warning, @brand-black, @mix-percentage-darker);
+@brand-warning-dark : mix(@brand-warning, @brand-black, @mix-percentage-dark);
+@brand-warning-darker : mix(@brand-warning, @brand-black, @mix-percentage-darker);
 
-@brand-danger-dark: mix(@brand-danger, @brand-black, @mix-percentage-dark);
-@brand-danger-darker: mix(@brand-danger, @brand-black, @mix-percentage-darker);
+@brand-danger-dark : mix(@brand-danger, @brand-black, @mix-percentage-dark);
+@brand-danger-darker : mix(@brand-danger, @brand-black, @mix-percentage-darker);
 
-@brand-info-dark: mix(@brand-info, @brand-black, @mix-percentage-dark);
-@brand-info-darker: mix(@brand-info, @brand-black, @mix-percentage-darker);
+@brand-info-dark : mix(@brand-info, @brand-black, @mix-percentage-dark);
+@brand-info-darker : mix(@brand-info, @brand-black, @mix-percentage-darker);
 
-@brand-grey-light: mix(@brand-grey, #fff, 10%);
+@brand-grey-light : mix(@brand-grey, #ffffff, 10%);
 
-@body-bg: lighten(@brand-light, 1%);
-@text-color: #58666e;
-@text-muted: lighten(@text-color, 25%);
+@body-bg : lighten(@brand-light, 1%);
+@text-color : #58666e;
+@text-muted : lighten(@text-color, 25%);
 
-@font-family-sans-serif: 'Open Sans', sans-serif;
-@font-family-serif: 'Open Sans', sans-serif;
-@font-family-base: @font-family-sans-serif;
+@font-family-sans-serif : 'Open Sans', sans-serif;
+@font-family-serif : 'Open Sans', sans-serif;
+@font-family-base : @font-family-sans-serif;
 
-@font-size-base: 14px;
-@font-size-lg: ceil(@font-size-base * 1.23); // ~20px
-@font-size-md: ceil(@font-size-base * 1.14); // ~16px
-@font-size-sm: ceil(@font-size-base * 0.92); // ~13px
-@font-size-xs: ceil(@font-size-base * 0.85); // ~12px
+@font-size-base : 14px;
+@font-size-lg : ceil(@font-size-base * 1.23); // ~20px
+@font-size-md : ceil(@font-size-base * 1.14); // ~16px
+@font-size-sm : ceil(@font-size-base * 0.92); // ~13px
+@font-size-xs : ceil(@font-size-base * 0.85); // ~12px
 
-@link-color: darken(@text-color, 15%);
-@link-hover-color: darken(@text-color, 30%);
+@link-color : darken(@text-color, 15%);
+@link-hover-color : darken(@text-color, 30%);
 
-@border-radius-base: 2px;
-@border-color: darken(@brand-light, 5%);
+@border-radius-base : 2px;
+@border-color : darken(@brand-light, 5%);
 
-@line-height-base: 1.42857143; // 20/14
-@line-height-computed: floor(@font-size-base * @line-height-base); // ~20px
-@icon-css-prefix: i;
+@line-height-base : 1.42857143; // 20/14
+@line-height-computed : floor(@font-size-base * @line-height-base); // ~20px
+@icon-css-prefix : i;
 
 // Buttons
 // -------------------------
 
-@btn-default-color: @text-color;
-@btn-default-bg: lighten(@brand-light, 5%);
-@btn-default-border: @border-color;
-@btn-border-radius: @border-radius-base;
+@btn-default-color : @text-color;
+@btn-default-bg : lighten(@brand-light, 5%);
+@btn-default-border : @border-color;
+@btn-border-radius : @border-radius-base;
 
-@input-border: darken(@border-color, 5%);
-@input-border-focus: @brand-info;
-@input-border-radius: @border-radius-base;
+@input-border : darken(@border-color, 5%);
+@input-border-focus : @brand-info;
+@input-border-radius : @border-radius-base;
 
-@panel-bg: #fff;
-@panel-border: @border-color;
-@panel-heading-border: lighten(@border-color, 5%);
-@panel-list-group-border: lighten(@border-color, 5%);
-@panel-border-radius: @border-radius-base;
-@panel-heading-bg: lighten(@brand-light, 3%);
-@panel-footer-bg: #fff;
+@panel-bg : #ffffff;
+@panel-border : @border-color;
+@panel-heading-border : lighten(@border-color, 5%);
+@panel-list-group-border : lighten(@border-color, 5%);
+@panel-border-radius : @border-radius-base;
+@panel-heading-bg : lighten(@brand-light, 3%);
+@panel-footer-bg : #ffffff;
 
 @nav-bg : lighten(@brand-light, 3%);
-@nav-bg-black: #313d4f;
-@badge-bg: darken(@brand-light, 10%);
+@nav-bg-black : #313d4f;
+@badge-bg : darken(@brand-light, 10%);
 
-@list-group-item-border: lighten(@border-color, 3%);
-@list-group-item-hover: lighten(@brand-light, 3%);
-@list-group-item-focus: darken(@brand-light, 3%);
-@list-group-select-color: #dbeef9;
-@list-group-active-color: @brand-info;
+@list-group-item-border : lighten(@border-color, 3%);
+@list-group-item-hover : lighten(@brand-light, 3%);
+@list-group-item-focus : darken(@brand-light, 3%);
+@list-group-select-color : #dbeef9;
+@list-group-active-color : @brand-info;
 
-@table-border-color: lighten(@border-color, 4%);
-@table-striped-color: lighten(@brand-light, 4.5%);
+@table-border-color : lighten(@border-color, 4%);
+@table-striped-color : lighten(@brand-light, 4.5%);
 
-@arrow-width: 8px;
-@arrow-color: #fff;
-@arrow-outer-width: (@arrow-width + 1);
-@arrow-outer-color: rgba(0, 0, 0, .1);
+@arrow-width : 8px;
+@arrow-color : #ffffff;
+@arrow-outer-width : (@arrow-width + 1);
+@arrow-outer-color : rgba(0, 0, 0, .1);
 
-@switch-width: 35px;
-@switch-height: 20px;
-@switch-md-width: 40px;
-@switch-md-height: 24px;
-@switch-lg-width: 50px;
-@switch-lg-height: 30px;
+@switch-width : 35px;
+@switch-height : 20px;
+@switch-md-width : 40px;
+@switch-md-height : 24px;
+@switch-lg-width : 50px;
+@switch-lg-height : 30px;
 
-@app-aside-width: 350px;
-@app-aside-nav-height: 40px;
-@app-aside-folded-width: 60px;
-@app-aside-folded-nav-height: 50px;
-@app-aside-dock-media: 992px;
+@app-aside-width : 350px;
+@app-aside-nav-height : 40px;
+@app-aside-folded-width : 60px;
+@app-aside-folded-nav-height : 50px;
+@app-aside-dock-media : 992px;
 
-@app-header-height: 80px;
-@app-footer-height: 50px;
-@app-header-md-height: 60px;
+@app-header-height : 80px;
+@app-footer-height : 50px;
+@app-header-md-height : 60px;
 
-@scroll-bar-width: 17px;
-@butterbar-height: 3px;
-@butterbar-time: 0.75s;
+@scroll-bar-width : 17px;
+@butterbar-height : 3px;
+@butterbar-time : 0.75s;
 
-@off-screen-width: 75%;
+@off-screen-width : 75%;
 
-@menu-bezier: .05, .74, .27, .99;
-@brand-menu-light: #fafafa;
+@menu-bezier : .05, .74, .27, .99;
+@brand-menu-light : #fafafa;
 
 //Forms
-@form-group-height: 54px;
-@form-control-border-color: fade(@brand-black, 7%);
+@form-group-height : 54px;
+@form-control-border-color : fade(@brand-black, 7%);
 
-@tablet: 768px;
-@desktop: 1280px;
-@widescreen: 1600px;
+@tablet : 768px;
+@desktop : 1280px;
+@widescreen : 1600px;

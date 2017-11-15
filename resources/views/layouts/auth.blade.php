@@ -63,17 +63,21 @@
             <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
                     <div class="col-sm-3 col-md-2">
-                        <img alt="" class="m-t-xs" src="/orchid/img/logo.svg" width="78" height="22">
+                        <a href="https://orchid.software/"><img alt="Orchid"
+                                                                class="m-t-xs"
+                                                                src="/orchid/img/logo.svg"
+                                                                width="78"
+                                                                height="22"></a>
                     </div>
                     <div class="col-sm-9 no-padding">
                         <p class="m-l-md">
                             <small>
 
                                 License & Source Code<br>
-                                Orchid is freely available under the MIT. <br>
+                                ORCHID is freely available under the MIT. <br>
                                 The source is available on <a href="https://github.com/TheOrchid/Platform"
                                                               class="text-info" target="_blank"
-                                                              rel="noopener noreferrer">github</a>.
+                                                              rel="noopener noreferrer">GitHub</a>.
 
                             </small>
                         </p>
