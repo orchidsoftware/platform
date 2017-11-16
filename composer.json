@@ -37,7 +37,7 @@
       "Orchid\\Platform\\": "src/Platform/"
     },
     "files": [
-      "src/Orchid/Platform/Support/helpers.php"
+      "src/Platform/Support/helpers.php"
     ]
   },
   "autoload-dev": {
