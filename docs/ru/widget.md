@@ -33,7 +33,7 @@ class MySuperWidget extends Widget {
     /**
      * @return mixed
      */
-     public function run(){
+     public function handler(){
          return view('',[
          ]);
      }
@@ -55,7 +55,7 @@ class MySuperWidget extends Widget {
 ### Использование :
 
 
-При вызове виджета поумолчанию исполняется метод `"run"`.
+При вызове виджета поумолчанию исполняется метод `"handler"`.
 Для подключения виджета необходимо выполнить в коде используя синтаксис Blade:
 ```php
 @widget('NameForMySuperWidget')

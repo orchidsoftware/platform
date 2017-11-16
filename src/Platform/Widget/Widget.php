@@ -15,13 +15,13 @@ class Widget implements WidgetContractInterface
         $class = config('widget.widgets.'.$key);
         $widget = new $class();
 
-        return $widget->run($arg);
+        return $widget->handler($arg);
     }
 
     /**
      * Soother.
      */
-    public function run()
+    public function handler()
     {
     }
 }

@@ -16,5 +16,5 @@ interface WidgetContractInterface
      *
      * @return mixed
      */
-    public function run();
+    public function handler();
 }

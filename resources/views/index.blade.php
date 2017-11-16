@@ -6,7 +6,7 @@
 @section('content')
 
     @foreach($widgets as $widget)
-        {!! (new $widget)->run() !!}
+        {!! (new $widget)->handler() !!}
     @endforeach
 
 @stop

@@ -42,7 +42,7 @@ class UpdateWidget extends Widget
     /**
      * @return mixed
      */
-    public function run()
+    public function handler()
     {
         $status = Cache::remember('platform-update-widget', $this->cache, function () {
             return $this->getStatus();

@@ -7,7 +7,7 @@
     <title>@yield('title') - ORCHID</title>
     <meta name="csrf_token" content="{{csrf_token()}}">
     <meta name="auth" content="{{Auth::check()}}">
-    <link rel="stylesheet" type="text/css" href="/orchid/css/orchid.css">
+    <link rel="stylesheet" type="text/css" href="{{asset("/orchid/css/orchid.css")}}">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/orchid/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/orchid/favicon-32x32.png" sizes="32x32">
@@ -30,7 +30,7 @@
     @stack('stylesheets')
 
 
-    <script src="/orchid/js/orchid.js" type="text/javascript"></script>
+    <script src="{{asset("/orchid/js/orchid.js")}}" type="text/javascript"></script>
 </head>
 
 

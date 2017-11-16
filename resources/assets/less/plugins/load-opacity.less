@@ -4,21 +4,25 @@
 }
 
 #content {
-  animation: blurin 500ms ease-in;
+  animation : blurin 340ms ease-in;
 }
 
 
 @keyframes blurin {
   0% {
-    filter: blur(16px);
+    opacity : 0.25;
+    filter  : blur(16px);
   }
   25% {
-    filter: blur(8px);
+    opacity : 0.5;
+    filter  : blur(8px);
   }
   50% {
-    filter: blur(4px);
+    opacity : 0.75;
+    filter  : blur(4px);
   }
   100% {
-    filter: blur(0px);
+    opacity : 1;
+    filter  : blur(0px);
   }
 }

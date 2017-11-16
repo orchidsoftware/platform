@@ -76,17 +76,18 @@ return [
     */
 
     'fields' => [
-        'textarea' => Orchid\Platform\Fields\Types\TextAreaField::class,
-        'input'    => Orchid\Platform\Fields\Types\InputField::class,
-        'list'     => Orchid\Platform\Fields\Types\ListField::class,
-        'tags'     => Orchid\Platform\Fields\Types\TagsField::class,
-        'robot'    => Orchid\Platform\Fields\Types\RobotField::class,
-        'place'    => Orchid\Platform\Fields\Types\PlaceField::class,
-        'picture'  => Orchid\Platform\Fields\Types\PictureField::class,
-        'datetime' => Orchid\Platform\Fields\Types\DateTimerField::class,
-        'checkbox' => Orchid\Platform\Fields\Types\CheckBoxField::class,
-        'code'     => Orchid\Platform\Fields\Types\CodeField::class,
-        'wysiwyg'  => Orchid\Platform\Fields\Types\TinyMCEField::class,
+        'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+        'input'        => Orchid\Platform\Fields\Types\InputField::class,
+        'list'         => Orchid\Platform\Fields\Types\ListField::class,
+        'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+        'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+        'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+        'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+        'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+        'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+        'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+        'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+        'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
     ],
 
     /*
@@ -99,7 +100,7 @@ return [
     */
 
     'single' => [
-        //App\Core\Behaviors\Single\DemoPage::class,
+        App\Core\Behaviors\Single\DemoPage::class,
     ],
 
     /*
@@ -112,7 +113,7 @@ return [
     */
 
     'many' => [
-        //App\Core\Behaviors\Many\DemoPost::class,
+        App\Core\Behaviors\Many\DemoPost::class,
     ],
 
     /*

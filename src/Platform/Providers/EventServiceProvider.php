@@ -2,7 +2,22 @@
 
 namespace Orchid\Platform\Providers;
 
+use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Orchid\Platform\Events\CategoryEvent;
+use Orchid\Platform\Events\CommentEvent;
+use Orchid\Platform\Events\SettingsEvent;
+use Orchid\Platform\Events\Systems\RolesEvent;
+use Orchid\Platform\Events\Systems\UserEvent;
+use Orchid\Platform\Listeners\Category\CategoryBaseLister;
+use Orchid\Platform\Listeners\Category\CategoryDescLister;
+use Orchid\Platform\Listeners\Comment\CommentBaseListener;
+use Orchid\Platform\Listeners\Settings\SettingBaseListener;
+use Orchid\Platform\Listeners\Settings\SettingInfoListener;
+use Orchid\Platform\Listeners\Systems\Roles\RoleBaseListener;
+use Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin;
+use Orchid\Platform\Listeners\Systems\Users\UserAccessListener;
+use Orchid\Platform\Listeners\Systems\Users\UserBaseListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -12,27 +27,26 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \Orchid\Platform\Events\Systems\RolesEvent::class => [
-            \Orchid\Platform\Listeners\Systems\Roles\RoleBaseListener::class,
+        RolesEvent::class    => [
+            RoleBaseListener::class,
         ],
-        \Orchid\Platform\Events\Systems\UserEvent::class  => [
-            \Orchid\Platform\Listeners\Systems\Users\UserBaseListener::class,
-            \Orchid\Platform\Listeners\Systems\Users\UserAccessListener::class,
+        UserEvent::class     => [
+            UserBaseListener::class,
+            UserAccessListener::class,
         ],
-        \Illuminate\Auth\Events\Login::class              => [
-            \Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin::class,
+        Login::class         => [
+            LogSuccessfulLogin::class,
         ],
-
-        \Orchid\Platform\Events\SettingsEvent::class => [
-            \Orchid\Platform\Listeners\Settings\SettingInfoListener::class,
-            \Orchid\Platform\Listeners\Settings\SettingBaseListener::class,
+        SettingsEvent::class => [
+            SettingInfoListener::class,
+            SettingBaseListener::class,
         ],
-        \Orchid\Platform\Events\CategoryEvent::class => [
-            \Orchid\Platform\Listeners\Category\CategoryBaseLister::class,
-            \Orchid\Platform\Listeners\Category\CategoryDescLister::class,
+        CategoryEvent::class => [
+            CategoryBaseLister::class,
+            CategoryDescLister::class,
         ],
-        \Orchid\Platform\Events\CommentEvent::class  => [
-            \Orchid\Platform\Listeners\Comment\CommentBaseListener::class,
+        CommentEvent::class  => [
+            CommentBaseListener::class,
         ],
     ];
 
