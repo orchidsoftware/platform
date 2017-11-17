@@ -14,6 +14,14 @@
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
+
+
+## Introduction
+
+ORCHID is a package for the Laravel framework, which simplifies the development of web sites and line-of-business applications. The focus is on rapid prototyping and content customization.
+
+The platform is provided as a package, you can easily integrate it as a third-party component using Composer
+
 ## Official Documentation
 
 Documentation can be found at [Orchid website](http://orchid.software).
@@ -39,7 +47,7 @@ Make sure your server meets the following requirements.
 
 Firstly, download the Laravel installer using Composer:
 ```php
-$ composer require orchid/platform
+$ composer require orchid/platform:dev-master
 ```
 
 Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
@@ -47,9 +55,9 @@ Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as UserOrchid;
+use Orchid\Platform\Core\Models\User as BaseUser;
 
-class User extends UserOrchid
+class User extends BaseUser
 {
 
 }
@@ -59,12 +67,7 @@ class User extends UserOrchid
 Publish ORCHID's vendor files
 
 ```php
-php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
-```
-
-Create the notification table
-```php
-php artisan notifications:table
+php artisan vendor:publish --all
 ```
 
 Run your database migration
@@ -72,16 +75,17 @@ Run your database migration
 php artisan migrate
 ```
 
+Make available css/js/etc files
+```php
+php artisan storage:link
+php artisan orchid:link
+```
+
 Create your admin user
 ```php
 php artisan make:admin admin admin@admin.com password
 ```
 
-Add the following to your `.env` file
-
-```php
-APP_INSTALL=true
-```
 
 #### Usage
 
