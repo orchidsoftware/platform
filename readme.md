@@ -50,7 +50,7 @@ Firstly, download the Laravel installer using Composer:
 $ composer require orchid/platform:dev-master
 ```
 
-Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
+Extend your user model using the `Orchid\Core\Models\User as BaseUser` alias:
 
 ```php
 namespace App;
