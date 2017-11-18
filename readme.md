@@ -24,16 +24,34 @@ ORCHID is a package for the Laravel framework, which simplifies the development 
 
 The platform is provided as a package, you can easily integrate it as a third-party component using Composer
 
+
 ## Official Documentation
 
 Documentation can be found at [Orchid website](http://orchid.software).
 
-## Online Demo
-You can view a demo at [http://demo.orchid.software](http://demo.orchid.software)
+You can watch [live](http://demo.orchid.software)
 
-**Email**: admin@admin.com
+**Login**: admin@admin.com **Password**: password
 
-**Password**: password
+
+
+## Some frequently asked questions for you
+
+ **What is ORCHID?**
+ 
+ORCHID is a package for Laravel which helps with the administration of the application on Laravel, allowing you to write code as you want, control of routing/themes/plugins/etc - none of this and will not be! The package only gives a good set of tools that will be in demand in almost every project.
+                   
+**Is it necessary to use the built-in recordings?**
+
+We assume that most of your records will be stored in json, which will allow you to do the translation and the universal structure, but if the rails have goals like a CRM system with harsh conditions, then of course you can use the classic CRUD yourself, orchids will not stop you.
+    
+**Are there any additional system requirements from Laravel?**
+
+Yes, you need a PHP extension for image processing and support for json type your database.
+
+**How much does it cost?**
+
+ORCHID is free, but we appreciate donations.
 
 
 ## System requirements
@@ -95,10 +113,6 @@ To view ORCHID's dashboard go to:
 ```php
 http://your.app/dashboard
 ```
-and use
-**Email**: admin@admin.com
-**Password**: password
-
 
 ## Security
 
