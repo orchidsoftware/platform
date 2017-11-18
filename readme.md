@@ -1,10 +1,12 @@
-<p align="center">
-<a href="https://github.com/TheOrchid/Platform"><img width="250"  src="https://orchid.software/img/orchid.svg">
-</a>
-</p>
 
+<h1 align="center">
+  <br>
+  <a href="https://orchid.software/"><img src="https://orchid.software/img/orchid.svg" alt="ORCHID" width="200"></a>
+  <br>
+  <br>
+</h1>
 
-#
+<h4 align="center">Powerful platform for building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/TheOrchid/Platform/"><img src="https://travis-ci.org/TheOrchid/Platform.svg?branch=master"></a>
@@ -14,7 +16,7 @@
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
-
+![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
 ## Introduction
 
