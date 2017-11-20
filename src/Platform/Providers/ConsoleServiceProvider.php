@@ -31,7 +31,12 @@ class ConsoleServiceProvider extends ServiceProvider
         'Commands\\MakeSingleBehavior',
         'Commands\\MakeFilter',
         'Commands\\PublicLinkCommand',
-        'Commands\\MakeWidget'
+        'Commands\\MakeWidget',
+        'Commands\\MakeColumns',
+        'Commands\\MakeRows',
+        'Commands\\MakeScreen',
+        'Commands\\MakeTable',
+        'Commands\\MakeTabs',
     ];
 
     /**
@@ -49,11 +54,10 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function provides() : array
     {
-        $provides = [];
         foreach ($this->commands as $command) {
             $provides[] = $this->namespace . $command;
         }
 
-        return $provides;
+        return $provides ?? [];
     }
 }

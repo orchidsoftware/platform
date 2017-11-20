@@ -18,7 +18,7 @@ class MakeSingleBehavior extends GeneratorCommand
      *
      * @var string
      */
-    protected $description = 'Create a new Behavior class';
+    protected $description = 'Create a new behavior class';
 
     /**
      * The type of class being generated.

@@ -4,28 +4,28 @@ namespace Orchid\Platform\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeManyBehavior extends GeneratorCommand
+class MakeTable extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:manyBehavior';
+    protected $name = 'make:table';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new behavior class';
+    protected $description = 'Create a new table layout class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Behavior';
+    protected $type = 'Table';
 
     /**
      * Get the stub file for the generator.
@@ -34,7 +34,7 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/many.stub';
+        return DASHBOARD_PATH . '/resources/stubs/layout/table.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Core\Behaviors\Many';
+        return $rootNamespace . '\Http\Layouts';
     }
 }

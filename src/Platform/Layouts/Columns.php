@@ -2,12 +2,12 @@
 
 namespace Orchid\Platform\Layouts;
 
-abstract class Colums
+abstract class Columns
 {
     /**
      * @var string
      */
-    public $template = "dashboard::container.layouts.colums";
+    public $template = "dashboard::container.layouts.columns";
 
     /**
      * @param $post
@@ -23,7 +23,7 @@ abstract class Colums
         }
 
         $view = view($this->template, [
-            'colums' => $build ?? [],
+            'columns' => $build ?? [],
         ])->render();
 
         return $view;

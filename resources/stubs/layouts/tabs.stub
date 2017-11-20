@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Platform\Layouts\Tabs;
+
+class DummyClass extends Tabs
+{
+    /**
+     * Views
+     *
+     * @return array
+     */
+    public function layout(): array
+    {
+        return [];
+    }
+}

@@ -1,4 +1,6 @@
-<?php namespace DummyNamespace;
+<?php
+
+namespace DummyNamespace;
 
 use Orchid\Platform\Behaviors\Many;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;

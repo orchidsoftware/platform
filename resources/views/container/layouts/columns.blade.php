@@ -1,9 +1,9 @@
 <div class="hbox hbox-auto-xs bg-light">
 
-    @foreach($colums as $key => $colum)
+    @foreach($columns as $key => $column)
         <div class="col lter b-l">
             <div class="vbox">
-                @foreach($colum as $item)
+                @foreach($column as $item)
                     {!! $item or '' !!}
                 @endforeach
             </div>

@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Platform\Layouts\Columns;
+
+class DummyClass extends Columns
+{
+    /**
+     * @return array
+     */
+    public function layout(): array
+    {
+        return [];
+    }
+}
