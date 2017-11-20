@@ -2,6 +2,6 @@
 
 namespace Orchid\Platform\Exceptions;
 
-class TypeException extends \Exception
+class FieldRequiredAtrtributeException extends \Exception
 {
 }
