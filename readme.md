@@ -1,10 +1,12 @@
-<p align="center">
-<a href="https://github.com/TheOrchid/Platform"><img width="250"  src="https://orchid.software/img/orchid.svg">
-</a>
-</p>
 
+<h1 align="center">
+  <br>
+  <a href="https://orchid.software/"><img src="https://orchid.software/img/orchid.svg" alt="ORCHID" width="250"></a>
+  <br>
+  <br>
+</h1>
 
-#
+<h4 align="center">Powerful platform for building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/TheOrchid/Platform/"><img src="https://travis-ci.org/TheOrchid/Platform.svg?branch=master"></a>
@@ -14,16 +16,22 @@
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
+![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
+
+## Introduction
+
+ORCHID is a package for the Laravel framework, which simplifies the development of web sites and line-of-business applications. The focus is on rapid prototyping and content customization.
+
+The platform is provided as a package, you can easily integrate it as a third-party component using Composer
+
+
 ## Official Documentation
 
 Documentation can be found at [Orchid website](http://orchid.software).
 
-## Online Demo
-You can view a demo at [http://demo.orchid.software](http://demo.orchid.software)
+You can watch [live](http://demo.orchid.software)
 
-**Email**: admin@admin.com
-
-**Password**: password
+**Login**: admin@admin.com **Password**: password
 
 
 ## System requirements
@@ -39,17 +47,17 @@ Make sure your server meets the following requirements.
 
 Firstly, download the Laravel installer using Composer:
 ```php
-$ composer require orchid/platform
+$ composer require orchid/platform:dev-master
 ```
 
-Extend your user model using the `Orchid\Core\Models\User as UserOrchid` alias:
+Extend your user model using the `Orchid\Core\Models\User as BaseUser` alias:
 
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as UserOrchid;
+use Orchid\Platform\Core\Models\User as BaseUser;
 
-class User extends UserOrchid
+class User extends BaseUser
 {
 
 }
@@ -59,12 +67,7 @@ class User extends UserOrchid
 Publish ORCHID's vendor files
 
 ```php
-php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
-```
-
-Create the notification table
-```php
-php artisan notifications:table
+php artisan vendor:publish --all
 ```
 
 Run your database migration
@@ -72,16 +75,17 @@ Run your database migration
 php artisan migrate
 ```
 
+Make available css/js/etc files
+```php
+php artisan storage:link
+php artisan orchid:link
+```
+
 Create your admin user
 ```php
 php artisan make:admin admin admin@admin.com password
 ```
 
-Add the following to your `.env` file
-
-```php
-APP_INSTALL=true
-```
 
 #### Usage
 
@@ -89,9 +93,25 @@ To view ORCHID's dashboard go to:
 ```php
 http://your.app/dashboard
 ```
-and use
-**Email**: admin@admin.com
-**Password**: password
+
+
+## Some frequently asked questions for you
+
+ **What is ORCHID?**
+ 
+ORCHID is a package for Laravel which helps with the administration of the application on Laravel, allowing you to write code as you want, control of routing/themes/plugins/etc - none of this and will not be! The package only gives a good set of tools that will be in demand in almost every project.
+                   
+**Is it necessary to use the built-in recordings?**
+
+We assume that most of your records will be stored in json, which will allow you to do the translation and the universal structure, but if the rails have goals like a CRM system with harsh conditions, then of course you can use the classic CRUD yourself, orchids will not stop you.
+    
+**Are there any additional system requirements from Laravel?**
+
+Yes, you need a PHP extension for image processing and support for json type your database.
+
+**How much does it cost?**
+
+ORCHID is free, but we appreciate donations.
 
 
 ## Security

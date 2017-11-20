@@ -1,6 +1,6 @@
 {
   "name": "orchid/platform",
-  "description": "Laravel Orchid Platform.",
+  "description": "Powerful platform for building a business application using the Laravel framework.",
   "keywords": ["framework", "laravel", "orchid", "platform"],
   "type": "library",
   "license": "MIT",
