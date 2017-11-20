@@ -218,4 +218,19 @@ return [
         Orchid\Platform\Http\Widgets\UpdateWidget::class,
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Resource
+    |--------------------------------------------------------------------------
+    |
+    | Automatically connect the stored links. For example js and css files
+    |
+    */
+
+    'resource' => [
+        'stylesheets' => [],
+        'scripts'     => [],
+    ],
+
 ];

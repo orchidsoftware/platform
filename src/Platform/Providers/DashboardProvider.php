@@ -21,5 +21,14 @@ class DashboardProvider extends ServiceProvider
         $dashboard->registerStorage('fields', new FieldStorage);
         $dashboard->registerStorage('pages', new SingleBehaviorStorage);
         $dashboard->registerStorage('posts', new ManyBehaviorStorage);
+
+
+        foreach (config('platform.resource.stylesheets', []) as $stylesheet) {
+            $dashboard->registerResource('stylesheets', $stylesheet);
+        }
+
+        foreach (config('platform.resource.scripts', []) as $script) {
+            $dashboard->registerResource('scripts', $script);
+        }
     }
 }
