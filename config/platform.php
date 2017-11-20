@@ -99,8 +99,7 @@ return [
     |
     */
 
-    'single' => [
-        App\Core\Behaviors\Single\DemoPage::class,
+    'single' => [//App\Core\Behaviors\Single\DemoPage::class,
     ],
 
     /*
@@ -112,8 +111,7 @@ return [
     |
     */
 
-    'many' => [
-        App\Core\Behaviors\Many\DemoPost::class,
+    'many' => [//App\Core\Behaviors\Many\DemoPost::class,
     ],
 
     /*
