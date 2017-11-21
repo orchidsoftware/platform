@@ -4,6 +4,7 @@ namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Forms\Form;
@@ -19,6 +20,11 @@ class BaseUserForm extends Form
     protected $model = User::class;
 
     /**
+     * @var null
+     */
+    protected $behavior;
+
+    /**
      * BaseUserForm constructor.
      *
      * @param null $request
@@ -26,6 +32,9 @@ class BaseUserForm extends Form
     public function __construct($request = null)
     {
         $this->name = trans('dashboard::systems/users.tabs.information');
+
+        $user = config('platform.common.user');
+        $this->behavior = (new $user);
         parent::__construct($request);
     }
 
@@ -36,6 +45,7 @@ class BaseUserForm extends Form
      */
     public function rules() : array
     {
+        return $this->behavior->rules();
         return [
             'name'  => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $this->request->get('email') . ',email',
@@ -52,7 +62,10 @@ class BaseUserForm extends Form
     public function get(User $user = null) : View
     {
         return view('dashboard::container.systems.users.info', [
-            'user' => $user ?: new $this->model(),
+            'user'     => $user ?: new $this->model(),
+            'language' => App::getLocale(),
+            'locales'  => config('platform.locales'),
+            'fields'   => $this->behavior->fields(),
         ]);
     }
 

@@ -25,7 +25,7 @@ class CategoryDescForm extends Form
     /**
      * @var null
      */
-    protected $categoryBehavior;
+    protected $behavior;
 
     /**
      * CategoryDescForm constructor.
@@ -36,8 +36,8 @@ class CategoryDescForm extends Form
     {
         $this->name = trans('dashboard::systems/category.display');
 
-        $category = config('platform.category');
-        $this->categoryBehavior = (new $category);
+        $category = config('platform.common.category');
+        $this->behavior = (new $category);
         parent::__construct($request);
     }
 
@@ -48,7 +48,7 @@ class CategoryDescForm extends Form
     {
         return array_merge([
             'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
-        ], $this->categoryBehavior->rules());
+        ], $this->behavior->rules());
     }
 
     /**
@@ -66,7 +66,7 @@ class CategoryDescForm extends Form
             'language'     => App::getLocale(),
             'termTaxonomy' => $termTaxonomy,
             'locales'      => config('platform.locales'),
-            'fields'       => $this->categoryBehavior->fields(),
+            'fields'       => $this->behavior->fields(),
         ]);
     }
 

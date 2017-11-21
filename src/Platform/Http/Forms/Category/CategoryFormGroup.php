@@ -37,7 +37,7 @@ class CategoryFormGroup extends FormGroup
      */
     public function main() : View
     {
-        $category = config('platform.category');
+        $category = config('platform.common.category');
         $category = (new $category);
 
         return view('dashboard::container.systems.category.grid', [

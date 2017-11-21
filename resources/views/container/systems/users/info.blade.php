@@ -2,6 +2,10 @@
     <div class="bg-white padder-md">
 
 
+        {!! generate_form($fields, $user->attributes) !!}
+
+
+
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
             <label class="control-label">{{trans('dashboard::systems/users.name')}}</label>
             <input type="text" name="name" class="form-control" value="{{$user->name or old('name')}}"
@@ -24,3 +28,7 @@
 
     </div>
 </div>
+
+
+
+

@@ -21,10 +21,6 @@ if (!function_exists('alert')) {
     }
 }
 
-
-
-use Orchid\Platform\Facades\Setting;
-
 if (!function_exists('setting')) {
     /**
      * @param      $key
@@ -34,6 +30,23 @@ if (!function_exists('setting')) {
      */
     function setting($key, $default = null)
     {
-        return Setting::get($key, $default);
+        return \Orchid\Platform\Facades\Setting::get($key, $default);
+    }
+}
+
+if (!function_exists('generate_form')) {
+    /**
+     * @param array       $fields
+     * @param             $data
+     * @param string|null $language
+     * @param string|null $prefix
+     *
+     * @return mixed
+     */
+    function generate_form(array $fields, $data, string $language = null, string $prefix = null)
+    {
+        $form = new \Orchid\Platform\Fields\Builder($fields, $data, $language, $prefix);
+
+        return $form->generateForm();
     }
 }

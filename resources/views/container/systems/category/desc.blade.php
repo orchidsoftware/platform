@@ -21,11 +21,9 @@
                 <div class="wrapper-lg">
 
                     <div class="container">
-                        @php
-                            $form = new \Orchid\Platform\Fields\Builder($fields, optional($termTaxonomy->term), $code)
-                        @endphp
 
-                        {!! $form->generateForm() !!}
+                        {!! generate_form($fields, optional($termTaxonomy->term), $code) !!}
+
                     </div>
 
                 </div>
