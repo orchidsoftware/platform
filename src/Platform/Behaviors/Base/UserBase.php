@@ -20,7 +20,31 @@ class UserBase
      */
     public function fields() : array
     {
-        return [];
+        return [
+            'name'     => [
+                'tag'         => 'input',
+                'type'        => 'text',
+                'name'        => 'name',
+                'max'         => 255,
+                'required'    => true,
+                'title'       => trans('dashboard::systems/users.name'),
+                'placeholder' => trans('dashboard::systems/users.name'),
+            ],
+            'email'    => [
+                'tag'         => 'input',
+                'type'        => 'email',
+                'name'        => 'email',
+                'required'    => true,
+                'title'       => trans('dashboard::systems/users.email'),
+                'placeholder' => trans('dashboard::systems/users.email'),
+            ],
+            'password' => [
+                'tag'         => 'password',
+                'name'        => 'password',
+                'title'       => trans('dashboard::systems/users.password'),
+                'placeholder' => '********',
+            ],
+        ];
     }
 
     /**

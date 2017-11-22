@@ -88,6 +88,7 @@ return [
         'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
         'code'         => Orchid\Platform\Fields\Types\CodeField::class,
         'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+        'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
     ],
 
     /*
