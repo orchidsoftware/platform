@@ -22,12 +22,16 @@
 
 @section('content')
 
-    <form class="bg-white b-b box-shadow" id="post-form" method="post" enctype="multipart/form-data">
-        @foreach($screen->build() as $views)
-            {!! $views or '' !!}
-        @endforeach
+    <section class="wrapper-md">
+        <div class="bg-white b-b box-shadow">
+            <form id="post-form" method="post" enctype="multipart/form-data">
+                @foreach($screen->build() as $views)
+                    {!! $views or '' !!}
+                @endforeach
 
-        {{csrf_field()}}
-    </form>
+                {{csrf_field()}}
+            </form>
+        </div>
+    </section>
 
 @stop

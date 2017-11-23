@@ -6,11 +6,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Access\UserInterface;
+use Orchid\Platform\Core\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess;
+    use Notifiable, UserAccess, MultiLanguage;
 
     /**
      * The database table used by the model.

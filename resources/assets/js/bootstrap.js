@@ -58,3 +58,5 @@ require('../../../node_modules/tinymce/tinymce.min');
 
 
 tinyMCE.baseURL = "/orchid/js/";
+
+window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');

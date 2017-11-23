@@ -34,9 +34,9 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>{{trans('dashboard::systems/users.name')}}</th>
-                                    <th>{{trans('dashboard::systems/users.email')}}</th>
-                                    <th>{{trans('dashboard::common.Last edit')}}</th>
+                                    @foreach($grid as $key => $column)
+                                        <th>{{$column}}</th>
+                                    @endforeach
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,10 +46,10 @@
                                             <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
 
-                                        <td>{{ $user->updated_at or $user->created_at }}</td>
+                                        @foreach($grid as $key => $column)
+                                            <td>{{$user->getContent($key)}}</td>
+                                        @endforeach
                                     </tr>
 
                                 @endforeach

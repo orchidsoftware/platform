@@ -52,6 +52,10 @@ class UserBase
      */
     public function grid() : array
     {
-        return [];
+        return [
+            'name' => trans('dashboard::systems/users.name'),
+            'email' => trans('dashboard::systems/users.email'),
+            'updated_at' => trans('dashboard::common.Last edit'),
+        ];
     }
 }
