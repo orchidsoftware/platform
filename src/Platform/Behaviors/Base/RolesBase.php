@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Behaviors\Base;
 
-class UserBase
+class RolesBase
 {
 
     /**
