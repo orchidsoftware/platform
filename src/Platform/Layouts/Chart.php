@@ -65,6 +65,4 @@ abstract class Chart
             'value' => [],
         ];
     }
-
-
 }
