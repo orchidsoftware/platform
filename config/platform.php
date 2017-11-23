@@ -123,7 +123,6 @@ return [
 
     'common' => [
         'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
-        'role'     => \Orchid\Platform\Behaviors\Base\RoleBase::class,
         'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
     ],
 
