@@ -63,9 +63,9 @@ abstract class Screen
     public function build() : array
     {
         $query = call_user_func_array([$this, 'query'], $this->arguments);
+        $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            $post = new Repository($query[$layout]);
             $build[] = (new $layout)->build($post);
         }
 
