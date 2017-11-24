@@ -142,4 +142,10 @@ $this->group([
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
+
+
+        $router->post('widget/{widget}/{arg?}/{arg2?}', [
+            'as'   => 'dashboard.systems.widget',
+            'uses' => 'WidgetController@index',
+        ]);
     });

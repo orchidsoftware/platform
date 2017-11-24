@@ -9,6 +9,7 @@ use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Widget\WidgetContractInterface;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -59,6 +60,22 @@ class RouteServiceProvider extends ServiceProvider
 
             return $type;
         });
+
+        Route::bind('widget',function ($value){
+
+            try {
+                $widget = app()->make((urldecode($value)));
+            }catch (\Exception $exception){
+                return abort(403);
+            }
+
+            if(!is_a($widget,WidgetContractInterface::class)){
+                return abort(403);
+            }
+
+            return $widget;
+        });
+
 
         Route::bind('slug', function ($value) {
             if (is_numeric($value)) {

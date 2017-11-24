@@ -2,7 +2,9 @@
 
 namespace Orchid\Platform\Fields\Types;
 
-class RelationshipField
+use Orchid\Platform\Fields\Field;
+
+class RelationshipField extends Field
 {
     /**
      * @var string
