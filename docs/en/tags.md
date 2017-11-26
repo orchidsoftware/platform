@@ -9,7 +9,7 @@ Tag - a word or phrase that can unite a group of text, images etc on or
 In this section we will show how you can manage your entities tags.
 
 ```php
-use Orchid\CMS\Core\Models\Post;
+use Orchid\Platform\Core\Models\Post;
 
 // Get the entity object
 $post = Post::find(1);

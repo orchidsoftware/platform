@@ -32,16 +32,3 @@
 <li><a href="/ru/docs/access/">Права доступа</a></li>
 </ul>
 
-<h4 class="text-orchid font-thin">Сервисы</h4>
-<ul class="toc-links">
-<li><a href="/ru/docs/backups/">Резервные копии</a></li>
-<li><a href="/ru/docs/defender/">Защитник</a></li>
-<li><a href="/ru/docs/logs/">Журналирование</a></li>
-<li><a href="/ru/docs/monitor/">Монитор</a></li>
-</ul>
-
-
-<h4 class="text-orchid font-thin">Пакеты</h4>
-<ul class="toc-links">
-<li><a href="/ru/docs/socket/">Веб сокет</a></li>
-</ul>

@@ -14,7 +14,7 @@ Filter example:
 ```php
 namespace App\Http\Filters;
 
-use Orchid\CMS\Filters\Filter;
+use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 class QueryFilter extends Filter
@@ -79,7 +79,7 @@ class MyBehaviorPost extends Many
 
 Filtering can be started using the `filtersApply` method:
 ```php
-use Orchid\CMS\Core\Models\Post;
+use Orchid\Platform\Core\Models\Post;
 
 Post::type('news')->filtersApply()->simplePaginate(10);
 ```
