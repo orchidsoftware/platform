@@ -27,7 +27,7 @@ The platform is provided as a package, you can easily integrate it as a third-pa
 
 ## Official Documentation
 
-Documentation can be found at [Orchid website](http://orchid.software).
+Documentation can be found at [ORCHID website](http://orchid.software).
 
 You can watch [live](http://demo.orchid.software)
 
