@@ -70,6 +70,20 @@ class File
     /**
      * @return string
      */
+    private function getClientOriginalExtension(){
+
+        $extension = $this->file->getClientOriginalExtension();
+        if(empty($extension)){
+            $extension = $this->mimes->getExtension($this->file->getClientMimeType());
+        }
+
+         return $extension;
+    }
+
+
+    /**
+     * @return string
+     */
     public function getHashFile()
     {
         return sha1_file($this->file->getRealPath());
@@ -120,7 +134,7 @@ class File
         Storage::disk('public')->makeDirectory($this->date);
 
         $hashName = sha1($this->time . $this->file->getClientOriginalName());
-        $name = $hashName . '.' . $this->file->getClientOriginalExtension();
+        $name = $hashName . '.' . $this->getClientOriginalExtension();
 
         $this->file->move($this->fullPath, $name);
 
@@ -129,7 +143,7 @@ class File
             'name'          => $hashName,
             'original_name' => $this->file->getClientOriginalName(),
             'mime'          => $this->getMimeType(),
-            'extension'     => $this->file->getClientOriginalExtension(),
+            'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getClientSize(),
             'path'          => $this->date . DIRECTORY_SEPARATOR,
             'hash'          => $this->hash,
@@ -142,9 +156,15 @@ class File
      */
     public function getMimeType()
     {
-        $type = $this->mimes->getMimeType($this->file->getClientOriginalExtension());
+        if(!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))){
+            return $type;
+        }
 
-        return !is_null($type) ? $type : 'unknown';
+        if(!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))){
+            return $type;
+        }
+        
+        return 'unknown';
     }
 
     /**
@@ -159,7 +179,7 @@ class File
             $name = '_' . $name;
         }
 
-        $name = sha1($this->time . $this->file->getClientOriginalName()) . $name . '.' . $this->file->getClientOriginalExtension();
+        $name = sha1($this->time . $this->file->getClientOriginalName()) . $name . '.' . $this->getClientOriginalExtension();
         $fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR . $name);
         Image::make($this->file)->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
