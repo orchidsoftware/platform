@@ -15,7 +15,6 @@ class WidgetController
      */
     public function index(WidgetContractInterface $widget, ...$arg)
     {
-       return $widget->handler($arg);
+        return $widget->handler($arg);
     }
-
 }
