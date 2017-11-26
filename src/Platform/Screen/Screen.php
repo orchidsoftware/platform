@@ -145,13 +145,12 @@ abstract class Screen
         $class = new \ReflectionClass($this);
 
         foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
-            if (!$this->checkClassInArray($key, $parameter->getClass()->getName())) {
+
+            if (!is_null($parameter->getClass()) || !$this->checkClassInArray($key, $parameter->getClass()->getName())) {
                 continue;
             }
 
-            if (!is_null($parameter->getClass())) {
-                $arg[] = app()->make($parameter->getClass()->name);
-            }
+            $arg[] = app()->make($parameter->getClass()->name);
         }
 
         $this->arguments = array_merge($arg ?? [], $this->arguments);

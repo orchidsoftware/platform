@@ -34,7 +34,7 @@ class MakeColumns extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/layout/columns.stub';
+        return DASHBOARD_PATH . '/resources/stubs/layouts/columns.stub';
     }
 
     /**

@@ -34,7 +34,7 @@ class MakeTabs extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/layout/tabs.stub';
+        return DASHBOARD_PATH . '/resources/stubs/layouts/tabs.stub';
     }
 
     /**
