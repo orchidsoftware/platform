@@ -15,7 +15,8 @@ services:
 
 before_install:
   - psql -c 'create database platform;' -U postgres
-
+  - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
+  
 install:
   - composer install --prefer-source
 
