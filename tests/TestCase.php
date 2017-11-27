@@ -36,18 +36,16 @@ abstract class TestCase extends Orchestra
     {
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
-            'driver'      => 'mysql',
-            'host'        => 'localhost',
-            'port'        => '3306',
-            'database'    => 'platform',
-            'username'    => 'root',
-            'password'    => '',
-            'unix_socket' => '',
-            'charset'     => 'utf8mb4',
-            'collation'   => 'utf8mb4_unicode_ci',
-            'prefix'      => '',
-            'strict'      => true,
-            'engine'      => null,
+            'driver' => 'pgsql',
+            'host' => '127.0.0.1',
+            'port' => '5432',
+            'database' => 'platform',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
         ]);
         $app['config']->set('database.default', 'orchid');
     }
