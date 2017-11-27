@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Tests\Unit;
 
-use Orchid\Setting\Models\Setting;
+use Orchid\Platform\Core\Models\Setting;
 use Orchid\Platform\Tests\TestCase;
 
 class SettingsTest extends TestCase
