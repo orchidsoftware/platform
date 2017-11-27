@@ -4,7 +4,7 @@ namespace Orchid\Platform\Tests;
 
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Orchid\Alert\Facades\Alert;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Watson\Active\Facades\Active;
@@ -36,16 +36,16 @@ abstract class TestCase extends Orchestra
     {
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
-            'driver' => 'pgsql',
-            'host' => '127.0.0.1',
-            'port' => '5432',
+            'driver'   => 'pgsql',
+            'host'     => '127.0.0.1',
+            'port'     => '5432',
             'database' => 'platform',
             'username' => 'orchid',
             'password' => 'orchid',
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+            'sslmode'  => 'prefer',
         ]);
         $app['config']->set('database.default', 'orchid');
     }
