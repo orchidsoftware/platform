@@ -11,10 +11,10 @@ cache:
     - $HOME/.composer/cache
 
 services:
-  - mysql
+  - postgresql
 
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS platform;'
+  - psql -c 'create database platform;' -U postgres
 
 install:
   - composer install --prefer-source
