@@ -144,7 +144,7 @@ $this->group([
         });
 
 
-        $router->post('widget/{widget}/{arg?}/{arg2?}', [
+        $router->post('widget/{widget}/{key?}', [
             'as'   => 'dashboard.systems.widget',
             'uses' => 'WidgetController@index',
         ]);

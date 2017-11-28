@@ -271,25 +271,11 @@ class MediaController extends Controller
     }
 
     /**
-     * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function remove(Request $request)
+    public function remove()
     {
         try {
-            // GET THE SLUG, ex. 'posts', 'pages', etc.
-            $slug = $request->get('slug');
-
-            // GET image name
-            $image = $request->get('image');
-
-            // GET record id
-            $id = $request->get('id');
-
-            // GET field name
-            $field = $request->get('field');
-
             return response()->json([
                 'data' => [
                     'status'  => 200,

@@ -8,13 +8,22 @@ class WidgetController
 {
 
     /**
-     * @param       $widget
-     * @param array ...$arg
+     * @param WidgetContractInterface $widget
+     * @param null                    $key
      *
      * @return mixed
      */
-    public function index(WidgetContractInterface $widget, ...$arg)
+    public function index(WidgetContractInterface $widget, $key = null)
     {
-        return $widget->handler($arg);
+        $widget->query = request('term');
+        $widget->key =  $key;
+
+        if(!is_null($key)){
+            return response()->json($widget->handler());
+        }
+
+        return response()->json([
+            'results' => $widget->handler()
+        ]);
     }
 }

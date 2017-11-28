@@ -10,13 +10,13 @@
             name="{{$lang}}{{$name}}"
             @endif
     >
+
     </select>
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif
 </div>
 <div class="line line-dashed b-b line-lg"></div>
-
 
 <script>
 $(function() {
@@ -30,8 +30,27 @@ $(function() {
             },
             dataType: 'json'
         },
-        placeholder: 'Search for a repository',
-        placeholder2: '{{$placeholder or ''}}'
+        selectOnClose: true,
+        placeholder: '{{$placeholder or ''}}'
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: '{{route('dashboard.systems.widget',[
+            'widget' => urlencode($handler),
+            'key'    => $value
+        ])}}'
+    }).then(function (data) {
+
+        $('#field-{{$slug}}')
+            .append(new Option(data.text, data.id, true, true))
+            .trigger('change')
+            .trigger({
+                type: 'select2:select',
+                params: {
+                    data: data
+                }
+            });
     });
 });
 </script>

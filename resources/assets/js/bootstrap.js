@@ -43,7 +43,7 @@ require('brace/mode/javascript');
 require('brace/theme/monokai');
 
 
-require('select2');
+require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
     $('.select2-enable').select2();
 })
