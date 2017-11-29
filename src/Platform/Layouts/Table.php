@@ -37,19 +37,8 @@ abstract class Table
      */
     private function generatedTable($post)
     {
-        $data = $post->get($this->data);
-        //$data = $post->paginate();
-        //$data = $post[$this->data];
-
-        //if(!is_array($data)){
-        //    $data = $data->toArray();
-        //}
-
-        //dd($data);
-
-
         return [
-            'data'   => $data,
+            'data'   => $post->get($this->data),
             'fields' => $this->fields(),
         ];
     }

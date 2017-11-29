@@ -22,7 +22,6 @@ abstract class Rows
 
         $view = view($this->template, [
             'form' => $form->generateForm(),
-            //'build' => $this->recustiveBuild($layout,$post)
         ])->render();
 
         return $view;
