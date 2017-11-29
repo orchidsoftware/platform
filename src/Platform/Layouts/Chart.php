@@ -60,5 +60,4 @@ abstract class Chart
 
         return $view;
     }
-
 }
