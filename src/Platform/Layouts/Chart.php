@@ -42,17 +42,21 @@ abstract class Chart
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
-        $view = view($this->template, [
-            'title'  => $this->title,
-            'slug'   => str_slug($this->title),
-            'type'   => $this->type,
-            'height' => $this->height,
-            'labels' => json_encode(collect($this->labels)),
-            'data'   => json_encode($post->getContent($this->data)),
-        ])->render();
+        try {
+            $view = view($this->template, [
+                'title'  => $this->title,
+                'slug'   => str_slug($this->title),
+                'type'   => $this->type,
+                'height' => $this->height,
+                'labels' => json_encode(collect($this->labels)),
+                'data'   => json_encode($post->getContent($this->data)),
+            ])->render();
+        } catch (\Throwable $e) {
+        }
 
         return $view;
     }

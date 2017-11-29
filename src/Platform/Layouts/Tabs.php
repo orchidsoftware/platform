@@ -13,6 +13,7 @@ abstract class Tabs
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
@@ -22,9 +23,12 @@ abstract class Tabs
             }
         }
 
-        $view = view($this->template, [
-            'tabs' => $build ?? [],
-        ])->render();
+        try {
+            $view = view($this->template, [
+                'tabs' => $build ?? [],
+            ])->render();
+        } catch (\Throwable $e) {
+        }
 
         return $view;
     }

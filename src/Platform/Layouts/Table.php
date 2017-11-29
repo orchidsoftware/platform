@@ -18,14 +18,18 @@ abstract class Table
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
         $form = $this->generatedTable($post);
 
-        $view = view($this->template, [
-            'form' => $form,
-        ])->render();
+        try {
+            $view = view($this->template, [
+                'form' => $form,
+            ])->render();
+        } catch (\Throwable $e) {
+        }
 
         return $view;
     }

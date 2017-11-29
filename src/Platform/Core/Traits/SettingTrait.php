@@ -18,11 +18,9 @@ trait SettingTrait
     {
         $result = $this->firstOrNew([
             'key' => $key,
-        ])
-            ->fill([
+        ])->fill([
                 'value' => $value,
-            ])
-            ->save();
+            ])->save();
 
         $this->cacheForget($key);
 
@@ -62,7 +60,7 @@ trait SettingTrait
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-' . implode(',', (array) $key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }
@@ -76,10 +74,7 @@ trait SettingTrait
     public function getNoCache($key, $default = null)
     {
         if (is_array($key)) {
-            $result = $this->select('key', 'value')
-                ->whereIn('key', $key)
-                ->pluck('value', 'key')
-                ->toArray();
+            $result = $this->select('key', 'value')->whereIn('key', $key)->pluck('value', 'key')->toArray();
 
             return empty($result) ? $default : $result;
         }

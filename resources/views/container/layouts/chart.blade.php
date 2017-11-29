@@ -7,7 +7,7 @@
         </div>
 </div>
 <script>
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function () {
 
     new Chart({
         parent: "#{{$slug}}",

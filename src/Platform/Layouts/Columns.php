@@ -13,6 +13,7 @@ abstract class Columns
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
@@ -22,9 +23,12 @@ abstract class Columns
             }
         }
 
-        $view = view($this->template, [
-            'columns' => $build ?? [],
-        ])->render();
+        try {
+            $view = view($this->template, [
+                'columns' => $build ?? [],
+            ])->render();
+        } catch (\Throwable $e) {
+        }
 
         return $view;
     }

@@ -3,11 +3,15 @@
 @section('description',$type->description)
 @section('navbar')
 
-        <ul class="nav navbar-nav navbar-right v-center">
+    <ul class="nav navbar-nav navbar-right v-center">
 
             @if($locales->count() > 1)
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle text-uppercase" data-toggle="dropdown" role="button" aria-haspopup="true"
+            <li class="dropdown">
+                <a href="#"
+                   class="dropdown-toggle text-uppercase"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
                    aria-expanded="false">
                     <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
                     <span class="caret"></span>
@@ -27,14 +31,18 @@
                     @endforeach
                 </ul>
             </li>
-            @endif
+        @endif
 
-            <li>
-                <button type="submit" form="post-form" class="btn btn-sm btn-link"><i class="icon-check fa fa-2x"></i></button>
+        <li>
+                <button type="submit"
+                        form="post-form"
+                        class="btn btn-sm btn-link"><i class="icon-check fa fa-2x"></i></button>
             </li>
 
             <li>
-                <button type="submit" form="form-post-remove" class="btn btn-sm btn-link"><i class="icon-trash  fa fa-2x"></i></button>
+                <button type="submit"
+                        form="form-post-remove"
+                        class="btn btn-sm btn-link"><i class="icon-trash  fa fa-2x"></i></button>
             </li>
 
         </ul>
@@ -87,13 +95,13 @@
                     <div class="vbox">
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
-                            <ul class="nav nav-tabs">
+                                <ul class="nav nav-tabs">
                                 @foreach($type->render() as $name => $view)
-                                    <li @if ($loop->first) class="active" @endif>
+                                        <li @if ($loop->first) class="active" @endif>
                                         <a data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
                                            aria-expanded="true">{{$name}}</a>
                                     </li>
-                                @endforeach
+                                    @endforeach
                             </ul>
                             @endif
                         </div>

@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Layouts;
 
+use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Fields\Builder;
 
 abstract class Rows
@@ -15,14 +16,20 @@ abstract class Rows
      * @param $post
      *
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     public function build($post)
     {
         $form = new Builder($this->fields(), $post);
 
-        $view = view($this->template, [
-            'form' => $form->generateForm(),
-        ])->render();
+        try {
+            $view = view($this->template, [
+                'form' => $form->generateForm(),
+            ])->render();
+        } catch (TypeException $e) {
+        } catch (\Throwable $e) {
+        }
 
         return $view;
     }

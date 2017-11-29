@@ -16,14 +16,14 @@ class WidgetController
     public function index(WidgetContractInterface $widget, $key = null)
     {
         $widget->query = request('term');
-        $widget->key =  $key;
+        $widget->key = $key;
 
         if (!is_null($key)) {
             return response()->json($widget->handler());
         }
 
         return response()->json([
-            'results' => $widget->handler()
+            'results' => $widget->handler(),
         ]);
     }
 }

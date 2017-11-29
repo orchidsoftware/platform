@@ -70,20 +70,6 @@ class File
     /**
      * @return string
      */
-    private function getClientOriginalExtension()
-    {
-        $extension = $this->file->getClientOriginalExtension();
-        if (empty($extension)) {
-            $extension = $this->mimes->getExtension($this->file->getClientMimeType());
-        }
-
-        return $extension;
-    }
-
-
-    /**
-     * @return string
-     */
     public function getHashFile()
     {
         return sha1_file($this->file->getRealPath());
@@ -152,6 +138,19 @@ class File
     }
 
     /**
+     * @return string
+     */
+    private function getClientOriginalExtension()
+    {
+        $extension = $this->file->getClientOriginalExtension();
+        if (empty($extension)) {
+            $extension = $this->mimes->getExtension($this->file->getClientMimeType());
+        }
+
+        return $extension;
+    }
+
+    /**
      * @return File|string
      */
     public function getMimeType()
@@ -163,7 +162,7 @@ class File
         if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
-        
+
         return 'unknown';
     }
 

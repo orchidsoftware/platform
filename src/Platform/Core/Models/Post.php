@@ -106,6 +106,7 @@ class Post extends Model
      * @param null $slug
      *
      * @return null
+     * @throws TypeException
      */
     public function getBehaviorObject($slug = null)
     {
@@ -113,7 +114,10 @@ class Post extends Model
             return $this->behavior;
         }
 
-        return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
+        try {
+            return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
+        } catch (TypeException $e) {
+        }
     }
 
     /**
@@ -357,11 +361,15 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
+     * @throws TypeException
      */
     public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
     {
         if (!is_null($behavior)) {
-            $this->getBehavior($behavior);
+            try {
+                $this->getBehavior($behavior);
+            } catch (TypeException $e) {
+            }
         }
 
         return $this->filter($query);
@@ -389,11 +397,15 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
+     * @throws TypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
         if (!is_null($behavior)) {
-            $this->getBehavior($behavior);
+            try {
+                $this->getBehavior($behavior);
+            } catch (TypeException $e) {
+            }
         }
 
         return $this->filter($query, true);

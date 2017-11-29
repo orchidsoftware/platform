@@ -5,8 +5,8 @@
 @section('description',$nameMenu)
 
 @if(count($locales) > 1)
-    @section('navbar')
-        <div class="text-right">
+@section('navbar')
+    <div class="text-right">
 
 
             <ul class="nav navbar-nav navbar-right">
@@ -32,7 +32,7 @@
             </ul>
 
         </div>
-    @stop
+@stop
 @endif
 
 
@@ -49,7 +49,10 @@
                         <div class="form">
                             <div class="form-group">
                                 <label>{{trans('dashboard::systems/menu.form.title')}}</label>
-                                <input type="text" class="form-control" v-model="label" placeholder="{{trans('dashboard::systems/menu.form.title_description')}}">
+                                <input type="text"
+                                       class="form-control"
+                                       v-model="label"
+                                       placeholder="{{trans('dashboard::systems/menu.form.title_description')}}">
                             </div>
                             <div class="form-group">
                                 <label>{{trans('dashboard::systems/menu.form.alt')}}</label>
@@ -58,13 +61,17 @@
                             </div>
                             <div class="form-group">
                                 <label>{{trans('dashboard::systems/menu.form.url')}}</label>
-                                <input type="text" class="form-control" v-model="slug" placeholder="{{trans('dashboard::systems/menu.form.url_description')}}">
+                                <input type="text"
+                                       class="form-control"
+                                       v-model="slug"
+                                       placeholder="{{trans('dashboard::systems/menu.form.url_description')}}">
                             </div>
 
                             <div class="form-group">
                                 <label>{{trans('dashboard::systems/menu.form.display.name')}}</label>
                                 <select class="form-control" v-model="auth">
-                                    <option value="0" selected>{{trans('dashboard::systems/menu.form.display.variables.no_auth')}}</option>
+                                    <option value="0"
+                                            selected>{{trans('dashboard::systems/menu.form.display.variables.no_auth')}}</option>
                                     <option value="1">{{trans('dashboard::systems/menu.form.display.variables.auth')}}</option>
                                 </select>
                             </div>
@@ -110,7 +117,8 @@
                             <div class="form-group">
                                 <label>{{trans('dashboard::systems/menu.form.target.name')}}</label>
                                 <select class="form-control" v-model="target">
-                                    <option value="_self" selected>{{trans('dashboard::systems/menu.form.target.variables.self')}}</option>
+                                    <option value="_self"
+                                            selected>{{trans('dashboard::systems/menu.form.target.variables.self')}}</option>
                                     <option value="_blank">{{trans('dashboard::systems/menu.form.target.variables.blank')}}</option>
                                 </select>
 
@@ -186,7 +194,7 @@
 
 
 @push('scripts')
-<script>
+    <script>
     $(function () {
         const menu = new Vue({
             el: '#menu-vue',

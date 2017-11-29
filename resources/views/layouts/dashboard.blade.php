@@ -80,7 +80,12 @@
                         <ul class="nav navbar-nav navbar-right hidden-xs">
 
                         <li>
-                            <a href="#" class="click" data-turbolinks="false" data-toggle="open"  title="Notifications" data-target="#quickview">
+                            <a href="#"
+                               class="click"
+                               data-turbolinks="false"
+                               data-toggle="open"
+                               title="Notifications"
+                               data-target="#quickview">
                                 <i class="icon-bell"></i>
                                 <span class="visible-xs-inline">Notifications</span>
 
@@ -174,8 +179,8 @@
 
 
                     </ul>
-                    <!-- / navbar right  -->
-                @show
+                        <!-- / navbar right  -->
+                    @show
             </div>
 
 
@@ -207,7 +212,8 @@
 
                     <ul class="nav-footer-fix">
                         <li><a href="#"><i class="icon-grid" aria-hidden="true"></i></a></li>
-                        <li><a href="{{route('dashboard.systems.cache')}}"><i class="icon-settings" aria-hidden="true"></i></a></li>
+                        <li><a href="{{route('dashboard.systems.cache')}}"><i class="icon-settings"
+                                                                              aria-hidden="true"></i></a></li>
                     </ul>
 
                 </nav>
@@ -287,17 +293,17 @@
 
 
     <!-- footer  -->
-    {{--
-    <footer id="footer" class="app-footer" role="footer">
-        <div class="wrapper b-t bg-light">
-            <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
-                <a href="https://github.com/TheOrchid/Platform" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
-            </span>
-            © {{date("Y")}} Copyright.
-        </div>
-    </footer>
-    --}}
-    <!-- / footer  -->
+{{--
+<footer id="footer" class="app-footer" role="footer">
+    <div class="wrapper b-t bg-light">
+        <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
+            <a href="https://github.com/TheOrchid/Platform" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
+        </span>
+        © {{date("Y")}} Copyright.
+    </div>
+</footer>
+--}}
+<!-- / footer  -->
 </div>
 
 

@@ -166,7 +166,8 @@
                                                  <span>
                                                     <h4>Public URL:</h4>
                                                  </span>
-                                                 <p><a v-bind:href="selected_file.path" target="_blank">Click Here</a></p>
+                                                 <p><a v-bind:href="selected_file.path"
+                                                       target="_blank">Click Here</a></p>
                                               </span>
                                               <span>
                                                  <h4>Last Modified:</h4>
@@ -247,7 +248,7 @@
 
                 </div><!-- #filemanager  -->
 
-                <!-- New Folder Modal  -->
+                      <!-- New Folder Modal  -->
                 <div class="modal fade modal-info" id="new_folder_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -272,9 +273,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- End New Folder Modal  -->
+                      <!-- End New Folder Modal  -->
 
-                <!-- Delete File Modal  -->
+                      <!-- Delete File Modal  -->
                 <div class="modal fade modal-danger" id="confirm_delete_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -300,10 +301,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Delete File Modal  -->
+                      <!-- End Delete File Modal  -->
 
                 <div id="dropzone"></div>
-                <!-- Delete File Modal  -->
+                      <!-- Delete File Modal  -->
                 <div class="modal fade" id="upload_files_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -326,7 +327,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Delete File Modal  -->
+                      <!-- End Delete File Modal  -->
 
 
             </div><!-- .row  -->
@@ -338,7 +339,7 @@
     <input type="hidden" id="storage_path" value="{{ storage_path() }}">
 
     @push('scripts')
-    <script type="text/javascript">
+        <script type="text/javascript">
 
         var manager = new Vue({
             el: '#filemanager',

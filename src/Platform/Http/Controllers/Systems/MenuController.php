@@ -44,7 +44,7 @@ class MenuController extends Controller
         $currentLocale = $request->get('lang', App::getLocale());
 
         $menu = Menu::where('lang', $currentLocale)->whereNull('parent')->where('type',
-                $nameMenu)->with('children')->get();
+            $nameMenu)->with('children')->get();
 
         return view('dashboard::container.systems.menu.menu', [
             'nameMenu'      => $nameMenu,

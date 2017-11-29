@@ -3,16 +3,17 @@
    <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
 
        @if(!isset($value) || is_null($value))
-               <li class="ui-state-default form-group row">
+           <li class="ui-state-default form-group row">
                    <span onclick="return false;" class="btn btn-link col-xs-1 pull"><i class="fa-bars fa"></i></span>
                    <input type="text" class="form-control col-xs-10"
                           @if(isset($prefix))
                           name="{{$prefix}}[{{$lang}}]{{$name}}[0]"
                           @else
                           name="{{$lang}}{{$name}}[0]"
-                          @endif
+                           @endif
                    >
-                   <button class="btn btn-link col-xs-1 remove" onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
+                   <button class="btn btn-link col-xs-1 remove"
+                           onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
                </li>
        @else
            @foreach($value as $key => $val)
@@ -25,7 +26,8 @@
                            name="{{$lang}}{{$name}}[{{$key}}]"
                            @endif
                            value="{{$val}}">
-                    <button class="btn btn-link col-xs-1 remove" onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
+                    <button class="btn btn-link col-xs-1 remove"
+                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
                 </li>
            @endforeach
        @endif
@@ -37,11 +39,11 @@
 <div class="line line-dashed b-b line-lg"></div>
 <style>
     .input-sort .form-control {
-        width: 83.33333333%;
+        width : 83.33333333%;
     }
 </style>
 @push('scripts')
-<script>
+    <script>
     function newitem{{$slug}}() {
         event.preventDefault();
         let item = '<li class="ui-state-default form-group row">\n' +
@@ -51,24 +53,26 @@
             '        </li>';
         $('#sortable-{{$slug}}').append(item);
         $("#sortable-{{$slug}} li").each(function (li) {
-            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}]['+li+']'})
+            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
         })
     }
+
     function removeitem{{$slug}}(item) {
         event.preventDefault();
         $(item).parent().remove();
 
         $("#sortable-{{$slug}} li").each(function (li) {
-            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}]['+li+']'})
+            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
         })
     }
-    $(function() {
-        $( "#sortable-{{$slug}}" ).sortable({
+
+    $(function () {
+        $("#sortable-{{$slug}}").sortable({
             placeholder: "ui-sortable-placeholder",
             axis: "y",
-            update:function(event,ui){
+            update: function (event, ui) {
                 $("#sortable-{{$slug}} li").each(function (li) {
-                    $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}]['+li+']'})
+                    $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
                 })
             }
         });
