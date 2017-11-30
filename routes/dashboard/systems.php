@@ -141,7 +141,6 @@ $this->group([
         $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
     });
 
-
     $router->post('widget/{widget}/{key?}', [
         'as'   => 'dashboard.systems.widget',
         'uses' => 'WidgetController@index',

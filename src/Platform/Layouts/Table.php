@@ -24,14 +24,9 @@ abstract class Table
     {
         $form = $this->generatedTable($post);
 
-        try {
-            $view = view($this->template, [
-                'form' => $form,
-            ])->render();
-        } catch (\Throwable $e) {
-        }
-
-        return $view;
+       return view($this->template, [
+            'form' => $form,
+        ])->render();
     }
 
     /**
