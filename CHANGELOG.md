@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [Unreleased]
+## [2.0] - 2017-12-01
 ### Added
 - Added TinyMCE
 - Added support fulltext search

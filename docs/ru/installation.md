@@ -54,6 +54,11 @@ class User extends BaseUser
 
 ```
 
+Создайте пользователя администратора
+```php
+php artisan make:admin admin admin@admin.com password
+```
+
 #### Конец
 
 Панель управления будет доступна по адресу 'http://www.exemple.com/dashboard'

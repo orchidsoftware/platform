@@ -16,7 +16,7 @@ $ composer create-project --prefer-dist laravel/laravel orchid
 
 Going your project directory on shell and run this command: 
 ```php
-$ composer require orchid/platform:dev-master
+$ composer require orchid/platform
 ```
 
 #### User
