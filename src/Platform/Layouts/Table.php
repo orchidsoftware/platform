@@ -24,7 +24,7 @@ abstract class Table
     {
         $form = $this->generatedTable($post);
 
-       return view($this->template, [
+        return view($this->template, [
             'form' => $form,
         ])->render();
     }
