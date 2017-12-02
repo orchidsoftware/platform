@@ -254,7 +254,7 @@ class MediaController extends Controller
     public function upload(Request $request)
     {
         try {
-            foreach ($request->files as $file){
+            foreach ($request->files as $file) {
                 $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName() . '.'. $file->getClientOriginalExtension());
             }
             $success = true;
