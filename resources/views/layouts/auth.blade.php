@@ -60,7 +60,7 @@
 
             @yield('content')
 
-            <div class="pull-bottom">t
+            <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
                     <div class="col-sm-3 col-md-2">
                         <a href="https://orchid.software/"><img alt="Orchid"
