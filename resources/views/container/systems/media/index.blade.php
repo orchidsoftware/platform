@@ -382,13 +382,12 @@
                     success: function (e, res) {
                         if (res.success) {
                             //alert("Sweet Success!");
-
                         } else {
-                            alert("Whoopsie!");
+                            alert(res.message);
                         }
                     },
                     error: function (e, res, xhr) {
-                        alert("Whoopsie");
+                        alert(res.message);
                     },
                     queuecomplete: function () {
                         getFiles(manager.folders);

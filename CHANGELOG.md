@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0.2] - 2017-12-2
+### Added
+- Laravel Mix (Manifest&version)
+### Fixed
+- Update npm dependencies
+- Message upload filed
+
+
+## [2.0.1] - 2017-12-01
+### Fixed
+- Widget Update
+
 
 ## [2.0] - 2017-12-01
 ### Added
