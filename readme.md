@@ -29,10 +29,6 @@ The platform is provided as a package, you can easily integrate it as a third-pa
 
 Documentation can be found at [ORCHID website](http://orchid.software).
 
-You can watch [live](http://demo.orchid.software)
-
-**Login**: admin@admin.com **Password**: password
-
 
 ## System requirements
 
