@@ -50,21 +50,6 @@
             <!-- column  -->
                 <div class="col  lter b-r">
                     <div class="vbox">
-                        {{--Old locales
-                        @if($locales->count() > 1)
-                            <div class="nav-tabs-alt">
-                                <ul class="nav nav-tabs nav-justified">
-                                    @foreach($locales as $code => $lang)
-                                        <li @if ($loop->first) class="active" @endif>
-                                            <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
-                                               aria-expanded="true">{{$lang['native']}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        --}}
                         <div class="bg-white">
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)

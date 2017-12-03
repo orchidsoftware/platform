@@ -42,15 +42,6 @@
 @stop
 @section('content')
     <div class="app-content-body app-content-full" id="post">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger m-n">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-    @endif
     <!-- hbox layout  -->
         <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post"
               action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
@@ -58,21 +49,6 @@
             <!-- column  -->
                 <div class="col lter b-r">
                     <div class="vbox">
-                        {{--  Old Locales
-                        @if($locales->count() > 1)
-                            <div class="nav-tabs-alt">
-                                <ul class="nav nav-tabs nav-justified">
-                                    @foreach($locales as $code => $lang)
-                                        <li @if ($loop->first) class="active" @endif>
-                                            <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
-                                               aria-expanded="true">{{$lang['native']}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        --}}
                         <div class="bg-white">
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)
