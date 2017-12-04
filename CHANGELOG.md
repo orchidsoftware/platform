@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [2.0.3] - 2017-12-4
+### Fixed
+- Extra character
+- Duplicate error message
+- Category prefix
+- Update install scout
+
+
 ## [2.0.2] - 2017-12-2
 ### Added
 - Laravel Mix (Manifest&version)
