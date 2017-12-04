@@ -63,6 +63,7 @@ class User extends BaseUser
 Publish ORCHID's vendor files
 
 ```php
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
 php artisan vendor:publish --all
 ```
 
