@@ -145,7 +145,6 @@ abstract class Screen
         $class = new \ReflectionClass($this);
 
         foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
-
             if (is_null($parameter->getClass())) {
                 continue;
             }
