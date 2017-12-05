@@ -22,6 +22,7 @@ $ composer require orchid/platform
 
 Опубликуем настройки и вспомогательные файлы в наше приложение:
 ```php
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
 php artisan vendor:publish --all
 ```
 
