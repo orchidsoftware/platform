@@ -1,7 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [2.0.3] - 2017-12-4
+## [2.0.4] - 2017-12-05
+### Fixed
+- Pagination "..." symbol
+- Pagination width
+- Load reflection class for Screen
+
+## [2.0.3] - 2017-12-04
 ### Fixed
 - Extra character
 - Duplicate error message
@@ -9,7 +15,7 @@ All notable changes to this project will be documented in this file.
 - Update install scout
 
 
-## [2.0.2] - 2017-12-2
+## [2.0.2] - 2017-12-02
 ### Added
 - Laravel Mix (Manifest&version)
 ### Fixed
