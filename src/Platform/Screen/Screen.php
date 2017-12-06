@@ -66,7 +66,12 @@ abstract class Screen
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            $build[] = (new $layout)->build($post);
+
+            if (is_object($layout)) {
+                $build[] = $layout->build($post);
+            } else {
+                $build[] = (new $layout)->build($post);
+            }
         }
 
         return $build ?? [];

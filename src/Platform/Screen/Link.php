@@ -25,6 +25,12 @@ class Link
     public $url;
 
     /**
+     * @var
+     */
+    public $icon;
+
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -34,7 +40,7 @@ class Link
     {
         $new = new Link();
 
-        return call_user_func_array([$new, $name], $arguments);
+        return call_user_func_array([$new, 'rewriteProperty'], [$name,$arguments[0]]);
     }
 
     /**
@@ -45,7 +51,7 @@ class Link
      */
     public function __call($name, $arguments)
     {
-        return call_user_func_array([$this, $name], $arguments);
+        return call_user_func_array([$this, 'rewriteProperty'], [$name,$arguments[0]]);
     }
 
     /**
@@ -59,44 +65,22 @@ class Link
             'slug'      => $this->slug,
             'name'      => $this->name,
             'method'    => $this->method,
+            'icon'      => $this->icon,
             'arguments' => $arguments,
         ]);
     }
 
     /**
      * @param $name
+     * @param $property
      *
      * @return $this
      */
-    protected function name($name)
+    protected function rewriteProperty($name, $property)
     {
-        $this->slug = str_slug($name);
-        $this->name = $name;
+        $this->$name = $property;
 
         return $this;
     }
 
-    /**
-     * @param $method
-     *
-     * @return $this
-     */
-    protected function method($method)
-    {
-        $this->method = $method;
-
-        return $this;
-    }
-
-    /**
-     * @param $url
-     *
-     * @return $this
-     */
-    protected function url($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
 }
