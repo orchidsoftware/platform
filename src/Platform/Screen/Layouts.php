@@ -70,7 +70,6 @@ class Layouts
      */
     public function build($post)
     {
-
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
                 if (is_object($layout)) {
@@ -85,6 +84,4 @@ class Layouts
             'manyForms' => $build ?? [],
         ])->render();
     }
-
-
 }
