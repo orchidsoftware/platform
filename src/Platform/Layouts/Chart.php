@@ -54,6 +54,5 @@ abstract class Chart
             'labels' => json_encode(collect($this->labels)),
             'data'   => json_encode($post->getContent($this->data)),
         ])->render();
-
     }
 }

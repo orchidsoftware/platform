@@ -82,5 +82,4 @@ class Link
 
         return $this;
     }
-
 }

@@ -25,7 +25,6 @@ abstract class Rows
         return view($this->template, [
             'form' => $form->generateForm(),
         ])->render();
-
     }
 
     /**
