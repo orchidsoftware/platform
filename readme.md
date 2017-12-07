@@ -9,7 +9,7 @@
 <h4 align="center">Powerful platform for building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
-<a href="https://travis-ci.org/TheOrchid/Platform/"><img src="https://travis-ci.org/orchidsoftware/Platform.svg?branch=master"></a>
+<a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
 <a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
