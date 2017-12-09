@@ -2,11 +2,11 @@
 ----------
 
 I encourage everyone to contribute to the ORCHID project.
-You can find the latest version of the GitHub code at <https://github.com/TheOrchid/Platform>.
+You can find the latest version of the GitHub code at <https://github.com/orchidsoftware/platform>.
 
 ## Problem Tracking
 
-You can find unresolved issues on the [GitHub Issues Tracker](https://github.com/TheOrchid/Platform/issues).
+You can find unresolved issues on the [GitHub Issues Tracker](https://github.com/orchidsoftware/platform/issues).
 If you intend to work on a specific issue, leave a comment on the relevant task to inform other project participants.
 
 

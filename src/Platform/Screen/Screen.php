@@ -66,7 +66,11 @@ abstract class Screen
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            $build[] = (new $layout)->build($post);
+            if (is_object($layout)) {
+                $build[] = $layout->build($post);
+            } else {
+                $build[] = (new $layout)->build($post);
+            }
         }
 
         return $build ?? [];
@@ -145,13 +149,15 @@ abstract class Screen
         $class = new \ReflectionClass($this);
 
         foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
-            if (!$this->checkClassInArray($key, $parameter->getClass()->getName())) {
+            if (is_null($parameter->getClass())) {
                 continue;
             }
 
-            if (!is_null($parameter->getClass())) {
-                $arg[] = app()->make($parameter->getClass()->name);
+            if ($this->checkClassInArray($key, $parameter->getClass()->getName())) {
+                continue;
             }
+
+            $arg[] = app()->make($parameter->getClass()->name);
         }
 
         $this->arguments = array_merge($arg ?? [], $this->arguments);
@@ -169,6 +175,7 @@ abstract class Screen
                 return true;
             }
         }
+
         return false;
     }
 
@@ -184,6 +191,7 @@ abstract class Screen
         if (array_key_exists($key, $this->arguments) && get_class($this->arguments[$key]) == $class) {
             return true;
         }
+
         return false;
     }
 }

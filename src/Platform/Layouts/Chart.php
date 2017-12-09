@@ -29,40 +29,30 @@ abstract class Chart
     public $height = 250;
 
     /**
+     * @var array
+     */
+    public $labels = [];
+
+    /**
+     * @var array
+     */
+    public $data = '';
+
+    /**
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
-        $view = view($this->template, [
-            'title' => $this->title,
-            'slug' => str_slug($this->title),
-            'type' => $this->type,
+        return view($this->template, [
+            'title'  => $this->title,
+            'slug'   => str_slug($this->title),
+            'type'   => $this->type,
             'height' => $this->height,
-            'labels' => $this->labels(),
-            'data' => $this->data(),
+            'labels' => json_encode(collect($this->labels)),
+            'data'   => json_encode($post->getContent($this->data)),
         ])->render();
-
-        return $view;
-    }
-
-    /**
-     * @return array
-     */
-    public function labels() : array
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function data() : array
-    {
-        return [
-            'title' => [],
-            'value' => [],
-        ];
     }
 }

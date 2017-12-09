@@ -23,7 +23,7 @@ php artisan make:filter QueryFilter
 ```php
 namespace App\Http\Filters;
 
-use Orchid\CMS\Filters\Filter;
+use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 class QueryFilter extends Filter
@@ -91,7 +91,7 @@ class MyBehaviorPost extends Many
 
 Фильтрацию можно запустить методом `filtersApply`:
 ```php
-use Orchid\CMS\Core\Models\Post;
+use Orchid\Platform\Core\Models\Post;
 
 Post::type('news')->filtersApply()->simplePaginate(10);
 ```

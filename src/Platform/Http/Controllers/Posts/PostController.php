@@ -8,9 +8,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Behaviors\Many as PostBehavior;
 use Orchid\Platform\Core\Models\Post;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -174,13 +174,17 @@ class PostController extends Controller
      *
      * @return mixed
      *
+     * @throws \Exception
      * @internal param Request $request
      * @internal param Post $type
      */
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('dashboard.posts.' . $type->slug);
-        $post->delete();
+        try {
+            $post->delete();
+        } catch (\Exception $e) {
+        }
         Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.posts.type', [

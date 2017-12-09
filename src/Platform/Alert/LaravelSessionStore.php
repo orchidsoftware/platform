@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Alert;
 
 use Illuminate\Session\Store;
-use Orchid\Platform\Alert\SessionStoreInterface;
 
 /**
  * Class LaravelSessionStore.

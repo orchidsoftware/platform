@@ -16,7 +16,7 @@ $ composer create-project --prefer-dist laravel/laravel orchid
 
 Going your project directory on shell and run this command: 
 ```php
-$ composer require orchid/cms
+$ composer require orchid/platform
 ```
 
 #### User
@@ -26,22 +26,42 @@ Inherit your model App\User
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as UserOrchid;
+use Orchid\Platform\Core\Models\User as BaseUser;
 
-class User extends UserOrchid
+class User extends BaseUser
 {
 
 }
 
 ```
 
-#### Finish
+Publish vendor files
 
-
-**Go to url:**  localhost:8000/dashboard
-
-The graphical installation does not work if the server is started using the `artisan serve` command, if you want to use a local server, please go to the public directory and run
 ```php
-php -S localhost:8000
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
+php artisan vendor:publish --all
 ```
 
+Run your database migration
+```php
+php artisan migrate
+```
+
+Make available css/js/etc files
+```php
+php artisan storage:link
+php artisan orchid:link
+```
+
+Create your admin user
+```php
+php artisan make:admin admin admin@admin.com password
+```
+
+
+#### Finish
+
+To view ORCHID's dashboard go to:
+```php
+http://your.app/dashboard
+```

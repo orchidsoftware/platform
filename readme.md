@@ -9,7 +9,7 @@
 <h4 align="center">Powerful platform for building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
-<a href="https://travis-ci.org/TheOrchid/Platform/"><img src="https://travis-ci.org/TheOrchid/Platform.svg?branch=master"></a>
+<a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
 <a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
@@ -27,11 +27,7 @@ The platform is provided as a package, you can easily integrate it as a third-pa
 
 ## Official Documentation
 
-Documentation can be found at [Orchid website](http://orchid.software).
-
-You can watch [live](http://demo.orchid.software)
-
-**Login**: admin@admin.com **Password**: password
+Documentation can be found at [ORCHID website](http://orchid.software).
 
 
 ## System requirements
@@ -47,7 +43,7 @@ Make sure your server meets the following requirements.
 
 Firstly, download the Laravel installer using Composer:
 ```php
-$ composer require orchid/platform:dev-master
+$ composer require orchid/platform
 ```
 
 Extend your user model using the `Orchid\Core\Models\User as BaseUser` alias:
@@ -67,6 +63,7 @@ class User extends BaseUser
 Publish ORCHID's vendor files
 
 ```php
+php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
 php artisan vendor:publish --all
 ```
 
@@ -127,6 +124,10 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+
+## Change log
+
+See [CHANGELOG](CHANGELOG.md).
 
 ## Credits
 

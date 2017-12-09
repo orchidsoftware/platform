@@ -23,8 +23,8 @@
     <meta property="og:url" content="{{url()->current()}}"/>
     <meta property="og:image" content="{{config('content.image','/orchid/img/background.jpg')}}"/>
 
-    <link rel="stylesheet" href="{{asset('/orchid/css/orchid.css')}}" type="text/css"/>
-    <script async="async" src="{{asset('/orchid/js/orchid.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{mix('/css/orchid.css','orchid')}}" type="text/css"/>
+    <script async="async" src="{{mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
 </head>
 <body>
 

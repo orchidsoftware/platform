@@ -9,7 +9,7 @@
 В этом разделе мы покажем, как вы можете управлять своими субъектами тегов.
 
 ```php
-use Orchid\CMS\Core\Models\Post;
+use Orchid\Platform\Core\Models\Post;
 
 // Get the entity object
 $post = Post::find(1);

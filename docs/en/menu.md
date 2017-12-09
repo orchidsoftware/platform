@@ -4,7 +4,7 @@
 
 The system has a drag & drop menu that boosts localization.
 
-The number of menus is limited and is defined in the configuration file `config/cms`
+The number of menus is limited and is defined in the configuration file `config/platform`
 ```php
 'menu' => [
     'header'  => 'Top Menu',
@@ -17,7 +17,7 @@ The number of menus is limited and is defined in the configuration file `config/
 To use the data it generates, you need:
 
 ```php
-namespace Orchid\CMS\Core\Models\Menu;
+namespace Orchid\Platform\Core\Models\Menu;
 
 $menu = Menu::where('lang', App::getLocale())
     ->whereNull('parent')

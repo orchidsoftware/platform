@@ -90,6 +90,8 @@ class CategoryMainForm extends Form
     /**
      * @param Request  $request
      * @param Taxonomy $termTaxonomy
+     *
+     * @throws \Exception
      */
     public function delete(Request $request, Taxonomy $termTaxonomy)
     {

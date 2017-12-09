@@ -78,7 +78,7 @@ class BaseRolesForm extends Form
     /**
      * Save Base Role.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return void
      */
     public function persist()
     {

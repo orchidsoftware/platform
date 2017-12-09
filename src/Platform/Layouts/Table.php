@@ -18,16 +18,15 @@ abstract class Table
      * @param $post
      *
      * @return array
+     * @throws \Throwable
      */
     public function build($post)
     {
         $form = $this->generatedTable($post);
 
-        $view = view($this->template, [
+        return view($this->template, [
             'form' => $form,
         ])->render();
-
-        return $view;
     }
 
     /**
@@ -37,19 +36,8 @@ abstract class Table
      */
     private function generatedTable($post)
     {
-        $data = $post->get($this->data);
-        //$data = $post->paginate();
-        //$data = $post[$this->data];
-
-        //if(!is_array($data)){
-        //    $data = $data->toArray();
-        //}
-
-        //dd($data);
-
-
         return [
-            'data'   => $data,
+            'data'   => $post->get($this->data),
             'fields' => $this->fields(),
         ];
     }

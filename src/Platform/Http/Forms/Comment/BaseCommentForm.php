@@ -51,9 +51,14 @@ class BaseCommentForm extends Form
 
     /**
      * @param Comment $comment
+     *
+     * @throws \Exception
      */
     public function delete(Comment $comment)
     {
-        $comment->delete();
+        try {
+            $comment->delete();
+        } catch (\Exception $e) {
+        }
     }
 }

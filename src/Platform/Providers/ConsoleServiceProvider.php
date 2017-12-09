@@ -32,11 +32,9 @@ class ConsoleServiceProvider extends ServiceProvider
         'Commands\\MakeFilter',
         'Commands\\PublicLinkCommand',
         'Commands\\MakeWidget',
-        'Commands\\MakeColumns',
         'Commands\\MakeRows',
         'Commands\\MakeScreen',
         'Commands\\MakeTable',
-        'Commands\\MakeTabs',
     ];
 
     /**

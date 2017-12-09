@@ -42,10 +42,10 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 @push('scripts')
-<script>
-    $(function() {
+    <script>
+    $(function () {
 
-        $.getScript( "https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function( data, textStatus, jqxhr ) {
+        $.getScript("https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function (data, textStatus, jqxhr) {
             var input = document.getElementById("place-{{$slug}}-{{$lang}}");
             var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
 

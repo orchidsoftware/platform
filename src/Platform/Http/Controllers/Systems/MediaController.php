@@ -254,42 +254,26 @@ class MediaController extends Controller
     public function upload(Request $request)
     {
         try {
-            $path = $request->file->store($request->upload_path, $this->filesystem);
+            foreach ($request->files as $file) {
+                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName() . '.'. $file->getClientOriginalExtension());
+            }
             $success = true;
             $message = 'Successfully uploaded new file!';
         } catch (Exception $e) {
+            $path = '';
             $success = false;
             $message = $e->getMessage();
         }
-
-        $realPath = Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix() . $path;
-        Image::make($realPath)->orientate()->save();
-
-        $path = preg_replace('/^public\//', '', $path);
 
         return response()->json(compact('success', 'message', 'path'));
     }
 
     /**
-     * @param Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function remove(Request $request)
+    public function remove()
     {
         try {
-            // GET THE SLUG, ex. 'posts', 'pages', etc.
-            $slug = $request->get('slug');
-
-            // GET image name
-            $image = $request->get('image');
-
-            // GET record id
-            $id = $request->get('id');
-
-            // GET field name
-            $field = $request->get('field');
-
             return response()->json([
                 'data' => [
                     'status'  => 200,

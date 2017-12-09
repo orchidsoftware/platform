@@ -54,7 +54,7 @@
             @if(!is_null($post))
                 @foreach($post->tags as $tag)
                     <option value="{{$tag->name}}" selected="selected">{{$tag->name}}</option>
-                 @endforeach
+                @endforeach
             @endif
         </select>
     </div>
@@ -120,12 +120,14 @@
 $(function () {
     $('.select2-tags').select2({
         theme: "classic",
-        templateResult: function formatState (state) {
-            if (!state.id || !state.count) { return state.text; }
+        templateResult: function formatState(state) {
+            if (!state.id || !state.count) {
+                return state.text;
+            }
 
-            var str ='<span>' + state.text + '</span>' +' <span class="pull-right badge bg-info">' + state.count + '</span>';
+            var str = '<span>' + state.text + '</span>' + ' <span class="pull-right badge bg-info">' + state.count + '</span>';
 
-            return  $(str);
+            return $(str);
         },
         createTag: function (tag) {
             return {
@@ -133,7 +135,7 @@ $(function () {
                 text: tag.term,
             };
         },
-        escapeMarkup: function(m) {
+        escapeMarkup: function (m) {
             return m;
         },
         width: '100%',

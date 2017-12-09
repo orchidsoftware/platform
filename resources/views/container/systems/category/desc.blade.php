@@ -22,7 +22,7 @@
 
                     <div class="container">
 
-                        {!! generate_form($fields, optional($termTaxonomy->term), $code) !!}
+                        {!! generate_form($fields, optional($termTaxonomy->term), $code,'content') !!}
 
                     </div>
 

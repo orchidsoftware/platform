@@ -15,17 +15,16 @@ abstract class Rows
      * @param $post
      *
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     public function build($post)
     {
         $form = new Builder($this->fields(), $post);
 
-        $view = view($this->template, [
+        return view($this->template, [
             'form' => $form->generateForm(),
-            //'build' => $this->recustiveBuild($layout,$post)
         ])->render();
-
-        return $view;
     }
 
     /**

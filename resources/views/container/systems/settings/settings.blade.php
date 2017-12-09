@@ -36,7 +36,9 @@
 
                 <div class="tab-content">
                     @foreach($forms as $name => $form)
-                        <div role="tabpanel" class="tab-pane @if ($loop->first) active @endif" id="tab-{{str_slug($name)}}">
+                        <div role="tabpanel"
+                             class="tab-pane @if ($loop->first) active @endif"
+                             id="tab-{{str_slug($name)}}">
                             {!! $form !!}
                         </div>
                     @endforeach

@@ -42,6 +42,7 @@ if (!function_exists('generate_form')) {
      * @param string|null $prefix
      *
      * @return mixed
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     function generate_form(array $fields, $data, string $language = null, string $prefix = null)
     {
@@ -51,6 +52,9 @@ if (!function_exists('generate_form')) {
 
         $form = new \Orchid\Platform\Fields\Builder($fields, $data, $language, $prefix);
 
-        return $form->generateForm();
+        try {
+            return $form->generateForm();
+        } catch (\Orchid\Platform\Exceptions\TypeException $e) {
+        }
     }
 }

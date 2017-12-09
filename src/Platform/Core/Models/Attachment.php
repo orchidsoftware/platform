@@ -4,7 +4,6 @@ namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
@@ -101,6 +100,7 @@ class Attachment extends Model
 
     /**
      * @return bool|null
+     * @throws \Exception
      */
     public function delete()
     {
@@ -110,7 +110,10 @@ class Attachment extends Model
 
         $this->removePhysicalFile($this);
 
-        return parent::delete();
+        try {
+            return parent::delete();
+        } catch (\Exception $e) {
+        }
     }
 
     /**

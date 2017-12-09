@@ -46,6 +46,6 @@ class MakeWidget extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Http\Widgets';
+        return $rootNamespace . '\Http\Widgets';
     }
 }

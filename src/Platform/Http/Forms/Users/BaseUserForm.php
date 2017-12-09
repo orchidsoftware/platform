@@ -46,10 +46,6 @@ class BaseUserForm extends Form
     public function rules() : array
     {
         return $this->behavior->rules();
-        return [
-            'name'  => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $this->request->get('email') . ',email',
-        ];
     }
 
     /**

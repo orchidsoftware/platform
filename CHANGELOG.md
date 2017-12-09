@@ -1,8 +1,56 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
 
 ## [Unreleased]
+### Added 
+- Left menu notification
+- New button logout
+- Fields picture added stub behaviors
+
+### Deprecated
+- Deprecated widget Google analytics
+
+### Removed
+- Removed right notification
+- Removed right menu
+- Removed time picker css
+
+### Fixed
+- Video icon to file manager
+- Display Area in Chrome 63  
+
+## [2.0.4] - 2017-12-05
+### Fixed
+- Pagination "..." symbol
+- Pagination width
+- Load reflection class for Screen
+
+## [2.0.3] - 2017-12-04
+### Fixed
+- Extra character
+- Duplicate error message
+- Category prefix
+- Update install scout
+
+
+## [2.0.2] - 2017-12-02
+### Added
+- Laravel Mix (Manifest&version)
+### Fixed
+- Update npm dependencies
+- Message upload filed
+
+
+## [2.0.1] - 2017-12-01
+### Fixed
+- Widget Update
+
+
+## [2.0] - 2017-12-01
 ### Added
 - Added TinyMCE
 - Added support fulltext search

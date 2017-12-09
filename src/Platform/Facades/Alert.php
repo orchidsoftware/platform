@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Facades;
 
 use Illuminate\Support\Facades\Facade;
-
 use Orchid\Platform\Alert\Alert as AlertClass;
 
 /**

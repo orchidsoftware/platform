@@ -1,5 +1,6 @@
 window.$ = window.jQuery = require('jquery');
 window.Vue = require('vue');
+
 require('jquery-ui-bundle');
 
 require('bootstrap');
@@ -43,13 +44,12 @@ require('brace/mode/javascript');
 require('brace/theme/monokai');
 
 
-require('select2');
+require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
     $('.select2-enable').select2();
 })
 require('croppie');
 
-require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');

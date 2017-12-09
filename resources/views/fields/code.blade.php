@@ -17,7 +17,7 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 @push('scripts')
-<script>
+    <script>
     $(function () {
         var editor{{$lang}}{{$slug}} = ace.edit('ace-code-block-{{$lang}}-{{$slug}}');
         editor{{$lang}}{{$slug}}.getSession().setMode('ace/mode/javascript');

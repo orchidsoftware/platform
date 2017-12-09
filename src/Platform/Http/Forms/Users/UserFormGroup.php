@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Events\Systems\UserEvent;
 use Orchid\Platform\Forms\FormGroup;

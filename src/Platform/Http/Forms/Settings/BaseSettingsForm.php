@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Http\Forms\Settings;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Platform\Forms\Form;
 use Orchid\Platform\Core\Models\Setting;
+use Orchid\Platform\Forms\Form;
 
 class BaseSettingsForm extends Form
 {

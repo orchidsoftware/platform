@@ -69,7 +69,7 @@ class BasePostForm extends Form
      * @param null $type
      * @param Post $post
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return void
      *
      * @internal param null $storage
      */

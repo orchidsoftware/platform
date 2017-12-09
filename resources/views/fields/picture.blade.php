@@ -53,8 +53,8 @@
 
 
 @push('scripts')
-<script>
-$(function() {
+    <script>
+$(function () {
 
     var $cropPanel = $('#picture-crop-modal-{{$lang}}-{{$slug}} .upload-panel');
     var $formGroup;
@@ -126,7 +126,6 @@ $(function() {
                 .catch(function (error) {
                     console.log(error);
                 });
-
 
 
         });

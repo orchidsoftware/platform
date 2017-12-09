@@ -9,7 +9,7 @@
 Так же можно указать валидацию, или модули (См. Раздел формы).
 
 
-Собственное поведение должно быть зарегистрировано в `config/cms.php` в разделе типов
+Собственное поведение должно быть зарегистрировано в `config/platform.php` в разделе типов
 
 
 ```php
@@ -30,7 +30,7 @@
 ```php
 namespace DummyNamespace;
 
-use Orchid\CMS\Behaviors\Many;
+use Orchid\Platform\Behaviors\Many;
 
 class DummyClass extends Many
 {

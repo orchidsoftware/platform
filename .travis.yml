@@ -11,11 +11,12 @@ cache:
     - $HOME/.composer/cache
 
 services:
-  - mysql
+  - postgresql
 
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS platform;'
-
+  - psql -c 'create database platform;' -U postgres
+  - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
+  
 install:
   - composer install --prefer-source
 
@@ -23,3 +24,6 @@ script: vendor/bin/phpunit
 
 notifications:
   email: false
+  
+addons:
+  postgresql: "9.4"

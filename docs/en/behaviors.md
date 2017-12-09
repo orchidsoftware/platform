@@ -5,7 +5,7 @@ Behaviors are the main part of ORCHID, instead of generating a CRUD for each mod
 You can select any entity in a separate type and easily operate it
 
 
-Own behaviors must be registered in `config/cms.php` in the types section
+Own behaviors must be registered in `config/platform.php` in the types section
 
 
 ```php
@@ -26,7 +26,7 @@ The type looks like this:
 ```php
 namespace DummyNamespace;
 
-use Orchid\CMS\Behaviors\Many;
+use Orchid\Platform\Behaviors\Many;
 
 class DummyClass extends Many
 {

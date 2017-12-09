@@ -91,7 +91,7 @@ class AccessUserForm extends Form
      * @param null $request
      * @param null $user
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return void
      */
     public function persist($request = null, $user = null)
     {

@@ -5,7 +5,7 @@ The platform assumes that by default any elements that contain site data are a `
 So, now you can fetch database data:
 
 ```php
-use Orchid\CMS\Core\Models\Post;
+use Orchid\Platform\Core\Models\Post;
 
 $posts = Post::all();
 ```
@@ -87,7 +87,7 @@ $item = Post::find(42);
 $item->attachment('image')->get();
 ```
 
-The uploaded images are automatically assigned to the permissions specified in the `config/cms`.
+The uploaded images are automatically assigned to the permissions specified in the `config/platform`.
 To call them, you can use the previously specified key.
 If images for this key are not found, the original file will be returned.
 

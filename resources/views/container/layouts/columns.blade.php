@@ -1,6 +1,6 @@
 <div class="hbox hbox-auto-xs bg-light">
 
-    @foreach($columns as $key => $column)
+    @foreach($manyForms as $key => $column)
         <div class="col lter b-l">
             <div class="vbox">
                 @foreach($column as $item)

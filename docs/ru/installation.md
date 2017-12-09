@@ -23,6 +23,7 @@ $ composer require orchid/platform
 Опубликуем настройки и вспомогательные файлы в наше приложение:
 ```php
 php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
+php artisan vendor:publish --all
 ```
 
 Применим все наши миграции, что бы собрать базу данных:
@@ -52,6 +53,11 @@ class User extends BaseUser
 
 }
 
+```
+
+Создайте пользователя администратора
+```php
+php artisan make:admin admin admin@admin.com password
 ```
 
 #### Конец
