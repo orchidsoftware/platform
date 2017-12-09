@@ -4,13 +4,13 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-	<textarea class="simplemde-{{$lang}}-{{$slug}}" 
+	<textarea class="simplemde-{{$lang}}-{{$slug}} hidden" 
 		@if(isset($prefix))
 			name="{{$prefix}}[{{$lang}}]{{$name}}"
 		@else
 			name="{{$lang}}{{$name}}"
 		@endif 
-		style="display: none;">{{ $value or old($name) }}</textarea>
+		>{{ $value or old($name) }}</textarea>
 	
 
     @if(isset($help))
@@ -19,14 +19,6 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 
-<style>
-	.CodeMirror-fullscreen, 
-	.editor-toolbar.fullscreen,
-	.editor-preview-side
-	{
-		z-index: 1300;
-	}
-</style>
 <script>
 $(function () {
 	var simplemde = new SimpleMDE({
