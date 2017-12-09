@@ -29,6 +29,11 @@ class Link
      */
     public $icon;
 
+    /**
+     * @var
+     */
+    public $modal;
+
 
     /**
      * @param $name
@@ -66,6 +71,7 @@ class Link
             'name'      => $this->name,
             'method'    => $this->method,
             'icon'      => $this->icon,
+            'modal'      => $this->modal,
             'arguments' => $arguments,
         ]);
     }

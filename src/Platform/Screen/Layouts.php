@@ -16,6 +16,7 @@ class Layouts
     public $templates = [
         'tabs'    => 'dashboard::container.layouts.tabs',
         'columns' => 'dashboard::container.layouts.columns',
+        'modals'  => 'dashboard::container.layouts.modals',
     ];
 
     /**
@@ -59,6 +60,7 @@ class Layouts
     protected function setLayouts($property)
     {
         $this->layouts = $property;
+
         return $this;
     }
 
