@@ -125,6 +125,10 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 5. Submit a pull request :D
 
 
+## Change log
+
+See [CHANGELOG](CHANGELOG.md).
+
 ## Credits
 
 - [Alexandr Chernyaev](https://github.com/tabuna)
