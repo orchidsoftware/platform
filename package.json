@@ -34,6 +34,7 @@
     "select2": "^4.0.5",
     "simple-line-icons": "^2.4.1",
     "tinymce": "^4.7.4",
+    "simplemde":"^1.11.2",    
     "turbolinks": "^5.0",
     "vue": "^2.5.9"
   },
