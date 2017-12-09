@@ -55,8 +55,8 @@ require('./modules/leftMenu');
 require('./modules/open-click');
 
 require('../../../node_modules/tinymce/tinymce.min');
-
-
 tinyMCE.baseURL = "/orchid/js/";
+
+window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
