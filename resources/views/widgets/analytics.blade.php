@@ -1,3 +1,9 @@
+{{--
+
+Widget Deprecated
+
+--}}
+
 @if(config('services.google.analytics.key'))
 
     <!-- Step 1: Create the containing elements.  -->

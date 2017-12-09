@@ -1,5 +1,6 @@
 window.$ = window.jQuery = require('jquery');
 window.Vue = require('vue');
+
 require('jquery-ui-bundle');
 
 require('bootstrap');
@@ -49,7 +50,6 @@ $(() => {
 })
 require('croppie');
 
-require('./modules/post');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');

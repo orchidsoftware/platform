@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbolinks:load", function () {
     $('.datetimepicker').datetimepicker({
         defaultDate: moment(),
         locale: $('html').attr('lang'),

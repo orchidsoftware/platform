@@ -9,7 +9,5 @@
 window.Turbolinks = require("turbolinks");
 Turbolinks.start();
 
-//document.addEventListener("turbolinks:load", function() {
-    require('./bootstrap');
-//});
+require('./bootstrap');
 

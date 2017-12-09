@@ -77,8 +77,8 @@
                                                 >
                                                 </div>
 
-                                                <i v-if="file.type  === 'object' && file.type.includes('video')"
-                                                   class="icon fa fa-video"></i>
+                                                <i v-if="file.type.includes('video')"
+                                                   class="icon fa fa-video-camera"></i>
 
                                                 <i v-if="file.type.includes('audio')" class="icon fa fa-music"></i>
 

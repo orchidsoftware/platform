@@ -82,17 +82,13 @@
                             @endif
                         </div>
                         <div class="row-row">
-                            <div class="cell scrollable hover">
-                                <div class="cell-inner">
-                                    <div class="tab-content">
-                                        @foreach($type->render() as $name => $view)
-                                            <div class="tab-pane @if($loop->first) active @endif"
-                                                 id="module-{{str_slug($name)}}">
-                                                {!! $view !!}
-                                            </div>
-                                        @endforeach
+                            <div class="tab-content">
+                                @foreach($type->render() as $name => $view)
+                                    <div class="tab-pane @if($loop->first) active @endif"
+                                         id="module-{{str_slug($name)}}">
+                                        {!! $view !!}
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

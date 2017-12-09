@@ -60,7 +60,6 @@
             <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
                 <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
-                <!--<span class="hidden-folded m-l-xs">Orchid</span>-->
             </a>
             <!-- / brand  -->
         </div>
@@ -75,112 +74,7 @@
             </div>
 
             <div class="col-xs-12 col-md-6">
-                @section('navbar')
-                    <!-- nabar right  -->
-                        <ul class="nav navbar-nav navbar-right hidden-xs">
-
-                        <li>
-                            <a href="#"
-                               class="click"
-                               data-turbolinks="false"
-                               data-toggle="open"
-                               title="Notifications"
-                               data-target="#quickview">
-                                <i class="icon-bell"></i>
-                                <span class="visible-xs-inline">Notifications</span>
-
-
-                                @php
-                                    $unreadNotificationsCount = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class)->count();
-                                @endphp
-
-                                @if($unreadNotificationsCount > 0)
-                                    <span class="badge badge-sm up bg-danger pull-right-xs">
-                                        {{$unreadNotificationsCount}}
-                                    </span>
-                                @endif
-                            </a>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle clear">
-
-                                {{--
-                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNThlZjJlN2ExMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1OGVmMmU3YTExIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQzLjgxMjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="...">
-                <i class="on md b-white bottom"></i>
-              </span>
-              --}}
-
-                                <span class="">{{Auth::user()->name}}</span>
-                                <b class="caret"></b>
-                            </a>
-                            <!-- dropdown  -->
-                            <ul class="dropdown-menu w-full">
-                                {{--
-                                <li class="wrapper b-b m-b-sm bg-light m-t-n-xs">
-                                    <div>
-                                        <p>300mb из 500mb</p>
-                                    </div>
-                                    <div  class="progress progress-xs m-b-none dker">
-                                        <div  class="progress-bar progress-bar-info" data-toggle="tooltip"
-                                             data-original-title="50%" style="width: 50%"></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <span class="badge bg-danger pull-right">New/span>
-                                        <span>Настройки</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>Профиль</a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="label bg-info pull-right">новое</span>
-                                        Помощь
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                 --}}
-
-
-                                <li>
-                                    <a href="{{url(config('app.url'))}}">
-                                        <span>{{trans('dashboard::common.website')}}</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{route('dashboard.systems.users.edit',Auth::user()->id)}}">
-                                        <span>{{trans('dashboard::common.profile')}}</span>
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-
-                                    <a href="{{ url('/dashboard/logout') }}"
-                                       onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                        {{trans('dashboard::auth/account.sign_out')}}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                            <!-- / dropdown  -->
-                        </li>
-
-
-                    </ul>
-                        <!-- / navbar right  -->
-                    @show
+                @yield('navbar')
             </div>
 
 
@@ -211,9 +105,24 @@
                     </ul>
 
                     <ul class="nav-footer-fix">
-                        <li><a href="#"><i class="icon-grid" aria-hidden="true"></i></a></li>
-                        <li><a href="{{route('dashboard.systems.cache')}}"><i class="icon-settings"
-                                                                              aria-hidden="true"></i></a></li>
+                        <li>
+                            <a href="{{ url('/dashboard/logout') }}"
+                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                              <i class="icon-logout" aria-hidden="true"></i>
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                         <li>
+                             <a href="{{route('dashboard.systems.cache')}}">
+                                 <i class="icon-settings" aria-hidden="true"></i>
+                             </a>
+                         </li>
+
                     </ul>
 
                 </nav>
@@ -228,35 +137,12 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav tab-content">
+                    <ul class="nav tab-content" id="aside-wrap-list">
+                        @include('dashboard::partials.notifications')
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
                     </ul>
                 </nav>
                 <!-- nav  -->
-
-                {{-- To do:
-                <!-- aside footer  -->
-                <div  class="wrapper m-t">
-
-                    <div  class="text-center-folded">
-                        <span class="pull-right pull-none-folded">60%</span>
-                        <span class="hidden-folded">Закрытых заказов</span>
-                    </div>
-                    <div  class="progress progress-xxs m-t-sm lter">
-                        <div  class="progress-bar progress-bar-info" style="width: 60%;">
-                        </div>
-                    </div>
-                    <div  class="text-center-folded">
-                        <span class="pull-right pull-none-folded">35%</span>
-                        <span class="hidden-folded">Заказов в процессе</span>
-                    </div>
-                    <div  class="progress progress-xxs m-t-sm lter">
-                        <div  class="progress-bar progress-bar-primary" style="width: 35%;">
-                        </div>
-                    </div>
-                </div>
-                <!-- / aside footer  -->
-                --}}
 
 
             </div>
@@ -291,23 +177,7 @@
     </div>
     <!-- /content  -->
 
-
-    <!-- footer  -->
-{{--
-<footer id="footer" class="app-footer" role="footer">
-    <div class="wrapper b-t bg-light">
-        <span class="pull-right">{{ App::version() }}/{{ Dashboard::version() }}
-            <a href="https://github.com/TheOrchid/Platform" class="m-l-sm text-muted"> <i class="fa fa-github"></i></a>
-        </span>
-        © {{date("Y")}} Copyright.
-    </div>
-</footer>
---}}
-<!-- / footer  -->
 </div>
-
-
-@include('dashboard::partials.quick')
 
 
 
@@ -317,6 +187,22 @@
 @endforeach
 
 @stack('scripts')
+
+<script>
+    var activeMenu = false;
+    $('#aside-wrap-list').children('.tab-pane').each(function () {
+        if($(this).hasClass('active')){
+           activeMenu = true;
+        }
+    });
+
+    if(!activeMenu){
+        $('#menu-notifications').addClass('active')
+    }
+
+</script>
+
+
 
 </body>
 </html>

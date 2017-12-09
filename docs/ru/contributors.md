@@ -1,11 +1,11 @@
 # Участие в разработке
 ----------
 
-Я призываю всех внести свой вклад в проект ORCHID. Вы можете найти последнюю версию кода на GitHub по адресу <https://github.com/TheOrchid/Platform>.
+Я призываю всех внести свой вклад в проект ORCHID. Вы можете найти последнюю версию кода на GitHub по адресу <https://github.com/orchidsoftware/platform>.
 
 ## Отслеживание проблем
 
-Вы можете найти нерешенные вопросы на  [GitHub Issues Tracker](https://github.com/TheOrchid/Platform/issues).
+Вы можете найти нерешенные вопросы на  [GitHub Issues Tracker](https://github.com/orchidsoftware/platform/issues).
  Если вы намерены работать по конкретному вопросу, оставьте комментарий на соответствующий задачу для информирования других участников проекта.
  
 
