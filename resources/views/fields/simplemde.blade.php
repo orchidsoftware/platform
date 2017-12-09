@@ -10,7 +10,7 @@
 		@else
 			name="{{$lang}}{{$name}}"
 		@endif 
-		style="display: none;"></textarea>
+		style="display: none;">{{ $value or old($name) }}</textarea>
 	
 
     @if(isset($help))
@@ -34,11 +34,12 @@ $(function () {
 		toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", 
 		"|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
 		autosave: {
-			enabled: true,
+			enabled: false,
 			uniqueId: "AutoSave-{{$prefix}}[{{$lang}}]{{$name}}",
 			delay: 10000,
 		},
 		placeholder: "{{$placeholder or ''}}",
 	});
+
 });
 </script>
