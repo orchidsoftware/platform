@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
-
+### Added 
+- Link method title and modal method
+- Fix paginate style
 
 ## [2.0.5] - 2017-12-10
 ### Added 

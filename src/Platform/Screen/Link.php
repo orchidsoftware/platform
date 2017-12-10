@@ -34,6 +34,10 @@ class Link
      */
     public $modal;
 
+    /**
+     * @var
+     */
+    public $title;
 
     /**
      * @param $name
@@ -45,7 +49,7 @@ class Link
     {
         $new = new Link();
 
-        return call_user_func_array([$new, 'rewriteProperty'], [$name,$arguments[0]]);
+        return call_user_func_array([$new, 'rewriteProperty'], [$name, $arguments[0]]);
     }
 
     /**
@@ -56,7 +60,7 @@ class Link
      */
     public function __call($name, $arguments)
     {
-        return call_user_func_array([$this, 'rewriteProperty'], [$name,$arguments[0]]);
+        return call_user_func_array([$this, 'rewriteProperty'], [$name, $arguments[0]]);
     }
 
     /**
@@ -71,7 +75,8 @@ class Link
             'name'      => $this->name,
             'method'    => $this->method,
             'icon'      => $this->icon,
-            'modal'      => $this->modal,
+            'modal'     => $this->modal,
+            'title'     => $this->title,
             'arguments' => $arguments,
         ]);
     }
