@@ -4,14 +4,20 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
 
-	<textarea class="simplemde-{{$lang}}-{{$slug}} hidden" 
+
+	<div class="simplemde-wrapper">
+
+	<input class="simplemde-{{$lang}}-{{$slug}}"
 		@if(isset($prefix))
 			name="{{$prefix}}[{{$lang}}]{{$name}}"
 		@else
 			name="{{$lang}}{{$name}}"
-		@endif 
-		>{{ $value or old($name) }}</textarea>
-	
+		@endif
+		   id="simplemde-{{$lang}}-{{$slug}}"
+		   type="hidden"
+		   value="{{ $value or old($name) }}"
+		>
+	</div>
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
@@ -21,17 +27,12 @@
 
 <script>
 $(function () {
-	var simplemde = new SimpleMDE({
-		element: $(".simplemde-{{$lang}}-{{$slug}}")[0],
+	new SimpleMDE({
+		element: document.getElementById("simplemde-{{$lang}}-{{$slug}}"),
 		toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", 
 		"|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
-		autosave: {
-			enabled: false,
-			uniqueId: "AutoSave-{{$prefix}}[{{$lang}}]{{$name}}",
-			delay: 10000,
-		},
 		placeholder: "{{$placeholder or ''}}",
+        spellChecker: false
 	});
-
 });
 </script>

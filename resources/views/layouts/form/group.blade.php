@@ -6,9 +6,9 @@
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit"
                     form="form-group"
-                    class="btn btn-link btn-save"><i class="icon-check fa fa-2x"></i></button>
+                    class="btn btn-link btn-save"><i class="sli icon-check fa-2x"></i></button>
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
-                        class="icon-trash fa fa-2x"></i></button>
+                        class="sli icon-trash fa-2x"></i></button>
         </div>
     </div>
 @stop

@@ -89,6 +89,7 @@ return [
         'code'         => Orchid\Platform\Fields\Types\CodeField::class,
         'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+        'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
     ],
 
     /*

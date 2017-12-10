@@ -5,7 +5,7 @@
     <div class="text-right">
         <div class="btn-group" role="group">
             <a href="{{ route('dashboard.posts.type.create',$type->slug)}}" class="btn btn-link"><i
-                        class="icon-plus fa fa-2x"></i></a>
+                        class="sli icon-plus fa-2x"></i></a>
         </div>
     </div>
 @stop

@@ -35,7 +35,7 @@
         <li>
                 <button type="submit"
                         form="post-form"
-                        class="btn btn-sm btn-link"><i class="icon-check fa fa-2x"></i></button>
+                        class="btn btn-sm btn-link"><i class="sli icon-check fa-2x"></i></button>
             </li>
 
         </ul>

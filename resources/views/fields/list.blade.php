@@ -13,7 +13,7 @@
                            @endif
                    >
                    <button class="btn btn-link col-xs-1 remove"
-                           onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
+                           onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                </li>
        @else
            @foreach($value as $key => $val)
@@ -27,7 +27,7 @@
                            @endif
                            value="{{$val}}">
                     <button class="btn btn-link col-xs-1 remove"
-                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>
+                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                 </li>
            @endforeach
        @endif
@@ -49,7 +49,7 @@
         let item = '<li class="ui-state-default form-group row">\n' +
             '            <span onclick="return false;" class="btn btn-link col-xs-1 pull"><i class="fa-bars fa"></i></span>\n' +
             '            <input type="text" class="form-control col-xs-10" name="" value="">\n' +
-            '            <button class="btn btn-link col-xs-1 remove" onclick="removeitem{{$slug}}(this)"><i class="icon-trash fa"></i></button>\n' +
+            '            <button class="btn btn-link col-xs-1 remove" onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>\n' +
             '        </li>';
         $('#sortable-{{$slug}}').append(item);
         $("#sortable-{{$slug}} li").each(function (li) {

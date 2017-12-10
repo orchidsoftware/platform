@@ -8,7 +8,7 @@
 @section('navbar')
     <div class="text-right">
         <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" form="form-group" class="btn btn-link"><i class="icon-check fa fa-2x"></i></button>
+            <button type="submit" form="form-group" class="btn btn-link"><i class="sli icon-check fa-2x"></i></button>
         </div>
     </div>
 @stop

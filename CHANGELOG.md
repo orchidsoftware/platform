@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [2.0.5] - 2017-12-10
 ### Added 
 - Left menu notification
 - New button logout
+- Added markdown fiends
 - Fields picture added stub behaviors
+- Fields SimpleMDE added stub behaviors
 
 ### Deprecated
 - Deprecated widget Google analytics

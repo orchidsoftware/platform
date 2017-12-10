@@ -363,7 +363,6 @@ http://ivaynberg.github.io/select2/
     vertical-align: baseline;
     line-height: 28px;
     border-radius: 2px;
-    border: none;
     font-size: 12px;
     border: 1px solid @form-control-border-color;
   }
@@ -483,3 +482,15 @@ http://ivaynberg.github.io/select2/
   border: 1px solid @form-control-border-color;
   outline: 0;
 }
+
+
+
+// remove select arrow in Firefox
+.form-control {
+  select {
+    -moz-appearance : none;
+    text-indent     : 0.01px;
+    text-overflow   : '';
+  }
+}
+

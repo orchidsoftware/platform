@@ -36,13 +36,13 @@
         <li>
                 <button type="submit"
                         form="post-form"
-                        class="btn btn-sm btn-link"><i class="icon-check fa fa-2x"></i></button>
+                        class="btn btn-sm btn-link"><i class="sli icon-check fa-2x"></i></button>
             </li>
 
             <li>
                 <button type="submit"
                         form="form-post-remove"
-                        class="btn btn-sm btn-link"><i class="icon-trash  fa fa-2x"></i></button>
+                        class="btn btn-sm btn-link"><i class="sli icon-trash fa-2x"></i></button>
             </li>
 
         </ul>

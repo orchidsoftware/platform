@@ -1,191 +1,38 @@
-/*Charts*/
-.jqstooltip {
-  background-color: rgba(0, 0, 0, 0.8) !important;
-  border: solid 1px #000 !important;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  padding: 5px 10px !important;
-  .box-sizing(content-box);
-}
-
-// easypie
-.easyPieChart {
-  position: relative;
-  text-align: center;
-  > div {
-    position: relative;
-    z-index: 1;
-    .text {
-      position: absolute;
-      width: 100%;
-      top: 60%;
-      line-height: 1;
-    }
-    img {
-      margin-top: -4px;
-    }
-  }
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0
-  }
-}
-
-// flot tip
-#flotTip {
-  padding: 4px 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border: solid 1px #000 !important;
-  z-index: 100;
-  font-size: 12px;
-  color: #fff;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-// flot lengend
-.legendColorBox {
-  > div {
-    border: none !important;
-    margin: 5px;
-    > div {
-      border-radius: 10px;
-    }
-  }
-}
 
 // sortable
 .sortable-placeholder {
-  list-style: none;
-  border: 1px dashed #CCC;
-  min-height: 50px;
-  margin-bottom: 5px
-}
-
-// datatable
-.panel .dataTables_wrapper {
-  padding-top: 10px
-}
-
-.panel .dataTables_wrapper > .row {
-  margin: 0
-}
-
-.panel .dataTables_wrapper > .row > .col-sm-12 {
-  padding: 0;
-}
-
-// sortable
-.st-sort-ascent:before {
-  content: '\25B2';
-}
-
-.st-sort-descent:before {
-  content: '\25BC';
-}
-
-.st-selected td {
-  background: #f0f9ec !important;
+  list-style    : none;
+  border        : 1px dashed #cccccc;
+  min-height    : 50px;
+  margin-bottom : 5px
 }
 
 // input
-
 .chosen-choices, .chosen-single, .bootstrap-tagsinput {
   .form-control;
 }
 
 .bootstrap-tagsinput {
-  padding: 5px 12px !important;
-}
-
-// bar-load
-
-.loading-bar {
-  transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-}
-
-.loading-bar {
-  position: fixed;
-  top: @app-header-height;
-  background: @brand-primary;
-  height: 2px;
-  opacity: 1;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.glow-bar {
-  top: 0;
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  box-shadow: -3px 0 15px 1px rgba(0, 255, 231, 0.4)
-}
-
-.to-right.loading-bar {
-  left: @app-aside-width;
-}
-
-.to-right .glow-bar {
-  right: 0;
-}
-
-.to-left.loading-bar {
-  right: 0;
-}
-
-.to-left .glow-bar {
-  left: 0;
-}
-
-.full.loading-bar {
-  transition: all 0.1s ease;
-  -moz-transition: all 0.1s ease;
-  -webkit-transition: all 0.1s ease;
-  -o-transition: all 0.1s ease;
-  height: 0;
-  opacity: 0;
-}
-
-.error.loading-bar {
-  background: @brand-danger;
-}
-
-.error .glow-bar {
-  box-shadow: -3px 0 15px 1px rgba(244, 67, 54, 0.4);
-}
-
-.icon-title {
-  margin: auto auto 20px;
-  display: block;
-  width: 120px;
-  height: 120px;
-  line-height: 110px !important;
-  text-align: center;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  border: 1px dashed #ccc;
-  font-size: 62px;
-  color: #6dcff6;
+  padding : 5px 12px !important;
 }
 
 .bootstrap-tagsinput {
-  width: 100%;
+  width : 100%;
 }
 
 .select2-search__field {
   width : 100% !important;
 }
 
-.mce-content-body{
+
+#menu-notifications {
+  .btn-link:focus, .btn-link:hover {
+    color : @brand-white;
+  }
+}
+
+// Tiny MCE Editor
+.mce-content-body {
   img {
     max-width  : 100%;
     object-fit : cover;
@@ -193,15 +40,23 @@
 }
 
 
-#menu-notifications{
-  .btn-link:focus, .btn-link:hover {
-    color: @brand-white;
-  }
+
+// SimpleMDE Markdown Editor
+.CodeMirror-fullscreen,
+.editor-toolbar.fullscreen,
+.editor-preview-side {
+  z-index : 1300;
 }
 
-.CodeMirror-fullscreen, 
-.editor-toolbar.fullscreen,
-.editor-preview-side
-	{
-		z-index: 1300;
-	}
+
+.sli{
+  display: inline-block;
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
