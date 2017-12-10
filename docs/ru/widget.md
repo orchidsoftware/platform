@@ -61,3 +61,68 @@ class MySuperWidget extends Widget {
 @widget('NameForMySuperWidget')
 ```
 
+
+
+
+## AJAX Widget
+
+Виджеты можут быть использованы для загрузки и подгрузки информации в полях для связи.
+
+Тогда в свойство `$query` будет принимать значение для поиска, а `$key` выбраное значение.
+
+
+```php
+namespace App\Http\Widgets;
+
+use Orchid\Platform\Widget\Widget;
+
+class TestAjaxWidget extends Widget
+{
+
+    /**
+     * @var null
+     */
+    public $query = null;
+
+    /**
+     * @var null
+     */
+    public $key = null;
+
+    /**
+     * @return array
+     */
+    public function handler()
+    {
+        $data = [
+            [
+                'id'   => 1,
+                'text' => 'Запись 1',
+            ],
+            [
+                'id'   => 2,
+                'text' => 'Запись 2',
+            ],
+            [
+                'id'   => 3,
+                'text' => 'Запись 3',
+            ],
+        ];
+
+
+        if(!is_null($this->key)) {
+            foreach ($data as $key => $result) {
+
+                if ($result['id'] === intval($this->key)) {
+                    return $data[$key];
+                }
+            }
+        }
+
+        return $data;
+
+    }
+
+}
+
+```

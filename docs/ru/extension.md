@@ -42,12 +42,12 @@ class MenuComposer
             'main'       => true,
             'active'     => 'dashboard.mymenu.*',
             'permission' => 'dashboard.mymenu',
-                'badge'      => [
-                    'class' => 'bg-primary',
-                    'data' => function(){
-                        return 7;
-                    }
-                ],
+            'badge'      => [
+                'class' => 'bg-primary',
+                'data' => function(){
+                    return 7;
+                }
+            ],
             'sort'       => 1,
         ]);
     }

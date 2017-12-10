@@ -10,22 +10,27 @@
 ```php
 // Доступные поля для формирования шаблонов
 'fields' => [
-    'textarea' => Orchid\Platform\Fields\TextAreaField::class,
-    'input'    => Orchid\Platform\Fields\InputField::class,
-    'tags'     => Orchid\Platform\Fields\TagsField::class,
-    'robot'    => Orchid\Platform\Fields\RobotField::class,
-    'place'    => Orchid\Platform\Fields\PlaceField::class,
-    'datetime' => Orchid\Platform\Fields\DateTimerField::class,
-    'checkbox' => Orchid\Platform\Fields\CheckBoxField::class,
-    'code'     => Orchid\Platform\Fields\CodeField::class,
-    'wysiwyg'  => Orchid\Platform\Fields\SummernoteField::class,
+    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+    'input'        => Orchid\Platform\Fields\Types\InputField::class,
+    'list'         => Orchid\Platform\Fields\Types\ListField::class,
+    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
 ],
 ```
 
 
 Поля и поведения указываются отдельно, что позволяет использовать лишь ключ, 
 например в записи мы хотим wysing редактор, а значением будет класс. 
-Это позволяет менять редактор с summernote на tinymce или ckeditor почти в один клик.
+Это позволяет менять редактор с tinymce на summernote или ckeditor почти в один клик.
 
 Не стесняйтесь добавлять свои поля, например, для использования удобного редактора для вас или любых компонентов
 
@@ -60,9 +65,9 @@ return [
  
  
  
-### Локация
+### Локация (Place)
  
-Поле `локация` требует, чтобы ключ для карты Google указывался в `config/service`
+Поле `локация` требует, чтобы ключ для карты [Google](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=ru) указывался в `config/service`
 services.google.maps.key
 ```php
 //
