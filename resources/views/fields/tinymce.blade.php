@@ -58,7 +58,7 @@ $(function () {
 
             axios.post('/dashboard/systems/files', data)
                 .then(function (response) {
-                    success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension,);
+                    success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
                 })
                 .catch(function (error) {
                     console.log(error);
