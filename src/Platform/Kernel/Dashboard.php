@@ -11,7 +11,7 @@ class Dashboard
     /**
      * Orchid Version.
      */
-    const VERSION = '2.0.6';
+    const VERSION = '2.0.7';
 
     /**
      * @var
@@ -58,6 +58,18 @@ class Dashboard
     public static function version() : string
     {
         return static::VERSION;
+    }
+
+    /**
+     * @param $path
+     *
+     * @return string
+     */
+    public static function prefix($path = '') : string
+    {
+        $prefix = config('platform.prefix');
+
+        return $prefix . $path;
     }
 
     /**

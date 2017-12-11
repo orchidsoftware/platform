@@ -143,7 +143,7 @@ $(function () {
         cache: true,
         ajax: {
             url: function (params) {
-                return '/dashboard/systems/tags/' + params.term;
+                return dashboard.prefix('/systems/tags/' + params.term);
             },
             delay: 250,
             processResults: function (data, page) {

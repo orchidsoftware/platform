@@ -8,7 +8,7 @@
 
 
     <form class="m-t-md" role="form" method="POST"
-          action="{{ url('/dashboard/password/reset') }}">
+          action="{{ route('dashboard.password.email') }}">
         {!! csrf_field() !!}
 
         <input type="hidden" name="token" value="{{ $token }}">

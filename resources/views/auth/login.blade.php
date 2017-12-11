@@ -4,7 +4,7 @@
 
     <p class="m-t-lg">{{trans('dashboard::auth/account.title')}}</p>
 
-    <form class="m-t-md" role="form" method="POST" action="{{  url('/dashboard/login') }}">
+    <form class="m-t-md" role="form" method="POST" action="{{  route('dashboard.login.auth') }}">
         {!! csrf_field() !!}
 
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-xs-7 text-right">
-                <a href="{{ url('/dashboard/password/reset') }}"
+                <a href="{{ route('dashboard.password.request') }}"
                    class="text-primary small">{{trans('dashboard::auth/account.forgot_password')}}</a>
             </div>
         </div>

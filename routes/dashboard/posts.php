@@ -9,63 +9,68 @@
 |
 */
 
-$this->group([
-    'middleware' => config('platform.middleware.private'),
-    'prefix'     => 'dashboard/posts',
-    'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
-], function (\Illuminate\Routing\Router $router) {
-    $router->get('{type}/create', [
-        'as'   => 'dashboard.posts.type.create',
-        'uses' => 'PostController@create',
-    ]);
+$this->domain(config('platform.domain'))->group(function () {
 
-    $router->get('{type}/{slug}/edit', [
-        'as'   => 'dashboard.posts.type.edit',
-        'uses' => 'PostController@edit',
-    ]);
+    $this->group([
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/posts'),
+        'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
+    ], function (\Illuminate\Routing\Router $router) {
+        $router->get('{type}/create', [
+            'as'   => 'dashboard.posts.type.create',
+            'uses' => 'PostController@create',
+        ]);
 
-    $router->get('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type',
-        'uses' => 'PostController@index',
-    ]);
+        $router->get('{type}/{slug}/edit', [
+            'as'   => 'dashboard.posts.type.edit',
+            'uses' => 'PostController@edit',
+        ]);
 
-    $router->post('{type}', [
-        'as'   => 'dashboard.posts.type.store',
-        'uses' => 'PostController@store',
-    ]);
+        $router->get('{type}/{slug?}', [
+            'as'   => 'dashboard.posts.type',
+            'uses' => 'PostController@index',
+        ]);
 
-    $router->put('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type.update',
-        'uses' => 'PostController@update',
-    ]);
+        $router->post('{type}', [
+            'as'   => 'dashboard.posts.type.store',
+            'uses' => 'PostController@store',
+        ]);
 
-    $router->delete('{type}/{slug?}', [
-        'as'   => 'dashboard.posts.type.destroy',
-        'uses' => 'PostController@destroy',
-    ]);
-});
+        $router->put('{type}/{slug?}', [
+            'as'   => 'dashboard.posts.type.update',
+            'uses' => 'PostController@update',
+        ]);
 
-/*
-|--------------------------------------------------------------------------
-| Page Web Routes
-|--------------------------------------------------------------------------
-|
-| Base route
-|
-*/
+        $router->delete('{type}/{slug?}', [
+            'as'   => 'dashboard.posts.type.destroy',
+            'uses' => 'PostController@destroy',
+        ]);
+    });
 
-$this->group([
-    'middleware' => config('platform.middleware.private'),
-    'prefix'     => 'dashboard/pages',
-    'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
-], function (\Illuminate\Routing\Router $router) {
-    $router->get('{page}', [
-        'as'   => 'dashboard.pages.show',
-        'uses' => 'PageController@show',
-    ]);
+    /*
+    |--------------------------------------------------------------------------
+    | Page Web Routes
+    |--------------------------------------------------------------------------
+    |
+    | Base route
+    |
+    */
 
-    $router->put('{page}', [
-        'as'   => 'dashboard.pages.update',
-        'uses' => 'PageController@update',
-    ]);
+    $this->group([
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/pages'),
+        'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
+    ], function (\Illuminate\Routing\Router $router) {
+        $router->get('{page}', [
+            'as'   => 'dashboard.pages.show',
+            'uses' => 'PageController@show',
+        ]);
+
+        $router->put('{page}', [
+            'as'   => 'dashboard.pages.update',
+            'uses' => 'PageController@update',
+        ]);
+    });
+
+
 });

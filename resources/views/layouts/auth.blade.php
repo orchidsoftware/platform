@@ -15,7 +15,7 @@
     <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
     <meta name="theme-color" content="#f8f9fa">
 
-
+    <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
     <meta name="description"
           content="Laravel Platform application provides a very flexible and extensible way of building your custom application.">
     <meta property="og:title" content="@yield('title','Orchid')"/>
@@ -42,7 +42,7 @@
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>
-                © 2013-{{date('Y')}} Orchid.
+                © 2013 -{{date('Y')}} Orchid.
             </p>
         </div>
 
@@ -52,7 +52,7 @@
     <div class="login-container bg-white b-l b-l-light">
         <div class="padder-lg m-t-lg">
 
-            <a href="{{url('/dashboard')}}">
+            <a href="/{{Dashboard::prefix()}}">
                 <img src="/orchid/img/orchid.svg" alt="logo" data-src="assets/img/logo.png"
                      data-src-retina="assets/img/logo_2x.png" height="22">
             </a>

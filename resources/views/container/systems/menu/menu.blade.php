@@ -299,7 +299,7 @@
                         'data': $('.dd').nestable('serialize')
                     };
 
-                    axios.put('/dashboard/systems/menu/' + name, data).then(function (response) {
+                    axios.put(dashboard.prefix('/systems/menu/' + name), data).then(function (response) {
                     });
                 },
                 exist: function () {

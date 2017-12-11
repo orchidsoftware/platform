@@ -100,7 +100,7 @@ $(function () {
 
                     $.ajax({
                         type: 'POST',
-                        url: '/dashboard/systems/files/post/' + data.id,
+                        url: dashboard.prefix('/systems/files/post/' + data.id),
                         data: {
                             _token: $("meta[name='csrf_token']").attr('content'),
                             attachment: data,
@@ -119,7 +119,7 @@ $(function () {
 
 
         var postDropzone = new Dropzone(".dropzone", {
-            url: '/dashboard/systems/files',
+            url: dashboard.prefix('/systems/files'),
             method: "post",
             uploadMultiple: false,
             parallelUploads: 100,
@@ -162,7 +162,7 @@ $(function () {
 
                     $.ajax({
                         type: 'get',
-                        url: '/dashboard/systems/files/post/' + id,
+                        url: dashboard.prefix('/systems/files/post/' + id),
                         data: {_token: $("meta[name='csrf_token']").attr('content')},
                         dataType: 'html',
                         success: function (data) {
@@ -203,7 +203,7 @@ $(function () {
 
                     $.ajax({
                         type: 'delete',
-                        url: '/dashboard/systems/files/' + file.data.id,
+                        url: dashboard.prefix('/systems/files/' + file.data.id),
                         data: {_token: $("meta[name='csrf_token']").attr('content')},
                         dataType: 'html',
                         success: function (data) {
@@ -238,7 +238,7 @@ $(function () {
 
                 $.ajax({
                     type: 'post',
-                    url: '/dashboard/systems/files/sort',
+                    url: dashboard.prefix('/systems/files/sort'),
                     data: {
                         _token: $("meta[name='csrf_token']").attr('content'),
                         files: items

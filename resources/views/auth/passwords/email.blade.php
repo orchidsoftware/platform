@@ -12,7 +12,7 @@
     @endif
 
     <form class="m-t-md" role="form" method="POST"
-          action="{{ url('/dashboard/password/email') }}">
+          action="{{ route('dashboard.password.email') }}">
         {!! csrf_field() !!}
 
 

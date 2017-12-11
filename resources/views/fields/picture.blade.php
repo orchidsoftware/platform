@@ -110,7 +110,7 @@ $(function () {
             let data = new FormData();
             data.append('file', blob);
 
-            axios.post('/dashboard/systems/files', data)
+            axios.post(dashboard.prefix('/systems/files'), data)
                 .then(function (response) {
 
                     let image = '/storage/' + response.data.path + response.data.name + '.' + response.data.extension;

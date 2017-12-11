@@ -16,6 +16,31 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Sub-Domain Routing
+    |--------------------------------------------------------------------------
+    |
+    | You can use the admin panel on a separate subdomain.
+    | For example: 'admin.example.com'
+    |
+    */
+
+    'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route Prefixes
+    |--------------------------------------------------------------------------
+    |
+    | This prefix method can be used for the prefix of each
+    | route in the administration panel. For example, you can change to 'admin'
+    |
+    */
+
+    'prefix' => env('DASHBOARD_PREFIX', 'dashboard'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Middleware
     |--------------------------------------------------------------------------
     |
@@ -43,7 +68,6 @@ return [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
         //'slogan'  => '',
-
     ],
 
     /*

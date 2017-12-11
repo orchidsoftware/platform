@@ -16,7 +16,8 @@
     <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
     <meta name="theme-color" content="#f8f9fa">
 
-    <meta name="turbolinks-root" content="/dashboard">
+    <meta name="turbolinks-root" content="/{{Dashboard::prefix()}}">
+    <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
 
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
@@ -95,7 +96,7 @@
                     <ul class="nav" role="tablist">
 
                         <li>
-                            <a href="/dashboard" class="navbar-brand text-lt w-full">
+                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand text-lt w-full">
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
@@ -106,14 +107,13 @@
 
                     <ul class="nav-footer-fix">
                         <li>
-                            <a href="{{ url('/dashboard/logout') }}"
+                            <a href="{{ route('dashboard.logout') }}"
                                onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                               <i class="icon-logout" aria-hidden="true"></i>
                             </a>
 
-                            <form id="logout-form" action="{{ url('/dashboard/logout') }}" method="POST"
-                                  style="display: none;">
+                            <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}" method="POST">
                                 {{ csrf_field() }}
                             </form>
                         </li>

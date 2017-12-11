@@ -50,6 +50,7 @@ $(() => {
 })
 require('croppie');
 
+require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');

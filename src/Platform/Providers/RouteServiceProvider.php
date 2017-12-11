@@ -111,7 +111,6 @@ class RouteServiceProvider extends ServiceProvider
             return null;
         }
 
-
         foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }

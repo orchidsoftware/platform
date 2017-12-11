@@ -56,7 +56,7 @@ $(function () {
             let data = new FormData();
             data.append('file', blobInfo.blob());
 
-            axios.post('/dashboard/systems/files', data)
+            axios.post(dashboard.prefix('/systems/files'), data)
                 .then(function (response) {
                     success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
                 })
