@@ -10,7 +10,6 @@
 */
 
 $this->domain(config('platform.domain'))->group(function () {
-
     $this->group([
         'middleware' => config('platform.middleware.public'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
@@ -31,5 +30,4 @@ $this->domain(config('platform.domain'))->group(function () {
 
         $router->post('logout', 'LoginController@logout')->name('dashboard.logout');
     });
-
 });
