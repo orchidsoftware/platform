@@ -10,7 +10,6 @@
 */
 
 $this->domain(config('platform.domain'))->group(function () {
-
     $this->group([
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
@@ -21,5 +20,4 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'DashboardController@index',
         ]);
     });
-
 });
