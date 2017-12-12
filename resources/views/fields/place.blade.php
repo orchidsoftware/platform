@@ -41,51 +41,69 @@
     </div>
 </div>
 <div class="line line-dashed b-b line-lg"></div>
+
+
 @push('scripts')
-    <script>
-    $(function () {
-
-        $.getScript("https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function (data, textStatus, jqxhr) {
-            var input = document.getElementById("place-{{$slug}}-{{$lang}}");
-            var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
 
 
-            autocomplete{{$slug}}{{$lang}}.addListener('place_changed', function () {
-                var cors = autocomplete{{$slug}}{{$lang}}.getPlace().geometry.location;
-                $('#lat-{{$slug}}-{{$lang}}').val(cors.lat());
-                $('#lng-{{$slug}}-{{$lang}}').val(cors.lng());
+<script>
+document.documentElement.addEventListener("googleMapsLoad", function(e) {
+
+    var input = document.getElementById("place-{{$slug}}-{{$lang}}");
+    var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
+
+
+    autocomplete{{$slug}}{{$lang}}.addListener('place_changed', function () {
+        var cors = autocomplete{{$slug}}{{$lang}}.getPlace().geometry.location;
+        $('#lat-{{$slug}}-{{$lang}}').val(cors.lat());
+        $('#lng-{{$slug}}-{{$lang}}').val(cors.lng());
+    });
+
+
+    $('#map-place-{{$slug}}-{{$lang}}').on('show.bs.modal', function () {
+
+
+        setTimeout(function () {
+            var myLatLng = {
+                lat: parseFloat($('#lat-{{$slug}}-{{$lang}}').val()),
+                lng: parseFloat($('#lng-{{$slug}}-{{$lang}}').val())
+            };
+
+            var map = new google.maps.Map(document.getElementById('map-place-{{$slug}}-{{$lang}}-canvas'), {
+                center: myLatLng,
+                zoom: 12
             });
 
-
-            $('#map-place-{{$slug}}-{{$lang}}').on('show.bs.modal', function () {
-
-
-                setTimeout(function () {
-                    var myLatLng = {
-                        lat: parseFloat($('#lat-{{$slug}}-{{$lang}}').val()),
-                        lng: parseFloat($('#lng-{{$slug}}-{{$lang}}').val())
-                    };
-
-                    var map = new google.maps.Map(document.getElementById('map-place-{{$slug}}-{{$lang}}-canvas'), {
-                        center: myLatLng,
-                        zoom: 12
-                    });
-
-                    new google.maps.Marker({
-                        map: map,
-                        position: myLatLng,
-                        title: $('#place-{{$slug}}-{{$lang}}').val()
-                    });
-
-                }, 300);
-
-
+            new google.maps.Marker({
+                map: map,
+                position: myLatLng,
+                title: $('#place-{{$slug}}-{{$lang}}').val()
             });
-        });
+
+        }, 300);
 
 
     });
+});
 
+window.loadGoogleMaps = {
+    "load" : function () {
+        if (window.google === undefined || window.google.maps === undefined) {
+            window.loadGoogleMaps.status = true;
+            $.getScript("https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function () {
+                document.documentElement.dispatchEvent(new Event("googleMapsLoad"));
+            });
+
+        }
+    },
+    "status": false
+};
+
+$(function () {
+    if(!window.loadGoogleMaps.status) {
+        window.loadGoogleMaps.load();
+    }
+});
 
 </script>
 @endpush
