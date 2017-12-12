@@ -5,7 +5,6 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class MediaController extends Controller

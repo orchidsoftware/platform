@@ -30,6 +30,8 @@
                 </tbody>
             </table>
         </div>
+
+        @if(is_object($form['data']))
         <footer class="panel-footer">
             <div class="row">
                 <div class="col-sm-6">
@@ -41,6 +43,7 @@
                 </div>
             </div>
         </footer>
+        @endif
     </div>
 </div>
 

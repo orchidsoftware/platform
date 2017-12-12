@@ -131,6 +131,7 @@ class PostController extends Controller
      * @param Post         $post
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {

@@ -10,4 +10,13 @@ class TextAreaField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.textarea';
+
+    /**
+     * Required Attributes
+     *
+     * @var array
+     */
+    public $required = [
+        'name',
+    ];
 }

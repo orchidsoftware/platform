@@ -10,4 +10,13 @@ class CodeField extends Field
      * @var string
      */
     public $view = 'dashboard::fields.code';
+
+    /**
+     * Required Attributes
+     *
+     * @var array
+     */
+    public $required = [
+        'name',
+    ];
 }

@@ -42,8 +42,6 @@ $(function () {
             {title: 'None', value: ''},
             {title: 'Responsive', value: 'img-responsive'},
         ],
-        // without images_upload_url set, Upload tab won't show up
-        //images_upload_url: 'postAcceptor.php',
 
         setup: function (ed) {
             ed.on('change', function (e) {

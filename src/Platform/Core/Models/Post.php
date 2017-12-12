@@ -90,6 +90,7 @@ class Post extends Model
      * Get the indexable data array for the model.
      *
      * @return array
+     * @throws TypeException
      */
     public function toSearchableArray()
     {
@@ -106,7 +107,6 @@ class Post extends Model
      * @param null $slug
      *
      * @return null
-     * @throws TypeException
      */
     public function getBehaviorObject($slug = null)
     {
@@ -361,7 +361,6 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
-     * @throws TypeException
      */
     public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
     {
@@ -397,7 +396,6 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
-     * @throws TypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
