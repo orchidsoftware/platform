@@ -76,7 +76,7 @@ namespace App\Http\Widgets;
 
 use Orchid\Platform\Widget\Widget;
 
-class TestAjaxWidget extends Widget
+class AjaxWidget extends Widget
 {
 
     /**

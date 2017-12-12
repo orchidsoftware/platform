@@ -77,3 +77,80 @@ services.google.maps.key
     ],
 ],
 ```
+
+
+
+### Отношения
+
+Поля отношения можут подгружать динамические данные, это хорошее решение, если вам нужны связи.
+
+```php
+    'type' => [
+        'tag'      => 'relationship',
+        'name'     => 'type',
+        'required' => true,
+        'title'    => 'avatar',
+        'help'     => 'Article title',
+        'handler'  => AjaxWidget::class,
+    ],
+```
+
+
+AjaxWidget в свойство `$query` будет принимать значение для поиска, а `$key` выбраное значение.
+
+
+```php
+namespace App\Http\Widgets;
+
+use Orchid\Platform\Widget\Widget;
+
+class AjaxWidget extends Widget
+{
+
+    /**
+     * @var null
+     */
+    public $query = null;
+
+    /**
+     * @var null
+     */
+    public $key = null;
+
+    /**
+     * @return array
+     */
+    public function handler()
+    {
+        $data = [
+            [
+                'id'   => 1,
+                'text' => 'Запись 1',
+            ],
+            [
+                'id'   => 2,
+                'text' => 'Запись 2',
+            ],
+            [
+                'id'   => 3,
+                'text' => 'Запись 3',
+            ],
+        ];
+
+
+        if(!is_null($this->key)) {
+            foreach ($data as $key => $result) {
+
+                if ($result['id'] === intval($this->key)) {
+                    return $data[$key];
+                }
+            }
+        }
+
+        return $data;
+
+    }
+
+}
+
+```
