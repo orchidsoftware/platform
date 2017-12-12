@@ -389,14 +389,17 @@ Route::bind('blog', function ($value) {
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('{{$post->attachment->first()->url() }}')">
+<header class="intro-header" 
+        style="background-image: url('{{$post->attachment->first()->url() }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <h1>{{$post->getContent('name')}}</h1>
                     <h2 class="subheading">{{$post->getContent('subname')}}</h2>
-                    <span class="meta">Опубликовано {{$post->publish_at->diffForHumans()}}</span>
+                    <span class="meta">
+                        Опубликовано {{$post->publish_at->diffForHumans()}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -459,7 +462,9 @@ Route::bind('blog', function ($value) {
                             {{ str_limit(strip_tags($post->getContent('body')),150) }}
                         </h3>
                     </a>
-                    <p class="post-meta">Опубликованно: {{$post->publish_at->diffForHumans()}}</p>
+                    <p class="post-meta">
+                        Опубликованно: {{$post->publish_at->diffForHumans()}}
+                    </p>
                 </div>
                 <hr>
                 @endforeach
