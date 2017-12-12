@@ -155,42 +155,50 @@ Link::name('Модальное окно')
 
 
 ```php
-    /**
-     * Views
-     *
-     * @return array
-     */
-    public function layout() : array
-    {
-        return [
-            Layouts::columns([
-                'Левая колонка' => [
-                    PatientFirstRows::class,
-                ],
-                'Правая колонка' => [
-                    PatientSecondRows::class,
-                ],
-            ]),
-            Layouts::columns([
-                'Левая колонка' => [
-                    AppointmentListLayout::class
-                ],
-                'Правая колонка' => [
-                    InvoiceListLayout::class
-                ],
-            ]),
-            // Модальные окна
-            Layouts::modals([
-                'Appointments' => [
-                    PatientFirstRows::class,
-                ],
-            ]),
-        ];
-    }
+/**
+ * Views
+ *
+ * @return array
+ */
+public function layout() : array
+{
+    return [
+        Layouts::columns([
+            'Левая колонка' => [
+                PatientFirstRows::class,
+            ],
+            'Правая колонка' => [
+                PatientSecondRows::class,
+            ],
+        ]),
+        Layouts::columns([
+            'Левая колонка' => [
+                AppointmentListLayout::class
+            ],
+            'Правая колонка' => [
+                InvoiceListLayout::class
+            ],
+        ]),
+        // Модальные окна
+        Layouts::modals([
+            'Appointments' => [
+                PatientFirstRows::class,
+            ],
+        ]),
+    ];
+}
 ```
 
 
 
+### Регистрация в маршрутах
+
+Зарегистировать каждый экран можно с помощью метода `screen` у Route
+```php
+Route::screen('/news', 'NewsList','dashboard.screens.news.list');
+//or
+$route->screen('/news', 'NewsList','dashboard.screens.news.list');
+```
 
 
 
