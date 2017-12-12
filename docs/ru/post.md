@@ -108,3 +108,70 @@ $image = $item->attachment('image')->fisrt();
 //Возвращает общий адрес изображения с требуемым разрешением изображения
 $image->url('standart');
 ```
+
+
+### Полнотекстовый поиск
+
+Платформа поставляется с пакетом Scout который является абстракцией для полнотекстового поиска в ваши модели Eloquent. 
+Так как Scout не содержет самого "драйвера" поиска, требуется поставить и указать требуемое решение, это могут быть 
+elasticsearch, algolia, sphinx или другие решение.
+
+
+Для использования полнотекстового поиска требуется добавить новый метод в ваш класс поведения:
+
+```php
+/**
+ * Get the indexable data array for the model.
+ *
+ * @param $array
+ *
+ * @return mixed
+ */
+public function toSearchableArray($array)
+{
+    // Customize array...
+
+    return $array;
+}
+```
+
+
+Принимать он будет все данные модели, а возвращать элементы которые требуются для индексации.
+
+Возьмём для примера стандартный “DemoPost.php”, он имеет множество параметров, но действительно, нам необходимы лишь два:
+
+- Название статьи
+- Содержание статьи
+
+Для этого мы должны их вернуть:
+
+```php
+/**
+ * Get the indexable data array for the model.
+ *
+ * @param $array
+ *
+ * @return mixed
+ */
+public function toSearchableArray($array)
+{
+    $array['content']['en']['id'] = $array['id'];
+
+    return $array['content']['en'];
+}
+```
+
+Мы вернули все данные на английском языке, с индексом.
+
+Для импортирования осталось лишь применить команду:
+
+```php
+php artisan scout:import Orchid\\Platform\\Core\\Models\\Post
+```
+
+Теперь мы можем использовать поиск в своих проектах:
+
+```php
+use Orchid\Platform\Core\Models\Post;
+$articles = Post::search('как пропатчить kde2 под freebsd')->get();
+```
