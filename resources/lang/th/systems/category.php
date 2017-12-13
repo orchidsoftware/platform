@@ -13,5 +13,5 @@ return [
     'name'         => 'ชื่อ',
     'descriptions' => 'ลักษณะ',
     'not_found'    => 'คุณยังไม่ได้สร้างหมวด',
-    'not_parrent'  => 'Without section',
+    'not_parrent'  => 'โดยไม่ต้องแสดง',
 ];
