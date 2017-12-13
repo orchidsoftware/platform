@@ -5,10 +5,11 @@ namespace Orchid\Platform\Core\Models;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Access\RoleAccess;
 use Orchid\Platform\Access\RoleInterface;
+use Orchid\Platform\Core\Traits\FilterTrait;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess;
+    use RoleAccess, FilterTrait;
 
     /**
      * @var string

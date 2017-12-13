@@ -93,5 +93,17 @@ class MyBehaviorPost extends Many
 ```php
 use Orchid\Platform\Core\Models\Post;
 
-Post::type('news')->filtersApply()->simplePaginate(10);
+Post::type('news')->filtersApply()->simplePaginate();
+```
+
+
+Для использования фильтров в собственных моделях, требуется подключить трейд `Orchid\Platform\Core\Traits\FilterTrait`
+
+```php
+use App\MyModel;
+
+MyModel::filfiltersApply([
+        Filter::class,
+    ])->simplePaginate();
+
 ```
