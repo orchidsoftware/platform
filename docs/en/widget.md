@@ -36,7 +36,7 @@ class MySuperWidget extends Widget {
     /**
      * @return mixed
      */
-     public function run(){
+     public function handler(){
          return view('',[
          ]);
      }
