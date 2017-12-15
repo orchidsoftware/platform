@@ -155,7 +155,7 @@ abstract class Screen
                 continue;
             }
 
-            if ($this->checkClassInArray($key, $parameter->getClass()->getName())) {
+            if ($this->checkClassInArray($key)) {
                 continue;
             }
 
