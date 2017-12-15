@@ -21,6 +21,8 @@
     <li><a href="/ru/docs/filters/">Фильтры</a></li>
     <li><a href="/ru/docs/field/">Поля</a></li>
     <li><a href="/ru/docs/widget/">Виджеты</a></li>
+    <li><a href="/ru/docs/form/">Формы</a></li>
+    <li><a href="/ru/docs/extension/">Расширение</a></li>
 </ul>
 
 <h4 class="text-orchid font-thin">Панель управления</h4>
@@ -35,15 +37,8 @@
 <ul class="toc-links">
     <li><a href="/ru/docs/behaviors/">Поведения</a></li>
     <li><a href="/ru/docs/post/">Записи</a></li>
-    <li><a href="/ru/docs/filters/">Фильтры</a></li>
     <li><a href="/ru/docs/tags/">Теги</a></li>
     <!--<li><a href="#" title="Работа с комментариями в ORCHID">Комментарии</a></li>-->
     <li><a href="/ru/docs/menu/" title="Управление меню ORCHID, ссылки на меню и пользовательские настройки и параметры меню.">Меню</a></li>
 </ul>
 
-
-<h4 class="text-orchid font-thin">Другое</h4>
-<ul class="toc-links">
-    <li><a href="/ru/docs/extension/">Расширение</a></li>
-    <li><a href="/ru/docs/form/">Формы</a></li>
-</ul>
