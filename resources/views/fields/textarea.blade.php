@@ -3,7 +3,7 @@
         <label for="field-{{$name}}">{{$title}}</label>
     @endif
     <textarea class="form-control no-resize {{$class or ''}}" id="field-{{$slug}}"
-              rows={{$rows or ''}}
+              rows="{{$rows or ''}}"
               @if(isset($prefix))
                       name="{{$prefix}}[{{$lang}}]{{$name}}"
               @else

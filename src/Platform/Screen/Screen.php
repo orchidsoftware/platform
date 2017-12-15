@@ -111,6 +111,7 @@ abstract class Screen
             $this->arguments = $method;
 
             $this->reflectionParams($parameters);
+            asort($this->arguments);
 
             return call_user_func_array([$this, $parameters], $this->arguments);
         }
@@ -122,6 +123,7 @@ abstract class Screen
         $this->arguments = $parameters;
 
         $this->reflectionParams($method);
+        asort($this->arguments);
 
         return call_user_func_array([$this, $method], $this->arguments);
     }
