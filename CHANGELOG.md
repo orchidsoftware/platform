@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added 
+- Thai language
+- Fix paginate style
+- Width for table
+
+### Fixed
+- Sort argument for method Screen
+
+
 
 ## [2.0.6] - 2017-12-10
 ### Added 
