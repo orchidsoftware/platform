@@ -157,7 +157,7 @@ class MenuWidget extends Widget {
     /**
      * @return mixed
      */
-    public function run()
+    public function handler()
     {
         $menu = Menu::where('lang', config('app.locale'))
             ->whereNull('parent')
