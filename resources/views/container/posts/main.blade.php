@@ -25,7 +25,7 @@
                                 <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                                 @foreach($fields as $key => $name)
                                     @if(is_array($name))
-                                        <th>{{$name['name']}}</th>
+                                        <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
                                     @else
                                         <th>{{$name}}</th>
                                     @endif

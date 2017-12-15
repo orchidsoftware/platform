@@ -6,7 +6,7 @@
                 <tr>
                     @foreach($form['fields'] as $key => $name)
                         @if(is_array($name))
-                            <th>{{$name['name']}}</th>
+                            <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
                         @else
                             <th>{{$name}}</th>
                         @endif
