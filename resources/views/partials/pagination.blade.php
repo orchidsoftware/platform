@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
 <nav>
-    <ul class="pagination m-n">
+    <ul class="pagination pagination-sm m-n">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="disabled"><a href="javascript:void(0)">«</a></li>

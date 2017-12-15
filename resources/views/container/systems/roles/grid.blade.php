@@ -60,11 +60,11 @@
 
                     <footer class="panel-footer">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$roles->total()}}
                                     -{{$roles->perPage()}} {{trans('dashboard::common.of')}} {!! $roles->count() !!} {{trans('dashboard::common.elements')}}</small>
                             </div>
-                            <div class="col-sm-6 text-right text-center-xs">
+                            <div class="col-sm-7 text-right text-center-xs">
                                 {!! $roles->links('dashboard::partials.pagination') !!}
                             </div>
                         </div>
