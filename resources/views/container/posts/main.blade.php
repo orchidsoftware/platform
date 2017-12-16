@@ -17,7 +17,7 @@
 
                 {!! $type->showFilterDashboard() !!}
 
-                <div class="card-body row">
+                <div class="panel-body row">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -55,7 +55,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <footer class="card-footer col">
+                    <footer class="panel-footer">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$data->total()}}

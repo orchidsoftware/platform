@@ -33,7 +33,7 @@
 
 
             <div class="row padder-v">
-                <div class="col row">
+                <div class="col-xs-12">
 
                     @foreach($group as $value)
 

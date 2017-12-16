@@ -2,8 +2,8 @@
     <ul class="nav nav-tabs nav-justified">
         @if(count($locales) > 1)
             @foreach($locales as $code => $lang)
-				<li class="nav-item">
-                    <a class="nav-link @if ($loop->first) active @endif" data-target="#local-{{$code}}" role="tab" data-toggle="tab"
+                <li @if ($loop->first) class="active" @endif>
+                    <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
                        aria-expanded="true">{{$lang['native']}}</a>
                 </li>
             @endforeach

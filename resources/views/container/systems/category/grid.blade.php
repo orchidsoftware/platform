@@ -26,9 +26,9 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($category->count() > 0)
-                <div class="card">
+                <div class="panel">
 
-                    <div class="card-body row">
+                    <div class="panel-body row">
 
 
                         <div class="table-responsive">
@@ -73,7 +73,7 @@
 
                     </div>
 
-                    <footer class="card-footer col">
+                    <footer class="panel-footer">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$category->total()}}
