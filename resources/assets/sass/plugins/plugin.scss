@@ -1,0 +1,62 @@
+
+// sortable
+.sortable-placeholder {
+  list-style    : none;
+  border        : 1px dashed #cccccc;
+  min-height    : 50px;
+  margin-bottom : 5px
+}
+
+// input
+.chosen-choices, .chosen-single, .bootstrap-tagsinput {
+  @extend .form-control;
+}
+
+.bootstrap-tagsinput {
+  padding : 5px 12px !important;
+}
+
+.bootstrap-tagsinput {
+  width : 100%;
+}
+
+.select2-search__field {
+  width : 100% !important;
+}
+
+
+#menu-notifications {
+  .btn-link:focus, .btn-link:hover {
+    color : $brand-white;
+  }
+}
+
+// Tiny MCE Editor
+.mce-content-body {
+  img {
+    max-width  : 100%;
+    object-fit : cover;
+  }
+}
+
+
+
+// SimpleMDE Markdown Editor
+.CodeMirror-fullscreen,
+.editor-toolbar.fullscreen,
+.editor-preview-side {
+  z-index : 1300;
+}
+
+
+.sli{
+  display: inline-block;
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}

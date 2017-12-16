@@ -1,0 +1,8 @@
+1) В package.json вставить строку "simplemde":"^1.11.2",
+2) в resources\assets\js\bootstrap.js добавить
+require('../../../node_modules/simplemde/dist/simplemde.min.js');
+3) в resources\assets\less\app.less вставить строку
+@import (less) "~simplemde/dist/simplemde.min.css";
+4) Добавить  класс который ссылается на шаблон в /src/Platform/Fields/Types/SimpleMDEField.php
+5) шаблон в resources/views/fields/simplemde.blade.php
+6) 
