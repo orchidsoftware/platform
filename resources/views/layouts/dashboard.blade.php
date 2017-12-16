@@ -93,10 +93,10 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav flex-column " id="MainMenu" role="tablist">
+                    <ul class="nav" role="tablist">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/{{Dashboard::prefix()}}" class="navbar-brand text-lt w-full">
+                        <li>
+                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand text-lt w-full">
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
@@ -137,7 +137,7 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav tab-content flex-column" id="aside-wrap-list">
+                    <ul class="nav tab-content" id="aside-wrap-list">
                         @include('dashboard::partials.notifications')
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
                     </ul>
@@ -181,7 +181,7 @@
 
 
 
-    <script src="{{ mix('/js/editors.js','orchid')}}" type="text/javascript"></script>
+
 @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
     <script src="{{$scripts}}" type="text/javascript"></script>
 @endforeach

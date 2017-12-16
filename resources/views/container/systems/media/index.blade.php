@@ -10,7 +10,7 @@
 
     <div class="page-content container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="">
 
                 <div id="filemanager">
 

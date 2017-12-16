@@ -12,10 +12,9 @@ const {mix} = require('laravel-mix');
  */
 
 mix.setPublicPath('public');
-//mix.less('resources/assets/less/app.less', 'public/css/orchid.css').sourceMaps().version();
-mix.sass('resources/assets/sass/app.scss', 'public/css/orchid.css').sourceMaps().version();
+mix.less('resources/assets/less/app.less', 'public/css/orchid.css').sourceMaps().version();
 
-//mix.copy('./node_modules/bootstrap/dist/fonts/', 'public/fonts');
+mix.copy('./node_modules/bootstrap/dist/fonts/', 'public/fonts');
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
 mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
 mix.copy('./node_modules/tinymce/plugins/', 'public/js/plugins');
@@ -25,5 +24,3 @@ mix.copy('./node_modules/tinymce/themes/', 'public/js/themes');
 mix.js([
     'resources/assets/js/app.js',
 ], 'public/js/orchid.js').sourceMaps().version();
-
-mix.js('resources/assets/js/editors.js', 'public/js/editors.js');

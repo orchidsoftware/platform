@@ -2,7 +2,7 @@
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
-    <ul class="nav justify-content-end  v-center">
+    <ul class="nav navbar-nav navbar-right v-center">
 
             @if($locales->count() > 1)
             <li class="dropdown">
@@ -72,8 +72,8 @@
                             @if(count($type->render() ) > 1)
                                 <ul class="nav nav-tabs">
                                 @foreach($type->render() as $name => $view)
-										<li class="nav-item ">
-                                        <a class="nav-link @if ($loop->first) active @endif" data-target="#module-{{$loop->iteration}}" role="tab" data-toggle="tab"
+                                        <li @if ($loop->first) class="active" @endif>
+                                        <a data-target="#module-{{$loop->iteration}}" role="tab" data-toggle="tab"
                                            aria-expanded="true">{{$name}}</a>
                                     </li>
                                     @endforeach
