@@ -1,0 +1,30 @@
+.item {
+  position: relative;
+  .top {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .center {
+    position: absolute;
+    top: 50%;
+  }
+}
+
+.item-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  &.active,
+  .item:hover & {
+    display: block;
+  }
+}
