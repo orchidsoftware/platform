@@ -494,6 +494,14 @@ http://ivaynberg.github.io/select2/
   }
 }
 
+.input-group {
+	.input-group-btn {
+		.btn-default{
+			height: $form-height;
+		}
+	}
+}
+
 textarea {
 	&.form-control {
 		height: auto;

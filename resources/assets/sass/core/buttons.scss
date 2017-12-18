@@ -33,6 +33,9 @@
 
 .btn-info {
   @include button-variant(#fff, $brand-info, $brand-info);
+  @at-root label#{&} {
+	margin-bottom: 0px;
+  }
 }
 
 .btn-warning {

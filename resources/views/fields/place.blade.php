@@ -6,7 +6,7 @@
 		@php
 			if(isset($prefix)) 
 				$inputname=$prefix.'['.$lang.']'.$name;
-			else $inputname=$lang.$name;
+			else $inputname=$name.$lang;
 
 			if(isset($value['name'])) 
 				$valuename=$value['name']; 

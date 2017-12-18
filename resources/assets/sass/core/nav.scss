@@ -103,6 +103,23 @@
     }
 
   }
+  
+  	.nav {
+	  .nav-item {
+		.nav-link {
+		  &:hover,
+		  &:focus {
+		    color: $brand-white;
+			background-color: $brand-dark;
+		  }
+		}
+	  }
+	}
+}
+
+.aside-wrap {
+
+
 }
 
 .navi {
