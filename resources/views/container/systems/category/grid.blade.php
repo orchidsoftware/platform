@@ -53,8 +53,6 @@
                                         </td>
                                         <td>{{$item->term->getContent('name')}}</td>
 
-                                        <td>{{ $item->term->updated_at}}</td>
-
                                         @foreach($grid as $key => $column)
                                             <td>{{$item->term->getContent($key)}}</td>
                                         @endforeach

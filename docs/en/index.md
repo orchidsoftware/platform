@@ -1,7 +1,7 @@
 # Documentation
 ----------
 
-ORCHID is a tool (Platform) that allows you to quickly write simple but powerful websites and applications.
+ORCHID is a tool that allows you to quickly write simple but powerful websites and applications.
 Provided as a package for Laravel, you can easily integrate it as a third-party component using Composer
 
 ### How to read the documentation

@@ -10,15 +10,20 @@ The field consists of one class with the obligatory `create` method, which must 
 ```php
 // Available fields to form templates
 'fields' => [
-    'textarea' => Orchid\Platform\Fields\TextAreaField::class,
-    'input'    => Orchid\Platform\Fields\InputField::class,
-    'tags'     => Orchid\Platform\Fields\TagsField::class,
-    'robot'    => Orchid\Platform\Fields\RobotField::class,
-    'place'    => Orchid\Platform\Fields\PlaceField::class,
-    'datetime' => Orchid\Platform\Fields\DateTimerField::class,
-    'checkbox' => Orchid\Platform\Fields\CheckBoxField::class,
-    'code'     => Orchid\Platform\Fields\CodeField::class,
-    'wysiwyg'  => Orchid\Platform\Fields\SummernoteField::class,
+    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+    'input'        => Orchid\Platform\Fields\Types\InputField::class,
+    'list'         => Orchid\Platform\Fields\Types\ListField::class,
+    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
 ],
 ```
 

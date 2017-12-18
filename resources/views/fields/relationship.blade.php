@@ -21,6 +21,7 @@
 <script>
 $(function () {
     $('#field-{{$slug}}').select2({
+        theme: "bootstrap",
         ajax: {
             type: "POST",
             cache: true,

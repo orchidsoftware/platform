@@ -46,8 +46,12 @@ require('brace/theme/monokai');
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
-    $('.select2-enable').select2();
+    $('.select2-enable').select2({
+    theme: "bootstrap"
+});
 })
+
+$.fn.select2.defaults.set( "theme", "bootstrap" );
 require('croppie');
 
 require('./dashboard');

@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix paginate style
 - Width for table
 
+### Changed
+- Replacing `less` with` sass` (Thanks @PSalador)
+
 ### Fixed
 - Sort argument for method Screen
-
+- Remove publish_at from `category`
 
 
 ## [2.0.6] - 2017-12-10
