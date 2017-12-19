@@ -3,7 +3,7 @@
     <li><a href="/en/docs">Introduction</a></li>
     <li><a href="/en/docs/requirements/">Requirements</a></li>
     <li><a href="/en/docs/installation/">Installation</a></li>
-    <li><a href="/en/docs/contributors/">Installation</a></li>
+    <li><a href="/en/docs/contributors/">Contributor Guidelines</a></li>
     <li><a href="/en/docs/license/">License</a></li>
 </ul>
 
