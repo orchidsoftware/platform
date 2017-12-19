@@ -6,13 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [2.0.7] - 2017-12-19
 ### Added 
 - Thai language
 - Fix paginate style
 - Width for table
 
 ### Changed
-- Replacing `less` with` sass` (Thanks @PSalador)
+- Replacing `less` with` sass`
+- Modifying paths `app\Http\Screens` to `app\Http\Controllers\Screens`
+- Modifying paths `app\Http\Layouts` to `app\Core\Layouts`
 
 ### Fixed
 - Sort argument for method Screen
