@@ -23,7 +23,28 @@
 .select2-search__field {
   width : 100% !important;
 }
+.select2-container--bootstrap {
 
+  .select2-dropdown{
+    border-color: fade-out($brand-black, 0.9);
+    outline: 0 !important;
+    @include box-shadow(none);
+    @include placeholder($brand-dark);
+  }
+
+  &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
+    border-color: fade-out($brand-black, 0.9);
+    background-color: $brand-grey-light;
+    outline: 0 !important;
+    @include box-shadow(none);
+    @include placeholder($brand-dark);
+  }
+}
+
+
+.mce-content-body:focus{
+  background-color: $brand-grey-light;
+}
 
 #menu-notifications {
   .btn-link:focus, .btn-link:hover {

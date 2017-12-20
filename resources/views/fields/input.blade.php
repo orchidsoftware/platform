@@ -14,6 +14,7 @@
            maxlength="{{$maxlength or ''}}"
            min="{{$min or ''}}"
            minlength="{{$minlength or ''}}"
+           data-mask="{{$mask or ''}}"
     >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

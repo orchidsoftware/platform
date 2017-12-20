@@ -43,6 +43,8 @@ window.ace = require('brace');
 require('brace/mode/javascript');
 require('brace/theme/monokai');
 
+window.Inputmask = require('inputmask');
+
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
@@ -58,6 +60,7 @@ require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
+require('./modules/inputmask');
 
 require('../../../node_modules/tinymce/tinymce.min');
 tinyMCE.baseURL = "/orchid/js/";
