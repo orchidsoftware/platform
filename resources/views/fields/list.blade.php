@@ -33,7 +33,7 @@
        @endif
     </ul>
     <div class="button-group text-center">
-        <button onclick="newitem{{$slug}}()" class="btn btn-xs alert-info">new</button>
+        <button onclick="newitem{{$slug}}()" class="btn btn-sm alert-info">new</button>
     </div>
 </div>
 <div class="line line-dashed b-b line-lg"></div>

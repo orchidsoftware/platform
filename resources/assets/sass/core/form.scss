@@ -1,0 +1,515 @@
+.form-control, .form-control-grey {
+  background: $brand-white none;
+  border: 1px solid $form-control-border-color;
+  -webkit-appearance: none;
+  color: $brand-black;
+  outline: 0;
+  height: $form-height;
+  line-height: normal;
+  font-weight: normal;
+  vertical-align: middle;
+  min-height: $form-height;
+  @include transition(all 0.12s ease);
+  @include box-shadow(none);
+  border-radius: 2px;
+  @include placeholder($text-muted);
+
+  @include transition(background 0.2s linear 0s);
+  &:focus {
+    border-color: fade-out($brand-black, 0.9);
+    background-color: $brand-grey-light;
+    outline: 0 !important;
+    @include box-shadow(none);
+    @include placeholder($brand-dark);
+  }
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+    background: mix($brand-grey-light, #fff, 50%);
+    color: fade-out($brand-grey, .77);
+  }
+}
+
+.form-group-default {
+  background-color: #fff;
+  position: relative;
+  border: 1px solid $form-control-border-color;
+  border-radius: 2px;
+  padding: 7px 12px 4px;
+  overflow: hidden;
+  @include transition(background-color .2s ease);
+  &.required:after {
+    color: $brand-danger;
+    content: "*";
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 9px;
+  }
+  &.disabled {
+    input {
+      opacity: .6;
+    }
+    background: mix($brand-light, #fff, 50%);
+    color: fade-out($brand-dark, .77);
+    &.focused {
+      background: mix($brand-light, #fff, 50%);
+      label {
+        opacity: 1;
+      }
+    }
+  }
+  &.focused {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    background-color: $brand-light;
+    label {
+      opacity: .4;
+      @include backface-visibility(hidden);
+    }
+  }
+  &.has-error {
+    background-color: fade-out($brand-danger, .9);
+  }
+  &.has-success, &.has-error {
+    .form-control-feedback {
+      display: none !important;
+    }
+  }
+  &.has-success .form-control,
+  &.has-success .form-control:focus,
+  &.has-error .form-control,
+  &.has-error .form-control:focus {
+    border: none;
+    box-shadow: none;
+  }
+  &.input-group {
+    padding: 0;
+    & > label {
+      margin-top: 6px;
+      padding-left: 12px;
+    }
+    & > .form-control {
+      margin-top: -2px;
+      margin-bottom: 3px;
+      padding-left: 12px;
+    }
+    .input-group-addon {
+      height: calc($form-group-height - 4px);
+      min-width: calc($form-group-height - 4px);
+      border-radius: 0;
+      border: none;
+    }
+    &.focused {
+      .input-group-addon {
+        border-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  & .form-control {
+    border: none;
+    height: 25px;
+    min-height: 25px;
+    padding: 0;
+    margin-top: -4px;
+    background: none;
+    &.error {
+      color: $brand-dark;
+    }
+    &:focus {
+      background: none;
+    }
+  }
+  label {
+    margin: 0;
+    display: block;
+    opacity: 1;
+    @include transition(opacity .2s ease);
+    &.label-lg {
+      font-size: 13px;
+      left: 13px;
+      top: 9px;
+    }
+    &.label-sm {
+      font-size: 11px;
+      left: 11px;
+      top: 6px;
+    }
+    &.highlight {
+      opacity: 1;
+    }
+    &.fade {
+      opacity: .5;
+      @include backface-visibility(hidden);
+    }
+  }
+  & > .input-lg {
+    height: 29px;
+    min-height: 29px;
+    padding-left: 1px;
+  }
+  & > .input-sm {
+    min-height: 18px;
+    height: 18px;
+  }
+
+  &.form-group-default-select2 {
+    padding: 0;
+    & > label {
+      position: absolute;
+      z-index: 10;
+      padding: 7px 12px 0 12px;
+      &.label-lg {
+        left: 0;
+        top: 0;
+      }
+      &.label-sm {
+        left: 0;
+        top: 0;
+      }
+    }
+    .select2-container {
+      .select2-selection {
+        padding-top: 20px;
+        height: 52px;
+        .select2-arrow b:before {
+          top: 20px;
+        }
+        .select2-chosen {
+          padding-left: 3px;
+          padding-top: 1px;
+        }
+      }
+      .select2-selections {
+        padding-top: 20px;
+        height: 52px;
+        border: 0;
+      }
+
+    }
+    & > .input-lg {
+      height: auto;
+      padding: 0;
+      .select2-selection {
+        padding-top: 20px;
+        height: 56px;
+      }
+    }
+    & > .input-sm {
+      height: auto;
+      padding: 0;
+      .select2-selection {
+        padding-top: 20px;
+        height: 46px;
+      }
+    }
+  }
+  &.form-group-default-selectFx {
+    padding: 0;
+    & > label {
+      position: absolute;
+      z-index: 10;
+      padding: 7px 12px 0 12px;
+      &.label-lg {
+        left: 0;
+        top: 0;
+      }
+      &.label-sm {
+        left: 0;
+        top: 0;
+      }
+    }
+    .cs-wrapper {
+      .cs-placeholder {
+        padding-top: 28px;
+        height: 52px;
+        padding-left: 12px;
+      }
+      .cs-select {
+        height: auto;
+        > span:after,
+        .cs-selected span:after {
+          top: 39px;
+        }
+        &.input-lg .cs-placeholder {
+          height: 60px;
+        }
+        &.input-sm .cs-placeholder {
+          height: 50px;
+        }
+      }
+      .dropdown-placeholder {
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+/* Select2
+http://ivaynberg.github.io/select2/
+*/
+
+.form-group-default .select2-container .select2-selection,
+.select2-container-multi .select2-selections {
+  border-color: transparent;
+}
+
+.select2-container {
+  .select2-selection {
+    background-image: none;
+    border-radius: 2px;
+    border: 1px solid $form-control-border-color;
+    transition: border 0.2s linear 0s;
+    height: $form-height;
+    .select2-arrow {
+      right: 0;
+      left: auto;
+      background: transparent;
+      border-left: 0;
+      @include transition(all 0.3s ease);
+      b {
+        &:before {
+          font-family: 'FontAwesome';
+          content: "\f0d7";
+          position: relative;
+          top: 2px;
+          right: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+    & > .select2-chosen {
+      margin-left: 0;
+      margin-right: 26px;
+    }
+  }
+  &.select2-drop-above {
+    .select2-selection {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+}
+
+.select2-search input,
+.select2-search-choice-close,
+.select2-container .select2-selection abbr,
+.select2-container .select2-selection .select2-arrow b {
+  background-image: none !important;
+  padding: 0;
+  margin: 0;
+}
+
+.select2-search{
+  padding: 0 10px!important;
+}
+
+.select2-dropdown {
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  padding-top: 5px;
+  z-index: 790;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+}
+
+.select2-results {
+  margin: 3px 8px 10px 8px;
+}
+
+.select2-dropdown-open.select2-drop-above .select2-selection,
+.select2-dropdown-open.select2-drop-above .select2-selections {
+  border: 1px solid $form-control-border-color;
+  background: none !important;
+}
+
+.select2-dropdown-open {
+  .select2-selection {
+    .select2-arrow {
+      @include scale(scale(1, -1));
+
+    }
+  }
+}
+
+.select2-drop {
+  &.select2-drop-above {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    box-shadow: none;
+    &.select2-drop-active {
+      border: 1px solid $form-control-border-color;
+      border-bottom: none;
+      border-radius: 2px;
+      padding-top: 0;
+    }
+  }
+}
+
+.select2-container-active .select2-selection,
+.select2-container-active .select2-selections {
+  box-shadow: none;
+  border: 1px solid $form-control-border-color;
+  background: $form-control-border-color;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.select2-search {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  input {
+    background: $brand-white !important;
+    vertical-align: baseline;
+    line-height: 28px;
+    border-radius: 2px;
+    font-size: 12px;
+    border: 1px solid $form-control-border-color;
+  }
+}
+
+.select2-results {
+  margin: 3px 10px 10px 3px;
+  li {
+    color: $brand-primary;
+    &.select2-result-with-children {
+      & > .select2-result-label {
+        color: $brand-dark;
+        &:first-child {
+          padding-top: 8px;
+        }
+      }
+    }
+  }
+  .select2-highlighted {
+    background: $form-control-border-color;
+    border-radius: 3px;
+    .select2-result-label {
+      color: $brand-primary;
+    }
+  }
+  .select2-no-results,
+  .select2-searching,
+  .select2-selection-limit {
+    background: none;
+    color: $brand-primary;
+    font-size: 12px;
+    padding-left: 8px;
+    padding-top: 0;
+    position: relative;
+    top: -5px;
+  }
+}
+
+.select2-drop-active {
+  border: 1px solid $form-control-border-color;
+  border-bottom: none;
+  border-top: none;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  padding-top: 5px;
+}
+
+.select2-container-multi {
+  .select2-selections {
+    background-image: none;
+    border: 1px solid $form-control-border-color;
+    border-radius: 2px;
+    .select2-search-choice {
+      background: $brand-grey-light none;
+      border: none;
+      box-shadow: none;
+      color: inherit;
+      border-radius: 8px;
+      margin: 8px -5px 7px 10px;
+      padding: 4px 8px 4px 21px;
+    }
+  }
+  &.select2-container-active {
+    .select2-selections {
+      border: 1px solid $form-control-border-color;
+      box-shadow: none;
+    }
+    .select2-search-choice {
+      background-color: $brand-white !important;
+    }
+  }
+  .select2-search-choice-close {
+    left: 6px;
+  }
+}
+
+.select2-search-choice-close {
+  background: none;
+  top: 4px;
+  right: 0;
+  &:hover {
+    text-decoration: none;
+  }
+  &:before {
+    font-family: 'FontAwesome';
+    content: "\f00d";
+    font-size: 12px;
+    color: $brand-primary;
+  }
+}
+
+.select2-drop-multi .select2-results {
+  .select2-no-results,
+  .select2-searching,
+  .select2-selection-limit {
+    top: 0;
+  }
+}
+
+.select2 {
+  &.form-control {
+    padding: 0;
+    box-shadow: none;
+    border: 0;
+  }
+}
+
+.select2-drop-mask {
+  z-index: 700;
+}
+
+.select2-container .select2-selection.select2-selection--single {
+  height: $form-height;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: 1px solid $form-control-border-color;
+  outline: 0;
+}
+
+
+
+// remove select arrow in Firefox
+.form-control {
+  select {
+    -moz-appearance : none;
+    text-indent     : 0.01px;
+    text-overflow   : '';
+  }
+}
+
+.input-group {
+	.input-group-btn {
+		.btn-default{
+			height: $form-height;
+		}
+	}
+}
+
+textarea {
+	&.form-control {
+		height: auto;
+	}
+}
+
+select {
+	&.form-control {
+		height: $form-height !important;
+	}	
+}	

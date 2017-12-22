@@ -11,9 +11,9 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($menu->count() > 0)
-                <div class="panel">
+                <div class="card">
 
-                    <div class="panel-body row">
+                    <div class="card-body row">
 
                         <div class="table-responsive">
                             <table class="table table-striped">

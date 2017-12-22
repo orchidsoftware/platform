@@ -3,6 +3,8 @@ window.Vue = require('vue');
 
 require('jquery-ui-bundle');
 
+window.Popper = require('popper.js');
+
 require('bootstrap');
 require('bootstrap-tagsinput');
 
@@ -33,16 +35,20 @@ Dropzone.autoDiscover = false;
 require('nestable');
 
 window.moment = require('moment');
+//moment.locale('en');
 
 
-$.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
+//$.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
+$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
+//window.datetimepicker = require('tempusdominus-bootstrap-4');
 
 
 require('./modules/select');
+/*
 window.ace = require('brace');
 require('brace/mode/javascript');
 require('brace/theme/monokai');
-
+*/
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
@@ -54,10 +60,10 @@ require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-
+/*
 require('../../../node_modules/tinymce/tinymce.min');
 tinyMCE.baseURL = "/orchid/js/";
 
 window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
-
+*/
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');

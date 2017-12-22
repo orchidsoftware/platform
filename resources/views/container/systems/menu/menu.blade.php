@@ -9,7 +9,7 @@
     <div class="text-right">
 
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav justify-content-end">
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
