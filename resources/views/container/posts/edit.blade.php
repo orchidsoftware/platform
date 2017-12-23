@@ -50,7 +50,7 @@
 @section('content')
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
         <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post" action="{{route('dashboard.posts.type.update',[
+        <form class="hbox hbox-auto-xs bg-light no-gutters" id="post-form" method="post" action="{{route('dashboard.posts.type.update',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">

@@ -4,29 +4,29 @@
 
        @if(!isset($value) || is_null($value))
            <li class="ui-state-default form-group row">
-                   <span onclick="return false;" class="btn btn-link col-xs-1 pull"><i class="fa-bars fa"></i></span>
-                   <input type="text" class="form-control col-xs-10"
+                   <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
+                   <input type="text" class="form-control col-10"
                           @if(isset($prefix))
                           name="{{$prefix}}[{{$lang}}]{{$name}}[0]"
                           @else
                           name="{{$lang}}{{$name}}[0]"
                            @endif
                    >
-                   <button class="btn btn-link col-xs-1 remove"
+                   <button class="btn btn-link col-1 remove"
                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                </li>
        @else
            @foreach($value as $key => $val)
                <li class="ui-state-default form-group row">
-                    <span onclick="return false;" class="btn btn-link col-xs-1 pull"><i class="fa-bars fa"></i></span>
-                    <input type="text" class="form-control col-xs-10"
+                    <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
+                    <input type="text" class="form-control col-10"
                            @if(isset($prefix))
                            name="{{$prefix}}[{{$lang}}]{{$name}}[0]"
                            @else
                            name="{{$lang}}{{$name}}[{{$key}}]"
                            @endif
                            value="{{$val}}">
-                    <button class="btn btn-link col-xs-1 remove"
+                    <button class="btn btn-link col-1 remove"
                             onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                 </li>
            @endforeach

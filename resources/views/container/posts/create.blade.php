@@ -43,7 +43,7 @@
 @section('content')
     <div class="app-content-body app-content-full" id="post">
     <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs bg-light" id="post-form" method="post"
+        <form class="hbox hbox-auto-xs bg-light no-gutters" id="post-form" method="post"
               action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
             <!-- column  -->

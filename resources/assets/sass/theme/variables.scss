@@ -174,3 +174,6 @@ $gray-light:#777;
 $screen-sm-min: map-get($grid-breakpoints, sm);
 $screen-md-min: map-get($grid-breakpoints, md);
 $screen-lg-min: map-get($grid-breakpoints, lg);
+
+//Bootstrap
+$enable-caret: false;

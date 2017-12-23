@@ -203,12 +203,14 @@ h3, .h3 {
 }
 
 .navbar-header {
+	width: 100%;
   > button {
     text-decoration: none;
     line-height: 30px;
     font-size: 16px;
     padding: 10px 17px;
     border: none;
+	color: inherit;
     background-color: transparent;
   }
 }

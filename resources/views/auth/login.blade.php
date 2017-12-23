@@ -15,7 +15,7 @@
                        value="{{ old('email') }}">
 
                 @if ($errors->has('email'))
-                    <span class="help-block">
+                    <span class="form-text text-muted">
                                         <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                 @endif
@@ -30,7 +30,7 @@
                        placeholder="{{trans('dashboard::auth/account.enter_password')}}" required>
 
                 @if ($errors->has('password'))
-                    <span class="help-block">
+                    <span class="form-text text-muted">
                                         <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                 @endif
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group row v-center">
-            <div class="col-xs-5">
+            <div class="col-5">
                 <div class="checkbox">
                     <label class="i-checks">
                         <input type="checkbox" checked
@@ -46,7 +46,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-xs-7 text-right">
+            <div class="col-7 text-right">
                 <a href="{{ route('dashboard.password.request') }}"
                    class="text-primary small">{{trans('dashboard::auth/account.forgot_password')}}</a>
             </div>

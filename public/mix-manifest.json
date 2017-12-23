@@ -1,8 +1,8 @@
 {
-    "/js/orchid.js": "/js/orchid.js?id=b35201abaf6c0779e0e2",
-    "/css/orchid.css": "/css/orchid.css?id=fbf6de77c9d0c957bb12",
-    "/js/orchid.js.map": "/js/orchid.js.map?id=c0060997520600c8d550",
-    "/css/orchid.css.map": "/css/orchid.css.map?id=dd5f76b9247309d7db25",
-    "/js/editors.js": "/js/editors.js?id=cfd405f764db3fd85e06",
-    "/js/editors.js.map": "/js/editors.js.map?id=1b655a5a0e8b32507cfb"
+    "/js/orchid.js": "/js/orchid.js",
+    "/css/orchid.css": "/css/orchid.css",
+    "/js/orchid.js.map": "/js/orchid.js.map",
+    "/css/orchid.css.map": "/css/orchid.css.map",
+    "/js/editors.js": "/js/editors.js",
+    "/js/editors.js.map": "/js/editors.js.map"
 }

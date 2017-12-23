@@ -22,7 +22,7 @@
                        value="{{ old('email') }}">
 
                 @if ($errors->has('email'))
-                    <span class="help-block">
+                    <span class="form-text text-muted">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
@@ -36,7 +36,7 @@
                        class="form-control" required>
 
                 @if ($errors->has('Password'))
-                    <span class="help-block">
+                    <span class="form-text text-muted">
                         <strong>{{ $errors->first('Password') }}</strong>
                     </span>
                 @endif
@@ -50,7 +50,7 @@
                        class="form-control" required>
 
                 @if ($errors->has('password_confirmation'))
-                    <span class="help-block">
+                    <span class="form-text text-muted">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                     </span>
                 @endif

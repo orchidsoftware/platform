@@ -17,7 +17,7 @@
         </label>
     </div>
     @if(isset($help))
-        <p class="help-block">{{$help}}</p>
+        <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
 <div class="line line-dashed b-b line-lg"></div>

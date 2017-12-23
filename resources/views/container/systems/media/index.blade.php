@@ -8,7 +8,7 @@
 @section('content')
 
 
-    <div class="page-content container-fluid">
+    <div class="page-content">
         <div class="row">
             <div class="col">
 

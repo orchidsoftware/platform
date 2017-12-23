@@ -52,9 +52,9 @@
   background-color: #fff;
   color: $text-color;
   a {
-    color: $link-color;
+    color: $link-color!important;
     &:hover {
-      color: darken($link-color, 10%);
+      color: darken($link-color, 10%)!important;
     }
   }
   .text-muted {
@@ -103,5 +103,5 @@ a.bg-light {
 }
 
 .text-muted {
-  color: $text-muted;
+  color: $text-muted!important;
 }

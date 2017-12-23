@@ -123,7 +123,7 @@
 }
 
 .navi {
-  ul.nav {
+  div.nav, ul.nav {
     li {
       display: block;
       position: relative;
@@ -173,6 +173,17 @@
           }
         }
       }
+	  &.dropdown {
+		  .dropdown-toggle {
+			  -webkit-appearance: initial;
+			  &:after{
+				  display: none;
+			  }
+		  }
+		 .dropdown-item {
+			 padding:0px;
+		 }			 
+	  }	  
     }
   }
   ul.nav-footer-fix {
@@ -292,26 +303,35 @@
         padding-right: 20px !important;
       }
     }
+	.justify-content-end{
+		.dropdown-menu {
+			left: auto;
+			right: 0;
+		}
+	}
   }
 }
+
 
 /*
  *  Sub-sum menu
  */
 
-.open {
+.show {
   > .dropdown-menu.dropdown-full {
     display       : block;
     height        : 100%;
-    position      : fixed;
+    position      : fixed!important;
     top           : 0;
-    left          : 150px;
+    left          : 150px!important;
     width         : 300px;
     overflow-y    : auto;
     overflow-x    : hidden;
     margin-right  : 0;
     margin-bottom : 0;
     margin-top    : 0;
+	transform: initial!important;
+    will-change: initial!important;
     a {
       color: $brand-black;
       padding-left: 20px;

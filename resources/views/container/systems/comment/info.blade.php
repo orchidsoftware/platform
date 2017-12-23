@@ -7,7 +7,7 @@
 
             <div class="col-lg-10">
                 <textarea rows="10" name="content" class="form-control">{{$comment->content or ''}}</textarea>
-                <small class="help-block m-b-none">{{trans('dashboard::systems/comment.user_comment')}}
+                <small class="form-text text-muted m-b-none">{{trans('dashboard::systems/comment.user_comment')}}
                 </small>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <input type="checkbox" {{$comment->isApproved() ? 'checked' : '' }} value="1" name="approved">
                     <i></i>
                 </label>
-                <small class="help-block m-b-none">{{trans('dashboard::systems/comment.show_comment')}}</small>
+                <small class="form-text text-muted m-b-none">{{trans('dashboard::systems/comment.show_comment')}}</small>
             </div>
         </div>
 

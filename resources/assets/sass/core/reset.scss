@@ -1,6 +1,7 @@
 // reset
 html {
   background-color: $body-bg;
+  font-size: $font-size-base;
 }
 
 body {
@@ -53,6 +54,7 @@ small, .small {
   text-shadow: none;
 }
 
+
 .badge {
   background-color: $badge-bg;
   &.up {
@@ -62,6 +64,7 @@ small, .small {
     margin-left: -10px;
   }
 }
+
 
 .badge-sm {
   font-size: 85%;
@@ -550,13 +553,14 @@ blockquote {
   &.pull-left {
     left: 100%;
   }
-  > .panel {
+  > .panel, .card {
     border: none;
     margin: -5px 0;
   }
   > li > a {
     padding: 5px 15px;
   }
+
   > li > a:hover,
   > li > a:focus,
   > .active > a,

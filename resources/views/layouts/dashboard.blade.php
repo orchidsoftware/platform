@@ -32,6 +32,7 @@
 
 
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
+	<script src="{{ mix('/js/editors.js','orchid')}}" type="text/javascript"></script>
 </head>
 
 
@@ -86,7 +87,7 @@
 
 
     <!-- aside  -->
-    <aside id="aside" class="app-aside hidden-xs">
+    <aside id="aside" class="app-aside d-none d-md-block">
         <div class="aside-wrap-main">
 
             <div class="navi-wrap">
@@ -96,7 +97,7 @@
                     <ul class="nav flex-column " id="MainMenu" role="tablist">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/{{Dashboard::prefix()}}" class="navbar-brand text-lt w-full">
+                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
@@ -137,10 +138,10 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav tab-content flex-column" id="aside-wrap-list">
+                    <div class="nav tab-content flex-column" id="aside-wrap-list">
                         @include('dashboard::partials.notifications')
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
-                    </ul>
+                    </div>
                 </nav>
                 <!-- nav  -->
 
@@ -181,7 +182,6 @@
 
 
 
-    <script src="{{ mix('/js/editors.js','orchid')}}" type="text/javascript"></script>
 @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
     <script src="{{$scripts}}" type="text/javascript"></script>
 @endforeach
