@@ -1,14 +1,10 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
     <select
-            @if(isset($prefix))
-            name="{{$prefix}}[{{$lang}}]{{$name}}"
-            @else
-            name="{{$lang}}{{$name}}"
-            @endif
-            class="form-control {{$class or ''}}" id="field-{{$slug}}">
+            name="{{$fieldName}}"
+            class="form-control {{$class or ''}}" id="{{$id}}">
         <option value="index">Index</option>
         <option value="noindex">Noindex</option>
     </select>

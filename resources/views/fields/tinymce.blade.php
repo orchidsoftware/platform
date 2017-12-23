@@ -1,21 +1,17 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 
      @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
 
-    <div class="tinymce-{{$lang}}-{{$slug}} b wrapper" style="min-height: 500px">
+    <div class="tinymce-{{$id}} b wrapper" style="min-height: 500px">
       {!! $value or old($name) !!}
     </div>
 
-             <input id="field-{{$lang}}-{{$slug}}" type="hidden"
-                    @if(isset($prefix))
-                    name="{{$prefix}}[{{$lang}}]{{$name}}"
-                    @else
-                    name="{{$lang}}{{$name}}"
-                    @endif
-                    placeholder="{{$placeholder or ''}}"
-                    value="{{ $value or old($name) }}">
+     <input id="{{$id}}" type="hidden"
+            name="{{$fieldName}}"
+            placeholder="{{$placeholder or ''}}"
+            value="{{ $value or old($name) }}">
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
@@ -23,14 +19,13 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 
-
+@push('scripts')
 <script>
 $(function () {
     tinymce.init({
-        selector: '.tinymce-{{$lang}}-{{$slug}}',
+        selector: '.tinymce-{{$id}}',
         theme: 'inlite',
         min_height: 600,
-        //language: 'ru',
         plugins: 'image media table link paste contextmenu textpattern autolink codesample',
         insert_toolbar: 'quickimage quicktable media codesample fullscreen',
         selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
@@ -45,7 +40,7 @@ $(function () {
 
         setup: function (ed) {
             ed.on('change', function (e) {
-                $('#field-{{$lang}}-{{$slug}}').val(ed.getContent());
+                $('#{{$id}}').val(ed.getContent());
             });
         },
         // we override default upload handler to simulate successful upload
@@ -67,7 +62,7 @@ $(function () {
     });
 });
 </script>
-
+@endpush
 
 
 

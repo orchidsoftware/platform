@@ -1,13 +1,9 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
     <input type="text" class="form-control tagsinput {{$class or ''}}" data-role="tagsinput" id="field-{{$slug}}"
-           @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}]{{$name}}"
-           @else
-           name="{{$lang}}{{$name}}"
-           @endif
+           name="{{$fieldName}}"
            value="{{$value or old($name)}}"
            placeholder="{{$placeholder or ''}}">
     @if(isset($help))

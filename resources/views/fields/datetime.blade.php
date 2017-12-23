@@ -1,17 +1,13 @@
-<div class="form-group">
+<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$slug}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
     <div class='input-group date datetimepicker'>
         <input type='text' class="form-control {{$class or ''}}"
-               id="field-{{$slug}}"
+               id="{{$id}}"
                value="{{$value or old($name)}}"
                placeholder="{{$placeholder or ''}}"
-               @if(isset($prefix))
-               name="{{$prefix}}[{{$lang}}]{{$name}}"
-               @else
-               name="{{$lang}}{{$name}}"
-               @endif
+               name="{{$fieldName}}"
                data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
         >
         <span class="input-group-addon">

@@ -25,11 +25,16 @@
 }
 .select2-container--bootstrap {
 
+  .select2-selection {
+    @include box-shadow(none);
+    border: 1px solid $form-control-border-color;
+  }
+
   .select2-dropdown{
     border-color: fade-out($brand-black, 0.9);
     outline: 0 !important;
     @include box-shadow(none);
-    @include placeholder($brand-dark);
+    @include placeholder($text-muted);
   }
 
   &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
@@ -37,7 +42,7 @@
     background-color: $brand-grey-light;
     outline: 0 !important;
     @include box-shadow(none);
-    @include placeholder($brand-dark);
+    @include placeholder($text-muted);
   }
 }
 

@@ -3,11 +3,7 @@
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
     <input type="password" class="form-control {{$class or ''}}" id="field-{{$slug}}"
-           @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}]{{$name}}"
-           @else
-           name="{{$lang}}{{$name}}"
-           @endif
+           name="{{$fieldName}}"
            placeholder="{{$placeholder or ''}}"
            max="{{$max or ''}}"
            maxlength="{{$maxlength or ''}}"

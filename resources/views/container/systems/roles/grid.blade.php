@@ -19,7 +19,7 @@
 
 
     <!-- main content  -->
-    <section class="wrapper-md">
+    <section>
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($roles->count() > 0)

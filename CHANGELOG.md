@@ -9,8 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added 
 - Input Mask
 
+### Changed
+- Section wrapper remove
+- Input build named
+- "Not found" message occupies the entire screen
+
 ### Fixed
 - Style for select2
+- Calling relation for new object in template #382
 
 ## [2.0.7] - 2017-12-19
 ### Added 

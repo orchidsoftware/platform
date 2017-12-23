@@ -51,7 +51,7 @@ class DemoPage extends Single
         return [
             'name'        => 'tag:input|type:text|name:name|max:255|required|title:Name Articles|help:Article title',
             'body'        => 'tag:wysiwyg|name:body|max:255|required|title:Name Articles',
-            'body2'       => 'tag:markdown|name:body|max:255|required|title:Name Articles',
+            'body2'       => 'tag:markdown|name:body2|max:255|required|title:Name Articles',
             'picture'     => 'tag:picture|name:picture|max:255|title:Indexing|help:Allow search bots to index page|width:500|height:300',
             'datetime'    => 'tag:datetime|type:text|name:open|max:255|required|title:Opening date|help:The opening event will take place',
             'free'        => 'tag:checkbox|name:robot|max:255|required|title:Free|help:Event for free|placeholder:Event for free|default:1',

@@ -1,14 +1,10 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$lang}}-{{$slug}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
-    <div id="ace-code-block-{{$lang}}-{{$slug}}" style="width: 100%; min-height: 500px;"></div>
-    <input type="hidden" class="form-control {{$class or ''}}" id="field-{{$lang}}-{{$slug}}"
-           @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}]{{$name}}"
-           @else
-           name="{{$lang}}{{$name}}"
-           @endif
+    <div id="ace-code-block-{{$id}}" style="width: 100%; min-height: 500px;"></div>
+    <input type="hidden" class="form-control {{$class or ''}}" id="{{$id}}"
+           name="{{$fieldName}}"
            value="{{$value or old($name)}}"
            placeholder="{{$placeholder or ''}}">
     @if(isset($help))
@@ -19,7 +15,7 @@
 @push('scripts')
     <script>
     $(function () {
-        var editor{{$lang}}{{$slug}} = ace.edit('ace-code-block-{{$lang}}-{{$slug}}');
+        var editor{{$lang}}{{$slug}} = ace.edit('ace-code-block-{{$id}}');
         editor{{$lang}}{{$slug}}.getSession().setMode('ace/mode/javascript');
         editor{{$lang}}{{$slug}}.setTheme('ace/theme/monokai');
         editor{{$lang}}{{$slug}}.getSession().setUseWorker(false);

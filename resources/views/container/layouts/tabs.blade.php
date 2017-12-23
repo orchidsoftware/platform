@@ -12,7 +12,7 @@
 
 
 <!-- main content  -->
-<section class="wrapper-md">
+<section>
     <div class="bg-white-only bg-auto no-border-xs">
             <div class="tab-content">
                 @foreach($manyForms as $name => $forms)

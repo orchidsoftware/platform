@@ -3,14 +3,9 @@
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
     <select class="form-control {{$class or ''}}"
-            id="field-{{$slug}}"
-            @if(isset($prefix))
-            name="{{$prefix}}[{{$lang}}]{{$name}}"
-            @else
-            name="{{$lang}}{{$name}}"
-            @endif
+            id="{{$id}}"
+            name="{{$fieldName}}"
     >
-
     </select>
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
@@ -18,9 +13,10 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 
+@push('scripts')
 <script>
 $(function () {
-    $('#field-{{$slug}}').select2({
+    $('#{{$id}}').select2({
         theme: "bootstrap",
         ajax: {
             type: "POST",
@@ -43,7 +39,7 @@ $(function () {
         ])}}'
     }).then(function (data) {
 
-        $('#field-{{$slug}}')
+        $('#{{$id}}')
             .append(new Option(data.text, data.id, true, true))
             .trigger('change')
             .trigger({
@@ -55,3 +51,4 @@ $(function () {
     });
 });
 </script>
+@endpush

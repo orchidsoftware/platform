@@ -26,17 +26,14 @@
 
         @foreach($permission as $name => $group)
 
-
             <div class="line line-dashed b-b line-lg"></div>
 
             <span class="text-muted">{{ $name or '' }}</span>
-
 
             <div class="row padder-v">
                 <div class="col-xs-12">
 
                     @foreach($group as $value)
-
 
                         <div class="col-xs-12 col-sm-6 col-md-4 m-t-xs m-b-xs">
                             <label class="i-checks m-b-none">
@@ -52,7 +49,6 @@
             </div>
 
             <div class="line line-dashed b-b line-lg"></div>
-
 
         @endforeach
 

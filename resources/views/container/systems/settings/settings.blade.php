@@ -28,7 +28,7 @@
     </div>
 
     <!-- main content  -->
-    <section class="wrapper-md">
+    <section>
         <div class="bg-white-only bg-auto no-border-xs">
 
             <form class="form-horizontal" action="{{route('dashboard.systems.settings')}}" id="form-group"
