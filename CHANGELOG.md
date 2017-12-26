@@ -13,8 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Section wrapper remove
 - Input build named
 - "Not found" message occupies the entire screen
+- Error 403 to 404
 
 ### Fixed
+- Bug permission for behaviors
 - Style for select2
 - Calling relation for new object in template #382
 

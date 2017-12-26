@@ -33,7 +33,7 @@ class PageController extends Controller
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('dashboard.pages.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.' . $page->slug);
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
@@ -51,7 +51,7 @@ class PageController extends Controller
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('dashboard.pages.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.' . $page->slug);
         $type = $page->getBehaviorObject($page->slug);
 
         $page->fill($request->all());
