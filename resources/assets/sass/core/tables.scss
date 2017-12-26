@@ -33,6 +33,7 @@
         padding: 20px;
         font-size: 13.5px;
         vertical-align: middle;
+        word-break: break-all;
         .btn-tag {
           background: fade-out($brand-dark, .93);
           display: inline-block;

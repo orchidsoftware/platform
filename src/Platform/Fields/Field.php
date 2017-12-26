@@ -89,5 +89,4 @@ abstract class Field
 
         return $prefix . '[' . $lang . ']' . $name;
     }
-
 }
