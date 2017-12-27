@@ -6,14 +6,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [2.0.8] - 2017-12-27
+### Added 
+- Input Mask
+
+### Changed
+- Section wrapper remove
+- Input build named
+- "Not found" message occupies the entire screen
+- Error 403 to 404
+
+### Fixed
+- Bug permission for behaviors
+- Style for select2
+- Calling relation for new object in template #382
+
+## [2.0.7] - 2017-12-19
 ### Added 
 - Thai language
 - Fix paginate style
 - Width for table
 
+### Changed
+- Replacing `less` with` sass`
+- Modifying paths `app\Http\Screens` to `app\Http\Controllers\Screens`
+- Modifying paths `app\Http\Layouts` to `app\Core\Layouts`
+
 ### Fixed
 - Sort argument for method Screen
-
+- Remove publish_at from `category`
 
 
 ## [2.0.6] - 2017-12-10
