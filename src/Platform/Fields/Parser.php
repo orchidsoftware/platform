@@ -59,7 +59,6 @@ class Parser
             } else {
                 $rules[$key] = $rule;
             }
-
         }
 
         return $rules;
@@ -102,5 +101,4 @@ class Parser
 
         return str_getcsv($parameter);
     }
-
 }
