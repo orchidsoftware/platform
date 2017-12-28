@@ -1,14 +1,10 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
-    <textarea class="form-control no-resize {{$class or ''}}" id="field-{{$slug}}"
+    <textarea class="form-control no-resize {{$class or ''}}" id="{{$id}}"
               rows="{{$rows or ''}}"
-              @if(isset($prefix))
-                      name="{{$prefix}}[{{$lang}}]{{$name}}"
-              @else
-              name="{{$lang}}{{$name}}"
-              @endif
+              name="{{$fieldName}}"
               placeholder="{{$placeholder or ''}}"
               maxlength="{{$maxlength or ''}}"
               minlength="{{$minlength or ''}}"

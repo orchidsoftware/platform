@@ -24,24 +24,22 @@
     "font-awesome": "^4.7",
     "frappe-charts": "0.0.8",
     "google-maps": "^3.2",
+    "inputmask": "^3.3.11",
     "jquery": "^3.1",
     "jquery-ui": "^1.12",
     "jquery-ui-bundle": "^1.11",
     "laravel-mix": "^1.7.2",
     "lodash": "^4.17.4",
+    "moment": "^2.20.0",
     "nestable": "^0.2.0",
     "open-color": "^1.5.1",
 	"popper.js": "^1.12.3",
     "select2": "^4.0.5",
+    "select2-bootstrap-theme": "0.1.0-beta.10",
     "simple-line-icons": "^2.4.1",
     "simplemde": "^1.11.2",
-	"tempusdominus-bootstrap-4":"^5.0.0-alpha9",
     "tinymce": "^4.7.4",
     "turbolinks": "^5.0",
     "vue": "^2.5.9"
-  },
-  "devDependencies": {
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5"
   }
 }

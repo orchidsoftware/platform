@@ -35,35 +35,43 @@ Dropzone.autoDiscover = false;
 require('nestable');
 
 window.moment = require('moment');
-//moment.locale('en');
 
 
-//$.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
 $.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
-//window.datetimepicker = require('tempusdominus-bootstrap-4');
 
 
 require('./modules/select');
-/*
-window.ace = require('brace');
-require('brace/mode/javascript');
-require('brace/theme/monokai');
-*/
+
+window.Inputmask = require('inputmask');
+
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
-    $('.select2-enable').select2();
+    $('.select2-enable').select2({
+    theme: "bootstrap"
+});
 })
+
+$.fn.select2.defaults.set( "theme", "bootstrap" );
 require('croppie');
 
 require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-/*
-require('../../../node_modules/tinymce/tinymce.min');
+require('./modules/inputmask');
+
+
+window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+
+//Code editor
+window.ace = require('brace');
+	require('brace/mode/javascript');
+	require('brace/theme/monokai'); 
+
+//Tinymce editor 
+require('../../../node_modules/tinymce/tinymce.min'); 
 tinyMCE.baseURL = "/orchid/js/";
 
+//SimpleMDE editor
 window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
-*/
-window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');

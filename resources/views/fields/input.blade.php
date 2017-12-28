@@ -1,19 +1,16 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$slug}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
-    <input type="{{$type}}" class="form-control {{$class or ''}}" id="field-{{$lang}}-{{$slug}}"
-           @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}]{{$name}}"
-           @else
-           name="{{$lang}}{{$name}}"
-           @endif
+    <input type="{{$type}}" class="form-control {{$class or ''}}" id="{{$id}}"
+           name="{{$fieldName}}"
            value="{{$value or old($name)}}"
            placeholder="{{$placeholder or ''}}"
            max="{{$max or ''}}"
            maxlength="{{$maxlength or ''}}"
            min="{{$min or ''}}"
            minlength="{{$minlength or ''}}"
+           data-mask="{{$mask or ''}}"
     >
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>

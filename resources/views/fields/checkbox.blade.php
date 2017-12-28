@@ -1,18 +1,14 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$slug}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
     <div class="checkbox {{$class or ''}}">
         <label class="i-checks">
             <input type="checkbox"
-                   id="field-{{$slug}}"
+                   id="{{$id}}"
                    value="{{$default or old($default)}}"
                    @if(isset($value) && $value == $default) checked @endif
-                   @if(isset($prefix))
-                   name="{{$prefix}}[{{$lang}}]{{$name}}"
-                   @else
-                   name="{{$lang}}{{$name}}"
-                    @endif
+                   name="{{$fieldName}}"
             ><i></i> {{$placeholder or ''}}
         </label>
     </div>

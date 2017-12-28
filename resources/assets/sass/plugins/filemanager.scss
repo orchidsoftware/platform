@@ -61,6 +61,7 @@
 
   #toolbar {
     padding: 15px;
+    height: 65px;
   }
 
   /**************************************************/
@@ -139,7 +140,7 @@
     flex-wrap: wrap;
     @extend .bg-white;
     border-top: 0;
-    min-height: calc(100vh - 230px);
+    min-height: calc(100vh - 180px);
   }
 
   .flex #left {

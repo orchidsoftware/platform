@@ -22,7 +22,7 @@
 
 
     <!-- main content  -->
-    <section class="wrapper-md">
+    <section>
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($category->count() > 0)
@@ -52,8 +52,6 @@
                                                         class="fa fa-bars"></i></a>
                                         </td>
                                         <td>{{$item->term->getContent('name')}}</td>
-
-                                        <td>{{ $item->term->updated_at}}</td>
 
                                         @foreach($grid as $key => $column)
                                             <td>{{$item->term->getContent($key)}}</td>

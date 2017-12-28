@@ -1,8 +1,8 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
     @if(isset($title))
-        <label for="field-{{$slug}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
-    <p id="field-{{$slug}}">{{$value or ''}}</p>
+    <p id="{{$id}}">{{$fieldName or ''}}</p>
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>
     @endif

@@ -27,7 +27,7 @@
 
 
     <!-- main content  -->
-    <section class="wrapper-md">
+    <section>
         <div class="bg-white-only bg-auto no-border-xs">
             <form class="form-horizontal" id="form-group" action="{{route($route,$slug)}}" method="post"
                   enctype="multipart/form-data">

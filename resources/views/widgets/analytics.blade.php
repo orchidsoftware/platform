@@ -471,7 +471,7 @@ Widget Deprecated
 
 @else
 
-    <section class="wrapper-md">
+    <section>
             <div class="bg-white-only bg-auto no-border-xs">
                 <div class="wrapper-lg">
                     To view analytics you'll need to get a google analytics client id and add it to your configs <code>config/service/google.analytics.key</code>.

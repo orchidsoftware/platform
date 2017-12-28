@@ -20,11 +20,7 @@
            type="hidden"
            data-width="{{$width}}"
            data-height="{{$height}}"
-           @if(isset($prefix))
-           name="{{$prefix}}[{{$lang}}]{{$name}}"
-           @else
-           name="{{$lang}}{{$name}}"
-           @endif
+           name="{{$fieldName}}"
            value="{{$value or old($name)}}"/>
 </div>
 

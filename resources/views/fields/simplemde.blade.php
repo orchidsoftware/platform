@@ -1,21 +1,17 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
 
     @if(isset($title))
-        <label for="field-{{$name}}">{{$title}}</label>
+        <label for="{{$id}}">{{$title}}</label>
     @endif
 
 
 	<div class="simplemde-wrapper">
 
 	<input class="simplemde-{{$lang}}-{{$slug}}"
-		@if(isset($prefix))
-			name="{{$prefix}}[{{$lang}}]{{$name}}"
-		@else
-			name="{{$lang}}{{$name}}"
-		@endif
-		   id="simplemde-{{$lang}}-{{$slug}}"
-		   type="hidden"
-		   value="{{ $value or old($name) }}"
+		name="{{$fieldName}}"
+		id="{{$id}}"
+		type="hidden"
+		value="{{ $value or old($name) }}"
 		>
 	</div>
 
@@ -25,10 +21,11 @@
 </div>
 <div class="line line-dashed b-b line-lg"></div>
 
+@push('scripts')
 <script>
 $(function () {
 	new SimpleMDE({
-		element: document.getElementById("simplemde-{{$lang}}-{{$slug}}"),
+		element: document.getElementById("{{$id}}"),
 		toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", 
 		"|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
 		placeholder: "{{$placeholder or ''}}",
@@ -36,3 +33,4 @@ $(function () {
 	});
 });
 </script>
+@endpush

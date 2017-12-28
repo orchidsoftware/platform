@@ -17,7 +17,7 @@
 
 @section('content')
 
-    <section class="wrapper-md">
+    <section>
         <div class="bg-white b-b box-shadow">
             <form id="post-form" method="post" enctype="multipart/form-data">
                 @foreach($screen->build() as $views)
