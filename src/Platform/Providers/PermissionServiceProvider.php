@@ -67,7 +67,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         foreach ($this->dashboard->getStorage('pages')->all() as $page) {
             $pages[] = [
-                'slug'        => 'dashboard.posts.type.' . $page->slug,
+                'slug'        => 'dashboard.pages.type.' . $page->slug,
                 'description' => $page->name,
             ];
         }

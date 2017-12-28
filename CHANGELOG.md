@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.9] - 2017-12-29
+### Changed
+- Optimization for parser
+
+### Fixed
+- Bug name permission for pages
 
 ## [2.0.8] - 2017-12-27
 ### Added 
