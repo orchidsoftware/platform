@@ -35,7 +35,6 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            'publish_at' => 'Date of publication',
             'created_at' => 'Date of creation',
         ];
     }

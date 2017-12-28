@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function index(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
 
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function create(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
         $this->validate($request, $type->rules());
 
         $post->fill($request->all());
@@ -114,7 +114,7 @@ class PostController extends Controller
      */
     public function edit(PostBehavior $type, Post $post) : View
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
@@ -135,7 +135,7 @@ class PostController extends Controller
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
@@ -181,7 +181,7 @@ class PostController extends Controller
      */
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.' . $type->slug);
         try {
             $post->delete();
         } catch (\Exception $e) {

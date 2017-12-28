@@ -1,12 +1,30 @@
 # Forms
 ----------
  
-The form is an independent part of the application, which takes on the function of the controller and serves to implement the CRUD.
+The form is an independent part of the application that takes over the function of the controller and serves to create pages
+available for expansion.
+
+The form is not a constructor or builder.
+Their sense in the formation of a form of data, in which you can add new information in the form of tabs,
+who do not know anything about each other, but operate on the same information.
+For example, we have a form of user, where by default there are two tabs
+with general information and access rights, by adding new forms
+(registered with the help of events), we can expand and add various information,
+while in the code you will see only the display of the form and the action to be taken with the resulting model.
+That allows to expand already standard tabs and more accurately to be adjusted under necessary needs.
+
+For example:
+
+> There is a package for an online store that allows you to add goods,
+in it are pre-prepared fields for input (Name, price, etc.).
+Using forms,
+a third-party package can add its own add-on, for example, downloading documentation for the product.
+
 
 ORCHID has two forms:
-1. The basic
-1. Realizing
 
+1. The main
+1. Realizing
 
 ### Basic Form
 

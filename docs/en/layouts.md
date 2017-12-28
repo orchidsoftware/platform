@@ -1,20 +1,16 @@
 # Layouts
 ----------
 
-Отображение внешнего вида элементов пользовательского интерфейса в приложении добавляет большое значение, делает приложение
-проще в использовании и помогает пользователям интуитивно отображать элементы экрана для выполнения своих задач.
+Layouts is a layout, the best explanation is what it is:
 
-
-Разделение логики и презентации является один из принципов разработки с ORCHID.
-Одним из элементов презентации являются "Layouts", это макеты которые могут отображатся как:
-- Таблица (Table)
-- Колонки (Column)
-- Строки (Row)
-- Графики и т.п.
+- Table
+- Columns
+- Row (Row)
+- Graphs, etc.
 
 
 
-## Таблица
+## Table
 
 ```php
 php artisan make:table PatientListLayout
@@ -55,7 +51,7 @@ class PatientListLayout extends Table
 }
 ```
 
-## Строки
+## Rows
 
 ```php
 php artisan make:rows PatientFirstRows
@@ -110,7 +106,7 @@ class PatientFirstRows extends Rows
 ```
 
 
-## Графики
+## Chart
 
 ```php
 namespace App\Http\Layout\News;
@@ -147,4 +143,4 @@ class NewsCharts extends Chart
 ```
 
 
-#### Документация скоро будет дополнена
+#### The documentation will soon be completed
