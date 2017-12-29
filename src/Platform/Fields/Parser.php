@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Platform\Platform\Fields;
+namespace Orchid\Platform\Fields;
 
 use Illuminate\Support\Str;
 
