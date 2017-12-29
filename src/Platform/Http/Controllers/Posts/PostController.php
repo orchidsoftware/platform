@@ -69,10 +69,8 @@ class PostController extends Controller
     {
         $this->checkPermission('dashboard.posts.type.' . $type->slug);
         $this->validate($request, $type->rules());
-
-        $post->fill($request->all());
-
-        $post->fill([
+        
+        $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => Auth::user()->id,
             'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
@@ -187,12 +185,11 @@ class PostController extends Controller
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('dashboard.posts.type.' . $type->slug);
-        try {
-            $post->delete();
-        } catch (\Exception $e) {
-        }
+     
+        $post->delete();
+  
         Alert::success(trans('dashboard::common.alert.success'));
-
+        
         return redirect()->route('dashboard.posts.type', [
             'type' => $type->slug,
         ]);

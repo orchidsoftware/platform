@@ -30,7 +30,8 @@
     "mockery/mockery": "~0.9.4",
     "phpunit/phpunit": "~6.0",
     "orchestra/testbench": "~3.0",
-    "orchestra/database": "~3.0"
+    "orchestra/database": "~3.0",
+    "orchestra/testbench-dusk": "~3.4"
   },
   "autoload": {
     "psr-4": {
