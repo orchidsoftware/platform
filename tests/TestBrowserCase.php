@@ -18,5 +18,4 @@ abstract class TestBrowserCase extends TestCase
     {
         static::stopServing();
     }
-
 }
