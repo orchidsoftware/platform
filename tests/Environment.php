@@ -74,5 +74,4 @@ trait Environment
             'Active'    => Active::class,
         ];
     }
-
 }
