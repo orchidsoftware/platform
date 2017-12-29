@@ -90,7 +90,6 @@ class Post extends Model
      * Get the indexable data array for the model.
      *
      * @return array
-     * @throws TypeException
      */
     public function toSearchableArray()
     {

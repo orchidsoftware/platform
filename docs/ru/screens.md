@@ -136,9 +136,9 @@ class Users extends Screen
 */
 public function commandBar() : array
 {
-return [
-    Link::name('Вывести на печать')->method('print'),
-];
+    return [
+        Link::name('Вывести на печать')->method('print'),
+    ];
 }
 ```
 

@@ -65,11 +65,11 @@ class RouteServiceProvider extends ServiceProvider
             try {
                 $widget = app()->make((urldecode($value)));
             } catch (\Exception $exception) {
-                return abort(403);
+                return abort(404);
             }
 
             if (!is_a($widget, WidgetContractInterface::class)) {
-                return abort(403);
+                return abort(404);
             }
 
             return $widget;

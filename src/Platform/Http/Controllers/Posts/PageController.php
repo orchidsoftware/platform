@@ -29,11 +29,10 @@ class PageController extends Controller
      * @param Page $page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('dashboard.pages.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.' . $page->slug);
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
@@ -47,11 +46,10 @@ class PageController extends Controller
      * @param Request $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('dashboard.pages.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.' . $page->slug);
         $type = $page->getBehaviorObject($page->slug);
 
         $page->fill($request->all());
