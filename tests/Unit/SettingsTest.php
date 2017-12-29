@@ -3,9 +3,9 @@
 namespace Orchid\Platform\Tests\Unit;
 
 use Orchid\Platform\Core\Models\Setting;
-use Orchid\Platform\Tests\TestCase;
+use Orchid\Platform\Tests\TestUnitCase;
 
-class SettingsTest extends TestCase
+class SettingsTest extends TestUnitCase
 {
     /**
      * Database connect.
