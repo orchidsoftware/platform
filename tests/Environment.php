@@ -75,14 +75,4 @@ trait Environment
         ];
     }
 
-
-    public static function setUpBeforeClass()
-    {
-        static::serve();
-    }
-
-    public static function tearDownAfterClass()
-    {
-        static::stopServing();
-    }
 }
