@@ -18,11 +18,11 @@ trait Environment
     {
         parent::setUp();
 
-       Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
 
-       $this->loadLaravelMigrations('orchid');
+        $this->loadLaravelMigrations('orchid');
 
-       $this->artisan('migrate', [
+        $this->artisan('migrate', [
            '--database' => 'orchid',
        ]);
         $this->withFactories(__DIR__ . '/../database/factories');
@@ -85,6 +85,4 @@ trait Environment
     {
         static::stopServing();
     }
-
-
 }
