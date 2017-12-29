@@ -15,10 +15,8 @@
                     <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-
+                <div class="dropdown-menu dropdown-menu-right">
                     @foreach($locales as $code => $lang)
-                        <li>
                             <a class="dropdown-item" data-target="#local-{{$code}}"
                                role="tab"
                                data-toggle="tab"
@@ -26,9 +24,8 @@
                                aria-controls="local-{{$code}}"
                                aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
                             </a>
-                        </li>
                     @endforeach
-                </ul>
+                </div>
             </li>
         @endif
 

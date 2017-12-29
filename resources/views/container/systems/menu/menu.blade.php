@@ -11,19 +11,19 @@
 
             <ul class="nav justify-content-end">
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-right">
 
                         @foreach($locales as $code => $locale)
                             @if($currentLocale == $code)
                                 <li class="disabled">
-                                    <a>{{$locale['native']}}</a>
+                                    <a class="dropdown-item">{{$locale['native']}}</a>
                                 </li>
                             @else
                                 <li>
-                                    <a href="?lang={{$code}}">{{$locale['native']}}</a>
+                                    <a class="dropdown-item" href="?lang={{$code}}">{{$locale['native']}}</a>
                                 </li>
                             @endif
                         @endforeach

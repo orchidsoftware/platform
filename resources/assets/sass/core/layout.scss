@@ -8,7 +8,7 @@ body {
 }
 
 h3, .h3 {
-    font-size: 1.5rem;
+    font-size: 1.714rem;
 }
 
 .app {
@@ -300,6 +300,7 @@ h3, .h3 {
     .app-header {
       .navbar-header {
         position: fixed;
+		display: none;
       }
     }
     .aside-wrap {
@@ -455,7 +456,7 @@ h3, .h3 {
   li {
     a {
       .icon, i {
-        font-size: 2em;
+        font-size: $font-size-md;
         display: block;
         margin: 0 auto !important;
         float: none !important;

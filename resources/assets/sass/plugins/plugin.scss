@@ -17,7 +17,7 @@
   width : 100%;
   .label {
     display: inline;
-    padding: .2em .6em .3em;
+    padding: .2rem .6rem .3rem;
     font-size: 75%;
     font-weight: 700;
     line-height: 1;
@@ -25,7 +25,7 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .25em;
+    border-radius: .25rem;
 	&.label-info {
 		background-color: #1c7cd6;
 	}
@@ -101,6 +101,24 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.bootstrap-datetimepicker-widget.dropdown-menu {
-    width: 15em;
+// Datetimepicker
+.bootstrap-datetimepicker-widget{
+	&.dropdown-menu {
+		width: 18rem;
+	}
+	.table-condensed{
+		>tbody,
+		>thead,
+		>tfoot{
+			>tr{
+				>td,
+				>th{
+					padding: 4px;
+				}
+			}
+		}
+	}
+}
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 5px;
 }

@@ -84,7 +84,7 @@ class PostController extends Controller
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = reset($content)[$type->slugFields];
+            $slug = $type->slugFields ? reset($content)[$type->slugFields] : 1;
         }
 
         $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
@@ -131,7 +131,6 @@ class PostController extends Controller
      * @param Post         $post
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
@@ -147,7 +146,7 @@ class PostController extends Controller
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = reset($content)[$post->getBehaviorObject()->slugFields];
+            $slug = $type->slugFields ? reset($content)[$type->slugFields] : 1;
         }
 
         if ($request->filled('slug') && $request->get('slug') !== $post->slug) {

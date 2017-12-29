@@ -59,7 +59,7 @@ require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-require('./modules/inputmask');
+require('./modules/mask');
 
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');

@@ -19,7 +19,7 @@
 .nav-sub-header {
   display: none !important;
   a {
-    padding: floor(($app-aside-folded-nav-height - $line-height-computed)/2) 20px;
+    padding: floor(($app-aside-folded-nav-height - $line-height-computed-px)/2) 20px;
   }
 }
 
@@ -88,7 +88,7 @@
       font-size: $font-size-sm;
       font-weight: 300;
       i {
-        font-size: 1.5em;
+        font-size: 1.39286rem;
         width: inherit;
         line-height: inherit;
       }
@@ -149,7 +149,7 @@
         font-weight: normal;
         text-transform: none;
         display: block;
-        padding: floor(($app-aside-nav-height - $line-height-computed)/2) 20px;
+        padding: floor(($app-aside-nav-height - $line-height-computed-px)/2) 20px;
         position: relative;
         @include transition(background-color .2s ease-in-out 0s);
         .badge,
@@ -159,7 +159,7 @@
           margin-top: 2px;
         }
         > i {
-          margin: floor(-($app-aside-nav-height - $line-height-computed)/2) -10px;
+          margin: floor(-($app-aside-nav-height - $line-height-computed-px)/2) -10px;
           line-height: $app-aside-nav-height;
           width: $app-aside-nav-height;
           float: left;
@@ -219,7 +219,7 @@
     .nav-sub-header {
       display: block !important;
       a {
-        padding: floor(($app-aside-folded-nav-height - $line-height-computed)/2) 20px !important;
+        padding: floor(($app-aside-folded-nav-height - $line-height-computed-px)/2) 20px !important;
       }
     }
     .navi {
@@ -347,5 +347,19 @@
     }
 
   }
+}
 
+/*
+ *  Dropdown menu
+ */
+.dropdown {
+	.dropdown-menu{
+		.dropdown-item{
+			&.active, 
+			&:active {
+				color: #141719;
+				background-color: #e9ecef;
+			}
+		}
+	}
 }

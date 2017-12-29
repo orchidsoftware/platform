@@ -8,6 +8,15 @@ $icon-font-path : "/orchid/fonts/";
 $fa-font-path : "/orchid/fonts/";
 $simple-line-font-path : "/orchid/fonts/";
 
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+	);
+
 $brand-primary : #ac5ca0; //$oc-violet-8;
 $brand-complete : $oc-indigo-8;
 $brand-info : $oc-blue-7;
@@ -75,11 +84,12 @@ $font-family-sans-serif : 'Open Sans', sans-serif;
 $font-family-serif : 'Open Sans', sans-serif;
 $font-family-base : $font-family-sans-serif;
 
-$font-size-base : 14px;
-$font-size-lg : ceil($font-size-base * 1.23); // ~20px
-$font-size-md : ceil($font-size-base * 1.14); // ~16px
-$font-size-sm : ceil($font-size-base * 0.92); // ~13px
-$font-size-xs : ceil($font-size-base * 0.85); // ~12px
+$font-size-base-px : 14px;
+$font-size-base : 1rem;
+$font-size-lg : 1.23*$font-size-base;//ceil($font-size-base * 1.23); // ~20px
+$font-size-md : 1.14*$font-size-base; //ceil($font-size-base * 1); // ~16px
+$font-size-sm : 0.92857*$font-size-base;//ceil($font-size-base * 0.81); // ~13px
+$font-size-xs : 0.86*$font-size-base;//ceil($font-size-base * 0.75); // ~12px
 
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);
@@ -89,6 +99,7 @@ $border-color : darken($brand-light, 5%);
 
 $line-height-base : 1.42857143; // 20/14
 $line-height-computed : floor($font-size-base * $line-height-base); // ~20px
+$line-height-computed-px: 	20px;
 $icon-css-prefix : i;
 
 // Buttons
@@ -137,9 +148,9 @@ $switch-lg-width : 50px;
 $switch-lg-height : 30px;
 
 $app-aside-width : 350px;
-$app-aside-nav-height : 40px;
+$app-aside-nav-height : 40px; //2,857rem; 
 $app-aside-folded-width : 60px;
-$app-aside-folded-nav-height : 50px;
+$app-aside-folded-nav-height : 50px;//3.57rem; 
 $app-aside-dock-media : 992px;
 
 $app-header-height : 80px;
@@ -170,10 +181,42 @@ $btn-primary-color:#fff;
 $btn-primary-bg: #ac5ca0;
 $border-radius-base:2px;
 $gray-lighter:#eee;
-$gray-light:#777;
+$gray-light:#777; 
 $screen-sm-min: map-get($grid-breakpoints, sm);
 $screen-md-min: map-get($grid-breakpoints, md);
 $screen-lg-min: map-get($grid-breakpoints, lg);
 
+
 //Bootstrap
 $enable-caret: false;
+
+
+//Select2-bootstrap.
+$border-radius-large:       6px;
+$border-radius-small:       3px;
+$caret-width-base:          4px;
+$caret-width-large:         5px;
+$cursor-disabled:           not-allowed;
+$font-size-large:         ceil(($font-size-base-px * 1.25)); // ~18px
+$font-size-small:         ceil(($font-size-base-px * 0.85)); 
+$padding-base-vertical:     6px;
+$padding-base-horizontal:   12px;
+$padding-large-vertical:    10px;
+$padding-large-horizontal:  16px;
+$padding-small-vertical:    5px;
+$padding-small-horizontal:  10px;
+$line-height-large:         1.3333333; 
+$line-height-small:         1.5;
+$input-bg:                  #fff;
+$gray-base:              	#000;
+$gray:						lighten($gray-base, 33.5%) ;
+$input-bg-disabled:         $gray-lighter;
+$input-color:               $gray;
+$input-border:              #ccc;
+$input-color-placeholder:   #999;
+$input-height-base:         ($line-height-computed-px + ($padding-base-vertical * 2) + 2);
+$input-height-large:        (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+$input-height-small:        (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+$state-warning-text:        #8a6d3b ;
+$state-danger-text:         #a94442 ;
+$state-success-text:        #3c763d ;
