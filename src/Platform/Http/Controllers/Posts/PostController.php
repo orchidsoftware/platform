@@ -142,16 +142,22 @@ class PostController extends Controller
         $post->options = $post->getOptions();
 
 
+        $slug = null;
+
         if ($request->filled('slug')) {
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = $type->slugFields ? reset($content)[$type->slugFields] : 1;
+            $behaviorObject = $post->getBehaviorObject();
+            if (property_exists($behaviorObject, 'slugFields')) {
+                $slug = reset($content)[$behaviorObject->slugFields];
+            }
         }
 
-        if ($request->filled('slug') && $request->get('slug') !== $post->slug) {
+        if (!empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
+
 
         $post->save();
 
