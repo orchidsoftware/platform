@@ -100,7 +100,8 @@ $(function () {
     $('#picture-crop-modal-{{$lang}}-{{$slug}} .crop').on('click', function (ev) {
         $cropPanel.croppie('result', {
             type: 'blob',
-            size: 'viewport'
+            size: 'viewport',
+            format: '{{$format ?? 'png'}}'
         }).then(function (blob) {
 
             let data = new FormData();
