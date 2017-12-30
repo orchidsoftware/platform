@@ -4,9 +4,9 @@ namespace Orchid\Platform\Tests\Unit;
 
 use Orchid\Platform\Alert\Alert;
 use Orchid\Platform\Alert\SessionStoreInterface;
-use Orchid\Platform\Tests\TestCase;
+use Orchid\Platform\Tests\TestUnitCase;
 
-class AlertTest extends TestCase
+class AlertTest extends TestUnitCase
 {
     protected $store;
     protected $alert;

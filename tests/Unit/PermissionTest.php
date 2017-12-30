@@ -5,9 +5,9 @@ namespace Orchid\Platform\Tests\Unit;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Tests\TestCase;
+use Orchid\Platform\Tests\TestUnitCase;
 
-class PermissionTest extends TestCase
+class PermissionTest extends TestUnitCase
 {
     /**
      * Verify permissions.

@@ -3,7 +3,6 @@
 namespace Orchid\Platform\Fields;
 
 use Orchid\Platform\Exceptions\TypeException;
-use Orchid\Platform\Platform\Fields\Parser;
 use Orchid\Platform\Screen\Repository;
 
 class Builder

@@ -3,7 +3,7 @@ window.Vue = require('vue');
 
 require('jquery-ui-bundle');
 
-require('bootstrap');
+require('bootstrap-sass');
 require('bootstrap-tagsinput');
 
 

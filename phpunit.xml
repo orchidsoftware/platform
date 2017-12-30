@@ -11,11 +11,18 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="Package Tests">
-            <directory suffix="Test.php">./tests/</directory>
+        <testsuite name="Browser">
+            <directory suffix="Test.php">./tests/Browser</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
     <php>
+        <env name="APP_URL" value="http://127.0.0.1:8000"/>
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
     </php>
 </phpunit>

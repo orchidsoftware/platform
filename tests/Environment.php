@@ -3,14 +3,14 @@
 namespace Orchid\Platform\Tests;
 
 use Illuminate\Support\Facades\Schema;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 use Watson\Active\Facades\Active;
 
-abstract class TestCase extends Orchestra
+trait Environment
 {
+
     /**
      * Setup the test environment.
      */
@@ -23,9 +23,8 @@ abstract class TestCase extends Orchestra
         $this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate', [
-            '--database' => 'orchid',
-        ]);
-
+           '--database' => 'orchid',
+       ]);
         $this->withFactories(__DIR__ . '/../database/factories');
     }
 
