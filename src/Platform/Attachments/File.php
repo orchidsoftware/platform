@@ -86,7 +86,7 @@ class File
             $file = $this->save();
 
 
-            if (substr($file->mine, 0, 5) == 'image') {
+            if (substr($file->mime, 0, 5) == 'image') {
                 foreach (config('platform.images', []) as $key => $value) {
                     $this->saveImageProcessing($key, $value['width'], $value['height'], $value['quality']);
                 }
