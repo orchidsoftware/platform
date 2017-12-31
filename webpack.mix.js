@@ -11,7 +11,22 @@ const {mix} = require('laravel-mix');
  |
  */
 
+const webpack = require("webpack");
+mix.webpackConfig({
+    resolve: {
+    },
+	plugins: [
+		new webpack.ContextReplacementPlugin(/moment[\/\\]locale/,/(de|en|en-gb|fr|ru|th)\.js/)
+	],
+	module: {
+		noParse: [
+			/brace/
+		],
+	}
+}); 
+
 mix.setPublicPath('public');
+
 mix.sass('resources/assets/sass/app.scss', 'public/css/orchid.css').sourceMaps().version();
 
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
@@ -23,3 +38,7 @@ mix.copy('./node_modules/tinymce/themes/', 'public/js/themes');
 mix.js([
     'resources/assets/js/app.js',
 ], 'public/js/orchid.js').sourceMaps().version();
+
+mix.js('resources/assets/js/editors.js', 'public/js/editors.js');
+
+

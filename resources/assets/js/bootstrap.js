@@ -1,4 +1,5 @@
 window.$ = window.jQuery = require('jquery');
+
 window.Vue = require('vue');
 
 require('jquery-ui-bundle');
@@ -8,12 +9,9 @@ window.Popper = require('popper.js');
 require('bootstrap');
 require('bootstrap-tagsinput');
 
-
-
 document.addEventListener("turbolinks:load", function() {
     $("input[data-role='tagsinput']").tagsinput('refresh');
 });
-
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -22,28 +20,22 @@ document.addEventListener("turbolinks:load", function() {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 
 require('./modules/csrf_token');
 
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 
-
 require('nestable');
 
 window.moment = require('moment');
 
-
 $.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
-
 
 require('./modules/select');
 
 window.Inputmask = require('inputmask');
-
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
@@ -61,17 +53,6 @@ require('./modules/leftMenu');
 require('./modules/open-click');
 require('./modules/mask');
 
-
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
 
-//Code editor
-window.ace = require('brace');
-	require('brace/mode/javascript');
-	require('brace/theme/monokai'); 
-
-//Tinymce editor 
-require('../../../node_modules/tinymce/tinymce.min'); 
-tinyMCE.baseURL = "/orchid/js/";
-
-//SimpleMDE editor
-window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
+//require('./editors');
