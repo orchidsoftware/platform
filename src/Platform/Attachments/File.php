@@ -83,14 +83,14 @@ class File
         $file = $this->getMatchesHash();
 
         if (is_null($file)) {
-            $file = $this->save();
 
-
-            if (substr($file->mime, 0, 5) == 'image') {
+            if (substr($this->file->getMimeType(), 0, 5) == 'image') {
                 foreach (config('platform.images', []) as $key => $value) {
                     $this->saveImageProcessing($key, $value['width'], $value['height'], $value['quality']);
                 }
             }
+
+            $file = $this->save();
 
             return $file;
         }
