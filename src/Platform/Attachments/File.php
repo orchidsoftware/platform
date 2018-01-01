@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Attachments;
 
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -33,6 +34,11 @@ class File
     public $file;
 
     /**
+     * @var Storage
+     */
+    public $storage;
+
+    /**
      * @var string
      */
     public $fullPath;
@@ -47,7 +53,7 @@ class File
      *
      * @param UploadedFile $file
      */
-    public function __construct(UploadedFile $file)
+    public function __construct(UploadedFile $file, FilesystemAdapter $storage)
     {
         $this->time = time();
         $this->date = date('Y/m/d');
@@ -55,6 +61,7 @@ class File
         $this->mimes = new MimeTypes;
         $this->fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR);
         $this->loadHashFile();
+        $this->storage = $storage;
     }
 
     /**
@@ -83,6 +90,8 @@ class File
         $file = $this->getMatchesHash();
 
         if (is_null($file)) {
+
+            $this->storage->makeDirectory($this->date);
 
             if (substr($this->file->getMimeType(), 0, 5) == 'image') {
                 foreach (config('platform.images', []) as $key => $value) {
@@ -117,13 +126,12 @@ class File
      */
     private function save()
     {
-        Storage::disk('public')->makeDirectory($this->date);
-
         $hashName = sha1($this->time . $this->file->getClientOriginalName());
         $name = $hashName . '.' . $this->getClientOriginalExtension();
 
-        $this->file->move($this->fullPath, $name);
-
+        $this->storage->putFileAs($this->date, $this->file, $name, [
+            'mime_type' => $this->getMimeType()
+        ]);
 
         return Attachment::create([
             'name'          => $hashName,
@@ -179,10 +187,16 @@ class File
         }
 
         $name = sha1($this->time . $this->file->getClientOriginalName()) . $name . '.' . $this->getClientOriginalExtension();
-        $fullPath = storage_path('app/public/' . DIRECTORY_SEPARATOR . $this->date . DIRECTORY_SEPARATOR . $name);
-        Image::make($this->file)->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        })->save($fullPath, $quality);
+
+        $content = Image::make($this->file)
+            ->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->encode($this->getClientOriginalExtension(), $quality);
+
+        $this->storage->put($this->date . '/' . $name, $content, [
+            'mime_type' => $this->getMimeType()
+        ]);
     }
 }

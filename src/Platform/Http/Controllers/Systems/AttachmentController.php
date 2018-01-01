@@ -2,7 +2,9 @@
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Container\Container;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Attachments\File;
 use Orchid\Platform\Core\Models\Attachment;
 use Orchid\Platform\Core\Models\Post;
@@ -27,7 +29,10 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
-            $attachment[] = (new File($file))->load();
+            $attachment[] = app()->make(File::class, [
+                'file' => $file,
+                'storage' => Storage::disk('public')
+            ])->load();
         }
 
         if (count($attachment) > 1) {
