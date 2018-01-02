@@ -9,9 +9,10 @@
             <td>{{$delimiter}}{{$value->term->getContent('name')}}</td>
             <td>{{ $value->term->updated_at}}</td>
         </tr>
+
         @include("dashboard::partials.systems.categoryItem",[
-        'item' => $value->allChildrenTerm,
-        'delimiter' => $delimiter . $delimiter
+            'item' => $value->allChildrenTerm,
+            'delimiter' => $delimiter . $delimiter
         ])
     @endforeach
 @endif

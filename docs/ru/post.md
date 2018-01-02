@@ -63,6 +63,20 @@ echo $taxonomy->taxonomy;
 $post = Post::taxonomy('category', 'php')->first();
 ```
 
+
+Возможны более сложные формы, например, получить все записи из категории `main` в ключая её дочерние категории:
+
+```php
+$posts  = Post::whereHas('taxonomies.term', function($query){
+	$query->whereIn('slug',
+	    Category::slug('main')->with('childrenTerm')
+	    ->first()->childrenTerm->pluck('term.slug')
+	);
+})->get()
+```
+
+Помните, что такие записи могут быть менее эффективны в скоросте выборки и приведены для примера.
+
 ### Категории и Таксонометрия
 
 Получите категорию или таксономию или загрузите сообщения из определенной категории. Существует несколько способов
@@ -86,6 +100,7 @@ $category->posts->each(function($post) {
     echo $post->getContent('name');
 });
 ```
+
 
 ### Вложения
 
