@@ -136,10 +136,12 @@ class Attachment extends Model
 
         $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
 
-        if (substr($this->mime, 0, 5) == 'image') {
-            foreach (array_keys(config('platform.images', [])) as $format) {
-                $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
-            }
+        if (substr($this->mime, 0, 5) !== 'image') {
+            return;
+        }
+
+        foreach (array_keys(config('platform.images', [])) as $format) {
+            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
         }
     }
 }
