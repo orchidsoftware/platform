@@ -2,7 +2,9 @@
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
+use Illuminate\Container\Container;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Attachments\File;
 use Orchid\Platform\Core\Models\Attachment;
 use Orchid\Platform\Core\Models\Post;
@@ -27,7 +29,11 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
-            $attachment[] = (new File($file))->load();
+            $storage = $request->get('storage', 'public');
+            $attachment[] = app()->make(File::class, [
+                'file' => $file,
+                'storage' => Storage::disk($storage)
+            ])->load();
         }
 
         if (count($attachment) > 1) {
@@ -54,12 +60,14 @@ class AttachmentController extends Controller
      * Delete files.
      *
      * @param $id
+     * @param Request $request
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        Attachment::find($id)->delete();
+        $storage = $request->get('storage', 'public');
+        Attachment::find($id)->delete($storage);
 
         return response(200);
     }

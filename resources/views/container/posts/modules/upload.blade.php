@@ -195,6 +195,7 @@ $(function () {
 
                 this.on("sending", function (file, xhr, formData) {
                     formData.append("_token", $("meta[name='csrf_token']").attr('content'))
+                    formData.append("storage", '{{$storage??'public'}}')
                 });
 
                 this.on("removedfile", function (file) {
@@ -204,7 +205,10 @@ $(function () {
                     $.ajax({
                         type: 'delete',
                         url: dashboard.prefix('/systems/files/' + file.data.id),
-                        data: {_token: $("meta[name='csrf_token']").attr('content')},
+                        data: {
+                            _token: $("meta[name='csrf_token']").attr('content'),
+                            storage: '{{$storage??'public'}}'
+                        },
                         dataType: 'html',
                         success: function (data) {
                             //

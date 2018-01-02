@@ -102,13 +102,13 @@ class Attachment extends Model
      * @return bool|null
      * @throws \Exception
      */
-    public function delete()
+    public function delete($storage = 'public')
     {
         if ($this->exists) {
             $this->relationships()->delete();
         }
 
-        $this->removePhysicalFile($this);
+        $this->removePhysicalFile($this, $storage);
 
         try {
             return parent::delete();
@@ -128,12 +128,17 @@ class Attachment extends Model
      * Physical removal of all copies of a file
      *
      * @param Attachment $attachment
+     * @param string $storageName
      */
-    private function removePhysicalFile(Attachment $attachment)
+    private function removePhysicalFile(Attachment $attachment, $storageName)
     {
-        $storage = Storage::disk('public');
+        $storage = Storage::disk($storageName);
 
         $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
+
+        if (substr($this->mime, 0, 5) !== 'image') {
+            return;
+        }
 
         foreach (array_keys(config('platform.images', [])) as $format) {
             $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
