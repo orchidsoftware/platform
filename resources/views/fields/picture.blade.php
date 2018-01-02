@@ -106,6 +106,7 @@ $(function () {
 
             let data = new FormData();
             data.append('file', blob);
+            data.append('storage', '{{$storage??''}}');
 
             axios.post(dashboard.prefix('/systems/files'), data)
                 .then(function (response) {

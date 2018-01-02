@@ -29,9 +29,10 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
+            $storage = $request->input('storage') ?: 'public';
             $attachment[] = app()->make(File::class, [
                 'file' => $file,
-                'storage' => Storage::disk('public')
+                'storage' => Storage::disk($storage)
             ])->load();
         }
 
