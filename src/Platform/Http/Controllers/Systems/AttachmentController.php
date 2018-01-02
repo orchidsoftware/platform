@@ -60,12 +60,14 @@ class AttachmentController extends Controller
      * Delete files.
      *
      * @param $id
+     * @param Request $request
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        Attachment::find($id)->delete();
+        $storage = $request->input('storage') ?: 'public';
+        Attachment::find($id)->delete($storage);
 
         return response(200);
     }
