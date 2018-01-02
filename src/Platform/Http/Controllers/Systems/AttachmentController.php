@@ -29,7 +29,7 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
-            $storage = $request->input('storage') ?: 'public';
+            $storage = $request->get('storage', 'public');
             $attachment[] = app()->make(File::class, [
                 'file' => $file,
                 'storage' => Storage::disk($storage)
@@ -66,7 +66,7 @@ class AttachmentController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $storage = $request->input('storage') ?: 'public';
+        $storage = $request->get('storage', 'public');
         Attachment::find($id)->delete($storage);
 
         return response(200);
