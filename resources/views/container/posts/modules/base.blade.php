@@ -119,7 +119,6 @@
 <script>
 $(function () {
     $('.select2-tags').select2({
-        theme: "bootstrap",
         templateResult: function formatState(state) {
             if (!state.id || !state.count) {
                 return state.text;

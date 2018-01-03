@@ -5,7 +5,7 @@ namespace Orchid\Platform\Fields;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
-abstract class Field
+class Field
 {
     /**
      * View template show.
@@ -13,6 +13,11 @@ abstract class Field
      * @var
      */
     public $view;
+
+    /**
+     * @var
+     */
+    public $attributes;
 
     /**
      * Required Attributes
@@ -41,7 +46,7 @@ abstract class Field
         $attributes->put('slug', $this->getSlug($attributes));
         $attributes->put('fieldName', $this->getName($attributes));
         $attributes->put('id', $this->getId($attributes));
-
+        $attributes->put('oldName', $this->getOldName($attributes));
 
         $attributes->put('firstTimeRender', $firstTimeRender);
 
@@ -88,5 +93,23 @@ abstract class Field
         }
 
         return $prefix . '[' . $lang . ']' . $name;
+    }
+
+    /**
+     * @param Collection $attributes
+     *
+     * @return string
+     */
+    public function getOldName(Collection $attributes)
+    {
+        $prefix = $attributes->get('prefix');
+        $lang = $attributes->get('lang');
+        $name = str_ireplace(['[', ']'], "", $attributes->get('name'));
+
+        if (is_null($prefix)) {
+            return $lang . '.' . $name;
+        }
+
+        return $prefix . '.' . $lang . '.' . $name;
     }
 }

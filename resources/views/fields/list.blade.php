@@ -1,4 +1,4 @@
-<div class="form-group input-sort">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }} input-sort">
     <label>{{$title}}</label>
    <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
 

@@ -1,4 +1,4 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
     @if(isset($title))
         <label for="{{$id}}">{{$title}}</label>
     @endif
