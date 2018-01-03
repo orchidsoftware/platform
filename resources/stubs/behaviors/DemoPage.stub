@@ -61,7 +61,7 @@ class DemoPage extends Single
             'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:SEO keywords',
             'robot'       => 'tag:robot|name:robot|max:255|required|title:Indexing|help:Allow search bots to index page',
             'list'        => 'tag:list|name:list|max:255|title:Indexing|help:Allow search bots to index page',
-            'phone'       => 'tag:input|type:text|name:name|required|title:Phone|help:Number Phone|mask:(999) 999-9999',
+            'phone'       => 'tag:input|type:text|name:phone|required|title:Phone|help:Number Phone|mask:(999) 999-9999',
             // need api key 'place'       => 'tag:place|name:place|max:255|required|title:Place|help:place for google maps',
         ];
     }
