@@ -104,8 +104,8 @@ Post::type('news')->filtersApply()->simplePaginate();
 ```php
 use App\MyModel;
 
-MyModel::filfiltersApply([
-        Filter::class,
-    ])->simplePaginate();
+MyModel::filtersApply([
+    Filter::class,
+])->simplePaginate();
 
 ```
