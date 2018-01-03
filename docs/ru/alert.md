@@ -5,7 +5,7 @@
 
 ORCHID имеет удобный вызов и отображение уведомлений по верх одноразовых flash-данных.
 
-### Использование:
+## Одноразовые сообщения:
 
 ```php
 public function store()
@@ -36,7 +36,7 @@ Alert::warning('Message')
 </div>
 ```
 
-### Уведомления в панели администрирования
+## Уведомления в панели администрирования
 
 ```php
 $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
