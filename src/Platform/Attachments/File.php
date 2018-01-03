@@ -90,7 +90,6 @@ class File
         $file = $this->getMatchesHash();
 
         if (is_null($file)) {
-
             $this->storage->makeDirectory($this->date);
 
             if (substr($this->file->getMimeType(), 0, 5) == 'image') {
