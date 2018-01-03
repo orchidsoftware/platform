@@ -122,6 +122,11 @@ $(function () {
                     $formGroup.find('.picture-input-file-{{$lang}}-{{$slug}}').value = '';
                 })
                 .catch(function (error) {
+                    if ('message' in error.response.data) {
+                        if ('alert' in dashboard) {
+                            dashboard.alert(error.response.data.message);
+                        }
+                    }
                     console.log(error);
                 });
 

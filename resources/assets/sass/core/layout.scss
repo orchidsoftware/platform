@@ -462,3 +462,19 @@ body {
 .app-header {
   min-height : $app-header-height;
 }
+
+#dashboard-alerts {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 1100;
+  text-align: right;
+  .alert {
+    display: inline-block;
+    padding: 1rem;
+    margin-bottom: .5rem;
+    .close {
+      padding: 0 0 0 1rem;
+    }
+  }
+}
