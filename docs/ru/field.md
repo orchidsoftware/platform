@@ -275,7 +275,7 @@ return [
 ];
 ```   
 
-
+Все достпные параметры *Inputmask* можно посмотреть [здесь](https://github.com/RobinHerbots/Inputmask#options)
 
 
 ## Локация (Place)
