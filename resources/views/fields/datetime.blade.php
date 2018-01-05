@@ -8,7 +8,7 @@
                value="{{$value or old($name)}}"
                placeholder="{{$placeholder or ''}}"
                name="{{$fieldName}}"
-               required="{{$required or 'false'}}"
+               @if(isset($required) && $required) required @endif
                data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
         >
         <span class="input-group-addon">

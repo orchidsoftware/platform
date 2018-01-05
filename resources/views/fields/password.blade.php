@@ -9,7 +9,7 @@
            maxlength="{{$maxlength or ''}}"
            min="{{$min or ''}}"
            minlength="{{$minlength or ''}}"
-           required="{{$required or 'false'}}"
+           @if(isset($required) && $required) required @endif
     >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

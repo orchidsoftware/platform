@@ -7,7 +7,7 @@
            name="{{$fieldName}}"
            value="{{$value or old($name)}}"
            placeholder="{{$placeholder or ''}}"
-           required="{{$required or 'false'}}"
+           @if(isset($required) && $required) required @endif
     >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

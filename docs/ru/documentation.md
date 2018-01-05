@@ -16,6 +16,7 @@
 
 <h4 class="text-orchid font-thin">Платформа</h4>
 <ul class="toc-links">
+
     <li><a href="/ru/docs/screens/">Экраны</a></li>
     <li><a href="/ru/docs/layouts/">Макеты</a></li>
     <li><a href="/ru/docs/filters/">Фильтры</a></li>

@@ -5,7 +5,7 @@
     <select class="form-control {{$class or ''}}"
             id="{{$id}}"
             name="{{$fieldName}}"
-            required="{{$required or 'false'}}"
+            @if(isset($required) && $required) required @endif
     >
     </select>
     @if(isset($help))

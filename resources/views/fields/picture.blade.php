@@ -22,7 +22,7 @@
            data-height="{{$height}}"
            name="{{$fieldName}}"
            value="{{$value or old($name)}}"
-           required="{{$required or 'false'}}"
+           @if(isset($required) && $required) required @endif
     >
 </div>
 
