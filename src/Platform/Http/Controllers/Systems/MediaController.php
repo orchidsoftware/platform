@@ -81,8 +81,7 @@ class MediaController extends Controller
             }
 
             $files[] = [
-                'name'          => strpos($file, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '',
-                    strrchr($file, DIRECTORY_SEPARATOR)) : $file,
+                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
                 'type'          => $mimetype,
                 'path'          => Storage::disk($this->filesystem)->url($file),
                 'size'          => Storage::disk($this->filesystem)->size($file),
@@ -92,8 +91,7 @@ class MediaController extends Controller
 
         foreach ($storageFolders as $folder) {
             $files[] = [
-                'name'          => strpos($folder, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '',
-                    strrchr($folder, DIRECTORY_SEPARATOR)) : $folder,
+                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
                 'type'          => 'folder',
                 'path'          => Storage::disk($this->filesystem)->url($folder),
                 'items'         => '',
