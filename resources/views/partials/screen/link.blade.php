@@ -12,9 +12,9 @@
 @elseif(!is_null($method))
 
     <button type="submit"
-                formaction="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}"
-                form="post-form"
-                class="btn btn-sm btn-link">
+            formaction="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}"
+            form="post-form"
+            class="btn btn-sm btn-link">
                     <i class="{{$icon or ''}}"></i>{{$name or ''}}
     </button>
 @else

@@ -21,7 +21,9 @@
            data-width="{{$width}}"
            data-height="{{$height}}"
            name="{{$fieldName}}"
-           value="{{$value or old($name)}}"/>
+           value="{{$value or old($name)}}"
+           required="{{$required or 'false'}}"
+    >
 </div>
 
 

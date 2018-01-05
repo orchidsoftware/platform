@@ -5,14 +5,15 @@
     @endif
 
 
-	<div class="simplemde-wrapper">
+    <div class="simplemde-wrapper">
 
 	<input class="simplemde-{{$lang}}-{{$slug}}"
-		name="{{$fieldName}}"
-		id="{{$id}}"
-		type="hidden"
-		value="{{ $value or old($name) }}"
-		>
+           name="{{$fieldName}}"
+           id="{{$id}}"
+           type="hidden"
+           value="{{ $value or old($name) }}"
+           required="{{$required or 'false'}}"
+    >
 	</div>
 
     @if(isset($help))
@@ -22,15 +23,15 @@
 <div class="line line-dashed b-b line-lg"></div>
 
 @push('scripts')
-<script>
+    <script>
 $(function () {
-	new SimpleMDE({
-		element: document.getElementById("{{$id}}"),
-		toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", 
-		"|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
-		placeholder: "{{$placeholder or ''}}",
+    new SimpleMDE({
+        element: document.getElementById("{{$id}}"),
+        toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list",
+            "|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
+        placeholder: "{{$placeholder or ''}}",
         spellChecker: false
-	});
+    });
 });
 </script>
 @endpush

@@ -9,6 +9,7 @@
                    value="{{$default or old($default)}}"
                    @if(isset($value) && $value == $default) checked @endif
                    name="{{$fieldName}}"
+                   required="{{$required or 'false'}}"
             ><i></i> {{$placeholder or ''}}
         </label>
     </div>

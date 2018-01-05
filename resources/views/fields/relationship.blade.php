@@ -5,6 +5,7 @@
     <select class="form-control {{$class or ''}}"
             id="{{$id}}"
             name="{{$fieldName}}"
+            required="{{$required or 'false'}}"
     >
     </select>
     @if(isset($help))
@@ -14,7 +15,7 @@
 <div class="line line-dashed b-b line-lg"></div>
 
 @push('scripts')
-<script>
+    <script>
 $(function () {
     $('#{{$id}}').select2({
         theme: "bootstrap",

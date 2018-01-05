@@ -31,6 +31,17 @@ class DemoPost extends Many
     public $slugFields = 'name';
 
     /**
+     * HTTP data filters
+     *
+     * @var array
+     */
+    public $filters = [
+        SearchFilter::class,
+        StatusFilter::class,
+        CreatedFilter::class,
+    ];
+
+    /**
      * Rules Validation.
      *
      * @return array

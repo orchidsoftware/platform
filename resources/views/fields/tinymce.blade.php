@@ -11,7 +11,8 @@
      <input id="{{$id}}" type="hidden"
             name="{{$fieldName}}"
             placeholder="{{$placeholder or ''}}"
-            value="{{ $value or old($name) }}">
+            value="{{ $value or old($name) }}"
+            required="{{$required or 'false'}}">
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
@@ -20,7 +21,7 @@
 <div class="line line-dashed b-b line-lg"></div>
 
 @push('scripts')
-<script>
+    <script>
 $(function () {
     tinymce.init({
         selector: '.tinymce-{{$id}}',

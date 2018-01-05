@@ -6,7 +6,9 @@
     <input type="hidden" class="form-control {{$class or ''}}" id="{{$id}}"
            name="{{$fieldName}}"
            value="{{$value or old($name)}}"
-           placeholder="{{$placeholder or ''}}">
+           placeholder="{{$placeholder or ''}}"
+           required="{{$required or 'false'}}"
+    >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif

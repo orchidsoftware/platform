@@ -11,6 +11,7 @@
            min="{{$min or ''}}"
            minlength="{{$minlength or ''}}"
            data-mask="{{$mask or ''}}"
+           required="{{$required or 'false'}}"
     >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

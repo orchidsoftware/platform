@@ -5,7 +5,9 @@
     <input type="text" class="form-control tagsinput {{$class or ''}}" data-role="tagsinput" id="field-{{$slug}}"
            name="{{$fieldName}}"
            value="{{$value or old($name)}}"
-           placeholder="{{$placeholder or ''}}">
+           placeholder="{{$placeholder or ''}}"
+           required="{{$required or 'false'}}"
+    >
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif

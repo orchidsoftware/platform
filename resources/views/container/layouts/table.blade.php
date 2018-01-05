@@ -1,3 +1,7 @@
+<div class="wrapper-md b-b">
+    {!! $filters or '' !!}
+</div>
+
 <div class="bg-white-only  bg-auto no-border-xs">
     <div class="panel-body row">
         <div class="table-responsive">
@@ -39,7 +43,7 @@
                         -{{$form['data']->perPage()}} {{trans('dashboard::common.of')}} {!! $form['data']->count() !!} {{trans('dashboard::common.elements')}}</small>
                 </div>
                 <div class="col-sm-7 text-right text-center-xs">
-                    {!! $form['data']->appends('search')->links('dashboard::partials.pagination') !!}
+                    {!! $form['data']->appends(request()->except(['page','_token']))->links('dashboard::partials.pagination') !!}
                 </div>
             </div>
         </footer>
