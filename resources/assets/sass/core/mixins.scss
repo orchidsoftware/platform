@@ -1,5 +1,5 @@
 @mixin color-variant($bg-color: #555, $lt-percent: 10%, $lter-percent: 15%, $dk-percent: 10%, $dker-percent: 15%){
-  background-color: $bg-color;
+  background-color: $bg-color!important;
   &.lt,
   .lt {
     @include color-schema-de($bg-color, $lt-percent, 2.5%);

@@ -421,15 +421,39 @@ blockquote {
 }
 
 .pagination {
-  > li {
-    > a {
+  > li, .page-item {
+    > a, .page-link {
       border-color: $border-color;
       &:hover,
       &:focus {
         border-color: $border-color;
         background-color: $brand-light;
       }
-    }
+	}  
+	&.active{
+		.page-link, span {
+			&,
+			&:hover,
+			&:focus {
+				z-index: 3;
+				color: $brand-white!important;
+				background-color: $brand-primary;
+				border-color: $brand-primary;
+				cursor: default;
+			}
+		
+		
+		}
+	}
+		
+	
+  }
+  
+  
+  @at-root .text-right & {
+    -webkit-box-pack: end!important;
+    -ms-flex-pack: end!important;
+    justify-content: flex-end!important;
   }
 }
 

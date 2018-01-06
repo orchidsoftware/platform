@@ -33,6 +33,8 @@
 
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
     <script src="{{ mix('/js/editors.js','orchid')}}" type="text/javascript"></script>
+	
+
 </head>
 
 

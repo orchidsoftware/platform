@@ -176,6 +176,7 @@
 	  &.dropdown {
 		  .dropdown-toggle {
 			  -webkit-appearance: initial;
+			  -moz-appearance: initial;
 			  &:after{
 				  display: none;
 			  }

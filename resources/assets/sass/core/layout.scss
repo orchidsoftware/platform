@@ -8,7 +8,7 @@ body {
 }
 
 h3, .h3 {
-    font-size: 1.714rem;
+    font-size: 1.714286rem;
 }
 
 .app {
@@ -125,7 +125,7 @@ h3, .h3 {
     overflow: hidden;
     display: table-cell;
     vertical-align: top;
-    height: 100%;
+    height: 100vh;
     float: none;
   }
 }
@@ -323,6 +323,7 @@ h3, .h3 {
         -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar {
           -webkit-appearance: none;
+          -moz-appearance: none;
         }
         &::-webkit-scrollbar:vertical {
           width: $scroll-bar-width;

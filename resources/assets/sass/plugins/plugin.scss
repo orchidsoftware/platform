@@ -118,6 +118,26 @@
 			}
 		}
 	}
+	.glyphicon {
+			position: relative;
+			top: 1px;
+			display: inline-block;
+			font-family: FontAwesome;
+			font-style: normal;
+			font-weight: 700;
+			font-size: 1.2rem;
+			/*font: normal normal normal 14px/1 FontAwesome;*/
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+	}
+	.glyphicon-chevron-left:before {
+			content: "\f104";
+		}
+	.glyphicon-chevron-right:before {
+			content: "\f105";
+		}
+	
 }
 .table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
     padding: 5px;

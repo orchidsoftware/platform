@@ -87,9 +87,9 @@ $font-family-base : $font-family-sans-serif;
 $font-size-base-px : 14px;
 $font-size-base : 1rem;
 $font-size-lg : 1.23*$font-size-base;//ceil($font-size-base * 1.23); // ~20px
-$font-size-md : 1.14*$font-size-base; //ceil($font-size-base * 1); // ~16px
+$font-size-md : 1.142857*$font-size-base; //ceil($font-size-base * 1); // ~16px
 $font-size-sm : 0.92857*$font-size-base;//ceil($font-size-base * 0.81); // ~13px
-$font-size-xs : 0.86*$font-size-base;//ceil($font-size-base * 0.75); // ~12px
+$font-size-xs : 0.85714*$font-size-base;//ceil($font-size-base * 0.75); // ~12px
 
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);
