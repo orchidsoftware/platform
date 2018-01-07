@@ -9,9 +9,10 @@
 
 <h4 class="text-orchid font-thin">Руководство</h4>
 <ul class="toc-links">
-    <li><a href="/ru/docs/tutorial_blog/">По созданию блога</a></li>
-     <!--<li><a href="/ru/docs/tutorial_clinic/">По разработки приложения</a></li> -->
-     <!--<li><a href="/ru/docs/tutorial_monitor/">Разработка компонента</a></li> -->
+    <li><a href="/ru/docs/configuration/">Обзор параметров</a></li>
+    <li><a href="/ru/docs/tutorial_blog/">Создание блога</a></li>
+     <!--<li><a href="/ru/docs/tutorial_clinic/">Разработка приложения</a></li> -->
+     <!--<li><a href="/ru/docs/tutorial_monitor/">Разработка пакета</a></li> -->
 </ul>
 
 <h4 class="text-orchid font-thin">Платформа</h4>
