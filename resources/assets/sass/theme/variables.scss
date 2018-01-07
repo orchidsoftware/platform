@@ -30,41 +30,41 @@ $mix-percentage-lighter: 20%;
 //Lighter colors
 $brand-success-light: mix($brand-success, $brand-white, $mix-percentage-light);
 $brand-success-lighter: mix(
-    $brand-success,
-    $brand-white,
-    $mix-percentage-lighter
+  $brand-success,
+  $brand-white,
+  $mix-percentage-lighter
 );
 
 $brand-complete-light: mix(
-    $brand-complete,
-    $brand-white,
-    $mix-percentage-light
+  $brand-complete,
+  $brand-white,
+  $mix-percentage-light
 );
 $brand-complete-lighter: mix(
-    $brand-complete,
-    $brand-white,
-    $mix-percentage-lighter
+  $brand-complete,
+  $brand-white,
+  $mix-percentage-lighter
 );
 
 $brand-primary-light: mix($brand-primary, $brand-white, $mix-percentage-light);
 $brand-primary-lighter: mix(
-    $brand-primary,
-    $brand-white,
-    $mix-percentage-lighter
+  $brand-primary,
+  $brand-white,
+  $mix-percentage-lighter
 );
 
 $brand-warning-light: mix($brand-warning, $brand-white, $mix-percentage-light);
 $brand-warning-lighter: mix(
-    $brand-warning,
-    $brand-white,
-    $mix-percentage-lighter
+  $brand-warning,
+  $brand-white,
+  $mix-percentage-lighter
 );
 
 $brand-danger-light: mix($brand-danger, $brand-white, $mix-percentage-light);
 $brand-danger-lighter: mix(
-    $brand-danger,
-    $brand-white,
-    $mix-percentage-lighter
+  $brand-danger,
+  $brand-white,
+  $mix-percentage-lighter
 );
 
 $brand-info-light: mix($brand-info, $brand-white, $mix-percentage-light);
@@ -73,30 +73,30 @@ $brand-info-lighter: mix($brand-info, $brand-white, $mix-percentage-lighter);
 //Darker colors
 $brand-success-dark: mix($brand-success, $brand-black, $mix-percentage-dark);
 $brand-success-darker: mix(
-    $brand-success,
-    $brand-black,
-    $mix-percentage-darker
+  $brand-success,
+  $brand-black,
+  $mix-percentage-darker
 );
 
 $brand-complete-dark: mix($brand-complete, $brand-black, $mix-percentage-dark);
 $brand-complete-darker: mix(
-    $brand-complete,
-    $brand-black,
-    $mix-percentage-darker
+  $brand-complete,
+  $brand-black,
+  $mix-percentage-darker
 );
 
 $brand-primary-dark: mix($brand-primary, $brand-black, $mix-percentage-dark);
 $brand-primary-darker: mix(
-    $brand-primary,
-    $brand-black,
-    $mix-percentage-darker
+  $brand-primary,
+  $brand-black,
+  $mix-percentage-darker
 );
 
 $brand-warning-dark: mix($brand-warning, $brand-black, $mix-percentage-dark);
 $brand-warning-darker: mix(
-    $brand-warning,
-    $brand-black,
-    $mix-percentage-darker
+  $brand-warning,
+  $brand-black,
+  $mix-percentage-darker
 );
 
 $brand-danger-dark: mix($brand-danger, $brand-black, $mix-percentage-dark);
