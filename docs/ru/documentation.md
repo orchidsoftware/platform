@@ -35,7 +35,7 @@
     <li><a href="/ru/docs/alert/">Уведомления</a></li>
 </ul>
 
-<h4 class="text-orchid font-thin">CMS</h4>
+<h4 class="text-orchid font-thin">Управление содержимым</h4>
 <ul class="toc-links">
     <li><a href="/ru/docs/behaviors/">Поведения</a></li>
     <li><a href="/ru/docs/post/">Записи</a></li>
