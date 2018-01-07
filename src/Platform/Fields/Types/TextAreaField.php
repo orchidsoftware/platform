@@ -12,7 +12,7 @@ class TextAreaField extends Field
     public $view = 'dashboard::fields.textarea';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

@@ -12,7 +12,7 @@ class SimpleMDEField extends Field
     public $view = 'dashboard::fields.simplemde';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

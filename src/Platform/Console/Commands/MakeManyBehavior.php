@@ -34,7 +34,7 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/many.stub';
+        return DASHBOARD_PATH.'/resources/stubs/console/many.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Core\Behaviors\Many';
+        return $rootNamespace.'\Core\Behaviors\Many';
     }
 }

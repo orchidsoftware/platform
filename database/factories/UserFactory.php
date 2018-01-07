@@ -1,7 +1,7 @@
 <?php
 
-use Orchid\Platform\Core\Models\User;
 use Faker\Generator as Faker;
+use Orchid\Platform\Core\Models\User;
 
 /*
 |--------------------------------------------------------------------------

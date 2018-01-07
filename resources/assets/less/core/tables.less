@@ -1,177 +1,180 @@
 .table {
-  margin-top: 5px;
-  thead {
-    tr {
-      th {
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 13px;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        vertical-align: middle;
-        border-bottom: 1px solid fade(@brand-light, 70%);
-        color: fade(@brand-dark, 35%);
-        &[class*='sorting_'] {
-          color: @brand-dark;
-        }
-        &:first-child {
-          padding-left: 18px !important;
-        }
-        .btn {
-          margin-top: -20px;
-          margin-bottom: -20px;
-        }
-      }
-    }
-  }
-  tbody {
-    tr {
-      td {
-        background: #fff;
-        border-bottom: 1px solid fade(@brand-light, 70%);
-        border-top: 0;
-        padding: 20px;
-        font-size: 13.5px;
-        vertical-align: middle;
-        .btn-tag {
-          background: fade(@brand-dark, 7%);
-          display: inline-block;
-          margin: 5px;
-          border-radius: 4px;
-          padding: 5px;
-          color: #62605a !important;
-          &:hover {
-            background: fade(@brand-dark, 15%);
-          }
-        }
-        &[class*='sorting_'] {
-          color: #000;
-        }
-      }
-      &.selected td {
-        background: @brand-warning;
-      }
-    }
-  }
-  &.table-hover {
-    tbody {
-      tr {
-        &:hover td {
-          background: @brand-info !important;
-        }
-        &.selected:hover td {
-          background: @brand-warning !important;
-        }
-      }
-    }
-  }
-  &.table-striped {
-    tbody {
-      tr {
-        td {
-          background: mix(@brand-light, #fff, 3%) !important;
-        }
-        &:nth-child(2n+1) td {
-          background: #fff !important;
-        }
-      }
-    }
-  }
-  &.table-borderless {
-    tbody {
-      tr {
-        td {
-          border-top: 0;
-        }
-      }
-    }
-  }
-  &.table-condensed {
-    table-layout: fixed;
+    margin-top: 5px;
     thead {
-      tr {
-        th {
-          padding-left: 20px;
-          padding-right: 20px;
+        tr {
+            th {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 13px;
+                padding-top: 14px;
+                padding-bottom: 14px;
+                vertical-align: middle;
+                border-bottom: 1px solid fade(@brand-light, 70%);
+                color: fade(@brand-dark, 35%);
+                &[class*='sorting_'] {
+                    color: @brand-dark;
+                }
+                &:first-child {
+                    padding-left: 18px !important;
+                }
+                .btn {
+                    margin-top: -20px;
+                    margin-bottom: -20px;
+                }
+            }
         }
-      }
     }
     tbody {
-      tr {
-        td {
-          padding-top: 12px;
-          padding-bottom: 12px;
-        }
-      }
-    }
-    thead tr th, tbody tr td, tbody tr td * {
-      white-space: nowrap;
-      vertical-align: middle;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &.table-detailed {
-      & > tbody > tr {
-        &.shown {
-          & > td {
-            background: @brand-warning;
-            &:first-child:before {
-              .rotate(90deg);
-            }
-          }
-          & + tr {
-            & > td {
-              background: fade(mix(@brand-light, #fff, 3%), 40%);
-              padding: 0 40px;
-              .table-inline {
-                background: transparent;
-                tr, td {
-                  background: transparent;
-                  font-weight: 600;
+        tr {
+            td {
+                background: #fff;
+                border-bottom: 1px solid fade(@brand-light, 70%);
+                border-top: 0;
+                padding: 20px;
+                font-size: 13.5px;
+                vertical-align: middle;
+                .btn-tag {
+                    background: fade(@brand-dark, 7%);
+                    display: inline-block;
+                    margin: 5px;
+                    border-radius: 4px;
+                    padding: 5px;
+                    color: #62605a !important;
+                    &:hover {
+                        background: fade(@brand-dark, 15%);
+                    }
                 }
-              }
+                &[class*='sorting_'] {
+                    color: #000;
+                }
             }
-          }
-        }
-        &.row-details {
-          & > td {
-            &:first-child:before {
-              content: '';
+            &.selected td {
+                background: @brand-warning;
             }
-          }
         }
-        & > td {
-          &:hover {
-            cursor: pointer;
-          }
-          &:first-child:before {
-            content: "\f054";
-            display: inline-block;
-            margin-right: 8px;
-            font-family: 'FontAwesome';
-            .transition(all 0.12s linear);
-          }
-        }
-      }
-      .table-inline {
-        td {
-          border: none;
-          text-align: left;
-        }
-      }
     }
-  }
-  &.table-borderless {
-    & > tbody {
-      & > tr {
-        & > td {
-          border-bottom: 0;
+    &.table-hover {
+        tbody {
+            tr {
+                &:hover td {
+                    background: @brand-info !important;
+                }
+                &.selected:hover td {
+                    background: @brand-warning !important;
+                }
+            }
         }
-      }
     }
-  }
+    &.table-striped {
+        tbody {
+            tr {
+                td {
+                    background: mix(@brand-light, #fff, 3%) !important;
+                }
+                &:nth-child(2n + 1) td {
+                    background: #fff !important;
+                }
+            }
+        }
+    }
+    &.table-borderless {
+        tbody {
+            tr {
+                td {
+                    border-top: 0;
+                }
+            }
+        }
+    }
+    &.table-condensed {
+        table-layout: fixed;
+        thead {
+            tr {
+                th {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                }
+            }
+        }
+        thead tr th,
+        tbody tr td,
+        tbody tr td * {
+            white-space: nowrap;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        &.table-detailed {
+            & > tbody > tr {
+                &.shown {
+                    & > td {
+                        background: @brand-warning;
+                        &:first-child:before {
+                            .rotate(90deg);
+                        }
+                    }
+                    & + tr {
+                        & > td {
+                            background: fade(mix(@brand-light, #fff, 3%), 40%);
+                            padding: 0 40px;
+                            .table-inline {
+                                background: transparent;
+                                tr,
+                                td {
+                                    background: transparent;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.row-details {
+                    & > td {
+                        &:first-child:before {
+                            content: '';
+                        }
+                    }
+                }
+                & > td {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    &:first-child:before {
+                        content: '\f054';
+                        display: inline-block;
+                        margin-right: 8px;
+                        font-family: 'FontAwesome';
+                        .transition(all 0.12s linear);
+                    }
+                }
+            }
+            .table-inline {
+                td {
+                    border: none;
+                    text-align: left;
+                }
+            }
+        }
+    }
+    &.table-borderless {
+        & > tbody {
+            & > tr {
+                & > td {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
 }
 
 .fht-table {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }

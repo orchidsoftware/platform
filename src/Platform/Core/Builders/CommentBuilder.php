@@ -11,7 +11,7 @@ class CommentBuilder extends Builder
      *
      * @return \Orchid\Platform\Core\Builders\CommentBuilder
      */
-    public function approved() : CommentBuilder
+    public function approved() : self
     {
         return $this->where('approved', 1);
     }

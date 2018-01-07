@@ -2,15 +2,14 @@
 
 namespace Orchid\Platform\Tests;
 
-use Illuminate\Support\Facades\Schema;
+use Watson\Active\Facades\Active;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Support\Facades\Schema;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use Watson\Active\Facades\Active;
 
 trait Environment
 {
-
     /**
      * Setup the test environment.
      */
@@ -25,7 +24,7 @@ trait Environment
         $this->artisan('migrate', [
            '--database' => 'orchid',
        ]);
-        $this->withFactories(__DIR__ . '/../database/factories');
+        $this->withFactories(__DIR__.'/../database/factories');
     }
 
     /**

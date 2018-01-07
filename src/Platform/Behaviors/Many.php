@@ -2,40 +2,40 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Orchid\Platform\Behaviors\Contract\ManyInterface;
-use Orchid\Platform\Http\Filters\CreatedFilter;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
+use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Platform\Behaviors\Contract\ManyInterface;
 
 abstract class Many implements ManyInterface
 {
     use Structure;
 
     /**
-     * Show the data to the user
+     * Show the data to the user.
      *
      * @var bool
      */
     public $display = true;
 
     /**
-     * Is it possible to give data on api
+     * Is it possible to give data on api.
      *
      * @var bool
      */
     public $api = false;
 
     /**
-     * Eloquent Eager Loading
+     * Eloquent Eager Loading.
      *
      * @var array
      */
     public $with = [];
 
     /**
-     * HTTP data filters
+     * HTTP data filters.
      *
      * @var array
      */
@@ -46,14 +46,14 @@ abstract class Many implements ManyInterface
     ];
 
     /**
-     * Registered fields for filling
+     * Registered fields for filling.
      *
      * @return mixed
      */
     abstract public function fields();
 
     /**
-     * Raw data and fields to display
+     * Raw data and fields to display.
      *
      * @return array
      */
@@ -72,14 +72,14 @@ abstract class Many implements ManyInterface
     }
 
     /**
-     * Registered fields to display in the table
+     * Registered fields to display in the table.
      *
      * @return mixed
      */
     abstract public function grid();
 
     /**
-     * Display form for filtering
+     * Display form for filtering.
      *
      * @return View
      */
@@ -95,7 +95,7 @@ abstract class Many implements ManyInterface
     }
 
     /**
-     * Get all the filters
+     * Get all the filters.
      *
      * @param bool $dashboard
      *

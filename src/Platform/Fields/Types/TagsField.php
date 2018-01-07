@@ -12,7 +12,7 @@ class TagsField extends Field
     public $view = 'dashboard::fields.tags';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

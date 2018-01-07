@@ -2,14 +2,12 @@
 
 namespace Orchid\Platform\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
 {
-
     /**
-     *
      * @var array
      */
     public $parameters = [

@@ -2,12 +2,11 @@
 
 namespace Orchid\Platform\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 
 class SearchFilter extends Filter
 {
-
     /**
      * @var array
      */
@@ -32,7 +31,7 @@ class SearchFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
-        return $builder->where('content', 'LIKE', '%' . $this->request->get('search') . '%');
+        return $builder->where('content', 'LIKE', '%'.$this->request->get('search').'%');
     }
 
     /**

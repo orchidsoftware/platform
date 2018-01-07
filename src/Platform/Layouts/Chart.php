@@ -7,7 +7,7 @@ abstract class Chart
     /**
      * @var string
      */
-    public $template = "dashboard::container.layouts.chart";
+    public $template = 'dashboard::container.layouts.chart';
 
     /**
      * @var string
@@ -17,7 +17,7 @@ abstract class Chart
     /**
      * Available options:
      * 'bar', 'line', 'scatter',
-     * 'pie', 'percentage'
+     * 'pie', 'percentage'.
      *
      * @var string
      */

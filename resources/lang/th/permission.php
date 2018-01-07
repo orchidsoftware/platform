@@ -10,7 +10,6 @@ return [
         'posts'   => 'โพสต์',
     ],
 
-
     'systems' => [
         'settings'   => 'ตั้งค่า',
         'roles'      => 'บทบาท',
@@ -21,6 +20,5 @@ return [
         'attachment' => 'อัปโหลดไฟล์',
         'comment'    => 'แสดงความคิดเห็น',
     ],
-
 
 ];

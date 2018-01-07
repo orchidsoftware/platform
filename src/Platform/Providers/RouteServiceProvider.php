@@ -2,14 +2,14 @@
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Orchid\Platform\Widget\WidgetContractInterface;
+use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -34,7 +34,6 @@ class RouteServiceProvider extends ServiceProvider
             // RedirectInstall::class,
             AccessMiddleware::class,
         ]);
-
 
         $this->binding();
 
@@ -68,13 +67,12 @@ class RouteServiceProvider extends ServiceProvider
                 return abort(404);
             }
 
-            if (!is_a($widget, WidgetContractInterface::class)) {
+            if (! is_a($widget, WidgetContractInterface::class)) {
                 return abort(404);
             }
 
             return $widget;
         });
-
 
         Route::bind('slug', function ($value) {
             if (is_numeric($value)) {
@@ -108,10 +106,10 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         if (config('platform.headless')) {
-            return null;
+            return;
         }
 
-        foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
     }

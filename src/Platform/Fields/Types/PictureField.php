@@ -12,7 +12,7 @@ class PictureField extends Field
     public $view = 'dashboard::fields.picture';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

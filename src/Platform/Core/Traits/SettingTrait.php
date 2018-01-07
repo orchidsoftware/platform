@@ -34,7 +34,7 @@ trait SettingTrait
      */
     private function cacheForget($key)
     {
-        if (!$this->cache) {
+        if (! $this->cache) {
             return;
         }
 
@@ -56,11 +56,11 @@ trait SettingTrait
      */
     public function get($key, $default = null)
     {
-        if (!$this->cache) {
+        if (! $this->cache) {
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-' . implode(',', (array) $key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }

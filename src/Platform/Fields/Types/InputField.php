@@ -12,7 +12,7 @@ class InputField extends Field
     public $view = 'dashboard::fields.input';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

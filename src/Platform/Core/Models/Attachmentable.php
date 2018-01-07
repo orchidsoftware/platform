@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attachmentable extends Model
 {
-
     /**
      * @var bool
      */

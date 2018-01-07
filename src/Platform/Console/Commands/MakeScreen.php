@@ -34,7 +34,7 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/screen.stub';
+        return DASHBOARD_PATH.'/resources/stubs/console/screen.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Http\Controllers\Screens';
+        return $rootNamespace.'\Http\Controllers\Screens';
     }
 }

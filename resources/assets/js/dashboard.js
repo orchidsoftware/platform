@@ -1,13 +1,13 @@
 window.dashboard = {
-
     /**
      *
      * @param path
      * @returns {*}
      */
-    prefix: function (path) {
-
-        var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
+    prefix: function(path) {
+        var prefix = document.head.querySelector(
+            'meta[name="dashboard-prefix"]',
+        );
 
         if (prefix && prefix.content.charAt(0) !== '/') {
             prefix = '/' + prefix.content;
@@ -22,17 +22,18 @@ window.dashboard = {
      * @param type
      * @param target
      */
-    alert: function (message, type = 'danger', target = '#dashboard-alerts') {
-        $(target)
-            .append(
-                $('<div/>', {class: 'alert alert-' + type, text: message})
-                    .append(
-                        $('<a/>', {class: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close'})
-                            .append(
-                                $('<span/>', {'aria-hidden': 'true', 'html': '&times;'})
-                            )
-                    ),
-                $('<div/>', {class: 'clearfix'})
-            )
-    }
+    alert: function(message, type = 'danger', target = '#dashboard-alerts') {
+        $(target).append(
+            $('<div/>', { class: 'alert alert-' + type, text: message }).append(
+                $('<a/>', {
+                    class: 'close',
+                    'data-dismiss': 'alert',
+                    'aria-label': 'Close',
+                }).append(
+                    $('<span/>', { 'aria-hidden': 'true', html: '&times;' }),
+                ),
+            ),
+            $('<div/>', { class: 'clearfix' }),
+        );
+    },
 };

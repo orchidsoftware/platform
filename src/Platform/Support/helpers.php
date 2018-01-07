@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('alert')) {
+if (! function_exists('alert')) {
     /**
      * Helper function to send an alert.
      *
@@ -13,7 +13,7 @@ if (!function_exists('alert')) {
     {
         $notifier = app('alert');
 
-        if (!is_null($message)) {
+        if (! is_null($message)) {
             return $notifier->message($message, $level);
         }
 
@@ -21,7 +21,7 @@ if (!function_exists('alert')) {
     }
 }
 
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     /**
      * @param      $key
      * @param null $default
@@ -34,7 +34,7 @@ if (!function_exists('setting')) {
     }
 }
 
-if (!function_exists('generate_form')) {
+if (! function_exists('generate_form')) {
     /**
      * @param array       $fields
      * @param             $data

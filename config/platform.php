@@ -26,7 +26,6 @@ return [
 
     'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
 
-
     /*
     |--------------------------------------------------------------------------
     | Route Prefixes
@@ -53,7 +52,6 @@ return [
         'public'  => ['web'],
         'private' => ['web', 'dashboard'],
     ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -244,7 +242,6 @@ return [
     'main_widgets' => [
         Orchid\Platform\Http\Widgets\UpdateWidget::class,
     ],
-
 
     /*
     |--------------------------------------------------------------------------

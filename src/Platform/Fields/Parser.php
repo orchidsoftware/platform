@@ -28,7 +28,7 @@ class Parser
         }
         //parse array
         foreach ($data as $name => $value) {
-            if (!array_key_exists(0, $value)) {
+            if (! array_key_exists(0, $value)) {
                 $fields[$name] = collect($value);
             }
         }

@@ -12,7 +12,7 @@ class PasswordField extends Field
     public $view = 'dashboard::fields.password';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */
