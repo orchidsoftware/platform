@@ -1,9 +1,9 @@
 // sortable
 .sortable-placeholder {
-  list-style: none;
-  border: 1px dashed #cccccc;
-  min-height: 50px;
-  margin-bottom: 5px;
+  list-style    : none;
+  border        : 1px dashed #cccccc;
+  min-height    : 50px;
+  margin-bottom : 5px;
 }
 
 // input
@@ -14,55 +14,56 @@
 }
 
 .bootstrap-tagsinput {
-  padding: 5px 12px !important;
+  padding : 5px 12px !important;
 }
 
 .bootstrap-tagsinput {
-  width: 100%;
+  width : 100%;
 }
 
 .select2-search__field {
-  width: 100% !important;
+  width : 100% !important;
 }
+
 .select2-container--bootstrap {
   .select2-selection {
     @include box-shadow(none);
-    border: 1px solid $form-control-border-color;
+    border : 1px solid $form-control-border-color;
   }
 
   .select2-dropdown {
-    border-color: fade-out($brand-black, 0.9);
-    outline: 0 !important;
+    border-color : fade-out($brand-black, 0.9);
+    outline      : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
   &.select2-container--focus .select2-selection,
   &.select2-container--open .select2-selection {
-    border-color: fade-out($brand-black, 0.9);
-    background-color: $brand-grey-light;
-    outline: 0 !important;
+    border-color     : fade-out($brand-black, 0.9);
+    background-color : $brand-grey-light;
+    outline          : 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 }
 
 .mce-content-body:focus {
-  background-color: $brand-grey-light;
+  background-color : $brand-grey-light;
 }
 
 #menu-notifications {
   .btn-link:focus,
   .btn-link:hover {
-    color: $brand-white;
+    color : $brand-white;
   }
 }
 
 // Tiny MCE Editor
 .mce-content-body {
   img {
-    max-width: 100%;
-    object-fit: cover;
+    max-width  : 100%;
+    object-fit : cover;
   }
 }
 
@@ -70,17 +71,17 @@
 .CodeMirror-fullscreen,
 .editor-toolbar.fullscreen,
 .editor-preview-side {
-  z-index: 1300;
+  z-index : 1300;
 }
 
 .sli {
-  display: inline-block;
-  font-family: 'simple-line-icons';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
+  display                : inline-block;
+  font-family            : 'simple-line-icons';
+  speak                  : none;
+  font-style             : normal;
+  font-weight            : normal;
+  font-variant           : normal;
+  text-transform         : none;
+  line-height            : 1;
+  -webkit-font-smoothing : antialiased;
 }
