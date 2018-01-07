@@ -22,7 +22,7 @@ window.dashboard = {
      * @param type
      * @param target
      */
-    alert: function(message, type = 'danger', target = '#dashboard-alerts') {
+    alert: function(message, type, target) {
         $(target).append(
             $('<div/>', { class: 'alert alert-' + type, text: message }).append(
                 $('<a/>', {

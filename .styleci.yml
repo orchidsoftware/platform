@@ -11,7 +11,7 @@ php:
     name: "*.php"
     not-name: "*.blade.php"
 js:
-  tab-width: 4
+  tab-width: 2
   use-tabs: false
   print-width: 80
   double-quotes: false
@@ -29,7 +29,7 @@ js:
     not-name:
       - "*.min.js"
 css:
-  tab-width: 4
+  tab-width: 2
   use-tabs: false
   print-width: 80
   double-quotes: false
