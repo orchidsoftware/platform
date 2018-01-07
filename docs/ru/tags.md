@@ -21,7 +21,7 @@ class Product extends Eloquent implements TaggableInterface
 ```
 
 
-В модель `Post`, он входит по умолчанию, по этому примеры будут нанём.
+В модель `Post`, он входит по умолчанию, по этому примеры будут на нём.
 
 ## Добавление:
 
