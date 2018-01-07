@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attachment extends Model
 {
@@ -52,7 +52,7 @@ class Attachment extends Model
     }
 
     /**
-     * Relation Post
+     * Relation Post.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
@@ -68,7 +68,7 @@ class Attachment extends Model
      *
      * @return Attachment
      */
-    public function type($type) : Attachment
+    public function type($type) : self
     {
         if (array_key_exists($type, $this->types)) {
             return $this->whereIn('extension', $this->types[$type]);
@@ -78,7 +78,7 @@ class Attachment extends Model
     }
 
     /**
-     * Return the address by which you can access the file
+     * Return the address by which you can access the file.
      *
      * @param string $size
      * @param string $prefix
@@ -87,15 +87,15 @@ class Attachment extends Model
      */
     public function url($size = '', $prefix = 'public') : string
     {
-        if (!empty($size)) {
-            $size = '_' . $size;
+        if (! empty($size)) {
+            $size = '_'.$size;
 
-            if (!Storage::disk($prefix)->exists($this->path . $this->name . $size . '.' . $this->extension)) {
+            if (! Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
                 return $this->url(null, $prefix);
             }
         }
 
-        return Storage::disk($prefix)->url($this->path . $this->name . $size . '.' . $this->extension);
+        return Storage::disk($prefix)->url($this->path.$this->name.$size.'.'.$this->extension);
     }
 
     /**
@@ -125,23 +125,23 @@ class Attachment extends Model
     }
 
     /**
-     * Physical removal of all copies of a file
+     * Physical removal of all copies of a file.
      *
      * @param Attachment $attachment
      * @param string $storageName
      */
-    private function removePhysicalFile(Attachment $attachment, $storageName)
+    private function removePhysicalFile(self $attachment, $storageName)
     {
         $storage = Storage::disk($storageName);
 
-        $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
+        $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
 
         if (substr($this->mime, 0, 5) !== 'image') {
             return;
         }
 
         foreach (array_keys(config('platform.images', [])) as $format) {
-            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
+            $storage->delete($attachment->path.$attachment->name.'_'.$format.'.'.$attachment->extension);
         }
     }
 }

@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Facade;
 use Orchid\Platform\Alert\Alert as AlertClass;
 
 /**
- * Class Alert
- *
- * @package Orchid\Platform\Facades
+ * Class Alert.
  */
 class Alert extends Facade
 {

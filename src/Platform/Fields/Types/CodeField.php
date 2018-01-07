@@ -12,7 +12,7 @@ class CodeField extends Field
     public $view = 'dashboard::fields.code';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

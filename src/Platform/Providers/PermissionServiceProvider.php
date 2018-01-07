@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
+use Illuminate\Support\ServiceProvider;
 
 class PermissionServiceProvider extends ServiceProvider
 {
@@ -67,7 +67,7 @@ class PermissionServiceProvider extends ServiceProvider
     {
         foreach ($this->dashboard->getStorage('pages')->all() as $page) {
             $pages[] = [
-                'slug'        => 'dashboard.pages.type.' . $page->slug,
+                'slug'        => 'dashboard.pages.type.'.$page->slug,
                 'description' => $page->name,
             ];
         }
@@ -85,7 +85,7 @@ class PermissionServiceProvider extends ServiceProvider
         foreach ($this->dashboard->getStorage('posts')->all() as $page) {
             if ($page->display) {
                 $posts[] = [
-                    'slug'        => 'dashboard.posts.type.' . $page->slug,
+                    'slug'        => 'dashboard.posts.type.'.$page->slug,
                     'description' => $page->name,
                 ];
             }
@@ -95,7 +95,6 @@ class PermissionServiceProvider extends ServiceProvider
             'Posts' => $posts ?? [],
         ];
     }
-
 
     /**
      * @return array

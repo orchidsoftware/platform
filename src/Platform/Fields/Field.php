@@ -20,7 +20,7 @@ class Field
     public $attributes;
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */
@@ -38,8 +38,8 @@ class Field
     public function create(Collection $attributes, bool $firstTimeRender)
     {
         foreach ($this->required as $attribute) {
-            if (!$attributes->offsetExists($attribute)) {
-                throw new FieldRequiredAttributeException('Field must have the following attribute: ' . $attribute);
+            if (! $attributes->offsetExists($attribute)) {
+                throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
 
@@ -52,7 +52,6 @@ class Field
 
         return view($this->view, $attributes);
     }
-
 
     /**
      * @param Collection $attributes
@@ -89,10 +88,10 @@ class Field
         $name = $attributes->get('name');
 
         if (is_null($prefix)) {
-            return $lang . $name;
+            return $lang.$name;
         }
 
-        return $prefix . '[' . $lang . ']' . $name;
+        return $prefix.'['.$lang.']'.$name;
     }
 
     /**
@@ -104,12 +103,12 @@ class Field
     {
         $prefix = $attributes->get('prefix');
         $lang = $attributes->get('lang');
-        $name = str_ireplace(['[', ']'], "", $attributes->get('name'));
+        $name = str_ireplace(['[', ']'], '', $attributes->get('name'));
 
         if (is_null($prefix)) {
-            return $lang . '.' . $name;
+            return $lang.'.'.$name;
         }
 
-        return $prefix . '.' . $lang . '.' . $name;
+        return $prefix.'.'.$lang.'.'.$name;
     }
 }

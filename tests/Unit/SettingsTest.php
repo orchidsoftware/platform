@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Tests\Unit;
 
-use Orchid\Platform\Core\Models\Setting;
 use Orchid\Platform\Tests\TestUnitCase;
+use Orchid\Platform\Core\Models\Setting;
 
 class SettingsTest extends TestUnitCase
 {
@@ -27,7 +27,6 @@ class SettingsTest extends TestUnitCase
         $setting = new Setting();
         $setting->cache = false;
         $this->setting = $setting;
-
 
         //Запишем значение
         $key = 'test-'.str_random(40);

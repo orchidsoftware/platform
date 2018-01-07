@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Facades\Alert;
+use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Forms\Systems\Roles\RoleFormGroup;
 

@@ -12,7 +12,7 @@ class CheckBoxField extends Field
     public $view = 'dashboard::fields.checkbox';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

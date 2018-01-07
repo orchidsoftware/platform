@@ -3,29 +3,28 @@
 namespace Orchid\Platform\Http\Widgets;
 
 use Composer\Semver\Comparator;
+use Orchid\Platform\Widget\Widget;
 use Illuminate\Support\Facades\Cache;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Widget\Widget;
 
 class UpdateWidget extends Widget
 {
-
     /**
-     * Dashboard::VERSION
+     * Dashboard::VERSION.
      *
      * @var string
      */
     public $currentVersion;
 
     /**
-     * Packagist API URL
+     * Packagist API URL.
      *
      * @var string
      */
     public $apiURL = 'https://packagist.org/p/orchid/platform.json';
 
     /**
-     * Minutes
+     * Minutes.
      *
      * @var int
      */
@@ -47,7 +46,6 @@ class UpdateWidget extends Widget
         $status = Cache::remember('platform-update-widget', $this->cache, function () {
             return $this->getStatus();
         });
-
 
         return view('dashboard::widgets.update', [
             'status' => $status,

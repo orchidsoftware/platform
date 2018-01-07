@@ -3,10 +3,10 @@
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Core\Builders\TaxonomyBuilder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Orchid\Platform\Core\Builders\TaxonomyBuilder;
 
 class Taxonomy extends Model
 {
@@ -46,7 +46,7 @@ class Taxonomy extends Model
      */
     public function __get($key)
     {
-        if (!isset($this->$key)) {
+        if (! isset($this->$key)) {
             if (isset($this->term->$key)) {
                 return $this->term->$key;
             }

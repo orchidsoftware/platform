@@ -2,12 +2,11 @@
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Screen\Repository;
+use Orchid\Platform\Exceptions\TypeException;
 
 class Builder
 {
-
     /**
      * @var
      */
@@ -45,11 +44,10 @@ class Builder
     {
         $this->fields = Parser::parseFields($fields);
         $this->data = $data ?? $data = new Repository([]);
-        ;
+
         $this->language = $language;
         $this->prefix = $prefix;
     }
-
 
     /**
      * @param string $language
@@ -76,7 +74,7 @@ class Builder
     }
 
     /**
-     * Generate a ready-made html form for display to the user
+     * Generate a ready-made html form for display to the user.
      *
      * @return string
      * @throws TypeException
@@ -88,20 +86,18 @@ class Builder
 
         $this->form = '';
         foreach ($fields as $field => $config) {
-            $fieldClass = config('platform.fields.' . $config['tag']);
+            $fieldClass = config('platform.fields.'.$config['tag']);
 
             if (is_null($fieldClass)) {
-                throw new TypeException('Field ' . $config['tag'] . ' does not exist');
+                throw new TypeException('Field '.$config['tag'].' does not exist');
             }
-
 
             $config['lang'] = $this->language;
             $config['prefix'] = $this->buildPrefix($config);
             $config = $this->fill($config);
 
-
             $firstTimeRender = false;
-            if (!in_array($fieldClass, $availableFormFields)) {
+            if (! in_array($fieldClass, $availableFormFields)) {
                 array_push($availableFormFields, $fieldClass);
                 $firstTimeRender = true;
             }
@@ -124,7 +120,7 @@ class Builder
             $prefixArray = array_filter(explode(' ', $config['prefix']));
 
             foreach ($prefixArray as $prefix) {
-                $config['prefix'] .= '[' . $prefix . ']';
+                $config['prefix'] .= '['.$prefix.']';
             }
 
             return $config['prefix'];
@@ -145,15 +141,15 @@ class Builder
 
         $config['value'] = $this->getValue($name, $config['value'] ?? null);
 
-        $binding = explode(".", $name);
-        if (!is_array($binding)) {
+        $binding = explode('.', $name);
+        if (! is_array($binding)) {
             return $config;
         }
 
         $config['name'] = '';
         foreach ($binding as $key => $bind) {
-            if (!is_null($config['prefix'])) {
-                $config['name'] .= '[' . $bind . ']';
+            if (! is_null($config['prefix'])) {
+                $config['name'] .= '['.$bind.']';
                 continue;
             }
 
@@ -162,7 +158,7 @@ class Builder
                 continue;
             }
 
-            $config['name'] .= '[' . $bind . ']';
+            $config['name'] .= '['.$bind.']';
         }
 
         return $config;
@@ -178,7 +174,7 @@ class Builder
     {
         $data = $this->data->getContent($key, $this->language);
 
-        if (!is_null($value) && $value instanceof \Closure) {
+        if (! is_null($value) && $value instanceof \Closure) {
             return $value($data, $this->data);
         }
 

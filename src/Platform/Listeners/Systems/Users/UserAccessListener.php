@@ -6,7 +6,6 @@ use Orchid\Platform\Http\Forms\Systems\Users\AccessUserForm;
 
 class UserAccessListener
 {
-
     /**
      * Handle the event.
      *

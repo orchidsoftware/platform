@@ -1,8 +1,8 @@
 <?php
 
-use Orchid\Platform\Core\Models\Term;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use Orchid\Platform\Core\Models\Term;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ $factory->define(Term::class, function (Faker $faker) {
     return [
         'slug' => Str::slug($faker->word),
         'content' => [
-            'text' => $faker->text
+            'text' => $faker->text,
         ],
         'term_group' => 0,
     ];

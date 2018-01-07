@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Orchid\Platform\Core\Traits\MultiLanguage;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model
 {

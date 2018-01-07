@@ -2,13 +2,13 @@
 
 namespace Orchid\Platform\Core\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserAccess;
+use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserInterface;
-use Orchid\Platform\Core\Traits\MultiLanguage;
 use Orchid\Platform\Core\Traits\FilterTrait;
+use Orchid\Platform\Core\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -49,7 +49,6 @@ class User extends Authenticatable implements UserInterface
     protected $casts = [
         'permissions' => 'array',
     ];
-
 
     /**
      * Send the password reset notification.

@@ -50,8 +50,6 @@ class Repository
         if ($this->has($arg)) {
             return $this->get($arg, 'null');
         }
-
-        return null;
     }
 
     /**

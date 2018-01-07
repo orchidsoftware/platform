@@ -6,7 +6,6 @@ use Orchid\Platform\Http\Forms\Systems\Roles\BaseRolesForm;
 
 class RoleBaseListener
 {
-
     /**
      * Handle the event.
      *

@@ -24,7 +24,7 @@ class MenuTest extends TestUnitCase
             'sort'   => 1000,
         ]);
 
-        $this->assertEquals(!is_null($menu->render('Main')), true);
+        $this->assertEquals(! is_null($menu->render('Main')), true);
         $this->assertEquals($menu->container->count(), 1);
 
         $menu->add('Test', [
@@ -37,6 +37,6 @@ class MenuTest extends TestUnitCase
             'sort'    => 503,
         ]);
 
-        $this->assertEquals(!is_null($menu->render('Test')), true);
+        $this->assertEquals(! is_null($menu->render('Test')), true);
     }
 }

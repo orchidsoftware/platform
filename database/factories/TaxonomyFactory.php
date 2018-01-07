@@ -1,9 +1,9 @@
 <?php
 
-use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Core\Models\Term;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use Orchid\Platform\Core\Models\Term;
+use Orchid\Platform\Core\Models\Taxonomy;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ $factory->define(Taxonomy::class, function (Faker $faker) {
             return factory(Term::class)->create([
                 'slug' => Str::slug($faker->word),
                 'content' => [
-                    'text' => $faker->text
+                    'text' => $faker->text,
                 ],
                 'term_group' => 0,
             ])->term_id;

@@ -6,7 +6,6 @@ use Orchid\Platform\Widget\Widget;
 
 class GoogleAnalyticsWidget extends Widget
 {
-
     /**
      * @return mixed
      */

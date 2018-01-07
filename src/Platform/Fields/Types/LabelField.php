@@ -12,7 +12,7 @@ class LabelField extends Field
     public $view = 'dashboard::fields.label';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Core\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Access\RoleAccess;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Access\RoleInterface;
 use Orchid\Platform\Core\Traits\FilterTrait;
 

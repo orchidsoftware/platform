@@ -2,15 +2,14 @@
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Kernel\Dashboard;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Fields\FieldStorage;
 use Orchid\Platform\Behaviors\Storage\ManyBehaviorStorage;
 use Orchid\Platform\Behaviors\Storage\SingleBehaviorStorage;
-use Orchid\Platform\Fields\FieldStorage;
-use Orchid\Platform\Kernel\Dashboard;
 
 class DashboardProvider extends ServiceProvider
 {
-
     /**
      * Boot the application events.
      *
@@ -21,7 +20,6 @@ class DashboardProvider extends ServiceProvider
         $dashboard->registerStorage('fields', new FieldStorage);
         $dashboard->registerStorage('pages', new SingleBehaviorStorage);
         $dashboard->registerStorage('posts', new ManyBehaviorStorage);
-
 
         foreach (config('platform.resource.stylesheets', []) as $stylesheet) {
             $dashboard->registerResource('stylesheets', $stylesheet);

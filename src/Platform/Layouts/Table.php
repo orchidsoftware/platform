@@ -7,7 +7,7 @@ abstract class Table
     /**
      * @var string
      */
-    public $template = "dashboard::container.layouts.table";
+    public $template = 'dashboard::container.layouts.table';
 
     /**
      * @var string
@@ -24,7 +24,6 @@ abstract class Table
     {
         $form = $this->generatedTable($post);
         $filters = $this->showFilterDashboard();
-
 
         return view($this->template, [
             'form'    => $form,
@@ -54,7 +53,7 @@ abstract class Table
     }
 
     /**
-     * Display form for filtering
+     * Display form for filtering.
      *
      * @return View
      */
@@ -70,7 +69,7 @@ abstract class Table
     }
 
     /**
-     * Get all the filters
+     * Get all the filters.
      *
      * @param bool $dashboard
      *
