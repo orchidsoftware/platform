@@ -4,7 +4,6 @@ namespace Orchid\Platform\Screen;
 
 class Layouts
 {
-
     /**
      * @var null
      */
@@ -24,7 +23,6 @@ class Layouts
      */
     public $layouts = [];
 
-
     /**
      * @param $name
      * @param $arguments
@@ -33,7 +31,7 @@ class Layouts
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new Layouts();
+        $new = new self();
         $new->active = $name;
 
         return call_user_func_array([$new, 'setLayouts'], $arguments);

@@ -122,7 +122,6 @@ class MenuComposer
         ]);
     }
 
-
     /**
      * @param Dashboard $dashboard
      */
@@ -153,7 +152,7 @@ class MenuComposer
                     'route'      => route('dashboard.posts.type', [$page->slug]),
                     'label'      => $page->name,
                     'childs'     => false,
-                    'permission' => 'dashboard.posts.type.' . $page->slug,
+                    'permission' => 'dashboard.posts.type.'.$page->slug,
                     'sort'       => $key,
                     'groupname'  => $page->groupname,
                     'divider'    => $page->divider,
@@ -197,7 +196,7 @@ class MenuComposer
                 'route'      => route('dashboard.pages.show', [$page->slug]),
                 'label'      => $page->name,
                 'childs'     => false,
-                'permission' => 'dashboard.pages.type.' . $page->slug,
+                'permission' => 'dashboard.pages.type.'.$page->slug,
                 'sort'       => $key,
                 'groupname'  => $page->groupname,
                 'divider'    => $page->divider,

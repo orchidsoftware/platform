@@ -4,10 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
-
-window.Turbolinks = require("turbolinks");
+window.Turbolinks = require('turbolinks');
 Turbolinks.start();
 
 require('./bootstrap');
-

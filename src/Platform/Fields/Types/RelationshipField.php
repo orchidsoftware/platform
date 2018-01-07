@@ -12,12 +12,12 @@ class RelationshipField extends Field
     public $view = 'dashboard::fields.relationship';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */
     public $required = [
         'name',
-        'handler'
+        'handler',
     ];
 }

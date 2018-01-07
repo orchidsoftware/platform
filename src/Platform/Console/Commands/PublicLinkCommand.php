@@ -31,7 +31,7 @@ class PublicLinkCommand extends Command
             return $this->error('The "public/orchid" directory already exists.');
         }
 
-        $this->laravel->make('files')->link(realpath(DASHBOARD_PATH . '/public/'), public_path('orchid'));
+        $this->laravel->make('files')->link(realpath(DASHBOARD_PATH.'/public/'), public_path('orchid'));
 
         $this->info('The [public/orchid] directory has been linked.');
     }

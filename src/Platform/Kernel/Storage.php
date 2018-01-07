@@ -42,7 +42,7 @@ class Storage implements StorageInterface
     public function all() : array
     {
         $this->container->transform(function ($value) {
-            if (!is_object($value)) {
+            if (! is_object($value)) {
                 $value = new $value();
             }
 

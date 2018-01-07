@@ -2,11 +2,11 @@
 
 namespace Orchid\Platform\Http\Forms\Category;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Orchid\Platform\Forms\Form;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Forms\Form;
 
 class CategoryDescForm extends Form
 {
@@ -47,7 +47,7 @@ class CategoryDescForm extends Form
     public function rules() : array
     {
         return array_merge([
-            'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
+            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
         ], $this->behavior->rules());
     }
 

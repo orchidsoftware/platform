@@ -12,7 +12,7 @@ class ListField extends Field
     public $view = 'dashboard::fields.list';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

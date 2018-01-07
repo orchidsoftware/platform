@@ -117,7 +117,7 @@ abstract class FormGroup
         $this->html = collect();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -145,7 +145,7 @@ abstract class FormGroup
     public function save(...$arg)
     {
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -163,7 +163,7 @@ abstract class FormGroup
     public function remove(...$arg)
     {
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -199,7 +199,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function method(string $method) : FormGroup
+    public function method(string $method) : self
     {
         $this->method = $method;
 
@@ -211,7 +211,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function route(string $method) : FormGroup
+    public function route(string $method) : self
     {
         $this->route = $method;
 
@@ -223,7 +223,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function slug(string $method) : FormGroup
+    public function slug(string $method) : self
     {
         $this->slug = $method;
 

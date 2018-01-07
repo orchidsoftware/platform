@@ -12,7 +12,7 @@ class PlaceField extends Field
     public $view = 'dashboard::fields.place';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

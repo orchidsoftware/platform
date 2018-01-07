@@ -12,7 +12,7 @@ class TinyMCEField extends Field
     public $view = 'dashboard::fields.tinymce';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */

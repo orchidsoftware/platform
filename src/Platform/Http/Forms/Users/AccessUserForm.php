@@ -2,15 +2,14 @@
 
 namespace Orchid\Platform\Http\Forms\Systems\Users;
 
+use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Facades\Dashboard;
-use Orchid\Platform\Forms\Form;
 
 class AccessUserForm extends Form
 {
-
     /**
      * Base Model.
      *
@@ -51,7 +50,7 @@ class AccessUserForm extends Form
      */
     public function get(User $user = null) : View
     {
-        if (!is_null($user)) {
+        if (! is_null($user)) {
             $rolePermission = $user->permissions ?: [];
             $permission = Dashboard::getPermission();
 
@@ -99,7 +98,7 @@ class AccessUserForm extends Form
             $user = User::where('email', $request->get('email'))->firstOrFail();
         }
 
-        if (!is_null($this->roles)) {
+        if (! is_null($this->roles)) {
             $roles = Role::whereIn('slug', $this->roles)->get();
             $user->replaceRoles($roles);
         }

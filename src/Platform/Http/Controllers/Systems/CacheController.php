@@ -3,8 +3,8 @@
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Support\Facades\Artisan;
 
 class CacheController
 {
