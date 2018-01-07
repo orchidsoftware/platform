@@ -1,180 +1,177 @@
 .table {
-    margin-top: 5px;
-    thead {
-        tr {
-            th {
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 13px;
-                padding-top: 14px;
-                padding-bottom: 14px;
-                vertical-align: middle;
-                border-bottom: 1px solid fade-out($brand-light, 0.3);
-                color: fade-out($brand-dark, 0.65);
-                &[class*='sorting_'] {
-                    color: $brand-dark;
-                }
-                &:first-child {
-                    padding-left: 18px !important;
-                }
-                .btn {
-                    margin-top: -20px;
-                    margin-bottom: -20px;
-                }
-            }
+  margin-top: 5px;
+  thead {
+    tr {
+      th {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 13px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        vertical-align: middle;
+        border-bottom: 1px solid fade-out($brand-light, 0.3);
+        color: fade-out($brand-dark, 0.65);
+        &[class*='sorting_'] {
+          color: $brand-dark;
         }
+        &:first-child {
+          padding-left: 18px !important;
+        }
+        .btn {
+          margin-top: -20px;
+          margin-bottom: -20px;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        background: #fff;
+        border-bottom: 1px solid fade-out($brand-light, 0.3);
+        border-top: 0;
+        padding: 20px;
+        font-size: 13.5px;
+        vertical-align: middle;
+        word-break: break-all;
+        .btn-tag {
+          background: fade-out($brand-dark, 0.93);
+          display: inline-block;
+          margin: 5px;
+          border-radius: 4px;
+          padding: 5px;
+          color: #62605a !important;
+          &:hover {
+            background: fade-out($brand-dark, 0.85);
+          }
+        }
+        &[class*='sorting_'] {
+          color: #000;
+        }
+      }
+      &.selected td {
+        background: $brand-warning;
+      }
+    }
+  }
+  &.table-hover {
+    tbody {
+      tr {
+        &:hover td {
+          background: $brand-info !important;
+        }
+        &.selected:hover td {
+          background: $brand-warning !important;
+        }
+      }
+    }
+  }
+  &.table-striped {
+    tbody {
+      tr {
+        td {
+          background: mix($brand-light, #fff, 3%) !important;
+        }
+        &:nth-child(2n + 1) td {
+          background: #fff !important;
+        }
+      }
+    }
+  }
+  &.table-borderless {
+    tbody {
+      tr {
+        td {
+          border-top: 0;
+        }
+      }
+    }
+  }
+  &.table-condensed {
+    table-layout: fixed;
+    thead {
+      tr {
+        th {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
     }
     tbody {
-        tr {
-            td {
-                background: #fff;
-                border-bottom: 1px solid fade-out($brand-light, 0.3);
-                border-top: 0;
-                padding: 20px;
-                font-size: 13.5px;
-                vertical-align: middle;
-                word-break: break-all;
-                .btn-tag {
-                    background: fade-out($brand-dark, 0.93);
-                    display: inline-block;
-                    margin: 5px;
-                    border-radius: 4px;
-                    padding: 5px;
-                    color: #62605a !important;
-                    &:hover {
-                        background: fade-out($brand-dark, 0.85);
-                    }
-                }
-                &[class*='sorting_'] {
-                    color: #000;
-                }
-            }
-            &.selected td {
-                background: $brand-warning;
-            }
+      tr {
+        td {
+          padding-top: 12px;
+          padding-bottom: 12px;
         }
+      }
     }
-    &.table-hover {
-        tbody {
-            tr {
-                &:hover td {
-                    background: $brand-info !important;
-                }
-                &.selected:hover td {
-                    background: $brand-warning !important;
-                }
+    thead tr th,
+    tbody tr td,
+    tbody tr td * {
+      white-space: nowrap;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &.table-detailed {
+      & > tbody > tr {
+        &.shown {
+          & > td {
+            background: $brand-warning;
+            &:first-child:before {
+              @include rotate(90deg);
             }
-        }
-    }
-    &.table-striped {
-        tbody {
-            tr {
+          }
+          & + tr {
+            & > td {
+              background: fade-out(mix($brand-light, #fff, 3%), 0.6);
+              padding: 0 40px;
+              .table-inline {
+                background: transparent;
+                tr,
                 td {
-                    background: mix($brand-light, #fff, 3%) !important;
+                  background: transparent;
+                  font-weight: 600;
                 }
-                &:nth-child(2n + 1) td {
-                    background: #fff !important;
-                }
+              }
             }
+          }
         }
+        &.row-details {
+          & > td {
+            &:first-child:before {
+              content: '';
+            }
+          }
+        }
+        & > td {
+          &:hover {
+            cursor: pointer;
+          }
+          &:first-child:before {
+            content: '\f054';
+            display: inline-block;
+            margin-right: 8px;
+            font-family: 'FontAwesome';
+            @include transition(all 0.12s linear);
+          }
+        }
+      }
+      .table-inline {
+        td {
+          border: none;
+          text-align: left;
+        }
+      }
     }
-    &.table-borderless {
-        tbody {
-            tr {
-                td {
-                    border-top: 0;
-                }
-            }
+  }
+  &.table-borderless {
+    & > tbody {
+      & > tr {
+        & > td {
+          border-bottom: 0;
         }
+      }
     }
-    &.table-condensed {
-        table-layout: fixed;
-        thead {
-            tr {
-                th {
-                    padding-left: 20px;
-                    padding-right: 20px;
-                }
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    padding-top: 12px;
-                    padding-bottom: 12px;
-                }
-            }
-        }
-        thead tr th,
-        tbody tr td,
-        tbody tr td * {
-            white-space: nowrap;
-            vertical-align: middle;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        &.table-detailed {
-            & > tbody > tr {
-                &.shown {
-                    & > td {
-                        background: $brand-warning;
-                        &:first-child:before {
-                            @include rotate(90deg);
-                        }
-                    }
-                    & + tr {
-                        & > td {
-                            background: fade-out(
-                                mix($brand-light, #fff, 3%),
-                                0.6
-                            );
-                            padding: 0 40px;
-                            .table-inline {
-                                background: transparent;
-                                tr,
-                                td {
-                                    background: transparent;
-                                    font-weight: 600;
-                                }
-                            }
-                        }
-                    }
-                }
-                &.row-details {
-                    & > td {
-                        &:first-child:before {
-                            content: '';
-                        }
-                    }
-                }
-                & > td {
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    &:first-child:before {
-                        content: '\f054';
-                        display: inline-block;
-                        margin-right: 8px;
-                        font-family: 'FontAwesome';
-                        @include transition(all 0.12s linear);
-                    }
-                }
-            }
-            .table-inline {
-                td {
-                    border: none;
-                    text-align: left;
-                }
-            }
-        }
-    }
-    &.table-borderless {
-        & > tbody {
-            & > tr {
-                & > td {
-                    border-bottom: 0;
-                }
-            }
-        }
-    }
+  }
 }
