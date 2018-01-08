@@ -9,9 +9,9 @@ use Orchid\Platform\Access\Permissions;
 class Dashboard
 {
     /**
-     * Orchid Version.
+     * ORCHID Version.
      */
-    const VERSION = '2.0.10';
+    const VERSION = '2.0.11';
 
     /**
      * @var

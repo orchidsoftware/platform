@@ -5,15 +5,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [2.0.11] - 2018-01-09
+
+### Added
+- Parameter "format" for "croppie.result" #398
+- Displaying old data for validation errors 
+
+### Changed
+- Remove source map `npm run production`
+
+### Fixed
+- calling relation for new object in template #394
+- reset child categories when the parent is deleted
 
 ## [2.0.10] - 2017-12-29
 
 ### Fixed
 - Namespace syntax
 - Create empty category
-
-
 
 ## [2.0.9] - 2017-12-29
 ### Changed

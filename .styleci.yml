@@ -28,17 +28,3 @@ js:
       - "*.jsx"
     not-name:
       - "*.min.js"
-css:
-  tab-width: 2
-  use-tabs: false
-  print-width: 80
-  double-quotes: false
-  finder:
-    exclude:
-      - node_modules
-      - public
-      - vendor
-    name:
-      - "*.css"
-      - "*.scss"
-      - "*.less"
