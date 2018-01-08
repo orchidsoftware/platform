@@ -114,7 +114,6 @@ class MenuComposer
      */
     public function compose()
     {
-
         $this->dashboard->menu->add('Main', [
             'slug'   => 'Сustom',
             'icon'   => 'icon-drop',
@@ -141,7 +140,6 @@ class MenuComposer
                 },
             ],
         ]);
-
 
         $this->dashboard->menu->add('Сustom', [
             'slug'    => 'Element2',
@@ -191,7 +189,6 @@ class MenuComposer
             ],
         ]);
 
-
         $this->dashboard->menu->add('Сustom', [
             'slug'      => 'Element5',
             'icon'      => 'icon-docs',
@@ -223,19 +220,7 @@ class MenuComposer
             'sort'    => 1,
         ]);
 
-
-        $this->dashboard->menu->add('Element5', [
-            'slug'      => 'Element9.1',
-            'icon'      => 'icon-user-female',
-            'route'     => '#',
-            'label'     => 'Element 9.1',
-            'groupname' => 'Сustom group',
-            'divider'   => true,
-            'childs'    => false,
-            'sort'      => 1,
-        ]);
-
-        for ($i = 2; $i < 15; $i++) {
+        for ($i = 1; $i < 15; $i++) {
             $this->dashboard->menu->add('Element5', [
                 'slug'    => 'Element9.' . $i,
                 'icon'    => 'icon-bulb',
