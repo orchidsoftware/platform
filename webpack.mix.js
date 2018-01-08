@@ -13,19 +13,22 @@ const { mix } = require('laravel-mix');
 mix.setPublicPath('public');
 
 if (!mix.inProduction()) {
-    mix.webpackConfig({
-        devtool: 'source-map'
+  mix
+    .webpackConfig({
+      devtool: 'source-map',
     })
-    .sourceMaps()
+    .sourceMaps();
 }
 
-mix.copy('./node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts');
+mix.copy(
+  './node_modules/bootstrap-sass/assets/fonts/bootstrap',
+  'public/fonts',
+);
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
 mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
 mix.copy('./node_modules/tinymce/plugins/', 'public/js/plugins');
 mix.copy('./node_modules/tinymce/skins/', 'public/js/skins');
 mix.copy('./node_modules/tinymce/themes/', 'public/js/themes');
-
 
 mix
   .sass('resources/assets/sass/app.scss', 'css/orchid.css')
