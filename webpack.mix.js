@@ -1,4 +1,4 @@
-const {mix} = require('laravel-mix');
+const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,16 +13,19 @@ const {mix} = require('laravel-mix');
 mix.setPublicPath('public');
 
 if (!mix.inProduction()) {
-    mix
-        .webpackConfig({
-            devtool: 'source-map',
-        })
-        .sourceMaps();
+  mix
+    .webpackConfig({
+      devtool: 'source-map',
+    })
+    .sourceMaps();
 } else {
-    mix.version();
+  mix.version();
 }
 
-mix.copy('./node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts');
+mix.copy(
+  './node_modules/bootstrap-sass/assets/fonts/bootstrap',
+  'public/fonts',
+);
 mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
 mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
 mix.copy('./node_modules/tinymce/plugins/', 'public/js/plugins');
@@ -30,5 +33,5 @@ mix.copy('./node_modules/tinymce/skins/', 'public/js/skins');
 mix.copy('./node_modules/tinymce/themes/', 'public/js/themes');
 
 mix
-    .sass('resources/assets/sass/app.scss', 'css/orchid.css')
-    .js('resources/assets/js/app.js', 'js/orchid.js');
+  .sass('resources/assets/sass/app.scss', 'css/orchid.css')
+  .js('resources/assets/js/app.js', 'js/orchid.js');
