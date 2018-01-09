@@ -10,6 +10,7 @@
         padding-bottom: 14px;
         vertical-align: middle;
         border-bottom: 1px solid fade-out($brand-light, .3);
+		border-top: 0;
         color: fade-out($brand-dark, .65);
         &[class*='sorting_'] {
           color: $brand-dark;

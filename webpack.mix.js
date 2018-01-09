@@ -16,7 +16,7 @@ mix.webpackConfig({
     resolve: {
     },
 	plugins: [
-		new webpack.ContextReplacementPlugin(/moment[\/\\]locale/,/(de|en|en-gb|fr|ru|th)\.js/)
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	module: {
 		noParse: [

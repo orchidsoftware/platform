@@ -16,7 +16,7 @@
     <div class="modal-dialog">
         <div class="modal-content-wrapper">
             <div class="modal-content">
-                <div class="modal-header clearfix text-left">
+                <div class="modal-header clearfix">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
                                 class="fa fa-times"></i>
                     </button>
@@ -24,8 +24,8 @@
                     <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
                 </div>
                 <div class="modal-body" v-if="active != null">
-                    <div class="row">
-                        <div class="col-sm-10 col-sm-offset-1">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10">
                             <div class="wrapper">
 
                                 <div class="form-group">

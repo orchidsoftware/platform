@@ -40,7 +40,7 @@
         @include translate3d(0, -100%, 0);
         margin-top: -5px;
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
@@ -51,7 +51,7 @@
       height: 100%;
       top: auto;
 
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
@@ -83,7 +83,7 @@
           border-bottom: 0;
         }
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           opacity: 1;
           @include scale(1);
@@ -118,7 +118,7 @@
           border-bottom: 0;
         }
       }
-      &.in {
+      &.in, &.show {
         background-color: rgba(255, 255, 255, 0.85);
         .modal-dialog {
           opacity: 1;
@@ -138,7 +138,7 @@
         margin-right: 10px;
         z-index: 10;
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
@@ -172,7 +172,7 @@
 .modal-backdrop {
   opacity: 0;
   @include transition(opacity 0.2s linear);
-  &.in {
+  &.in, &.show {
     opacity: 0.30;
   }
 }
@@ -217,4 +217,8 @@
       box-shadow: none;
     }
   }
+	.modal-dialog {
+		width: 600px;
+		margin: 30px auto;
+	}
 }

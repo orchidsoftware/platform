@@ -247,7 +247,7 @@
   padding: 20px;
 }
 
-.col .wrapper-md {
+*:not(.no-gutters)>.col .wrapper-md {
   padding: 20px 5px;
 }
 

@@ -30,6 +30,10 @@ Dropzone.autoDiscover = false;
 require('nestable');
 
 window.moment = require('moment');
+require('../../../node_modules/moment/locale/de.js');
+require('../../../node_modules/moment/locale/fr.js');
+require('../../../node_modules/moment/locale/ru.js');
+require('../../../node_modules/moment/locale/th.js');
 
 $.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 

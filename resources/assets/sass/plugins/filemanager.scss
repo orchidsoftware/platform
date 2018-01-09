@@ -125,6 +125,12 @@
     color: $oc-gray-6;
     cursor: pointer;
   }
+  
+  .breadcrumb>li+li:before {
+    content: "/\A0";
+    padding: 0 5px;
+    color: #ccc;
+  }
 
   .breadcrumb li:last-child {
     color: #949494;

@@ -58,7 +58,7 @@
 
                     </div>
 
-                    <footer class="card-footer col">
+                    <footer class="card-footer">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$roles->total()}}

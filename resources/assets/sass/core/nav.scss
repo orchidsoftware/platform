@@ -152,12 +152,14 @@
         padding: floor(($app-aside-nav-height - $line-height-computed-px)/2) 20px;
         position: relative;
         @include transition(background-color .2s ease-in-out 0s);
+		
         .badge,
         .label {
           font-size: 11px;
           padding: 2px 5px;
           margin-top: 2px;
         }
+		
         > i {
           margin: floor(-($app-aside-nav-height - $line-height-computed-px)/2) -10px;
           line-height: $app-aside-nav-height;
@@ -172,6 +174,10 @@
             z-index: 2;
           }
         }
+		&:hover,
+		&:focus {
+			color: $brand-light;
+		}	
       }
 	  &.dropdown {
 		  .dropdown-toggle {
