@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - "DIV" Layouts
 
+### Changed
+- Record fields as objects #391
+
+### Deprecated
+- Record string/array for fields. Use `Field::make`
+
 ## [2.0.11] - 2018-01-09
 
 ### Added

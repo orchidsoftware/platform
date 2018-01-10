@@ -2,7 +2,9 @@
 
 namespace Orchid\Platform\Screen;
 
-class Repository extends \Illuminate\Config\Repository
+use \Illuminate\Config\Repository as BaseRepository;
+
+class Repository extends BaseRepository
 {
     /**
      * @param $arg
