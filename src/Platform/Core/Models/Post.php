@@ -161,9 +161,10 @@ class Post extends Model
      */
     public function getContentAttribute() : Repository
     {
-        if (!$this->_content) {
+        if (! $this->_content) {
             $this->setContentAttribute($this->castAttribute('content', $this->attributes['content']));
         }
+
         return $this->_content;
     }
 
@@ -181,9 +182,10 @@ class Post extends Model
      */
     public function getOptionsAttribute() : Repository
     {
-        if (!$this->_options) {
+        if (! $this->_options) {
             $this->setOptionsAttribute($this->castAttribute('options', $this->attributes['options']));
         }
+
         return $this->_options;
     }
 
