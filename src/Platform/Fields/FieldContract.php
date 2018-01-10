@@ -5,21 +5,21 @@ namespace Orchid\Platform\Fields;
 interface FieldContract
 {
     /**
-     * Get the name of the template
+     * Get the name of the template.
      *
      * @return string
      */
     public function getView() : string;
 
     /**
-     * Get the name of the template
+     * Get the name of the template.
      *
      * @return array
      */
     public function getRequired() : array;
 
     /**
-     * The process of creating
+     * The process of creating.
      *
      * @return mixed
      */
@@ -50,5 +50,4 @@ interface FieldContract
      * @return array
      */
     public function getAttributes() : array;
-
 }

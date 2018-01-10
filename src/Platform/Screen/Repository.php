@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Screen;
 
-use \Illuminate\Config\Repository as BaseRepository;
+use Illuminate\Config\Repository as BaseRepository;
 
 class Repository extends BaseRepository
 {
