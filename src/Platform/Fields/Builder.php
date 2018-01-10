@@ -44,12 +44,11 @@ class Builder
     public function __construct(array $fields, $data, string $language = null, string $prefix = null)
     {
         //deprecated
-        foreach ($fields as $key => $item){
-            if(!is_object($item)){
-
+        foreach ($fields as $key => $item) {
+            if (! is_object($item)) {
                 $RawParse = Parser::parseFields([$item]);
                 $RawField = array_shift($RawParse)->toArray();
-                $fields[$key] =  Field::make($RawField);
+                $fields[$key] = Field::make($RawField);
             }
         }
 
@@ -95,12 +94,11 @@ class Builder
 
         $this->form = '';
         foreach ($fields as $field) {
+            $field->set('lang', $this->language);
+            $field->set('prefix', $this->buildPrefix($field));
 
-            $field->set('lang',$this->language);
-            $field->set('prefix',$this->buildPrefix($field));
-
-            foreach ($this->fill($field->getAttributes()) as $key => $value){
-                $field->set($key,$value);
+            foreach ($this->fill($field->getAttributes()) as $key => $value) {
+                $field->set($key, $value);
             }
 
             $this->form .= $field->render();
@@ -116,13 +114,13 @@ class Builder
      */
     private function buildPrefix($field)
     {
-        $prefix = $field->get('prefix',null);
+        $prefix = $field->get('prefix', null);
 
-        if (!is_null($prefix)) {
-
+        if (! is_null($prefix)) {
             foreach (array_filter(explode(' ', $prefix)) as $name) {
                 $prefix .= '['.$name.']';
             }
+
             return $prefix;
         }
 

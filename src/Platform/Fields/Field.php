@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
 class Field implements FieldContract
 {
@@ -15,7 +15,7 @@ class Field implements FieldContract
     public $view;
 
     /**
-     * All attributes that are available to the field
+     * All attributes that are available to the field.
      *
      * @var array
      */
@@ -63,13 +63,13 @@ class Field implements FieldContract
      */
     public static function tag(string $type) : FieldContract
     {
-        $field = config('platform.fields.' . $type);
+        $field = config('platform.fields.'.$type);
 
-        if (!is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException('Field ' . $type . ' does not exist or inheritance FieldContract');
+        if (! is_subclass_of($field, FieldContract::class)) {
+            throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
-        return (new $field());
+        return new $field();
     }
 
     /**
@@ -82,9 +82,10 @@ class Field implements FieldContract
     {
         $field = self::tag($arguments['tag']);
 
-        foreach ($arguments as $key => $value){
-            $field->set($key,$value);
+        foreach ($arguments as $key => $value) {
+            $field->set($key, $value);
         }
+
         return $field;
     }
 
@@ -111,7 +112,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (!isset($this->attributes[$key])) {
+        if (! isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -140,7 +141,7 @@ class Field implements FieldContract
     }
 
     /**
-     * Obtain the list of required fields
+     * Obtain the list of required fields.
      *
      * @return array
      */
@@ -150,7 +151,7 @@ class Field implements FieldContract
     }
 
     /**
-     * Get the name of the template
+     * Get the name of the template.
      *
      * @return string
      */
@@ -166,12 +167,11 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (!$this->attributes->offsetExists($attribute)) {
-                throw new FieldRequiredAttributeException('Field must have the following attribute: ' . $attribute);
+            if (! $this->attributes->offsetExists($attribute)) {
+                throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
     }
-
 
     /**
      * @return string
@@ -202,10 +202,10 @@ class Field implements FieldContract
         $name = $this->get('name');
 
         if (is_null($prefix)) {
-            return $lang . $name;
+            return $lang.$name;
         }
 
-        return $prefix . '[' . $lang . ']' . $name;
+        return $prefix.'['.$lang.']'.$name;
     }
 
     /**
@@ -218,10 +218,10 @@ class Field implements FieldContract
         $name = str_ireplace(['[', ']'], '', $this->get('name'));
 
         if (is_null($prefix)) {
-            return $lang . '.' . $name;
+            return $lang.'.'.$name;
         }
 
-        return $prefix . '.' . $lang . '.' . $name;
+        return $prefix.'.'.$lang.'.'.$name;
     }
 
     /**
@@ -239,7 +239,6 @@ class Field implements FieldContract
     {
         return optional(session('errors'))->has($this->getOldName()) ?? false;
     }
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
@@ -264,8 +263,5 @@ class Field implements FieldContract
             'slug'    => $this->getSlug(),
             'oldName' => $this->getOldName(),
         ]));
-
     }
-
-
 }
