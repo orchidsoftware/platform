@@ -7,6 +7,7 @@ use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Facades\Dashboard;
+use Orchid\Platform\Screen\Repository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -73,6 +74,16 @@ class Post extends Model
     ];
 
     /**
+     * @var Repository
+     */
+    protected $_content;
+
+    /**
+     * @var Repository
+     */
+    protected $_options;
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
@@ -137,27 +148,51 @@ class Post extends Model
     }
 
     /**
+     * @param $value
+     */
+    public function setContentAttribute($value)
+    {
+        $this->_content = new Repository($value);
+        $this->attributes['content'] = $this->castAttributeAsJson('content', $value);
+    }
+
+    /**
+     * @return Repository
+     */
+    public function getContentAttribute() : Repository
+    {
+        if (!$this->_content) {
+            $this->setContentAttribute($this->castAttribute('content', $this->attributes['content']));
+        }
+        return $this->_content;
+    }
+
+    /**
+     * @param $value
+     */
+    public function setOptionsAttribute($value)
+    {
+        $this->_options = new Repository($value);
+        $this->attributes['options'] = $this->castAttributeAsJson('options', $value);
+    }
+
+    /**
+     * @return Repository
+     */
+    public function getOptionsAttribute() : Repository
+    {
+        if (!$this->_options) {
+            $this->setOptionsAttribute($this->castAttribute('options', $this->attributes['options']));
+        }
+        return $this->_options;
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     public function getOptions() : Collection
     {
         return collect($this->options);
-    }
-
-    /**
-     * @param $key
-     *
-     * @return bool
-     */
-    public function checkLanguage($key) : bool
-    {
-        $locale = $this->getOption('locale', []);
-
-        if (array_key_exists($key, $locale)) {
-            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
-        }
-
-        return false;
     }
 
     /**
@@ -179,6 +214,22 @@ class Post extends Model
         }
 
         return $default;
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public function checkLanguage($key) : bool
+    {
+        $locale = $this->getOption('locale', []);
+
+        if (array_key_exists($key, $locale)) {
+            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
     }
 
     /**
