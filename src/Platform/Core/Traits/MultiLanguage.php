@@ -25,7 +25,10 @@ trait MultiLanguage
             $attributes = array_keys($this->getAttributes());
 
             if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
-                return $this->{$this->jsonColumnName}[$lang][$field];
+                if (isset($this->{$this->jsonColumnName}[$lang][$field])) {
+                    return $this->{$this->jsonColumnName}[$lang][$field];
+                }
+                return $this->getContentByPath($this->{$this->jsonColumnName}[$lang], $field);
             }
 
             if (in_array($field, $attributes)) {
@@ -38,5 +41,18 @@ trait MultiLanguage
                 return $content[$field];
             }
         }
+    }
+
+    /**
+     * @param  array   $array
+     * @param  string  $path
+     * @return mixed
+     */
+    private function getContentByPath($array, $path)
+    {
+        list($name, $path) = explode('.', $path, 2) + [null, null];
+        if (!isset($array[$name])) return;
+
+        return $path ? $this->getContentByPath($array[$name], $path) : $array[$name];
     }
 }
