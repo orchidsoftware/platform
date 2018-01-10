@@ -27,8 +27,9 @@ trait MultiLanguage
 
             if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
                 if ($this->{$this->jsonColumnName} instanceof Repository) {
-                    return $this->{$this->jsonColumnName}->get($lang . '.' . $field);
+                    return $this->{$this->jsonColumnName}->get($lang.'.'.$field);
                 }
+
                 return $this->{$this->jsonColumnName}[$lang][$field];
             }
 
