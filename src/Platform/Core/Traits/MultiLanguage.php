@@ -14,11 +14,6 @@ trait MultiLanguage
     public $jsonColumnName = 'content';
 
     /**
-     * @var Repository
-     */
-    private $repository;
-
-    /**
      * @param      $field
      * @param null $lang
      *
@@ -31,7 +26,10 @@ trait MultiLanguage
             $attributes = array_keys($this->getAttributes());
 
             if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
-                return $this->getRepository($this->{$this->jsonColumnName})->get($lang . '.' . $field);
+                if ($this->{$this->jsonColumnName} instanceof Repository) {
+                    return $this->{$this->jsonColumnName}->get($lang . '.' . $field);
+                }
+                return $this->{$this->jsonColumnName}[$lang][$field];
             }
 
             if (in_array($field, $attributes)) {
@@ -44,17 +42,5 @@ trait MultiLanguage
                 return $content[$field];
             }
         }
-    }
-
-    /**
-     * @param  array   $array
-     * @return Repository
-     */
-    private function getRepository($array)
-    {
-        if (!$this->repository) {
-            $this->repository = new Repository($array);
-        }
-        return $this->repository;
     }
 }
