@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Core\Traits;
 
 use Illuminate\Support\Facades\App;
+use Orchid\Platform\Screen\Repository;
 
 trait MultiLanguage
 {
@@ -11,6 +12,11 @@ trait MultiLanguage
      * @var string
      */
     public $jsonColumnName = 'content';
+
+    /**
+     * @var Repository
+     */
+    private $repository;
 
     /**
      * @param      $field
@@ -25,10 +31,7 @@ trait MultiLanguage
             $attributes = array_keys($this->getAttributes());
 
             if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
-                if (isset($this->{$this->jsonColumnName}[$lang][$field])) {
-                    return $this->{$this->jsonColumnName}[$lang][$field];
-                }
-                return $this->getContentByPath($this->{$this->jsonColumnName}[$lang], $field);
+                return $this->getRepository($this->{$this->jsonColumnName})->get($lang . '.' . $field);
             }
 
             if (in_array($field, $attributes)) {
@@ -45,14 +48,13 @@ trait MultiLanguage
 
     /**
      * @param  array   $array
-     * @param  string  $path
-     * @return mixed
+     * @return Repository
      */
-    private function getContentByPath($array, $path)
+    private function getRepository($array)
     {
-        list($name, $path) = explode('.', $path, 2) + [null, null];
-        if (!isset($array[$name])) return;
-
-        return $path ? $this->getContentByPath($array[$name], $path) : $array[$name];
+        if (!$this->repository) {
+            $this->repository = new Repository($array);
+        }
+        return $this->repository;
     }
 }
