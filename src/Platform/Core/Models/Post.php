@@ -80,7 +80,7 @@ class Post extends Model
     {
         return [
             'content',
-            'options'
+            'options',
         ];
     }
 
@@ -153,7 +153,7 @@ class Post extends Model
      */
     public function getOptions() : Collection
     {
-        return collect($this->options);
+        return collect($this->options->all());
     }
 
     /**

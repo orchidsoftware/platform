@@ -29,6 +29,7 @@ trait MultiLanguage
                 if ($this->{$this->jsonColumnName} instanceof Repository) {
                     return $this->{$this->jsonColumnName}->get($lang.'.'.$field);
                 }
+
                 return $this->{$this->jsonColumnName}[$lang][$field];
             }
 

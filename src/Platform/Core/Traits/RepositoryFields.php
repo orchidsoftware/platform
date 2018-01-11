@@ -4,11 +4,11 @@
  */
 
 namespace Orchid\Platform\Core\Traits;
+
 use Illuminate\Config\Repository;
 
 /**
- * Class RepositoryFields
- * @package Orchid\Platform\Core\Traits
+ * Class RepositoryFields.
  */
 trait RepositoryFields
 {
@@ -29,6 +29,7 @@ trait RepositoryFields
                 return new Repository($value);
             }
         }
+
         return $value;
     }
 }
