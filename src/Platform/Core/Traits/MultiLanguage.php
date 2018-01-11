@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Core\Traits;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Screen\Repository;
 
 trait MultiLanguage
 {

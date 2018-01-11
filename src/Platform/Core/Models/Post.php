@@ -7,7 +7,6 @@ use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Facades\Dashboard;
-use Orchid\Platform\Screen\Repository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -16,13 +15,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Core\Traits\RepositoryFields;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, RepositoryFields;
 
     /**
      * @var string
@@ -74,14 +74,15 @@ class Post extends Model
     ];
 
     /**
-     * @var Repository
+     * @return array
      */
-    protected $_content;
-
-    /**
-     * @var Repository
-     */
-    protected $_options;
+    public function getRepositoryFields()
+    {
+        return [
+            'content',
+            'options',
+        ];
+    }
 
     /**
      * Return the sluggable configuration array for this model.
@@ -148,53 +149,11 @@ class Post extends Model
     }
 
     /**
-     * @param $value
-     */
-    public function setContentAttribute($value)
-    {
-        $this->_content = new Repository($value);
-        $this->attributes['content'] = $this->castAttributeAsJson('content', $value);
-    }
-
-    /**
-     * @return Repository
-     */
-    public function getContentAttribute() : Repository
-    {
-        if (! $this->_content) {
-            $this->setContentAttribute($this->castAttribute('content', $this->attributes['content']));
-        }
-
-        return $this->_content;
-    }
-
-    /**
-     * @param $value
-     */
-    public function setOptionsAttribute($value)
-    {
-        $this->_options = new Repository($value);
-        $this->attributes['options'] = $this->castAttributeAsJson('options', $value);
-    }
-
-    /**
-     * @return Repository
-     */
-    public function getOptionsAttribute() : Repository
-    {
-        if (! $this->_options) {
-            $this->setOptionsAttribute($this->castAttribute('options', $this->attributes['options']));
-        }
-
-        return $this->_options;
-    }
-
-    /**
      * @return \Illuminate\Support\Collection
      */
     public function getOptions() : Collection
     {
-        return collect($this->options);
+        return collect($this->options->all());
     }
 
     /**
