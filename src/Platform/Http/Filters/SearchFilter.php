@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Http\Filters;
 
+use Illuminate\Database\PostgresConnection;
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -31,6 +32,10 @@ class SearchFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
+        if ($builder->getQuery()->getConnection() instanceof PostgresConnection) {
+            return $builder->whereRaw("content::TEXT ILIKE ?",'%'.$this->request->get('search').'%');
+        }
+
         return $builder->where('content', 'LIKE', '%'.$this->request->get('search').'%');
     }
 
