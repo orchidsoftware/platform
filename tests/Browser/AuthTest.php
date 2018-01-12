@@ -7,7 +7,6 @@ use Orchid\Platform\Tests\TestBrowserCase;
 
 class AuthTest extends TestBrowserCase
 {
-
     /** @test */
     public function can_use_dusk()
     {
@@ -16,6 +15,4 @@ class AuthTest extends TestBrowserCase
                 ->assertSee('Login');
         });
     }
-
-
 }
