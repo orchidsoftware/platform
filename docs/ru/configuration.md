@@ -9,7 +9,7 @@ ORCHID использует стандартную систему настрое
 ## Безголовый режим
 
 ```php
-   'headless' => false,
+'headless' => false,
 ```
 
 Платформа прекрасно понимает, что не может покрыть всех задач разработчика, поэтому предоставляет возможность
@@ -21,7 +21,7 @@ ORCHID использует стандартную систему настрое
 ## Адрес платформы
 
 ```php
-    'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
+'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
 ```
 
 Для многих проектов адрес расположения панели администрирования играет важную роль.
@@ -30,7 +30,7 @@ ORCHID использует стандартную систему настрое
 Для этого требуется указать по какому адресу вы хотели её открывать. 
 
 ```php
-    'domain' => 'admin.example.com',
+'domain' => 'admin.example.com',
 ```
  
  Помните, что ваши параметры веб сервера должны быть настроены должным образом.
@@ -42,7 +42,7 @@ ORCHID использует стандартную систему настрое
 
 
 ```php
-    'prefix' => env('DASHBOARD_PREFIX', 'dashboard'),
+'prefix' => env('DASHBOARD_PREFIX', 'dashboard'),
 ```
 
 По префиксу к графическому интерфейсу обычно можно выявить какая система установлена на веб сайте,
@@ -56,10 +56,10 @@ ORCHID использует стандартную систему настрое
 ## Промежуточные слои
 
 ```php
-    'middleware' => [
-        'public'  => ['web'],
-        'private' => ['web', 'dashboard'],
-    ],
+'middleware' => [
+    'public'  => ['web'],
+    'private' => ['web', 'dashboard'],
+],
 ```
 
 Можете добавлять/изменять промежуточные слои (middleware) для графического интерфейса. 
@@ -75,11 +75,11 @@ ORCHID использует стандартную систему настрое
 ## Страница авторизации
 
 ```php
-    'auth' => [
-        'display' => true,
-        'image'   => '/orchid/img/background.jpg',
-        //'slogan'  => '',
-    ],
+'auth' => [
+    'display' => true,
+    'image'   => '/orchid/img/background.jpg',
+    //'slogan'  => '',
+],
 ```
 
 Страница авторизации имеет несколько настроек, таких как фоновое изображение и слоган вашего проекта.
@@ -94,15 +94,15 @@ php artisan make:auth
 ## Локализация записей
 
 ```php
-    'locales' => [
-        'en' => [
-            'name'     => 'English',
-            'script'   => 'Latn',
-            'dir'      => 'ltr',
-            'native'   => 'English',
-            'regional' => 'en_GB',
-        ],
+'locales' => [
+    'en' => [
+        'name'     => 'English',
+        'script'   => 'Latn',
+        'dir'      => 'ltr',
+        'native'   => 'English',
+        'regional' => 'en_GB',
     ],
+],
 ```
 
 Стандартные записи созданные с помощью `поведений` имеют возможность встроенной локализации, то есть 
@@ -114,22 +114,22 @@ php artisan make:auth
 ## Поля
 
 ```php
-    'fields' => [
-        'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
-        'input'        => Orchid\Platform\Fields\Types\InputField::class,
-        'list'         => Orchid\Platform\Fields\Types\ListField::class,
-        'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-        'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
-        'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
-        'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
-        'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
-        'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
-        'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-        'code'         => Orchid\Platform\Fields\Types\CodeField::class,
-        'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
-        'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
-        'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
-    ],
+'fields' => [
+    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+    'input'        => Orchid\Platform\Fields\Types\InputField::class,
+    'list'         => Orchid\Platform\Fields\Types\ListField::class,
+    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+],
 ```
 
 В конфигурации полей указываются алиасы для поля, например `wysiwyg` редактор, это позволяет
@@ -143,9 +143,9 @@ php artisan make:auth
 ## Одиночные поведения
 
 ```php
-    'single' => [
-        App\Core\Behaviors\Single\DemoPage::class,
-    ],
+'single' => [
+    App\Core\Behaviors\Single\DemoPage::class,
+],
 ```
 
 Одиночные поведения, это один из типов множественных `поведений` существующих лишь в одном единственном экземпляре.
@@ -156,9 +156,9 @@ php artisan make:auth
 
 
 ```php
-    'single' => [
-        App\Core\Behaviors\Single\DemoPage::class,
-    ],
+'single' => [
+    App\Core\Behaviors\Single\DemoPage::class,
+],
 ```
 
 Множественные поведения созданы для сокращения времени на создание типовых данных которые могут иметь множество записей.
@@ -168,10 +168,10 @@ php artisan make:auth
 ## Стандартные поведения
 
 ```php
-    'common' => [
-        'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
-        'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
-    ],
+'common' => [
+    'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
+    'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
+],
 ```
 
 Платформа поставляется с некоторым набором стандартных CRUD записей, например создание `Пользователя`, что бы изменить
@@ -180,11 +180,11 @@ php artisan make:auth
 ## Пользовательское меню
 
 ```php
-    'menu' => [
-        'header'  => 'Header menu',
-        'sidebar' => 'Sidebar menu',
-        'footer'  => 'Footer menu',
-    ],
+'menu' => [
+    'header'  => 'Header menu',
+    'sidebar' => 'Sidebar menu',
+    'footer'  => 'Footer menu',
+],
 ```
 
 Конфигурация меню требует лишь указание ключа и значение, которое будет отображаться пользователю. 
@@ -196,23 +196,23 @@ php artisan make:auth
 ## Изображения
 
 ```php
-    'images' => [
-        'low'    => [
-            'width'   => '50',
-            'height'  => '50',
-            'quality' => '50',
-        ],
-        'medium' => [
-            'width'   => '600',
-            'height'  => '300',
-            'quality' => '75',
-        ],
-        'high'   => [
-            'width'   => '1000',
-            'height'  => '500',
-            'quality' => '95',
-        ],
+'images' => [
+    'low'    => [
+        'width'   => '50',
+        'height'  => '50',
+        'quality' => '50',
     ],
+    'medium' => [
+        'width'   => '600',
+        'height'  => '300',
+        'quality' => '75',
+    ],
+    'high'   => [
+        'width'   => '1000',
+        'height'  => '500',
+        'quality' => '95',
+    ],
+],
 ```
 
 Вложения имеют возможность обработки изображений, создавая нужные копии подходящие для формата.
@@ -221,33 +221,32 @@ php artisan make:auth
 ## Вложенные типы
 
 ```php
-    'attachment' => [
-        'image' => [
-            'png',
-            'jpg',
-            'jpeg',
-            'gif',
-        ],
-        'video' => [
-            'mp4',
-            'mkv',
-        ],
-        'docs'  => [
-            'doc',
-            'docx',
-            'pdf',
-            'xls',
-            'xlsx',
-            'xml',
-            'txt',
-            'zip',
-            'rar',
-            'svg',
-            'ppt',
-            'pptx',
-        ],
+'attachment' => [
+    'image' => [
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
     ],
-
+    'video' => [
+        'mp4',
+        'mkv',
+    ],
+    'docs'  => [
+        'doc',
+        'docx',
+        'pdf',
+        'xls',
+        'xlsx',
+        'xml',
+        'txt',
+        'zip',
+        'rar',
+        'svg',
+        'ppt',
+        'pptx',
+    ],
+],
 ```
 
 Вложения так же имеют возможность группировки, это отлично подходит например если, требуется выбрать только документы
@@ -256,9 +255,9 @@ php artisan make:auth
 ## Виджеты панели управления
 
 ```php
-    'main_widgets' => [
-        Orchid\Platform\Http\Widgets\UpdateWidget::class,
-    ],
+'main_widgets' => [
+    Orchid\Platform\Http\Widgets\UpdateWidget::class,
+],
 ```
 
 Главная страница панели управления по умолчанию имеет только один единственный виджет, который оповещает о
@@ -272,10 +271,10 @@ php artisan make:auth
 
 
 ```php
-    'resource' => [
-        'stylesheets' => [],
-        'scripts'     => [],
-    ],
+'resource' => [
+    'stylesheets' => [],
+    'scripts'     => [],
+],
 ```
 
 В ходе работы вам может потребоваться добавить свои собственные таблицы стили или javascript сценарии
