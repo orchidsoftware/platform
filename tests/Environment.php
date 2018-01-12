@@ -24,6 +24,7 @@ trait Environment
         $this->artisan('migrate', [
            '--database' => 'orchid',
        ]);
+
         $this->withFactories(__DIR__.'/../database/factories');
     }
 
