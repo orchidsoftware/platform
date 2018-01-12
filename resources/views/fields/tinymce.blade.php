@@ -8,11 +8,7 @@
       {!! $value or old($name) !!}
     </div>
 
-     <input id="{{$id}}" type="hidden"
-            name="{{$fieldName}}"
-            placeholder="{{$placeholder or ''}}"
-            value="{{ $value or old($name) }}"
-            @if(isset($required) && $required) required @endif>
+     <input type="hidden" @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
 
     @if(isset($help))
         <p class="help-block">{{$help}}</p>

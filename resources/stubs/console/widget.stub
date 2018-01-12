@@ -7,13 +7,6 @@ use Orchid\Platform\Widget\Widget;
 class DummyClass extends Widget {
 
     /**
-     * Class constructor.
-     */
-    public function __construct(){
-
-    }
-
-    /**
      * @return mixed
      */
      public function handler(){

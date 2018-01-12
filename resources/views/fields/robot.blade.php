@@ -2,9 +2,7 @@
     @if(isset($title))
         <label for="{{$id}}">{{$title}}</label>
     @endif
-    <select
-            name="{{$fieldName}}"
-            class="form-control {{$class or ''}}" id="{{$id}}">
+    <select @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
         <option value="index">Index</option>
         <option value="noindex">Noindex</option>
     </select>

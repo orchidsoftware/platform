@@ -12,6 +12,15 @@ class RobotField extends Field
     public $view = 'dashboard::fields.robot';
 
     /**
+     * Default attributes value
+     *
+     * @var array
+     */
+    public $attributes = [
+        'class' => 'form-control',
+    ];
+
+    /**
      * Required Attributes.
      *
      * @var array

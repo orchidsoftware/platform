@@ -21,15 +21,27 @@ class DummyClass extends Many
 
     /**
      * Slug url /news/{name}.
+     *
      * @var string
      */
     public $slugFields = '';
 
     /**
      * Rules Validation.
+     *
      * @return array
      */
     public function rules() : array
+    {
+        return [];
+    }
+
+    /**
+     * HTTP data filters
+     *
+     * @return array
+     */
+    public function filters() : array
     {
         return [];
     }

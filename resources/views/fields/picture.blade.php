@@ -5,8 +5,8 @@
 
 
     <div class="picture-container m-b-md">
-        @if(isset($value) && strlen($value) || strlen(old($name)))
-            <img src="{{$value or old($name)}}" class="img-responsive img-thumbnail" alt=""/>
+        @if(isset($attributes['value']) && strlen($attributes['value'])))
+        <img src="{{$attributes['value']}}" class="img-responsive img-thumbnail" alt=""/>
         @endif
     </div>
 
@@ -20,9 +20,7 @@
            type="hidden"
            data-width="{{$width}}"
            data-height="{{$height}}"
-           name="{{$fieldName}}"
-           value="{{$value or old($name)}}"
-           @if(isset($required) && $required) required @endif
+            @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
     >
 </div>
 

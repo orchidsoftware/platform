@@ -2,12 +2,12 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
+use Orchid\Platform\Behaviors\Contract\ManyInterface;
+use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
-use Orchid\Platform\Behaviors\Contract\ManyInterface;
 
 abstract class Many implements ManyInterface
 {
@@ -35,22 +35,11 @@ abstract class Many implements ManyInterface
     public $with = [];
 
     /**
-     * HTTP data filters.
-     *
-     * @var array
-     */
-    public $filters = [
-        SearchFilter::class,
-        StatusFilter::class,
-        CreatedFilter::class,
-    ];
-
-    /**
      * Registered fields for filling.
      *
      * @return mixed
      */
-    abstract public function fields();
+    abstract public function fields() : array;
 
     /**
      * Raw data and fields to display.
@@ -74,9 +63,9 @@ abstract class Many implements ManyInterface
     /**
      * Registered fields to display in the table.
      *
-     * @return mixed
+     * @return array
      */
-    abstract public function grid();
+    abstract public function grid() : array;
 
     /**
      * Display form for filtering.
@@ -104,7 +93,7 @@ abstract class Many implements ManyInterface
     public function getFilters($dashboard = false) : Collection
     {
         $filters = collect();
-        foreach ($this->filters as $filter) {
+        foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
             if ($filter->dashboard == $dashboard) {
                 $filters->push($filter);
@@ -112,5 +101,19 @@ abstract class Many implements ManyInterface
         }
 
         return $filters;
+    }
+
+    /**
+     * HTTP data filters.
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [
+            SearchFilter::class,
+            StatusFilter::class,
+            CreatedFilter::class,
+        ];
     }
 }

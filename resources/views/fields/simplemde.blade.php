@@ -7,13 +7,7 @@
 
     <div class="simplemde-wrapper">
 
-	<input class="simplemde-{{$lang}}-{{$slug}}"
-           name="{{$fieldName}}"
-           id="{{$id}}"
-           type="hidden"
-           value="{{ $value or old($name) }}"
-           @if(isset($required) && $required) required @endif
-    >
+	<input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
 	</div>
 
     @if(isset($help))

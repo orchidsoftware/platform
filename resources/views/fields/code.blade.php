@@ -3,12 +3,7 @@
         <label for="{{$id}}">{{$title}}</label>
     @endif
     <div id="ace-code-block-{{$id}}" style="width: 100%; min-height: 500px;"></div>
-    <input type="hidden" class="form-control {{$class or ''}}" id="{{$id}}"
-           name="{{$fieldName}}"
-           value="{{$value or old($name)}}"
-           placeholder="{{$placeholder or ''}}"
-           @if(isset($required) && $required) required @endif
-    >
+    <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif
