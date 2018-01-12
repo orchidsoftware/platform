@@ -20,9 +20,8 @@ class SimpleMDEField extends Field
         'name',
     ];
 
-
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -56,5 +55,4 @@ class SimpleMDEField extends Field
         'type',
         'value',
     ];
-
 }

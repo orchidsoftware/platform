@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
 class Field implements FieldContract
 {
@@ -78,7 +78,7 @@ class Field implements FieldContract
     ];
 
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -109,10 +109,10 @@ class Field implements FieldContract
      */
     public static function tag(string $type) : FieldContract
     {
-        $field = config('platform.fields.' . $type);
+        $field = config('platform.fields.'.$type);
 
-        if (!is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException('Field ' . $type . ' does not exist or inheritance FieldContract');
+        if (! is_subclass_of($field, FieldContract::class)) {
+            throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
         return new $field();
@@ -173,8 +173,8 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (!$this->attributes->offsetExists($attribute)) {
-                throw new FieldRequiredAttributeException('Field must have the following attribute: ' . $attribute);
+            if (! $this->attributes->offsetExists($attribute)) {
+                throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
     }
@@ -193,7 +193,6 @@ class Field implements FieldContract
         */
 
         // TODO: Изменить внедрнение параметров!
-
 
         //dd($this->getModifyAttributes(), $this->getOriginalAttributes());
 
@@ -229,14 +228,13 @@ class Field implements FieldContract
 
         return collect($this->getAttributes())->only(array_merge($this->universalAttributes,
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
-            $signature = 'modify' . title_case($key);
-            if (in_array($signature, $modifiers)) {
-                return $this->$signature($item);
-            }
+                $signature = 'modify'.title_case($key);
+                if (in_array($signature, $modifiers)) {
+                    return $this->$signature($item);
+                }
 
-            return $item;
-        })->toArray();
-
+                return $item;
+            })->toArray();
     }
 
     /**
@@ -258,7 +256,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (!isset($this->attributes[$key])) {
+        if (! isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -291,10 +289,10 @@ class Field implements FieldContract
         $name = str_ireplace(['[', ']'], '', $this->get('name'));
 
         if (is_null($prefix)) {
-            return $lang . '.' . $name;
+            return $lang.'.'.$name;
         }
 
-        return $prefix . '.' . $lang . '.' . $name;
+        return $prefix.'.'.$lang.'.'.$name;
     }
 
     /**
@@ -313,7 +311,6 @@ class Field implements FieldContract
         return array_except($this->getAttributes(), array_merge($this->universalAttributes, $this->inlineAttributes));
     }
 
-
     /**
      * @param $name
      *
@@ -321,15 +318,14 @@ class Field implements FieldContract
      */
     public function modifyName($name)
     {
-
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
         if (is_null($prefix)) {
-            return $lang . $name;
+            return $lang.$name;
         }
 
-        return $prefix . '[' . $lang . ']' . $name;
+        return $prefix.'['.$lang.']'.$name;
     }
 
     /**
@@ -339,10 +335,9 @@ class Field implements FieldContract
      */
     public function modifyValue($value)
     {
-
         $old = $this->getOldValue();
 
-        if (!is_null($old)) {
+        if (! is_null($old)) {
             return $old;
         }
 
@@ -352,6 +347,4 @@ class Field implements FieldContract
 
         return $value;
     }
-
-
 }
