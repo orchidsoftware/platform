@@ -37,7 +37,7 @@ class Term extends Model
     public function getRepositoryFields(): array
     {
         return [
-            'content'
+            'content',
         ];
     }
 
