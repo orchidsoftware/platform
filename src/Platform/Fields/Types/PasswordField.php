@@ -20,9 +20,8 @@ class PasswordField extends Field
         'name',
     ];
 
-
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -55,5 +54,4 @@ class PasswordField extends Field
         'tabindex',
         'value',
     ];
-
 }

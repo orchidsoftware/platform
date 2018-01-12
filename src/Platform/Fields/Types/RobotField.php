@@ -12,7 +12,7 @@ class RobotField extends Field
     public $view = 'dashboard::fields.robot';
 
     /**
-     * Default attributes value
+     * Default attributes value.
      *
      * @var array
      */
