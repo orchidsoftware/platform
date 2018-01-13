@@ -62,7 +62,7 @@ abstract class Table
         $dashboardFilter = $this->getFilters(true);
         $chunk = ceil($dashboardFilter->count() / 4);
 
-        return view('dashboard::container.posts.filter', [
+        return view('dashboard::container.layouts.filter', [
             'filters' => $dashboardFilter,
             'chunk'   => $chunk,
         ]);

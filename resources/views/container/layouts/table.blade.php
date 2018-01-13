@@ -1,3 +1,5 @@
+{!! $filters or '' !!}
+
 <div class="bg-white-only  bg-auto no-border-xs">
     <div class="panel-body row">
         <div class="table-responsive">
