@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
+    'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
 
     /*
     |--------------------------------------------------------------------------

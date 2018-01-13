@@ -21,6 +21,16 @@ class PasswordField extends Field
     ];
 
     /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'type'  => 'password',
+        'class' => 'form-control',
+    ];
+
+    /**
      * Attributes available for a particular tag.
      *
      * @var array
@@ -52,6 +62,5 @@ class PasswordField extends Field
         'src',
         'step',
         'tabindex',
-        'value',
     ];
 }
