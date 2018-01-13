@@ -11,7 +11,7 @@ class AuthTest extends TestBrowserCase
     public function can_use_dusk()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('dashboard.login')
+            $browser->visitRoute('dashboard.login')
                 ->assertSee('Login');
         });
     }
