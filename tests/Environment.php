@@ -2,11 +2,11 @@
 
 namespace Orchid\Platform\Tests;
 
-use Illuminate\Support\Facades\Schema;
+use Watson\Active\Facades\Active;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Support\Facades\Schema;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use Watson\Active\Facades\Active;
 
 trait Environment
 {
@@ -19,15 +19,13 @@ trait Environment
 
         Schema::defaultStringLength(191);
 
-
         $this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate', [
             '--database' => 'orchid',
         ]);
 
-
-        $this->withFactories(__DIR__ . '/../database/factories');
+        $this->withFactories(__DIR__.'/../database/factories');
 
         $this->artisan('vendor:publish', [
             '--all' => true,
