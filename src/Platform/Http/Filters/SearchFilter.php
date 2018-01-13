@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Http\Filters;
 
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
@@ -40,12 +41,12 @@ class SearchFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed|void
+     *
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function display()
     {
-        return view('dashboard::container.posts.filters.search', [
-            'request' => $this->request,
-        ]);
+        return Field::tag('input')->type('text')->name('search')->value($this->request->get('search'))->placeholder(trans('dashboard::common.search_posts'))->title(trans('dashboard::common.filters.search'))->maxlength(200)->autocomplete('off')->hr(false);
     }
 }

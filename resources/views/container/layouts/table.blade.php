@@ -1,7 +1,3 @@
-<div class="wrapper-md b-b">
-    {!! $filters or '' !!}
-</div>
-
 <div class="bg-white-only  bg-auto no-border-xs">
     <div class="panel-body row">
         <div class="table-responsive">

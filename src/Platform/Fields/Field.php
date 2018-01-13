@@ -173,7 +173,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (!$this->attributes->offsetExists($attribute)) {
+            if (!collect($this->attributes)->offsetExists($attribute)) {
                 throw new FieldRequiredAttributeException('Field must have the following attribute: ' . $attribute);
             }
         }
@@ -181,27 +181,19 @@ class Field implements FieldContract
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @throws FieldRequiredAttributeException
      */
     public function render()
     {
-        /*
-        $this->id = $this->getId();
-        $this->name = $this->getName();
-        $this->old = $this->getOldValue();
-        $this->error = $this->hasError();
-        $this->slug = $this->getSlug();
-        */
-
-        // TODO: Изменить внедрнение параметров!
+        $this->checkRequired();
 
 
-        //dd($this->getModifyAttributes(), $this->getOriginalAttributes());
+        // TODO: Указать параметры в шаблонах, что бы не приходилось проверять на ошибки и т.п.
 
         $attributes = $this->getModifyAttributes();
         $attributes['id'] = $this->getId();
 
         return view($this->view, array_merge($this->getAttributes(), [
-
             'attributes' => $attributes,
             'id'         => $this->getId(),
             'fieldName'  => $this->getName(),

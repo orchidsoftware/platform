@@ -8,4 +8,4 @@
         <p class="help-block">{{$help}}</p>
     @endif
 </div>
-<div class="line line-dashed b-b line-lg"></div>
+@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
