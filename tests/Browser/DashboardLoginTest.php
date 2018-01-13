@@ -7,7 +7,6 @@ use Orchid\Platform\Tests\TestBrowserCase;
 
 class DashboardLoginTest extends TestBrowserCase
 {
-
     /**
      * @throws \Exception
      * @throws \Throwable
@@ -17,13 +16,12 @@ class DashboardLoginTest extends TestBrowserCase
         $this->browse(function (Browser $browser) {
             $browser->visitRoute('dashboard.login')
                     ->assertSee('Login');
-                /*
-                    ->type('email','admin@orchid.software')
-                    ->type('email','password')
-                    ->press('Login')
-                    ->assertPathIsNot('/dashboard/login');
-                */
+            /*
+                ->type('email','admin@orchid.software')
+                ->type('email','password')
+                ->press('Login')
+                ->assertPathIsNot('/dashboard/login');
+            */
         });
     }
-
 }
