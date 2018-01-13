@@ -2,12 +2,7 @@
     @if(isset($title))
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
-    <select class="form-control {{$class or ''}}"
-            id="{{$id}}"
-            name="{{$fieldName}}"
-            @if(isset($required) && $required) required @endif
-    >
-    </select>
+    <select @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])></select>
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif

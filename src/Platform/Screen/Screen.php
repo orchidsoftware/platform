@@ -23,10 +23,11 @@ abstract class Screen
      * @var array|Request|string
      */
     public $request;
+
     /**
      * @var array
      */
-    private $arguments = [];
+    protected $arguments = [];
 
     /**
      * Screen constructor.
@@ -94,7 +95,7 @@ abstract class Screen
     public function handle($method = null, $parameters = null)
     {
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
-            if (! is_array($method)) {
+            if (!is_array($method)) {
                 $method = [$method];
             }
             $this->arguments = $method;
@@ -102,8 +103,8 @@ abstract class Screen
             return $this->view();
         }
 
-        if (! is_null($parameters)) {
-            if (! is_array($method)) {
+        if (!is_null($parameters)) {
+            if (!is_array($method)) {
                 $method = [$method];
             }
             $this->arguments = $method;
@@ -114,7 +115,7 @@ abstract class Screen
             return call_user_func_array([$this, $parameters], $this->arguments);
         }
 
-        if (! is_array($parameters)) {
+        if (!is_array($parameters)) {
             $parameters = [$parameters];
         }
         $this->arguments = $parameters;

@@ -20,4 +20,14 @@ class RelationshipField extends Field
         'name',
         'handler',
     ];
+
+    /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'class' => 'form-control',
+    ];
+
 }
