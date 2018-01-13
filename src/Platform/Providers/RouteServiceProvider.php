@@ -45,22 +45,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('orchidRole', function ($value) {
+        Route::bind('dashboard_role', function ($value) {
             return Role::where('slug', $value)->firstOrFail();
         });
 
-        Route::bind('orchidCategory', function ($value) {
+        Route::bind('dashboard_category', function ($value) {
             return Taxonomy::findOrFail($value);
         });
 
-        Route::bind('orchidType', function ($value) {
+        Route::bind('dashboard_type', function ($value) {
             $post = new Post();
             $type = $post->getBehavior($value)->getBehaviorObject();
 
             return $type;
         });
 
-        Route::bind('orchidWidget', function ($value) {
+        Route::bind('dashboard_widget', function ($value) {
             try {
                 $widget = app()->make((urldecode($value)));
             } catch (\Exception $exception) {
@@ -74,7 +74,7 @@ class RouteServiceProvider extends ServiceProvider
             return $widget;
         });
 
-        Route::bind('orchidSlug', function ($value) {
+        Route::bind('dashboard_slug', function ($value) {
             if (is_numeric($value)) {
                 return Post::where('id', $value)->firstOrFail();
             }
@@ -82,7 +82,7 @@ class RouteServiceProvider extends ServiceProvider
             return Post::findOrFail($value);
         });
 
-        Route::bind('orchidPage', function ($value) {
+        Route::bind('dashboard_page', function ($value) {
             if (is_numeric($value)) {
                 $page = Page::where('id', $value)->first();
             } else {

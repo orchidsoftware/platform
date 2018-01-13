@@ -143,7 +143,7 @@ $this->domain(config('platform.domain'))->group(function () {
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
 
-        $router->post('widget/{orchidWidget}/{key?}', [
+        $router->post('widget/{dashboard_widget}/{key?}', [
             'as'   => 'dashboard.systems.widget',
             'uses' => 'WidgetController@index',
         ]);
