@@ -46,5 +46,4 @@ class RelationshipField extends Field
         'size',
         'tabindex',
     ];
-
 }
