@@ -19,14 +19,13 @@ trait Environment
 
         Schema::defaultStringLength(191);
 
-
         $this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate', [
             '--database' => 'orchid',
         ]);
 
-        $this->withFactories(__DIR__ . '/../database/factories');
+        $this->withFactories(__DIR__.'/../database/factories');
 
         $this->artisan('orchid:link');
     }
@@ -77,5 +76,4 @@ trait Environment
             'Active'    => Active::class,
         ];
     }
-
 }
