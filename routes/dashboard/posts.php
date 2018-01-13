@@ -15,32 +15,32 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/posts'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
     ], function (\Illuminate\Routing\Router $router) {
-        $router->get('{type}/create', [
+        $router->get('{orchidType}/create', [
             'as'   => 'dashboard.posts.type.create',
             'uses' => 'PostController@create',
         ]);
 
-        $router->get('{type}/{slug}/edit', [
+        $router->get('{orchidType}/{orchidSlug}/edit', [
             'as'   => 'dashboard.posts.type.edit',
             'uses' => 'PostController@edit',
         ]);
 
-        $router->get('{type}/{slug?}', [
+        $router->get('{orchidType}/{orchidSlug?}', [
             'as'   => 'dashboard.posts.type',
             'uses' => 'PostController@index',
         ]);
 
-        $router->post('{type}', [
+        $router->post('{orchidType}', [
             'as'   => 'dashboard.posts.type.store',
             'uses' => 'PostController@store',
         ]);
 
-        $router->put('{type}/{slug?}', [
+        $router->put('{orchidType}/{orchidSlug?}', [
             'as'   => 'dashboard.posts.type.update',
             'uses' => 'PostController@update',
         ]);
 
-        $router->delete('{type}/{slug?}', [
+        $router->delete('{orchidType}/{orchidSlug?}', [
             'as'   => 'dashboard.posts.type.destroy',
             'uses' => 'PostController@destroy',
         ]);
@@ -60,12 +60,12 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/pages'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
     ], function (\Illuminate\Routing\Router $router) {
-        $router->get('{page}', [
+        $router->get('{orchidPage}', [
             'as'   => 'dashboard.pages.show',
             'uses' => 'PageController@show',
         ]);
 
-        $router->put('{page}', [
+        $router->put('{orchidPage}', [
             'as'   => 'dashboard.pages.update',
             'uses' => 'PageController@update',
         ]);
