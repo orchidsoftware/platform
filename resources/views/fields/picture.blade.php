@@ -5,7 +5,7 @@
 
 
     <div class="picture-container m-b-md">
-        @if(isset($attributes['value']) && strlen($attributes['value'])))
+        @if(isset($attributes['value']) && strlen($attributes['value']))
         <img src="{{$attributes['value']}}" class="img-responsive img-thumbnail" alt=""/>
         @endif
     </div>
