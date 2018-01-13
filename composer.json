@@ -17,11 +17,6 @@
   ],
   "require": {
     "php": ">=7.0",
-    "ext-mbstring": "*",
-    "ext-openssl": "*",
-    "ext-pdo": "*",
-    "ext-tokenizer": "*",
-    "ext-xml": "*",
     "cartalyst/tags": "^5.0",
     "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.4",

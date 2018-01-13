@@ -38,7 +38,7 @@
     "simple-line-icons": "^2.4.1",
     "simplemde": "^1.11.2",
     "tinymce": "^4.7.4",
-    "turbolinks": "^5.0",
+    "turbolinks": "^5.1.1",
     "vue": "^2.5.9"
   }
 }

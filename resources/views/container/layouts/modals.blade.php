@@ -1,6 +1,6 @@
 @foreach($manyForms as $key => $modal)
 
-<div class="modal fade in" id="screen-modal-{{$key}}" tabindex="-1" role="dialog" aria-labelledby="screen-modal-{{$key}}">
+<div class="modal fade in" id="screen-modal-{{$key}}" role="dialog" aria-labelledby="screen-modal-{{$key}}">
   <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
     <div class="modal-content">
       <div class="modal-header">
