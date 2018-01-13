@@ -2,12 +2,12 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Orchid\Platform\Behaviors\Contract\ManyInterface;
-use Orchid\Platform\Http\Filters\CreatedFilter;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
+use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Platform\Behaviors\Contract\ManyInterface;
 
 abstract class Many implements ManyInterface
 {

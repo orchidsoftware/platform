@@ -21,7 +21,7 @@ class InputField extends Field
     ];
 
     /**
-     * Default attributes value
+     * Default attributes value.
      *
      * @var array
      */
@@ -30,7 +30,7 @@ class InputField extends Field
     ];
 
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -64,5 +64,4 @@ class InputField extends Field
         'type',
         'value',
     ];
-
 }

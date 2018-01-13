@@ -21,7 +21,7 @@ class TextAreaField extends Field
     ];
 
     /**
-     * Default attributes value
+     * Default attributes value.
      *
      * @var array
      */
@@ -30,7 +30,7 @@ class TextAreaField extends Field
     ];
 
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -49,6 +49,4 @@ class TextAreaField extends Field
         'tabindex',
         'wrap',
     ];
-
-
 }

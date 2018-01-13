@@ -20,9 +20,8 @@ class CodeField extends Field
         'name',
     ];
 
-
     /**
-     * Default attributes value
+     * Default attributes value.
      *
      * @var array
      */
@@ -31,7 +30,7 @@ class CodeField extends Field
     ];
 
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
@@ -65,5 +64,4 @@ class CodeField extends Field
         'type',
         'value',
     ];
-
 }

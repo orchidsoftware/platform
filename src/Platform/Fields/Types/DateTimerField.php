@@ -12,7 +12,7 @@ class DateTimerField extends Field
     public $view = 'dashboard::fields.datetime';
 
     /**
-     * Default attributes value
+     * Default attributes value.
      *
      * @var array
      */
@@ -31,7 +31,7 @@ class DateTimerField extends Field
     ];
 
     /**
-     * Attributes available for a particular tag
+     * Attributes available for a particular tag.
      *
      * @var array
      */
