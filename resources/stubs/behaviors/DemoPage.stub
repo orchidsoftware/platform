@@ -114,7 +114,11 @@ class DemoPage extends Single
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            Field::tag('robot')
+            Field::tag('select')
+                ->options([
+                    'index' => 'Index',
+                    'noindex' => 'No index',
+                ])
                 ->name('robot')
                 ->title('Indexing')
                 ->help('Allow search bots to index page'),

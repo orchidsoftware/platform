@@ -102,7 +102,7 @@ return [
         'input'        => Orchid\Platform\Fields\Types\InputField::class,
         'list'         => Orchid\Platform\Fields\Types\ListField::class,
         'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-        'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+        'select'       => Orchid\Platform\Fields\Types\SelectField::class,
         'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
         'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
         'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
@@ -145,8 +145,8 @@ return [
     */
 
     'common' => [
-        'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
-        'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
+        'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
+        'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
     ],
 
     /*

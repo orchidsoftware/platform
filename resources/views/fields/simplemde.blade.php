@@ -19,13 +19,7 @@
 @push('scripts')
     <script>
 $(function () {
-    new SimpleMDE({
-        element: document.getElementById("{{$id}}"),
-        toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list",
-            "|", "link","image", "table","|","preview","side-by-side","fullscreen","|", "horizontal-rule","guide"],
-        placeholder: "{{$placeholder or ''}}",
-        spellChecker: false
-    });
+    dashboard.fields.simplemde.init("{{$id}}","{{$placeholder or ''}}");
 });
 </script>
 @endpush

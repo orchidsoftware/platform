@@ -13,10 +13,15 @@
             @foreach($filters->chunk($chunk) as $value)
                 <div class="col-sm-3">
                     @foreach($value as $filter)
-                        @if(is_a($filter->display(),\Orchid\Platform\Fields\FieldContract::class))
-                            {!! $filter->display()->form('filters')->render() !!}
+
+                        @php
+                            $filter= $filter->display();
+                        @endphp
+
+                        @if(is_a($filter,\Orchid\Platform\Fields\FieldContract::class))
+                            {!! $filter->form('filters')->render() !!}
                         @else
-                            {!! $filter->display() !!}
+                            {!! $filter !!}
                         @endif
                     @endforeach
                 </div>

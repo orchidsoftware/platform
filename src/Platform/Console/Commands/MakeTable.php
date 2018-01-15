@@ -34,7 +34,7 @@ class MakeTable extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/layouts/table.stub';
+        return DASHBOARD_PATH.'/resources/stubs/console/table.stub';
     }
 
     /**

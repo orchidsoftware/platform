@@ -34,7 +34,7 @@ class MakeRows extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/layouts/rows.stub';
+        return DASHBOARD_PATH.'/resources/stubs/console/rows.stub';
     }
 
     /**

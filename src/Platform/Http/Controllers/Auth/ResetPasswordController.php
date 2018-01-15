@@ -31,6 +31,8 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = config('platform.prefix');
+
         $this->middleware('guest');
     }
 

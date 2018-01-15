@@ -108,6 +108,10 @@ class Menu
      */
     public function add(string $place, array $arg)
     {
+        if(key_exists('show',$arg) && $arg['show']){
+            return;
+        }
+
         $arg = array_merge([
             'icon'    => 'fa fa-file-o',
             'childs'  => false,

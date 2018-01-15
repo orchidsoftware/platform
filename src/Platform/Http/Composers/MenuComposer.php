@@ -65,7 +65,9 @@ class MenuComposer
             'divider'    => false,
             'permission' => 'dashboard.systems.menu',
             'sort'       => 2,
+            'show'       => count(config('platform.menu',[])) > 0
         ]);
+
 
         $dashboard->menu->add('Systems', [
             'slug'       => 'section',

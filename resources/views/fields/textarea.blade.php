@@ -2,7 +2,7 @@
     @if(isset($title))
         <label for="{{$id}}">{{$title}}</label>
     @endif
-    <textarea @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>{!! $attributes['value'] or '' !!}</textarea>
+    <textarea @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>{!! $value or '' !!}</textarea>
     @if(isset($help))
         <p class="help-block">{{$help}}</p>
     @endif

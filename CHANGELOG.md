@@ -8,12 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - "DIV" Layouts
+- Select field
+- "Show" key for admin menu
 
 ### Changed
 - Record fields as objects #391
 
 ### Deprecated
 - Record string/array for fields. Use `Field::make`
+
+### Removed
+- google analytics
+- robot field
+
 
 ## [2.0.11] - 2018-01-09
 
