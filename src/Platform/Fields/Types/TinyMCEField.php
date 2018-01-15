@@ -20,7 +20,6 @@ class TinyMCEField extends Field
         'name',
     ];
 
-
     /**
      * Attributes available for a particular tag.
      *
@@ -56,5 +55,4 @@ class TinyMCEField extends Field
         'type',
         'value',
     ];
-
 }
