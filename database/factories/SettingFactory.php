@@ -15,7 +15,6 @@ use Orchid\Platform\Core\Models\Setting;
 */
 
 $factory->define(Setting::class, function (Faker $faker) {
-
     return [
         'key' => str_random(10),
         'value' => str_random(10),
