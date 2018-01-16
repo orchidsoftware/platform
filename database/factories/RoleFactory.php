@@ -15,8 +15,6 @@ use Orchid\Platform\Core\Models\Role;
 */
 
 $factory->define(Role::class, function (Faker $faker) {
-
-
     $jobTitle = $faker->jobTitle;
 
     return [
