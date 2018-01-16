@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Platform\Layouts\Rows;
+
+class DummyClass extends Rows
+{
+    /**
+     * Views
+     *
+     * @return array
+     */
+    public function fields(): array
+    {
+        return [];
+    }
+}
