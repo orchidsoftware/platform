@@ -11,12 +11,20 @@ ORCHID основана на [Laravel Framework](http://laravel.com),
 $ composer create-project --prefer-dist laravel/laravel orchid
 ```
 
+**Не забывайте**
+- Установить права «chmod -R o + w» каталоги `storage` и `bootstrap/cache`
+- Отредактировать `.env` файл
+
+
 ## Добавьте пакет
 
 Перейдите в каталог проекта и выполните команду:
 ```php
 $ composer require orchid/platform
 ```
+
+> **Примечание.** Если вы устанавливали Laravel иначе, то возможно, вам придется сгенерировать ключ
+используя комманду `php artisan key:generate`
 
 ## Настройте
 
