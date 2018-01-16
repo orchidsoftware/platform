@@ -2,7 +2,6 @@
 
 namespace Orchid\Platform\Core\Traits;
 
-use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\App;
 
 trait MultiLanguage
@@ -26,10 +25,6 @@ trait MultiLanguage
             $attributes = array_keys($this->getAttributes());
 
             if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
-                if ($this->{$this->jsonColumnName} instanceof Repository) {
-                    return $this->{$this->jsonColumnName}->get($lang.'.'.$field);
-                }
-
                 return $this->{$this->jsonColumnName}[$lang][$field];
             }
 

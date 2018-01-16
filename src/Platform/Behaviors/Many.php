@@ -35,11 +35,22 @@ abstract class Many implements ManyInterface
     public $with = [];
 
     /**
+     * HTTP data filters.
+     *
+     * @var array
+     */
+    public $filters = [
+        SearchFilter::class,
+        StatusFilter::class,
+        CreatedFilter::class,
+    ];
+
+    /**
      * Registered fields for filling.
      *
      * @return mixed
      */
-    abstract public function fields() : array;
+    abstract public function fields();
 
     /**
      * Raw data and fields to display.
@@ -63,9 +74,9 @@ abstract class Many implements ManyInterface
     /**
      * Registered fields to display in the table.
      *
-     * @return array
+     * @return mixed
      */
-    abstract public function grid() : array;
+    abstract public function grid();
 
     /**
      * Display form for filtering.
@@ -93,7 +104,7 @@ abstract class Many implements ManyInterface
     public function getFilters($dashboard = false) : Collection
     {
         $filters = collect();
-        foreach ($this->filters() as $filter) {
+        foreach ($this->filters as $filter) {
             $filter = new $filter($this);
             if ($filter->dashboard == $dashboard) {
                 $filters->push($filter);
@@ -101,19 +112,5 @@ abstract class Many implements ManyInterface
         }
 
         return $filters;
-    }
-
-    /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            SearchFilter::class,
-            StatusFilter::class,
-            CreatedFilter::class,
-        ];
     }
 }

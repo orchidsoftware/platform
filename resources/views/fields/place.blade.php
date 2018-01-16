@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+<div class="line line-dashed b-b line-lg"></div>
 
 
 @push('scripts')

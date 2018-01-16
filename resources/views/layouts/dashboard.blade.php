@@ -48,7 +48,6 @@
                 <i class="icon-logout"></i>
             </button>
 
-            {{--
             <button class="pull-right visible-xs click"
                     data-turbolinks="false"
                     data-toggle="open"
@@ -56,8 +55,6 @@
                     data-target="#quickview">
                 <i class="icon-bell"></i>
             </button>
-            --}}
-
             <button class="pull-right visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
                 <i class="icon-menu"></i>
             </button>

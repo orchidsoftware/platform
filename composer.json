@@ -17,21 +17,21 @@
   ],
   "require": {
     "php": ">=7.0",
-    "cartalyst/tags": "^5.0",
-    "composer/semver": "^1.4",
-    "cviebrock/eloquent-sluggable": "^4.4",
-    "intervention/image": "^2.3",
     "laravel/framework": "5.5.*",
     "laravel/scout": "^3.0",
+    "watson/active": "^2.0",
+    "intervention/image": "^2.3",
+    "cartalyst/tags": "^5.0",
+    "cviebrock/eloquent-sluggable": "^4.2",
     "ralouphie/mimey": "^1.0",
-    "watson/active": "^2.0"
+    "composer/semver": "^1.4"
   },
   "require-dev": {
     "mockery/mockery": "~0.9.4",
     "phpunit/phpunit": "~6.0",
     "orchestra/testbench": "~3.0",
     "orchestra/database": "~3.0",
-    "orchestra/testbench-dusk": "~3.5"
+    "orchestra/testbench-dusk": "~3.4"
   },
   "autoload": {
     "psr-4": {
@@ -55,8 +55,5 @@
         "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
       }
     }
-  },
-  "config": {
-    "sort-packages": true
   }
 }

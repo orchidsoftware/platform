@@ -20,30 +20,4 @@ class RelationshipField extends Field
         'name',
         'handler',
     ];
-
-    /**
-     * Default attributes value.
-     *
-     * @var array
-     */
-    public $attributes = [
-        'class' => 'form-control',
-    ];
-
-    /**
-     * Attributes available for a particular tag.
-     *
-     * @var array
-     */
-    public $inlineAttributes = [
-        'accesskey',
-        'autofocus',
-        'disabled',
-        'form',
-        'multiple',
-        'name',
-        'required',
-        'size',
-        'tabindex',
-    ];
 }

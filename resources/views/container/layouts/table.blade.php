@@ -1,4 +1,6 @@
-{!! $filters or '' !!}
+<div class="wrapper-md b-b">
+    {!! $filters or '' !!}
+</div>
 
 <div class="bg-white-only  bg-auto no-border-xs">
     <div class="panel-body row">
@@ -37,9 +39,8 @@
         <footer class="panel-footer">
             <div class="row">
                 <div class="col-sm-5">
-                    <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} 
-					{{($form['data']->currentPage()-1)*$form['data']->perPage()+1}}-{{($form['data']->currentPage()-1)*$form['data']->perPage()+count($form['data']->items())}}
-					{{trans('dashboard::common.of')}} {{$form['data']->total()}} {{trans('dashboard::common.elements')}}</small>
+                    <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$form['data']->total()}}
+                        -{{$form['data']->perPage()}} {{trans('dashboard::common.of')}} {!! $form['data']->count() !!} {{trans('dashboard::common.elements')}}</small>
                 </div>
                 <div class="col-sm-7 text-right text-center-xs">
                     {!! $form['data']->appends(request()->except(['page','_token']))->links('dashboard::partials.pagination') !!}

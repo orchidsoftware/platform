@@ -23,11 +23,10 @@ abstract class Screen
      * @var array|Request|string
      */
     public $request;
-
     /**
      * @var array
      */
-    protected $arguments = [];
+    private $arguments = [];
 
     /**
      * Screen constructor.

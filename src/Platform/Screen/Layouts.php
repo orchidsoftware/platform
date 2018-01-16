@@ -16,18 +16,12 @@ class Layouts
         'tabs'    => 'dashboard::container.layouts.tabs',
         'columns' => 'dashboard::container.layouts.columns',
         'modals'  => 'dashboard::container.layouts.modals',
-        'div'     => 'dashboard::container.layouts.div',
     ];
 
     /**
      * @var array
      */
     public $layouts = [];
-
-    /**
-     * @var array
-     */
-    public $compose = [];
 
     /**
      * @param $name
@@ -51,15 +45,9 @@ class Layouts
      */
     public function __call($name, $arguments)
     {
-        if (is_null($name)) {
-            $this->active = $name;
+        $this->active = $name;
 
-            return call_user_func_array([$this, 'setLayouts'], $arguments);
-        }
-
-        $this->compose[$name] = array_shift($arguments);
-
-        return $this;
+        return call_user_func_array([$this, 'setLayouts'], $arguments);
     }
 
     /**
@@ -94,7 +82,6 @@ class Layouts
 
         return view($this->templates[$this->active], [
             'manyForms' => $build ?? [],
-            'compose'   => $this->compose,
         ])->render();
     }
 }

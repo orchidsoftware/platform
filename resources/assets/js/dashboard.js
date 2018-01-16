@@ -1,19 +1,11 @@
 window.dashboard = {
   /**
-   * Field code
-   */
-  fields: {
-    tinymce: require('./fields/tinymce'),
-    simplemde: require('./fields/simplemde'),
-  },
-
-  /**
    *
    * @param path
    * @returns {*}
    */
   prefix: function(path) {
-    let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
+    var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
     if (prefix && prefix.content.charAt(0) !== '/') {
       prefix = '/' + prefix.content;

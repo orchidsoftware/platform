@@ -37,7 +37,7 @@ class CreatedFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function display()
     {

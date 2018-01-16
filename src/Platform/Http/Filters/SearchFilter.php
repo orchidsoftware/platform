@@ -2,10 +2,8 @@
 
 namespace Orchid\Platform\Http\Filters;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\PostgresConnection;
 
 class SearchFilter extends Filter
 {
@@ -33,20 +31,16 @@ class SearchFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
-        if ($builder->getQuery()->getConnection() instanceof PostgresConnection) {
-            return $builder->whereRaw('content::TEXT ILIKE ?', '%'.$this->request->get('search').'%');
-        }
-
         return $builder->where('content', 'LIKE', '%'.$this->request->get('search').'%');
     }
 
     /**
-     * @return mixed|void
-     *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function display()
     {
-        return Field::tag('input')->type('text')->name('search')->value($this->request->get('search'))->placeholder(trans('dashboard::common.search_posts'))->title(trans('dashboard::common.filters.search'))->maxlength(200)->autocomplete('off')->hr(false);
+        return view('dashboard::container.posts.filters.search', [
+            'request' => $this->request,
+        ]);
     }
 }

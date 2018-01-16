@@ -3,7 +3,12 @@
         <label for="{{$id}}">{{$title}}</label>
     @endif
     <div class='input-group date datetimepicker'>
-        <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
+        <input type='text' class="form-control {{$class or ''}}"
+               id="{{$id}}"
+               value="{{$value or old($name)}}"
+               placeholder="{{$placeholder or ''}}"
+               name="{{$fieldName}}"
+               @if(isset($required) && $required) required @endif
                data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
         >
         <span class="input-group-addon">
@@ -14,4 +19,4 @@
         <p class="help-block">{{$help}}</p>
     @endif
 </div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+<div class="line line-dashed b-b line-lg"></div>

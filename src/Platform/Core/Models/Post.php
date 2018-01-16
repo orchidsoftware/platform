@@ -15,14 +15,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
-use Orchid\Platform\Core\Traits\RepositoryFields;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, RepositoryFields;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
 
     /**
      * @var string
@@ -72,17 +71,6 @@ class Post extends Model
         'updated_at',
         'deleted_at',
     ];
-
-    /**
-     * @return array
-     */
-    public function getRepositoryFields()
-    {
-        return [
-            'content',
-            'options',
-        ];
-    }
 
     /**
      * Return the sluggable configuration array for this model.
@@ -153,7 +141,23 @@ class Post extends Model
      */
     public function getOptions() : Collection
     {
-        return collect($this->options->all());
+        return collect($this->options);
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public function checkLanguage($key) : bool
+    {
+        $locale = $this->getOption('locale', []);
+
+        if (array_key_exists($key, $locale)) {
+            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
     }
 
     /**
@@ -175,22 +179,6 @@ class Post extends Model
         }
 
         return $default;
-    }
-
-    /**
-     * @param $key
-     *
-     * @return bool
-     */
-    public function checkLanguage($key) : bool
-    {
-        $locale = $this->getOption('locale', []);
-
-        if (array_key_exists($key, $locale)) {
-            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
-        }
-
-        return false;
     }
 
     /**
