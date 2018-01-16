@@ -31,6 +31,8 @@ php artisan vendor:publish --all
 php artisan migrate
 ```
 
+> **Примечание.** Вам также необходимо обновить `.env` файл с учетными данными вашей базы данных.
+
 Сделаем доступными css/js/etc файлы
 ```php
 php artisan storage:link
