@@ -15,7 +15,7 @@ class DashboardLoginTest extends TestBrowserCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visitRoute('dashboard.login')
-                    ->assertSee('Login');
+                    ->assertSee('Sign in to your account');
             /*
                 ->type('email','admin@orchid.software')
                 ->type('email','password')

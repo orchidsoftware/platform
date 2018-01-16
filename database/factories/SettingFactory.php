@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Core\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +14,10 @@ use Orchid\Platform\Core\Models\User;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
-    static $password;
+$factory->define(Setting::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: bcrypt('secret'),
-        'remember_token' => str_random(10),
-        'last_login' => $faker->dateTimeBetween('-6 days','this week'),
-        'permissions' => [],
+        'key' => str_random(10),
+        'value' => str_random(10),
     ];
 });
