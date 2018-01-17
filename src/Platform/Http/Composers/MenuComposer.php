@@ -81,7 +81,7 @@ class MenuComposer
 
         $dashboard->menu->add('Systems', [
             'slug'       => 'comment',
-            'icon'       => 'fa fa-comments-o',
+            'icon'       => 'icon-bubbles',
             'route'      => route('dashboard.systems.comment'),
             'label'      => trans('dashboard::menu.comments'),
             'permission' => 'dashboard.systems.comment',
@@ -113,7 +113,7 @@ class MenuComposer
 
         $dashboard->menu->add('Systems', [
             'slug'       => 'roles',
-            'icon'       => 'fa fa-lock',
+            'icon'       => 'icon-shield',
             'route'      => route('dashboard.systems.roles'),
             'label'      => trans('dashboard::menu.roles'),
             'childs'     => false,

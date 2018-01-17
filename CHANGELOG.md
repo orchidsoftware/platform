@@ -8,11 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - "DIV" Layouts
-- Select field
+- "Select" field
 - "Show" key for admin menu
 
 ### Changed
 - Record fields as objects #391
+- Demo "behaviors" are no longer published
+- Access validation does not create multiple database queries
 
 ### Deprecated
 - Record string/array for fields. Use `Field::make`
@@ -21,6 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - google analytics
 - robot field
 
+## [2.0.14] - 2018-01-16
+
+### Fixed
+- Error as select menu "demo post" #457 
 
 ## [2.0.11] - 2018-01-09
 

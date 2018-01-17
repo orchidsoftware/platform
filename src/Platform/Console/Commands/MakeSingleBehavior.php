@@ -34,7 +34,7 @@ class MakeSingleBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/console/single.stub';
+        return DASHBOARD_PATH.'/resources/stubs/single.stub';
     }
 
     /**

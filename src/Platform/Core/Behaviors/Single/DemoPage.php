@@ -1,31 +1,27 @@
 <?php
 
-namespace App\Core\Behaviors\Many;
+namespace Orchid\Core\Behaviors\Single;
 
-use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Http\Filters\CreatedFilter;
-use Orchid\Platform\Http\Filters\SearchFilter;
-use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Forms\Posts\BasePostForm;
-use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
-class DemoPost extends Many
+class DemoPage extends Single
 {
     /**
      * @var string
      */
-    public $name = 'Demo post';
+    public $name = 'Demo page';
 
     /**
      * @var string
      */
-    public $description = 'Demonstrative post';
+    public $description = 'Demonstrative page';
 
     /**
      * @var string
      */
-    public $slug = 'demo';
+    public $slug = 'demo-page';
 
     /**
      * Slug url /news/{name}.
@@ -45,20 +41,6 @@ class DemoPost extends Many
             'id'             => 'sometimes|integer|unique:posts',
             'content.*.name' => 'required|string',
             'content.*.body' => 'required|string',
-        ];
-    }
-
-    /**
-     * HTTP data filters
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            SearchFilter::class,
-            StatusFilter::class,
-            CreatedFilter::class,
         ];
     }
 
@@ -168,20 +150,7 @@ class DemoPost extends Many
     public function modules() : array
     {
         return [
-            BasePostForm::class,
             UploadPostForm::class,
-        ];
-    }
-
-    /**
-     * Grid View for post type.
-     */
-    public function grid() : array
-    {
-        return [
-            'name'       => 'Name',
-            'publish_at' => 'Date of publication',
-            'created_at' => 'Date of creation',
         ];
     }
 }
