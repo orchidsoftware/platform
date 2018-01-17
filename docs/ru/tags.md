@@ -9,8 +9,6 @@
 Теги можно подключать ко всем созданным моделям, с помощью трейта
 
 ```php
-<?php
-
 use Cartalyst\Tags\TaggableTrait;
 use Cartalyst\Tags\TaggableInterface;
 

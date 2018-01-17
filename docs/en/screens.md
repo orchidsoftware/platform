@@ -29,8 +29,6 @@ php artisan make:screen Users
 In the `app/Http/Screens` directory, the` Users` file will be created with the following content:
 
 ```php
-<?php
-
 namespace App\Http\Screens;
 
 use Illuminate\Http\Request;

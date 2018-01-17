@@ -36,8 +36,6 @@ php artisan make:screen Users
 В директории `app/Http/Controllers/Screens` будет создан файл `Users` со следующим содержанием:
 
 ```php
-<?php
-
 namespace App\Http\Controllers\Screens;
 
 use Illuminate\Http\Request;

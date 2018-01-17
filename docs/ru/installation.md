@@ -10,6 +10,7 @@
 ```php
 $ composer create-project --prefer-dist laravel/laravel orchid
 ```
+У вас нет Composer? Его легко установить, следуя инструкциям на странице [загрузки](https://getcomposer.org/download/).
 
 **Не забывайте**
 - Установить права «chmod -R o + w» на каталоги `storage` и `bootstrap/cache`
