@@ -73,7 +73,7 @@ class User extends BaseUser
 php artisan make:admin admin admin@admin.com password
 ```
 
-## Конец
+## Запуск проекта
 
 Для запуска проекта можно использовать встроенный сервер
 ```php
