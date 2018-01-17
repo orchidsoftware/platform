@@ -15,7 +15,7 @@ $this->domain(config('platform.domain'))->group(function () {
     ], function (\Illuminate\Routing\Router $router) {
     
         $router->get('/', function () {
-                     return view('welcome');
+            return view('welcome');
         });
         
     });
