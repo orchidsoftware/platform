@@ -71,7 +71,6 @@ class FoundationServiceProvider extends ServiceProvider
         ]), 'dashboard');
     }
 
-
     public function registerProviders()
     {
         foreach ($this->provides() as $provide) {
