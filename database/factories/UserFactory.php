@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: bcrypt('secret'),
         'remember_token' => str_random(10),
-        'last_login' => $faker->dateTimeBetween('-6 days','this week'),
+        'last_login' => $faker->dateTimeBetween('-6 days', 'this week'),
         'permissions' => [],
     ];
 });
