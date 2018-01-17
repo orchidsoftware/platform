@@ -2,13 +2,13 @@
 
 namespace Orchid\Core\Behaviors\Many;
 
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
+use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
-use Orchid\Platform\Fields\Field;
 
 class DemoPost extends Many
 {
@@ -49,7 +49,7 @@ class DemoPost extends Many
     }
 
     /**
-     * HTTP data filters
+     * HTTP data filters.
      *
      * @return array
      */

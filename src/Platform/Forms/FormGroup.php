@@ -87,7 +87,7 @@ abstract class FormGroup
     {
         $registerForm = event(new $this->event($this));
         $this->group = collect($registerForm)->filter(function ($item) {
-            return !is_null($item) || !empty($item);
+            return ! is_null($item) || ! empty($item);
         });
         $this->commands = collect();
         $this->html = collect();
@@ -144,7 +144,6 @@ abstract class FormGroup
     public function save(...$arg)
     {
         foreach ($this->group as $form) {
-
             $form = app()->make($form);
 
             if (method_exists($form, 'save')) {
@@ -161,7 +160,6 @@ abstract class FormGroup
     public function remove(...$arg)
     {
         foreach ($this->group as $form) {
-
             $form = app()->make($form);
 
             if (method_exists($form, 'delete')) {

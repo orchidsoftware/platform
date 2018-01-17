@@ -2,8 +2,8 @@
 
 namespace Orchid\Core\Behaviors\Single;
 
-use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
 class DemoPage extends Single
