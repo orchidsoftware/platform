@@ -90,6 +90,20 @@ class Users extends Screen
 
 ```
 
+
+
+## Регистрация в маршрутах
+
+Зарегистировать каждый экран можно с помощью метода `screen` у Route
+```php
+Route::screen('/news', 'NewsList','dashboard.screens.news.list');
+//or
+$route->screen('/news', 'NewsList','dashboard.screens.news.list');
+```
+
+
+
+
 ## Данные
 
 Большинство приложений, ориентированных на данные, работают с несколькими таблицами, и эти таблицы связаны
@@ -207,15 +221,6 @@ public function layout() : array
 
 
 
-## Регистрация в маршрутах
-
-Зарегистировать каждый экран можно с помощью метода `screen` у Route
-```php
-Route::screen('/news', 'NewsList','dashboard.screens.news.list');
-//or
-$route->screen('/news', 'NewsList','dashboard.screens.news.list');
-```
 
 
-
-#### Документация скоро будет дополнена
+> **Примечание** Документация скоро будет дополнена
