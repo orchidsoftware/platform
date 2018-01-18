@@ -11,6 +11,11 @@ use Orchid\Platform\Events\Systems\Roles\RemoveRoleEvent;
 trait UserAccess
 {
     /**
+     * @var null
+     */
+    private $cachePermissions = null;
+
+    /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getRoles()
@@ -54,8 +59,11 @@ trait UserAccess
      */
     public function hasAccess($checkPermissions) : bool
     {
-        $permissions = $this->roles()->pluck('permissions');
-        $permissions->prepend($this->permissions);
+        if (is_null($this->cachePermissions)) {
+            $this->cachePermissions = $this->roles()->pluck('permissions')->prepend($this->permissions);
+        }
+
+        $permissions = $this->cachePermissions;
 
         foreach ($permissions as $permission) {
             if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {

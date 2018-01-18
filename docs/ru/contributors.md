@@ -65,12 +65,12 @@ git clone https://github.com/orchidsoftware/platform.git
 Добавьте локальный репозиторий в `composer.json` приложения:
 
 ```php
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/home/tabuna/orchid/platform"
-        }
-    ]
+"repositories": [
+    {
+        "type": "path",
+        "url": "/home/tabuna/orchid/platform"
+    }
+]
 ```
 
 И добавим наш пакет в зависимости:

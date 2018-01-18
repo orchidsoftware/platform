@@ -34,7 +34,7 @@ class MakeFilter extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/console/filters.stub';
+        return DASHBOARD_PATH.'/resources/stubs/filters.stub';
     }
 
     /**

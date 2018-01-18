@@ -10,6 +10,7 @@
 ```php
 $ composer create-project --prefer-dist laravel/laravel orchid
 ```
+У вас нет Composer? Его легко установить, следуя инструкциям на странице [загрузки](https://getcomposer.org/download/).
 
 **Не забывайте**
 - Установить права «chmod -R o + w» на каталоги `storage` и `bootstrap/cache`
@@ -72,7 +73,7 @@ class User extends BaseUser
 php artisan make:admin admin admin@admin.com password
 ```
 
-## Конец
+## Запуск проекта
 
 Для запуска проекта можно использовать встроенный сервер
 ```php

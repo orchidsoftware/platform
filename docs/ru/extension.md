@@ -1,6 +1,28 @@
 # Расширение панели администратора
 ----------
 
+## Маршрутизация
+
+Приложение ORCHID может менять адрес для обращений, что бы ваши ресширения могли следовать за ней, 
+требуется указывать домен и префикс. Это может выглядеть так:
+
+```php
+$this->domain(config('platform.domain'))->group(function () {
+    $this->group([
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
+        'namespace'  => 'Orchid\Platform\Http\Controllers',
+    ], function (\Illuminate\Routing\Router $router) {
+    
+        $router->get('/', function () {
+            return view('welcome');
+        });
+        
+    });
+});
+```
+
+
 ## Отображение
 
 В ходе работы вам может понадобится создавать свои собственные варианты отображения `(view)`,
