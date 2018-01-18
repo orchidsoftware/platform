@@ -15,7 +15,7 @@ class OrchidDatabaseSeeder extends Seeder
 		//$this->call(RolesTableSeeder::class);
 		//$this->call(SettingsTableSeeder::class);
 		//$this->call(TermsTableSeeder::class);
-		$this->call(MenuTableSeeder::class);
+		$this->call(MenusTableSeeder::class);
 		
 		
 		
