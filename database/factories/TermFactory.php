@@ -19,11 +19,11 @@ $factory->define(Term::class, function (Faker $faker) {
     return [
         'slug' => Str::slug($faker->unique()->word),
         'content' => [
-			'en' => [
-				'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-				'body' => $faker->text,
-			]
+            'en' => [
+                'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+                'body' => $faker->text,
+            ],
         ],
-        'term_group' => $faker->randomElement($array = array (0,1,2)),
+        'term_group' => $faker->randomElement($array = [0, 1, 2]),
     ];
 });
