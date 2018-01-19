@@ -6,7 +6,9 @@
 
 ## Создайте проект
 
-Установите Laravel, выполнив команду Composer `create-project` в вашем терминале:
+Платформа и фреймворк используют Composer для управления своими зависимостями. 
+Установите Laravel, выполнив команду `composer create-project` в вашем терминале:
+
 ```php
 $ composer create-project --prefer-dist laravel/laravel orchid
 ```
