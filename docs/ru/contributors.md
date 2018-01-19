@@ -24,8 +24,7 @@
  1. [Telegram группа @orchid_community](https://t.me/orchid_community)
  1. [Slack группа ORCHID](https://lara-orchid.slack.com/messages/C6JJA6X0V/) 
 
-## Security
-
+## Безопасность
 
 Если вы обнаружили уязвимость в безопасности внутри ORCHID, пожалуйста отправьте e-mail почту `bliz48rus@gmail.com`.
 Все такие уязвимости будут незамедлительно рассмотрены.
