@@ -55,7 +55,7 @@ require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-require('./modules/mask');
+require('./modules/inputmask');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
 
