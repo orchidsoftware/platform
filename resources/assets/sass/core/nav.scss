@@ -74,6 +74,18 @@
       }
     }
   }
+  .aside-wrap {
+  		.dropdown {
+			.dropdown-item {
+				a {
+					&:hover,
+					&:focus {
+						color: inherit;
+					}
+				}
+			}
+		}
+  }
 }
 
 .aside-wrap-main {
@@ -117,10 +129,6 @@
 	}
 }
 
-.aside-wrap {
-
-
-}
 
 .navi {
   div.nav, ul.nav {
