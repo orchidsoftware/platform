@@ -16,8 +16,6 @@
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
-![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
-
 ## Introduction
 
 Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
@@ -26,6 +24,9 @@ Using application templates, saves the time and effort of building from scratch,
 ## Official Documentation
 
 Documentation can be found at [ORCHID website](http://orchid.software).
+
+
+![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
 
 ## System requirements
