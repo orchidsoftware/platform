@@ -20,8 +20,8 @@
 
 ## Introduction
 
-Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.
-  Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications.
+Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
+Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications.
 
 ## Official Documentation
 
