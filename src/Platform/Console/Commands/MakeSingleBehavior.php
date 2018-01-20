@@ -46,6 +46,6 @@ class MakeSingleBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Core\Behaviors\Single';
+        return $rootNamespace.'\Behaviors\Single';
     }
 }
