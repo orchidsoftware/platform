@@ -34,6 +34,9 @@
     "orchestra/testbench-dusk": "~3.5"
   },
   "autoload": {
+    "classmap": [
+      "database/seeds"
+    ],
     "psr-4": {
       "Orchid\\Platform\\": "src/Platform/"
     },

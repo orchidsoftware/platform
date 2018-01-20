@@ -29,14 +29,13 @@ $factory->define(Menu::class, function (Faker $faker) {
 					
     return [
         'label'	=> Str::slug($MenuTitle),
-        'title' => $MenuTitle." ".Str::slug($faker->word),
+        'title' => $MenuTitle.' '.Str::slug($faker->word),
         'slug' 	=> '/'.Str::slug($MenuTitle),
         'robot' => $faker->randomElement($RobotArr),
         'style' => $faker->safeColorName,
-        'target'=> $faker->randomElement(["_self","_blank"]),
-        'auth' 	=> $faker->randomElement([0,1]),
+        'target'=> $faker->randomElement(['_self', '_blank']),
+        'auth' 	=> $faker->randomElement([0, 1]),
         'lang' 	=> $lang,
         'sort' 	=> 0, 
     ];
 });
-
