@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Core\Behaviors\Many;
+namespace Orchid\Platform\Core\Behaviors;
 
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;

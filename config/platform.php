@@ -124,7 +124,7 @@ return [
     */
 
     'single' => [
-        Orchid\Core\Behaviors\Single\DemoPage::class,
+        Orchid\Platform\Core\Behaviors\DemoPage::class,
     ],
 
     /*
@@ -137,7 +137,7 @@ return [
     */
 
     'many' => [
-        Orchid\Core\Behaviors\Many\DemoPost::class,
+        Orchid\Platform\Core\Behaviors\DemoPost::class,
     ],
 
     /*
