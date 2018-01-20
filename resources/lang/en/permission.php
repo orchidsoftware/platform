@@ -10,7 +10,6 @@ return [
         'posts'   => 'Posts',
     ],
 
-
     'systems' => [
         'settings'   => 'Settings',
         'roles'      => 'Roles',
@@ -21,6 +20,5 @@ return [
         'attachment' => 'File upload',
         'comment'    => 'Comments',
     ],
-
 
 ];

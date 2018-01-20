@@ -2,9 +2,9 @@
 
 namespace Orchid\Platform\Events\Systems\Roles;
 
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Core\Models\User;
+use Illuminate\Queue\SerializesModels;
 
 class AddRoleEvent
 {
@@ -18,7 +18,7 @@ class AddRoleEvent
     public $user;
 
     /**
-     * Roles
+     * Roles.
      *
      * @var Collection
      */

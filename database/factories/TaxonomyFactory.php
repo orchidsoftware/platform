@@ -1,9 +1,7 @@
 <?php
 
-use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Core\Models\Term;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
+use Orchid\Platform\Core\Models\Taxonomy;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +15,12 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Taxonomy::class, function (Faker $faker) {
+    $taxonomy = $faker->randomElement($array = ['category', 'goods']);
+    $parent = Taxonomy::where('taxonomy', $taxonomy)->get()->count();
+    $parent_id = ($parent > 0) ? Taxonomy::where('taxonomy', $taxonomy)->inRandomOrder()->first()->id : 0;
+
     return [
-        'taxonomy' => $faker->word,
-        'parent_id' => 0,
-        'term_id' => function () use ($faker) {
-            return factory(Term::class)->create([
-                'slug' => Str::slug($faker->word),
-                'content' => [
-                    'text' => $faker->text
-                ],
-                'term_group' => 0,
-            ])->term_id;
-        },
+        'taxonomy' => $taxonomy,
+        'parent_id' => $faker->randomElement($array = [0, $parent_id]),
     ];
 });

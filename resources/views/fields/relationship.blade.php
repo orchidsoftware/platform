@@ -1,20 +1,16 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
     @if(isset($title))
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
-    <select class="form-control {{$class or ''}}"
-            id="{{$id}}"
-            name="{{$fieldName}}"
-    >
-    </select>
+    <select @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])></select>
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
-<div class="line line-dashed b-b line-lg"></div>
+@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 
 @push('scripts')
-<script>
+    <script>
 $(function () {
     $('#{{$id}}').select2({
         theme: "bootstrap",

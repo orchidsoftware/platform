@@ -86,8 +86,11 @@ abstract class FormGroup
     public function __construct()
     {
         $registerForm = event(new $this->event($this));
-        $this->group = collect($registerForm);
+        $this->group = collect($registerForm)->filter(function ($item) {
+            return ! is_null($item) || ! empty($item);
+        });
         $this->commands = collect();
+        $this->html = collect();
 
         // Attributes property
         if (method_exists($this, 'attributes')) {
@@ -114,12 +117,8 @@ abstract class FormGroup
      */
     public function render(...$arg) : View
     {
-        $this->html = collect();
-
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
-                $form = new $form();
-            }
+            $form = app()->make($form);
 
             if (method_exists($form, 'get')) {
                 $this->html->put($form->name, $form->get(...$arg));
@@ -145,9 +144,7 @@ abstract class FormGroup
     public function save(...$arg)
     {
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
-                $form = new $form();
-            }
+            $form = app()->make($form);
 
             if (method_exists($form, 'save')) {
                 $form->save(...$arg);
@@ -163,9 +160,7 @@ abstract class FormGroup
     public function remove(...$arg)
     {
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
-                $form = new $form();
-            }
+            $form = app()->make($form);
 
             if (method_exists($form, 'delete')) {
                 $form->delete(...$arg);
@@ -199,7 +194,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function method(string $method) : FormGroup
+    public function method(string $method) : self
     {
         $this->method = $method;
 
@@ -211,7 +206,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function route(string $method) : FormGroup
+    public function route(string $method) : self
     {
         $this->route = $method;
 
@@ -223,7 +218,7 @@ abstract class FormGroup
      *
      * @return FormGroup
      */
-    public function slug(string $method) : FormGroup
+    public function slug(string $method) : self
     {
         $this->slug = $method;
 

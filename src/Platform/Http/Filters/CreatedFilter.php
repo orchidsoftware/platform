@@ -2,14 +2,12 @@
 
 namespace Orchid\Platform\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
 {
-
     /**
-     *
      * @var array
      */
     public $parameters = [
@@ -39,7 +37,7 @@ class CreatedFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|void
      */
     public function display()
     {

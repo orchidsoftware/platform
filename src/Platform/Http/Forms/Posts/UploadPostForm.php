@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
-use Illuminate\Contracts\View\View;
 use Orchid\Platform\Forms\Form;
+use Illuminate\Contracts\View\View;
 
 class UploadPostForm extends Form
 {
@@ -11,6 +11,11 @@ class UploadPostForm extends Form
      * @var string
      */
     public $name = 'Uploads';
+
+    /**
+     * @var string
+     */
+    public $storage = 'public';
 
     /**
      * UploadPostForm constructor.
@@ -33,7 +38,7 @@ class UploadPostForm extends Form
      */
     public function get() : View
     {
-        return view('dashboard::container.posts.modules.upload');
+        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage]);
     }
 
     /**

@@ -4,7 +4,6 @@ namespace Orchid\Platform\Screen;
 
 class Layouts
 {
-
     /**
      * @var null
      */
@@ -17,6 +16,7 @@ class Layouts
         'tabs'    => 'dashboard::container.layouts.tabs',
         'columns' => 'dashboard::container.layouts.columns',
         'modals'  => 'dashboard::container.layouts.modals',
+        'div'     => 'dashboard::container.layouts.div',
     ];
 
     /**
@@ -24,6 +24,10 @@ class Layouts
      */
     public $layouts = [];
 
+    /**
+     * @var array
+     */
+    public $compose = [];
 
     /**
      * @param $name
@@ -33,7 +37,7 @@ class Layouts
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new Layouts();
+        $new = new self();
         $new->active = $name;
 
         return call_user_func_array([$new, 'setLayouts'], $arguments);
@@ -47,9 +51,15 @@ class Layouts
      */
     public function __call($name, $arguments)
     {
-        $this->active = $name;
+        if (is_null($name)) {
+            $this->active = $name;
 
-        return call_user_func_array([$this, 'setLayouts'], $arguments);
+            return call_user_func_array([$this, 'setLayouts'], $arguments);
+        }
+
+        $this->compose[$name] = array_shift($arguments);
+
+        return $this;
     }
 
     /**
@@ -84,6 +94,7 @@ class Layouts
 
         return view($this->templates[$this->active], [
             'manyForms' => $build ?? [],
+            'compose'   => $this->compose,
         ])->render();
     }
 }

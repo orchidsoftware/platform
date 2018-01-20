@@ -2,58 +2,47 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
-use Orchid\Platform\Behaviors\Contract\ManyInterface;
-use Orchid\Platform\Http\Filters\CreatedFilter;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
+use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Platform\Behaviors\Contract\ManyInterface;
 
 abstract class Many implements ManyInterface
 {
     use Structure;
 
     /**
-     * Show the data to the user
+     * Show the data to the user.
      *
      * @var bool
      */
     public $display = true;
 
     /**
-     * Is it possible to give data on api
+     * Is it possible to give data on api.
      *
      * @var bool
      */
     public $api = false;
 
     /**
-     * Eloquent Eager Loading
+     * Eloquent Eager Loading.
      *
      * @var array
      */
     public $with = [];
 
     /**
-     * HTTP data filters
-     *
-     * @var array
-     */
-    public $filters = [
-        SearchFilter::class,
-        StatusFilter::class,
-        CreatedFilter::class,
-    ];
-
-    /**
-     * Registered fields for filling
+     * Registered fields for filling.
      *
      * @return mixed
      */
-    abstract public function fields();
+    abstract public function fields() : array;
 
     /**
-     * Raw data and fields to display
+     * Raw data and fields to display.
      *
      * @return array
      */
@@ -72,14 +61,14 @@ abstract class Many implements ManyInterface
     }
 
     /**
-     * Registered fields to display in the table
+     * Registered fields to display in the table.
      *
-     * @return mixed
+     * @return array
      */
-    abstract public function grid();
+    abstract public function grid() : array;
 
     /**
-     * Display form for filtering
+     * Display form for filtering.
      *
      * @return View
      */
@@ -95,7 +84,7 @@ abstract class Many implements ManyInterface
     }
 
     /**
-     * Get all the filters
+     * Get all the filters.
      *
      * @param bool $dashboard
      *
@@ -104,7 +93,7 @@ abstract class Many implements ManyInterface
     public function getFilters($dashboard = false) : Collection
     {
         $filters = collect();
-        foreach ($this->filters as $filter) {
+        foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
             if ($filter->dashboard == $dashboard) {
                 $filters->push($filter);
@@ -112,5 +101,19 @@ abstract class Many implements ManyInterface
         }
 
         return $filters;
+    }
+
+    /**
+     * HTTP data filters.
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [
+            SearchFilter::class,
+            StatusFilter::class,
+            CreatedFilter::class,
+        ];
     }
 }

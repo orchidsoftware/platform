@@ -3,15 +3,15 @@
 namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Behaviors\Many as PostBehavior;
-use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Behaviors\Many as PostBehavior;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function index(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
 
         return view('dashboard::container.posts.main', $type->generateGrid());
     }
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function create(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
@@ -67,18 +67,15 @@ class PostController extends Controller
      */
     public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
         $this->validate($request, $type->rules());
 
-        $post->fill($request->all());
-
-        $post->fill([
+        $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => Auth::user()->id,
             'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
             'options'    => $post->getOptions(),
         ]);
-
 
         if ($request->filled('slug')) {
             $slug = $request->get('slug');
@@ -114,7 +111,7 @@ class PostController extends Controller
      */
     public function edit(PostBehavior $type, Post $post) : View
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
@@ -134,22 +131,26 @@ class PostController extends Controller
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
         $post->options = $post->getOptions();
 
+        $slug = null;
 
         if ($request->filled('slug')) {
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $slug = $type->slugFields ? reset($content)[$type->slugFields] : 1;
+            $behaviorObject = $post->getBehaviorObject();
+            if (property_exists($behaviorObject, 'slugFields')) {
+                $slug = reset($content)[$behaviorObject->slugFields];
+            }
         }
 
-        if ($request->filled('slug') && $request->get('slug') !== $post->slug) {
+        if (! empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 
@@ -180,11 +181,10 @@ class PostController extends Controller
      */
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.' . $type->slug);
-        try {
-            $post->delete();
-        } catch (\Exception $e) {
-        }
+        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+
+        $post->delete();
+
         Alert::success(trans('dashboard::common.alert.success'));
 
         return redirect()->route('dashboard.posts.type', [

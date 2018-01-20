@@ -9,7 +9,7 @@ abstract class Rows
     /**
      * @var string
      */
-    public $template = "dashboard::container.layouts.row";
+    public $template = 'dashboard::container.layouts.row';
 
     /**
      * @param $post

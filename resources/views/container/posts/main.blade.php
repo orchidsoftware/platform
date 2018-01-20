@@ -39,7 +39,7 @@
                                         <a href="{{route('dashboard.posts.type.edit',[
                                     'type' => $type->slug,
                                     'slug' => $datum->id])
-                                    }}"><i class="fa fa-bars"></i></a>
+                                    }}"><i class="icon-menu"></i></a>
                                     </td>
                                     @foreach($fields as $key => $name)
                                         <td>

@@ -57,7 +57,7 @@ class Menu
      *
      * @return Menu
      */
-    public function place(string $location) : Menu
+    public function place(string $location) : self
     {
         $this->location = $location;
 
@@ -69,7 +69,7 @@ class Menu
      *
      * @return Menu
      */
-    public function template(string $template) : Menu
+    public function template(string $template) : self
     {
         $this->template = $template;
 
@@ -93,7 +93,7 @@ class Menu
      *
      * @return Menu
      */
-    public function sortBy(int $sort) : Menu
+    public function sortBy(int $sort) : self
     {
         $this->sort = $sort;
 
@@ -108,6 +108,10 @@ class Menu
      */
     public function add(string $place, array $arg)
     {
+        if (array_key_exists('show', $arg) && $arg['show']) {
+            return;
+        }
+
         $arg = array_merge([
             'icon'    => 'fa fa-file-o',
             'childs'  => false,
@@ -140,7 +144,7 @@ class Menu
     {
         $html = '';
 
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
             $this->container = $this->container->filter(function ($item) use ($user) {
@@ -149,11 +153,11 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (!array_key_exists('template', $value)) {
+            if (! array_key_exists('template', $value)) {
                 $value['template'] = 'dashboard::partials.leftMainMenu';
             }
 
-            if (!is_null($template)) {
+            if (! is_null($template)) {
                 $value['template'] = $template;
             }
 

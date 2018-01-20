@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Http\Middleware;
 
-use Carbon\Carbon;
 use Closure;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 
 class AccessMiddleware
@@ -46,10 +46,12 @@ class AccessMiddleware
             } else {
                 return redirect()->guest('/dashboard/login');
             }
-        } elseif ($this->auth->user()->hasAccess('dashboard.index')) {
-            return $next($request);
-        } else {
-            abort(404);
         }
+
+        if ($this->auth->user()->hasAccess('dashboard.index')) {
+            return $next($request);
+        }
+
+        abort(404);
     }
 }

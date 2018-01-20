@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Orchid\Platform\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -32,6 +32,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = config('platform.prefix');
+
         $this->middleware('guest', ['except' => 'logout']);
     }
 

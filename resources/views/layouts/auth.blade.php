@@ -18,7 +18,7 @@
     <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
     <meta name="description"
           content="Laravel Platform application provides a very flexible and extensible way of building your custom application.">
-    <meta property="og:title" content="@yield('title','Orchid')"/>
+    <meta property="og:title" content="@yield('title','ORCHID')"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{url()->current()}}"/>
     <meta property="og:image" content="{{config('content.image','/orchid/img/background.jpg')}}"/>
@@ -42,7 +42,7 @@
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>
-                © 2013 -{{date('Y')}} Orchid.
+                © 2013 -{{date('Y')}} ORCHID.
             </p>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
                     <div class="col-sm-3 col-md-2">
-                        <a href="https://orchid.software/"><img alt="Orchid"
+                        <a href="https://orchid.software/"><img alt="ORCHID"
                                                                 class="m-t-xs"
                                                                 src="/orchid/img/logo.svg"
                                                                 width="78"
@@ -75,7 +75,7 @@
 
                                 License & Source Code<br>
                                 ORCHID is freely available under the MIT. <br>
-                                The source is available on <a href="https://github.com/TheOrchid/Platform"
+                                The source is available on <a href="https://github.com/orchidsoftware/platform"
                                                               class="text-info" target="_blank"
                                                               rel="noopener noreferrer">GitHub</a>.
 

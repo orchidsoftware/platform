@@ -48,7 +48,7 @@ class MediaController extends Controller
             $folder = '';
         }
 
-        $dir = $this->directory . $folder;
+        $dir = $this->directory.$folder;
 
         $extensions = $request->get('mime', null);
 
@@ -81,8 +81,7 @@ class MediaController extends Controller
             }
 
             $files[] = [
-                'name'          => strpos($file, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '',
-                    strrchr($file, DIRECTORY_SEPARATOR)) : $file,
+                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
                 'type'          => $mimetype,
                 'path'          => Storage::disk($this->filesystem)->url($file),
                 'size'          => Storage::disk($this->filesystem)->size($file),
@@ -92,8 +91,7 @@ class MediaController extends Controller
 
         foreach ($storageFolders as $folder) {
             $files[] = [
-                'name'          => strpos($folder, DIRECTORY_SEPARATOR) > 1 ? str_replace(DIRECTORY_SEPARATOR, '',
-                    strrchr($folder, DIRECTORY_SEPARATOR)) : $folder,
+                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
                 'type'          => 'folder',
                 'path'          => Storage::disk($this->filesystem)->url($folder),
                 'items'         => '',
@@ -147,11 +145,11 @@ class MediaController extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type == 'folder') {
-            if (!Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
+            if (! Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
                 $error = 'Sorry something seems to have gone wrong when deleting this folder, please check your permissions';
                 $success = false;
             }
-        } elseif (!Storage::disk($this->filesystem)->delete($fileFolder)) {
+        } elseif (! Storage::disk($this->filesystem)->delete($fileFolder)) {
             $error = 'Sorry something seems to have gone wrong deleting this file, please check your permissions';
             $success = false;
         }
@@ -197,10 +195,10 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination,
-            '/../') !== false ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
+            '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-        if (!file_exists($destination)) {
+        if (! file_exists($destination)) {
             if (Storage::disk($this->filesystem)->move($source, $destination)) {
                 $success = true;
             } else {
@@ -232,7 +230,7 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        if (!Storage::disk($this->filesystem)->exists("{$location}/{$newFilename}")) {
+        if (! Storage::disk($this->filesystem)->exists("{$location}/{$newFilename}")) {
             if (Storage::disk($this->filesystem)->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {
@@ -254,7 +252,7 @@ class MediaController extends Controller
     {
         try {
             foreach ($request->files as $file) {
-                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName() . '.'. $file->getClientOriginalExtension());
+                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName().'.'.$file->getClientOriginalExtension());
             }
             $success = true;
             $message = 'Successfully uploaded new file!';

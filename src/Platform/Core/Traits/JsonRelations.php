@@ -5,7 +5,7 @@ namespace Orchid\Platform\Core\Traits;
 trait JsonRelations
 {
     /**
-     * Column for relations
+     * Column for relations.
      * @var string
      */
     public $jsonRelationColumn = 'options';
@@ -33,7 +33,7 @@ trait JsonRelations
     {
         $options = $this->getAttribute($this->jsonRelationColumn);
 
-        if (key_exists('relations', $options)) {
+        if (array_key_exists('relations', $options)) {
             return $options['relations'];
         }
 
@@ -64,7 +64,7 @@ trait JsonRelations
     {
         $option = $this->jsonRelationInit();
 
-        if (!key_exists($name, $option)) {
+        if (! array_key_exists($name, $option)) {
             $option[$name] = [];
         }
 

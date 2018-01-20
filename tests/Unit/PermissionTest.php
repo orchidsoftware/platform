@@ -5,9 +5,9 @@ namespace Orchid\Platform\Tests\Unit;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Tests\TestCase;
+use Orchid\Platform\Tests\TestUnitCase;
 
-class PermissionTest extends TestCase
+class PermissionTest extends TestUnitCase
 {
     /**
      * Verify permissions.
@@ -39,7 +39,7 @@ class PermissionTest extends TestCase
     private function createUser()
     {
         return User::firstOrCreate([
-            'email' => 'test@test.com'
+            'email' => 'test@test.com',
         ], [
             'name'        => 'test',
             'email'       => 'test@test.com',
@@ -57,7 +57,7 @@ class PermissionTest extends TestCase
     public function createRole()
     {
         return Role::firstOrCreate([
-            'slug' => 'admin'
+            'slug' => 'admin',
         ], [
             'slug'        => 'admin',
             'name'        => 'admin',

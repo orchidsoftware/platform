@@ -1,17 +1,14 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
     @if(isset($title))
         <label for="{{$id}}">{{$title}}</label>
     @endif
     <div id="ace-code-block-{{$id}}" style="width: 100%; min-height: 500px;"></div>
-    <input type="hidden" class="form-control {{$class or ''}}" id="{{$id}}"
-           name="{{$fieldName}}"
-           value="{{$value or old($name)}}"
-           placeholder="{{$placeholder or ''}}">
+    <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
-<div class="line line-dashed b-b line-lg"></div>
+@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 @push('scripts')
     <script>
     $(function () {

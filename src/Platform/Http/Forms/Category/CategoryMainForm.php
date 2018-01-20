@@ -2,12 +2,12 @@
 
 namespace Orchid\Platform\Http\Forms\Category;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Orchid\Platform\Forms\Form;
+use Illuminate\Contracts\View\View;
+use Orchid\Platform\Core\Models\Term;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Core\Models\Term;
-use Orchid\Platform\Forms\Form;
 
 class CategoryMainForm extends Form
 {
@@ -40,7 +40,7 @@ class CategoryMainForm extends Form
     public function rules() : array
     {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,' . $this->request->get('slug') . ',slug',
+            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
         ];
     }
 
@@ -95,6 +95,12 @@ class CategoryMainForm extends Form
      */
     public function delete(Request $request, Taxonomy $termTaxonomy)
     {
+        $termTaxonomy->allChildrenTerm()->get()->each(function ($item) {
+            $item->update([
+                'parent_id' => 0,
+            ]);
+        });
+
         $termTaxonomy->term->delete();
         $termTaxonomy->delete();
     }

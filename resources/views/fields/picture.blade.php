@@ -1,12 +1,12 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
     @if(isset($title))
         <label for="field-{{$slug}}">{{$title}}</label>
     @endif
 
 
     <div class="picture-container m-b-md">
-        @if(isset($value) && strlen($value) || strlen(old($name)))
-            <img src="{{$value or old($name)}}" class="img-responsive img-thumbnail" alt=""/>
+        @if(isset($attributes['value']) && strlen($attributes['value']))
+        <img src="{{$attributes['value']}}" class="img-responsive img-thumbnail" alt=""/>
         @endif
     </div>
 
@@ -20,8 +20,8 @@
            type="hidden"
            data-width="{{$width}}"
            data-height="{{$height}}"
-           name="{{$fieldName}}"
-           value="{{$value or old($name)}}"/>
+            @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
+    >
 </div>
 
 
@@ -100,11 +100,13 @@ $(function () {
     $('#picture-crop-modal-{{$lang}}-{{$slug}} .crop').on('click', function (ev) {
         $cropPanel.croppie('result', {
             type: 'blob',
-            size: 'viewport'
+            size: 'viewport',
+            format: '{{$format ?? 'png'}}'
         }).then(function (blob) {
 
             let data = new FormData();
             data.append('file', blob);
+            data.append('storage', '{{$storage??'public'}}');
 
             axios.post(dashboard.prefix('/systems/files'), data)
                 .then(function (response) {
@@ -120,6 +122,11 @@ $(function () {
                     $formGroup.find('.picture-input-file-{{$lang}}-{{$slug}}').value = '';
                 })
                 .catch(function (error) {
+                    if ('message' in error.response.data) {
+                        if ('alert' in dashboard) {
+                            dashboard.alert(error.response.data.message);
+                        }
+                    }
                     console.log(error);
                 });
 

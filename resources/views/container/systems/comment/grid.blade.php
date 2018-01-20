@@ -37,7 +37,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{route('dashboard.marketing.comment.edit',$comment->id)}}"><i
-                                                        class="fa fa-bars"></i></a>
+                                                        class="icon-menu"></i></a>
                                         </td>
 
                                         <td class="text-center">

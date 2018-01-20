@@ -34,7 +34,7 @@ class MakeTable extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/layouts/table.stub';
+        return DASHBOARD_PATH.'/resources/stubs/table.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeTable extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Http\Layouts';
+        return $rootNamespace.'\Http\Layouts';
     }
 }

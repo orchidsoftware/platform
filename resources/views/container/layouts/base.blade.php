@@ -29,4 +29,5 @@
         </div>
     </section>
 
+    <form id="filters"></form>
 @stop

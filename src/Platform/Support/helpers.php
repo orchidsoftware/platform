@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('alert')) {
+if (! function_exists('alert')) {
     /**
      * Helper function to send an alert.
      *
@@ -13,7 +13,7 @@ if (!function_exists('alert')) {
     {
         $notifier = app('alert');
 
-        if (!is_null($message)) {
+        if (! is_null($message)) {
             return $notifier->message($message, $level);
         }
 
@@ -21,7 +21,7 @@ if (!function_exists('alert')) {
     }
 }
 
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     /**
      * @param      $key
      * @param null $default
@@ -34,7 +34,7 @@ if (!function_exists('setting')) {
     }
 }
 
-if (!function_exists('generate_form')) {
+if (! function_exists('generate_form')) {
     /**
      * @param array       $fields
      * @param             $data
@@ -49,11 +49,19 @@ if (!function_exists('generate_form')) {
             $data = new \Orchid\Platform\Screen\Repository($data);
         }
 
-        $form = new \Orchid\Platform\Fields\Builder($fields, $data, $language, $prefix);
+        return (new \Orchid\Platform\Fields\Builder($fields, $data, $language, $prefix))->generateForm();
+    }
+}
 
-        try {
-            return $form->generateForm();
-        } catch (\Orchid\Platform\Exceptions\TypeException $e) {
-        }
+if (! function_exists('dashboard_domain')) {
+
+    /**
+     * @param string $default
+     *
+     * @return string
+     */
+    function dashboard_domain($default = 'localhost')
+    {
+        return isset(parse_url(config('app.url'))['host']) ? parse_url(config('app.url'))['host'] : $default;
     }
 }

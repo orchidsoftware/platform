@@ -34,7 +34,7 @@ class MakeFilter extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/filters.stub';
+        return DASHBOARD_PATH.'/resources/stubs/filters.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeFilter extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Http\Filters';
+        return $rootNamespace.'\Http\Filters';
     }
 }

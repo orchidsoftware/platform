@@ -1,0 +1,75 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Http\Forms\Posts\BasePostForm;
+use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+
+class DummyClass extends Many
+{
+
+    /**
+     * @var string
+     */
+    public $name = '';
+
+    /**
+     * @var string
+     */
+    public $slug = '';
+
+    /**
+     * Slug url /news/{name}.
+     *
+     * @var string
+     */
+    public $slugFields = '';
+
+    /**
+     * Rules Validation.
+     *
+     * @return array
+     */
+    public function rules() : array
+    {
+        return [];
+    }
+
+    /**
+     * HTTP data filters
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function fields() : array
+    {
+        return [];
+    }
+
+    /**
+     * Grid View for post type.
+     */
+    public function grid() : array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function modules() : array
+    {
+        return [
+            BasePostForm::class,
+            UploadPostForm::class,
+        ];
+    }
+}

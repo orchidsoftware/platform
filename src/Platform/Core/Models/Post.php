@@ -2,26 +2,27 @@
 
 namespace Orchid\Platform\Core\Models;
 
-use Cartalyst\Tags\TaggableTrait;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Cartalyst\Tags\TaggableTrait;
+use Illuminate\Support\Collection;
+use Orchid\Platform\Facades\Dashboard;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Platform\Core\Traits\Attachment;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
-use Orchid\Platform\Exceptions\TypeException;
-use Orchid\Platform\Facades\Dashboard;
+use Orchid\Platform\Core\Traits\RepositoryFields;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, RepositoryFields;
 
     /**
      * @var string
@@ -29,7 +30,7 @@ class Post extends Model
     protected $table = 'posts';
 
     /**
-     * Recording behavior
+     * Recording behavior.
      *
      * @var null
      */
@@ -73,6 +74,17 @@ class Post extends Model
     ];
 
     /**
+     * @return array
+     */
+    public function getRepositoryFields()
+    {
+        return [
+            'content',
+            'options',
+        ];
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
@@ -101,7 +113,7 @@ class Post extends Model
     }
 
     /**
-     * Get Behavior Class
+     * Get Behavior Class.
      *
      * @param null $slug
      *
@@ -109,7 +121,7 @@ class Post extends Model
      */
     public function getBehaviorObject($slug = null)
     {
-        if (!is_null($this->behavior)) {
+        if (! is_null($this->behavior)) {
             return $this->behavior;
         }
 
@@ -141,23 +153,7 @@ class Post extends Model
      */
     public function getOptions() : Collection
     {
-        return collect($this->options);
-    }
-
-    /**
-     * @param $key
-     *
-     * @return bool
-     */
-    public function checkLanguage($key) : bool
-    {
-        $locale = $this->getOption('locale', []);
-
-        if (array_key_exists($key, $locale)) {
-            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
-        }
-
-        return false;
+        return collect($this->options->all());
     }
 
     /**
@@ -179,6 +175,22 @@ class Post extends Model
         }
 
         return $default;
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public function checkLanguage($key) : bool
+    {
+        $locale = $this->getOption('locale', []);
+
+        if (array_key_exists($key, $locale)) {
+            return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
     }
 
     /**
@@ -214,7 +226,6 @@ class Post extends Model
 
         return $first ? $first->url($size) : null;
     }
-
 
     /**
      * Comments relationship.
@@ -363,7 +374,7 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
     {
-        if (!is_null($behavior)) {
+        if (! is_null($behavior)) {
             try {
                 $this->getBehavior($behavior);
             } catch (TypeException $e) {
@@ -398,7 +409,7 @@ class Post extends Model
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
-        if (!is_null($behavior)) {
+        if (! is_null($behavior)) {
             try {
                 $this->getBehavior($behavior);
             } catch (TypeException $e) {

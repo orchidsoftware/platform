@@ -4,7 +4,12 @@ php:
   - 7.0
   - 7.1
 
-sudo: false
+sudo: required
+dist: trusty
+
+addons:
+   chrome: stable
+   postgresql: "9.4"
 
 cache:
   directories:
@@ -20,10 +25,10 @@ before_install:
 install:
   - composer install --prefer-source
 
+before_script:
+   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
 script: vendor/bin/phpunit
 
 notifications:
   email: false
-  
-addons:
-  postgresql: "9.4"

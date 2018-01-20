@@ -2,11 +2,11 @@
 
 */
 
-$assets-url : "../../assets";
-$base-img-url : "/orchid/img/";
-$icon-font-path : "/orchid/fonts/";
-$fa-font-path : "/orchid/fonts/";
-$simple-line-font-path : "/orchid/fonts/";
+$assets-url : '../../assets';
+$base-img-url : '/orchid/img/';
+$icon-font-path : '/orchid/fonts/';
+$fa-font-path : '/orchid/fonts/';
+$simple-line-font-path : '/orchid/fonts/';
 
 
 $grid-breakpoints: (
@@ -38,35 +38,75 @@ $mix-percentage-lighter : 20%;
 
 //Lighter colors
 $brand-success-light : mix($brand-success, $brand-white, $mix-percentage-light);
-$brand-success-lighter : mix($brand-success, $brand-white, $mix-percentage-lighter);
+$brand-success-lighter : mix(
+                $brand-success,
+                $brand-white,
+                $mix-percentage-lighter
+);
 
-$brand-complete-light : mix($brand-complete, $brand-white, $mix-percentage-light);
-$brand-complete-lighter : mix($brand-complete, $brand-white, $mix-percentage-lighter);
+$brand-complete-light : mix(
+                $brand-complete,
+                $brand-white,
+                $mix-percentage-light
+);
+$brand-complete-lighter : mix(
+                $brand-complete,
+                $brand-white,
+                $mix-percentage-lighter
+);
 
 $brand-primary-light : mix($brand-primary, $brand-white, $mix-percentage-light);
-$brand-primary-lighter : mix($brand-primary, $brand-white, $mix-percentage-lighter);
+$brand-primary-lighter : mix(
+                $brand-primary,
+                $brand-white,
+                $mix-percentage-lighter
+);
 
 $brand-warning-light : mix($brand-warning, $brand-white, $mix-percentage-light);
-$brand-warning-lighter : mix($brand-warning, $brand-white, $mix-percentage-lighter);
+$brand-warning-lighter : mix(
+                $brand-warning,
+                $brand-white,
+                $mix-percentage-lighter
+);
 
 $brand-danger-light : mix($brand-danger, $brand-white, $mix-percentage-light);
-$brand-danger-lighter : mix($brand-danger, $brand-white, $mix-percentage-lighter);
+$brand-danger-lighter : mix(
+                $brand-danger,
+                $brand-white,
+                $mix-percentage-lighter
+);
 
 $brand-info-light : mix($brand-info, $brand-white, $mix-percentage-light);
 $brand-info-lighter : mix($brand-info, $brand-white, $mix-percentage-lighter);
 
 //Darker colors
 $brand-success-dark : mix($brand-success, $brand-black, $mix-percentage-dark);
-$brand-success-darker : mix($brand-success, $brand-black, $mix-percentage-darker);
+$brand-success-darker : mix(
+                $brand-success,
+                $brand-black,
+                $mix-percentage-darker
+);
 
 $brand-complete-dark : mix($brand-complete, $brand-black, $mix-percentage-dark);
-$brand-complete-darker : mix($brand-complete, $brand-black, $mix-percentage-darker);
+$brand-complete-darker : mix(
+                $brand-complete,
+                $brand-black,
+                $mix-percentage-darker
+);
 
 $brand-primary-dark : mix($brand-primary, $brand-black, $mix-percentage-dark);
-$brand-primary-darker : mix($brand-primary, $brand-black, $mix-percentage-darker);
+$brand-primary-darker : mix(
+                $brand-primary,
+                $brand-black,
+                $mix-percentage-darker
+);
 
 $brand-warning-dark : mix($brand-warning, $brand-black, $mix-percentage-dark);
-$brand-warning-darker : mix($brand-warning, $brand-black, $mix-percentage-darker);
+$brand-warning-darker : mix(
+                $brand-warning,
+                $brand-black,
+                $mix-percentage-darker
+);
 
 $brand-danger-dark : mix($brand-danger, $brand-black, $mix-percentage-dark);
 $brand-danger-darker : mix($brand-danger, $brand-black, $mix-percentage-darker);
@@ -138,7 +178,7 @@ $table-striped-color : lighten($brand-light, 4.5%);
 $arrow-width : 8px;
 $arrow-color : #ffffff;
 $arrow-outer-width : ($arrow-width + 1);
-$arrow-outer-color : rgba(0, 0, 0, .1);
+$arrow-outer-color : rgba(0, 0, 0, 0.1);
 
 $switch-width : 35px;
 $switch-height : 20px;
@@ -163,13 +203,13 @@ $butterbar-time : 0.75s;
 
 $off-screen-width : 75%;
 
-$menu-bezier : .05, .74, .27, .99;
+$menu-bezier : 0.05, 0.74, 0.27, 0.99;
 $brand-menu-light : #fafafa;
 
 //Forms
 $form-height : 35px;
 $form-group-height : 54px;
-$form-control-border-color : fade-out($brand-black, .93);
+$form-control-border-color : fade-out($brand-black, 0.93);
 
 $tablet : 768px;
 $desktop : 1280px;

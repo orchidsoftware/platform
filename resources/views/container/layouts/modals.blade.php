@@ -1,7 +1,7 @@
 @foreach($manyForms as $key => $modal)
 
-<div class="modal fade in" id="screen-modal-{{$key}}" tabindex="-1" role="dialog" aria-labelledby="screen-modal-{{$key}}">
-  <div class="modal-dialog" role="document">
+<div class="modal fade in" id="screen-modal-{{$key}}" role="dialog" aria-labelledby="screen-modal-{{$key}}">
+  <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -25,4 +25,5 @@
 <script>
   $('#title-modal-{{$key}}').html($('#show-button-modal-{{$key}}').data('modalTitle'));
   $('#submit-modal-{{$key}}').attr('formaction',$('#show-button-modal-{{$key}}').data('modalAction'));
+  $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
 </script>

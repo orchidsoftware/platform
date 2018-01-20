@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 
 abstract class Screen
 {
-
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name;
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
@@ -24,10 +23,11 @@ abstract class Screen
      * @var array|Request|string
      */
     public $request;
+
     /**
      * @var array
      */
-    private $arguments = [];
+    protected $arguments = [];
 
     /**
      * Screen constructor.
@@ -38,7 +38,7 @@ abstract class Screen
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -48,7 +48,7 @@ abstract class Screen
     }
 
     /**
-     * Query data
+     * Query data.
      *
      * @return array
      */
@@ -77,7 +77,7 @@ abstract class Screen
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
@@ -95,7 +95,7 @@ abstract class Screen
     public function handle($method = null, $parameters = null)
     {
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
-            if (!is_array($method)) {
+            if (! is_array($method)) {
                 $method = [$method];
             }
             $this->arguments = $method;
@@ -103,9 +103,8 @@ abstract class Screen
             return $this->view();
         }
 
-
-        if (!is_null($parameters)) {
-            if (!is_array($method)) {
+        if (! is_null($parameters)) {
+            if (! is_array($method)) {
                 $method = [$method];
             }
             $this->arguments = $method;
@@ -116,8 +115,7 @@ abstract class Screen
             return call_user_func_array([$this, $parameters], $this->arguments);
         }
 
-
-        if (!is_array($parameters)) {
+        if (! is_array($parameters)) {
             $parameters = [$parameters];
         }
         $this->arguments = $parameters;
@@ -128,9 +126,7 @@ abstract class Screen
         return call_user_func_array([$this, $method], $this->arguments);
     }
 
-
     /**
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
@@ -180,7 +176,6 @@ abstract class Screen
 
         return false;
     }
-
 
     /**
      * @param $key

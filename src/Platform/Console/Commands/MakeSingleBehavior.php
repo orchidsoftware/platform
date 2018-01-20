@@ -34,7 +34,7 @@ class MakeSingleBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/console/single.stub';
+        return DASHBOARD_PATH.'/resources/stubs/single.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeSingleBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Core\Behaviors\Single';
+        return $rootNamespace.'\Core\Behaviors\Single';
     }
 }

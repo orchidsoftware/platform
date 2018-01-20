@@ -2,7 +2,6 @@
 
 return [
 
-
     'tabs'                     => [
         'information' => 'Информация',
     ],

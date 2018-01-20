@@ -4,7 +4,6 @@ namespace Orchid\Platform\Behaviors\Base;
 
 class UserBase
 {
-
     /**
      * Rules Validation.
      *

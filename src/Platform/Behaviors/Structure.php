@@ -2,38 +2,37 @@
 
 namespace Orchid\Platform\Behaviors;
 
+use Orchid\Platform\Fields\Builder;
+use Orchid\Platform\Core\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
-use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Exceptions\TypeException;
-use Orchid\Platform\Fields\Builder;
 
 trait Structure
 {
-
     /**
-     * Visible name of behavior
+     * Visible name of behavior.
      *
      * @var
      */
     public $name = '';
 
     /**
-     * Visible description of behavior
+     * Visible description of behavior.
      *
      * @var string
      */
     public $description = '';
 
     /**
-     * A unique name for behavior
+     * A unique name for behavior.
      *
      * @var string
      */
     public $slug = '';
 
     /**
-     * Display Icon
+     * Display Icon.
      *
      * @var string
      */
@@ -64,14 +63,14 @@ trait Structure
     public $prefix = 'content';
 
     /**
-     * Menu group name
+     * Menu group name.
      *
      * @var null
      */
     public $groupname = null;
 
     /**
-     * Status divider
+     * Status divider.
      *
      * @var bool
      */
@@ -83,7 +82,7 @@ trait Structure
     private $cultivated = null;
 
     /**
-     * Generate a ready-made html form for display to the user
+     * Generate a ready-made html form for display to the user.
      *
      * @param string $language
      * @param null   $post
@@ -122,7 +121,7 @@ trait Structure
     }
 
     /**
-     * All registered extensions specified in the behavior
+     * All registered extensions specified in the behavior.
      *
      * @return array
      */
@@ -136,13 +135,13 @@ trait Structure
     }
 
     /**
-     * Check for a registered extension in the behavior
+     * Check for a registered extension in the behavior.
      *
      * @return bool
      */
     public function checkModules() : bool
     {
-        if (method_exists($this, 'modules') && !empty($this->modules())) {
+        if (method_exists($this, 'modules') && ! empty($this->modules())) {
             return true;
         }
 
@@ -150,13 +149,13 @@ trait Structure
     }
 
     /**
-     * Display html forms of registered extensions
+     * Display html forms of registered extensions.
      *
      * @return string
      */
     public function render()
     {
-        if (!is_null($this->cultivated)) {
+        if (! is_null($this->cultivated)) {
             return $this->cultivated;
         }
 
@@ -166,7 +165,7 @@ trait Structure
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
             if (method_exists($form, 'get')) {
@@ -187,7 +186,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -205,7 +204,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -223,7 +222,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -234,7 +233,7 @@ trait Structure
     }
 
     /**
-     * Basic statuses possible for the object
+     * Basic statuses possible for the object.
      *
      * @return array
      */

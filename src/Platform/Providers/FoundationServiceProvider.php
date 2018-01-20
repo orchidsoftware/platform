@@ -3,8 +3,9 @@
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -17,13 +18,22 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
+        $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'));
+
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerCode();
 
         $this->registerProviders();
+    }
+
+    /**
+     * Register factories.
+     */
+    protected function registerEloquentFactoriesFrom($path)
+    {
+        $this->app->make(EloquentFactory::class)->load($path);
     }
 
     /**
@@ -31,7 +41,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/database/migrations'));
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations'));
     }
 
     /**
@@ -39,7 +49,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(realpath(DASHBOARD_PATH . '/resources/lang'), 'dashboard');
+        $this->loadTranslationsFrom(realpath(DASHBOARD_PATH.'/resources/lang'), 'dashboard');
     }
 
     /**
@@ -48,12 +58,12 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH . '/config/scout.php')    => config_path('scout.php'),
-            realpath(DASHBOARD_PATH . '/config/platform.php') => config_path('platform.php'),
-            realpath(DASHBOARD_PATH . '/config/widget.php')   => config_path('widget.php'),
+            realpath(DASHBOARD_PATH.'/config/scout.php')    => config_path('scout.php'),
+            realpath(DASHBOARD_PATH.'/config/platform.php') => config_path('platform.php'),
+            realpath(DASHBOARD_PATH.'/config/widget.php')   => config_path('widget.php'),
         ]);
 
-        $this->mergeConfigFrom(realpath(DASHBOARD_PATH . '/config/platform.php'), 'platform');
+        $this->mergeConfigFrom(realpath(DASHBOARD_PATH.'/config/platform.php'), 'platform');
     }
 
     /**
@@ -62,25 +72,14 @@ class FoundationServiceProvider extends ServiceProvider
     public function registerViews()
     {
         if (config('platform.headless')) {
-            return null;
+            return;
         }
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/vendor/orchid/dashboard';
+            return $path.'/vendor/orchid/dashboard';
         }, config('view.paths')), [
-            DASHBOARD_PATH . '/resources/views',
+            DASHBOARD_PATH.'/resources/views',
         ]), 'dashboard');
-    }
-
-    /**
-     * Register types.
-     */
-    protected function registerCode()
-    {
-        $this->publishes([
-            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPost.stub' => app_path('/Core/Behaviors/Many/DemoPost.php'),
-            DASHBOARD_PATH . '/resources/stubs/behaviors/DemoPage.stub' => app_path('/Core/Behaviors/Single/DemoPage.php'),
-        ]);
     }
 
     public function registerProviders()
@@ -114,14 +113,14 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (!Route::hasMacro('screen')) {
+        if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {
-                return Route::any($url . "/{method?}/{argument?}", "$screen@handle")->name($name);
+                return Route::any($url.'/{method?}/{argument?}', "$screen@handle")->name($name);
             });
         }
 
-        if (!defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__ . '/../../../'));
+        if (! defined('DASHBOARD_PATH')) {
+            define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
         }
     }
 }

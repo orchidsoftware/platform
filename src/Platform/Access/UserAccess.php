@@ -2,14 +2,19 @@
 
 namespace Orchid\Platform\Access;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Platform\Core\Models\Role;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\Systems\Roles\AddRoleEvent;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Platform\Events\Systems\Roles\RemoveRoleEvent;
 
 trait UserAccess
 {
+    /**
+     * @var null
+     */
+    private $cachePermissions = null;
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -54,8 +59,11 @@ trait UserAccess
      */
     public function hasAccess($checkPermissions) : bool
     {
-        $permissions = $this->roles()->pluck('permissions');
-        $permissions->prepend($this->permissions);
+        if (is_null($this->cachePermissions)) {
+            $this->cachePermissions = $this->roles()->pluck('permissions')->prepend($this->permissions);
+        }
+
+        $permissions = $this->cachePermissions;
 
         foreach ($permissions as $permission) {
             if (isset($permission[$checkPermissions]) && $permission[$checkPermissions]) {
@@ -128,7 +136,7 @@ trait UserAccess
     public function delete() : bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-        if ($this->exists && !$isSoftDeleted) {
+        if ($this->exists && ! $isSoftDeleted) {
             $this->roles()->detach();
         }
 

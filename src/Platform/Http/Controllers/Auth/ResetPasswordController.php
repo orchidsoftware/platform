@@ -2,8 +2,8 @@
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
@@ -31,6 +31,8 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = config('platform.prefix');
+
         $this->middleware('guest');
     }
 

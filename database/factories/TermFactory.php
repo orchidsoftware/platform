@@ -1,8 +1,8 @@
 <?php
 
-use Orchid\Platform\Core\Models\Term;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use Orchid\Platform\Core\Models\Term;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +17,13 @@ use Illuminate\Support\Str;
 
 $factory->define(Term::class, function (Faker $faker) {
     return [
-        'slug' => Str::slug($faker->word),
+        'slug' => Str::slug($faker->unique()->word),
         'content' => [
-            'text' => $faker->text
+            'en' => [
+                'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+                'body' => $faker->text,
+            ],
         ],
-        'term_group' => 0,
+        'term_group' => $faker->randomElement($array = [0, 1, 2]),
     ];
 });

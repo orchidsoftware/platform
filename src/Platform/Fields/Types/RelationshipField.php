@@ -12,12 +12,38 @@ class RelationshipField extends Field
     public $view = 'dashboard::fields.relationship';
 
     /**
-     * Required Attributes
+     * Required Attributes.
      *
      * @var array
      */
     public $required = [
         'name',
-        'handler'
+        'handler',
+    ];
+
+    /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'class' => 'form-control',
+    ];
+
+    /**
+     * Attributes available for a particular tag.
+     *
+     * @var array
+     */
+    public $inlineAttributes = [
+        'accesskey',
+        'autofocus',
+        'disabled',
+        'form',
+        'multiple',
+        'name',
+        'required',
+        'size',
+        'tabindex',
     ];
 }

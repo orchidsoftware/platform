@@ -34,7 +34,7 @@ class MakeRows extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH . '/resources/stubs/layouts/rows.stub';
+        return DASHBOARD_PATH.'/resources/stubs/rows.stub';
     }
 
     /**
@@ -46,6 +46,6 @@ class MakeRows extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace . '\Core\Layouts';
+        return $rootNamespace.'\Core\Layouts';
     }
 }

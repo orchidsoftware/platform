@@ -4,9 +4,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased]
 
+### Added
+- "DIV" Layouts
+- "Select" field
+- "Show" key for admin menu
+
+### Changed
+- Record fields as objects #391
+- Demo "behaviors" are no longer published
+- Access validation does not create multiple database queries
+
+### Deprecated
+- Record string/array for fields. Use `Field::make`
+
+### Removed
+- google analytics
+- robot field
+
+## [2.0.14] - 2018-01-16
+
+### Fixed
+- Error as select menu "demo post" #457 
+
+## [2.0.11] - 2018-01-09
+
+### Added
+- Parameter "format" for "croppie.result" #398
+- Displaying old data for validation errors 
+
+### Changed
+- Remove source map `npm run production`
+
+### Fixed
+- calling relation for new object in template #394
+- reset child categories when the parent is deleted
+
+## [2.0.10] - 2017-12-29
+
+### Fixed
+- Namespace syntax
+- Create empty category
+
+## [2.0.9] - 2017-12-29
+### Changed
+- Optimization for parser
+
+### Fixed
+- Bug name permission for pages
 
 ## [2.0.8] - 2017-12-27
 ### Added 

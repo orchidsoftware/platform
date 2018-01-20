@@ -24,8 +24,7 @@ return [
     |
     */
 
-    'domain' => env('DASHBOARD_DOMAIN', parse_url(config('app.url'))['host']),
-
+    'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +53,6 @@ return [
         'private' => ['web', 'dashboard'],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Auth
@@ -72,7 +70,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Available locales
+    | Locales
     |--------------------------------------------------------------------------
     |
     | Localization of records
@@ -104,7 +102,7 @@ return [
         'input'        => Orchid\Platform\Fields\Types\InputField::class,
         'list'         => Orchid\Platform\Fields\Types\ListField::class,
         'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-        'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+        'select'       => Orchid\Platform\Fields\Types\SelectField::class,
         'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
         'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
         'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
@@ -125,7 +123,8 @@ return [
     |
     */
 
-    'single' => [//App\Core\Behaviors\Single\DemoPage::class,
+    'single' => [
+        Orchid\Core\Behaviors\Single\DemoPage::class,
     ],
 
     /*
@@ -137,7 +136,8 @@ return [
     |
     */
 
-    'many' => [//App\Core\Behaviors\Many\DemoPost::class,
+    'many' => [
+        Orchid\Core\Behaviors\Many\DemoPost::class,
     ],
 
     /*
@@ -147,8 +147,8 @@ return [
     */
 
     'common' => [
-        'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
-        'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
+        'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
+        'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
     ],
 
     /*
@@ -244,7 +244,6 @@ return [
     'main_widgets' => [
         Orchid\Platform\Http\Widgets\UpdateWidget::class,
     ],
-
 
     /*
     |--------------------------------------------------------------------------

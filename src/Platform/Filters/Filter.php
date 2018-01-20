@@ -1,8 +1,10 @@
-<?php namespace Orchid\Platform\Filters;
+<?php
 
-use Illuminate\Database\Eloquent\Builder;
+namespace Orchid\Platform\Filters;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter implements FilterInterface
 {
@@ -22,14 +24,14 @@ abstract class Filter implements FilterInterface
     public $display = true;
 
     /**
-     * Current app language
+     * Current app language.
      *
      * @var
      */
     public $lang;
 
     /**
-     * Apply a filter in the administration panel
+     * Apply a filter in the administration panel.
      *
      * @var bool
      */
@@ -74,7 +76,7 @@ abstract class Filter implements FilterInterface
     abstract public function run(Builder $builder) : Builder;
 
     /**
-     * User mapping method
+     * User mapping method.
      */
     public function display()
     {

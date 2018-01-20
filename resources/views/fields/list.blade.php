@@ -1,4 +1,4 @@
-<div class="form-group input-sort">
+<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }} input-sort">
     <label>{{$title}}</label>
    <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
 
@@ -36,7 +36,7 @@
         <button onclick="newitem{{$slug}}()" class="btn btn-sm alert-info">new</button>
     </div>
 </div>
-<div class="line line-dashed b-b line-lg"></div>
+@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 <style>
     .input-sort .form-control {
         width : 83.33333333%;

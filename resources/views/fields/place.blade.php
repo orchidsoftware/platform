@@ -24,7 +24,7 @@
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" data-toggle="modal"
                     data-target="#map-place-{{$slug}}-{{$lang}}"><i
-                        class="fa fa-map-marker"></i></button>
+                        class="icon-location-pin"></i></button>
             </span>
         </div>
     </div>
@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="line line-dashed b-b line-lg"></div>
+@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 
 
 @push('scripts')

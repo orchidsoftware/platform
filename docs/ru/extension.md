@@ -1,69 +1,29 @@
 # Расширение панели администратора
 ----------
 
-## Меню
+## Маршрутизация
 
-Меню панели - это элемент интерфейса администратора,
-Позволяет выбрать один из нескольких перечисленных вариантов программного обеспечения.
-Это важный элемент графического интерфейса пользователя.
+Приложение ORCHID может менять адрес для обращений, что бы ваши ресширения могли следовать за ней, 
+требуется указывать домен и префикс. Это может выглядеть так:
 
-
-
-### Использование:
-
-Чтобы зарегистрировать новое меню для своего пакета или модуля, вам необходимо
-указать его в поставщике композитора.
-	
 ```php
-namespace App\Http\Composers;
-
-use Orchid\Platform\Kernel\Dashboard;
-
-class MenuComposer
-{
-    /**
-     * MenuComposer constructor.
-     *
-     * @param Dashboard $dashboard
-     */
-    public function __construct(Dashboard $dashboard)
-    {
-        $this->dashboard = $dashboard;
-    }
-
-    public function compose()
-    {
-        $this->dashboard->menu->add('Main', [
-            'slug'       => 'slug-my-menu',
-            'icon'       => 'icon',
-            'route'      => '#',
-            'label'      => 'My name Menu',
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.mymenu.*',
-            'permission' => 'dashboard.mymenu',
-            'badge'      => [
-                'class' => 'bg-primary',
-                'data' => function(){
-                    return 7;
-                }
-            ],
-            'sort'       => 1,
-        ]);
-    }
-}
-```
-
-Регистрация композера
-```php
-public function boot()
-{
-    View::composer('dashboard::layouts.dashboard', MenuComposer::class);
-}
+$this->domain(config('platform.domain'))->group(function () {
+    $this->group([
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
+        'namespace'  => 'Orchid\Platform\Http\Controllers',
+    ], function (\Illuminate\Routing\Router $router) {
+    
+        $router->get('/', function () {
+            return view('welcome');
+        });
+        
+    });
+});
 ```
 
 
-# Отображение
+## Отображение
 
 В ходе работы вам может понадобится создавать свои собственные варианты отображения `(view)`,
 что бы обеспечить единый внешний вид потребуется наследование:
@@ -85,7 +45,7 @@ public function boot()
 ```
 
 
-# Дополнительные CSS & JS
+## Дополнительные стили и скрипты
 
 Если вам потребуется добавить стили и скрипты глобально, на каждую страницу, то используйте:
 

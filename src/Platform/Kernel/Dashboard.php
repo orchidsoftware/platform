@@ -2,16 +2,16 @@
 
 namespace Orchid\Platform\Kernel;
 
+use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Access\Permissions;
-use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
     /**
-     * Orchid Version.
+     * ORCHID Version.
      */
-    const VERSION = '2.0.9';
+    const VERSION = '2.1';
 
     /**
      * @var
@@ -69,7 +69,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return $prefix . $path;
+        return $prefix.$path;
     }
 
     /**

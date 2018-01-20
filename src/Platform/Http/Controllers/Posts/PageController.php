@@ -4,9 +4,9 @@ namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Orchid\Platform\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Core\Models\Page;
-use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -32,7 +32,7 @@ class PageController extends Controller
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('dashboard.pages.type.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.'.$page->slug);
 
         return view('dashboard::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
@@ -49,7 +49,7 @@ class PageController extends Controller
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('dashboard.pages.type.' . $page->slug);
+        $this->checkPermission('dashboard.pages.type.'.$page->slug);
         $type = $page->getBehaviorObject($page->slug);
 
         $page->fill($request->all());

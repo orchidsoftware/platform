@@ -2,12 +2,13 @@
 
 namespace Orchid\Platform\Core\Traits;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\App;
 
 trait MultiLanguage
 {
     /**
-     * Name row localization
+     * Name row localization.
      * @var string
      */
     public $jsonColumnName = 'content';
@@ -24,8 +25,11 @@ trait MultiLanguage
             $lang = $lang ?? App::getLocale();
             $attributes = array_keys($this->getAttributes());
 
+            if (! is_null($this->{$this->jsonColumnName}) && ! in_array($field, $attributes)) {
+                if ($this->{$this->jsonColumnName} instanceof Repository) {
+                    return $this->{$this->jsonColumnName}->get($lang.'.'.$field);
+                }
 
-            if (!is_null($this->{$this->jsonColumnName}) && !in_array($field, $attributes)) {
                 return $this->{$this->jsonColumnName}[$lang][$field];
             }
 
@@ -39,7 +43,5 @@ trait MultiLanguage
                 return $content[$field];
             }
         }
-
-        return null;
     }
 }
