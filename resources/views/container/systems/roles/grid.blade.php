@@ -43,7 +43,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route('dashboard.systems.roles.edit',$role->slug) }}"><i
-                                                        class="fa fa-bars"></i></a>
+                                                        class="icon-menu"></i></a>
                                         </td>
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->slug }}</td>

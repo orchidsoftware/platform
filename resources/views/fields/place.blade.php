@@ -14,7 +14,7 @@
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" data-toggle="modal"
                     data-target="#map-place-{{$slug}}-{{$lang}}"><i
-                        class="fa fa-map-marker"></i></button>
+                        class="icon-location-pin"></i></button>
             </span>
         </div>
     </div>

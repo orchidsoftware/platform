@@ -44,7 +44,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
-                                                        class="fa fa-bars"></i></a>
+                                                        class="icon-menu"></i></a>
                                         </td>
 
                                         @foreach($grid as $key => $column)

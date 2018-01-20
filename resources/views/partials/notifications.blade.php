@@ -13,7 +13,7 @@
               method="post"
               class="pull-right">
             <button class="btn btn-link btn-xs inline">
-                <i class="fa fa-trash"></i>
+                <i class="icon-trash"></i>
             </button>
             {{ csrf_field() }}
         </form>

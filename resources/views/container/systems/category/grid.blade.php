@@ -49,7 +49,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route('dashboard.systems.category.edit',$item->id) }}"><i
-                                                        class="fa fa-bars"></i></a>
+                                                        class="icon-menu"></i></a>
                                         </td>
                                         <td>{{$item->term->getContent('name')}}</td>
 
