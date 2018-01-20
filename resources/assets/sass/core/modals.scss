@@ -1,45 +1,46 @@
 .modal {
   .close:focus {
-    outline : 0;
+    outline: 0;
   }
   .modal-dialog {
-    transition : all 0.2s !important;
+    transition: all .2s !important;
   }
   .modal-content {
-    border        : 1px solid #f2f6f7;
-    border-radius : 3px;
-    box-shadow    : none;
+    border: 1px solid #f2f6f7;
+    border-radius: 3px;
+    box-shadow: none;
   }
   .modal-header {
-    text-align    : center;
-    border-bottom : 0;
-    padding       : 25px 25px 0 25px;
+    text-align: center;
+    border-bottom: 0;
+    padding: 25px 25px 0 25px;
+	display: block;
     p {
-      color : #8b91a0;
+      color: #8b91a0;
     }
   }
   .modal-body {
-    box-shadow  : none;
-    padding     : 0 25px 25px;
-    white-space : normal;
+    box-shadow: none;
+    padding: 0 25px 25px;
+    white-space: normal;
   }
   .modal-footer {
-    border-top : none;
-    box-shadow : none;
-    margin-top : 0;
-    padding    : 0 25px 25px;
+    border-top: none;
+    box-shadow: none;
+    margin-top: 0;
+    padding: 0 25px 25px;
   }
   .drop-shadow {
-    box-shadow : 0 0 9px rgba(191, 191, 191, 0.36) !important;
+    box-shadow: 0 0 9px rgba(191, 191, 191, .36) !important;
   }
   &.fade {
-    opacity : 1 !important;
+    opacity: 1 !important;
     &.stick-up {
       .modal-dialog {
         @include translate3d(0, -100%, 0);
-        margin-top : -5px;
+        margin-top: -5px;
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
@@ -47,116 +48,116 @@
     }
 
     &.slide-up {
-      height : 100%;
-      top    : auto;
+      height: 100%;
+      top: auto;
 
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
       }
       &.disable-scroll {
-        overflow : hidden;
+        overflow: hidden;
       }
       .modal-dialog {
-        display : table;
-        height  : 100%;
+        display: table;
+        height: 100%;
         @include translate3d(0, 75%, 0);
       }
       .modal-content-wrapper {
-        display        : table-cell;
-        vertical-align : middle;
+        display: table-cell;
+        vertical-align: middle;
       }
     }
     &.center-scale {
       .modal-dialog {
-        display : table;
-        height  : 100%;
+        display: table;
+        height: 100%;
       }
       .modal-content {
-        display        : table-cell;
-        vertical-align : middle;
-        border         : 0;
-        background     : transparent;
+        display: table-cell;
+        vertical-align: middle;
+        border: 0;
+        background: transparent;
         .modal-header {
-          border-bottom : 0;
+          border-bottom: 0;
         }
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
-          opacity : 1;
+          opacity: 1;
           @include scale(1);
         }
       }
       .modal-dialog {
-        opacity : 0;
+        opacity: 0;
         @include scale(0.6);
       }
     }
     &.fill-in {
-      background-color : rgba(255, 255, 255, 0);
-      @include transition(background-color 0.3s);
+      background-color: rgba(255, 255, 255, 0);
+      @include transition(background-color .3s);
       & > .close {
-        margin-top   : 20px;
-        margin-right : 20px;
-        opacity      : 0.6;
+        margin-top: 20px;
+        margin-right: 20px;
+        opacity: 0.6;
         & > i {
-          font-size : 16px;
+          font-size: 16px;
         }
       }
       .modal-dialog {
-        display : table;
-        height  : 100%;
+        display: table;
+        height: 100%;
       }
       .modal-content {
-        display        : table-cell;
-        vertical-align : middle;
-        border         : 0;
-        background     : transparent;
+        display: table-cell;
+        vertical-align: middle;
+        border: 0;
+        background: transparent;
         .modal-header {
-          border-bottom : 0;
+          border-bottom: 0;
         }
       }
-      &.in {
-        background-color : rgba(255, 255, 255, 0.85);
+      &.in, &.show {
+        background-color: rgba(255, 255, 255, 0.85);
         .modal-dialog {
-          opacity : 1;
+          opacity: 1;
           @include scale(1);
         }
       }
       .modal-dialog {
-        opacity : 0;
+        opacity: 0;
         @include scale(0.6);
       }
     }
     &.slide-right {
       .close {
-        position     : absolute;
-        top          : 0;
-        right        : 0;
-        margin-right : 10px;
-        z-index      : 10;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 10px;
+        z-index: 10;
       }
-      &.in {
+      &.in, &.show {
         .modal-dialog {
           @include translate3d(0, 0, 0);
         }
       }
       .modal-dialog {
-        position : absolute;
-        right    : 0;
-        margin   : 0;
-        height   : 100%;
+        position: absolute;
+        right: 0;
+        margin: 0;
+        height: 100%;
         @include translate3d(100%, 0, 0);
         .modal-content-wrapper {
-          height : 100%;
+          height: 100%;
         }
         .modal-content {
-          height : 100%;
+          height: 100%;
         }
       }
       .modal-content {
-        border-radius : 0;
+        border-radius: 0;
       }
     }
   }
@@ -164,15 +165,15 @@
 
 .fill-in-modal {
   .modal-backdrop {
-    background-color : transparent;
+    background-color: transparent;
   }
 }
 
 .modal-backdrop {
-  opacity : 0;
+  opacity: 0;
   @include transition(opacity 0.2s linear);
-  &.in {
-    opacity : 0.3;
+  &.in, &.show {
+    opacity: 0.30;
   }
 }
 
@@ -180,40 +181,44 @@
 ------------------------------------
 */
 
-@media (max-width : 768px) {
+@media (max-width: 768px) {
   .modal {
     &.fill-in {
       .modal-dialog {
-        width : calc(100% - 20px);
+        width: calc(100% - 20px);
       }
     }
     &.slide-up {
       .modal-dialog {
-        width : calc(100% - 20px);
+        width: calc(100% - 20px);
       }
     }
   }
 }
 
-@media (min-width : 768px) {
+@media (min-width: 768px) {
   .modal {
     &.stick-up {
       .modal-dialog {
-        margin : -5px auto;
+        margin: -5px auto;
       }
     }
     &.slide-up {
       .modal-dialog {
-        margin : 0 auto;
+        margin: 0 auto;
       }
     }
     &.fill-in {
       .modal-dialog {
-        margin : 0 auto;
+        margin: 0 auto;
       }
     }
     .modal-content {
-      box-shadow : none;
+      box-shadow: none;
     }
   }
+	.modal-dialog {
+		width: 600px;
+		margin: 30px auto;
+	}
 }

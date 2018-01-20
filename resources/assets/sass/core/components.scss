@@ -198,3 +198,19 @@
     height : 30px;
   }
 }
+.cache {
+	.bg-auto.no-border-xs {
+		background-color: #eceff1;
+	}
+	form {
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	button.padder-v.item.w-full {
+		background-color: #fff;
+		border: 1px solid rgba(0, 0, 0, 0);
+		-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+		box-shadow: 0 1px 1px rgba(0,0,0,.05);
+		width: 100%;
+	}
+}

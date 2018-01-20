@@ -1,60 +1,72 @@
+
 // sortable
 .sortable-placeholder {
   list-style    : none;
   border        : 1px dashed #cccccc;
   min-height    : 50px;
-  margin-bottom : 5px;
+  margin-bottom : 5px
 }
 
 // input
-.chosen-choices,
-.chosen-single,
-.bootstrap-tagsinput {
+.chosen-choices, .chosen-single, .bootstrap-tagsinput {
   @extend .form-control;
 }
 
 .bootstrap-tagsinput {
   padding : 5px 12px !important;
-}
-
-.bootstrap-tagsinput {
   width : 100%;
+  .label {
+    display: inline;
+    padding: .2rem .6rem .3rem;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+	&.label-info {
+		background-color: #1c7cd6;
+	}
+  }
 }
 
-.select2-search__field,.select2 {
+
+
+.select2-search__field {
   width : 100% !important;
 }
-
 .select2-container--bootstrap {
+
   .select2-selection {
     @include box-shadow(none);
-    border : 1px solid $form-control-border-color;
+    border: 1px solid $form-control-border-color;
   }
 
-  .select2-dropdown {
-    border-color : fade-out($brand-black, 0.9);
-    outline      : 0 !important;
+  .select2-dropdown{
+    border-color: fade-out($brand-black, 0.9);
+    outline: 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 
-  &.select2-container--focus .select2-selection,
-  &.select2-container--open .select2-selection {
-    border-color     : fade-out($brand-black, 0.9);
-    background-color : $brand-grey-light;
-    outline          : 0 !important;
+  &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
+    border-color: fade-out($brand-black, 0.9);
+    background-color: $brand-grey-light;
+    outline: 0 !important;
     @include box-shadow(none);
     @include placeholder($text-muted);
   }
 }
 
-.mce-content-body:focus {
-  background-color : $brand-grey-light;
+
+.mce-content-body:focus{
+  background-color: $brand-grey-light;
 }
 
 #menu-notifications {
-  .btn-link:focus,
-  .btn-link:hover {
+  .btn-link:focus, .btn-link:hover {
     color : $brand-white;
   }
 }
@@ -67,6 +79,8 @@
   }
 }
 
+
+
 // SimpleMDE Markdown Editor
 .CodeMirror-fullscreen,
 .editor-toolbar.fullscreen,
@@ -74,14 +88,57 @@
   z-index : 1300;
 }
 
-.sli {
-  display                : inline-block;
-  font-family            : 'simple-line-icons';
-  speak                  : none;
-  font-style             : normal;
-  font-weight            : normal;
-  font-variant           : normal;
-  text-transform         : none;
-  line-height            : 1;
-  -webkit-font-smoothing : antialiased;
+
+.sli{
+  display: inline-block;
+  font-family: 'simple-line-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Datetimepicker
+.bootstrap-datetimepicker-widget{
+	&.dropdown-menu {
+		width: 18rem;
+	}
+	.table-condensed{
+		>tbody,
+		>thead,
+		>tfoot{
+			>tr{
+				>td,
+				>th{
+					padding: 4px;
+				}
+			}
+		}
+	}
+	.glyphicon {
+			position: relative;
+			top: 1px;
+			display: inline-block;
+			font-family: FontAwesome;
+			font-style: normal;
+			font-weight: 700;
+			font-size: 1.2rem;
+			/*font: normal normal normal 14px/1 FontAwesome;*/
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+	}
+	.glyphicon-chevron-left:before {
+			content: "\f104";
+		}
+	.glyphicon-chevron-right:before {
+			content: "\f105";
+		}
+	
+}
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 5px;
 }

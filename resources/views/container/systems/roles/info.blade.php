@@ -7,7 +7,7 @@
 
             <div class="col-lg-10">
                 <input type="text" name="name" class="form-control" value="{{$role->name or ''}}">
-                <small class="help-block m-b-none">{{trans('dashboard::systems/roles.name_help')}}
+                <small class="form-text text-muted m-b-none">{{trans('dashboard::systems/roles.name_help')}}
                 </small>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
             <div class="col-lg-10">
                 <input type="text" class="form-control" name="slug" value="{{$role->slug or ''}}">
-                <small class="help-block m-b-none">{{trans('dashboard::systems/roles.slug_help')}}</small>
+                <small class="form-text text-muted m-b-none">{{trans('dashboard::systems/roles.slug_help')}}</small>
             </div>
         </div>
 
@@ -30,8 +30,8 @@
 
             <span class="text-muted">{{ $name or '' }}</span>
 
-            <div class="row padder-v">
-                <div class="col-xs-12">
+            <div class="row padder-v mx-0">
+                <div class="col row">
 
                     @foreach($group as $value)
 

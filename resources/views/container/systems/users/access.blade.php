@@ -23,8 +23,8 @@
             <span class="text-muted">{{ $name or '' }}</span>
 
 
-            <div class="row padder-v">
-                <div class="col-xs-12">
+            <div class="row padder-v mx-0">
+                <div class="col row">
 
                     @foreach($group as $value)
 

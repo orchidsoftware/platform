@@ -8,9 +8,9 @@
 @section('content')
 
 
-    <div class="page-content container-fluid">
+    <div class="page-content">
         <div class="row">
-            <div class="">
+            <div class="col">
 
                 <div id="filemanager">
 

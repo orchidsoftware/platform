@@ -1,25 +1,26 @@
 .table {
-  margin-top : 5px;
+  margin-top: 5px;
   thead {
     tr {
       th {
-        text-transform : uppercase;
-        font-weight    : 600;
-        font-size      : 13px;
-        padding-top    : 14px;
-        padding-bottom : 14px;
-        vertical-align : middle;
-        border-bottom  : 1px solid fade-out($brand-light, 0.3);
-        color          : fade-out($brand-dark, 0.65);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 13px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        vertical-align: middle;
+        border-bottom: 1px solid fade-out($brand-light, .3);
+		border-top: 0;
+        color: fade-out($brand-dark, .65);
         &[class*='sorting_'] {
-          color : $brand-dark;
+          color: $brand-dark;
         }
         &:first-child {
-          padding-left : 18px !important;
+          padding-left: 18px !important;
         }
         .btn {
-          margin-top    : -20px;
-          margin-bottom : -20px;
+          margin-top: -20px;
+          margin-bottom: -20px;
         }
       }
     }
@@ -27,30 +28,30 @@
   tbody {
     tr {
       td {
-        background     : #ffffff;
-        border-bottom  : 1px solid fade-out($brand-light, 0.3);
-        border-top     : 0;
-        padding        : 20px;
-        font-size      : 13.5px;
-        vertical-align : middle;
-        word-break     : break-all;
+        background: #fff;
+        border-bottom: 1px solid fade-out($brand-light, .3);
+        border-top: 0;
+        padding: 20px;
+        font-size: 13.5px;
+        vertical-align: middle;
+        word-break: break-all;
         .btn-tag {
-          background    : fade-out($brand-dark, 0.93);
-          display       : inline-block;
-          margin        : 5px;
-          border-radius : 4px;
-          padding       : 5px;
-          color         : #62605a !important;
+          background: fade-out($brand-dark, .93);
+          display: inline-block;
+          margin: 5px;
+          border-radius: 4px;
+          padding: 5px;
+          color: #62605a !important;
           &:hover {
-            background : fade-out($brand-dark, 0.85);
+            background: fade-out($brand-dark, .85);
           }
         }
         &[class*='sorting_'] {
-          color : #000000;
+          color: #000;
         }
       }
       &.selected td {
-        background : $brand-warning;
+        background: $brand-warning;
       }
     }
   }
@@ -58,10 +59,10 @@
     tbody {
       tr {
         &:hover td {
-          background : $brand-info !important;
+          background: $brand-info !important;
         }
         &.selected:hover td {
-          background : $brand-warning !important;
+          background: $brand-warning !important;
         }
       }
     }
@@ -70,10 +71,10 @@
     tbody {
       tr {
         td {
-          background : mix($brand-light, #ffffff, 3%) !important;
+          background: mix($brand-light, #fff, 3%) !important;
         }
-        &:nth-child(2n + 1) td {
-          background : #ffffff !important;
+        &:nth-child(2n+1) td {
+          background: #fff !important;
         }
       }
     }
@@ -82,56 +83,53 @@
     tbody {
       tr {
         td {
-          border-top : 0;
+          border-top: 0;
         }
       }
     }
   }
   &.table-condensed {
-    table-layout : fixed;
+    table-layout: fixed;
     thead {
       tr {
         th {
-          padding-left  : 20px;
-          padding-right : 20px;
+          padding-left: 20px;
+          padding-right: 20px;
         }
       }
     }
     tbody {
       tr {
         td {
-          padding-top    : 12px;
-          padding-bottom : 12px;
+          padding-top: 12px;
+          padding-bottom: 12px;
         }
       }
     }
-    thead tr th,
-    tbody tr td,
-    tbody tr td * {
-      white-space    : nowrap;
-      vertical-align : middle;
-      overflow       : hidden;
-      text-overflow  : ellipsis;
+    thead tr th, tbody tr td, tbody tr td * {
+      white-space: nowrap;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     &.table-detailed {
       & > tbody > tr {
         &.shown {
           & > td {
-            background : $brand-warning;
+            background: $brand-warning;
             &:first-child:before {
               @include rotate(90deg);
             }
           }
           & + tr {
             & > td {
-              background : fade-out(mix($brand-light, #ffffff, 3%), 0.6);
-              padding    : 0 40px;
+              background: fade-out(mix($brand-light, #fff, 3%), .6);
+              padding: 0 40px;
               .table-inline {
-                background : transparent;
-                tr,
-                td {
-                  background  : transparent;
-                  font-weight : 600;
+                background: transparent;
+                tr, td {
+                  background: transparent;
+                  font-weight: 600;
                 }
               }
             }
@@ -140,27 +138,27 @@
         &.row-details {
           & > td {
             &:first-child:before {
-              content : '';
+              content: '';
             }
           }
         }
         & > td {
           &:hover {
-            cursor : pointer;
+            cursor: pointer;
           }
           &:first-child:before {
-            content      : '\f054';
-            display      : inline-block;
-            margin-right : 8px;
-            font-family  : 'FontAwesome';
+            content: "\f054";
+            display: inline-block;
+            margin-right: 8px;
+            font-family: 'FontAwesome';
             @include transition(all 0.12s linear);
           }
         }
       }
       .table-inline {
         td {
-          border     : none;
-          text-align : left;
+          border: none;
+          text-align: left;
         }
       }
     }
@@ -169,9 +167,13 @@
     & > tbody {
       & > tr {
         & > td {
-          border-bottom : 0;
+          border-bottom: 0;
         }
       }
     }
   }
+}
+
+.fht-table {
+  margin-bottom: 0 !important;
 }

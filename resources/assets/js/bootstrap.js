@@ -1,9 +1,12 @@
 window.$ = window.jQuery = require('jquery');
+
 window.Vue = require('vue');
 
 require('jquery-ui-bundle');
 
-require('bootstrap-sass');
+window.Popper = require('popper.js');
+
+require('bootstrap');
 require('bootstrap-tagsinput');
 
 document.addEventListener('turbolinks:load', function() {
@@ -17,7 +20,6 @@ document.addEventListener('turbolinks:load', function() {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 require('./modules/csrf_token');
@@ -28,13 +30,14 @@ Dropzone.autoDiscover = false;
 require('nestable');
 
 window.moment = require('moment');
+require('../../../node_modules/moment/locale/de.js');
+require('../../../node_modules/moment/locale/fr.js');
+require('../../../node_modules/moment/locale/ru.js');
+require('../../../node_modules/moment/locale/th.js');
 
-$.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
+$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 
 require('./modules/select');
-window.ace = require('brace');
-require('brace/mode/javascript');
-require('brace/theme/monokai');
 
 window.Inputmask = require('inputmask');
 
@@ -52,11 +55,8 @@ require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-require('./modules/inputmask');
-
-require('../../../node_modules/tinymce/tinymce.min');
-tinyMCE.baseURL = '/orchid/js/';
-
-window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
+require('./modules/mask');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+
+//require('./editors');

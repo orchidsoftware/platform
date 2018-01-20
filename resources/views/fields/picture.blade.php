@@ -12,7 +12,7 @@
 
     <div class="picture-actions">
             <label class="btn btn-info">
-                Browse <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} hidden">
+                Browse <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
             </label>
             <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
     </div>

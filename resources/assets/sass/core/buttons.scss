@@ -1,89 +1,92 @@
 .btn {
-  font-weight   : 500;
-  border-radius : $btn-border-radius;
-  cursor        : pointer;
-  outline       : 0 !important;
+  font-weight: 500;
+  border-radius: $btn-border-radius;
+  cursor:pointer;
+  outline: 0 !important;
 }
 
 .btn-link {
-  color : $text-color;
+  color: $text-color;
   &.active {
-    box-shadow : none;
+    box-shadow: none;
   }
 }
 
 .btn-default {
   @include button-variant($text-color, $btn-default-bg, $btn-default-border);
-  background-color    : #ffffff;
-  border-bottom-color : darken($btn-default-border, 2%);
+  background-color: #fff;
+  border-bottom-color: darken($btn-default-border, 2%);
   @include box-shadow(0 1px 1px rgba(90, 90, 90, 0.1));
   &.btn-bg {
-    border-color    : rgba(0, 0, 0, 0.1);
-    background-clip : padding-box;
+    border-color: rgba(0, 0, 0, 0.1);
+    background-clip: padding-box;
   }
 }
 
 .btn-primary {
-  @include button-variant(#ffffff, $brand-primary, $brand-primary);
+  @include button-variant(#fff, $brand-primary, $brand-primary);
 }
 
 .btn-success {
-  @include button-variant(#ffffff, $brand-success, $brand-success);
+  @include button-variant(#fff, $brand-success, $brand-success);
 }
 
 .btn-info {
-  @include button-variant(#ffffff, $brand-info, $brand-info);
+  @include button-variant(#fff, $brand-info, $brand-info);
+  @at-root label#{&} {
+	margin-bottom: 0px;
+  }
 }
 
 .btn-warning {
-  @include button-variant(#ffffff, $brand-warning, $brand-warning);
+  @include button-variant(#fff, $brand-warning, $brand-warning);
 }
 
 .btn-danger {
-  @include button-variant(#ffffff, $brand-danger, $brand-danger);
+  @include button-variant(#fff, $brand-danger, $brand-danger);
 }
 
 .btn-dark {
-  @include button-variant(#ffffff, $brand-dark, $brand-dark);
+  @include button-variant(#fff, $brand-dark, $brand-dark);
 }
 
 .btn-black {
-  @include button-variant(#ffffff, $brand-black, $brand-black);
+  @include button-variant(#fff, $brand-black, $brand-black);
 }
 
 .btn-icon {
-  padding    : 0 !important;
-  text-align : center;
-  width      : 34px;
-  height     : 34px;
+  padding: 0 !important;
+  text-align: center;
+  width: 34px;
+  height: 34px;
   i {
-    top         : -1px;
-    position    : relative;
-    line-height : 34px;
+    top: -1px;
+    position: relative;
+    line-height: 34px;
   }
   &.btn-sm {
-    width  : 30px;
-    height : 30px;
+    width: 30px;
+    height: 30px;
     i {
-      line-height : 30px;
+      line-height: 30px;
     }
   }
   &.btn-lg {
-    width  : 45px;
-    height : 45px;
+    width: 45px;
+    height: 45px;
     i {
-      line-height : 45px;
+      line-height: 45px;
     }
   }
 }
 
 .btn-rounded {
-  border-radius : 50px;
-  padding-left  : 15px;
-  padding-right : 15px;
+  border-radius: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
   &.btn-lg {
-    padding-left  : 25px;
-    padding-right : 25px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
@@ -91,80 +94,95 @@
   > i {
     &.pull-left,
     &.pull-right {
-      line-height : $line-height-base;
+      line-height: $line-height-base;
     }
   }
 }
 
 .btn-block {
-  padding-left  : 12px;
-  padding-right : 12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .btn-group-vertical > .btn:first-child:not(:last-child) {
-  border-top-right-radius : $border-radius-base;
+  border-top-right-radius: $border-radius-base;
 }
 
 .btn-group-vertical > .btn:last-child:not(:first-child) {
-  border-bottom-left-radius : $border-radius-base;
+  border-bottom-left-radius: $border-radius-base;
 }
 
 .btn-addon {
   i {
-    margin           : -7px -12px;
-    margin-right     : 12px;
-    background-color : rgba(0, 0, 0, 0.1);
-    width            : 34px;
-    height           : 34px;
-    line-height      : 34px;
-    text-align       : center;
-    float            : left;
-    position         : relative;
-    border-radius    : $btn-border-radius 0 0 $btn-border-radius;
+    margin: -7px -12px;
+    margin-right: 12px;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    float: left;
+    position: relative;
+    border-radius: $btn-border-radius 0 0 $btn-border-radius;
     &.pull-right {
-      margin-right  : -12px;
-      margin-left   : 12px;
-      border-radius : 0 $btn-border-radius $btn-border-radius 0;
+      margin-right: -12px;
+      margin-left: 12px;
+      border-radius: 0 $btn-border-radius $btn-border-radius 0;
     }
   }
   &.btn-sm {
     i {
-      margin       : -6px -10px;
-      margin-right : 10px;
-      width        : 30px;
-      height       : 30px;
-      line-height  : 30px;
+      margin: -6px -10px;
+      margin-right: 10px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
       &.pull-right {
-        margin-right : -10px;
-        margin-left  : 10px;
+        margin-right: -10px;
+        margin-left: 10px;
       }
     }
   }
   &.btn-lg {
     i {
-      margin       : -11px -16px;
-      margin-right : 16px;
-      width        : 45px;
-      height       : 45px;
-      line-height  : 45px;
+      margin: -11px -16px;
+      margin-right: 16px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
       &.pull-right {
-        margin-right : -16px;
-        margin-left  : 16px;
+        margin-right: -16px;
+        margin-left: 16px;
       }
     }
   }
   &.btn-default {
     i {
-      background-color : transparent;
-      border-right     : 1px solid $border-color;
+      background-color: transparent;
+      border-right: 1px solid $border-color;
     }
   }
 }
 
 .btn-groups .btn {
-  margin-bottom : 5px;
+  margin-bottom: 5px;
 }
 
 button.close {
-  font-size : 12px;
+  font-size: 12px;
+}
+
+.btn-group-justified {
+  display: flex;
+  width: 100%;
+  .btn,
+  .btn-group {
+    flex: 1;
+    .btn {
+      width: 100%;
+    }
+    .dropdown-menu {
+      left: auto;
+    }
+  }
 }

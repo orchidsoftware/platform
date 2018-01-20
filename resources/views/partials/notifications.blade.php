@@ -2,7 +2,7 @@
     $notifications = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
 @endphp
 
-<div class="tab-pane fade in nav"
+<div class="tab-pane fade in nav show"
   role="tabpanel"
   id="menu-notifications"
   aria-labelledby="notise-tab">

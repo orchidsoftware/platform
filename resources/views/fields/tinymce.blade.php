@@ -11,7 +11,7 @@
      <input type="hidden" @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
 
     @if(isset($help))
-        <p class="help-block">{{$help}}</p>
+        <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
 @include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
