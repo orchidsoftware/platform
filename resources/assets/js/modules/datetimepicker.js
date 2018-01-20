@@ -13,8 +13,7 @@ document.addEventListener('turbolinks:load', function() {
       next: 'icon-arrow-right',
       today: 'icon-target',
       clear: 'icon-trash',
-      close: 'icon-close'
-
+      close: 'icon-close',
     },
   });
 });
