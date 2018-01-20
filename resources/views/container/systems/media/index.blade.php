@@ -3,7 +3,12 @@
 
 @section('title','Media')
 @section('description','Filemanager')
+@section('navbar')
 
+    <ul class="nav justify-content-end  v-center">
+        <li></li>
+    </ul>
+@stop
 
 @section('content')
 
@@ -16,23 +21,23 @@
 
                     <div id="toolbar">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-info" id="upload"><i class="fa fa-upload"></i>
+                            <button type="button" class="btn btn-info" id="upload"><i class="icon-cloud-upload"></i>
                                 Upload
                             </button>
                             <button type="button" class="btn btn-default" id="new_folder"
-                                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="fa fa-folder"></i>
+                                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
                                 Add folder
                             </button>
                         </div>
-                        <button type="button" class="btn btn-default" id="refresh"><i class="fa fa-refresh"></i>
+                        <button type="button" class="btn btn-default" id="refresh"><i class="icon-refresh"></i>
                         </button>
                         <div class="btn-group">
-                            {{-- <button type="button" class="btn btn-default" id="move"><i class="fa fa-move"></i> Move
-                            </button> --}}
-                            {{--<button type="button" class="btn btn-default" id="rename"><i class="fa fa fa-font"></i>
+                             <button type="button" class="btn btn-default" id="move"><i class="fa fa-move"></i> Move
+                            </button>
+                            <button type="button" class="btn btn-default" id="rename"><i class="fa fa fa-font"></i>
                                 Rename
-                            </button> --}}
-                            <button type="button" class="btn btn-default" id="delete"><i class="fa fa-trash"></i>
+                            </button>
+                            <button type="button" class="btn btn-default" id="delete"><i class="icon-trash"></i>
                                 Delete
                             </button>
                         </div>
@@ -78,14 +83,14 @@
                                                 </div>
 
                                                 <i v-if="file.type.includes('video')"
-                                                   class="icon fa fa-video-camera"></i>
+                                                   class="icon icon-camrecorder"></i>
 
-                                                <i v-if="file.type.includes('audio')" class="icon fa fa-music"></i>
+                                                <i v-if="file.type.includes('audio')" class="icon icon-music-tone"></i>
 
-                                                <i v-if="file.type == 'folder'" class="icon fa fa-folder"></i>
+                                                <i v-if="file.type == 'folder'" class="icon icon-folder-alt"></i>
 
                                                 <i v-if="file.type != 'folder' && !file.type.includes('image') && !file.type.includes('video') && !file.type.includes('audio')"
-                                                   class="icon fa fa-file-text"></i>
+                                                   class="icon icon-doc"></i>
 
                                             </div>
                                             <div class="details" v-bind:class="file.type"><h4>@{{ file.name }}</h4>
@@ -104,14 +109,14 @@
                                 </div>
 
                                 <div id="no_files">
-                                    <h3><i class="fa fa-meh"></i> No files in this folder.</h3>
+                                    <h3 class="font-thin"><i class="icon-directions"></i> No files in this folder.</h3>
                                 </div>
 
                             </div>
 
                             <div id="right">
                                 <div class="right_none_selected">
-                                    <i class="fa fa-cursor"></i>
+                                    <i class="icon-cursor"></i>
                                     <p>No File or Folder Selected</p>
                                 </div>
                                 <div class="right_details">
@@ -142,10 +147,10 @@
                                         </audio>
 
 
-                                        <i v-if="selected_file.type == 'folder'" class="fa fa-folder"></i>
+                                        <i v-if="selected_file.type == 'folder'" class="icon-folder-alt"></i>
 
                                         <i v-if="selected_file.type.indexOf('text')  !== -1"
-                                           class="fa fa-file-text-o"></i>
+                                           class="icon-doc-o"></i>
 
 
                                     </div>
@@ -197,7 +202,7 @@
                                     <button type="button" class="close" data-dismiss="modal"
                                             aria-hidden="true">&times;
                                     </button>
-                                    <h4 class="modal-title"><i class="fa fa-move"></i> Move File/Folder</h4>
+                                    <h4 class="modal-title"><i class="icon-cursor-move"></i> Move File/Folder</h4>
                                 </div>
 
                                 <div class="modal-body">
@@ -257,7 +262,7 @@
                                 <button type="button" class="close" data-dismiss="modal"
                                         aria-hidden="true">&times;
                                 </button>
-                                <h4 class="modal-title"><i class="fa fa-folder"></i> Add New Folder</h4>
+                                <h4 class="modal-title"><i class="icon-folder-alt"></i> Add New Folder</h4>
                             </div>
 
                             <div class="modal-body">

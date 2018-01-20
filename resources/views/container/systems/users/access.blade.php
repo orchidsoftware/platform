@@ -14,14 +14,16 @@
         </div>
 
 
-        <div class="line line-dashed b-b line-lg"></div>
-
-
         @foreach($permission as $name => $group)
 
+            @if(count($group) == 0)
+                @continue
+            @endif
+
+
+            <div class="line line-dashed b-b line-lg"></div>
 
             <span class="text-muted">{{ $name or '' }}</span>
-
 
             <div class="row padder-v mx-0">
                 <div class="col row">
@@ -41,9 +43,6 @@
 
                 </div>
             </div>
-
-            <div class="line line-dashed b-b line-lg"></div>
-
 
         @endforeach
 

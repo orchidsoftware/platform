@@ -42,7 +42,7 @@
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>
-                © 2013 -{{date('Y')}} ORCHID.
+                © 2013 - {{date('Y')}} ORCHID.
             </p>
         </div>
 

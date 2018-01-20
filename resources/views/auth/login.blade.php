@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="form-group row v-center">
+        <div class="form-group row v-center padder-v">
             <div class="col-5">
                 <div class="checkbox">
                     <label class="i-checks">

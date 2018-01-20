@@ -14,8 +14,8 @@
                    name="publish"
                    data-date-format="YYYY-MM-DD HH:mm:ss"
             >
-            <span class="input-group-addon">
-            <span class="icon-calendar"></span>
+            <span class="input-group-addon input-group-btn">
+                <span class="btn btn-default"><i class="icon-calendar" aria-hidden="true"></i></span>
             </span>
         </div>
     </div>

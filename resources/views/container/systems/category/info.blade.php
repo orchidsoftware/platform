@@ -1,6 +1,6 @@
 <div class="wrapper-md ">
 
-    <div class=" padder-md">
+    <div class="padder-md">
     <input type="hidden" name="taxonomy" value="category">
     <input type="hidden"
            name="term_id"

@@ -26,6 +26,11 @@
 
         @foreach($permission as $name => $group)
 
+            @if(count($group) == 0)
+                @continue
+            @endif
+
+
             <div class="line line-dashed b-b line-lg"></div>
 
             <span class="text-muted">{{ $name or '' }}</span>
@@ -47,8 +52,6 @@
 
                 </div>
             </div>
-
-            <div class="line line-dashed b-b line-lg"></div>
 
         @endforeach
 

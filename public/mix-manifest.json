@@ -1,5 +1,8 @@
 {
-    "/js/orchid.js": "/js/orchid.js?id=03a5ab47c09480d5e33e",
-    "/js/editors.js": "/js/editors.js?id=e327be75187f63b52a2a",
-    "/css/orchid.css": "/css/orchid.css?id=d8e6a45e80f8d5b5e8ca"
+    "/js/orchid.js": "/js/orchid.js",
+    "/js/orchid.js.map": "/js/orchid.js.map",
+    "/js/editors.js": "/js/editors.js",
+    "/css/orchid.css": "/css/orchid.css",
+    "/js/editors.js.map": "/js/editors.js.map",
+    "/css/orchid.css.map": "/css/orchid.css.map"
 }
