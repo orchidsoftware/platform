@@ -41,16 +41,16 @@ Field::tag('wysiwyg')
 Стобцы таблиц, так же подверглись изменениям и имеют запись:
 
 ```php
-    TD::name('appointment_type')
-    ->title('Type')
+TD::name('appointment_type')
+->title('Type')
 
-    // Расширенный вариант
-    TD::name('appointment_time')
-        ->title('Time')
-        ->width('200px')
-        ->render(function ($appointment){
-        return $appointment->appointment_time->toDateString();
-    }),
+// Расширенный вариант
+TD::name('appointment_time')
+    ->title('Time')
+    ->width('200px')
+    ->render(function ($appointment){
+    return $appointment->appointment_time->toDateString();
+}),
 ```
 
 
@@ -59,35 +59,34 @@ Field::tag('wysiwyg')
 Множественные поведения больше не имеют свойства по умолчанию:
 
 ```php
-    /**
-     * HTTP data filters
-     *
-     * @var array
-     */
-    public $filters = [
-        SearchFilter::class,
-        StatusFilter::class,
-        CreatedFilter::class,
-    ];
+/**
+ * HTTP data filters
+ *
+ * @var array
+ */
+public $filters = [
+    SearchFilter::class,
+    StatusFilter::class,
+    CreatedFilter::class,
+];
 ```
 
 Для единообразие он был заменён на метод:
 
 ```php
-    /**
-     * HTTP data filters
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            SearchFilter::class,
-            StatusFilter::class,
-            CreatedFilter::class,
-        ];
-    }
-
+/**
+ * HTTP data filters
+ *
+ * @return array
+ */
+public function filters() : array
+{
+    return [
+        SearchFilter::class,
+        StatusFilter::class,
+        CreatedFilter::class,
+    ];
+}
 ```
 
 
