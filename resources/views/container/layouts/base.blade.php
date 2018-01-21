@@ -29,5 +29,10 @@
         </div>
     </section>
 
+    <div id="modals-container">
+         @yield('modals-container')
+    </div>
+
+
     <form id="filters"></form>
 @stop

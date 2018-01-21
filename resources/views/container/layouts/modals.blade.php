@@ -1,3 +1,5 @@
+@section('modals-container')
+
 @foreach($manyForms as $key => $modal)
 
 <div class="modal fade in" id="screen-modal-{{$key}}" role="dialog" aria-labelledby="screen-modal-{{$key}}">
@@ -7,11 +9,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="title-modal-{{$key}}"></h4>
       </div>
-      <div class="modal-body">
+      <form class="modal-body" method="post" enctype="multipart/form-data">
           @foreach($modal as $item)
               {!! $item or '' !!}
           @endforeach
-      </div>
+
+            {{csrf_field()}}
+      </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" id="submit-modal-{{$key}}" class="btn btn-primary">Apply</button>
@@ -27,3 +31,5 @@
   $('#submit-modal-{{$key}}').attr('formaction',$('#show-button-modal-{{$key}}').data('modalAction'));
   $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
 </script>
+
+@endsection
