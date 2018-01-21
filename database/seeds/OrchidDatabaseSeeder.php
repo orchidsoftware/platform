@@ -16,7 +16,7 @@ class OrchidDatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             SettingsTableSeeder::class,
             TermsTableSeeder::class,
-            MenuTableSeeder::class
+            MenuTableSeeder::class,
         ]);
 
         /*
