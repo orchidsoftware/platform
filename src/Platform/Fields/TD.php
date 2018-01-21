@@ -2,7 +2,7 @@
 
 namespace Orchid\Platform\Platform\Fields;
 
-use \Closure;
+use Closure;
 
 class TD
 {
@@ -41,7 +41,7 @@ class TD
      *
      * @return TD
      */
-    static public function name(string $name)
+    public static function name(string $name)
     {
         return new self($name);
     }
@@ -51,7 +51,8 @@ class TD
      *
      * @return $this
      */
-    public function title(string $title){
+    public function title(string $title)
+    {
         $this->title = $title;
 
         return $this;
@@ -86,8 +87,8 @@ class TD
      *
      * @return mixed
      */
-    public function handler($data){
+    public function handler($data)
+    {
         return ($this->render)($data);
     }
-
 }
