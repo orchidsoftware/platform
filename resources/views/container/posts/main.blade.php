@@ -23,12 +23,8 @@
                             <thead>
                             <tr>
                                 <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                @foreach($fields as $key => $name)
-                                    @if(is_array($name))
-                                        <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
-                                    @else
-                                        <th>{{$name}}</th>
-                                    @endif
+                                @foreach($fields as $th)
+                                        <th width="{{$th->width}}">{{$th->title}}</th>
                                 @endforeach
                             </tr>
                             </thead>
@@ -41,12 +37,12 @@
                                     'slug' => $datum->id])
                                     }}"><i class="icon-menu"></i></a>
                                     </td>
-                                    @foreach($fields as $key => $name)
+                                    @foreach($fields as $td)
                                         <td>
-                                            @if(is_array($name))
-                                                {!! $name['action']($datum) !!}
+                                            @if(!is_null($td->render))
+                                                {!! $td->handler($datum) !!}
                                             @else
-                                                {{ $datum->getContent($key) }}
+                                                {{ $datum->getContent($td->name) }}
                                             @endif
                                         </td>
                                     @endforeach

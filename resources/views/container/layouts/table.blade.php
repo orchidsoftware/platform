@@ -6,24 +6,20 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    @foreach($form['fields'] as $key => $name)
-                        @if(is_array($name))
-                            <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
-                        @else
-                            <th>{{$name}}</th>
-                        @endif
+                    @foreach($form['fields'] as $th)
+                        <th width="{{$th->width}}">{{$th->title}}</th>
                     @endforeach
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($form['data'] as $key => $datum)
                     <tr>
-                        @foreach($form['fields'] as $key => $name)
+                        @foreach($form['fields'] as $td)
                             <td>
-                                @if(is_array($name))
-                                    {!! $name['action']($datum) !!}
+                                @if(!is_null($td->render))
+                                    {!! $td->handler($datum) !!}
                                 @else
-                                    {{ $datum->getContent($key) }}
+                                    {{ $datum->getContent($td->name) }}
                                 @endif
                             </td>
                         @endforeach

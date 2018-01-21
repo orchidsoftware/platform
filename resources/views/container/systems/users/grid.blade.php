@@ -34,8 +34,8 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    @foreach($grid as $key => $column)
-                                        <th>{{$column}}</th>
+                                    @foreach($grid as $th)
+                                        <th width="{{$th->width}}">{{$th->title}}</th>
                                     @endforeach
                                 </tr>
                                 </thead>
@@ -47,8 +47,14 @@
                                                         class="icon-menu"></i></a>
                                         </td>
 
-                                        @foreach($grid as $key => $column)
-                                            <td>{{$user->getContent($key)}}</td>
+                                        @foreach($grid as $td)
+                                        <td>
+                                            @if(!is_null($td->render))
+                                                {!! $td->handler($user) !!}
+                                            @else
+                                                {{ $user->getContent($td->name) }}
+                                            @endif
+                                        </td>
                                         @endforeach
                                     </tr>
 

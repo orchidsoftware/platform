@@ -56,7 +56,11 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        return $this->form->route('dashboard.systems.comment.update')->slug($comment->id)->method('PUT')->render($comment);
+        return $this->form
+            ->route('dashboard.systems.comment.update')
+            ->slug($comment->id)
+            ->method('PUT')
+            ->render($comment);
     }
 
     /**

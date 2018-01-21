@@ -17,8 +17,8 @@ class TagsController extends Controller
         if (is_null($tag)) {
             $tags = Post::allTags()->orderBy('count', 'desc')->limit(10)->get();
         } else {
-            $tags = Post::allTags()->orderBy('count', 'desc')->where('name', 'like',
-                '%'.$tag.'%')->limit(10)->get();
+            $tags = Post::allTags()->orderBy('count', 'desc')
+                ->where('name', 'like', '%'.$tag.'%')->limit(10)->get();
         }
 
         $tags->transform(function ($item) {
