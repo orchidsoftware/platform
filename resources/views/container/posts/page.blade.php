@@ -7,7 +7,7 @@
             @if($locales->count() > 1)
             <li class="dropdown nav-item">
                 <a href="#"
-                   class="dropdown-toggle text-uppercase nav-link"
+                   class="dropdown-toggle text-uppercase nav-link padder-v"
                    data-toggle="dropdown"
                    role="button"
                    aria-haspopup="true"
@@ -40,7 +40,7 @@
 @section('content')
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
         <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs bg-light no-gutters" id="post-form" method="post" action="{{route('dashboard.pages.update',[
+        <form class="hbox hbox-auto-xs  no-gutters" id="post-form" method="post" action="{{route('dashboard.pages.update',[
         'type' => $type->slug,
         ])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)

@@ -99,7 +99,7 @@ $brand-info-darker : mix($brand-info, $brand-black, $mix-percentage-darker);
 
 $brand-grey-light : mix($brand-grey, #ffffff, 10%);
 
-$body-bg : lighten($brand-light, 1%);
+$body-bg : $oc-gray-0;//lighten($brand-light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 

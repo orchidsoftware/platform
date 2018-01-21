@@ -1,0 +1,46 @@
+{
+  "_from": "tinymce@^4.7.4",
+  "_id": "tinymce@4.7.4",
+  "_inBundle": false,
+  "_integrity": "sha1-HX67GSqhwjjLn8g1A3bC6i77iJE=",
+  "_location": "/tinymce",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "tinymce@^4.7.4",
+    "name": "tinymce",
+    "escapedName": "tinymce",
+    "rawSpec": "^4.7.4",
+    "saveSpec": null,
+    "fetchSpec": "^4.7.4"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.4.tgz",
+  "_shasum": "1d7ebb192aa1c238cb9fc8350376c2ea2efb8891",
+  "_spec": "tinymce@^4.7.4",
+  "_where": "/home/tabuna/ORCHID/install/orchid/Platform",
+  "author": {
+    "name": "Ephox Corporation"
+  },
+  "bugs": {
+    "url": "https://github.com/tinymce/tinymce/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Web based JavaScript HTML WYSIWYG editor control.",
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "tinymce",
+    "richtext",
+    "javascript",
+    "html"
+  ],
+  "license": "LGPL-2.1",
+  "main": "tinymce.js",
+  "name": "tinymce",
+  "version": "4.7.4"
+}

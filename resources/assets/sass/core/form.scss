@@ -20,6 +20,7 @@
     border-color: fade-out($brand-black, 0.9);
     background-color: $brand-grey-light;
     outline: 0 !important;
+    color: $brand-black;
     @include box-shadow(none);
     @include placeholder($brand-dark);
   }
@@ -273,4 +274,5 @@ select {
 	&.form-control {
 		height: $form-height !important;
 	}	
-}	
+}
+

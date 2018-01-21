@@ -71,7 +71,7 @@ class DemoPost extends Many
         return [
             Field::tag('input')
                 ->type('text')
-                ->name('place')
+                ->name('name')
                 ->max(255)
                 ->required()
                 ->title('Name Articles')
@@ -85,7 +85,6 @@ class DemoPost extends Many
 
             Field::tag('markdown')
                 ->name('body2')
-                ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
@@ -140,11 +139,6 @@ class DemoPost extends Many
                 ->name('robot')
                 ->title('Indexing')
                 ->help('Allow search bots to index page'),
-
-            Field::tag('list')
-                ->name('list')
-                ->title('Dynamic list')
-                ->help('Dynamic list'),
 
             Field::tag('input')
                 ->type('text')

@@ -4,7 +4,7 @@
         <label for="{{$id}}">{{$title}}</label>
     @endif
 
-    <div class="tinymce-{{$id}} b wrapper" style="min-height: 500px">
+    <div class="tinymce-{{$id}} b wrapper" style="min-height: 300px">
       {!! $value !!}
     </div>
 

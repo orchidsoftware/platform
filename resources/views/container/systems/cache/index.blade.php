@@ -9,7 +9,7 @@
 
 <!-- main content -->
 <section class="wrapper-md cache">
-    <div class="bg-white-only bg-auto no-border-xs text-center">
+    <div class="no-border-xs text-center">
 
 
         <div class="col-md-4 col-xs-12">

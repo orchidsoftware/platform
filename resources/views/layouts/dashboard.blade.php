@@ -32,11 +32,7 @@
 
     @stack('stylesheets')
 
-
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
-    <script src="{{ mix('/js/editors.js','orchid')}}" type="text/javascript"></script>
-	
-
 </head>
 
 
@@ -117,8 +113,7 @@
                     <ul class="nav-footer-fix">
                         <li>
                             <a href="{{ route('dashboard.logout') }}"
-                               onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                               <i class="icon-logout" aria-hidden="true"></i>
                             </a>
 

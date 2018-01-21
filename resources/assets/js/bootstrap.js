@@ -30,10 +30,6 @@ Dropzone.autoDiscover = false;
 require('nestable');
 
 window.moment = require('moment');
-require('../../../node_modules/moment/locale/de.js');
-require('../../../node_modules/moment/locale/fr.js');
-require('../../../node_modules/moment/locale/ru.js');
-require('../../../node_modules/moment/locale/th.js');
 
 $.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 
@@ -59,4 +55,15 @@ require('./modules/inputmask');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
 
-//require('./editors');
+//Code editor
+window.ace = require('brace');
+require('brace/mode/javascript');
+require('brace/theme/monokai');
+
+//Tinymce editor
+require('../../../node_modules/tinymce/tinymce.min');
+tinyMCE.baseURL = '/orchid/js/tinymce/';
+
+//SimpleMDE editor
+window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
+

@@ -11,10 +11,11 @@
      <li class="hidden-folded padder m-t m-b-sm text-muted text-xs ">Notications
         <form action="{{route('dashboard.notification.read')}}"
               method="post"
+              id="clear-notications-form"
               class="pull-right">
-            <button class="btn btn-link btn-xs inline">
+            <a onclick="event.preventDefault();document.getElementById('clear-notications-form').submit();" class="btn btn-link inline">
                 <i class="icon-trash"></i>
-            </button>
+            </a>
             {{ csrf_field() }}
         </form>
     </li>

@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const {mix} = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,35 +10,22 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-const webpack = require('webpack');
-mix.webpackConfig({
-  resolve: {},
-  plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
-  module: {
-    noParse: [/brace/],
-  },
-});
 
 mix.setPublicPath('public');
 
+
 if (!mix.inProduction()) {
-  mix
-    .webpackConfig({
-      devtool: 'source-map',
-    })
-    .sourceMaps();
+    mix
+        .webpackConfig({
+            devtool: 'source-map',
+        })
+        .sourceMaps();
 } else {
-  mix.version();
+    mix.version();
 }
 
-mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts');
-mix.copy('./node_modules/simple-line-icons/fonts/', 'public/fonts');
-mix.copy('./node_modules/tinymce/plugins/', 'public/js/plugins');
-mix.copy('./node_modules/tinymce/skins/', 'public/js/skins');
-mix.copy('./node_modules/tinymce/themes/', 'public/js/themes');
-
-mix.js('resources/assets/js/editors.js', 'public/js/editors.js');
-
-mix
-  .sass('resources/assets/sass/app.scss', 'css/orchid.css')
-  .js('resources/assets/js/app.js', 'js/orchid.js');
+mix.copy('./node_modules/font-awesome/fonts/', 'public/fonts')
+    .copy('./node_modules/simple-line-icons/fonts/', 'public/fonts')
+    .copyDirectory('./node_modules/tinymce', 'public/js/tinymce')
+    .sass('resources/assets/sass/app.scss', 'css/orchid.css')
+    .js('resources/assets/js/app.js', 'js/orchid.js');
