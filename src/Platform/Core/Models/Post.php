@@ -153,7 +153,7 @@ class Post extends Model
      */
     public function getOptions() : Collection
     {
-        return collect($this->options->all());
+        return collect($this->options);
     }
 
     /**

@@ -42,31 +42,24 @@
     <!-- header  -->
     <header id="header" class="app-header navbar" role="menu">
         <!-- navbar header  -->
-        <div class="navbar-header bg-black dk">
+        <div class="navbar-header bg-black dk v-center">
 
-            <button class="pull-right visible-xs"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="icon-logout"></i>
-            </button>
-
-            {{--
-            <button class="pull-right visible-xs click"
-                    data-turbolinks="false"
-                    data-toggle="open"
-                    title="Notifications"
-                    data-target="#quickview">
-                <i class="icon-bell"></i>
-            </button>
-            --}}
-
-            <button class="pull-right visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
+            <button class="pull-left visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
                 <i class="icon-menu"></i>
             </button>
+
             <!-- brand  -->
-            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
+            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
                 <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
             </a>
             <!-- / brand  -->
+
+
+            <button class="pull-right visible-xs"
+                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="icon-logout"></i>
+            </button>
+
         </div>
         <!-- / navbar header  -->
 
