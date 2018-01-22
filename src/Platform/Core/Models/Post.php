@@ -110,6 +110,8 @@ class Post extends Model
         if (method_exists($behavior, 'toSearchableArray')) {
             return $behavior->toSearchableArray($this->toArray());
         }
+
+        return [];
     }
 
     /**
@@ -118,6 +120,7 @@ class Post extends Model
      * @param null $slug
      *
      * @return null
+     * @throws TypeException
      */
     public function getBehaviorObject($slug = null)
     {
@@ -125,10 +128,7 @@ class Post extends Model
             return $this->behavior;
         }
 
-        try {
-            return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
-        } catch (TypeException $e) {
-        }
+        return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
     }
 
     /**
@@ -406,14 +406,12 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
+     * @throws TypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
         if (! is_null($behavior)) {
-            try {
-                $this->getBehavior($behavior);
-            } catch (TypeException $e) {
-            }
+            $this->getBehavior($behavior);
         }
 
         return $this->filter($query, true);

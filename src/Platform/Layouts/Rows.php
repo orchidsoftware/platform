@@ -15,7 +15,6 @@ abstract class Rows
      * @param $post
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      * @throws \Throwable
      */
     public function build($post)

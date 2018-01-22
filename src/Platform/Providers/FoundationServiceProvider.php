@@ -30,6 +30,8 @@ class FoundationServiceProvider extends ServiceProvider
 
     /**
      * Register factories.
+     *
+     * @param $path
      */
     protected function registerEloquentFactoriesFrom($path)
     {
