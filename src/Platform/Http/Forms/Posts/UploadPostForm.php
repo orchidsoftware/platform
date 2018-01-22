@@ -2,9 +2,9 @@
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
-use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
+use Orchid\Platform\Core\Models\Post;
 
 class UploadPostForm extends Form
 {
