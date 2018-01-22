@@ -4,12 +4,13 @@
     .aside-wrap {
       position   : fixed;
       z-index    : 10000;
-      width      : 100%;
       background : #1d2839;
       min-height : 100vh;
       left       : 100px;
       top        : 0;
       bottom     : 0;
+      width: calc(100vw - 100px);
+      overflow: auto;
     }
   }
 }

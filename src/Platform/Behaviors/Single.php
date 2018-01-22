@@ -2,9 +2,7 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Orchid\Platform\Behaviors\Contract\SingleInterface;
-
-abstract class Single implements SingleInterface
+abstract class Single
 {
     use Structure;
 }

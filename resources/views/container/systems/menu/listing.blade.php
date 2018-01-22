@@ -11,36 +11,18 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($menu->count() > 0)
-                <div class="card">
 
-                    <div class="card-body row">
-
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    <th>{{trans('dashboard::systems/menu.form.title')}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach ($menu as $key => $value)
-                                    <tr>
-                                        <td class="text-center">
-                                            <a href="{{ route('dashboard.systems.menu.show',$key) }}"><i class="icon-menu"></i></a>
-                                        </td>
-                                        <td>{{ $value }}</td>
-
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
+                <div class="jumbotron text-center bg-white not-found">
+                    <div>
+                        <h3 class="font-thin">{{trans('dashboard::systems/menu.description')}}</h3>
+                        <ul class="text-left">
+                            @foreach ($menu as $key => $value)
+                                <li>
+                                    <a href="{{ route('dashboard.systems.menu.show',$key) }}">{{ $value }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
-
-
                 </div>
 
             @else

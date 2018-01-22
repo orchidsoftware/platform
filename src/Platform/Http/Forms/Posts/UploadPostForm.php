@@ -2,6 +2,7 @@
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
+use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 
@@ -49,7 +50,7 @@ class UploadPostForm extends Form
      */
     public function persist($type = null, $post = null)
     {
-        $entity = $type->model::find($post->id);
+        $entity = Post::find($post->id);
 
         if ($this->request->filled('files')) {
             $files = $this->request->input('files');

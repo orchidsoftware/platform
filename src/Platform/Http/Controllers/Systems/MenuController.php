@@ -27,9 +27,14 @@ class MenuController extends Controller
     {
         $this->checkPermission('dashboard.systems.menu');
 
+        $menu = collect(config('platform.menu'));
+
+        if($menu->count() === 1) {
+            return redirect()->route('dashboard.systems.menu.show', $menu->keys()->first());
+        }
+
         return view('dashboard::container.systems.menu.listing', [
             'menu'    => collect(config('platform.menu')),
-            'locales' => collect(config('platform.locales')),
         ]);
     }
 
