@@ -11,17 +11,13 @@ class OrchidDatabaseSeeder extends Seeder
      */
     public function run()
     {
-		//$this->call(UsersTableSeeder::class);
-		//$this->call(RolesTableSeeder::class);
-		//$this->call(SettingsTableSeeder::class);
-		//$this->call(TermsTableSeeder::class);
+		$this->call(UsersTableSeeder::class);
+		$this->call(RolesTableSeeder::class);
+		$this->call(SettingsTableSeeder::class);
+		$this->call(TermsTableSeeder::class);
 		$this->call(MenusTableSeeder::class);
-		
-		
-		
-		/*
-		//////factory(Setting::class, 1)->create();
-		//factory(Menu::class, 30)->create();
-		*/
+		$this->call(PagesTableSeeder::class);
+		$this->call(PostsTableSeeder::class);
+
     }
 }
