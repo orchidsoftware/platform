@@ -112,7 +112,6 @@ class Attachment extends Model
 
         $this->removePhysicalFile($this, $storage);
 
-
         return parent::delete();
     }
 
