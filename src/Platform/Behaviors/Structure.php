@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Validator;
 
 trait Structure
 {
-
     /**
      * Visible name of behavior.
      *
@@ -63,7 +62,7 @@ trait Structure
     public $divider = false;
 
     /**
-     * Container for HTML render
+     * Container for HTML render.
      *
      * @var null
      */
