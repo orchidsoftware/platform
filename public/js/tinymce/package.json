@@ -1,26 +1,27 @@
 {
-  "_from": "tinymce@^4.7.4",
-  "_id": "tinymce@4.7.4",
+  "_from": "tinymce@4.7.5",
+  "_id": "tinymce@4.7.5",
   "_inBundle": false,
-  "_integrity": "sha1-HX67GSqhwjjLn8g1A3bC6i77iJE=",
+  "_integrity": "sha512-DowTLjPyQDUWNowB3w+G9FFa29mftqMggYTobP5uWFURS/g0FEjHDzuA5LLFN19ErzjN2f10ybEEsNuyoJ27lQ==",
   "_location": "/tinymce",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "tinymce@^4.7.4",
+    "raw": "tinymce@4.7.5",
     "name": "tinymce",
     "escapedName": "tinymce",
-    "rawSpec": "^4.7.4",
+    "rawSpec": "4.7.5",
     "saveSpec": null,
-    "fetchSpec": "^4.7.4"
+    "fetchSpec": "4.7.5"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.4.tgz",
-  "_shasum": "1d7ebb192aa1c238cb9fc8350376c2ea2efb8891",
-  "_spec": "tinymce@^4.7.4",
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.5.tgz",
+  "_shasum": "941fd0daaca661cacb85a44a6d478e709d3f85cb",
+  "_spec": "tinymce@4.7.5",
   "_where": "/home/tabuna/ORCHID/install/orchid/Platform",
   "author": {
     "name": "Ephox Corporation"
@@ -42,5 +43,5 @@
   "license": "LGPL-2.1",
   "main": "tinymce.js",
   "name": "tinymce",
-  "version": "4.7.4"
+  "version": "4.7.5"
 }
