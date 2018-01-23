@@ -20,6 +20,10 @@ trait Environment
         Schema::defaultStringLength(191);
 
         $this->artisan('vendor:publish', [
+            '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
+        ]);
+
+        $this->artisan('vendor:publish', [
             '--all' => true,
         ]);
 
@@ -30,6 +34,9 @@ trait Environment
         $this->artisan('migrate', [
             '--database' => 'orchid',
         ]);
+
+        $this->artisan('storage:link');
+        $this->artisan('orchid:link');
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
     }

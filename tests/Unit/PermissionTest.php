@@ -30,7 +30,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($user->inRole('admin'), true);
 
         // Role permissions
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), true);
+        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
     }
 
     /**

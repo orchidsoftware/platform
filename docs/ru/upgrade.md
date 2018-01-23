@@ -48,7 +48,7 @@ TD::name('appointment_type')
 TD::name('appointment_time')
     ->title('Time')
     ->width('200px')
-    ->render(function ($appointment){
+    ->setRender(function ($appointment){
     return $appointment->appointment_time->toDateString();
 }),
 ```

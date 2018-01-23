@@ -7,22 +7,30 @@
 
 Разделение логики и презентации является один из принципов разработки с ORCHID.
 Одним из элементов презентации являются "Layouts", это макеты которые могут отображатся как:
-- Таблица (Table)
-- Колонки (Column)
-- Строки (Row)
-- Графики и т.п.
+- Таблицы
+- Колонки
+- Строки
+- Графики
+- Модальные окна
 
 
 
 ## Таблица
 
+Макет таблицы используется для вывода минимальной информации для просмотра и выборки.
+
 ```php
 php artisan make:table PatientListLayout
 ```
 
+Пример:
 ```php
-namespace App\Http\Layouts\Clinic\Patient;
+namespace App\Layouts\Clinic\Patient;
 
+use App\Http\Filters\LastNamePatient;
+use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Platform\Http\Filters\SearchFilter;
+use Orchid\Platform\Http\Filters\StatusFilter;
 use Orchid\Platform\Layouts\Table;
 
 class PatientListLayout extends Table
@@ -32,6 +40,19 @@ class PatientListLayout extends Table
      * @var string
      */
     public $data = 'patients';
+
+    /**
+     * HTTP data filters
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [
+            LastNamePatient::class,
+            SearchFilter::class,
+        ];
+    }
 
     /**
      * @return array
@@ -57,72 +78,86 @@ class PatientListLayout extends Table
 
 ## Строки
 
+Макет строк служит минимальным набором, который чаще всего используется.
+Его цель объединять все необходимые поля.
+
+Команда создания:
 ```php
 php artisan make:rows PatientFirstRows
 ```
 
+Пример:
 ```php
+namespace App\Layouts\Clinic\Patient;
 
-namespace App\Http\Layouts\Clinic\Patient;
-
+use App\Http\Widgets\AppointmentTypes;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Layouts\Rows;
 
-class PatientFirstRows extends Rows
+class Appointment extends Rows
 {
+
     /**
      * @return array
+     *
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [
-            'first_name' => [
-                'tag'      => 'input',
-                'type'     => 'text',
-                'name'     => 'patient.first_name',
-                'max'      => 255,
-                'required' => true,
-                'title'    => 'first_name',
-                'help'     => 'Article title',
-            ],
-            'last_name'  => [
-                'tag'      => 'input',
-                'type'     => 'text',
-                'name'     => 'patient.last_name',
-                'max'      => 255,
-                'required' => true,
-                'title'    => 'last_name',
-                'help'     => 'Article title',
-            ],
-            'phone'      => [
-                'tag'      => 'input',
-                'type'     => 'text',
-                'name'     => 'patient.phone',
-                'max'      => 255,
-                'required' => true,
-                'title'    => 'phone',
-                'help'     => 'Article title',
-            ],
+
+            Field::tag('datetime')
+                ->name('appointment_time')
+                ->required()
+                ->title('Time'),
+
+            Field::tag('relationship')
+                ->name('appointment_type')
+                ->required()
+                ->title('Appointment type')
+                ->handler(AppointmentTypes::class),
+
+            Field::tag('textarea')
+                ->name('doctor_notes')
+                ->rows(10)
+                ->required()
+                ->title('Doctor notes')
+                ->help('What did the patient complain about?'),
+
         ];
     }
-
 }
-
 ```
 
 
 ## Графики
 
 ```php
-namespace App\Http\Layout\News;
+namespace App\Layouts\Clinic\Patient;
 
 use Orchid\Platform\Layouts\Chart;
 
-class NewsCharts extends Chart
+class ChartsLayout extends Chart
 {
+
+    /**
+     * @var string
+     */
+    public $title = 'DemoCharts';
+
     /**
      * @var int
      */
-    public $height = 200;
+    public $height = 150;
+
+    /**
+     * Available options:
+     * 'bar', 'line', 'scatter',
+     * 'pie', 'percentage'
+     *
+     * @var string
+     */
+    public $type = 'scatter';
 
     /**
      * @var array
@@ -143,7 +178,6 @@ class NewsCharts extends Chart
      */
     public $data = 'charts';
 }
-
 ```
 
 
