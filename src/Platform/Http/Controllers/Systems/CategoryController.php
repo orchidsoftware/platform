@@ -39,7 +39,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return $this->form->route('dashboard.systems.category.store')->method('POST')->render();
+        return $this->form
+            ->route('dashboard.systems.category.store')
+            ->method('POST')
+            ->render();
     }
 
     /**
@@ -74,7 +77,11 @@ class CategoryController extends Controller
      */
     public function edit(Taxonomy $termTaxonomy)
     {
-        return $this->form->route('dashboard.systems.category.update')->slug($termTaxonomy->id)->method('PUT')->render($termTaxonomy);
+        return $this->form
+            ->route('dashboard.systems.category.update')
+            ->slug($termTaxonomy->id)
+            ->method('PUT')
+            ->render($termTaxonomy);
     }
 
     /**

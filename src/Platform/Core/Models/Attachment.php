@@ -99,6 +99,8 @@ class Attachment extends Model
     }
 
     /**
+     * @param string $storage
+     *
      * @return bool|null
      * @throws \Exception
      */
@@ -110,10 +112,7 @@ class Attachment extends Model
 
         $this->removePhysicalFile($this, $storage);
 
-        try {
-            return parent::delete();
-        } catch (\Exception $e) {
-        }
+        return parent::delete();
     }
 
     /**

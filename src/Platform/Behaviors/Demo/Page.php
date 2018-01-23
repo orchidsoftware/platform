@@ -1,12 +1,12 @@
 <?php
 
-namespace Orchid\Core\Behaviors\Single;
+namespace Orchid\Platform\Behaviors\Demo;
 
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
-class DemoPage extends Single
+class Page extends Single
 {
     /**
      * @var string
@@ -53,7 +53,7 @@ class DemoPage extends Single
         return [
             Field::tag('input')
                 ->type('text')
-                ->name('place')
+                ->name('name')
                 ->max(255)
                 ->required()
                 ->title('Name Articles')
@@ -67,7 +67,6 @@ class DemoPage extends Single
 
             Field::tag('markdown')
                 ->name('body2')
-                ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
@@ -122,11 +121,6 @@ class DemoPage extends Single
                 ->name('robot')
                 ->title('Indexing')
                 ->help('Allow search bots to index page'),
-
-            Field::tag('list')
-                ->name('list')
-                ->title('Dynamic list')
-                ->help('Dynamic list'),
 
             Field::tag('input')
                 ->type('text')

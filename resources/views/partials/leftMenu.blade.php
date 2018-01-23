@@ -6,10 +6,10 @@
         <a class="dropdown-toggle" type="button" id="dropdownMenu-{{$slug}}" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
     <span class="pull-right text-muted">
-    <i class="fa fa-fw fa-angle-right text"></i>
+    <i class="icon-arrow-right text-xs"></i>
     </span>
             @if(isset($badge))
-                <b class="label {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+                <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endif
             <i class="{{$icon}}"></i>
             <span class="text-ellipsis" title="{{$label}}">{{$label}}</span>
@@ -29,7 +29,7 @@
         <a href="{{$route}}">
 
             @if(isset($badge))
-                <b class="label {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+                <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endif
             <i class="{{$icon}}"></i>
             <span title="{{$label}}" class="text-ellipsis">{{$label}}</span>

@@ -1,169 +1,172 @@
-html,
-body {
-  width  : 100%;
-  height : 100%;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  overflow-x : hidden;
+  overflow-x: hidden;
+}
+
+h3, .h3 {
+    font-size: 1.714286rem;
 }
 
 .app {
-  height     : auto;
-  min-height : 100%;
-  width      : 100%;
-  position   : relative;
+  height: auto;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
   &:before {
-    content          : '';
-    position         : absolute;
-    width            : inherit;
-    top              : 0;
-    bottom           : 0;
-    z-index          : -1;
-    background-color : $body-bg;
-    border           : inherit;
-    display          : block;
+    content: "";
+    position: absolute;
+    width: inherit;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: $body-bg;
+    border: inherit;
+    display: block;
   }
 }
 
 .app-header-fixed {
-  padding-top : $app-header-height;
+  padding-top: $app-header-height;
   .app-header {
-    position : fixed;
-    top      : 0;
-    width    : 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
 }
 
 .app-header {
-  z-index       : 1025;
-  border-radius : 0;
+  z-index: 1025;
+  border-radius: 0;
 }
 
 // menu
 .app-aside {
-  float : left;
+  float: left;
   &:before {
-    content          : '';
-    position         : absolute;
-    width            : inherit;
-    top              : 0;
-    bottom           : 0;
-    z-index          : -1;
-    background-color : inherit;
-    border           : inherit;
+    content: "";
+    position: absolute;
+    width: inherit;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: inherit;
+    border: inherit;
   }
 }
 
 .app-aside-footer {
-  position  : absolute;
-  bottom    : 0;
-  width     : 100%;
-  z-index   : 1000;
-  max-width : $app-aside-width;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  max-width: $app-aside-width;
   .app-aside-folded & {
-    max-width : $app-aside-folded-width;
+    max-width: $app-aside-folded-width;
   }
   ~ div {
-    padding-bottom : 50px;
+    padding-bottom: 50px;
   }
 }
 
 .app-aside-right {
-  padding-bottom : $app-header-height;
+  padding-bottom: $app-header-height;
 }
 
 // content
 .app-content {
-  height : 100%;
+  height: 100%;
   @include clearfix();
 }
 
 .app-content-full {
-  position                   : absolute;
+  position: absolute;
   //top: $app-header-height;
   /*bottom: $app-footer-height;*/
-  height                     : auto;
-  width                      : auto !important;
-  padding                    : 0 !important;
-  overflow-y                 : auto;
-  -webkit-overflow-scrolling : touch;
+  height: auto;
+  width: auto !important;
+  padding: 0 !important;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   &.h-full {
-    bottom : 0;
-    height : auto;
+    bottom: 0;
+    height: auto;
   }
 }
 
 .app-content-body {
   //padding-bottom: $app-header-height - 30px;
-  float : left;
-  width : 100%;
+  float: left;
+  width: 100%;
 }
 
 // footer
 .app-footer {
-  position : absolute;
-  bottom   : 0;
-  left     : 0;
-  right    : 0;
-  z-index  : 1005;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1005;
   &.app-footer-fixed {
-    position : fixed;
+    position: fixed;
   }
 }
 
 .hbox {
-  display        : table;
-  table-layout   : fixed;
-  border-spacing : 0;
-  width          : 100%;
-  height         : 100%;
+  display: table;
+  table-layout: fixed;
+  border-spacing: 0;
+  width: 100%;
+  height: 100%;
   .col {
-    overflow       : hidden;
-    display        : table-cell;
-    vertical-align : top;
-    height         : 100%;
-    float          : none;
+    overflow: hidden;
+    display: table-cell;
+    vertical-align: top;
+    height: 100%;
+    float: none;
   }
 }
 
 .v-middle {
-  vertical-align : middle !important;
+  vertical-align: middle !important;
 }
 
 .v-top {
-  vertical-align : top !important;
+  vertical-align: top !important;
 }
 
 .v-bottom {
-  vertical-align : bottom !important;
+  vertical-align: bottom !important;
 }
 
 .vbox {
-  display        : table;
-  border-spacing : 0;
-  position       : relative;
-  width          : 100%;
-  height         : 100%;
-  min-height     : 240px;
+  display: table;
+  border-spacing: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
   .row-row {
-    display : table-row;
-    height  : 100%;
+    display: table-row;
+    height: 100%;
     .cell {
-      position                   : relative;
-      height                     : 100%;
-      width                      : 100%;
-      -webkit-overflow-scrolling : touch;
-      overflow                   : auto;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+      overflow: auto;
       .ie & {
-        display : table-cell;
+        display: table-cell;
       }
       .cell-inner {
-        position : absolute;
-        top      : 0;
-        bottom   : 0;
-        left     : 0;
-        right    : 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
   }
@@ -173,178 +176,183 @@ body {
 
 .navbar {
   .navbar-form-sm {
-    margin-top    : 10px;
-    margin-bottom : 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  border-width  : 0;
-  border-radius : 0;
-  margin        : 0;
-  padding       : 0;
+  border-width: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-md {
-  min-height : $app-header-md-height;
+  min-height: $app-header-md-height;
   .navbar-btn {
-    margin-top : 13px;
+    margin-top: 13px;
   }
   .navbar-form {
-    margin-top : 15px;
+    margin-top: 15px;
   }
   .navbar-nav > li > a {
-    padding-top    : 20px;
-    padding-bottom : 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   .navbar-brand {
-    line-height : 60px;
+    line-height: 60px;
   }
 }
 
 .navbar-header {
+	width: 100%;
   > button {
-    text-decoration  : none;
-    line-height      : 30px;
-    font-size        : 16px;
-    padding          : 10px 17px;
-    border           : none;
-    background-color : transparent;
+    text-decoration: none;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 10px 17px;
+    border: none;
+	color: inherit;
+    background-color: transparent;
   }
 }
 
 .navbar-brand {
-  float       : none;
-  text-align  : center;
-  font-size   : 20px;
-  font-weight : 700;
-  height      : auto;
-  line-height : 45px;
-  display     : inline-block;
-  padding     : 0 20px;
+  float: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  height: auto;
+  line-height: 45px;
+  display: inline-block;
+  padding: 0 20px;
   &:hover {
-    text-decoration : none;
+    text-decoration: none;
   }
   img {
-    max-height     : 20px;
-    margin-top     : -4px;
-    vertical-align : middle;
-    display        : inline;
+    max-height: 20px;
+    margin-top: -4px;
+    vertical-align: middle;
+    display: inline;
   }
 }
 
-@media (min-width : 768px) {
+@media (min-width: 768px) {
   .app-aside {
-    width : $app-aside-width;
+    width: $app-aside-width;
   }
 
   .navbar-collapse,
   .app-content,
   .app-footer {
-    margin-left : $app-aside-width;
+    margin-left: $app-aside-width;
   }
 
   .app-aside-right {
-    position : absolute;
-    top      : $app-header-height;
-    bottom   : 0;
-    right    : 0;
-    z-index  : 1000;
+    position: absolute;
+    top: $app-header-height;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
     &.pos-fix {
-      z-index : 1010;
+      z-index: 1010;
     }
   }
 
   .visible-folded {
-    display : none;
+    display: none;
   }
 
   .app-aside-folded {
     .hidden-folded {
-      display : none !important;
+      display: none !important;
     }
     .visible-folded {
-      display : inherit;
+      display: inherit;
     }
     .text-center-folded {
-      text-align : center;
+      text-align: center;
     }
     .pull-none-folded {
-      float : none !important;
+      float: none !important;
     }
     .w-auto-folded {
-      width : auto;
+      width: auto;
     }
 
     .app-aside,
     .navbar-header {
-      width : $app-aside-folded-width;
+      width: $app-aside-folded-width;
     }
     .navbar-collapse,
     .app-content,
     .app-footer {
-      margin-left : $app-aside-folded-width;
+      margin-left: $app-aside-folded-width;
     }
     .app-header {
       .navbar-brand {
-        display : block;
-        padding : 0;
+        display: block;
+        padding: 0;
       }
     }
+
   }
 
   .app-aside-fixed {
     .app-header {
       .navbar-header {
-        position : fixed;
+        position: fixed;
+		display: none;
       }
     }
     .aside-wrap {
-      position         : fixed;
-      overflow         : hidden;
+      position: fixed;
+      overflow: hidden;
       //top: $app-header-height;
-      top              : 0;
-      bottom           : 0;
-      left             : 100px;
-      width            : $app-aside-width - 100px;
-      z-index          : 1050;
-      background-color : #222c3c;
+      top: 0;
+      bottom: 0;
+      left: 100px;
+      width: $app-aside-width - 100px;
+      z-index: 1050;
+      background-color: #222c3c;
       .navi-wrap {
-        width                      : $app-aside-width + $scroll-bar-width;
+        width: $app-aside-width + $scroll-bar-width;
         //width: $app-aside-width - 100;
-        position                   : relative;
-        height                     : 100%;
-        overflow-x                 : hidden;
-        overflow-y                 : scroll;
-        -webkit-overflow-scrolling : touch;
+        position: relative;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar {
-          -webkit-appearance : none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
         }
         &::-webkit-scrollbar:vertical {
-          width : $scroll-bar-width;
+          width: $scroll-bar-width;
         }
         > * {
-          width : $app-aside-width - 100;
+          width: $app-aside-width - 100;
         }
       }
       .smart & .navi-wrap {
-        width : $app-aside-width;
+        width: $app-aside-width;
       }
     }
     &.app-aside-folded {
       .app-aside {
-        position : fixed;
-        top      : 0;
-        bottom   : 0;
-        z-index  : 1010;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 1010;
       }
       .aside-wrap {
-        width : $app-aside-folded-width - 1;
+        width: $app-aside-folded-width - 1;
         .navi-wrap {
-          width : $app-aside-folded-width + $scroll-bar-width;
+          width: $app-aside-folded-width + $scroll-bar-width;
           > * {
-            width : $app-aside-folded-width;
+            width: $app-aside-folded-width;
           }
         }
         .smart & .navi-wrap {
-          width : $app-aside-folded-width;
+          width: $app-aside-folded-width;
         }
       }
     }
@@ -352,128 +360,113 @@ body {
 
   .bg-auto {
     &:before {
-      content          : '';
-      position         : absolute;
-      width            : inherit;
-      top              : 0;
-      bottom           : 0;
-      z-index          : -1;
-      background-color : inherit;
-      border           : inherit;
+      content: "";
+      position: absolute;
+      width: inherit;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: inherit;
+      border: inherit;
     }
     &.b-l:before {
-      margin-left : -1px;
+      margin-left: -1px;
     }
     &.b-r:before {
-      margin-right : -1px;
+      margin-right: -1px;
     }
   }
 
   .col.show {
-    display : table-cell !important;
+    display: table-cell !important;
   }
 }
 
 // sm
-@media (min-width : 768px) and (max-width : 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .hbox-auto-sm {
-    display : block;
+    display: block;
     > .col {
-      width   : auto;
-      height  : auto;
-      display : block;
+      width: auto;
+      height: auto;
+      display: block;
       &.show {
-        display : block !important;
+        display: block !important;
       }
     }
+
   }
 }
 
 // xs
-@media (max-width : 767px) {
+@media (max-width: 767px) {
   .app-aside {
-    float : none;
+    float: none;
   }
 
   .app-content-full {
-    width : 100% !important;
+    width: 100% !important;
   }
 
   .hbox-auto-xs {
-    display : block;
+    display: block;
     > .col {
-      width   : auto;
-      height  : auto;
-      display : block;
+      width: auto;
+      height: auto;
+      display: block;
     }
   }
 
   .navbar-nav {
-    margin-top    : 0;
-    margin-bottom : 0;
+    margin-top: 0;
+    margin-bottom: 0;
     > li > a {
-      box-shadow : 0 -1px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
       .up {
-        top : 0;
+        top: 0;
       }
       .avatar {
-        width      : 30px;
-        margin-top : -5px;
+        width: 30px;
+        margin-top: -5px;
       }
     }
     .open .dropdown-menu {
-      background-color : #ffffff;
+      background-color: #fff;
     }
   }
 
   .navbar-form {
-    box-shadow    : 0 -1px 0 rgba(0, 0, 0, 0.1);
-    margin-top    : 0 !important;
-    margin-bottom : 0 !important;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     .form-group {
-      margin-bottom : 0;
+      margin-bottom: 0;
     }
   }
 }
 
 .aside-wrap-main {
-  position         : fixed;
-  overflow         : hidden;
-  top              : 0;
-  bottom           : 0;
-  left             : 0;
-  width            : 100px;
-  z-index          : 1050;
-  background-color : #1d2531;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  z-index: 1050;
+  background-color: #1d2531;
   li {
     a {
-      .icon,
-      i {
-        font-size : 2em;
-        display   : block;
-        margin    : 0 auto !important;
-        float     : none !important;
+      .icon, i {
+        font-size: $font-size-md;
+        display: block;
+        margin: 0 auto !important;
+        float: none !important;
       }
     }
   }
+
 }
 
 .app-header {
   min-height : $app-header-height;
-}
-
-#dashboard-alerts {
-  position   : fixed;
-  right      : 1rem;
-  top        : 1rem;
-  z-index    : 1100;
-  text-align : right;
-  .alert {
-    display       : inline-block;
-    padding       : 1rem;
-    margin-bottom : 0.5rem;
-    .close {
-      padding : 0 0 0 1rem;
-    }
-  }
 }

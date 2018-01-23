@@ -9,6 +9,11 @@ document.addEventListener('turbolinks:load', function() {
       down: 'icon-arrow-down',
       right: 'icon-arrow-right',
       left: 'icon-arrow-left',
+      previous: 'icon-arrow-left',
+      next: 'icon-arrow-right',
+      today: 'icon-target',
+      clear: 'icon-trash',
+      close: 'icon-close',
     },
   });
 });

@@ -47,6 +47,14 @@ class SearchFilter extends Filter
      */
     public function display()
     {
-        return Field::tag('input')->type('text')->name('search')->value($this->request->get('search'))->placeholder(trans('dashboard::common.search_posts'))->title(trans('dashboard::common.filters.search'))->maxlength(200)->autocomplete('off')->hr(false);
+        return Field::tag('input')
+            ->type('text')
+            ->name('search')
+            ->value($this->request->get('search'))
+            ->placeholder(trans('dashboard::common.search_posts'))
+            ->title(trans('dashboard::common.filters.search'))
+            ->maxlength(200)
+            ->autocomplete('off')
+            ->hr(false);
     }
 }

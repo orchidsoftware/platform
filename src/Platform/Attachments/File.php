@@ -50,7 +50,8 @@ class File
     /**
      * File constructor.
      *
-     * @param UploadedFile $file
+     * @param UploadedFile      $file
+     * @param FilesystemAdapter $storage
      */
     public function __construct(UploadedFile $file, FilesystemAdapter $storage)
     {

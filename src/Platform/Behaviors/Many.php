@@ -4,12 +4,9 @@ namespace Orchid\Platform\Behaviors;
 
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Http\Filters\SearchFilter;
-use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
-use Orchid\Platform\Behaviors\Contract\ManyInterface;
+use Orchid\Platform\Core\Models\Post;
 
-abstract class Many implements ManyInterface
+abstract class Many
 {
     use Structure;
 
@@ -19,13 +16,6 @@ abstract class Many implements ManyInterface
      * @var bool
      */
     public $display = true;
-
-    /**
-     * Is it possible to give data on api.
-     *
-     * @var bool
-     */
-    public $api = false;
 
     /**
      * Eloquent Eager Loading.
@@ -42,6 +32,23 @@ abstract class Many implements ManyInterface
     abstract public function fields() : array;
 
     /**
+     * Registered fields to display in the table.
+     *
+     * @return array
+     */
+    abstract public function grid() : array;
+
+    /**
+     * HTTP data filters.
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [];
+    }
+
+    /**
      * Raw data and fields to display.
      *
      * @return array
@@ -50,8 +57,11 @@ abstract class Many implements ManyInterface
     {
         $fields = $this->grid();
 
-        $data = (new $this->model())->type($this->slug)->filtersApplyDashboard($this->slug)->with($this->with)->orderBy('id',
-            'Desc')->paginate();
+        $data = Post::type($this->slug)
+            ->filtersApplyDashboard($this->slug)
+            ->with($this->with)
+            ->orderBy('id', 'Desc')
+            ->paginate();
 
         return [
             'data'   => $data,
@@ -59,13 +69,6 @@ abstract class Many implements ManyInterface
             'type'   => $this,
         ];
     }
-
-    /**
-     * Registered fields to display in the table.
-     *
-     * @return array
-     */
-    abstract public function grid() : array;
 
     /**
      * Display form for filtering.
@@ -101,19 +104,5 @@ abstract class Many implements ManyInterface
         }
 
         return $filters;
-    }
-
-    /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            SearchFilter::class,
-            StatusFilter::class,
-            CreatedFilter::class,
-        ];
     }
 }

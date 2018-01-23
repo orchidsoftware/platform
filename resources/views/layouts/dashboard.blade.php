@@ -9,12 +9,14 @@
     <meta name="auth" content="{{Auth::check()}}">
     <link rel="stylesheet" type="text/css" href="{{mix('/css/orchid.css','orchid')}}">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/orchid/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/orchid/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/orchid/manifest.json">
-    <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
-    <meta name="theme-color" content="#f8f9fa">
+    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/orchid/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/orchid/favicon/manifest.json">
+    <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
+    <meta name="apple-mobile-web-app-title" content="ORCHID">
+    <meta name="application-name" content="ORCHID">
+    <meta name="theme-color" content="#ffffff">
 
     <meta name="turbolinks-root" content="/{{Dashboard::prefix()}}">
     <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
@@ -30,7 +32,6 @@
 
     @stack('stylesheets')
 
-
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
 </head>
 
@@ -41,31 +42,24 @@
     <!-- header  -->
     <header id="header" class="app-header navbar" role="menu">
         <!-- navbar header  -->
-        <div class="navbar-header bg-black dk">
+        <div class="navbar-header bg-black dk v-center">
 
-            <button class="pull-right visible-xs"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="icon-logout"></i>
-            </button>
-
-            {{--
-            <button class="pull-right visible-xs click"
-                    data-turbolinks="false"
-                    data-toggle="open"
-                    title="Notifications"
-                    data-target="#quickview">
-                <i class="icon-bell"></i>
-            </button>
-            --}}
-
-            <button class="pull-right visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
+            <button class="pull-left visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
                 <i class="icon-menu"></i>
             </button>
+
             <!-- brand  -->
-            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt">
+            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
                 <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
             </a>
             <!-- / brand  -->
+
+
+            <button class="pull-right visible-xs"
+                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="icon-logout"></i>
+            </button>
+
         </div>
         <!-- / navbar header  -->
 
@@ -89,17 +83,18 @@
 
 
     <!-- aside  -->
-    <aside id="aside" class="app-aside hidden-xs">
+    <aside id="aside" class="app-aside d-none d-md-block">
         <div class="aside-wrap-main">
 
             <div class="navi-wrap">
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav" role="tablist">
+                    <ul class="nav flex-column " role="tablist">
 
-                        <li>
-                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand text-lt w-full">
+                        <li class="nav-item">
+                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
+
                                 <img src="/orchid/img/logo.svg" width="50px">
                             </a>
                         </li>
@@ -111,8 +106,7 @@
                     <ul class="nav-footer-fix">
                         <li>
                             <a href="{{ route('dashboard.logout') }}"
-                               onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                               <i class="icon-logout" aria-hidden="true"></i>
                             </a>
 
@@ -140,10 +134,11 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav tab-content" id="aside-wrap-list">
+
+                    <div class="nav tab-content flex-column" id="aside-wrap-list">
                         @include('dashboard::partials.notifications')
                         {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
-                    </ul>
+                    </div>
                 </nav>
                 <!-- nav  -->
 

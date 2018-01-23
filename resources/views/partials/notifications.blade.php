@@ -2,7 +2,7 @@
     $notifications = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
 @endphp
 
-<div class="tab-pane fade in nav"
+<div class="tab-pane fade in nav show"
   role="tabpanel"
   id="menu-notifications"
   aria-labelledby="notise-tab">
@@ -11,10 +11,11 @@
      <li class="hidden-folded padder m-t m-b-sm text-muted text-xs ">Notications
         <form action="{{route('dashboard.notification.read')}}"
               method="post"
+              id="clear-notications-form"
               class="pull-right">
-            <button class="btn btn-link btn-xs inline">
-                <i class="fa fa-trash"></i>
-            </button>
+            <a onclick="event.preventDefault();document.getElementById('clear-notications-form').submit();" class="btn btn-link inline">
+                <i class="icon-trash"></i>
+            </a>
             {{ csrf_field() }}
         </form>
     </li>

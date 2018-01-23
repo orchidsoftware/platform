@@ -1,19 +1,20 @@
 .img-rounded {
-  border-radius : 6px;
+  border-radius: 6px;
 }
 
 .dropzone {
-  border : none;
+  border: none;
   .dz-preview {
-    margin : 0.5em;
+    margin: 0.5rem;
 
     .dz-image {
+
       @extend .img-rounded;
 
       img {
-        object-fit : cover;
-        width      : 100%;
-        height     : 100%;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
         @extend .b;
         @extend .box-shadow;
       }
@@ -23,59 +24,63 @@
       @extend .btn;
       @extend .btn-default;
       @extend .btn-sm;
-      position      : absolute;
-      top           : -10px;
-      z-index       : 50;
-      right         : -10px;
-      border-radius : 50px;
+      position: absolute;
+      top: -10px;
+      z-index: 50;
+      right: -10px;
+      border-radius: 50px;
     }
 
     .btn-edit {
       @extend .btn;
-      position         : absolute;
-      bottom           : 0;
-      z-index          : 50;
-      left             : 0;
-      width            : 100%;
-      display          : none;
-      background-color : rgba(255, 255, 255, 0.4);
-      padding          : 0 0.6em;
-      border-radius    : 3px;
-      align-items      : center;
-      justify-content  : center;
-      text-align       : center;
+      position: absolute;
+      bottom: 0;
+      z-index: 50;
+      left: 0;
+      width: 100%;
+      display: none;
+      background-color: rgba(255, 255, 255, .4);
+      padding: 0 .6rem;
+      border-radius: 3px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     &:hover {
       .btn-edit {
-        display : block;
+        display: block;
       }
     }
+
   }
 
   img:before {
-    content  : ' ';
-    display  : block;
-    position : absolute;
-    left     : 0;
-    height   : 100%;
-    width    : 100%;
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
     @extend .bg-light;
   }
 
   img:after {
-    content         : '\f127';
-    font-family     : FontAwesome;
-    position        : absolute;
-    top             : 0;
-    left            : 0;
-    right           : 0;
-    bottom          : 0;
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
-    width           : 100%;
-    text-align      : center;
+    content: "\f127";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
     @extend .fa-2x;
   }
+
+
+
 }

@@ -3,7 +3,7 @@
         <tr>
             <td class="text-center">
                 <a href="{{ route('dashboard.systems.category.edit',$value->id) }}">
-                    <i class="fa fa-bars"></i>
+                    <i class="icon-menu"></i>
                 </a>
             </td>
             <td>{{$delimiter}}{{$value->term->getContent('name')}}</td>

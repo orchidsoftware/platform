@@ -1,29 +1,25 @@
 {!! $filters or '' !!}
 
 <div class="bg-white-only  bg-auto no-border-xs">
-    <div class="panel-body row">
+    <div class="card-body row">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    @foreach($form['fields'] as $key => $name)
-                        @if(is_array($name))
-                            <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
-                        @else
-                            <th>{{$name}}</th>
-                        @endif
+                    @foreach($form['fields'] as $th)
+                        <th width="{{$th->width}}">{{$th->title}}</th>
                     @endforeach
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($form['data'] as $key => $datum)
                     <tr>
-                        @foreach($form['fields'] as $key => $name)
+                        @foreach($form['fields'] as $td)
                             <td>
-                                @if(is_array($name))
-                                    {!! $name['action']($datum) !!}
+                                @if(!is_null($td->render))
+                                    {!! $td->handler($datum) !!}
                                 @else
-                                    {{ $datum->getContent($key) }}
+                                    {{ $datum->getContent($td->name) }}
                                 @endif
                             </td>
                         @endforeach
@@ -34,7 +30,7 @@
         </div>
 
         @if(is_object($form['data']))
-        <footer class="panel-footer">
+        <footer class="card-footer col">
             <div class="row">
                 <div class="col-sm-5">
                     <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} 

@@ -16,29 +16,17 @@
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 </p>
 
-![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
-
 ## Introduction
 
-ORCHID is a flexible, business application development tool to quickly create web business applications. 
-With timesaving tools and templates, and an intuitive development environment, using the Laravel framework helps speed the development and reduces the complexity of everything from UI design to deploy. 
-Now  it is finally practical to build affordable, scalable custom software solutions that bridge the gaps between existing systems and provide comprehensive, user-friendly views of your business data.
-
-The platform is provided as a package for the Laravel framework, you can easily integrate it as a third-party component using Composer
-
-    
-**Are there any additional system requirements from Laravel?**
-
-Yes, you need a PHP extension for image processing and support for json type your database.
-
-**How much does it cost?**
-
-ORCHID is free, but we appreciate donations.
-
+Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
+Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications.
 
 ## Official Documentation
 
 Documentation can be found at [ORCHID website](http://orchid.software).
+
+
+![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
 
 ## System requirements
@@ -46,7 +34,7 @@ Documentation can be found at [ORCHID website](http://orchid.software).
 Make sure your server meets the following requirements.
 
 - Apache 2.2+ or nginx
-- MySQL Server 5.7.8+ or PostgreSQL
+- MySQL Server 5.7.8+ , Mariadb 10.3.2+ or PostgreSQL
 - PHP Version 7.0+
 
 
@@ -94,12 +82,16 @@ Create your admin user
 php artisan make:admin admin admin@admin.com password
 ```
 
+Run server
+```php
+php artisan serve
+```
 
 #### Usage
 
 To view ORCHID's dashboard go to:
 ```php
-http://your.app/dashboard
+http://localhost:8000/dashboard
 ```
 
 
@@ -130,3 +122,5 @@ See [CHANGELOG](CHANGELOG.md).
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+##Test

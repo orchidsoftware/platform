@@ -62,5 +62,6 @@ class CheckBoxField extends Field
         'step',
         'tabindex',
         'value',
+        'type',
     ];
 }

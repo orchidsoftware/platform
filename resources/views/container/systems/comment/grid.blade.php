@@ -14,9 +14,9 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($comments->count() > 0)
-                <div class="panel">
+                <div class="card">
 
-                    <div class="panel-body row">
+                    <div class="card-body row">
 
 
                         <div class="table-responsive">
@@ -36,8 +36,8 @@
 
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{route('dashboard.marketing.comment.edit',$comment->id)}}"><i
-                                                        class="fa fa-bars"></i></a>
+                                            <a href="{{route('dashboard.systems.comment.edit',$comment->id)}}"><i
+                                                        class="icon-menu"></i></a>
                                         </td>
 
                                         <td class="text-center">
@@ -75,7 +75,7 @@
 
                     </div>
 
-                    <footer class="panel-footer">
+                    <footer class="card-footer">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$comments->total()}}

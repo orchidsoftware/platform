@@ -14,8 +14,8 @@
                    name="publish"
                    data-date-format="YYYY-MM-DD HH:mm:ss"
             >
-            <span class="input-group-addon">
-            <span class="icon-calendar"></span>
+            <span class="input-group-addon input-group-btn">
+                <span class="btn btn-default"><i class="icon-calendar" aria-hidden="true"></i></span>
             </span>
         </div>
     </div>
@@ -88,9 +88,9 @@
     @if(count($locales) > 1)
         @foreach($locales as $key => $locale)
             <div class="line line-dashed b-b line-lg"></div>
-            <div class="form-group">
-                <label class="col-sm-6 control-label">{{$locale['native']}}</label>
-                <div class="col-sm-6">
+            <div class="form-group row align-items-center">
+                <label class="col-6 control-label mb-0">{{$locale['native']}}</label>
+                <div class="col-6">
                     @if(!is_null($post))
                         <label class="i-switch bg-info m-t-xs m-r">
                             <input type="checkbox" name="options[locale][{{$key}}]"

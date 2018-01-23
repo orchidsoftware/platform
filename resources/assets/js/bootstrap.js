@@ -1,9 +1,12 @@
 window.$ = window.jQuery = require('jquery');
+
 window.Vue = require('vue');
 
 require('jquery-ui-bundle');
 
-require('bootstrap-sass');
+window.Popper = require('popper.js');
+
+require('bootstrap');
 require('bootstrap-tagsinput');
 
 document.addEventListener('turbolinks:load', function() {
@@ -17,7 +20,6 @@ document.addEventListener('turbolinks:load', function() {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 require('./modules/csrf_token');
@@ -29,12 +31,9 @@ require('nestable');
 
 window.moment = require('moment');
 
-$.fn.datetimepicker = require('eonasdan-bootstrap-datetimepicker');
+$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 
 require('./modules/select');
-window.ace = require('brace');
-require('brace/mode/javascript');
-require('brace/theme/monokai');
 
 window.Inputmask = require('inputmask');
 
@@ -54,9 +53,16 @@ require('./modules/leftMenu');
 require('./modules/open-click');
 require('./modules/inputmask');
 
-require('../../../node_modules/tinymce/tinymce.min');
-tinyMCE.baseURL = '/orchid/js/';
-
-window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
-
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+
+//Code editor
+window.ace = require('brace');
+require('brace/mode/javascript');
+require('brace/theme/monokai');
+
+//Tinymce editor
+require('../../../node_modules/tinymce/tinymce.min');
+tinyMCE.baseURL = '/orchid/js/tinymce/';
+
+//SimpleMDE editor
+window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');

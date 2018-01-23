@@ -3,10 +3,7 @@
 namespace Orchid\Platform\Behaviors;
 
 use Orchid\Platform\Fields\Builder;
-use Orchid\Platform\Core\Models\Post;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
-use Orchid\Platform\Exceptions\TypeException;
 
 trait Structure
 {
@@ -46,18 +43,6 @@ trait Structure
     public $fields = [];
 
     /**
-     * Available templates.
-     *
-     * @var
-     */
-    public $views = [];
-
-    /**
-     * @var Model
-     */
-    public $model = Post::class;
-
-    /**
      * @var string
      */
     public $prefix = 'content';
@@ -77,17 +62,30 @@ trait Structure
     public $divider = false;
 
     /**
+     * Container for HTML render.
+     *
      * @var null
      */
     private $cultivated = null;
+
+    /**
+     * Basic statuses possible for the object.
+     *
+     * @return array
+     */
+    public function status()
+    {
+        return [
+            'publish' => trans('dashboard::post/base.status_list.publish'),
+            'draft'   => trans('dashboard::post/base.status_list.draft'),
+        ];
+    }
 
     /**
      * Generate a ready-made html form for display to the user.
      *
      * @param string $language
      * @param null   $post
-     *
-     * @throws TypeException
      *
      * @return string
      */
@@ -230,28 +228,5 @@ trait Structure
                 $form->delete(...$arg);
             }
         }
-    }
-
-    /**
-     * Basic statuses possible for the object.
-     *
-     * @return array
-     */
-    public function status()
-    {
-        return [
-            'publish' => trans('dashboard::post/base.status_list.publish'),
-            'draft'   => trans('dashboard::post/base.status_list.draft'),
-        ];
-    }
-
-    /**
-     * Public Client Route Type.
-     *
-     * @return string
-     */
-    public function route() : string
-    {
-        return '';
     }
 }

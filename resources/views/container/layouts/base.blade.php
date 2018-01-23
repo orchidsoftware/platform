@@ -5,7 +5,7 @@
 
 @section('navbar')
 
-    <ul class="nav navbar-nav navbar-right v-center">
+    <ul class="nav justify-content-end v-center">
         @foreach($screen->commandBar() as $command)
             <li>
                 {!! $command->build($arguments) !!}
@@ -28,6 +28,11 @@
             </form>
         </div>
     </section>
+
+    <div id="modals-container">
+         @yield('modals-container')
+    </div>
+
 
     <form id="filters"></form>
 @stop

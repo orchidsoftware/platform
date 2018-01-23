@@ -39,7 +39,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return $this->form->route('dashboard.systems.users.store')->method('POST')->render();
+        return $this->form
+            ->route('dashboard.systems.users.store')
+            ->method('POST')
+            ->render();
     }
 
     /**
@@ -64,7 +67,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return $this->form->route('dashboard.systems.users.update')->slug($user->id)->method('PUT')->render($user);
+        return $this->form
+            ->route('dashboard.systems.users.update')
+            ->slug($user->id)
+            ->method('PUT')
+            ->render($user);
     }
 
     /**

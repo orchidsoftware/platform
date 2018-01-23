@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs bg-light">
+<div class="hbox hbox-auto-xs ">
 
     @foreach($manyForms as $key => $column)
         <div class="col lter b-l">

@@ -1,16 +1,17 @@
 <?php
 
-namespace Orchid\Core\Behaviors\Many;
+namespace Orchid\Platform\Behaviors\Demo;
 
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
 use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
-class DemoPost extends Many
+class Post extends Many
 {
     /**
      * @var string
@@ -71,7 +72,7 @@ class DemoPost extends Many
         return [
             Field::tag('input')
                 ->type('text')
-                ->name('place')
+                ->name('name')
                 ->max(255)
                 ->required()
                 ->title('Name Articles')
@@ -85,7 +86,6 @@ class DemoPost extends Many
 
             Field::tag('markdown')
                 ->name('body2')
-                ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
@@ -141,11 +141,6 @@ class DemoPost extends Many
                 ->title('Indexing')
                 ->help('Allow search bots to index page'),
 
-            Field::tag('list')
-                ->name('list')
-                ->title('Dynamic list')
-                ->help('Dynamic list'),
-
             Field::tag('input')
                 ->type('text')
                 ->name('phone')
@@ -179,9 +174,14 @@ class DemoPost extends Many
     public function grid() : array
     {
         return [
-            'name'       => 'Name',
-            'publish_at' => 'Date of publication',
-            'created_at' => 'Date of creation',
+            TD::name('name')
+                ->title('Name'),
+
+            TD::name('publish_at')
+                ->title('Date of publication'),
+
+            TD::name('created_at')
+                ->title('Date of creation'),
         ];
     }
 }

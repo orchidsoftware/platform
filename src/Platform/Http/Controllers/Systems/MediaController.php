@@ -24,7 +24,7 @@ class MediaController extends Controller
      */
     public function __construct()
     {
-        $this->filesystem = 'public';
+        $this->filesystem = config('platform.disks.media', 'public');
     }
 
     /**

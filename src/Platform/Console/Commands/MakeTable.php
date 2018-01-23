@@ -46,6 +46,6 @@ class MakeTable extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Http\Layouts';
+        return $rootNamespace.'\Layouts';
     }
 }

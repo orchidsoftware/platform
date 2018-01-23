@@ -2,7 +2,7 @@ let init = id => {
   tinymce.init({
     selector: '.tinymce-' + id,
     theme: 'inlite',
-    min_height: 600,
+    min_height: 300,
     plugins:
       'image media table link paste contextmenu textpattern autolink codesample',
     insert_toolbar: 'quickimage quicktable media codesample fullscreen',

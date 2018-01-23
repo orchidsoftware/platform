@@ -1,20 +1,18 @@
-<div class="nav-tabs-alt">
-    <ul class="nav nav-tabs nav-justified">
-        @if(count($locales) > 1)
+@if(count($locales) > 1)
+    <div class="nav-tabs-alt">
+        <ul class="nav nav-tabs nav-justified">
             @foreach($locales as $code => $lang)
-                <li @if ($loop->first) class="active" @endif>
-                    <a data-target="#local-{{$code}}" role="tab" data-toggle="tab"
+                <li class="nav-item">
+                    <a class="nav-link @if ($loop->first) active @endif" data-target="#local-{{$code}}" role="tab" data-toggle="tab"
                        aria-expanded="true">{{$lang['native']}}</a>
                 </li>
             @endforeach
-        @endif
-    </ul>
-</div>
-
+        </ul>
+    </div>
+@endif
 
 <div class="row-row">
     <div class="tab-content">
-
 
         @foreach($locales as $code => $lang)
             <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">

@@ -46,6 +46,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Core\Behaviors\Many';
+        return $rootNamespace.'\Behaviors\Many';
     }
 }

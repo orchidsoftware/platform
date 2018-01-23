@@ -17,18 +17,14 @@
 
                 {!! $type->showFilterDashboard() !!}
 
-                <div class="panel-body row">
+                <div class="card-body row">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                @foreach($fields as $key => $name)
-                                    @if(is_array($name))
-                                        <th width="{{$name['width'] or ''}}">{{$name['name']}}</th>
-                                    @else
-                                        <th>{{$name}}</th>
-                                    @endif
+                                @foreach($fields as $th)
+                                        <th width="{{$th->width}}">{{$th->title}}</th>
                                 @endforeach
                             </tr>
                             </thead>
@@ -39,14 +35,14 @@
                                         <a href="{{route('dashboard.posts.type.edit',[
                                     'type' => $type->slug,
                                     'slug' => $datum->id])
-                                    }}"><i class="fa fa-bars"></i></a>
+                                    }}"><i class="icon-menu"></i></a>
                                     </td>
-                                    @foreach($fields as $key => $name)
+                                    @foreach($fields as $td)
                                         <td>
-                                            @if(is_array($name))
-                                                {!! $name['action']($datum) !!}
+                                            @if(!is_null($td->render))
+                                                {!! $td->handler($datum) !!}
                                             @else
-                                                {{ $datum->getContent($key) }}
+                                                {{ $datum->getContent($td->name) }}
                                             @endif
                                         </td>
                                     @endforeach
@@ -55,7 +51,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <footer class="panel-footer">
+                    <footer class="card-footer col">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$data->total()}}

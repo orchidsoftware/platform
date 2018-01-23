@@ -8,12 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/orchid/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/orchid/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/orchid/manifest.json">
-    <link rel="mask-icon" href="/orchid/safari-pinned-tab.svg" color="#ac5ca0">
-    <meta name="theme-color" content="#f8f9fa">
+    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/orchid/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/orchid/favicon/manifest.json">
+    <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
+    <meta name="apple-mobile-web-app-title" content="ORCHID">
+    <meta name="application-name" content="ORCHID">
+    <meta name="theme-color" content="#ffffff">
 
     <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
     <meta name="description"
@@ -42,7 +44,7 @@
             </h2>
             <p class="small">
                 {{trans('dashboard::auth/account.image-license')}}<br>
-                © 2013 -{{date('Y')}} ORCHID.
+                © 2013 - {{date('Y')}} ORCHID.
             </p>
         </div>
 

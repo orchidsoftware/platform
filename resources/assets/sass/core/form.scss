@@ -1,249 +1,251 @@
-.form-control,
-.form-control-grey {
-  background         : $brand-white none;
-  border             : 1px solid $form-control-border-color;
-  -webkit-appearance : none;
-  color              : $brand-black;
-  outline            : 0;
-  height             : $form-height;
-  line-height        : normal;
-  font-weight        : normal;
-  vertical-align     : middle;
-  min-height         : $form-height;
+.form-control, .form-control-grey {
+  background: $brand-white none;
+  border: 1px solid $form-control-border-color;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: $brand-black;
+  outline: 0;
+  height: $form-height;
+  line-height: normal;
+  font-weight: normal;
+  vertical-align: middle;
+  min-height: $form-height;
   @include transition(all 0.12s ease);
   @include box-shadow(none);
-  border-radius      : 2px;
+  border-radius: 2px;
   @include placeholder($text-muted);
 
   @include transition(background 0.2s linear 0s);
   &:focus {
-    border-color     : fade-out($brand-black, 0.9);
-    background-color : $brand-grey-light;
-    outline          : 0 !important;
+    border-color: fade-out($brand-black, 0.9);
+    background-color: $brand-grey-light;
+    outline: 0 !important;
+    color: $brand-black;
     @include box-shadow(none);
     @include placeholder($brand-dark);
   }
   &[disabled],
   &[readonly],
   fieldset[disabled] & {
-    background : mix($brand-grey-light, #ffffff, 50%);
-    color      : fade-out($brand-grey, 0.77);
+    background: mix($brand-grey-light, #fff, 50%);
+    color: fade-out($brand-grey, .77);
   }
 }
 
 .form-group-default {
-  background-color : #ffffff;
-  position         : relative;
-  border           : 1px solid $form-control-border-color;
-  border-radius    : 2px;
-  padding          : 7px 12px 4px;
-  overflow         : hidden;
-  @include transition(background-color 0.2s ease);
+  background-color: #fff;
+  position: relative;
+  border: 1px solid $form-control-border-color;
+  border-radius: 2px;
+  padding: 7px 12px 4px;
+  overflow: hidden;
+  @include transition(background-color .2s ease);
   &.required:after {
-    color     : $brand-danger;
-    content   : '*';
-    font-size : 20px;
-    position  : absolute;
-    right     : 15px;
-    top       : 9px;
+    color: $brand-danger;
+    content: "*";
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 9px;
   }
   &.disabled {
     input {
-      opacity : 0.6;
+      opacity: .6;
     }
-    background : mix($brand-light, #ffffff, 50%);
-    color      : fade-out($brand-dark, 0.77);
+    background: mix($brand-light, #fff, 50%);
+    color: fade-out($brand-dark, .77);
     &.focused {
-      background : mix($brand-light, #ffffff, 50%);
+      background: mix($brand-light, #fff, 50%);
       label {
-        opacity : 1;
+        opacity: 1;
       }
     }
   }
   &.focused {
-    border-color     : rgba(0, 0, 0, 0.1) !important;
-    background-color : $brand-light;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    background-color: $brand-light;
     label {
-      opacity : 0.4;
+      opacity: .4;
       @include backface-visibility(hidden);
     }
   }
   &.has-error {
-    background-color : fade-out($brand-danger, 0.9);
+    background-color: fade-out($brand-danger, .9);
   }
-  &.has-success,
-  &.has-error {
+  &.has-success, &.has-error {
     .form-control-feedback {
-      display : none !important;
+      display: none !important;
     }
   }
   &.has-success .form-control,
   &.has-success .form-control:focus,
   &.has-error .form-control,
   &.has-error .form-control:focus {
-    border     : none;
-    box-shadow : none;
+    border: none;
+    box-shadow: none;
   }
   &.input-group {
-    padding : 0;
+    padding: 0;
     & > label {
-      margin-top   : 6px;
-      padding-left : 12px;
+      margin-top: 6px;
+      padding-left: 12px;
     }
     & > .form-control {
-      margin-top    : -2px;
-      margin-bottom : 3px;
-      padding-left  : 12px;
+      margin-top: -2px;
+      margin-bottom: 3px;
+      padding-left: 12px;
     }
     .input-group-addon {
-      height        : calc($form-group-height - 4px);
-      min-width     : calc($form-group-height - 4px);
-      border-radius : 0;
-      border        : none;
+      height: calc($form-group-height - 4px);
+      min-width: calc($form-group-height - 4px);
+      border-radius: 0;
+      border: none;
     }
     &.focused {
       .input-group-addon {
-        border-color : rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
   & .form-control {
-    border     : none;
-    height     : 25px;
-    min-height : 25px;
-    padding    : 0;
-    margin-top : -4px;
-    background : none;
+    border: none;
+    height: 25px;
+    min-height: 25px;
+    padding: 0;
+    margin-top: -4px;
+    background: none;
     &.error {
-      color : $brand-dark;
+      color: $brand-dark;
     }
     &:focus {
-      background : none;
+      background: none;
     }
   }
   label {
-    margin  : 0;
-    display : block;
-    opacity : 1;
-    @include transition(opacity 0.2s ease);
+    margin: 0;
+    display: block;
+    opacity: 1;
+    @include transition(opacity .2s ease);
     &.label-lg {
-      font-size : 13px;
-      left      : 13px;
-      top       : 9px;
+      font-size: 13px;
+      left: 13px;
+      top: 9px;
     }
     &.label-sm {
-      font-size : 11px;
-      left      : 11px;
-      top       : 6px;
+      font-size: 11px;
+      left: 11px;
+      top: 6px;
     }
     &.highlight {
-      opacity : 1;
+      opacity: 1;
     }
     &.fade {
-      opacity : 0.5;
+      opacity: .5;
       @include backface-visibility(hidden);
     }
   }
   & > .input-lg {
-    height       : 29px;
-    min-height   : 29px;
-    padding-left : 1px;
+    height: 29px;
+    min-height: 29px;
+    padding-left: 1px;
   }
   & > .input-sm {
-    min-height : 18px;
-    height     : 18px;
+    min-height: 18px;
+    height: 18px;
   }
 
   &.form-group-default-select2 {
-    padding : 0;
+    padding: 0;
     & > label {
-      position : absolute;
-      z-index  : 10;
-      padding  : 7px 12px 0 12px;
+      position: absolute;
+      z-index: 10;
+      padding: 7px 12px 0 12px;
       &.label-lg {
-        left : 0;
-        top  : 0;
+        left: 0;
+        top: 0;
       }
       &.label-sm {
-        left : 0;
-        top  : 0;
+        left: 0;
+        top: 0;
       }
     }
     .select2-container {
       .select2-selection {
-        padding-top : 20px;
-        height      : 52px;
+        padding-top: 20px;
+        height: 52px;
         .select2-arrow b:before {
-          top : 20px;
+          top: 20px;
         }
         .select2-chosen {
-          padding-left : 3px;
-          padding-top  : 1px;
+          padding-left: 3px;
+          padding-top: 1px;
         }
       }
       .select2-selections {
-        padding-top : 20px;
-        height      : 52px;
-        border      : 0;
+        padding-top: 20px;
+        height: 52px;
+        border: 0;
       }
+
     }
     & > .input-lg {
-      height  : auto;
-      padding : 0;
+      height: auto;
+      padding: 0;
       .select2-selection {
-        padding-top : 20px;
-        height      : 56px;
+        padding-top: 20px;
+        height: 56px;
       }
     }
     & > .input-sm {
-      height  : auto;
-      padding : 0;
+      height: auto;
+      padding: 0;
       .select2-selection {
-        padding-top : 20px;
-        height      : 46px;
+        padding-top: 20px;
+        height: 46px;
       }
     }
   }
   &.form-group-default-selectFx {
-    padding : 0;
+    padding: 0;
     & > label {
-      position : absolute;
-      z-index  : 10;
-      padding  : 7px 12px 0 12px;
+      position: absolute;
+      z-index: 10;
+      padding: 7px 12px 0 12px;
       &.label-lg {
-        left : 0;
-        top  : 0;
+        left: 0;
+        top: 0;
       }
       &.label-sm {
-        left : 0;
-        top  : 0;
+        left: 0;
+        top: 0;
       }
     }
     .cs-wrapper {
       .cs-placeholder {
-        padding-top  : 28px;
-        height       : 52px;
-        padding-left : 12px;
+        padding-top: 28px;
+        height: 52px;
+        padding-left: 12px;
       }
       .cs-select {
-        height : auto;
+        height: auto;
         > span:after,
         .cs-selected span:after {
-          top : 39px;
+          top: 39px;
         }
         &.input-lg .cs-placeholder {
-          height : 60px;
+          height: 60px;
         }
         &.input-sm .cs-placeholder {
-          height : 50px;
+          height: 50px;
         }
       }
       .dropdown-placeholder {
-        vertical-align : top;
+        vertical-align: top;
       }
     }
   }
 }
+
 
 // remove select arrow in Firefox
 .form-control {
@@ -254,14 +256,23 @@
   }
 }
 
+.input-group {
+	.input-group-btn {
+		.btn-default{
+			height: $form-height;
+		}
+	}
+}
+
 textarea {
-  &.form-control {
-    height : auto;
-  }
+	&.form-control {
+		height: auto;
+	}
 }
 
 select {
-  &.form-control {
-    height : $form-height !important;
-  }
+	&.form-control {
+		height: $form-height !important;
+	}	
 }
+

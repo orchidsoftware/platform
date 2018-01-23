@@ -3,29 +3,40 @@
   list-style    : none;
   border        : 1px dashed #cccccc;
   min-height    : 50px;
-  margin-bottom : 5px;
+  margin-bottom : 5px
 }
 
 // input
-.chosen-choices,
-.chosen-single,
-.bootstrap-tagsinput {
+.chosen-choices, .chosen-single, .bootstrap-tagsinput {
   @extend .form-control;
 }
 
 .bootstrap-tagsinput {
   padding : 5px 12px !important;
+  width   : 100%;
+  .label {
+    display        : inline;
+    padding        : .2rem .6rem .3rem;
+    font-size      : 75%;
+    font-weight    : 700;
+    line-height    : 1;
+    color          : #ffffff;
+    text-align     : center;
+    white-space    : nowrap;
+    vertical-align : baseline;
+    border-radius  : .25rem;
+    &.label-info {
+      background-color : #1c7cd6;
+    }
+  }
 }
 
-.bootstrap-tagsinput {
-  width : 100%;
-}
-
-.select2-search__field,.select2 {
+.select2-search__field {
   width : 100% !important;
 }
 
 .select2-container--bootstrap {
+
   .select2-selection {
     @include box-shadow(none);
     border : 1px solid $form-control-border-color;
@@ -38,8 +49,7 @@
     @include placeholder($text-muted);
   }
 
-  &.select2-container--focus .select2-selection,
-  &.select2-container--open .select2-selection {
+  &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
     border-color     : fade-out($brand-black, 0.9);
     background-color : $brand-grey-light;
     outline          : 0 !important;
@@ -53,8 +63,7 @@
 }
 
 #menu-notifications {
-  .btn-link:focus,
-  .btn-link:hover {
+  .btn-link:focus, .btn-link:hover {
     color : $brand-white;
   }
 }
@@ -84,4 +93,34 @@
   text-transform         : none;
   line-height            : 1;
   -webkit-font-smoothing : antialiased;
+}
+
+// Datetimepicker
+.bootstrap-datetimepicker-widget {
+  &.dropdown-menu {
+    width : 18rem;
+  }
+  .table-condensed {
+    > tbody,
+    > thead,
+    > tfoot {
+      > tr {
+        > td,
+        > th {
+          padding : 4px;
+        }
+      }
+    }
+  }
+
+}
+
+.table-condensed > tbody > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > thead > tr > th {
+  padding : 5px;
+}
+
+
+.form-group,.CodeMirror-wrap pre{
+  word-wrap: break-word;
+  word-break: break-all;
 }

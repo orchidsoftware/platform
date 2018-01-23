@@ -2,6 +2,9 @@
 
 namespace Orchid\Platform\Behaviors\Base;
 
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Platform\Fields\TD;
+
 class CategoryBase
 {
     /**
@@ -19,12 +22,25 @@ class CategoryBase
 
     /**
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields() : array
     {
         return [
-            'name' => 'tag:input|type:text|name:name|max:255|required|title:Name Category|help:Category title',
-            'body' => 'tag:wysiwyg|name:body|max:255|required|title:Body category',
+
+            Field::tag('input')
+                ->type('text')
+                ->name('name')
+                ->max(255)
+                ->require()
+                ->title('Name Category')
+                ->help('Category title'),
+
+            Field::tag('wysiwyg')
+                ->name('body')
+                ->max(255)
+                ->require()
+                ->title('Body category'),
         ];
     }
 
@@ -34,7 +50,8 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            'created_at' => 'Date of creation',
+            TD::name('created_at')
+                ->title('Date of creation'),
         ];
     }
 }

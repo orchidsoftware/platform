@@ -6,12 +6,14 @@
         <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
                data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
         >
-        <span class="input-group-addon">
-        <span class="fa fa-calendar" aria-hidden="true"></span>
+
+        <span class="input-group-addon input-group-btn">
+            <span class="btn btn-default"><i class="icon-calendar" aria-hidden="true"></i></span>
         </span>
+
     </div>
     @if(isset($help))
-        <p class="help-block">{{$help}}</p>
+        <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
 @include('dashboard::partials.fields.hr', ['show' => $hr ?? true])

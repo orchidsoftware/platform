@@ -25,17 +25,17 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($users->count() > 0)
-                <div class="panel">
+                <div class="card">
 
-                    <div class="panel-body row">
+                    <div class="card-body row">
 
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    @foreach($grid as $key => $column)
-                                        <th>{{$column}}</th>
+                                    @foreach($grid as $th)
+                                        <th width="{{$th->width}}">{{$th->title}}</th>
                                     @endforeach
                                 </tr>
                                 </thead>
@@ -44,11 +44,17 @@
                                     <tr>
                                         <td class="text-center">
                                             <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
-                                                        class="fa fa-bars"></i></a>
+                                                        class="icon-menu"></i></a>
                                         </td>
 
-                                        @foreach($grid as $key => $column)
-                                            <td>{{$user->getContent($key)}}</td>
+                                        @foreach($grid as $td)
+                                        <td>
+                                            @if(!is_null($td->render))
+                                                {!! $td->handler($user) !!}
+                                            @else
+                                                {{ $user->getContent($td->name) }}
+                                            @endif
+                                        </td>
                                         @endforeach
                                     </tr>
 
@@ -59,7 +65,7 @@
 
                     </div>
 
-                    <footer class="panel-footer">
+                    <footer class="card-footer">
                         <div class="row">
                             <div class="col-sm-5">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$users->total()}}

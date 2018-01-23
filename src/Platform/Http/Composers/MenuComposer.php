@@ -113,7 +113,7 @@ class MenuComposer
 
         $dashboard->menu->add('Systems', [
             'slug'       => 'roles',
-            'icon'       => 'icon-shield',
+            'icon'       => 'icon-lock',
             'route'      => route('dashboard.systems.roles'),
             'label'      => trans('dashboard::menu.roles'),
             'childs'     => false,

@@ -13,18 +13,20 @@
     </div>
 @stop
 @section('content')
-    <div class="nav-tabs-alt bg-white-only">
-        <ul class="nav nav-tabs padder" role="tablist">
-            @foreach($forms as $name => $form)
-                <li @if ($loop->first) class="active" @endif>
-                    <a data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
-                        {!! $name !!}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
 
+    @if(count($forms) > 1)
+        <div class="nav-tabs-alt bg-white-only">
+            <ul class="nav nav-tabs padder" role="tablist">
+                @foreach($forms as $name => $form)
+                    <li class="nav-item">
+                        <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
+                            {!! $name !!}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <!-- main content  -->
     <section>

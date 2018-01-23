@@ -3,23 +3,33 @@
         @if(isset($title))
             <label for="field-{{$slug}}">{{$title}}</label>
         @endif
+		@php
+			if(isset($prefix)) 
+				$inputname=$prefix.'['.$lang.']'.$name;
+			else $inputname=$name.$lang;
+
+			if(isset($value['name'])) 
+				$valuename=$value['name']; 
+			else $valuename=$value;
+        @endphp
+		
         <div class="input-group">
             <input class="form-control {{$class or ''}}" id="place-{{$slug}}-{{$lang}}"
-                   name="{{$prefix}}[{{$lang}}]{{$name}}[name]" value="{{$value['name'] or ''}}"
+                   name="{{$inputname}}[name]" value="{{$valuename or ''}}"
                    placeholder="{{$placeholder or ''}}">
-            <input type="hidden" id="lat-{{$slug}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lat]"
+            <input type="hidden" id="lat-{{$slug}}-{{$lang}}" name="{{$inputname}}[lat]"
                    value="{{$value['lat'] or ''}}">
-            <input type="hidden" id="lng-{{$slug}}-{{$lang}}" name="{{$prefix}}[{{$lang}}]{{$name}}[lng]"
-                   value="{{$value['lng'] or ''}}">
+            <input type="hidden" id="lng-{{$slug}}-{{$lang}}" name="{{$inputname}}[lng]"
+                   value="{{$value['lng'] or ''}}">				   
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" data-toggle="modal"
                     data-target="#map-place-{{$slug}}-{{$lang}}"><i
-                        class="fa fa-map-marker"></i></button>
+                        class="icon-location-pin"></i></button>
             </span>
         </div>
     </div>
     @if(isset($help))
-        <p class="help-block">{{$help}}</p>
+        <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
 <!-- Modal  -->

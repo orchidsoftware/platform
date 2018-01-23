@@ -8,6 +8,38 @@ $icon-font-path : '/orchid/fonts/';
 $fa-font-path : '/orchid/fonts/';
 $simple-line-font-path : '/orchid/fonts/';
 
+$grid-breakpoints : (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+);
+
+// Colors
+$white : #ffffff !default;
+$gray-100 : #f8f9fa !default;
+$gray-200 : #e9ecef !default;
+$gray-300 : #dee2e6 !default;
+$gray-400 : #ced4da !default;
+$gray-500 : #adb5bd !default;
+$gray-600 : #6c757d !default;
+$gray-700 : #495057 !default;
+$gray-800 : #343a40 !default;
+$gray-900 : #212529 !default;
+$black : #000000 !default;
+
+$blue : #007bff !default;
+$indigo : #6610f2 !default;
+$purple : #6f42c1 !default;
+$pink : #e83e8c !default;
+$red : #dc3545 !default;
+$orange : #fd7e14 !default;
+$yellow : #ffc107 !default;
+$green : #28a745 !default;
+$teal : #20c997 !default;
+$cyan : #17a2b8 !default;
+
 $brand-primary : #ac5ca0; //$oc-violet-8;
 $brand-complete : $oc-indigo-8;
 $brand-info : $oc-blue-7;
@@ -29,75 +61,35 @@ $mix-percentage-lighter : 20%;
 
 //Lighter colors
 $brand-success-light : mix($brand-success, $brand-white, $mix-percentage-light);
-$brand-success-lighter : mix(
-                $brand-success,
-                $brand-white,
-                $mix-percentage-lighter
-);
+$brand-success-lighter : mix($brand-success, $brand-white, $mix-percentage-lighter);
 
-$brand-complete-light : mix(
-                $brand-complete,
-                $brand-white,
-                $mix-percentage-light
-);
-$brand-complete-lighter : mix(
-                $brand-complete,
-                $brand-white,
-                $mix-percentage-lighter
-);
+$brand-complete-light : mix($brand-complete, $brand-white, $mix-percentage-light);
+$brand-complete-lighter : mix($brand-complete, $brand-white, $mix-percentage-lighter);
 
 $brand-primary-light : mix($brand-primary, $brand-white, $mix-percentage-light);
-$brand-primary-lighter : mix(
-                $brand-primary,
-                $brand-white,
-                $mix-percentage-lighter
-);
+$brand-primary-lighter : mix($brand-primary, $brand-white, $mix-percentage-lighter);
 
 $brand-warning-light : mix($brand-warning, $brand-white, $mix-percentage-light);
-$brand-warning-lighter : mix(
-                $brand-warning,
-                $brand-white,
-                $mix-percentage-lighter
-);
+$brand-warning-lighter : mix($brand-warning, $brand-white, $mix-percentage-lighter);
 
 $brand-danger-light : mix($brand-danger, $brand-white, $mix-percentage-light);
-$brand-danger-lighter : mix(
-                $brand-danger,
-                $brand-white,
-                $mix-percentage-lighter
-);
+$brand-danger-lighter : mix($brand-danger, $brand-white, $mix-percentage-lighter);
 
 $brand-info-light : mix($brand-info, $brand-white, $mix-percentage-light);
 $brand-info-lighter : mix($brand-info, $brand-white, $mix-percentage-lighter);
 
 //Darker colors
 $brand-success-dark : mix($brand-success, $brand-black, $mix-percentage-dark);
-$brand-success-darker : mix(
-                $brand-success,
-                $brand-black,
-                $mix-percentage-darker
-);
+$brand-success-darker : mix($brand-success, $brand-black, $mix-percentage-darker);
 
 $brand-complete-dark : mix($brand-complete, $brand-black, $mix-percentage-dark);
-$brand-complete-darker : mix(
-                $brand-complete,
-                $brand-black,
-                $mix-percentage-darker
-);
+$brand-complete-darker : mix($brand-complete, $brand-black, $mix-percentage-darker);
 
 $brand-primary-dark : mix($brand-primary, $brand-black, $mix-percentage-dark);
-$brand-primary-darker : mix(
-                $brand-primary,
-                $brand-black,
-                $mix-percentage-darker
-);
+$brand-primary-darker : mix($brand-primary, $brand-black, $mix-percentage-darker);
 
 $brand-warning-dark : mix($brand-warning, $brand-black, $mix-percentage-dark);
-$brand-warning-darker : mix(
-                $brand-warning,
-                $brand-black,
-                $mix-percentage-darker
-);
+$brand-warning-darker : mix($brand-warning, $brand-black, $mix-percentage-darker);
 
 $brand-danger-dark : mix($brand-danger, $brand-black, $mix-percentage-dark);
 $brand-danger-darker : mix($brand-danger, $brand-black, $mix-percentage-darker);
@@ -107,7 +99,7 @@ $brand-info-darker : mix($brand-info, $brand-black, $mix-percentage-darker);
 
 $brand-grey-light : mix($brand-grey, #ffffff, 10%);
 
-$body-bg : lighten($brand-light, 1%);
+$body-bg : $oc-gray-0;//lighten($brand-light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 
@@ -115,11 +107,12 @@ $font-family-sans-serif : 'Open Sans', sans-serif;
 $font-family-serif : 'Open Sans', sans-serif;
 $font-family-base : $font-family-sans-serif;
 
-$font-size-base : 14px;
-$font-size-lg : ceil($font-size-base * 1.23); // ~20px
-$font-size-md : ceil($font-size-base * 1.14); // ~16px
-$font-size-sm : ceil($font-size-base * 0.92); // ~13px
-$font-size-xs : ceil($font-size-base * 0.85); // ~12px
+$font-size-base-px : 14px;
+$font-size-base : 1rem;
+$font-size-lg : 1.23*$font-size-base; //ceil($font-size-base * 1.23); // ~20px
+$font-size-md : 1.142857*$font-size-base; //ceil($font-size-base * 1); // ~16px
+$font-size-sm : 0.92857*$font-size-base; //ceil($font-size-base * 0.81); // ~13px
+$font-size-xs : 0.85714*$font-size-base; //ceil($font-size-base * 0.75); // ~12px
 
 $link-color : darken($text-color, 15%);
 $link-hover-color : darken($text-color, 30%);
@@ -129,6 +122,7 @@ $border-color : darken($brand-light, 5%);
 
 $line-height-base : 1.42857143; // 20/14
 $line-height-computed : floor($font-size-base * $line-height-base); // ~20px
+$line-height-computed-px : 20px;
 $icon-css-prefix : i;
 
 // Buttons
@@ -177,9 +171,9 @@ $switch-lg-width : 50px;
 $switch-lg-height : 30px;
 
 $app-aside-width : 350px;
-$app-aside-nav-height : 40px;
+$app-aside-nav-height : 40px; //2,857rem; 
 $app-aside-folded-width : 60px;
-$app-aside-folded-nav-height : 50px;
+$app-aside-folded-nav-height : 50px; //3.57rem;
 $app-aside-dock-media : 992px;
 
 $app-header-height : 80px;
@@ -203,3 +197,46 @@ $form-control-border-color : fade-out($brand-black, 0.93);
 $tablet : 768px;
 $desktop : 1280px;
 $widescreen : 1600px;
+
+//DateTimePicker
+$btn-primary-color : #ffffff;
+$btn-primary-bg : $brand-primary;
+$border-radius-base : 2px;
+$gray-lighter : #eeeeee;
+$gray-light : #777777;
+$screen-sm-min : map-get($grid-breakpoints, sm);
+$screen-md-min : map-get($grid-breakpoints, md);
+$screen-lg-min : map-get($grid-breakpoints, lg);
+
+//Bootstrap
+$enable-caret : false;
+
+//Select2-bootstrap.
+$border-radius-large : 6px;
+$border-radius-small : 3px;
+$caret-width-base : 4px;
+$caret-width-large : 5px;
+$cursor-disabled : not-allowed;
+$font-size-large : ceil(($font-size-base-px * 1.25)); // ~18px
+$font-size-small : ceil(($font-size-base-px * 0.85));
+$padding-base-vertical : 6px;
+$padding-base-horizontal : 12px;
+$padding-large-vertical : 10px;
+$padding-large-horizontal : 16px;
+$padding-small-vertical : 5px;
+$padding-small-horizontal : 10px;
+$line-height-large : 1.3333333;
+$line-height-small : 1.5;
+$input-bg : #ffffff;
+$gray-base : #000000;
+$gray : lighten($gray-base, 33.5%);
+$input-bg-disabled : $gray-lighter;
+$input-color : $gray;
+$input-border : #cccccc;
+$input-color-placeholder : #999999;
+$input-height-base : ($line-height-computed-px + ($padding-base-vertical * 2) + 2);
+$input-height-large : (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
+$input-height-small : (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
+$state-warning-text : #8a6d3b;
+$state-danger-text : #a94442;
+$state-success-text : #3c763d;

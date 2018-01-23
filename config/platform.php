@@ -124,7 +124,7 @@ return [
     */
 
     'single' => [
-        Orchid\Core\Behaviors\Single\DemoPage::class,
+        Orchid\Platform\Behaviors\Demo\Page::class,
     ],
 
     /*
@@ -137,7 +137,7 @@ return [
     */
 
     'many' => [
-        Orchid\Core\Behaviors\Many\DemoPost::class,
+        Orchid\Platform\Behaviors\Demo\Post::class,
     ],
 
     /*
@@ -164,6 +164,24 @@ return [
         'header'  => 'Header menu',
         'sidebar' => 'Sidebar menu',
         'footer'  => 'Footer menu',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Filesystem Disks
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure as many filesystem "disks" as you wish, and you
+    | may even configure multiple disks of the same driver. Defaults have
+    | been setup for each driver as an example of the required options.
+    |
+    | Supported Drivers: "local", "ftp", "s3", "rackspace"
+    |
+    */
+
+    'disks' => [
+        'media'      => 'public',
+        //TODO:: 'attachment' => 'public',
     ],
 
     /*
