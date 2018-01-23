@@ -20,6 +20,12 @@ trait Environment
 
         Schema::defaultStringLength(191);
 
+        $this->artisan('vendor:publish', [
+            '--all' => true,
+        ]);
+
+        $this->artisan('orchid:link');
+
         $this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate', [
@@ -27,11 +33,6 @@ trait Environment
         ]);
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
-
-        $this->artisan('vendor:publish', [
-            '--all' => true,
-        ]);
-        $this->artisan('orchid:link');
     }
 
     /**
