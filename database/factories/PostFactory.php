@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\App;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\User;
 
@@ -18,25 +18,22 @@ use Orchid\Platform\Core\Models\User;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
+    $lang = App::getLocale();
 
-	$lang		=	App::getLocale();
-	
-	$user		=	User::inRandomOrder()->first()->id;
-	
-	//$type		= 	 $faker->randomElement(["page","demo"]);
-	$type		= 	 $faker->randomElement(["demo"]);
-	
-	$status		= 	["publish"];
-	
-	$name		=	$faker->sentence($nbWords = 6, $variableNbWords = true);
-	
-	
-				
-    $post= [
+    $user = User::inRandomOrder()->first()->id;
+
+    //$type		= 	 $faker->randomElement(["page","demo"]);
+    $type = $faker->randomElement(['demo']);
+
+    $status = ['publish'];
+
+    $name = $faker->sentence($nbWords = 6, $variableNbWords = true);
+
+    $post = [
         'user_id'	=> $user,
         'type'		=> $type,
         'status'	=> $faker->randomElement($status),
-		'content' => [
+        'content' => [
             $lang => [
                 'name'		=> $name,
                 'title'		=> $faker->sentence($nbWords = 6, $variableNbWords = true),
@@ -45,18 +42,19 @@ $factory->define(Post::class, function (Faker $faker) {
                 'body2'		=> $faker->text,
                 'picture'	=> $faker->imageUrl($width = 640, $height = 480),
                 'open'		=> $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null)->format('Y-m-d H:i:s'),
-                'robot'		=> $faker->randomElement(["noindex"]),
+                'robot'		=> $faker->randomElement(['noindex']),
                 'block'		=> $faker->text,
                 'keywords'	=> implode(',', $faker->words($nb = 5, $asText = false)),
                 'list'	=> $faker->words($nb = 5, $asText = false),
             ],
         ],
-		'options' => [
+        'options' => [
             'locale' => [
-				'en'	=> "true",
-			],
-		],
-		'slug' => ($type=="page")?"demo-page":Str::slug($name),  //'slug' => "demo-page"
+                'en'	=> 'true',
+            ],
+        ],
+        'slug' => ($type == 'page') ? 'demo-page' : Str::slug($name),  //'slug' => "demo-page"
     ];
-	return $post;
+
+    return $post;
 });
