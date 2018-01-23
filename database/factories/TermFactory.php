@@ -21,11 +21,7 @@ $factory->define(Term::class, function (Faker $faker) {
     return [
         'slug' => Str::slug($faker->unique()->sentence($nbWords = 2, $variableNbWords = true)),
         'content' => [
-<<<<<<< HEAD
-            'en' => [
-=======
             $lang => [
->>>>>>> master
                 'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
                 'body' => $faker->text,
             ],
