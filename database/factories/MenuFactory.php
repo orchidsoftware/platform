@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
 use Faker\Generator as Faker;
 use Orchid\Platform\Core\Models\Menu;
 
@@ -16,19 +17,15 @@ use Orchid\Platform\Core\Models\Menu;
 */
 
 $factory->define(Menu::class, function (Faker $faker) {
-    $lang = 'en';
-    $MenuTitle = $faker->unique()->word;
 
-    $MenuType = $faker->randomElement(['header', 'sidebar', 'footer']);
-
-    $RobotArr = ['answer', 'chapter', 'co-worker', 'colleague', 'contact',
-                    'details', 'edit', 'friend', 'question', 'archives', 'author',
-                    'bookmark', 'first', 'help', 'index', 'last', 'license', 'me',
-                    'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search',
-                    'sidebar', 'tag', 'up', ];
-
-    $parent = Menu::where('lang', $lang)->where('type', $MenuType)->get()->count();
-    $parent_id = ($parent > 1) ? Menu::where('lang', $lang)->where('type', $MenuType)->inRandomOrder()->first()->id : null;
+	$lang		=	App::getLocale();
+	$MenuTitle 	= 	$faker->unique()->word;
+	
+	$RobotArr	= 	["answer","chapter","co-worker","colleague","contact",
+					"details","edit","friend","question","archives","author",
+					"bookmark","first","help","index","last","license","me",
+					"next","nofollow","noreferrer","prefetch","prev","search",
+					"sidebar","tag","up"];
 
     return [
         'label'	=> Str::slug($MenuTitle),
@@ -39,8 +36,6 @@ $factory->define(Menu::class, function (Faker $faker) {
         'target'=> $faker->randomElement(['_self', '_blank']),
         'auth' 	=> $faker->randomElement([0, 1]),
         'lang' 	=> $lang,
-        'parent'=> $parent_id, //$faker->randomElement([NULL,$parent_id,$parent_id]),
-        'sort' 	=> 0,
-        'type' 	=> $MenuType,
+        'sort' 	=> 0, 
     ];
 });

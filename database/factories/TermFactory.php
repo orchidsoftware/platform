@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
 use Faker\Generator as Faker;
 use Orchid\Platform\Core\Models\Term;
 
@@ -16,10 +17,11 @@ use Orchid\Platform\Core\Models\Term;
 */
 
 $factory->define(Term::class, function (Faker $faker) {
+	$lang		=	App::getLocale();
     return [
-        'slug' => Str::slug($faker->unique()->word),
+        'slug' => Str::slug($faker->unique()->sentence($nbWords = 2, $variableNbWords = true)),
         'content' => [
-            'en' => [
+            $lang => [
                 'name' => $faker->sentence($nbWords = 2, $variableNbWords = true),
                 'body' => $faker->text,
             ],

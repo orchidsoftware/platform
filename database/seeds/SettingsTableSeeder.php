@@ -2,7 +2,7 @@
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-//use Faker\Generator as Faker;
+
 use Orchid\Platform\Core\Models\Setting;
 
 class SettingsTableSeeder extends Seeder
@@ -14,7 +14,6 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        //factory(Setting::class, 1)->create();
 
         $faker = Faker::create();
         $settings = [
@@ -43,7 +42,7 @@ class SettingsTableSeeder extends Seeder
         ];
 
         foreach ($settings as $setting) {
-            Setting::create([
+            Setting::firstOrCreate(['key' 	=> $setting['key']],[
                 'key' 	=> $setting['key'],
                 'value'	=> $setting['value'],
             ]);
