@@ -17,7 +17,6 @@ trait Environment
     {
         parent::setUp();
 
-
         Schema::defaultStringLength(191);
 
         $this->artisan('vendor:publish', [
