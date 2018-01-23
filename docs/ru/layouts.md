@@ -132,6 +132,42 @@ class Appointment extends Rows
 
 ## Графики
 
+Макет графиков удобный способ графически отображать динамику значений, но он требует некоторой
+обработки данных, пример данных из `query`
+
+```php
+/**
+ * Query data
+ *
+ * @param Patient $patient
+ *
+ * @return array
+ */
+public function query($patient = null) : array
+{
+    $charts = [
+        [
+            'title'  => "Some Data",
+            'values' => [25, 40, 30, 35, 8, 52, 17, -4],
+        ],
+        [
+            'title'  => "Another Set",
+            'values' => [25, 50, -10, 15, 18, 32, 27, 14],
+        ],
+        [
+            'title'  => "Yet Another",
+            'values' => [15, 20, -3, -15, 58, 12, -17, 37],
+        ],
+    ];
+    
+    return [
+        'charts' => $charts,
+    ];
+}
+```
+
+
+Пример макета:
 ```php
 namespace App\Layouts\Clinic\Patient;
 
