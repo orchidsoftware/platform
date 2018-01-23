@@ -2,10 +2,9 @@
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File as MakeFile;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Attachments\File as File;
-use Illuminate\Support\Facades\File as MakeFile;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AttachmentsTableSeeder extends Seeder
@@ -28,7 +27,7 @@ class AttachmentsTableSeeder extends Seeder
 
     public function addfile()
     {
-        $dirimages = config('filesystems.disks.public.root').DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR; //date('Y/m/d');
+        $dirimages = config('filesystems.disks.public.root') . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR; //date('Y/m/d');
 
         //if(!MakeFile::exists($dirimages))
         //{
@@ -40,8 +39,8 @@ class AttachmentsTableSeeder extends Seeder
         $file = new UploadedFile($image, $image, null, filesize($image), null, true);
 
         $attachment = app()->make(File::class, [
-                'file' 		=>	$file,
-                'storage'	=>	Storage::disk($this->storage),
+            'file'    => $file,
+            'storage' => Storage::disk($this->storage),
         ])->load();
 
         //dd($attachment->toArray());

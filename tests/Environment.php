@@ -25,7 +25,7 @@ trait Environment
             '--database' => 'orchid',
         ]);
 
-        $this->withFactories(__DIR__.'/../database/factories');
+        $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
 
         $this->artisan('vendor:publish', [
             '--all' => true,

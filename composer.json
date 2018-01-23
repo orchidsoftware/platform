@@ -4,7 +4,7 @@
   "keywords": ["framework", "laravel", "orchid", "platform"],
   "type": "library",
   "license": "MIT",
-  "homepage": "http://orchid.software",
+  "homepage": "https://orchid.software",
   "support": {
     "issues": "https://github.com/theOrchid/Platform/issues",
     "source": "https://github.com/theOrchid/Platform"
@@ -42,6 +42,10 @@
     ]
   },
   "autoload-dev": {
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ],
     "psr-4": {
       "Orchid\\Platform\\Tests\\": "tests/"
     }

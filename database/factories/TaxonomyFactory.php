@@ -20,7 +20,7 @@ $factory->define(Taxonomy::class, function (Faker $faker) {
     $parent_id = ($parent > 0) ? Taxonomy::where('taxonomy', $taxonomy)->inRandomOrder()->first()->id : 0;
 
     return [
-        'taxonomy' => $taxonomy,
+        'taxonomy'  => $taxonomy,
         'parent_id' => $faker->randomElement($array = [0, $parent_id]),
     ];
 });
