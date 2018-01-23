@@ -55,7 +55,7 @@ $factory->define(Role::class, function (Faker $faker) {
         ],
     ];
     $selRole = $faker->randomElement($role);
-    $Title = $faker->lexify($selRole . '_???');
+    $Title = $faker->lexify($selRole.'_???');
     //$jobTitle = $faker->jobTitle;
 
     return [
