@@ -14,10 +14,12 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-		
+	
 		$pages = ["demo-page"];
 		foreach ($pages as $page) {
-			factory(Post::class)->create(['type' => 'page','slug' => $page]);
+			if (Post::where('type', '=', 'page')->where('slug', '=', $page)->count() == 0) {
+				factory(Post::class)->create(['type' => 'page','slug' => $page]);
+			}	
 		}
     }
 }

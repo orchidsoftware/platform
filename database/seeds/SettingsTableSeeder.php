@@ -42,7 +42,7 @@ class SettingsTableSeeder extends Seeder
         ];
 
         foreach ($settings as $setting) {
-            Setting::create([
+            Setting::firstOrCreate(['key' 	=> $setting['key']],[
                 'key' 	=> $setting['key'],
                 'value'	=> $setting['value'],
             ]);

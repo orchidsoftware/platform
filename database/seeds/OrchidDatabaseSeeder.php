@@ -11,7 +11,9 @@ class OrchidDatabaseSeeder extends Seeder
      */
     public function run()
     {
+		
 		$this->call([
+			AttachmentsTableSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,
             SettingsTableSeeder::class,
@@ -20,6 +22,5 @@ class OrchidDatabaseSeeder extends Seeder
 			PagesTableSeeder::class,
 			PostsTableSeeder::class
         ]);
-
-    }
+	}
 }
