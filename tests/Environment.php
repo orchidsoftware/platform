@@ -17,6 +17,7 @@ trait Environment
     {
         parent::setUp();
 
+
         Schema::defaultStringLength(191);
 
         $this->loadLaravelMigrations('orchid');
