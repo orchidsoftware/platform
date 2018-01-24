@@ -108,21 +108,18 @@ abstract class Screen
     public function handle($method = null, $parameters = null)
     {
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
-
             $this->arguments = is_array($method) ? $method : [$method];
 
             return $this->view();
         }
 
         if (! is_null($parameters)) {
-
             $this->arguments = is_array($method) ? $method : [$method];
 
             $this->reflectionParams($parameters);
 
             return call_user_func_array([$this, $parameters], $this->arguments);
         }
-
 
         $this->arguments = is_array($parameters) ? $parameters : [$parameters];
         $this->reflectionParams($method);
@@ -141,7 +138,7 @@ abstract class Screen
             if (is_null($parameter->getClass())) {
                 continue;
             }
-            
+
             if ($this->checkClassInArray($key)) {
                 continue;
             }
