@@ -14,7 +14,7 @@ class Repository extends BaseRepository
     public function getContent($arg)
     {
         if ($this->has($arg)) {
-            return $this->get($arg, 'null');
+            return $this->get($arg);
         }
     }
 }

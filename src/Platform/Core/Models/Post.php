@@ -15,14 +15,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Core\Traits\JsonRelations;
 use Orchid\Platform\Core\Traits\MultiLanguage;
-use Orchid\Platform\Core\Traits\RepositoryFields;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, RepositoryFields;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
 
     /**
      * @var string
@@ -74,17 +73,6 @@ class Post extends Model
     ];
 
     /**
-     * @return array
-     */
-    public function getRepositoryFields()
-    {
-        return [
-            'content',
-            'options',
-        ];
-    }
-
-    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
@@ -102,6 +90,7 @@ class Post extends Model
      * Get the indexable data array for the model.
      *
      * @return array
+     * @throws TypeException
      */
     public function toSearchableArray()
     {
