@@ -28,7 +28,6 @@ trait MultiLanguage
 
         $lang = $lang ?? App::getLocale();
 
-        return collect($this->getAttribute($this->jsonColumnName))->get($lang . '.' . $field);
-
+        return collect($this->getAttribute($this->jsonColumnName))->get($lang.'.'.$field);
     }
 }
