@@ -58,6 +58,16 @@ abstract class Screen
     }
 
     /**
+     * Views.
+     *
+     * @return array
+     */
+    public function layout() : array
+    {
+        return [];
+    }
+
+    /**
      * @return array
      */
     public function build() : array
@@ -77,56 +87,6 @@ abstract class Screen
     }
 
     /**
-     * Views.
-     *
-     * @return array
-     */
-    public function layout() : array
-    {
-        return [];
-    }
-
-    /**
-     * @param $method
-     * @param $parameters
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
-     */
-    public function handle($method = null, $parameters = null)
-    {
-        if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
-            if (! is_array($method)) {
-                $method = [$method];
-            }
-            $this->arguments = $method;
-
-            return $this->view();
-        }
-
-        if (! is_null($parameters)) {
-            if (! is_array($method)) {
-                $method = [$method];
-            }
-            $this->arguments = $method;
-
-            $this->reflectionParams($parameters);
-            asort($this->arguments);
-
-            return call_user_func_array([$this, $parameters], $this->arguments);
-        }
-
-        if (! is_array($parameters)) {
-            $parameters = [$parameters];
-        }
-        $this->arguments = $parameters;
-
-        $this->reflectionParams($method);
-        asort($this->arguments);
-
-        return call_user_func_array([$this, $method], $this->arguments);
-    }
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view()
@@ -141,6 +101,37 @@ abstract class Screen
 
     /**
      * @param $method
+     * @param $parameters
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     */
+    public function handle($method = null, $parameters = null)
+    {
+        if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
+
+            $this->arguments = is_array($method) ? $method : [$method];
+
+            return $this->view();
+        }
+
+        if (! is_null($parameters)) {
+
+            $this->arguments = is_array($method) ? $method : [$method];
+
+            $this->reflectionParams($parameters);
+
+            return call_user_func_array([$this, $parameters], $this->arguments);
+        }
+
+
+        $this->arguments = is_array($parameters) ? $parameters : [$parameters];
+        $this->reflectionParams($method);
+
+        return call_user_func_array([$this, $method], $this->arguments);
+    }
+
+    /**
+     * @param $method
      */
     public function reflectionParams($method)
     {
@@ -150,15 +141,13 @@ abstract class Screen
             if (is_null($parameter->getClass())) {
                 continue;
             }
-
+            
             if ($this->checkClassInArray($key)) {
                 continue;
             }
 
-            $arg[] = app()->make($parameter->getClass()->name);
+            $this->arguments[$key] = app()->make($parameter->getClass()->name);
         }
-
-        $this->arguments = array_merge($arg ?? [], $this->arguments);
     }
 
     /**
@@ -172,21 +161,6 @@ abstract class Screen
             if (is_object($value) && get_class($value) == $class) {
                 return true;
             }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $key
-     * @param $class
-     *
-     * @return bool
-     */
-    private function checkClassInArrayByKey($key, $class)
-    {
-        if (array_key_exists($key, $this->arguments) && get_class($this->arguments[$key]) == $class) {
-            return true;
         }
 
         return false;
