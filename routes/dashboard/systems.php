@@ -133,12 +133,12 @@ $this->domain(config('platform.domain'))->group(function () {
         ], function () {
             $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
             $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
-            $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'new_folder']);
+            $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);
             $this->post('delete_file_folder',
-                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'delete_file_folder']);
-            $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'get_all_dirs']);
-            $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'move_file']);
-            $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'rename_file']);
+                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'deleteFileFolder']);
+            $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'getAllDirs']);
+            $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'moveFile']);
+            $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'renameFile']);
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
