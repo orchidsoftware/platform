@@ -4,12 +4,11 @@ namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Core\Traits\MultiLanguage;
-use Orchid\Platform\Core\Traits\RepositoryFields;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model
 {
-    use MultiLanguage, RepositoryFields;
+    use MultiLanguage;
 
     /**
      * @var string
@@ -33,13 +32,6 @@ class Term extends Model
         'content' => 'array',
         'slug'    => 'string',
     ];
-
-    public function getRepositoryFields(): array
-    {
-        return [
-            'content',
-        ];
-    }
 
     /**
      * Get the route key for the model.
