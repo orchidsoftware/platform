@@ -27,13 +27,12 @@ trait MultiLanguage
         }
 
         $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
-        $fullName = ($locale ?? App::getLocale()) . '.' . $field;
+        $fullName = ($locale ?? App::getLocale()).'.'.$field;
 
         if (array_has($jsonContent, $fullName)) {
             return array_get($jsonContent, $fullName);
         }
 
-        return array_get($jsonContent, config('app.fallback_locale') . '.' . $field);
+        return array_get($jsonContent, config('app.fallback_locale').'.'.$field);
     }
-
 }

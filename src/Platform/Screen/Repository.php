@@ -4,7 +4,6 @@ namespace Orchid\Platform\Screen;
 
 class Repository
 {
-
     /**
      * @var array
      */
