@@ -47,7 +47,7 @@ abstract class Table
     private function generatedTable($post) : array
     {
         return [
-            'data'   => $post->get($this->data),
+            'data'   => $post->getContent($this->data),
             'fields' => $this->fields(),
         ];
     }
