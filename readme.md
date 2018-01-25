@@ -25,7 +25,7 @@ Using application templates, saves the time and effort of building from scratch,
 
 Documentation can be found at [ORCHID website](http://orchid.software).
 
-
+###### Simple screenshot:
 ![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
 
@@ -113,14 +113,7 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 
 See [CHANGELOG](CHANGELOG.md).
 
-## Credits
-
-- [Alexandr Chernyaev](https://github.com/tabuna)
-- [All Contributors](../../contributors)
-
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-##Test
