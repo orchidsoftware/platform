@@ -95,10 +95,14 @@ http://localhost:8000/dashboard
 ```
 
 
+
+## Change log
+
+See [CHANGELOG](CHANGELOG.md).
+
 ## Security
 
 If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
-
 
 ## Contributing
 
@@ -107,12 +111,6 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-
-
-## Change log
-
-See [CHANGELOG](CHANGELOG.md).
-
 
 ## License
 
