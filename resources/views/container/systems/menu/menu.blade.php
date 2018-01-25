@@ -21,7 +21,7 @@
                         </li>
                     @else
                         <li>
-                            <a class="dropdown-item" href="?lang={{$code}}">{{$locale['native']}}</a>
+                            <a class="dropdown-item" href="?lang={{$code}}" data-turbolinks-action="replace">{{$locale['native']}}</a>
                         </li>
                     @endif
                 @endforeach

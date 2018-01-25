@@ -14,11 +14,11 @@ trait MultiLanguage
 
     /**
      * @param      $field
-     * @param null $lang
+     * @param null $locale
      *
      * @return mixed|null
      */
-    public function getContent($field, $lang = null)
+    public function getContent($field, $locale = null)
     {
         $attributes = array_keys($this->getAttributes());
 
@@ -26,8 +26,14 @@ trait MultiLanguage
             return $this->getAttribute($field);
         }
 
-        $lang = $lang ?? App::getLocale();
+        $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
+        $fullName = ($locale ?? App::getLocale()) . '.' . $field;
 
-        return collect($this->getAttribute($this->jsonColumnName))->get($lang.'.'.$field);
+        if (array_has($jsonContent, $fullName)) {
+            return array_get($jsonContent, $fullName);
+        }
+
+        return array_get($jsonContent, config('app.fallback_locale') . '.' . $field);
     }
+
 }

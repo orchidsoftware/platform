@@ -82,13 +82,12 @@ class Layouts
      */
     public function build($post)
     {
+
+        //dd($this->layouts);
+
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                if (is_object($layout)) {
-                    $build[$key][] = $layout->build($post);
-                } else {
-                    $build[$key][] = (new $layout)->build($post);
-                }
+                $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout)->build($post);
             }
         }
 

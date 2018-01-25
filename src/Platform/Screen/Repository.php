@@ -2,19 +2,30 @@
 
 namespace Orchid\Platform\Screen;
 
-use Illuminate\Config\Repository as BaseRepository;
-
-class Repository extends BaseRepository
+class Repository
 {
+
     /**
-     * @param $arg
-     *
-     * @return mixed|null
+     * @var array
      */
-    public function getContent($arg)
+    protected $attributes = [];
+
+    /**
+     * Repository constructor.
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
     {
-        if ($this->has($arg)) {
-            return $this->get($arg);
-        }
+        $this->attributes = $attributes;
+    }
+
+    /**
+     * @param      $key
+     * @param null $default
+     * @return mixed
+     */
+    public function getContent($key, $default = null)
+    {
+        return array_get($this->attributes, $key, $default);
     }
 }

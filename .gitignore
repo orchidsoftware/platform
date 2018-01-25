@@ -8,3 +8,5 @@ vendor
 .lock
 node_modules
 package-lock.json
+public/css/orchid.css.map
+public/js/orchid.js.map

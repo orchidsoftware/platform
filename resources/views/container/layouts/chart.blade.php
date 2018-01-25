@@ -19,7 +19,16 @@ document.addEventListener("turbolinks:load", function () {
         type: '{{$type}}',
         height: '{{$height}}',
 
-        //colors: ['#212529', '#c92a2a', '#a61e4d', '#862e9c', '#5f3dc4', '#364fc7', '#1862ab', '#0b7285', '#087f5b', '#2b8a3e', '#5c940d', '#e67700', '#d9480f'],
+        colors: [
+            '#d0dff9',
+            '#a3c3f9',
+            '#7da1dd',
+            '#5580c7',
+            '#2860bd',
+            '#0a3f98',
+            '#062457',
+            '#0c182c',
+        ],
     });
 
 

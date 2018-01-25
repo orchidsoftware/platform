@@ -100,10 +100,10 @@ abstract class Screen
     }
 
     /**
-     * @param $method
-     * @param $parameters
-     *
+     * @param null $method
+     * @param null $parameters
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @throws \ReflectionException
      */
     public function handle($method = null, $parameters = null)
     {
@@ -129,6 +129,7 @@ abstract class Screen
 
     /**
      * @param $method
+     * @throws \ReflectionException
      */
     public function reflectionParams($method)
     {
