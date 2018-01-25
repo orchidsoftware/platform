@@ -25,7 +25,7 @@ Using application templates, saves the time and effort of building from scratch,
 
 Documentation can be found at [ORCHID website](http://orchid.software).
 
-
+###### Simple screenshot:
 ![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
 
@@ -95,10 +95,14 @@ http://localhost:8000/dashboard
 ```
 
 
+
+## Change log
+
+See [CHANGELOG](CHANGELOG.md).
+
 ## Security
 
 If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
-
 
 ## Contributing
 
@@ -108,19 +112,6 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
-
-## Change log
-
-See [CHANGELOG](CHANGELOG.md).
-
-## Credits
-
-- [Alexandr Chernyaev](https://github.com/tabuna)
-- [All Contributors](../../contributors)
-
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-##Test
