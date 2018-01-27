@@ -1,7 +1,6 @@
 {!! $filters or '' !!}
 
 <div class="bg-white-only  bg-auto no-border-xs">
-    <div class="card-body row">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -28,7 +27,6 @@
                 </tbody>
             </table>
         </div>
-
         @if(is_object($form['data']))
         <footer class="card-footer col">
             <div class="row">
@@ -43,6 +41,5 @@
             </div>
         </footer>
         @endif
-    </div>
 </div>
 

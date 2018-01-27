@@ -142,7 +142,7 @@ $(function () {
                     }), e.previewElement.appendChild(n)
 
 
-                    var n = Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>"),
+                    var n = Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='icon-note' aria-hidden='true'></i></a>"),
                         t = this;
                     n.addEventListener("click", function (n) {
                         attachmentDescription.loadInfo(e.data);

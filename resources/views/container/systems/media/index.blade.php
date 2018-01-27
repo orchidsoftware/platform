@@ -22,7 +22,7 @@
 
              <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
             </button>
-                 <button type="button" class="btn btn-link" id="move"><i class="fa fa-move"></i> Move
+                 <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i> Move
                 </button>
                 <button type="button" class="btn btn-link" id="rename"><i class="fa fa fa-font"></i>
                     Rename
@@ -290,12 +290,12 @@
                         <button type="button" class="close" data-dismiss="modal"
                                 aria-hidden="true">&times;
                         </button>
-                        <h4 class="modal-title"><i class="fa fa-warning"></i> Are You Sure</h4>
+                        <h4 class="modal-title"><i class="icon-exclamation"></i> Are You Sure</h4>
                     </div>
 
                     <div class="modal-body">
                         <h4>Are you sure you want to delete '<span class="confirm_delete_name"></span>'</h4>
-                        <h5 class="folder_warning"><i class="fa fa-warning"></i> Deleting a folder will remove
+                        <h5 class="folder_warning"><i class="icon-exclamation"></i> Deleting a folder will remove
                             all files and folders contained inside</h5>
                     </div>
 
@@ -319,7 +319,7 @@
                         <button type="button" class="close" data-dismiss="modal"
                                 aria-hidden="true">&times;
                         </button>
-                        <h4 class="modal-title"><i class="fa fa-warning"></i> Drag and drop files or click
+                        <h4 class="modal-title"><i class="icon-exclamation"></i> Drag and drop files or click
                             below to upload</h4>
                     </div>
 

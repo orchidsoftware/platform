@@ -1,4 +1,10 @@
 {
+  "_args": [
+    [
+      "tinymce@4.7.5",
+      "/home/tabuna/ORCHID/install/orchid/Platform"
+    ]
+  ],
   "_from": "tinymce@4.7.5",
   "_id": "tinymce@4.7.5",
   "_inBundle": false,
@@ -16,12 +22,10 @@
     "fetchSpec": "4.7.5"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.5.tgz",
-  "_shasum": "941fd0daaca661cacb85a44a6d478e709d3f85cb",
-  "_spec": "tinymce@4.7.5",
+  "_spec": "4.7.5",
   "_where": "/home/tabuna/ORCHID/install/orchid/Platform",
   "author": {
     "name": "Ephox Corporation"
@@ -29,8 +33,6 @@
   "bugs": {
     "url": "https://github.com/tinymce/tinymce/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Web based JavaScript HTML WYSIWYG editor control.",
   "keywords": [
     "editor",

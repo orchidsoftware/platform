@@ -202,11 +202,9 @@
     }
   }
   ul.nav-footer-fix {
-    font-size: $font-size-sm - 5;
     position: absolute;
     color: $text-muted;
     list-style: none;
-    margin: 20px;
     padding: 0;
     overflow: hidden;
     bottom: 0;
@@ -216,8 +214,7 @@
     align-items: center;
     justify-content: center;
     li {
-      float: left;
-      padding: 5px;
+      width: 100%;
       a {
         @include transition(all .2s ease-in-out 0s);
       }
