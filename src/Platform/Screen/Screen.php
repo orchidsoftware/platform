@@ -198,6 +198,6 @@ abstract class Screen
             }
         }
 
-        return false;
+        return true;
     }
 }
