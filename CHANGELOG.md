@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - "DIV" Layouts
 - "Select" field
 - "Show" key for admin menu
+- Command `make:chart`
 
 ### Changed
 - Upgrade to Bootstrap 4.0

@@ -17,15 +17,16 @@
                 </button>
                 <button type="button" class="btn btn-link" id="new_folder"
                         onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
-                    Add folder
+                    {{trans('dashboard::systems/media.create_new_folder')}}
                 </button>
 
              <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
             </button>
-                 <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i> Move
+                 <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
+                     {{trans('dashboard::systems/media.move_file_folder')}}
                 </button>
                 <button type="button" class="btn btn-link" id="rename"><i class="fa fa fa-font"></i>
-                    Rename
+                    {{trans('dashboard::systems/media.new_file_folder')}}
                 </button>
                 <button type="button" class="btn btn-link" id="delete"><i class="icon-trash"></i>
                     Delete
@@ -44,19 +45,12 @@
 
         <div id="filemanager">
 
-            <div id="uploadPreview" style="display:none;"></div>
-
-            <div id="uploadProgress" class="progress active progress-striped">
-                <div class="progress-bar progress-bar-success" style="width: 0"></div>
-            </div>
-
             <div id="content">
-
 
                 <div class="breadcrumb-container">
                     <ol class="breadcrumb filemanager b-t small">
                         <li data-folder="/" data-index="0"><span class="arrow"></span>
-                            <span>Media Library</span>
+                            <span> {{trans('dashboard::systems/media.library')}}</span>
                         </li>
 
                         <li v-for="(folder,index) in folders" v-bind:data-folder="folder"
@@ -110,7 +104,7 @@
                         </div>
 
                         <div id="no_files">
-                            <h3 class="font-thin"><i class="icon-directions"></i> No files in this folder.</h3>
+                            <h3 class="font-thin"><i class="icon-directions"></i> {{trans('dashboard::systems/media.no_files_here')}}</h3>
                         </div>
 
                     </div>
@@ -118,7 +112,7 @@
                     <div id="right" class="col w-xxl no-padder">
                         <div class="right_none_selected">
                             <i class="icon-cursor"></i>
-                            <p>No File or Folder Selected</p>
+                            <p> {{trans('dashboard::systems/media.nothing_selected')}}</p>
                         </div>
                         <div class="right_details">
                             <div class="detail_img"
@@ -136,7 +130,8 @@
                                     <source v-bind:src="selected_file.path" type="video/mp4">
                                     <source v-bind:src="selected_file.path" type="video/ogg">
                                     <source v-bind:src="selected_file.path" type="video/webm">
-                                    Your browser does not support the video tag.
+
+                                    {{trans('dashboard::systems/media.video_support')}}
                                 </video>
 
 
@@ -144,7 +139,8 @@
                                        controls style="width:100%; margin-top:5px;">
                                     <source v-bind:src="selected_file.path" type="audio/ogg">
                                     <source v-bind:src="selected_file.path" type="audio/mpeg">
-                                    Your browser does not support the audio element.
+
+                                    {{trans('dashboard::systems/media.audio_support')}}
                                 </audio>
 
 
@@ -263,7 +259,10 @@
                         <button type="button" class="close" data-dismiss="modal"
                                 aria-hidden="true">&times;
                         </button>
-                        <h4 class="modal-title"><i class="icon-folder-alt"></i> Add New Folder</h4>
+                        <h4 class="modal-title  padder-v">
+                            <i class="icon-folder-alt"></i>
+                            {{trans('dashboard::systems/media.add_new_folder')}}
+                        </h4>
                     </div>
 
                     <div class="modal-body">
@@ -273,7 +272,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" id="new_folder_submit">Create New Folder
+                        <button type="button" class="btn btn-info" id="new_folder_submit">
+                            {{trans('dashboard::systems/media.add_new_folder')}}
                         </button>
                     </div>
                 </div>
@@ -309,31 +309,6 @@
         </div>
               <!-- End Delete File Modal  -->
 
-        <div id="dropzone"></div>
-              <!-- Delete File Modal  -->
-        <div class="modal fade" id="upload_files_modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">&times;
-                        </button>
-                        <h4 class="modal-title"><i class="icon-exclamation"></i> Drag and drop files or click
-                            below to upload</h4>
-                    </div>
-
-                    <div class="modal-body">
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">All done</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-              <!-- End Delete File Modal  -->
 
     </div><!-- .page-content container-fluid  -->
 
@@ -351,9 +326,6 @@
                 folders: [],
                 selected_file: '',
                 directories: [],
-            },
-            mounted: function () {
-                console.log('Ready manager');
             }
         });
 
@@ -363,39 +335,6 @@
             var files = $('#files');
             var options = $.extend(true, {}, o);
             this.init = function () {
-                $("#upload").dropzone({
-                    url: options.baseUrl + "/media/upload",
-                    previewsContainer: "#uploadPreview",
-                    totaluploadprogress: function (uploadProgress, totalBytes, totalBytesSent) {
-                        $('#uploadProgress .progress-bar').css('width', uploadProgress + '%');
-                        if (uploadProgress == 100) {
-                            $('#uploadProgress').delay(1500).slideUp(function () {
-                                $('#uploadProgress .progress-bar').css('width', '0%');
-                            });
-
-                        }
-                    },
-                    processing: function () {
-                        $('#uploadProgress').fadeIn();
-                    },
-                    sending: function (file, xhr, formData) {
-                        formData.append("_token", CSRF_TOKEN);
-                        formData.append("upload_path", manager.files.path);
-                    },
-                    success: function (e, res) {
-                        if (res.success) {
-                            //alert("Sweet Success!");
-                        } else {
-                            alert(res.message);
-                        }
-                    },
-                    error: function (e, res, xhr) {
-                        alert(res.message);
-                    },
-                    queuecomplete: function () {
-                        getFiles(manager.folders);
-                    }
-                });
 
                 getFiles('/');
 
@@ -501,7 +440,6 @@
                 });
 
                 $('#new_folder_submit').click(function () {
-                    console.log('test');
                     new_folder_path = manager.files.path + '/' + $('#new_folder_name').val();
                     $.post(options.baseUrl + '/media/new_folder', {
                         new_folder: new_folder_path,
@@ -602,9 +540,6 @@
                     });
                 });
 
-                // $('#upload').click(function(){
-                // 	$('#upload_files_modal').modal('show');
-                // });
                 /********** END TOOLBAR BUTTONS **********/
 
                 manager.$watch('files', function (newVal, oldVal) {

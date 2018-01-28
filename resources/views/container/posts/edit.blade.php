@@ -74,7 +74,7 @@
         @endif
         @if($type->checkModules())
             <!-- column  -->
-                <div class="col wi-col lter b-r">
+                <div class="col wi-col lter">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)

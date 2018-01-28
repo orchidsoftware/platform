@@ -1,0 +1,38 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Platform\Layouts\Chart;
+
+class ChartsLayout extends Chart
+{
+
+    /**
+     * @var string
+     */
+    public $title = 'Name Chart';
+
+    /**
+     * @var int
+     */
+    public $height = 150;
+
+    /**
+     * Available options:
+     * 'bar', 'line', 'scatter',
+     * 'pie', 'percentage'
+     *
+     * @var string
+     */
+    public $type = 'scatter';
+
+    /**
+     * @var array
+     */
+    public $labels = [];
+
+    /**
+     * @var string
+     */
+    public $data = 'charts';
+}

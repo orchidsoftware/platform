@@ -35,6 +35,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'Commands\\MakeRows',
         'Commands\\MakeScreen',
         'Commands\\MakeTable',
+        'Commands\\MakeChart',
     ];
 
     /**
