@@ -3,6 +3,7 @@
 namespace Orchid\Platform\Screen;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 abstract class Screen
 {
@@ -19,10 +20,18 @@ abstract class Screen
      * @var string
      */
     public $description;
+
     /**
      * @var array|Request|string
      */
     public $request;
+
+    /**
+     * Permission
+     *
+     * @var string
+     */
+    public $permission;
 
     /**
      * @var array
@@ -107,6 +116,8 @@ abstract class Screen
      */
     public function handle($method = null, $parameters = null)
     {
+        dd($this->checkAccess());
+
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
             $this->arguments = is_array($method) ? $method : [$method];
 
@@ -158,6 +169,29 @@ abstract class Screen
         foreach ($this->arguments as $value) {
             if (is_object($value) && get_class($value) == $class) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    private function checkAccess(){
+        if(is_null($this->permission)){
+            return true;
+        }
+
+        if(is_string($this->permission)){
+            $this->permission = [$this->permission];
+        }
+
+        if(is_array($this->permission)){
+            foreach ($this->permission as $item){
+                if(!Auth::user()->hasAccess($item)){
+                    return false;
+                }
             }
         }
 
