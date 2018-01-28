@@ -7,35 +7,35 @@ use Orchid\Platform\Screen\Repository;
 class Builder
 {
     /**
-     * Fields to be reflected, in the form Field
+     * Fields to be reflected, in the form Field.
      *
      * @var
      */
     public $fields;
 
     /**
-     * Transmitted values for display in a form
+     * Transmitted values for display in a form.
      *
      * @var
      */
     public $data;
 
     /**
-     * The form language
+     * The form language.
      *
      * @var
      */
     public $language;
 
     /**
-     * The form prefix
+     * The form prefix.
      *
      * @var
      */
     public $prefix;
 
     /**
-     * XTML form string
+     * XTML form string.
      *
      * @var
      */
@@ -177,12 +177,12 @@ class Builder
      */
     private function getValue(string $key, $value = null)
     {
-        if(!is_null($this->language)){
-            $key = $this->language . '.'. $key;
+        if (! is_null($this->language)) {
+            $key = $this->language.'.'.$key;
         }
 
-        if(!is_null($this->prefix)){
-            $key = $this->prefix . '.'. $key;
+        if (! is_null($this->prefix)) {
+            $key = $this->prefix.'.'.$key;
         }
 
         $data = $this->data->getContent($key);
@@ -193,5 +193,4 @@ class Builder
 
         return $data;
     }
-
 }
