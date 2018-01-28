@@ -27,7 +27,7 @@ abstract class Screen
     public $request;
 
     /**
-     * Permission
+     * Permission.
      *
      * @var string
      */
@@ -178,18 +178,19 @@ abstract class Screen
     /**
      * @return bool
      */
-    private function checkAccess(){
-        if(is_null($this->permission)){
+    private function checkAccess()
+    {
+        if (is_null($this->permission)) {
             return true;
         }
 
-        if(is_string($this->permission)){
+        if (is_string($this->permission)) {
             $this->permission = [$this->permission];
         }
 
-        if(is_array($this->permission)){
-            foreach ($this->permission as $item){
-                if(!Auth::user()->hasAccess($item)){
+        if (is_array($this->permission)) {
+            foreach ($this->permission as $item) {
+                if (! Auth::user()->hasAccess($item)) {
                     return false;
                 }
             }
