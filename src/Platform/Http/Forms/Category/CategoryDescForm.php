@@ -65,7 +65,7 @@ class CategoryDescForm extends Form
         return view('dashboard::container.systems.category.desc', [
             'language'     => App::getLocale(),
             'termTaxonomy' => $termTaxonomy,
-            'locales'      => config('platform.locales'),
+            'locales'      => collect(config('platform.locales')),
             'fields'       => $this->behavior->fields(),
         ]);
     }

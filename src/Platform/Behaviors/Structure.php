@@ -2,7 +2,6 @@
 
 namespace Orchid\Platform\Behaviors;
 
-use Orchid\Platform\Fields\Builder;
 use Illuminate\Support\Facades\Validator;
 
 trait Structure
@@ -79,21 +78,6 @@ trait Structure
             'publish' => trans('dashboard::post/base.status_list.publish'),
             'draft'   => trans('dashboard::post/base.status_list.draft'),
         ];
-    }
-
-    /**
-     * Generate a ready-made html form for display to the user.
-     *
-     * @param string $language
-     * @param null   $post
-     *
-     * @return string
-     */
-    public function generateForm(string $language = 'en', $post = null) : string
-    {
-        $form = new Builder($this->fields(), $post, $language, 'content');
-
-        return $form->generateForm();
     }
 
     /**

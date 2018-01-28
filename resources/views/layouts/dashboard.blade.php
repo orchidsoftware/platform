@@ -44,7 +44,7 @@
         <!-- navbar header  -->
         <div class="navbar-header bg-black dk v-center">
 
-            <button class="pull-left visible-xs click" data-toggle="open" title="Menu" data-target="#aside">
+            <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
                 <i class="icon-menu"></i>
             </button>
 
@@ -54,8 +54,7 @@
             </a>
             <!-- / brand  -->
 
-
-            <button class="pull-right visible-xs"
+            <button class="pull-right"
                              onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="icon-logout"></i>
             </button>
@@ -90,7 +89,15 @@
 
                 <!-- nav  -->
                 <nav class="navi clearfix">
-                    <ul class="nav flex-column " role="tablist">
+                    <ul class="nav flex-column" role="tablist">
+
+                        {{--
+                        <li class="nav-item">
+                            <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
+                                <i class="icon-menu" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        --}}
 
                         <li class="nav-item">
                             <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">

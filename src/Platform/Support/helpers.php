@@ -36,14 +36,16 @@ if (! function_exists('setting')) {
 
 if (! function_exists('generate_form')) {
     /**
+     * Generate a ready-made html form for display to the user.
+     *
      * @param array       $fields
      * @param             $data
      * @param string|null $language
      * @param string|null $prefix
-     *
-     * @return mixed
+     * @return string
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
-    function generate_form(array $fields, $data, string $language = null, string $prefix = null)
+    function generate_form(array $fields, $data = [], string $language = null, string $prefix = null)
     {
         if (is_array($data)) {
             $data = new \Orchid\Platform\Screen\Repository($data);

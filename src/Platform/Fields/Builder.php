@@ -7,29 +7,39 @@ use Orchid\Platform\Screen\Repository;
 class Builder
 {
     /**
+     * Fields to be reflected, in the form Field
+     *
      * @var
      */
     public $fields;
 
     /**
+     * Transmitted values for display in a form
+     *
      * @var
      */
     public $data;
 
     /**
+     * The form language
+     *
      * @var
      */
     public $language;
 
     /**
+     * The form prefix
+     *
      * @var
      */
     public $prefix;
 
     /**
+     * XTML form string
+     *
      * @var
      */
-    public $form;
+    public $form = '';
 
     /**
      * Builder constructor.
@@ -41,7 +51,7 @@ class Builder
      *
      * @throws \Orchid\Platform\Exceptions\TypeException
      */
-    public function __construct(array $fields, $data, string $language = null, string $prefix = null)
+    public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
     {
         //deprecated
         foreach ($fields as $key => $item) {
@@ -53,7 +63,7 @@ class Builder
         }
 
         $this->fields = $fields;
-        $this->data = $data ?? $data = new Repository([]);
+        $this->data = $data;
 
         $this->language = $language;
         $this->prefix = $prefix;
@@ -90,10 +100,7 @@ class Builder
      */
     public function generateForm() : string
     {
-        $fields = $this->fields;
-
-        $this->form = '';
-        foreach ($fields as $field) {
+        foreach ($this->fields as $field) {
             $field->set('lang', $this->language);
             $field->set('prefix', $this->buildPrefix($field));
 
@@ -170,7 +177,15 @@ class Builder
      */
     private function getValue(string $key, $value = null)
     {
-        $data = $this->data->getContent($key, $this->language);
+        if(!is_null($this->language)){
+            $key = $this->language . '.'. $key;
+        }
+
+        if(!is_null($this->prefix)){
+            $key = $this->prefix . '.'. $key;
+        }
+
+        $data = $this->data->getContent($key);
 
         if (! is_null($value) && $value instanceof \Closure) {
             return $value($data, $this->data);
@@ -178,4 +193,5 @@ class Builder
 
         return $data;
     }
+
 }

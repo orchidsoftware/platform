@@ -59,8 +59,10 @@
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                        <div class="wrapper-xl  bg-white">
-                                            {!! $type->generateForm($code,$post) !!}
+                                        <div class="wrapper-md  bg-white">
+
+                                            {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
+
                                         </div>
                                     </div>
                                 @endforeach
