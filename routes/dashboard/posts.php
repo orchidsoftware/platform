@@ -15,6 +15,12 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/posts'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
     ], function (\Illuminate\Routing\Router $router) {
+
+        $router->post('restore/{id?}', [
+            'as'   => 'dashboard.posts.restore',
+            'uses' => 'PostController@restore',
+        ]);
+
         $router->get('{type}/create', [
             'as'   => 'dashboard.posts.type.create',
             'uses' => 'PostController@create',

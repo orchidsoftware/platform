@@ -6,5 +6,7 @@
                 aria-hidden="true">&times;
         </button>
         {!! session('flash_notification.message') !!}
+
+        @yield('flash_notification.sub_message')
     </div>
 @endif

@@ -9,7 +9,17 @@
         </div>
     </div>
 @stop
+
+
+@section('flash_notification.sub_message')
+    @if(session('restore'))
+        @include('dashboard::container.posts.restore')
+    @endif
+@stop
+
+
 @section('content')
+
     @if($data->count() > 0)
         <section>
             <div class="bg-white-only  bg-auto no-border-xs">

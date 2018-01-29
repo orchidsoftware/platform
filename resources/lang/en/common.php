@@ -26,7 +26,8 @@ return [
     ],
 
     'alert' => [
-        'success' => 'Operation completed successfully',
+        'success' => 'Operation completed successfully.',
+        'restore' => 'Restore the record.',
     ],
 
     'filters' => [
