@@ -116,7 +116,7 @@ abstract class Screen
      */
     public function handle($method = null, $parameters = null)
     {
-        if(!$this->checkAccess()){
+        if (! $this->checkAccess()) {
             abort(404);
         }
 
@@ -198,6 +198,6 @@ abstract class Screen
             }
         }
 
-        return false;
+        return true;
     }
 }
