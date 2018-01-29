@@ -3,15 +3,15 @@
 namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Behaviors\Many as PostBehavior;
-use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Behaviors\Many as PostBehavior;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -192,7 +192,7 @@ class PostController extends Controller
         return redirect()->route('dashboard.posts.type', [
             'type'    => $type->slug,
         ])->with([
-            'restore' => route('dashboard.posts.restore',$id),
+            'restore' => route('dashboard.posts.restore', $id),
         ]);
     }
 
@@ -203,15 +203,14 @@ class PostController extends Controller
      */
     public function restore($id) : RedirectResponse
     {
-       $post = Post::onlyTrashed()->find($id);
-       $post->restore();
+        $post = Post::onlyTrashed()->find($id);
+        $post->restore();
 
-       Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('dashboard::common.alert.success'));
 
-       return redirect()->route('dashboard.posts.type', [
+        return redirect()->route('dashboard.posts.type', [
             'type' => $post->type,
             'slug' => $post->id,
        ]);
     }
-
 }
