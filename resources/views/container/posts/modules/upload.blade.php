@@ -6,6 +6,7 @@
     </div>
     <div class="dz-message">
         <hr>
+        <p><span class="fa-2x icon-cloud-upload"></span></p>
         <p class="font-bold">{{trans('dashboard::post/uploads.title')}}</p>
         <small>{{trans('dashboard::post/uploads.description')}}</small>
     </div>
