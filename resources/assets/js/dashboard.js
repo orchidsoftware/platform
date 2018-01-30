@@ -1,5 +1,4 @@
 window.dashboard = {
-
   /**
    * Field code
    */
