@@ -32,7 +32,7 @@ var paste = (function () {
       return false;
     }
   };
-  var $_c9r1regxjcq8h7e5 = { hasProPlugin: hasProPlugin };
+  var $_a4ngyrgxjd09ewps = { hasProPlugin: hasProPlugin };
 
   var get = function (clipboard, quirks) {
     return {
@@ -40,7 +40,7 @@ var paste = (function () {
       quirks: quirks
     };
   };
-  var $_9r5u22gyjcq8h7e6 = { get: get };
+  var $_d1ikpdgyjd09ewpt = { get: get };
 
   var firePastePreProcess = function (editor, html, internal, isWordHtml) {
     return editor.fire('PastePreProcess', {
@@ -62,7 +62,7 @@ var paste = (function () {
   var firePaste = function (editor, ieFake) {
     return editor.fire('paste', { ieFake: ieFake });
   };
-  var $_2jo74oh1jcq8h7ea = {
+  var $_4qhe2rh1jd09ewpx = {
     firePastePreProcess: firePastePreProcess,
     firePastePostProcess: firePastePostProcess,
     firePastePlainTextToggle: firePastePlainTextToggle,
@@ -115,7 +115,7 @@ var paste = (function () {
   var shouldUseDefaultFilters = function (editor) {
     return editor.getParam('paste_enable_default_filters', true);
   };
-  var $_9orupch2jcq8h7eb = {
+  var $_45lpjnh2jd09ewpy = {
     shouldPlainTextInform: shouldPlainTextInform,
     shouldBlockDrop: shouldBlockDrop,
     shouldPasteDataImages: shouldPasteDataImages,
@@ -134,7 +134,7 @@ var paste = (function () {
   };
 
   var shouldInformUserAboutPlainText = function (editor, userIsInformedState) {
-    return userIsInformedState.get() === false && $_9orupch2jcq8h7eb.shouldPlainTextInform(editor);
+    return userIsInformedState.get() === false && $_45lpjnh2jd09ewpy.shouldPlainTextInform(editor);
   };
   var displayNotification = function (editor, message) {
     editor.notificationManager.open({
@@ -145,10 +145,10 @@ var paste = (function () {
   var togglePlainTextPaste = function (editor, clipboard, userIsInformedState) {
     if (clipboard.pasteFormat === 'text') {
       clipboard.pasteFormat = 'html';
-      $_2jo74oh1jcq8h7ea.firePastePlainTextToggle(editor, false);
+      $_4qhe2rh1jd09ewpx.firePastePlainTextToggle(editor, false);
     } else {
       clipboard.pasteFormat = 'text';
-      $_2jo74oh1jcq8h7ea.firePastePlainTextToggle(editor, true);
+      $_4qhe2rh1jd09ewpx.firePastePlainTextToggle(editor, true);
       if (shouldInformUserAboutPlainText(editor, userIsInformedState)) {
         displayNotification(editor, 'Paste is now in plain text mode. Contents will now be pasted as plain text until you toggle this option off.');
         userIsInformedState.set(true);
@@ -156,11 +156,11 @@ var paste = (function () {
     }
     editor.focus();
   };
-  var $_6nvr6hh0jcq8h7e8 = { togglePlainTextPaste: togglePlainTextPaste };
+  var $_7gfk0gh0jd09ewpv = { togglePlainTextPaste: togglePlainTextPaste };
 
   var register = function (editor, clipboard, userIsInformedState) {
     editor.addCommand('mceTogglePlainTextPaste', function () {
-      $_6nvr6hh0jcq8h7e8.togglePlainTextPaste(editor, clipboard, userIsInformedState);
+      $_7gfk0gh0jd09ewpv.togglePlainTextPaste(editor, clipboard, userIsInformedState);
     });
     editor.addCommand('mceInsertClipboardContent', function (ui, value) {
       if (value.content) {
@@ -171,7 +171,7 @@ var paste = (function () {
       }
     });
   };
-  var $_13sr5igzjcq8h7e6 = { register: register };
+  var $_8ssnmbgzjd09ewpu = { register: register };
 
   var Env = tinymce.util.Tools.resolve('tinymce.Env');
 
@@ -192,7 +192,7 @@ var paste = (function () {
   var isMarked = function (html) {
     return html.indexOf(internalMark) !== -1;
   };
-  var $_fm2tzkh8jcq8h7en = {
+  var $_9oqeoah8jd09ewqa = {
     mark: mark,
     unmark: unmark,
     isMarked: isMarked,
@@ -240,14 +240,14 @@ var paste = (function () {
   var convert = function (text, rootTag, rootAttrs) {
     return rootTag ? toBlockElements(text, rootTag, rootAttrs) : toBRs(text);
   };
-  var $_ep3wn5h9jcq8h7eo = {
+  var $_10vzcnh9jd09ewqc = {
     isPlainText: isPlainText,
     convert: convert,
     toBRs: toBRs,
     toBlockElements: toBlockElements
   };
 
-  var PasteBin = function (editor) {
+  function PasteBin (editor) {
     var lastRng;
     var pasteBinDefaultContent = '%MCEPASTEBIN%';
     var create = function () {
@@ -384,7 +384,7 @@ var paste = (function () {
       isDefault: isDefault,
       isDefaultContent: isDefaultContent
     };
-  };
+  }
 
   var DomParser = tinymce.util.Tools.resolve('tinymce.html.DomParser');
 
@@ -473,7 +473,7 @@ var paste = (function () {
   var isMsEdge = function () {
     return navigator.userAgent.indexOf(' Edge/') !== -1;
   };
-  var $_7h8kq4hijcq8h7fg = {
+  var $_d3mqxhhijd09ewqv = {
     filter: filter,
     innerText: innerText,
     trimHtml: trimHtml,
@@ -668,7 +668,7 @@ var paste = (function () {
       if (name.indexOf('mso-') === 0) {
         return;
       }
-      if ($_9orupch2jcq8h7eb.getRetainStyleProps(editor) === 'all' || validStyles && validStyles[name]) {
+      if ($_45lpjnh2jd09ewpy.getRetainStyleProps(editor) === 'all' || validStyles && validStyles[name]) {
         outputStyles[name] = value;
       }
     });
@@ -688,11 +688,11 @@ var paste = (function () {
   }
   var filterWordContent = function (editor, content) {
     var retainStyleProperties, validStyles;
-    retainStyleProperties = $_9orupch2jcq8h7eb.getRetainStyleProps(editor);
+    retainStyleProperties = $_45lpjnh2jd09ewpy.getRetainStyleProps(editor);
     if (retainStyleProperties) {
       validStyles = Tools.makeMap(retainStyleProperties.split(/[, ]/));
     }
-    content = $_7h8kq4hijcq8h7fg.filter(content, [
+    content = $_d3mqxhhijd09ewqv.filter(content, [
       /<br class="?Apple-interchange-newline"?>/gi,
       /<b[^>]+id="?docs-internal-[^>]*>/gi,
       /<!--[\s\S]+?-->/gi,
@@ -712,7 +712,7 @@ var paste = (function () {
         }
       ]
     ]);
-    var validElements = $_9orupch2jcq8h7eb.getWordValidElements(editor);
+    var validElements = $_45lpjnh2jd09ewpy.getWordValidElements(editor);
     var schema = Schema({
       valid_elements: validElements,
       valid_children: '-li[p]'
@@ -786,16 +786,16 @@ var paste = (function () {
       }
     });
     var rootNode = domParser.parse(content);
-    if ($_9orupch2jcq8h7eb.shouldConvertWordFakeLists(editor)) {
+    if ($_45lpjnh2jd09ewpy.shouldConvertWordFakeLists(editor)) {
       convertFakeListsToProperLists(rootNode);
     }
     content = Serializer({ validate: editor.settings.validate }, schema).serialize(rootNode);
     return content;
   };
   var preProcess = function (editor, content) {
-    return $_9orupch2jcq8h7eb.shouldUseDefaultFilters(editor) ? filterWordContent(editor, content) : content;
+    return $_45lpjnh2jd09ewpy.shouldUseDefaultFilters(editor) ? filterWordContent(editor, content) : content;
   };
-  var $_3qrfaqhdjcq8h7ez = {
+  var $_5c1llhhdjd09ewqm = {
     preProcess: preProcess,
     isWordContent: isWordContent
   };
@@ -808,11 +808,11 @@ var paste = (function () {
   };
   var postProcessFilter = function (editor, html, internal, isWordHtml) {
     var tempBody = editor.dom.create('div', { style: 'display:none' }, html);
-    var postProcessArgs = $_2jo74oh1jcq8h7ea.firePastePostProcess(editor, tempBody, internal, isWordHtml);
+    var postProcessArgs = $_4qhe2rh1jd09ewpx.firePastePostProcess(editor, tempBody, internal, isWordHtml);
     return processResult(postProcessArgs.node.innerHTML, postProcessArgs.isDefaultPrevented());
   };
   var filterContent = function (editor, content, internal, isWordHtml) {
-    var preProcessArgs = $_2jo74oh1jcq8h7ea.firePastePreProcess(editor, content, internal, isWordHtml);
+    var preProcessArgs = $_4qhe2rh1jd09ewpx.firePastePreProcess(editor, content, internal, isWordHtml);
     if (editor.hasEventListeners('PastePostProcess') && !preProcessArgs.isDefaultPrevented()) {
       return postProcessFilter(editor, preProcessArgs.content, internal, isWordHtml);
     } else {
@@ -820,11 +820,11 @@ var paste = (function () {
     }
   };
   var process = function (editor, html, internal) {
-    var isWordHtml = $_3qrfaqhdjcq8h7ez.isWordContent(html);
-    var content = isWordHtml ? $_3qrfaqhdjcq8h7ez.preProcess(editor, html) : html;
+    var isWordHtml = $_5c1llhhdjd09ewqm.isWordContent(html);
+    var content = isWordHtml ? $_5c1llhhdjd09ewqm.preProcess(editor, html) : html;
     return filterContent(editor, content, internal, isWordHtml);
   };
-  var $_8mcykuhcjcq8h7ew = { process: process };
+  var $_dz9w8ghcjd09ewqi = { process: process };
 
   var isAbsoluteUrl = function (url) {
     return /^https?:\/\/[\w\?\-\/+=.&%@~#]+$/i.test(url);
@@ -856,7 +856,7 @@ var paste = (function () {
   };
   var pasteHtml = function (editor, html) {
     editor.insertContent(html, {
-      merge: $_9orupch2jcq8h7eb.shouldMergeFormats(editor),
+      merge: $_45lpjnh2jd09ewpy.shouldMergeFormats(editor),
       paste: true
     });
     return true;
@@ -871,36 +871,36 @@ var paste = (function () {
     });
   };
   var insertContent = function (editor, html) {
-    if ($_9orupch2jcq8h7eb.isSmartPasteEnabled(editor) === false) {
+    if ($_45lpjnh2jd09ewpy.isSmartPasteEnabled(editor) === false) {
       pasteHtml(editor, html);
     } else {
       smartInsertContent(editor, html);
     }
   };
-  var $_ae3468hjjcq8h7fj = {
+  var $_4i419yhjjd09ewr5 = {
     isImageUrl: isImageUrl,
     isAbsoluteUrl: isAbsoluteUrl,
     insertContent: insertContent
   };
 
-  var Clipboard = function (editor) {
+  function Clipboard (editor) {
     var self = this;
     var keyboardPasteTimeStamp = 0;
     var pasteBin = PasteBin(editor);
     var keyboardPastePlainTextState;
     var mceInternalUrlPrefix = 'data:text/mce-internal,';
-    var uniqueId = $_7h8kq4hijcq8h7fg.createIdGenerator('mceclip');
-    self.pasteFormat = $_9orupch2jcq8h7eb.isPasteAsTextEnabled(editor) ? 'text' : 'html';
+    var uniqueId = $_d3mqxhhijd09ewqv.createIdGenerator('mceclip');
+    self.pasteFormat = $_45lpjnh2jd09ewpy.isPasteAsTextEnabled(editor) ? 'text' : 'html';
     function pasteHtml(html, internalFlag) {
-      var internal = internalFlag ? internalFlag : $_fm2tzkh8jcq8h7en.isMarked(html);
-      var args = $_8mcykuhcjcq8h7ew.process(editor, $_fm2tzkh8jcq8h7en.unmark(html), internal);
+      var internal = internalFlag ? internalFlag : $_9oqeoah8jd09ewqa.isMarked(html);
+      var args = $_dz9w8ghcjd09ewqi.process(editor, $_9oqeoah8jd09ewqa.unmark(html), internal);
       if (args.cancelled === false) {
-        $_ae3468hjjcq8h7fj.insertContent(editor, args.content);
+        $_4i419yhjjd09ewr5.insertContent(editor, args.content);
       }
     }
     function pasteText(text) {
       text = editor.dom.encode(text).replace(/\r\n/g, '\n');
-      text = $_ep3wn5h9jcq8h7eo.convert(text, editor.settings.forced_root_block, editor.settings.forced_root_block_attrs);
+      text = $_10vzcnh9jd09ewqc.convert(text, editor.settings.forced_root_block, editor.settings.forced_root_block_attrs);
       pasteHtml(text, false);
     }
     function getDataTransferItems(dataTransfer) {
@@ -929,7 +929,7 @@ var paste = (function () {
     }
     function getClipboardContent(clipboardEvent) {
       var content = getDataTransferItems(clipboardEvent.clipboardData || editor.getDoc().dataTransfer);
-      return $_7h8kq4hijcq8h7fg.isMsEdge() ? Tools.extend(content, { 'text/html': '' }) : content;
+      return $_d3mqxhhijd09ewqv.isMsEdge() ? Tools.extend(content, { 'text/html': '' }) : content;
     }
     function hasHtmlOrText(content) {
       return hasContentType(content, 'text/html') || hasContentType(content, 'text/plain');
@@ -1026,7 +1026,7 @@ var paste = (function () {
           keyboardPasteTimeStamp = new Date().getTime();
           if (Env.ie && keyboardPastePlainTextState) {
             e.preventDefault();
-            $_2jo74oh1jcq8h7ea.firePaste(editor, true);
+            $_4qhe2rh1jd09ewpx.firePaste(editor, true);
             return;
           }
           pasteBin.remove();
@@ -1043,14 +1043,14 @@ var paste = (function () {
           content = clipboardContent['text/html'];
         } else {
           content = pasteBin.getHtml();
-          internal = internal ? internal : $_fm2tzkh8jcq8h7en.isMarked(content);
+          internal = internal ? internal : $_9oqeoah8jd09ewqa.isMarked(content);
           if (pasteBin.isDefaultContent(content)) {
             plainTextMode = true;
           }
         }
-        content = $_7h8kq4hijcq8h7fg.trimHtml(content);
+        content = $_d3mqxhhijd09ewqv.trimHtml(content);
         pasteBin.remove();
-        isPlainTextHtml = internal === false && $_ep3wn5h9jcq8h7eo.isPlainText(content);
+        isPlainTextHtml = internal === false && $_10vzcnh9jd09ewqc.isPlainText(content);
         if (!content.length || isPlainTextHtml) {
           plainTextMode = true;
         }
@@ -1058,7 +1058,7 @@ var paste = (function () {
           if (hasContentType(clipboardContent, 'text/plain') && isPlainTextHtml) {
             content = clipboardContent['text/plain'];
           } else {
-            content = $_7h8kq4hijcq8h7fg.innerText(content);
+            content = $_d3mqxhhijd09ewqv.innerText(content);
           }
         }
         if (pasteBin.isDefaultContent(content)) {
@@ -1082,7 +1082,7 @@ var paste = (function () {
         var clipboardDelay = new Date().getTime() - clipboardTimer;
         var isKeyBoardPaste = new Date().getTime() - keyboardPasteTimeStamp - clipboardDelay < 1000;
         var plainTextMode = self.pasteFormat === 'text' || keyboardPastePlainTextState;
-        var internal = hasContentType(clipboardContent, $_fm2tzkh8jcq8h7en.internalHtmlMime());
+        var internal = hasContentType(clipboardContent, $_9oqeoah8jd09ewqa.internalHtmlMime());
         keyboardPastePlainTextState = false;
         if (e.isDefaultPrevented() || isBrokenAndroidClipboardEvent(e)) {
           pasteBin.remove();
@@ -1106,7 +1106,7 @@ var paste = (function () {
         if (hasContentType(clipboardContent, 'text/html')) {
           e.preventDefault();
           if (!internal) {
-            internal = $_fm2tzkh8jcq8h7en.isMarked(clipboardContent['text/html']);
+            internal = $_9oqeoah8jd09ewqa.isMarked(clipboardContent['text/html']);
           }
           insertClipboardContent(clipboardContent, isKeyBoardPaste, plainTextMode, internal);
         } else {
@@ -1156,12 +1156,12 @@ var paste = (function () {
         }
       });
     });
-  };
+  }
 
   var noop = function () {
   };
   var hasWorkingClipboardApi = function (clipboardData) {
-    return Env.iOS === false && clipboardData !== undefined && typeof clipboardData.setData === 'function' && $_7h8kq4hijcq8h7fg.isMsEdge() !== true;
+    return Env.iOS === false && clipboardData !== undefined && typeof clipboardData.setData === 'function' && $_d3mqxhhijd09ewqv.isMsEdge() !== true;
   };
   var setHtml5Clipboard = function (clipboardData, html, text) {
     if (hasWorkingClipboardApi(clipboardData)) {
@@ -1169,7 +1169,7 @@ var paste = (function () {
         clipboardData.clearData();
         clipboardData.setData('text/html', html);
         clipboardData.setData('text/plain', text);
-        clipboardData.setData($_fm2tzkh8jcq8h7en.internalHtmlMime(), html);
+        clipboardData.setData($_9oqeoah8jd09ewqa.internalHtmlMime(), html);
         return true;
       } catch (e) {
         return false;
@@ -1188,7 +1188,7 @@ var paste = (function () {
   };
   var fallback = function (editor) {
     return function (html, done) {
-      var markedHtml = $_fm2tzkh8jcq8h7en.mark(html);
+      var markedHtml = $_9oqeoah8jd09ewqa.mark(html);
       var outer = editor.dom.create('div', {
         'contenteditable': 'false',
         'data-mce-bogus': 'all'
@@ -1242,7 +1242,7 @@ var paste = (function () {
     editor.on('cut', cut(editor));
     editor.on('copy', copy(editor));
   };
-  var $_77f1lxhkjcq8h7fl = { register: register$1 };
+  var $_5krqs4hkjd09ewr8 = { register: register$1 };
 
   var RangeUtils = tinymce.util.Tools.resolve('tinymce.dom.RangeUtils');
 
@@ -1258,13 +1258,13 @@ var paste = (function () {
     editor.selection.setRng(rng);
   };
   var setup = function (editor, clipboard, draggingInternallyState) {
-    if ($_9orupch2jcq8h7eb.shouldBlockDrop(editor)) {
+    if ($_45lpjnh2jd09ewpy.shouldBlockDrop(editor)) {
       editor.on('dragend dragover draggesture dragdrop drop drag', function (e) {
         e.preventDefault();
         e.stopPropagation();
       });
     }
-    if (!$_9orupch2jcq8h7eb.shouldPasteDataImages(editor)) {
+    if (!$_45lpjnh2jd09ewpy.shouldPasteDataImages(editor)) {
       editor.on('drop', function (e) {
         var dataTransfer = e.dataTransfer;
         if (dataTransfer && dataTransfer.files && dataTransfer.files.length > 0) {
@@ -1279,11 +1279,11 @@ var paste = (function () {
         return;
       }
       dropContent = clipboard.getDataTransferItems(e.dataTransfer);
-      var internal = clipboard.hasContentType(dropContent, $_fm2tzkh8jcq8h7en.internalHtmlMime());
+      var internal = clipboard.hasContentType(dropContent, $_9oqeoah8jd09ewqa.internalHtmlMime());
       if ((!clipboard.hasHtmlOrText(dropContent) || isPlainTextFileUrl(dropContent)) && clipboard.pasteImageData(e, rng)) {
         return;
       }
-      if (rng && $_9orupch2jcq8h7eb.shouldFilterDrop(editor)) {
+      if (rng && $_45lpjnh2jd09ewpy.shouldFilterDrop(editor)) {
         var content_1 = dropContent['mce-internal'] || dropContent['text/html'] || dropContent['text/plain'];
         if (content_1) {
           e.preventDefault();
@@ -1293,7 +1293,7 @@ var paste = (function () {
                 editor.execCommand('Delete');
               }
               setFocusedRange(editor, rng);
-              content_1 = $_7h8kq4hijcq8h7fg.trimHtml(content_1);
+              content_1 = $_d3mqxhhijd09ewqv.trimHtml(content_1);
               if (!dropContent['text/html']) {
                 clipboard.pasteText(content_1);
               } else {
@@ -1308,7 +1308,7 @@ var paste = (function () {
       draggingInternallyState.set(true);
     });
     editor.on('dragover dragend', function (e) {
-      if ($_9orupch2jcq8h7eb.shouldPasteDataImages(editor) && draggingInternallyState.get() === false) {
+      if ($_45lpjnh2jd09ewpy.shouldPasteDataImages(editor) && draggingInternallyState.get() === false) {
         e.preventDefault();
         setFocusedRange(editor, getCaretRangeFromEvent(editor, e));
       }
@@ -1317,24 +1317,24 @@ var paste = (function () {
       }
     });
   };
-  var $_foj54rhljcq8h7fo = { setup: setup };
+  var $_41pdgvhljd09ewrc = { setup: setup };
 
   var setup$1 = function (editor) {
     var plugin = editor.plugins.paste;
-    var preProcess = $_9orupch2jcq8h7eb.getPreProcess(editor);
+    var preProcess = $_45lpjnh2jd09ewpy.getPreProcess(editor);
     if (preProcess) {
       editor.on('PastePreProcess', function (e) {
         preProcess.call(plugin, plugin, e);
       });
     }
-    var postProcess = $_9orupch2jcq8h7eb.getPostProcess(editor);
+    var postProcess = $_45lpjnh2jd09ewpy.getPostProcess(editor);
     if (postProcess) {
       editor.on('PastePostProcess', function (e) {
         postProcess.call(plugin, plugin, e);
       });
     }
   };
-  var $_a5fvvehnjcq8h7fr = { setup: setup$1 };
+  var $_489doahnjd09ewre = { setup: setup$1 };
 
   function addPreProcessFilter(editor, filterFunc) {
     editor.on('PastePreProcess', function (e) {
@@ -1347,7 +1347,7 @@ var paste = (function () {
     });
   }
   function removeExplorerBrElementsAfterBlocks(editor, html) {
-    if (!$_3qrfaqhdjcq8h7ez.isWordContent(html)) {
+    if (!$_5c1llhhdjd09ewqm.isWordContent(html)) {
       return html;
     }
     var blockElements = [];
@@ -1355,11 +1355,11 @@ var paste = (function () {
       blockElements.push(blockName);
     });
     var explorerBlocksRegExp = new RegExp('(?:<br>&nbsp;[\\s\\r\\n]+|<br>)*(<\\/?(' + blockElements.join('|') + ')[^>]*>)(?:<br>&nbsp;[\\s\\r\\n]+|<br>)*', 'g');
-    html = $_7h8kq4hijcq8h7fg.filter(html, [[
+    html = $_d3mqxhhijd09ewqv.filter(html, [[
         explorerBlocksRegExp,
         '$1'
       ]]);
-    html = $_7h8kq4hijcq8h7fg.filter(html, [
+    html = $_d3mqxhhijd09ewqv.filter(html, [
       [
         /<br><br>/g,
         '<BR><BR>'
@@ -1379,8 +1379,8 @@ var paste = (function () {
     if (isWordHtml || internal) {
       return content;
     }
-    var webKitStyles = $_9orupch2jcq8h7eb.getWebkitStyles(editor);
-    if ($_9orupch2jcq8h7eb.shouldRemoveWebKitStyles(editor) === false || webKitStyles === 'all') {
+    var webKitStyles = $_45lpjnh2jd09ewpy.getWebkitStyles(editor);
+    if ($_45lpjnh2jd09ewpy.shouldRemoveWebKitStyles(editor) === false || webKitStyles === 'all') {
       return content;
     }
     if (webKitStyles) {
@@ -1432,7 +1432,7 @@ var paste = (function () {
       addPostProcessFilter(editor, removeUnderlineAndFontInAnchor);
     }
   };
-  var $_18mtashojcq8h7ft = { setup: setup$2 };
+  var $_fgrjb9hojd09ewrh = { setup: setup$2 };
 
   var noop$1 = function () {
   };
@@ -1487,7 +1487,7 @@ var paste = (function () {
   };
   var never = constant(false);
   var always = constant(true);
-  var $_fdroz0hqjcq8h7fy = {
+  var $_5s9lkghqjd09ewrm = {
     noop: noop$1,
     noarg: noarg,
     compose: compose,
@@ -1511,7 +1511,7 @@ var paste = (function () {
     });
   };
   var register$2 = function (editor, clipboard) {
-    var postRender = $_fdroz0hqjcq8h7fy.curry(stateChange, editor, clipboard);
+    var postRender = $_5s9lkghqjd09ewrm.curry(stateChange, editor, clipboard);
     editor.addButton('pastetext', {
       active: false,
       icon: 'pastetext',
@@ -1527,24 +1527,24 @@ var paste = (function () {
       onPostRender: postRender
     });
   };
-  var $_dnft54hpjcq8h7fw = { register: register$2 };
+  var $_4rosr2hpjd09ewrk = { register: register$2 };
 
   var userIsInformedState = Cell(false);
   PluginManager.add('paste', function (editor) {
-    if ($_c9r1regxjcq8h7e5.hasProPlugin(editor) === false) {
+    if ($_a4ngyrgxjd09ewps.hasProPlugin(editor) === false) {
       var clipboard = new Clipboard(editor);
-      var quirks = $_18mtashojcq8h7ft.setup(editor);
+      var quirks = $_fgrjb9hojd09ewrh.setup(editor);
       var draggingInternallyState = Cell(false);
-      $_dnft54hpjcq8h7fw.register(editor, clipboard);
-      $_13sr5igzjcq8h7e6.register(editor, clipboard, userIsInformedState);
-      $_a5fvvehnjcq8h7fr.setup(editor);
-      $_77f1lxhkjcq8h7fl.register(editor);
-      $_foj54rhljcq8h7fo.setup(editor, clipboard, draggingInternallyState);
-      return $_9r5u22gyjcq8h7e6.get(clipboard, quirks);
+      $_4rosr2hpjd09ewrk.register(editor, clipboard);
+      $_8ssnmbgzjd09ewpu.register(editor, clipboard, userIsInformedState);
+      $_489doahnjd09ewre.setup(editor);
+      $_5krqs4hkjd09ewr8.register(editor);
+      $_41pdgvhljd09ewrc.setup(editor, clipboard, draggingInternallyState);
+      return $_d1ikpdgyjd09ewpt.get(clipboard, quirks);
     }
   });
-  var Plugin = function () {
-  };
+  function Plugin () {
+  }
 
   return Plugin;
 

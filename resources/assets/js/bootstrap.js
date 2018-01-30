@@ -66,3 +66,8 @@ tinyMCE.baseURL = '/orchid/js/tinymce';
 
 //SimpleMDE editor
 window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
+
+
+require('./components/attachment.js');
+require('./components/filemanager.js');
+require('./components/menu.js');

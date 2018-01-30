@@ -16,7 +16,7 @@
     "bootstrap": "^4.0",
     "bootstrap-tagsinput": "^0.7",
     "brace": "^0.11",
-    "codemirror": "^5.32",
+    "codemirror": "^5.34.0",
     "croppie": "^2.5",
     "cross-env": "^5.1",
     "dropzone": "^5.3.0",
@@ -38,7 +38,7 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simple-line-icons": "^2.4.1",
     "simplemde": "^1.11.2",
-    "tinymce": "^4.7.5",
+    "tinymce": "^4.7.6",
     "turbolinks": "^5.1.1",
     "vue": "^2.5"
   }

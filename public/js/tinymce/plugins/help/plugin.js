@@ -55,9 +55,9 @@ var help = (function () {
   var call = function (f) {
     f();
   };
-  var never$1 = constant(false);
-  var always$1 = constant(true);
-  var $_4tnni9ahjcq8h6fm = {
+  var never = constant(false);
+  var always = constant(true);
+  var $_4r2zi8ahjd09evsm = {
     noop: noop,
     noarg: noarg,
     compose: compose,
@@ -69,12 +69,12 @@ var help = (function () {
     die: die,
     apply: apply,
     call: call,
-    never: never$1,
-    always: always$1
+    never: never,
+    always: always
   };
 
-  var never = $_4tnni9ahjcq8h6fm.never;
-  var always = $_4tnni9ahjcq8h6fm.always;
+  var never$1 = $_4r2zi8ahjd09evsm.never;
+  var always$1 = $_4r2zi8ahjd09evsm.always;
   var none = function () {
     return NONE;
   };
@@ -94,9 +94,9 @@ var help = (function () {
       fold: function (n, s) {
         return n();
       },
-      is: never,
-      isSome: never,
-      isNone: always,
+      is: never$1,
+      isSome: never$1,
+      isNone: always$1,
       getOr: id,
       getOrThunk: call,
       getOrDie: function (msg) {
@@ -109,15 +109,15 @@ var help = (function () {
       each: noop,
       bind: none,
       flatten: none,
-      exists: never,
-      forall: always,
+      exists: never$1,
+      forall: always$1,
       filter: none,
       equals: eq,
       equals_: eq,
       toArray: function () {
         return [];
       },
-      toString: $_4tnni9ahjcq8h6fm.constant('none()')
+      toString: $_4r2zi8ahjd09evsm.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -143,8 +143,8 @@ var help = (function () {
       is: function (v) {
         return a === v;
       },
-      isSome: always,
-      isNone: never,
+      isSome: always$1,
+      isNone: never$1,
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
@@ -170,7 +170,7 @@ var help = (function () {
         return o.is(a);
       },
       equals_: function (o, elementEq) {
-        return o.fold(never, function (b) {
+        return o.fold(never$1, function (b) {
           return elementEq(a, b);
         });
       },
@@ -186,7 +186,7 @@ var help = (function () {
   var from = function (value) {
     return value === null || value === undefined ? NONE : some(value);
   };
-  var $_ahvu5zagjcq8h6fj = {
+  var $_d8659wagjd09evsc = {
     some: some,
     none: none,
     from: from
@@ -204,7 +204,7 @@ var help = (function () {
   }();
   var indexOf = function (xs, x) {
     var r = rawIndexOf(xs, x);
-    return r === -1 ? $_ahvu5zagjcq8h6fj.none() : $_ahvu5zagjcq8h6fj.some(r);
+    return r === -1 ? $_d8659wagjd09evsc.none() : $_d8659wagjd09evsc.some(r);
   };
   var contains = function (xs, x) {
     return rawIndexOf(xs, x) > -1;
@@ -310,19 +310,19 @@ var help = (function () {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
-        return $_ahvu5zagjcq8h6fj.some(x);
+        return $_d8659wagjd09evsc.some(x);
       }
     }
-    return $_ahvu5zagjcq8h6fj.none();
+    return $_d8659wagjd09evsc.none();
   };
   var findIndex = function (xs, pred) {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
-        return $_ahvu5zagjcq8h6fj.some(i);
+        return $_d8659wagjd09evsc.some(i);
       }
     }
-    return $_ahvu5zagjcq8h6fj.none();
+    return $_d8659wagjd09evsc.none();
   };
   var slowIndexOf = function (xs, x) {
     for (var i = 0, len = xs.length; i < len; ++i) {
@@ -388,12 +388,12 @@ var help = (function () {
     return copy;
   };
   var head = function (xs) {
-    return xs.length === 0 ? $_ahvu5zagjcq8h6fj.none() : $_ahvu5zagjcq8h6fj.some(xs[0]);
+    return xs.length === 0 ? $_d8659wagjd09evsc.none() : $_d8659wagjd09evsc.some(xs[0]);
   };
   var last = function (xs) {
-    return xs.length === 0 ? $_ahvu5zagjcq8h6fj.none() : $_ahvu5zagjcq8h6fj.some(xs[xs.length - 1]);
+    return xs.length === 0 ? $_d8659wagjd09evsc.none() : $_d8659wagjd09evsc.some(xs[xs.length - 1]);
   };
-  var $_9599udafjcq8h6f6 = {
+  var $_d0axraafjd09evs6 = {
     map: map,
     each: each,
     eachr: eachr,
@@ -518,13 +518,13 @@ var help = (function () {
       action: 'Find (if searchreplace plugin activated)'
     }
   ];
-  var $_7q7bjbajjcq8h6fo = { shortcuts: shortcuts };
+  var $_7hd876ajjd09evsp = { shortcuts: shortcuts };
 
   var makeTab = function () {
     var makeAriaLabel = function (shortcut) {
       return 'aria-label="Action: ' + shortcut.action + ', Shortcut: ' + shortcut.shortcut.replace(/Ctrl/g, 'Control') + '"';
     };
-    var shortcutLisString = $_9599udafjcq8h6f6.map($_7q7bjbajjcq8h6fo.shortcuts, function (shortcut) {
+    var shortcutLisString = $_d0axraafjd09evs6.map($_7hd876ajjd09evsp.shortcuts, function (shortcut) {
       return '<tr data-mce-tabstop="1" tabindex="-1" ' + makeAriaLabel(shortcut) + '>' + '<td>' + I18n.translate(shortcut.action) + '</td>' + '<td>' + shortcut.shortcut + '</td>' + '</tr>';
     }).join('');
     return {
@@ -537,7 +537,7 @@ var help = (function () {
         }]
     };
   };
-  var $_ehjgyoaejcq8h6ev = { makeTab: makeTab };
+  var $_czlwknaejd09evs2 = { makeTab: makeTab };
 
   var keys = function () {
     var fastKeys = Object.keys;
@@ -601,10 +601,10 @@ var help = (function () {
       var i = props[k];
       var x = obj[i];
       if (pred(x, i, obj)) {
-        return $_ahvu5zagjcq8h6fj.some(x);
+        return $_d8659wagjd09evsc.some(x);
       }
     }
-    return $_ahvu5zagjcq8h6fj.none();
+    return $_d8659wagjd09evsc.none();
   };
   var values = function (obj) {
     return mapToArray(obj, function (v) {
@@ -614,7 +614,7 @@ var help = (function () {
   var size = function (obj) {
     return values(obj).length;
   };
-  var $_2l9g10amjcq8h6fw = {
+  var $_9az4yamjd09evsx = {
     bifilter: bifilter,
     each: each$1,
     map: objectMap,
@@ -638,7 +638,7 @@ var help = (function () {
   var removeFromEnd = function (str, numChars) {
     return str.substring(0, str.length - numChars);
   };
-  var $_5k9oygaojcq8h6g3 = {
+  var $_bi7jzgaojd09evt4 = {
     addToStart: addToStart,
     addToEnd: addToEnd,
     removeFromStart: removeFromStart,
@@ -652,12 +652,12 @@ var help = (function () {
     return str.substr(str.length - count, str.length);
   };
   var head$1 = function (str) {
-    return str === '' ? $_ahvu5zagjcq8h6fj.none() : $_ahvu5zagjcq8h6fj.some(str.substr(0, 1));
+    return str === '' ? $_d8659wagjd09evsc.none() : $_d8659wagjd09evsc.some(str.substr(0, 1));
   };
   var tail = function (str) {
-    return str === '' ? $_ahvu5zagjcq8h6fj.none() : $_ahvu5zagjcq8h6fj.some(str.substring(1));
+    return str === '' ? $_d8659wagjd09evsc.none() : $_d8659wagjd09evsc.some(str.substring(1));
   };
-  var $_88u08hapjcq8h6g5 = {
+  var $_bpykrapjd09evt5 = {
     first: first,
     last: last$1,
     head: head$1,
@@ -683,23 +683,23 @@ var help = (function () {
     });
   };
   var removeLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? $_5k9oygaojcq8h6g3.removeFromStart(str, prefix.length) : str;
+    return startsWith(str, prefix) ? $_bi7jzgaojd09evt4.removeFromStart(str, prefix.length) : str;
   };
   var removeTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? $_5k9oygaojcq8h6g3.removeFromEnd(str, prefix.length) : str;
+    return endsWith(str, prefix) ? $_bi7jzgaojd09evt4.removeFromEnd(str, prefix.length) : str;
   };
   var ensureLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? str : $_5k9oygaojcq8h6g3.addToStart(str, prefix);
+    return startsWith(str, prefix) ? str : $_bi7jzgaojd09evt4.addToStart(str, prefix);
   };
   var ensureTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? str : $_5k9oygaojcq8h6g3.addToEnd(str, prefix);
+    return endsWith(str, prefix) ? str : $_bi7jzgaojd09evt4.addToEnd(str, prefix);
   };
   var contains$1 = function (str, substr) {
     return str.indexOf(substr) !== -1;
   };
   var capitalize = function (str) {
-    return $_88u08hapjcq8h6g5.head(str).bind(function (head) {
-      return $_88u08hapjcq8h6g5.tail(str).map(function (tail) {
+    return $_bpykrapjd09evt5.head(str).bind(function (head) {
+      return $_bpykrapjd09evt5.tail(str).map(function (tail) {
         return head.toUpperCase() + tail;
       });
     }).getOr(str);
@@ -719,7 +719,7 @@ var help = (function () {
   var rTrim = function (str) {
     return str.replace(/\s+$/g, '');
   };
-  var $_1bmr1tanjcq8h6fz = {
+  var $_4b7dpzanjd09evt2 = {
     supplant: supplant,
     startsWith: startsWith,
     removeLeading: removeLeading,
@@ -912,11 +912,11 @@ var help = (function () {
       name: 'Word Count'
     }
   ];
-  var $_23g8n4aqjcq8h6g6 = { urls: urls };
+  var $_c0pbvaqjd09evt7 = { urls: urls };
 
-  var makeLink = $_4tnni9ahjcq8h6fm.curry($_1bmr1tanjcq8h6fz.supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
+  var makeLink = $_4r2zi8ahjd09evsm.curry($_4b7dpzanjd09evt2.supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
   var maybeUrlize = function (editor, key) {
-    return $_9599udafjcq8h6f6.find($_23g8n4aqjcq8h6g6.urls, function (x) {
+    return $_d0axraafjd09evs6.find($_c0pbvaqjd09evt7.urls, function (x) {
       return x.key === key;
     }).fold(function () {
       var getMetadata = editor.plugins[key].getMetadata;
@@ -929,12 +929,12 @@ var help = (function () {
     });
   };
   var getPluginKeys = function (editor) {
-    var keys = $_2l9g10amjcq8h6fw.keys(editor.plugins);
-    return editor.settings.forced_plugins === undefined ? keys : $_9599udafjcq8h6f6.filter(keys, $_4tnni9ahjcq8h6fm.not($_4tnni9ahjcq8h6fm.curry($_9599udafjcq8h6f6.contains, editor.settings.forced_plugins)));
+    var keys = $_9az4yamjd09evsx.keys(editor.plugins);
+    return editor.settings.forced_plugins === undefined ? keys : $_d0axraafjd09evs6.filter(keys, $_4r2zi8ahjd09evsm.not($_4r2zi8ahjd09evsm.curry($_d0axraafjd09evs6.contains, editor.settings.forced_plugins)));
   };
   var pluginLister = function (editor) {
     var pluginKeys = getPluginKeys(editor);
-    var pluginLis = $_9599udafjcq8h6f6.map(pluginKeys, function (key) {
+    var pluginLis = $_d0axraafjd09evs6.map(pluginKeys, function (key) {
       return '<li>' + maybeUrlize(editor, key) + '</li>';
     });
     var count = pluginLis.length;
@@ -972,7 +972,7 @@ var help = (function () {
       ]
     };
   };
-  var $_19iseealjcq8h6fr = { makeTab: makeTab$1 };
+  var $_7bezmyaljd09evsr = { makeTab: makeTab$1 };
 
   var EditorManager = tinymce.util.Tools.resolve('tinymce.EditorManager');
 
@@ -1002,7 +1002,7 @@ var help = (function () {
       }
     ];
   };
-  var $_asez2yarjcq8h6g8 = { makeRow: makeRow };
+  var $_dubkovarjd09evt9 = { makeRow: makeRow };
 
   var open = function (editor, pluginUrl) {
     return function () {
@@ -1011,10 +1011,10 @@ var help = (function () {
         bodyType: 'tabpanel',
         layout: 'flex',
         body: [
-          $_ehjgyoaejcq8h6ev.makeTab(),
-          $_19iseealjcq8h6fr.makeTab(editor)
+          $_czlwknaejd09evs2.makeTab(),
+          $_7bezmyaljd09evsr.makeTab(editor)
         ],
-        buttons: $_asez2yarjcq8h6g8.makeRow(),
+        buttons: $_dubkovarjd09evt9.makeRow(),
         onPostRender: function () {
           var title = this.getEl('title');
           title.innerHTML = '<img src="' + pluginUrl + '/img/logo.png" alt="TinyMCE Logo" style="display: inline-block; width: 200px; height: 50px">';
@@ -1022,34 +1022,34 @@ var help = (function () {
       });
     };
   };
-  var $_24fragadjcq8h6et = { open: open };
+  var $_8eu5ebadjd09evs0 = { open: open };
 
   var register = function (editor, pluginUrl) {
-    editor.addCommand('mceHelp', $_24fragadjcq8h6et.open(editor, pluginUrl));
+    editor.addCommand('mceHelp', $_8eu5ebadjd09evs0.open(editor, pluginUrl));
   };
-  var $_b358ugacjcq8h6es = { register: register };
+  var $_90auybacjd09evrz = { register: register };
 
   var register$1 = function (editor, pluginUrl) {
     editor.addButton('help', {
       icon: 'help',
-      onclick: $_24fragadjcq8h6et.open(editor, pluginUrl)
+      onclick: $_8eu5ebadjd09evs0.open(editor, pluginUrl)
     });
     editor.addMenuItem('Help', {
       text: 'Help',
       icon: 'help',
       context: 'help',
-      onclick: $_24fragadjcq8h6et.open(editor, pluginUrl)
+      onclick: $_8eu5ebadjd09evs0.open(editor, pluginUrl)
     });
   };
-  var $_6cxyg9atjcq8h6ga = { register: register$1 };
+  var $_f3e8r4atjd09evtb = { register: register$1 };
 
   PluginManager.add('help', function (editor, pluginUrl) {
-    $_6cxyg9atjcq8h6ga.register(editor, pluginUrl);
-    $_b358ugacjcq8h6es.register(editor, pluginUrl);
+    $_f3e8r4atjd09evtb.register(editor, pluginUrl);
+    $_90auybacjd09evrz.register(editor, pluginUrl);
     editor.shortcuts.add('Alt+0', 'Open help dialog', 'mceHelp');
   });
-  var Plugin = function () {
-  };
+  function Plugin () {
+  }
 
   return Plugin;
 
