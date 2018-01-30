@@ -8,14 +8,14 @@
   aria-labelledby="notise-tab">
 
 @if(count($notifications) > 0)
-     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs ">Notications
+     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Notications
         <form action="{{route('dashboard.notification.read')}}"
               method="post"
               id="clear-notications-form"
               class="pull-right">
-            <a onclick="event.preventDefault();document.getElementById('clear-notications-form').submit();" class="btn btn-link inline">
+            <button type="submit" class="btn btn-sm btn-link inline">
                 <i class="icon-trash"></i>
-            </a>
+            </button>
             {{ csrf_field() }}
         </form>
     </li>
