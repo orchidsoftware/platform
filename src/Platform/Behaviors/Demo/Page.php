@@ -83,7 +83,7 @@ class Page extends Single
 
             Field::tag('checkbox')
                 ->name('free')
-                ->default(1)
+                ->value(1)
                 ->title('Free')
                 ->placeholder('Event for free')
                 ->help('Event for free'),
