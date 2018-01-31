@@ -1,13 +1,13 @@
-document.addEventListener('turbolinks:load', function() {
-    if (document.getElementById("post-attachment-dropzone")=== null) {
+document.addEventListener('turbolinks:load', function () {
+    if (document.getElementById("post-attachment-dropzone") === null) {
         return;
     }
 
-    var attachmentDescription = new Vue({
-        el: '#modalAttachment',
-        data: {
+    const attachmentDescription = new Vue({
+        el     : '#modalAttachment',
+        data   : {
             attachment: {},
-            active: null,
+            active    : null,
         },
         methods: {
             loadInfo: function (data) {
@@ -19,22 +19,22 @@ document.addEventListener('turbolinks:load', function() {
                 }
                 this.active = name;
             },
-            save: function () {
+            save    : function () {
 
                 let data = this.attachment[this.active];
 
                 $('#modalAttachment').modal('toggle');
 
                 $.ajax({
-                    type: 'POST',
-                    url: dashboard.prefix('/systems/files/post/' + data.id),
-                    data: {
-                        _token: $("meta[name='csrf_token']").attr('content'),
+                    type    : 'POST',
+                    url     : dashboard.prefix('/systems/files/post/' + data.id),
+                    data    : {
+                        _token    : $("meta[name='csrf_token']").attr('content'),
                         attachment: data,
-                        _method: "PUT"
+                        _method   : "PUT"
                     },
                     dataType: 'html',
-                    success: function (data) {
+                    success : function (data) {
                         console.log('file update');
                     }
                 });
@@ -45,21 +45,21 @@ document.addEventListener('turbolinks:load', function() {
     });
 
 
-    var postDropzone = new Dropzone(".dropzone", {
-        url: dashboard.prefix('/systems/files'),
-        method: "post",
-        uploadMultiple: false,
-        parallelUploads: 100,
-        maxFilesize: 9999,
-        paramName: "files",
+    const postDropzone = new Dropzone(".dropzone", {
+        url                 : dashboard.prefix('/systems/files'),
+        method              : "post",
+        uploadMultiple      : false,
+        parallelUploads     : 100,
+        maxFilesize         : 9999,
+        paramName           : "files",
         maxThumbnailFilesize: 99999,
-        previewsContainer: '.visual-dropzone',
+        previewsContainer   : '.visual-dropzone',
         //previewTemplate: document.getElementById('preview-template').innerHTML,
-        addRemoveLinks: false,
-        dictFileTooBig: 'File is big',
+        addRemoveLinks      : false,
+        dictFileTooBig      : 'File is big',
 
 
-        init: function () {
+        init   : function () {
 
             this.on("addedfile", function (e) {
                 var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'><i class='fa fa-times' aria-hidden='true'></i></a>"),
@@ -82,28 +82,28 @@ document.addEventListener('turbolinks:load', function() {
                 $('.sortable-dropzone').sortable('enable');
             });
 
-            var instanceDropZone = this;
+            const instanceDropZone = this;
 
-            var id = $('#post').data('post-id');
+            const id = $('#post').data('post-id');
             if (id !== undefined) {
 
                 $.ajax({
-                    type: 'get',
-                    url: dashboard.prefix('/systems/files/post/' + id),
-                    data: {_token: $("meta[name='csrf_token']").attr('content')},
+                    type    : 'get',
+                    url     : dashboard.prefix('/systems/files/post/' + id),
+                    data    : {_token: $("meta[name='csrf_token']").attr('content')},
                     dataType: 'html',
-                    success: function (data) {
-                        var images = JSON.parse(data);
+                    success : function (data) {
+                        const images = JSON.parse(data);
 
                         images.forEach(function (item, i, arr) {
-                            var mockFile = {
-                                id: item.id,
-                                name: item.original_name,
-                                size: item.size,
-                                type: item.mime,
+                            const mockFile = {
+                                id    : item.id,
+                                name  : item.original_name,
+                                size  : item.size,
+                                type  : item.mime,
                                 status: Dropzone.ADDED,
-                                url: '/storage/' + item.path + item.name + '.' + item.extension,
-                                data: item
+                                url   : '/storage/' + item.path + item.name + '.' + item.extension,
+                                data  : item
                             };
 
 
@@ -130,21 +130,21 @@ document.addEventListener('turbolinks:load', function() {
                 $(".files-" + file.data.id).remove();
 
                 $.ajax({
-                    type: 'delete',
-                    url: dashboard.prefix('/systems/files/' + file.data.id),
-                    data: {
-                        _token: $("meta[name='csrf_token']").attr('content'),
+                    type    : 'delete',
+                    url     : dashboard.prefix('/systems/files/' + file.data.id),
+                    data    : {
+                        _token : $("meta[name='csrf_token']").attr('content'),
                         storage: $('#post-attachment-dropzone').data("storage")
                     },
                     dataType: 'html',
-                    success: function (data) {
+                    success : function (data) {
                         //
                     }
                 });
 
             });
         },
-        error: function (file, response) {
+        error  : function (file, response) {
             if ($.type(response) === "string") {
                 return response; //dropzone sends it's own error messages in string
             }
@@ -161,21 +161,21 @@ document.addEventListener('turbolinks:load', function() {
     $('.sortable-dropzone').sortable({
         update: function () {
 
-            var items = {};
+            const items = {};
             $('.file-sort').each(function (index, value) {
-                var id = $(this).attr('data-file-id');
+                const id = $(this).attr('data-file-id');
                 items[id] = index;
             });
 
             $.ajax({
-                type: 'post',
-                url: dashboard.prefix('/systems/files/sort'),
-                data: {
+                type    : 'post',
+                url     : dashboard.prefix('/systems/files/sort'),
+                data    : {
                     _token: $("meta[name='csrf_token']").attr('content'),
-                    files: items
+                    files : items
                 },
                 dataType: 'html',
-                success: function (response) {
+                success : function (response) {
                     console.log(response);
                 }
             });

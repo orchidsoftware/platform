@@ -1,23 +1,23 @@
-document.addEventListener('turbolinks:load', function() {
-    if (document.getElementById("filemanager")=== null) {
+document.addEventListener('turbolinks:load', function () {
+    if (document.getElementById("filemanager") === null) {
         return;
     }
 
-    var manager = new Vue({
-        el: '#filemanager',
+    const manager = new Vue({
+        el  : '#filemanager',
         data: {
-            files: '',
-            folders: [],
+            files        : '',
+            folders      : [],
             selected_file: '',
-            directories: [],
+            directories  : [],
         }
     });
 
     CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
 
-    var managerMedia = function (o) {
-        var files = $('#files');
-        var options = $.extend(true, {}, o);
+    const managerMedia = function (o) {
+        const files = $('#files');
+        const options = $.extend(true, {}, o);
         this.init = function () {
 
             getFiles('/');
@@ -32,7 +32,7 @@ document.addEventListener('turbolinks:load', function() {
             });
 
             files.on("click", "li", function (e) {
-                var clicked = e.target;
+                let clicked = e.target;
                 if (!$(clicked).hasClass('file_link')) {
                     clicked = $(e.target).closest('.file_link');
                 }
@@ -40,27 +40,27 @@ document.addEventListener('turbolinks:load', function() {
             });
 
             $('.breadcrumb').on("click", "li", function () {
-                var index = $(this).data('index');
+                const index = $(this).data('index');
                 manager.folders = manager.folders.splice(0, index);
                 getFiles(manager.folders);
             });
 
 
             //********** Add Keypress Functionality **********//
-            var isBrowsingFiles = null,
-                fileBrowserActive = function (el) {
-                    el = el instanceof jQuery ? el : $(el);
-                    if ($.contains(files.parent()[0], el[0])) {
-                        return true;
-                    } else {
-                        //$(document).off('click');
-                        //console.log('testt');
-                        //return false;
-                    }
-                },
-                handleFileBrowserStatus = function (target) {
-                    isBrowsingFiles = fileBrowserActive(target);
-                };
+            let isBrowsingFiles = null;
+            const fileBrowserActive       = function (el) {
+                      el = el instanceof jQuery ? el : $(el);
+                      if ($.contains(files.parent()[0], el[0])) {
+                          return true;
+                      } else {
+                          //$(document).off('click');
+                          //console.log('testt');
+                          //return false;
+                      }
+                  },
+                  handleFileBrowserStatus = function (target) {
+                      isBrowsingFiles = fileBrowserActive(target);
+                  };
 
             files.on('click', function (event) {
                 if (!isBrowsingFiles) {
@@ -73,13 +73,13 @@ document.addEventListener('turbolinks:load', function() {
             });
 
             $(document).keydown(function (e) {
-                var isKeyControl = e.which >= 37 && e.which <= 40;
+                const isKeyControl = e.which >= 37 && e.which <= 40;
                 if (!isBrowsingFiles && isKeyControl) {
                     return false;
                 } else if (isKeyControl && isBrowsingFiles) {
                     e.preventDefault();
                 }
-                var curSelected = $('#files li .selected').data('index');
+                const curSelected = $('#files li .selected').data('index');
                 // left key
                 if ((e.which == 37 || e.which == 38) && parseInt(curSelected)) {
                     newSelected = parseInt(curSelected) - 1;
@@ -127,7 +127,7 @@ document.addEventListener('turbolinks:load', function() {
                 new_folder_path = manager.files.path + '/' + $('#new_folder_name').val();
                 $.post(options.baseUrl + '/media/new_folder', {
                     new_folder: new_folder_path,
-                    _token: CSRF_TOKEN
+                    _token    : CSRF_TOKEN
                 }, function (data) {
                     if (data.success == true) {
                         //alert('successfully created ' + $('#new_folder_name').val(), "Sweet Success!");
@@ -154,9 +154,9 @@ document.addEventListener('turbolinks:load', function() {
 
                 $.post(options.baseUrl + '/media/delete_file_folder', {
                     folder_location: manager.folders,
-                    file_folder: manager.selected_file.name,
-                    type: manager.selected_file.type,
-                    _token: CSRF_TOKEN
+                    file_folder    : manager.selected_file.name,
+                    type           : manager.selected_file.type,
+                    _token         : CSRF_TOKEN
                 }, function (data) {
                     if (data.success == true) {
                         //alert('successfully deleted ' + manager.selected_file.name, "Sweet Success!");
@@ -191,9 +191,9 @@ document.addEventListener('turbolinks:load', function() {
                 $('#move_file_modal').modal('hide');
                 $.post(options.baseUrl + '/media/move_file', {
                     folder_location: manager.folders,
-                    source: source,
-                    destination: destination,
-                    _token: CSRF_TOKEN
+                    source         : source,
+                    destination    : destination,
+                    _token         : CSRF_TOKEN
                 }, function (data) {
                     if (data.success == true) {
                         //alert('Successfully moved file/folder', "Sweet Success!");
@@ -211,9 +211,9 @@ document.addEventListener('turbolinks:load', function() {
                 $('#rename_file_modal').modal('hide');
                 $.post(options.baseUrl + '/media/rename_file', {
                     folder_location: manager.folders,
-                    filename: filename,
-                    new_filename: new_filename,
-                    _token: CSRF_TOKEN
+                    filename       : filename,
+                    new_filename   : new_filename,
+                    _token         : CSRF_TOKEN
                 }, function (data) {
                     if (data.success == true) {
                         //alert('Successfully renamed file/folder', "Sweet Success!");
@@ -278,7 +278,7 @@ document.addEventListener('turbolinks:load', function() {
                     $('#file_loader').hide();
                     manager.files = data;
                     files.trigger('click');
-                    for (var i = 0; i < manager.files.items.length; i++) {
+                    for (let i = 0; i < manager.files.items.length; i++) {
                         if (typeof(manager.files.items[i].size) != undefined) {
                             manager.files.items[i].size = bytesToSize(manager.files.items[i].size);
                         }
@@ -286,10 +286,10 @@ document.addEventListener('turbolinks:load', function() {
                 });
 
                 // Add the latest files to the folder dropdown
-                var all_folders = '';
+                const all_folders = '';
                 $.post(options.baseUrl + '/media/directories', {
                     folder_location: manager.folders,
-                    _token: CSRF_TOKEN
+                    _token         : CSRF_TOKEN
                 }, function (data) {
                     manager.directories = data;
                 });
@@ -303,15 +303,15 @@ document.addEventListener('turbolinks:load', function() {
             }
 
             function bytesToSize(bytes) {
-                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
                 if (bytes == 0) return '0 Bytes';
-                var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
                 return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
             }
         }
     };
 
-    var media = new managerMedia({
+    const media = new managerMedia({
         baseUrl: $('#filemanager').data('url')
     });
 

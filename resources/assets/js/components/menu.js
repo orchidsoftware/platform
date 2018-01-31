@@ -1,23 +1,23 @@
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function () {
     if (document.getElementById("menu-vue") === null) {
         return;
     }
 
     const menu = new Vue({
-        el: '#menu-vue',
-        data: {
-            count: 0,
-            id: '',
-            label: '',
-            title: '',
-            slug: '',
-            auth: 0,
-            robot: 'follow',
-            style: '',
+        el     : '#menu-vue',
+        data   : {
+            count : 0,
+            id    : '',
+            label : '',
+            title : '',
+            slug  : '',
+            auth  : 0,
+            robot : 'follow',
+            style : '',
             target: '_self'
         },
         methods: {
-            load: function (object) {
+            load     : function (object) {
                 this.id = object.id;
                 this.label = object.label;
                 this.slug = object.slug;
@@ -27,19 +27,19 @@ document.addEventListener('turbolinks:load', function() {
                 this.target = object.target;
                 this.title = object.title;
             },
-            add: function () {
+            add      : function () {
                 $(".dd > .dd-list").append("<li class='dd-item dd3-item' data-id='" + this.count + "'> " +
                     "<div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" + this.label + "</div> " +
                     "<div  class='edit'></div>" +
                     "</li>");
 
                 $('li[data-id=' + this.count + ']').data({
-                    'label': this.label,
-                    'title': this.title,
-                    'auth': this.auth,
-                    'slug': this.slug,
-                    'robot': this.robot,
-                    'style': this.style,
+                    'label' : this.label,
+                    'title' : this.title,
+                    'auth'  : this.auth,
+                    'slug'  : this.slug,
+                    'robot' : this.robot,
+                    'style' : this.style,
                     'target': this.target
                 });
 
@@ -49,7 +49,7 @@ document.addEventListener('turbolinks:load', function() {
             },
             addStatic: function (name, slug) {
 
-                if (slug.charAt(0) != '/') {
+                if (slug.charAt(0) !== '/') {
                     slug = '/' + slug;
                 }
 
@@ -58,20 +58,20 @@ document.addEventListener('turbolinks:load', function() {
 
                 $('#ahref-custom-pages').tab('show');
             },
-            edit: function (element) {
-                var data = $(element).parent().data();
+            edit     : function (element) {
+                const data = $(element).parent().data();
                 data.label = $(element).prev().text();
                 this.load(data);
             },
-            save: function () {
+            save     : function () {
 
                 $('li[data-id=' + this.id + ']').data({
-                    'label': this.label,
-                    'title': this.title,
-                    'auth': this.auth,
-                    'slug': this.slug,
-                    'robot': this.robot,
-                    'style': this.style,
+                    'label' : this.label,
+                    'title' : this.title,
+                    'auth'  : this.auth,
+                    'slug'  : this.slug,
+                    'robot' : this.robot,
+                    'style' : this.style,
                     'target': this.target
                 });
                 $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
@@ -80,13 +80,13 @@ document.addEventListener('turbolinks:load', function() {
                 $('#menuEdit').modal('hide');
                 menu.send();
             },
-            remove: function () {
+            remove   : function () {
                 $('li[data-id=' + this.id + ']').remove();
                 $('#menuEdit').modal('hide');
                 this.clear();
                 this.send();
             },
-            clear: function () {
+            clear    : function () {
                 this.label = '';
                 this.title = '';
                 this.auth = 0;
@@ -96,12 +96,12 @@ document.addEventListener('turbolinks:load', function() {
                 this.target = '_self';
                 this.id = '';
             },
-            send: function () {
+            send     : function () {
                 //Отправка данных
 
-                var name = $('.dd').attr('data-name');
+                const name = $('.dd').attr('data-name');
 
-                var data = {
+                const data = {
                     'lang': $('.dd').attr('data-lang'),
                     'data': $('.dd').nestable('serialize')
                 };
@@ -109,8 +109,8 @@ document.addEventListener('turbolinks:load', function() {
                 axios.put(dashboard.prefix('/systems/menu/' + name), data).then(function (response) {
                 });
             },
-            exist: function () {
-                return !!(Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0);
+            exist    : function () {
+                return (Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0);
             }
         }
     });
