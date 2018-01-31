@@ -9,8 +9,8 @@ window.Popper = require('popper.js');
 require('bootstrap');
 require('bootstrap-tagsinput');
 
-document.addEventListener('turbolinks:load', function () {
-    $("input[data-role='tagsinput']").tagsinput('refresh');
+document.addEventListener('turbolinks:load', function() {
+  $("input[data-role='tagsinput']").tagsinput('refresh');
 });
 
 /**
@@ -39,9 +39,9 @@ window.Inputmask = require('inputmask');
 
 require('../../../node_modules/select2/dist/js/select2.full.min');
 $(() => {
-    $('.select2-enable').select2({
-        theme: 'bootstrap',
-    });
+  $('.select2-enable').select2({
+    theme: 'bootstrap',
+  });
 });
 
 $.fn.select2.defaults.set('theme', 'bootstrap');
