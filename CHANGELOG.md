@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - "Select" field
 - "Show" key for admin menu
 - Command `make:chart`
+- ORCHID Icons
 
 ### Changed
 - Upgrade to Bootstrap 4.0
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - google analytics
 - robot field
+- Simple line icons
 
 ## [2.0.14] - 2018-01-16
 
