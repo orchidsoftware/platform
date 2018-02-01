@@ -21,12 +21,18 @@ class MenuController extends Controller
     public $menu;
 
     /**
+     * MenuController constructor.
+     */
+    public function __construct()
+    {
+        $this->checkPermission('dashboard.systems.menu');
+    }
+
+    /**
      * @return View
      */
     public function index()
     {
-        $this->checkPermission('dashboard.systems.menu');
-
         $menu = collect(config('platform.menu'));
 
         if ($menu->count() === 1) {

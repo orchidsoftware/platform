@@ -24,6 +24,7 @@ class MediaController extends Controller
      */
     public function __construct()
     {
+        $this->checkPermission('dashboard.systems.media');
         $this->filesystem = config('platform.disks.media', 'public');
     }
 
