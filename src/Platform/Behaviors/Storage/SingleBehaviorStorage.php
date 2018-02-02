@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Behaviors\Storage;
 
 use Orchid\Platform\Kernel\Storage;

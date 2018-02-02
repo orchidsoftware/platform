@@ -4,18 +4,22 @@
     @endif
 
 
-    <div class="picture-container m-b-md">
-        @if(isset($attributes['value']) && strlen($attributes['value']))
-        <img src="{{$attributes['value']}}" class="img-responsive img-thumbnail" alt=""/>
-        @endif
+    <div class="b text-center wrapper-lg picture-actions">
+
+        <div class="picture-container m-b-md">
+            @if(isset($attributes['value']) && strlen($attributes['value']))
+                <img src="{{$attributes['value']}}" class="img-fluid img-thumbnail" alt=""/>
+            @endif
+        </div>
+
+        <label class="btn btn-link">
+            <i class="icon-cloud-upload"></i> Browse <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
+        </label>
+
+        <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
+        <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
     </div>
 
-    <div class="picture-actions">
-            <label class="btn btn-info">
-                Browse <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
-            </label>
-            <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
-    </div>
     <input class="picture-path"
            type="hidden"
            data-width="{{$width}}"
@@ -114,12 +118,14 @@ $(function () {
                     let image = '/storage/' + response.data.path + response.data.name + '.' + response.data.extension;
 
                     $formGroup.find('.picture-container')
-                        .html('<img src="' + image + '" class="img-responsive img-thumbnail" alt="" />');
+                        .html('<img src="' + image + '" class="img-fluid img-thumbnail" alt="" />');
 
                     $formGroup.find('.picture-path').val(image);
 
                     $('#picture-crop-modal-{{$lang}}-{{$slug}}').modal('hide');
                     $formGroup.find('.picture-input-file-{{$lang}}-{{$slug}}').value = '';
+
+
                 })
                 .catch(function (error) {
                     if ('message' in error.response.data) {

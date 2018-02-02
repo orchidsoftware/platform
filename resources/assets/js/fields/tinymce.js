@@ -14,7 +14,7 @@ let init = id => {
     image_title: true,
     image_class_list: [
       { title: 'None', value: '' },
-      { title: 'Responsive', value: 'img-responsive' },
+      { title: 'Responsive', value: 'img-fluid' },
     ],
 
     setup: function(ed) {

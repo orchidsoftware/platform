@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Core\Builders;
 
 use Illuminate\Database\Eloquent\Builder;

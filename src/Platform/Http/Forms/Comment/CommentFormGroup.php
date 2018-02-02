@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Comment;
 
@@ -32,7 +33,7 @@ class CommentFormGroup extends FormGroup
      */
     public function main() : View
     {
-        $comments = (new Comment())->with([
+        $comments = (new Comment())::with([
             'post' => function ($query) {
                 $query->select('id', 'type', 'slug');
             },

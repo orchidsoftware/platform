@@ -76744,7 +76744,10 @@ window.dashboard = {
    * @param target
    */
   alert: function alert(message, type, target) {
-    $(target).append($('<div/>', { class: 'alert m-b-none alert-' + type, text: message }).append($('<button/>', {
+    $(target).append($('<div/>', {
+      class: 'alert m-b-none alert-' + type,
+      text: message
+    }).append($('<button/>', {
       class: 'close',
       'data-dismiss': 'alert',
       'aria-label': 'Close',
@@ -76765,7 +76768,6 @@ window.dashboard = {
     }
     return true;
   }
-
 };
 
 /***/ }),
@@ -98180,7 +98182,7 @@ document.addEventListener('turbolinks:load', function () {
 
     init: function init() {
       this.on('addedfile', function (e) {
-        var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'><i class='fa fa-times' aria-hidden='true'></i></a>"),
+        var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'>&times;</a>"),
             t = this;
         n.addEventListener('click', function (n) {
           n.preventDefault(), n.stopPropagation(), t.removeFile(e);
