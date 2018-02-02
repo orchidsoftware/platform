@@ -66,7 +66,7 @@ class CategoryDescForm extends Form
             'language'     => App::getLocale(),
             'termTaxonomy' => $termTaxonomy,
             'locales'      => collect(config('platform.locales')),
-            'fields'       => $this->behavior->fields(),
+            'behavior'       => $this->behavior,
         ]);
     }
 
