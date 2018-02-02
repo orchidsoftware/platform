@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - "Show" key for admin menu
 - Command `make:chart`
 - ORCHID Icons
+- Error message validate for forms. #468
 
 ### Changed
 - Upgrade to Bootstrap 4.0
