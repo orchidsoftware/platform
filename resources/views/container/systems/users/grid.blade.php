@@ -34,7 +34,7 @@
                                 <thead>
                                 <tr>
                                     <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    @foreach($grid as $th)
+                                    @foreach($behavior->grid() as $th)
                                         <th width="{{$th->width}}">{{$th->title}}</th>
                                     @endforeach
                                 </tr>
@@ -47,7 +47,7 @@
                                                         class="icon-menu"></i></a>
                                         </td>
 
-                                        @foreach($grid as $td)
+                                        @foreach($behavior->grid() as $td)
                                         <td>
                                             @if(!is_null($td->render))
                                                 {!! $td->handler($user) !!}

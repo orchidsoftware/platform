@@ -178,7 +178,6 @@
     <!-- /content  -->
 
 </div>
-<div id="dashboard-alerts"></div>
 
 
 

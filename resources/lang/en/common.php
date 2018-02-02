@@ -26,8 +26,9 @@ return [
     ],
 
     'alert' => [
-        'success' => 'Operation completed successfully.',
-        'restore' => 'Restore the record.',
+        'success'  => 'Operation completed successfully.',
+        'restore'  => 'Restore the record.',
+        'validate' => 'Please check the entered data, it may be necessary to specify in other languages.'
     ],
 
     'filters' => [

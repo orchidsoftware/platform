@@ -2,12 +2,12 @@
 
 namespace Orchid\Platform\Http\Forms\Systems\Users;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Forms\Form;
 
 class BaseUserForm extends Form
 {
@@ -60,7 +60,7 @@ class BaseUserForm extends Form
             'user'     => $user ?: new $this->model(),
             'language' => App::getLocale(),
             'locales'  => config('platform.locales'),
-            'fields'   => $this->behavior->fields(),
+            'behavior' => $this->behavior,
         ]);
     }
 

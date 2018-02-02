@@ -5,6 +5,7 @@
     <div class="text-right">
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit"
+                    onclick="window.dashboard.validateForm('form-group','{{trans('dashboard::common.alert.validate')}}')"
                     form="form-group"
                     class="btn btn-link btn-save"><i class="sli icon-check fa-2x"></i></button>
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
@@ -19,7 +20,8 @@
             <ul class="nav nav-tabs padder" role="tablist">
                 @foreach($forms as $name => $form)
                     <li class="nav-item">
-                        <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
+                        <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}"
+                           role="tab" data-toggle="tab">
                             {!! $name !!}
                         </a>
                     </li>

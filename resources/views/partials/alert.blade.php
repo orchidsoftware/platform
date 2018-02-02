@@ -10,3 +10,4 @@
         @yield('flash_notification.sub_message')
     </div>
 @endif
+<div id="dashboard-alerts"></div>

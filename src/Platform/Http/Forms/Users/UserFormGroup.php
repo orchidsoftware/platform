@@ -3,9 +3,9 @@
 namespace Orchid\Platform\Http\Forms\Systems\Users;
 
 use Illuminate\Contracts\View\View;
-use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Events\Systems\UserEvent;
+use Orchid\Platform\Forms\FormGroup;
 
 class UserFormGroup extends FormGroup
 {
@@ -32,12 +32,11 @@ class UserFormGroup extends FormGroup
      */
     public function main() : View
     {
-        $users = config('platform.common.user');
-        $users = (new $users);
+        $behavior = config('platform.common.user');
 
         return view('dashboard::container.systems.users.grid', [
-            'users' => User::paginate(),
-            'grid'  => $users->grid(),
+            'users'    => User::paginate(),
+            'behavior' => new $behavior,
         ]);
     }
 }
