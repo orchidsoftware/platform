@@ -30,7 +30,10 @@ window.dashboard = {
    */
   alert: function(message, type, target) {
     $(target).append(
-      $('<div/>', { class: 'alert m-b-none alert-' + type, text: message }).append(
+      $('<div/>', {
+        class: 'alert m-b-none alert-' + type,
+        text: message,
+      }).append(
         $('<button/>', {
           class: 'close',
           'data-dismiss': 'alert',
@@ -42,19 +45,17 @@ window.dashboard = {
     );
   },
 
-    /**
-     *
-     * @param idForm
-     * @param message
-     * @returns {boolean}
-     */
+  /**
+   *
+   * @param idForm
+   * @param message
+   * @returns {boolean}
+   */
   validateForm: function(idForm, message) {
     if (!document.getElementById(idForm).checkValidity()) {
-        window.dashboard.alert(message, 'warning b-b', '#dashboard-alerts');
-        return false;
+      window.dashboard.alert(message, 'warning b-b', '#dashboard-alerts');
+      return false;
     }
-    return true
+    return true;
   },
-
-
 };
