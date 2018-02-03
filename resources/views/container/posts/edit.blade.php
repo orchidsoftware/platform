@@ -5,7 +5,7 @@
 
     <ul class="nav justify-content-end  v-center">
 
-            @if($locales->count() > 1)
+        @if($locales->count() > 1)
             <li class="nav-item dropdown">
                 <a href="#"
                    class="nav-link dropdown-toggle text-uppercase padder-v"

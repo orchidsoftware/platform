@@ -35,10 +35,13 @@ class UserFormGroup extends FormGroup
     public function main() : View
     {
         $behavior = config('platform.common.user');
+        $behavior = new $behavior;
 
         return view('dashboard::container.systems.users.grid', [
-            'users'    => User::paginate(),
-            'behavior' => new $behavior,
+            'users'    => User::filtersApply($behavior->filters())->paginate(),
+            'behavior' => $behavior,
+            'filters'  => collect($behavior->filters()),
+            'chunk'    => $behavior->chunk,
         ]);
     }
 }

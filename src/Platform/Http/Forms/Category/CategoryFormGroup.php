@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\View\View;
-use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Events\CategoryEvent;
+use Orchid\Platform\Forms\FormGroup;
 
 class CategoryFormGroup extends FormGroup
 {
@@ -26,7 +26,7 @@ class CategoryFormGroup extends FormGroup
      *
      * @return array
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
             'name'        => trans('dashboard::systems/category.title'),
@@ -37,13 +37,16 @@ class CategoryFormGroup extends FormGroup
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function main() : View
+    public function main(): View
     {
         $behavior = config('platform.common.category');
+        $behavior = new $behavior;
 
         return view('dashboard::container.systems.category.grid', [
-            'category'  => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
-            'behavior' => new $behavior,
+            'category' => Category::filtersApply($behavior->filters())->where('parent_id', 0)->with('allChildrenTerm')->paginate(),
+            'behavior' => $behavior,
+            'filters'  => collect($behavior->filters()),
+            'chunk'    => $behavior->chunk,
         ]);
     }
 }

@@ -24,59 +24,55 @@
     <section>
         <div class="bg-white-only bg-auto no-border-xs">
 
+            @include('dashboard::container.posts.filter')
+
             @if($users->count() > 0)
-                <div class="card">
 
-                    <div class="card-body row">
-
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
+                <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
+                                @foreach($behavior->grid() as $th)
+                                    <th width="{{$th->width}}">{{$th->title}}</th>
+                                @endforeach
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($users as $user)
                                 <tr>
-                                    <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                    @foreach($behavior->grid() as $th)
-                                        <th width="{{$th->width}}">{{$th->title}}</th>
+                                    <td class="text-center">
+                                        <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
+                                                    class="icon-menu"></i></a>
+                                    </td>
+
+                                    @foreach($behavior->grid() as $td)
+                                    <td>
+                                        @if(!is_null($td->render))
+                                            {!! $td->handler($user) !!}
+                                        @else
+                                            {{ $user->getContent($td->name) }}
+                                        @endif
+                                    </td>
                                     @endforeach
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td class="text-center">
-                                            <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
-                                                        class="icon-menu"></i></a>
-                                        </td>
 
-                                        @foreach($behavior->grid() as $td)
-                                        <td>
-                                            @if(!is_null($td->render))
-                                                {!! $td->handler($user) !!}
-                                            @else
-                                                {{ $user->getContent($td->name) }}
-                                            @endif
-                                        </td>
-                                        @endforeach
-                                    </tr>
-
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
 
-                    <footer class="card-footer">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$users->total()}}
-                                    -{{$users->perPage()}} {{trans('dashboard::common.of')}} {!! $users->count() !!} {{trans('dashboard::common.elements')}}</small>
-                            </div>
-                            <div class="col-sm-7 text-right text-center-xs">
-                                {!! $users->links('dashboard::partials.pagination') !!}
-                            </div>
+                <footer class="card-footer">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$users->total()}}
+                                -{{$users->perPage()}} {{trans('dashboard::common.of')}} {!! $users->count() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
-                    </footer>
-                </div>
+                        <div class="col-sm-7 text-right text-center-xs">
+                            {!! $users->links('dashboard::partials.pagination') !!}
+                        </div>
+                    </div>
+                </footer>
 
             @else
 

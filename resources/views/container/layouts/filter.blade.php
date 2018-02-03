@@ -2,11 +2,16 @@
     <div class="wrapper-md b-b">
         <div class="row">
             <div class="col-md-12">
-                <button type="submit"
-                        id="button-filter"
-                        form="filters"
-                        class="btn btn-default pull-right"><i class="fa fa-filter"></i>
-                </button>
+                <div class="btn-group pull-right" role="group">
+                    <a      href="{{url()->current()}}"
+                            class="btn btn-default"><i class="icon-refresh"></i>
+                    </a>
+                    <button type="submit"
+                            id="button-filter"
+                            form="filters"
+                            class="btn btn-default"><i class="fa fa-filter"></i>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="row">

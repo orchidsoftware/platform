@@ -10,6 +10,11 @@ use Orchid\Platform\Platform\Fields\TD;
 class CategoryBase
 {
     /**
+     * @var int
+     */
+    public $chunk = 4;
+
+    /**
      * Rules Validation.
      *
      * @return array
@@ -20,6 +25,16 @@ class CategoryBase
             'content.*.name' => 'required|string',
             'content.*.body' => 'required|string',
         ];
+    }
+
+    /**
+     * HTTP data filters.
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [];
     }
 
     /**
