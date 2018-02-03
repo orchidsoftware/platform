@@ -216,7 +216,7 @@ abstract class FormGroup
     }
 
     /**
-     * @param string|integer $method
+     * @param string|int $method
      *
      * @return FormGroup
      */
