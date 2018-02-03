@@ -42,7 +42,7 @@ require('clean-blog');
 @import "mixins.less";
 ```
 
-Переименуем clean-blog.less в app.less для стандартизации. Всё теперь мы можем собирать приложение.
+Переименуем clean-blog.less в app.less для стандартизации. Всё, теперь мы можем собирать приложение.
 
 Откроем webpack.mix.js и напишем инструкцию:
 ```php
@@ -50,7 +50,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .less('resources/assets/less/app.less', 'public/css');
 ```
 
-Отлично, всё необходимые зависимости нашего блога готовы
+Отлично, всё необходимые зависимости нашего блога готовы.
 
 
 ## Шаблоны
