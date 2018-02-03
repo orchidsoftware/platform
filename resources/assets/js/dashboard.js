@@ -28,7 +28,7 @@ window.dashboard = {
    * @param type
    * @param target
    */
-  alert: function(message, type, target) {
+  alert: function(message, type = 'danger', target = '#dashboard-alerts') {
     $(target).append(
       $('<div/>', {
         class: 'alert m-b-none alert-' + type,
@@ -53,7 +53,7 @@ window.dashboard = {
    */
   validateForm: function(idForm, message) {
     if (!document.getElementById(idForm).checkValidity()) {
-      window.dashboard.alert(message, 'warning b-b', '#dashboard-alerts');
+      window.dashboard.alert(message, 'warning b-b');
       return false;
     }
     return true;
