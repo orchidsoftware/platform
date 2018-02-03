@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Filters;
 
-use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
+use Orchid\Platform\Core\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class RoleFilter extends Filter
@@ -35,7 +35,7 @@ class RoleFilter extends Filter
      */
     public function run(Builder $builder) : Builder
     {
-        return $builder->whereHas('roles', function($query){
+        return $builder->whereHas('roles', function ($query) {
             $query->slug = $this->request->get('role');
         });
     }
@@ -46,7 +46,7 @@ class RoleFilter extends Filter
      */
     public function display()
     {
-        $roles = Role::select('slug','name')->pluck('name','slug');
+        $roles = Role::select('slug', 'name')->pluck('name', 'slug');
 
         return Field::tag('select')
             ->options($roles)
