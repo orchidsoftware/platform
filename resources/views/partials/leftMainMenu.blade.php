@@ -10,7 +10,7 @@
         </a>
     </li>
 @else
-    <li class="dropdown-item @if(isset($active)) {{active($active)}} @endif">
+    <li class="@if(isset($childs) && $childs) dropdown-item @endif @if(isset($active)) {{active($active)}} @endif">
         <a href="{{$route}}">
             <i class="{{$icon}}">
                 @if(isset($badge))

@@ -216,11 +216,11 @@ abstract class FormGroup
     }
 
     /**
-     * @param $method
+     * @param string|integer $method
      *
      * @return FormGroup
      */
-    public function slug(string $method) : self
+    public function slug($method) : self
     {
         $this->slug = $method;
 

@@ -97,9 +97,9 @@ class Users extends Screen
 
 Зарегистировать каждый экран можно с помощью метода `screen` у Route
 ```php
-Route::screen('/news', 'NewsList','dashboard.screens.news.list');
+Route::screen('/news', 'Users','dashboard.screens.users.list');
 //or
-$route->screen('/news', 'NewsList','dashboard.screens.news.list');
+$route->screen('/news', 'Users','dashboard.screens.users.list');
 ```
 
 
