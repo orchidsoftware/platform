@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Behaviors\Base;
 
 use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Http\Filters\RoleFilter;
 use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Http\Filters\RoleFilter;
 
 class UserBase
 {
