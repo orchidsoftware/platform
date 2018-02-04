@@ -72,7 +72,7 @@ class User extends Authenticatable implements UserInterface
      */
     public function setPermissionsAttribute($permissions)
     {
-        foreach($permissions as $key => $value){
+        foreach ($permissions as $key => $value) {
             $permissions[$key] = boolval($value);
         }
         $this->attributes['permissions'] = json_encode($permissions ?? []);

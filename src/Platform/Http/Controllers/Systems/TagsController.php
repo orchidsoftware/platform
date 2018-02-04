@@ -18,7 +18,7 @@ class TagsController extends Controller
     {
         $tags = Post::allTags()->latest('count')->limit(10);
 
-        if (!is_null($tag)) {
+        if (! is_null($tag)) {
             $tags = $tags->where('name', 'like', '%'.$tag.'%');
         }
 
