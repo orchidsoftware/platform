@@ -54,19 +54,6 @@ trait Environment
     {
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'orchid_test_database'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-            /*
             'driver'   => 'pgsql',
             'host'     => '127.0.0.1',
             'port'     => '5432',
@@ -77,7 +64,6 @@ trait Environment
             'prefix'   => '',
             'schema'   => 'public',
             'sslmode'  => 'prefer',
-            */
         ]);
         $app['config']->set('database.default', 'orchid');
     }
