@@ -10,8 +10,8 @@
 
 <h4 class="text-orchid font-thin"> Manual </h4>
 <ul class="toc-links">
-    <li> <a href="/en/docs/configuration/"> Overview of settings </a> </li>
-    <!-- <li> <a href="/en/docs/authentication/"> Authorization </a> </li> -->
+    <!--<li> <a href="/en/docs/configuration/"> Overview of settings </a> </li> -->
+    <li> <a href="/en/docs/authentication/"> Authorization </a> </li>
     <li> <a href="/en/docs/tutorial_blog/"> Creating a blog </a> </li>
     <li> <a href="/en/docs/tutorial_phpinfo/"> Expanding the form </a> </li>
      <!-- <li> <a href="/en/docs/tutorial_clinic/"> Application Development </a> </li> -->
