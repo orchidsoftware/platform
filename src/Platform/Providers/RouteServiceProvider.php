@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Widget\WidgetContractInterface;
+use Orchid\Platform\Http\Middleware\AccessMiddleware;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -50,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
             if (is_numeric($value)) {
                 return Role::where('id', $value)->firstOrFail();
             }
+
             return Role::where('slug', $value)->firstOrFail();
         });
 
@@ -57,6 +57,7 @@ class RouteServiceProvider extends ServiceProvider
             if (is_numeric($value)) {
                 return Category::where('id', $value)->firstOrFail();
             }
+
             return Category::findOrFail($value);
         });
 
@@ -74,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
                 return abort(404);
             }
 
-            if (!is_a($widget, WidgetContractInterface::class)) {
+            if (! is_a($widget, WidgetContractInterface::class)) {
                 return abort(404);
             }
 
@@ -116,7 +117,7 @@ class RouteServiceProvider extends ServiceProvider
             return;
         }
 
-        foreach (glob(DASHBOARD_PATH . '/routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
             $this->loadRoutesFrom($file);
         }
     }
