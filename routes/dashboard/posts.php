@@ -25,12 +25,12 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'PostController@create',
         ]);
 
-        $router->get('{type}/{slug}/edit', [
+        $router->get('{type}/{post}/edit', [
             'as'   => 'dashboard.posts.type.edit',
             'uses' => 'PostController@edit',
         ]);
 
-        $router->get('{type}/{slug?}', [
+        $router->get('{type}/{post?}', [
             'as'   => 'dashboard.posts.type',
             'uses' => 'PostController@index',
         ]);
@@ -40,12 +40,12 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'PostController@store',
         ]);
 
-        $router->put('{type}/{slug?}', [
+        $router->put('{type}/{post?}', [
             'as'   => 'dashboard.posts.type.update',
             'uses' => 'PostController@update',
         ]);
 
-        $router->delete('{type}/{slug?}', [
+        $router->delete('{type}/{post?}', [
             'as'   => 'dashboard.posts.type.destroy',
             'uses' => 'PostController@destroy',
         ]);

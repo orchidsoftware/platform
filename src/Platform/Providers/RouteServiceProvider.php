@@ -81,14 +81,6 @@ class RouteServiceProvider extends ServiceProvider
             return $widget;
         });
 
-        Route::bind('slug', function ($value) {
-            if (is_numeric($value)) {
-                return Post::where('id', $value)->firstOrFail();
-            }
-
-            return Post::findOrFail($value);
-        });
-
         Route::bind('page', function ($value) {
             if (is_numeric($value)) {
                 $page = Page::where('id', $value)->first();
@@ -103,6 +95,14 @@ class RouteServiceProvider extends ServiceProvider
 
             return $page;
         });
+
+        Route::bind('post',function ($value){
+            if (is_numeric($value)) {
+                return Post::where('id', $value)->firstOrFail();
+            }
+            return Post::where('slug', $value)->firstOrFail();
+        });
+
     }
 
     /**
