@@ -17,7 +17,7 @@ $this->domain(config('platform.domain'))->group(function () {
     ], function (\Illuminate\Routing\Router $router) {
         $router->resource('users', 'UserController', [
             'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy'
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
             ],
             'names' => [
                 'index'   => 'dashboard.systems.users',
@@ -31,7 +31,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
         $router->resource('roles', 'RoleController', [
             'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy'
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
             ],
             'names' => [
                 'index'   => 'dashboard.systems.roles',
@@ -75,7 +75,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
         $router->resource('category', 'CategoryController', [
             'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy'
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
             ],
             'names' => [
                 'index'   => 'dashboard.systems.category',
@@ -89,7 +89,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
         $router->resource('comment', 'CommentController', [
             'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy'
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
             ],
             'names' => [
                 'index'   => 'dashboard.systems.comment',
