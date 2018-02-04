@@ -50,14 +50,14 @@ class CategoryBase
                 ->name('name')
                 ->max(255)
                 ->require()
-                ->title('Name Category')
-                ->help('Category title'),
+                ->title(trans('dashboard::systems/category.fields.name_title'))
+                ->help(trans('dashboard::systems/category.fields.name_help')),
 
             Field::tag('wysiwyg')
                 ->name('body')
                 ->max(255)
                 ->require()
-                ->title('Body category'),
+                ->title(trans('dashboard::systems/category.fields.body_title')),
         ];
     }
 
@@ -68,7 +68,7 @@ class CategoryBase
     {
         return [
             TD::name('created_at')
-                ->title('Date of creation'),
+                ->title(trans('dashboard::systems/category.date_creation')),
         ];
     }
 }
