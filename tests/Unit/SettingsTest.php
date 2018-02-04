@@ -43,6 +43,7 @@ class SettingsTest extends TestUnitCase
 
         //Проверяем это значение
         $result = $this->setting->get($key);
+
         $this->assertEquals(null, $result);
     }
 
@@ -78,6 +79,7 @@ class SettingsTest extends TestUnitCase
             'test-2',
             'test-3',
         ]);
-        $this->assertTrue($result);
+
+        $this->assertEquals(3, $result);
     }
 }

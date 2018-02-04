@@ -66,6 +66,6 @@ if (! function_exists('dashboard_domain')) {
      */
     function dashboard_domain($default = 'localhost')
     {
-        return isset(parse_url(config('app.url'))['host']) ? parse_url(config('app.url'))['host'] : $default;
+        return isset(config('app.url')['host']) ? parse_url(config('app.url'))['host'] : $default;
     }
 }
