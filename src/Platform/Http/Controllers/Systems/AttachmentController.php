@@ -80,7 +80,7 @@ class AttachmentController extends Controller
      */
     public function getFilesPost($id)
     {
-        $files = Post::find($id)->attachment()->orderBy('sort', 'asc')->get();
+        $files = Post::find($id)->attachment()->oldest('sort')->get();
 
         return response()->json($files);
     }
