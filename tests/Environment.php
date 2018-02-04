@@ -32,7 +32,7 @@ trait Environment
         //$this->loadLaravelMigrations('orchid');
 
         $this->artisan('migrate:fresh', [
-            '--database' => 'orchid'
+            '--database' => 'orchid',
         ]);
 
         $this->artisan('storage:link');
@@ -40,11 +40,9 @@ trait Environment
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
 
-
-        $this->artisan('db:seed',[
-            '--class' => 'OrchidDatabaseSeeder'
+        $this->artisan('db:seed', [
+            '--class' => 'OrchidDatabaseSeeder',
         ]);
-
     }
 
     /**
