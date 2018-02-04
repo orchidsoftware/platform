@@ -11,11 +11,11 @@ $posts = Post::all();
 ```
 
 ```php
-// All published posts
+//All published posts
 $posts = Post::published()->get();
 $posts = Post::status('publish')->get();
 
-// A specific post
+//A specific post
 $post = Post::find(42);
 
 //The name of the record taking into account the current localization
@@ -58,17 +58,17 @@ to achieve it.
 
 
 ```php
-// all categories
+//all categories
 $category = Taxonomy::category()->slug('uncategorized')->posts()->first();
 
 
-// only all categories and posts connected with it
+//only all categories and posts connected with it
 $category = Taxonomy::where('taxonomy', 'category')->with('posts')->get();
 $category->each(function($category) {
     echo $category->getContent('name');
 });
 
-// clean and simple all posts from a category
+//clean and simple all posts from a category
 $category = Category::slug('uncategorized')->posts()->first();
 $category->posts->each(function($post) {
     echo $post->getContent('name');

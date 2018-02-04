@@ -1,40 +1,48 @@
-
 # Menu
 ----------
 
-The system has a drag & drop menu that boosts localization.
 
-The number of menus is limited and is defined in the configuration file `config/platform`
+ORCHID includes an easy-to-use mechanism for creating customizable menus (navigation),
+using drag & drop and localization support.
+
+
+## Configuration
+
+Most menus are displayed at the top of the site,
+but the location may be different for different applications,
+the number of menus is limited and defined in the configuration file `config/platform`
+
 ```php
 'menu' => [
-    'header'  => 'Top Menu',
-    'sidebar' => 'Sidebar Menu',
-    'footer'  => 'Footer Menu',
+    'header' => 'Top Menu',
+    'sidebar' => 'Sidebar Menu',
+    'footer' => 'Footer Menu',
 ],
 ```
 
-
-To use the data it generates, you need:
+## Model
+The Menu class is the usual model of `Eloquent`, all of its features are available to it,
+for example, that would output only the parent menu items with child links
+and localization is necessary:
 
 ```php
 namespace Orchid\Platform\Core\Models\Menu;
 
-$menu = Menu::where('lang', App::getLocale())
-    ->whereNull('parent')
-    ->where('type', 'footer')
-    ->with('children')
-    ->get();
+$menu = Menu::where ('lang', App::getLocale ())
+    ->whereNull ('parent')
+    ->where ('type', 'footer')
+    ->with ('children')
+    ->get ();
 ```
 
-We will only take the main menu items and affiliate links.
 
-Methods available:
+Methods are available:
 
 ```php
-//Первый дочерний элемент
-$menu = Menu::find(1)->children()->first();
+//First child
+$menu = Menu::find (1)->children()->first ();
 
 
-//Родительский элемент
-$menu = Menu::find(1)->parent()->get();
+//Parent element
+$menu = Menu::find (1)->parent()->get ();
 ```

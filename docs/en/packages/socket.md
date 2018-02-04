@@ -13,7 +13,7 @@ Protocol WebSocket - an independent protocol based on the TCP protocol. It enabl
 install package
 
 ```php
-$ composer require orchid/socket
+$composer require orchid/socket
 ```
 
 edit config/app.php service provider :
@@ -114,22 +114,22 @@ public function onOpen(ConnectionInterface $conn)
 
 public function getUserFromSession($conn)
 {
-    // Create a new session handler for this client
+    //Create a new session handler for this client
     $session = (new SessionManager(App::getInstance()))->driver();
     
-    // Get the cookies
+    //Get the cookies
     $cookies = $conn->WebSocket->request->getCookies();
     
-    // Get the laravel's one
+    //Get the laravel's one
     $laravelCookie = urldecode($cookies[Config::get('session.cookie')]);
     
-    // get the user session id from it
+    //get the user session id from it
     $idSession = Crypt::decrypt($laravelCookie);
     
-    // Set the session id to the session handler
+    //Set the session id to the session handler
     $session->setId($idSession);
     
-    // Bind the session handler to the client connection
+    //Bind the session handler to the client connection
     $conn->session = $session;
     $conn->session->start();
     
@@ -155,7 +155,7 @@ upstream websocket {
 
 server {
     listen 443;
-    location / {
+    location/{
         proxy_pass http://websocket;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;

@@ -14,7 +14,7 @@ php artisan backup:run
 For added security, add a backup to the schedule
 
 ```php
-// app/Console/Kernel.php
+//app/Console/Kernel.php
 
 protected function schedule(Schedule $schedule)
 {

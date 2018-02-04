@@ -8,7 +8,7 @@ Screen is the application screen for displaying data. He does not know where the
 
 ## Why not CRUD?
 
-Almost all popular add-ins use the construction of CRUD for custom models, this is a good solution, but the application can not consist of basic functions alone. Most likely you will expand and supplement the generated logic. A good example is that the standard operations for creating / reading / editing / deleting are not enough can be the ability to "Send to print." ORCHID allows you to create a CRUD using the "Screens", but this is not their goal.
+Almost all popular add-ins use the construction of CRUD for custom models, this is a good solution, but the application can not consist of basic functions alone. Most likely you will expand and supplement the generated logic. A good example is that the standard operations for creating/reading/editing/deleting are not enough can be the ability to "Send to print." ORCHID allows you to create a CRUD using the "Screens", but this is not their goal.
 
 
 ### Information objects and screens
@@ -127,14 +127,14 @@ Link responds to what will happen by clicking on the button, in the example abov
 the screen method `print` will be called, all the data that the user saw on the screen will be available in the Request.
 
 ```php
-// Upon clicking, the 'create'
+//Upon clicking, the 'create'
 Link::name('New function')->method('create');
 
-// By clicking you will be redirected to the specified address
+//By clicking you will be redirected to the specified address
 Link::name('Link')->link('http://google.com/');
 
-// On pressing it will show the modal window (CreateUserModal),
-// in which you can execute the "save"
+//On pressing it will show the modal window (CreateUserModal),
+//in which you can execute the "save"
 Link::name('Modal windows')
 ->modal('CreateUserModal')
 ->title('New User')
@@ -177,7 +177,7 @@ public function layout() : array
                 InvoiceListLayout::class
             ],
         ]),
-        // Modals dialog
+        //Modals dialog
         Layouts::modals([
             'Appointments' => [
                 PatientFirstRows::class,
@@ -191,9 +191,9 @@ public function layout() : array
 
 You can register each screen using the `screen` method from Route
 ```php
-Route :: screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
-// or
-$ route-> screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+Route::screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+//or
+$route->screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
 ```
 
 
