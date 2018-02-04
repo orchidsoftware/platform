@@ -31,7 +31,7 @@ trait Environment
             '--database' => 'orchid',
         ]);
 
-        //$this->artisan('storage:link');
+        $this->artisan('storage:link');
         $this->artisan('orchid:link');
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
