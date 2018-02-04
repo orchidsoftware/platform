@@ -9,7 +9,6 @@ return [
     'cancel'                 => 'Cancel',
     'move'                   => 'Move',
     'rename'                 => 'Rename',
-	
 
     'add_new_folder'         => 'Add New Folder',
     'audio_support'          => 'Your browser does not support the audio element.',
@@ -39,17 +38,17 @@ return [
     'rename_file_folder'     => 'Rename File/Folder',
     'success_uploaded_file'  => 'Successfully uploaded new file!',
     'success_uploading'      => 'Image successfully uploaded!',
-    'sure_delete'            => 'Are you sure you want to delete',	
+    'sure_delete'            => 'Are you sure you want to delete',
     'uploading_wrong_type'   => 'Upload Fail: Unsupported file format or It is too large to upload!',
     'video_support'          => 'Your browser does not support the video tag.',
     'yes_delete'             => 'Yes, Delete it!',
-	
-	'fileinfo'               => [
-	  'title'                => 'Title',
-	  'type'                 => 'Type',
-	  'size'                 => 'Size',
-	  'public_url'           => 'Public URL',
-	  'click_here'           => 'Click Here',
-	  'last_modified'        => 'Last Modified',
-	],
+
+    'fileinfo'               => [
+      'title'                => 'Title',
+      'type'                 => 'Type',
+      'size'                 => 'Size',
+      'public_url'           => 'Public URL',
+      'click_here'           => 'Click Here',
+      'last_modified'        => 'Last Modified',
+    ],
 ];
