@@ -97,13 +97,13 @@ class RouteServiceProvider extends ServiceProvider
             return $page;
         });
 
-        Route::bind('post',function ($value){
+        Route::bind('post', function ($value) {
             if (is_numeric($value)) {
                 return Post::where('id', $value)->firstOrFail();
             }
+
             return Post::where('slug', $value)->firstOrFail();
         });
-
     }
 
     /**
