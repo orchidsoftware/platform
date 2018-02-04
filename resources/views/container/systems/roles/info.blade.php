@@ -17,17 +17,18 @@
             </div>
         </div>
 
-
         @foreach($permission as $name => $group)
 
             @if(count($group) == 0)
                 @continue
             @endif
 
-
+			@php
+				$title=trans('dashboard::permission.main.'.strtolower($name));
+			@endphp
 
             <div class="line line-dashed b-b line-lg"></div>
-            <span class="text-muted">{{ $name or '' }}</span>
+            <span class="text-muted">{{ $title ?? $name ?? '' }}</span>
             <div class="row padder-v mx-0">
                 <div class="col row">
 

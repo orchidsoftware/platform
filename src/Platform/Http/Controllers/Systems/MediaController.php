@@ -35,7 +35,10 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('dashboard::container.systems.media.index');
+        return view('dashboard::container.systems.media.index',[
+            'name'        => trans('dashboard::systems/media.title'),
+            'description' => trans('dashboard::systems/media.description'),
+        ]);
     }
 
     /**
@@ -117,11 +120,11 @@ class MediaController extends Controller
         $error = '';
 
         if (Storage::disk($this->filesystem)->exists($new_folder)) {
-            $error = 'Sorry that folder already exists, please delete that folder if you wish to re-create it';
+            $error = trans('dashboard::systems/media.error_creating_folder');
         } elseif (Storage::disk($this->filesystem)->makeDirectory($new_folder)) {
             $success = true;
         } else {
-            $error = 'Sorry something seems to have gone wrong with creating the directory, please check your permissions';
+            $error = trans('dashboard::systems/media.error_creating_dir');
         }
 
         return compact('success', 'error');
@@ -149,11 +152,11 @@ class MediaController extends Controller
 
         if ($type == 'folder') {
             if (! Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
-                $error = 'Sorry something seems to have gone wrong when deleting this folder, please check your permissions';
+                $error = trans('dashboard::systems/media.error_deleting_folder');
                 $success = false;
             }
         } elseif (! Storage::disk($this->filesystem)->delete($fileFolder)) {
-            $error = 'Sorry something seems to have gone wrong deleting this file, please check your permissions';
+            $error = trans('dashboard::systems/media.error_deleting_file');
             $success = false;
         }
 
@@ -205,10 +208,10 @@ class MediaController extends Controller
             if (Storage::disk($this->filesystem)->move($source, $destination)) {
                 $success = true;
             } else {
-                $error = 'Sorry there seems to be a problem moving that file/folder, please make sure you have the correct permissions.';
+                $error = trans('dashboard::systems/media.error_moving');
             }
         } else {
-            $error = 'Sorry there is already a file/folder with that existing name in that folder.';
+            $error = trans('dashboard::systems/media.error_already_exists');
         }
 
         return compact('success', 'error');
@@ -237,10 +240,10 @@ class MediaController extends Controller
             if (Storage::disk($this->filesystem)->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {
-                $error = 'Sorry there seems to be a problem moving that file/folder, please make sure you have the correct permissions.';
+                $error = trans('dashboard::systems/media.error_moving');
             }
         } else {
-            $error = 'File or Folder may already exist with that name. Please choose another name or delete the other file.';
+            $error = trans('dashboard::systems/media.error_may_exist');
         }
 
         return compact('success', 'error');
@@ -258,7 +261,7 @@ class MediaController extends Controller
                 $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName().'.'.$file->getClientOriginalExtension());
             }
             $success = true;
-            $message = 'Successfully uploaded new file!';
+            $message = trans('dashboard::systems/media.success_uploaded_file');
         } catch (Exception $e) {
             $path = '';
             $success = false;
@@ -277,7 +280,7 @@ class MediaController extends Controller
             return response()->json([
                 'data' => [
                     'status'  => 200,
-                    'message' => 'Image removed',
+                    'message' => trans('dashboard::systems/media.image_removed'),
                 ],
             ]);
         } catch (Exception $e) {
