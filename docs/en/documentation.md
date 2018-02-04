@@ -20,7 +20,7 @@
 
 <h4 class="text-orchid font-thin"> Platform </h4>
 <ul class="toc-links">
-    <li> <a href="/en/docs/panel_menu/"> Panel Menu </a> </li>
+    <!-- <li> <a href="/en/docs/panel_menu/"> Panel Menu </a> </li> -->
     <li> <a href="/en/docs/screens/"> Screens </a> </li>
     <li> <a href="/en/docs/layouts/"> Layouts </a> </li>
     <li> <a href="/en/docs/filters/"> Filters </a> </li>
