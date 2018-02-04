@@ -27,15 +27,11 @@ trait Environment
             '--all' => true,
         ]);
 
-        $this->artisan('orchid:link');
-
-        //$this->loadLaravelMigrations('orchid');
-
         $this->artisan('migrate:fresh', [
             '--database' => 'orchid',
         ]);
 
-        $this->artisan('storage:link');
+        //$this->artisan('storage:link');
         $this->artisan('orchid:link');
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
