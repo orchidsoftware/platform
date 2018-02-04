@@ -71,8 +71,9 @@
                 <footer class="card-footer">
                     <div class="row">
                         <div class="col-sm-5">
-                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$category->total()}}
-                                -{{$category->perPage()}} {{trans('dashboard::common.of')}} {!! $category->count() !!} {{trans('dashboard::common.elements')}}</small>
+                            <small class="text-muted inline m-t-sm m-b-sm">
+							{{trans('dashboard::common.show')}} {{($category->currentPage()-1)*$category->perPage()+1}} -
+							{{($category->currentPage()-1)*$category->perPage()+count($category->items())}} {{trans('dashboard::common.of')}} {!! $category->total() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $category->links('dashboard::partials.pagination') !!}

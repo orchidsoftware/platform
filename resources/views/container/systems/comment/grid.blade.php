@@ -78,8 +78,8 @@
                     <footer class="card-footer">
                         <div class="row">
                             <div class="col-sm-5">
-                                <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$comments->total()}}
-                                    -{{$comments->perPage()}} {{trans('dashboard::common.of')}} {!! $comments->count() !!} {{trans('dashboard::common.elements')}}</small>
+                                <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{($comments->currentPage()-1)*$comments->perPage()+1}} -
+							{{($comments->currentPage()-1)*$comments->perPage()+count($comments->items())}} {{trans('dashboard::common.of')}} {!! $comments->total() !!} {{trans('dashboard::common.elements')}}</small>
                             </div>
                             <div class="col-sm-7 text-right text-center-xs">
                                 {!! $comments->render() !!}

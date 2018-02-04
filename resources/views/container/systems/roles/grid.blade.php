@@ -62,9 +62,8 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <small class="text-muted inline m-t-sm m-b-sm">
-                                {{trans('dashboard::common.show')}} {{$roles->total()}}
-                                -{{$roles->perPage()}} {{trans('dashboard::common.of')}} {!! $roles->count() !!}
-                                {{trans('dashboard::common.elements')}}</small>
+							{{trans('dashboard::common.show')}} {{($roles->currentPage()-1)*$roles->perPage()+1}} -
+							{{($roles->currentPage()-1)*$roles->perPage()+count($roles->items())}} {{trans('dashboard::common.of')}} {!! $roles->total() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $roles->links('dashboard::partials.pagination') !!}

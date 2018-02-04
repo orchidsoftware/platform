@@ -61,12 +61,15 @@
                             </tbody>
                         </table>
                     </div>
-
+					
                 <footer class="card-footer">
                     <div class="row">
                         <div class="col-sm-5">
-                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$users->total()}}
-                                -{{$users->perPage()}} {{trans('dashboard::common.of')}} {!! $users->count() !!} {{trans('dashboard::common.elements')}}</small>
+                            <small class="text-muted inline m-t-sm m-b-sm">	
+							{{trans('dashboard::common.show')}} {{($users->currentPage()-1)*$users->perPage()+1}} -
+							{{($users->currentPage()-1)*$users->perPage()+count($users->items())}} {{trans('dashboard::common.of')}} {!! $users->total() !!} {{trans('dashboard::common.elements')}}
+								
+								</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $users->links('dashboard::partials.pagination') !!}
