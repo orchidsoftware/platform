@@ -6,9 +6,8 @@
 
 
     <div class="simplemde-wrapper">
-
-	<input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
-	</div>
+	<textarea @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>{{$attributes['value']}}</textarea>
+    </div>
 
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>
