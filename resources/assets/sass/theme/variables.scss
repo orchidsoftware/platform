@@ -8,6 +8,7 @@ $icon-font-path: '/orchid/fonts/';
 $fa-font-path: '/orchid/fonts/';
 $orchid-font-path: '/orchid/fonts/';
 
+
 $grid-breakpoints : (
         xs: 0,
         sm: 576px,
@@ -17,17 +18,19 @@ $grid-breakpoints : (
 );
 
 // Colors
-$white : #ffffff !default;
-$gray-100 : #f8f9fa !default;
-$gray-200 : #e9ecef !default;
-$gray-300 : #dee2e6 !default;
-$gray-400 : #ced4da !default;
-$gray-500 : #adb5bd !default;
-$gray-600 : #6c757d !default;
-$gray-700 : #495057 !default;
-$gray-800 : #343a40 !default;
-$gray-900 : #212529 !default;
-$black : #000000 !default;
+$orchid-color: #ac5ca0;
+
+$white : #ffffff;
+$gray-100 : #f8f9fa;
+$gray-200 : #e9ecef;
+$gray-300 : #dee2e6;
+$gray-400 : #ced4da;
+$gray-500 : #adb5bd;
+$gray-600 : #6c757d;
+$gray-700 : #495057;
+$gray-800 : #343a40;
+$gray-900 : #212529;
+$black : #000000;
 
 $blue : #007bff !default;
 $indigo : #6610f2 !default;
@@ -40,7 +43,7 @@ $green : #28a745 !default;
 $teal : #20c997 !default;
 $cyan : #17a2b8 !default;
 
-$brand-primary : #ac5ca0; //$oc-violet-8;
+$brand-primary : #ac5ca0;
 $brand-complete : $oc-indigo-8;
 $brand-info : $oc-blue-7;
 $brand-success : $oc-green-8;
@@ -49,9 +52,19 @@ $brand-danger : $oc-red-8;
 $brand-light : $oc-gray-2;
 $brand-dark : #3a3f51;
 $brand-grey : $oc-gray-7;
-
 $brand-white : #ffffff;
 $brand-black : #1c2b36;
+
+$primary:       $orchid-color;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+
 
 //Mixing Color varriable for creating both light and dark colors
 $mix-percentage-dark : 81%;
@@ -171,7 +184,7 @@ $switch-lg-width : 50px;
 $switch-lg-height : 30px;
 
 $app-aside-width : 350px;
-$app-aside-nav-height : 40px; //2,857rem; 
+$app-aside-nav-height : 40px; //2,857rem;
 $app-aside-folded-width : 60px;
 $app-aside-folded-nav-height : 50px; //3.57rem;
 $app-aside-dock-media : 992px;

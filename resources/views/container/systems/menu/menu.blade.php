@@ -39,7 +39,7 @@
 
 <div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
 
-<div class="col w-xxl bg-white-only b-r bg-auto no-border-xs">
+<div class="hbox-col w-xxl bg-white-only b-r bg-auto no-border-xs">
 
        <div class="wrapper-md">
 
@@ -169,7 +169,7 @@
 </div>
 
 
-<div class="col">
+<div class="hbox-col">
     <div class="wrapper-md">
 
         <div class="row">
