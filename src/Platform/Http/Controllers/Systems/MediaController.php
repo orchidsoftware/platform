@@ -35,7 +35,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('dashboard::container.systems.media.index',[
+        return view('dashboard::container.systems.media.index', [
             'name'        => trans('dashboard::systems/media.title'),
             'description' => trans('dashboard::systems/media.description'),
         ]);

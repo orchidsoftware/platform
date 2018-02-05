@@ -1,47 +1,46 @@
 # Settings
 ----------
 
-Settings - a repository of "key-value" is the simplest data storage,
-Use the key to access the value. Such storage is used to store settings,
- the creation of specialized file systems, as caches for objects as well as systems,
-designed with an eye on scalability. Within ORCHID configuration implemented using a model which uses mutation.
-### Using :
-	
+Settings - this key-value store is the simplest data store that uses the key to access the value. Such repositories are used to store settings, create specialized file systems, as caches for objects, as well as for systems designed for scalability.
 
-Noticed that you can not just put a simple variable type, but also in storage arrays.
-The storage array will be converted to JSON, and in the preparation of its value happens to decode.
+## Addition
 
+Note that you can put in the repository not only variables of simple types, but also arrays. In the repository, the arrays will be converted to JSON, and when the value is received, it will be decoded.
 
-To add a new value to the repository you want to use
+To add a new value to the repository, you must use:
 ```php
-Setting::set($key,$value);
+Setting::set ($key, $value);
 ```
 
-For values:
+## Getting
+
+To get the value:
 ```php
-/**
-* @param string|array $key
-* @param string|null  $default
-*/
-Setting::get($key, $default);
+/ **
+* @param string | array $key
+* @param string | null $default
+* /
+Setting::get ($key, $default);
 //or helper
-setting($key,$default);
+setting ($key, $default);
 ```
 
-To delete the value:
+## Removing
+
+To delete a value:
 ```php
-/**
-* @param string|array $key      
-* @param string|null  $default
-*/
-Setting::forget($key);
+/ **
+* @param string | array $key
+* @param string | null $default
+* /
+Setting::forget ($key);
 ```
 
 
-Note that you can get, or remove multiple values ​​from the repository, it is necessary to pass the first has argument array with the names of the keys.
 
+Note that you can get or delete several values ​​from the repository at once, for this, you must pass an array with the names of the keys to the first argument.
 
-By default, each item cached until you change it if you need to get the value from the cache does not use the method of "getNoCache"
+By default, each element is cached before it is modified, in cases where you need to get a value not from the cache, you need to use the "getNoCache"
 ```php
-Setting::getNoCache($key, $default = null);
+Setting::getNoCache ($key, $default = null);
 ```

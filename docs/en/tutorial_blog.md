@@ -34,7 +34,7 @@ require ('clean-blog');
 For a file with styles, we also need to connect it, for this we open clean-blog.less and add:
 
 ```php
-// Fonts
+//Fonts
 @import url (https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&amp;subset=cyrillic);
 @import url (https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 
@@ -55,7 +55,7 @@ Excellent, all the necessary dependencies of our blog are ready
 
 ### Templates
 
-Let's open the main template of our blog view / layouts / app.blade.php and bring it to the form:
+Let's open the main template of our blog view/layouts/app.blade.php and bring it to the form:
 
 ```php
 <!DOCTYPE html>

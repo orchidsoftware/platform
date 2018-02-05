@@ -38,7 +38,7 @@ class CommentFormGroup extends FormGroup
             'post' => function ($query) {
                 $query->select('id', 'type', 'slug');
             },
-        ])->orderBy('id', 'desc')->paginate();
+        ])->latest()->paginate();
 
         return view('dashboard::container.systems.comment.grid', [
             'comments' => $comments,

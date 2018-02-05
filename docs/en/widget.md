@@ -1,24 +1,22 @@
 # Widget
 ----------
 
-Widget - an instance of Widget, or inherited from him.
-This component is used mainly for the purpose of registration.
-Widgets are usually embedded in the representation to form a complex but at the same time independent of the user interface.
+A widget is an instance of the Widget class or inherited from it. This is a component used mainly for the purpose of registration. Widgets are usually built into views to form a complex, but at the same time, independent part of the user interface.
 
 
-For example, a calendar widget can be used to render complex calendar interface.
-Widgets allow you to reuse the user interface code.
+For example, a calendar widget can be used to render a complex interface. Widgets allow you to reuse the UI code.
 
-### Creature :
-	
-To create a new widget, you need to	
+## Creating
+
+To create a new widget, you must:
+
 ```php
-php artisan make:widget MySuperWidget
+php artisan make: widget MySuperWidget
 ```
 
-The `app/Http/Widgets` folder to create a class of the widget template like a controller, a widget can also have its own view.
+In the `app/Http/Widgets` folder, the widget's class is created, just like the controller, the widget can have its own view.
+It is recommended that you place the widget's files in the views subdirectory.
 
-Recommended sitting widget files in a subdirectory views.
 ```php
 namespace App\Http\Widgets;
 
@@ -26,38 +24,106 @@ use Orchid\Widget\Service\Widget;
 
 class MySuperWidget extends Widget {
 
-    /**
-     * Class constructor.
-     */
-    public function __construct(){
+    / **
+     * Class constructor.
+     * /
+    public function __construct () {
 
-    }
+    }
 
-    /**
-     * @return mixed
-     */
-     public function handler(){
-         return view('',[
-         ]);
-     }
+    / **
+     * @return mixed
+     * /
+     public function handler () {
+         return view ('', [
+         ]);
+     }
 
 }
 ```
 
-To register your new widget, you must bring it to the `config/widget.php`
+
+To register your new widget, you need to put it in `config/widget.php`:
+
 ```php
 'widgets' => [
-    'NameForMySuperWidget' => App\Widgets\MySuperWidget::class
- ],
+    'NameForMySuperWidget' => App\Widgets\MySuperWidget::class
+ ],
 ```
-	
 
 
-###Using :
+
+## Use
 
 
-"Run" method is executed when the call widget default.
-you must perform in the code to connect the widget using Blade syntax:
+When the widget is called, the `` handler '`method is executed by default.
+To connect a widget, you must execute it in code using the Blade syntax:
 ```php
-@widget('NameForMySuperWidget')
+@widget ('NameForMySuperWidget')
+```
+
+
+
+
+## AJAX Widget
+
+Widgets can be used to download and podgruzdki information in the fields for communication.
+
+Then the property `$query` will take a value for searching, and` $key` the selected value.
+
+
+```php
+namespace App\Http\Widgets;
+
+use Orchid\Platform\Widget\Widget;
+
+class AjaxWidget extends Widget
+{
+
+    / **
+     * @var null
+     * /
+    public $query = null;
+
+    / **
+     * @var null
+     * /
+    public $key = null;
+
+    / **
+     * @return array
+     * /
+    public function handler ()
+    {
+        $data = [
+            [
+                'id' => 1,
+                'text' => 'Record 1',
+            ],
+            [
+                'id' => 2,
+                'text' => 'Record 2',
+            ],
+            [
+                'id' => 3,
+                'text' => 'Record 3',
+            ],
+        ];
+
+
+        if (! is_null ($this->key)) {
+            foreach ($data as $key => $result) {
+
+                if ($result ['id'] === intval ($this->key)) {
+                    return $data [$key];
+                }
+            }
+        }
+
+        return $data;
+
+    }
+
+}
+
 ```

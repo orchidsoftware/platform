@@ -1,14 +1,14 @@
 # Fields
 ----------
 
-Fields are used to generate a template output of the fill / edit form
+Fields are used to generate a template output of the fill/edit form
 
 All possible fields are defined in `config/platform.php` in the fields section
 Each field can be used in a type and if you need to create your own do not hesitate.
 The field consists of one class with the obligatory `create` method, which must raise the 'view' to display to the user
  
 ```php
-// Available fields to form templates
+//Available fields to form templates
 'fields' => [
     'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
     'input'        => Orchid\Platform\Fields\Types\InputField::class,

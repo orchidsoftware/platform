@@ -26,6 +26,7 @@ install:
   - composer install --prefer-source
 
 before_script:
+   - chmod -R o+w vendor/orchestra
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script: vendor/bin/phpunit

@@ -8,7 +8,7 @@ This manual contains detailed system requirements for installation
 
 Administration panel (without additional modules),
 Compatible and fully functional in all modern browsers,
-supporting CSS and JavaScript (minor changes in appearance are possible).
+supporting CSS and JavaScript (minor changes of appearance are possible).
 
 - Microsoft Edge
 - Firefox
@@ -23,17 +23,20 @@ The exterior is built on the most popular structure of `Bootstrap`. Recommended 
 
 ### MySQL
 
-Required MySQL 5.7.8 or higher with InnoDB as the primary storage engine
+Required version of MySQL 5.7.8 or higher with InnoDB as the primary storage engine
 , also requires the expansion of the PDO database.
 
 ### PostgreSQL
 Requires PostgreSQL 9.3 or later.
 
-### Other database servers
-Some provided not so abstract from the code specific to MySQL / PostgreSQL,
-as we would like to all. Running and using on other MariaDB / SQLite / etc is possible, but some functions
-I can not work correctly.
 
+### Mariadb
+Requires Mariadb 10.3.2 or later.
+
+### Other database servers
+Some provided not so abstract from the code specific to MySQL/PostgreSQL,
+as we would like to all. Running and using on other servers is possible, but may be required
+change the work of some functions.
 
 ## PHP
 
@@ -60,7 +63,8 @@ If you want to create and develop ORCHID sites on your computer, you can install
 
 
 ### Apache
-In Laravel there is a file `public / .htaccess`, which is used to display links without specifying
+     
+In Laravel there is a file `public/.htaccess`, which is used to display links without specifying
 front controller `index.php` in the requested address.
 Before you start Laravel with the Apache server, make sure that the module `mod_rewrite` is enabled,
 it is necessary for correct processing of the .htaccess file.
@@ -83,8 +87,8 @@ If you use Nginx, then the following directive in the configuration of your site
 will send all requests to the front-controller `index.php`:
 
 ```php
-location / {
-    try_files $ uri $ uri / /index.php?$query_string;
+location/{
+    try_files $uri $uri//index.php?$query_string;
 }
 ```
 

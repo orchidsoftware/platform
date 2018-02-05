@@ -10,7 +10,7 @@ A logging parser that allows you to obtain data for building and analysis.
 Error log support only the daily log handler, so make sure that you log handler is set to `daily` instead of `single`:
 
 ```php
-// config\app.php
+//config\app.php
 return [
 ...
 

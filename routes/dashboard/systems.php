@@ -16,6 +16,9 @@ $this->domain(config('platform.domain'))->group(function () {
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
         $router->resource('users', 'UserController', [
+            'only'  => [
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
+            ],
             'names' => [
                 'index'   => 'dashboard.systems.users',
                 'create'  => 'dashboard.systems.users.create',
@@ -27,6 +30,9 @@ $this->domain(config('platform.domain'))->group(function () {
         ]);
 
         $router->resource('roles', 'RoleController', [
+            'only'  => [
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
+            ],
             'names' => [
                 'index'   => 'dashboard.systems.roles',
                 'create'  => 'dashboard.systems.roles.create',
@@ -68,6 +74,9 @@ $this->domain(config('platform.domain'))->group(function () {
         ]);
 
         $router->resource('category', 'CategoryController', [
+            'only'  => [
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
+            ],
             'names' => [
                 'index'   => 'dashboard.systems.category',
                 'create'  => 'dashboard.systems.category.create',
@@ -79,6 +88,9 @@ $this->domain(config('platform.domain'))->group(function () {
         ]);
 
         $router->resource('comment', 'CommentController', [
+            'only'  => [
+                'index', 'create', 'edit', 'update', 'store', 'destroy',
+            ],
             'names' => [
                 'index'   => 'dashboard.systems.comment',
                 'create'  => 'dashboard.systems.comment.create',
@@ -115,6 +127,9 @@ $this->domain(config('platform.domain'))->group(function () {
         ]);
 
         $router->resource('menu', 'MenuController', [
+            'only'  => [
+                'index', 'show', 'update',
+            ],
             'names' => [
                 'index'  => 'dashboard.systems.menu.index',
                 'show'   => 'dashboard.systems.menu.show',

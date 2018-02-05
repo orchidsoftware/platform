@@ -16,7 +16,7 @@ All IP addresses in those lists will no be able to access routes filtered by the
 |
 */
 'blacklist'  => [
-    // '127.0.0.1',
+    //'127.0.0.1',
 ],
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ All IP addresses in those lists will no be able to access routes filtered by the
 |
 */
 'whitelist'  => [
-    // '127.0.0.2',
+    //'127.0.0.2',
 ],
 ```
 

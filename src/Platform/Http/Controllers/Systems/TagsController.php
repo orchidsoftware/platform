@@ -16,14 +16,13 @@ class TagsController extends Controller
      */
     public function show($tag = null)
     {
-        if (is_null($tag)) {
-            $tags = Post::allTags()->orderBy('count', 'desc')->limit(10)->get();
-        } else {
-            $tags = Post::allTags()->orderBy('count', 'desc')
-                ->where('name', 'like', '%'.$tag.'%')->limit(10)->get();
+        $tags = Post::allTags()->latest('count')->limit(10);
+
+        if (! is_null($tag)) {
+            $tags = $tags->where('name', 'like', '%'.$tag.'%');
         }
 
-        $tags->transform(function ($item) {
+        $tags = $tags->get()->transform(function ($item) {
             return [
                 'id'    => $item['name'],
                 'text'  => $item['name'],

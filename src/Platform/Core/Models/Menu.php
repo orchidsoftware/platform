@@ -75,6 +75,6 @@ class Menu extends Model
      */
     public function getAll($id) : Collection
     {
-        return $this->where('type', $id)->orderBy('id', 'asc')->get();
+        return $this->where('type', $id)->oldest('id')->get();
     }
 }

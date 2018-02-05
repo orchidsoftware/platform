@@ -10,7 +10,7 @@ class MenuTest extends TestUnitCase
     /**
      * Verify permissions.
      */
-    public function test_is_menu()
+    public function testIsMenu()
     {
         $menu = (new Dashboard())->menu;
 

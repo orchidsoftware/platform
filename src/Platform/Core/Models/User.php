@@ -63,4 +63,18 @@ class User extends Authenticatable implements UserInterface
     {
         $this->notify(new ResetPassword($token));
     }
+
+    /**
+     * Set permission as boolean.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPermissionsAttribute($permissions)
+    {
+        foreach ($permissions as $key => $value) {
+            $permissions[$key] = boolval($value);
+        }
+        $this->attributes['permissions'] = json_encode($permissions ?? []);
+    }
 }

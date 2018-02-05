@@ -42,11 +42,11 @@ class Comment extends Model
     /**
      * Find a comment by post ID.
      *
-     * @param int $postId
+     * @param $postId
      *
-     * @return Comment
+     * @return mixed
      */
-    public static function findByPostId($postId) : self
+    public static function findByPostId($postId)
     {
         $instance = new static();
 

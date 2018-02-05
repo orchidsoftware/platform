@@ -19,21 +19,21 @@ use Orchid\Monitor\Monitor;
 
 $monitor = new Monitor();
 
-// uname,webserver,phpVersion,cpu
+//uname,webserver,phpVersion,cpu
 $monitor->info();
 
-// temperature,uptime
+//temperature,uptime
 $monitor->hardware();
 
-// oneMin,fiveMins,fifteenMins
+//oneMin,fiveMins,fifteenMins
 $monitor->loadAverage();
 
-// total,used,buffers,cache
+//total,used,buffers,cache
 $monitor->memory();
 
-// down,up
+//down,up
 $monitor->network();
 
-// array
+//array
 $monitor->storage();
 ```

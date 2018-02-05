@@ -213,7 +213,7 @@ class Post extends Model
      */
     public function hero($size = null)
     {
-        $first = $this->attachment('image')->orderBy('sort', 'asc')->first();
+        $first = $this->attachment('image')->oldest('sort')->first();
 
         return $first ? $first->url($size) : null;
     }

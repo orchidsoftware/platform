@@ -76,12 +76,7 @@ class CategoryMainForm extends Form
             $termTaxonomy = new $this->model();
         }
 
-        if ($request->get('term_id') == 0) {
-            $term = Term::create($request->all());
-        } else {
-            $term = Term::find($request->get('term_id'));
-        }
-
+        $term = ($request->get('term_id') == 0) ? Term::create($request->all()) : Term::find($request->get('term_id'));
         $termTaxonomy->fill($this->request->all());
         $termTaxonomy->term_id = $term->id;
 
