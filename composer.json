@@ -33,7 +33,6 @@
     "orchestra/database": "~3.0",
     "orchestra/testbench-dusk": "~3.5",
     "phpmd/phpmd": "^2.6",
-    "codedungeon/phpunit-result-printer": "^0.6.0",
     "satooshi/php-coveralls" : "*",
     "sebastian/phpcpd": "*"
 
