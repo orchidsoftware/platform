@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class LabelField
+ * Class LabelField.
  * @method $this name($value = true)
  */
 class LabelField extends Field

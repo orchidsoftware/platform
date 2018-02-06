@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class DateTimerField
+ * Class DateTimerField.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
