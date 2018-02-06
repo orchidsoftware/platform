@@ -26,16 +26,10 @@ before_script:
    - travis_retry composer self-update
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
-   - cp -rf ./public/ ./vendor/orchestra/testbench-core/laravel/public/orchid/
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
-  - ./vendor/bin/phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
-
-after_script:
-  - php vendor/bin/coveralls
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml
+  - vendor/bin/phpunit
 
 notifications:
   email: false
