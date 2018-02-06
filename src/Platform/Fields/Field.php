@@ -7,6 +7,22 @@ namespace Orchid\Platform\Fields;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
+/**
+ * Class Field.
+ *
+ * @method $this accesskey($value = true)
+ * @method $this class($value = true)
+ * @method $this contenteditable($value = true)
+ * @method $this contextmenu($value = true)
+ * @method $this dir($value = true)
+ * @method $this hidden($value = true)
+ * @method $this id($value = true)
+ * @method $this lang($value = true)
+ * @method $this spellcheck($value = true)
+ * @method $this style($value = true)
+ * @method $this tabindex($value = true)
+ * @method $this title($value = true)
+ */
 class Field implements FieldContract
 {
     /**
