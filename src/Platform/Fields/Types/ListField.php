@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class ListField
+ * Class ListField.
  * @method $this name($value = true)
  */
 class ListField extends Field

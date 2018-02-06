@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class PasswordField
+ * Class PasswordField.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)

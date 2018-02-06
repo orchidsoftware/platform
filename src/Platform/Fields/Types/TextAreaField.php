@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class TextAreaField
+ * Class TextAreaField.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)

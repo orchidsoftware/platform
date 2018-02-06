@@ -7,7 +7,7 @@ namespace Orchid\Platform\Fields\Types;
 use Orchid\Platform\Fields\Field;
 
 /**
- * Class RelationshipField
+ * Class RelationshipField.
  *
  * @method $this accesskey($value = true)
  * @method $this autofocus($value = true)
