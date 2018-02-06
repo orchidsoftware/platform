@@ -1,11 +1,11 @@
+dist: trusty
 language: php
+sudo: required
 
 php:
   - 7.0
   - 7.1
-
-sudo: required
-dist: trusty
+  - 7.2
 
 addons:
    chrome: stable
@@ -21,15 +21,20 @@ services:
 before_install:
   - psql -c 'create database platform;' -U postgres
   - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
-  
-install:
-  - composer install --prefer-source
 
 before_script:
+   - travis_retry composer self-update
+   - travis_retry composer install --no-interaction --dev --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
-script: vendor/bin/phpunit
+script:
+  - ./vendor/bin/phpunit --coverage-text --coverage-clover ./build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover ./build/logs/clover.xml
 
 notifications:
   email: false
