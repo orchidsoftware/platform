@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'domain' => env('DASHBOARD_DOMAIN', 'localhost'),
+    'domain' => env('DASHBOARD_DOMAIN', dashboard_domain()),
 
     /*
     |--------------------------------------------------------------------------
