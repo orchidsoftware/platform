@@ -68,7 +68,7 @@ if (! function_exists('dashboard_domain')) {
     {
         try {
             return isset(parse_url(config('app.url'))['host']) ? parse_url(config('app.url'))['host'] : $default;
-        } catch (\Exception $exception) {
+        } catch (\TypeError $exception) {
             return 'localhost';
         }
     }
