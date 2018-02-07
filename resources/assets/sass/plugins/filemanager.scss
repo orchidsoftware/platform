@@ -349,6 +349,8 @@
 
   .detail_info {
     padding: 10px;
+
+
   }
 
   .detail_info .selected_file_count, .detail_info.folder .selected_file_size {
@@ -425,6 +427,21 @@
     top:         50%;
     font-weight: 400;
     font-size:   12px;
+  }
+
+  #filemanager .progress{
+    border-radius:0;
+    margin-bottom:0;
+  }
+
+  #uploadProgress{
+    display:none;
+    background:#eee;
+  }
+
+  tr{
+    word-wrap: break-word;
+    word-break: keep-all;
   }
 
 }

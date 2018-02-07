@@ -20,6 +20,41 @@ document.addEventListener('turbolinks:load', function() {
     const files = $('#files');
     const options = $.extend(true, {}, o);
     this.init = function() {
+        $("#upload").dropzone({
+            url: options.baseUrl + "/media/upload",
+            previewsContainer: "#uploadPreview",
+            totaluploadprogress: function (uploadProgress, totalBytes, totalBytesSent) {
+                $('#uploadProgress .progress-bar').css('width', uploadProgress + '%');
+                if (uploadProgress == 100) {
+                    $('#uploadProgress').delay(1500).slideUp(function () {
+                        $('#uploadProgress .progress-bar').css('width', '0%');
+                    });
+                }
+            },
+            processing: function () {
+                //$('#uploadProgress').fadeIn();
+            },
+            sending: function (file, xhr, formData) {
+                formData.append("_token", CSRF_TOKEN);
+                formData.append("upload_path", manager.files.path);
+            },
+            success: function (e, res) {
+                if (res.success) {
+                    //alert("Sweet Success!");
+                } else {
+                    alert(res.message);
+                }
+            },
+            error: function (e, res, xhr) {
+                alert(res.message);
+            },
+            queuecomplete: function () {
+                getFiles(manager.folders);
+            }
+        });
+
+
+
       getFiles('/');
 
       files.on('dblclick', 'li .file_link', function() {
