@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Menu;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -93,15 +93,14 @@ class MenuController extends Controller
 
     /**
      * @param array   $items
-     * @param integer $parent
+     * @param int $parent
      */
     private function createMenuElement(array $items, $parent = 0)
     {
         foreach ($items as $item) {
-
             Menu::firstOrNew([
-                'id' => $item['id']
-            ])->fill(array_merge($item,[
+                'id' => $item['id'],
+            ])->fill(array_merge($item, [
                 'lang'   => $this->lang,
                 'type'   => $this->menu,
                 'parent' => $parent,
