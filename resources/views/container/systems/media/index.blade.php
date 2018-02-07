@@ -237,7 +237,7 @@
                         <div class="modal-body">
                             <h4>{{trans('dashboard::systems/media.new_file_folder')}}</h4>
                             <input id="new_filename" class="form-control" type="text"
-                                   v-model="selected_file.name">
+                                   v-model="new_filename">
                         </div>
 
                         <div class="modal-footer">
