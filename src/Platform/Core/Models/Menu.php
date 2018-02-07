@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Core\Traits\Attachment;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
