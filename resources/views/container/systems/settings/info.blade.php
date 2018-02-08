@@ -54,7 +54,7 @@
             <div class="col-md-6">
                 <!-- main content -->
                 <section class="wrapper-md cache">
-                    <div class="no-border-xs text-center">
+                    <div class="no-border-xs">
 
 
                         <div class="">

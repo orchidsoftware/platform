@@ -85,8 +85,6 @@ class MenuController extends Controller
         $this->createMenuElement($request->get('data'));
 
         return response()->json([
-            'title'   => 'Успешно',
-            'message' => 'Данные сохранены',
             'type'    => 'success',
         ]);
     }
@@ -111,4 +109,19 @@ class MenuController extends Controller
             }
         }
     }
+
+    /**
+     * @param Menu $menu
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(Menu $menu){
+        Menu::where('parent',$menu->id)->delete();
+        $menu->delete();
+
+        return response()->json([
+            'type'    => 'success',
+        ]);
+    }
+
 }

@@ -163,7 +163,7 @@
 
                             <table class="table" v-bind:class="selected_file.type">
                                 <tr>
-                                    <td class="w-sm"><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.title')}}:</small></td>
+                                    <td width="50%"><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.title')}}:</small></td>
                                     <td>@{{selected_file.name}}</td>
                                 </tr>
                                 <tr>

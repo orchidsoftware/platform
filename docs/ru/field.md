@@ -16,7 +16,7 @@
     'input'        => Orchid\Platform\Fields\Types\InputField::class,
     'list'         => Orchid\Platform\Fields\Types\ListField::class,
     'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
+    'select'       => Orchid\Platform\Fields\Types\SelectField::class,
     'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
     'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
     'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
@@ -46,34 +46,18 @@ Input - является одним из разносторонних элеме
 Пример записи:
 ```php
 return [
-    'name' => [
-        'tag'      => 'input',
-        'type'     => 'text',
-        'name'     => 'name',
-        'max'      => '255',
-        'required' => true,
-        'title'    => 'Как вас зовут?',
-        'help'     => 'Только имя',
-    ],
+    'body' => Field::tag('input')
+                  ->type('text')
+                  ->name('place')
+                  ->max(255)
+                  ->required()
+                  ->title('Name Articles')
+                  ->help('Article title'),
 ];
 ``` 
  
-Пример записи в строчном варианте:
-```php
-return [
-    'name' => 'tag:input
-            |type:text
-            |name:name
-            |max:255
-            |required
-            |title:Как вас зовут?
-            |help:Только имя',
-];
-```
- 
- 
- 
-> Заметьте многие параметры такие как max, required,title и help доступны почти каждым `полям` системы и являются не обязательными
+
+> Заметьте многие параметры такие как max, required,title, help и многие другие, доступны почти каждым `полям` системы и являются не обязательными
  
  
  
@@ -86,12 +70,11 @@ return [
 Пример записи:
 ```php
 return [
-    'body' => [
-        'tag'      => 'wysiwyg',
-        'name'     => 'body',
-        'required' => true,
-        'title'    => 'О чём вы хотите рассказать?',
-    ],
+    'body' => Field::tag('wysiwyg')
+                  ->name('body')
+                  ->required()
+                  ->title('Name Articles')
+                  ->help('Article title'),
 ];
 ``` 
  
@@ -105,12 +88,9 @@ return [
 Пример записи:
 ```php
 return [
-    'body' => [
-        'tag'      => 'markdown',
-        'name'     => 'body',
-        'required' => true,
-        'title'    => 'О чём вы хотите рассказать?',
-    ],
+    'body' => Field::tag('markdown')
+                  ->name('body')
+                  ->title('О чём вы хотите рассказать?'),
 ];
 ```  
  
@@ -122,12 +102,10 @@ return [
 Пример записи:
 ```php
 return [
-    'poster' => [
-        'tag'      => 'picture',
-        'name'     => 'poster',
-        'width'    => 500,
-        'height'   => 300,
-    ],
+    'picture' => Field::tag('picture')
+                    ->name('picture')
+                    ->width(500)
+                    ->height(300),,
 ];
 ```  
            
@@ -140,10 +118,11 @@ return [
 Пример записи:
 ```php
 return [
-    'open' => [
-        'tag'      => 'datetime',
-        'name'     => 'open',
-    ],
+    'open' => Field::tag('datetime')
+                  ->type('text')
+                  ->name('open')
+                  ->title('Opening date')
+                  ->help('The opening event will take place'),
 ];
 ```           
            
@@ -155,11 +134,12 @@ return [
 Пример записи:
 ```php
 return [
-    'robot' => [
-        'tag'      => 'checkbox',
-        'name'     => 'robot',
-        'default'  => true
-    ],
+    'free' => Field::tag('checkbox')
+                   ->name('free')
+                   ->value(1)
+                   ->title('Free')
+                   ->placeholder('Event for free')
+                   ->help('Event for free'),,
 ];
 ```           
 
@@ -170,10 +150,10 @@ return [
 Пример записи:
 ```php
 return [
-    'block' => [
-        'tag'      => 'code',
-        'name'     => 'block',
-    ],
+    'block' => Field::tag('code')
+                   ->name('block')
+                   ->title('Code Block')
+                   ->help('Simple web editor'),
 ];
 ```    
 
@@ -187,11 +167,12 @@ return [
 Пример записи:
 ```php
 return [
-    'description' => [
-        'tag'      => 'textarea',
-        'name'     => 'description',
-        'rows'     => 5,
-    ],
+    'description' => Field::tag('textarea')
+                         ->name('description')
+                         ->max(255)
+                         ->row(5)
+                         ->required()
+                         ->title('Short description'),
 ];
 ```    
 
@@ -203,10 +184,10 @@ return [
 Пример записи:
 ```php
 return [
-    'keywords' => [
-        'tag'      => 'tags',
-        'name'     => 'keywords',
-    ],
+    'keywords' => Field::tag('tags')
+                      ->name('keywords')
+                      ->title('Keywords')
+                      ->help('SEO keywords'),
 ];
 ```   
 
@@ -217,10 +198,10 @@ return [
 Пример записи:
 ```php
 return [
-    'list' => [
-        'tag'      => 'list',
-        'name'     => 'list',
-    ],
+    'list' => Field::tag('list')
+                  ->name('list')
+                  ->title('Dynamic list')
+                  ->help('Dynamic list'),
 ];
 ```   
 
@@ -233,12 +214,12 @@ return [
 Пример записи:
 ```php
 return [
-    'phone' => [
-        'tag'      => 'input',
-        'type'     => 'text',
-        'name'     => 'phone',
-        'mask'     => '(999) 999-9999',
-    ],
+    'phone' => Field::tag('input')
+                   ->type('text')
+                   ->name('phone')
+                   ->mask('(999) 999-9999')
+                   ->title('Phone')
+                   ->help('Number Phone'),
 ];
 ```   
 
@@ -247,33 +228,29 @@ return [
 
 ```php
 return [
-    'price' => [
-        'tag' => 'input',
-        'type' => 'text',
-        'name' => 'price',
-        'title' => 'Стоимость',
-        'mask' => json_encode([
-            'mask' => '999 999 999.99',
-            'numericInput' => true
-        ])
-    ],
+    'price' => Field::tag('input')
+              ->type('text')
+              ->name('price')
+              ->mask(json_encode([
+                 'mask' => '999 999 999.99',
+                 'numericInput' => true
+              ]))
+              ->title('Стоимость')
 ];
 ```   
 
 ```php
 return [
-    'price' => [
-        'tag' => 'input',
-        'type' => 'text',
-        'name' => 'price',
-        'title' => 'Стоимость',
-        'mask' => json_encode([
-            'alias' => 'currency',
-            'prefix' => ' ',
-            'groupSeparator' => ' ',
-            'digitsOptional' => true,
-        ])
-    ],
+    'price' => Field::tag('input')
+             ->type('text')
+             ->name('price')
+             ->mask(json_encode([
+                'alias' => 'currency',
+                'prefix' => ' ',
+                'groupSeparator' => ' ',
+                'digitsOptional' => true,
+             ]))
+             ->title('Стоимость'),
 ];
 ```   
 
@@ -286,11 +263,10 @@ return [
 services.google.maps.key
 ```php
 //
-'google' => [
-    'maps' => [
-        'key' => 'secret string'
-    ],
-],
+'google' => Field::tag('place')
+                ->name('place')
+                ->title('Place')
+                ->help('place for google maps'),
 ```
 
 

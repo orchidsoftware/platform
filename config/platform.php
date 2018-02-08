@@ -181,7 +181,6 @@ return [
 
     'disks' => [
         'media'      => 'public',
-        //TODO:: 'attachment' => 'public',
     ],
 
     /*

@@ -29,12 +29,12 @@ php artisan make:manyBehavior
 ```php
 //
 'single' => [
-    //App\Core\Behaviors\Single\DemoPage::class,
+    //App\Behaviors\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Core\Behaviors\Many\DemoPost::class,
+    //App\Behaviors\Many\DemoPost::class,
 ],
 ```
 
