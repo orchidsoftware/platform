@@ -115,13 +115,13 @@ class MenuController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(Menu $menu){
-        Menu::where('parent',$menu->id)->delete();
+    public function destroy(Menu $menu)
+    {
+        Menu::where('parent', $menu->id)->delete();
         $menu->delete();
 
         return response()->json([
             'type'    => 'success',
         ]);
     }
-
 }

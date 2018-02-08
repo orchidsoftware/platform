@@ -88,10 +88,10 @@ document.addEventListener('turbolinks:load', function() {
         $('#menuEdit').modal('hide');
         menu.send();
       },
-      destroy: function (id) {
-          axios
-              .delete(dashboard.prefix('/systems/menu/' + id))
-              .then(function(response) {});
+      destroy: function(id) {
+        axios
+          .delete(dashboard.prefix('/systems/menu/' + id))
+          .then(function(response) {});
       },
       remove: function() {
         $('li[data-id=' + this.id + ']').remove();
