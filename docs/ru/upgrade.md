@@ -2,11 +2,9 @@
 ----------
 
 
-Мы стараемся задокументировать все изменения, которые могут вызывать проблемы. 
+> **Примечание**. Мы стараемся задокументировать все изменения, которые могут вызывать проблемы. 
 Но настоятельно рекомендуем не проводить изменения без сохранённой копии.
 
-
-> **Примечание**. Выпуск 2.1 ещё не состялся, пожалуйста подождите.
 
 # Обновление с 2.0 до 2.1
 
@@ -90,8 +88,6 @@ public function filters() : array
 ```
 
 
-
-
 ## Удалённые функции
 
 ### Поля
@@ -112,3 +108,24 @@ Field::tag('select')
     ->help('Allow search bots to index page'),
 ```
 
+
+Раздел полей в конфиругации теперь должен выглядеть так:
+
+```php
+'fields' => [
+    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+    'input'        => Orchid\Platform\Fields\Types\InputField::class,
+    'list'         => Orchid\Platform\Fields\Types\ListField::class,
+    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+    'select'       => Orchid\Platform\Fields\Types\SelectField::class,
+    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+],
+```
