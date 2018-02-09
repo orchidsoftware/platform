@@ -2,7 +2,7 @@
         <div class="wrapper">
             <div class="row">
 
-                <div id="{{$slug}}"></div>
+                <div id="{{$slug}}" class="w-full h-full"></div>
             </div>
         </div>
 </div>

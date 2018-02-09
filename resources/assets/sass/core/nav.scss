@@ -75,16 +75,14 @@
     }
   }
   .aside-wrap {
-  		.dropdown {
-			.dropdown-item {
-				a {
-					&:hover,
-					&:focus {
-						color: inherit;
-					}
-				}
-			}
-		}
+      .dropdown {
+          a {
+              &:hover,
+              &:focus {
+                  color: inherit;
+              }
+          }
+      }
   }
 }
 
