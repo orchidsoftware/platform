@@ -126,17 +126,13 @@ class DummyClass extends Many
  public function grid()
  {
      return [
-         'name'       => 'Name',
-         'publish_at' => 'Date of publication',
-         'created_at' => 'Date of creation',
-         'full_name'  =>  => [
-             'name' => 'Full name',
-             'action' => function($post){
-                 return  $post->getContent('fist_name') 
-                  .' '.
-                  $post->getContent('last_name');
-             }
-         ],
+         TD::name('name')->title('Name'),
+         TD::name('publish_at')->title('Date of publication'),
+         TD::name('created_at')->title('Date of creation'),
+         TD::name('full_name')->title('Full name')
+             ->render(function($post){
+                    return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
+             })
      ];
  }
 
