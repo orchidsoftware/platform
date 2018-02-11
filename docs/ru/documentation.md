@@ -1,8 +1,8 @@
 <h4 class="text-orchid font-thin">C чего начать</h4>
 <ul class="toc-links">
     <li><a href="/ru/docs" title="ORCHID - это ...">Введение</a></li>
-    <li><a href="/ru/docs/requirements/" title="Данное руководство содержит подробные системные требования для установки ORCHID на Laravel Framework">Требования</a></li>
-    <li><a href="/ru/docs/installation/" title="Данное руководство охватывает подготовку, запуск сценария установки и шаги, которые должны быть выполнены после завершения сценария установки">Установка</a></li>
+    <li><a href="/ru/docs/requirements" title="Данное руководство содержит подробные системные требования для установки ORCHID на Laravel Framework">Требования</a></li>
+    <li><a href="/ru/docs/installation" title="Данное руководство охватывает подготовку, запуск сценария установки и шаги, которые должны быть выполнены после завершения сценария установки">Установка</a></li>
     <li><a href="/ru/docs/upgrade">Обновление</a></li>
     <li><a href="/ru/docs/contributors">Участие в разработке</a></li>
     <li><a href="/ru/docs/license">Лицензия</a></li>
@@ -14,6 +14,7 @@
     <li><a href="/ru/docs/authentication">Авторизация</a></li>
     <li><a href="/ru/docs/tutorial_blog">Создание блога</a></li>
     <li><a href="/ru/docs/tutorial_phpinfo">Расширение формы</a></li>
+    <li><a href="/ru/docs/tutorial_profile">Создание экрана</a></li>
      <!--<li><a href="/ru/docs/tutorial_clinic">Разработка приложения</a></li> -->
      <!--<li><a href="/ru/docs/tutorial_monitor">Разработка пакета</a></li> -->
 </ul>
@@ -44,6 +45,6 @@
     <li><a href="/ru/docs/post">Записи</a></li>
     <li><a href="/ru/docs/tags">Теги</a></li>
     <li><a href="/ru/docs/comments" title="Работа с комментариями в ORCHID">Комментарии</a></li>
-    <li><a href="/ru/docs/menu/" title="Управление меню ORCHID, ссылки на меню и пользовательские настройки и параметры меню.">Меню</a></li>
+    <li><a href="/ru/docs/menu" title="Управление меню ORCHID, ссылки на меню и пользовательские настройки и параметры меню.">Меню</a></li>
 </ul>
 
