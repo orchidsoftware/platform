@@ -94,6 +94,6 @@ class PasswordField extends Field
         'src',
         'step',
         'tabindex',
-        'type'
+        'type',
     ];
 }
