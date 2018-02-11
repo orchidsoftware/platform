@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Upgrade to Laravel 5.6
 
+### Removed
+- Avatar user for database
+
 ## [2.1.3] - 2018-02-11
 
 ### Fixed
