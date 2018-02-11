@@ -3,6 +3,7 @@
 namespace DummyNamespace;
 
 use Orchid\Platform\Layouts\Table;
+use Orchid\Platform\Platform\Fields\TD;
 
 class DummyClass extends Table
 {

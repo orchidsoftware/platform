@@ -2,6 +2,7 @@
 
 namespace DummyNamespace;
 
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
@@ -49,6 +50,7 @@ class DummyClass extends Single
 
     /**
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function modules() : array
     {

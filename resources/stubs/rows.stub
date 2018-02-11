@@ -3,13 +3,15 @@
 namespace DummyNamespace;
 
 use Orchid\Platform\Layouts\Rows;
+use Orchid\Platform\Platform\Fields\TD;
 
 class DummyClass extends Rows
 {
     /**
      * Views
-     *
+
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields(): array
     {
