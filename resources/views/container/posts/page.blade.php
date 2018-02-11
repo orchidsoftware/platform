@@ -95,8 +95,8 @@
                 </div>
                 <!-- /column  -->
             @endif
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            @csrf
+            @method('PUT')
         </form>
         <!-- /hbox layout  -->
     </div>

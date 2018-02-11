@@ -103,16 +103,16 @@
                 </div>
                 <!-- /column  -->
             @endif
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            @csrf
+            @method('PUT')
         </form>
         <!-- /hbox layout  -->
         <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('delete') }}
+            @csrf
+            @method('delete')
         </form>
     </div>
 @stop

@@ -16,22 +16,21 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
-    "cartalyst/tags": "^5.0",
+    "cartalyst/tags": "^6.0",
     "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.4",
-    "intervention/image": "^2.3",
-    "laravel/framework": "5.5.*",
-    "laravel/scout": "^3.0",
+    "intervention/image": "^2.4",
+    "laravel/framework": "5.6.*",
+    "laravel/scout": "^4.0",
     "ralouphie/mimey": "^1.0",
     "watson/active": "^2.0"
   },
   "require-dev": {
-    "mockery/mockery": "~0.9.4",
-    "phpunit/phpunit": "~6.0",
-    "orchestra/testbench": "~3.0",
-    "orchestra/database": "~3.0",
-    "orchestra/testbench-dusk": "~3.5",
+    "mockery/mockery": "~1.0",
+    "phpunit/phpunit": "~7.0",
+    "orchestra/testbench": "~3.6",
+    "orchestra/database": "3.6.0-BETA1",
+    "orchestra/testbench-dusk": "3.6.x@dev",
     "phpmd/phpmd": "^2.6",
     "satooshi/php-coveralls" : "*",
     "sebastian/phpcpd": "*"

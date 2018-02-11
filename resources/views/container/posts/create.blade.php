@@ -93,7 +93,7 @@
                 </div>
                 <!-- /column  -->
             @endif
-            {{ csrf_field() }}
+            @csrf
         </form>
         <!-- /hbox layout  -->
     </div>

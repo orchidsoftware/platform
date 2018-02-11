@@ -24,7 +24,7 @@
                     {!! $views or '' !!}
                 @endforeach
 
-                {{csrf_field()}}
+                @csrf
             </form>
         </div>
     </section>

@@ -50,7 +50,7 @@
                 </div>
 
 
-                {{ csrf_field() }}
+                @csrf
 
 
             </form>

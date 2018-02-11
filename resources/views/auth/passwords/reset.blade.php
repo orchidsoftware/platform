@@ -9,7 +9,7 @@
 
     <form class="m-t-md" role="form" method="POST"
           action="{{ route('dashboard.password.email') }}">
-        {!! csrf_field() !!}
+        @csrf
 
         <input type="hidden" name="token" value="{{ $token }}">
 

@@ -43,12 +43,12 @@
                         </div>
                     @endforeach
                 </div>
-                {{csrf_field()}}
-                {{ method_field($method)}}
+                @csrf
+                @method($method)
             </form>
             <form id="form-group-remove" action="{{route($route,$slug)}}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('delete') }}
+                @csrf
+                @method('delete')
             </form>
         </div>
     </section>

@@ -119,7 +119,7 @@
                             </a>
 
                             <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}" method="POST">
-                                {{ csrf_field() }}
+                                @csrf
                             </form>
                         </li>
                     </ul>

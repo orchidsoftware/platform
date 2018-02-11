@@ -5,7 +5,7 @@
     <p class="m-t-lg">{{trans('dashboard::auth/account.title')}}</p>
 
     <form class="m-t-md" role="form" method="POST" action="{{  route('dashboard.login.auth') }}">
-        {!! csrf_field() !!}
+        @csrf
 
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
             <label>Email</label>

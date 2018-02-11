@@ -14,7 +14,7 @@
               {!! $item or '' !!}
           @endforeach
 
-            {{csrf_field()}}
+            @csrf
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
