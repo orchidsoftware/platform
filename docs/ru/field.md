@@ -191,6 +191,25 @@ return [
 ];
 ```   
 
+
+## Select
+
+Простой выбор из списка массива:
+
+```php
+return [
+    'selest' => Field::tag('select')
+                ->options([
+                    'index'   => 'Index',
+                    'noindex' => 'No index',
+                ])
+                ->name('select')
+                ->title('Select tags')
+                ->help('Allow search bots to index page'),
+];
+```
+
+
 ## List
  
 Динамическое добавление и сортировка значений

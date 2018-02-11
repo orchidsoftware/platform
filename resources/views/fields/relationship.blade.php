@@ -27,23 +27,15 @@ $(function () {
         placeholder: '{{$placeholder or ''}}'
     });
 
-    $.ajax({
-        type: 'POST',
-        url: '{{route('dashboard.systems.widget',[
+    axios.post('{{route('dashboard.systems.widget',[
             'widget' => urlencode($handler),
             'key'    => $value
-        ])}}'
-    }).then(function (data) {
+        ])}}').then(function (data) {
 
         $('#{{$id}}')
             .append(new Option(data.text, data.id, true, true))
-            .trigger('change')
-            .trigger({
-                type: 'select2:select',
-                params: {
-                    data: data
-                }
-            });
+            .append('<option value="'+selected.id+'" selected="selected">'+selected.text+'</option>')
+            .trigger('change');
     });
 });
 </script>
