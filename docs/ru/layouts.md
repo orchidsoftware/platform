@@ -60,17 +60,28 @@ class PatientListLayout extends Table
     public function fields() : array
     {
         return [
-            'last_name'  => [
-                'name'   => 'Last name',
-                'action' => function ($patient) {
+            TD::name('last_name')
+                ->title('Last name')
+                ->setRender(function ($patient) {
                     return '<a href="' . route('dashboard.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
-                },
-            ],
-            'first_name' => 'First Name',
-            'phone'      => 'Phone',
-            'email'      => 'Email',
-            'created_at' => 'Date of publication',
+                }),
+
+            TD::name('first_name')
+                ->title('First Name'),
+                
+            TD::name('phone')
+                ->title('Phone'),
+                
+            TD::name('first_name')
+                ->title('First Name'),
+                
+            TD::name('email')
+                ->title('Email'),
+                
+            TD::name('created_at')
+                ->title('Date of publication'),
+               
         ];
     }
 }

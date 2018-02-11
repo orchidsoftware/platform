@@ -17,6 +17,7 @@ ORCHID использует стандартную систему настрое
 Это может пригодится если вы создаёте приложение, которому не требуется стороннее администрирование, а весь контент создаётся пользователями. 
 Так же это отличное решение, если вы хотите использовать свой собственный графический интерфейс (Например, встроить панель администрирования в дизайн вашего приложения).
 
+При активации такого режима, ORCHID не будет регистрировать маршруты в вашем приложении, вам будет необходимо описывать весь требуемый функционал самостоятельно.
 
 ## Адрес платформы
 
@@ -156,8 +157,8 @@ php artisan make:auth
 
 
 ```php
-'single' => [
-    App\Core\Behaviors\Single\DemoPage::class,
+'many' => [
+    App\Core\Behaviors\Many\DemoPage::class,
 ],
 ```
 
@@ -169,8 +170,8 @@ php artisan make:auth
 
 ```php
 'common' => [
-    'user'     => \Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => \Orchid\Platform\Behaviors\Base\CategoryBase::class,
+    'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
+    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
 ],
 ```
 

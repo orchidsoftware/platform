@@ -50,14 +50,27 @@ return [
     |
     | These options allow you to control the maximum chunk size when you are
     | mass importing data into the search engine. This allows you to fine
-    | tune these chunk sizes based on the capabilites of your machines.
+    | tune each of these chunk sizes based on the power of the servers.
     |
     */
 
     'chunk' => [
-        'searchable'   => 500,
+        'searchable' => 500,
         'unsearchable' => 500,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Soft Deletes
+    |--------------------------------------------------------------------------
+    |
+    | This option allows to control whether to keep soft deleted records in
+    | the search indexes. Maintaining soft deleted records can be useful
+    | if your application still needs to search for the records later.
+    |
+    */
+
+    'soft_delete' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +84,7 @@ return [
     */
 
     'algolia' => [
-        'id'     => env('ALGOLIA_APP_ID', ''),
+        'id' => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 

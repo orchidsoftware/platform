@@ -46,6 +46,14 @@
 
         <div id="filemanager" data-url="{{ route('dashboard.index')}}/systems">
 
+
+            <div id="uploadPreview" style="display:none;"></div>
+
+            <div id="uploadProgress" class="progress active progress-striped">
+                <div class="progress-bar progress-bar-success" style="width: 0"></div>
+            </div>
+
+
             <div id="content">
 
                 <div class="breadcrumb-container">
@@ -152,32 +160,31 @@
 
 
                             </div>
-                                <div class="detail_info" v-bind:class="selected_file.type">
-                                   <span>
-                                      <h4>{{trans('dashboard::systems/media.fileinfo.title')}}:</h4>
-                                      <p>@{{selected_file.name}}</p>
-                                   </span>
-                                   <span>
-                                      <h4>{{trans('dashboard::systems/media.fileinfo.type')}}:</h4>
-                                      <p>@{{selected_file.type}}</p>
-                                   </span>
-                                   <div v-if="selected_file.type != 'folder'">
-                                      <span>
-                                         <h4>{{trans('dashboard::systems/media.fileinfo.size')}}:</h4>
-                                         <p><span class="selected_file_count">@{{ selected_file.items }} item(s)</span><span
-                                                     class="selected_file_size">@{{selected_file.size}}</span></p>
-                                         <span>
-                                            <h4>{{trans('dashboard::systems/media.fileinfo.public_url')}}:</h4>
-                                         </span>
-                                         <p><a v-bind:href="selected_file.path"
-                                               target="_blank">{{trans('dashboard::systems/media.fileinfo.click_here')}}</a></p>
-                                      </span>
-                                      <span>
-                                         <h4>{{trans('dashboard::systems/media.fileinfo.last_modified')}}:</h4>
-                                         <p>@{{selected_file.last_modified}}</p>
-                                      </span>
-                                   </div>
-                                </div>
+
+                            <table class="table" v-bind:class="selected_file.type">
+                                <tr>
+                                    <td width="50%"><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.title')}}:</small></td>
+                                    <td>@{{selected_file.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.type')}}:</small></td>
+                                    <td>@{{selected_file.type}}</td>
+                                </tr>
+                                <tr v-if="selected_file.type != 'folder'">
+                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.size')}}:</small></td>
+                                    <td>@{{selected_file.size}}</td>
+                                </tr>
+                                <tr v-if="selected_file.type != 'folder'">
+                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.public_url')}}:</small></td>
+                                    <td><a v-bind:href="selected_file.path"
+                                           target="_blank">{{trans('dashboard::systems/media.fileinfo.click_here')}}</a></td>
+                                </tr>
+                                <tr v-if="selected_file.type != 'folder'">
+                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.last_modified')}}:</small></td>
+                                    <td>@{{selected_file.last_modified}}</td>
+                                </tr>
+                            </table>
+
                         </div>
 
                     </div>
@@ -237,7 +244,7 @@
                         <div class="modal-body">
                             <h4>{{trans('dashboard::systems/media.new_file_folder')}}</h4>
                             <input id="new_filename" class="form-control" type="text"
-                                   v-model="selected_file.name">
+                                   v-model="new_filename">
                         </div>
 
                         <div class="modal-footer">

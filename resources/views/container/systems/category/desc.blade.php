@@ -20,7 +20,7 @@
 
                     <div class="container">
 
-                        {!! generate_form($behavior->fields(), !$termTaxonomy->exists ? null : optional($termTaxonomy->term)->toArray(), $code,'content') !!}
+                        {!! generate_form($behavior->fields(), !$termTaxonomy->exists ? [] : optional($termTaxonomy->term)->toArray(), $code,'content') !!}
 
                     </div>
 

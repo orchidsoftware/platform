@@ -2,7 +2,7 @@
 ----------
 
 Поведение является основной частью системы управления содержимым ORCHID, вместо того, чтобы генерировать CRUD для каждой модели
-Вы можете выбрать любой объект в отдельном типе, и легко управлять им. Поведения применяются только к
+можно выбрать любой объект в отдельном типе, и легко управлять им. Поведения применяются только к
 моделям на основе 'Post', так как она является базовой для типичных данных.
 
 Вам необходимо описать поля которые хотите получить и в каком виде, а её CRUD построиться сам.
@@ -23,23 +23,23 @@ php artisan make:singleBehavior
 php artisan make:manyBehavior
 ```
 
-Собственное поведение должно быть зарегистрировано в `config/platform.php` в разделе типов
+Собственное поведение должно быть зарегистрировано в `config/platform.php` в разделе типов:
 
 
 ```php
 //
 'single' => [
-    //App\Core\Behaviors\Single\DemoPage::class,
+    //App\Behaviors\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Core\Behaviors\Many\DemoPost::class,
+    //App\Behaviors\Many\DemoPost::class,
 ],
 ```
 
-> Для отображения поведения у пользователя необходимо наделить его
-или группу (роли) необходимыми правами с помощью графического интерфейса
+> Для отображения поведения пользователя, необходимо наделить его
+или группу (роли) необходимыми правами с помощью графического интерфейса.
 
 Тип выглядит следующим образом:
 
@@ -109,7 +109,7 @@ class DummyClass extends Many
 ```
 
 Вы можете расширить тип данных всеми доступными методами,
- чтобы добавить к нему новую функциональность, которая соответствует вашему приложению
+ чтобы добавить к нему новую функциональность, которая соответствует вашему приложению.
 
  
 ## Модификация сетки
@@ -126,17 +126,13 @@ class DummyClass extends Many
  public function grid()
  {
      return [
-         'name'       => 'Name',
-         'publish_at' => 'Date of publication',
-         'created_at' => 'Date of creation',
-         'full_name'  =>  => [
-             'name' => 'Full name',
-             'action' => function($post){
-                 return  $post->getContent('fist_name') 
-                  .' '.
-                  $post->getContent('last_name');
-             }
-         ],
+         TD::name('name')->title('Name'),
+         TD::name('publish_at')->title('Date of publication'),
+         TD::name('created_at')->title('Date of creation'),
+         TD::name('full_name')->title('Full name')
+         ->setRender(function($post){
+             return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
+         })
      ];
  }
 

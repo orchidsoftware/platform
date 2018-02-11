@@ -16,7 +16,7 @@
             <button type="submit" class="btn btn-sm btn-link inline">
                 <i class="icon-trash"></i>
             </button>
-            {{ csrf_field() }}
+            @csrf
         </form>
     </li>
  @endif

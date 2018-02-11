@@ -128,12 +128,13 @@ $this->domain(config('platform.domain'))->group(function () {
 
         $router->resource('menu', 'MenuController', [
             'only'  => [
-                'index', 'show', 'update',
+                'index', 'show', 'update', 'destroy',
             ],
             'names' => [
-                'index'  => 'dashboard.systems.menu.index',
-                'show'   => 'dashboard.systems.menu.show',
-                'update' => 'dashboard.systems.menu.update',
+                'index'   => 'dashboard.systems.menu.index',
+                'show'    => 'dashboard.systems.menu.show',
+                'update'  => 'dashboard.systems.menu.update',
+                'destroy' => 'dashboard.systems.menu.destroy',
             ],
         ]);
 

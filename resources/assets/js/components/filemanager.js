@@ -10,6 +10,7 @@ document.addEventListener('turbolinks:load', function() {
       folders: [],
       selected_file: '',
       directories: [],
+      new_filename: '',
     },
   });
 
@@ -19,6 +20,45 @@ document.addEventListener('turbolinks:load', function() {
     const files = $('#files');
     const options = $.extend(true, {}, o);
     this.init = function() {
+      $('#upload').dropzone({
+        url: options.baseUrl + '/media/upload',
+        previewsContainer: '#uploadPreview',
+        totaluploadprogress: function(
+          uploadProgress,
+          totalBytes,
+          totalBytesSent,
+        ) {
+          $('#uploadProgress .progress-bar').css('width', uploadProgress + '%');
+          if (uploadProgress == 100) {
+            $('#uploadProgress')
+              .delay(1500)
+              .slideUp(function() {
+                $('#uploadProgress .progress-bar').css('width', '0%');
+              });
+          }
+        },
+        processing: function() {
+          //$('#uploadProgress').fadeIn();
+        },
+        sending: function(file, xhr, formData) {
+          formData.append('_token', CSRF_TOKEN);
+          formData.append('upload_path', manager.files.path);
+        },
+        success: function(e, res) {
+          if (res.success) {
+            //alert("Sweet Success!");
+          } else {
+            alert(res.message);
+          }
+        },
+        error: function(e, res, xhr) {
+          alert(res.message);
+        },
+        queuecomplete: function() {
+          getFiles(manager.folders);
+        },
+      });
+
       getFiles('/');
 
       files.on('dblclick', 'li .file_link', function() {
@@ -46,70 +86,6 @@ document.addEventListener('turbolinks:load', function() {
         manager.folders = manager.folders.splice(0, index);
         getFiles(manager.folders);
       });
-
-      //********** Add Keypress Functionality **********//
-      let isBrowsingFiles = null;
-      const fileBrowserActive = function(el) {
-          el = el instanceof jQuery ? el : $(el);
-          if ($.contains(files.parent()[0], el[0])) {
-            return true;
-          } else {
-            //$(document).off('click');
-            //console.log('testt');
-            //return false;
-          }
-        },
-        handleFileBrowserStatus = function(target) {
-          isBrowsingFiles = fileBrowserActive(target);
-        };
-
-      files.on('click', function(event) {
-        if (!isBrowsingFiles) {
-          $(document).on('click', function(e) {
-            handleFileBrowserStatus(e.target);
-          });
-        } else {
-          handleFileBrowserStatus(event.target);
-        }
-      });
-
-      $(document).keydown(function(e) {
-        const isKeyControl = e.which >= 37 && e.which <= 40;
-        if (!isBrowsingFiles && isKeyControl) {
-          return false;
-        } else if (isKeyControl && isBrowsingFiles) {
-          e.preventDefault();
-        }
-        const curSelected = $('#files li .selected').data('index');
-        // left key
-        if ((e.which == 37 || e.which == 38) && parseInt(curSelected)) {
-          newSelected = parseInt(curSelected) - 1;
-          setCurrentSelected($('*[data-index="' + newSelected + '"]'));
-        }
-        // right key
-        if (
-          (e.which == 39 || e.which == 40) &&
-          parseInt(curSelected) < manager.files.items.length - 1
-        ) {
-          newSelected = parseInt(curSelected) + 1;
-          setCurrentSelected($('*[data-index="' + newSelected + '"]'));
-        }
-        // enter key
-        if (e.which == 13) {
-          if (
-            !$('#new_folder_modal').is(':visible') &&
-            !$('#move_file_modal').is(':visible') &&
-            !$('#confirm_delete_modal').is(':visible')
-          ) {
-            manager.folders.push($('#files li .selected').data('folder'));
-            getFiles(manager.folders);
-          }
-          if ($('#confirm_delete_modal').is(':visible')) {
-            $('#confirm_delete').trigger('click');
-          }
-        }
-      });
-      //********** End Keypress Functionality **********//
 
       /********** TOOLBAR BUTTONS **********/
       $('#refresh').click(function() {
@@ -227,7 +203,7 @@ document.addEventListener('turbolinks:load', function() {
       $('#rename_btn').click(function() {
         source = manager.selected_file.path;
         filename = manager.selected_file.name;
-        new_filename = $('#new_filename').val();
+        new_filename = manager.new_filename;
         $('#rename_file_modal').modal('hide');
         $.post(
           options.baseUrl + '/media/rename_file',
@@ -287,12 +263,25 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       function getFiles(folders) {
+        var folder_location = '/';
+
         if (folders != '/') {
           var folder_location = '/' + folders.join('/');
-        } else {
-          var folder_location = '/';
         }
+
         $('#file_loader').fadeIn();
+
+        $.post(
+          options.baseUrl + '/media/directories',
+          {
+            folder_location: manager.folders,
+            _token: CSRF_TOKEN,
+          },
+          function(data) {
+            manager.directories = data;
+          },
+        );
+
         $.post(
           options.baseUrl + '/media/files',
           {
@@ -313,25 +302,13 @@ document.addEventListener('turbolinks:load', function() {
             }
           },
         );
-
-        // Add the latest files to the folder dropdown
-        const all_folders = '';
-        $.post(
-          options.baseUrl + '/media/directories',
-          {
-            folder_location: manager.folders,
-            _token: CSRF_TOKEN,
-          },
-          function(data) {
-            manager.directories = data;
-          },
-        );
       }
 
       function setCurrentSelected(cur) {
         $('#files li .selected').removeClass('selected');
         $(cur).addClass('selected');
         manager.selected_file = manager.files.items[$(cur).data('index')];
+        manager.new_filename = manager.selected_file.name;
       }
 
       function bytesToSize(bytes) {

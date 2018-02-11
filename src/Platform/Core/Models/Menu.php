@@ -39,7 +39,9 @@ class Menu extends Model
      * @var array
      */
     protected $casts = [
-        'type' => 'string',
+        'type'   => 'string',
+        'parent' => 'integer',
+        'sort'   => 'integer',
     ];
 
     /**

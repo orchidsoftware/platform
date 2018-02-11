@@ -139,7 +139,7 @@ Artisan создаст пустой файл виджета в `/app/Http/Widget
 
 ```php
 'widgets' => [
-    'menu' => \App\Http\Widgets\MenuWidget::class,
+    'menu' => App\Http\Widgets\MenuWidget::class,
 ],
 ```
 
@@ -159,7 +159,7 @@ class MenuWidget extends Widget {
     public function handler()
     {
         $menu = Menu::where('lang', config('app.locale'))
-            ->whereNull('parent')
+            ->where('parent',0)
             ->where('type', 'header')->get();
 
         return view('partials.menu', [
@@ -205,35 +205,41 @@ class MenuWidget extends Widget {
 php artisan make:manyBehavior Blog
 ```
 
-По адресу `/app/Core/Behaviors/Many`, будет создан пустой файл `Blog.php`, давайте наполним его :
+По адресу `/app/Behaviors/Many`, будет создан пустой файл `Blog.php`, давайте наполним его :
 
 ```php
-namespace App\Core\Behaviors\Many;
+namespace App\Behaviors\Many;
 
 use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Platform\Platform\Fields\TD;
 
 class Blog extends Many
 {
     /**
      * @var string
      */
-    public $name = 'Записи блога';
+    public $name = 'Blog';
+
     /**
      * @var string
      */
-    public $description = 'Пример записей блога';
+    public $description = 'Blog description';
+
     /**
      * @var string
      */
     public $slug = 'blog';
+
     /**
      * Slug url /news/{name}.
      *
      * @var string
      */
     public $slugFields = 'name';
+
     /**
      * Rules Validation.
      *
@@ -247,19 +253,47 @@ class Blog extends Many
             'content.*.body' => 'required|string',
         ];
     }
+
     /**
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields() : array
     {
         return [
-            'name'        => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Как называется статья?',
-            'body'        => 'tag:wysiwyg|name:body|max:255|required|rows:10',
-            'title'       => 'tag:input|type:text|name:title|max:255|required|title:Залоголок страницы|help:Заголовок вкладки',
-            'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Краткое описание',
-            'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:Ключевые слова',
+            Field::tag('input')
+                ->type('text')
+                ->name('name')
+                ->max(255)
+                ->required()
+                ->title('Название статьи')
+                ->help('Как называется статья?'),
+
+            Field::tag('wysiwyg')
+                ->name('body')
+                ->required()
+                ->rows(10),
+
+            Field::tag('input')
+                ->type('text')
+                ->name('title')
+                ->max(255)
+                ->required()
+                ->title('Залоголок страницы')
+                ->help('Заголовок вкладки'),
+
+            Field::tag('textarea')
+                ->name('description')
+                ->rows(5)
+                ->required()
+                ->title('Краткое описание'),
+
+            Field::tag('tags')
+                ->name('keywords')
+                ->title('Ключевые слова'),
         ];
     }
+
     /**
      * @return array
      */
@@ -270,15 +304,16 @@ class Blog extends Many
             UploadPostForm::class,
         ];
     }
+
     /**
      * Grid View for post type.
      */
     public function grid() : array
     {
         return [
-            'name'       => 'Имя',
-            'publish_at' => 'Дата публикации',
-            'created_at' => 'Дата создания',
+            TD::name('name')->title('Имя'),
+            TD::name('publish_at')->title('Дата публикации'),
+            TD::name('created_at')->title('Дата создания'),
         ];
     }
 }
@@ -296,7 +331,7 @@ class Blog extends Many
 */
 
 'many' => [
-    App\Core\Behaviors\Many\Blog::class,
+    App\Behaviors\Many\Blog::class,
 ],
 ```
 
@@ -427,55 +462,53 @@ Route::bind('blog', function ($value) {
 
 @section('content')
 
-
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Вселенная</h1>
-                        <hr class="small">
-                        <span class="subheading">Простыми словами о сложном</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- Main Content -->
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-                @foreach($posts as $post)
-                <div class="post-preview">
-                    <a href="{{route('blog.post',$post->slug)}}">
-                        <h2 class="post-title">
-                            {{$post->getContent('name')}}
-                        </h2>
-                        <h3 class="post-subtitle">
-
-                            {{ str_limit(strip_tags($post->getContent('body')),150) }}
-                        </h3>
-                    </a>
-                    <p class="post-meta">
-                        Опубликованно: {{$post->publish_at->diffForHumans()}}
-                    </p>
-                </div>
-                <hr>
-                @endforeach
-
-
-                <div class="row text-center">
-                    {{ $posts->links() }}
+                <div class="site-heading">
+                    <h1>Вселенная</h1>
+                    <hr class="small">
+                    <span class="subheading">Простыми словами о сложном</span>
                 </div>
             </div>
         </div>
     </div>
+</header>
 
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            @foreach($posts as $post)
+            <div class="post-preview">
+                <a href="{{route('blog.post',$post->slug)}}">
+                    <h2 class="post-title">
+                        {{$post->getContent('name')}}
+                    </h2>
+                    <h3 class="post-subtitle">
+
+                        {{ str_limit(strip_tags($post->getContent('body')),150) }}
+                    </h3>
+                </a>
+                <p class="post-meta">
+                    Опубликованно: {{$post->publish_at->diffForHumans()}}
+                </p>
+            </div>
+            <hr>
+            @endforeach
+
+
+            <div class="row text-center">
+                {{ $posts->links() }}
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 ```

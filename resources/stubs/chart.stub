@@ -4,13 +4,13 @@ namespace DummyNamespace;
 
 use Orchid\Platform\Layouts\Chart;
 
-class ChartsLayout extends Chart
+class DummyClass extends Chart
 {
 
     /**
      * @var string
      */
-    public $title = 'Name Chart';
+    public $title = 'DummyClass';
 
     /**
      * @var int
@@ -24,7 +24,7 @@ class ChartsLayout extends Chart
      *
      * @var string
      */
-    public $type = 'scatter';
+    public $type = 'bar';
 
     /**
      * @var array

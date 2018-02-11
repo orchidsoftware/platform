@@ -13,7 +13,7 @@
 
     <form class="m-t-md" role="form" method="POST"
           action="{{ route('dashboard.password.email') }}">
-        {!! csrf_field() !!}
+        @csrf
 
 
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">

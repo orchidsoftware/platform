@@ -48,13 +48,13 @@
         ])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
             <!-- column  -->
-                <div class="col  lter b-r">
+                <div class="hbox-col  lter b-r">
                     <div class="vbox">
                         <div class="bg-white">
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                        <div class="wrapper-md  bg-white">
+                                        <div class="wrapper-lg  bg-white">
                                             {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
                                         </div>
                                     </div>
@@ -67,11 +67,11 @@
         @endif
         @if($type->checkModules())
             <!-- column  -->
-                <div class="col wi-col lter">
+                <div class="hbox-col wi-col lter">
                     <div class="vbox">
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
-                                <ul class="nav nav-tabs">
+                                <ul class="nav nav-tabs bg-light">
                                 @foreach($type->render() as $name => $view)
                                     <li class="nav-item">
                                         <a class="nav-link @if ($loop->first) active @endif" data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
@@ -95,8 +95,8 @@
                 </div>
                 <!-- /column  -->
             @endif
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
+            @csrf
+            @method('PUT')
         </form>
         <!-- /hbox layout  -->
     </div>

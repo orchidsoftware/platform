@@ -82,9 +82,11 @@ class MyBehaviorPost extends Many
      *
      * @var array
      */
-    public $filters = [
-        QueryFilter::class,
-    ];
+    public function filters(){
+        return [
+            QueryFilter::class,
+        ];
+    }
 }
 ```
 

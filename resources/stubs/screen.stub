@@ -12,14 +12,14 @@ class DummyClass extends Screen
      *
      * @var string
      */
-    public $name = 'DummyClass Screen';
+    public $name = 'DummyClass';
 
     /**
      * Display header description
      *
      * @var string
      */
-    public $description = 'DummyClass Screen';
+    public $description = 'DummyClass';
 
     /**
      * Query data
@@ -45,6 +45,7 @@ class DummyClass extends Screen
      * Views
      *
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function layout() : array
     {

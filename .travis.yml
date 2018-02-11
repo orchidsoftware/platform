@@ -1,11 +1,10 @@
+dist: trusty
 language: php
+sudo: required
 
 php:
-  - 7.0
   - 7.1
-
-sudo: required
-dist: trusty
+  - 7.2
 
 addons:
    chrome: stable
@@ -21,15 +20,15 @@ services:
 before_install:
   - psql -c 'create database platform;' -U postgres
   - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
-  
-install:
-  - composer install --prefer-source
 
 before_script:
+   - travis_retry composer self-update
+   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
    - chmod -R o+w vendor/orchestra
    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
-script: vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
 
 notifications:
   email: false

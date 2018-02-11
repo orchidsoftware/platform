@@ -17,7 +17,7 @@
 
     @if(count($forms) > 1)
         <div class="nav-tabs-alt bg-white-only">
-            <ul class="nav nav-tabs padder" role="tablist">
+            <ul class="nav nav-tabs padder bg-light" role="tablist">
                 @foreach($forms as $name => $form)
                     <li class="nav-item">
                         <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}"
@@ -43,12 +43,12 @@
                         </div>
                     @endforeach
                 </div>
-                {{csrf_field()}}
-                {{ method_field($method)}}
+                @csrf
+                @method($method)
             </form>
             <form id="form-group-remove" action="{{route($route,$slug)}}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('delete') }}
+                @csrf
+                @method('delete')
             </form>
         </div>
     </section>

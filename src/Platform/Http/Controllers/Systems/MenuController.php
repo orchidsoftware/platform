@@ -42,7 +42,7 @@ class MenuController extends Controller
         }
 
         return view('dashboard::container.systems.menu.listing', [
-            'menu'    => collect(config('platform.menu')),
+            'menu' => collect(config('platform.menu')),
         ]);
     }
 
@@ -57,7 +57,7 @@ class MenuController extends Controller
         $currentLocale = $request->get('lang', App::getLocale());
 
         $menu = Menu::where('lang', $currentLocale)
-            ->whereNull('parent')
+            ->where('parent', 0)
             ->where('type', $nameMenu)
             ->with('children')
             ->get();
@@ -67,7 +67,6 @@ class MenuController extends Controller
             'locales'       => config('platform.locales'),
             'currentLocale' => $currentLocale,
             'menu'          => $menu,
-            'staticPage'    => [],
             'url'           => config('app.url'),
         ]);
     }
@@ -83,33 +82,46 @@ class MenuController extends Controller
         $this->lang = $request->get('lang');
         $this->menu = $menu;
 
-        Menu::where('lang', $this->lang)->where('type', $menu)->delete();
-
         $this->createMenuElement($request->get('data'));
 
         return response()->json([
-            'title'   => 'Успешно',
-            'message' => 'Данные сохранены',
             'type'    => 'success',
         ]);
     }
 
     /**
-     * @param array $items
-     * @param null  $parent
+     * @param array   $items
+     * @param int $parent
      */
-    private function createMenuElement(array $items, $parent = null)
+    private function createMenuElement(array $items, $parent = 0)
     {
         foreach ($items as $item) {
-            unset($item['id']);
-            $item['lang'] = $this->lang;
-            $item['type'] = $this->menu;
-            $item['parent'] = $parent;
-            $menu = Menu::create($item);
+            Menu::firstOrNew([
+                'id' => $item['id'],
+            ])->fill(array_merge($item, [
+                'lang'   => $this->lang,
+                'type'   => $this->menu,
+                'parent' => $parent,
+            ]))->save();
 
             if (array_key_exists('children', $item)) {
-                $this->createMenuElement($item['children'], $menu->id);
+                $this->createMenuElement($item['children'], $item['id']);
             }
         }
+    }
+
+    /**
+     * @param Menu $menu
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(Menu $menu)
+    {
+        Menu::where('parent', $menu->id)->delete();
+        $menu->delete();
+
+        return response()->json([
+            'type'    => 'success',
+        ]);
     }
 }

@@ -6,6 +6,23 @@ namespace Orchid\Platform\Fields\Types;
 
 use Orchid\Platform\Fields\Field;
 
+/**
+ * Class TextAreaField.
+ *
+ * @method $this accesskey($value = true)
+ * @method $this autofocus($value = true)
+ * @method $this cols($value = true)
+ * @method $this disabled($value = true)
+ * @method $this form($value = true)
+ * @method $this maxlength($value = true)
+ * @method $this name($value = true)
+ * @method $this placeholder($value = true)
+ * @method $this readonly($value = true)
+ * @method $this required($value = true)
+ * @method $this rows($value = true)
+ * @method $this tabindex($value = true)
+ * @method $this wrap($value = true)
+ */
 class TextAreaField extends Field
 {
     /**

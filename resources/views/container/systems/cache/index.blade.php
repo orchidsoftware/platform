@@ -21,7 +21,7 @@
                         <span class="text-muted text-xs">{{trans('dashboard::systems/cache.cache.description')}}</span>
                     </button>
                     <input name="action" type="hidden" value="cache">
-                    {{csrf_field()}}
+                    @csrf
                 </form>
             </div>
             <div class="row">
@@ -31,7 +31,7 @@
                         <span class="text-muted text-xs">{{trans('dashboard::systems/cache.config.description')}}</span>
                     </button>
                     <input name="action" type="hidden" value="config">
-                    {{csrf_field()}}
+                    @csrf
                 </form>
             </div>
             <div class="row">
@@ -43,7 +43,7 @@
 
                     </button>
                     <input name="action" type="hidden" value="route">
-                    {{csrf_field()}}
+                    @csrf
                 </form>
 
             </div>
@@ -56,7 +56,7 @@
 
                     </button>
                     <input name="action" type="hidden" value="view">
-                    {{csrf_field()}}
+                    @csrf
                 </form>
 
             </div>
@@ -69,7 +69,7 @@
 
                     </button>
                     <input name="action" type="hidden" value="opcache">
-                    {{csrf_field()}}
+                    @csrf
                 </form>
 
             </div>

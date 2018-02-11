@@ -6,6 +6,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Upgrade to Laravel 5.6
+
+### Removed
+- Avatar user for database
+
+## [2.1.3] - 2018-02-11
+
+### Fixed
+- Default value for select2 AJAX
+- Hide password for field
+
+## [2.1.2] - 2018-02-09
+
+### Fixed
+- Create of category
+
+## [2.1.1] - 2018-02-09
+
+### Fixed
+- Display of the third level menu
+- Graphs occupy a full block
+
+## [2.1.0] - 2018-02-09
+
 ### Added
 - "DIV" Layouts
 - "Select" field
@@ -21,6 +46,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Demo "behaviors" are no longer published
 - Access validation does not create multiple database queries
 - Hide forms switching with their small number
+- Changing the menu, no longer changing the recording number
+- Color pallet for graphs
+- Design of the file manager
 
 ### Deprecated
 - Record string/array for fields. Use `Field::make`

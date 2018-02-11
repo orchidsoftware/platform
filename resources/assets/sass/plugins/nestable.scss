@@ -13,7 +13,6 @@
   line-height : 20px;
 
   .edit {
-    font-family             : simple-line-icons;
     position                : absolute;
     margin                  : 0;
     right                   : 0;
@@ -30,7 +29,6 @@
     height                  : 42px;
 
     &:before {
-      content     : '\e05f';
       display     : block;
       position    : absolute;
       left        : 0;

@@ -20,7 +20,7 @@ class CreateOrchidMenuTable extends Migration
             $table->string('target')->nullable();
             $table->boolean('auth')->default(false);
             $table->string('lang');
-            $table->integer('parent')->nullable();
+            $table->integer('parent')->default(0);
             $table->integer('sort')->default(0);
             $table->string('type');
             $table->timestamps();

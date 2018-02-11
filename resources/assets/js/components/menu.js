@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', function() {
             "<div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" +
             this.label +
             '</div> ' +
-            "<div  class='edit'></div>" +
+            "<div  class='edit icon-pencil'></div>" +
             '</li>',
         );
 
@@ -88,11 +88,16 @@ document.addEventListener('turbolinks:load', function() {
         $('#menuEdit').modal('hide');
         menu.send();
       },
+      destroy: function(id) {
+        axios
+          .delete(dashboard.prefix('/systems/menu/' + id))
+          .then(function(response) {});
+      },
       remove: function() {
         $('li[data-id=' + this.id + ']').remove();
         $('#menuEdit').modal('hide');
+        this.destroy(this.id);
         this.clear();
-        this.send();
       },
       clear: function() {
         this.label = '';

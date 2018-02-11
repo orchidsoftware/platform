@@ -2,9 +2,12 @@
 
 namespace DummyNamespace;
 
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Platform\Fields\TD;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+
 
 class DummyClass extends Many
 {
@@ -64,6 +67,7 @@ class DummyClass extends Many
 
     /**
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function modules() : array
     {

@@ -29,7 +29,7 @@ ORCHID включает в себя простой в использовании
 namespace Orchid\Platform\Core\Models\Menu;
 
 $menu = Menu::where('lang', App::getLocale())
-    ->whereNull('parent')
+    ->where('parent',0)
     ->where('type', 'footer')
     ->with('children')
     ->get();

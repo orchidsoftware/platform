@@ -6,7 +6,7 @@
     >
         <div class="dd-handle dd3-handle">Drag</div>
         <div class="dd3-content">{{$item->label}}</div>
-        <div class="edit"></div>
+        <div class="edit icon-pencil"></div>
         @if($item->children->count() > 0)
             <ol class="dd-list">
                 @include('dashboard::partials.menu.item',[

@@ -74,18 +74,6 @@
       }
     }
   }
-  .aside-wrap {
-  		.dropdown {
-			.dropdown-item {
-				a {
-					&:hover,
-					&:focus {
-						color: inherit;
-					}
-				}
-			}
-		}
-  }
 }
 
 .aside-wrap-main {
@@ -347,6 +335,10 @@
     a {
       color: $brand-black;
       padding-left: 20px;
+        &:hover,
+        &:focus {
+          color: inherit;
+        }
     }
   }
   .dropdown-lvl {
@@ -357,7 +349,6 @@
         margin-left: 795px;
       }
     }
-
   }
 }
 
