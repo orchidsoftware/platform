@@ -1209,6 +1209,7 @@ class PlatformLayout extends Chart
 ## Исходный код
 
 Итого мы создали страницу профиля с использованием механизма экранов ORCHID.
+
 Исходный код доступен на [github](https://github.com/tabuna/tutorial_create_profile_for_orchid).
 
 
