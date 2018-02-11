@@ -27,16 +27,20 @@ $(function () {
         placeholder: '{{$placeholder or ''}}'
     });
 
-    axios.post('{{route('dashboard.systems.widget',[
-            'widget' => urlencode($handler),
-            'key'    => $value
-        ])}}').then(function (data) {
+    @if(!is_null($value))
+        axios.post('{{route('dashboard.systems.widget',[
+                    'widget' => urlencode($handler),
+                    'key'    => $value
+                ])}}').then(function (response) {
 
-        $('#{{$id}}')
-            .append(new Option(data.text, data.id, true, true))
-            .append('<option value="'+selected.id+'" selected="selected">'+selected.text+'</option>')
-            .trigger('change');
-    });
+            var selected = response.data;
+            selected = selected[Object.keys(selected)[0]];
+
+            $('#{{$id}}')
+                .append(new Option(selected.text, selected.id, true, true))
+                .trigger('change');
+        });
+    @endif
 });
 </script>
 @endpush
