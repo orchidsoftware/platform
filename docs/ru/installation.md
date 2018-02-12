@@ -10,7 +10,7 @@
 Установите фреймворк, выполнив команду `composer create-project` в вашем терминале:
 
 ```php
-$ composer create-project laravel/laravel orchid "5.5.*" --prefer-dist
+$ composer create-project laravel/laravel orchid "5.6.*" --prefer-dist
 ```
 
 Это создаст новый каталог `orchid`, загрузит в него некоторые зависимости и даже сгенерирует основные каталоги и файлы, которые понадобятся для начала работы. Другими словами, установит ваш новый проект фреймворка.
