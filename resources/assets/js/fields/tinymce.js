@@ -1,15 +1,17 @@
-let init = (id, theme)  => {
-  if (theme=='modern') {
-	  plugins='print autosave autoresize preview fullpage paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help';
-	  toolbar1='formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat';
-	  inline=false;
-  }  else {
-	  plugins='image media table link paste contextmenu textpattern autolink codesample';
-	  toolbar1='';
-	  inline=true;
-  }	 
-  
-  
+let init = (id, theme) => {
+  if (theme == 'modern') {
+    plugins =
+      'print autosave autoresize preview fullpage paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help';
+    toolbar1 =
+      'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat';
+    inline = false;
+  } else {
+    plugins =
+      'image media table link paste contextmenu textpattern autolink codesample';
+    toolbar1 = '';
+    inline = true;
+  }
+
   tinymce.init({
     selector: '.tinymce-' + id,
     theme: theme,
@@ -17,7 +19,8 @@ let init = (id, theme)  => {
     plugins: plugins,
     toolbar1: toolbar1,
     insert_toolbar: 'quickimage quicktable media codesample fullscreen',
-    selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
+    selection_toolbar:
+      'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
     inline: inline,
     convert_urls: false,
     image_caption: true,
