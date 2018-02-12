@@ -19,7 +19,7 @@
 @push('scripts')
     <script>
 $(function () {
-    dashboard.fields.tinymce.init('{{$id}}');
+    dashboard.fields.tinymce.init("{{$id}}","{{$theme or 'inlite'}}");
 });
 </script>
 @endpush
