@@ -29,12 +29,7 @@
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~7.0",
     "orchestra/testbench": "~3.6",
-    "orchestra/database": "3.6.0-BETA1",
-    "orchestra/testbench-dusk": "3.6.x@dev",
-    "phpmd/phpmd": "^2.6",
-    "satooshi/php-coveralls" : "*",
-    "sebastian/phpcpd": "*"
-
+    "orchestra/testbench-dusk": "3.6.x@dev"
   },
   "autoload": {
     "psr-4": {
