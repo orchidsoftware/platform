@@ -13,7 +13,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    const VERSION = '2.1.3';
+    const VERSION = '2.2.0';
 
     /**
      * @var
