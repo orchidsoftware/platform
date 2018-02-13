@@ -15,11 +15,6 @@ class InfoForm extends Form
     public $name = 'Information';
 
     /**
-     * @var string
-     */
-    public $icon = 'fa fa-cogs';
-
-    /**
      * Base Model.
      *
      * @var

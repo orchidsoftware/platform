@@ -19,7 +19,7 @@ $(function () {
             cache: true,
             delay: 250,
             url: function (params) {
-                return '{{route('dashboard.systems.widget',urlencode($handler))}}';
+                return '{{route('dashboard.systems.widget',Base64Url\Base64Url::decode($handler))}}';
             },
             dataType: 'json'
         },
@@ -29,7 +29,7 @@ $(function () {
 
     @if(!is_null($value))
         axios.post('{{route('dashboard.systems.widget',[
-                    'widget' => urlencode($handler),
+                    'widget' => Base64Url\Base64Url::decode($handler),
                     'key'    => $value
                 ])}}').then(function (response) {
 

@@ -34,7 +34,7 @@ trait Structure
      *
      * @var string
      */
-    public $icon = 'fa fa-folder-o';
+    public $icon = 'icon-folder';
 
     /**
      * Fields for content.

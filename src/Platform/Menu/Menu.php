@@ -115,7 +115,7 @@ class Menu
         }
 
         $arg = array_merge([
-            'icon'    => 'fa fa-file-o',
+            'icon'    => 'icon-folder',
             'childs'  => false,
             'divider' => false,
             'sort'    => 0,

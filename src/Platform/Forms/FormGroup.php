@@ -16,13 +16,6 @@ abstract class FormGroup
     public $name = '';
 
     /**
-     * Icon tabs.
-     *
-     * @var string
-     */
-    public $icon = '';
-
-    /**
      * Description form group.
      *
      * @var
@@ -130,7 +123,6 @@ abstract class FormGroup
         return view($this->view, [
             'forms'       => $this->html,
             'name'        => $this->name,
-            'icon'        => $this->icon,
             'description' => $this->description,
             'route'       => $this->route,
             'slug'        => $this->slug,

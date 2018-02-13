@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Base64 URL Safe
+- Font Awesome replaced by ORCHID icons
+
+### Removed
+- Icon for group
+
 ## [2.2.0] - 2018-02-12
 ### Added
 - TinyMCE toolbar #522

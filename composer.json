@@ -23,6 +23,7 @@
     "laravel/framework": "5.6.*",
     "laravel/scout": "^4.0",
     "ralouphie/mimey": "^1.0",
+    "spomky-labs/base64url": "^1.0",
     "watson/active": "^2.0"
   },
   "require-dev": {
