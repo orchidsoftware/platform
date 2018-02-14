@@ -86,6 +86,7 @@ class CreateFieldsForUsers extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->integer('city_id')->nullable();
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -100,6 +101,7 @@ class CreateFieldsForUsers extends Migration
             $table->dropColumn('first_name');
             $table->dropColumn('last_name');
             $table->dropColumn('city_id');
+            $table->dropColumn('avatar');
         });
     }
 }

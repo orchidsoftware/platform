@@ -87,7 +87,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
             <a class="navbar-brand" href="/">{{config('app.name')}}</a>
         </div>
 
-        @widget('menu')
+        @widget('menu','header')
     </div>
     <!-- /.container -->
 </nav>
@@ -156,11 +156,11 @@ class MenuWidget extends Widget {
     /**
      * @return mixed
      */
-    public function handler()
+    public function handler($typemenu = 'header')
     {
         $menu = Menu::where('lang', config('app.locale'))
             ->where('parent',0)
-            ->where('type', 'header')->get();
+            ->where('type', $typemenu)->get();
 
         return view('partials.menu', [
             'menu'  => $menu,
@@ -338,6 +338,8 @@ class Blog extends Many
 
 После этого нашему пользователю необходимо дать права на редактирование данных записей в панели администрирования, 
 перейдём к нашему пользователю на вкладку разрешений и выберем необходимые права.
+
+> **Примечание** Если в ролях пользователя не появилась возможность дать разрешение новому типу записи, то необходимо сбросить кэш конфигурации командой `php artisan config:clear`
 
 После сохранения в главном меню будет раздел записи. Теперь мы можем наполнять наш блог контентом.
 

@@ -74,10 +74,11 @@ return [
                   ->name('body')
                   ->required()
                   ->title('Name Articles')
-                  ->help('Article title'),
+                  ->help('Article title')
+                  ->theme('inline'),
 ];
 ``` 
- 
+Для отображения в редакторе верхней панели и меню, в котором доступны функции полноэкранного режима и просмотр html кода, нужно установить атрибут `theme('modern')`.
  
 ## Markdown
 

@@ -25,7 +25,7 @@ class RoleController extends Controller
     public function __construct(RoleFormGroup $form)
     {
         $this->checkPermission('dashboard.systems.roles');
-        $this->form = new $form();
+        $this->form = $form;
     }
 
     /**
