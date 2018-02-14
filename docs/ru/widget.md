@@ -62,8 +62,21 @@ class MySuperWidget extends Widget {
 @widget('NameForMySuperWidget')
 ```
 
+## Переменные
 
-
+Если необходимо передать переменную из шаблона в виджет, тогда при вызове виджета необходимо использовать дополнительный параметр, который может быть переменной или массивом.
+```php
+@widget('NameForMySuperWidget', $arguments)
+```
+и обрабатывать его в методе `"handler"` класса виджета.
+```php
+public function handler($arguments = null){
+  dump($arguments);
+  return view('mysuperwidget',[
+            'arguments'  => $arguments,
+         ]);
+}
+```
 
 ## AJAX Widget
 
