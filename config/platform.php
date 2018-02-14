@@ -65,7 +65,7 @@ return [
     'auth' => [
         'display' => true,
         'image'   => '/orchid/img/background.jpg',
-        //'slogan'  => '',
+        'slogan'  => 'dashboard::auth/account.slogan',
     ],
 
     /*

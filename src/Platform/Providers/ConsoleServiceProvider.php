@@ -5,6 +5,16 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Console\Commands\CreateAdminCommand;
+use Orchid\Platform\Console\Commands\MakeChart;
+use Orchid\Platform\Console\Commands\MakeFilter;
+use Orchid\Platform\Console\Commands\MakeManyBehavior;
+use Orchid\Platform\Console\Commands\MakeRows;
+use Orchid\Platform\Console\Commands\MakeScreen;
+use Orchid\Platform\Console\Commands\MakeSingleBehavior;
+use Orchid\Platform\Console\Commands\MakeTable;
+use Orchid\Platform\Console\Commands\MakeWidget;
+use Orchid\Platform\Console\Commands\PublicLinkCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -16,28 +26,21 @@ class ConsoleServiceProvider extends ServiceProvider
     protected $defer = false;
 
     /**
-     * Parent command namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'Orchid\\Platform\\Console\\';
-
-    /**
      * The available command shortname.
      *
      * @var array
      */
     protected $commands = [
-        'Commands\\CreateAdminCommand',
-        'Commands\\MakeManyBehavior',
-        'Commands\\MakeSingleBehavior',
-        'Commands\\MakeFilter',
-        'Commands\\PublicLinkCommand',
-        'Commands\\MakeWidget',
-        'Commands\\MakeRows',
-        'Commands\\MakeScreen',
-        'Commands\\MakeTable',
-        'Commands\\MakeChart',
+        CreateAdminCommand::class,
+        MakeManyBehavior::class,
+        MakeSingleBehavior::class,
+        MakeFilter::class,
+        PublicLinkCommand::class,
+        MakeWidget::class,
+        MakeRows::class,
+        MakeScreen::class,
+        MakeTable::class,
+        MakeChart::class,
     ];
 
     /**
@@ -46,19 +49,7 @@ class ConsoleServiceProvider extends ServiceProvider
     public function register()
     {
         foreach ($this->commands as $command) {
-            $this->commands($this->namespace.$command);
+            $this->commands($command);
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function provides() : array
-    {
-        foreach ($this->commands as $command) {
-            $provides[] = $this->namespace.$command;
-        }
-
-        return $provides ?? [];
     }
 }

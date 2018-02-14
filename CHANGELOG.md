@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Base64 URL Safe
 - Font Awesome replaced by ORCHID icons
+- config "slog" is default
 
 ### Removed
 - Icon for group
