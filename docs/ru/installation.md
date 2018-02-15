@@ -53,9 +53,10 @@ php artisan migrate
 ```php
 php artisan storage:link
 php artisan orchid:link
-
 ```
 
+> **Примечание.** Некоторые платформы (vagrant) не могут создавать символичекие ссылки с помощью этих команд. И для разработки может потребоваться ручное выполнение, например,   
+`cp -rf vendor/orchid/platform/public public/orchid` и `mkdir -p public/storage/public`
 
 ## Модель пользователя
 
