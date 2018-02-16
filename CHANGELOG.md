@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Link to attachment [525](https://github.com/orchidsoftware/platform/issues/525)
 
 ### Fixed
-- Base64 URL Safe  [525](https://github.com/tabuna/tutorial_create_profile_for_orchid/issues/1)
-- Double file extension  [525](https://github.com/orchidsoftware/platform/issues/526)
+- Base64 URL Safe  [1](https://github.com/tabuna/tutorial_create_profile_for_orchid/issues/1)
+- Double file extension  [526](https://github.com/orchidsoftware/platform/issues/526)
 
 ### Changed
 - Font Awesome replaced by ORCHID icons
