@@ -40,16 +40,16 @@ change the work of some functions.
 
 ## PHP
 
-ORCHID requires a minimum of PHP `7.0` to run and run. You also need extensions
+ORCHID requires a minimum of PHP `7.1.3` to run and run. You also need extensions
 
-- PHP OpenSSL extension
-- PHP PDO extension
-- PHP extension Mbstring
-- PHP Tokenizer extension
-- PHP XML Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
 - PHP GD extension
-- PHP JSON extension
-
 
 ## Web server
 
