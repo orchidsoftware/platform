@@ -37,7 +37,7 @@ Make sure your server meets the following requirements.
 
 - Apache 2.2+ or nginx
 - MySQL Server 5.7.8+ , Mariadb 10.3.2+ or PostgreSQL
-- PHP Version 7.0+
+- PHP Version 7.1.3+
 
 
 ## Installation
