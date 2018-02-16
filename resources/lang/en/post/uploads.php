@@ -15,6 +15,7 @@ return [
         'name'        => 'Display Name',
         'alt'         => 'Alternative Text',
         'description' => 'Description',
+        'link'        => 'Link',
     ],
 
 ];

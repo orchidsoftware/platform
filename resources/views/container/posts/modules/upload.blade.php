@@ -55,7 +55,12 @@
                                               rows="3"></textarea>
                                 </div>
 
+
                                 <p class="text-right">
+                                    <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i class="icon-link"></i>
+                                        {{trans('dashboard::post/uploads.information.link')}}
+                                    </a>
+
                                     <button type="button" v-on:click="save"
                                             class="btn btn-default">{{trans('dashboard::common.Apply')}}</button>
                                 </p>

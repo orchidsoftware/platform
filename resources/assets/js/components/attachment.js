@@ -13,6 +13,8 @@ document.addEventListener('turbolinks:load', function() {
       loadInfo: function(data) {
         let name = data.name + data.id;
 
+        data.url = '/storage/' + data.path + data.name + '.' + data.extension;
+
         if (!this.attachment.hasOwnProperty(name)) {
           this.attachment[name] = data;
         }

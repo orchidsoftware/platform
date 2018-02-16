@@ -6,8 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.1] - 2018-02-16
+
+### Added
+- Link to attachment [525](https://github.com/orchidsoftware/platform/issues/525)
+
+### Fixed
+- Base64 URL Safe  [525](https://github.com/tabuna/tutorial_create_profile_for_orchid/issues/1)
+- Double file extension  [525](https://github.com/orchidsoftware/platform/issues/526)
+
 ### Changed
-- Base64 URL Safe
 - Font Awesome replaced by ORCHID icons
 - config "slog" is default
 
