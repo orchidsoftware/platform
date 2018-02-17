@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Menu validation [537](https://github.com/orchidsoftware/platform/issues/537)
+
 ## [2.2.1] - 2018-02-16
 
 ### Added

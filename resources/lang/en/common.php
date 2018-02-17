@@ -42,4 +42,9 @@ return [
             'new_version' => 'A new stable version of ORCHID is available. Please update to the latest version.',
         ],
     ],
+
+    'validation' => [
+        'required' => 'Please fill in the field.'
+    ]
+
 ];

@@ -43,26 +43,32 @@
 
        <div class="wrapper-md">
 
-
                 <div class="form">
                     <div class="form-group">
-                        <label>{{trans('dashboard::systems/menu.form.title')}}</label>
+                        <label>{{trans('dashboard::systems/menu.form.title')}} <span class="text-danger">*</span></label>
                         <input type="text"
                                class="form-control"
                                v-model="label"
+                               required
                                placeholder="{{trans('dashboard::systems/menu.form.title_description')}}">
+
+                        <small class="help-block text-danger" v-if="errors.label">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
-                        <label>{{trans('dashboard::systems/menu.form.alt')}}</label>
+                        <label>{{trans('dashboard::systems/menu.form.alt')}} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" v-model="title"
+                               required
                                placeholder="{{trans('dashboard::systems/menu.form.alt_description')}}">
+                        <small class="help-block text-danger" v-if="errors.title">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
-                        <label>{{trans('dashboard::systems/menu.form.url')}}</label>
+                        <label>{{trans('dashboard::systems/menu.form.url')}} <span class="text-danger">*</span></label>
                         <input type="text"
                                class="form-control"
                                v-model="slug"
+                               required
                                placeholder="{{trans('dashboard::systems/menu.form.url_description')}}">
+                        <small class="help-block text-danger" v-if="errors.slug">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
 
                     <div class="form-group">
@@ -130,7 +136,6 @@
 
 
                     <div class="btn-group btn-group-sm  btn-group-justified" role="group" aria-label="...">
-
 
                         <div class="btn-group" role="group" v-if="exist()">
                             <button type="button" v-on:click="remove()"

@@ -15,6 +15,11 @@ document.addEventListener('turbolinks:load', function() {
       robot: 'follow',
       style: '',
       target: '_self',
+      errors: {
+          title: false,
+          label: false,
+          slug: false,
+      },
     },
     methods: {
       load: function(object) {
@@ -27,7 +32,34 @@ document.addEventListener('turbolinks:load', function() {
         this.target = object.target;
         this.title = object.title;
       },
+      checkForm: function() {
+        let valid = false;
+        this.errors = {
+          title: false,
+          label: false,
+          slug: false,
+        };
+
+        if(!this.title){
+            this.errors.title = valid = true;
+        }
+
+        if(!this.label){
+            this.errors.label = valid = true;
+        }
+
+        if(!this.slug){
+            this.errors.slug = valid = true;
+        }
+
+        return !valid;
+      },
       add: function() {
+
+        if(!this.checkForm()){
+          return;
+        }
+
         $('.dd > .dd-list').append(
           "<li class='dd-item dd3-item' data-id='" +
             this.count +
@@ -53,16 +85,6 @@ document.addEventListener('turbolinks:load', function() {
         this.clear();
         this.send();
       },
-      addStatic: function(name, slug) {
-        if (slug.charAt(0) !== '/') {
-          slug = '/' + slug;
-        }
-
-        this.label = name;
-        this.slug = slug;
-
-        $('#ahref-custom-pages').tab('show');
-      },
       edit: function(element) {
         const data = $(element)
           .parent()
@@ -73,6 +95,11 @@ document.addEventListener('turbolinks:load', function() {
         this.load(data);
       },
       save: function() {
+
+        if(!this.checkForm()) {
+            return;
+        }
+
         $('li[data-id=' + this.id + ']').data({
           label: this.label,
           title: this.title,
@@ -110,8 +137,6 @@ document.addEventListener('turbolinks:load', function() {
         this.id = '';
       },
       send: function() {
-        //Отправка данных
-
         const name = $('.dd').attr('data-name');
 
         const data = {
