@@ -16,9 +16,9 @@ document.addEventListener('turbolinks:load', function() {
       style: '',
       target: '_self',
       errors: {
-          title: false,
-          label: false,
-          slug: false,
+        title: false,
+        label: false,
+        slug: false,
       },
     },
     methods: {
@@ -40,23 +40,22 @@ document.addEventListener('turbolinks:load', function() {
           slug: false,
         };
 
-        if(!this.title){
-            this.errors.title = valid = true;
+        if (!this.title) {
+          this.errors.title = valid = true;
         }
 
-        if(!this.label){
-            this.errors.label = valid = true;
+        if (!this.label) {
+          this.errors.label = valid = true;
         }
 
-        if(!this.slug){
-            this.errors.slug = valid = true;
+        if (!this.slug) {
+          this.errors.slug = valid = true;
         }
 
         return !valid;
       },
       add: function() {
-
-        if(!this.checkForm()){
+        if (!this.checkForm()) {
           return;
         }
 
@@ -95,9 +94,8 @@ document.addEventListener('turbolinks:load', function() {
         this.load(data);
       },
       save: function() {
-
-        if(!this.checkForm()) {
-            return;
+        if (!this.checkForm()) {
+          return;
         }
 
         $('li[data-id=' + this.id + ']').data({

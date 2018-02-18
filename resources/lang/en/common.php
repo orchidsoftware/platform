@@ -47,7 +47,7 @@ return [
     ],
 
     'validation' => [
-        'required' => 'Please fill in the field.'
-    ]
+        'required' => 'Please fill in the field.',
+    ],
 
 ];
