@@ -5,6 +5,9 @@ return [
     'title'       => 'Панель управления',
     'description' => 'Добро пожаловать в ORCHID',
 
+    'notifications' => 'Уведомления',
+    'no_notifications' => 'Нет уведомлений',
+
     'Create'       => 'Создать',
     'Delete'       => 'Удалить',
     'Find'         => 'Найти',
@@ -47,5 +50,7 @@ return [
     'validation' => [
         'required' => 'Пожалуйста заполните поле.'
     ]
+
+
 
 ];

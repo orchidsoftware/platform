@@ -11,7 +11,7 @@
 @include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 @push('scripts')
     <script>
-    $(function () {
+    document.addEventListener('turbolinks:load', function() {
         var editor{{$lang}}{{$slug}} = ace.edit('ace-code-block-{{$id}}');
         editor{{$lang}}{{$slug}}.getSession().setMode('ace/mode/javascript');
         editor{{$lang}}{{$slug}}.setTheme('ace/theme/monokai');

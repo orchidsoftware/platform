@@ -2,13 +2,13 @@
     $notifications = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
 @endphp
 
-<div class="tab-pane fade in nav show"
+<div class="w-full tab-pane fade in nav show"
   role="tabpanel"
   id="menu-notifications"
   aria-labelledby="notise-tab">
 
 @if(count($notifications) > 0)
-     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Notications
+     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('dashboard::common.notifications')}}
         <form action="{{route('dashboard.notification.read')}}"
               method="post"
               id="clear-notications-form"
@@ -40,7 +40,7 @@
 @empty
 
 <div class="v-center" style="height: 80vh;">
-    <h5 class="text-center w-full text-muted font-thin">No notifications</h5>
+    <h5 class="text-center w-full text-muted font-thin">{{trans('dashboard::common.no_notifications')}}</h5>
 </div>
 
 @endforelse

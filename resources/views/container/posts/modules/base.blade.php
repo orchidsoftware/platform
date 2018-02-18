@@ -117,7 +117,7 @@
 
 
 <script>
-$(function () {
+document.addEventListener('turbolinks:load', function() {
     $('.select2-tags').select2({
         templateResult: function formatState(state) {
             if (!state.id || !state.count) {

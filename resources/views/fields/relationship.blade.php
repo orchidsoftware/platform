@@ -11,7 +11,7 @@
 
 @push('scripts')
     <script>
-$(function () {
+document.addEventListener('turbolinks:load', function() {
     $('#{{$id}}').select2({
         theme: "bootstrap",
         ajax: {

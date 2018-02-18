@@ -16,8 +16,8 @@
 @include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 
 @push('scripts')
-    <script>
-$(function () {
+<script>
+document.addEventListener('turbolinks:load', function() {
     dashboard.fields.simplemde.init("{{$id}}","{{$placeholder or ''}}");
 });
 </script>

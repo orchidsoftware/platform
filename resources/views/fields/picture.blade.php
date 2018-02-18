@@ -54,7 +54,7 @@
 
 @push('scripts')
     <script>
-$(function () {
+document.addEventListener('turbolinks:load', function() {
 
     var $cropPanel = $('#picture-crop-modal-{{$lang}}-{{$slug}} .upload-panel');
     var $formGroup;

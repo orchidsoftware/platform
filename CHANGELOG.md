@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.2] - 2018-02-18
 ### Added
 - Menu validation [537](https://github.com/orchidsoftware/platform/issues/537)
+- Translation of notifications
+
+### Changed
+- Jquery load replace turbolink
 
 ## [2.2.1] - 2018-02-16
 

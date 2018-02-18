@@ -18,7 +18,7 @@
 
 @push('scripts')
     <script>
-$(function () {
+document.addEventListener('turbolinks:load', function() {
     dashboard.fields.tinymce.init("{{$id}}","{{$theme or 'inlite'}}");
 });
 </script>

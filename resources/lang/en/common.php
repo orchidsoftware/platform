@@ -5,6 +5,9 @@ return [
     'title'       => 'Dashboard Panel',
     'description' => 'Welcome to ORCHID',
 
+    'notifications' => 'Notifications',
+    'no_notifications' => 'No notifications',
+
     'Create'       => 'Create',
     'Delete'       => 'Delete',
     'Find'         => 'Find',

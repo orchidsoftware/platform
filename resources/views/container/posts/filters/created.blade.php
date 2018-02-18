@@ -25,7 +25,7 @@
 </div>
 
 <script type="text/javascript">
-    $(function () {
+    document.addEventListener('turbolinks:load', function() {
         $("#start_created_at").on("dp.change", function (e) {
             $('#end_created_at').data("DateTimePicker").minDate(e.date);
         });

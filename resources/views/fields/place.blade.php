@@ -109,7 +109,7 @@ window.loadGoogleMaps = {
     "status": false
 };
 
-$(function () {
+document.addEventListener('turbolinks:load', function() {
     if(!window.loadGoogleMaps.status) {
         window.loadGoogleMaps.load();
     }

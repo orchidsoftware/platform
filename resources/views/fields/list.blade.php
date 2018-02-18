@@ -66,7 +66,7 @@
         })
     }
 
-    $(function () {
+    document.addEventListener('turbolinks:load', function() {
         $("#sortable-{{$slug}}").sortable({
             placeholder: "ui-sortable-placeholder",
             axis: "y",
