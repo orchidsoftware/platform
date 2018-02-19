@@ -55,7 +55,7 @@
 
 
 
-        <button class="btn btn-default btn-block m-t-md" type="submit">
+        <button class="btn btn-default btn-block m-t-md" type="submit" dusk="login-button">
             <i class="icon-login text-xs m-r-xs"></i> {{trans('dashboard::auth/account.login')}}
         </button>
 

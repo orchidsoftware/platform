@@ -113,7 +113,8 @@
                     <ul class="nav nav-footer-fix">
                         <li>
                             <a href="{{ route('dashboard.logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                               dusk="logout-button">
                               <i class="icon-logout" aria-hidden="true"></i>
                                 <span>{{trans('dashboard::auth/account.sign_out')}}</span>
                             </a>

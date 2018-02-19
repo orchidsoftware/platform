@@ -2,9 +2,9 @@
 
 namespace Orchid\Platform\Tests;
 
-use Watson\Active\Facades\Active;
-use Orchid\Platform\Facades\Alert;
 use Illuminate\Support\Facades\Schema;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
@@ -38,6 +38,13 @@ trait Environment
         $this->artisan('db:seed', [
             '--class' => 'OrchidDatabaseSeeder',
         ]);
+
+        $this->artisan('make:admin', [
+            'name'     => 'admin',
+            'email'    => 'admin@admin.com',
+            'password' => 'password'
+        ]);
+
     }
 
     /**
@@ -45,6 +52,10 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.debug',true);
+        $app['config']->set('auth.providers.users.model',User::class);
+
+
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
             'driver'   => 'pgsql',
@@ -83,7 +94,6 @@ trait Environment
         return [
             'Dashboard' => Dashboard::class,
             'Alert'     => Alert::class,
-            'Active'    => Active::class,
         ];
     }
 }
