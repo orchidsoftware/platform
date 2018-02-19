@@ -975,7 +975,9 @@ class BrowserFilter extends Filter
      */
     public function display() : Field
     {
-        $browsers = History::select('browser')->groupBy('browser')->pluck('browser','browser');
+        $browsers = History::select('browser')
+                            ->groupBy('browser')
+                            ->pluck('browser','browser');
 
         return Field::tag('select')
             ->options($browsers)
@@ -1033,7 +1035,9 @@ class PlatformFilter extends Filter
      */
     public function display() : Field
     {
-        $platform = History::select('platform')->groupBy('platform')->pluck('platform','platform');
+        $platform = History::select('platform')
+                            ->groupBy('platform')
+                            ->pluck('platform','platform');
 
         return Field::tag('select')
             ->options($platform)
