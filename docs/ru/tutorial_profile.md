@@ -239,7 +239,7 @@ class User extends BaseUser
 composer require jenssegers/agent
 ```
 
-Для того, чтобы логгировать авторизацию создадим слушатель `app/Listeners/UserEventSubscriber.php`:
+Для того, чтобы логировать авторизацию создадим слушатель `app/Listeners/UserEventSubscriber.php`:
 
 ```php
 namespace App\Listeners;
@@ -355,13 +355,53 @@ Route::screen('/dashboard/profile', 'Screens\ProfileScreen','dashboard.screens.p
 
 ## Регистрация экрана в меню
 
-Для отображения нашего экрана в меню элементов необходимо добавить регистрации в `app/Providers/AppServiceProvider.php`
+Для отображения нашего экрана в меню элементов необходимо добавить регистрации `View::composer` в `app/Providers/AppServiceProvider.php`
+
+Создадим класс регистрации `app/Http/Composers/MenuComposer.php`:
 
 ```php
+namespace App\Http\Composer;
+
+use Orchid\Platform\Kernel\Dashboard;
+
+class MenuComposer
+{
+    /**
+     * MenuComposer constructor.
+     *
+     * @param Dashboard $dashboard
+     */
+    public function __construct(Dashboard $dashboard)
+    {
+        $this->dashboard = $dashboard;
+    }
+
+    /**
+     *
+     */
+    public function compose()
+    {
+        $this->dashboard->menu->add('Main', [
+            'slug'   => 'profile',
+            'icon'   => 'icon-user',
+            'route'  => route('dashboard.screens.profile'),
+            'label'  => 'Профиль',
+            'childs' => false,
+            'main'   => true,
+            'sort'   => 6000,
+        ]);
+    }
+}
+```
+
+И зарегистрируем его в нашем сервис провайдере `app/Providers/AppServiceProvider.php`:
+```php
+
 namespace App\Providers;
 
+use App\Http\Composer\MenuComposer;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -370,17 +410,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Dashboard $dashboard)
+    public function boot()
     {
-       $dashboard->menu->add('Main', [
-           'slug'   => 'profile',
-           'icon'   => 'icon-user',
-           'route'  => route('dashboard.screens.profile'),
-           'label'  => 'Профиль',
-           'childs' => false,
-           'main'   => true,
-           'sort'   => 10,
-       ]);
+        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
     }
 
     /**
@@ -394,9 +426,6 @@ class AppServiceProvider extends ServiceProvider
     }
 }
 ```
-
-
-> *Примечание.* Наиболее эффективный вариант регистрации элементов меню использовать View::composer
 
 
 Теперь наш экран отображается в меню, перейдём к его наполнению.
@@ -872,7 +901,7 @@ class HistoryLayout extends Table
         $profile = Auth::user();
         $history = History::where('user_id', $profile->id)->paginate();
         
-        return compact('profile', 'history', 'statistics');
+        return compact('profile', 'history');
     }
 ```
 
