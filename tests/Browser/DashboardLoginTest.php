@@ -14,7 +14,7 @@ class DashboardLoginTest extends TestBrowserCase
      */
     public function test_is_login()
     {
-        $user = User::where('email','admin@admin.com')->first();
+        $user = User::where('email', 'admin@admin.com')->first();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser
@@ -34,7 +34,7 @@ class DashboardLoginTest extends TestBrowserCase
      */
     public function test_is_logout()
     {
-        $user = User::where('email','admin@admin.com')->first();
+        $user = User::where('email', 'admin@admin.com')->first();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser
