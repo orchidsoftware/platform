@@ -42,7 +42,7 @@ Auth: user()->hasAccess ($string);
 //Kunin lahat ng pagganap ng tagagamit
 Auth::user()->getRoles ();
 
-//Check if the user has a role
+//Tingnan kung ang tagagamit ay may pagganap
 Auth::user()->inRole ($role)
 
 //Magdagdag ng isang pagganap sa tagagamit
@@ -54,7 +54,7 @@ Auth::user()->addRole ($role)
 Ang mga pagganap ay mayroong mga hakbang para:
 
 ```php
-//Returns all users with this role
+//Ibinabalik ang lahat ng mga tagagamit na may ganitong pagganap
 $role->getUsers ();
 ```
 
