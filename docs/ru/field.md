@@ -75,7 +75,7 @@ return [
                   ->required()
                   ->title('Name Articles')
                   ->help('Article title')
-                  ->theme('inline'),
+                  ->theme('inlite'),
 ];
 ``` 
 Для отображения в редакторе верхней панели и меню, в котором доступны функции полноэкранного режима и просмотр html кода, нужно установить атрибут `theme('modern')`.
@@ -106,7 +106,7 @@ return [
     'picture' => Field::tag('picture')
                     ->name('picture')
                     ->width(500)
-                    ->height(300),,
+                    ->height(300),
 ];
 ```  
            
@@ -140,7 +140,7 @@ return [
                    ->value(1)
                    ->title('Free')
                    ->placeholder('Event for free')
-                   ->help('Event for free'),,
+                   ->help('Event for free'),
 ];
 ```           
 
