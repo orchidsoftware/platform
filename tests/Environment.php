@@ -7,6 +7,8 @@ use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Watson\Active\Active;
+use Watson\Active\ActiveServiceProvider;
 
 trait Environment
 {
@@ -80,6 +82,7 @@ trait Environment
     protected function getPackageProviders($app)
     {
         return [
+            ActiveServiceProvider::class,
             FoundationServiceProvider::class,
         ];
     }
@@ -92,8 +95,9 @@ trait Environment
     protected function getPackageAliases($app)
     {
         return [
-            'Dashboard' => Dashboard::class,
             'Alert'     => Alert::class,
+            'Active'    => Active::class,
+            'Dashboard' => Dashboard::class,
         ];
     }
 }

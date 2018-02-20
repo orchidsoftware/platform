@@ -24,7 +24,7 @@
     "laravel/scout": "^4.0",
     "ralouphie/mimey": "^1.0",
     "spomky-labs/base64url": "^1.0",
-    "tabuna/active": "^2.0"
+    "watson/active": "^2.0"
   },
   "require-dev": {
     "mockery/mockery": "~1.0",
