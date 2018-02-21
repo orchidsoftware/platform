@@ -2,16 +2,20 @@
 @section('title',$name)
 @section('description',$description)
 @section('navbar')
-    <div class="text-right">
-        <div class="btn-group" role="group" aria-label="...">
+
+    <ul class="nav justify-content-end  v-center"  role="tablist">
+        <li class="nav-item">
             <button type="submit"
                     onclick="window.dashboard.validateForm('form-group','{{trans('dashboard::common.alert.validate')}}')"
                     form="form-group"
                     class="btn btn-link btn-save"><i class="sli icon-check fa-2x"></i></button>
+        </li>
+        <li class="nav-item">
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
                         class="sli icon-trash fa-2x"></i></button>
-        </div>
-    </div>
+        </li>
+
+    </ul>
 @stop
 @section('content')
 

@@ -5,12 +5,15 @@
 
 
 @section('navbar')
-    <div class="text-right">
-        <div class="btn-group" role="group">
+
+    <ul class="nav justify-content-end  v-center"  role="tablist">
+
+        <li class="nav-item">
             <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link"><i
                         class="sli icon-plus fa-2x"></i></a>
-        </div>
-    </div>
+        </li>
+
+    </ul>
 @stop
 
 

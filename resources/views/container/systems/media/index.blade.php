@@ -144,13 +144,14 @@
                                 </video>
 
 
-                                <audio v-if="selected_file.type.indexOf('audio')  !== -1"
-                                       controls style="width:100%; margin-top:5px;">
-                                    <source v-bind:src="selected_file.path" type="audio/ogg">
-                                    <source v-bind:src="selected_file.path" type="audio/mpeg">
-
-                                    {{trans('dashboard::systems/media.audio_support')}}
-                                </audio>
+                                <div v-if="selected_file.type.indexOf('audio')  !== -1">
+                                    <i class="icon-music-tone"></i>
+                                    <audio controls class="w-full">
+                                        <source v-bind:src="selected_file.path" type="audio/ogg">
+                                        <source v-bind:src="selected_file.path" type="audio/mpeg">
+                                        {{trans('dashboard::systems/media.audio_support')}}
+                                    </audio>
+                                </div>
 
 
                                 <i v-if="selected_file.type == 'folder'" class="icon-folder-alt"></i>

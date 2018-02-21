@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Order of items in the media, first folders then files
+- Font Awesome replaced by ORCHID icons
+
+### Fixed
+- Flying icon when dragging in the menu
+
 ## [2.2.2] - 2018-02-18
 ### Added
 - Menu validation [537](https://github.com/orchidsoftware/platform/issues/537)

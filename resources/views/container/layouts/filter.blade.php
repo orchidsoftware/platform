@@ -9,7 +9,7 @@
                     <button type="submit"
                             id="button-filter"
                             form="filters"
-                            class="btn btn-default"><i class="fa fa-filter"></i>
+                            class="btn btn-default"><i class="icon-filter"></i>
                     </button>
                 </div>
             </div>

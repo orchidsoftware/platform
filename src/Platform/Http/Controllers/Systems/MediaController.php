@@ -80,6 +80,16 @@ class MediaController extends Controller
         $storageFiles = Storage::disk($this->filesystem)->files($dir);
         $storageFolders = Storage::disk($this->filesystem)->directories($dir);
 
+        foreach ($storageFolders as $folder) {
+            $files[] = [
+                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
+                'type'          => 'folder',
+                'path'          => Storage::disk($this->filesystem)->url($folder),
+                'items'         => '',
+                'last_modified' => '',
+            ];
+        }
+
         foreach ($storageFiles as $file) {
             $mimetype = Storage::disk($this->filesystem)->mimeType($file);
             if ($mime && strpos($mimetype, $mime) === false) {
@@ -92,16 +102,6 @@ class MediaController extends Controller
                 'path'          => Storage::disk($this->filesystem)->url($file),
                 'size'          => Storage::disk($this->filesystem)->size($file),
                 'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
-            ];
-        }
-
-        foreach ($storageFolders as $folder) {
-            $files[] = [
-                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
-                'type'          => 'folder',
-                'path'          => Storage::disk($this->filesystem)->url($folder),
-                'items'         => '',
-                'last_modified' => '',
             ];
         }
 
