@@ -120,7 +120,7 @@ $this->domain(config('platform.domain'))->group(function () {
             'as'   => 'dashboard.systems.files.destroy',
             'uses' => 'AttachmentController@getFilesPost',
         ]);
-        
+
         $router->post('files/get', [
             'as'   => 'dashboard.systems.files.destroy',
             'uses' => 'AttachmentController@getFilesByIds',
