@@ -86,6 +86,16 @@ class AttachmentController extends Controller
     }
 
     /**
+     * @param Request $request
+     */
+    public function getFilesByIds(Request $request)
+    {
+        $files = Attachment::whereIn('id', $request->get('files'))->oldest('sort')->get();
+
+        return response()->json($files);
+    }
+
+    /**
      * @param         $id
      * @param Request $request
      *

@@ -121,6 +121,11 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'AttachmentController@getFilesPost',
         ]);
 
+        $router->post('files/get', [
+            'as'   => 'dashboard.systems.files.destroy',
+            'uses' => 'AttachmentController@getFilesByIds',
+        ]);
+
         $router->put('files/post/{id}', [
             'as'   => 'dashboard.systems.files.update',
             'uses' => 'AttachmentController@update',
