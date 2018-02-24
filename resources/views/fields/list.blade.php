@@ -21,7 +21,7 @@
                     <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
                     <input type="text" class="form-control col-10"
                            @if(isset($prefix))
-                           name="{{$prefix}}[{{$lang}}]{{$name}}[0]"
+                           name="{{$prefix}}[{{$lang}}]{{$name}}[]"
                            @else
                            name="{{$lang}}{{$name}}[{{$key}}]"
                            @endif
