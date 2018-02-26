@@ -128,7 +128,7 @@ Generic entries created with `behavior` system may be localized, it means you ma
 
 In field configuration field aliases are used to abstract away from elements used, for example, `wysiwyg` is an alias for TinyMCEField redactor. If you came to decide that the functionality of redactor you use is not enough you will only have to change it's alias to other's instead of changing it's full name in every file of your project.
 
-[More about fields](/ru/docs/field/)
+[More about fields](/en/docs/field/)
 
 
 ## Single behaviours
@@ -181,7 +181,7 @@ Menu configuration only requires key and value that will be shown to user.
 By default there are three types of menus: upper, side and lower. 
 You may add or delete them if you need.
 
-You may see an example of menu usage [there](/ru/docs/tutorial_blog/#vidzhet).
+You may see an example of menu usage [there](/en/docs/tutorial_blog/#vidzhet).
 
 ## Images
 

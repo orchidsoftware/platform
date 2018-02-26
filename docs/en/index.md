@@ -27,7 +27,7 @@ It is shipped as a package for the Laravel and can be easily integrated useing C
 
 ## How to read the documentation
 
-If you are a newcomer I recommend you to read the Laravel documentation from start to end, for example at [laravel.su](http://laravel.su/docs).
+If you are a newcomer I recommend you to read the Laravel documentation from start to end, for example at [laravel.com](https://laravel.com).
 ORCHID does not explain the framework capabilities. if you are already familiar with it you may proceed directly to reading further sections.
 
 This documentation begins with an explanation of concepot and architecture of the ORCHID before it dives into particular themes.
@@ -39,4 +39,4 @@ ORCHID takes upon itself the routine business applications development operation
 Despite it simple appearance it allows you to solve a lot of problems using standard tools also allowing to add your own custom functionality if required.
 
 
-Following the [tutorial](/ru/docs/installation/) you will quickly install it and soon be able to use.
+Following the [tutorial](/en/docs/installation/) you will quickly install it and soon be able to use.
