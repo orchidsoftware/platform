@@ -1,4 +1,4 @@
-# Platfrm panel menu
+# Platform panel menu
 
 Platform panel menu is the dashboard element
 that allows to choose from a list of provided software variants.

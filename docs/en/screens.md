@@ -11,14 +11,14 @@ Screen is the application screen for displaying data. He does not know where the
 Almost all popular add-ins use the construction of CRUD for custom models, this is a good solution, but the application can not consist of basic functions alone. Most likely you will expand and supplement the generated logic. A good example is that the standard operations for creating/reading/editing/deleting are not enough can be the ability to "Send to print." ORCHID allows you to create a CRUD using the "Screens", but this is not their goal.
 
 
-### Information objects and screens
+## Information objects and screens
 
 ORCHID simplifies the development of business applications through the active use of Laravel and screens.
 
 Screens (or forms) are used in the ORCHID to display data. Screens are based on predefined templates. To link the data to the screen, you only need to specify the displayed entities or queries.
 
 
-### Creating
+## Creating
 
 To create a new screen, you need to execute the command:
 
@@ -83,7 +83,7 @@ class Users extends Screen
 
 ```
 
-### Data
+## Data
 
 The data to be displayed on the screen is determined in the `query` method, where samples or information should be generated.
 The transfer is carried out in the form of an array, the keys will be available in the layouts, to manage them.
@@ -104,7 +104,7 @@ The transfer is carried out in the form of an array, the keys will be available 
 ```
 
 
-### Treatment
+## Treatment
 
 The screens provide built-in commands (Screen Command Bar), allowing users to perform various methods.
 For this, the `commandBar` method, in which the required control buttons are described, responds. For example:
@@ -142,7 +142,7 @@ Link::name('Modal windows')
 ```
 
 
-### Layouts
+## Layouts
 
 Layouts are responsible for the appearance of the screen, that is, how and in what form the data will be displayed.
 For more information, see [Layouts](/en/docs/layouts/).
@@ -187,7 +187,7 @@ public function layout() : array
 }
 ```
 
-### Registration in routes
+## Registration in routes
 
 You can register each screen using the `screen` method from Route
 ```php
@@ -195,7 +195,3 @@ Route::screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
 //or
 $route->screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
 ```
-
-
-
-#### The documentation will soon be completed

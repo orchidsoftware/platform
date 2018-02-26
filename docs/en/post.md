@@ -1,4 +1,4 @@
-#Posts
+# Posts
 ----------
 The platform assumes that by default any elements that contain site data are a `Post` model.
 
