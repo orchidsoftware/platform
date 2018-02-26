@@ -1,49 +1,52 @@
-# Behaviors
+# Behaviors 
 ----------
 
-Behavior is the main part of the ORCHID content management system, rather than generating a CRUD for each model
-You can select any object in a separate type, and it's easy to manage it. Behaviors apply only to
-models based on 'Post', since it is the basis for typical data.
+Behavior is the main part of the ORCHID content management system. Rather than generating CRUD for every model, you can select any object under separate type and manage them easily. 
+Behaviors are applicable only to 'Post' based models, as it is base model for typical data.
 
-You need to describe the fields you want to receive and in what form, and its CRUD is built itself.
-You can also specify the validation, or modules (See the section of the form).
+You should describe the fields you want to have and their state, while its CRUD will be assembled automatically.
+Also you can specify a validation or modules. (See Forms section).
 
 ![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
 
-## Creating and registering behaviors
+## Создание и регистрация поведений
 
 
-You can create behaviors using the following commands:
+     */
+    public function grid()
+    {
+        return [];
+Follow this procedure to create behaviors:
+
 
 ```php
-//Create behaviors for one record
-php artisan make: singleBehavior
+//Create behaviors for a single entry
+php artisan make:singleBehavior
 
-//Create behaviors for many records
-php artisan make: manyBehavior
+//Create behaviors for many entries 
+php artisan make:manyBehavior
 ```
 
-Own behavior must be registered in `config/platform.php` in the type section
+Private behavior must be registered at `config/platform.php` in types section:
 
 
 ```php
 //
 'single' => [
-    //App\Core\Behaviors\Single\DemoPage::class,
+    //App\Behaviors\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Core\Behaviors\Many\DemoPost::class,
+    //App\Behaviors\Many\DemoPost::class,
 ],
 ```
 
-> To display the user's behavior, it is necessary to give it
-or group (s) with the necessary rights using the graphical interface
+> To display the behavior of the user, you must grant requisite rights to the user or group (roles) using the visual interface.
 
-The type looks like this:
+The type is as follows:
 
-```php
+ ```php
 namespace DummyNamespace;
 
 use Orchid\Platform\Behaviors\Many;
@@ -51,93 +54,86 @@ use Orchid\Platform\Behaviors\Many;
 class DummyClass extends Many
 {
 
-    / **
-     * @var string
-     * /
-    public $name = '';
+    /**
+     * @var string
+     */
+    public $name = '';
 
-    / **
-     * @var string
-     * /
-    public $slug = '';
+    /**
+     * @var string
+     */
+    public $slug = '';
 
-    / **
-     * @var string
-     * /
-    public $icon = '';
+    /**
+     * @var string
+     */
+    public $icon = '';
 
-    / **
-     * Slug url/news/{name}.
-     * @var string
-     * /
-    public $slugFields = '';
+    /**
+     * Slug url /news/{name}.
+     * @var string
+     */
+    public $slugFields = '';
 
-    / **
-     * Rules Validation.
-     * @return array
-     * /
-    public function rules ()
-    {
-        return [];
-    }
+    /**
+     * Rules Validation.
+     * @return array
+     */
+    public function rules()
+    {
+        return [];
+    }
 
-    / **
-     * @return array
-     * /
-    public function fields ()
-    {
-        return [];
-    }
+    /**
+     * @return array
+     */
+    public function fields()
+    {
+        return [];
+    }
 
-    / **
-     * Grid View for post type.
-     * /
-    public function grid ()
-    {
-        return [];
-    }
+    /**
+     * Grid View for post type.
+     */
+    public function grid()
+    {
+        return [];
+    }
 
-    / **
-     * @return array
-     * /
-    public function modules ()
-    {
-        return [];
-    }
+    /**
+     * @return array
+     */
+    public function modules()
+    {
+        return [];
+    }
 }
 
 ```
 
-You can extend the data type by all available methods,
- To add to it new functionality that matches your application
+You can extend the type of data at every possible way to add a new feature that corresponds to your application.
 
- 
-Modifying the Grid
- 
 
-The data that you want to display in the grid can be changed,
- passing an array with the name and function instead of the value of the key,
-  where the transmitted parameter is the original data slice.
+## Grid modification
 
- ```php
- / **
-  * Grid View for post type.
-  * /
- public function grid ()
- {
-     return [
-         'name' => 'Name',
-         'publish_at' => 'Date of publication',
-         'created_at' => 'Date of creation',
-         'full_name' => => [
-             'name' => 'Full name',
-             'action' => function ($post) {
-                 return $post->getContent ('fist_name')
-                  . ' '.
-                  $post->getContent ('last_name');
-             }
-         ],
-     ];
- }
+
+You can change the data you want to display in grid by passing the array with name and function instead of key value, where the passed index is an initial data segment. 
+
+ ```php
+ /**
+  * Grid View for post type.
+  */
+ public function grid()
+ {
+     return [
+         TD::name('name')->title('Name'),
+         TD::name('publish_at')->title('Date of publication'),
+         TD::name('created_at')->title('Date of creation'),
+         TD::name('full_name')->title('Full name')
+         ->setRender(function($post){
+             return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
+         })
+     ];
+ }
 
 ```

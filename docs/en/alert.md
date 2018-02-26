@@ -1,73 +1,70 @@
 # Notifications
 ----------
 
-Notifications are an easy way to notify the user about the status of your application. For example, they can inform the user about the end of a long process or the arrival of a new message. In this section, we'll show you how to get them to work in your application.
+Notifications is a simple way to inform a user about state of your application. For example, notification  can inform a user of long process finishing or new message coming. In this section we will show you how to make it work in your application.
 
-## One-time messages:
+## Flash notification:
 
-Flash-notification is a one-time message that will be deleted at the next access.
-Notifications are intended to inform about a directly occurred event, for example, a message about saving data.
+Flash notification is a disposable notification that will be deleted at the next appeal. Notifications are to inform about directly happened event, for example message about data saving.
 
-ORCHID has a convenient call and displays notifications on one-time flash data.
+ORCHID has handy call and display of notifications over the disposable flash-data.
 
 
 ```php
-public function store ()
+public function store()
 {
-    Alert::message ('Welcome Aboard!');
-    return Redirect::home ();
+    Alert::message('Welcome Aboard!');
+    return Redirect::home();
 }
 ```
 
-You can also do:
+You may also do like this:
 
 ```php
-Alert::info ('Message')
-Alert::success ('Message')
-Alert::error ('Message')
-Alert::warning ('Message')
+Alert::info('Message')
+Alert::success('Message')
+Alert::error('Message')
+Alert::warning('Message')
 ```
 
-or use a shorter record:
+or use shorter notation:
 
 ```php
-alert ('Message');
+alert('Message');
 ```
 
 
-When used, several keys will be installed in the session:
-- 'flash_notification.message' - Display Image
-- 'flash_notification.level' - A string representing the type of notification
+After that there will be several keys installed in a session:
+- 'flash_notification.message' - Message to be displayed
+- 'flash_notification.level' - String that represents type of notification
 
-To display in the required location:
+For displaying at a particular place the following may be used:
 ```html
-<div class = "container">
-    @include ('dashboard::partials.alert')
-    <p> Welcome to my website ... </ p>
-</ div>
+<div class="container">
+    @include('dashboard::partials.alert')
+    <p>Welcome to my website...</p>
+</div>
 ```
 
-## Notifications in the administration panel
+## Dashboard notifications
 
-The notification in the administration panel differs from flash messages, in that they are not deleted after viewing and
-can be added to any users even when they are not on the network. This is another great way to inform,
-for example, for the "task manager" application, notify the employee of a new task.
+Dashboard notifications differ from flash-messages in the fact that they don't disappear after display and can be added to any users even if they are off-line. This is another good way to inform, for example, to notify an associate about new task at the "task manager" application.
 
-To create a notification, you need:
+You need to do the following to create a notification:
 ```php
-$user = User::find (1);
+$user = User::find(1);
 
-$user->notify (new\Orchid\Platform\Notifications\DashboardNotification ([
-    'title' => 'Hello Word',
-    'message' => 'New post!',
-    'action' => 'https://google.com',
-    'type' => 'error',
+$user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
+    'title' => 'Hello Word',
+    'message' => 'New post!',
+    'action' => 'https://google.com',
+    'type' => 'error',
 ]));
 ```
 
-Supported types:
+Allowed types:
 
-- info (Default)
+- info (By default)
 - success
 - warning
 - error

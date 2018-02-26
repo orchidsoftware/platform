@@ -1,33 +1,33 @@
 # Participation in development
 ----------
 
-I encourage everyone to contribute to the ORCHID project. You can find the latest version of the code on GitHub at <https://github.com/orchidsoftware/platform>.
+I appeal to everyone to make a contribution to the ORCHID project. You can find the latest version of the source code at GitHub by <https://github.com/orchidsoftware/platform>.
 
-## Problem Tracking
+## Problem tracking
 
-You can find unresolved issues on [GitHub Issues Tracker](https://github.com/orchidsoftware/platform/issues).
- If you intend to work on a specific issue, leave a comment on the relevant task to inform other project participants.
- 
-
-For active development, it is highly recommended to use only requests to add `pull requests`, and not just bug reports.
-
-If you created an error report, it should contain the title and a clear description of the problem. You should also include as much information and code as possible to help you reproduce the problem. The main purpose of the error report is to simplify localization, reproduce the problem and find its solution.
-
-Also, remember that error reports are created in the hope that other users with the same problems will be able to participate in their decision along with you. But do not expect others to drop everything and start fixing your problem. The error report is designed to help you and others start working together to solve the problem.
+You can find outstanding issues on [GitHub Issues Tracker](https://github.com/orchidsoftware/platform/issues).
+If you are going to work on a specific question, please leave a comment on the appropriate task to inform the other project participants.
 
 
-## Participation in the main discussions
+For active development it is strongly recommended to use pull requests only, instead of bug reports. 
 
-You can suggest new features and enhancements to existing ORCHID behavior. If you are offering a new feature, please be prepared to perform at least the code samples that will be needed to call/use this function.
+A bug report must contain title and a clear account of a problem. You must also include the information as detailed as possible and the code sample that would help in problem reproducing. The main objective of a bug report is to simplify tracing and reproducing of the problem and search for its solution.
 
-Informal discussion about errors/problems and new opportunities:
- 1. [Telegram group @orchid_community](https://t.me/orchid_community)
- 1. [Slack group ORCHID](https://lara-orchid.slack.com/messages/C6JJA6X0V/)
+As a reminder, bug reports are designed to let the other users with the same problem have a say in the matter. But it does not mean that the others will rush to your aid. A bug report is intended to help you and other users to start collaboration in problem solving.
+
+
+## Participation in main discussions
+
+You can offer new functions and enhancements of the ORCHID's current behavior. If you offer a new function, you should be ready to run at least the code samples required for a call/use of the function.
+
+ Non-formal discussions concerning bugs/problems and new possibilities:
+  1. [Telegram group @orchid_community](https://t.me/orchid_community)
+  1. [Slack group ORCHID](https://lara-orchid.slack.com/messages/C6JJA6X0V/) 
 
 ## Security
 
-If you find a vulnerability in the security inside ORCHID, please send an e-mail message to the email `bliz48rus @ gmail.com`.
-All appeals will be immediately reviewed.
+If you have detected vulnerability within ORCHID, please send an email at `bliz48rus@gmail.com`.
+All the appeals will be considered immediately. 
 
 
 ## Code writing style
@@ -35,70 +35,72 @@ All appeals will be immediately reviewed.
 ORCHID follows [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide-meta.md) and [PSR-4](Https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md) standards.
 
 
-You can use [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to fix your code style before publishing.
+You can use [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer), to correct your code style before publishing.
 
-To get started, install the tool at the global level and check the code style by running the following command from the terminal of the root directory of your project:
-```` bash
+To start, install the tool globally and check the code style by running the following command from the root directory terminal of your project:
+````bash
 php-cs-fixer fix
 ````
 
 
 
-## Debugging and sending a change request
+## Debug and sending a pull request.
 
 
-At the stage of project assistance, you may have questions related to debugging and installation,
-This section was created for those who want to send a request for the first time.
+This section is made for those who want to send a request for the first time if there are questions about debug and install.
 
 
-### Installation
 
-To install the ORCHID package as a developer, you need to install the laravel framework.
+### Install
 
-Go to the directory and run:
+To install the ORCHID package as a developer, laravel framework installation is necessary.
+
+Go to folder and run:
 
 ```bash
 git clone https://github.com/orchidsoftware/platform.git
 ```
 
-Add a local repository in the composer.json application:
+Add the local repository at `composer.json` of the application:
 
 ```php
 "repositories": [
-    {
-        "type": "path",
-        "url": "/ home/tabuna/orchid/platform"
-    }
+    {
+        "type": "path",
+        "url": "/home/tabuna/orchid/platform"
+    }
 ]
 ```
 
-And add our package depending:
+And add our package in dependence:
 
 ```bash
-composer require orchid/platform: @dev
+composer require orchid/platform:@dev
 ````
-Composer will deliver the package from the repository you specified.
-The rest of the actions correspond to the `Setup` section.
+Composer will install the package from the storage you have chosen.
+The other actions are according to the `Installation` section.
 
-### Sending a Change Request
+### Sending a pull request
 
-Create a new branch like this:
+Create a new branch as an example:
 
 ```bash
 git checkout -b feature/issue_001
 ```
 
-This will almost immediately understand that the created branch adds a new functionality from the message number 001.
+This will let you understand that the created branch adds a new functionality from the message number 001.
 
 
 Make changes and fix them:
 
 ```bash
-git commit -am 'ref # 001 [Docs] Fix misprint'
+git commit -am 'ref #001 [Docs] Fix misprint'
 ```
 
 
-To send your branch you need to:
+To send your branch run the following:
 ```bash
 git push origin feature/issue_001
 ```
+
+

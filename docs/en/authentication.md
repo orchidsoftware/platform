@@ -1,48 +1,40 @@
-# Authorization
+# Authentication
 ----------
 
 
-## Quick Start Guide
+## Quick authentication guide
 
-In the established ORCHID configuration, there already exists a built-in
-page for user authorization, which is standard
-to the address `/ dashboard/login`.
+In the installed ORCHID configuration the users authentication page is already there at the `/dashboard/login` address.
 
-During the installation phase, you inherited the model in `app/User.php`, just to
-be able to expand and simultaneously inform Laravel which model for authorization to use
-(See the configuration file `config/auth.php`).
+At the installation stage you have inherited the model in `app/User.php` to further be able to  expand an authentication model and in the meantime to define it for Laravel.
+(Look in the configuration file `config/auth.php`).
 
 
 
-## Change
+## Modification
 
-Authorization uses the usual Laravel input form, which requires only two parameters
-`E-mail` and` Password`. In real applications, you may need flexibility,
- for example, use `ldap` or login through social networks. To do this, you need to create
- own page where you could modify it.
- 
-First of all, turn off our built-in authorization page, for this change the value of `display`
-in the configuration file:
+Authentication uses the default Laravel login form that requires only two parameters `E-mail` and `Password`. In real applications more flexibility may be necessary in case you use `ldap` or authentication through social networks. So you have to create your own page you could modify. 
+ 
+First, to turn our embedded authentication page off, we change the `display` value in the configuration file:
 
 ```php
 'auth' => [
-    'display' => false,
+    'display' => false,
 ],
 ```
- 
- 
-Use the built-in Laravel command to create the blanks of all necessary routes and templates
- with the command:
+ 
+ 
+Then, we use the built-in Laravel command to create all the required routes and templates:
 
 ```php
-php artisan make: auth
+php artisan make:auth
 ```
 
-We'll add `auth` middleware to the configuration of the platform` config/platform.php`, for the correct redirects.
-Please note that you must specify it before `dashboard`
+We add `auth` middleware to our platform configuration `config/platform.php` to allow correct redirections.
+Pay attention that this value must be defined before `dashboard`
 ```php
-    'middleware' => [
-        'public' => ['web'],
-        'private' => ['web', 'auth', 'dashboard'],
-    ],
+    'middleware' => [
+        'public'  => ['web'],
+        'private' => ['web', 'auth', 'dashboard'],
+    ],
 ```
