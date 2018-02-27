@@ -1,61 +1,61 @@
-# Create a blog
+# Blog creation
 ----------
 
-This step-by-step guide demonstrates how to create a blog on Laravel using ORCHID.
-
+This document is a step-by-step guide demonstrating how to create a blog on Laravel with ORCHID. Examples are picked up to help the newcomer to handle all the problems from start to end.
 
 ## Installation
 
-To begin, we'll install Laravel itself and the ORCHID package
+First we install the Laravel and the ORCHID package
 
 
-### Appearance
+## Layout
 
-To display our blog, take a clean and quiet topic [Clean Blog](https://github.com/BlackrockDigital/startbootstrap-clean-blog) on ​​bootstrap.
-
-
-First, put all the styles and javascript scripts, in order to collect them with a webpack.
-Normally, a folder for sass styles is created in the assets folder, but less is used in our topic.
-Create a new directory instead of the old one (You can use sass, it does not affect the main process either) and copy the files to js and less, respectively.
+Let's pick the calm and clean [Clean Blog](https://github.com/BlackrockDigital/startbootstrap-clean-blog) on bootstrap for our layout.
 
 
-Install the bootstrap itself
+First we install all the styles and javascript to compose them with webpack.
+By default there is the sass styles directory in assets folder but our theme uses ess. 
+Let's create the new directory instead of old one (You may use sass, it won't affect the main process) and copy files to js and less accordingly.
+
+
+Then we install bootstrap
 
 ```php
 npm install bootstrap --save
 ```
 
-In the file app.js we will make its connection and the theme file:
+Require it and the theme file in app.js:
 ```php
-require ('./ bootstrap');
-require ('clean-blog');
+require('./bootstrap');
+require('clean-blog');
 ```
 
-For a file with styles, we also need to connect it, for this we open clean-blog.less and add:
+We also must import it into styles file, to do so we open clean-blog.less and add the following:
 
 ```php
-//Fonts
-@import url (https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&amp;subset=cyrillic);
-@import url (https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&amp;subset=cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 
 @import "../../../node_modules/bootstrap/less/bootstrap";
 @import "variables.less";
 @import "mixins.less";
 ```
 
-Let's rename clean-blog.less to app.less for standardization. Now we can collect the application.
+For the sake of standartization we rename the clean-blog.less to app.less. That's all, now we may build the application.
 
-Open webpack.mix.js and write the instruction:
+Let's open webpack.mix.js and add the following instruction:
 ```php
 mix.js('resources/assets/js/app.js', 'public/js')
    .less('resources/assets/less/app.less', 'public/css');
 ```
 
-Excellent, all the necessary dependencies of our blog are ready
+Great, now all the dependencies of our blog are ready.
 
-### Templates
 
-Let's open the main template of our blog view/layouts/app.blade.php and bring it to the form:
+## Templates
+
+Let's open the main template of our blog view/layouts/app.blade.php and change it like the following:
 
 ```php
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ Let's open the main template of our blog view/layouts/app.blade.php and bring it
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>@yield('title','Последние записи') - {{setting('site_title')}}</title>
+    <title>@yield('title','Last posts') - {{setting('site_title')}}</title>
     <meta name="description" content="{{setting('site_description')}}">
     <meta name="keywords" content="{{setting('site_keywords')}}">
 
@@ -87,7 +87,7 @@ Let's open the main template of our blog view/layouts/app.blade.php and bring it
             <a class="navbar-brand" href="/">{{config('app.name')}}</a>
         </div>
 
-        @widget('menu')
+        @widget('menu','header')
     </div>
     <!-- /.container -->
 </nav>
@@ -115,33 +115,35 @@ Let's open the main template of our blog view/layouts/app.blade.php and bring it
 
 ```
 
-In addition to the standard features of laravel, there are new ones:
 
-- setting is a helper that allows you to output values from the repository.
-- widget - custom view and code execution.
+There are new features aside from standard Laravel:
+
+- setting — the helper that allows to get values from the storage.
+- widget — user view and code execution.
 
 
-### Widget
+## Widget
 
-Now let's create our widget of the one-level menu, so that we can manage it from the panel:
+Now let's create our one-level menu widget that we will be able to control from panel:
 
-To do this, execute the command:
+To do so execute the following command:
 
 ```php
 php artisan make:widget MenuWidget
 ```
 
-Artisan will create an empty widget file in `/app/Http/Widgets`.
-We will only need to register it in the config file `config/widget.php`
+
+The artisan will create the empty widget file in `/app/Http/Widgets`. 
+We wil only need to register it in the config file `config/widget.php`
 
 
 ```php
 'widgets' => [
-    'menu' => \App\Http\Widgets\MenuWidget::class,
+    'menu' => App\Http\Widgets\MenuWidget::class,
 ],
 ```
 
-Change it so that it collects all the menu items and sends them to the display:
+Let's change it so it will gather all the menu elements and pass them to the view:
 
 ```php
 namespace App\Http\Widgets;
@@ -154,11 +156,11 @@ class MenuWidget extends Widget {
     /**
      * @return mixed
      */
-    public function handler()
+    public function handler($typemenu = 'header')
     {
         $menu = Menu::where('lang', config('app.locale'))
-            ->whereNull('parent')
-            ->where('type', 'header')->get();
+            ->where('parent',0)
+            ->where('type', $typemenu)->get();
 
         return view('partials.menu', [
             'menu'  => $menu,
@@ -168,7 +170,7 @@ class MenuWidget extends Widget {
 }
 ```
 
-Then the display itself will look like this:
+then the view itself will look like that:
 
 ```php
 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -194,43 +196,50 @@ Then the display itself will look like this:
 ```
 
 
-### Behavior
+## Behavior
 
-Great, let's now display the records of our blog ourselves, for this we will use multiple records of the platform:
+Great, let's display our blog posts, to do it we will use or platform's `many posts`:
+
 
 ```php
 php artisan make:manyBehavior Blog
 ```
 
-At the address `/app/Core/Behaviors/Many`, the empty file` Blog.php` will be created, let's fill it:
+At the address `/app/Behaviors/Many` the empty `Blog.php` will be created, now let's fill it:
 
 ```php
-namespace App\Core\Behaviors\Many;
+namespace App\Behaviors\Many;
 
 use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Platform\Platform\Fields\TD;
 
 class Blog extends Many
 {
     /**
      * @var string
      */
-    public $name = 'Записи блога';
+    public $name = 'Blog';
+
     /**
      * @var string
      */
-    public $description = 'Пример записей блога';
+    public $description = 'Blog description';
+
     /**
      * @var string
      */
     public $slug = 'blog';
+
     /**
      * Slug url /news/{name}.
      *
      * @var string
      */
     public $slugFields = 'name';
+
     /**
      * Rules Validation.
      *
@@ -244,19 +253,47 @@ class Blog extends Many
             'content.*.body' => 'required|string',
         ];
     }
+
     /**
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields() : array
     {
         return [
-            'name'        => 'tag:input|type:text|name:name|max:255|required|title:Название статьи|help:Как называется статья?',
-            'body'        => 'tag:wysiwyg|name:body|max:255|required|rows:10',
-            'title'       => 'tag:input|type:text|name:title|max:255|required|title:Залоголок страницы|help:Заголовок вкладки',
-            'description' => 'tag:textarea|name:description|max:255|required|rows:5|title:Краткое описание',
-            'keywords'    => 'tag:tags|name:keywords|max:255|required|title:Keywords|help:Ключевые слова',
+            Field::tag('input')
+                ->type('text')
+                ->name('name')
+                ->max(255)
+                ->required()
+                ->title('Article name')
+                ->help('What's the name of the article?'),
+
+            Field::tag('wysiwyg')
+                ->name('body')
+                ->required()
+                ->rows(10),
+
+            Field::tag('input')
+                ->type('text')
+                ->name('title')
+                ->max(255)
+                ->required()
+                ->title('Page title')
+                ->help('Title of the tab'),
+
+            Field::tag('textarea')
+                ->name('description')
+                ->rows(5)
+                ->required()
+                ->title('Brief summary'),
+
+            Field::tag('tags')
+                ->name('keywords')
+                ->title('Key words'),
         ];
     }
+
     /**
      * @return array
      */
@@ -267,21 +304,23 @@ class Blog extends Many
             UploadPostForm::class,
         ];
     }
+
     /**
      * Grid View for post type.
      */
     public function grid() : array
     {
         return [
-            'name'       => 'Имя',
-            'publish_at' => 'Дата публикации',
-            'created_at' => 'Дата создания',
+            TD::name('name')->title('Name'),
+            TD::name('publish_at')->title('Published at'),
+            TD::name('created_at')->title('Created at'),
         ];
     }
 }
 ```
 
-After the description, you can register in the platform `config/platform`
+
+After that we may register it on the platform `config/platform`
 
 ```php
 /*
@@ -292,18 +331,22 @@ After the description, you can register in the platform `config/platform`
 */
 
 'many' => [
-    App\Core\Behaviors\Many\Blog::class,
+    App\Behaviors\Many\Blog::class,
 ],
 ```
 
-After that, our user should be given the rights to edit the entries in the administration panel,
-go to our user on the permissions tab and select the necessary rights.
 
-After saving, the main menu will be the recording section. Now we can fill our blog with content.
+After that we must grant our user the rights to redact these posts in the dashboard, 
+we must go to user permissions tab and pick the required access rights.
 
-### Outputting Data
+> **Notice.** If there is no ability to grant the rigths to new post type, the configuration file cache must be reset by the command `php artisan config:clear`
 
-But our records require mapping, for this we create a controller with the content:
+After you save, the new post section will occur in the main menu. Now we may fill our blog with content.
+
+
+## Data input
+
+Our posts need to be displayed, so we create the controller with the following contents:
 
 ```php
 php artisan make:controller BlogController
@@ -344,7 +387,7 @@ class BlogController extends Controller
 }
 ```
 
-After this, we change the routing of our blog:
+After that we change the blog routing:
 
 ```php
 $router->get('/','BlogController@index');
@@ -354,7 +397,7 @@ $router->get('/{blog}','BlogController@show')
     ->name('blog.post');
 ```
 
-To display the url address in a humanly understandable form, add the route's blog binding, to the RouteServiceProvider:
+To display the human friendly url let's add the blog route binding to RouteServiceProvider:
 
 ```php
 Route::bind('blog', function ($value) {
@@ -365,9 +408,10 @@ Route::bind('blog', function ($value) {
 });
 ```
 
-The thing is left small, create a mapping of all this data, in the views folder, create the pages directory with `main.blade.php` and` post.blade.php`
 
-`post.blade.php` will look like this:
+Well, there's a little left to do: create views for all the data to do so we create `pages` directory with `main.blade.php` and `post.blade.php` in the `views` directory 
+
+`post.blade.php` будет выглядеть так:
 ```php
 @extends('layouts.app')
 
@@ -390,7 +434,7 @@ The thing is left small, create a mapping of all this data, in the views folder,
                     <h1>{{$post->getContent('name')}}</h1>
                     <h2 class="subheading">{{$post->getContent('subname')}}</h2>
                     <span class="meta">
-                        Опубликовано {{$post->publish_at->diffForHumans()}}
+                        Published {{$post->publish_at->diffForHumans()}}
                     </span>
                 </div>
             </div>
@@ -413,69 +457,69 @@ The thing is left small, create a mapping of all this data, in the views folder,
 @endsection
 ```
 
-`main.blade.php` will look like this:
+`main.blade.php` will look like:
 
 ```php
 @extends('layouts.app')
 
 @section('content')
 
-
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Вселенная</h1>
-                        <hr class="small">
-                        <span class="subheading">Простыми словами о сложном</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- Main Content -->
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-                @foreach($posts as $post)
-                <div class="post-preview">
-                    <a href="{{route('blog.post',$post->slug)}}">
-                        <h2 class="post-title">
-                            {{$post->getContent('name')}}
-                        </h2>
-                        <h3 class="post-subtitle">
-
-                            {{ str_limit(strip_tags($post->getContent('body')),150) }}
-                        </h3>
-                    </a>
-                    <p class="post-meta">
-                        Опубликованно: {{$post->publish_at->diffForHumans()}}
-                    </p>
-                </div>
-                <hr>
-                @endforeach
-
-
-                <div class="row text-center">
-                    {{ $posts->links() }}
+                <div class="site-heading">
+                    <h1>Universe</h1>
+                    <hr class="small">
+                    <span class="subheading">In simple terms about complicated things</span>
                 </div>
             </div>
         </div>
     </div>
+</header>
 
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            @foreach($posts as $post)
+            <div class="post-preview">
+                <a href="{{route('blog.post',$post->slug)}}">
+                    <h2 class="post-title">
+                        {{$post->getContent('name')}}
+                    </h2>
+                    <h3 class="post-subtitle">
+
+                        {{ str_limit(strip_tags($post->getContent('body')),150) }}
+                    </h3>
+                </a>
+                <p class="post-meta">
+                    Published: {{$post->publish_at->diffForHumans()}}
+                </p>
+            </div>
+            <hr>
+            @endforeach
+
+
+            <div class="row text-center">
+                {{ $posts->links() }}
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 ```
 
-There is also a new function (which is not in Laravel) `getContent`, it returns the values that we specified in the control panel for writing.
+The new function (not present in Laravel) is provided here, the `getContent`, it returns the values we set as inputs in our dashboard.
 
-### Source
 
-Total we created a simple blog using Laravel and ORCHID.
-  The source code is available at [github](https://github.com/tabuna/SimpleBlogOrchid).
+
+## Source code
+
+Finally, we created a simple blog using Laravel and ORCHID.
+ The source code is available at [github](https://github.com/tabuna/SimpleBlogOrchid).

@@ -1,19 +1,18 @@
-# Displaying information about PHP
+# PHP information display
 ----------
 
-This step-by-step guide demonstrates the process of creating an implementation form for the settings page that
-will display information about the PHP environment.
+In this step-by-step tutorial the process of developing an implementation form for properties page that will display the PHP environment info is demonstrated.
 
 
-## Creating a form
+## Form creation
 
-Create a new file called `PhpInfoForm.php` in the directory` app/Http/Forms`,
-The file will consist of a single "Name" property that will be displayed as a wipe and
-method "Display"
+Let's create the new file called `PhpInfoForm.php` in `app/Http/Forms` folder, 
+this file will contain one property "Name", consisting of form presented like a tab and
+a "Display" method.
 
-> ** Note. ** In addition to the display method, you can specify an event when deleting (deleting) and saving (persist)
+> **Notice.** Aside from method you may define the event for deletion (delete) and saving (persist)
 
-The resulting file will be:
+The resulting file will look like that:
 
 ```php
 <?php
@@ -124,9 +123,9 @@ class PhpInfoForm extends Form
 
 ```
 
-> ** Note ** Do not pay attention to what is written in this method, it is not important for us to understand (I copied it from https://stackoverflow.com)
+> **Notice.** Don't pay attention to what's inside this metod, it's not valuable for understanding (I copied it from stackoverflow https://stackoverflow.com)
 
-We will display the information in the form of a table, for this we create `phpInfo.blade.php` in the` resources/views` directory:
+We will be displaying the information in form of a table, so let's create the `phpInfo.blade.php` file in the `resources/views` directory:
 
 ```php
 <div class="wrapper-md">
@@ -158,13 +157,13 @@ We will display the information in the form of a table, for this we create `phpI
 
 ```
 
-It is worth replacing that the display does not expand anything, it will be loaded (included) already inside the existing form.
+Note that the view doesn't extend anything, it will be inclided inside an existing form.
 
-## Check in
+## registration
 
-We have created all the necessary resources for our feature information display. It remains only to report the basic form,
-about the existence of a new. To do this, create a new listener `app / Listeners / SettingPhpInfoListener.php`, which will transfer
-the newly created form:
+We've created all recources we need for our information displaying feature. The one thing that's left is to inform our main form
+that there exists a new one. To do so we create the a listener `app/Listeners/SettingPhpInfoListener.php` that will pass  
+only the newly created form:
 
 ```php
 <?php
@@ -191,8 +190,8 @@ class SettingPhpInfoListener
 
 ```
 
-It remains to connect the listener to the event of our application, for this, in `app / Providers / EventServiceProvider.php`
-we indicate:
+The last thing is to include the listener to our application event, to do it we set the following in our `app/Providers/EventServiceProvider.php` 
+file:
 
 ```php
 namespace App\Providers;
@@ -233,5 +232,5 @@ class EventServiceProvider extends ServiceProvider
 
 ``` 
 
-Now we can go to the settings page and see a new tab with information about PHP.
+Now we may head over to our properties page and see the new PHP info tab.
  

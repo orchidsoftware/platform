@@ -1,45 +1,43 @@
-#Add admin panel
+# Dashboard extension
 ----------
 
 ## Routing
 
-The ORCHID application can change the address for calls so that your updates can follow it,
-you must specify a domain and a prefix. This might look like this:
+ORCHID application can change request address. If you want your extensions to follow the dashboard, you should specify the domain and prefix. It may seem like this:
 
 ```php
-$this->domain (config ('platform.domain'))->group (function () {
-    $this->group ([
-        'middleware' => config ('platform.middleware.private'),
-        'prefix' =>\Orchid\Platform\Kernel\Dashboard::prefix (),
-        'namespace' => 'Orchid\Platform\Http\Controllers',
-    ], function (\ Illuminate\Routing\Router $router) {
-    
-        $router->get ('/', function () {
-            return view ('welcome');
-        });
-        
-    });
+$this->domain(config('platform.domain'))->group(function () {
+    $this->group([
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
+        'namespace'  => 'Orchid\Platform\Http\Controllers',
+    ], function (\Illuminate\Routing\Router $router) {
+    
+        $router->get('/', function () {
+            return view('welcome');
+        });
+        
+    });
 });
 ```
 
 
-## Displaying
+## Display
 
-In the course of the work, you may need to create your own display options `(view)`,
-that would provide a unified appearance will require inheritance:
+During the work you might need to create your own display variation `(view)`, to provide common appearance you should proceed as follows:
 
 ```php
-@extends ('dashboard::layouts.dashboard')
+@extends('dashboard::layouts.dashboard')
 
 
-@section ('title', 'title')
-@section ('description', 'description')
+@section('title','title')
+@section('description', 'description')
 
-@section ('content')
+@section('content')
 
-    <div>
-        Content
-    </ div>
+    <div>
+        Content
+    </div>
 
 @stop
 ```
@@ -47,7 +45,7 @@ that would provide a unified appearance will require inheritance:
 
 ## Additional styles and scripts
 
-If you need to add styles and scripts globally, per page, then use:
+If you need to add styles and scripts globally, to every page, then use the following:
 
 ```php
 namespace App\Providers;
@@ -57,25 +55,25 @@ use Orchid\Platform\Kernel\Dashboard;
 
 class AppServiceProvider extends ServiceProvider
 {
-    / **
-     * Bootstrap any application services.
-     *
-     * @return void
-     * /
-    public function boot (Dashboard $dashboard)
-    {
-        $dashboard->registerResource ('stylesheets', 'custom.css');
-        $dashboard->registerResource ('scripts', 'custom.js');
-    }
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot(Dashboard $dashboard)
+    {
+        $dashboard->registerResource('stylesheets','custom.css');
+        $dashboard->registerResource('scripts','custom.js');
+    }
 
-    / **
-     * Register any application services.
-     *
-     * @return void
-     * /
-    public function register ()
-    {
-        //
-    }
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 }
 ```

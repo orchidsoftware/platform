@@ -7375,18 +7375,23 @@ button.bg-danger:focus {
 }
 
 .bg-light,
+.modal .modal-footer,
 .dropzone img:before,
 #filemanager .breadcrumb.filemanager {
   background-color: #f8f9fa !important;
 }
 
 a.bg-light:hover,
+.modal a.modal-footer:hover,
 #filemanager a.breadcrumb.filemanager:hover,
 a.bg-light:focus,
+.modal a.modal-footer:focus,
 #filemanager a.breadcrumb.filemanager:focus,
 button.bg-light:hover,
+.modal button.modal-footer:hover,
 #filemanager button.breadcrumb.filemanager:hover,
 button.bg-light:focus,
+.modal button.modal-footer:focus,
 #filemanager button.breadcrumb.filemanager:focus {
   background-color: #dae0e5 !important;
 }
@@ -16027,9 +16032,11 @@ small,
 }
 
 .badge.bg-light,
+.modal .badge.modal-footer,
 .dropzone img.badge:before,
 #filemanager .badge.breadcrumb.filemanager,
 .label.bg-light,
+.modal .label.modal-footer,
 .dropzone img.label:before,
 #filemanager .label.breadcrumb.filemanager {
   text-shadow: none;
@@ -18558,11 +18565,10 @@ button.close {
 }
 
 .modal .modal-footer {
-  border-top: none;
   -webkit-box-shadow: none;
           box-shadow: none;
   margin-top: 0;
-  padding: 0 25px 25px;
+  padding: 15px 25px;
 }
 
 .modal .drop-shadow {
@@ -19205,6 +19211,7 @@ div.mce-fullscreen {
 }
 
 .bg-light,
+.modal .modal-footer,
 .dropzone img:before,
 #filemanager .breadcrumb.filemanager {
   background-color: #e9ecef !important;
@@ -19212,45 +19219,55 @@ div.mce-fullscreen {
 }
 
 .bg-light.lt,
+.modal .lt.modal-footer,
 .dropzone img.lt:before,
 #filemanager .lt.breadcrumb.filemanager,
 .bg-light .lt,
+.modal .modal-footer .lt,
 .dropzone img:before .lt,
 #filemanager .breadcrumb.filemanager .lt {
   background-color: #eff1f3;
 }
 
 .bg-light.lter,
+.modal .lter.modal-footer,
 .dropzone img.lter:before,
 #filemanager .lter.breadcrumb.filemanager,
 .bg-light .lter,
+.modal .modal-footer .lter,
 .dropzone img:before .lter,
 #filemanager .breadcrumb.filemanager .lter {
   background-color: #f2f4f5;
 }
 
 .bg-light.dk,
+.modal .dk.modal-footer,
 .dropzone img.dk:before,
 #filemanager .dk.breadcrumb.filemanager,
 .bg-light .dk,
+.modal .modal-footer .dk,
 .dropzone img:before .dk,
 #filemanager .breadcrumb.filemanager .dk {
   background-color: #dfe4e9;
 }
 
 .bg-light.dker,
+.modal .dker.modal-footer,
 .dropzone img.dker:before,
 #filemanager .dker.breadcrumb.filemanager,
 .bg-light .dker,
+.modal .modal-footer .dker,
 .dropzone img:before .dker,
 #filemanager .breadcrumb.filemanager .dker {
   background-color: #d9dfe6;
 }
 
 .bg-light.bg,
+.modal .bg.modal-footer,
 .dropzone img.bg:before,
 #filemanager .bg.breadcrumb.filemanager,
 .bg-light .bg,
+.modal .modal-footer .bg,
 .dropzone img:before .bg,
 #filemanager .breadcrumb.filemanager .bg {
   background-color: #e9ecef;
@@ -20029,6 +20046,7 @@ div.mce-fullscreen {
 }
 
 a.bg-light:hover,
+.modal a.modal-footer:hover,
 #filemanager a.breadcrumb.filemanager:hover {
   color: #363f44;
 }
@@ -20552,7 +20570,8 @@ a.text-black:hover {
   border: 1px solid #dadfe4;
 }
 
-.b-t {
+.b-t,
+.modal .modal-footer {
   border-top: 1px solid #dadfe4;
 }
 

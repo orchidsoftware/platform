@@ -1,4 +1,4 @@
-#Posts
+# Posts
 ----------
 The platform assumes that by default any elements that contain site data are a `Post` model.
 
@@ -24,7 +24,7 @@ echo $post->getContent('name');
 ```
 
 
-### Single Table Inheritance
+## Single Table Inheritance
 
 If you choose to create a new class for your custom post type, you can have this class be returned for all instances of that post type.
 
@@ -35,7 +35,7 @@ $videos = Post::type('video')->status('publish')->get();
 ```
 
 
-### Taxonomies
+## Taxonomies
 
 You can get taxonomies for a specific post like:
 
@@ -51,7 +51,7 @@ Or you can search for posts using its taxonomies:
 $post = Post::taxonomy('category', 'php')->first();
 ```
 
-### Categories & Taxonomies
+## Categories & Taxonomies
 
 Get a category or taxonomy or load posts from a certain category. There are multiple ways
 to achieve it.
@@ -75,7 +75,7 @@ $category->posts->each(function($post) {
 });
 ```
 
-### Attachment
+## Attachment
 
 Attachments are files that are related to a record.
 These files can be of different formats and resolutions.

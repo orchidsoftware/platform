@@ -76786,7 +76786,7 @@ var init = function init(id, theme) {
   var toolbar1 = '';
   var inline = true;
 
-  if (theme == 'modern') {
+  if (theme === 'modern') {
     plugins = 'print autosave autoresize preview fullpage paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern';
     toolbar1 = 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat';
     inline = false;

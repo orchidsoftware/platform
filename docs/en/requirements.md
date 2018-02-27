@@ -1,14 +1,14 @@
 # System requirements
 ----------
 
-This manual contains detailed system requirements for installation
+This titorial contains a detailed system requirements for install 
 
 
-## Browser Requirements
+## Browser support
 
-Administration panel (without additional modules),
-Compatible and fully functional in all modern browsers,
-supporting CSS and JavaScript (minor changes of appearance are possible).
+Dashboard (without third-party modules),
+is compatible with and fully functionsl in all modern browsers
+that support CSS and JavaScript (Insubstantional changes in layout may occur).
 
 - Microsoft Edge
 - Firefox
@@ -16,89 +16,89 @@ supporting CSS and JavaScript (minor changes of appearance are possible).
 - Safari
 - Google Chrome
 
-The exterior is built on the most popular structure of `Bootstrap`. Recommended screen resolutions 1920 × 1080 (Full HD)
+The layout is based on the most popular `Bootstrap` structure. Recommended display resolution is 1920×1080 (Full HD)
 
 
-## Database Server
+## Database server
 
 ### MySQL
 
-Required version of MySQL 5.7.8 or higher with InnoDB as the primary storage engine
-, also requires the expansion of the PDO database.
+The required MySQL version is 5.7.8 or higher, with InnoDB as the main data storing mechanism
+, так же требует расширения базы данных PDO.
 
 ### PostgreSQL
-Requires PostgreSQL 9.3 or later.
+PostgreSQL 9.3 or newer is required.
 
 
 ### Mariadb
-Requires Mariadb 10.3.2 or later.
+Mariadb 10.3.2 or newer is required.
 
 ### Other database servers
-Some provided not so abstract from the code specific to MySQL/PostgreSQL,
-as we would like to all. Running and using on other servers is possible, but may be required
-change the work of some functions.
+Others servers are not so abstract from code specific for MySQL/PostgreSQL,
+as some might desire. Startup and use on other servers is possible but it may require 
+changes in some functions.
 
 ## PHP
 
-ORCHID requires a minimum of PHP `7.1.3` to run and run. You also need extensions
+ORCHID requires PHP `7.1.3` or newer for startup and work. Also the following plugins are required:
 
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Mbstring PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
-- Ctype PHP Extension
-- JSON PHP Extension
-- PHP GD extension
+- PHP OpenSSL plugin
+- PHP PDO plugin
+- PHP Mbstring plugin
+- PHP Tokenizer plugin
+- PHP XML plugin
+- PHP Ctype plugin
+- PHP JSON plugin
+- PHP GD plugin
 
 ## Web server
 
-ORCHID works on any web server with a version of PHP version of `7.0` or higher.
+ORCHID perfectly works at every servers with PHP `7.0` or higher.
 
-Many hosting providers offer the option of choosing a version of PHP.
-The PHP version by default can be less than 7.0, so check your host's control panel,
-to find out which version of PHP is currently supported, and change it to match the requirements.
+Many hosting-providers allow to choose PHP version. 
+PHP may be lower 7.0 by default, that's why you better check your host dashboard
+to see which version of PHP is supported now and change it to match the requirements.
 
-If you want to create and develop ORCHID sites on your computer, you can install everything you need locally.
+If you want to create and develop ORCHID projects at your own computeer you may install everything required locally.
 
 
 ### Apache
-     
-In Laravel there is a file `public/.htaccess`, which is used to display links without specifying
-front controller `index.php` in the requested address.
-Before you start Laravel with the Apache server, make sure that the module `mod_rewrite` is enabled,
-it is necessary for correct processing of the .htaccess file.
-     
-If the file `.htaccess` supplied with Laravel does not work with your Apache server, then try the alternative:
+     
+There is the file `public/.htaccess` in Laravel that's used to display links without defining the 
+front=end controller `index.php` in requested address. 
+Before you start the Laravel to work with Apache server you should make sure that the `mod_rewrite` module is active, 
+it's required to correctly process the .htaccess file.
+     
+If the file `.htaccess` provided with Laravel doesn't work with your Apache server, try the alternative:
 
 ```php
-Options + FollowSymLinks
+Options +FollowSymLinks
 RewriteEngine On
 
-RewriteCond% {REQUEST_FILENAME}! -d
-RewriteCond% {REQUEST_FILENAME}! -f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
 ```
 
 
 ### Nginx
 
-If you use Nginx, then the following directive in the configuration of your site
-will send all requests to the front-controller `index.php`:
+If you use Nginx, then the following dorective in your configuration file will 
+redirect all requests to the `index.php` front-end controller:
 
 ```php
-location/{
-    try_files $uri $uri//index.php?$query_string;
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
 }
 ```
 
 
-### Built-in PHP web server (for development only)
+### Built-in PHP server (только для разработки)
 
-The embedded PHP web server is included as a CLI tool in PHP version 5.4.0 or later.
+The Built-in PHP is included as the CLI instrument in PHP 5.4.0 and higher.
 
-The PHP web server was designed to aid in the development of applications.
-It can also be useful for testing or demonstrating applications,
-which run in controlled environments.
-It is not intended for a full-featured web server,
-so it should not be used as a production server for public use.
+PHP web server was developed to help the development of applications. 
+It also may be useful for testing or demonstrating of apps 
+that are started in controlled environments.
+It's not meant to be fully functional web server
+that's why it should not be used as the production server for public use.

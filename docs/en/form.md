@@ -1,41 +1,41 @@
 # Forms
 ----------
- 
-The form is an independent part of the application that takes over the function of the controller and serves to create pages
-available for expansion.
 
-The form is not a constructor or builder.
-Their sense in the formation of a form of data, in which you can add new information in the form of tabs,
-who do not know anything about each other, but operate on the same information.
-For example, we have a form of user, where by default there are two tabs
-with general information and access rights, by adding new forms
-(registered with the help of events), we can expand and add various information,
-while in the code you will see only the display of the form and the action to be taken with the resulting model.
-That allows to expand already standard tabs and more accurately to be adjusted under necessary needs.
-
-For example:
-
-> There is a package for an online store that allows you to add goods,
-in it are pre-prepared fields for input (Name, price, etc.).
-Using forms,
-a third-party package can add its own add-on, for example, downloading documentation for the product.
+Form is an independent part of application that undertakes controller functionality and is used to create extendable pages.
 
 
-ORCHID has two forms:
 
-1. The main
-1. Realizing
+> **Notice:** If you do not plan to allow your forms to be package expandable, then the best for you is to use classic controller or screen.
 
-### Basic Form
 
-The basic form differs from realizing only by the fact that it is possible to `connect an unlimited number of implementers` by means of calling` events`.
+![Forms](https://orchid.software/img/scheme/forms.jpg)
 
-An example of the basic form:
+Forms are not constructors or builders.
+They are intended to generate data form where you can add new data in the form of tabs that don't know anything about each other but operate the same input information. 
+
+As example, pretend you have a user form that by default has two tabs
+with the same information and user rights; we can expand and add 
+a variety of different information by adding new forms (registered by events), 
+whereas in the program code you will only see the form presentation and the action that must be performed on the resulting model.
+That allows you to expand existing tabs and better adapt them for your needs.
+
+> **Example:** There is a package for online store that allows to add the new item,
+it has prepared input fields (Name, cost, etc.) inside. 
+It's possible to add a third-party component functionality to it by using forms, for example, if we need to also upload the item documentation.  
+
+ORCHID has two types of forms:
+
+1. Main form
+1. Implementation form
+
+
+## Main form
+
+The difference between the main form and implementation is in ability to `add an unlimited amount of executors` by calling `events`.
+
+An example of main form:
 ```php
-namespace Orchid\Platform\Http\Forms\Systems\Roles;
-
 use Orchid\Platform\Forms\FormGroup;
-use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Events\Systems\RolesEvent;
 
 class RoleFormGroup extends FormGroup
@@ -70,20 +70,17 @@ class RoleFormGroup extends FormGroup
 
 ```
 
-### Implementing form
+## Implementation form
 
-The form on which the data is `saved/updated`. A notion that the form has its own properties of validation.
-Each implementing form will be run in turn without knowing anything about the previous or subsequent.
-Writing a form should not cause any problems since it looks like a regular controller.
+A form where data is `saved/refreshed`. Every form has it's own data validation properties.
+Every implementation form is executed without any info about previous or following forms.
 
-Example:
+The way form is implemented should not raise any questions as it looks like a generic controller.
+
+Пример:
 ```php
-namespace Orchid\Platform\Http\Forms\Systems\Roles;
-
 use Orchid\Platform\Forms\Form;
 use Orchid\Platform\Core\Models\Role;
-use Alert;
-use Dashboard;
 
 class BaseRolesForm extends Form
 {
@@ -146,7 +143,7 @@ class BaseRolesForm extends Form
 
 ```
 
-Then your `controller` will look like this:
+Your `controller` should look like the following:
 
 ```php
 namespace Orchid\Foundation\Http\Controllers\Systems;
