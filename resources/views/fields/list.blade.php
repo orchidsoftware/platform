@@ -1,17 +1,12 @@
 <div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }} input-sort">
     <label>{{$title}}</label>
+  
    <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
 
        @if(!isset($value) || is_null($value))
            <li class="ui-state-default form-group row">
                    <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
-                   <input type="text" class="form-control col-10"
-                          @if(isset($prefix))
-                          name="{{$prefix}}[{{$lang}}]{{$name}}[0]"
-                          @else
-                          name="{{$lang}}{{$name}}[0]"
-                           @endif
-                   >
+                   <input type="text" class="form-control col-10"	name="{{$attributes['name']}}[]">
                    <button class="btn btn-link col-1 remove"
                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                </li>
@@ -19,13 +14,7 @@
            @foreach($value as $key => $val)
                <li class="ui-state-default form-group row">
                     <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
-                    <input type="text" class="form-control col-10"
-                           @if(isset($prefix))
-                           name="{{$prefix}}[{{$lang}}]{{$name}}[]"
-                           @else
-                           name="{{$lang}}{{$name}}[{{$key}}]"
-                           @endif
-                           value="{{$val}}">
+                    <input type="text" class="form-control col-10" name="{{$attributes['name']}}[]" value="{{$val}}">
                     <button class="btn btn-link col-1 remove"
                             onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                 </li>
@@ -53,7 +42,7 @@
             '        </li>';
         $('#sortable-{{$slug}}').append(item);
         $("#sortable-{{$slug}} li").each(function (li) {
-            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
+            $(this).find('input').attr({'name': '{{$attributes["name"]}}[]'})
         })
     }
 
@@ -62,7 +51,7 @@
         $(item).parent().remove();
 
         $("#sortable-{{$slug}} li").each(function (li) {
-            $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
+            $(this).find('input').attr({'name': '{{$attributes["name"]}}[]'})
         })
     }
 
@@ -72,7 +61,7 @@
             axis: "y",
             update: function (event, ui) {
                 $("#sortable-{{$slug}} li").each(function (li) {
-                    $(this).find('input').attr({'name': '{{$prefix}}[{{$lang}}][{{$slug}}][' + li + ']'})
+                    $(this).find('input').attr({'name': '{{$attributes["name"]}}[]'})
                 })
             }
         });
