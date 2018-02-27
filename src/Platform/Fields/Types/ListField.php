@@ -25,4 +25,9 @@ class ListField extends Field
     public $required = [
         'name',
     ];
+
+    public $inlineAttributes = [
+        'name',
+        'value',
+    ];
 }
