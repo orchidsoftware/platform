@@ -9,13 +9,8 @@ Also you can specify a validation or modules. (See Forms section).
 
 ![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
 
-## Создание и регистрация поведений
-
-
-     */
-    public function grid()
-    {
-        return [];
+## Creating and registering behaviours
+        
 Follow this procedure to create behaviors:
 
 

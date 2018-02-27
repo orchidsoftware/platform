@@ -40,10 +40,10 @@ This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one 
  
 ## Input
 
-Input - является одним из разносторонних элементов формы и позволяет создавать разные части интерфейса и обеспечивать взаимодействие с пользователем. 
-Главным образом input предназначен для создания текстовых полей.
+Input is one of the most diversed elements of forms that allows you to create different parts of interface and provide interaction with user.
+Input is mainly intended to create text fields.
  
-Пример записи:
+An example:
 ```php
 return [
     'body' => Field::tag('input')
@@ -57,7 +57,7 @@ return [
 ``` 
  
 
-> Заметьте многие параметры такие как max, required,title, help и многие другие, доступны почти каждым `полям` системы и являются не обязательными
+> Note that a lot of parameters, like max, required, title, help and others, are accessible from almost every `field` of the system and are completely optional
  
  
  
@@ -254,7 +254,7 @@ return [
                  'mask' => '999 999 999.99',
                  'numericInput' => true
               ]))
-              ->title('Стоимость')
+              ->title('Cost')
 ];
 ```   
 
@@ -269,7 +269,7 @@ return [
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
              ]))
-             ->title('Стоимость'),
+             ->title('Cost'),
 ];
 ```   
 
@@ -335,15 +335,15 @@ class AjaxWidget extends Widget
         $data = [
             [
                 'id'   => 1,
-                'text' => 'Запись 1',
+                'text' => 'Post 1',
             ],
             [
                 'id'   => 2,
-                'text' => 'Запись 2',
+                'text' => 'Post 2',
             ],
             [
                 'id'   => 3,
-                'text' => 'Запись 3',
+                'text' => 'Post 3',
             ],
         ];
 

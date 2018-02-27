@@ -19,7 +19,7 @@ In case you find some mistakes in the documentation please specify the section a
 Before installation and use of the platform we recomend you to read about the problems it was created to solve. This little waste of time will help you in future.
 
 
-## introduction
+## Introduction
 
 ORCHID - is an instrument for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development) development of web-sites and linear business-applications. 
 It is shipped as a package for the Laravel and can be easily integrated useing Composer, it hamonizes well with other PHP components. 
@@ -32,7 +32,7 @@ ORCHID does not explain the framework capabilities. if you are already familiar 
 
 This documentation begins with an explanation of concepot and architecture of the ORCHID before it dives into particular themes.
 
-## Feature 
+## Capabilities 
 
 ORCHID takes upon itself the routine business applications development operations by adding custom control elements, fields, templates and screens and allowing to concentrate on a unique business-logic.
 

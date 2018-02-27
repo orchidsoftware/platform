@@ -22454,62 +22454,30 @@ select.bootstrap-tagsinput {
   background-color: #1c7ed6;
 }
 
+/*
 #content {
-  -webkit-animation: blurin 340ms ease-in;
-          animation: blurin 340ms ease-in;
-}
-
-@-webkit-keyframes blurin {
-  0% {
-    opacity: 0.7;
-    -webkit-filter: blur(16px);
-            filter: blur(16px);
-  }
-
-  25% {
-    opacity: 0.8;
-    -webkit-filter: blur(8px);
-            filter: blur(8px);
-  }
-
-  50% {
-    opacity: 0.9;
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-  }
+  animation : blurin 340ms ease-in;
 }
 
 @keyframes blurin {
   0% {
-    opacity: 0.7;
-    -webkit-filter: blur(16px);
-            filter: blur(16px);
+    opacity : 0.7;
+    filter  : blur(16px);
   }
-
   25% {
-    opacity: 0.8;
-    -webkit-filter: blur(8px);
-            filter: blur(8px);
+    opacity : 0.8;
+    filter  : blur(8px);
   }
-
   50% {
-    opacity: 0.9;
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
+    opacity : 0.9;
+    filter  : blur(4px);
   }
-
   100% {
-    opacity: 1;
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
+    opacity : 1;
+    filter  : blur(0px);
   }
 }
+*/
 
 .not-found {
   height: calc(100vh - 80px);

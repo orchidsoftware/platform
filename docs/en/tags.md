@@ -1,12 +1,12 @@
 # Tags
 ----------
 
-Tag (label) - a word or phrase that can combine a group of text, images, etc. on the topic
+A tag (mark) - is a keyword or a phrase that can thematically group text, images, etc.  
 
 
 ## Use
 
-Tags can be connected to all created models, using the trait
+Tags can be connected to all created models by the following trait
 
 ```php
 use Cartalyst\Tags\TaggableTrait;
@@ -14,69 +14,69 @@ use Cartalyst\Tags\TaggableInterface;
 
 class Product extends Eloquent implements TaggableInterface
 {
-    use TaggableTrait;
+    use TaggableTrait;
 }
 ```
 
 
-In the model `Post`, it enters by default, for this the examples will be on it.
+`Post` model includes it by design, so this model is taken as an example.
 
 ## Addition
 
-In this section, we show how you can manage your subject tags.
+This section will show you how to manage your tag subjects.
 
 ```php
 use Orchid\Platform\Core\Models\Post;
 
-//Get the entity object
-$post = Post::find (1);
+// Get the entity object
+$post = Post::find(1);
 
-//Through a string
-$post->tag ('foo, bar, baz');
+// Through a string
+$post->tag('foo, bar, baz');
 
-//Through an array
-$post->tag (['foo', 'bar', 'baz']);
+// Through an array
+$post->tag([ 'foo', 'bar', 'baz']);
 ```
 
 
 
 
-## Removing
+## Deleting
 
-Deletes one or more tags of an object through an array or through a string of separated entities by a separator.
+Deletes one or more object tags through an array or a string of entities separated by a delimiter.
 
 ```php
-//Get the entity object
-$post = post::find (1);
+// Get the entity object
+$post = post::find(1);
 
-//Through a string
-$post->untag ('bar, baz');
+// Through a string
+$post->untag('bar, baz');
 
-//Through an array
-$post->untag (['bar', 'baz']);
+// Through an array
+$post->untag(['bar', 'baz']);
 
-//Remove all the tags
-$post->untag ();
+// Remove all the tags
+$post->untag();
 ```
 
 
 
-## Setting
+## Settings
 
-This method is very similar to the `tag ()` method, but it combines `untag ()`, so it automatically identifies the tags to add and remove. This is a very useful method when you run an update on entities, and you do not want to deal with checks to verify which tags should be added or deleted.
+This method is very similar to the `tag()` method, but includes the `untag()`, so the method automatically identifies the tags for addition and deleting. That's very useful method when you run an update on entities, and you do not want to deal with checks to verify which tags should be added or deleted.
 
 ```php
-//Get the entity object
-$post = Post::find (1);
+// Get the entity object
+$post = Post::find(1);
 
-//Through a string
-$post->setTags ('foo, bar, baz');
+// Through a string
+$post->setTags('foo, bar, baz');
 
-//Through an array
-$post->setTags (['foo', 'bar', 'baz']);
+// Through an array
+$post->setTags(['foo', 'bar', 'baz']);
 
-//Using the `slug` column
-$post->setTags (['foo', 'bar', 'baz'], 'slug');
+// Using the `slug` column
+$post->setTags(['foo', 'bar', 'baz'], 'slug');
 ```
 
 
@@ -85,12 +85,13 @@ $post->setTags (['foo', 'bar', 'baz'], 'slug');
 We have some methods to help you get all the tags attached to the object and do the reverse and get all the objects with the given tags.
 
 ```php
-//Get the entity object
-$post = Post::whereTag ('foo, bar')->get ();
+// Get the entity object
+$post = Post::whereTag('foo, bar')->get();
 
 
-$post = Post::find (1);
+$post = Post::find(1);
 $tags = $post->tags;
 
-$tags = Post::allTags ();
+$tags = Post::allTags();
 ```
+ 

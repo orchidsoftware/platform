@@ -24,7 +24,7 @@ The layout is based on the most popular `Bootstrap` structure. Recommended displ
 ### MySQL
 
 The required MySQL version is 5.7.8 or higher, with InnoDB as the main data storing mechanism
-, так же требует расширения базы данных PDO.
+, also requires the expansion of the database PDO.
 
 ### PostgreSQL
 PostgreSQL 9.3 or newer is required.
@@ -42,14 +42,14 @@ changes in some functions.
 
 ORCHID requires PHP `7.1.3` or newer for startup and work. Also the following plugins are required:
 
-- PHP OpenSSL plugin
-- PHP PDO plugin
-- PHP Mbstring plugin
-- PHP Tokenizer plugin
-- PHP XML plugin
-- PHP Ctype plugin
-- PHP JSON plugin
-- PHP GD plugin
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+- GD PHP Extension
 
 ## Web server
 
@@ -93,7 +93,7 @@ location / {
 ```
 
 
-### Built-in PHP server (только для разработки)
+### Built-in PHP server (develop only)
 
 The Built-in PHP is included as the CLI instrument in PHP 5.4.0 and higher.
 

@@ -10,7 +10,7 @@ to do so we call the method in menu properties and pass the following arguments:
 a menu element that our element will be added to (Main menu is 'Main')
 and an array containing element properties. 
 
-Âîçìîæíûå ñâîéñòâà:
+Properties:
 ```php
 'slug'       => 'Unique string containing only the save symbols',
 'icon'       => 'CSS code for graphical icon',

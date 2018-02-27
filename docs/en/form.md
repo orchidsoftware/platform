@@ -77,7 +77,7 @@ Every implementation form is executed without any info about previous or followi
 
 The way form is implemented should not raise any questions as it looks like a generic controller.
 
-Пример:
+An example:
 ```php
 use Orchid\Platform\Forms\Form;
 use Orchid\Platform\Core\Models\Role;

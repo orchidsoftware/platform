@@ -1,113 +1,130 @@
-# Upgrade Guide
+# Upgrade tutorial
 ----------
 
 
-We try to document all the changes that can cause problems.
-But we strongly recommend that you do not make changes without saving a copy.
+> **Notice.** We are doing all we can to document all thte changes that may cause problems. 
+But we highly recommend to not perform any changes without a backup.
 
 
-> ** Note **. Issue 2.1 has not yet settled, please wait.
+# Upgrade from 2.0 to 2.1
 
-# Upgrading from 2.0 to 2.1
+## Changes 
 
-## Changes
+### Field definition
 
-### Declaring Fields
+With this update ORCHID introduces the new field notation and table formatting.
+More information about it may be found in issue #391
 
-With the new update, ORCHID enters a new field entry and table formatting.
-More details can be found in issue # 391
-
-** Old look: **
+**Old notation**
 ```php
-'body' => 'tag: tag | wysiwyg | name: body | max: 255 | required | rows: 10',
+'body' => 'tag:tag|wysiwyg|name:body|max:255|required|rows:10',
 ```
 
-**The new kind:**
+**New notation:**
 ```php
-Field::tag ('wysiwyg')
-    ->name ('body')
-    ->max (255)
-    ->required ()
-    ->rows (10),
+Field::tag('wysiwyg')
+    ->name('body')
+    ->max(255)
+    ->required()
+    ->rows(10),
 ```
 
-An obsolete view will be maintained for a while, but the best option for long-term support
-will wrap the old version like this:
+Deprecated notation will be supported for some time but the best solution for a long-term support is to wrap an old notatin the following way:
 
 ```php
-'body' => Field::make ('tag: tag | wysiwyg | name: body | max: 255 | required | rows: 10'),
+'body' => Field::make('tag:tag|wysiwyg|name:body|max:255|required|rows:10'),
 ```
 
-The columns of the tables have also undergone changes and have a record:
+Table rows have also changed and now havw the following notation:
 
 ```php
-TD::name ('appointment_type')
-->title ('Type')
+TD::name('appointment_type')
+->title('Type')
 
-//Advanced option
-TD::name ('appointment_time')
-    ->title ('Time')
-    ->width ('200px')
-    ->setRender (function ($appointment) {
-    return $appointment->appointment_time->toDateString ();
+// Extended variant
+TD::name('appointment_time')
+    ->title('Time')
+    ->width('200px')
+    ->setRender(function ($appointment){
+    return $appointment->appointment_time->toDateString();
 }),
 ```
 
 
 ### Behaviors
 
-Multiple behaviors no longer have a default property:
+Many behaviors now don't have a default property:
 
 ```php
-/ **
- * HTTP data filters
- *
- * @var array
- * /
+/**
+ * HTTP data filters
+ *
+ * @var array
+ */
 public $filters = [
-    SearchFilter::class,
-    StatusFilter::class,
-    CreatedFilter::class,
+    SearchFilter::class,
+    StatusFilter::class,
+    CreatedFilter::class,
 ];
 ```
 
-For uniformity, it was replaced by the method:
+For standartization it was replaced with the following method:
 
 ```php
-/ **
- * HTTP data filters
- *
- * @return array
- * /
-public function filters (): array
+/**
+ * HTTP data filters
+ *
+ * @return array
+ */
+public function filters() : array
 {
-    return [
-        SearchFilter::class,
-        StatusFilter::class,
-        CreatedFilter::class,
-    ];
+    return [
+        SearchFilter::class,
+        StatusFilter::class,
+        CreatedFilter::class,
+    ];
 }
 ```
 
 
-
-
-## Remote Functions
+## Deleted functions
 
 ### Fields
-We removed a few practical possibilities that were previously declared obsolete:
-- The field `robot`
+Impractical features that were previously declined deprecated are now deleted:
+- `robot` field
 - Widget for Google Analytics
 
-A more functional alternative to the `robot` field:
+The more functionat alternative to `robot` field is:
 
 ```php
-Field::tag ('select')
-    ->options ([
-        'index' => 'Index',
-        'noindex' => 'No index',
-    ])
-    ->name ('robot')
-    ->title ('Indexing')
-    ->help ('Allow search bots to index page'),
+Field::tag('select')
+    ->options([
+        'index' => 'Index',
+        'noindex' => 'No index',
+    ])
+    ->name('robot')
+    ->title('Indexing')
+    ->help('Allow search bots to index page'),
+```
+
+
+Field section in configuration now must look like that:
+
+```php
+'fields' => [
+    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
+    'input'        => Orchid\Platform\Fields\Types\InputField::class,
+    'list'         => Orchid\Platform\Fields\Types\ListField::class,
+    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
+    'select'       => Orchid\Platform\Fields\Types\SelectField::class,
+    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
+    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
+    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
+    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
+    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
+    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
+    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
+    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
+    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+],
 ```

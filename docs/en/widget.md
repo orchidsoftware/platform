@@ -1,21 +1,21 @@
 # Widget
 ----------
 
-A widget is an instance of the Widget class or inherited from it. This is a component used mainly for the purpose of registration. Widgets are usually built into views to form a complex, but at the same time, independent part of the user interface.
+Widget is an instance of Widget ot it's inherited class. It's the component that is mostly used for design purposes. Widgets are usually embedded into views to form some kind of both complex and independent part of user interface.
 
 
-For example, a calendar widget can be used to render a complex interface. Widgets allow you to reuse the UI code.
+For example, a calendar wiidget may be used in rendering a complex interface. Widgets allow to reuse the user interface code.
 
-## Creating
-
-To create a new widget, you must:
+## Creation
+	
+To create a new widget you need to do the following:
 
 ```php
-php artisan make: widget MySuperWidget
+php artisan make:widget MySuperWidget
 ```
 
-In the `app/Http/Widgets` folder, the widget's class is created, just like the controller, the widget can have its own view.
-It is recommended that you place the widget's files in the views subdirectory.
+In the `app/Http/Widgets` folder a widget template class will be created. Widget may have it's own view like a controller.
+It's recommended to place widget files in the views subdirectory.
 
 ```php
 namespace App\Http\Widgets;
@@ -24,52 +24,65 @@ use Orchid\Widget\Service\Widget;
 
 class MySuperWidget extends Widget {
 
-    / **
-     * Class constructor.
-     * /
-    public function __construct () {
+    /**
+     * Class constructor.
+     */
+    public function __construct(){
 
-    }
+    }
 
-    / **
-     * @return mixed
-     * /
-     public function handler () {
-         return view ('', [
-         ]);
-     }
+    /**
+     * @return mixed
+     */
+     public function handler(){
+         return view('',[
+         ]);
+     }
 
 }
 ```
 
 
-To register your new widget, you need to put it in `config/widget.php`:
+To register your new widget you need to put it inside the `config/widget.php` file:
 
 ```php
 'widgets' => [
-    'NameForMySuperWidget' => App\Widgets\MySuperWidget::class
- ],
+    'NameForMySuperWidget' => App\Widgets\MySuperWidget::class
+ ],
 ```
+	
 
 
+## Using a widget
 
-## Use
 
-
-When the widget is called, the `` handler '`method is executed by default.
-To connect a widget, you must execute it in code using the Blade syntax:
+When widget is called the  `"handler"` method is executed by default.
+To connect a widget you need to perform the following operations using Blade syntax:
 ```php
-@widget ('NameForMySuperWidget')
+@widget('NameForMySuperWidget')
 ```
 
+## Variables
 
-
+If you need to pass the variable from layout to widget you have to use an extra parameter that may be of string or array type.
+```php
+@widget('NameForMySuperWidget', $arguments)
+```
+and handle it inside the `"handler"` method of widget class.
+```php
+public function handler($arguments = null){
+  dump($arguments);
+  return view('mysuperwidget',[
+            'arguments'  => $arguments,
+         ]);
+}
+```
 
 ## AJAX Widget
 
-Widgets can be used to download and podgruzdki information in the fields for communication.
+Widgets may be used to upload information inside the connection fields.
 
-Then the property `$query` will take a value for searching, and` $key` the selected value.
+Then the `$query` property will take a search value and the `$key` key will get the selected value.
 
 
 ```php
@@ -80,49 +93,49 @@ use Orchid\Platform\Widget\Widget;
 class AjaxWidget extends Widget
 {
 
-    / **
-     * @var null
-     * /
-    public $query = null;
+    /**
+     * @var null
+     */
+    public $query = null;
 
-    / **
-     * @var null
-     * /
-    public $key = null;
+    /**
+     * @var null
+     */
+    public $key = null;
 
-    / **
-     * @return array
-     * /
-    public function handler ()
-    {
-        $data = [
-            [
-                'id' => 1,
-                'text' => 'Record 1',
-            ],
-            [
-                'id' => 2,
-                'text' => 'Record 2',
-            ],
-            [
-                'id' => 3,
-                'text' => 'Record 3',
-            ],
-        ];
+    /**
+     * @return array
+     */
+    public function handler()
+    {
+        $data = [
+            [
+                'id'   => 1,
+                'text' => 'Post 1',
+            ],
+            [
+                'id'   => 2,
+                'text' => 'Post 2',
+            ],
+            [
+                'id'   => 3,
+                'text' => 'Post  3',
+            ],
+        ];
 
 
-        if (! is_null ($this->key)) {
-            foreach ($data as $key => $result) {
+        if(!is_null($this->key)) {
+            foreach ($data as $key => $result) {
 
-                if ($result ['id'] === intval ($this->key)) {
-                    return $data [$key];
-                }
-            }
-        }
+                if ($result['id'] === intval($this->key)) {
+                    return $data[$key];
+                }
+            }
+        }
 
-        return $data;
+        return $data;
 
-    }
+    }
 
 }
 

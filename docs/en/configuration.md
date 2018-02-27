@@ -87,7 +87,7 @@ php artisan make:auth
 
 
 
-## Локализация записей
+## Post localization
 
 ```php
 'locales' => [
@@ -101,7 +101,7 @@ php artisan make:auth
 ],
 ```
 
-Generic entries created with `behavior` system may be localized, it means you may create the same entries in different langages; to add new language you only need to add new element to array.
+Generic entries created with `behavior` system may be localized, it means you may create the same entries in different languages; to add new language you only need to add new element to array.
 
 
 

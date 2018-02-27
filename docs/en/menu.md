@@ -34,7 +34,7 @@ $menu = Menu::where('lang', App::getLocale())
 Available methods:
 
 ```php
-//Первый дочерний элемент
+//First children element
 $menu = Menu::find(1)->children()->first();
 
 
