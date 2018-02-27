@@ -29,7 +29,7 @@ $comment = Comment::create([
 ```
 
 
-## Connections
+## Relations
 
 
 ```php

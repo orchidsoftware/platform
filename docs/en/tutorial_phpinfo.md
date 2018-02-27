@@ -159,7 +159,7 @@ We will be displaying the information in form of a table, so let's create the `p
 
 Note that the view doesn't extend anything, it will be inclided inside an existing form.
 
-## registration
+## Registration
 
 We've created all recources we need for our information displaying feature. The one thing that's left is to inform our main form
 that there exists a new one. To do so we create the a listener `app/Listeners/SettingPhpInfoListener.php` that will pass  
