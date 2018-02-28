@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', function() {
     return;
   }
 
-  const menu = new Vue({
+    const menu = new Vue({
     el: '#menu-vue',
     data: {
       count: 0,
@@ -85,7 +85,7 @@ document.addEventListener('turbolinks:load', function() {
         this.send();
       },
       edit: function(element) {
-        const data = $(element)
+        let data = $(element)
           .parent()
           .data();
         data.label = $(element)
@@ -135,9 +135,9 @@ document.addEventListener('turbolinks:load', function() {
         this.id = '';
       },
       send: function() {
-        const name = $('.dd').attr('data-name');
+        let name = $('.dd').attr('data-name');
 
-        const data = {
+        let data = {
           lang: $('.dd').attr('data-lang'),
           data: $('.dd').nestable('serialize'),
         };
@@ -158,10 +158,19 @@ document.addEventListener('turbolinks:load', function() {
   $('.dd').nestable({});
 
   $('.dd-item').each(function(i, item) {
-    $(item).data('sort', i);
+    $(item).data({
+        sort: i,
+    });
   });
 
   $('.dd').on('change', function() {
+
+    $('.dd-item').each(function(i, item) {
+        $(item).data({
+            sort: i,
+        });
+    });
+
     menu.send();
   });
 
