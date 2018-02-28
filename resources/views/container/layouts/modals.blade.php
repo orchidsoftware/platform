@@ -23,13 +23,14 @@
     </form>
   </div>
 </div>
-@endforeach
-
 
 <script>
   $('#title-modal-{{$key}}').html($('#show-button-modal-{{$key}}').data('modalTitle'));
   $('#submit-modal-{{$key}}').attr('formaction',$('#show-button-modal-{{$key}}').data('modalAction'));
   $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
 </script>
+
+@endforeach
+
 
 @endsection
