@@ -59,7 +59,7 @@ class MenuController extends Controller
         $menu = Menu::where('lang', $currentLocale)
             ->where('parent', 0)
             ->where('type', $nameMenu)
-            ->orderBy('sort','asc')
+            ->orderBy('sort', 'asc')
             ->with('children')
             ->get();
 
@@ -97,7 +97,6 @@ class MenuController extends Controller
     private function createMenuElement(array $items, $parent = 0)
     {
         foreach ($items as $item) {
-
             Menu::firstOrNew([
                 'id' => $item['id'],
             ])->fill(array_merge($item, [
