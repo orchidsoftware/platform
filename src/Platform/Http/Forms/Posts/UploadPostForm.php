@@ -19,8 +19,8 @@ class UploadPostForm extends Form
      * @var string
      */
     public $storage = 'public';
-	
-	/**
+
+    /**
      * @var string
      */
     public $mime = '';
