@@ -112,7 +112,7 @@ return [
         'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
-		'label'        => Orchid\Platform\Fields\Types\LabelField::class,
+        'label'        => Orchid\Platform\Fields\Types\LabelField::class,
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
     ],
 
@@ -277,7 +277,7 @@ return [
         'stylesheets' => [],
         'scripts'     => [],
     ],
-	
+
     /*
     |--------------------------------------------------------------------------
     | Dashboard .....
@@ -291,9 +291,5 @@ return [
         'listing'  => Orchid\Platform\Http\Screens\User\UserList::class,
         'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
     ],
-		
-	
-	
-	
 
 ];

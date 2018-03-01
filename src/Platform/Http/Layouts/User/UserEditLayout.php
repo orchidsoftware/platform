@@ -2,22 +2,19 @@
 
 namespace Orchid\Platform\Http\Layouts\User;
 
-use Orchid\Platform\Layouts\Rows;
 use Orchid\Platform\Fields\Field;
-
-use Orchid\Platform\Fields\Builder;
+use Orchid\Platform\Layouts\Rows;
 
 class UserEditLayout extends Rows
 {
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
-	public function fields(): array
+    public function fields(): array
     {
-
-		return [
+        return [
             Field::tag('input')
                 ->type('text')
                 ->name('user.name')
@@ -38,9 +35,7 @@ class UserEditLayout extends Rows
                 ->title(trans('dashboard::systems/users.password'))
                 ->placeholder('********'),
         ];
-		//dd($return);
-		//return $fields;
+        //dd($return);
+        //return $fields;
     }
-	
-	
 }
