@@ -39,7 +39,7 @@ var textcolor = (function () {
       editor.nodeChanged();
     });
   };
-  var $_fxnl71ptjd09eyqr = {
+  var $_j0mayq6je5o2wfy = {
     getCurrentColor: getCurrentColor,
     mapColors: mapColors,
     applyFormat: applyFormat,
@@ -48,13 +48,13 @@ var textcolor = (function () {
 
   var register = function (editor) {
     editor.addCommand('mceApplyTextcolor', function (format, value) {
-      $_fxnl71ptjd09eyqr.applyFormat(editor, format, value);
+      $_j0mayq6je5o2wfy.applyFormat(editor, format, value);
     });
     editor.addCommand('mceRemoveTextcolor', function (format) {
-      $_fxnl71ptjd09eyqr.removeFormat(editor, format);
+      $_j0mayq6je5o2wfy.removeFormat(editor, format);
     });
   };
-  var $_8rg0qwpsjd09eyqq = { register: register };
+  var $_2vdnnhq5je5o2wfx = { register: register };
 
   var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
@@ -173,7 +173,7 @@ var textcolor = (function () {
   var hasColorPicker = function (editor) {
     return typeof getColorPickerCallback(editor) === 'function';
   };
-  var $_7mzxn4pxjd09eyqy = {
+  var $_3o6235qaje5o2wg7 = {
     getForeColorMap: getForeColorMap,
     getBackColorMap: getBackColorMap,
     getForeColorRows: getForeColorRows,
@@ -193,7 +193,7 @@ var textcolor = (function () {
       var isNoColor = color === 'transparent';
       return '<td class="mce-grid-cell' + (isNoColor ? ' mce-colorbtn-trans' : '') + '">' + '<div id="' + id + '-' + count++ + '"' + ' data-mce-color="' + (color ? color : '') + '"' + ' role="option"' + ' tabIndex="-1"' + ' style="' + (color ? 'background-color: ' + color : '') + '"' + ' title="' + I18n.translate(title) + '">' + (isNoColor ? '&#215;' : '') + '</div>' + '</td>';
     };
-    colors = $_fxnl71ptjd09eyqr.mapColors(colorMap);
+    colors = $_j0mayq6je5o2wfy.mapColors(colorMap);
     colors.push({
       text: I18n.translate('No color'),
       color: 'transparent'
@@ -224,7 +224,7 @@ var textcolor = (function () {
     html += '</tbody></table>';
     return html;
   };
-  var $_ayzbxwpyjd09eyr1 = { getHtml: getHtml };
+  var $_6lhxakqbje5o2wg9 = { getHtml: getHtml };
 
   var setDivColor = function setDivColor(div, value) {
     div.style.background = value;
@@ -244,7 +244,7 @@ var textcolor = (function () {
     return function (e) {
       var buttonCtrl = this.parent();
       var value;
-      var currentColor = $_fxnl71ptjd09eyqr.getCurrentColor(editor, buttonCtrl.settings.format);
+      var currentColor = $_j0mayq6je5o2wfy.getCurrentColor(editor, buttonCtrl.settings.format);
       var selectColor = function (value) {
         buttonCtrl.hidePanel();
         buttonCtrl.color(value);
@@ -257,7 +257,7 @@ var textcolor = (function () {
       };
       if (DOMUtils.DOM.getParent(e.target, '.mce-custom-color-btn')) {
         buttonCtrl.hidePanel();
-        var colorPickerCallback = $_7mzxn4pxjd09eyqy.getColorPickerCallback(editor);
+        var colorPickerCallback = $_3o6235qaje5o2wg7.getColorPickerCallback(editor);
         colorPickerCallback.call(editor, function (value) {
           var tableElm = buttonCtrl.panel.getEl().getElementsByTagName('table')[0];
           var customColorCells, div, i;
@@ -298,11 +298,11 @@ var textcolor = (function () {
   };
   var renderColorPicker = function (editor, foreColor) {
     return function () {
-      var cols = foreColor ? $_7mzxn4pxjd09eyqy.getForeColorCols(editor) : $_7mzxn4pxjd09eyqy.getBackColorCols(editor);
-      var rows = foreColor ? $_7mzxn4pxjd09eyqy.getForeColorRows(editor) : $_7mzxn4pxjd09eyqy.getBackColorRows(editor);
-      var colorMap = foreColor ? $_7mzxn4pxjd09eyqy.getForeColorMap(editor) : $_7mzxn4pxjd09eyqy.getBackColorMap(editor);
-      var hasColorPicker = $_7mzxn4pxjd09eyqy.hasColorPicker(editor);
-      return $_ayzbxwpyjd09eyr1.getHtml(cols, rows, colorMap, hasColorPicker);
+      var cols = foreColor ? $_3o6235qaje5o2wg7.getForeColorCols(editor) : $_3o6235qaje5o2wg7.getBackColorCols(editor);
+      var rows = foreColor ? $_3o6235qaje5o2wg7.getForeColorRows(editor) : $_3o6235qaje5o2wg7.getBackColorRows(editor);
+      var colorMap = foreColor ? $_3o6235qaje5o2wg7.getForeColorMap(editor) : $_3o6235qaje5o2wg7.getBackColorMap(editor);
+      var hasColorPicker = $_3o6235qaje5o2wg7.hasColorPicker(editor);
+      return $_6lhxakqbje5o2wg9.getHtml(cols, rows, colorMap, hasColorPicker);
     };
   };
   var register$1 = function (editor) {
@@ -314,7 +314,7 @@ var textcolor = (function () {
         role: 'application',
         ariaRemember: true,
         html: renderColorPicker(editor, true),
-        onclick: onPanelClick(editor, $_7mzxn4pxjd09eyqy.getForeColorCols(editor))
+        onclick: onPanelClick(editor, $_3o6235qaje5o2wg7.getForeColorCols(editor))
       },
       onclick: onButtonClick(editor)
     });
@@ -326,16 +326,16 @@ var textcolor = (function () {
         role: 'application',
         ariaRemember: true,
         html: renderColorPicker(editor, false),
-        onclick: onPanelClick(editor, $_7mzxn4pxjd09eyqy.getBackColorCols(editor))
+        onclick: onPanelClick(editor, $_3o6235qaje5o2wg7.getBackColorCols(editor))
       },
       onclick: onButtonClick(editor)
     });
   };
-  var $_1l7mpjpujd09eyqt = { register: register$1 };
+  var $_g4sompq7je5o2wg1 = { register: register$1 };
 
   PluginManager.add('textcolor', function (editor) {
-    $_8rg0qwpsjd09eyqq.register(editor);
-    $_1l7mpjpujd09eyqt.register(editor);
+    $_2vdnnhq5je5o2wfx.register(editor);
+    $_g4sompq7je5o2wg1.register(editor);
   });
   function Plugin () {
   }
@@ -343,4 +343,4 @@ var textcolor = (function () {
   return Plugin;
 
 }());
-})()
+})();
