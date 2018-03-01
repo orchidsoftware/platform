@@ -24,7 +24,6 @@ if (!mix.inProduction()) {
 }
 
 mix
-  .copy('./node_modules/font-awesome/fonts/', 'public/fonts')
   .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
   .copyDirectory('./node_modules/tinymce', 'public/js/tinymce')
   .sass('resources/assets/sass/app.scss', 'css/orchid.css')

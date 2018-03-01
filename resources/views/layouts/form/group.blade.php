@@ -8,11 +8,11 @@
             <button type="submit"
                     onclick="window.dashboard.validateForm('form-group','{{trans('dashboard::common.alert.validate')}}')"
                     form="form-group"
-                    class="btn btn-link btn-save"><i class="sli icon-check fa-2x"></i></button>
+                    class="btn btn-link btn-save"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}</button>
         </li>
         <li class="nav-item">
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i
-                        class="sli icon-trash fa-2x"></i></button>
+                        class="icon-trash"></i> {{trans('dashboard::common.commands.remove')}}</button>
         </li>
 
     </ul>

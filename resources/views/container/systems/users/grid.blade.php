@@ -10,7 +10,7 @@
     <div class="text-right">
         <div class="btn-group" role="group">
             <a href="{{ route('dashboard.systems.users.create')}}" class="btn btn-link"><i
-                        class="sli icon-plus fa-2x"></i></a>
+                        class="sli icon-plus text-2x"></i></a>
         </div>
     </div>
 @stop

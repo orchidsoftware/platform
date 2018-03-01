@@ -13,13 +13,11 @@
 
             @if($menu->count() > 0)
 
-
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
                         <h3 class="font-thin">{{trans('dashboard::systems/menu.description')}}</h3>
                         <ul class="text-left">
                             @foreach ($menu as $key => $value)
-
                                 <li>
                                     <a href="{{ route('dashboard.systems.menu.show',$key) }}">{{ $value }}</a>
                                 </li>
@@ -30,7 +28,6 @@
                 </div>
 
             @else
-
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>

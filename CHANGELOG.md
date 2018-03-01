@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- Font Awesome
+
 ## [2.2.3] - 2018-03-01
 ### Added
 - Ukrainian language [595](https://github.com/orchidsoftware/platform/pull/595)

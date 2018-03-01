@@ -51,7 +51,7 @@ class DateTimerField extends Field
      */
     public $attributes = [
         'type'  => 'text',
-        'class' => 'form-control',
+        'class' => 'form-control datetimepicker',
     ];
 
     /**
