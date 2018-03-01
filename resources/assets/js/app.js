@@ -8,3 +8,7 @@ window.Turbolinks = require('turbolinks');
 Turbolinks.start();
 
 require('./bootstrap');
+
+document.addEventListener('turbolinks:load', function() {
+  require('./dashboard');
+});

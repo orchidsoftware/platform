@@ -6,9 +6,15 @@ namespace Orchid\Platform\Behaviors\Base;
 
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Core\Models\Category;
 
 class CategoryBase
 {
+    /**
+     * @var string
+     */
+    public $class = Category::class;
+
     /**
      * @var int
      */

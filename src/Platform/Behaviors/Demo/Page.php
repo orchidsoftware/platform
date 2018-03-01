@@ -61,11 +61,21 @@ class Page extends Single
                 ->title('Name Articles')
                 ->help('Article title'),
 
+            Field::tag('link')
+                ->name('name')
+                ->required()
+                ->title('Name Articles')
+                ->help('Article title'),
+
             Field::tag('wysiwyg')
                 ->name('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            Field::tag('upload')
+                ->name('upload')
+                ->title('Upload'),
 
             Field::tag('markdown')
                 ->name('body2')

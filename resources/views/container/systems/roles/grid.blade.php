@@ -10,7 +10,7 @@
     <div class="text-right">
         <div class="btn-group" role="group">
             <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">
-                <i class="sli icon-plus fa-2x"></i>
+                <i class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}
             </a>
         </div>
     </div>

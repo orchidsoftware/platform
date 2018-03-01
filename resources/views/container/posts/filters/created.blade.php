@@ -7,7 +7,7 @@
                 <input type='text' name="start_created_at" id='start_created_at'
                        form="filters"
                        value="{{$request->get('start_created_at')}}" class="form-control datetimepicker"
-                       data-date-format="YYYY-MM-DD HH:mm:ss">
+                       data-date-format="YYYY-MM-DD">
             </div>
         </div>
 
@@ -16,7 +16,7 @@
                 <input type='text' name="end_created_at" id='end_created_at' value="{{$request->get('end_created_at')}}"
                        form="filters"
                        class="form-control datetimepicker"
-                       data-date-format="YYYY-MM-DD HH:mm:ss">
+                       data-date-format="YYYY-MM-DD">
             </div>
         </div>
     </div>

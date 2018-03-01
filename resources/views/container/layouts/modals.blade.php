@@ -17,8 +17,7 @@
             @csrf
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" id="submit-modal-{{$key}}" class="btn btn-primary">Apply</button>
+        <button type="submit" id="submit-modal-{{$key}}" class="btn btn-primary">{{trans('dashboard::common.apply')}}</button>
       </div>
     </form>
   </div>

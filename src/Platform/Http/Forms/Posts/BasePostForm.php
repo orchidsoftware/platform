@@ -46,10 +46,10 @@ class BasePostForm extends Form
         $category = Category::get();
 
         $category = $category->map(function ($item) use ($currentCategory) {
+            $item->active = false;
+
             if (array_key_exists($item->id, $currentCategory)) {
                 $item->active = true;
-            } else {
-                $item->active = false;
             }
 
             return $item;

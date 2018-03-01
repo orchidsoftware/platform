@@ -9,8 +9,8 @@
     <ul class="nav justify-content-end  v-center"  role="tablist">
 
         <li class="nav-item">
-            <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link"><i
-                        class="sli icon-plus fa-2x"></i></a>
+            <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link">
+                <i class="icon-plus"></i>  {{trans('dashboard::common.commands.add')}}</a>
         </li>
 
     </ul>

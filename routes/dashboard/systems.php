@@ -43,11 +43,6 @@ $this->domain(config('platform.domain'))->group(function () {
             ],
         ]);
 
-        $router->get('cache', [
-            'as'   => 'dashboard.systems.cache',
-            'uses' => 'CacheController@index',
-        ]);
-
         $router->post('cache', [
             'as'   => 'dashboard.systems.cache',
             'uses' => 'CacheController@store',
