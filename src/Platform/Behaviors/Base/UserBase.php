@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\RoleFilter;
 

@@ -52,7 +52,7 @@ class UploadPostForm extends Form
      */
     public function persist($type = null, $post = null)
     {
-        if (!$this->request->filled('files')) {
+        if (! $this->request->filled('files')) {
             return;
         }
 
@@ -61,6 +61,5 @@ class UploadPostForm extends Form
         foreach ($files as $file) {
             $entity->attachment()->attach($file);
         }
-
     }
 }
