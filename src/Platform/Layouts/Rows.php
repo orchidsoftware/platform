@@ -13,6 +13,7 @@ abstract class Rows
      */
     public $template = 'dashboard::container.layouts.row';
 
+	public $post;
     /**
      * @param $post
      *
@@ -21,9 +22,9 @@ abstract class Rows
      */
     public function build($post)
     {
+		$this->post=$post;
         $form = new Builder($this->fields(), $post);
-
-        return view($this->template, [
+		return view($this->template, [
             'form' => $form->generateForm(),
         ])->render();
     }

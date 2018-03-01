@@ -2,7 +2,9 @@
     @if(isset($title))
         <label for="{{$id}}">{{$title}}</label>
     @endif
-    <p id="{{$id}}">{{$fieldName or ''}}</p>
+	@if(isset($fieldNames))
+    <p id="{{$id}}">{{$fieldNames or ''}}</p>
+	@endif
     @if(isset($help))
         <p class="form-text text-muted">{{$help}}</p>
     @endif

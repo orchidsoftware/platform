@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
@@ -46,6 +47,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
+
+		Route::bind('user', function ($value) {
+            return User::firstOrNew(['id'=>$value]);
+        });
+		
         Route::bind('role', function ($value) {
             if (is_numeric($value)) {
                 return Role::where('id', $value)->firstOrFail();
