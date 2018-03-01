@@ -3,38 +3,30 @@
 namespace Orchid\Platform\Http\Screens\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-use Orchid\Platform\Facades\Alert;
-use Orchid\Platform\Notifications\DashboardNotification;
-
-use Orchid\Platform\Screen\Screen;
-use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
-
+use Orchid\Platform\Screen\Screen;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Http\Layouts\User\UserListLayout;
-
 use Orchid\Platform\Http\Filters\RoleFilter;
+use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen
 {
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
-    public $name = 'dashboard::systems/users.title'; 
+    public $name = 'dashboard::systems/users.title';
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
     public $description = 'dashboard::systems/users.description';
 
     /**
-     * Query data
+     * Query data.
      *
      * @return array
      */
@@ -42,13 +34,13 @@ class UserList extends Screen
     {
         return [
             'users' => User::filtersApply([
-							RoleFilter::class,
-						])->paginate()
+                            RoleFilter::class,
+                        ])->paginate(),
         ];
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -60,7 +52,7 @@ class UserList extends Screen
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
@@ -76,7 +68,7 @@ class UserList extends Screen
      *
      * @return null
      */
-     public function create()
+    public function create()
     {
         return redirect()->route('dashboard.systems.users.create');
     }
