@@ -21,6 +21,11 @@ class UploadPostForm extends Form
     public $storage = 'public';
 
     /**
+     * @var string
+     */
+    public $mime = '';
+
+    /**
      * UploadPostForm constructor.
      *
      * @param null $request
@@ -41,7 +46,7 @@ class UploadPostForm extends Form
      */
     public function get() : View
     {
-        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage]);
+        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage, 'mime' => $this->mime]);
     }
 
     /**

@@ -112,7 +112,6 @@ return [
         'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
-        'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
     ],
 
     /*

@@ -49,6 +49,7 @@ document.addEventListener('turbolinks:load', function() {
     parallelUploads: 100,
     maxFilesize: 9999,
     paramName: 'files',
+    acceptedFiles: $('#post-attachment-dropzone').data('accepted'),
     maxThumbnailFilesize: 99999,
     previewsContainer: '.visual-dropzone',
     //previewTemplate: document.getElementById('preview-template').innerHTML,

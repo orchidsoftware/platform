@@ -1,4 +1,4 @@
-<div class="dropzone" id="post-attachment-dropzone" data-storage="{{$storage ?? 'public'}}">
+<div class="dropzone" id="post-attachment-dropzone" data-accepted="{{ $mime }}" data-storage="{{$storage ?? 'public'}}">
     <div class="fallback">
         <input type="file" value="" multiple/>
     </div>

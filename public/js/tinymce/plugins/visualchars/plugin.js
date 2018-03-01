@@ -28,12 +28,12 @@ var visualchars = (function () {
     };
     return { isEnabled: isEnabled };
   };
-  var $_f80puor3jd09eyul = { get: get };
+  var $_ayigxzrgje5o2wk3 = { get: get };
 
   var fireVisualChars = function (editor, state) {
     return editor.fire('VisualChars', { state: state });
   };
-  var $_f93guzr6jd09eyun = { fireVisualChars: fireVisualChars };
+  var $_bibjz4rjje5o2wk6 = { fireVisualChars: fireVisualChars };
 
   var charMap = {
     '\xA0': 'nbsp',
@@ -56,7 +56,7 @@ var visualchars = (function () {
     }
     return selector;
   };
-  var $_e5jnkrr8jd09eyut = {
+  var $_4injbarlje5o2wkc = {
     charMap: charMap,
     regExp: charMapToRegExp(charMap),
     regExpGlobal: charMapToRegExp(charMap, true),
@@ -118,7 +118,7 @@ var visualchars = (function () {
   };
   var never = constant(false);
   var always = constant(true);
-  var $_7udreqrcjd09eyvb = {
+  var $_51f9b2rpje5o2wkp = {
     noop: noop,
     noarg: noarg,
     compose: compose,
@@ -134,8 +134,8 @@ var visualchars = (function () {
     always: always
   };
 
-  var never$1 = $_7udreqrcjd09eyvb.never;
-  var always$1 = $_7udreqrcjd09eyvb.always;
+  var never$1 = $_51f9b2rpje5o2wkp.never;
+  var always$1 = $_51f9b2rpje5o2wkp.always;
   var none = function () {
     return NONE;
   };
@@ -178,7 +178,7 @@ var visualchars = (function () {
       toArray: function () {
         return [];
       },
-      toString: $_7udreqrcjd09eyvb.constant('none()')
+      toString: $_51f9b2rpje5o2wkp.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -247,7 +247,7 @@ var visualchars = (function () {
   var from = function (value) {
     return value === null || value === undefined ? NONE : some(value);
   };
-  var $_8jjuncrbjd09eyv9 = {
+  var Option = {
     some: some,
     none: none,
     from: from
@@ -265,7 +265,7 @@ var visualchars = (function () {
   }();
   var indexOf = function (xs, x) {
     var r = rawIndexOf(xs, x);
-    return r === -1 ? $_8jjuncrbjd09eyv9.none() : $_8jjuncrbjd09eyv9.some(r);
+    return r === -1 ? Option.none() : Option.some(r);
   };
   var contains = function (xs, x) {
     return rawIndexOf(xs, x) > -1;
@@ -371,19 +371,19 @@ var visualchars = (function () {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
-        return $_8jjuncrbjd09eyv9.some(x);
+        return Option.some(x);
       }
     }
-    return $_8jjuncrbjd09eyv9.none();
+    return Option.none();
   };
   var findIndex = function (xs, pred) {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
       if (pred(x, i, xs)) {
-        return $_8jjuncrbjd09eyv9.some(i);
+        return Option.some(i);
       }
     }
-    return $_8jjuncrbjd09eyv9.none();
+    return Option.none();
   };
   var slowIndexOf = function (xs, x) {
     for (var i = 0, len = xs.length; i < len; ++i) {
@@ -449,12 +449,12 @@ var visualchars = (function () {
     return copy;
   };
   var head = function (xs) {
-    return xs.length === 0 ? $_8jjuncrbjd09eyv9.none() : $_8jjuncrbjd09eyv9.some(xs[0]);
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
   };
   var last = function (xs) {
-    return xs.length === 0 ? $_8jjuncrbjd09eyv9.none() : $_8jjuncrbjd09eyv9.some(xs[xs.length - 1]);
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
   };
-  var $_9t8uvrajd09eyv3 = {
+  var $_7or0gdrnje5o2wki = {
     map: map,
     each: each,
     eachr: eachr,
@@ -506,12 +506,12 @@ var visualchars = (function () {
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
-    return { dom: $_7udreqrcjd09eyvb.constant(node) };
+    return { dom: $_51f9b2rpje5o2wkp.constant(node) };
   };
   var fromPoint = function (doc, x, y) {
-    return $_8jjuncrbjd09eyv9.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
+    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
   };
-  var $_4spgchrdjd09eyve = {
+  var $_drqpldrqje5o2wl0 = {
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -519,7 +519,7 @@ var visualchars = (function () {
     fromPoint: fromPoint
   };
 
-  var $_4kne7zrfjd09eyvj = {
+  var $_6mb0vtrsje5o2wla = {
     ATTRIBUTE: 2,
     CDATA_SECTION: 4,
     COMMENT: 8,
@@ -550,12 +550,12 @@ var visualchars = (function () {
     };
   };
   var isComment = function (element) {
-    return type(element) === $_4kne7zrfjd09eyvj.COMMENT || name(element) === '#comment';
+    return type(element) === $_6mb0vtrsje5o2wla.COMMENT || name(element) === '#comment';
   };
-  var isElement = isType($_4kne7zrfjd09eyvj.ELEMENT);
-  var isText = isType($_4kne7zrfjd09eyvj.TEXT);
-  var isDocument = isType($_4kne7zrfjd09eyvj.DOCUMENT);
-  var $_3br7k2rejd09eyvi = {
+  var isElement = isType($_6mb0vtrsje5o2wla.ELEMENT);
+  var isText = isType($_6mb0vtrsje5o2wla.TEXT);
+  var isDocument = isType($_6mb0vtrsje5o2wla.DOCUMENT);
+  var $_7bq970rrje5o2wl9 = {
     name: name,
     type: type,
     value: value,
@@ -566,18 +566,18 @@ var visualchars = (function () {
   };
 
   var wrapCharWithSpan = function (value) {
-    return '<span data-mce-bogus="1" class="mce-' + $_e5jnkrr8jd09eyut.charMap[value] + '">' + value + '</span>';
+    return '<span data-mce-bogus="1" class="mce-' + $_4injbarlje5o2wkc.charMap[value] + '">' + value + '</span>';
   };
-  var $_7av1imrgjd09eyvk = { wrapCharWithSpan: wrapCharWithSpan };
+  var $_8rglksrtje5o2wlb = { wrapCharWithSpan: wrapCharWithSpan };
 
   var isMatch = function (n) {
-    return $_3br7k2rejd09eyvi.isText(n) && $_3br7k2rejd09eyvi.value(n) !== undefined && $_e5jnkrr8jd09eyut.regExp.test($_3br7k2rejd09eyvi.value(n));
+    return $_7bq970rrje5o2wl9.isText(n) && $_7bq970rrje5o2wl9.value(n) !== undefined && $_4injbarlje5o2wkc.regExp.test($_7bq970rrje5o2wl9.value(n));
   };
   var filterDescendants = function (scope, predicate) {
     var result = [];
     var dom = scope.dom();
-    var children = $_9t8uvrajd09eyv3.map(dom.childNodes, $_4spgchrdjd09eyve.fromDom);
-    $_9t8uvrajd09eyv3.each(children, function (x) {
+    var children = $_7or0gdrnje5o2wki.map(dom.childNodes, $_drqpldrqje5o2wl0.fromDom);
+    $_7or0gdrnje5o2wki.each(children, function (x) {
       if (predicate(x)) {
         result = result.concat([x]);
       }
@@ -594,9 +594,9 @@ var visualchars = (function () {
     }
   };
   var replaceWithSpans = function (html) {
-    return html.replace($_e5jnkrr8jd09eyut.regExpGlobal, $_7av1imrgjd09eyvk.wrapCharWithSpan);
+    return html.replace($_4injbarlje5o2wkc.regExpGlobal, $_8rglksrtje5o2wlb.wrapCharWithSpan);
   };
-  var $_giusm9r9jd09eyux = {
+  var $_g8g26vrmje5o2wkd = {
     isMatch: isMatch,
     filterDescendants: filterDescendants,
     findParentElm: findParentElm,
@@ -605,9 +605,9 @@ var visualchars = (function () {
 
   var show = function (editor, rootElm) {
     var node, div;
-    var nodeList = $_giusm9r9jd09eyux.filterDescendants($_4spgchrdjd09eyve.fromDom(rootElm), $_giusm9r9jd09eyux.isMatch);
-    $_9t8uvrajd09eyv3.each(nodeList, function (n) {
-      var withSpans = $_giusm9r9jd09eyux.replaceWithSpans($_3br7k2rejd09eyvi.value(n));
+    var nodeList = $_g8g26vrmje5o2wkd.filterDescendants($_drqpldrqje5o2wl0.fromDom(rootElm), $_g8g26vrmje5o2wkd.isMatch);
+    $_7or0gdrnje5o2wki.each(nodeList, function (n) {
+      var withSpans = $_g8g26vrmje5o2wkd.replaceWithSpans($_7bq970rrje5o2wl9.value(n));
       div = editor.dom.create('div', null, withSpans);
       while (node = div.lastChild) {
         editor.dom.insertAfter(node, n.dom());
@@ -616,21 +616,21 @@ var visualchars = (function () {
     });
   };
   var hide = function (editor, body) {
-    var nodeList = editor.dom.select($_e5jnkrr8jd09eyut.selector, body);
-    $_9t8uvrajd09eyv3.each(nodeList, function (node) {
+    var nodeList = editor.dom.select($_4injbarlje5o2wkc.selector, body);
+    $_7or0gdrnje5o2wki.each(nodeList, function (node) {
       editor.dom.remove(node, 1);
     });
   };
   var toggle = function (editor) {
     var body = editor.getBody();
     var bookmark = editor.selection.getBookmark();
-    var parentNode = $_giusm9r9jd09eyux.findParentElm(editor.selection.getNode(), body);
+    var parentNode = $_g8g26vrmje5o2wkd.findParentElm(editor.selection.getNode(), body);
     parentNode = parentNode !== undefined ? parentNode : body;
     hide(editor, parentNode);
     show(editor, parentNode);
     editor.selection.moveToBookmark(bookmark);
   };
-  var $_45pg5ur7jd09eyuo = {
+  var $_9xpwqmrkje5o2wk7 = {
     show: show,
     hide: hide,
     toggle: toggle
@@ -641,39 +641,39 @@ var visualchars = (function () {
     var selection = editor.selection;
     var bookmark;
     toggleState.set(!toggleState.get());
-    $_f93guzr6jd09eyun.fireVisualChars(editor, toggleState.get());
+    $_bibjz4rjje5o2wk6.fireVisualChars(editor, toggleState.get());
     bookmark = selection.getBookmark();
     if (toggleState.get() === true) {
-      $_45pg5ur7jd09eyuo.show(editor, body);
+      $_9xpwqmrkje5o2wk7.show(editor, body);
     } else {
-      $_45pg5ur7jd09eyuo.hide(editor, body);
+      $_9xpwqmrkje5o2wk7.hide(editor, body);
     }
     selection.moveToBookmark(bookmark);
   };
-  var $_6gsz5mr5jd09eyum = { toggleVisualChars: toggleVisualChars };
+  var $_46q31zrije5o2wk5 = { toggleVisualChars: toggleVisualChars };
 
   var register = function (editor, toggleState) {
     editor.addCommand('mceVisualChars', function () {
-      $_6gsz5mr5jd09eyum.toggleVisualChars(editor, toggleState);
+      $_46q31zrije5o2wk5.toggleVisualChars(editor, toggleState);
     });
   };
-  var $_gdssjhr4jd09eyul = { register: register };
+  var $_9hnzd1rhje5o2wk4 = { register: register };
 
   var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
   var setup = function (editor, toggleState) {
     var debouncedToggle = Delay.debounce(function () {
-      $_45pg5ur7jd09eyuo.toggle(editor);
+      $_9xpwqmrkje5o2wk7.toggle(editor);
     }, 300);
     if (editor.settings.forced_root_block !== false) {
       editor.on('keydown', function (e) {
         if (toggleState.get() === true) {
-          e.keyCode === 13 ? $_45pg5ur7jd09eyuo.toggle(editor) : debouncedToggle();
+          e.keyCode === 13 ? $_9xpwqmrkje5o2wk7.toggle(editor) : debouncedToggle();
         }
       });
     }
   };
-  var $_2pu7ugrhjd09eyvl = { setup: setup };
+  var $_9oavairuje5o2wld = { setup: setup };
 
   var toggleActiveState = function (editor) {
     return function (e) {
@@ -702,10 +702,10 @@ var visualchars = (function () {
 
   PluginManager.add('visualchars', function (editor) {
     var toggleState = Cell(false);
-    $_gdssjhr4jd09eyul.register(editor, toggleState);
+    $_9hnzd1rhje5o2wk4.register(editor, toggleState);
     register$1(editor);
-    $_2pu7ugrhjd09eyvl.setup(editor, toggleState);
-    return $_f80puor3jd09eyul.get(toggleState);
+    $_9oavairuje5o2wld.setup(editor, toggleState);
+    return $_ayigxzrgje5o2wk3.get(toggleState);
   });
   function Plugin () {
   }
@@ -713,4 +713,4 @@ var visualchars = (function () {
   return Plugin;
 
 }());
-})()
+})();
