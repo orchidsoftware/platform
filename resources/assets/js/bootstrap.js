@@ -47,7 +47,6 @@ $(() => {
 $.fn.select2.defaults.set('theme', 'bootstrap');
 require('croppie');
 
-require('./dashboard');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
@@ -67,6 +66,8 @@ tinyMCE.baseURL = '/orchid/js/tinymce';
 //SimpleMDE editor
 window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
 
-require('./components/attachment.js');
-require('./components/filemanager.js');
-require('./components/menu.js');
+require('./components/attachment');
+require('./components/filemanager');
+require('./components/menu');
+
+require('./dashboard');
