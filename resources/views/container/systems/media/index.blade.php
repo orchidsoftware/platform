@@ -6,37 +6,43 @@
 @section('navbar')
 
     <ul class="nav justify-content-end  v-center">
-        <li></li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="upload"><i class="icon-cloud-upload"></i>
+                {{trans('dashboard::systems/media.upload')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="new_folder"
+                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
+                {{trans('dashboard::systems/media.create_new_folder')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
+                {{trans('dashboard::systems/media.refresh')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
+                {{trans('dashboard::systems/media.move_file_folder')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
+                {{trans('dashboard::systems/media.move_file_folder')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="rename"><i class="icon-font"></i>
+                {{trans('dashboard::systems/media.new_file_folder')}}
+            </button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-link" id="delete"><i class="icon-trash"></i>
+                {{trans('dashboard::systems/media.delete')}}
+            </button>
+        </li>
     </ul>
-
-    <div class="nav justify-content-end v-center">
-
-        <div class="btn-group">
-                <button type="button" class="btn btn-link" id="upload"><i class="icon-cloud-upload"></i>
-                    {{trans('dashboard::systems/media.upload')}}
-                </button>
-                <button type="button" class="btn btn-link" id="new_folder"
-                        onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
-                    {{trans('dashboard::systems/media.create_new_folder')}}
-                </button>
-
-                <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
-				    {{trans('dashboard::systems/media.refresh')}}
-                </button>
-                 <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
-                     {{trans('dashboard::systems/media.move_file_folder')}}
-                </button>
-                <button type="button" class="btn btn-link" id="rename"><i class="fa fa fa-font"></i>
-                    {{trans('dashboard::systems/media.new_file_folder')}}
-                </button>
-                <button type="button" class="btn btn-link" id="delete"><i class="icon-trash"></i>
-                    {{trans('dashboard::systems/media.delete')}}
-                </button>
-        </div>
-
-    </div>
-
-
 @stop
 
 @section('content')
@@ -118,7 +124,7 @@
 
                     </div>
 
-                    <div id="right" class="col w-xxl no-padder">
+                    <div id="right" class="col wi-col no-padder">
                         <div class="right_none_selected">
                             <i class="icon-cursor"></i>
                             <p> {{trans('dashboard::systems/media.nothing_selected')}}</p>
@@ -239,7 +245,7 @@
                             <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">&times;
                             </button>
-                            <h4 class="modal-title"><i class="fa fa-character"></i> {{trans('dashboard::systems/media.rename_file_folder')}}</h4>
+                            <h4 class="modal-title"><i class="icon-font"></i> {{trans('dashboard::systems/media.rename_file_folder')}}</h4>
                         </div>
 
                         <div class="modal-body">

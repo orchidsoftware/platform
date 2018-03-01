@@ -58,7 +58,7 @@ document.addEventListener('turbolinks:load', function() {
     init: function() {
       this.on('addedfile', function(e) {
         var n = Dropzone.createElement(
-            "<a href='javascript:;'' class='btn-remove'><i class='fa fa-times' aria-hidden='true'></i></a>",
+            "<a href='javascript:;' class='btn-remove'><i class='icon-cross' aria-hidden='true'></i></a>",
           ),
           t = this;
         n.addEventListener('click', function(n) {

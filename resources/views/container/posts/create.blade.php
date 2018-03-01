@@ -34,7 +34,8 @@
                 <button type="submit"
                         onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
                         form="post-form"
-                        class="btn btn-sm btn-link"><i class="sli icon-check fa-2x"></i></button>
+                        class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+                </button>
             </li>
 
         </ul>

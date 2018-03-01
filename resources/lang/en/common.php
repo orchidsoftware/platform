@@ -5,13 +5,18 @@ return [
     'title'       => 'Dashboard Panel',
     'description' => 'Welcome to ORCHID',
 
-    'notifications' => 'Notifications',
+    'notifications'    => 'Notifications',
     'no_notifications' => 'No notifications',
 
-    'Create'       => 'Create',
-    'Delete'       => 'Delete',
+    'commands' => [
+        'add'    => 'Add',
+        'save'   => 'Save',
+        'update' => 'Update',
+        'remove' => 'Remove',
+    ],
+
     'Find'         => 'Find',
-    'Apply'        => 'Apply',
+    'apply'        => 'Apply',
     'Manage'       => 'Manage',
     'Last edit'    => 'Last edit',
     'Created'      => 'Created',
@@ -20,8 +25,6 @@ return [
     'of'           => 'of',
     'search_posts' => 'Search post...',
 
-    'website' => 'Website',
-    'profile' => 'Profile',
 
     'access_denied' => [
         'label' => 'Access denied',

@@ -8,7 +8,7 @@
         @if($locales->count() > 1)
             <li class="nav-item dropdown">
                 <a href="#"
-                   class="nav-link dropdown-toggle text-uppercase padder-v"
+                   class="btn btn-link text-uppercase"
                    data-toggle="dropdown"
                    role="button"
                    aria-haspopup="true"
@@ -34,13 +34,15 @@
                 <button type="submit"
                         onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
                         form="post-form"
-                        class="btn btn-sm btn-link"><i class="sli icon-check fa-2x"></i></button>
+                        class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+                </button>
             </li>
 
             <li>
                 <button type="submit"
                         form="form-post-remove"
-                        class="btn btn-sm btn-link"><i class="sli icon-trash fa-2x"></i></button>
+                        class="btn btn-link"><i class="icon-trash"></i> {{trans('dashboard::common.commands.remove')}}
+                </button>
             </li>
 
         </ul>

@@ -25,10 +25,11 @@
     white-space: normal;
   }
   .modal-footer {
-    border-top: none;
+    @extend .b-t;
+    @extend .bg-light;
     box-shadow: none;
     margin-top: 0;
-    padding: 0 25px 25px;
+    padding: 15px 25px;
   }
   .drop-shadow {
     box-shadow: 0 0 9px rgba(191, 191, 191, .36) !important;

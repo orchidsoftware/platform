@@ -4,7 +4,7 @@ let init = (id, theme) => {
   let toolbar1 = '';
   let inline = true;
 
-  if (theme == 'modern') {
+  if (theme === 'modern') {
     plugins =
       'print autosave autoresize preview fullpage paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern';
     toolbar1 =

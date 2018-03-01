@@ -8,15 +8,12 @@
     <div class="line line-dashed b-b line-lg"></div>
     <div class="form-group">
         <label>{{trans('dashboard::post/base.time_of_publication')}}</label>
-        <div class='input-group date datetimepicker'>
-            <input type='text' class="form-control"
+        <div class="form-group">
+            <input type='text' class="form-control datetimepicker"
                    value="{{$post->publish_at or ''}}"
                    name="publish"
                    data-date-format="YYYY-MM-DD HH:mm:ss"
             >
-            <span class="input-group-addon input-group-btn">
-                <span class="btn btn-default"><i class="icon-calendar" aria-hidden="true"></i></span>
-            </span>
         </div>
     </div>
     <div class="form-group">
@@ -71,19 +68,19 @@
             @endforeach
         </select>
     </div>
-    <div class="line line-dashed b-b line-lg"></div>
+
     @if(!is_null($author))
+        <div class="line line-dashed b-b line-lg"></div>
         <p>
             {{trans('dashboard::post/base.author')}}: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
         </p>
-        <div class="line line-dashed b-b line-lg"></div>
     @endif
     @if(!is_null($post))
+        <div class="line line-dashed b-b line-lg"></div>
         <p>
             {{trans('dashboard::post/base.changed')}}: <span
                     title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
         </p>
-        <div class="line line-dashed b-b line-lg"></div>
     @endif
     @if(count($locales) > 1)
         @foreach($locales as $key => $locale)

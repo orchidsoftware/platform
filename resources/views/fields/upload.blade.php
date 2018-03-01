@@ -1,3 +1,4 @@
+
 <div class="dropzone" id="upload-attachment-dropzone" data-storage="{{$storage ?? 'public'}}">
     <div class="fallback">
         <input type="file" value="" multiple/>
@@ -6,11 +7,12 @@
     </div>
     <div class="dz-message">
         <hr>
-        <p><span class="fa-2x icon-cloud-upload"></span></p>
+        <p><span class="text-2x icon-cloud-upload"></span></p>
         <p class="font-bold">{{trans('dashboard::post/uploads.title')}}</p>
         <small>{{trans('dashboard::post/uploads.description')}}</small>
     </div>
 </div>
+
 
 
 <div class="modal fade slide-up disable-scroll" id="modalUploadAttachment" tabindex="-1" role="dialog" aria-hidden="false">
@@ -18,8 +20,8 @@
         <div class="modal-content-wrapper">
             <div class="modal-content">
                 <div class="modal-header clearfix">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                class="fa fa-times"></i>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                     <h5>{{trans('dashboard::post/uploads.information.title')}}</h5>
                     <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
@@ -62,7 +64,7 @@
                                     </a>
 
                                     <button type="button" v-on:click="save"
-                                            class="btn btn-default">{{trans('dashboard::common.Apply')}}</button>
+                                            class="btn btn-default">{{trans('dashboard::common.apply')}}</button>
                                 </p>
 
                             </div>
@@ -136,7 +138,7 @@ document.addEventListener('turbolinks:load', function() {
 
     init: function() {
       this.on('addedfile', function(e) {
-        var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'><i class='fa fa-times' aria-hidden='true'></i></a>"),
+        var n = Dropzone.createElement("<a href='javascript:;'' class='btn-remove'>&times;</a>"),
         t = this;
         n.addEventListener('click', function(n) {
           n.preventDefault(), n.stopPropagation(), t.removeFile(e);

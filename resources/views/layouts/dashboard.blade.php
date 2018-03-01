@@ -50,7 +50,8 @@
 
             <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
-                <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">
+                <i class="icon-orchid"></i>
+                <!-- <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">-->
             </a>
             <!-- / brand  -->
 
@@ -65,12 +66,12 @@
         <!-- navbar collapse  -->
         <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
 
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-4">
                 <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                 <small class="text-muted text-ellipsis">@yield('description')</small>
             </div>
 
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-8">
                 @yield('navbar')
             </div>
 
@@ -102,7 +103,7 @@
                         <li class="nav-item">
                             <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
 
-                                <img src="/orchid/img/logo.svg" width="50px">
+                                <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
                             </a>
                         </li>
 
