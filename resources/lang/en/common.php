@@ -25,7 +25,6 @@ return [
     'of'           => 'of',
     'search_posts' => 'Search post...',
 
-
     'access_denied' => [
         'label' => 'Access denied',
         'help'  => "You don't have the required permissions to view this page.",

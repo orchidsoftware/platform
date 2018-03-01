@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', function() {
     return;
   }
 
-    const menu = new Vue({
+  const menu = new Vue({
     el: '#menu-vue',
     data: {
       count: 0,
@@ -159,16 +159,15 @@ document.addEventListener('turbolinks:load', function() {
 
   $('.dd-item').each(function(i, item) {
     $(item).data({
-        sort: i,
+      sort: i,
     });
   });
 
   $('.dd').on('change', function() {
-
     $('.dd-item').each(function(i, item) {
-        $(item).data({
-            sort: i,
-        });
+      $(item).data({
+        sort: i,
+      });
     });
 
     menu.send();

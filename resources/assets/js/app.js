@@ -10,5 +10,5 @@ Turbolinks.start();
 require('./bootstrap');
 
 document.addEventListener('turbolinks:load', function() {
-    require('./dashboard');
+  require('./dashboard');
 });

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Artisan;
 
 class CacheController
 {
-
     /**
      * @param Request $request
      *
