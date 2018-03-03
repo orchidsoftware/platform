@@ -124,18 +124,18 @@ class UserEdit extends Screen
             $user->password = Hash::make($request->get('user.password'));
         }
 
-        $roles = Role::whereIn('slug', $request->get('roles',[]))->get();
-        $user->replaceRoles($roles);
-
+        
         foreach ($request->get('permissions',[]) as $key => $value){
-            if((int) $value){
-                $permissions[base64_decode($key)] = (int) $value;
-            }
+                $permissions[base64_decode($key)] = 1;
         }
 
         $user->permissions = $permissions ?? [];
 
         $user->save();
+        
+        $roles = Role::whereIn('slug', $request->get('roles',[]))->get();
+        $user->replaceRoles($roles);
+        
 
         Alert::info('User was saved');
 
@@ -143,14 +143,14 @@ class UserEdit extends Screen
     }
 
     /**
-     * @param User $user
-     *
+     * @param         $id
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
      */
-
-    public function remove(User $user)
+    public function remove($id)
     {
+        $user = User::findOrNew($id);
+
         $user->delete();
 
         Alert::info('User was removed');

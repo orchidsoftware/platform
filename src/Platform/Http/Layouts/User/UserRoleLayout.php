@@ -34,14 +34,23 @@ class UserRoleLayout extends Rows
             ->name('roles[]')
             ->title('Role')
             ->placeholder('Select role');
-
+        
+        $fields[] = Field::tag('row')
+                ->name('style')
+                ->styles('.row.cols-3 .form-group {flex-basis: 33.33%;margin-bottom: 5px;}');
 
         foreach ($this->query->getContent('permission') as $group => $items) {
 
             $fields[] = Field::tag('label')
                 ->name($group)
-                ->title($group);
-
+                ->title($group)
+                ->hr(false);
+                
+            $fields[] = Field::tag('row')
+                ->name('row')
+                ->div('div')
+                ->class('row justify-content-start cols-3 no-gutter ml-4');
+                
             foreach ($items as $item) {
 
                 $fields[] = Field::tag('checkbox')
@@ -52,8 +61,13 @@ class UserRoleLayout extends Rows
                     })
                     ->hr(false);
             }
+            
+            $fields[] = Field::tag('row')
+                ->name('closediv')
+                ->enddiv('div')
+                ->hr(true);
+            
         }
-
 
         return $fields;
     }
