@@ -22,9 +22,6 @@ class UserListLayout extends Table
     {
         return [
             RoleFilter::class,
-            //SearchFilter::class,
-            //StatusFilter::class,
-            //CreatedFilter::class,
         ];
     }
 

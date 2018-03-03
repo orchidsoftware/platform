@@ -11,15 +11,15 @@
 
 $this->domain(config('platform.domain'))->group(function () {
     $this->group([
-    'middleware' => config('platform.middleware.private'),
-    'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
-    /*'namespace'  => 'Orchid\Platform\Http\Screens',*/
+        'middleware' => config('platform.middleware.private'),
+        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
+        /*'namespace'  => 'Orchid\Platform\Http\Screens',*/
     ],
-    function (\Illuminate\Routing\Router $router, $path = 'dashboard.systems') {
-        $router->screen('users/{user}/edit', config('platform.users.edit'), $path.'.users.edit');
-        $router->screen('users/create', config('platform.users.edit'), $path.'.users.create');
-        $router->screen('users', config('platform.users.list'), $path.'.users');
-    });
+        function (\Illuminate\Routing\Router $router, $path = 'dashboard.systems') {
+            $router->screen('users/{user}/edit', config('platform.users.edit'), $path.'.users.edit');
+            $router->screen('users/create', config('platform.users.edit'), $path.'.users.create');
+            $router->screen('users', config('platform.users.list'), $path.'.users');
+        });
 
     $this->group([
         'middleware' => config('platform.middleware.private'),

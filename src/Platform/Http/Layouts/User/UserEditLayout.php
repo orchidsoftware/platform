@@ -11,9 +11,11 @@ class UserEditLayout extends Rows
      * Views.
      *
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields(): array
     {
+
         return [
             Field::tag('input')
                 ->type('text')
@@ -35,7 +37,5 @@ class UserEditLayout extends Rows
                 ->title(trans('dashboard::systems/users.password'))
                 ->placeholder('********'),
         ];
-        //dd($return);
-        //return $fields;
     }
 }

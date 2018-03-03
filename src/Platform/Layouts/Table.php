@@ -17,14 +17,14 @@ abstract class Table
     public $data;
 
     /**
-     * @param $post
+     * @param $query
      *
      * @return array
      * @throws \Throwable
      */
-    public function build($post)
+    public function build($query)
     {
-        $form = $this->generatedTable($post);
+        $form = $this->generatedTable($query);
         $filters = $this->showFilterDashboard();
 
         return view($this->template, [

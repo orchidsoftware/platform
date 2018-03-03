@@ -47,10 +47,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('user', function ($value) {
-            return User::firstOrNew(['id'=>$value]);
-        });
-
         Route::bind('role', function ($value) {
             if (is_numeric($value)) {
                 return Role::where('id', $value)->firstOrFail();

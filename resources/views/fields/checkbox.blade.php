@@ -5,7 +5,7 @@
     <div class="checkbox {{$class or ''}}">
         <label class="i-checks">
             <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
-                   @if(isset($attributes['value'])) checked @endif
+                   @if(isset($attributes['value']) && $attributes['value']) checked @endif
             >
             <i></i> {{$placeholder or ''}}
         </label>

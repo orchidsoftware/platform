@@ -13,18 +13,21 @@ abstract class Rows
      */
     public $template = 'dashboard::container.layouts.row';
 
-    public $post;
+    /**
+     * @var
+     */
+    public $query;
 
     /**
-     * @param $post
+     * @param $query
      *
      * @return array
      * @throws \Throwable
      */
-    public function build($post)
+    public function build($query)
     {
-        $this->post = $post;
-        $form = new Builder($this->fields(), $post);
+        $this->query = $query;
+        $form = new Builder($this->fields(), $query);
 
         return view($this->template, [
             'form' => $form->generateForm(),

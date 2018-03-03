@@ -41,12 +41,12 @@ abstract class Chart
     public $data = '';
 
     /**
-     * @param $post
+     * @param $query
      *
      * @return array
      * @throws \Throwable
      */
-    public function build($post)
+    public function build($query)
     {
         return view($this->template, [
             'title'  => $this->title,
@@ -54,7 +54,7 @@ abstract class Chart
             'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
-            'data'   => json_encode($post->getContent($this->data)),
+            'data'   => json_encode($query->getContent($this->data)),
         ])->render();
     }
 }

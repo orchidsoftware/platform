@@ -144,6 +144,15 @@ class Field implements FieldContract
      */
     public function __call($name, $arguments)
     {
+        foreach ($arguments as $key => $argument){
+            if($argument instanceof \Closure) {
+                $arguments[$key] = $argument();
+            }
+        }
+
+
+
+
         if (method_exists($this, $name)) {
             call_user_func_array([$this, $name], [$arguments]);
         }
@@ -207,8 +216,9 @@ class Field implements FieldContract
 
         // TODO: Указать параметры в шаблонах, что бы не приходилось проверять на ошибки и т.п.
 
+
         $attributes = $this->getModifyAttributes();
-        $attributes['id'] = $this->getId();
+        $this->attributes['id'] = $this->getId();
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
@@ -230,21 +240,24 @@ class Field implements FieldContract
     }
 
     /**
-     * @return array
+     *
      */
     public function getModifyAttributes()
     {
         $modifiers = get_class_methods($this);
 
-        return collect($this->getAttributes())->only(array_merge($this->universalAttributes,
+        collect($this->getAttributes())->only(array_merge($this->universalAttributes,
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
                 $signature = 'modify'.title_case($key);
                 if (in_array($signature, $modifiers)) {
-                    return $this->$signature($item);
+                    $this->$signature($item);
                 }
 
-                return $item;
-            })->toArray();
+                $this->attributes[$key] = $item;
+        });
+
+        return  collect($this->getAttributes())->only(array_merge($this->universalAttributes, $this->inlineAttributes));
+
     }
 
     /**
@@ -331,11 +344,25 @@ class Field implements FieldContract
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
-        if (is_null($prefix)) {
-            return $lang.$name;
+        $this->attributes['name'] = $name;
+
+        if (!is_null($prefix)) {
+            $this->attributes['name'] = $prefix.$name;
         }
 
-        return $prefix.'['.$lang.']'.$name;
+        if (is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $lang.$name;
+        }
+
+        if (!is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
+        }
+
+        if ($name instanceof \Closure) {
+            $this->attributes['name'] =  $name($this->attributes);
+        }
+
+        return $this;
     }
 
     /**
@@ -348,13 +375,15 @@ class Field implements FieldContract
         $old = $this->getOldValue();
 
         if (! is_null($old)) {
-            return $old;
+            $this->attributes['value'] = $old;
         }
 
         if ($value instanceof \Closure) {
-            return $value();
+            $this->attributes['value'] =  $value($this->attributes);
         }
 
-        return $value;
+        $this->attributes['value'] = $value;
+
+        return $this;
     }
 }
