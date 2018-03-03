@@ -287,10 +287,14 @@ return [
     | ....
     |
     */
-
-    'users' => [
-        'listing'  => Orchid\Platform\Http\Screens\User\UserList::class,
-        'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
+    'screens' => [
+        'users' => [
+            'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\User\UserList::class,
+        ],
+        'roles' => [
+            'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
+        ],
     ],
-
 ];

@@ -1,29 +1,29 @@
 <?php
 
-namespace Orchid\Platform\Http\Screens\User;
+namespace Orchid\Platform\Http\Screens\Role;
 
 use Illuminate\Http\Request;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Http\Filters\RoleFilter;
-use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
-class UserList extends Screen
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Http\Layouts\Role\RoleListLayout;
+
+class RoleList extends Screen
 {
     /**
      * Display header name.
      *
      * @var string
      */
-    public $name = 'dashboard::systems/users.title';
+    public $name = 'dashboard::systems/roles.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/users.description';
+    public $description = 'dashboard::systems/roles.description';
 
     /**
      * Query data.
@@ -32,10 +32,8 @@ class UserList extends Screen
      */
     public function query() : array
     {
-        return  [
-            'users' => User::filtersApply([
-                            RoleFilter::class,
-                        ])->paginate(),
+        return [
+            'roles' => Role::paginate(),
         ];
         //dd($return);
     }
@@ -60,7 +58,7 @@ class UserList extends Screen
     public function layout() : array
     {
         return [
-            UserListLayout::class,
+            RoleListLayout::class,
         ];
     }
 
@@ -71,6 +69,6 @@ class UserList extends Screen
      */
     public function create()
     {
-        return redirect()->route('dashboard.systems.users.create');
+        return redirect()->route('dashboard.systems.roles.create');
     }
 }

@@ -14,4 +14,6 @@ return [
     'name_help'   => 'User role display name',
     'slug'        => 'Slug',
     'slug_help'   => 'Actual name in the system',
+    'Role was saved'   => 'Role was saved',
+    'Role was removed' => 'Role was removed',
 ];
