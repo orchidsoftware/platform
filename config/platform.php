@@ -296,5 +296,9 @@ return [
             'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
             'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
         ],
+        'category' => [
+            'edit'     => Orchid\Platform\Http\Screens\Category\CategoryEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\Category\CategoryList::class,
+        ],
     ],
 ];

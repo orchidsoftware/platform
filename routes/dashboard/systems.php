@@ -106,7 +106,7 @@ $this->domain(config('platform.domain'))->group(function () {
             'as'   => 'dashboard.systems.settings',
             'uses' => 'SettingController@store',
         ]);
-
+        /*
         $router->resource('category', 'CategoryController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',
@@ -120,7 +120,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.category.destroy',
             ],
         ]);
-
+        */
         $router->resource('comment', 'CommentController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',
