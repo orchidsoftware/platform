@@ -51,7 +51,7 @@ class RoleFilter extends Filter
         return Field::tag('select')
             ->options($roles)
             ->name('role')
-            ->title('Roles')
+            ->title(trans('dashboard::systems/roles.title'))
             ->hr(false);
     }
 }

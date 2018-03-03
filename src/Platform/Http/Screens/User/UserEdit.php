@@ -77,8 +77,8 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Save')->method('save'),
-            Link::name('Remove')->method('remove'),
+            Link::name(' '.trans('dashboard::common.Save'))->icon('icon-check')->method('save'),
+            Link::name(' '.trans('dashboard::common.Delete'))->icon('icon-trash')->method('remove'),
         ];
     }
 
@@ -137,7 +137,7 @@ class UserEdit extends Screen
         $user->replaceRoles($roles);
         
 
-        Alert::info('User was saved');
+        Alert::info(trans('dashboard::systems/users.User was saved'));
 
         return redirect()->route('dashboard.systems.users');
     }
@@ -153,7 +153,7 @@ class UserEdit extends Screen
 
         $user->delete();
 
-        Alert::info('User was removed');
+        Alert::info(trans('dashboard::systems/users.User was removed'));
 
         return redirect()->route('dashboard.systems.users');
     }

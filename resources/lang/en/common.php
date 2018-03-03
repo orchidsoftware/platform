@@ -9,6 +9,7 @@ return [
     'no_notifications' => 'No notifications',
 
     'Create'       => 'Create',
+    'Save'         => 'Save',
     'Delete'       => 'Delete',
     'Find'         => 'Find',
     'Apply'        => 'Apply',

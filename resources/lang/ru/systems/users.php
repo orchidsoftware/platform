@@ -16,5 +16,7 @@ return [
     'confirmed_password' => 'Повторите пароль',
     'roles'              => 'Роли',
     'select_roles'       => 'Выберите роли',
+    'User was saved'     => 'Пользователь сохранен',
+    'User was removed'   => 'Пользователь удален',
 
 ];

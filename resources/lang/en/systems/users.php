@@ -16,5 +16,7 @@ return [
     'confirmed_password' => 'Confirmed Password',
     'roles'              => 'Roles',
     'select_roles'       => 'Select roles',
+    'User was saved'     => 'User was saved',
+    'User was removed'   => 'User was removed',
 
 ];

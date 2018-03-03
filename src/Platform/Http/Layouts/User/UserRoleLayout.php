@@ -32,8 +32,8 @@ class UserRoleLayout extends Rows
             ->class('select2')
             ->multiple()
             ->name('roles[]')
-            ->title('Role')
-            ->placeholder('Select role');
+            ->title(trans('dashboard::systems/users.roles'))
+            ->placeholder(trans('dashboard::systems/users.select_roles'));
         
         $fields[] = Field::tag('row')
                 ->name('style')
@@ -43,7 +43,7 @@ class UserRoleLayout extends Rows
 
             $fields[] = Field::tag('label')
                 ->name($group)
-                ->title($group)
+                ->title(trans('dashboard::permission.main.'.strtolower($group)))
                 ->hr(false);
                 
             $fields[] = Field::tag('row')
