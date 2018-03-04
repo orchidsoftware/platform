@@ -15,6 +15,8 @@ return [
     'not_found'    => 'You have not created any sections yet',
     'not_parrent'  => 'Without section',
     'date_creation'=> 'Date of creation',
+    'Category was saved'=> 'Category was saved',
+    'Category was removed'=> 'Category was removed',
 
     'fields'       => [
       'name_title' => 'Name Category',

@@ -15,6 +15,8 @@ return [
     'not_found'    => 'Вы ещё не создали ни одной секции',
     'not_parrent'  => 'Без секции',
     'date_creation'=> 'Дата создания',
+    'Category was saved'=> 'Категория сохранена',
+    'Category was removed'=> 'Категория удалена',    
 
     'fields'       => [
       'name_title' => 'Название категории',

@@ -34,18 +34,12 @@ class CategoryList extends Screen
      */
     public function query() : array
     {
-        $behavior = config('platform.common.category');
-        $behavior = new $behavior;
-        
-        $return = [
-            'category' => Category::filtersApply($behavior->filters())->where('parent_id', 0)->with('allChildrenTerm')->get(),
-            /*
-            'behavior' => $behavior,
-            'filters'  => collect($behavior->filters()),
-            'chunk'    => $behavior->chunk,
-            */
+       
+        return [
+            'category' => Category::paginate(),
+
         ];
-        dd($return);
+
     }
 
     /**

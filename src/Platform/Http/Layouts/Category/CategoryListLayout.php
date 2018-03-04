@@ -29,12 +29,20 @@ class CategoryListLayout extends Table
     {
         return [
             TD::name('name')
-                ->title(trans('dashboard::systems/roles.name'))
+                ->title(trans('dashboard::systems/category.name'))
                 ->setRender(function ($category) {
                     return '<a href="'.route('dashboard.systems.category.edit',
-                        $category->slug).'">'.$category->name.'</a>';
+                        $category->id).'">'.$category->term->GetContent('name').'</a>';
                 }),
-            TD::name('created_at')->title(trans('dashboard::common.Created')),
+            TD::name('slug')
+                ->title(trans('dashboard::systems/category.slug'))
+                ->setRender(function ($category) {
+                    return $category->term->slug;
+                }),    
+            TD::name('created_at')->title(trans('dashboard::common.Created'))
+                ->setRender(function ($category) {
+                    return $category->term->created_at;
+                }), 
 
         ];
     }

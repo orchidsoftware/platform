@@ -3,6 +3,8 @@
 namespace Orchid\Platform\Http\Screens\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
 use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Facades\Alert;
@@ -33,30 +35,25 @@ class CategoryEdit extends Screen
     /**
      * Query data
      *
-     * @param int $roleSlug
+     * @param int $categoryId
      *
      * @return array
      */
-    public function query($roleSlug = null): array
+    public function query($category = null): array
     {
-       
-        $role = is_null($roleSlug) ? new Role : Role::where('slug', $roleSlug)->firstOrFail();
+        $category = is_null($category) ? new Category() : $category;
         
-        $rolePermission = $role->permissions ?? [];
-        $permission = Dashboard::getPermission();
+
+        $anycategory= Category::whereNotIn('id', [$category->id])->get();
         
-        $permission->transform(function ($array) use ($rolePermission) {
-            foreach ($array as $key => $value) {
-                $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-            }
-
-            return $array;
-        });
-
+        $catselect[0] = trans('dashboard::systems/category.not_parrent');
+        foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
+            $catselect[$cat->id] = $cat->term->GetContent('name');
+        }
 
         return [
-            'permission' => $permission,
-            'role'       => $role,
+            'category' => $category,
+            'catselect'=> $catselect,
         ];
 
     }
@@ -84,8 +81,8 @@ class CategoryEdit extends Screen
     {
         return [
             Layouts::columns([
-                'RoleEdit' => [
-                    RoleEditLayout::class
+                'CategoryEdit' => [
+                    CategoryEditLayout::class
                 ],
             ]),
 
@@ -93,47 +90,43 @@ class CategoryEdit extends Screen
     }
 
     /**
-     * @param         $slug
-     * @param Request $request
+     * @param Category $category
+     * @param Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($slug, Request $request)
+    public function save(Category $category, Request $request)
     {
-
-        $role = Role::firstOrNew(['slug' => $slug]);
+        
+        $attributes = $request->get('category');
+        $locale =App::getLocale();
+        $attributes['term']['content'][$locale]=$attributes['content'];
         
 
-        $attributes = $request->get('role');
+        $category->parent_id = $attributes['parent_id'];
+       
+        $category->term->fill($attributes['term']);  
 
-        $role->fill($attributes);
 
-        foreach ($request->get('permissions',[]) as $key => $value){
-                $permissions[base64_decode($key)] = 1;
-        }
+        $category->save();
+        $category->term->save();
+        Alert::info(trans('dashboard::systems/category.Category was saved'));
 
-        $role->permissions = $permissions ?? [];
-        //dd($role);
-        $role->save();
-        
-        Alert::info(trans('dashboard::systems/roles.Role was saved'));
-
-        return redirect()->route('dashboard.systems.roles');
+        return redirect()->route('dashboard.systems.category');
     }
 
     /**
-     * @param         $slug
+     * @param Category $category
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove($slug)
+    public function remove(Category $category)
     {
-        $role = Role::where('slug', $slug)->firstOrFail();
 
-        $role->delete();
+        $category->delete();
 
-        Alert::info(trans('dashboard::systems/roles.Role was removed'));
+        Alert::info(trans('dashboard::systems/category.Category was removed'));
 
-        return redirect()->route('dashboard.systems.roles');
+        return redirect()->route('dashboard.systems.category');
     }
 
 }
