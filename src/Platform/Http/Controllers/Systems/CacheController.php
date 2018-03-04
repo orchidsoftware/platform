@@ -11,14 +11,6 @@ use Illuminate\Support\Facades\Artisan;
 class CacheController
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function index()
-    {
-        return view('dashboard::container.systems.cache.index');
-    }
-
-    /**
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse

@@ -10,7 +10,7 @@
     <div class="text-right">
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit" form="form-group" class="btn btn-link">
-                <i class="sli icon-check fa-2x"></i>
+                <i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
             </button>
         </div>
     </div>

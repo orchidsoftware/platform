@@ -5,7 +5,8 @@
     <div class="text-right">
         <div class="btn-group" role="group">
             <a href="{{ route('dashboard.posts.type.create',$type->slug)}}" class="btn btn-link"><i
-                        class="sli icon-plus fa-2x"></i></a>
+                        class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}
+            </a>
         </div>
     </div>
 @stop
@@ -77,9 +78,7 @@
         <section>
             <div class="bg-white-only bg-auto no-border-xs">
 
-
                 {!! $type->showFilterDashboard() !!}
-
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>

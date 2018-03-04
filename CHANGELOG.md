@@ -6,12 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- Font Awesome
+
+## [2.2.3] - 2018-03-01
+### Added
+- Ukrainian language [595](https://github.com/orchidsoftware/platform/pull/595)
+
 ### Changed
 - Order of items in the media, first folders then files
 - Font Awesome replaced by ORCHID icons
 
 ### Fixed
 - Flying icon when dragging in the menu
+- Sorting menu
 
 ## [2.2.2] - 2018-02-18
 ### Added

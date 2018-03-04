@@ -19,10 +19,10 @@ $this->domain(config('platform.domain'))->group(function () {
         $router->screen('users/{users}/edit', config('platform.screens.users.edit'), $path.'.users.edit');
         $router->screen('users/create', config('platform.screens.users.edit'), $path.'.users.create');
         $router->screen('users', config('platform.screens.users.list'), $path.'.users');
- 
+
         $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), $path.'.roles.edit');
         $router->screen('roles/create', config('platform.screens.roles.edit'), $path.'.roles.create');
-        $router->screen('roles', config('platform.screens.roles.list'), $path.'.roles'); 
+        $router->screen('roles', config('platform.screens.roles.list'), $path.'.roles');
         */
         foreach (config('platform.screens') as $screenkey => $items) {
             foreach ($items as $key => $item) {
@@ -30,7 +30,7 @@ $this->domain(config('platform.domain'))->group(function () {
                     case 'edit':
                         $router->screen("$screenkey/{{$screenkey}}/edit", config("platform.screens.$screenkey.edit"), $path.".$screenkey.edit");
                         $router->screen("$screenkey/create", config("platform.screens.$screenkey.edit"), $path.".$screenkey.create");
-                        break; 
+                        break;
                     case 'list':
                         $router->screen("$screenkey", config("platform.screens.$screenkey.list"), $path.".$screenkey");
                         break;
@@ -39,7 +39,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 }
             }
         }
-        
+
         //dd($router);
     });
 
@@ -62,7 +62,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.users.destroy',
             ],
         ]);
-       
+
         $router->resource('roles', 'RoleController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',

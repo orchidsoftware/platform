@@ -25,7 +25,7 @@
 
 <li>
     <a href="{{$notification->data['action'] or '#'}}">
-          <i class="fa fa-circle {{ $notification->data['type'] }} pull-left m-t-sm text-sm"></i>
+          <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
             <span class="clear m-l-md">
                 @if($notification->read())
                     <span>{{$notification->data['title']  or ''}}</span>

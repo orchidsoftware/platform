@@ -21,6 +21,11 @@ class UploadPostForm extends Form
     public $storage = 'public';
 
     /**
+     * @var string
+     */
+    public $mime = '';
+
+    /**
      * UploadPostForm constructor.
      *
      * @param null $request
@@ -41,7 +46,7 @@ class UploadPostForm extends Form
      */
     public function get() : View
     {
-        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage]);
+        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage, 'mime' => $this->mime]);
     }
 
     /**
@@ -52,13 +57,14 @@ class UploadPostForm extends Form
      */
     public function persist($type = null, $post = null)
     {
-        $entity = Post::find($post->id);
+        if (! $this->request->filled('files')) {
+            return;
+        }
 
-        if ($this->request->filled('files')) {
-            $files = $this->request->input('files');
-            foreach ($files as $file) {
-                $entity->attachment()->attach($file);
-            }
+        $entity = Post::find($post->id);
+        $files = $this->request->input('files');
+        foreach ($files as $file) {
+            $entity->attachment()->attach($file);
         }
     }
 }

@@ -59,6 +59,7 @@ class MenuController extends Controller
         $menu = Menu::where('lang', $currentLocale)
             ->where('parent', 0)
             ->where('type', $nameMenu)
+            ->orderBy('sort', 'asc')
             ->with('children')
             ->get();
 

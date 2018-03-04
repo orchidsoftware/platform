@@ -104,6 +104,7 @@ class AccessUserForm extends Form
             $roles = Role::whereIn('slug', $this->roles)->get();
             $user->replaceRoles($roles);
         }
+
         $user->save();
     }
 }

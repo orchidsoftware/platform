@@ -33,6 +33,7 @@ class Menu extends Model
         'lang',
         'parent',
         'type',
+        'sort',
     ];
 
     /**
@@ -49,7 +50,7 @@ class Menu extends Model
      */
     public function children() : HasMany
     {
-        return $this->hasMany(self::class, 'parent');
+        return $this->hasMany(self::class, 'parent')->orderBy('sort', 'asc');
     }
 
     /**

@@ -1,27 +1,27 @@
 {
-  "_from": "tinymce@4.7.6",
-  "_id": "tinymce@4.7.6",
+  "_from": "tinymce@4.7.9",
+  "_id": "tinymce@4.7.9",
   "_inBundle": false,
-  "_integrity": "sha512-mdbeMvCOO0ws0HXiZO9L8mDGFA9/VmDHltlt+/9qV0Fl1EWKWoPIRURHFtiFYuLKo9yjYUvYucwiZ1XfCT/91Q==",
+  "_integrity": "sha512-JGN0Hn8cYINgyHTw6ztnO086hez4SIWbkny+3S5tesyvggNFg6He1GSIHPZgSB3+ydCqO8J6qhjGSIyi0LPwpQ==",
   "_location": "/tinymce",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "tinymce@4.7.6",
+    "raw": "tinymce@4.7.9",
     "name": "tinymce",
     "escapedName": "tinymce",
-    "rawSpec": "4.7.6",
+    "rawSpec": "4.7.9",
     "saveSpec": null,
-    "fetchSpec": "4.7.6"
+    "fetchSpec": "4.7.9"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.6.tgz",
-  "_shasum": "6c70931d3308a8ff4ba20e5ee82379b46714eb5c",
-  "_spec": "tinymce@4.7.6",
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.9.tgz",
+  "_shasum": "2f14934cf42ab20e6d081fd282842c24aecf1866",
+  "_spec": "tinymce@4.7.9",
   "_where": "/home/tabuna/ORCHID/install/orchid/Platform",
   "author": {
     "name": "Ephox Corporation"
@@ -32,6 +32,7 @@
   "bundleDependencies": false,
   "deprecated": false,
   "description": "Web based JavaScript HTML WYSIWYG editor control.",
+  "homepage": "https://github.com/tinymce/tinymce-dist#readme",
   "keywords": [
     "editor",
     "wysiwyg",
@@ -43,5 +44,9 @@
   "license": "LGPL-2.1",
   "main": "tinymce.js",
   "name": "tinymce",
-  "version": "4.7.6"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinymce/tinymce-dist.git"
+  },
+  "version": "4.7.9"
 }

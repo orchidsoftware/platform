@@ -1,4 +1,4 @@
-<div class="dropzone" id="post-attachment-dropzone" data-storage="{{$storage ?? 'public'}}">
+<div class="dropzone" id="post-attachment-dropzone" data-accepted="{{ $mime }}" data-storage="{{$storage ?? 'public'}}">
     <div class="fallback">
         <input type="file" value="" multiple/>
     </div>
@@ -6,7 +6,7 @@
     </div>
     <div class="dz-message">
         <hr>
-        <p><span class="fa-2x icon-cloud-upload"></span></p>
+        <p><span class="text-2x icon-cloud-upload"></span></p>
         <p class="font-bold">{{trans('dashboard::post/uploads.title')}}</p>
         <small>{{trans('dashboard::post/uploads.description')}}</small>
     </div>
@@ -18,9 +18,7 @@
         <div class="modal-content-wrapper">
             <div class="modal-content">
                 <div class="modal-header clearfix">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                class="fa fa-times"></i>
-                    </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
                     <h5>{{trans('dashboard::post/uploads.information.title')}}</h5>
                     <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
                 </div>
@@ -55,19 +53,17 @@
                                               rows="3"></textarea>
                                 </div>
 
-
-                                <p class="text-right">
-                                    <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i class="icon-link"></i>
-                                        {{trans('dashboard::post/uploads.information.link')}}
-                                    </a>
-
-                                    <button type="button" v-on:click="save"
-                                            class="btn btn-default">{{trans('dashboard::common.Apply')}}</button>
-                                </p>
-
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                        <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i class="icon-link"></i>
+                            {{trans('dashboard::post/uploads.information.link')}}
+                        </a>
+
+                        <button type="button" v-on:click="save"
+                                class="btn btn-default">{{trans('dashboard::common.apply')}}</button>
                 </div>
             </div>
         </div>

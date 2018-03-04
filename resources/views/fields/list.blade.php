@@ -5,7 +5,7 @@
 
        @isset($value)
            <li class="ui-state-default form-group row">
-                   <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
+                   <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>
                    <input type="text" class="form-control col-10"	name="{{$attributes['name']}}[]">
                    <button class="btn btn-link col-1 remove"
                            onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
@@ -13,7 +13,7 @@
        @else
            @foreach($value as $key => $val)
                <li class="ui-state-default form-group row">
-                    <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
+                    <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>
                     <input type="text" class="form-control col-10" name="{{$attributes['name']}}[]" value="{{$val}}">
                     <button class="btn btn-link col-1 remove"
                             onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
@@ -36,7 +36,7 @@
     function newitem{{$slug}}() {
         event.preventDefault();
         let item = '<li class="ui-state-default form-group row">\n' +
-            '            <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>\n' +
+            '            <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>\n' +
             '            <input type="text" class="form-control col-10" name="" value="">\n' +
             '            <button class="btn btn-link col-1 remove" onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>\n' +
             '        </li>';
