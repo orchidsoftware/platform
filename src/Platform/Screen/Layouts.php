@@ -84,9 +84,6 @@ class Layouts
      */
     public function build($post)
     {
-
-        //dd($this->layouts);
-
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
                 $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout)->build($post);

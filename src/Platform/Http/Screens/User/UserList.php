@@ -65,9 +65,7 @@ class UserList extends Screen
     }
 
     /**
-     * @param Request $request
-     *
-     * @return null
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {

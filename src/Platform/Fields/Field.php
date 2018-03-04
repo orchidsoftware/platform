@@ -150,9 +150,6 @@ class Field implements FieldContract
             }
         }
 
-
-
-
         if (method_exists($this, $name)) {
             call_user_func_array([$this, $name], [$arguments]);
         }
@@ -223,7 +220,6 @@ class Field implements FieldContract
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
             'id'         => $this->getId(),
-            'fieldName'  => $this->getName(),
             'old'        => $this->getOldValue(),
             'error'      => $this->hasError(),
             'slug'       => $this->getSlug(),
@@ -252,8 +248,6 @@ class Field implements FieldContract
                 if (in_array($signature, $modifiers)) {
                     $this->$signature($item);
                 }
-
-                $this->attributes[$key] = $item;
         });
 
         return  collect($this->getAttributes())->only(array_merge($this->universalAttributes, $this->inlineAttributes));
@@ -343,6 +337,7 @@ class Field implements FieldContract
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
+
 
         $this->attributes['name'] = $name;
 

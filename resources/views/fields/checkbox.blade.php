@@ -1,7 +1,4 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
+@component('dashboard::partials.fields.group',get_defined_vars())
     <div class="checkbox {{$class or ''}}">
         <label class="i-checks">
             <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
@@ -10,8 +7,4 @@
             <i></i> {{$placeholder or ''}}
         </label>
     </div>
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@endcomponent

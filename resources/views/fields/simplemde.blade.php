@@ -1,24 +1,20 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
-
-
+@component('dashboard::partials.fields.group',get_defined_vars())
     <div class="simplemde-wrapper">
-	<textarea @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>{{$attributes['value']}}</textarea>
+        <textarea @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
+            {{$attributes['value']}}
+        </textarea>
     </div>
-
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@endcomponent
 
 @push('scripts')
 <script>
-document.addEventListener('turbolinks:load', function() {
-    dashboard.fields.simplemde.init("{{$id}}","{{$placeholder or ''}}");
-});
+    document.addEventListener('turbolinks:load', function() {
+        dashboard.fields.simplemde.init("{{$id}}","{{$placeholder or ''}}");
+    });
 </script>
 @endpush
+
+
+
+
+

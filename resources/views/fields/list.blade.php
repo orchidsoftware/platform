@@ -3,7 +3,7 @@
   
    <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
 
-       @if(!isset($value) || is_null($value))
+       @isset($value)
            <li class="ui-state-default form-group row">
                    <span onclick="return false;" class="btn btn-link col-1 pull"><i class="fa-bars fa"></i></span>
                    <input type="text" class="form-control col-10"	name="{{$attributes['name']}}[]">
@@ -19,7 +19,7 @@
                             onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                 </li>
            @endforeach
-       @endif
+       @endisset
     </ul>
     <div class="button-group text-center">
         <button onclick="newitem{{$slug}}()" class="btn btn-sm alert-info">new</button>

@@ -1,12 +1,5 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
+@component('dashboard::partials.fields.group',get_defined_vars())
+    @if(isset($fieldNames))
+        <p id="{{$id}}">{{$fieldNames or ''}}</p>
     @endif
-	@if(isset($fieldNames))
-    <p id="{{$id}}">{{$fieldNames or ''}}</p>
-	@endif
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@endcomponent
