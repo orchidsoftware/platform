@@ -116,8 +116,6 @@ class Menu
 
         $arg = array_merge([
             'icon'    => 'icon-folder',
-            'childs'  => false,
-            'divider' => false,
             'sort'    => 0,
         ], $arg);
 

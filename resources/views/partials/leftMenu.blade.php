@@ -1,16 +1,16 @@
-@if(isset($childs) && $childs)
-    @if(isset($groupname))
+@isset($childs)
+    @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{$groupname}}</li>
-    @endif
+    @endisset
     <li class="dropdown">
         <a class="dropdown-toggle" type="button" id="dropdownMenu-{{$slug}}" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
     <span class="pull-right text-muted">
     <i class="icon-arrow-right text-xs"></i>
     </span>
-            @if(isset($badge))
+            @isset($badge)
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
-            @endif
+            @endisset
             <i class="{{$icon}}"></i>
             <span class="text-ellipsis" title="{{$label}}">{{$label}}</span>
         </a>
@@ -18,24 +18,24 @@
             {!! Dashboard::menu()->render($slug) !!}
         </ul>
     </li>
-    @if(isset($divider) && $divider == true)
+    @isset($divider)
         <li class="divider b-t b-dark"></li>
-    @endif
+    @endisset
 @else
-    @if(isset($groupname))
+    @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{$groupname}}</li>
-    @endif
+    @endisset
     <li>
         <a href="{{$route}}">
 
-            @if(isset($badge))
+            @isset($badge))
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
-            @endif
+            @endisset
             <i class="{{$icon}}"></i>
             <span title="{{$label}}" class="text-ellipsis">{{$label}}</span>
         </a>
     </li>
-    @if(isset($divider) && $divider == true)
+    @isset($divider)
         <li class="divider b-t b-dark"></li>
-    @endif
-@endif
+    @endisset
+@endisset

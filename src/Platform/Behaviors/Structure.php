@@ -58,9 +58,9 @@ trait Structure
     /**
      * Status divider.
      *
-     * @var bool
+     * @var null
      */
-    public $divider = false;
+    public $divider = null;
 
     /**
      * Container for HTML render.

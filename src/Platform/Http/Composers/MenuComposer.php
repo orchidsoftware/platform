@@ -51,8 +51,6 @@ class MenuComposer
             'route'      => route('dashboard.systems.settings'),
             'label'      => trans('dashboard::menu.constants'),
             'groupname'  => trans('dashboard::menu.general settings'),
-            'childs'     => false,
-            'divider'    => false,
             'permission' => 'dashboard.systems.settings',
             'sort'       => 1,
         ]);
@@ -63,8 +61,6 @@ class MenuComposer
             'route'      => route('dashboard.systems.menu.index'),
             'label'      => trans('dashboard::menu.menu'),
             'groupname'  => trans('dashboard::menu.posts Managements'),
-            'childs'     => false,
-            'divider'    => false,
             'permission' => 'dashboard.systems.menu',
             'sort'       => 2,
             'show'       => count(config('platform.menu', [])) > 0,
@@ -75,8 +71,6 @@ class MenuComposer
             'icon'       => 'icon-briefcase',
             'route'      => route('dashboard.systems.category'),
             'label'      => trans('dashboard::menu.sections'),
-            'childs'     => false,
-            'divider'    => false,
             'permission' => 'dashboard.systems.category',
             'sort'       => 3,
         ]);
@@ -95,8 +89,6 @@ class MenuComposer
             'icon'       => 'icon-folder-alt',
             'route'      => route('dashboard.systems.media.index'),
             'label'      => trans('dashboard::menu.media'),
-            'childs'     => false,
-            'divider'    => false,
             'permission' => 'dashboard.systems.media',
             'sort'       => 5,
         ]);
@@ -107,8 +99,6 @@ class MenuComposer
             'route'      => route('dashboard.systems.users'),
             'label'      => trans('dashboard::menu.users'),
             'groupname'  => trans('dashboard::menu.users'),
-            'childs'     => false,
-            'divider'    => false,
             'permission' => 'dashboard.systems.users',
             'sort'       => 9,
         ]);
@@ -118,7 +108,6 @@ class MenuComposer
             'icon'       => 'icon-lock',
             'route'      => route('dashboard.systems.roles'),
             'label'      => trans('dashboard::menu.roles'),
-            'childs'     => false,
             'divider'    => true,
             'permission' => 'dashboard.systems.roles',
             'sort'       => 10,
@@ -154,7 +143,6 @@ class MenuComposer
                     'icon'       => $page->icon,
                     'route'      => route('dashboard.posts.type', [$page->slug]),
                     'label'      => $page->name,
-                    'childs'     => false,
                     'permission' => 'dashboard.posts.type.'.$page->slug,
                     'sort'       => $key,
                     'groupname'  => $page->groupname,
@@ -163,8 +151,6 @@ class MenuComposer
 
                 if (reset($allPost) == $page) {
                     $postObject['groupname'] = trans('dashboard::menu.common posts');
-                } elseif (end($allPost) == $page) {
-                    $postObject['divider'] = true;
                 }
 
                 $dashboard->menu->add('Posts', $postObject);
@@ -198,7 +184,6 @@ class MenuComposer
                 'icon'       => $page->icon,
                 'route'      => route('dashboard.pages.show', [$page->slug]),
                 'label'      => $page->name,
-                'childs'     => false,
                 'permission' => 'dashboard.pages.type.'.$page->slug,
                 'sort'       => $key,
                 'groupname'  => $page->groupname,
@@ -207,8 +192,6 @@ class MenuComposer
 
             if (reset($allPage) == $page) {
                 $postObject['groupname'] = trans('dashboard::menu.static pages');
-            } elseif (end($allPage) == $page) {
-                $postObject['divider'] = true;
             }
 
             $dashboard->menu->add('Pages', $postObject);

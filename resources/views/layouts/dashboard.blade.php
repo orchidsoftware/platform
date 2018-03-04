@@ -189,19 +189,6 @@
 
 @stack('scripts')
 
-<script>
-    var activeMenu = false;
-    $('#aside-wrap-list').children('.tab-pane').each(function () {
-        if($(this).hasClass('active')){
-           activeMenu = true;
-        }
-    });
-
-    if(!activeMenu){
-        $('#menu-notifications').addClass('active')
-    }
-
-</script>
 
 
 
