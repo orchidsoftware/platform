@@ -18,34 +18,34 @@
                 </a>
                 <div class="dropdown-menu">
                     @foreach($locales as $code => $lang)
-                            <a class="dropdown-item" data-target="#local-{{$code}}"
-                               role="tab"
-                               data-toggle="tab"
-                               onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
-                               aria-controls="local-{{$code}}"
-                               aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
-                            </a>
+                        <a class="dropdown-item" data-target="#local-{{$code}}"
+                           role="tab"
+                           data-toggle="tab"
+                           onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
+                           aria-controls="local-{{$code}}"
+                           aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
+                        </a>
                     @endforeach
                 </div>
             </li>
         @endif
 
         <li>
-                <button type="submit"
-                        onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
-                        form="post-form"
-                        class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
-                </button>
-            </li>
+            <button type="submit"
+                    onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
+                    form="post-form"
+                    class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+            </button>
+        </li>
 
-            <li>
-                <button type="submit"
-                        form="form-post-remove"
-                        class="btn btn-link"><i class="icon-trash"></i> {{trans('dashboard::common.commands.remove')}}
-                </button>
-            </li>
+        <li>
+            <button type="submit"
+                    form="form-post-remove"
+                    class="btn btn-link"><i class="icon-trash"></i> {{trans('dashboard::common.commands.remove')}}
+            </button>
+        </li>
 
-        </ul>
+    </ul>
 @stop
 @section('content')
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
@@ -82,13 +82,14 @@
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
                                 <ul class="nav nav-tabs bg-light">
-                                @foreach($type->render() as $name => $view)
-                                    <li class="nav-item">
-                                        <a class="nav-link @if ($loop->first) active @endif" data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
-                                           aria-expanded="true">{{$name}}</a>
-                                    </li>
+                                    @foreach($type->render() as $name => $view)
+                                        <li class="nav-item">
+                                            <a class="nav-link @if ($loop->first) active @endif"
+                                               data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
+                                               aria-expanded="true">{{$name}}</a>
+                                        </li>
                                     @endforeach
-                            </ul>
+                                </ul>
                             @endif
                         </div>
                         <div class="row-row">

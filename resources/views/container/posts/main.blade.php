@@ -34,7 +34,7 @@
                         <tr>
                             <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
                             @foreach($fields as $th)
-                                    <th width="{{$th->width}}">{{$th->title}}</th>
+                                <th width="{{$th->width}}">{{$th->title}}</th>
                             @endforeach
                         </tr>
                         </thead>
@@ -64,8 +64,9 @@
                 <footer class="card-footer col">
                     <div class="row">
                         <div class="col-sm-5">
-                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{($data->currentPage()-1)*$data->perPage()+1}} -
-							{{($data->currentPage()-1)*$data->perPage()+count($data->items())}} {{trans('dashboard::common.of')}} {!! $data->total() !!} {{trans('dashboard::common.elements')}}</small>
+                            <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{($data->currentPage()-1)*$data->perPage()+1}}
+                                -
+                                {{($data->currentPage()-1)*$data->perPage()+count($data->items())}} {{trans('dashboard::common.of')}} {!! $data->total() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $data->appends('search')->links('dashboard::partials.pagination') !!}

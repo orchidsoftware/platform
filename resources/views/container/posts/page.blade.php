@@ -2,42 +2,42 @@
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
-<ul class="nav justify-content-end  v-center">
+    <ul class="nav justify-content-end  v-center">
 
-@if($locales->count() > 1)
-    <li class="nav-item dropdown">
-        <a href="#"
-           class="btn btn-link text-uppercase"
-           data-toggle="dropdown"
-           role="button"
-           aria-haspopup="true"
-           aria-expanded="false">
-            <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
-            <span class="caret"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-            @foreach($locales as $code => $lang)
-                    <a class="dropdown-item" data-target="#local-{{$code}}"
-                       role="tab"
-                       data-toggle="tab"
-                       onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
-                       aria-controls="local-{{$code}}"
-                       aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
-                    </a>
-            @endforeach
-        </div>
-    </li>
-@endif
+        @if($locales->count() > 1)
+            <li class="nav-item dropdown">
+                <a href="#"
+                   class="btn btn-link text-uppercase"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    @foreach($locales as $code => $lang)
+                        <a class="dropdown-item" data-target="#local-{{$code}}"
+                           role="tab"
+                           data-toggle="tab"
+                           onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
+                           aria-controls="local-{{$code}}"
+                           aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
+                        </a>
+                    @endforeach
+                </div>
+            </li>
+        @endif
 
-    <li  class="nav-item">
-        <button type="submit"
-                onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
-                form="post-form"
-                class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
-        </button>
-    </li>
+        <li class="nav-item">
+            <button type="submit"
+                    onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
+                    form="post-form"
+                    class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+            </button>
+        </li>
 
-</ul>
+    </ul>
 @stop
 
 
@@ -73,13 +73,14 @@
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
                                 <ul class="nav nav-tabs bg-light">
-                                @foreach($type->render() as $name => $view)
-                                    <li class="nav-item">
-                                        <a class="nav-link @if ($loop->first) active @endif" data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
-                                           aria-expanded="true">{{$name}}</a>
-                                    </li>
+                                    @foreach($type->render() as $name => $view)
+                                        <li class="nav-item">
+                                            <a class="nav-link @if ($loop->first) active @endif"
+                                               data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
+                                               aria-expanded="true">{{$name}}</a>
+                                        </li>
                                     @endforeach
-                            </ul>
+                                </ul>
                             @endif
                         </div>
                         <div class="row-row">

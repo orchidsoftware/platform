@@ -1,35 +1,37 @@
 @section('modals-container')
 
-@foreach($manyForms as $key => $modal)
+    @foreach($manyForms as $key => $modal)
 
-<div class="modal fade in" id="screen-modal-{{$key}}" role="dialog" aria-labelledby="screen-modal-{{$key}}">
-  <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
-    <form class="modal-content" method="post" enctype="multipart/form-data">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="title-modal-{{$key}}"></h4>
-      </div>
-      <div class="modal-body">
-          @foreach($modal as $item)
-              {!! $item or '' !!}
-          @endforeach
+        <div class="modal fade in" id="screen-modal-{{$key}}" role="dialog" aria-labelledby="screen-modal-{{$key}}">
+            <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
+                <form class="modal-content" method="post" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="title-modal-{{$key}}"></h4>
+                    </div>
+                    <div class="modal-body">
+                        @foreach($modal as $item)
+                            {!! $item or '' !!}
+                        @endforeach
 
-            @csrf
-      </div>
-      <div class="modal-footer">
-        <button type="submit" id="submit-modal-{{$key}}" class="btn btn-primary">{{trans('dashboard::common.apply')}}</button>
-      </div>
-    </form>
-  </div>
-</div>
+                        @csrf
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submit-modal-{{$key}}"
+                                class="btn btn-primary">{{trans('dashboard::common.apply')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-<script>
-  $('#title-modal-{{$key}}').html($('#show-button-modal-{{$key}}').data('modalTitle'));
-  $('#submit-modal-{{$key}}').attr('formaction',$('#show-button-modal-{{$key}}').data('modalAction'));
-  $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
-</script>
+        <script>
+            $('#title-modal-{{$key}}').html($('#show-button-modal-{{$key}}').data('modalTitle'));
+            $('#submit-modal-{{$key}}').attr('formaction', $('#show-button-modal-{{$key}}').data('modalAction'));
+            $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
+        </script>
 
-@endforeach
+    @endforeach
 
 
 @endsection

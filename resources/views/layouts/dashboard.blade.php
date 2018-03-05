@@ -51,12 +51,12 @@
             <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
                 <i class="icon-orchid"></i>
-                <!-- <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">-->
+            <!-- <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">-->
             </a>
             <!-- / brand  -->
 
             <button class="pull-right"
-                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="icon-logout"></i>
             </button>
 
@@ -116,11 +116,12 @@
                             <a href="{{ route('dashboard.logout') }}"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                                dusk="logout-button">
-                              <i class="icon-logout" aria-hidden="true"></i>
+                                <i class="icon-logout" aria-hidden="true"></i>
                                 <span>{{trans('dashboard::auth/account.sign_out')}}</span>
                             </a>
 
-                            <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}" method="POST">
+                            <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}"
+                                  method="POST">
                                 @csrf
                             </form>
                         </li>
@@ -182,14 +183,11 @@
 </div>
 
 
-
 @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
     <script src="{{$scripts}}" type="text/javascript"></script>
 @endforeach
 
 @stack('scripts')
-
-
 
 
 </body>

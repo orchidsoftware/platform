@@ -15,7 +15,6 @@ class RoleEditLayout extends Rows
      */
     public function fields(): array
     {
-        //dd($this->query);
         $fields[] =  Field::tag('input')
                 ->type('text')
                 ->name('role.name')

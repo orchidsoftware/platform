@@ -2,12 +2,11 @@
 
 namespace Orchid\Platform\Http\Screens\User;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Http\Filters\RoleFilter;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
+use Orchid\Platform\Screen\Link;
+use Orchid\Platform\Screen\Screen;
 
 class UserList extends Screen
 {
@@ -34,10 +33,9 @@ class UserList extends Screen
     {
         return  [
             'users' => User::filtersApply([
-                            RoleFilter::class,
-                        ])->paginate(),
+                RoleFilter::class,
+            ])->paginate(),
         ];
-        //dd($return);
     }
 
     /**

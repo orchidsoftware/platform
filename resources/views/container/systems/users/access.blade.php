@@ -20,9 +20,9 @@
                 @continue
             @endif
 
-			@php
-				$title=trans('dashboard::permission.main.'.strtolower($name));
-			@endphp
+            @php
+                $title=trans('dashboard::permission.main.'.strtolower($name));
+            @endphp
 
             <div class="line line-dashed b-b line-lg"></div>
 

@@ -29,7 +29,7 @@
         <a href="{{$route}}">
 
             @isset($badge))
-                <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+            <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endisset
             <i class="{{$icon}}"></i>
             <span title="{{$label}}" class="text-ellipsis">{{$label}}</span>

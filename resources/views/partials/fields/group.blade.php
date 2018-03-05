@@ -12,9 +12,5 @@
     @endif
 </div>
 @if($show ?? true)
-        <div class="line line-dashed b-b line-lg"></div>
+    <div class="line line-dashed b-b line-lg"></div>
 @endif
-
-
-
-{{-- @include('dashboard::partials.fields.hr', ['show' => $hr ?? true]) --}}

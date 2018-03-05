@@ -119,7 +119,9 @@
                         </div>
 
                         <div id="no_files">
-                            <h3 class="font-thin"><i class="icon-directions"></i> {{trans('dashboard::systems/media.no_files_here')}}</h3>
+                            <h3 class="font-thin"><i
+                                        class="icon-directions"></i> {{trans('dashboard::systems/media.no_files_here')}}
+                            </h3>
                         </div>
 
                     </div>
@@ -170,24 +172,43 @@
 
                             <table class="table" v-bind:class="selected_file.type">
                                 <tr>
-                                    <td width="50%"><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.title')}}:</small></td>
+                                    <td width="50%">
+                                        <small class="text-muted">{{trans('dashboard::systems/media.fileinfo.title')}}
+                                            :
+                                        </small>
+                                    </td>
                                     <td>@{{selected_file.name}}</td>
                                 </tr>
                                 <tr>
-                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.type')}}:</small></td>
+                                    <td>
+                                        <small class="text-muted">{{trans('dashboard::systems/media.fileinfo.type')}}:
+                                        </small>
+                                    </td>
                                     <td>@{{selected_file.type}}</td>
                                 </tr>
                                 <tr v-if="selected_file.type != 'folder'">
-                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.size')}}:</small></td>
+                                    <td>
+                                        <small class="text-muted">{{trans('dashboard::systems/media.fileinfo.size')}}:
+                                        </small>
+                                    </td>
                                     <td>@{{selected_file.size}}</td>
                                 </tr>
                                 <tr v-if="selected_file.type != 'folder'">
-                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.public_url')}}:</small></td>
+                                    <td>
+                                        <small class="text-muted">{{trans('dashboard::systems/media.fileinfo.public_url')}}
+                                            :
+                                        </small>
+                                    </td>
                                     <td><a v-bind:href="selected_file.path"
-                                           target="_blank">{{trans('dashboard::systems/media.fileinfo.click_here')}}</a></td>
+                                           target="_blank">{{trans('dashboard::systems/media.fileinfo.click_here')}}</a>
+                                    </td>
                                 </tr>
                                 <tr v-if="selected_file.type != 'folder'">
-                                    <td><small class="text-muted">{{trans('dashboard::systems/media.fileinfo.last_modified')}}:</small></td>
+                                    <td>
+                                        <small class="text-muted">{{trans('dashboard::systems/media.fileinfo.last_modified')}}
+                                            :
+                                        </small>
+                                    </td>
                                     <td>@{{selected_file.last_modified}}</td>
                                 </tr>
                             </table>
@@ -214,7 +235,9 @@
                             <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">&times;
                             </button>
-                            <h4 class="modal-title"><i class="icon-cursor-move"></i>{{trans('dashboard::systems/media.move_file_folder')}}</h4>
+                            <h4 class="modal-title"><i
+                                        class="icon-cursor-move"></i>{{trans('dashboard::systems/media.move_file_folder')}}
+                            </h4>
                         </div>
 
                         <div class="modal-body">
@@ -228,8 +251,10 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
-                            <button type="button" class="btn btn-warning" id="move_btn">{{trans('dashboard::systems/media.move')}}</button>
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
+                            <button type="button" class="btn btn-warning"
+                                    id="move_btn">{{trans('dashboard::systems/media.move')}}</button>
                         </div>
                     </div>
                 </div>
@@ -245,7 +270,9 @@
                             <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">&times;
                             </button>
-                            <h4 class="modal-title"><i class="icon-font"></i> {{trans('dashboard::systems/media.rename_file_folder')}}</h4>
+                            <h4 class="modal-title"><i
+                                        class="icon-font"></i> {{trans('dashboard::systems/media.rename_file_folder')}}
+                            </h4>
                         </div>
 
                         <div class="modal-body">
@@ -255,8 +282,10 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
-                            <button type="button" class="btn btn-warning" id="rename_btn">{{trans('dashboard::systems/media.rename')}}</button>
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
+                            <button type="button" class="btn btn-warning"
+                                    id="rename_btn">{{trans('dashboard::systems/media.rename')}}</button>
                         </div>
                     </div>
                 </div>
@@ -286,7 +315,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
                         <button type="button" class="btn btn-info" id="new_folder_submit">
                             {{trans('dashboard::systems/media.add_new_folder')}}
                         </button>
@@ -305,18 +335,22 @@
                         <button type="button" class="close" data-dismiss="modal"
                                 aria-hidden="true">&times;
                         </button>
-                        <h4 class="modal-title"><i class="icon-exclamation"></i>{{trans('dashboard::systems/media.delete')}}?</h4>
+                        <h4 class="modal-title"><i
+                                    class="icon-exclamation"></i>{{trans('dashboard::systems/media.delete')}}?</h4>
                     </div>
 
                     <div class="modal-body">
-                        <h4>{{trans('dashboard::systems/media.sure_delete')}} '<span class="confirm_delete_name"></span>'</h4>
+                        <h4>{{trans('dashboard::systems/media.sure_delete')}} '<span class="confirm_delete_name"></span>'
+                        </h4>
                         <h5 class="folder_warning"><i class="icon-exclamation"></i>
-						{{trans('dashboard::systems/media.delete_folder_question')}}</h5>
+                            {{trans('dashboard::systems/media.delete_folder_question')}}</h5>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
-                        <button type="button" class="btn btn-danger" id="confirm_delete">{{trans('dashboard::systems/media.yes_delete')}}
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">{{trans('dashboard::systems/media.cancel')}}</button>
+                        <button type="button" class="btn btn-danger"
+                                id="confirm_delete">{{trans('dashboard::systems/media.yes_delete')}}
                         </button>
                     </div>
                 </div>

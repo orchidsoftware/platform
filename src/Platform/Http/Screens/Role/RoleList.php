@@ -35,7 +35,6 @@ class RoleList extends Screen
         return [
             'roles' => Role::paginate(),
         ];
-        //dd($return);
     }
 
     /**

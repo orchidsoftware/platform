@@ -3,12 +3,13 @@
 @section('description',$description)
 @section('navbar')
 
-    <ul class="nav justify-content-end  v-center"  role="tablist">
+    <ul class="nav justify-content-end  v-center" role="tablist">
         <li class="nav-item">
             <button type="submit"
                     onclick="window.dashboard.validateForm('form-group','{{trans('dashboard::common.alert.validate')}}')"
                     form="form-group"
-                    class="btn btn-link btn-save"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}</button>
+                    class="btn btn-link btn-save"><i
+                        class="icon-check"></i> {{trans('dashboard::common.commands.save')}}</button>
         </li>
         <li class="nav-item">
             <button type="submit" form="form-group-remove" class="btn btn-link" @if($method == 'GET') disabled @endif><i

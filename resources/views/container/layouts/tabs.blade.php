@@ -2,7 +2,8 @@
     <ul class="nav nav-tabs padder bg-light" role="tablist">
         @foreach($manyForms as $name => $tab)
             <li class="nav-item">
-                <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}" role="tab" data-toggle="tab">
+                <a class="nav-link @if ($loop->first) active @endif" data-target="#tab-{{str_slug($name)}}" role="tab"
+                   data-toggle="tab">
                     {!! $name !!}
                 </a>
             </li>

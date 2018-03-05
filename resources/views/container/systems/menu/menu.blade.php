@@ -6,30 +6,32 @@
 
 
 @section('navbar')
-<div class="text-right">
-    <ul class="nav justify-content-end">
-        @if(count($locales) > 1)
-            <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
-            <ul class="dropdown-menu dropdown-menu-right">
+    <div class="text-right">
+        <ul class="nav justify-content-end">
+            @if(count($locales) > 1)
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-menu-right">
 
-                @foreach($locales as $code => $locale)
-                    @if($currentLocale == $code)
-                        <li class="disabled">
-                            <a class="dropdown-item">{{$locale['native']}}</a>
-                        </li>
-                    @else
-                        <li>
-                            <a class="dropdown-item" href="?lang={{$code}}" data-turbolinks-action="replace">{{$locale['native']}}</a>
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
-        </li>
-        @endif
-    </ul>
-</div>
+                        @foreach($locales as $code => $locale)
+                            @if($currentLocale == $code)
+                                <li class="disabled">
+                                    <a class="dropdown-item">{{$locale['native']}}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a class="dropdown-item" href="?lang={{$code}}"
+                                       data-turbolinks-action="replace">{{$locale['native']}}</a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </li>
+            @endif
+        </ul>
+    </div>
 @stop
 
 
@@ -37,29 +39,32 @@
 @section('content')
 
 
-<div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
+    <div class="hbox hbox-auto-xs hbox-auto-sm" id="menu-vue">
 
-<div class="hbox-col w-xxl bg-white-only b-r bg-auto no-border-xs">
+        <div class="hbox-col w-xxl bg-white-only b-r bg-auto no-border-xs">
 
-       <div class="wrapper-md">
+            <div class="wrapper-md">
 
                 <div class="form">
                     <div class="form-group">
-                        <label>{{trans('dashboard::systems/menu.form.title')}} <span class="text-danger">*</span></label>
+                        <label>{{trans('dashboard::systems/menu.form.title')}} <span
+                                    class="text-danger">*</span></label>
                         <input type="text"
                                class="form-control"
                                v-model="label"
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.title_description')}}">
 
-                        <small class="help-block text-danger" v-if="errors.label">{{trans('dashboard::common.validation.required')}}</small>
+                        <small class="help-block text-danger"
+                               v-if="errors.label">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('dashboard::systems/menu.form.alt')}} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" v-model="title"
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.alt_description')}}">
-                        <small class="help-block text-danger" v-if="errors.title">{{trans('dashboard::common.validation.required')}}</small>
+                        <small class="help-block text-danger"
+                               v-if="errors.title">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('dashboard::systems/menu.form.url')}} <span class="text-danger">*</span></label>
@@ -68,7 +73,8 @@
                                v-model="slug"
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.url_description')}}">
-                        <small class="help-block text-danger" v-if="errors.slug">{{trans('dashboard::common.validation.required')}}</small>
+                        <small class="help-block text-danger"
+                               v-if="errors.slug">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
 
                     <div class="form-group">
@@ -171,24 +177,24 @@
 
             </div>
 
-</div>
+        </div>
 
 
-<div class="hbox-col">
-    <div class="wrapper-md">
+        <div class="hbox-col">
+            <div class="wrapper-md">
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$nameMenu}}">
-                    <ol class="dd-list">
-                        @include('dashboard::partials.menu.item',[
-                            'menu'=>$menu
-                        ])
-                    </ol>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$nameMenu}}">
+                            <ol class="dd-list">
+                                @include('dashboard::partials.menu.item',[
+                                    'menu'=>$menu
+                                ])
+                            </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 @stop

@@ -61,7 +61,7 @@ class File
         $this->date = date('Y/m/d');
         $this->file = $file;
         $this->mimes = new MimeTypes;
-        $this->fullPath = storage_path('app/public/'.DIRECTORY_SEPARATOR.$this->date.DIRECTORY_SEPARATOR);
+        $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
         $this->storage = $storage;
     }

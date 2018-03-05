@@ -29,24 +29,24 @@
             @if($users->count() > 0)
 
                 <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
+                            @foreach($behavior->grid() as $th)
+                                <th width="{{$th->width}}">{{$th->title}}</th>
+                            @endforeach
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($users as $user)
                             <tr>
-                                <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                @foreach($behavior->grid() as $th)
-                                    <th width="{{$th->width}}">{{$th->title}}</th>
-                                @endforeach
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td class="text-center">
-                                        <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
-                                                    class="icon-menu"></i></a>
-                                    </td>
+                                <td class="text-center">
+                                    <a href="{{ route('dashboard.systems.users.edit',$user->id) }}"><i
+                                                class="icon-menu"></i></a>
+                                </td>
 
-                                    @foreach($behavior->grid() as $td)
+                                @foreach($behavior->grid() as $td)
                                     <td>
                                         @if(!is_null($td->render))
                                             {!! $td->handler($user) !!}
@@ -54,22 +54,22 @@
                                             {{ $user->getContent($td->name) }}
                                         @endif
                                     </td>
-                                    @endforeach
-                                </tr>
+                                @endforeach
+                            </tr>
 
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-					
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
                 <footer class="card-footer">
                     <div class="row">
                         <div class="col-sm-5">
-                            <small class="text-muted inline m-t-sm m-b-sm">	
-							{{trans('dashboard::common.show')}} {{($users->currentPage()-1)*$users->perPage()+1}} -
-							{{($users->currentPage()-1)*$users->perPage()+count($users->items())}} {{trans('dashboard::common.of')}} {!! $users->total() !!} {{trans('dashboard::common.elements')}}
-								
-								</small>
+                            <small class="text-muted inline m-t-sm m-b-sm">
+                                {{trans('dashboard::common.show')}} {{($users->currentPage()-1)*$users->perPage()+1}} -
+                                {{($users->currentPage()-1)*$users->perPage()+count($users->items())}} {{trans('dashboard::common.of')}} {!! $users->total() !!} {{trans('dashboard::common.elements')}}
+
+                            </small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $users->links('dashboard::partials.pagination') !!}

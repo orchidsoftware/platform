@@ -6,36 +6,36 @@
 
 @push('scripts')
     <script>
-document.addEventListener('turbolinks:load', function() {
-    $('#{{$id}}').select2({
-        theme: "bootstrap",
-        ajax: {
-            type: "POST",
-            cache: true,
-            delay: 250,
-            url: function (params) {
-                return '{{route('dashboard.systems.widget',Base64Url\Base64Url::encode($handler))}}';
-            },
-            dataType: 'json'
-        },
-        selectOnClose: true,
-        placeholder: '{{$placeholder or ''}}'
-    });
+        document.addEventListener('turbolinks:load', function () {
+            $('#{{$id}}').select2({
+                theme: "bootstrap",
+                ajax: {
+                    type: "POST",
+                    cache: true,
+                    delay: 250,
+                    url: function (params) {
+                        return '{{route('dashboard.systems.widget',Base64Url\Base64Url::encode($handler))}}';
+                    },
+                    dataType: 'json'
+                },
+                selectOnClose: true,
+                placeholder: '{{$placeholder or ''}}'
+            });
 
-    @if(!is_null($value))
-        axios.post('{{route('dashboard.systems.widget',[
+            @if(!is_null($value))
+            axios.post('{{route('dashboard.systems.widget',[
                     'widget' => Base64Url\Base64Url::encode($handler),
                     'key'    => $value
                 ])}}').then(function (response) {
 
-            var selected = response.data;
-            selected = selected[Object.keys(selected)[0]];
+                var selected = response.data;
+                selected = selected[Object.keys(selected)[0]];
 
-            $('#{{$id}}')
-                .append(new Option(selected.text, selected.id, true, true))
-                .trigger('change');
+                $('#{{$id}}')
+                    .append(new Option(selected.text, selected.id, true, true))
+                    .trigger('change');
+            });
+            @endif
         });
-    @endif
-});
-</script>
+    </script>
 @endpush

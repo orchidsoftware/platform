@@ -1,12 +1,5 @@
 window.dashboard = {
-    /**
-     * Field code
-     */
-    fields: {
-        tinymce: require('./fields/tinymce'),
-        simplemde: require('./fields/simplemde'),
-    },
-
+    
     /**
      *
      * @param path

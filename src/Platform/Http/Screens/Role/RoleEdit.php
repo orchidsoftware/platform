@@ -112,7 +112,6 @@ class RoleEdit extends Screen
         }
 
         $role->permissions = $permissions ?? [];
-        //dd($role);
         $role->save();
         
         Alert::info(trans('dashboard::systems/roles.Role was saved'));

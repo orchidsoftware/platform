@@ -48,11 +48,11 @@
                 name="tags[]"
                 multiple="multiple"
                 placeholder="{{trans('dashboard::post/base.generic_tags')}}">
-            @if(!is_null($post))
+            @isset($post)
                 @foreach($post->tags as $tag)
                     <option value="{{$tag->name}}" selected="selected">{{$tag->name}}</option>
                 @endforeach
-            @endif
+            @endisset
         </select>
     </div>
 
@@ -69,19 +69,19 @@
         </select>
     </div>
 
-    @if(!is_null($author))
+    @isset($author)
         <div class="line line-dashed b-b line-lg"></div>
         <p>
             {{trans('dashboard::post/base.author')}}: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
         </p>
-    @endif
-    @if(!is_null($post))
+    @endisset
+    @isset($post)
         <div class="line line-dashed b-b line-lg"></div>
         <p>
             {{trans('dashboard::post/base.changed')}}: <span
                     title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
         </p>
-    @endif
+    @endisset
     @if(count($locales) > 1)
         @foreach($locales as $key => $locale)
             <div class="line line-dashed b-b line-lg"></div>
@@ -114,40 +114,40 @@
 
 
 <script>
-document.addEventListener('turbolinks:load', function() {
-    $('.select2-tags').select2({
-        templateResult: function formatState(state) {
-            if (!state.id || !state.count) {
-                return state.text;
-            }
+    document.addEventListener('turbolinks:load', function () {
+        $('.select2-tags').select2({
+            templateResult: function formatState(state) {
+                if (!state.id || !state.count) {
+                    return state.text;
+                }
 
-            var str = '<span>' + state.text + '</span>' + ' <span class="pull-right badge bg-info">' + state.count + '</span>';
+                var str = '<span>' + state.text + '</span>' + ' <span class="pull-right badge bg-info">' + state.count + '</span>';
 
-            return $(str);
-        },
-        createTag: function (tag) {
-            return {
-                id: tag.term,
-                text: tag.term,
-            };
-        },
-        escapeMarkup: function (m) {
-            return m;
-        },
-        width: '100%',
-        tags: true,
-        cache: true,
-        ajax: {
-            url: function (params) {
-                return dashboard.prefix('/systems/tags/' + params.term);
+                return $(str);
             },
-            delay: 250,
-            processResults: function (data, page) {
+            createTag: function (tag) {
                 return {
-                    results: data
+                    id: tag.term,
+                    text: tag.term,
                 };
+            },
+            escapeMarkup: function (m) {
+                return m;
+            },
+            width: '100%',
+            tags: true,
+            cache: true,
+            ajax: {
+                url: function (params) {
+                    return dashboard.prefix('/systems/tags/' + params.term);
+                },
+                delay: 250,
+                processResults: function (data, page) {
+                    return {
+                        results: data
+                    };
+                }
             }
-        }
+        });
     });
-});
 </script>

@@ -1,8 +1,6 @@
 <div class="wrapper-md">
-
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-md-6">
                 <table class="table">
                     <tr>
@@ -21,18 +19,14 @@
                         <td>{{trans('dashboard::systems/settings.Website address')}}</td>
                         <td>{{$settings->get('url')}}</td>
                     </tr>
-
                     <tr>
                         <td>{{trans('dashboard::systems/settings.Timezone')}}</td>
                         <td>{{$settings->get('timezone')}}</td>
                     </tr>
-
-
                     <tr>
                         <td>{{trans('dashboard::systems/settings.Default Language')}}</td>
                         <td>{{$settings->get('locale')}}</td>
                     </tr>
-
                     <tr>
                         <td>{{trans('dashboard::systems/settings.Replacement language')}}</td>
                         <td>{{$settings->get('fallback_locale')}}</td>
@@ -45,20 +39,13 @@
                         <td>{{trans('dashboard::systems/settings.Level Event Log')}}</td>
                         <td>{{$settings->get('log_level')}}</td>
                     </tr>
-
-
                 </table>
             </div>
-
-
             <div class="col-md-6">
                 <!-- main content -->
                 <section class="wrapper-md cache">
                     <div class="no-border-xs">
-
-
                         <div class="">
-
                             <div class="row">
                                 <form action="{{route('dashboard.systems.cache')}}" method="POST">
                                     <button class="panel padder-v item w-full" type="submit">
@@ -80,54 +67,40 @@
                                 </form>
                             </div>
                             <div class="row">
-
                                 <form action="{{route('dashboard.systems.cache')}}" method="POST">
                                     <button class="panel padder-v item  w-full" type="submit">
                                         <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.route')}}</div>
                                         <span class="text-muted text-xs">{{trans('dashboard::systems/cache.route.description')}}</span>
-
                                     </button>
                                     <input name="action" type="hidden" value="route">
                                     @csrf
                                 </form>
-
                             </div>
                             <div class="row">
-
                                 <form action="{{route('dashboard.systems.cache')}}" method="POST">
                                     <button class="panel padder-v item  w-full" type="submit">
                                         <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.view')}}</div>
                                         <span class="text-muted text-xs">{{trans('dashboard::systems/cache.view.description')}}</span>
-
                                     </button>
                                     <input name="action" type="hidden" value="view">
                                     @csrf
                                 </form>
-
                             </div>
                             <div class="row">
-
                                 <form action="{{route('dashboard.systems.cache')}}" method="POST">
                                     <button class="panel padder-v item  w-full" type="submit">
                                         <div class="h4 text-info font-thin">{{trans('dashboard::systems/cache.opcache')}}</div>
                                         <span class="text-muted text-xs">{{trans('dashboard::systems/cache.opcache.description')}}</span>
-
                                     </button>
                                     <input name="action" type="hidden" value="opcache">
                                     @csrf
                                 </form>
-
                             </div>
                         </div>
-
-
                     </div>
-
-
                 </section>
                 <!-- / main content -->
             </div>
-
         </div>
     </div>
 </div>

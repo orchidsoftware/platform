@@ -6,11 +6,11 @@
 
 @section('navbar')
 
-    <ul class="nav justify-content-end  v-center"  role="tablist">
+    <ul class="nav justify-content-end  v-center" role="tablist">
 
         <li class="nav-item">
             <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link">
-                <i class="icon-plus"></i>  {{trans('dashboard::common.commands.add')}}</a>
+                <i class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}</a>
         </li>
 
     </ul>
@@ -27,56 +27,57 @@
                 @include('dashboard::container.posts.filter')
 
                 <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                                <th>{{trans('dashboard::systems/category.name')}}</th>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
+                            <th>{{trans('dashboard::systems/category.name')}}</th>
 
-                                @foreach($behavior->grid() as $th)
-                                    <th width="{{$th->width}}">{{$th->title}}</th>
+                            @foreach($behavior->grid() as $th)
+                                <th width="{{$th->width}}">{{$th->title}}</th>
+                            @endforeach
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($category as $item)
+
+                            <tr>
+                                <td class="text-center">
+                                    <a href="{{ route('dashboard.systems.category.edit',$item->id) }}">
+                                        <i class="icon-menu"></i>
+                                    </a>
+                                </td>
+                                <td>{{$item->term->getContent('name')}}</td>
+
+                                @foreach($behavior->grid() as $td)
+                                    <td>
+                                        @isset($td->render)
+                                            {!! $td->handler($item->term) !!}
+                                        @else
+                                            {{ $item->term->getContent($td->name) }}
+                                        @endisset
+                                    </td>
                                 @endforeach
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($category as $item)
-
-                                <tr>
-                                    <td class="text-center">
-                                        <a href="{{ route('dashboard.systems.category.edit',$item->id) }}">
-                                            <i class="icon-menu"></i>
-                                        </a>
-                                    </td>
-                                    <td>{{$item->term->getContent('name')}}</td>
-
-                                    @foreach($behavior->grid() as $td)
-                                        <td>
-                                            @if(!is_null($td->render))
-                                                {!! $td->handler($item->term) !!}
-                                            @else
-                                                {{ $item->term->getContent($td->name) }}
-                                            @endif
-                                        </td>
-                                    @endforeach
-                                </tr>
 
 
-                                @include('dashboard::partials.systems.categoryItem',[
-                                    'item' => $item->allChildrenTerm,
-                                    'delimiter' => '- '
-                                ])
+                            @include('dashboard::partials.systems.categoryItem',[
+                                'item' => $item->allChildrenTerm,
+                                'delimiter' => '- '
+                            ])
 
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
                 <footer class="card-footer">
                     <div class="row">
                         <div class="col-sm-5">
                             <small class="text-muted inline m-t-sm m-b-sm">
-							{{trans('dashboard::common.show')}} {{($category->currentPage()-1)*$category->perPage()+1}} -
-							{{($category->currentPage()-1)*$category->perPage()+count($category->items())}} {{trans('dashboard::common.of')}} {!! $category->total() !!} {{trans('dashboard::common.elements')}}</small>
+                                {{trans('dashboard::common.show')}} {{($category->currentPage()-1)*$category->perPage()+1}}
+                                -
+                                {{($category->currentPage()-1)*$category->perPage()+count($category->items())}} {{trans('dashboard::common.of')}} {!! $category->total() !!} {{trans('dashboard::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
                             {!! $category->links('dashboard::partials.pagination') !!}

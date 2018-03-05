@@ -1,5 +1,4 @@
 <div class="hbox hbox-auto-xs ">
-
     @foreach($manyForms as $key => $column)
         <div class="hbox-col lter b-l">
             <div class="vbox">
@@ -9,5 +8,4 @@
             </div>
         </div>
     @endforeach
-
 </div>

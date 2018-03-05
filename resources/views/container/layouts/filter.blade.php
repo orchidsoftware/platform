@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group pull-right" role="group">
-                    <a      href="{{url()->current()}}"
-                            class="btn btn-default"><i class="icon-refresh"></i>
+                    <a href="{{url()->current()}}"
+                       class="btn btn-default"><i class="icon-refresh"></i>
                     </a>
                     <button type="submit"
                             id="button-filter"

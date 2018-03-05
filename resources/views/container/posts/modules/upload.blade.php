@@ -18,7 +18,8 @@
         <div class="modal-content-wrapper">
             <div class="modal-content">
                 <div class="modal-header clearfix">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
+                                aria-hidden="true">&times;</span></button>
                     <h5>{{trans('dashboard::post/uploads.information.title')}}</h5>
                     <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
                 </div>
@@ -58,12 +59,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                        <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i class="icon-link"></i>
-                            {{trans('dashboard::post/uploads.information.link')}}
-                        </a>
+                    <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i
+                                class="icon-link"></i>
+                        {{trans('dashboard::post/uploads.information.link')}}
+                    </a>
 
-                        <button type="button" v-on:click="save"
-                                class="btn btn-default">{{trans('dashboard::common.apply')}}</button>
+                    <button type="button" v-on:click="save"
+                            class="btn btn-default">{{trans('dashboard::common.apply')}}</button>
                 </div>
             </div>
         </div>
