@@ -13,6 +13,8 @@ use Orchid\Platform\Alert\Alert as AlertClass;
 class Alert extends Facade
 {
     /**
+     * Initiate a mock expectation on the facade.
+     *
      * @return mixed
      */
     protected static function getFacadeAccessor()

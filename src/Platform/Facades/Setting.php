@@ -10,7 +10,7 @@ use Orchid\Platform\Core\Models\Setting as SettingModel;
 class Setting extends Facade
 {
     /**
-     * Model of Setting.
+     * Initiate a mock expectation on the facade.
      *
      * @return mixed
      */

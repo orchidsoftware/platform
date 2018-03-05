@@ -259,13 +259,12 @@ class Post extends Model
     public function getTermsAttribute() : array
     {
         $taxonomies = $this->taxonomies;
-        $terms = [];
         foreach ($taxonomies as $taxonomy) {
             $taxonomyName = $taxonomy['taxonomy'] == 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
             $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term['name'];
         }
 
-        return $terms;
+        return $terms ?? [];
     }
 
     /**

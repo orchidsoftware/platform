@@ -13,6 +13,8 @@ use Orchid\Platform\Kernel\Dashboard as Dash;
 class Dashboard extends Facade
 {
     /**
+     * Initiate a mock expectation on the facade.
+     *
      * @return mixed
      */
     protected static function getFacadeAccessor()

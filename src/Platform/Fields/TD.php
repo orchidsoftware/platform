@@ -40,6 +40,21 @@ class TD
 
     /**
      * @param string $name
+     * @param string $title
+     * @return TD
+     */
+    public static function set(string $name, string $title)
+    {
+        $td = new self($name);
+        $td->title = $title;
+
+        return $td;
+    }
+
+    /**
+     * @deprecated Use the set method
+     *
+     * @param string $name
      *
      * @return TD
      */
@@ -49,6 +64,8 @@ class TD
     }
 
     /**
+     * @deprecated Use the set method
+     *
      * @param string $title
      *
      * @return $this

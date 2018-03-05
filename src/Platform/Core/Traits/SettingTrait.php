@@ -21,8 +21,8 @@ trait SettingTrait
         $result = $this->firstOrNew([
             'key' => $key,
         ])->fill([
-                'value' => $value,
-            ])->save();
+            'value' => $value,
+        ])->save();
 
         $this->cacheForget($key);
 
@@ -40,12 +40,13 @@ trait SettingTrait
             return;
         }
 
-        if (is_array($key)) {
-            foreach ($key as $value) {
-                Cache::forget($value);
-            }
-        } else {
+        if(!is_array($key)){
             Cache::forget($key);
+            return;
+        }
+
+        foreach ($key as $value) {
+            Cache::forget($value);
         }
     }
 

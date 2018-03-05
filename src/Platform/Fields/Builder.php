@@ -172,6 +172,8 @@ class Builder
     }
 
     /**
+     * Gets value of Repository
+     *
      * @param $key
      * @param $value
      *

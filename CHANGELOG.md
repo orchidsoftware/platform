@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Deprecated
+- TD::name and TD::title use TD::set
+
 ### Removed
 - Font Awesome
 
