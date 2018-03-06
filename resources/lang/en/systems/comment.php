@@ -14,4 +14,6 @@ return [
     'show_comment' => 'Show comment',
     'go'           => 'Go to',
     'delete'       => 'Post deleted',
+    'Comment was saved'   => 'Comment was saved',
+    'Comment was removed' => 'Comment was removed',
 ];
