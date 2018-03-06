@@ -25,7 +25,9 @@
         <button onclick="newitem{{$slug}}()" class="btn btn-sm alert-info">new</button>
     </div>
 </div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@if($hr ?? true)
+    <div class="line line-dashed b-b line-lg"></div>
+@endif
 <style>
     .input-sort .form-control {
         width: 83.33333333%;

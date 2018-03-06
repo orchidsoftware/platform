@@ -11,6 +11,6 @@
         <p class="form-text text-muted">{{$help}}</p>
     @endif
 </div>
-@if($show ?? true)
+@if($hr ?? true)
     <div class="line line-dashed b-b line-lg"></div>
 @endif
