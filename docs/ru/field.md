@@ -171,7 +171,7 @@ return [
     'description' => Field::tag('textarea')
                          ->name('description')
                          ->max(255)
-                         ->row(5)
+                         ->rows(5)
                          ->required()
                          ->title('Short description'),
 ];
