@@ -33,7 +33,6 @@ class CommentList extends Screen
      */
     public function query() : array
     {
-       
         return [
             'comment' => Comment::with([
                                 'post' => function ($query) {
@@ -41,20 +40,8 @@ class CommentList extends Screen
                                 },
                             ])->latest()->paginate(),
         ];
-        //dd($return);
     }
 
-    /**
-     * Button commands.
-     *
-     * @return array
-     */
-    public function commandBar() : array
-    {
-        return [
-            Link::name(' '.trans('dashboard::common.commands.add'))->icon('icon-plus')->method('create'),
-        ];
-    }
 
     /**
      * Views.
@@ -68,13 +55,4 @@ class CommentList extends Screen
         ];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return null
-     */
-    public function create()
-    {
-        return redirect()->route('dashboard.systems.comment.create');
-    }
 }
