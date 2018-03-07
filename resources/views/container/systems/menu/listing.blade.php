@@ -14,7 +14,7 @@
                 <div class="card-body row no-gutter">
                 @if($menu->count() > 0)
 
-                    <h3 class="font-thin mt-4">{{trans('dashboard::systems/menu.description')}}</h3>
+                    <h4 class="font-thin mt-4">{{trans('dashboard::systems/menu.description')}}</h4>
                     <div class="list-group list-group-flush text-left col-md-12">
                         @foreach ($menu as $key => $value)
                                 <a href="{{ route('dashboard.systems.menu.show',$key) }}" class="list-group-item list-group-item-action">{{ $value }}</a>
