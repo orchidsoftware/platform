@@ -8,18 +8,10 @@ php:
 
 addons:
    chrome: stable
-   postgresql: "9.4"
 
 cache:
   directories:
     - $HOME/.composer/cache
-
-services:
-  - postgresql
-
-before_install:
-  - psql -c 'create database platform;' -U postgres
-  - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
 
 before_script:
    - travis_retry composer self-update

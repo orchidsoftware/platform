@@ -58,16 +58,9 @@ trait Environment
 
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
-            'driver'   => 'pgsql',
-            'host'     => '127.0.0.1',
-            'port'     => '5432',
-            'database' => 'platform',
-            'username' => 'orchid',
-            'password' => 'orchid',
-            'charset'  => 'utf8',
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
             'prefix'   => '',
-            'schema'   => 'public',
-            'sslmode'  => 'prefer',
         ]);
         $app['config']->set('database.default', 'orchid');
     }
