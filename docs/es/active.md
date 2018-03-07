@@ -1,21 +1,21 @@
 # Enlaces activos
 ----------
 
-Active links is the support package that allows to easily define current address (URL) or route which is very useful in case when `active` navigation attribute needs to be added (for example in use with Bootstrap) and for actions that are only applicable when the particular route is active.
+Los enlaces activos son el paquete de soporte que permiten definir fácilmente la dirección (URL) actual o la ruta, lo cual es muy útil en caso de que el atributo de navegación `active` necesite ser añadido (por ejemplo cuando se utiliza Bootstrap) y para acciones que sólo aplican cuando la ruta particular está activa.
 
-It also includes an assistant providing the info on current controller and action names.
+También incluye un asistente que provee la información sobre controladores actuales y nombres de acción.
 
-## Helper functions
+## Funciones auxiliares
 
-Active links with several helper functions that simplify the use without a facade.
+Enlaces activos con distintas funciones auxiliares que simplifican el uso sin una fachada.
 ```php
 active()
 is_active()
 ```
 
-## The use of `active()`
+## El uso de `active()`
 
-You pass an array of routes or URLs you want to see as the main page and if there's some match, an `active` string will be returned to Bootstrap. Also, you may pass the user return string as the second argument.
+Pase un arreglo de rutas o URLs que desee visualizar como la página principal y si hay alguna semejanza, un string `active` será devuelto a Bootstrap. Además, puede pasar el string de devolución de usuario como segundo argumento.
 
 ```php
 // Returns «active» if current route matches any route or resource address.
@@ -25,11 +25,11 @@ active('login', 'users/*', 'posts.*', 'pages.contact');
 active(['login', 'logout'], 'active-class'); 
 ```
 
-In the first example the function will return `active` if the current `login` route begins with `users /` or if the current route is `posts.create`.
+En el primer ejemplo la función devolverá `active` si en ese momento la ruta `login` empieza con `users /` o si la ruta presente es `posts.create`.
 
-Pay attention to a provided list of different argument types: you may use an URL string, an asterisk (*) URL string, and also you may use named routes.
+Preste atención a una lista prevista de diferentes tipos de argumentos: puede utilizar un string URL, un asterisco (*) string URL y también puede usar rutas nombradas.
 
-You may use this function with your links to provide `active` state to them.
+Puede utilizar esta función con sus enlaces para proporcionar un estado `active` a estos.
 
 ```php
 <a href="{{ route('posts.index') }}" class="{{ active('posts.index') }}">
@@ -37,16 +37,16 @@ You may use this function with your links to provide `active` state to them.
 </a>
 ```
 
-You may also specify particular routes or addresses that must be checked.
+También puede especificar rutas particulares o direcciones que deben ser verificadas.
 ```php
 active(['pages/*', 'not:pages/contact'])
 
 active(['pages.*', 'not:pages.contact'])
 ```
 
-## The use of `is_active()`
+## El uso de `is_active()`
 
-This one works like `active()`: you may pass routes and addresses to it but instead it returns boolean value if current page matches the rule or not:
+Este funciona como `active()`: puede pasarle rutas y direcciones pero este devolverá valores booleanos si la página actual coincide con la regla o no:
 
 ```php
 @if (is_active('posts/*'))
@@ -54,11 +54,11 @@ This one works like `active()`: you may pass routes and addresses to it but inst
 @endif
 ```
 
-## Additional assistants
+## Asistentes adicionales
 
-If your routing is performed by a request controller there are two functions that allow to define current controller and available actions.
-These functions will return controller name without request method. 
-Below is the example of request redirected to `FooController@getBar':
+Si su enrutamiento es realizado por un controlador de solicitud, existen dos funciones que permiten definir el controlador actual y las acciones disponibles.
+Estas funciones devolverán el nombre del controlador sin método de solicitud.
+A continuación el ejemplo de solicitud redirigida a `FooController@getBar':
 ```php
 $controller = controller_name(); // foo
 
