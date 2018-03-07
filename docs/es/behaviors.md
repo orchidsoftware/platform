@@ -1,17 +1,17 @@
 # Comportamientos 
 ----------
 
-Behavior is the main part of the ORCHID content management system. Rather than generating CRUD for every model, you can select any object under separate type and manage them easily. 
-Behaviors are applicable only to 'Post' based models, as it is base model for typical data.
+Los comportamientos son la parte principal del sistema de supervisión de contenidos de ORCHID. En lugar de generar CRUD para cada modelo, pude seleccionar cualquier objeto bajo tipos separados y administrarlos fácilmente.
+Los comportamientos son aplicables sólo para 'Postear' modelos basados, ya que es modelo base para información común.
 
-You should describe the fields you want to have and their state, while its CRUD will be assembled automatically.
-Also you can specify a validation or modules. (See Forms section).
+Usted debería describir los campos que desea tener y sus estados, mientras que su CRUD será ensamblado automáticamente.
+También puede especificar una validación o módulos. (Consulte la sección Forms).
 
 ![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
 
-## Creating and registering behaviours
+## Creando y registrando comportamientos
         
-Follow this procedure to create behaviors:
+Siga el siguiente procedimiento para crear comportamientos:
 
 
 ```php
@@ -22,7 +22,7 @@ php artisan make:singleBehavior
 php artisan make:manyBehavior
 ```
 
-Private behavior must be registered at `config/platform.php` in types section:
+El comportamiento privado debe ser registrado en `config/platform.php` en la sección de tipos:
 
 
 ```php
@@ -37,9 +37,9 @@ Private behavior must be registered at `config/platform.php` in types section:
 ],
 ```
 
-> To display the behavior of the user, you must grant requisite rights to the user or group (roles) using the visual interface.
+> Para mostrar el comportamiendo del usuario, debe otorgar derechos imprescindibles al usuario o grupo (roles) utilizando la interfaz visual.
 
-The type is as follows:
+El tipo es el siguiente:
 
  ```php
 namespace DummyNamespace;
@@ -106,13 +106,13 @@ class DummyClass extends Many
 
 ```
 
-You can extend the type of data at every possible way to add a new feature that corresponds to your application.
+Puede extender el tipo de información de cualquier manera posible para añadir una nueva característica que corresponda a su aplicación.
 
 
-## Grid modification
+## Modificiación de red
 
 
-You can change the data you want to display in grid by passing the array with name and function instead of key value, where the passed index is an initial data segment. 
+Puede cambiar la información que desea mostrar en red al pasar el arreglo con el nombre y la función en lugar del valor clave, donde el índice pasado es un segmento de información inicial.
 
  ```php
  /**
