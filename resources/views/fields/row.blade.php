@@ -18,5 +18,5 @@
     </script>
 @endif
 @if(isset($hr))
-    @include('dashboard::partials.fields.hr', ['show' => $hr ?? false])
+    <div class="line line-dashed b-b line-lg"></div>
 @endif

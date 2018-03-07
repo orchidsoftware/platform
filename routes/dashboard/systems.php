@@ -120,7 +120,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.category.destroy',
             ],
         ]);
-        */
+        
         $router->resource('comment', 'CommentController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',
@@ -134,7 +134,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.comment.destroy',
             ],
         ]);
-
+        */
         $router->post('files', [
             'as'   => 'dashboard.systems.files.upload',
             'uses' => 'AttachmentController@upload',
