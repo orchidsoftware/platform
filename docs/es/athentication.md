@@ -2,20 +2,20 @@
 ----------
 
 
-## Quick authentication guide
+## Guía de autenticación breve
 
-In the installed ORCHID configuration the users authentication page is already there at the `/dashboard/login` address.
+En la configuración instalada de ORCHID la pagína de autenticación del usuario ya está en la dirección `/dashboard/login`.
 
-At the installation stage you have inherited the model in `app/User.php` to further be able to  expand an authentication model and in the meantime to define it for Laravel.
-(Look in the configuration file `config/auth.php`).
+En la etapa de instalación habrá recibido el modelo en `app/User.php` para poder, más adelante, expandir un modelo de autenticación y mientras tanto definirlo para Lavarel.
+(Busque en archivo de configuración `config/auth.php`)
 
 
 
-## Modification
+## Modificación
 
-Authentication uses the default Laravel login form that requires only two parameters `E-mail` and `Password`. In real applications more flexibility may be necessary in case you use `ldap` or authentication through social networks. So you have to create your own page you could modify. 
+La autenticación utiliza la forma de inicio de sesión Lavarel prestablecida que requiere sólo dos parámetros: `E-mail` y `Password`. En aplicaciones reales, puede ser necesaria más flexibilidad en el caso de que use `ldap` o autenticación a través de redes sociales. Así que tiene que crear su propia página que pueda modificar.
  
-First, to turn our embedded authentication page off, we change the `display` value in the configuration file:
+Primero, para apagar nuestra página de autenticación incorporada, cambiamos el valor `display` en el archivo de configuración:
 
 ```php
 'auth' => [
@@ -24,14 +24,13 @@ First, to turn our embedded authentication page off, we change the `display` val
 ```
  
  
-Then, we use the built-in Laravel command to create all the required routes and templates:
+Luego, utilizamos el comando Lavarel ya incluido para crear todas las rutas y plantillas requeridas:
 
 ```php
 php artisan make:auth
 ```
 
-We add `auth` middleware to our platform configuration `config/platform.php` to allow correct redirections.
-Pay attention that this value must be defined before `dashboard`
+Añadimos el middleware `auth` a la configuración de nuestra plataforma `config/platform.php` para permitir redirecciones correctas. Preste atención, este valor debe ser definido antes que `dashboard`
 ```php
     'middleware' => [
         'public'  => ['web'],
