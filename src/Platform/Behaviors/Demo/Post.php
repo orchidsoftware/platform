@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Platform\Platform\Fields\TD;
 
 class Post extends Many
 {
@@ -72,13 +72,36 @@ class Post extends Many
     public function fields() : array
     {
         return [
-            Field::tag('input')
-                ->type('text')
-                ->name('name')
+
+            Field::group(function () {
+                return [
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('name')
+                        ->max(255)
+                        ->required()
+                        ->title('Name Articles')
+                        ->help('Article title'),
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('title')
+                        ->max(255)
+                        ->required()
+                        ->title('Article Title')
+                        ->help('SEO title')
+
+                ];
+            }),
+
+
+            Field::tag('textarea')
+                ->name('description')
                 ->max(255)
+                ->rows(5)
                 ->required()
-                ->title('Name Articles')
-                ->help('Article title'),
+                ->title('Short description'),
 
             Field::tag('wysiwyg')
                 ->name('body')
@@ -113,21 +136,6 @@ class Post extends Many
                 ->name('block')
                 ->title('Code Block')
                 ->help('Simple web editor'),
-
-            Field::tag('input')
-                ->type('text')
-                ->name('title')
-                ->max(255)
-                ->required()
-                ->title('Article Title')
-                ->help('SEO title'),
-
-            Field::tag('textarea')
-                ->name('description')
-                ->max(255)
-                ->row(5)
-                ->required()
-                ->title('Short description'),
 
             Field::tag('tags')
                 ->name('keywords')
@@ -176,14 +184,15 @@ class Post extends Many
     public function grid() : array
     {
         return [
-            TD::name('name')
-                ->title('Name'),
-
-            TD::name('publish_at')
-                ->title('Date of publication'),
-
-            TD::name('created_at')
-                ->title('Date of creation'),
+            TD::set('name', 'Name')
+                ->filter('text')
+                ->sort(true),
+            TD::set('publish_at', 'Date of publication')
+                ->filter('date')
+                ->sort(true),
+            TD::set('created_at', 'Date of creation')
+                ->filter('date')
+                ->sort(true),
         ];
     }
 }

@@ -14,7 +14,7 @@
                    aria-haspopup="true"
                    aria-expanded="false">
                     <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
-                    <span class="caret"></span>
+
                 </a>
                 <div class="dropdown-menu">
                     @foreach($locales as $code => $lang)

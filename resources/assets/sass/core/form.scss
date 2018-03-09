@@ -9,7 +9,6 @@
   line-height: normal;
   font-weight: normal;
   vertical-align: middle;
-  min-height: $form-height;
   @include transition(all 0.12s ease);
   @include box-shadow(none);
   border-radius: 2px;

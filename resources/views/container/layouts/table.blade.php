@@ -6,7 +6,17 @@
             <thead>
             <tr>
                 @foreach($form['fields'] as $th)
-                    <th width="{{$th->width}}">{{$th->title}}</th>
+                    <th width="{{$th->width}}" class="@if(rand(0,1))!!!!! sorting_desc !!!!!! @endif">
+                        @if($th->sort)
+                            <a href="#&soft={{$th->name}}">
+                                {{$th->title}}
+                                <i class="icon-sort-amount-asc"></i>
+                                <i class="icon-sort-amount-desc"></i>
+                            </a>
+                            @else
+                                {{$th->title}}
+                        @endif
+                    </th>
                 @endforeach
             </tr>
             </thead>

@@ -15,12 +15,12 @@
             formaction="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}"
             form="post-form"
             class="btn btn-sm btn-link">
-        <i class="{{$icon or ''}}"></i>{{$name or ''}}
+            @isset($icon)<i class="{{$icon}} m-r-xs"></i>@endisset
+            {{$name or ''}}
     </button>
 @else
 
     <a href="{{$link or ''}}" class="btn btn-sm btn-link">
         <i class="{{$icon or ''}}"></i>{{$name or ''}}
     </a>
-
 @endif

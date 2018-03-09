@@ -56,13 +56,13 @@ class Builder
     public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
     {
         //deprecated
-        foreach ($fields as $key => $item) {
-            if (! is_object($item)) {
-                $RawParse = Parser::parseFields([$item]);
-                $RawField = array_shift($RawParse)->toArray();
-                $fields[$key] = Field::make($RawField);
-            }
-        }
+        //foreach ($fields as $key => $item) {
+        //    if (! is_object($item)) {
+        //        $RawParse = Parser::parseFields([$item]);
+        //        $RawField = array_shift($RawParse)->toArray();
+        //        $fields[$key] = Field::make($RawField);
+        //    }
+        //}
 
         $this->fields = $fields;
         $this->data = $data;
@@ -102,18 +102,49 @@ class Builder
      */
     public function generateForm() : string
     {
-        foreach ($this->fields as $field) {
-            $field->set('lang', $this->language);
-            $field->set('prefix', $this->buildPrefix($field));
 
-            foreach ($this->fill($field->getAttributes()) as $key => $value) {
-                $field->set($key, $value);
+        foreach ($this->fields as $field) {
+
+            if(is_array($field)){
+                $this->renderGroup($field);
+                continue;
             }
 
-            $this->form .= $field->render();
+            $this->form .= $this->render($field);
         }
 
         return $this->form;
+    }
+
+    /**
+     * @param $groupField
+     */
+    private function renderGroup($groupField){
+
+        foreach ($groupField as $field){
+            $group[] = $this->render($field);
+        }
+
+        $this->form .= view('dashboard::partials.fields.groups',[
+            'cols' => $group ?? [],
+        ])->render();
+    }
+
+    /**
+     * Render field for forms
+     *
+     * @param $field
+     * @return mixed
+     */
+    private function render($field){
+        $field->set('lang', $this->language);
+        $field->set('prefix', $this->buildPrefix($field));
+
+        foreach ($this->fill($field->getAttributes()) as $key => $value) {
+            $field->set($key, $value);
+        }
+
+        return $field->render();
     }
 
     /**

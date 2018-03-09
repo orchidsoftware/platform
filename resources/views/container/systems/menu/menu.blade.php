@@ -12,7 +12,7 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
-                       aria-expanded="false">{{$locales[$currentLocale]['native']}} <span class="caret"></span></a>
+                       aria-expanded="false">{{$locales[$currentLocale]['native']}} </a>
                     <ul class="dropdown-menu dropdown-menu-right">
 
                         @foreach($locales as $code => $locale)
@@ -55,7 +55,7 @@
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.title_description')}}">
 
-                        <small class="help-block text-danger"
+                        <small class="form-text text-danger"
                                v-if="errors.label">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" v-model="title"
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.alt_description')}}">
-                        <small class="help-block text-danger"
+                        <small class="form-text text-danger"
                                v-if="errors.title">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
@@ -73,7 +73,7 @@
                                v-model="slug"
                                required
                                placeholder="{{trans('dashboard::systems/menu.form.url_description')}}">
-                        <small class="help-block text-danger"
+                        <small class="form-text text-danger"
                                v-if="errors.slug">{{trans('dashboard::common.validation.required')}}</small>
                     </div>
 
@@ -141,7 +141,7 @@
                 <div class="text-center">
 
 
-                    <div class="btn-group btn-group-sm  btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group btn-group-sm  d-flex" role="group" aria-label="...">
 
                         <div class="btn-group" role="group" v-if="exist()">
                             <button type="button" v-on:click="remove()"

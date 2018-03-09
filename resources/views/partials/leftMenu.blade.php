@@ -28,7 +28,7 @@
     <li>
         <a href="{{$route}}">
 
-            @isset($badge))
+            @isset($badge)
             <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endisset
             <i class="{{$icon}}"></i>

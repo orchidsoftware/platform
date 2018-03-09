@@ -13,7 +13,7 @@
     <li class="@isset($childs) dropdown-item @endisset @isset($active) {{active($active)}} @endisset">
         <a href="{{$route}}">
             <i class="{{$icon}}">
-                @isset($badge))
+                @isset($badge)
                 <b class="badge {{$badge['class']}} pos-abt pull-bottom">{{$badge['data']()}}</b>
                 @endisset
             </i>

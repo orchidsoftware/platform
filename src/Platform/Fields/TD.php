@@ -24,6 +24,16 @@ class TD
     public $width;
 
     /**
+     * @var
+     */
+    public $filter;
+
+    /**
+     * @var
+     */
+    public $sort;
+
+    /**
      * @var \Closure
      */
     public $render;
@@ -85,6 +95,28 @@ class TD
     public function width(string $width)
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * @param string $filter
+     * @return $this
+     */
+    public function filter(string $filter)
+    {
+        $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $sort
+     * @return $this
+     */
+    public function sort(bool $sort)
+    {
+        $this->sort = $sort;
 
         return $this;
     }

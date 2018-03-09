@@ -381,4 +381,12 @@ class Field implements FieldContract
 
         return $this;
     }
+
+    /**
+     * @param $group
+     * @return mixed
+     */
+    public static function group($group){
+        return call_user_func_array($group,[]);
+    }
 }

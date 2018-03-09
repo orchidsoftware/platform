@@ -18528,7 +18528,6 @@ a.text-black:hover {
 }
 
 .table thead tr th {
-  text-transform: uppercase;
   font-weight: 600;
   font-size: 13px;
   padding-top: 14px;
@@ -18699,7 +18698,6 @@ a.text-black:hover {
   line-height: normal;
   font-weight: normal;
   vertical-align: middle;
-  min-height: 35px;
   -webkit-transition: all 0.12s ease;
   transition: all 0.12s ease;
   -webkit-box-shadow: none;

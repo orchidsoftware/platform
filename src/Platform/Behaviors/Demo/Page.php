@@ -53,14 +53,36 @@ class Page extends Single
     public function fields() : array
     {
         return [
-            Field::tag('input')
-                ->type('text')
-                ->name('name')
-                ->max(255)
-                ->required()
-                ->title('Name Articles')
-                ->help('Article title'),
 
+            Field::group(function () {
+                return [
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('name')
+                        ->max(255)
+                        ->required()
+                        ->title('Name Articles')
+                        ->help('Article title'),
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('title')
+                        ->max(255)
+                        ->required()
+                        ->title('Article Title')
+                        ->help('SEO title')
+
+                ];
+            }),
+
+
+            Field::tag('textarea')
+                ->name('description')
+                ->max(255)
+                ->rows(5)
+                ->required()
+                ->title('Short description'),
 
             Field::tag('wysiwyg')
                 ->name('body')
@@ -95,21 +117,6 @@ class Page extends Single
                 ->name('block')
                 ->title('Code Block')
                 ->help('Simple web editor'),
-
-            Field::tag('input')
-                ->type('text')
-                ->name('title')
-                ->max(255)
-                ->required()
-                ->title('Article Title')
-                ->help('SEO title'),
-
-            Field::tag('textarea')
-                ->name('description')
-                ->max(255)
-                ->row(5)
-                ->required()
-                ->title('Short description'),
 
             Field::tag('tags')
                 ->name('keywords')

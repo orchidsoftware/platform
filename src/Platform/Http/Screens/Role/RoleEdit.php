@@ -69,8 +69,8 @@ class RoleEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(' '.trans('dashboard::common.commands.save'))->icon('icon-check')->method('save'),
-            Link::name(' '.trans('dashboard::common.commands.remove'))->icon('icon-trash')->method('remove'),
+            Link::name(trans('dashboard::common.commands.save'))->icon('icon-check')->method('save'),
+            Link::name(trans('dashboard::common.commands.remove'))->icon('icon-trash')->method('remove'),
         ];
     }
 
