@@ -111,12 +111,11 @@ class TD
     }
 
     /**
-     * @param bool $sort
      * @return $this
      */
-    public function sort(bool $sort)
+    public function sort()
     {
-        $this->sort = $sort;
+        $this->sort = true;
 
         return $this;
     }

@@ -25,9 +25,6 @@
         <section>
             <div class="bg-white-only  bg-auto no-border-xs">
 
-
-                {!! $type->showFilterDashboard() !!}
-
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -78,8 +75,6 @@
     @else
         <section>
             <div class="bg-white-only bg-auto no-border-xs">
-
-                {!! $type->showFilterDashboard() !!}
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>

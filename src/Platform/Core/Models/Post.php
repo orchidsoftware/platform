@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
+use Orchid\Platform\Core\Traits\FilterTrait;
 use Orchid\Platform\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations;
+    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations,FilterTrait;
 
     /**
      * @var string
@@ -72,6 +73,44 @@ class Post extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    /**
+     * @var
+     */
+    protected $allowedFilters = [
+        'id',
+        'user_id',
+        'type',
+        'status',
+        'content',
+        'options',
+        'slug',
+        'publish_at',
+        'created_at',
+        'deleted_at',
+    ];
+
+    /**
+     * @var
+     */
+    protected $allowedSorts = [
+        'id',
+        'user_id',
+        'type',
+        'status',
+        'slug',
+        'publish_at',
+        'created_at',
+        'deleted_at',
+    ];
+
+    /**
+     * @var
+     */
+    protected $allowedIncludes = [
+        'comments',
+        'author'
     ];
 
     /**
@@ -354,56 +393,5 @@ class Post extends Model
     public function scopeTypeIn(Builder $query, array $type) : Builder
     {
         return $query->whereIn('type', $type);
-    }
-
-    /**
-     * @param Builder $query
-     * @param null    $behavior
-     *
-     * @return Builder
-     */
-    public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
-    {
-        if (! is_null($behavior)) {
-            try {
-                $this->getBehavior($behavior);
-            } catch (TypeException $e) {
-            }
-        }
-
-        return $this->filter($query);
-    }
-
-    /**
-     * @param Builder $query
-     * @param bool    $dashboard
-     *
-     * @return Builder
-     */
-    private function filter(Builder $query, $dashboard = false) : Builder
-    {
-        $filters = $this->behavior->getFilters($dashboard);
-
-        foreach ($filters as $filter) {
-            $query = $filter->filter($query);
-        }
-
-        return $query;
-    }
-
-    /**
-     * @param Builder $query
-     * @param null    $behavior
-     *
-     * @return Builder
-     * @throws TypeException
-     */
-    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
-    {
-        if (! is_null($behavior)) {
-            $this->getBehavior($behavior);
-        }
-
-        return $this->filter($query, true);
     }
 }

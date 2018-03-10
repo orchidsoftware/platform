@@ -4,56 +4,46 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
-abstract class Filter implements FilterInterface
+class Filter
 {
     /**
      * @var Request
      */
-    public $request;
+    protected $request;
 
     /**
-     * @var null
+     * @var
      */
-    public $parameters = null;
+    protected $filters;
 
     /**
-     * @var bool
+     * @var
      */
-    public $display = true;
+    protected $sorts;
 
     /**
-     * Current app language.
+     * @var
+     */
+    protected $includes;
+
+    /**
+     * Model options and allowed params
      *
      * @var
      */
-    public $lang;
-
-    /**
-     * Apply a filter in the administration panel.
-     *
-     * @var bool
-     */
-    public $dashboard = false;
-
-    /**
-     * @var null
-     */
-    public $behavior = null;
+    protected $options;
 
     /**
      * Filter constructor.
      *
-     * @param $behavior
+     * @param Request|null $request
      */
-    public function __construct($behavior = null)
+    public function __construct(Request $request = null)
     {
-        $this->behavior = $behavior;
-        $this->request = request();
-        $this->lang = App::getLocale();
+        $this->request = $request ?? request();
     }
 
     /**
@@ -61,27 +51,198 @@ abstract class Filter implements FilterInterface
      *
      * @return Builder
      */
-    public function filter(Builder $builder) : Builder
+    public function build(Builder $builder): Builder
     {
-        if (is_null($this->parameters) || $this->request->filled($this->parameters)) {
-            return $this->run($builder);
+        $this->options = $builder->getModel()->getOptionsFilter();
+        $this->parseHttpQuery();
+        $this->addSortsToQuery($builder);
+        $this->addIncludesToQuery($builder);
+        $this->addFiltersToQuery($builder);
+
+        dd($builder->toSql());
+    }
+
+    /**
+     *
+     */
+    protected function parseHttpQuery()
+    {
+        $this->filters = $this->allowedHttpQueryArray('filter', 'allowedFilters');
+        $this->sorts = $this->allowedHttpQuery('sort', 'allowedSorts');
+        $this->includes = $this->allowedHttpQuery('include', 'allowedIncludes');
+    }
+
+    /**
+     * @param string $query
+     * @param string $allowed
+     * @return array
+     */
+    protected function allowedHttpQueryArray(string $query, string $allowed)
+    {
+
+        $allowedHttpQuery = $this->options->get($allowed)->map(function ($value) use ($query) {
+            return "{$query}.{$value}";
+        })->toArray();
+
+        return collect($this->parseHttpValue($this->request->only($allowedHttpQuery))->get($query));
+    }
+
+    /**
+     * @param array $query
+     * @return array
+     */
+    protected function parseHttpValue($query)
+    {
+        $query = collect($query);
+
+        array_walk_recursive($query, function (&$item) {
+            if (!is_array($item) && count(explode(',', $item)) > 1) {
+                $item = explode(',', $item);
+            }
+        });
+
+        return $query;
+    }
+
+    /**
+     * @param string $query
+     * @param string $allowed
+     * @return array
+     */
+    protected function allowedHttpQuery(string $query, string $allowed)
+    {
+
+        $allHttpQuery = $this->parseHttpValue($this->request->only($query))->get($query, []);
+        $allowed = $this->options->get($allowed)->toArray();
+
+        foreach ($allHttpQuery as $key => $item) {
+            $value = str_replace("-", "", $item);
+
+            if (!in_array($value, $allowed)) {
+                unset($allHttpQuery[$key]);
+            }
         }
 
-        return $builder;
+        return $this->parseHttpValue($allHttpQuery);
     }
 
     /**
      * @param Builder $builder
-     *
-     * @return mixed
      */
-    abstract public function run(Builder $builder) : Builder;
+    protected function addSortsToQuery(Builder $builder)
+    {
+        $this->sorts
+            ->each(function (string $sort) use ($builder) {
+                $descending = $sort[0] === '-';
+                $key = ltrim($sort, '-');
+                $builder->orderBy($key, $descending ? 'desc' : 'asc');
+            });
+    }
 
     /**
-     * User mapping method.
+     * @param Builder $builder
      */
-    public function display()
+    protected function addIncludesToQuery(Builder $builder)
     {
-        //
+        $includes = $this->includes->toArray();
+
+        $builder->with($includes);
     }
+
+    /**
+     * @param Builder $builder
+     */
+    protected function addFiltersToQuery(Builder $builder)
+    {
+
+        // JSON and JSONB
+        $this->filters->transform(function ($value, $property) use ($builder) {
+            if ($builder->getModel()->hasCast($property, ['object', 'array'])) {
+
+                $parameters = $this->flatten($value, '->');
+
+                foreach ($parameters as $key => $parameter) {
+                    $key = preg_replace('/->(\d+)/', '', $key);
+                    $jsonValue[$key][] = $parameter;
+                }
+
+                return $jsonValue ?? [];
+            }
+
+            return $value;
+        });
+
+
+        $this->filters->each(function ($value, $property) use ($builder) {
+            $this->filtersExact($builder, $value, $property);
+        });
+
+    }
+
+
+    /**
+     * @param        $item
+     * @param string $prefix
+     * @return array
+     */
+    private function flatten($item, $prefix = '')
+    {
+        $result = [];
+        foreach ($item as $key => $value) {
+
+            if (is_array($value)) {
+                $result = $result + $this->flatten($value, $prefix . $key . '->');
+                continue;
+            }
+
+            $result[$prefix . $key] = $value;
+        }
+        return $result;
+    }
+
+    /**
+     * @param Builder $query
+     * @param         $value
+     * @param string  $property
+     * @return Builder
+     */
+    protected function filtersExact(Builder $query, $value, string $property)
+    {
+
+        if ($query->getModel()->hasCast($property, ['object', 'array'])) {
+
+            if(is_array($value)) {
+                return $query->whereIn($property . key($value), $value);
+            }
+
+            return $query->where($property . reset($value), $value);
+        }
+
+        if(is_array($value)) {
+            return $query->whereIn($property, $value);
+        }
+
+        return $query->where($property, $value);
+    }
+
+
+    /*
+     * @param Builder $query
+     * @param         $value
+     * @param string  $property
+     * @return Builder
+     *
+    protected function filtersPartial(Builder $query, $value, string $property)
+    {
+        if (is_array($value)) {
+            return $query->where(function (Builder $query) use ($value, $property) {
+                foreach ($value as $partialValue) {
+                    $query->orWhere($property, 'LIKE', "%{$partialValue}%");
+                }
+            });
+        }
+        return $query->where($property, 'LIKE', "%{$value}%");
+    }
+    */
+
 }

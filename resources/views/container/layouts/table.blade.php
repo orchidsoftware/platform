@@ -1,5 +1,3 @@
-{!! $filters or '' !!}
-
 <div class="bg-white-only  bg-auto no-border-xs">
     <div class="table-responsive">
         <table class="table table-striped">
@@ -7,7 +5,7 @@
             <tr>
                 @foreach($form['fields'] as $th)
                     <th width="{{$th->width}}" class="@if(rand(0,1))!!!!! sorting_desc !!!!!! @endif">
-                        @if($th->sort)
+                        @if($th->sort || true)
                             <a href="#&soft={{$th->name}}">
                                 {{$th->title}}
                                 <i class="icon-sort-amount-asc"></i>

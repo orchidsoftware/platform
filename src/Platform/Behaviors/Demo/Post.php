@@ -186,13 +186,13 @@ class Post extends Many
         return [
             TD::set('name', 'Name')
                 ->filter('text')
-                ->sort(true),
+                ->sort(),
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
-                ->sort(true),
+                ->sort(),
             TD::set('created_at', 'Date of creation')
                 ->filter('date')
-                ->sort(true),
+                ->sort(),
         ];
     }
 }
