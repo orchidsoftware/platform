@@ -44,22 +44,12 @@ class Filter
     public function __construct(Request $request = null)
     {
         $this->request = $request ?? request();
-    }
-
-    /**
-     * @param Builder $builder
-     *
-     * @return Builder
-     */
-    public function build(Builder $builder): Builder
-    {
-        $this->options = $builder->getModel()->getOptionsFilter();
+        $this->options = collect([
+            'allowedFilters'  => collect($this->request->get('filter', []))->keys()->flatten(),
+            'allowedSorts'    => collect($this->request->get('sort', [])),
+            'allowedIncludes' => collect([]),
+        ]);
         $this->parseHttpQuery();
-        $this->addSortsToQuery($builder);
-        $this->addIncludesToQuery($builder);
-        $this->addFiltersToQuery($builder);
-
-        dd($builder->toSql());
     }
 
     /**
@@ -112,18 +102,33 @@ class Filter
     protected function allowedHttpQuery(string $query, string $allowed)
     {
 
-        $allHttpQuery = $this->parseHttpValue($this->request->only($query))->get($query, []);
+        $allHttpQuery = collect($this->parseHttpValue($this->request->only($query))->get($query, []));
+
         $allowed = $this->options->get($allowed)->toArray();
 
         foreach ($allHttpQuery as $key => $item) {
             $value = str_replace("-", "", $item);
 
-            if (!in_array($value, $allowed)) {
+            if (!in_array($value, $allowed) && !in_array($item, $allowed)) {
                 unset($allHttpQuery[$key]);
             }
         }
 
-        return $this->parseHttpValue($allHttpQuery);
+        return $this->parseHttpValue($allHttpQuery->toArray());
+    }
+
+    /**
+     * @param Builder $builder
+     *
+     * @return Builder
+     */
+    public function build(Builder $builder): Builder
+    {
+        $this->options = $builder->getModel()->getOptionsFilter();
+        $this->addSortsToQuery($builder);
+        $this->addIncludesToQuery($builder);
+        $this->addFiltersToQuery($builder);
+        return $builder;
     }
 
     /**
@@ -154,7 +159,6 @@ class Filter
      */
     protected function addFiltersToQuery(Builder $builder)
     {
-
         // JSON and JSONB
         $this->filters->transform(function ($value, $property) use ($builder) {
             if ($builder->getModel()->hasCast($property, ['object', 'array'])) {
@@ -176,7 +180,6 @@ class Filter
         $this->filters->each(function ($value, $property) use ($builder) {
             $this->filtersExact($builder, $value, $property);
         });
-
     }
 
 
@@ -211,20 +214,76 @@ class Filter
 
         if ($query->getModel()->hasCast($property, ['object', 'array'])) {
 
-            if(is_array($value)) {
+            if (is_array($value)) {
                 return $query->whereIn($property . key($value), $value);
             }
 
             return $query->where($property . reset($value), $value);
         }
 
-        if(is_array($value)) {
+        if (is_array($value)) {
             return $query->whereIn($property, $value);
         }
 
         return $query->where($property, $value);
     }
 
+    /**
+     * @param null $property
+     * @return mixed
+     */
+    public function isSort($property = null)
+    {
+        if (is_null($property)) {
+            return $this->sorts->isEmpty();
+        }
+
+        if ($this->sorts->search($property, true) !== false) {
+            return true;
+        }
+
+        if ($this->sorts->search('-'.$property, true) !== false) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $property
+     * @return mixed
+     */
+    public function revertSort($property){
+
+        if($this->getSort($property) === 'asc'){
+            return '-'.$property;
+        }
+
+        return $property;
+    }
+
+
+    /**
+     * @param $property
+     * @return bool|string
+     */
+    public function getSort($property)
+    {
+        if ($this->sorts->search($property, true) !== false) {
+            return 'asc';
+        }
+
+        return 'desc';
+    }
+
+    /**
+     * @param $property
+     * @return mixed
+     */
+    public function getFilter($property)
+    {
+        return array_get($this->filters, $property);
+    }
 
     /*
      * @param Builder $query

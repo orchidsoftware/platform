@@ -32,9 +32,7 @@ class UserList extends Screen
     public function query() : array
     {
         return  [
-            'users' => User::filtersApply([
-                RoleFilter::class,
-            ])->paginate(),
+            'users' => User::paginate(),
         ];
     }
 

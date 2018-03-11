@@ -43,7 +43,7 @@ class CategoryFormGroup extends FormGroup
         $behavior = new $behavior;
 
         return view('dashboard::container.systems.category.grid', [
-            'category' => Category::filtersApply($behavior->filters())->where('parent_id', 0)->with('allChildrenTerm')->paginate(),
+            'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
             'behavior' => $behavior,
             'filters'  => collect($behavior->filters()),
             'chunk'    => $behavior->chunk,

@@ -5,13 +5,19 @@
             <tr>
                 @foreach($form['fields'] as $th)
                     <th width="{{$th->width}}" class="@if(rand(0,1))!!!!! sorting_desc !!!!!! @endif">
-                        @if($th->sort || true)
-                            <a href="#&soft={{$th->name}}">
+                        @if($th->sort)
+                            <a href="?sort={{revert_sort($th->name)}}">
                                 {{$th->title}}
-                                <i class="icon-sort-amount-asc"></i>
-                                <i class="icon-sort-amount-desc"></i>
+
+                                @if(is_sort($th->name))
+                                    @if(get_sort($th->name) == 'asc')
+                                        <i class="icon-sort-amount-asc"></i>
+                                    @else
+                                        <i class="icon-sort-amount-desc"></i>
+                                    @endif
+                                @endif
                             </a>
-                            @else
+                        @else
                                 {{$th->title}}
                         @endif
                     </th>

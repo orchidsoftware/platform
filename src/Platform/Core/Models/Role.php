@@ -37,10 +37,28 @@ class Role extends Model implements RoleInterface
     ];
 
     /**
+     * @var
+     */
+    protected $allowedFilters = [
+        'id',
+        'name',
+        'slug',
+        'permissions',
+    ];
+
+    /**
+     * @var
+     */
+    protected $allowedSorts = [
+        'id',
+        'name',
+        'slug',
+    ];
+
+    /**
      * Set permission as boolean.
      *
-     * @param  string  $value
-     * @return void
+     * @param $permissions
      */
     public function setPermissionsAttribute($permissions)
     {

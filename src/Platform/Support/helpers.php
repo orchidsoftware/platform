@@ -73,3 +73,59 @@ if (! function_exists('dashboard_domain')) {
         }
     }
 }
+
+if (! function_exists('is_sort')) {
+
+    /**
+     * @param null $property
+     * @return string
+     */
+    function is_sort($property = null)
+    {
+        $filter = new \Orchid\Platform\Filters\Filter();
+
+        return $filter->isSort($property);
+    }
+}
+
+if (! function_exists('get_sort')) {
+
+    /**
+     * @param null $property
+     * @return string
+     */
+    function get_sort($property)
+    {
+        $filter = new \Orchid\Platform\Filters\Filter();
+
+        return $filter->getSort($property);
+    }
+}
+
+if (! function_exists('get_filter')) {
+
+    /**
+     * @param null $property
+     * @return string
+     */
+    function get_filter($property)
+    {
+        $filter = new \Orchid\Platform\Filters\Filter();
+
+        return $filter->getFilter($property);
+    }
+}
+
+if (! function_exists('revert_sort')) {
+
+    /**
+     * @param null $property
+     * @return string
+     */
+    function revert_sort($property)
+    {
+        $filter = new \Orchid\Platform\Filters\Filter();
+
+        return $filter->revertSort($property);
+    }
+}

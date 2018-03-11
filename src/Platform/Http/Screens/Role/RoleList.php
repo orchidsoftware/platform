@@ -33,7 +33,7 @@ class RoleList extends Screen
     public function query() : array
     {
         return [
-            'roles' => Role::paginate(),
+            'roles' => Role::filters()->defaultSort('id','desc')->paginate(),
         ];
     }
 

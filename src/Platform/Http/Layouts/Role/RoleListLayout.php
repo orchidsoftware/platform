@@ -28,15 +28,16 @@ class RoleListLayout extends Table
     public function fields() : array
     {
         return [
-            TD::name('name')
-                ->title(trans('dashboard::systems/roles.name'))
+            TD::set('name',trans('dashboard::systems/roles.name'))
+                ->sort()
                 ->setRender(function ($role) {
                     return '<a href="'.route('dashboard.systems.roles.edit',
                         $role->slug).'">'.$role->name.'</a>';
                 }),
-            TD::name('slug')->title(trans('dashboard::systems/roles.slug')),
-            TD::name('created_at')->title(trans('dashboard::common.Created')),
-
+            TD::set('slug',trans('dashboard::systems/roles.slug'))
+                ->sort(),
+            TD::set('created_at',trans('dashboard::common.Created'))
+                ->sort(),
         ];
     }
 }
