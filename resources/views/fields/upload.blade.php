@@ -138,25 +138,14 @@
 
             init: function () {
                 this.on('addedfile', function (e) {
-                    var n = Dropzone.createElement("<a href="
-                    javascript:;
-                    "' class='btn-remove'>&times;</a>"
-                ),
+                    var n = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>'),
                     t = this;
                     n.addEventListener('click', function (n) {
                         n.preventDefault(), n.stopPropagation(), t.removeFile(e);
                     }),
                         e.previewElement.appendChild(n);
 
-                    var n = Dropzone.createElement(
-                        "<a href="
-                    javascript:;
-                    "' class='btn-edit'><i class="
-                    icon - note
-                    " aria-hidden="
-                    true
-                    "></i></a>"
-                ),
+                    var n = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon - note" aria-hidden="true"></i></a>'),
                     t = this;
                     n.addEventListener('click', function (n) {
                         attachmentDescription.loadInfo(e.data);
