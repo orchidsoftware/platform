@@ -31,16 +31,16 @@ class UserListLayout extends Table
     public function fields() : array
     {
         return [
-
-            TD::name('name')
-                ->title(trans('dashboard::systems/users.name'))
+            TD::set('name',trans('dashboard::systems/users.name'))
+                ->sort()
                 ->setRender(function ($user) {
                     return '<a href="'.route('dashboard.systems.users.edit',
                         $user->id).'">'.$user->name.'</a>';
                 }),
-            TD::name('email')->title(trans('dashboard::systems/users.email')),
-            TD::name('updated_at')->title(trans('dashboard::common.Last edit')),
-
+            TD::set('email',trans('dashboard::systems/users.email'))
+                ->sort(),
+            TD::set('updated_at',trans('dashboard::common.Last edit'))
+                ->sort(),
         ];
     }
 }

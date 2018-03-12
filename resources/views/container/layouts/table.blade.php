@@ -4,7 +4,7 @@
             <thead>
             <tr>
                 @foreach($form['fields'] as $th)
-                    <th width="{{$th->width}}" class="@if(rand(0,1))!!!!! sorting_desc !!!!!! @endif">
+                    <th width="{{$th->width}}" class="">
                         @if($th->sort)
                             <a href="?sort={{revert_sort($th->name)}}">
                                 {{$th->title}}
