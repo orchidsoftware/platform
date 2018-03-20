@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Http\Layouts\Category;
 
 use Orchid\Platform\Layouts\Table;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\TD;
 
 class CategoryListLayout extends Table
 {

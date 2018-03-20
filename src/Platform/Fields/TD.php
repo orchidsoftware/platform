@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Platform\Fields;
+namespace Orchid\Platform\Fields;
 
 use Closure;
 

@@ -11,7 +11,7 @@ use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\TD;
 
 class Post extends Many
 {

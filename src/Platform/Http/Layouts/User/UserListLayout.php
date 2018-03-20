@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Http\Layouts\User;
 
 use Orchid\Platform\Layouts\Table;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\RoleFilter;
 
 class UserListLayout extends Table

@@ -61,7 +61,7 @@ class TagsField extends Field
      */
     public $attributes = [
         'class' => 'form-control select2-tags',
-		'multiple' =>"multiple"
+        'multiple' =>"multiple"
     ];
 
     /**
@@ -110,7 +110,7 @@ class TagsField extends Field
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
-		$name .='[]';
+        $name .='[]';
 
         $this->attributes['name'] = $name;
 
@@ -142,11 +142,11 @@ class TagsField extends Field
     {
         $old = $this->getOldValue();
 		
-		$this->attributes['value'] = $value;
+        $this->attributes['value'] = $value;
 		
-		if (is_array($value)) {
-			$this->attributes['value'] = implode(",", $value);
-		}
+        if (is_array($value)) {
+            $this->attributes['value'] = implode(",", $value);
+        }
 		
         if (! is_null($old)) {
             $this->attributes['value'] = $old;
