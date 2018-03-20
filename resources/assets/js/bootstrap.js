@@ -2,9 +2,9 @@ window.$ = window.jQuery = require('jquery');
 
 window.Vue = require('vue');
 
-require('jquery-ui-bundle');
+require('popper.js');
 
-window.Popper = require('popper.js');
+require('jquery-ui-bundle');
 
 require('bootstrap');
 require('bootstrap-tagsinput');
@@ -53,12 +53,6 @@ require('./modules/open-click');
 require('./modules/inputmask');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
-
-//Code editor
-window.ace = require('brace');
-require('brace/mode/javascript');
-require('brace/theme/monokai');
-
 
 
 require('./components/attachment');

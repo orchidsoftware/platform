@@ -41,7 +41,7 @@
                 @endif
             </div>
         </div>
-        <button class="btn btn-default btn-block m-t-md" type="submit">
+        <button class="btn btn-primary m-t-md" type="submit">
             <i class="icon-refresh text-xs m-r-xs"></i> Reset Password
         </button>
     </form>

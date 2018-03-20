@@ -127,15 +127,10 @@ class Post extends Many
 
             Field::tag('checkbox')
                 ->name('free')
-                ->value(1)
+                ->value('230')
                 ->title('Free')
                 ->placeholder('Event for free')
                 ->help('Event for free'),
-
-            Field::tag('code')
-                ->name('block')
-                ->title('Code Block')
-                ->help('Simple web editor'),
 
             Field::tag('tags')
                 ->name('keywords')
@@ -185,7 +180,7 @@ class Post extends Many
     {
         return [
             TD::set('name', 'Name')
-                ->filter('text')
+                ->filter('text','content.name')
                 ->sort(),
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')

@@ -113,11 +113,6 @@ class Page extends Single
                 ->placeholder('Event for free')
                 ->help('Event for free'),
 
-            Field::tag('code')
-                ->name('block')
-                ->title('Code Block')
-                ->help('Simple web editor'),
-
             Field::tag('tags')
                 ->name('keywords')
                 ->title('Keywords')

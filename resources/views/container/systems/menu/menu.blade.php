@@ -139,37 +139,28 @@
 
 
                 <div class="text-center">
+                    
+                    <div class="btn-group btn-group-sm w-full" role="group">
 
+                        <button type="button" v-on:click="remove()" v-if="exist()"
+                                class="btn w-full btn-danger">
+                            {{trans('dashboard::systems/menu.form.control.remove')}}
+                        </button>
 
-                    <div class="btn-group btn-group-sm  d-flex" role="group" aria-label="...">
+                        <button type="button" v-on:click="clear()" v-if="exist()"
+                                class="btn w-full btn-default">
+                            {{trans('dashboard::systems/menu.form.control.reset')}}
+                        </button>
 
-                        <div class="btn-group" role="group" v-if="exist()">
-                            <button type="button" v-on:click="remove()"
-                                    class="btn btn-sm btn-danger padder-md m-b text-ellipsis"
-                                    data-dismiss="modal">{{trans('dashboard::systems/menu.form.control.remove')}}
+                        <button type="button" v-on:click="add()" v-if="!exist()"
+                                class="btn w-full btn-primary">
+                            {{trans('dashboard::systems/menu.form.control.create')}}
+                        </button>
 
-                            </button>
-                        </div>
-
-                        <div class="btn-group" role="group" v-if="exist()">
-                            <button type="button" v-on:click="clear()"
-                                    class="btn btn-sm btn-default padder-md m-b text-ellipsis"
-                                    data-dismiss="modal">{{trans('dashboard::systems/menu.form.control.reset')}}
-                            </button>
-
-                        </div>
-
-                        <div class="btn-group" role="group" v-if="!exist()">
-                            <button type="button" v-on:click="add()"
-                                    class="btn btn-sm btn-primary padder-md m-b text-ellipsis">{{trans('dashboard::systems/menu.form.control.create')}}
-                            </button>
-                        </div>
-
-                        <div class="btn-group" role="group" v-if="exist()">
-                            <button type="button" v-on:click="save()"
-                                    class="btn btn-sm btn-primary padder-md m-b text-ellipsis">{{trans('dashboard::systems/menu.form.control.save')}}
-                            </button>
-                        </div>
+                        <button type="button" v-on:click="save()" v-if="exist()"
+                                class="btn w-full btn-primary">
+                            {{trans('dashboard::systems/menu.form.control.save')}}
+                        </button>
 
                     </div>
                 </div>

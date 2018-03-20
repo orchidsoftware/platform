@@ -32,7 +32,7 @@ class UserList extends Screen
     public function query() : array
     {
         return  [
-            'users' => User::paginate(),
+            'users' => User::filters()->defaultSort('id','desc')->paginate(),
         ];
     }
 

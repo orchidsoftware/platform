@@ -41,10 +41,12 @@
       display: none;
       background-color: rgba(255, 255, 255, .4);
       padding: 0 .6rem;
-      border-radius: 3px;
       align-items: center;
       justify-content: center;
       text-align: center;
+      >i{
+        cursor: pointer;
+      }
     }
 
     &:hover {
@@ -55,31 +57,37 @@
 
   }
 
-  img:before {
-    content: " ";
-    display: block;
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    @extend .bg-light;
+  img{
+
+    &:before{
+      content: " ";
+      display: block;
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      @extend .bg-light;
+    }
+
+    &:after {
+      content: "🔗";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      @extend .text-2x;
+    }
+
   }
 
-  img:after {
-    content: "\f127";
-    font-family: FontAwesome;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    @extend .text-2x;
-  }
+
+
 
 
 

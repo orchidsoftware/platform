@@ -10,12 +10,12 @@
 */
 
 $this->domain(config('platform.domain'))->group(function () {
+
     $this->group([
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
-        /*'namespace'  => 'Orchid\Platform\Http\Screens',*/
     ],function (\Illuminate\Routing\Router $router, $path = 'dashboard.systems') {
-        /*
+
         $router->screen('users/{users}/edit', config('platform.screens.users.edit'), $path.'.users.edit');
         $router->screen('users/create', config('platform.screens.users.edit'), $path.'.users.create');
         $router->screen('users', config('platform.screens.users.list'), $path.'.users');
@@ -23,7 +23,7 @@ $this->domain(config('platform.domain'))->group(function () {
         $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), $path.'.roles.edit');
         $router->screen('roles/create', config('platform.screens.roles.edit'), $path.'.roles.create');
         $router->screen('roles', config('platform.screens.roles.list'), $path.'.roles');
-        */
+
         foreach (config('platform.screens') as $screenkey => $items) {
             foreach ($items as $key => $item) {
                 switch ($key) {
@@ -42,6 +42,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
         //dd($router);
     });
+
 
     $this->group([
         'middleware' => config('platform.middleware.private'),
@@ -197,6 +198,23 @@ $this->domain(config('platform.domain'))->group(function () {
             $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
         });
+
+        $router->group([
+            'as'     => 'dashboard.systems.media2.',
+            'prefix' => 'media2',
+        ], function () {
+            $this->get('/', ['uses' => 'Media2Controller@index', 'as' => 'index']);
+            $this->post('files', ['uses' => 'Media2Controller@files', 'as' => 'files']);
+            $this->post('new_folder', ['uses' => 'Media2Controller@newFolder', 'as' => 'newFolder']);
+            $this->post('delete_file_folder',
+                ['uses' => 'Media2Controller@deleteFileFolder', 'as' => 'deleteFileFolder']);
+            $this->post('directories', ['uses' => 'Media2Controller@getAllDirs', 'as' => 'getAllDirs']);
+            $this->post('move_file', ['uses' => 'Media2Controller@moveFile', 'as' => 'moveFile']);
+            $this->post('rename_file', ['uses' => 'Media2Controller@renameFile', 'as' => 'renameFile']);
+            $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
+            $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
+        });
+        
 
         $router->post('widget/{widget}/{key?}', [
             'as'   => 'dashboard.systems.widget',

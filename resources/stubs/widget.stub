@@ -7,10 +7,15 @@ use Orchid\Platform\Widget\Widget;
 class DummyClass extends Widget {
 
     /**
-     * @return mixed
+     * @param null $arguments
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|void
      */
-     public function handler(){
-         return view('',[]);
-     }
+    public function handler($arguments = null){
+
+        return view('',[
+            'arguments' => $arguments
+        ]);
+    }
 
 }

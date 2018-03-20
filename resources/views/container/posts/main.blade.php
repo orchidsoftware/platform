@@ -22,6 +22,15 @@
 @section('content')
 
     @if($data->count() > 0)
+
+        @include('dashboard::container.layouts.table',[
+            'form' => [
+                'fields' => $fields,
+                'data' => $data,
+            ]
+        ])
+
+
         <section>
             <div class="bg-white-only  bg-auto no-border-xs">
 
@@ -72,6 +81,8 @@
                 </footer>
             </div>
         </section>
+
+
     @else
         <section>
             <div class="bg-white-only bg-auto no-border-xs">

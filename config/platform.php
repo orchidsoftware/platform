@@ -4,6 +4,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Brand
+    |--------------------------------------------------------------------------
+    |
+    | Image on the main page of the panel as an icon
+    | All available icons can be viewed at https://orchid.software/en/icons
+    |
+    */
+
+    'logo' => 'icon-orchid text-primary',
+
+    /*
+    |--------------------------------------------------------------------------
     | Headless
     |--------------------------------------------------------------------------
     |
@@ -100,7 +112,6 @@ return [
     'fields' => [
         'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
         'input'        => Orchid\Platform\Fields\Types\InputField::class,
-        'list'         => Orchid\Platform\Fields\Types\ListField::class,
         'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
         'select'       => Orchid\Platform\Fields\Types\SelectField::class,
         'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
@@ -108,11 +119,12 @@ return [
         'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
         'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
         'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-        'code'         => Orchid\Platform\Fields\Types\CodeField::class,
         'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
         'label'        => Orchid\Platform\Fields\Types\LabelField::class,
+
+        'list'         => Orchid\Platform\Fields\Types\ListField::class,
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
         'row'          => Orchid\Platform\Fields\Types\RowField::class,
     ],

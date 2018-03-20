@@ -25,19 +25,9 @@ document.addEventListener('turbolinks:load', () => {
 
                 $('#modalAttachment').modal('toggle');
 
-                $.ajax({
-                    type: 'POST',
-                    url: dashboard.prefix(`/systems/files/post/${data.id}`),
-                    data: {
-                        _token: $("meta[name='csrf_token']").attr('content'),
-                        attachment: data,
-                        _method: 'PUT',
-                    },
-                    dataType: 'html',
-                    success(data) {
-                        console.log('file update');
-                    },
-                });
+                axios
+                    .put(dashboard.prefix(`/systems/files/post/${data.id}`), data)
+                    .then();
             },
         },
     });
@@ -87,15 +77,15 @@ document.addEventListener('turbolinks:load', () => {
 
             const id = $('#post').data('post-id');
             if (id !== undefined) {
-                $.ajax({
-                    type: 'get',
-                    url: dashboard.prefix(`/systems/files/post/${id}`),
-                    data: { _token: $("meta[name='csrf_token']").attr('content') },
-                    dataType: 'html',
-                    success(data) {
-                        const images = JSON.parse(data);
 
-                        images.forEach((item, i, arr) => {
+
+                axios
+                    .get(dashboard.prefix(`/systems/files/post/${id}`))
+                    .then(response => {
+
+                        const images = response.data;
+
+                        images.forEach((item) => {
                             const mockFile = {
                                 id: item.id,
                                 name: item.original_name,
@@ -115,8 +105,7 @@ document.addEventListener('turbolinks:load', () => {
                         });
 
                         $('.dz-progress').remove();
-                    },
-                });
+                    });
             }
 
             this.on('sending', (file, xhr, formData) => {
@@ -130,18 +119,13 @@ document.addEventListener('turbolinks:load', () => {
             this.on('removedfile', ({data}) => {
                 $(`.files-${data.id}`).remove();
 
-                $.ajax({
-                    type: 'delete',
-                    url: dashboard.prefix(`/systems/files/${data.id}`),
-                    data: {
-                        _token: $("meta[name='csrf_token']").attr('content'),
+                axios
+                    .delete(dashboard.prefix(`/systems/files/${data.id}`),{
                         storage: $('#post-attachment-dropzone').data('storage'),
-                    },
-                    dataType: 'html',
-                    success(data) {
-                        //
-                    },
-                });
+                    })
+                    .then();
+
+
             });
         },
         error(file, response) {
@@ -169,18 +153,13 @@ document.addEventListener('turbolinks:load', () => {
                 items[id] = index;
             });
 
-            $.ajax({
-                type: 'post',
-                url: dashboard.prefix('/systems/files/sort'),
-                data: {
-                    _token: $("meta[name='csrf_token']").attr('content'),
+
+            axios
+                .post(dashboard.prefix('/systems/files/sort'),{
                     files: items,
-                },
-                dataType: 'html',
-                success(response) {
-                    console.log(response);
-                },
-            });
+                })
+                .then();
+
         },
     });
 });

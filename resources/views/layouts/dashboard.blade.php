@@ -37,7 +37,7 @@
 
 
 <body>
-<div id="app" class="app app-aside-fixed">
+<div id="app" class="app">
 
     <!-- header  -->
     <header id="header" class="app-header navbar" role="menu">
@@ -50,8 +50,7 @@
 
             <!-- brand  -->
             <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
-                <i class="icon-orchid"></i>
-            <!-- <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">-->
+                <i class="{{config('platform.logo')}}"></i>
             </a>
             <!-- / brand  -->
 

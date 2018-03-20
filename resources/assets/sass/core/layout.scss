@@ -29,16 +29,8 @@ h3, .h3 {
   }
 }
 
-.app-header-fixed {
-  padding-top: $app-header-height;
-  .app-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-}
-
 .app-header {
+  min-height : $app-header-height;
   z-index: 1025;
   border-radius: 0;
 }
@@ -58,23 +50,6 @@ h3, .h3 {
   }
 }
 
-.app-aside-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 1000;
-  max-width: $app-aside-width;
-  .app-aside-folded & {
-    max-width: $app-aside-folded-width;
-  }
-  ~ div {
-    padding-bottom: 50px;
-  }
-}
-
-.app-aside-right {
-  padding-bottom: $app-header-height;
-}
 
 // content
 .app-content {
@@ -84,8 +59,6 @@ h3, .h3 {
 
 .app-content-full {
   position: absolute;
-  //top: $app-header-height;
-  /*bottom: $app-footer-height;*/
   height: auto;
   width: auto !important;
   padding: 0 !important;
@@ -98,22 +71,10 @@ h3, .h3 {
 }
 
 .app-content-body {
-  //padding-bottom: $app-header-height - 30px;
   float: left;
   width: 100%;
 }
 
-// footer
-.app-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1005;
-  &.app-footer-fixed {
-    position: fixed;
-  }
-}
 
 .hbox {
   display: table;
@@ -235,78 +196,40 @@ h3, .h3 {
   }
 }
 
+.aside-wrap-main {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  z-index: 1050;
+  background-color: #1d2531;
+  li {
+    a {
+      .icon, i {
+        font-size: $font-size-md;
+        display: block;
+        margin: 0 auto !important;
+        float: none !important;
+      }
+    }
+  }
+}
+
+
 @media (min-width: 768px) {
   .app-aside {
     width: $app-aside-width;
-  }
-
-  .navbar-collapse,
-  .app-content,
-  .app-footer {
-    margin-left: $app-aside-width;
-  }
-
-  .app-aside-right {
-    position: absolute;
-    top: $app-header-height;
-    bottom: 0;
-    right: 0;
-    z-index: 1000;
-    &.pos-fix {
-      z-index: 1010;
-    }
-  }
-
-  .visible-folded {
-    display: none;
-  }
-
-  .app-aside-folded {
-    .hidden-folded {
-      display: none !important;
-    }
-    .visible-folded {
-      display: inherit;
-    }
-    .text-center-folded {
-      text-align: center;
-    }
-    .pull-none-folded {
-      float: none !important;
-    }
-    .w-auto-folded {
-      width: auto;
-    }
-
-    .app-aside,
-    .navbar-header {
-      width: $app-aside-folded-width;
-    }
-    .navbar-collapse,
-    .app-content,
-    .app-footer {
-      margin-left: $app-aside-folded-width;
-    }
-    .app-header {
-      .navbar-brand {
-        display: block;
-        padding: 0;
-      }
-    }
-
-  }
-
-  .app-aside-fixed {
     .app-header {
       .navbar-header {
         position: fixed;
-		display: none;
+        display: none;
       }
     }
     .aside-wrap {
       position: fixed;
       overflow: hidden;
-      //top: $app-header-height;
       top: 0;
       bottom: 0;
       left: 100px;
@@ -315,7 +238,6 @@ h3, .h3 {
       background-color: #222c3c;
       .navi-wrap {
         width: $app-aside-width + $scroll-bar-width;
-        //width: $app-aside-width - 100;
         position: relative;
         height: 100%;
         overflow-x: hidden;
@@ -332,30 +254,12 @@ h3, .h3 {
           width: $app-aside-width - 100;
         }
       }
-      .smart & .navi-wrap {
-        width: $app-aside-width;
-      }
     }
-    &.app-aside-folded {
-      .app-aside {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        z-index: 1010;
-      }
-      .aside-wrap {
-        width: $app-aside-folded-width - 1;
-        .navi-wrap {
-          width: $app-aside-folded-width + $scroll-bar-width;
-          > * {
-            width: $app-aside-folded-width;
-          }
-        }
-        .smart & .navi-wrap {
-          width: $app-aside-folded-width;
-        }
-      }
-    }
+  }
+
+  .navbar-collapse,
+  .app-content{
+    margin-left: $app-aside-width;
   }
 
   .bg-auto {
@@ -443,30 +347,23 @@ h3, .h3 {
       margin-bottom: 0;
     }
   }
-}
 
-.aside-wrap-main {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100px;
-  z-index: 1050;
-  background-color: #1d2531;
-  li {
-    a {
-      .icon, i {
-        font-size: $font-size-md;
-        display: block;
-        margin: 0 auto !important;
-        float: none !important;
-      }
+
+  .app-aside.open {
+    display : block !important;
+    .aside-wrap {
+      position   : fixed;
+      z-index    : 10000;
+      background : #1d2839;
+      min-height : 100vh;
+      left       : 100px;
+      top        : 0;
+      bottom     : 0;
+      width: calc(100vw - 100px);
+      overflow: auto;
     }
   }
 
 }
 
-.app-header {
-  min-height : $app-header-height;
-}
+
