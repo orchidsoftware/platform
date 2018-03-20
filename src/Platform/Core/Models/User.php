@@ -53,6 +53,26 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
+     * @var
+     */
+    protected $allowedFilters = [
+        'id',
+        'name',
+        'email',
+        'permissions',
+    ];
+
+    /**
+     * @var
+     */
+    protected $allowedSorts = [
+        'id',
+        'name',
+        'email',
+    ];
+    
+    
+    /**
      * Send the password reset notification.
      *
      * @param  string $token

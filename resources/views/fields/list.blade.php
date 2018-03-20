@@ -2,15 +2,7 @@
     <label>{{$title}}</label>
 
     <ul id="sortable-{{$slug}}" class="container-fluid dd-list">
-
         @isset($value)
-            <li class="ui-state-default form-group row">
-                <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>
-                <input type="text" class="form-control col-10" name="{{$attributes['name']}}[]">
-                <button class="btn btn-link col-1 remove"
-                        onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
-            </li>
-        @else
             @foreach($value as $key => $val)
                 <li class="ui-state-default form-group row">
                     <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>
@@ -19,6 +11,13 @@
                             onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
                 </li>
             @endforeach
+        @else
+            <li class="ui-state-default form-group row">
+                <span onclick="return false;" class="btn btn-link col-1 pull"><i class="icon-menu"></i></span>
+                <input type="text" class="form-control col-10" name="{{$attributes['name']}}[]">
+                <button class="btn btn-link col-1 remove"
+                        onclick="removeitem{{$slug}}(this)"><i class="icon-trash"></i></button>
+            </li>
         @endisset
     </ul>
     <div class="button-group text-center">

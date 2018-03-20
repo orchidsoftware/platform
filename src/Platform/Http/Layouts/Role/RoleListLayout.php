@@ -3,7 +3,7 @@
 namespace Orchid\Platform\Http\Layouts\Role;
 
 use Orchid\Platform\Layouts\Table;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\TD;
 
 class RoleListLayout extends Table
 {
