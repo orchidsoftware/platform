@@ -126,7 +126,7 @@ return [
 
         'list'         => Orchid\Platform\Fields\Types\ListField::class,
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
-        'row'          => Orchid\Platform\Fields\Types\RowField::class,
+        'blank'        => Orchid\Platform\Fields\Types\BlankField::class,
     ],
 
     /*

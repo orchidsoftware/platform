@@ -33,7 +33,7 @@ class RoleEditLayout extends Rows
                 ->placeholder(trans('dashboard::systems/roles.slug'))
                 ->help(trans('dashboard::systems/roles.slug_help'));
         
-        $fields[] = Field::tag('row')
+        $fields[] = Field::tag('blank')
                 ->name('style')
                 ->styles('.row.cols-3 .form-group {flex-basis: 33.33%;margin-bottom: 5px;}');
 
@@ -44,7 +44,7 @@ class RoleEditLayout extends Rows
                 ->title(trans('dashboard::permission.main.'.strtolower($group)))
                 ->hr(false);
                 
-            $fields[] = Field::tag('row')
+            $fields[] = Field::tag('blank')
                 ->name('row')
                 ->div('div')
                 ->class('row justify-content-start cols-3 no-gutter ml-4');
@@ -60,7 +60,7 @@ class RoleEditLayout extends Rows
                     ->hr(false);
             }
             
-            $fields[] = Field::tag('row')
+            $fields[] = Field::tag('blank')
                 ->name('closediv')
                 ->enddiv('div')
                 ->hr(true);

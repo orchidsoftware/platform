@@ -25,14 +25,15 @@
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
-
+    <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
+    
     @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
         <link rel="stylesheet" href="{{$stylesheet}}">
     @endforeach
 
     @stack('stylesheets')
 
-    <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
+
 </head>
 
 

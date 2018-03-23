@@ -35,7 +35,7 @@ class UserRoleLayout extends Rows
             ->title(trans('dashboard::systems/users.roles'))
             ->placeholder(trans('dashboard::systems/users.select_roles'));
         
-        $fields[] = Field::tag('row')
+        $fields[] = Field::tag('blank')
                 ->name('style')
                 ->styles('.row.cols-3 .form-group {flex-basis: 33.33%;margin-bottom: 5px;}');
 
@@ -46,7 +46,7 @@ class UserRoleLayout extends Rows
                 ->title(trans('dashboard::permission.main.'.strtolower($group)))
                 ->hr(false);
                 
-            $fields[] = Field::tag('row')
+            $fields[] = Field::tag('blank')
                 ->name('row')
                 ->div('div')
                 ->class('row justify-content-start cols-3 no-gutter ml-4');
@@ -62,7 +62,7 @@ class UserRoleLayout extends Rows
                     ->hr(false);
             }
             
-            $fields[] = Field::tag('row')
+            $fields[] = Field::tag('blank')
                 ->name('closediv')
                 ->enddiv('div')
                 ->hr(true);

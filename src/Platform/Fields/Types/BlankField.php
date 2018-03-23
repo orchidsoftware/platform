@@ -19,12 +19,12 @@ use Orchid\Platform\Fields\Field;
  * @method $this size($value = true)
  * @method $this tabindex($value = true)
  */
-class RowField extends Field
+class BlankField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.row';
+    public $view = 'dashboard::fields.blank';
 
     /**
      * Default attributes value.
@@ -32,6 +32,7 @@ class RowField extends Field
      * @var array
      */
     public $attributes = [
+        'name' => 'blank',
     ];
 
     /**
@@ -48,6 +49,41 @@ class RowField extends Field
      * @var array
      */
     public $inlineAttributes = [
+        'accept',
+        'accesskey',
+        'autocomplete',
+        'autofocus',
+        'checked',
+        'disabled',
+        'form',
+        'formaction',
+        'formenctype',
+        'formmethod',
+        'formnovalidate',
+        'formtarget',
+        'list',
+        'max',
+        'maxlength',
+        'min',
+        'multiple',
+        'name',
+        'pattern',
+        'placeholder',
+        'readonly',
+        'required',
+        'size',
+        'src',
+        'step',
+        'tabindex',
+        'type',
+        'data-controller',
+        'data-target',
+        'data-action',
+        'data-edit',
+        'data-json',
+        'data-mask',
+        'data-date-format',
+
     ];
     
 }
