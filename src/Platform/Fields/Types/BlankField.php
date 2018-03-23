@@ -74,6 +74,7 @@ class BlankField extends Field
         'size',
         'src',
         'step',
+        'style',
         'tabindex',
         'type',
         'data-controller',
@@ -83,6 +84,7 @@ class BlankField extends Field
         'data-json',
         'data-mask',
         'data-date-format',
+        'data-role',
 
     ];
     

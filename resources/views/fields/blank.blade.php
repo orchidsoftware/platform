@@ -9,24 +9,35 @@
     </style>
 @endif
 @if(isset($div))
-    <{{$div ?? 'div'}} @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
+    <{{$div ?? 'div'}} 
+        @if(!isset($attr))@include('dashboard::partials.fields.attributes', ['attributes' => $attributes])@endif
+        @if(isset($divattr))@include('dashboard::partials.fields.attributes', ['attributes' => collect($divattr)])@endif
+    >
 @endif
+
+@if(isset($attr))
+    @if ($withgroup ?? true)
+        @component('dashboard::partials.fields.group',get_defined_vars())
+    @endif
+            <{{$attr ?? 'input'}} @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
+            @if(isset($dataattr))@include('dashboard::partials.fields.attributes', ['attributes' => collect($dataattr)])@endif >
+                {!! $value or '' !!}
+            </{{$attr ?? 'input'}}>
+    @if ($withgroup ?? true)
+        @endcomponent
+    @endif
+@endif
+
 @if(isset($text))
     {!!$text!!}
 @endif
 @if(isset($enddiv))
     </{{$enddiv ?? 'div'}}>
 @endif
-@if(isset($attr))
-    @component('dashboard::partials.fields.group',get_defined_vars())
-        <{{$attr ?? 'input'}} @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
-            {!! $value or '' !!}
-        </{{$attr ?? 'input'}}>
-    @endcomponent
-@endif
+
 @if(isset($script))
     <script>
-        {{$script}}
+        {!!$script!!}
     </script>
 @endif
 @if(isset($hr))
