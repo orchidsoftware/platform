@@ -28,7 +28,7 @@ $value = Setting::get($key);
 //or with default value
 $value = Setting::get($key, $default);
 //or helper
-$value = setting($key,$default);
+setting($key,$default);
 ```
 
 ## Удаление
