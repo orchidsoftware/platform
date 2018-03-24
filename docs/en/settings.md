@@ -9,6 +9,10 @@ Pay attention that you may store not only simple type variables but arrays too. 
 
 To add a new value to the storage you need to do the following:
 ```php
+use Orchid\Platform\Facades\Setting;
+
+...
+
 Setting::set($key,$value);
 ```
 
@@ -20,7 +24,9 @@ To request a value do the following:
 * @param string|array $key
 * @param string|null $default
 */
-Setting::get($key, $default);
+$value = Setting::get($key);
+//or with default value
+$value = Setting::get($key, $default);
 //or helper
 setting($key,$default);
 ```
