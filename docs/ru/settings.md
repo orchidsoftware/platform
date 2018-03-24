@@ -9,6 +9,10 @@
 
 Чтобы добавить новое значение в хранилище необходимо использовать:
 ```php
+use Orchid\Platform\Facades\Setting;
+
+...
+
 Setting::set($key,$value);
 ```
 
@@ -20,9 +24,11 @@ Setting::set($key,$value);
 * @param string|array $key
 * @param string|null $default
 */
-Setting::get($key, $default);
+$value = Setting::get($key);
+//or with default value
+$value = Setting::get($key, $default);
 //or helper
-setting($key,$default);
+$value = setting($key,$default);
 ```
 
 ## Удаление
