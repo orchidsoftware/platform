@@ -21,7 +21,7 @@ return [
     'posts Managements'          => 'Керування записами',
     'types posts'                => 'Типи запису',
     'categories'                 => 'Категорії',
-    'sections'                   => 'Рзділи',
+    'sections'                   => 'Розділи',
     'tags'                       => 'Теги',
     'users'                      => 'Користувачі',
     'roles'                      => 'Групи доступу',

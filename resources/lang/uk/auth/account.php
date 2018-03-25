@@ -11,7 +11,7 @@ return [
     'login_placeholder'  => 'користувач',
     'password'           => 'Пароль',
     'remember_me'        => 'Запамє\'ятати мене',
-    'forgot_password'    => 'Забыли пароль?',
+    'forgot_password'    => 'Забули пароль?',
     'enter_email'        => 'Введіть вашу Електронну адресу',
     'enter_login'        => 'Введіть ваш Логин',
     'enter_password'     => 'Введіть ваш Пароль',
