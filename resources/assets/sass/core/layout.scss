@@ -27,6 +27,12 @@ h3, .h3 {
     border: inherit;
     display: block;
   }
+  .app-header {
+    .navbar-header {
+      display: inherit;
+    }
+  }
+
 }
 
 .app-header {
@@ -219,14 +225,15 @@ h3, .h3 {
 
 
 @media (min-width: 768px) {
+
+  .app-header {
+    .navbar-header {
+      display: none!important;
+    }
+  }
+
   .app-aside {
     width: $app-aside-width;
-    .app-header {
-      .navbar-header {
-        position: fixed;
-        display: none;
-      }
-    }
     .aside-wrap {
       position: fixed;
       overflow: hidden;

@@ -35,6 +35,7 @@ use Orchid\Platform\Fields\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
+ * @method $this help($value = true)
  */
 class PasswordField extends Field
 {

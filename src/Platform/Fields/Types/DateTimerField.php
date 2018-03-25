@@ -36,6 +36,7 @@ use Orchid\Platform\Fields\Field;
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
  * @method $this value($value = true)
+ * @method $this help($value = true)
  */
 class DateTimerField extends Field
 {

@@ -1,25 +1,31 @@
 @component('dashboard::partials.fields.group',get_defined_vars())
+<div data-controller="picture"
+     data-picture-image="{{$attributes['value']}}"
+     data-picture-width="{{$width}}"
+     data-picture-height="{{$height}}">
     <div class="b text-center wrapper-lg picture-actions">
 
         <div class="picture-container m-b-md">
-            @if(isset($attributes['value']) && strlen($attributes['value']))
-                <img src="{{$attributes['value']}}" class="img-fluid img-thumbnail" alt=""/>
-            @endif
+                <img src="#" class="picture-preview img-fluid img-thumbnail" alt=""/>
         </div>
 
         <label class="btn btn-link">
-            <i class="icon-cloud-upload"></i> Browse <input type="file"
-                                                            class="picture-input-file-{{$lang}}-{{$slug}} d-none">
+            <i class="icon-cloud-upload"></i> Browse
+            <input type="file"
+                   accept="image/*"
+                   data-target="picture.upload"
+                   data-action="picture#upload"
+                   class="picture-input-file-{{$lang}}-{{$slug}} d-none">
         </label>
 
-        <button type="button" class="btn btn-danger picture-action-remove">Remove</button>
+        <button type="button" class="btn btn-danger picture-remove" data-action="picture#clear">Remove</button>
+
         <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
     </div>
 
     <input class="picture-path"
            type="hidden"
-           data-width="{{$width}}"
-           data-height="{{$height}}"
+           data-target="picture.source"
            @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
     >
 
@@ -33,110 +39,18 @@
                         </button>
                         <h5>Crop image</h5>
                     </div>
-                    <div class="modal-body">
-                        <div class="upload-panel"></div>
+                    <div>
+                        <div class="upload-panel">
+
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success crop">Crop</button>
+                        <button type="button" class="btn btn-success" data-action="picture#crop">Crop</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 @endcomponent
-
-
-
-
-@push('scripts')
-    <script>
-        document.addEventListener('turbolinks:load', function () {
-
-            var $cropPanel = $('#picture-crop-modal-{{$lang}}-{{$slug}} .upload-panel');
-            var $formGroup;
-
-            $('.picture-input-file-{{$lang}}-{{$slug}}').on('change', function () {
-                $formGroup = $(this).parents('.form-group');
-
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#picture-crop-modal-{{$lang}}-{{$slug}}').modal();
-
-                        $cropPanel.croppie({
-                            viewport: {
-                                width: $formGroup.find('.picture-path').data('width'),
-                                height: $formGroup.find('.picture-path').data('height')
-                            },
-                            boundary: {
-                                width: '100%',
-                                height: 500
-                            },
-                            enforceBoundary: true
-                        });
-
-                        $cropPanel.croppie('bind', {
-                            url: e.target.result
-                        });
-                    };
-
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-
-            $('.picture-action-remove').click(function () {
-                var $group = $(this).parents('.form-group');
-
-                $group.find('.picture-path').val('');
-                $group.find('.picture-container').html('');
-
-                return false;
-            });
-
-            $('#picture-crop-modal-{{$lang}}-{{$slug}}').on('hidden.bs.modal', function () {
-                $cropPanel.croppie('destroy');
-            });
-
-            $('#picture-crop-modal-{{$lang}}-{{$slug}} .crop').on('click', function (ev) {
-                $cropPanel.croppie('result', {
-                    type: 'blob',
-                    size: 'viewport',
-                    format: '{{$format ?? 'png'}}'
-                }).then(function (blob) {
-
-                    let data = new FormData();
-                    data.append('file', blob);
-                    data.append('storage', '{{$storage??'public'}}');
-
-                    axios.post(dashboard.prefix('/systems/files'), data)
-                        .then(function (response) {
-
-                            let image = '/storage/' + response.data.path + response.data.name + '.' + response.data.extension;
-
-                            $formGroup.find('.picture-container')
-                                .html('<img src="' + image + '" class="img-fluid img-thumbnail" alt="" />');
-
-                            $formGroup.find('.picture-path').val(image);
-
-                            $('#picture-crop-modal-{{$lang}}-{{$slug}}').modal('hide');
-                            $formGroup.find('.picture-input-file-{{$lang}}-{{$slug}}').value = '';
-
-
-                        })
-                        .catch(function (error) {
-                            if ('message' in error.response.data) {
-                                if ('alert' in dashboard) {
-                                    dashboard.alert(error.response.data.message);
-                                }
-                            }
-                            console.log(error);
-                        });
-
-
-                });
-            });
-        });
-    </script>
-@endpush

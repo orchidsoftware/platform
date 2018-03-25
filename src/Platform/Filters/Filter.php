@@ -140,6 +140,7 @@ class Filter
             ->each(function (string $sort) use ($builder) {
                 $descending = $sort[0] === '-';
                 $key = ltrim($sort, '-');
+                $key= str_replace(".", "->", $key);
                 $builder->orderBy($key, $descending ? 'desc' : 'asc');
             });
     }

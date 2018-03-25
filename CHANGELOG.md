@@ -7,16 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Grouping items using Field::group 
+- TD::link and TD::linkPost
+- Sorting capability for TD
 
 ### Deprecated
 - TD::name and TD::title use TD::set
 
 ### Changed
 - Test migration pgsql to sqlite
+- Google Chrome autofill no longer changes the color of the fields
 
 ### Removed
 - Font Awesome
 - Bootstrap 3 appendix
+- "Delete" button by default in the image field
 
 ## [2.2.3] - 2018-03-01
 ### Added

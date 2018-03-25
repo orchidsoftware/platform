@@ -133,3 +133,56 @@ div.mce-fullscreen {
   word-wrap: break-word;
   word-break: break-all;
 }
+
+
+
+.admin-wrapper {
+
+  .admin-element {
+    box-sizing: border-box;
+    padding: 20px 20px 18px 30px;
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    h3 {
+      margin: 0;
+      padding-left: 40px;
+      position: relative;
+      i {
+        @extend .r-3x;
+        @extend .text-white;
+        left: 0;
+        border-radius: 3px;
+        height: 28px;
+        width: 28px;
+        background: $brand-dark;
+        position: absolute;
+        top: 0;
+
+        &:before {
+          width: 100%;
+          text-align: center;
+          @extend .v-center;
+          font-size: 14px;
+          position: absolute;
+          left: 25%;
+          top: 0;
+          bottom: 0;
+        }
+
+      }
+
+    }
+
+    ul {
+      li {
+        @extend .m-r-md;
+        list-style-type: disc;
+        display: list-item;
+      }
+    }
+
+  }
+
+}
+

@@ -37,6 +37,9 @@ use Orchid\Platform\Fields\Field;
  * @method $this tabindex($value = true)
  * @method $this type($value = true)
  * @method $this value($value = true)
+ * @method $this help($value = true)
+ * @method $this width($value = true)
+ * @method $this height($value = true)
  */
 class PictureField extends Field
 {

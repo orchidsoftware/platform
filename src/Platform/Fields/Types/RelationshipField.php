@@ -18,6 +18,7 @@ use Orchid\Platform\Fields\Field;
  * @method $this required($value = true)
  * @method $this size($value = true)
  * @method $this tabindex($value = true)
+ * @method $this help($value = true)
  */
 class RelationshipField extends Field
 {

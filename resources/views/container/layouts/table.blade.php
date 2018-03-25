@@ -4,13 +4,13 @@
             <thead>
             <tr>
                 @foreach($form['fields'] as $th)
-                    <th width="{{$th->width}}" class="">
+                    <th width="{{$th->width}}" class="text-{{$th->align}}">
                         @if($th->sort)
-                            <a href="?sort={{revert_sort($th->name)}}">
+                            <a href="?sort={{revert_sort($th->column)}}">
                                 {{$th->title}}
 
-                                @if(is_sort($th->name))
-                                    @if(get_sort($th->name) == 'asc')
+                                @if(is_sort($th->column))
+                                    @if(get_sort($th->column) == 'asc')
                                         <i class="icon-sort-amount-asc"></i>
                                     @else
                                         <i class="icon-sort-amount-desc"></i>
@@ -28,12 +28,13 @@
             @foreach($form['data'] as $key => $datum)
                 <tr>
                     @foreach($form['fields'] as $td)
-                        <td>
-                            @if(!is_null($td->render))
+                        <td class="text-{{$td->align}}">
+
+                            @isset($td->render)
                                 {!! $td->handler($datum) !!}
                             @else
                                 {{ $datum->getContent($td->name) }}
-                            @endif
+                            @endisset
                         </td>
                     @endforeach
                 </tr>

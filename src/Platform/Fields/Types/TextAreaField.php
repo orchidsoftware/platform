@@ -22,6 +22,8 @@ use Orchid\Platform\Fields\Field;
  * @method $this rows($value = true)
  * @method $this tabindex($value = true)
  * @method $this wrap($value = true)
+ * @method $this help($value = true)
+ * @method $this max($value = true)
  */
 class TextAreaField extends Field
 {

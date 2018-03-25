@@ -10448,7 +10448,8 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 
-.text-white {
+.text-white,
+.admin-wrapper .admin-element h3 i {
   color: #fff !important;
 }
 
@@ -13096,6 +13097,13 @@ a:hover .caret-white {
   border-color: #1c7ed6;
 }
 
+.form-control input,
+.chosen-choices input,
+.chosen-single input,
+.bootstrap-tagsinput input {
+  -webkit-box-shadow: 0 0 0 100px white inset;
+}
+
 .form-horizontal .control-label.text-left {
   text-align: left;
 }
@@ -13639,6 +13647,10 @@ h3,
   display: block;
 }
 
+.app .app-header .navbar-header {
+  display: inherit;
+}
+
 .app-header {
   min-height: 80px;
   z-index: 1025;
@@ -13844,13 +13856,12 @@ h3,
 }
 
 @media (min-width: 768px) {
-  .app-aside {
-    width: 350px;
+  .app-header .navbar-header {
+    display: none !important;
   }
 
-  .app-aside .app-header .navbar-header {
-    position: fixed;
-    display: none;
+  .app-aside {
+    width: 350px;
   }
 
   .app-aside .aside-wrap {
@@ -15919,6 +15930,46 @@ div.mce-fullscreen {
   word-break: break-all;
 }
 
+.admin-wrapper .admin-element {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px 20px 18px 30px;
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+}
+
+.admin-wrapper .admin-element h3 {
+  margin: 0;
+  padding-left: 40px;
+  position: relative;
+}
+
+.admin-wrapper .admin-element h3 i {
+  left: 0;
+  border-radius: 3px;
+  height: 28px;
+  width: 28px;
+  background: #3a3f51;
+  position: absolute;
+  top: 0;
+}
+
+.admin-wrapper .admin-element h3 i:before {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  position: absolute;
+  left: 25%;
+  top: 0;
+  bottom: 0;
+}
+
+.admin-wrapper .admin-element ul li {
+  list-style-type: disc;
+  display: list-item;
+}
+
 .item {
   position: relative;
 }
@@ -17009,7 +17060,8 @@ a.text-black:hover {
   color: #0b1014;
 }
 
-.text-white {
+.text-white,
+.admin-wrapper .admin-element h3 i {
   color: #fff;
 }
 
@@ -17469,7 +17521,8 @@ a.text-black:hover {
   border-radius: 4px;
 }
 
-.r-3x {
+.r-3x,
+.admin-wrapper .admin-element h3 i {
   border-radius: 6px;
 }
 
@@ -17673,7 +17726,8 @@ a.text-black:hover {
   margin-right: 15px;
 }
 
-.m-r-md {
+.m-r-md,
+.admin-wrapper .admin-element ul li {
   margin-right: 20px;
 }
 
@@ -18156,7 +18210,8 @@ a.text-black:hover {
   margin: 0 auto;
 }
 
-.v-center {
+.v-center,
+.admin-wrapper .admin-element h3 i:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

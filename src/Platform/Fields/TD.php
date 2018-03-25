@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Fields;
 
 use Closure;
+use Orchid\Platform\Core\Models\Post;
 
 class TD
 {
@@ -39,6 +40,16 @@ class TD
     public $render;
 
     /**
+     * @var
+     */
+    public $column;
+
+    /**
+     * @var
+     */
+    public $align = 'left';
+
+    /**
      * TD constructor.
      *
      * @param string $name
@@ -46,6 +57,7 @@ class TD
     public function __construct(string $name)
     {
         $this->name = $name;
+        $this->column = $name;
     }
 
     /**
@@ -56,6 +68,7 @@ class TD
     public static function set(string $name, string $title)
     {
         $td = new self($name);
+        $td->column = $name;
         $td->title = $title;
 
         return $td;
@@ -100,22 +113,31 @@ class TD
     }
 
     /**
-     * @param string $filter
+     * @param string      $filter
+     * @param string|null $column
+     *
      * @return $this
      */
-    public function filter(string $filter)
+    public function filter(string $filter, string $column = null)
     {
         $this->filter = $filter;
+        $this->column = $column ?? $this->name;
 
         return $this;
     }
 
     /**
+     * @param string|null $column
+     *
      * @return $this
      */
-    public function sort()
+    public function sort(string $column = null)
     {
         $this->sort = true;
+
+        if (!is_null($column)) {
+            $this->column = $column;
+        }
 
         return $this;
     }
@@ -141,4 +163,61 @@ class TD
     {
         return ($this->render)($data);
     }
+
+    /**
+     * @param string|null $text
+     *
+     * @return TD
+     */
+    public function linkPost(string $text = null)
+    {
+        return $this->link('dashboard.posts.type.edit', ['type', 'slug'], $text);
+    }
+
+    /**
+     * @param string $route
+     * @param        $options
+     * @param string $text
+     *
+     * @return TD
+     */
+    public function link(string $route, $options, string $text = null)
+    {
+
+        return $this->setRender(function (Post $datum) use ($route, $options, $text) {
+
+            $attributes = [];
+
+            if (!is_array($options)) {
+                $options = [$options];
+            }
+
+            foreach ($options as $option) {
+                $attributes[] = $datum->getContent($option);
+            }
+
+            if (!is_null($text)) {
+                $text = $datum->getContent($text);
+            }
+
+            return view('dashboard::partials.td.link', [
+                'route'      => $route,
+                'attributes' => $attributes,
+                'text'       => $text
+            ]);
+
+        });
+    }
+
+    /**
+     * @param string $align
+     *
+     * @return $this
+     */
+    public function align(string $align){
+        $this->align = $align;
+
+        return $this;
+    }
+
 }

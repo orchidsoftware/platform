@@ -186,6 +186,10 @@ blockquote {
   &:focus {
     border-color: $input-border-focus;
   }
+
+  input{
+    -webkit-box-shadow: 0 0 0 100px white inset;
+  }
 }
 
 .form-horizontal {

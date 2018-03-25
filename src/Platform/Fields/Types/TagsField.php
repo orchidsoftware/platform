@@ -37,6 +37,7 @@ use Orchid\Platform\Fields\Field;
  * @method $this tabindex($value = true)
  * @method $this type($value = true)
  * @method $this value($value = true)
+ * @method $this help($value = true)
  */
 class TagsField extends Field
 {

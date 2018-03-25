@@ -120,7 +120,6 @@ class Post extends Many
                 ->height(300),
 
             Field::tag('datetime')
-                ->type('text')
                 ->name('open')
                 ->title('Opening date')
                 ->help('The opening event will take place'),
@@ -179,9 +178,15 @@ class Post extends Many
     public function grid() : array
     {
         return [
+            TD::set('id','ID')
+                ->filter('numeric','id')
+                ->align('center')
+                ->width('100px')
+                ->sort()
+                ->linkPost(),
             TD::set('name', 'Name')
                 ->filter('text','content.name')
-                ->sort(),
+                ->sort('content.name'),
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
                 ->sort(),
