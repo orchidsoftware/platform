@@ -32,7 +32,10 @@
     @endforeach
 
     @stack('stylesheets')
-
+    
+    @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
+        <script src="{{$scripts}}" type="text/javascript"></script>
+    @endforeach
 
 </head>
 
@@ -182,10 +185,11 @@
 
 </div>
 
-
+{{--
 @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
     <script src="{{$scripts}}" type="text/javascript"></script>
 @endforeach
+--}}
 
 @stack('scripts')
 

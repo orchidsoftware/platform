@@ -27,7 +27,7 @@ require('./modules/csrf_token');
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 
-require('nestable');
+require('nestable2');
 
 window.moment = require('moment');
 
