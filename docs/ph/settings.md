@@ -9,7 +9,11 @@ Tandaan na maaari kang maglagay sa repositori ng hindi lamang mga variable ng si
 
 Upang magdagdag ng bagong halaga sa repositori, dapat gamitin mo ang:
 ```php
-Setting::set ($key, $value);
+use Orchid\Platform\Facades\Setting;
+
+...
+
+Setting::set($key,$value);
 ```
 
 ## Pagkukuha
@@ -20,9 +24,11 @@ Upang makuha ang halaga:
 * @param string | array $key
 * @param string | null $default
 * /
-Setting::get ($key, $default);
+$value = Setting::get($key);
+//or with default value
+$value = Setting::get($key, $default);
 //or helper
-setting ($key, $default);
+setting($key,$default);
 ```
 
 ## Removing
