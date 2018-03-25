@@ -7,7 +7,7 @@ return [
     'dashboard'                  => 'Панель',
     'posts'                      => 'Записи',
     'tools'                      => 'Інструменти',
-    'systems'                    => 'Система',
+    'systems'                    => 'Налаштування',
     'the interface and data'     => 'Інтерфейс та дані',
     'menu'                       => 'Меню',
     'advertisements'             => 'Реклама',
