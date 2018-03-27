@@ -9,6 +9,7 @@ namespace Orchid\Platform\Screen;
  * @method static Link modal(string $name)
  * @method static Link title(string $name)
  * @method static Link method(string $name)
+ * @method static Link icon(string $name)
  */
 class Link
 {

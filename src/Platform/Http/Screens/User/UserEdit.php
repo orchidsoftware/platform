@@ -33,13 +33,13 @@ class UserEdit extends Screen
     /**
      * Query data
      *
-     * @param int $userId
+     * @param int $id
      *
      * @return array
      */
-    public function query(int $userId = null): array
+    public function query(int $id = null): array
     {
-        $user = is_null($userId) ? new User : User::findOrFail($userId);
+        $user = is_null($id) ? new User : User::findOrFail($id);
 
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission();
@@ -50,12 +50,12 @@ class UserEdit extends Screen
             }
             return $array;
         });
+
         $roles = Role::all();
         $userRoles = $user->getRoles();
 
         $userRoles->transform(function ($role) {
             $role->active = true;
-
             return $role;
         });
 
@@ -77,8 +77,12 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('dashboard::common.commands.save'))->icon('icon-check')->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))->icon('icon-trash')->method('remove'),
+            Link::name(trans('dashboard::common.commands.save'))
+                ->icon('icon-check')
+                ->method('save'),
+            Link::name(trans('dashboard::common.commands.remove'))
+                ->icon('icon-trash')
+                ->method('remove'),
         ];
     }
 
@@ -87,7 +91,6 @@ class UserEdit extends Screen
      *
      * @return array
      */
-
     public function layout(): array
     {
         return [
@@ -106,6 +109,7 @@ class UserEdit extends Screen
     /**
      * @param         $id
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function save($id, Request $request)
@@ -124,9 +128,8 @@ class UserEdit extends Screen
             $user->password = Hash::make($request->get('user.password'));
         }
 
-        
         foreach ($request->get('permissions',[]) as $key => $value){
-                $permissions[base64_decode($key)] = 1;
+            $permissions[base64_decode($key)] = 1;
         }
 
         $user->permissions = $permissions ?? [];
@@ -143,8 +146,8 @@ class UserEdit extends Screen
     }
 
     /**
-     * @param         $id
-     * @param Request $request
+     * @param $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function remove($id)

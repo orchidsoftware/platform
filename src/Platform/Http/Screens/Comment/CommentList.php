@@ -2,13 +2,9 @@
 
 namespace Orchid\Platform\Http\Screens\Comment;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
-
 use Orchid\Platform\Core\Models\Comment;
-
 use Orchid\Platform\Http\Layouts\Comment\CommentListLayout;
+use Orchid\Platform\Screen\Screen;
 
 class CommentList extends Screen
 {
@@ -31,24 +27,23 @@ class CommentList extends Screen
      *
      * @return array
      */
-    public function query() : array
+    public function query(): array
     {
         return [
             'comment' => Comment::with([
-                                'post' => function ($query) {
-                                    $query->select('id', 'type', 'slug');
-                                },
-                            ])->latest()->paginate(),
+                'post' => function ($query) {
+                    $query->select('id', 'type', 'slug');
+                },
+            ])->latest()->paginate(),
         ];
     }
-
 
     /**
      * Views.
      *
      * @return array
      */
-    public function layout() : array
+    public function layout(): array
     {
         return [
             CommentListLayout::class,

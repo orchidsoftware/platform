@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Fields;
 
 use Closure;
+use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Post;
 
 class TD
@@ -48,6 +49,11 @@ class TD
      * @var
      */
     public $align = 'left';
+
+    /**
+     * @var bool
+     */
+    public $locale = false;
 
     /**
      * TD constructor.
@@ -113,31 +119,53 @@ class TD
     }
 
     /**
-     * @param string      $filter
-     * @param string|null $column
+     * Set current columns is multi language
      *
      * @return $this
      */
-    public function filter(string $filter, string $column = null)
+    public function locale()
     {
-        $this->filter = $filter;
-        $this->column = $column ?? $this->name;
+        $this->locale = true;
 
         return $this;
     }
 
     /**
      * @param string|null $column
-     *
      * @return $this
      */
-    public function sort(string $column = null)
-    {
-        $this->sort = true;
+    public function column(string $column = null){
 
         if (!is_null($column)) {
             $this->column = $column;
         }
+
+        if (!is_null($column) && $this->locale) {
+            $locale = '.' . App::getLocale() . '.';
+            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string      $filter
+     *
+     * @return $this
+     */
+    public function filter(string $filter)
+    {
+        $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function sort()
+    {
+        $this->sort = true;
 
         return $this;
     }

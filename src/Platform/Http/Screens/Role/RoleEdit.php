@@ -3,16 +3,13 @@
 namespace Orchid\Platform\Http\Screens\Role;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
-
+use Orchid\Platform\Http\Layouts\Role\RoleEditLayout;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-
-use Orchid\Platform\Http\Layouts\Role\RoleEditLayout;
 
 class RoleEdit extends Screen
 {
@@ -39,12 +36,12 @@ class RoleEdit extends Screen
      */
     public function query($roleSlug = null): array
     {
-       
+
         $role = is_null($roleSlug) ? new Role : Role::where('slug', $roleSlug)->firstOrFail();
-        
+
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission();
-        
+
         $permission->transform(function ($array) use ($rolePermission) {
             foreach ($array as $key => $value) {
                 $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
@@ -53,12 +50,10 @@ class RoleEdit extends Screen
             return $array;
         });
 
-
         return [
             'permission' => $permission,
             'role'       => $role,
         ];
-
     }
 
     /**
@@ -69,8 +64,12 @@ class RoleEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('dashboard::common.commands.save'))->icon('icon-check')->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))->icon('icon-trash')->method('remove'),
+            Link::name(trans('dashboard::common.commands.save'))
+                ->icon('icon-check')
+                ->method('save'),
+            Link::name(trans('dashboard::common.commands.remove'))
+                ->icon('icon-trash')
+                ->method('remove'),
         ];
     }
 
@@ -93,41 +92,33 @@ class RoleEdit extends Screen
     }
 
     /**
-     * @param         $slug
+     * @param Role    $role
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($slug, Request $request)
+    public function save(Role $role, Request $request)
     {
+        $role->fill($request->get('role'));
 
-        $role = Role::firstOrNew(['slug' => $slug]);
-        
-
-        $attributes = $request->get('role');
-
-        $role->fill($attributes);
-
-        foreach ($request->get('permissions',[]) as $key => $value){
-                $permissions[base64_decode($key)] = 1;
+        foreach ($request->get('permissions', []) as $key => $value) {
+            $permissions[base64_decode($key)] = 1;
         }
 
         $role->permissions = $permissions ?? [];
         $role->save();
-        
+
         Alert::info(trans('dashboard::systems/roles.Role was saved'));
 
         return redirect()->route('dashboard.systems.roles');
     }
 
     /**
-     * @param         $slug
-     * @param Request $request
+     * @param Role $role
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove($slug)
+    public function remove(Role $role)
     {
-        $role = Role::where('slug', $slug)->firstOrFail();
-
         $role->delete();
 
         Alert::info(trans('dashboard::systems/roles.Role was removed'));

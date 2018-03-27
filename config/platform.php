@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'logo' => 'icon-orchid text-primary',
+    'logo' => 'icon-orchid text-info',
 
     /*
     |--------------------------------------------------------------------------

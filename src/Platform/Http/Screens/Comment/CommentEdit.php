@@ -3,17 +3,12 @@
 namespace Orchid\Platform\Http\Screens\Comment;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-
 use Orchid\Platform\Core\Models\Comment;
 use Orchid\Platform\Facades\Alert;
-use Orchid\Platform\Facades\Dashboard;
-
+use Orchid\Platform\Http\Layouts\Comment\CommentEditLayout;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-
-use Orchid\Platform\Http\Layouts\Comment\CommentEditLayout;
 
 class CommentEdit extends Screen
 {
@@ -34,17 +29,15 @@ class CommentEdit extends Screen
     /**
      * Query data
      *
-     * @param int $commentId
+     * @param int $id
      *
      * @return array
      */
-    public function query($commentId = null): array
+    public function query($id = null): array
     {
-        $comment = is_null($commentId) ? new Comment : Comment::findOrFail($commentId);
         return [
-            'comment' => $comment,
+            'comment' => Comment::findOrFail($id),
         ];
-
     }
 
     /**
@@ -55,8 +48,12 @@ class CommentEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('dashboard::common.commands.save'))->icon('icon-check')->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))->icon('icon-trash')->method('remove'),
+            Link::name(trans('dashboard::common.commands.save'))
+                ->icon('icon-check')
+                ->method('save'),
+            Link::name(trans('dashboard::common.commands.remove'))
+                ->icon('icon-trash')
+                ->method('remove'),
         ];
     }
 
@@ -65,7 +62,6 @@ class CommentEdit extends Screen
      *
      * @return array
      */
-
     public function layout(): array
     {
         return [
@@ -79,21 +75,14 @@ class CommentEdit extends Screen
     }
 
     /**
-     * @param          $commentId
-     * @param Request  $request
+     * @param Comment $comment
+     * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($commentId, Request $request)
+    public function save(Comment $comment, Request $request)
     {
-        
-        $comment = is_null($commentId) ? new Comment : Comment::findOrFail($commentId);
-
-        $attributes = $request->get('comment');
-        
-        $comment->content =$attributes['content'];
-        $comment->approved = array_key_exists('approved',$attributes) ? "1" : "0";
-
-        $comment->save();
+        $comment->fill($request->get('comment'))->save();
 
         Alert::info(trans('dashboard::systems/comment.Comment was saved'));
 
@@ -101,15 +90,13 @@ class CommentEdit extends Screen
     }
 
     /**
-     * @param  $commentId
-     * @param Request $request
+     * @param $comment
+     *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function remove($commentId)
+    public function remove(Comment $comment)
     {
-
-        $comment = is_null($commentId) ? new Comment : Comment::findOrFail($commentId);
-        
         $comment->delete();
 
         Alert::info(trans('dashboard::systems/comment.Comment was removed'));

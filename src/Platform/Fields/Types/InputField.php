@@ -39,6 +39,7 @@ use Orchid\Platform\Fields\Field;
  * @method $this value($value = true)
  * @method $this help($value = true)
  * @method $this mask($value = true)
+ * @method $this require()
  */
 class InputField extends Field
 {

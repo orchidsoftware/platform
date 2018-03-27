@@ -179,14 +179,17 @@ class Post extends Many
     {
         return [
             TD::set('id','ID')
-                ->filter('numeric','id')
+                ->filter('numeric')
                 ->align('center')
                 ->width('100px')
                 ->sort()
                 ->linkPost(),
             TD::set('name', 'Name')
-                ->filter('text','content.name')
-                ->sort('content.name'),
+                ->locale()
+                ->column('content.name')
+                ->filter('text')
+                ->sort()
+                ->linkPost('name'),
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
                 ->sort(),

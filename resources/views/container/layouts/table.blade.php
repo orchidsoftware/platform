@@ -6,7 +6,7 @@
                 @foreach($form['fields'] as $th)
                     <th width="{{$th->width}}" class="text-{{$th->align}}">
                         @if($th->sort)
-                            <a href="?sort={{revert_sort($th->column)}}">
+                            <a href="?sort={{revert_sort($th->column)}}" class="@if(!is_sort($th->column)) text-muted @endif">
                                 {{$th->title}}
 
                                 @if(is_sort($th->column))
