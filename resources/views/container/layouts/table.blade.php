@@ -20,6 +20,14 @@
                         @else
                                 {{$th->title}}
                         @endif
+
+
+                        @isset($th->filter)
+                                @includeIf("dashboard::partials.filters.{$th->filter}",[
+                                    'th' => $th
+                                ])
+                        @endisset
+
                     </th>
                 @endforeach
             </tr>

@@ -17,7 +17,7 @@
             </script>
 
             <div class="line line-dashed b-b line-lg"></div>
-            <button type="submit" class="btn btn-default btn-sm w-full m-t-md">Применить</button>
+            <button type="submit" class="btn btn-default btn-sm w-full">Применить</button>
         </div>
     </div>
 </div>

@@ -106,14 +106,6 @@ class Post extends Model
     ];
 
     /**
-     * @var
-     */
-    protected $allowedIncludes = [
-        'comments',
-        'author'
-    ];
-
-    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

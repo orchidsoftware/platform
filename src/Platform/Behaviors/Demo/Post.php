@@ -191,7 +191,6 @@ class Post extends Many
                 ->sort()
                 ->linkPost('name'),
             TD::set('publish_at', 'Date of publication')
-                ->filter('date')
                 ->sort(),
             TD::set('created_at', 'Date of creation')
                 ->filter('date')

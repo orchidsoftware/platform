@@ -2563,9 +2563,9 @@ pre code {
 .chosen-single:disabled,
 .bootstrap-tagsinput:disabled,
 .form-control[readonly],
-.chosen-choices[readonly],
-.chosen-single[readonly],
-.bootstrap-tagsinput[readonly] {
+[readonly].chosen-choices,
+[readonly].chosen-single,
+[readonly].bootstrap-tagsinput {
   background-color: #e9ecef;
   opacity: 1;
 }
@@ -2633,11 +2633,15 @@ select.bootstrap-tagsinput:focus::-ms-value {
 .input-group-sm > .input-group-prepend > .form-control-plaintext.input-group-text,
 .input-group-sm > .input-group-append > .form-control-plaintext.input-group-text,
 .input-group-sm > .input-group-prepend > .form-control-plaintext.btn,
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > .form-control-plaintext.btn-remove,
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > .form-control-plaintext.btn-edit,
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > .form-control-plaintext.btn-remove,
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > .form-control-plaintext.btn-edit,
 .input-group-sm > .input-group-append > .form-control-plaintext.btn,
-.dropzone .dz-preview .input-group-sm > .input-group-append > .form-control-plaintext.btn-remove,
-.dropzone .dz-preview .input-group-sm > .input-group-append > .form-control-plaintext.btn-edit,
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > .form-control-plaintext.btn-remove,
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > .form-control-plaintext.btn-edit,
 .form-control-plaintext.form-control-lg,
 .input-group-lg > .form-control-plaintext.form-control,
 .input-group-lg > .form-control-plaintext.chosen-choices,
@@ -2646,11 +2650,15 @@ select.bootstrap-tagsinput:focus::-ms-value {
 .input-group-lg > .input-group-prepend > .form-control-plaintext.input-group-text,
 .input-group-lg > .input-group-append > .form-control-plaintext.input-group-text,
 .input-group-lg > .input-group-prepend > .form-control-plaintext.btn,
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > .form-control-plaintext.btn-remove,
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > .form-control-plaintext.btn-edit,
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > .form-control-plaintext.btn-remove,
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > .form-control-plaintext.btn-edit,
 .input-group-lg > .input-group-append > .form-control-plaintext.btn,
-.dropzone .dz-preview .input-group-lg > .input-group-append > .form-control-plaintext.btn-remove,
-.dropzone .dz-preview .input-group-lg > .input-group-append > .form-control-plaintext.btn-edit {
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > .form-control-plaintext.btn-remove,
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > .form-control-plaintext.btn-edit {
   padding-right: 0;
   padding-left: 0;
 }
@@ -2663,11 +2671,15 @@ select.bootstrap-tagsinput:focus::-ms-value {
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > .btn-remove,
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > .btn-edit,
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > .btn-remove,
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > .btn-edit,
 .input-group-sm > .input-group-append > .btn,
-.dropzone .dz-preview .input-group-sm > .input-group-append > .btn-remove,
-.dropzone .dz-preview .input-group-sm > .input-group-append > .btn-edit {
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > .btn-remove,
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > .btn-edit {
   padding: 0.25rem 0.5rem;
   font-size: 0.92857rem;
   line-height: 1.5;
@@ -2682,11 +2694,15 @@ select.form-control-sm:not([size]):not([multiple]),
 .input-group-sm > .input-group-prepend > select.input-group-text:not([size]):not([multiple]),
 .input-group-sm > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-sm > .input-group-prepend > select.btn:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > select.btn-remove:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-sm > .input-group-prepend > select.btn-edit:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > select.btn-remove:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-sm > .input-group-prepend > select.btn-edit:not([size]):not([multiple]),
 .input-group-sm > .input-group-append > select.btn:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-sm > .input-group-append > select.btn-remove:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-sm > .input-group-append > select.btn-edit:not([size]):not([multiple]) {
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > select.btn-remove:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-sm > .input-group-append > select.btn-edit:not([size]):not([multiple]) {
   height: calc(1.892855rem + 2px);
 }
 
@@ -2698,11 +2714,15 @@ select.form-control-sm:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > .btn-remove,
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > .btn-edit,
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > .btn-remove,
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > .btn-edit,
 .input-group-lg > .input-group-append > .btn,
-.dropzone .dz-preview .input-group-lg > .input-group-append > .btn-remove,
-.dropzone .dz-preview .input-group-lg > .input-group-append > .btn-edit {
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > .btn-remove,
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > .btn-edit {
   padding: 0.5rem 1rem;
   font-size: 1.23rem;
   line-height: 1.5;
@@ -2717,11 +2737,15 @@ select.form-control-lg:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]),
 .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > select.btn-remove:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-lg > .input-group-prepend > select.btn-edit:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > select.btn-remove:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-lg > .input-group-prepend > select.btn-edit:not([size]):not([multiple]),
 .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-lg > .input-group-append > select.btn-remove:not([size]):not([multiple]),
-.dropzone .dz-preview .input-group-lg > .input-group-append > select.btn-edit:not([size]):not([multiple]) {
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > select.btn-remove:not([size]):not([multiple]),
+.dropzone .dz-preview
+.input-group-lg > .input-group-append > select.btn-edit:not([size]):not([multiple]) {
   height: calc(2.845rem + 2px);
 }
 
@@ -3242,9 +3266,11 @@ a.btn.disabled,
 .dropzone .dz-preview a.disabled.btn-edit,
 fieldset:disabled a.btn,
 fieldset:disabled .dropzone .dz-preview a.btn-remove,
-.dropzone .dz-preview fieldset:disabled a.btn-remove,
+.dropzone .dz-preview
+fieldset:disabled a.btn-remove,
 fieldset:disabled .dropzone .dz-preview a.btn-edit,
-.dropzone .dz-preview fieldset:disabled a.btn-edit {
+.dropzone .dz-preview
+fieldset:disabled a.btn-edit {
   pointer-events: none;
 }
 
@@ -4097,8 +4123,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group > .btn-remove,
 .dropzone .dz-preview .btn-group > .btn-edit,
 .btn-group-vertical > .btn,
-.dropzone .dz-preview .btn-group-vertical > .btn-remove,
-.dropzone .dz-preview .btn-group-vertical > .btn-edit {
+.dropzone .dz-preview
+.btn-group-vertical > .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-edit {
   position: relative;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
@@ -4109,8 +4137,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group > .btn-remove:hover,
 .dropzone .dz-preview .btn-group > .btn-edit:hover,
 .btn-group-vertical > .btn:hover,
-.dropzone .dz-preview .btn-group-vertical > .btn-remove:hover,
-.dropzone .dz-preview .btn-group-vertical > .btn-edit:hover {
+.dropzone .dz-preview
+.btn-group-vertical > .btn-remove:hover,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-edit:hover {
   z-index: 1;
 }
 
@@ -4124,14 +4154,20 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group > .active.btn-remove,
 .dropzone .dz-preview .btn-group > .active.btn-edit,
 .btn-group-vertical > .btn:focus,
-.dropzone .dz-preview .btn-group-vertical > .btn-remove:focus,
-.dropzone .dz-preview .btn-group-vertical > .btn-edit:focus,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-remove:focus,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-edit:focus,
 .btn-group-vertical > .btn:active,
-.dropzone .dz-preview .btn-group-vertical > .btn-remove:active,
-.dropzone .dz-preview .btn-group-vertical > .btn-edit:active,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-remove:active,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-edit:active,
 .btn-group-vertical > .btn.active,
-.dropzone .dz-preview .btn-group-vertical > .active.btn-remove,
-.dropzone .dz-preview .btn-group-vertical > .active.btn-edit {
+.dropzone .dz-preview
+.btn-group-vertical > .active.btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical > .active.btn-edit {
   z-index: 1;
 }
 
@@ -4154,42 +4190,58 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group .btn-edit + .btn-edit,
 .btn-group .btn + .btn-group,
 .btn-group .dropzone .dz-preview .btn-remove + .btn-group,
-.dropzone .dz-preview .btn-group .btn-remove + .btn-group,
+.dropzone .dz-preview
+.btn-group .btn-remove + .btn-group,
 .btn-group .dropzone .dz-preview .btn-edit + .btn-group,
-.dropzone .dz-preview .btn-group .btn-edit + .btn-group,
+.dropzone .dz-preview
+.btn-group .btn-edit + .btn-group,
 .btn-group .btn-group + .btn,
 .btn-group .dropzone .dz-preview .btn-group + .btn-remove,
-.dropzone .dz-preview .btn-group .btn-group + .btn-remove,
+.dropzone .dz-preview
+.btn-group .btn-group + .btn-remove,
 .btn-group .dropzone .dz-preview .btn-group + .btn-edit,
-.dropzone .dz-preview .btn-group .btn-group + .btn-edit,
+.dropzone .dz-preview
+.btn-group .btn-group + .btn-edit,
 .btn-group .btn-group + .btn-group,
 .btn-group-vertical .btn + .btn,
 .btn-group-vertical .dropzone .dz-preview .btn-remove + .btn,
-.dropzone .dz-preview .btn-group-vertical .btn-remove + .btn,
+.dropzone .dz-preview
+.btn-group-vertical .btn-remove + .btn,
 .btn-group-vertical .dropzone .dz-preview .btn-edit + .btn,
-.dropzone .dz-preview .btn-group-vertical .btn-edit + .btn,
+.dropzone .dz-preview
+.btn-group-vertical .btn-edit + .btn,
 .btn-group-vertical .dropzone .dz-preview .btn + .btn-remove,
-.dropzone .dz-preview .btn-group-vertical .btn + .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical .btn + .btn-remove,
 .btn-group-vertical .dropzone .dz-preview .btn-remove + .btn-remove,
-.dropzone .dz-preview .btn-group-vertical .btn-remove + .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical .btn-remove + .btn-remove,
 .btn-group-vertical .dropzone .dz-preview .btn-edit + .btn-remove,
-.dropzone .dz-preview .btn-group-vertical .btn-edit + .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical .btn-edit + .btn-remove,
 .btn-group-vertical .dropzone .dz-preview .btn + .btn-edit,
-.dropzone .dz-preview .btn-group-vertical .btn + .btn-edit,
+.dropzone .dz-preview
+.btn-group-vertical .btn + .btn-edit,
 .btn-group-vertical .dropzone .dz-preview .btn-remove + .btn-edit,
-.dropzone .dz-preview .btn-group-vertical .btn-remove + .btn-edit,
+.dropzone .dz-preview
+.btn-group-vertical .btn-remove + .btn-edit,
 .btn-group-vertical .dropzone .dz-preview .btn-edit + .btn-edit,
-.dropzone .dz-preview .btn-group-vertical .btn-edit + .btn-edit,
+.dropzone .dz-preview
+.btn-group-vertical .btn-edit + .btn-edit,
 .btn-group-vertical .btn + .btn-group,
 .btn-group-vertical .dropzone .dz-preview .btn-remove + .btn-group,
-.dropzone .dz-preview .btn-group-vertical .btn-remove + .btn-group,
+.dropzone .dz-preview
+.btn-group-vertical .btn-remove + .btn-group,
 .btn-group-vertical .dropzone .dz-preview .btn-edit + .btn-group,
-.dropzone .dz-preview .btn-group-vertical .btn-edit + .btn-group,
+.dropzone .dz-preview
+.btn-group-vertical .btn-edit + .btn-group,
 .btn-group-vertical .btn-group + .btn,
 .btn-group-vertical .dropzone .dz-preview .btn-group + .btn-remove,
-.dropzone .dz-preview .btn-group-vertical .btn-group + .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical .btn-group + .btn-remove,
 .btn-group-vertical .dropzone .dz-preview .btn-group + .btn-edit,
-.dropzone .dz-preview .btn-group-vertical .btn-group + .btn-edit,
+.dropzone .dz-preview
+.btn-group-vertical .btn-group + .btn-edit,
 .btn-group-vertical .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -4219,8 +4271,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group > .btn-remove:not(:last-child):not(.dropdown-toggle),
 .dropzone .dz-preview .btn-group > .btn-edit:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-group:not(:last-child) > .btn,
-.dropzone .dz-preview .btn-group > .btn-group:not(:last-child) > .btn-remove,
-.dropzone .dz-preview .btn-group > .btn-group:not(:last-child) > .btn-edit {
+.dropzone .dz-preview
+.btn-group > .btn-group:not(:last-child) > .btn-remove,
+.dropzone .dz-preview
+.btn-group > .btn-group:not(:last-child) > .btn-edit {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -4229,8 +4283,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group > .btn-remove:not(:first-child),
 .dropzone .dz-preview .btn-group > .btn-edit:not(:first-child),
 .btn-group > .btn-group:not(:first-child) > .btn,
-.dropzone .dz-preview .btn-group > .btn-group:not(:first-child) > .btn-remove,
-.dropzone .dz-preview .btn-group > .btn-group:not(:first-child) > .btn-edit {
+.dropzone .dz-preview
+.btn-group > .btn-group:not(:first-child) > .btn-remove,
+.dropzone .dz-preview
+.btn-group > .btn-group:not(:first-child) > .btn-edit {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -4293,11 +4349,15 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group-vertical > .btn-remove + .btn-edit,
 .dropzone .dz-preview .btn-group-vertical > .btn-edit + .btn-edit,
 .btn-group-vertical > .btn + .btn-group,
-.dropzone .dz-preview .btn-group-vertical > .btn-remove + .btn-group,
-.dropzone .dz-preview .btn-group-vertical > .btn-edit + .btn-group,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-remove + .btn-group,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-edit + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
-.dropzone .dz-preview .btn-group-vertical > .btn-group + .btn-remove,
-.dropzone .dz-preview .btn-group-vertical > .btn-group + .btn-edit,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group + .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group + .btn-edit,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
@@ -4307,8 +4367,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group-vertical > .btn-remove:not(:last-child):not(.dropdown-toggle),
 .dropzone .dz-preview .btn-group-vertical > .btn-edit:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn,
-.dropzone .dz-preview .btn-group-vertical > .btn-group:not(:last-child) > .btn-remove,
-.dropzone .dz-preview .btn-group-vertical > .btn-group:not(:last-child) > .btn-edit {
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group:not(:last-child) > .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group:not(:last-child) > .btn-edit {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -4317,8 +4379,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group-vertical > .btn-remove:not(:first-child),
 .dropzone .dz-preview .btn-group-vertical > .btn-edit:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) > .btn,
-.dropzone .dz-preview .btn-group-vertical > .btn-group:not(:first-child) > .btn-remove,
-.dropzone .dz-preview .btn-group-vertical > .btn-group:not(:first-child) > .btn-edit {
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group:not(:first-child) > .btn-remove,
+.dropzone .dz-preview
+.btn-group-vertical > .btn-group:not(:first-child) > .btn-edit {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4327,8 +4391,10 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group-toggle > .btn-remove,
 .dropzone .dz-preview .btn-group-toggle > .btn-edit,
 .btn-group-toggle > .btn-group > .btn,
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-remove,
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-edit {
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-remove,
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-edit {
   margin-bottom: 0;
 }
 
@@ -4336,14 +4402,20 @@ tbody.collapse.show {
 .dropzone .dz-preview .btn-group-toggle > .btn-remove input[type="radio"],
 .dropzone .dz-preview .btn-group-toggle > .btn-edit input[type="radio"],
 .btn-group-toggle > .btn input[type="checkbox"],
-.dropzone .dz-preview .btn-group-toggle > .btn-remove input[type="checkbox"],
-.dropzone .dz-preview .btn-group-toggle > .btn-edit input[type="checkbox"],
+.dropzone .dz-preview
+.btn-group-toggle > .btn-remove input[type="checkbox"],
+.dropzone .dz-preview
+.btn-group-toggle > .btn-edit input[type="checkbox"],
 .btn-group-toggle > .btn-group > .btn input[type="radio"],
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-remove input[type="radio"],
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-edit input[type="radio"],
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-remove input[type="radio"],
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-edit input[type="radio"],
 .btn-group-toggle > .btn-group > .btn input[type="checkbox"],
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-remove input[type="checkbox"],
-.dropzone .dz-preview .btn-group-toggle > .btn-group > .btn-edit input[type="checkbox"] {
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-remove input[type="checkbox"],
+.dropzone .dz-preview
+.btn-group-toggle > .btn-group > .btn-edit input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -4477,9 +4549,11 @@ tbody.collapse.show {
 .dropzone .dz-preview .input-group-prepend .btn-edit,
 .input-group-append .btn,
 .input-group-append .dropzone .dz-preview .btn-remove,
-.dropzone .dz-preview .input-group-append .btn-remove,
+.dropzone .dz-preview
+.input-group-append .btn-remove,
 .input-group-append .dropzone .dz-preview .btn-edit,
-.dropzone .dz-preview .input-group-append .btn-edit {
+.dropzone .dz-preview
+.input-group-append .btn-edit {
   position: relative;
   z-index: 2;
 }
@@ -4503,43 +4577,59 @@ tbody.collapse.show {
 .dropzone .dz-preview .input-group-prepend .btn-edit + .btn-edit,
 .input-group-prepend .btn + .input-group-text,
 .input-group-prepend .dropzone .dz-preview .btn-remove + .input-group-text,
-.dropzone .dz-preview .input-group-prepend .btn-remove + .input-group-text,
+.dropzone .dz-preview
+.input-group-prepend .btn-remove + .input-group-text,
 .input-group-prepend .dropzone .dz-preview .btn-edit + .input-group-text,
-.dropzone .dz-preview .input-group-prepend .btn-edit + .input-group-text,
+.dropzone .dz-preview
+.input-group-prepend .btn-edit + .input-group-text,
 .input-group-prepend .input-group-text + .input-group-text,
 .input-group-prepend .input-group-text + .btn,
 .input-group-prepend .dropzone .dz-preview .input-group-text + .btn-remove,
-.dropzone .dz-preview .input-group-prepend .input-group-text + .btn-remove,
+.dropzone .dz-preview
+.input-group-prepend .input-group-text + .btn-remove,
 .input-group-prepend .dropzone .dz-preview .input-group-text + .btn-edit,
-.dropzone .dz-preview .input-group-prepend .input-group-text + .btn-edit,
+.dropzone .dz-preview
+.input-group-prepend .input-group-text + .btn-edit,
 .input-group-append .btn + .btn,
 .input-group-append .dropzone .dz-preview .btn-remove + .btn,
-.dropzone .dz-preview .input-group-append .btn-remove + .btn,
+.dropzone .dz-preview
+.input-group-append .btn-remove + .btn,
 .input-group-append .dropzone .dz-preview .btn-edit + .btn,
-.dropzone .dz-preview .input-group-append .btn-edit + .btn,
+.dropzone .dz-preview
+.input-group-append .btn-edit + .btn,
 .input-group-append .dropzone .dz-preview .btn + .btn-remove,
-.dropzone .dz-preview .input-group-append .btn + .btn-remove,
+.dropzone .dz-preview
+.input-group-append .btn + .btn-remove,
 .input-group-append .dropzone .dz-preview .btn-remove + .btn-remove,
-.dropzone .dz-preview .input-group-append .btn-remove + .btn-remove,
+.dropzone .dz-preview
+.input-group-append .btn-remove + .btn-remove,
 .input-group-append .dropzone .dz-preview .btn-edit + .btn-remove,
-.dropzone .dz-preview .input-group-append .btn-edit + .btn-remove,
+.dropzone .dz-preview
+.input-group-append .btn-edit + .btn-remove,
 .input-group-append .dropzone .dz-preview .btn + .btn-edit,
-.dropzone .dz-preview .input-group-append .btn + .btn-edit,
+.dropzone .dz-preview
+.input-group-append .btn + .btn-edit,
 .input-group-append .dropzone .dz-preview .btn-remove + .btn-edit,
-.dropzone .dz-preview .input-group-append .btn-remove + .btn-edit,
+.dropzone .dz-preview
+.input-group-append .btn-remove + .btn-edit,
 .input-group-append .dropzone .dz-preview .btn-edit + .btn-edit,
-.dropzone .dz-preview .input-group-append .btn-edit + .btn-edit,
+.dropzone .dz-preview
+.input-group-append .btn-edit + .btn-edit,
 .input-group-append .btn + .input-group-text,
 .input-group-append .dropzone .dz-preview .btn-remove + .input-group-text,
-.dropzone .dz-preview .input-group-append .btn-remove + .input-group-text,
+.dropzone .dz-preview
+.input-group-append .btn-remove + .input-group-text,
 .input-group-append .dropzone .dz-preview .btn-edit + .input-group-text,
-.dropzone .dz-preview .input-group-append .btn-edit + .input-group-text,
+.dropzone .dz-preview
+.input-group-append .btn-edit + .input-group-text,
 .input-group-append .input-group-text + .input-group-text,
 .input-group-append .input-group-text + .btn,
 .input-group-append .dropzone .dz-preview .input-group-text + .btn-remove,
-.dropzone .dz-preview .input-group-append .input-group-text + .btn-remove,
+.dropzone .dz-preview
+.input-group-append .input-group-text + .btn-remove,
 .input-group-append .dropzone .dz-preview .input-group-text + .btn-edit,
-.dropzone .dz-preview .input-group-append .input-group-text + .btn-edit {
+.dropzone .dz-preview
+.input-group-append .input-group-text + .btn-edit {
   margin-left: -1px;
 }
 
@@ -4581,12 +4671,16 @@ tbody.collapse.show {
 .dropzone .dz-preview .input-group > .input-group-prepend > .btn-edit,
 .input-group > .input-group-prepend > .input-group-text,
 .input-group > .input-group-append:not(:last-child) > .btn,
-.dropzone .dz-preview .input-group > .input-group-append:not(:last-child) > .btn-remove,
-.dropzone .dz-preview .input-group > .input-group-append:not(:last-child) > .btn-edit,
+.dropzone .dz-preview
+.input-group > .input-group-append:not(:last-child) > .btn-remove,
+.dropzone .dz-preview
+.input-group > .input-group-append:not(:last-child) > .btn-edit,
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
-.dropzone .dz-preview .input-group > .input-group-append:last-child > .btn-remove:not(:last-child):not(.dropdown-toggle),
-.dropzone .dz-preview .input-group > .input-group-append:last-child > .btn-edit:not(:last-child):not(.dropdown-toggle),
+.dropzone .dz-preview
+.input-group > .input-group-append:last-child > .btn-remove:not(:last-child):not(.dropdown-toggle),
+.dropzone .dz-preview
+.input-group > .input-group-append:last-child > .btn-edit:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -4597,12 +4691,16 @@ tbody.collapse.show {
 .dropzone .dz-preview .input-group > .input-group-append > .btn-edit,
 .input-group > .input-group-append > .input-group-text,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
-.dropzone .dz-preview .input-group > .input-group-prepend:not(:first-child) > .btn-remove,
-.dropzone .dz-preview .input-group > .input-group-prepend:not(:first-child) > .btn-edit,
+.dropzone .dz-preview
+.input-group > .input-group-prepend:not(:first-child) > .btn-remove,
+.dropzone .dz-preview
+.input-group > .input-group-prepend:not(:first-child) > .btn-edit,
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
-.dropzone .dz-preview .input-group > .input-group-prepend:first-child > .btn-remove:not(:first-child),
-.dropzone .dz-preview .input-group > .input-group-prepend:first-child > .btn-edit:not(:first-child),
+.dropzone .dz-preview
+.input-group > .input-group-prepend:first-child > .btn-remove:not(:first-child),
+.dropzone .dz-preview
+.input-group > .input-group-prepend:first-child > .btn-edit:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -8659,50 +8757,50 @@ button.bg-dark:focus {
 
 .sr-only,
 .bootstrap-datetimepicker-widget .btn[data-action="incrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="incrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="incrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="incrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="incrementHours"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementHours"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="incrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="incrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="incrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="incrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="incrementMinutes"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementMinutes"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="decrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="decrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="decrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="decrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="decrementHours"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementHours"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="decrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="decrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="decrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="decrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="decrementMinutes"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementMinutes"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="showHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="showHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="showHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="showHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="showHours"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showHours"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="showMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="showMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="showMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="showMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="showMinutes"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showMinutes"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="togglePeriod"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="togglePeriod"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="togglePeriod"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="togglePeriod"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="togglePeriod"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="togglePeriod"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="togglePeriod"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="togglePeriod"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="togglePeriod"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="clear"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="clear"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="clear"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="clear"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="clear"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="clear"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="clear"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="clear"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="clear"].btn-edit::after,
 .bootstrap-datetimepicker-widget .btn[data-action="today"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="today"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="today"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="today"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="today"]::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="today"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="today"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="today"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="today"].btn-edit::after,
 .bootstrap-datetimepicker-widget .picker-switch::after,
 .bootstrap-datetimepicker-widget table th.prev::after,
 .bootstrap-datetimepicker-widget table th.next::after {
@@ -10554,7 +10652,7 @@ a.text-dark:focus {
             box-shadow: none !important;
   }
 
-  a:not(.btn) {
+  a:not(.btn):not(.dropzone .dz-preview .btn-remove):not(.dropzone .dz-preview .btn-edit) {
     text-decoration: underline;
   }
 
@@ -11399,9 +11497,11 @@ a.text-dark:focus {
 .input-group > .select2-container--bootstrap .input-group-btn,
 .input-group > .select2-container--bootstrap .input-group-btn .btn,
 .input-group > .select2-container--bootstrap .input-group-btn .dropzone .dz-preview .btn-remove,
-.dropzone .dz-preview .input-group > .select2-container--bootstrap .input-group-btn .btn-remove,
+.dropzone .dz-preview
+.input-group > .select2-container--bootstrap .input-group-btn .btn-remove,
 .input-group > .select2-container--bootstrap .input-group-btn .dropzone .dz-preview .btn-edit,
-.dropzone .dz-preview .input-group > .select2-container--bootstrap .input-group-btn .btn-edit {
+.dropzone .dz-preview
+.input-group > .select2-container--bootstrap .input-group-btn .btn-edit {
   vertical-align: top;
 }
 
@@ -11545,74 +11645,74 @@ a.text-dark:focus {
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="incrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="incrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="incrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="incrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="incrementHours"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementHours"].btn-edit::after {
   content: "Increment Hours";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="incrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="incrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="incrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="incrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="incrementMinutes"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="incrementMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="incrementMinutes"].btn-edit::after {
   content: "Increment Minutes";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="decrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="decrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="decrementHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="decrementHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="decrementHours"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementHours"].btn-edit::after {
   content: "Decrement Hours";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="decrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="decrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="decrementMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="decrementMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="decrementMinutes"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="decrementMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="decrementMinutes"].btn-edit::after {
   content: "Decrement Minutes";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="showHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="showHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="showHours"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="showHours"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="showHours"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showHours"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showHours"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showHours"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showHours"].btn-edit::after {
   content: "Show Hours";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="showMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="showMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="showMinutes"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="showMinutes"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="showMinutes"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showMinutes"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showMinutes"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="showMinutes"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="showMinutes"].btn-edit::after {
   content: "Show Minutes";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="togglePeriod"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="togglePeriod"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="togglePeriod"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="togglePeriod"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="togglePeriod"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="togglePeriod"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="togglePeriod"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="togglePeriod"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="togglePeriod"].btn-edit::after {
   content: "Toggle AM/PM";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="clear"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="clear"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="clear"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="clear"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="clear"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="clear"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="clear"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="clear"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="clear"].btn-edit::after {
   content: "Clear the picker";
 }
 
 .bootstrap-datetimepicker-widget .btn[data-action="today"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-remove[data-action="today"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-remove[data-action="today"]::after,
-.bootstrap-datetimepicker-widget .dropzone .dz-preview .btn-edit[data-action="today"]::after,
-.dropzone .dz-preview .bootstrap-datetimepicker-widget .btn-edit[data-action="today"]::after {
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="today"].btn-remove::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="today"].btn-remove::after,
+.bootstrap-datetimepicker-widget .dropzone .dz-preview [data-action="today"].btn-edit::after,
+.dropzone .dz-preview .bootstrap-datetimepicker-widget [data-action="today"].btn-edit::after {
   content: "Set the date to today";
 }
 
@@ -14655,7 +14755,8 @@ h3,
 .btn-default .open .dropdown-toggle.btn-default,
 .dropzone .dz-preview .btn-remove .open .dropdown-toggle.btn-default,
 .btn-default .open .dropzone .dz-preview .dropdown-toggle.btn-remove,
-.dropzone .dz-preview .btn-default .open .dropdown-toggle.btn-remove,
+.dropzone .dz-preview
+.btn-default .open .dropdown-toggle.btn-remove,
 .dropzone .dz-preview .btn-remove .open .dropdown-toggle.btn-remove {
   background-image: none;
 }
@@ -14671,30 +14772,35 @@ h3,
 .btn-default.disabled.active,
 .dropzone .dz-preview .disabled.active.btn-remove,
 .btn-default[disabled],
-.dropzone .dz-preview .btn-remove[disabled],
+.dropzone .dz-preview [disabled].btn-remove,
 .btn-default[disabled]:hover,
-.dropzone .dz-preview .btn-remove[disabled]:hover,
+.dropzone .dz-preview [disabled].btn-remove:hover,
 .btn-default[disabled]:focus,
-.dropzone .dz-preview .btn-remove[disabled]:focus,
+.dropzone .dz-preview [disabled].btn-remove:focus,
 .btn-default[disabled]:active,
-.dropzone .dz-preview .btn-remove[disabled]:active,
+.dropzone .dz-preview [disabled].btn-remove:active,
 .btn-default[disabled].active,
-.dropzone .dz-preview .btn-remove[disabled].active,
+.dropzone .dz-preview [disabled].active.btn-remove,
 fieldset[disabled] .btn-default,
 fieldset[disabled] .dropzone .dz-preview .btn-remove,
-.dropzone .dz-preview fieldset[disabled] .btn-remove,
+.dropzone .dz-preview
+fieldset[disabled] .btn-remove,
 fieldset[disabled] .btn-default:hover,
 fieldset[disabled] .dropzone .dz-preview .btn-remove:hover,
-.dropzone .dz-preview fieldset[disabled] .btn-remove:hover,
+.dropzone .dz-preview
+fieldset[disabled] .btn-remove:hover,
 fieldset[disabled] .btn-default:focus,
 fieldset[disabled] .dropzone .dz-preview .btn-remove:focus,
-.dropzone .dz-preview fieldset[disabled] .btn-remove:focus,
+.dropzone .dz-preview
+fieldset[disabled] .btn-remove:focus,
 fieldset[disabled] .btn-default:active,
 fieldset[disabled] .dropzone .dz-preview .btn-remove:active,
-.dropzone .dz-preview fieldset[disabled] .btn-remove:active,
+.dropzone .dz-preview
+fieldset[disabled] .btn-remove:active,
 fieldset[disabled] .btn-default.active,
 fieldset[disabled] .dropzone .dz-preview .active.btn-remove,
-.dropzone .dz-preview fieldset[disabled] .active.btn-remove {
+.dropzone .dz-preview
+fieldset[disabled] .active.btn-remove {
   background-color: #f8f9fa;
   border-color: #dadfe4;
 }
@@ -14704,7 +14810,8 @@ fieldset[disabled] .dropzone .dz-preview .active.btn-remove,
 .btn-default:not([disabled]):not(.disabled).active,
 .dropzone .dz-preview .btn-remove:not([disabled]):not(.disabled).active,
 .show > .btn-default.dropdown-toggle,
-.dropzone .dz-preview .show > .dropdown-toggle.btn-remove {
+.dropzone .dz-preview
+.show > .dropdown-toggle.btn-remove {
   color: #58666e !important;
   background-color: #e9ecef;
   border-color: #c3cbd3;
@@ -15288,9 +15395,11 @@ button.close {
 .dropzone .dz-preview .btn-group-justified .btn-edit .btn-edit,
 .btn-group-justified .btn-group .btn,
 .btn-group-justified .btn-group .dropzone .dz-preview .btn-remove,
-.dropzone .dz-preview .btn-group-justified .btn-group .btn-remove,
+.dropzone .dz-preview
+.btn-group-justified .btn-group .btn-remove,
 .btn-group-justified .btn-group .dropzone .dz-preview .btn-edit,
-.dropzone .dz-preview .btn-group-justified .btn-group .btn-edit {
+.dropzone .dz-preview
+.btn-group-justified .btn-group .btn-edit {
   width: 100%;
 }
 
@@ -18350,27 +18459,14 @@ a.text-black:hover {
   font-size: 13px;
   padding-top: 14px;
   padding-bottom: 14px;
-  vertical-align: middle;
+  vertical-align: top;
   border-bottom: 1px solid rgba(233, 236, 239, 0.7);
   border-top: 0;
   color: rgba(58, 63, 81, 0.35);
 }
 
-.table thead tr th[class*='sorting_'] {
-  color: #3a3f51;
-}
-
 .table thead tr th:first-child {
   padding-left: 18px !important;
-}
-
-.table thead tr th .btn,
-.table thead tr th .dropzone .dz-preview .btn-remove,
-.dropzone .dz-preview .table thead tr th .btn-remove,
-.table thead tr th .dropzone .dz-preview .btn-edit,
-.dropzone .dz-preview .table thead tr th .btn-edit {
-  margin-top: -20px;
-  margin-bottom: -20px;
 }
 
 .table tbody tr td {
@@ -18394,10 +18490,6 @@ a.text-black:hover {
 
 .table tbody tr td .btn-tag:hover {
   background: rgba(58, 63, 81, 0.15);
-}
-
-.table tbody tr td[class*='sorting_'] {
-  color: #000;
 }
 
 .table tbody tr.selected td {
@@ -18621,13 +18713,13 @@ a.text-black:hover {
 }
 
 .form-control[disabled],
-.chosen-choices[disabled],
-.chosen-single[disabled],
-.bootstrap-tagsinput[disabled],
+[disabled].chosen-choices,
+[disabled].chosen-single,
+[disabled].bootstrap-tagsinput,
 .form-control[readonly],
-.chosen-choices[readonly],
-.chosen-single[readonly],
-.bootstrap-tagsinput[readonly],
+[readonly].chosen-choices,
+[readonly].chosen-single,
+[readonly].bootstrap-tagsinput,
 fieldset[disabled] .form-control,
 fieldset[disabled] .chosen-choices,
 fieldset[disabled] .chosen-single,
@@ -19035,148 +19127,6 @@ select.bootstrap-tagsinput {
 /**
  * Nestable
  */
-
-.dd {
-  position: relative;
-  display: block;
-  margin: 0;
-  padding: 0;
-  max-width: 600px;
-  list-style: none;
-  font-size: 13px;
-  line-height: 20px;
-}
-
-.dd-list {
-  display: block;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dd-list .dd-list {
-  padding-left: 30px;
-}
-
-.dd-item,
-.dd-empty,
-.dd-placeholder {
-  display: block;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  min-height: 20px;
-  font-size: 13px;
-  line-height: 20px;
-}
-
-.dd-handle {
-  display: block;
-  height: 30px;
-  margin: 5px 0;
-  padding: 5px 10px;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  background: #fafafa;
-  border-radius: 3px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.dd-handle:hover {
-  color: #2ea8e5;
-  background: #fff;
-}
-
-.dd-item > button {
-  position: relative;
-  cursor: pointer;
-  float: left;
-  width: 25px;
-  height: 20px;
-  margin: 5px 0;
-  padding: 0;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  border: 0;
-  background: transparent;
-  font-size: 12px;
-  line-height: 1;
-  text-align: center;
-  font-weight: bold;
-}
-
-.dd-item > button:before {
-  display: block;
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  text-indent: 0;
-}
-
-.dd-item > button.dd-expand:before {
-  content: '+';
-}
-
-.dd-item > button.dd-collapse:before {
-  content: '-';
-}
-
-.dd-expand {
-  display: none;
-}
-
-.dd-collapsed .dd-list,
-.dd-collapsed .dd-collapse {
-  display: none;
-}
-
-.dd-collapsed .dd-expand {
-  display: block;
-}
-
-.dd-empty,
-.dd-placeholder {
-  margin: 5px 0;
-  padding: 0;
-  min-height: 30px;
-  background: #f2fbff;
-  border: 1px dashed #b6bcbf;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.dd-empty {
-  border: 1px dashed #bbb;
-  min-height: 100px;
-  background-color: #e5e5e5;
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px;
-}
-
-.dd-dragel {
-  position: absolute;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.dd-dragel > .dd-item .dd-handle {
-  margin-top: 0;
-}
-
-.dd-dragel .dd-handle {
-  -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
-}
-
-.dd-nochildren .dd-placeholder {
-  display: none;
-}
 
 .dd {
   max-width: 100%;

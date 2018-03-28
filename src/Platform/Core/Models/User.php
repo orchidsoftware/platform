@@ -70,8 +70,7 @@ class User extends Authenticatable implements UserInterface
         'name',
         'email',
     ];
-    
-    
+
     /**
      * Send the password reset notification.
      *
@@ -87,8 +86,7 @@ class User extends Authenticatable implements UserInterface
     /**
      * Set permission as boolean.
      *
-     * @param  string  $value
-     * @return void
+     * @param  mixed  $permissions
      */
     public function setPermissionsAttribute($permissions)
     {
