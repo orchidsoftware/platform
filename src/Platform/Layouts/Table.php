@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Layouts;
 
+use Orchid\Platform\Screen\Repository;
+
 abstract class Table
 {
     /**
@@ -22,11 +24,11 @@ abstract class Table
      * @return array
      * @throws \Throwable
      */
-    public function build($query)
+    public function build(Repository $query)
     {
         $form = $this->generatedTable($query);
         return view($this->template, [
-            'form'    => $form,
+            'form' => $form,
         ])->render();
     }
 
@@ -35,7 +37,7 @@ abstract class Table
      *
      * @return array
      */
-    private function generatedTable($post) : array
+    private function generatedTable(Repository $post): array
     {
         return [
             'data'   => $post->getContent($this->data),

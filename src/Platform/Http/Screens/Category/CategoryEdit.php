@@ -1,20 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Screens\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-
-use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Facades\Alert;
-use Orchid\Platform\Facades\Dashboard;
-
+use Orchid\Platform\Http\Layouts\Category\CategoryEditLayout;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-
-use Orchid\Platform\Http\Layouts\Category\CategoryEditLayout;
 
 class CategoryEdit extends Screen
 {
@@ -116,8 +113,8 @@ class CategoryEdit extends Screen
 
     /**
      * @param Category $category
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function remove(Category $category)
     {

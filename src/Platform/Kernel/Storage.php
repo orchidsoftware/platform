@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
+use Illuminate\Support\Collection;
+
 class Storage implements StorageInterface
 {
     /**
-     * @var
+     * @var Collection
      */
     public $container;
 
@@ -39,9 +41,9 @@ class Storage implements StorageInterface
     /**
      * Return all data to the repository.
      *
-     * @return array
+     * @return Collection
      */
-    public function all() : array
+    public function all(): Collection
     {
         $this->container->transform(function ($value) {
             if (! is_object($value)) {
@@ -51,7 +53,7 @@ class Storage implements StorageInterface
             return $value;
         });
 
-        return $this->container->all();
+        return $this->container;
     }
 
     /**
@@ -72,5 +74,19 @@ class Storage implements StorageInterface
     public function find($name)
     {
         return $this->container->where('slug', $name)->first();
+    }
+
+    /**
+     * @param $method
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($method, $arguments)
+    {
+        if (method_exists($this, $method)) {
+            return call_user_func_array([$this, $method], $arguments);
+        }
+
+        return call_user_func_array([$this->container, $method], $arguments);
     }
 }

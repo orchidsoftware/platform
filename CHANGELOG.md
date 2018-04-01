@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Grouping items using Field::group 
 - TD::link and TD::linkPost
 - Sorting capability for TD
+- Property display for page
 
 ### Deprecated
 - TD::name and TD::title use TD::set
@@ -16,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Test migration pgsql to sqlite
 - Google Chrome autofill no longer changes the color of the fields
+
+### Fixed
+- Require to required
+- Hide the menu without children
 
 ### Removed
 - Font Awesome

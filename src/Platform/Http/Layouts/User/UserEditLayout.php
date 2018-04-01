@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\User;
 
 use Orchid\Platform\Fields\Field;
@@ -15,20 +17,19 @@ class UserEditLayout extends Rows
      */
     public function fields(): array
     {
-
         return [
             Field::tag('input')
                 ->type('text')
                 ->name('user.name')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/users.name'))
                 ->placeholder(trans('dashboard::systems/users.name')),
 
             Field::tag('input')
                 ->type('email')
                 ->name('user.email')
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/users.email'))
                 ->placeholder(trans('dashboard::systems/users.email')),
 

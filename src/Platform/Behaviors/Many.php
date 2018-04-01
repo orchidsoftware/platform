@@ -4,20 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\View\View;
-use Illuminate\Support\Collection;
 use Orchid\Platform\Core\Models\Post;
 
 abstract class Many
 {
     use Structure;
-
-    /**
-     * Show the data to the user.
-     *
-     * @var bool
-     */
-    public $display = true;
 
     /**
      * Eloquent Eager Loading.

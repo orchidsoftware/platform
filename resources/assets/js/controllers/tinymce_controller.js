@@ -1,7 +1,7 @@
 import {Controller} from "stimulus"
-
 //Tinymce editor
 import tinymce from 'tinymce/tinymce'
+
 tinymce.baseURL = '/orchid/js/tinymce';
 
 
@@ -79,9 +79,12 @@ export default class extends Controller {
         }
 
         tinymce.init({
+            branding: false,
             selector: `#${selector}`,
             theme: this.element.dataset.theme,
             min_height: 300,
+            height: 300,
+            max_height: 600,
             plugins: plugins,
             toolbar1: toolbar1,
             insert_toolbar: 'quickimage quicktable media codesample fullscreen',

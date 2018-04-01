@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\Category;
 
 use Orchid\Platform\Fields\Field;

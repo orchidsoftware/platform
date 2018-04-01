@@ -1,13 +1,13 @@
 <?php
 
-namespace Orchid\Platform\Http\Screens\Role;
+declare(strict_types=1);
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
+namespace Orchid\Platform\Http\Screens\Role;
 
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Http\Layouts\Role\RoleListLayout;
+use Orchid\Platform\Screen\Link;
+use Orchid\Platform\Screen\Screen;
 
 class RoleList extends Screen
 {

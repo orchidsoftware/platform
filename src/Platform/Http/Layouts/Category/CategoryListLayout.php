@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\Category;
 
-use Orchid\Platform\Layouts\Table;
 use Orchid\Platform\Fields\TD;
+use Orchid\Platform\Layouts\Table;
 
 class CategoryListLayout extends Table
 {

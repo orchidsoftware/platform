@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\Comment;
 
-use Orchid\Platform\Layouts\Table;
 use Orchid\Platform\Fields\TD;
+use Orchid\Platform\Layouts\Table;
 
 class CommentListLayout extends Table
 {

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\Role;
 
-use Orchid\Platform\Layouts\Table;
 use Orchid\Platform\Fields\TD;
+use Orchid\Platform\Layouts\Table;
 
 class RoleListLayout extends Table
 {
@@ -19,21 +21,23 @@ class RoleListLayout extends Table
      */
     public function filters() : array
     {
-        return [
-        ];
+        return [];
     }
+
     /**
      * @return array
      */
     public function fields() : array
     {
         return [
+            TD::set('id', 'ID')
+                ->align('center')
+                ->width('100px')
+                ->sort()
+                ->link('dashboard.systems.roles.edit', 'slug'),
             TD::set('name',trans('dashboard::systems/roles.name'))
                 ->sort()
-                ->setRender(function ($role) {
-                    return '<a href="'.route('dashboard.systems.roles.edit',
-                        $role->slug).'">'.$role->name.'</a>';
-                }),
+                ->link('dashboard.systems.roles.edit', 'slug', 'name'),
             TD::set('slug',trans('dashboard::systems/roles.slug'))
                 ->sort(),
             TD::set('created_at',trans('dashboard::common.Created'))

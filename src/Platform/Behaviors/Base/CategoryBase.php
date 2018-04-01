@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Platform\Fields\TD;
 use Orchid\Platform\Core\Models\Category;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Fields\TD;
 
 class CategoryBase
 {
@@ -55,7 +55,7 @@ class CategoryBase
                 ->type('text')
                 ->name('name')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/category.fields.name_title'))
                 ->help(trans('dashboard::systems/category.fields.name_help')),
 

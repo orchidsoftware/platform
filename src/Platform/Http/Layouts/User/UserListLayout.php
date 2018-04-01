@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\User;
 
-use Orchid\Platform\Layouts\Table;
 use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\RoleFilter;
+use Orchid\Platform\Layouts\Table;
 
 class UserListLayout extends Table
 {
@@ -31,12 +33,14 @@ class UserListLayout extends Table
     public function fields() : array
     {
         return [
+            TD::set('id', 'ID')
+                ->align('center')
+                ->width('100px')
+                ->sort()
+                ->link('dashboard.systems.users.edit', 'id'),
             TD::set('name',trans('dashboard::systems/users.name'))
                 ->sort()
-                ->setRender(function ($user) {
-                    return '<a href="'.route('dashboard.systems.users.edit',
-                        $user->id).'">'.$user->name.'</a>';
-                }),
+                ->link('dashboard.systems.users.edit', 'id', 'name'),
             TD::set('email',trans('dashboard::systems/users.email'))
                 ->sort(),
             TD::set('updated_at',trans('dashboard::common.Last edit'))

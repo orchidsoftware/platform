@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
+use Illuminate\Support\Collection;
+
 interface StorageInterface
 {
     /**
@@ -12,9 +14,9 @@ interface StorageInterface
     public function add($class);
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function all() : array;
+    public function all(): Collection;
 
     /**
      * @param $arg

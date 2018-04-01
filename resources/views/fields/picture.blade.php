@@ -33,19 +33,16 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content-wrapper">
                 <div class="modal-content">
-                    <div class="modal-header clearfix text-left">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <i class="fa fa-times"></i>
-                        </button>
+                    <div class="modal-header clearfix">
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span
+                                    aria-hidden="true">×</span></button>
                         <h5>Crop image</h5>
                     </div>
                     <div>
-                        <div class="upload-panel">
-
-                        </div>
+                        <div class="upload-panel"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-action="picture#crop">Crop</button>
+                        <button type="button" class="btn btn-primary" data-action="picture#crop">Crop</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>

@@ -10,9 +10,6 @@ export default class extends Controller {
     connect() {
         let image = this.data.get('image');
 
-        console.log(image,
-            this.data.get('image'),'test');
-
         if (image) {
             this.element.querySelector('.picture-preview').src = image;
         } else {

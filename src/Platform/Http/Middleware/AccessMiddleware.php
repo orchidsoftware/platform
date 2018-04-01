@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Middleware;
 
-use Closure;
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
 class AccessMiddleware
@@ -29,8 +29,6 @@ class AccessMiddleware
     {
         $this->auth = $auth;
     }
-
-    /** @noinspection PhpInconsistentReturnPointsInspection */
 
     /**
      * @param          $request

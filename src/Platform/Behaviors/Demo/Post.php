@@ -6,12 +6,12 @@ namespace Orchid\Platform\Behaviors\Demo;
 
 use Orchid\Platform\Behaviors\Many;
 use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
-use Orchid\Platform\Fields\TD;
 
 class Post extends Many
 {
@@ -95,6 +95,34 @@ class Post extends Many
                 ];
             }),
 
+            Field::group(function () {
+                return [
+
+                    Field::tag('select')
+                        ->options([
+                            'index'   => 'Index',
+                            'noindex' => 'No index',
+                        ])
+                        ->name('robot')
+                        ->title('Indexing')
+                        ->help('Allow search bots to index page'),
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('phone')
+                        ->mask('(999) 999-9999')
+                        ->title('Phone')
+                        ->help('Number Phone'),
+
+                    Field::tag('checkbox')
+                        ->name('free')
+                        ->value('230')
+                        ->title('Free')
+                        ->placeholder('Event for free')
+                        ->help('Event for free'),
+
+                ];
+            }),
 
             Field::tag('textarea')
                 ->name('description')
@@ -109,11 +137,6 @@ class Post extends Many
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('markdown')
-                ->name('body2')
-                ->title('Name Articles')
-                ->help('Article title'),
-
             Field::tag('picture')
                 ->name('picture')
                 ->width(500)
@@ -124,33 +147,15 @@ class Post extends Many
                 ->title('Opening date')
                 ->help('The opening event will take place'),
 
-            Field::tag('checkbox')
-                ->name('free')
-                ->value('230')
-                ->title('Free')
-                ->placeholder('Event for free')
-                ->help('Event for free'),
-
             Field::tag('tags')
                 ->name('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            Field::tag('select')
-                ->options([
-                    'index' => 'Index',
-                    'noindex' => 'No index',
-                ])
-                ->name('robot')
-                ->title('Indexing')
-                ->help('Allow search bots to index page'),
-
-            Field::tag('input')
-                ->type('text')
-                ->name('phone')
-                ->mask('(999) 999-9999')
-                ->title('Phone')
-                ->help('Number Phone'),
+            Field::tag('markdown')
+                ->name('body2')
+                ->title('Name Articles')
+                ->help('Article title'),
 
             /* need api key 'place'
             Field::tag('place')
@@ -179,7 +184,6 @@ class Post extends Many
     {
         return [
             TD::set('id','ID')
-                ->filter('numeric')
                 ->align('center')
                 ->width('100px')
                 ->sort()
@@ -187,13 +191,11 @@ class Post extends Many
             TD::set('name', 'Name')
                 ->locale()
                 ->column('content.name')
-                ->filter('text')
                 ->sort()
                 ->linkPost('name'),
             TD::set('publish_at', 'Date of publication')
                 ->sort(),
             TD::set('created_at', 'Date of creation')
-                ->filter('date')
                 ->sort(),
         ];
     }

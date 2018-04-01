@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Screens\User;
 
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Http\Filters\RoleFilter;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
@@ -32,7 +33,9 @@ class UserList extends Screen
     public function query() : array
     {
         return  [
-            'users' => User::filters()->defaultSort('id','desc')->paginate(),
+            'users' => User::filters()
+                ->defaultSort('id', 'desc')
+                ->paginate(),
         ];
     }
 
@@ -44,7 +47,9 @@ class UserList extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('dashboard::common.commands.add'))->icon('icon-plus')->method('create'),
+            Link::name(trans('dashboard::common.commands.add'))
+                ->icon('icon-plus')
+                ->method('create'),
         ];
     }
 

@@ -1,5 +1,6 @@
 <div class="dropdown">
-    <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-sm btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
         <i class="icon-filter"></i>
     </button>
     <div class="dropdown-menu">

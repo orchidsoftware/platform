@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Layouts;
 
 use Orchid\Platform\Fields\Builder;
+use Orchid\Platform\Screen\Repository;
 
 abstract class Rows
 {
@@ -14,7 +15,7 @@ abstract class Rows
     public $template = 'dashboard::container.layouts.row';
 
     /**
-     * @var
+     * @var Repository
      */
     public $query;
 

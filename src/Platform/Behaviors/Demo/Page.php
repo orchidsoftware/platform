@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Single;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
 class Page extends Single
@@ -76,6 +76,34 @@ class Page extends Single
                 ];
             }),
 
+            Field::group(function () {
+                return [
+
+                    Field::tag('select')
+                        ->options([
+                            'index'   => 'Index',
+                            'noindex' => 'No index',
+                        ])
+                        ->name('robot')
+                        ->title('Indexing')
+                        ->help('Allow search bots to index page'),
+
+                    Field::tag('input')
+                        ->type('text')
+                        ->name('phone')
+                        ->mask('(999) 999-9999')
+                        ->title('Phone')
+                        ->help('Number Phone'),
+
+                    Field::tag('checkbox')
+                        ->name('free')
+                        ->value('230')
+                        ->title('Free')
+                        ->placeholder('Event for free')
+                        ->help('Event for free'),
+
+                ];
+            }),
 
             Field::tag('textarea')
                 ->name('description')
@@ -90,49 +118,25 @@ class Page extends Single
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('markdown')
-                ->name('body2')
-                ->title('Name Articles')
-                ->help('Article title'),
-
             Field::tag('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
             Field::tag('datetime')
-                ->type('text')
                 ->name('open')
                 ->title('Opening date')
                 ->help('The opening event will take place'),
-
-            Field::tag('checkbox')
-                ->name('free')
-                ->value(1)
-                ->title('Free')
-                ->placeholder('Event for free')
-                ->help('Event for free'),
 
             Field::tag('tags')
                 ->name('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            Field::tag('select')
-                ->options([
-                    'index' => 'Index',
-                    'noindex' => 'No index',
-                ])
-                ->name('robot')
-                ->title('Indexing')
-                ->help('Allow search bots to index page'),
-
-            Field::tag('input')
-                ->type('text')
-                ->name('phone')
-                ->mask('(999) 999-9999')
-                ->title('Phone')
-                ->help('Number Phone'),
+            Field::tag('markdown')
+                ->name('body2')
+                ->title('Name Articles')
+                ->help('Article title'),
 
             /* need api key 'place'
             Field::tag('place')

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Http\Filters\RoleFilter;
 
 class UserBase
@@ -55,14 +55,14 @@ class UserBase
                 ->type('text')
                 ->name('name')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/users.name'))
                 ->placeholder(trans('dashboard::systems/users.name')),
 
             Field::tag('input')
                 ->type('email')
                 ->name('email')
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/users.email'))
                 ->placeholder(trans('dashboard::systems/users.email')),
 
@@ -79,9 +79,12 @@ class UserBase
     public function grid() : array
     {
         return [
-            TD::name('name')->title(trans('dashboard::systems/users.name')),
-            TD::name('email')->title(trans('dashboard::systems/users.email')),
-            TD::name('updated_at')->title(trans('dashboard::common.Last edit')),
+            TD::name('name')
+                ->title(trans('dashboard::systems/users.name')),
+            TD::name('email')
+                ->title(trans('dashboard::systems/users.email')),
+            TD::name('updated_at')
+                ->title(trans('dashboard::common.Last edit')),
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Layouts\User;
 
 use Illuminate\Support\Collection;
@@ -48,9 +50,6 @@ class UserRoleLayout extends Rows
      */
     public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
-
-        $fields = [];
-
         foreach ($permissionsRaw as $group => $items) {
 
             $fields[] = Field::tag('label')
@@ -58,7 +57,7 @@ class UserRoleLayout extends Rows
                 ->title(trans('dashboard::permission.main.' . strtolower($group)))
                 ->hr(false);
 
-            foreach (collect($items)->chunk(4) as $chunks) {
+            foreach (collect($items)->chunk(3) as $chunks) {
 
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
@@ -79,6 +78,6 @@ class UserRoleLayout extends Rows
         }
 
 
-        return $fields;
+        return $fields ?? [];
     }
 }

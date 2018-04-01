@@ -63,6 +63,13 @@ trait Structure
     public $divider = null;
 
     /**
+     * Show the data to the user.
+     *
+     * @var bool
+     */
+    public $display = true;
+
+    /**
      * Container for HTML render.
      *
      * @var null

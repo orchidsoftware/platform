@@ -6,7 +6,6 @@ namespace Orchid\Platform\Fields;
 
 use Closure;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Post;
 
 class TD
 {
@@ -211,8 +210,8 @@ class TD
      */
     public function link(string $route, $options, string $text = null)
     {
+        $this->setRender(function ($datum) use ($route, $options, $text) {
 
-        return $this->setRender(function (Post $datum) use ($route, $options, $text) {
 
             $attributes = [];
 
@@ -221,8 +220,15 @@ class TD
             }
 
             foreach ($options as $option) {
-                $attributes[] = $datum->getContent($option);
+
+                if (method_exists($datum, 'getContent')) {
+                    $attributes[] = $datum->getContent($option);
+                    continue;
+                }
+
+                $attributes[] = $datum->getAttribute($option);
             }
+
 
             if (!is_null($text)) {
                 $text = $datum->getContent($text);
@@ -235,6 +241,8 @@ class TD
             ]);
 
         });
+
+        return $this;
     }
 
     /**

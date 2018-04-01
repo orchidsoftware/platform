@@ -1,9 +1,10 @@
 <div class="dropdown">
-    <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-sm btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
         <i class="icon-filter"></i>
     </button>
     <div class="dropdown-menu">
-        <form class="wrapper-sm" accept-charset="utf-8" method="get">
+        <form class="wrapper-sm" accept-charset="utf-8" method="get" enctype="multipart/form-data">
             <div class="form-group m-b">
                 <input type="number" name="?filter[{{$th->column}}]" class="form-control form-control-sm" required placeholder="Фильтр">
             </div>

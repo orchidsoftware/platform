@@ -25,8 +25,6 @@ class UsersRequest extends Request
      */
     public function rules()
     {
-        return [
-
-        ];
+        return [];
     }
 }

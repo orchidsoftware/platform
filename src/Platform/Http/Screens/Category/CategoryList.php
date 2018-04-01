@@ -1,15 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Screens\Category;
 
 use Illuminate\Http\Request;
+use Orchid\Platform\Core\Models\Category;
+use Orchid\Platform\Http\Layouts\Category\CategoryListLayout;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-
-use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Core\Models\Category;
-
-use Orchid\Platform\Http\Layouts\Category\CategoryListLayout;
 
 class CategoryList extends Screen
 {

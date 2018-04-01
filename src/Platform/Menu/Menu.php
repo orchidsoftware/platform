@@ -106,7 +106,8 @@ class Menu
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param        $arg
+     * @param array  $arg
+     * @return $this|void
      */
     public function add(string $place, array $arg)
     {
@@ -130,6 +131,8 @@ class Menu
         ];
 
         $this->container[$this->arg['slug']] = $this->item;
+
+        return $this;
     }
 
     /**

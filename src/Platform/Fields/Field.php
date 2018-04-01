@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
+use Orchid\Platform\Exceptions\TypeException;
 
 /**
  * Class Field.
@@ -22,6 +22,8 @@ use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
  * @method $this style($value = true)
  * @method $this tabindex($value = true)
  * @method $this title($value = true)
+ * @method $this hr($value = true)
+ * @method $this options($value = true)
  */
 class Field implements FieldContract
 {

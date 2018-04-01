@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Screens\User;
 
 use Illuminate\Http\Request;
@@ -42,14 +44,18 @@ class UserEdit extends Screen
         $user = is_null($id) ? new User : User::findOrFail($id);
 
         $rolePermission = $user->permissions ?? [];
-        $permission = Dashboard::getPermission();
+        $permission = Dashboard::getPermission()
+            ->sort()
+            ->transform(function ($group) use ($rolePermission) {
 
-        $permission->transform(function ($array) use ($rolePermission) {
-            foreach ($array as $key => $value) {
-                $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-            }
-            return $array;
-        });
+                $group = collect($group)->sortBy('description')->toArray();
+
+                foreach ($group as $key => $value) {
+                    $group[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
+                }
+
+                return $group;
+            });
 
         $roles = Role::all();
         $userRoles = $user->getRoles();
@@ -77,6 +83,12 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
+            Link::name('Войти как пользователь')
+                ->icon('icon-login')
+                ->method('save'),
+            Link::name('Изменить пароль')
+                ->icon('icon-key')
+                ->method('save'),
             Link::name(trans('dashboard::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
@@ -94,6 +106,17 @@ class UserEdit extends Screen
     public function layout(): array
     {
         return [
+            Layouts::columns([
+                'Left column'  => [
+                    UserRoleLayout::class
+                ],
+                'Right column' => [
+                    UserEditLayout::class
+                ],
+            ]),
+
+
+            /*
             Layouts::tabs([
                 trans('dashboard::systems/users.tabs.information') => [
                     UserEditLayout::class
@@ -102,6 +125,8 @@ class UserEdit extends Screen
                     UserRoleLayout::class
                 ],
             ]),
+            */
+
 
         ];
     }
@@ -160,5 +185,4 @@ class UserEdit extends Screen
 
         return redirect()->route('dashboard.systems.users');
     }
-
 }

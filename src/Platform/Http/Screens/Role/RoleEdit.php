@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Platform\Http\Screens\Role;
 
 use Illuminate\Http\Request;
@@ -7,6 +9,7 @@ use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Http\Layouts\Role\RoleEditLayout;
+use Orchid\Platform\Http\Layouts\Role\RolePermissionLayout;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
@@ -40,14 +43,17 @@ class RoleEdit extends Screen
         $role = is_null($roleSlug) ? new Role : Role::where('slug', $roleSlug)->firstOrFail();
 
         $rolePermission = $role->permissions ?? [];
-        $permission = Dashboard::getPermission();
+        $permission = Dashboard::getPermission()
+            ->sort()
+            ->transform(function ($group) use ($rolePermission) {
 
-        $permission->transform(function ($array) use ($rolePermission) {
-            foreach ($array as $key => $value) {
-                $array[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
+                $group = collect($group)->sortBy('description')->toArray();
+
+                foreach ($group as $key => $value) {
+                    $group[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
             }
 
-            return $array;
+                return $group;
         });
 
         return [
@@ -83,11 +89,13 @@ class RoleEdit extends Screen
     {
         return [
             Layouts::columns([
-                'RoleEdit' => [
+                'Left column'  => [
+                    RolePermissionLayout::class
+                ],
+                'Right column' => [
                     RoleEditLayout::class
                 ],
             ]),
-
         ];
     }
 
