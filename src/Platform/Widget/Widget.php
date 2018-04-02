@@ -14,12 +14,22 @@ class Widget implements WidgetContractInterface
      */
     public function get(string $key, $arg = null)
     {
-        $class = config('widget.widgets.'.$key);
-        $widget = new $class();
-
+        $widget = $this->getWidgetFromConfig($key);
+        
         return $widget->handler($arg);
     }
-
+    
+    /**
+     * @param string $key
+     *
+     * @return \Orchid\Platform\Widget\Widget
+     */
+    private function getWidgetFromConfig(string $key):Widget
+    {
+        $class = config('widget.widgets.'.$key);
+        return new $class();
+    }
+    
     /**
      * Soother.
      */

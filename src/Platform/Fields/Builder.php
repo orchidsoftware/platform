@@ -46,12 +46,11 @@ class Builder
     /**
      * Builder constructor.
      *
-     * @param array       $fields
-     * @param             $data
+     * @param array $fields
+     * @param Repository $data
      * @param string|null $language
      * @param string|null $prefix
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
     {
@@ -99,6 +98,7 @@ class Builder
      * Generate a ready-made html form for display to the user.
      *
      * @return string
+     * @throws \Throwable
      */
     public function generateForm() : string
     {
@@ -118,6 +118,7 @@ class Builder
 
     /**
      * @param $groupField
+     * @throws \Throwable
      */
     private function renderGroup($groupField){
 

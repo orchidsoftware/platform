@@ -184,7 +184,7 @@ abstract class FormGroup
     }
 
     /**
-     * @param $method
+     * @param string $method
      *
      * @return FormGroup
      */
@@ -196,7 +196,7 @@ abstract class FormGroup
     }
 
     /**
-     * @param $method
+     * @param string $method
      *
      * @return FormGroup
      */

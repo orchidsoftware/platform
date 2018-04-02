@@ -13,7 +13,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    const VERSION = '2.2.3';
+    const VERSION = '2.3.0';
 
     /**
      * @var
@@ -63,6 +63,8 @@ class Dashboard
     }
 
     /**
+     * Get the route with the dashboard prefix
+     *
      * @param $path
      *
      * @return string

@@ -106,7 +106,7 @@ class Menu
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param array  $arg
+     * @param array $arg
      * @return $this|void
      */
     public function add(string $place, array $arg)
@@ -138,7 +138,7 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param string      $location
+     * @param string $location
      * @param string|null $template
      *
      * @return string

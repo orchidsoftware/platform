@@ -262,7 +262,7 @@ class Field implements FieldContract
     public function getId()
     {
         $lang = $this->get('lang');
-        $slug = $this->getSlug('slug');
+        $slug = $this->getSlug();
 
         return "field-$lang-$slug";
     }

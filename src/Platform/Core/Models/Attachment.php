@@ -132,7 +132,7 @@ class Attachment extends Model
      * @param Attachment $attachment
      * @param string $storageName
      */
-    private function removePhysicalFile(self $attachment, $storageName)
+    private function removePhysicalFile(Attachment $attachment, $storageName)
     {
         $storage = Storage::disk($storageName);
 

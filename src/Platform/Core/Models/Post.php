@@ -218,7 +218,7 @@ class Post extends Model
     /**
      * Get the author's posts.
      *
-     * @return User|null
+     * @return Model|null|object|static
      */
     public function getUser()
     {

@@ -33,7 +33,10 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return $this->form->route('dashboard.systems.settings.update')->method('post')->render();
+        return $this->form
+            ->route('dashboard.systems.settings.update')
+            ->method('post')
+            ->render();
     }
 
     /**

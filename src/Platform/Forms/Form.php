@@ -64,15 +64,15 @@ abstract class Form implements FormInterface
     /**
      * Save Form.
      *
+     * @param mixed ...$arg
+     *
      * @return mixed
      */
-    public function save()
+    public function save(...$arg)
     {
-        $arg = func_get_args();
-
         // do validation
         if ($this->isValid()) {
-            return $this->persist(...$arg);
+            return $this->persist($arg);
 
             // return true
         }
