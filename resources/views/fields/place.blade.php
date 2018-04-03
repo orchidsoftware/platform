@@ -1,8 +1,6 @@
 <div class="map-place-{{$name}}-{{$lang}}">
-    <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
-        @if(isset($title))
-            <label for="field-{{$slug}}">{{$title}}</label>
-        @endif
+
+    @component('dashboard::partials.fields.group',get_defined_vars())
         @php
             if(isset($prefix))
                 $inputname=$prefix.'['.$lang.']'.$name;
@@ -27,11 +25,11 @@
                         class="icon-location-pin"></i></button>
             </span>
         </div>
-    </div>
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
+
+    @endcomponent
 </div>
+
+
 <!-- Modal  -->
 <div class="modal fade" id="map-place-{{$slug}}-{{$lang}}" tabindex="-1" role="dialog"
      aria-labelledby="map-place-{{$slug}}-{{$lang}}">
@@ -50,7 +48,6 @@
         </div>
     </div>
 </div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
 
 
 @push('scripts')

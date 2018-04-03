@@ -150,6 +150,7 @@ class Menu
         if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
+
             $this->container = $this->container->filter(function ($item) use ($user) {
                 return (isset($item['arg']['permission'])) ? $user->hasAccess($item['arg']['permission']) : true;
             });

@@ -62,7 +62,7 @@ class CategoryBase
             Field::tag('wysiwyg')
                 ->name('body')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(trans('dashboard::systems/category.fields.body_title')),
         ];
     }

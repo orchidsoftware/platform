@@ -55,18 +55,8 @@ class Builder
      */
     public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
     {
-        //deprecated
-        //foreach ($fields as $key => $item) {
-        //    if (! is_object($item)) {
-        //        $RawParse = Parser::parseFields([$item]);
-        //        $RawField = array_shift($RawParse)->toArray();
-        //        $fields[$key] = Field::make($RawField);
-        //    }
-        //}
-
         $this->fields = $fields;
         $this->data = $data;
-
         $this->language = $language;
         $this->prefix = $prefix;
     }
@@ -102,7 +92,6 @@ class Builder
      */
     public function generateForm() : string
     {
-
         foreach ($this->fields as $field) {
 
             if(is_array($field)){

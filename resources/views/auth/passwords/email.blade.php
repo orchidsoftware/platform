@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.auth')
 <!-- Main Content  -->
 @section('content')
-    <p class="m-t-lg">Reset Password</p>
+    <p class="m-t-lg">{{trans('dashboard::auth/account.password_reset')}}</p>
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -24,7 +24,7 @@
             </div>
         </div>
         <button class="btn btn-primary m-t-md" type="submit">
-            <i class="icon-envelope text-xs m-r-xs"></i> Send Password Reset Link
+            <i class="icon-envelope text-xs m-r-xs"></i> {{trans('dashboard::auth/account.reset')}}
         </button>
     </form>
 @endsection

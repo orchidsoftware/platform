@@ -3,19 +3,14 @@
 @section('title',$name)
 @section('description',$description)
 
-
 @section('navbar')
-
     <ul class="nav justify-content-end  v-center" role="tablist">
-
         <li class="nav-item">
             <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link">
                 <i class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}</a>
         </li>
-
     </ul>
 @stop
-
 
 @section('content')
     <!-- main content  -->

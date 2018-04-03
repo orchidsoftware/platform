@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors;
 
+use Illuminate\View\View;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Core\Models\Post;
 
 abstract class Many
@@ -32,6 +34,16 @@ abstract class Many
     abstract public function grid() : array;
 
     /**
+     * HTTP data filters.
+     *
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [];
+    }
+
+    /**
      * Raw data and fields to display.
      *
      * @return array
@@ -41,6 +53,7 @@ abstract class Many
         $fields = $this->grid();
 
         $data = Post::type($this->slug)
+            ->filtersApplyDashboard($this->slug)
             ->filters()
             ->with($this->with)
             ->orderBy('id', 'Desc')
@@ -51,5 +64,39 @@ abstract class Many
             'fields' => $fields,
             'type'   => $this,
         ];
+    }
+
+
+    /**
+     * Display form for filtering.
+     *
+     * @return View
+     */
+    public function showFilterDashboard() : View
+    {
+        $dashboardFilter = $this->getFilters(true);
+        $chunk = ceil($dashboardFilter->count() / 4);
+        return view('dashboard::container.posts.filter', [
+            'filters' => $dashboardFilter,
+            'chunk'   => $chunk,
+        ]);
+    }
+    /**
+     * Get all the filters.
+     *
+     * @param bool $dashboard
+     *
+     * @return Collection
+     */
+    public function getFilters($dashboard = false) : Collection
+    {
+        $filters = collect();
+        foreach ($this->filters() as $filter) {
+            $filter = new $filter($this);
+            if ($filter->dashboard == $dashboard) {
+                $filters->push($filter);
+            }
+        }
+        return $filters;
     }
 }

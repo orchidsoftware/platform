@@ -13,9 +13,7 @@
 
 
 @section('flash_notification.sub_message')
-    @if(session('restore'))
-        @include('dashboard::container.posts.restore')
-    @endif
+    @includeWhen(session('restore'),'dashboard::container.posts.restore')
 @stop
 
 

@@ -4,61 +4,56 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Builder;
 
-class Filter
+abstract class Filter
 {
     /**
      * @var Request
      */
-    protected $request;
+    public $request;
 
     /**
-     * @var
+     * @var null
      */
-    protected $filters;
+    public $parameters = null;
 
     /**
-     * @var
+     * @var bool
      */
-    protected $sorts;
+    public $display = true;
 
     /**
-     * Model options and allowed params
+     * Current app language.
      *
      * @var
      */
-    protected $options;
+    public $lang;
+
+    /**
+     * Apply a filter in the administration panel.
+     *
+     * @var bool
+     */
+    public $dashboard = false;
+
+    /**
+     * @var null
+     */
+    public $behavior = null;
 
     /**
      * Filter constructor.
      *
-     * @param Request|null $request
+     * @param $behavior
      */
-    public function __construct(Request $request = null)
+    public function __construct($behavior = null)
     {
-        $this->request = $request ?? request();
-
-        $this->filters = collect($this->request->get('filter', []))->map(function ($item){
-            return $this->parseHttpValue($item);
-        });
-        $this->sorts = collect($this->request->get('sort', []));
-    }
-
-    /**
-     * @param $query
-     * @return array
-     */
-    protected function parseHttpValue($query)
-    {
-        $item = explode(',', $query);
-
-        if(count($item) > 1){
-            return $item;
-        }
-
-        return $query;
+        $this->behavior = $behavior;
+        $this->request = request();
+        $this->lang = App::getLocale();
     }
 
     /**
@@ -66,121 +61,27 @@ class Filter
      *
      * @return Builder
      */
-    public function build(Builder $builder): Builder
+    public function filter(Builder $builder) : Builder
     {
-        $this->options = $builder->getModel()->getOptionsFilter();
-        $this->addFiltersToQuery($builder);
-        $this->addSortsToQuery($builder);
+        if (is_null($this->parameters) || $this->request->filled($this->parameters)) {
+            return $this->run($builder);
+        }
 
         return $builder;
     }
 
     /**
      * @param Builder $builder
-     */
-    protected function addSortsToQuery(Builder $builder)
-    {
-        $this->sorts
-            ->each(function (string $sort) use ($builder) {
-                $descending = $sort[0] === '-';
-                $key = ltrim($sort, '-');
-                $key= str_replace(".", "->", $key);
-                $builder->orderBy($key, $descending ? 'desc' : 'asc');
-            });
-    }
-
-    /**
-     * @param Builder $builder
-     */
-    protected function addFiltersToQuery(Builder $builder)
-    {
-        $allowedFilters = $this->options->get('allowedFilters')->toArray();
-
-        $this->filters->each(function ($value, $property) use ($builder,$allowedFilters) {
-
-            $allowProperty = $property;
-            if(false !== stristr($property, '.')){
-                $allowProperty = stristr($property, '.', true);
-            }
-
-            if(in_array($allowProperty,$allowedFilters)){
-                $property= str_replace(".", "->", $property);
-                $this->filtersExact($builder, $value, $property);
-            }
-
-        });
-    }
-
-    /**
-     * @param Builder $query
-     * @param         $value
-     * @param string  $property
-     * @return Builder
-     */
-    protected function filtersExact(Builder $query, $value, string $property)
-    {
-        if (is_array($value)) {
-            return $query->whereIn($property, $value);
-        }
-
-        return $query->where($property, $value);
-    }
-
-    /**
-     * @param null $property
+     *
      * @return mixed
      */
-    public function isSort($property = null)
-    {
-        if (is_null($property)) {
-            return $this->sorts->isEmpty();
-        }
-
-        if ($this->sorts->search($property, true) !== false) {
-            return true;
-        }
-
-        if ($this->sorts->search('-'.$property, true) !== false) {
-            return true;
-        }
-
-        return false;
-    }
+    abstract public function run(Builder $builder) : Builder;
 
     /**
-     * @param $property
-     * @return mixed
+     * User mapping method.
      */
-    public function revertSort($property){
-
-        if($this->getSort($property) === 'asc'){
-            return '-'.$property;
-        }
-
-        return $property;
-    }
-
-
-    /**
-     * @param $property
-     * @return bool|string
-     */
-    public function getSort($property)
+    public function display()
     {
-        if ($this->sorts->search($property, true) !== false) {
-            return 'asc';
-        }
-
-        return 'desc';
+        //
     }
-
-    /**
-     * @param $property
-     * @return mixed
-     */
-    public function getFilter($property)
-    {
-        return array_get($this->filters, $property);
-    }
-
 }

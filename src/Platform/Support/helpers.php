@@ -82,7 +82,7 @@ if (! function_exists('is_sort')) {
      */
     function is_sort($property = null)
     {
-        $filter = new \Orchid\Platform\Filters\Filter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->isSort($property);
     }
@@ -96,7 +96,7 @@ if (! function_exists('get_sort')) {
      */
     function get_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\Filter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->getSort($property);
     }
@@ -110,7 +110,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter($property)
     {
-        $filter = new \Orchid\Platform\Filters\Filter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->getFilter($property);
     }
@@ -124,7 +124,7 @@ if (! function_exists('revert_sort')) {
      */
     function revert_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\Filter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter();
 
         return $filter->revertSort($property);
     }

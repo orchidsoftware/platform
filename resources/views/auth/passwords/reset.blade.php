@@ -1,6 +1,6 @@
 @extends('dashboard::layouts.auth')
 @section('content')
-    <p class="m-t-lg">Reset Password</p>
+    <p class="m-t-lg">{{trans('dashboard::auth/account.password_reset')}}</p>
     <form class="m-t-md" role="form" method="POST"
           action="{{ route('dashboard.password.email') }}">
         @csrf
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="form-group form-group-default {{ $errors->has('password') ? ' has-error' : '' }}">
-            <label>Password</label>
+            <label>{{trans('dashboard::auth/account.password')}}</label>
             <div class="controls">
                 <input type="password" name="password" placeholder="Password"
                        class="form-control" required>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <button class="btn btn-primary m-t-md" type="submit">
-            <i class="icon-refresh text-xs m-r-xs"></i> Reset Password
+            <i class="icon-refresh text-xs m-r-xs"></i> {{trans('dashboard::auth/account.password_reset')}}
         </button>
     </form>
 @endsection

@@ -23,9 +23,9 @@
 
 
                         @isset($th->filter)
-                                @includeIf("dashboard::partials.filters.{$th->filter}",[
-                                    'th' => $th
-                                ])
+                            @includeIf("dashboard::partials.filters.{$th->filter}",[
+                                'th' => $th
+                            ])
                         @endisset
 
                     </th>
