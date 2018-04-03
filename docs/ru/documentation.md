@@ -5,6 +5,7 @@
     <li><a href="/ru/docs/installation" title="Данное руководство охватывает подготовку, запуск сценария установки и шаги, которые должны быть выполнены после завершения сценария установки">Установка</a></li>
     <li><a href="/ru/docs/upgrade">Обновление</a></li>
     <li><a href="/ru/docs/contributors">Участие в разработке</a></li>
+    <li><a href="/ru/docs/code-of-conduct">Кодекс поведения</a></li>
     <li><a href="/ru/docs/license">Лицензия</a></li>
 </ul>
 
