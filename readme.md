@@ -47,36 +47,10 @@ Firstly, download the Laravel installer using Composer:
 $ composer require orchid/platform
 ```
 
-Extend your user model using the `Orchid\Core\Models\User as BaseUser` alias:
+Install package
 
 ```php
-namespace App;
-
-use Orchid\Platform\Core\Models\User as BaseUser;
-
-class User extends BaseUser
-{
-
-}
-
-```
-
-Publish ORCHID's vendor files
-
-```php
-php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
-php artisan vendor:publish --all
-```
-
-Run your database migration
-```php
-php artisan migrate
-```
-
-Make available css/js/etc files
-```php
-php artisan storage:link
-php artisan orchid:link
+php artisan orchid:install
 ```
 
 Create your admin user
