@@ -386,4 +386,50 @@ class Post extends Model
     {
         return $query->whereIn('type', $type);
     }
+
+    /**
+     * @param Builder $query
+     * @param null    $behavior
+     *
+     * @return Builder
+     */
+    public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
+    {
+        if (! is_null($behavior)) {
+            try {
+                $this->getBehavior($behavior);
+            } catch (TypeException $e) {
+            }
+        }
+        return $this->filter($query);
+    }
+    /**
+     * @param Builder $query
+     * @param bool    $dashboard
+     *
+     * @return Builder
+     */
+    private function filter(Builder $query, $dashboard = false) : Builder
+    {
+        $filters = $this->behavior->getFilters($dashboard);
+        foreach ($filters as $filter) {
+            $query = $filter->filter($query);
+        }
+        return $query;
+    }
+    /**
+     * @param Builder $query
+     * @param null    $behavior
+     *
+     * @return Builder
+     * @throws TypeException
+     */
+    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
+    {
+        if (! is_null($behavior)) {
+            $this->getBehavior($behavior);
+        }
+        return $this->filter($query, true);
+    }
+
 }

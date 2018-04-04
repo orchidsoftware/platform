@@ -109,7 +109,7 @@ class Attachment extends Model
     public function delete($storage = 'public')
     {
         if ($this->exists) {
-            if (self::where('name', $this->name)->count() <= 1) {
+            if (self::where('hash', $this->hash)->count() <= 1) {
                 $this->removePhysicalFile($this, $storage);
             }
             $this->relationships()->delete();

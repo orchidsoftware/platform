@@ -8,24 +8,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Grouping items using Field::group 
 - TD::link and TD::linkPost
-- Sorting capability for TD
+- Sorting capability for TD [437](https://github.com/orchidsoftware/platform/issues/437)
 - Property display for page
+- Added ability to change the logo [354](https://github.com/orchidsoftware/platform/issues/354)
+- New command `orchid:install`
 
 ### Deprecated
 - TD::name and TD::title use TD::set
 
 ### Changed
 - Test migration pgsql to sqlite
-- Google Chrome autofill no longer changes the color of the fields
 
 ### Fixed
 - Require to required
 - Hide the menu without children
+- Deletes a file only if there are no more links [570](https://github.com/orchidsoftware/platform/issues/570)
+- Users and roles use screens [579](https://github.com/orchidsoftware/platform/issues/579)
 
 ### Removed
 - Font Awesome
 - Bootstrap 3 appendix
 - "Delete" button by default in the image field
+- String record of parameters for building a form [391](https://github.com/orchidsoftware/platform/issues/391)
 
 ## [2.2.3] - 2018-03-01
 ### Added

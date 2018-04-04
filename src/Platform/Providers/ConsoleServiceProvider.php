@@ -15,6 +15,7 @@ use Orchid\Platform\Console\Commands\MakeManyBehavior;
 use Orchid\Platform\Console\Commands\PublicLinkCommand;
 use Orchid\Platform\Console\Commands\CreateAdminCommand;
 use Orchid\Platform\Console\Commands\MakeSingleBehavior;
+use Orchid\Platform\Platform\Console\Commands\InstallCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,7 @@ class ConsoleServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
+        InstallCommand::class,
         CreateAdminCommand::class,
         MakeManyBehavior::class,
         MakeSingleBehavior::class,

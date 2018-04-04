@@ -78,6 +78,12 @@ $this->domain(config('platform.domain'))->group(function () {
             ],
         ]);
  */
+
+        $router->get('system', [
+            'as'   => 'dashboard.systems.system',
+            'uses' => 'SystemController@index',
+        ]);
+
         $router->get('cache', [
             'as'   => 'dashboard.systems.cache',
             'uses' => 'CacheController@index',
