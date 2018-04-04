@@ -38,7 +38,7 @@ class CategoryDescForm extends Form
     {
         $this->name = trans('dashboard::systems/category.display');
 
-        $category = config('platform.common.category');
+        $category = config('platform.category');
         $this->behavior = (new $category);
         parent::__construct($request);
     }

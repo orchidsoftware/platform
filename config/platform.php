@@ -123,10 +123,9 @@ return [
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
         'label'        => Orchid\Platform\Fields\Types\LabelField::class,
-
-        'list'         => Orchid\Platform\Fields\Types\ListField::class,
+        
+        //удалить либо написать нормально
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
-        'blank'        => Orchid\Platform\Fields\Types\BlankField::class,
     ],
 
     /*
@@ -157,14 +156,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Common Behaviors
+    | Category
     |--------------------------------------------------------------------------
+    |
+    | Class of management category
+    |
     */
 
-    'common' => [
-        'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-        'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
-    ],
+    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
 
     /*
     |--------------------------------------------------------------------------
