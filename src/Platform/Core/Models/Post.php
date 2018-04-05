@@ -34,7 +34,7 @@ class Post extends Model
     /**
      * Recording behavior.
      *
-     * @var null
+     * @var \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      */
     protected $behavior = null;
 
@@ -141,7 +141,7 @@ class Post extends Model
      *
      * @param null $slug
      *
-     * @return null
+     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      * @throws TypeException
      */
     public function getBehaviorObject($slug = null)
@@ -186,7 +186,7 @@ class Post extends Model
      */
     public function getOption($key, $default = null)
     {
-        $option = $this->options;
+        $option = $this->getAttribute('options');
 
         if (is_null($option)) {
             $option = [];

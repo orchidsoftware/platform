@@ -73,8 +73,7 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            TD::name('created_at')
-                ->title(trans('dashboard::systems/category.date_creation')),
+            TD::set('created_at',trans('dashboard::systems/category.date_creation')),
         ];
     }
 }
