@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
-use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
@@ -55,7 +54,11 @@ class Dashboard
     public function __construct()
     {
         $this->menu = new Menu();
-        $this->permission = $this->resources = $this->singleBehaviors = $this->manyBehaviors = $this->fields = collect();
+        $this->permission = collect();
+        $this->resources = collect();
+        $this->singleBehaviors = collect();
+        $this->manyBehaviors = collect();
+        $this->fields = collect();
     }
 
     /**
@@ -202,7 +205,7 @@ class Dashboard
     public function getSingleBehaviors()
     {
         $this->singleBehaviors->transform(function ($value) {
-            if (! is_object($value)) {
+            if (! is_object($value) ) {
                 $value = new $value();
             }
             

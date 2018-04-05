@@ -44,6 +44,7 @@ class RoleEdit extends Screen
 
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()
+            ->collapse()
             ->sort()
             ->transform(function ($group) use ($rolePermission) {
 
