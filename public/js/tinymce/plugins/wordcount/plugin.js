@@ -2,7 +2,7 @@
 var wordcount = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var regExps = {
     aletter: '[A-Za-z\xaa\xb5\xba\xc0-\xd6\xd8-\xf6\xf8-\u02c1\u02c6-\u02d1\u02e0-\u02e4\u02ec\u02ee\u0370-\u0374\u0376\u0377\u037a-\u037d\u0386\u0388-\u038a\u038c\u038e-\u03a1\u03a3-\u03f5\u03f7-\u0481\u048a-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05d0-\u05ea\u05f0-\u05F3\u0620-\u064a\u066e\u066f\u0671-\u06d3\u06d5\u06e5\u06e6\u06ee\u06ef\u06fa-\u06fc\u06ff\u0710\u0712-\u072f\u074d-\u07a5\u07b1\u07ca-\u07ea\u07f4\u07f5\u07fa\u0800-\u0815\u081a\u0824\u0828\u0840-\u0858\u0904-\u0939\u093d\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097f\u0985-\u098c\u098f\u0990\u0993-\u09a8\u09aa-\u09b0\u09b2\u09b6-\u09b9\u09bd\u09ce\u09dc\u09dd\u09df-\u09e1\u09f0\u09f1\u0a05-\u0a0a\u0a0f\u0a10\u0a13-\u0a28\u0a2a-\u0a30\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39\u0a59-\u0a5c\u0a5e\u0a72-\u0a74\u0a85-\u0a8d\u0a8f-\u0a91\u0a93-\u0aa8\u0aaa-\u0ab0\u0ab2\u0ab3\u0ab5-\u0ab9\u0abd\u0ad0\u0ae0\u0ae1\u0b05-\u0b0c\u0b0f\u0b10\u0b13-\u0b28\u0b2a-\u0b30\u0b32\u0b33\u0b35-\u0b39\u0b3d\u0b5c\u0b5d\u0b5f-\u0b61\u0b71\u0b83\u0b85-\u0b8a\u0b8e-\u0b90\u0b92-\u0b95\u0b99\u0b9a\u0b9c\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8-\u0baa\u0bae-\u0bb9\u0bd0\u0c05-\u0c0c\u0c0e-\u0c10\u0c12-\u0c28\u0c2a-\u0c33\u0c35-\u0c39\u0c3d\u0c58\u0c59\u0c60\u0c61\u0c85-\u0c8c\u0c8e-\u0c90\u0c92-\u0ca8\u0caa-\u0cb3\u0cb5-\u0cb9\u0cbd\u0cde\u0ce0\u0ce1\u0cf1\u0cf2\u0d05-\u0d0c\u0d0e-\u0d10\u0d12-\u0d3a\u0d3d\u0d4e\u0d60\u0d61\u0d7a-\u0d7f\u0d85-\u0d96\u0d9a-\u0db1\u0db3-\u0dbb\u0dbd\u0dc0-\u0dc6\u0f00\u0f40-\u0f47\u0f49-\u0f6c\u0f88-\u0f8c\u10a0-\u10c5\u10d0-\u10fa\u10fc\u1100-\u1248\u124a-\u124d\u1250-\u1256\u1258\u125a-\u125d\u1260-\u1288\u128a-\u128d\u1290-\u12b0\u12b2-\u12b5\u12b8-\u12be\u12c0\u12c2-\u12c5\u12c8-\u12d6\u12d8-\u1310\u1312-\u1315\u1318-\u135a\u1380-\u138f\u13a0-\u13f4\u1401-\u166c\u166f-\u167f\u1681-\u169a\u16a0-\u16ea\u16ee-\u16f0\u1700-\u170c\u170e-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176c\u176e-\u1770\u1820-\u1877\u1880-\u18a8\u18aa\u18b0-\u18f5\u1900-\u191c\u1a00-\u1a16\u1b05-\u1b33\u1b45-\u1b4b\u1b83-\u1ba0\u1bae\u1baf\u1bc0-\u1be5\u1c00-\u1c23\u1c4d-\u1c4f\u1c5a-\u1c7d\u1ce9-\u1cec\u1cee-\u1cf1\u1d00-\u1dbf\u1e00-\u1f15\u1f18-\u1f1d\u1f20-\u1f45\u1f48-\u1f4d\u1f50-\u1f57\u1f59\u1f5b\u1f5d\u1f5f-\u1f7d\u1f80-\u1fb4\u1fb6-\u1fbc\u1fbe\u1fc2-\u1fc4\u1fc6-\u1fcc\u1fd0-\u1fd3\u1fd6-\u1fdb\u1fe0-\u1fec\u1ff2-\u1ff4\u1ff6-\u1ffc\u2071\u207f\u2090-\u209c\u2102\u2107\u210a-\u2113\u2115\u2119-\u211d\u2124\u2126\u2128\u212a-\u212d\u212f-\u2139\u213c-\u213f\u2145-\u2149\u214e\u2160-\u2188\u24B6-\u24E9\u2c00-\u2c2e\u2c30-\u2c5e\u2c60-\u2ce4\u2ceb-\u2cee\u2d00-\u2d25\u2d30-\u2d65\u2d6f\u2d80-\u2d96\u2da0-\u2da6\u2da8-\u2dae\u2db0-\u2db6\u2db8-\u2dbe\u2dc0-\u2dc6\u2dc8-\u2dce\u2dd0-\u2dd6\u2dd8-\u2dde\u2e2f\u3005\u303b\u303c\u3105-\u312d\u3131-\u318e\u31a0-\u31ba\ua000-\ua48c\ua4d0-\ua4fd\ua500-\ua60c\ua610-\ua61f\ua62a\ua62b\ua640-\ua66e\ua67f-\ua697\ua6a0-\ua6ef\ua717-\ua71f\ua722-\ua788\ua78b-\ua78e\ua790\ua791\ua7a0-\ua7a9\ua7fa-\ua801\ua803-\ua805\ua807-\ua80a\ua80c-\ua822\ua840-\ua873\ua882-\ua8b3\ua8f2-\ua8f7\ua8fb\ua90a-\ua925\ua930-\ua946\ua960-\ua97c\ua984-\ua9b2\ua9cf\uaa00-\uaa28\uaa40-\uaa42\uaa44-\uaa4b\uab01-\uab06\uab09-\uab0e\uab11-\uab16\uab20-\uab26\uab28-\uab2e\uabc0-\uabe2\uac00-\ud7a3\ud7b0-\ud7c6\ud7cb-\ud7fb\ufb00-\ufb06\ufb13-\ufb17\ufb1d\ufb1f-\ufb28\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40\ufb41\ufb43\ufb44\ufb46-\ufbb1\ufbd3-\ufd3d\ufd50-\ufd8f\ufd92-\ufdc7\ufdf0-\ufdfb\ufe70-\ufe74\ufe76-\ufefc\uff21-\uff3a\uff41-\uff5a\uffa0-\uffbe\uffc2-\uffc7\uffca-\uffcf\uffd2-\uffd7\uffda-\uffdc]',
@@ -53,7 +53,7 @@ var wordcount = (function () {
   var EMPTY_STRING = '';
   var PUNCTUATION = new RegExp('^' + regExps.punctuation + '$');
   var WHITESPACE = /^\s+$/;
-  var $_cg6j4vs2je5o2wnn = {
+  var $_fbdczlscjfjm4n90 = {
     characterIndices: characterIndices,
     SETS: SETS,
     EMPTY_STRING: EMPTY_STRING,
@@ -91,13 +91,13 @@ var wordcount = (function () {
     });
     return out;
   };
-  var $_cevnlqs4je5o2wnu = {
+  var $_43cyknsejfjm4n96 = {
     each: each,
     map: map
   };
 
-  var SETS$1 = $_cg6j4vs2je5o2wnn.SETS;
-  var OTHER = $_cg6j4vs2je5o2wnn.characterIndices.OTHER;
+  var SETS$1 = $_fbdczlscjfjm4n90.SETS;
+  var OTHER = $_fbdczlscjfjm4n90.characterIndices.OTHER;
   var getType = function (char) {
     var j, set, type = OTHER;
     var setsLength = SETS$1.length;
@@ -124,11 +124,11 @@ var wordcount = (function () {
   };
   var classify = function (string) {
     var memoized = memoize(getType);
-    return $_cevnlqs4je5o2wnu.map(string.split(''), memoized);
+    return $_43cyknsejfjm4n96.map(string.split(''), memoized);
   };
-  var $_7j63qys3je5o2wns = { classify: classify };
+  var $_els10isdjfjm4n93 = { classify: classify };
 
-  var ci = $_cg6j4vs2je5o2wnn.characterIndices;
+  var ci = $_fbdczlscjfjm4n90.characterIndices;
   var isWordBoundary = function (map, index) {
     var prevType;
     var type = map[index];
@@ -183,11 +183,11 @@ var wordcount = (function () {
     }
     return true;
   };
-  var $_31fet2s5je5o2wny = { isWordBoundary: isWordBoundary };
+  var $_1w1nbrsfjfjm4n9c = { isWordBoundary: isWordBoundary };
 
-  var EMPTY_STRING$1 = $_cg6j4vs2je5o2wnn.EMPTY_STRING;
-  var WHITESPACE$1 = $_cg6j4vs2je5o2wnn.WHITESPACE;
-  var PUNCTUATION$1 = $_cg6j4vs2je5o2wnn.PUNCTUATION;
+  var EMPTY_STRING$1 = $_fbdczlscjfjm4n90.EMPTY_STRING;
+  var WHITESPACE$1 = $_fbdczlscjfjm4n90.WHITESPACE;
+  var PUNCTUATION$1 = $_fbdczlscjfjm4n90.PUNCTUATION;
   var isProtocol = function (word) {
     return word === 'http' || word === 'https';
   };
@@ -217,7 +217,7 @@ var wordcount = (function () {
   };
   var doGetWords = function (str, options) {
     var i = 0;
-    var map = $_7j63qys3je5o2wns.classify(str);
+    var map = $_els10isdjfjm4n93.classify(str);
     var len = map.length;
     var word = [];
     var words = [];
@@ -235,7 +235,7 @@ var wordcount = (function () {
     for (; i < len; ++i) {
       chr = str.charAt(i);
       word.push(chr);
-      if ($_31fet2s5je5o2wny.isWordBoundary(map, i)) {
+      if ($_1w1nbrsfjfjm4n9c.isWordBoundary(map, i)) {
         word = word.join(EMPTY_STRING$1);
         if (word && (includeWhitespace || !WHITESPACE$1.test(word)) && (includePunctuation || !PUNCTUATION$1.test(word))) {
           if (isProtocol(word)) {
@@ -254,33 +254,33 @@ var wordcount = (function () {
   var getWords = function (str, options) {
     return doGetWords(str.replace(/\ufeff/g, ''), options);
   };
-  var $_g6n68ls1je5o2wni = { getWords: getWords };
+  var $_2t8zd1sbjfjm4n8x = { getWords: getWords };
 
   var getTextContent = function (editor) {
     return editor.removed ? '' : editor.getBody().innerText;
   };
   var getCount = function (editor) {
-    return $_g6n68ls1je5o2wni.getWords(getTextContent(editor)).length;
+    return $_2t8zd1sbjfjm4n8x.getWords(getTextContent(editor)).length;
   };
-  var $_bswoubs0je5o2wng = { getCount: getCount };
+  var $_cvbm60sajfjm4n8v = { getCount: getCount };
 
   var get = function (editor) {
     var getCount = function () {
-      return $_bswoubs0je5o2wng.getCount(editor);
+      return $_cvbm60sajfjm4n8v.getCount(editor);
     };
     return { getCount: getCount };
   };
-  var $_bq2ivmrzje5o2wnf = { get: get };
+  var $_5bwd75s9jfjm4n8v = { get: get };
 
-  var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-  var I18n = tinymce.util.Tools.resolve('tinymce.util.I18n');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.util.I18n');
 
   var setup = function (editor) {
     var wordsToText = function (editor) {
-      return I18n.translate([
+      return global$2.translate([
         '{0} words',
-        $_bswoubs0je5o2wng.getCount(editor)
+        $_cvbm60sajfjm4n8v.getCount(editor)
       ]);
     };
     var update = function () {
@@ -288,9 +288,9 @@ var wordcount = (function () {
     };
     editor.on('init', function () {
       var statusbar = editor.theme.panel && editor.theme.panel.find('#statusbar')[0];
-      var debouncedUpdate = Delay.debounce(update, 300);
+      var debouncedUpdate = global$1.debounce(update, 300);
       if (statusbar) {
-        Delay.setEditorTimeout(editor, function () {
+        global$1.setEditorTimeout(editor, function () {
           statusbar.insert({
             type: 'label',
             name: 'wordcount',
@@ -303,11 +303,11 @@ var wordcount = (function () {
       }
     });
   };
-  var $_di22xks6je5o2wo2 = { setup: setup };
+  var $_fk6g3csgjfjm4n9e = { setup: setup };
 
-  PluginManager.add('wordcount', function (editor) {
-    $_di22xks6je5o2wo2.setup(editor);
-    return $_bq2ivmrzje5o2wnf.get(editor);
+  global.add('wordcount', function (editor) {
+    $_fk6g3csgjfjm4n9e.setup(editor);
+    return $_5bwd75s9jfjm4n8v.get(editor);
   });
   function Plugin () {
   }

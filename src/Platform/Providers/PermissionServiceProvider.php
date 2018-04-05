@@ -17,7 +17,7 @@ class PermissionServiceProvider extends ServiceProvider
     protected $defer = false;
 
     /**
-     * @var
+     * @var Dashboard
      */
     protected $dashboard;
 
@@ -28,10 +28,10 @@ class PermissionServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-        $dashboard->permission->registerPermissions($this->registerPermissionsMain());
-        $dashboard->permission->registerPermissions($this->registerPermissionsPages());
-        $dashboard->permission->registerPermissions($this->registerPermissionsPost());
-        $dashboard->permission->registerPermissions($this->registerPermissionsSystems());
+        $dashboard
+        ->registerPermissions($this->registerPermissionsMain())
+        ->registerPermissions($this->registerPermissionsBehaviors())
+        ->registerPermissions($this->registerPermissionsSystems());
     }
 
     /**
@@ -65,39 +65,30 @@ class PermissionServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsPages() : array
+    protected function registerPermissionsBehaviors() : array
     {
-        foreach ($this->dashboard->getStorage('pages')->all() as $page) {
+        $this->dashboard->getSingleBehaviors()->map(function ($page) {
             $pages[] = [
-                'slug'        => 'dashboard.pages.type.'.$page->slug,
+                'slug' => 'dashboard.pages.type.'.$page->slug,
                 'description' => $page->name,
             ];
-        }
-
+        });
+    
+        $this->dashboard->getManyBehaviors()->map(function ($post) {
+            $posts[] = [
+                'slug' => 'dashboard.posts.type.'.$post->slug,
+                'description' => $post->name,
+            ];
+        });
+        
+    
         return [
             'Pages' => $pages ?? [],
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function registerPermissionsPost() : array
-    {
-        foreach ($this->dashboard->getStorage('posts')->all() as $page) {
-            if ($page->display) {
-                $posts[] = [
-                    'slug'        => 'dashboard.posts.type.'.$page->slug,
-                    'description' => $page->name,
-                ];
-            }
-        }
-
-        return [
             'Posts' => $posts ?? [],
         ];
     }
 
+    
     /**
      * @return array
      */

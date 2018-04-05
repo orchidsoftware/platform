@@ -2,17 +2,29 @@
 var help = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var noop = function () {
+    var x = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+      x[_i] = arguments[_i];
+    }
   };
   var noarg = function (f) {
     return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
       return f();
     };
   };
   var compose = function (fa, fb) {
     return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
       return fa(fb.apply(null, arguments));
     };
   };
@@ -28,10 +40,18 @@ var help = (function () {
     return a === b;
   };
   var curry = function (f) {
+    var x = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+      x[_i - 1] = arguments[_i];
+    }
     var args = new Array(arguments.length - 1);
     for (var i = 1; i < arguments.length; i++)
       args[i - 1] = arguments[i];
     return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
       var newArgs = new Array(arguments.length);
       for (var j = 0; j < newArgs.length; j++)
         newArgs[j] = arguments[j];
@@ -41,6 +61,10 @@ var help = (function () {
   };
   var not = function (f) {
     return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
       return !f.apply(null, arguments);
     };
   };
@@ -57,7 +81,7 @@ var help = (function () {
   };
   var never = constant(false);
   var always = constant(true);
-  var $_9mjcdeaqje5o2thj = {
+  var $_bni7yjaujfjm4k5u = {
     noop: noop,
     noarg: noarg,
     compose: compose,
@@ -73,8 +97,8 @@ var help = (function () {
     always: always
   };
 
-  var never$1 = $_9mjcdeaqje5o2thj.never;
-  var always$1 = $_9mjcdeaqje5o2thj.always;
+  var never$1 = $_bni7yjaujfjm4k5u.never;
+  var always$1 = $_bni7yjaujfjm4k5u.always;
   var none = function () {
     return NONE;
   };
@@ -117,7 +141,7 @@ var help = (function () {
       toArray: function () {
         return [];
       },
-      toString: $_9mjcdeaqje5o2thj.constant('none()')
+      toString: $_bni7yjaujfjm4k5u.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -393,7 +417,7 @@ var help = (function () {
   var last = function (xs) {
     return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
   };
-  var $_dk22z7aoje5o2th3 = {
+  var $_f71to7asjfjm4k5i = {
     map: map,
     each: each,
     eachr: eachr,
@@ -422,12 +446,12 @@ var help = (function () {
     last: last
   };
 
-  var I18n = tinymce.util.Tools.resolve('tinymce.util.I18n');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.I18n');
 
-  var Env = tinymce.util.Tools.resolve('tinymce.Env');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.Env');
 
-  var meta = Env.mac ? '\u2318' : 'Ctrl';
-  var access = Env.mac ? 'Ctrl + Alt' : 'Shift + Alt';
+  var meta = global$2.mac ? '\u2318' : 'Ctrl';
+  var access = global$2.mac ? 'Ctrl + Alt' : 'Shift + Alt';
   var shortcuts = [
     {
       shortcut: meta + ' + B',
@@ -518,14 +542,14 @@ var help = (function () {
       action: 'Find (if searchreplace plugin activated)'
     }
   ];
-  var $_6uvv37asje5o2thn = { shortcuts: shortcuts };
+  var $_8hfapjawjfjm4k5y = { shortcuts: shortcuts };
 
   var makeTab = function () {
     var makeAriaLabel = function (shortcut) {
       return 'aria-label="Action: ' + shortcut.action + ', Shortcut: ' + shortcut.shortcut.replace(/Ctrl/g, 'Control') + '"';
     };
-    var shortcutLisString = $_dk22z7aoje5o2th3.map($_6uvv37asje5o2thn.shortcuts, function (shortcut) {
-      return '<tr data-mce-tabstop="1" tabindex="-1" ' + makeAriaLabel(shortcut) + '>' + '<td>' + I18n.translate(shortcut.action) + '</td>' + '<td>' + shortcut.shortcut + '</td>' + '</tr>';
+    var shortcutLisString = $_f71to7asjfjm4k5i.map($_8hfapjawjfjm4k5y.shortcuts, function (shortcut) {
+      return '<tr data-mce-tabstop="1" tabindex="-1" ' + makeAriaLabel(shortcut) + '>' + '<td>' + global$1.translate(shortcut.action) + '</td>' + '<td>' + shortcut.shortcut + '</td>' + '</tr>';
     }).join('');
     return {
       title: 'Handy Shortcuts',
@@ -533,11 +557,11 @@ var help = (function () {
       style: 'overflow-y: auto; overflow-x: hidden; max-height: 250px',
       items: [{
           type: 'container',
-          html: '<div>' + '<table class="mce-table-striped">' + '<thead>' + '<th>' + I18n.translate('Action') + '</th>' + '<th>' + I18n.translate('Shortcut') + '</th>' + '</thead>' + shortcutLisString + '</table>' + '</div>'
+          html: '<div>' + '<table class="mce-table-striped">' + '<thead>' + '<th>' + global$1.translate('Action') + '</th>' + '<th>' + global$1.translate('Shortcut') + '</th>' + '</thead>' + shortcutLisString + '</table>' + '</div>'
         }]
     };
   };
-  var $_78omb6anje5o2tgy = { makeTab: makeTab };
+  var $_39sll0arjfjm4k5c = { makeTab: makeTab };
 
   var keys = function () {
     var fastKeys = Object.keys;
@@ -614,7 +638,7 @@ var help = (function () {
   var size = function (obj) {
     return values(obj).length;
   };
-  var $_b89w37avje5o2thw = {
+  var $_atva73azjfjm4k68 = {
     bifilter: bifilter,
     each: each$1,
     map: objectMap,
@@ -638,7 +662,7 @@ var help = (function () {
   var removeFromEnd = function (str, numChars) {
     return str.substring(0, str.length - numChars);
   };
-  var $_kkbi0axje5o2ti4 = {
+  var $_cgtokgb1jfjm4k6f = {
     addToStart: addToStart,
     addToEnd: addToEnd,
     removeFromStart: removeFromStart,
@@ -657,7 +681,7 @@ var help = (function () {
   var tail = function (str) {
     return str === '' ? Option.none() : Option.some(str.substring(1));
   };
-  var $_38slaxayje5o2ti6 = {
+  var $_g7mbz0b2jfjm4k6g = {
     first: first,
     last: last$1,
     head: head$1,
@@ -683,23 +707,23 @@ var help = (function () {
     });
   };
   var removeLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? $_kkbi0axje5o2ti4.removeFromStart(str, prefix.length) : str;
+    return startsWith(str, prefix) ? $_cgtokgb1jfjm4k6f.removeFromStart(str, prefix.length) : str;
   };
   var removeTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? $_kkbi0axje5o2ti4.removeFromEnd(str, prefix.length) : str;
+    return endsWith(str, prefix) ? $_cgtokgb1jfjm4k6f.removeFromEnd(str, prefix.length) : str;
   };
   var ensureLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? str : $_kkbi0axje5o2ti4.addToStart(str, prefix);
+    return startsWith(str, prefix) ? str : $_cgtokgb1jfjm4k6f.addToStart(str, prefix);
   };
   var ensureTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? str : $_kkbi0axje5o2ti4.addToEnd(str, prefix);
+    return endsWith(str, prefix) ? str : $_cgtokgb1jfjm4k6f.addToEnd(str, prefix);
   };
   var contains$1 = function (str, substr) {
     return str.indexOf(substr) !== -1;
   };
   var capitalize = function (str) {
-    return $_38slaxayje5o2ti6.head(str).bind(function (head) {
-      return $_38slaxayje5o2ti6.tail(str).map(function (tail) {
+    return $_g7mbz0b2jfjm4k6g.head(str).bind(function (head) {
+      return $_g7mbz0b2jfjm4k6g.tail(str).map(function (tail) {
         return head.toUpperCase() + tail;
       });
     }).getOr(str);
@@ -719,7 +743,7 @@ var help = (function () {
   var rTrim = function (str) {
     return str.replace(/\s+$/g, '');
   };
-  var $_7rnuu6awje5o2ti2 = {
+  var $_dwdl3eb0jfjm4k6b = {
     supplant: supplant,
     startsWith: startsWith,
     removeLeading: removeLeading,
@@ -912,11 +936,11 @@ var help = (function () {
       name: 'Word Count'
     }
   ];
-  var $_eq51ezazje5o2ti8 = { urls: urls };
+  var $_96o54ab3jfjm4k6o = { urls: urls };
 
-  var makeLink = $_9mjcdeaqje5o2thj.curry($_7rnuu6awje5o2ti2.supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
+  var makeLink = $_bni7yjaujfjm4k5u.curry($_dwdl3eb0jfjm4k6b.supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
   var maybeUrlize = function (editor, key) {
-    return $_dk22z7aoje5o2th3.find($_eq51ezazje5o2ti8.urls, function (x) {
+    return $_f71to7asjfjm4k5i.find($_96o54ab3jfjm4k6o.urls, function (x) {
       return x.key === key;
     }).fold(function () {
       var getMetadata = editor.plugins[key].getMetadata;
@@ -929,17 +953,17 @@ var help = (function () {
     });
   };
   var getPluginKeys = function (editor) {
-    var keys = $_b89w37avje5o2thw.keys(editor.plugins);
-    return editor.settings.forced_plugins === undefined ? keys : $_dk22z7aoje5o2th3.filter(keys, $_9mjcdeaqje5o2thj.not($_9mjcdeaqje5o2thj.curry($_dk22z7aoje5o2th3.contains, editor.settings.forced_plugins)));
+    var keys = $_atva73azjfjm4k68.keys(editor.plugins);
+    return editor.settings.forced_plugins === undefined ? keys : $_f71to7asjfjm4k5i.filter(keys, $_bni7yjaujfjm4k5u.not($_bni7yjaujfjm4k5u.curry($_f71to7asjfjm4k5i.contains, editor.settings.forced_plugins)));
   };
   var pluginLister = function (editor) {
     var pluginKeys = getPluginKeys(editor);
-    var pluginLis = $_dk22z7aoje5o2th3.map(pluginKeys, function (key) {
+    var pluginLis = $_f71to7asjfjm4k5i.map(pluginKeys, function (key) {
       return '<li>' + maybeUrlize(editor, key) + '</li>';
     });
     var count = pluginLis.length;
     var pluginsString = pluginLis.join('');
-    return '<p><b>' + I18n.translate([
+    return '<p><b>' + global$1.translate([
       'Plugins installed ({0}):',
       count
     ]) + '</b></p>' + '<ul>' + pluginsString + '</ul>';
@@ -954,7 +978,7 @@ var help = (function () {
   var availablePlugins = function () {
     return {
       type: 'container',
-      html: '<div style="padding: 10px; background: #e3e7f4; height: 100%;" data-mce-tabstop="1" tabindex="-1">' + '<p><b>' + I18n.translate('Premium plugins:') + '</b></p>' + '<ul>' + '<li>PowerPaste</li>' + '<li>Spell Checker Pro</li>' + '<li>Accessibility Checker</li>' + '<li>Advanced Code Editor</li>' + '<li>Enhanced Media Embed</li>' + '<li>Link Checker</li>' + '</ul><br />' + '<p style="float: right;"><a href="https://www.tinymce.com/pricing/?utm_campaign=editor_referral&utm_medium=help_dialog&utm_source=tinymce" target="_blank">' + I18n.translate('Learn more...') + '</a></p>' + '</div>',
+      html: '<div style="padding: 10px; background: #e3e7f4; height: 100%;" data-mce-tabstop="1" tabindex="-1">' + '<p><b>' + global$1.translate('Premium plugins:') + '</b></p>' + '<ul>' + '<li>PowerPaste</li>' + '<li>Spell Checker Pro</li>' + '<li>Accessibility Checker</li>' + '<li>Advanced Code Editor</li>' + '<li>Enhanced Media Embed</li>' + '<li>Link Checker</li>' + '</ul><br />' + '<p style="float: right;"><a href="https://www.tinymce.com/pricing/?utm_campaign=editor_referral&utm_medium=help_dialog&utm_source=tinymce" target="_blank">' + global$1.translate('Learn more...') + '</a></p>' + '</div>',
       flex: 1
     };
   };
@@ -972,20 +996,20 @@ var help = (function () {
       ]
     };
   };
-  var $_5hfvnrauje5o2thq = { makeTab: makeTab$1 };
+  var $_1xpuxoayjfjm4k62 = { makeTab: makeTab$1 };
 
-  var EditorManager = tinymce.util.Tools.resolve('tinymce.EditorManager');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.EditorManager');
 
   var getVersion = function (major, minor) {
     return major.indexOf('@') === 0 ? 'X.X.X' : major + '.' + minor;
   };
   var makeRow = function () {
-    var version = getVersion(EditorManager.majorVersion, EditorManager.minorVersion);
+    var version = getVersion(global$3.majorVersion, global$3.minorVersion);
     var changeLogLink = '<a href="https://www.tinymce.com/docs/changelog/?utm_campaign=editor_referral&utm_medium=help_dialog&utm_source=tinymce" target="_blank">TinyMCE ' + version + '</a>';
     return [
       {
         type: 'label',
-        html: I18n.translate([
+        html: global$1.translate([
           'You are using {0}',
           changeLogLink
         ])
@@ -1002,7 +1026,7 @@ var help = (function () {
       }
     ];
   };
-  var $_b6suusb0je5o2tia = { makeRow: makeRow };
+  var $_fznshhb4jfjm4k71 = { makeRow: makeRow };
 
   var open = function (editor, pluginUrl) {
     return function () {
@@ -1011,10 +1035,10 @@ var help = (function () {
         bodyType: 'tabpanel',
         layout: 'flex',
         body: [
-          $_78omb6anje5o2tgy.makeTab(),
-          $_5hfvnrauje5o2thq.makeTab(editor)
+          $_39sll0arjfjm4k5c.makeTab(),
+          $_1xpuxoayjfjm4k62.makeTab(editor)
         ],
-        buttons: $_b6suusb0je5o2tia.makeRow(),
+        buttons: $_fznshhb4jfjm4k71.makeRow(),
         onPostRender: function () {
           var title = this.getEl('title');
           title.innerHTML = '<img src="' + pluginUrl + '/img/logo.png" alt="TinyMCE Logo" style="display: inline-block; width: 200px; height: 50px">';
@@ -1022,30 +1046,30 @@ var help = (function () {
       });
     };
   };
-  var $_ga7ly0amje5o2tgw = { open: open };
+  var $_f0bklzaqjfjm4k5a = { open: open };
 
   var register = function (editor, pluginUrl) {
-    editor.addCommand('mceHelp', $_ga7ly0amje5o2tgw.open(editor, pluginUrl));
+    editor.addCommand('mceHelp', $_f0bklzaqjfjm4k5a.open(editor, pluginUrl));
   };
-  var $_ev906ialje5o2tgv = { register: register };
+  var $_6hv6rnapjfjm4k59 = { register: register };
 
   var register$1 = function (editor, pluginUrl) {
     editor.addButton('help', {
       icon: 'help',
-      onclick: $_ga7ly0amje5o2tgw.open(editor, pluginUrl)
+      onclick: $_f0bklzaqjfjm4k5a.open(editor, pluginUrl)
     });
     editor.addMenuItem('help', {
       text: 'Help',
       icon: 'help',
       context: 'help',
-      onclick: $_ga7ly0amje5o2tgw.open(editor, pluginUrl)
+      onclick: $_f0bklzaqjfjm4k5a.open(editor, pluginUrl)
     });
   };
-  var $_fvvdwhb2je5o2tic = { register: register$1 };
+  var $_fufckcb6jfjm4k73 = { register: register$1 };
 
-  PluginManager.add('help', function (editor, pluginUrl) {
-    $_fvvdwhb2je5o2tic.register(editor, pluginUrl);
-    $_ev906ialje5o2tgv.register(editor, pluginUrl);
+  global.add('help', function (editor, pluginUrl) {
+    $_fufckcb6jfjm4k73.register(editor, pluginUrl);
+    $_6hv6rnapjfjm4k59.register(editor, pluginUrl);
     editor.shortcuts.add('Alt+0', 'Open help dialog', 'mceHelp');
   });
   function Plugin () {

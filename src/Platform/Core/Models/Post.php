@@ -161,7 +161,7 @@ class Post extends Model
      */
     public function getBehavior($slug)
     {
-        $this->behavior = Dashboard::getStorage('posts')->find($slug);
+        $this->behavior = Dashboard::getManyBehaviors()->where('slug', $slug)->first();
 
         if (is_null($this->behavior)) {
             throw new TypeException("{$slug} Type is not found");

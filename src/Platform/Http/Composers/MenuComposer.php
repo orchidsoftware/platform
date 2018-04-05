@@ -41,9 +41,7 @@ class MenuComposer
      */
     protected function registerMenuPage(Dashboard $dashboard): MenuComposer
     {
-        $allPage = $this->dashboard->getStorage('pages')
-            ->where('display', true)
-            ->all();
+        $allPage = $this->dashboard->getSingleBehaviors()->where('display', true)->all();
 
         $dashboard->menu->add('Main', [
             'slug'       => 'Pages',
@@ -88,7 +86,7 @@ class MenuComposer
      */
     protected function registerMenuPost(Dashboard $dashboard): MenuComposer
     {
-        $allPost = $this->dashboard->getStorage('posts')
+        $allPost = $this->dashboard->getManyBehaviors()
             ->where('display', true)
             ->all();
 

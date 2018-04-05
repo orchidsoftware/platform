@@ -108,26 +108,12 @@ class UserEdit extends Screen
         return [
             Layouts::columns([
                 'Left column'  => [
-                    UserRoleLayout::class
+                    UserEditLayout::class
                 ],
                 'Right column' => [
-                    UserEditLayout::class
+                      UserRoleLayout::class
                 ],
             ]),
-
-
-            /*
-            Layouts::tabs([
-                trans('dashboard::systems/users.tabs.information') => [
-                    UserEditLayout::class
-                ],
-                trans('dashboard::systems/users.tabs.permission')  => [
-                    UserRoleLayout::class
-                ],
-            ]),
-            */
-
-
         ];
     }
 

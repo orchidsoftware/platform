@@ -2,15 +2,15 @@
 var colorpicker = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var Color = tinymce.util.Tools.resolve('tinymce.util.Color');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Color');
 
   var showPreview = function (win, hexColor) {
     win.find('#preview')[0].getEl().style.background = hexColor;
   };
   var setColor = function (win, value) {
-    var color = Color(value), rgb = color.toRgb();
+    var color = global$1(value), rgb = color.toRgb();
     win.fromJSON({
       r: rgb.r,
       g: rgb.g,
@@ -108,12 +108,12 @@ var colorpicker = (function () {
     });
     setColor(win, value);
   };
-  var $_bez50x9uje5o2tem = { open: open };
+  var $_7o6fu09yjfjm4k37 = { open: open };
 
-  PluginManager.add('colorpicker', function (editor) {
+  global.add('colorpicker', function (editor) {
     if (!editor.settings.color_picker_callback) {
       editor.settings.color_picker_callback = function (callback, value) {
-        $_bez50x9uje5o2tem.open(editor, callback, value);
+        $_7o6fu09yjfjm4k37.open(editor, callback, value);
       };
     }
   });

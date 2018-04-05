@@ -26,173 +26,166 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
-    
-    @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
+
+    @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{$stylesheet}}">
     @endforeach
 
     @stack('stylesheets')
     
-    @foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
+    @foreach(Dashboard::getResource('scripts') as $scripts)
         <script src="{{$scripts}}" type="text/javascript"></script>
     @endforeach
 
 </head>
 
-
 <body>
-<div id="app" class="app">
+    <div id="app" class="app">
 
-    <!-- header  -->
-    <header id="header" class="app-header navbar" role="menu">
-        <!-- navbar header  -->
-        <div class="navbar-header bg-black dk v-center">
+        <!-- header  -->
+        <header id="header" class="app-header navbar" role="menu">
+            <!-- navbar header  -->
+            <div class="navbar-header bg-black dk v-center">
 
-            <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
-                <i class="icon-menu"></i>
-            </button>
+                <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
+                    <i class="icon-menu"></i>
+                </button>
 
-            <!-- brand  -->
-            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
-                <i class="{{config('platform.logo')}}"></i>
-            </a>
-            <!-- / brand  -->
+                <!-- brand  -->
+                <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
+                    <i class="{{config('platform.logo')}}"></i>
+                </a>
+                <!-- / brand  -->
 
-            <button class="pull-right"
-                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="icon-logout"></i>
-            </button>
-
-        </div>
-        <!-- / navbar header  -->
-
-        <!-- navbar collapse  -->
-        <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
-
-            <div class="col-xs-12 col-md-4">
-                <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                <small class="text-muted text-ellipsis">@yield('description')</small>
-            </div>
-
-            <div class="col-xs-12 col-md-8">
-                @yield('navbar')
-            </div>
-
-
-        </div>
-        <!-- / navbar collapse  -->
-    </header>
-    <!-- / header  -->
-
-
-    <!-- aside  -->
-    <aside id="aside" class="app-aside d-none d-md-block">
-        <div class="aside-wrap-main">
-
-            <div class="navi-wrap">
-
-                <!-- nav  -->
-                <nav class="navi clearfix">
-                    <ul class="nav flex-column" role="tablist">
-
-                        {{--
-                        <li class="nav-item">
-                            <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
-                                <i class="icon-menu" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        --}}
-
-                        <li class="nav-item">
-                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
-
-                                <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
-                            </a>
-                        </li>
-
-                        {!! Dashboard::menu()->render('Main') !!}
-
-                    </ul>
-
-                    <ul class="nav nav-footer-fix">
-                        <li>
-                            <a href="{{ route('dashboard.logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                               dusk="logout-button">
-                                <i class="icon-logout" aria-hidden="true"></i>
-                                <span>{{trans('dashboard::auth/account.sign_out')}}</span>
-                            </a>
-
-                            <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}"
-                                  method="POST">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-
-                </nav>
-                <!-- nav  -->
-            </div>
-
-
-        </div>
-
-        <div class="aside-wrap">
-            <div class="navi-wrap">
-
-                <!-- nav  -->
-                <nav class="navi clearfix">
-
-                    <div class="nav tab-content flex-column" id="aside-wrap-list">
-                        @include('dashboard::partials.notifications')
-                        {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
-                    </div>
-                </nav>
-                <!-- nav  -->
-
+                <button class="pull-right"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="icon-logout"></i>
+                </button>
 
             </div>
-        </div>
+            <!-- / navbar header  -->
 
+            <!-- navbar collapse  -->
+            <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
 
-    </aside>
-    <!-- / aside  -->
-
-
-    <!-- content  -->
-    <div id="content" class="app-content" role="main">
-        <div class="app-content-body" id="app-content-body">
-
-            @include('dashboard::partials.alert')
-
-            @if (count($errors) > 0)
-                <div class="alert alert-danger m-b-none" role="alert">
-                    <strong>Oh snap!</strong>
-                    Change a few things up and try submitting again.
-                    <ul class="m-t-xs">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                <div class="col-xs-12 col-md-4">
+                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                    <small class="text-muted text-ellipsis">@yield('description')</small>
                 </div>
-            @endif
+
+                <div class="col-xs-12 col-md-8">
+                    @yield('navbar')
+                </div>
 
 
-            @yield('content')
+            </div>
+            <!-- / navbar collapse  -->
+        </header>
+        <!-- / header  -->
+
+
+        <!-- aside  -->
+        <aside id="aside" class="app-aside d-none d-md-block">
+            <div class="aside-wrap-main">
+
+                <div class="navi-wrap">
+
+                    <!-- nav  -->
+                    <nav class="navi clearfix">
+                        <ul class="nav flex-column" role="tablist">
+
+                            {{--
+                            <li class="nav-item">
+                                <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
+                                    <i class="icon-menu" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            --}}
+
+                            <li class="nav-item">
+                                <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
+
+                                    <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
+                                </a>
+                            </li>
+
+                            {!! Dashboard::menu()->render('Main') !!}
+
+                        </ul>
+
+                        <ul class="nav nav-footer-fix">
+                            <li>
+                                <a href="{{ route('dashboard.logout') }}"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                   dusk="logout-button">
+                                    <i class="icon-logout" aria-hidden="true"></i>
+                                    <span>{{trans('dashboard::auth/account.sign_out')}}</span>
+                                </a>
+
+                                <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}"
+                                      method="POST">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+
+                    </nav>
+                    <!-- nav  -->
+                </div>
+
+
+            </div>
+
+            <div class="aside-wrap">
+                <div class="navi-wrap">
+
+                    <!-- nav  -->
+                    <nav class="navi clearfix">
+
+                        <div class="nav tab-content flex-column" id="aside-wrap-list">
+                            @include('dashboard::partials.notifications')
+                            {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
+                        </div>
+                    </nav>
+                    <!-- nav  -->
+
+
+                </div>
+            </div>
+
+
+        </aside>
+        <!-- / aside  -->
+
+
+        <!-- content  -->
+        <div id="content" class="app-content" role="main">
+            <div class="app-content-body" id="app-content-body">
+
+                @include('dashboard::partials.alert')
+
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger m-b-none" role="alert">
+                        <strong>Oh snap!</strong>
+                        Change a few things up and try submitting again.
+                        <ul class="m-t-xs">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
+                @yield('content')
+            </div>
         </div>
+        <!-- /content  -->
+
     </div>
-    <!-- /content  -->
 
-</div>
-
-{{--
-@foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
-    <script src="{{$scripts}}" type="text/javascript"></script>
-@endforeach
---}}
 
 @stack('scripts')
-
 
 </body>
 </html>

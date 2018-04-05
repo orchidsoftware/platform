@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Hide the menu without children
 - Deletes a file only if there are no more links [570](https://github.com/orchidsoftware/platform/issues/570)
 - Users and roles use screens [579](https://github.com/orchidsoftware/platform/issues/579)
+- Deleting a dashboard store [623](https://github.com/orchidsoftware/platform/issues/623)
 
 ### Removed
 - Font Awesome

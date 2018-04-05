@@ -2,19 +2,19 @@
 var tabfocus = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-  var EditorManager = tinymce.util.Tools.resolve('tinymce.EditorManager');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.EditorManager');
 
-  var Env = tinymce.util.Tools.resolve('tinymce.Env');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.Env');
 
-  var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
+  var global$4 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-  var Tools = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var global$5 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
-  var VK = tinymce.util.Tools.resolve('tinymce.util.VK');
+  var global$6 = tinymce.util.Tools.resolve('tinymce.util.VK');
 
   var getTabFocusElements = function (editor) {
     return editor.getParam('tabfocus_elements', ':prev,:next');
@@ -22,18 +22,18 @@ var tabfocus = (function () {
   var getTabFocus = function (editor) {
     return editor.getParam('tab_focus', getTabFocusElements(editor));
   };
-  var $_c8erj7jmje5o2uo8 = { getTabFocus: getTabFocus };
+  var $_bmaxzsjwjfjm4lbl = { getTabFocus: getTabFocus };
 
-  var DOM = DOMUtils.DOM;
+  var DOM = global$1.DOM;
   var tabCancel = function (e) {
-    if (e.keyCode === VK.TAB && !e.ctrlKey && !e.altKey && !e.metaKey) {
+    if (e.keyCode === global$6.TAB && !e.ctrlKey && !e.altKey && !e.metaKey) {
       e.preventDefault();
     }
   };
   var setup = function (editor) {
     function tabHandler(e) {
       var x, el, v, i;
-      if (e.keyCode !== VK.TAB || e.ctrlKey || e.altKey || e.metaKey || e.isDefaultPrevented()) {
+      if (e.keyCode !== global$6.TAB || e.ctrlKey || e.altKey || e.metaKey || e.isDefaultPrevented()) {
         return;
       }
       function find(direction) {
@@ -42,9 +42,9 @@ var tabfocus = (function () {
           return e.nodeName === 'BODY' || e.type !== 'hidden' && e.style.display !== 'none' && e.style.visibility !== 'hidden' && canSelectRecursive(e.parentNode);
         }
         function canSelect(el) {
-          return /INPUT|TEXTAREA|BUTTON/.test(el.tagName) && EditorManager.get(e.id) && el.tabIndex !== -1 && canSelectRecursive(el);
+          return /INPUT|TEXTAREA|BUTTON/.test(el.tagName) && global$2.get(e.id) && el.tabIndex !== -1 && canSelectRecursive(el);
         }
-        Tools.each(el, function (e, i) {
+        global$5.each(el, function (e, i) {
           if (e.id === editor.id) {
             x = i;
             return false;
@@ -65,7 +65,7 @@ var tabfocus = (function () {
         }
         return null;
       }
-      v = Tools.explode($_c8erj7jmje5o2uo8.getTabFocus(editor));
+      v = global$5.explode($_bmaxzsjwjfjm4lbl.getTabFocus(editor));
       if (v.length === 1) {
         v[1] = v[0];
         v[0] = ':prev';
@@ -84,12 +84,12 @@ var tabfocus = (function () {
         }
       }
       if (el) {
-        var focusEditor = EditorManager.get(el.id || el.name);
+        var focusEditor = global$2.get(el.id || el.name);
         if (el.id && focusEditor) {
           focusEditor.focus();
         } else {
-          Delay.setTimeout(function () {
-            if (!Env.webkit) {
+          global$4.setTimeout(function () {
+            if (!global$3.webkit) {
               window.focus();
             }
             el.focus();
@@ -103,17 +103,17 @@ var tabfocus = (function () {
         DOM.setAttrib(editor.getBody(), 'tabIndex', null);
       }
       editor.on('keyup', tabCancel);
-      if (Env.gecko) {
+      if (global$3.gecko) {
         editor.on('keypress keydown', tabHandler);
       } else {
         editor.on('keydown', tabHandler);
       }
     });
   };
-  var $_cppslxjfje5o2uo3 = { setup: setup };
+  var $_9x6f2bjpjfjm4lbe = { setup: setup };
 
-  PluginManager.add('tabfocus', function (editor) {
-    $_cppslxjfje5o2uo3.setup(editor);
+  global.add('tabfocus', function (editor) {
+    $_9x6f2bjpjfjm4lbe.setup(editor);
   });
   function Plugin () {
   }

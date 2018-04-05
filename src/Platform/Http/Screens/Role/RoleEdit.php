@@ -55,7 +55,7 @@ class RoleEdit extends Screen
 
                 return $group;
         });
-
+        
         return [
             'permission' => $permission,
             'role'       => $role,
@@ -90,10 +90,10 @@ class RoleEdit extends Screen
         return [
             Layouts::columns([
                 'Left column'  => [
-                    RolePermissionLayout::class
+                    RoleEditLayout::class
                 ],
                 'Right column' => [
-                    RoleEditLayout::class
+                     RolePermissionLayout::class
                 ],
             ]),
         ];

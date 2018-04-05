@@ -41,7 +41,7 @@ class CategoryEdit extends Screen
         $category = is_null($category) ? new Category() : $category;
         
 
-        $anycategory= Category::whereNotIn('id', [$category->id])->get();
+        $anycategory = Category::whereNotIn('id', [$category->id])->get();
         
         $catselect[0] = trans('dashboard::systems/category.not_parrent');
         foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
@@ -102,8 +102,7 @@ class CategoryEdit extends Screen
         $category->parent_id = $attributes['parent_id'];
        
         $category->term->fill($attributes['term']);  
-
-
+        
         $category->save();
         $category->term->save();
         Alert::info(trans('dashboard::systems/category.Category was saved'));
@@ -118,7 +117,6 @@ class CategoryEdit extends Screen
      */
     public function remove(Category $category)
     {
-
         $category->delete();
 
         Alert::info(trans('dashboard::systems/category.Category was removed'));

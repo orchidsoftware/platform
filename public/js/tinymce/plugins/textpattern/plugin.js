@@ -20,7 +20,7 @@ var textpattern = (function () {
     };
   };
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var get = function (patternsState) {
     var setPatterns = function (newPatterns) {
@@ -34,7 +34,7 @@ var textpattern = (function () {
       getPatterns: getPatterns
     };
   };
-  var $_nrzbfqgje5o2wh7 = { get: get };
+  var $_d7x01qqjfjm4n3a = { get: get };
 
   var defaultPatterns = [
     {
@@ -95,15 +95,15 @@ var textpattern = (function () {
   var getPatterns = function (editorSettings) {
     return editorSettings.textpattern_patterns !== undefined ? editorSettings.textpattern_patterns : defaultPatterns;
   };
-  var $_x9knwqhje5o2wh8 = { getPatterns: getPatterns };
+  var $_7302gpqrjfjm4n3b = { getPatterns: getPatterns };
 
-  var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-  var VK = tinymce.util.Tools.resolve('tinymce.util.VK');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.util.VK');
 
-  var TreeWalker = tinymce.util.Tools.resolve('tinymce.dom.TreeWalker');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.dom.TreeWalker');
 
-  var Tools = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var global$4 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
   var sortPatterns = function (patterns) {
     return patterns.sort(function (a, b) {
@@ -144,7 +144,7 @@ var textpattern = (function () {
       }
     }
   };
-  var $_25znbqpje5o2whi = {
+  var $_33w5xgqzjfjm4n3m = {
     findPattern: findPattern,
     findEndPattern: findEndPattern
   };
@@ -166,7 +166,7 @@ var textpattern = (function () {
     if (container.nodeType !== 3) {
       return;
     }
-    var endPattern = $_25znbqpje5o2whi.findEndPattern(patterns, text, rng.startOffset, delta);
+    var endPattern = $_33w5xgqzjfjm4n3m.findEndPattern(patterns, text, rng.startOffset, delta);
     if (endPattern === undefined) {
       return;
     }
@@ -179,7 +179,7 @@ var textpattern = (function () {
     var patternRng = document.createRange();
     patternRng.setStart(container, startOffset);
     patternRng.setEnd(container, endOffset + endPattern.end.length);
-    var startPattern = $_25znbqpje5o2whi.findPattern(patterns, patternRng.toString());
+    var startPattern = $_33w5xgqzjfjm4n3m.findPattern(patterns, patternRng.toString());
     if (endPattern === undefined || startPattern !== endPattern || container.data.length <= endPattern.start.length + endPattern.end.length) {
       return;
     }
@@ -190,8 +190,8 @@ var textpattern = (function () {
     };
   };
   var splitAndApply = function (editor, container, found, space) {
-    var formatArray = Tools.isArray(found.pattern.format) ? found.pattern.format : [found.pattern.format];
-    var validFormats = Tools.grep(formatArray, function (formatName) {
+    var formatArray = global$4.isArray(found.pattern.format) ? found.pattern.format : [found.pattern.format];
+    var validFormats = global$4.grep(formatArray, function (formatName) {
       var format = editor.formatter.get(formatName);
       return format && format[0].inline;
     });
@@ -227,7 +227,7 @@ var textpattern = (function () {
     }
     textBlockElm = dom.getParent(selection.getStart(), 'p');
     if (textBlockElm) {
-      walker = new TreeWalker(textBlockElm, textBlockElm);
+      walker = new global$3(textBlockElm, textBlockElm);
       while (node = walker.next()) {
         if (node.nodeType === 3) {
           firstTextNode = node;
@@ -235,7 +235,7 @@ var textpattern = (function () {
         }
       }
       if (firstTextNode) {
-        pattern = $_25znbqpje5o2whi.findPattern(patterns, firstTextNode.data);
+        pattern = $_33w5xgqzjfjm4n3m.findPattern(patterns, firstTextNode.data);
         if (!pattern) {
           return;
         }
@@ -245,7 +245,7 @@ var textpattern = (function () {
         if (firstTextNode === container) {
           offset = Math.max(0, offset - pattern.start.length);
         }
-        if (Tools.trim(firstTextNode.data).length === pattern.start.length) {
+        if (global$4.trim(firstTextNode.data).length === pattern.start.length) {
           return;
         }
         if (pattern.format) {
@@ -267,7 +267,7 @@ var textpattern = (function () {
       }
     }
   };
-  var $_c74arcqmje5o2whe = {
+  var $_e9hkcmqwjfjm4n3i = {
     patternFromRng: patternFromRng,
     applyInlineFormatSpace: applyInlineFormatSpace,
     applyInlineFormatEnter: applyInlineFormatEnter,
@@ -276,18 +276,18 @@ var textpattern = (function () {
 
   function handleEnter(editor, patterns) {
     var wrappedTextNode, rng;
-    wrappedTextNode = $_c74arcqmje5o2whe.applyInlineFormatEnter(editor, patterns);
+    wrappedTextNode = $_e9hkcmqwjfjm4n3i.applyInlineFormatEnter(editor, patterns);
     if (wrappedTextNode) {
       rng = editor.dom.createRng();
       rng.setStart(wrappedTextNode, wrappedTextNode.data.length);
       rng.setEnd(wrappedTextNode, wrappedTextNode.data.length);
       editor.selection.setRng(rng);
     }
-    $_c74arcqmje5o2whe.applyBlockFormat(editor, patterns);
+    $_e9hkcmqwjfjm4n3i.applyBlockFormat(editor, patterns);
   }
   function handleInlineKey(editor, patterns) {
     var wrappedTextNode, lastChar, lastCharNode, rng, dom;
-    wrappedTextNode = $_c74arcqmje5o2whe.applyInlineFormatSpace(editor, patterns);
+    wrappedTextNode = $_e9hkcmqwjfjm4n3i.applyInlineFormatSpace(editor, patterns);
     if (wrappedTextNode) {
       dom = editor.dom;
       lastChar = wrappedTextNode.data.slice(-1);
@@ -311,7 +311,7 @@ var textpattern = (function () {
   };
   var checkKeyCode = function (codes, event) {
     return checkKeyEvent(codes, event, function (code, event) {
-      return code === event.keyCode && VK.modifierPressed(event) === false;
+      return code === event.keyCode && global$2.modifierPressed(event) === false;
     });
   };
   var checkCharCode = function (chars, event) {
@@ -319,7 +319,7 @@ var textpattern = (function () {
       return chr.charCodeAt(0) === event.charCode;
     });
   };
-  var $_4uqogkqlje5o2whb = {
+  var $_5gao7lqvjfjm4n3f = {
     handleEnter: handleEnter,
     handleInlineKey: handleInlineKey,
     checkCharCode: checkCharCode,
@@ -337,29 +337,29 @@ var textpattern = (function () {
     ];
     var keyCodes = [32];
     editor.on('keydown', function (e) {
-      if (e.keyCode === 13 && !VK.modifierPressed(e)) {
-        $_4uqogkqlje5o2whb.handleEnter(editor, patternsState.get());
+      if (e.keyCode === 13 && !global$2.modifierPressed(e)) {
+        $_5gao7lqvjfjm4n3f.handleEnter(editor, patternsState.get());
       }
     }, true);
     editor.on('keyup', function (e) {
-      if ($_4uqogkqlje5o2whb.checkKeyCode(keyCodes, e)) {
-        $_4uqogkqlje5o2whb.handleInlineKey(editor, patternsState.get());
+      if ($_5gao7lqvjfjm4n3f.checkKeyCode(keyCodes, e)) {
+        $_5gao7lqvjfjm4n3f.handleInlineKey(editor, patternsState.get());
       }
     });
     editor.on('keypress', function (e) {
-      if ($_4uqogkqlje5o2whb.checkCharCode(charCodes, e)) {
-        Delay.setEditorTimeout(editor, function () {
-          $_4uqogkqlje5o2whb.handleInlineKey(editor, patternsState.get());
+      if ($_5gao7lqvjfjm4n3f.checkCharCode(charCodes, e)) {
+        global$1.setEditorTimeout(editor, function () {
+          $_5gao7lqvjfjm4n3f.handleInlineKey(editor, patternsState.get());
         });
       }
     });
   };
-  var $_2hfp33qije5o2wh9 = { setup: setup };
+  var $_7wpn5pqsjfjm4n3d = { setup: setup };
 
-  PluginManager.add('textpattern', function (editor) {
-    var patternsState = Cell($_x9knwqhje5o2wh8.getPatterns(editor.settings));
-    $_2hfp33qije5o2wh9.setup(editor, patternsState);
-    return $_nrzbfqgje5o2wh7.get(patternsState);
+  global.add('textpattern', function (editor) {
+    var patternsState = Cell($_7302gpqrjfjm4n3b.getPatterns(editor.settings));
+    $_7wpn5pqsjfjm4n3d.setup(editor, patternsState);
+    return $_d7x01qqjfjm4n3a.get(patternsState);
   });
   function Plugin () {
   }

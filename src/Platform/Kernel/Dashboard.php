@@ -6,7 +6,7 @@ namespace Orchid\Platform\Kernel;
 
 use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Access\Permissions;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class Dashboard
 {
@@ -16,31 +16,38 @@ class Dashboard
     const VERSION = '2.3.0';
 
     /**
-     * @var
+     * @var Menu
      */
-    public $menu = null;
+    public $menu;
 
     /**
      * Permission for applications.
      *
-     * @var null
+     * @var Collection
      */
-    public $permission = null;
-
+    private $permission;
+    
     /**
-     * @var array
+     * @var Collection
      */
-    public $storage = null;
-
+    public $fields;
+    
+    /**
+     * @var Collection
+     */
+    private $manyBehaviors;
+    
+    /**
+     * @var Collection
+     */
+    private $singleBehaviors;
+    
     /**
      * JS and CSS resources for implementation in the panel.
      *
-     * @var array
+     * @var Collection
      */
-    public $resources = [
-        'stylesheets' => [],
-        'scripts'     => [],
-    ];
+    public $resources;
 
     /**
      * Dashboard constructor.
@@ -48,8 +55,7 @@ class Dashboard
     public function __construct()
     {
         $this->menu = new Menu();
-        $this->permission = new Permissions();
-        $this->storage = collect();
+        $this->permission = $this->resources = $this->singleBehaviors = $this->manyBehaviors = $this->fields = collect();
     }
 
     /**
@@ -75,27 +81,92 @@ class Dashboard
 
         return $prefix.$path;
     }
-
+    
     /**
-     * Register storage of data.
+     * @param array $permission
      *
-     * @param                  $property
-     * @param StorageInterface $storage
+     * @return $this
      */
-    public function registerStorage($property, StorageInterface $storage)
+    public function registerPermissions(array $permission)
     {
-        $this->storage->put($property, $storage);
+        $old = $this->permission->get(key($permission), []);
+        $this->permission->put(key($permission), array_merge_recursive($old, $permission));
+        
+        return $this;
     }
 
     /**
-     * @param string $key
-     * @param string $value
+     * @param array $value
+     *
+     * @return $this
      */
-    public function registerResource(string $key, string $value)
+    public function registerManyBehavior(array $value)
     {
-        array_push($this->resources[$key], $value);
+        $this->manyBehaviors = $this->manyBehaviors->merge($value);
+        
+        return $this;
     }
-
+    
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function registerSingleBehavior(array $value)
+    {
+        $this->singleBehaviors = $this->singleBehaviors->merge($value);
+        
+        return $this;
+    }
+    
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function registerFields(array $value)
+    {
+        $this->fields = $this->fields->merge($value);
+        
+        return $this;
+    }
+    
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+    
+    /**
+     * @param array $value
+     *
+     * @return $this
+     */
+    public function registerResource(array $value)
+    {
+        $this->resources = $this->resources->merge($value);
+        
+        return $this;
+    }
+    
+    /**
+     * Return CSS\JS
+     *
+     * @param null $key
+     *
+     * @return array|\Illuminate\Support\Collection|mixed
+     */
+    public function getResource($key = null)
+    {
+        if(is_null($key)){
+            return $this->resources;
+        }
+        
+        return $this->resources->get($key);
+    }
+    
     /**
      * Return Storage.
      *
@@ -108,7 +179,39 @@ class Dashboard
     {
         return $this->storage->get($key, $default);
     }
-
+    
+    /**
+     * @return mixed
+     */
+    public function getManyBehaviors()
+    {
+        $this->manyBehaviors->transform(function ($value) {
+            if (! is_object($value)) {
+                $value = new $value();
+            }
+        
+            return $value;
+        });
+    
+        return $this->manyBehaviors;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getSingleBehaviors()
+    {
+        $this->singleBehaviors->transform(function ($value) {
+            if (! is_object($value)) {
+                $value = new $value();
+            }
+            
+            return $value;
+        });
+        
+        return $this->singleBehaviors;
+    }
+    
     /**
      * @return null|Menu
      */
@@ -116,24 +219,12 @@ class Dashboard
     {
         return $this->menu;
     }
-
-    /**
-     * Return Property.
-     *
-     * @param $property
-     *
-     * @return mixed
-     */
-    public function getProperty($property)
-    {
-        return $this->$property;
-    }
-
+    
     /**
      * @return \Illuminate\Support\Collection
      */
     public function getPermission() : Collection
     {
-        return $this->permission->get();
+        return $this->permission;
     }
 }

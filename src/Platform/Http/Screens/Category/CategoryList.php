@@ -36,7 +36,6 @@ class CategoryList extends Screen
        
         return [
             'category' => Category::paginate(),
-
         ];
 
     }
@@ -49,7 +48,9 @@ class CategoryList extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('dashboard::common.commands.add'))->icon('icon-plus')->method('create'),
+            Link::name(trans('dashboard::common.commands.add'))
+                ->icon('icon-plus')
+                ->method('create'),
         ];
     }
 

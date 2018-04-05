@@ -1,28 +1,27 @@
 {
-  "_from": "tinymce@4.7.9",
-  "_id": "tinymce@4.7.9",
+  "_from": "tinymce@^4.7.9",
+  "_id": "tinymce@4.7.10",
   "_inBundle": false,
-  "_integrity": "sha512-JGN0Hn8cYINgyHTw6ztnO086hez4SIWbkny+3S5tesyvggNFg6He1GSIHPZgSB3+ydCqO8J6qhjGSIyi0LPwpQ==",
+  "_integrity": "sha512-8rJJoQDSMZ/myDRiQkbJA0X9b/XpNdv99tDS2B/mTcOY6iMgOTLnVNZI+h23ylIECp5HIX0Xt8cFg+OvJ92NRw==",
   "_location": "/tinymce",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "tinymce@4.7.9",
+    "raw": "tinymce@^4.7.9",
     "name": "tinymce",
     "escapedName": "tinymce",
-    "rawSpec": "4.7.9",
+    "rawSpec": "^4.7.9",
     "saveSpec": null,
-    "fetchSpec": "4.7.9"
+    "fetchSpec": "^4.7.9"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.9.tgz",
-  "_shasum": "2f14934cf42ab20e6d081fd282842c24aecf1866",
-  "_spec": "tinymce@4.7.9",
-  "_where": "/home/tabuna/ORCHID/install/orchid/Platform",
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.10.tgz",
+  "_shasum": "c48524dfbe7be0b294a05944a74e4aee0a2d6a1f",
+  "_spec": "tinymce@^4.7.9",
+  "_where": "/home/tabuna/Документы/orchid/platform",
   "author": {
     "name": "Ephox Corporation"
   },
@@ -48,5 +47,5 @@
     "type": "git",
     "url": "git+https://github.com/tinymce/tinymce-dist.git"
   },
-  "version": "4.7.9"
+  "version": "4.7.10"
 }

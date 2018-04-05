@@ -2,9 +2,9 @@
 var autolink = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var Env = tinymce.util.Tools.resolve('tinymce.Env');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.Env');
 
   var getAutoLinkPattern = function (editor) {
     return editor.getParam('autolink_pattern', /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i);
@@ -12,7 +12,7 @@ var autolink = (function () {
   var getDefaultLinkTarget = function (editor) {
     return editor.getParam('default_link_target', '');
   };
-  var $_apnfrs84je5o2t2j = {
+  var $_82xerf88jfjm4jw3 = {
     getAutoLinkPattern: getAutoLinkPattern,
     getDefaultLinkTarget: getDefaultLinkTarget
   };
@@ -57,8 +57,8 @@ var autolink = (function () {
   };
   var parseCurrentLine = function (editor, endOffset, delimiter) {
     var rng, end, start, endContainer, bookmark, text, matches, prev, len, rngText;
-    var autoLinkPattern = $_apnfrs84je5o2t2j.getAutoLinkPattern(editor);
-    var defaultLinkTarget = $_apnfrs84je5o2t2j.getDefaultLinkTarget(editor);
+    var autoLinkPattern = $_82xerf88jfjm4jw3.getAutoLinkPattern(editor);
+    var defaultLinkTarget = $_82xerf88jfjm4jw3.getDefaultLinkTarget(editor);
     if (editor.selection.getNode().tagName === 'A') {
       return;
     }
@@ -143,7 +143,7 @@ var autolink = (function () {
         return handleEnter(editor);
       }
     });
-    if (Env.ie) {
+    if (global$1.ie) {
       editor.on('focus', function () {
         if (!autoUrlDetectState) {
           autoUrlDetectState = true;
@@ -166,10 +166,10 @@ var autolink = (function () {
       }
     });
   };
-  var $_921dsn82je5o2t2e = { setup: setup };
+  var $_5uxmv986jfjm4jvz = { setup: setup };
 
-  PluginManager.add('autolink', function (editor) {
-    $_921dsn82je5o2t2e.setup(editor);
+  global.add('autolink', function (editor) {
+    $_5uxmv986jfjm4jvz.setup(editor);
   });
   function Plugin () {
   }
