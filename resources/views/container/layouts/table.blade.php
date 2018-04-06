@@ -1,4 +1,7 @@
 <div class="bg-white-only  bg-auto no-border-xs">
+
+    {!! $filters or '' !!}
+
     @if(count($form['data']) > 0)
 
         <div class="table-responsive">

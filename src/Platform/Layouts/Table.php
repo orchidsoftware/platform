@@ -27,8 +27,11 @@ abstract class Table
     public function build(Repository $query)
     {
         $form = $this->generatedTable($query);
+        $filters = $this->showFilterDashboard();
+
         return view($this->template, [
             'form' => $form,
+            'filters' => $filters,
         ])->render();
     }
 
@@ -43,6 +46,48 @@ abstract class Table
             'data'   => $post->getContent($this->data),
             'fields' => $this->fields(),
         ];
+    }
+
+
+    /**
+     * Display form for filtering.
+     *
+     * @return View
+     */
+    public function showFilterDashboard()
+    {
+        $dashboardFilter = $this->getFilters(true);
+        $chunk = ceil($dashboardFilter->count() / 4);
+        return view('dashboard::container.layouts.filter', [
+            'filters' => $dashboardFilter,
+            'chunk'   => $chunk,
+        ]);
+    }
+    /**
+     * Get all the filters.
+     *
+     * @param bool $dashboard
+     *
+     * @return Collection
+     */
+    public function getFilters($dashboard = false)
+    {
+        $filters = collect();
+        foreach ($this->filters() as $filter) {
+            $filter = new $filter($this);
+            if ($filter->dashboard == $dashboard) {
+                $filters->push($filter);
+            }
+        }
+        return $filters;
+    }
+
+    /**
+     * @return array
+     */
+    public function filters() : array
+    {
+        return [];
     }
 
     /**

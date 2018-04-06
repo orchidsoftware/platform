@@ -45,6 +45,7 @@ class UserEdit extends Screen
 
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()
+            ->collapse()
             ->sort()
             ->transform(function ($group) use ($rolePermission) {
 
