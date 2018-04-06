@@ -110,11 +110,12 @@ class HttpFilter
 
         });
     }
-
+    
     /**
      * @param Builder $query
      * @param         $value
      * @param string  $property
+     *
      * @return Builder
      */
     protected function filtersExact(Builder $query, $value, string $property)

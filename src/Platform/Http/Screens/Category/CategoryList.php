@@ -65,10 +65,8 @@ class CategoryList extends Screen
             CategoryListLayout::class,
         ];
     }
-
+    
     /**
-     * @param Request $request
-     *
      * @return null
      */
     public function create()

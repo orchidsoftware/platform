@@ -41,11 +41,12 @@ if (! function_exists('generate_form')) {
      * Generate a ready-made html form for display to the user.
      *
      * @param array       $fields
-     * @param             $data
+     * @param array       $data
      * @param string|null $language
      * @param string|null $prefix
+     *
      * @return string
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     function generate_form(array $fields, $data = [], string $language = null, string $prefix = null)
     {

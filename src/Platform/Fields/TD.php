@@ -53,7 +53,7 @@ class TD
      * @var bool
      */
     public $locale = false;
-
+    
     /**
      * TD constructor.
      *
@@ -64,10 +64,11 @@ class TD
         $this->name = $name;
         $this->column = $name;
     }
-
+    
     /**
      * @param string $name
      * @param string $title
+     *
      * @return TD
      */
     public static function set(string $name, string $title)
@@ -78,7 +79,7 @@ class TD
 
         return $td;
     }
-
+    
     /**
      * @deprecated Use the set method
      *
@@ -90,7 +91,7 @@ class TD
     {
         return new self($name);
     }
-
+    
     /**
      * @deprecated Use the set method
      *
@@ -104,7 +105,7 @@ class TD
 
         return $this;
     }
-
+    
     /**
      * @param string $width
      *
@@ -128,7 +129,7 @@ class TD
 
         return $this;
     }
-
+    
     /**
      * @param string|null $column
      * @return $this
@@ -146,9 +147,9 @@ class TD
 
         return $this;
     }
-
+    
     /**
-     * @param string      $filter
+     * @param string $filter
      *
      * @return $this
      */
@@ -190,7 +191,7 @@ class TD
     {
         return ($this->render)($data);
     }
-
+    
     /**
      * @param string|null $text
      *
@@ -200,7 +201,7 @@ class TD
     {
         return $this->link('dashboard.posts.type.edit', ['type', 'slug'], $text);
     }
-
+    
     /**
      * @param string $route
      * @param        $options
@@ -244,7 +245,7 @@ class TD
 
         return $this;
     }
-
+    
     /**
      * @param string $align
      *

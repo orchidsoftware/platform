@@ -12,8 +12,18 @@ export default class extends Controller {
             forceSync: true,
             element: textarea,
             toolbar: [
-                'bold',
-                'italic',
+                {
+                    name: "bold",
+                    action: SimpleMDE.toggleBold,
+                    className: "icon-bold",
+                    title: "Bold",
+                },
+                {
+                    name: "italic",
+                    action: SimpleMDE.toggleItalic,
+                    className: "icon-italic",
+                    title: "Italic",
+                },
                 {
                     name: "heading",
                     action: SimpleMDE.toggleHeadingSmaller,

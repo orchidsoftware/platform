@@ -42,15 +42,14 @@ class Builder
      * @var
      */
     public $form = '';
-
+    
     /**
      * Builder constructor.
      *
-     * @param array $fields
-     * @param Repository $data
+     * @param array       $fields
+     * @param Repository  $data
      * @param string|null $language
      * @param string|null $prefix
-     *
      */
     public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
     {
@@ -59,7 +58,7 @@ class Builder
         $this->language = $language;
         $this->prefix = $prefix;
     }
-
+    
     /**
      * @param string $language
      *
@@ -71,7 +70,7 @@ class Builder
 
         return $this;
     }
-
+    
     /**
      * @param string $prefix
      *

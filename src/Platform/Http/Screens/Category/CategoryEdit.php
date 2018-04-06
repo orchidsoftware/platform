@@ -28,11 +28,11 @@ class CategoryEdit extends Screen
      * @var string
      */
     public $description = 'dashboard::systems/category.description';
-
+    
     /**
      * Query data
      *
-     * @param int $categoryId
+     * @param null $category
      *
      * @return array
      */

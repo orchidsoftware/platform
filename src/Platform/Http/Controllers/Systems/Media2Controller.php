@@ -29,8 +29,10 @@ class Media2Controller extends Controller
         $this->checkPermission('dashboard.systems.media');
         $this->filesystem = config('platform.disks.media', 'public');
     }
-
+    
     /**
+     * @param string $dir
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($dir = '')
