@@ -38,7 +38,7 @@ trait Attachment
      */
     public function attachment($type = null, $group = null): MorphToMany
     {
-        $model = $this->morphToMany(
+        $query = $this->morphToMany(
             static::$attachmentModel,
             'attachmentable',
             'attachmentable',
@@ -47,13 +47,13 @@ trait Attachment
         );
 
         if (!is_null($type)) {
-            $model->whereIn('extension', config('platform.attachment.' . $type));
+            $query->whereIn('extension', config('platform.attachment.' . $type));
         }
 
         if (!is_null($group)) {
-            $model->where('attachmentable_group', $group);
+            $query->where('attachmentable_group', $group);
         }
 
-        return $model;
+        return $query;
     }
 }
