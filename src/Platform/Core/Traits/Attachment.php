@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Orchid\Platform\Core\Traits;
 
@@ -18,7 +18,7 @@ trait Attachment
     /**
      * @return string
      */
-    public static function getAttachmentModel() : string
+    public static function getAttachmentModel(): string
     {
         return static::$attachmentModel;
     }
@@ -26,7 +26,7 @@ trait Attachment
     /**
      * @param $model
      */
-    public static function setAttachmentModel($model) : void
+    public static function setAttachmentModel($model): void
     {
         static::$attachmentModel = $model;
     }
@@ -36,14 +36,24 @@ trait Attachment
      *
      * @return MorphToMany
      */
-    public function attachment($type = null) : MorphToMany
+    public function attachment($type = null, $group = null): MorphToMany
     {
-        if (! is_null($type)) {
-            return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachmentable', 'attachmentable_id',
-                'attachment_id')->whereIn('extension', config('platform.attachment.'.$type));
+        $model = $this->morphToMany(
+            static::$attachmentModel,
+            'attachmentable',
+            'attachmentable',
+            'attachmentable_id',
+            'attachment_id'
+        );
+
+        if (!is_null($type)) {
+            $model->whereIn('extension', config('platform.attachment.' . $type));
         }
 
-        return $this->morphToMany(static::$attachmentModel, 'attachmentable', 'attachmentable', 'attachmentable_id',
-            'attachment_id');
+        if (!is_null($group)) {
+            $model->where('attachmentable_group', $group);
+        }
+
+        return $model;
     }
 }
