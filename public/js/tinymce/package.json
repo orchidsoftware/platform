@@ -21,7 +21,7 @@
   "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.7.10.tgz",
   "_shasum": "c48524dfbe7be0b294a05944a74e4aee0a2d6a1f",
   "_spec": "tinymce@^4.7.9",
-  "_where": "/home/tabuna/Документы/orchid/platform",
+  "_where": "/var/www/orchid/platform",
   "author": {
     "name": "Ephox Corporation"
   },
