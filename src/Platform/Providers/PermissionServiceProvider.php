@@ -32,6 +32,7 @@ class PermissionServiceProvider extends ServiceProvider
         ->registerPermissions($this->registerPermissionsMain())
         ->registerPermissions($this->registerPermissionsBehaviors())
         ->registerPermissions($this->registerPermissionsSystems());
+
     }
 
     /**
@@ -67,24 +68,24 @@ class PermissionServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsBehaviors() : array
     {
-        $this->dashboard->getSingleBehaviors()->map(function ($page) {
-            $pages[] = [
+
+        $pages=$this->dashboard->getSingleBehaviors()->map(function ($page) {
+            return [
                 'slug' => 'dashboard.pages.type.'.$page->slug,
                 'description' => $page->name,
             ];
         });
     
-        $this->dashboard->getManyBehaviors()->map(function ($post) {
-            $posts[] = [
+        $posts=$this->dashboard->getManyBehaviors()->map(function ($post) {
+             return [
                 'slug' => 'dashboard.posts.type.'.$post->slug,
                 'description' => $post->name,
             ];
         });
         
-    
         return [
-            'Pages' => $pages ?? [],
-            'Posts' => $posts ?? [],
+            'Pages' => $pages->toArray() ?? [],
+            'Posts' => $posts->toArray() ?? [],
         ];
     }
 
