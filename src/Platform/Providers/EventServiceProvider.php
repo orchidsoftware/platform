@@ -8,17 +8,12 @@ use Illuminate\Auth\Events\Login;
 use Orchid\Platform\Events\CommentEvent;
 use Orchid\Platform\Events\CategoryEvent;
 use Orchid\Platform\Events\SettingsEvent;
-use Orchid\Platform\Events\Systems\UserEvent;
-use Orchid\Platform\Events\Systems\RolesEvent;
 use Orchid\Platform\Listeners\Category\CategoryBaseLister;
 use Orchid\Platform\Listeners\Category\CategoryDescLister;
 use Orchid\Platform\Listeners\Comment\CommentBaseListener;
 use Orchid\Platform\Listeners\Settings\SettingBaseListener;
 use Orchid\Platform\Listeners\Settings\SettingInfoListener;
-use Orchid\Platform\Listeners\Systems\Roles\RoleBaseListener;
-use Orchid\Platform\Listeners\Systems\Users\UserBaseListener;
 use Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin;
-use Orchid\Platform\Listeners\Systems\Users\UserAccessListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider

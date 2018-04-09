@@ -106,9 +106,7 @@ class FoundationServiceProvider extends ServiceProvider
             DashboardProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,
-            PermissionServiceProvider::class,
             EventServiceProvider::class,
-            MenuServiceProvider::class,
         ];
     }
 
