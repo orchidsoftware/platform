@@ -11,73 +11,27 @@
 
 $this->domain(config('platform.domain'))->group(function () {
 
+
     $this->group([
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
-    ],function (\Illuminate\Routing\Router $router, $path = 'dashboard.systems') {
+    ], function (\Illuminate\Routing\Router $router) {
 
-        $router->screen('users/{users}/edit', config('platform.screens.users.edit'), $path.'.users.edit');
-        $router->screen('users/create', config('platform.screens.users.edit'), $path.'.users.create');
-        $router->screen('users', config('platform.screens.users.list'), $path.'.users');
+        $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'dashboard.systems.users.edit');
+        $router->screen('users/create', config('platform.screens.users.edit'), 'dashboard.systems.users.create');
+        $router->screen('users', config('platform.screens.users.list'), 'dashboard.systems.users');
+        $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'dashboard.systems.roles.edit');
+        $router->screen('roles/create', config('platform.screens.roles.edit'), 'dashboard.systems.roles.create');
+        $router->screen('roles', config('platform.screens.roles.list'), 'dashboard.systems.roles');
 
-        $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), $path.'.roles.edit');
-        $router->screen('roles/create', config('platform.screens.roles.edit'), $path.'.roles.create');
-        $router->screen('roles', config('platform.screens.roles.list'), $path.'.roles');
-
-        foreach (config('platform.screens') as $screenkey => $items) {
-            foreach ($items as $key => $item) {
-                switch ($key) {
-                    case 'edit':
-                        $router->screen("$screenkey/{{$screenkey}}/edit", config("platform.screens.$screenkey.edit"), $path.".$screenkey.edit");
-                        $router->screen("$screenkey/create", config("platform.screens.$screenkey.edit"), $path.".$screenkey.create");
-                        break;
-                    case 'list':
-                        $router->screen("$screenkey", config("platform.screens.$screenkey.list"), $path.".$screenkey");
-                        break;
-                    default:
-                        $router->screen("$screenkey/{{$screenkey}}/$key", config("platform.screens.$screenkey.$key"), $path.".$screenkey.$key");
-                }
-            }
-        }
-
-        //dd($router);
     });
-
 
     $this->group([
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
-        /*
-        $router->resource('users', 'UserController', [
-            'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy',
-            ],
-            'names' => [
-                'index'   => 'dashboard.systems.users',
-                'create'  => 'dashboard.systems.users.create',
-                'edit'    => 'dashboard.systems.users.edit',
-                'update'  => 'dashboard.systems.users.update',
-                'store'   => 'dashboard.systems.users.store',
-                'destroy' => 'dashboard.systems.users.destroy',
-            ],
-        ]);
 
-        $router->resource('roles', 'RoleController', [
-            'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy',
-            ],
-            'names' => [
-                'index'   => 'dashboard.systems.roles',
-                'create'  => 'dashboard.systems.roles.create',
-                'edit'    => 'dashboard.systems.roles.edit',
-                'update'  => 'dashboard.systems.roles.update',
-                'store'   => 'dashboard.systems.roles.store',
-                'destroy' => 'dashboard.systems.roles.destroy',
-            ],
-        ]);
- */
 
         $router->get('system', [
             'as'   => 'dashboard.systems.system',
@@ -113,7 +67,7 @@ $this->domain(config('platform.domain'))->group(function () {
             'as'   => 'dashboard.systems.settings',
             'uses' => 'SettingController@store',
         ]);
-        /*
+
         $router->resource('category', 'CategoryController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',
@@ -141,7 +95,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.comment.destroy',
             ],
         ]);
-        */
+
         $router->post('files', [
             'as'   => 'dashboard.systems.files.upload',
             'uses' => 'AttachmentController@upload',

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Property display for page
 - Added ability to change the logo [354](https://github.com/orchidsoftware/platform/issues/354)
 - New command for easy installation `orchid:install` [622](https://github.com/orchidsoftware/platform/issues/622)
+- User routes for dashboard
 
 ### Deprecated
 - TD::name and TD::title use TD::set

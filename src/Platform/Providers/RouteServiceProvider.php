@@ -119,8 +119,15 @@ class RouteServiceProvider extends ServiceProvider
             return;
         }
 
-        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
+        foreach (glob(DASHBOARD_PATH.'/routes/*.php') as $file) {
             $this->loadRoutesFrom($file);
+        }
+
+        if(file_exists(base_path('routes/dashboard.php'))) {
+            Route::prefix('dashboard')
+                ->middleware('api')
+                ->namespace('App\Http\Controllers')
+                ->group(base_path('routes/dashboard.php'));
         }
     }
 }

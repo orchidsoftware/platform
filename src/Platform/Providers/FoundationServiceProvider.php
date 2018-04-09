@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Kernel\Dashboard;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Kernel\Dashboard;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -20,44 +20,57 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
-        $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'));
-
-        $this->registerDatabase();
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
-
-        $this->registerProviders();
+        $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'))
+            ->registerRoute()
+            ->registerDatabase()
+            ->registerTranslations()
+            ->registerConfig()
+            ->registerViews()
+            ->registerProviders();
     }
 
     /**
      * Register factories.
      *
      * @param $path
+     *
+     * @return $this
      */
     protected function registerEloquentFactoriesFrom($path)
     {
         $this->app->make(EloquentFactory::class)->load($path);
+
+        return $this;
     }
 
     /**
      * Register migrate.
+     *
+     * @return $this
      */
     protected function registerDatabase()
     {
         $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations'));
+
+        return $this;
     }
 
     /**
      * Register translations.
+     *
+     * @return $this
      */
     public function registerTranslations()
     {
         $this->loadTranslationsFrom(realpath(DASHBOARD_PATH.'/resources/lang'), 'dashboard');
+
+        return $this;
     }
 
     /**
      * Register config.
+     *
+     * @return $this
      */
     protected function registerConfig()
     {
@@ -68,15 +81,33 @@ class FoundationServiceProvider extends ServiceProvider
         ]);
 
         $this->mergeConfigFrom(realpath(DASHBOARD_PATH.'/config/platform.php'), 'platform');
+
+        return $this;
+    }
+
+    /**
+     * Register route.
+     *
+     * @return $this
+     */
+    protected function registerRoute()
+    {
+        $this->publishes([
+            realpath(DASHBOARD_PATH . '/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
+        ]);
+
+        return $this;
     }
 
     /**
      * Register views.
+     *
+     * @return $this
      */
     public function registerViews()
     {
         if (config('platform.headless')) {
-            return;
+            return $this;
         }
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
@@ -84,8 +115,13 @@ class FoundationServiceProvider extends ServiceProvider
         }, config('view.paths')), [
             DASHBOARD_PATH.'/resources/views',
         ]), 'dashboard');
+
+        return $this;
     }
 
+    /**
+     * Register provider.
+     */
     public function registerProviders()
     {
         foreach ($this->provides() as $provide) {

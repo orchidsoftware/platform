@@ -307,10 +307,6 @@ return [
             'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
             'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
         ],
-        'category' => [
-            'edit'     => Orchid\Platform\Http\Screens\Category\CategoryEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\Category\CategoryList::class,
-        ],
         'comment' => [
             'edit'     => Orchid\Platform\Http\Screens\Comment\CommentEdit::class,
             'list'     => Orchid\Platform\Http\Screens\Comment\CommentList::class,
