@@ -24,7 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use SoftDeletes, TaggableTrait, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations,FilterTrait;
+    use TaggableTrait;
+    use SoftDeletes, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, FilterTrait;
 
     /**
      * @var string
