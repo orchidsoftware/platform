@@ -51,6 +51,7 @@ class InstallCommand extends Command
         ";
     
         $this->info($text);
+        sleep(1);
         
         $this->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class])
             ->executeCommand('vendor:publish', ['--all' => true])
@@ -61,9 +62,18 @@ class InstallCommand extends Command
         $this->addLinkGitIgnore();
         $this->changingUserModel();
         $this->progressBar->finish();
-        
         $this->info(" Completed!");
-        $this->line("To create a user, run 'artisan make:admin'");
+        
+        if ($this->confirm('Create an administrator user?',true)) {
+            $this->call('make:admin',[
+                'name'     => $this->ask('What is your name?','admin'),
+                'email'    => $this->ask('What is your email?','admin@admin.com'),
+                'password' => $this->secret('What is the password?','password'),
+            ]);
+        }else {
+            $this->line("To create a user, run 'artisan make:admin'");
+        }
+        
         $this->line("To start the embedded server, run 'artisan serve'");
     }
     
@@ -89,6 +99,9 @@ class InstallCommand extends Command
         
         $this->progressBar->advance();
         echo ' ';
+    
+        // Visually slow down the installation process so that the user can read what's happening
+        usleep(350000);
         
         return $this;
     }

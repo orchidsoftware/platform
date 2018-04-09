@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Sorting capability for TD [437](https://github.com/orchidsoftware/platform/issues/437)
 - Property display for page
 - Added ability to change the logo [354](https://github.com/orchidsoftware/platform/issues/354)
-- New command `orchid:install`
+- New command for easy installation `orchid:install` [622](https://github.com/orchidsoftware/platform/issues/622)
 
 ### Deprecated
 - TD::name and TD::title use TD::set
