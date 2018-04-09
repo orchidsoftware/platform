@@ -109,7 +109,7 @@ $category = Taxonomy::category()->slug('uncategorized')->posts()->first();
 // Only related categories and posts
 $category = Taxonomy::where('taxonomy', 'category')->with('posts')->get();
 $category->each(function($category) {
-    echo $category->getContent('name');
+    echo $category->term->getContent('name');
 });
 
 // all posts from category
