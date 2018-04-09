@@ -124,12 +124,13 @@ class Comment extends Model
     }
 
     /**
-     * @param \Illuminate\Database\Query\Builder $query
+     * Where clause for only approved comments.
      *
-     * @return CommentBuilder
+     * @return Comment
      */
-    public function newEloquentBuilder($query)
+    public function scopeApproved() : self
     {
-        return new CommentBuilder($query);
+        return $this->where('approved', 1);
     }
+
 }

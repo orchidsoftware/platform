@@ -34,7 +34,7 @@ class RolePermissionLayout extends Rows
 
             $fields[] = Field::tag('label')
                 ->name($group)
-                ->title(trans('dashboard::permission.main.' . strtolower($group)))
+                ->title($group)
                 ->hr(false);
 
             foreach (collect($items)->chunk(3) as $chunks) {

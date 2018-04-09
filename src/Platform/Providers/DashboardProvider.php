@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\MenuComposer;
 use Orchid\Platform\Kernel\Dashboard;
-use Illuminate\Support\ServiceProvider;
 
 class DashboardProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class DashboardProvider extends ServiceProvider
      * @var Dashboard
      */
     protected $dashboard;
-    
+
     /**
      * Boot the application events.
      *
@@ -24,9 +24,9 @@ class DashboardProvider extends ServiceProvider
     public function boot(Dashboard $dashboard)
     {
         View::composer('dashboard::layouts.dashboard', MenuComposer::class);
-        
+
         $this->dashboard = $dashboard;
-        
+
         $this->dashboard
             ->registerFields(config('platform.fields'))
             ->registerManyBehavior(config('platform.many'))
@@ -36,14 +36,14 @@ class DashboardProvider extends ServiceProvider
             ->registerPermissions($this->registerPermissionsBehaviors())
             ->registerPermissions($this->registerPermissionsSystems());
     }
-    
+
     /**
      * @return array
      */
-    protected function registerPermissionsMain() : array
+    protected function registerPermissionsMain(): array
     {
         return [
-            'Main' => [
+            trans('dashboard::permission.main.main') => [
                 [
                     'slug'        => 'dashboard.index',
                     'description' => trans('dashboard::permission.main.main'),
@@ -63,39 +63,52 @@ class DashboardProvider extends ServiceProvider
             ],
         ];
     }
-    
+
     /**
      * @return array
      */
-    protected function registerPermissionsBehaviors() : array
+    protected function registerPermissionsBehaviors(): array
     {
-        $pages = $this->dashboard->getSingleBehaviors()->map(function ($page) {
+        $permissions = [];
+
+        $pages = $this->dashboard
+            ->getSingleBehaviors()
+            ->where('display', true)
+            ->map(function ($page) {
             return [
-                'slug'          => 'dashboard.pages.type.'.$page->slug,
-                'description'   => $page->name,
+                'slug'        => 'dashboard.pages.type.' . $page->slug,
+                'description' => $page->name,
             ];
         });
-        
-        $posts = $this->dashboard->getManyBehaviors()->map(function ($post) {
+
+        if($pages->count() > 0){
+            $permissions[trans('dashboard::permission.main.pages')] = $pages;
+        }
+
+        $posts = $this->dashboard
+            ->getManyBehaviors()
+            ->where('display', true)
+            ->map(function ($post) {
             return [
-                'slug'          => 'dashboard.posts.type.'.$post->slug,
-                'description'   => $post->name,
+                'slug'        => 'dashboard.posts.type.' . $post->slug,
+                'description' => $post->name,
             ];
         });
-        
-        return [
-            'Pages' => $pages,
-            'Posts' => $posts,
-        ];
+
+        if($posts->count() > 0){
+            $permissions[trans('dashboard::permission.main.posts')] = $posts;
+        }
+
+        return $permissions;
     }
-    
+
     /**
      * @return array
      */
-    protected function registerPermissionsSystems() : array
+    protected function registerPermissionsSystems(): array
     {
         return [
-            'Systems' => [
+            trans('dashboard::permission.main.systems') => [
                 [
                     'slug'        => 'dashboard.systems.roles',
                     'description' => trans('dashboard::permission.systems.roles'),

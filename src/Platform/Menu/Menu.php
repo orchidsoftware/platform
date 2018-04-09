@@ -113,12 +113,12 @@ class Menu
      * @param string $place
      * @param array  $arg
      *
-     * @return $this|void
+     * @return $this
      */
     public function add(string $place, array $arg)
     {
         if (array_key_exists('show', $arg) && ! $arg['show']) {
-            return;
+            return $this;
         }
 
         $arg = array_merge([
