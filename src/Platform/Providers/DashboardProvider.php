@@ -61,7 +61,6 @@ class DashboardProvider extends ServiceProvider
                     'description' => trans('dashboard::permission.main.posts'),
                 ],
             ],
-        
         ];
     }
     
@@ -89,7 +88,6 @@ class DashboardProvider extends ServiceProvider
             'Posts' => $posts,
         ];
     }
-    
     
     /**
      * @return array
@@ -130,10 +128,7 @@ class DashboardProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems.media',
                     'description' => trans('dashboard::permission.systems.media'),
                 ],
-            
             ],
         ];
     }
-    
-    
 }
