@@ -113,7 +113,7 @@ $category = Taxonomy::category()->slug('uncategorized')->posts()->first();
 // Только все категории и записи, связанные с ним
 $category = Taxonomy::where('taxonomy', 'category')->with('posts')->get();
 $category->each(function($category) {
-    echo $category->getContent('name');
+    echo $category->term->getContent('name');
 });
 
 // все записи из категории
