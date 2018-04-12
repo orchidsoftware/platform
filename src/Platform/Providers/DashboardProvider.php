@@ -79,7 +79,7 @@ class DashboardProvider extends ServiceProvider
                 'slug'        => 'dashboard.pages.type.' . $page->slug,
                 'description' => $page->name,
             ];
-        });
+        })->toArray();
 
         if($pages->count() > 0){
             $permissions[trans('dashboard::permission.main.pages')] = $pages;
@@ -93,7 +93,7 @@ class DashboardProvider extends ServiceProvider
                 'slug'        => 'dashboard.posts.type.' . $post->slug,
                 'description' => $post->name,
             ];
-        });
+        })->toArray();
 
         if($posts->count() > 0){
             $permissions[trans('dashboard::permission.main.posts')] = $posts;
