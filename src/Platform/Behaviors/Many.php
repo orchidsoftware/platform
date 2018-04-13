@@ -27,6 +27,13 @@ abstract class Many
     abstract public function fields() : array;
 
     /**
+     * Registered fields for options.
+     *
+     * @return mixed
+     */
+    abstract public function options() : array;
+
+    /**
      * Registered fields to display in the table.
      *
      * @return array

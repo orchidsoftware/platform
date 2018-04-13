@@ -37,6 +37,8 @@ trait Structure
     public $icon = 'icon-folder';
 
     /**
+     * @deprecated
+     *
      * Fields for content.
      *
      * @var array
@@ -112,6 +114,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * All registered extensions specified in the behavior.
      *
      * @return array
@@ -126,6 +130,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * Check for a registered extension in the behavior.
      *
      * @return bool
@@ -140,6 +146,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * Display html forms of registered extensions.
      *
      * @return string
@@ -170,6 +178,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * Action save for sub form.
      */
     public function save()
@@ -188,6 +198,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * Action update for sub form.
      */
     public function update()
@@ -206,6 +218,8 @@ trait Structure
     }
 
     /**
+     * @deprecated
+     *
      * Action remove for sub form.
      */
     public function remove()

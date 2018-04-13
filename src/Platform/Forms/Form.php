@@ -7,6 +7,13 @@ namespace Orchid\Platform\Forms;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
+/**
+ * @deprecated
+ *
+ * Class Form
+ *
+ * @package Orchid\Platform\Forms
+ */
 abstract class Form
 {
     use ValidatesRequests;

@@ -6,6 +6,13 @@ namespace Orchid\Platform\Forms;
 
 use Illuminate\View\View;
 
+/**
+ * @deprecated
+ *
+ * Class FormGroup
+ *
+ * @package Orchid\Platform\Forms
+ */
 abstract class FormGroup
 {
     /**

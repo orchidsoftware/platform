@@ -101,8 +101,14 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            <div class="wrapper-md">
+                                {!! generate_form($type->options(), $post->getOptions()->toArray(), null, 'options') !!}
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
                 <!-- /column  -->
             @endif

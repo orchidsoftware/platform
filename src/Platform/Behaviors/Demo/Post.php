@@ -167,6 +167,8 @@ class Post extends Many
     }
 
     /**
+     * @deprecated
+     *
      * @return array
      */
     public function modules() : array
@@ -175,6 +177,36 @@ class Post extends Many
             BasePostForm::class,
             UploadPostForm::class,
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function options(): array
+    {
+       return [
+           Field::group(function () {
+               return [
+
+                   Field::tag('input')
+                       ->type('text')
+                       ->name('name')
+                       ->max(255)
+                       ->required()
+                       ->title('Name Articles')
+                       ->help('Article title'),
+
+                   Field::tag('input')
+                       ->type('text')
+                       ->name('title')
+                       ->max(255)
+                       ->required()
+                       ->title('Article Title')
+                       ->help('SEO title')
+
+               ];
+           }),
+       ];
     }
 
     /**
