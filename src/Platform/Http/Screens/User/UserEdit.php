@@ -84,12 +84,6 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Войти как пользователь')
-                ->icon('icon-login')
-                ->method('save'),
-            Link::name('Изменить пароль')
-                ->icon('icon-key')
-                ->method('save'),
             Link::name(trans('dashboard::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
