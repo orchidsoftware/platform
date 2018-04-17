@@ -33,6 +33,13 @@ class Page extends Single
     public $slugFields = 'name';
 
     /**
+     * Menu group name.
+     *
+     * @var null
+     */
+    public $groupname = 'dashboard::menu.static pages';
+
+    /**
      * Rules Validation.
      *
      * @return array

@@ -33,8 +33,8 @@ $this->domain(config('platform.domain'))->group(function () {
     ], function (\Illuminate\Routing\Router $router) {
 
 
-        $router->get('system', [
-            'as'   => 'dashboard.systems.system',
+        $router->get('/', [
+            'as'   => 'dashboard.systems.index',
             'uses' => 'SystemController@index',
         ]);
 

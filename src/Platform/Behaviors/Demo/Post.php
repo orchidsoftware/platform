@@ -38,6 +38,13 @@ class Post extends Many
     public $slugFields = 'name';
 
     /**
+     * Menu group name.
+     *
+     * @var null
+     */
+    public $groupname = 'dashboard::menu.common posts';
+
+    /**
      * Rules Validation.
      *
      * @return array
@@ -218,16 +225,23 @@ class Post extends Many
             TD::set('id','ID')
                 ->align('center')
                 ->width('100px')
+                ->filter('numeric')
                 ->sort()
                 ->linkPost(),
+
             TD::set('name', 'Name')
                 ->locale()
                 ->column('content.name')
+                ->filter('text')
                 ->sort()
                 ->linkPost('name'),
+
             TD::set('publish_at', 'Date of publication')
+                ->filter('date')
                 ->sort(),
+
             TD::set('created_at', 'Date of creation')
+                ->filter('date')
                 ->sort(),
         ];
     }

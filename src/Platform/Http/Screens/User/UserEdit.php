@@ -84,6 +84,7 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
+            Link::name('назад')->link(redirect()->back()->getTargetUrl()),
             Link::name(trans('dashboard::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),

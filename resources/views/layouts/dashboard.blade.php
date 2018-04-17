@@ -115,6 +115,14 @@
 
                         <ul class="nav nav-footer-fix">
                             <li>
+                                <a href="{{ route('dashboard.systems.index') }}">
+                                    <i class="icon-settings" aria-hidden="true"></i>
+                                    <span>{{trans('dashboard::menu.systems')}}</span>
+                                </a>
+                            </li>
+
+
+                            <li>
                                 <a href="{{ route('dashboard.logout') }}"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                                    dusk="logout-button">

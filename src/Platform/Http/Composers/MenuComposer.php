@@ -30,8 +30,8 @@ class MenuComposer
     public function compose()
     {
         $this->registerMenuSystems($this->dashboard)
-            ->registerMenuPost($this->dashboard)
-            ->registerMenuPage($this->dashboard);
+            ->registerMenuPost($this->dashboard);
+            //->registerMenuPage($this->dashboard);
     }
 
     /**
@@ -44,7 +44,7 @@ class MenuComposer
         $allPage = $this->dashboard->getSingleBehaviors()->where('display', true)->all();
 
         $dashboard->menu->add('Main', [
-            'slug'       => 'Pages',
+            'slug'       => 'Posts',//'Pages',
             'icon'       => 'icon-docs',
             'route'      => '#',
             'label'      => trans('dashboard::menu.pages'),
@@ -56,8 +56,8 @@ class MenuComposer
             'show'       => count($allPage) > 0,
         ]);
 
-        foreach ($allPage as $key => $page) {
-            $postObject = [
+        foreach ($allPage as $key => $page) { //Pages
+            $dashboard->menu->add('Posts', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
                 'route'      => route('dashboard.pages.show', [$page->slug]),
@@ -67,13 +67,7 @@ class MenuComposer
                 'groupname'  => $page->groupname,
                 'divider'    => $page->divider,
                 'show'       => $page->display,
-            ];
-
-            if (reset($allPage) == $page) {
-                $postObject['groupname'] = trans('dashboard::menu.static pages');
-            }
-
-            $dashboard->menu->add('Pages', $postObject);
+            ]);
         }
 
         return $this;
@@ -90,6 +84,8 @@ class MenuComposer
             ->where('display', true)
             ->all();
 
+
+
         $dashboard->menu->add('Main', [
             'slug'       => 'Posts',
             'icon'       => 'icon-notebook',
@@ -97,7 +93,7 @@ class MenuComposer
             'label'      => trans('dashboard::menu.posts'),
             'childs'     => true,
             'main'       => true,
-            'active'     => 'dashboard.posts.*',
+            'active'     => ['dashboard.posts.*','dashboard.pages.*'],
             'permission' => 'dashboard.posts',
             'sort'       => 100,
             'show'       => count($allPost) > 0,
@@ -105,7 +101,7 @@ class MenuComposer
 
         foreach ($allPost as $key => $page) {
 
-            $postObject = [
+            $dashboard->menu->add('Posts', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
                 'route'      => route('dashboard.posts.type', [$page->slug]),
@@ -115,14 +111,27 @@ class MenuComposer
                 'groupname'  => $page->groupname,
                 'divider'    => $page->divider,
                 'show'       => $page->display,
-            ];
-
-            if (reset($allPost) == $page) {
-                $postObject['groupname'] = trans('dashboard::menu.common posts');
-            }
-
-            $dashboard->menu->add('Posts', $postObject);
+            ]);
         }
+
+
+
+        $allPage = $this->dashboard->getSingleBehaviors()->where('display', true)->all();
+
+        foreach ($allPage as $key => $page) { //Pages
+            $dashboard->menu->add('Posts', [
+                'slug'       => $page->slug,
+                'icon'       => $page->icon,
+                'route'      => route('dashboard.pages.show', [$page->slug]),
+                'label'      => $page->name,
+                'permission' => 'dashboard.pages.type.' . $page->slug,
+                'sort'       => $key,
+                'groupname'  => $page->groupname,
+                'divider'    => $page->divider,
+                'show'       => $page->display,
+            ]);
+        }
+
 
         return $this;
     }

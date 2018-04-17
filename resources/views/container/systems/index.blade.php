@@ -1,7 +1,7 @@
 @extends('dashboard::layouts.dashboard')
 
-@section('title','title')
-@section('description', 'description')
+@section('title','Systems')
+@section('description', 'Global for Systems')
 
 @section('content')
 
@@ -9,10 +9,10 @@
 
 <div class="admin-wrapper bg-white">
 
-    <div class="wrapper-md">
+    <div class="container wrapper-md">
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5 col-md-4">
 
                 <div class="admin-element">
                     <h3 class="font-thin h3 text-black">
@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-5 col-md-4">
 
                 <div class="admin-element">
                     <h3 class="font-thin h3 text-black">
