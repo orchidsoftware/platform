@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Kernel\Dashboard;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Kernel\Dashboard;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -117,13 +117,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! Route::hasMacro('screen')) {
+        if (!Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {
                 return Route::any($url.'/{method?}/{argument?}', "$screen@handle")->name($name);
             });
         }
 
-        if (! defined('DASHBOARD_PATH')) {
+        if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
         }
     }

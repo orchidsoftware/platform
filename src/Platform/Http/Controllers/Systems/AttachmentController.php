@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Attachments\File;
-use Orchid\Platform\Core\Models\Post;
 use Illuminate\Support\Facades\Storage;
+use Orchid\Platform\Attachments\File;
 use Orchid\Platform\Core\Models\Attachment;
+use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class AttachmentController extends Controller
@@ -32,7 +32,7 @@ class AttachmentController extends Controller
         foreach ($request->allFiles() as $file) {
             $storage = $request->get('storage', 'public');
             $attachment[] = app()->make(File::class, [
-                'file' => $file,
+                'file'    => $file,
                 'storage' => Storage::disk($storage),
             ])->load();
         }

@@ -6,9 +6,9 @@ namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Orchid\Platform\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Core\Models\Page;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -30,8 +30,9 @@ class PageController extends Controller
     /**
      * @param Page $page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Page $page = null)
     {
@@ -48,8 +49,9 @@ class PageController extends Controller
      * @param Page    $page
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update(Page $page, Request $request)
     {

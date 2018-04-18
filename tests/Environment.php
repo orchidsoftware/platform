@@ -2,13 +2,13 @@
 
 namespace Orchid\Platform\Tests;
 
-use Watson\Active\Active;
-use Orchid\Platform\Facades\Alert;
-use Orchid\Platform\Core\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
-use Watson\Active\ActiveServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Watson\Active\Active;
+use Watson\Active\ActiveServiceProvider;
 
 trait Environment
 {

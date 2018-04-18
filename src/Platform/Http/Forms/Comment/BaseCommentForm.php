@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Comment;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Orchid\Platform\Core\Models\Comment;
+use Orchid\Platform\Forms\Form;
 
 class BaseCommentForm extends Form
 {

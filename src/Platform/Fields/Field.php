@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
+use Orchid\Platform\Exceptions\TypeException;
 
 /**
  * Class Field.
@@ -105,8 +105,9 @@ class Field implements FieldContract
     /**
      * @param $arguments
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function make($arguments)
     {
@@ -122,14 +123,15 @@ class Field implements FieldContract
     /**
      * @param string $type
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function tag(string $type) : FieldContract
     {
         $field = config('platform.fields.'.$type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
+        if (!is_subclass_of($field, FieldContract::class)) {
             throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
@@ -185,21 +187,23 @@ class Field implements FieldContract
     }
 
     /**
-     * @return mixed|void
      * @throws FieldRequiredAttributeException
+     *
+     * @return mixed|void
      */
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (! collect($this->attributes)->offsetExists($attribute)) {
+            if (!collect($this->attributes)->offsetExists($attribute)) {
                 throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws FieldRequiredAttributeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function render()
     {
@@ -266,7 +270,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -347,7 +351,7 @@ class Field implements FieldContract
     {
         $old = $this->getOldValue();
 
-        if (! is_null($old)) {
+        if (!is_null($old)) {
             return $old;
         }
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Single;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
 class Page extends Single
@@ -47,8 +47,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -127,7 +128,7 @@ class Page extends Single
 
             Field::tag('select')
                 ->options([
-                    'index' => 'Index',
+                    'index'   => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->name('robot')

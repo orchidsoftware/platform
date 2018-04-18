@@ -8,6 +8,7 @@ use Orchid\Platform\Fields\Field;
 
 /**
  * Class ListField.
+ *
  * @method $this name($value = true)
  */
 class ListField extends Field

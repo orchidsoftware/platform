@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Models;
 
-use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Facades\Dashboard;
 
 class Page extends Post
 {
@@ -17,8 +17,9 @@ class Page extends Post
     /**
      * @param $slug
      *
-     * @return $this
      * @throws TypeException
+     *
+     * @return $this
      */
     public function getBehavior($slug)
     {

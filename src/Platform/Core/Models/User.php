@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Models;
 
-use Orchid\Platform\Access\UserAccess;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Access\UserInterface;
 use Orchid\Platform\Core\Traits\FilterTrait;
 use Orchid\Platform\Core\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -55,7 +55,7 @@ class User extends Authenticatable implements UserInterface
     /**
      * Send the password reset notification.
      *
-     * @param  string $token
+     * @param string $token
      *
      * @return void
      */
@@ -67,7 +67,8 @@ class User extends Authenticatable implements UserInterface
     /**
      * Set permission as boolean.
      *
-     * @param  string  $value
+     * @param string $value
+     *
      * @return void
      */
     public function setPermissionsAttribute($permissions)

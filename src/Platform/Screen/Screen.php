@@ -90,7 +90,7 @@ abstract class Screen
             if (is_object($layout)) {
                 $build[] = $layout->build($post);
             } else {
-                $build[] = (new $layout)->build($post);
+                $build[] = (new $layout())->build($post);
             }
         }
 
@@ -113,12 +113,14 @@ abstract class Screen
     /**
      * @param null $method
      * @param null $parameters
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     *
      * @throws \ReflectionException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function handle($method = null, $parameters = null)
     {
-        if (! $this->checkAccess()) {
+        if (!$this->checkAccess()) {
             abort(404);
         }
 
@@ -128,7 +130,7 @@ abstract class Screen
             return $this->view();
         }
 
-        if (! is_null($parameters)) {
+        if (!is_null($parameters)) {
             $this->arguments = is_array($method) ? $method : [$method];
 
             $this->reflectionParams($parameters);
@@ -144,6 +146,7 @@ abstract class Screen
 
     /**
      * @param $method
+     *
      * @throws \ReflectionException
      */
     public function reflectionParams($method)
@@ -194,7 +197,7 @@ abstract class Screen
 
         if (is_array($this->permission)) {
             foreach ($this->permission as $item) {
-                if (! Auth::user()->hasAccess($item)) {
+                if (!Auth::user()->hasAccess($item)) {
                     return false;
                 }
             }

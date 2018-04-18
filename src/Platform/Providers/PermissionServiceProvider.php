@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Kernel\Dashboard;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Kernel\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

@@ -19,8 +19,9 @@ abstract class Table
     /**
      * @param $post
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function build($post)
     {

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Attachments;
 
-use Mimey\MimeTypes;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
-use Orchid\Platform\Core\Models\Attachment;
 use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Mimey\MimeTypes;
+use Orchid\Platform\Core\Models\Attachment;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File
@@ -60,7 +60,7 @@ class File
         $this->time = time();
         $this->date = date('Y/m/d');
         $this->file = $file;
-        $this->mimes = new MimeTypes;
+        $this->mimes = new MimeTypes();
         $this->fullPath = storage_path('app/public/'.DIRECTORY_SEPARATOR.$this->date.DIRECTORY_SEPARATOR);
         $this->loadHashFile();
         $this->storage = $storage;
@@ -164,11 +164,11 @@ class File
      */
     public function getMimeType()
     {
-        if (! is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
             return $type;
         }
 
-        if (! is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
 
@@ -183,7 +183,7 @@ class File
      */
     private function saveImageProcessing($name = null, $width = null, $height = null, $quality = 100)
     {
-        if (! is_null($name)) {
+        if (!is_null($name)) {
             $name = '_'.$name;
         }
 

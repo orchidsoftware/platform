@@ -8,6 +8,7 @@ use Orchid\Platform\Fields\Field;
 
 /**
  * Class LabelField.
+ *
  * @method $this name($value = true)
  */
 class LabelField extends Field

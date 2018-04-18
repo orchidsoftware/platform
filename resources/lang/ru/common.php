@@ -5,7 +5,7 @@ return [
     'title'       => 'Панель управления',
     'description' => 'Добро пожаловать в ORCHID',
 
-    'notifications' => 'Уведомления',
+    'notifications'    => 'Уведомления',
     'no_notifications' => 'Нет уведомлений',
 
     'commands' => [

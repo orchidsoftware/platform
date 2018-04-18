@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Events\Systems\Roles;
 
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Core\Models\User;
-use Illuminate\Queue\SerializesModels;
 
 class AddRoleEvent
 {

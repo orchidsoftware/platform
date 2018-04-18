@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Filters;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Filters\Filter;
 
 class SearchFilter extends Filter
 {
@@ -43,9 +43,9 @@ class SearchFilter extends Filter
     }
 
     /**
-     * @return mixed|void
-     *
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return mixed|void
      */
     public function display()
     {

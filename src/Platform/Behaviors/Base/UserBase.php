@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Filters\RoleFilter;
+use Orchid\Platform\Platform\Fields\TD;
 
 class UserBase
 {
@@ -44,8 +44,9 @@ class UserBase
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {

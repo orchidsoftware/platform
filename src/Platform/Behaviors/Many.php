@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors;
 
-use Illuminate\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Orchid\Platform\Core\Models\Post;
 
 abstract class Many

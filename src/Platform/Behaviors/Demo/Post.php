@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Platform\Platform\Fields\TD;
 
 class Post extends Many
 {
@@ -66,8 +66,9 @@ class Post extends Many
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -136,7 +137,7 @@ class Post extends Many
 
             Field::tag('select')
                 ->options([
-                    'index' => 'Index',
+                    'index'   => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->name('robot')

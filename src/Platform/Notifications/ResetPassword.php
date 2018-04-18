@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Notifications;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ResetPassword extends Notification
 {
@@ -19,7 +19,7 @@ class ResetPassword extends Notification
     /**
      * Create a notification instance.
      *
-     * @param  string $token
+     * @param string $token
      *
      * @return void
      */
@@ -31,7 +31,7 @@ class ResetPassword extends Notification
     /**
      * Get the notification's channels.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      *
      * @return array|string
      */
@@ -43,13 +43,13 @@ class ResetPassword extends Notification
     /**
      * Build the mail representation of the notification.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->line('You are receiving this email because we received a password reset request for your account.')->action('Reset Password',
+        return (new MailMessage())->line('You are receiving this email because we received a password reset request for your account.')->action('Reset Password',
             url(config('app.url').route('dashboard.password.reset', $this->token,
                     false)))->line('If you did not request a password reset, no further action is required.');
     }

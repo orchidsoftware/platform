@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Orchid\Platform\Facades\Alert;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Behaviors\Many as PostBehavior;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Orchid\Platform\Behaviors\Many as PostBehavior;
+use Orchid\Platform\Core\Models\Post;
+use Orchid\Platform\Facades\Alert;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -129,8 +129,9 @@ class PostController extends Controller
      * @param PostBehavior $type
      * @param Post         $post
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
@@ -153,7 +154,7 @@ class PostController extends Controller
             }
         }
 
-        if (! empty($slug) && $slug !== $post->slug) {
+        if (!empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 
@@ -176,9 +177,10 @@ class PostController extends Controller
      * @param PostBehavior $type
      * @param Post         $post
      *
+     * @throws \Exception
+     *
      * @return mixed
      *
-     * @throws \Exception
      * @internal param Request $request
      * @internal param Post $type
      */

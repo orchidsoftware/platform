@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
-use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Access\Permissions;
+use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
