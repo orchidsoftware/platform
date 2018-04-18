@@ -63,16 +63,11 @@ class InstallCommand extends Command
         $this->changingUserModel();
         $this->progressBar->finish();
         $this->info(" Completed!");
-        
-        if ($this->confirm('Create an administrator user?',true)) {
-            $this->call('make:admin',[
-                'name'     => $this->ask('What is your name?','admin'),
-                'email'    => $this->ask('What is your email?','admin@admin.com'),
-                'password' => $this->secret('What is the password?','password'),
-            ]);
-        }else {
-            $this->line("To create a user, run 'artisan make:admin'");
-        }
+
+        $this
+            ->askEnv('What domain to use the panel?','DASHBOARD_DOMAIN','localhost')
+            ->askEnv('What prefix to use the panel?','DASHBOARD_PREFIX','dashboard')
+            ->createAdmin();
         
         $this->line("To start the embedded server, run 'artisan serve'");
     }
@@ -150,5 +145,40 @@ class InstallCommand extends Command
             file_put_contents(app_path('../.gitignore'), $str . PHP_EOL . '/public/orchid' . PHP_EOL);
         }
     }
-    
+
+    /**
+     * @return $this
+     */
+    private function createAdmin(){
+        if ($this->confirm('Create an administrator user?',true)) {
+            $this->call('make:admin',[
+                'name'     => $this->ask('What is your name?','admin'),
+                'email'    => $this->ask('What is your email?','admin@admin.com'),
+                'password' => $this->secret('What is the password?','password'),
+            ]);
+        }else {
+            $this->line("To create a user, run 'artisan make:admin'");
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $question
+     * @param        $constant
+     * @param null   $default
+     * @return $this
+     */
+    private function askEnv(string $question, $constant, $default = null){
+
+        $value = $this->ask($question,$default);
+
+        $str = file_get_contents(app_path('../.env'));
+
+        if ($str !== false && strpos($str, $constant) === false) {
+            file_put_contents(app_path('../.env'), $str . PHP_EOL . $constant.'=' . $value . PHP_EOL);
+        }
+
+        return $this;
+    }
 }
