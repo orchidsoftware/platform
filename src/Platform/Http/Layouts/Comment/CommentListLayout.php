@@ -49,7 +49,7 @@ class CommentListLayout extends Table
             TD::name('post_id')
                 ->title(trans('dashboard::systems/comment.recording'))
                 ->setRender(function ($comment) {
-                    if (!is_null($comment->post)) {
+                    if (! is_null($comment->post)) {
                         return '<a href="'.route('dashboard.posts.type.edit', [
                                   $comment->post->type,
                                   $comment->post->id,

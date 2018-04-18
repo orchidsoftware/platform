@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
@@ -74,11 +74,11 @@ class Setting extends Model
      */
     private function cacheForget($key)
     {
-        if (!$this->cache) {
+        if (! $this->cache) {
             return;
         }
 
-        if (!is_array($key)) {
+        if (! is_array($key)) {
             Cache::forget($key);
 
             return;
@@ -98,7 +98,7 @@ class Setting extends Model
      */
     public function get($key, $default = null)
     {
-        if (!$this->cache) {
+        if (! $this->cache) {
             return $this->getNoCache($key, $default);
         }
 

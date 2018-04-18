@@ -38,7 +38,7 @@ class DashboardNotification extends Notification
     {
         $message['time'] = Carbon::now();
 
-        if (!array_key_exists('type', $message)) {
+        if (! array_key_exists('type', $message)) {
             $message['type'] = 'info';
         }
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Notifications;
 
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ResetPassword extends Notification
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\Comment;
 
+use Orchid\Platform\Screen\Screen;
 use Orchid\Platform\Core\Models\Comment;
 use Orchid\Platform\Http\Layouts\Comment\CommentListLayout;
-use Orchid\Platform\Screen\Screen;
 
 class CommentList extends Screen
 {

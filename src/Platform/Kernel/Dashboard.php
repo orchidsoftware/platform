@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
-use Illuminate\Support\Collection;
 use Orchid\Platform\Menu\Menu;
+use Illuminate\Support\Collection;
 
 class Dashboard
 {
@@ -171,7 +171,7 @@ class Dashboard
     public function getBehaviors() : Collection
     {
         $this->behaviors->transform(function ($value) {
-            if (!is_object($value)) {
+            if (! is_object($value)) {
                 $value = new $value();
             }
 

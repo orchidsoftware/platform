@@ -46,11 +46,11 @@ trait Attachment
             'attachment_id'
         );
 
-        if (!is_null($type)) {
+        if (! is_null($type)) {
             $query->whereIn('extension', config('platform.attachment.'.$type));
         }
 
-        if (!is_null($group)) {
+        if (! is_null($group)) {
             $query->where('attachmentable_group', $group);
         }
 

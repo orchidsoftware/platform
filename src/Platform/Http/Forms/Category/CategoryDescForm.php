@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Category;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Orchid\Platform\Forms\Form;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Forms\Form;
 
 class CategoryDescForm extends Form
 {

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Attachments\File;
-use Orchid\Platform\Core\Models\Attachment;
 use Orchid\Platform\Core\Models\Post;
+use Illuminate\Support\Facades\Storage;
+use Orchid\Platform\Core\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class AttachmentController extends Controller

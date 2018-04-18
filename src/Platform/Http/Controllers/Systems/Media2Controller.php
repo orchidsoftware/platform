@@ -169,11 +169,11 @@ class Media2Controller extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type == 'folder') {
-            if (!Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
+            if (! Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
                 $error = trans('dashboard::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } elseif (!Storage::disk($this->filesystem)->delete($fileFolder)) {
+        } elseif (! Storage::disk($this->filesystem)->delete($fileFolder)) {
             $error = trans('dashboard::systems/media.error_deleting_file');
             $success = false;
         }
@@ -222,7 +222,7 @@ class Media2Controller extends Controller
             '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-        if (!file_exists($destination)) {
+        if (! file_exists($destination)) {
             if (Storage::disk($this->filesystem)->move($source, $destination)) {
                 $success = true;
             } else {
@@ -254,7 +254,7 @@ class Media2Controller extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        if (!Storage::disk($this->filesystem)->exists("{$location}/{$newFilename}")) {
+        if (! Storage::disk($this->filesystem)->exists("{$location}/{$newFilename}")) {
             if (Storage::disk($this->filesystem)->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {

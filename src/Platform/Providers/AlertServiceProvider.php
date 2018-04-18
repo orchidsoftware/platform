@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Alert\Alert;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Alert\LaravelSessionStore;
 use Orchid\Platform\Alert\SessionStoreInterface;
 

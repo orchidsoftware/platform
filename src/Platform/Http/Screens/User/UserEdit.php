@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens\User;
 
 use Illuminate\Http\Request;
+use Orchid\Platform\Screen\Link;
+use Orchid\Platform\Facades\Alert;
+use Orchid\Platform\Screen\Screen;
+use Orchid\Platform\Screen\Layouts;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Facades\Dashboard;
 use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 use Orchid\Platform\Http\Layouts\User\UserRoleLayout;
-use Orchid\Platform\Screen\Layouts;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
 
 class UserEdit extends Screen
 {

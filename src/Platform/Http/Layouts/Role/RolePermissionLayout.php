@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\Role;
 
-use Illuminate\Support\Collection;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Layouts\Rows;
+use Illuminate\Support\Collection;
 
 class RolePermissionLayout extends Rows
 {

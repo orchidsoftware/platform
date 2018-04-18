@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Fields\TD;
-use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Behaviors\Many;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
+use Orchid\Platform\Http\Filters\CreatedFilter;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.
@@ -133,7 +133,7 @@ class Field implements FieldContract
     {
         $field = config('platform.fields.'.$type);
 
-        if (!is_subclass_of($field, FieldContract::class)) {
+        if (! is_subclass_of($field, FieldContract::class)) {
             throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
@@ -202,7 +202,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (!collect($this->attributes)->offsetExists($attribute)) {
+            if (! collect($this->attributes)->offsetExists($attribute)) {
                 throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
@@ -274,7 +274,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (!isset($this->attributes[$key])) {
+        if (! isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -341,15 +341,15 @@ class Field implements FieldContract
 
         $this->attributes['name'] = $name;
 
-        if (!is_null($prefix)) {
+        if (! is_null($prefix)) {
             $this->attributes['name'] = $prefix.$name;
         }
 
-        if (is_null($prefix) && !is_null($lang)) {
+        if (is_null($prefix) && ! is_null($lang)) {
             $this->attributes['name'] = $lang.$name;
         }
 
-        if (!is_null($prefix) && !is_null($lang)) {
+        if (! is_null($prefix) && ! is_null($lang)) {
             $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
@@ -369,7 +369,7 @@ class Field implements FieldContract
     {
         $old = $this->getOldValue();
 
-        if (!is_null($old)) {
+        if (! is_null($old)) {
             $this->attributes['value'] = $old;
         }
 
