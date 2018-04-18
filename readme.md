@@ -34,16 +34,6 @@ Documentation can be found at [ORCHID website](http://orchid.software).
 ###### Simple screenshot:
 ![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
 
-
-## System requirements
-
-Make sure your server meets the following requirements.
-
-- Apache 2.2+ or nginx
-- MySQL Server 5.7.8+ , Mariadb 10.3.2+ or PostgreSQL
-- PHP Version 7.1.3+
-
-
 ## Installation
 
 Firstly, download the Laravel installer using Composer:
