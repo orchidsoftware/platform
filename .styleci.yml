@@ -10,21 +10,3 @@ php:
       - vendor
     name: "*.php"
     not-name: "*.blade.php"
-js:
-  tab-width: 2
-  use-tabs: false
-  print-width: 80
-  double-quotes: false
-  trailing-commas: all
-  semicolons: true
-  arrow-parens: avoid
-  bracket-spacing: true
-  finder:
-    exclude:
-      - node_modules
-      - public
-    name:
-      - "*.js"
-      - "*.jsx"
-    not-name:
-      - "*.min.js"
