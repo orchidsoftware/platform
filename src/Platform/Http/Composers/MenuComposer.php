@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
+use Orchid\Platform\Behaviors\Many;
+use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Kernel\Dashboard;
 
 class MenuComposer
@@ -29,48 +31,9 @@ class MenuComposer
      */
     public function compose()
     {
-        $this->registerMenuSystems($this->dashboard)
+        $this
+            ->registerMenuSystems($this->dashboard)
             ->registerMenuPost($this->dashboard);
-            //->registerMenuPage($this->dashboard);
-    }
-
-    /**
-     * @param Dashboard $dashboard
-     *
-     * @return $this
-     */
-    protected function registerMenuPage(Dashboard $dashboard): MenuComposer
-    {
-        $allPage = $this->dashboard->getSingleBehaviors()->where('display', true)->all();
-
-        $dashboard->menu->add('Main', [
-            'slug'       => 'Posts',//'Pages',
-            'icon'       => 'icon-docs',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.pages'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => 'dashboard.pages.*',
-            'permission' => 'dashboard.pages',
-            'sort'       => 150,
-            'show'       => count($allPage) > 0,
-        ]);
-
-        foreach ($allPage as $key => $page) { //Pages
-            $dashboard->menu->add('Posts', [
-                'slug'       => $page->slug,
-                'icon'       => $page->icon,
-                'route'      => route('dashboard.pages.show', [$page->slug]),
-                'label'      => $page->name,
-                'permission' => 'dashboard.pages.type.' . $page->slug,
-                'sort'       => $key,
-                'groupname'  => $page->groupname,
-                'divider'    => $page->divider,
-                'show'       => $page->display,
-            ]);
-        }
-
-        return $this;
     }
 
     /**
@@ -80,11 +43,9 @@ class MenuComposer
      */
     protected function registerMenuPost(Dashboard $dashboard): MenuComposer
     {
-        $allPost = $this->dashboard->getManyBehaviors()
+        $allPost = $this->dashboard->getBehaviors()
             ->where('display', true)
             ->all();
-
-
 
         $dashboard->menu->add('Main', [
             'slug'       => 'Posts',
@@ -101,10 +62,15 @@ class MenuComposer
 
         foreach ($allPost as $key => $page) {
 
+            $route = route('dashboard.posts.type', [$page->slug]);
+            if(is_a($page,Single::class)){
+                $route = route('dashboard.pages.show', [$page->slug]);
+            }
+
             $dashboard->menu->add('Posts', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
-                'route'      => route('dashboard.posts.type', [$page->slug]),
+                'route'      => $route,
                 'label'      => $page->name,
                 'permission' => 'dashboard.posts.type.' . $page->slug,
                 'sort'       => $key,
@@ -113,25 +79,6 @@ class MenuComposer
                 'show'       => $page->display,
             ]);
         }
-
-
-
-        $allPage = $this->dashboard->getSingleBehaviors()->where('display', true)->all();
-
-        foreach ($allPage as $key => $page) { //Pages
-            $dashboard->menu->add('Posts', [
-                'slug'       => $page->slug,
-                'icon'       => $page->icon,
-                'route'      => route('dashboard.pages.show', [$page->slug]),
-                'label'      => $page->name,
-                'permission' => 'dashboard.pages.type.' . $page->slug,
-                'sort'       => $key,
-                'groupname'  => $page->groupname,
-                'divider'    => $page->divider,
-                'show'       => $page->display,
-            ]);
-        }
-
 
         return $this;
     }

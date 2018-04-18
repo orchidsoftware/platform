@@ -123,36 +123,23 @@ return [
         'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
         'label'        => Orchid\Platform\Fields\Types\LabelField::class,
-        
-        //удалить либо написать нормально
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Single Behaviors
+    | Behaviors
     |--------------------------------------------------------------------------
     |
-    | Static pages
+    | Добавить описание
     |
     */
 
-    'single' => [
+    'behaviors' => [
         Orchid\Platform\Behaviors\Demo\Page::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Many Behaviors
-    |--------------------------------------------------------------------------
-    |
-    | An abstract pattern of behavior record
-    |
-    */
-
-    'many' => [
         Orchid\Platform\Behaviors\Demo\Post::class,
     ],
+
 
     /*
     |--------------------------------------------------------------------------

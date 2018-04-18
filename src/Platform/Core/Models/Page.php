@@ -14,20 +14,4 @@ class Page extends Post
      */
     protected $postType = 'page';
 
-    /**
-     * @param $slug
-     *
-     * @return $this
-     * @throws TypeException
-     */
-    public function getBehavior($slug)
-    {
-        $this->behavior = Dashboard::getSingleBehaviors()->where('slug', $slug)->first();
-
-        if (is_null($this->behavior)) {
-            throw new TypeException("{$slug} Type is not found");
-        }
-
-        return $this;
-    }
 }

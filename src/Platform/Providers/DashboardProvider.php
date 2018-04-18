@@ -29,8 +29,7 @@ class DashboardProvider extends ServiceProvider
 
         $this->dashboard
             ->registerFields(config('platform.fields'))
-            ->registerManyBehavior(config('platform.many'))
-            ->registerSingleBehavior(config('platform.single'))
+            ->registerBehaviors(config('platform.behaviors'))
             ->registerResource(config('platform.resource', []))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsBehaviors())
@@ -71,22 +70,8 @@ class DashboardProvider extends ServiceProvider
     {
         $permissions = [];
 
-        $pages = $this->dashboard
-            ->getSingleBehaviors()
-            ->where('display', true)
-            ->map(function ($page) {
-            return [
-                'slug'        => 'dashboard.pages.type.' . $page->slug,
-                'description' => $page->name,
-            ];
-        });
-
-        if($pages->count() > 0){
-            $permissions[trans('dashboard::permission.main.pages')] = $pages->toArray();
-        }
-
         $posts = $this->dashboard
-            ->getManyBehaviors()
+            ->getBehaviors()
             ->where('display', true)
             ->map(function ($post) {
             return [

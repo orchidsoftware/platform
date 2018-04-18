@@ -34,13 +34,8 @@ class Dashboard
     /**
      * @var Collection
      */
-    private $manyBehaviors;
-    
-    /**
-     * @var Collection
-     */
-    private $singleBehaviors;
-    
+    private $behaviors;
+
     /**
      * JS and CSS resources for implementation in the panel.
      *
@@ -56,8 +51,7 @@ class Dashboard
         $this->menu = new Menu();
         $this->permission = collect();
         $this->resources = collect();
-        $this->singleBehaviors = collect();
-        $this->manyBehaviors = collect();
+        $this->behaviors = collect();
         $this->fields = collect();
     }
 
@@ -103,25 +97,13 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerManyBehavior(array $value)
+    public function registerBehaviors(array $value)
     {
-        $this->manyBehaviors = $this->manyBehaviors->merge($value);
+        $this->behaviors = $this->behaviors->merge($value);
         
         return $this;
     }
-    
-    /**
-     * @param array $value
-     *
-     * @return $this
-     */
-    public function registerSingleBehavior(array $value)
-    {
-        $this->singleBehaviors = $this->singleBehaviors->merge($value);
-        
-        return $this;
-    }
-    
+
     /**
      * @param array $value
      *
@@ -182,29 +164,13 @@ class Dashboard
     {
         return $this->storage->get($key, $default);
     }
-    
+
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getManyBehaviors()
+    public function getBehaviors() : Collection
     {
-        $this->manyBehaviors->transform(function ($value) {
-            if (! is_object($value)) {
-                $value = new $value();
-            }
-        
-            return $value;
-        });
-    
-        return $this->manyBehaviors;
-    }
-    
-    /**
-     * @return mixed
-     */
-    public function getSingleBehaviors()
-    {
-        $this->singleBehaviors->transform(function ($value) {
+        $this->behaviors->transform(function ($value) {
             if (! is_object($value) ) {
                 $value = new $value();
             }
@@ -212,7 +178,7 @@ class Dashboard
             return $value;
         });
         
-        return $this->singleBehaviors;
+        return $this->behaviors;
     }
     
     /**
