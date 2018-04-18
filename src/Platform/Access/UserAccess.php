@@ -57,6 +57,7 @@ trait UserAccess
     /**
      * @param      $checkPermissions
      * @param bool $cache
+     *
      * @return bool
      */
     public function hasAccess($checkPermissions, $cache = true) : bool

@@ -5,7 +5,7 @@ return [
     'title'       => 'Панель керування',
     'description' => 'Ласкаво просимо до ORCHID',
 
-    'notifications' => 'Повідомлення',
+    'notifications'    => 'Повідомлення',
     'no_notifications' => 'Повідомлення відсутні',
 
     'Create'       => 'Створити',

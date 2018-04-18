@@ -20,7 +20,7 @@ class Permissions
     {
         $this->container = collect();
     }
-    
+
     /**
      * Get Permissions.
      *

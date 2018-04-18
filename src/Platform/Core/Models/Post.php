@@ -8,12 +8,12 @@ use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Core\Traits\FilterTrait;
 use Orchid\Platform\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Platform\Core\Traits\Attachment;
+use Orchid\Platform\Core\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Core\Traits\JsonRelations;
@@ -123,8 +123,9 @@ class Post extends Model
     /**
      * Get the indexable data array for the model.
      *
-     * @return array
      * @throws TypeException
+     *
+     * @return array
      */
     public function toSearchableArray()
     {
@@ -142,8 +143,9 @@ class Post extends Model
      *
      * @param null $slug
      *
-     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      * @throws TypeException
+     *
+     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      */
     public function getBehaviorObject($slug = null)
     {
@@ -157,8 +159,9 @@ class Post extends Model
     /**
      * @param $slug
      *
-     * @return $this
      * @throws TypeException
+     *
+     * @return $this
      */
     public function getBehavior($slug)
     {
@@ -402,8 +405,10 @@ class Post extends Model
             } catch (TypeException $e) {
             }
         }
+
         return $this->filter($query);
     }
+
     /**
      * @param Builder $query
      * @param bool    $dashboard
@@ -416,21 +421,24 @@ class Post extends Model
         foreach ($filters as $filter) {
             $query = $filter->filter($query);
         }
+
         return $query;
     }
+
     /**
      * @param Builder $query
      * @param null    $behavior
      *
-     * @return Builder
      * @throws TypeException
+     *
+     * @return Builder
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
         if (! is_null($behavior)) {
             $this->getBehavior($behavior);
         }
+
         return $this->filter($query, true);
     }
-
 }

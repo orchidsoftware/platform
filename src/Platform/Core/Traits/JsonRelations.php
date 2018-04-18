@@ -8,6 +8,7 @@ trait JsonRelations
 {
     /**
      * Column for relations.
+     *
      * @var string
      */
     public $jsonRelationColumn = 'options';

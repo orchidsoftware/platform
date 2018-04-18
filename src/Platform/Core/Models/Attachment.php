@@ -103,8 +103,9 @@ class Attachment extends Model
     /**
      * @param string $storage
      *
-     * @return bool|null
      * @throws \Exception
+     *
+     * @return bool|null
      */
     public function delete($storage = 'public')
     {
@@ -130,9 +131,9 @@ class Attachment extends Model
      * Physical removal of all copies of a file.
      *
      * @param Attachment $attachment
-     * @param string $storageName
+     * @param string     $storageName
      */
-    private function removePhysicalFile(Attachment $attachment, $storageName)
+    private function removePhysicalFile(self $attachment, $storageName)
     {
         $storage = Storage::disk($storageName);
 

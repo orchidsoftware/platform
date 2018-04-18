@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\View;
+use Orchid\Platform\Kernel\Dashboard;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\MenuComposer;
-use Orchid\Platform\Kernel\Dashboard;
 
 class DashboardProvider extends ServiceProvider
 {
@@ -74,13 +74,13 @@ class DashboardProvider extends ServiceProvider
             ->getBehaviors()
             ->where('display', true)
             ->map(function ($post) {
-            return [
-                'slug'        => 'dashboard.posts.type.' . $post->slug,
+                return [
+                'slug'        => 'dashboard.posts.type.'.$post->slug,
                 'description' => $post->name,
             ];
-        });
+            });
 
-        if($posts->count() > 0){
+        if ($posts->count() > 0) {
             $permissions[trans('dashboard::permission.main.posts')] = $posts->toArray();
         }
 

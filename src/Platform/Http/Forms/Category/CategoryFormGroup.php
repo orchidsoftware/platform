@@ -40,7 +40,7 @@ class CategoryFormGroup extends FormGroup
     public function main(): View
     {
         $behavior = config('platform.category');
-        $behavior = new $behavior;
+        $behavior = new $behavior();
 
         return view('dashboard::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),

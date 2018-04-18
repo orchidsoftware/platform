@@ -39,7 +39,7 @@ class CategoryDescForm extends Form
         $this->name = trans('dashboard::systems/category.display');
 
         $category = config('platform.category');
-        $this->behavior = (new $category);
+        $this->behavior = (new $category());
         parent::__construct($request);
     }
 
@@ -65,9 +65,9 @@ class CategoryDescForm extends Form
         ]);
 
         return view('dashboard::container.systems.category.desc', [
-            'language'     => App::getLocale(),
-            'termTaxonomy' => $termTaxonomy,
-            'locales'      => collect(config('platform.locales')),
+            'language'       => App::getLocale(),
+            'termTaxonomy'   => $termTaxonomy,
+            'locales'        => collect(config('platform.locales')),
             'behavior'       => $this->behavior,
         ]);
     }

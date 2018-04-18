@@ -30,8 +30,9 @@ class PageController extends Controller
     /**
      * @param Page $page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Page $page = null)
     {
@@ -48,8 +49,9 @@ class PageController extends Controller
      * @param Page    $page
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update(Page $page, Request $request)
     {

@@ -140,7 +140,6 @@ return [
         Orchid\Platform\Behaviors\Demo\Post::class,
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Category

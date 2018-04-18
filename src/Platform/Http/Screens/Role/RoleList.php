@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\Role;
 
-use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Http\Layouts\Role\RoleListLayout;
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Http\Layouts\Role\RoleListLayout;
 
 class RoleList extends Screen
 {
@@ -33,7 +33,7 @@ class RoleList extends Screen
     public function query() : array
     {
         return [
-            'roles' => Role::filters()->defaultSort('id','desc')->paginate(),
+            'roles' => Role::filters()->defaultSort('id', 'desc')->paginate(),
         ];
     }
 

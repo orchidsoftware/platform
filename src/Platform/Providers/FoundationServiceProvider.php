@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Kernel\Dashboard;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -93,7 +93,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerRoute()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH . '/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
+            realpath(DASHBOARD_PATH.'/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
         ]);
 
         return $this;

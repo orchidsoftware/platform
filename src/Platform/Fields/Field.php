@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Fields;
 
-use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.
@@ -107,8 +107,9 @@ class Field implements FieldContract
     /**
      * @param $arguments
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function make($arguments)
     {
@@ -124,8 +125,9 @@ class Field implements FieldContract
     /**
      * @param string $type
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function tag(string $type) : FieldContract
     {
@@ -146,8 +148,8 @@ class Field implements FieldContract
      */
     public function __call($name, $arguments)
     {
-        foreach ($arguments as $key => $argument){
-            if($argument instanceof \Closure) {
+        foreach ($arguments as $key => $argument) {
+            if ($argument instanceof \Closure) {
                 $arguments[$key] = $argument();
             }
         }
@@ -193,8 +195,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @return mixed|void
      * @throws FieldRequiredAttributeException
+     *
+     * @return mixed|void
      */
     public function checkRequired()
     {
@@ -206,15 +209,15 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws FieldRequiredAttributeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function render()
     {
         $this->checkRequired();
 
         // TODO: Указать параметры в шаблонах, что бы не приходилось проверять на ошибки и т.п.
-
 
         $attributes = $this->getModifyAttributes();
         $this->attributes['id'] = $this->getId();
@@ -237,9 +240,6 @@ class Field implements FieldContract
         return $this->attributes;
     }
 
-    /**
-     *
-     */
     public function getModifyAttributes()
     {
         $modifiers = get_class_methods($this);
@@ -250,10 +250,9 @@ class Field implements FieldContract
                 if (in_array($signature, $modifiers)) {
                     $this->$signature($item);
                 }
-        });
+            });
 
         return  collect($this->getAttributes())->only(array_merge($this->universalAttributes, $this->inlineAttributes));
-
     }
 
     /**
@@ -340,23 +339,22 @@ class Field implements FieldContract
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
-
         $this->attributes['name'] = $name;
 
-        if (!is_null($prefix)) {
+        if (! is_null($prefix)) {
             $this->attributes['name'] = $prefix.$name;
         }
 
-        if (is_null($prefix) && !is_null($lang)) {
+        if (is_null($prefix) && ! is_null($lang)) {
             $this->attributes['name'] = $lang.$name;
         }
 
-        if (!is_null($prefix) && !is_null($lang)) {
-            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
+        if (! is_null($prefix) && ! is_null($lang)) {
+            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
         if ($name instanceof \Closure) {
-            $this->attributes['name'] =  $name($this->attributes);
+            $this->attributes['name'] = $name($this->attributes);
         }
 
         return $this;
@@ -376,7 +374,7 @@ class Field implements FieldContract
         }
 
         if ($value instanceof \Closure) {
-            $this->attributes['value'] =  $value($this->attributes);
+            $this->attributes['value'] = $value($this->attributes);
         }
 
         $this->attributes['value'] = $value;
@@ -386,9 +384,11 @@ class Field implements FieldContract
 
     /**
      * @param $group
+     *
      * @return mixed
      */
-    public static function group($group){
-        return call_user_func_array($group,[]);
+    public static function group($group)
+    {
+        return call_user_func_array($group, []);
     }
 }

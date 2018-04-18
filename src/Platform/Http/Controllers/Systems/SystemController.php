@@ -27,5 +27,4 @@ class SystemController extends Controller
     {
         return view('dashboard::container.systems.index');
     }
-
 }

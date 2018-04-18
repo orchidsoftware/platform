@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Demo;
 
-use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
 class Page extends Single
@@ -54,8 +54,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -78,7 +79,7 @@ class Page extends Single
                         ->max(255)
                         ->required()
                         ->title('Article Title')
-                        ->help('SEO title')
+                        ->help('SEO title'),
 
                 ];
             }),

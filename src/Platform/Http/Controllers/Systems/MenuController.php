@@ -91,8 +91,8 @@ class MenuController extends Controller
     }
 
     /**
-     * @param array   $items
-     * @param int $parent
+     * @param array $items
+     * @param int   $parent
      */
     private function createMenuElement(array $items, $parent = 0)
     {
@@ -113,8 +113,10 @@ class MenuController extends Controller
 
     /**
      * @param Menu $menu
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Menu $menu)
     {

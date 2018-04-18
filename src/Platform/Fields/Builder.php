@@ -42,7 +42,7 @@ class Builder
      * @var
      */
     public $form = '';
-    
+
     /**
      * Builder constructor.
      *
@@ -58,7 +58,7 @@ class Builder
         $this->language = $language;
         $this->prefix = $prefix;
     }
-    
+
     /**
      * @param string $language
      *
@@ -70,7 +70,7 @@ class Builder
 
         return $this;
     }
-    
+
     /**
      * @param string $prefix
      *
@@ -86,14 +86,14 @@ class Builder
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @return string
      * @throws \Throwable
+     *
+     * @return string
      */
     public function generateForm() : string
     {
         foreach ($this->fields as $field) {
-
-            if(is_array($field)){
+            if (is_array($field)) {
                 $this->renderGroup($field);
                 continue;
             }
@@ -106,26 +106,29 @@ class Builder
 
     /**
      * @param $groupField
+     *
      * @throws \Throwable
      */
-    private function renderGroup($groupField){
-
-        foreach ($groupField as $field){
+    private function renderGroup($groupField)
+    {
+        foreach ($groupField as $field) {
             $group[] = $this->render($field);
         }
 
-        $this->form .= view('dashboard::partials.fields.groups',[
+        $this->form .= view('dashboard::partials.fields.groups', [
             'cols' => $group ?? [],
         ])->render();
     }
 
     /**
-     * Render field for forms
+     * Render field for forms.
      *
      * @param $field
+     *
      * @return mixed
      */
-    private function render($field){
+    private function render($field)
+    {
         $field->set('lang', $this->language);
         $field->set('prefix', $this->buildPrefix($field));
 
@@ -192,7 +195,7 @@ class Builder
     }
 
     /**
-     * Gets value of Repository
+     * Gets value of Repository.
      *
      * @param $key
      * @param $value

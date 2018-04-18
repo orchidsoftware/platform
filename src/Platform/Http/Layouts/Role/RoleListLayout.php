@@ -35,12 +35,12 @@ class RoleListLayout extends Table
                 ->width('100px')
                 ->sort()
                 ->link('dashboard.systems.roles.edit', 'slug'),
-            TD::set('name',trans('dashboard::systems/roles.name'))
+            TD::set('name', trans('dashboard::systems/roles.name'))
                 ->sort()
                 ->link('dashboard.systems.roles.edit', 'slug', 'name'),
-            TD::set('slug',trans('dashboard::systems/roles.slug'))
+            TD::set('slug', trans('dashboard::systems/roles.slug'))
                 ->sort(),
-            TD::set('created_at',trans('dashboard::common.Created'))
+            TD::set('created_at', trans('dashboard::common.Created'))
                 ->sort(),
         ];
     }

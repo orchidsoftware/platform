@@ -106,7 +106,7 @@ class Menu
 
         return $this;
     }
-    
+
     /**
      * Adding a new element to the container.
      *
@@ -140,7 +140,7 @@ class Menu
 
         return $this;
     }
-    
+
     /**
      * Generate on the menu display.
      *

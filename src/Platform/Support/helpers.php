@@ -45,8 +45,9 @@ if (! function_exists('generate_form')) {
      * @param string|null $language
      * @param string|null $prefix
      *
-     * @return string
      * @throws \Throwable
+     *
+     * @return string
      */
     function generate_form(array $fields, $data = [], string $language = null, string $prefix = null)
     {
@@ -79,6 +80,7 @@ if (! function_exists('is_sort')) {
 
     /**
      * @param null $property
+     *
      * @return string
      */
     function is_sort($property = null)
@@ -93,6 +95,7 @@ if (! function_exists('get_sort')) {
 
     /**
      * @param null $property
+     *
      * @return string
      */
     function get_sort($property)
@@ -107,6 +110,7 @@ if (! function_exists('get_filter')) {
 
     /**
      * @param null $property
+     *
      * @return string
      */
     function get_filter($property)
@@ -121,6 +125,7 @@ if (! function_exists('revert_sort')) {
 
     /**
      * @param null $property
+     *
      * @return string
      */
     function revert_sort($property)

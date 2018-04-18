@@ -78,8 +78,9 @@ class Setting extends Model
             return;
         }
 
-        if(!is_array($key)){
+        if (! is_array($key)) {
             Cache::forget($key);
+
             return;
         }
 

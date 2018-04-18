@@ -60,7 +60,7 @@ class File
         $this->time = time();
         $this->date = date('Y/m/d');
         $this->file = $file;
-        $this->mimes = new MimeTypes;
+        $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
         $this->storage = $storage;

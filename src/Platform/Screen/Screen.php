@@ -92,7 +92,7 @@ abstract class Screen
                 continue;
             }
 
-            $build[] = (new $layout)->build($post);
+            $build[] = (new $layout())->build($post);
         }
 
         return $build ?? [];
@@ -114,8 +114,10 @@ abstract class Screen
     /**
      * @param null $method
      * @param null $parameters
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     *
      * @throws \ReflectionException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function handle($method = null, $parameters = null)
     {
@@ -145,6 +147,7 @@ abstract class Screen
 
     /**
      * @param $method
+     *
      * @throws \ReflectionException
      */
     public function reflectionParams($method)

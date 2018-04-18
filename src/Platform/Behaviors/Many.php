@@ -73,7 +73,6 @@ abstract class Many
         ];
     }
 
-
     /**
      * Display form for filtering.
      *
@@ -83,11 +82,13 @@ abstract class Many
     {
         $dashboardFilter = $this->getFilters(true);
         $chunk = ceil($dashboardFilter->count() / 4);
+
         return view('dashboard::container.posts.filter', [
             'filters' => $dashboardFilter,
             'chunk'   => $chunk,
         ]);
     }
+
     /**
      * Get all the filters.
      *
@@ -104,6 +105,7 @@ abstract class Many
                 $filters->push($filter);
             }
         }
+
         return $filters;
     }
 }

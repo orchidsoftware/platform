@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
@@ -123,7 +122,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($file);
         }
 
-        if(file_exists(base_path('routes/dashboard.php'))) {
+        if (file_exists(base_path('routes/dashboard.php'))) {
             Route::prefix('dashboard')
                 ->middleware('api')
                 ->namespace('App\Http\Controllers')

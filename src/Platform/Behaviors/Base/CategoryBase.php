@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Core\Models\Category;
-use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Fields\TD;
+use Orchid\Platform\Fields\Field;
+use Orchid\Platform\Core\Models\Category;
 
 class CategoryBase
 {
@@ -44,8 +44,9 @@ class CategoryBase
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -73,7 +74,7 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            TD::set('created_at',trans('dashboard::systems/category.date_creation')),
+            TD::set('created_at', trans('dashboard::systems/category.date_creation')),
         ];
     }
 }

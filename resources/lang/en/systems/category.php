@@ -8,14 +8,14 @@ return [
     'information'  => 'Information',
     'display'      => 'Display',
 
-    'parent'       => 'Parent Category',
-    'slug'         => 'Link',
-    'name'         => 'Name',
-    'descriptions' => 'Description',
-    'not_found'    => 'You have not created any sections yet',
-    'not_parrent'  => 'Without section',
-    'date_creation'=> 'Date of creation',
-    'Category was saved'=> 'Category was saved',
+    'parent'              => 'Parent Category',
+    'slug'                => 'Link',
+    'name'                => 'Name',
+    'descriptions'        => 'Description',
+    'not_found'           => 'You have not created any sections yet',
+    'not_parrent'         => 'Without section',
+    'date_creation'       => 'Date of creation',
+    'Category was saved'  => 'Category was saved',
     'Category was removed'=> 'Category was removed',
 
     'fields'       => [

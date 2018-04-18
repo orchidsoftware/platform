@@ -57,7 +57,7 @@ class CreateAdminCommand extends Command
     public function handle()
     {
         $permissions = collect();
-        
+
         $this->permissions->each(function ($items) use ($permissions) {
             foreach ($items as $item) {
                 $permissions->put($item['slug'], true);

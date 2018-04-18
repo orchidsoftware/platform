@@ -11,8 +11,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
  * @deprecated
  *
  * Class Form
- *
- * @package Orchid\Platform\Forms
  */
 abstract class Form
 {

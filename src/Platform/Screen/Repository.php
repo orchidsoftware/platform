@@ -13,6 +13,7 @@ class Repository
 
     /**
      * Repository constructor.
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
@@ -23,6 +24,7 @@ class Repository
     /**
      * @param      $key
      * @param null $default
+     *
      * @return mixed
      */
     public function getContent($key, $default = null)

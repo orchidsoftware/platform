@@ -53,7 +53,7 @@ class TD
      * @var bool
      */
     public $locale = false;
-    
+
     /**
      * TD constructor.
      *
@@ -64,7 +64,7 @@ class TD
         $this->name = $name;
         $this->column = $name;
     }
-    
+
     /**
      * @param string $name
      * @param string $title
@@ -79,7 +79,7 @@ class TD
 
         return $td;
     }
-    
+
     /**
      * @deprecated Use the set method
      *
@@ -91,7 +91,7 @@ class TD
     {
         return new self($name);
     }
-    
+
     /**
      * @deprecated Use the set method
      *
@@ -105,7 +105,7 @@ class TD
 
         return $this;
     }
-    
+
     /**
      * @param string $width
      *
@@ -119,7 +119,7 @@ class TD
     }
 
     /**
-     * Set current columns is multi language
+     * Set current columns is multi language.
      *
      * @return $this
      */
@@ -129,25 +129,26 @@ class TD
 
         return $this;
     }
-    
+
     /**
      * @param string|null $column
+     *
      * @return $this
      */
-    public function column(string $column = null){
-
-        if (!is_null($column)) {
+    public function column(string $column = null)
+    {
+        if (! is_null($column)) {
             $this->column = $column;
         }
 
-        if (!is_null($column) && $this->locale) {
-            $locale = '.' . App::getLocale() . '.';
-            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
+        if (! is_null($column) && $this->locale) {
+            $locale = '.'.App::getLocale().'.';
+            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
         }
 
         return $this;
     }
-    
+
     /**
      * @param string $filter
      *
@@ -191,7 +192,7 @@ class TD
     {
         return ($this->render)($data);
     }
-    
+
     /**
      * @param string|null $text
      *
@@ -201,7 +202,7 @@ class TD
     {
         return $this->link('dashboard.posts.type.edit', ['type', 'slug'], $text);
     }
-    
+
     /**
      * @param string $route
      * @param        $options
@@ -212,16 +213,13 @@ class TD
     public function link(string $route, $options, string $text = null)
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
-
-
             $attributes = [];
 
-            if (!is_array($options)) {
+            if (! is_array($options)) {
                 $options = [$options];
             }
 
             foreach ($options as $option) {
-
                 if (method_exists($datum, 'getContent')) {
                     $attributes[] = $datum->getContent($option);
                     continue;
@@ -230,31 +228,29 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-
-            if (!is_null($text)) {
+            if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
             return view('dashboard::partials.td.link', [
                 'route'      => $route,
                 'attributes' => $attributes,
-                'text'       => $text
+                'text'       => $text,
             ]);
-
         });
 
         return $this;
     }
-    
+
     /**
      * @param string $align
      *
      * @return $this
      */
-    public function align(string $align){
+    public function align(string $align)
+    {
         $this->align = $align;
 
         return $this;
     }
-
 }
