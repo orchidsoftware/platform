@@ -2,9 +2,9 @@
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File as MakeFile;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Attachments\File as File;
-use Illuminate\Support\Facades\File as MakeFile;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AttachmentsTableSeeder extends Seeder

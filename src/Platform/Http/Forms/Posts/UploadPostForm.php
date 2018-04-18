@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
-use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Orchid\Platform\Core\Models\Post;
+use Orchid\Platform\Forms\Form;
 
 class UploadPostForm extends Form
 {
@@ -57,7 +57,7 @@ class UploadPostForm extends Form
      */
     public function persist($type = null, $post = null)
     {
-        if (! $this->request->filled('files')) {
+        if (!$this->request->filled('files')) {
             return;
         }
 

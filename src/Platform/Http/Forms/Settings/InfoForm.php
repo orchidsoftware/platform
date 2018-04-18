@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Settings;
 
-use Orchid\Platform\Forms\Form;
 use Orchid\Platform\Core\Models\Setting;
+use Orchid\Platform\Forms\Form;
 
 class InfoForm extends Form
 {

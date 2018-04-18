@@ -17,21 +17,21 @@ use Orchid\Platform\Screen\Screen;
 class RoleEdit extends Screen
 {
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name = 'dashboard::systems/roles.title';
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
     public $description = 'dashboard::systems/roles.description';
 
     /**
-     * Query data
+     * Query data.
      *
      * @param int $roleSlug
      *
@@ -39,24 +39,22 @@ class RoleEdit extends Screen
      */
     public function query($roleSlug = null): array
     {
-
-        $role = is_null($roleSlug) ? new Role : Role::where('slug', $roleSlug)->firstOrFail();
+        $role = is_null($roleSlug) ? new Role() : Role::where('slug', $roleSlug)->firstOrFail();
 
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->collapse()
             ->sort()
             ->transform(function ($group) use ($rolePermission) {
-
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
                     $group[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-            }
+                }
 
                 return $group;
-        });
-        
+            });
+
         return [
             'permission' => $permission,
             'role'       => $role,
@@ -64,7 +62,7 @@ class RoleEdit extends Screen
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -81,20 +79,19 @@ class RoleEdit extends Screen
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
-
     public function layout(): array
     {
         return [
             Layouts::columns([
                 'Left column'  => [
-                    RoleEditLayout::class
+                    RoleEditLayout::class,
                 ],
                 'Right column' => [
-                     RolePermissionLayout::class
+                     RolePermissionLayout::class,
                 ],
             ]),
         ];
@@ -124,6 +121,7 @@ class RoleEdit extends Screen
 
     /**
      * @param Role $role
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Role $role)
@@ -134,5 +132,4 @@ class RoleEdit extends Screen
 
         return redirect()->route('dashboard.systems.roles');
     }
-
 }

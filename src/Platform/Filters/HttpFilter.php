@@ -25,7 +25,7 @@ class HttpFilter
     protected $sorts;
 
     /**
-     * Model options and allowed params
+     * Model options and allowed params.
      *
      * @var
      */
@@ -40,7 +40,7 @@ class HttpFilter
     {
         $this->request = $request ?? request();
 
-        $this->filters = collect($this->request->get('filter', []))->map(function ($item){
+        $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
         $this->sorts = collect($this->request->get('sort', []));
@@ -48,13 +48,14 @@ class HttpFilter
 
     /**
      * @param $query
+     *
      * @return array
      */
     protected function parseHttpValue($query)
     {
         $item = explode(',', $query);
 
-        if(count($item) > 1){
+        if (count($item) > 1) {
             return $item;
         }
 
@@ -84,7 +85,7 @@ class HttpFilter
             ->each(function (string $sort) use ($builder) {
                 $descending = $sort[0] === '-';
                 $key = ltrim($sort, '-');
-                $key= str_replace(".", "->", $key);
+                $key = str_replace('.', '->', $key);
                 $builder->orderBy($key, $descending ? 'desc' : 'asc');
             });
     }
@@ -97,20 +98,18 @@ class HttpFilter
         $allowedFilters = $this->options->get('allowedFilters')->toArray();
 
         $this->filters->each(function ($value, $property) use ($builder,$allowedFilters) {
-
             $allowProperty = $property;
-            if(false !== stristr($property, '.')){
+            if (false !== stristr($property, '.')) {
                 $allowProperty = stristr($property, '.', true);
             }
 
-            if(in_array($allowProperty,$allowedFilters)){
-                $property= str_replace(".", "->", $property);
+            if (in_array($allowProperty, $allowedFilters)) {
+                $property = str_replace('.', '->', $property);
                 $this->filtersExact($builder, $value, $property);
             }
-
         });
     }
-    
+
     /**
      * @param Builder $query
      * @param         $value
@@ -129,6 +128,7 @@ class HttpFilter
 
     /**
      * @param null $property
+     *
      * @return mixed
      */
     public function isSort($property = null)
@@ -150,20 +150,21 @@ class HttpFilter
 
     /**
      * @param $property
+     *
      * @return mixed
      */
-    public function revertSort($property){
-
-        if($this->getSort($property) === 'asc'){
+    public function revertSort($property)
+    {
+        if ($this->getSort($property) === 'asc') {
             return '-'.$property;
         }
 
         return $property;
     }
 
-
     /**
      * @param $property
+     *
      * @return bool|string
      */
     public function getSort($property)
@@ -177,11 +178,11 @@ class HttpFilter
 
     /**
      * @param $property
+     *
      * @return mixed
      */
     public function getFilter($property)
     {
         return array_get($this->filters, $property);
     }
-
 }

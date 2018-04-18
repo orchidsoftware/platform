@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Traits;
 
@@ -47,7 +47,7 @@ trait Attachment
         );
 
         if (!is_null($type)) {
-            $query->whereIn('extension', config('platform.attachment.' . $type));
+            $query->whereIn('extension', config('platform.attachment.'.$type));
         }
 
         if (!is_null($group)) {

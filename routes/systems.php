@@ -10,20 +10,16 @@
 */
 
 $this->domain(config('platform.domain'))->group(function () {
-
-
     $this->group([
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
     ], function (\Illuminate\Routing\Router $router) {
-
         $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'dashboard.systems.users.edit');
         $router->screen('users/create', config('platform.screens.users.edit'), 'dashboard.systems.users.create');
         $router->screen('users', config('platform.screens.users.list'), 'dashboard.systems.users');
         $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'dashboard.systems.roles.edit');
         $router->screen('roles/create', config('platform.screens.roles.edit'), 'dashboard.systems.roles.create');
         $router->screen('roles', config('platform.screens.roles.list'), 'dashboard.systems.roles');
-
     });
 
     $this->group([
@@ -31,8 +27,6 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
-
-
         $router->get('/', [
             'as'   => 'dashboard.systems.index',
             'uses' => 'SystemController@index',
@@ -81,7 +75,7 @@ $this->domain(config('platform.domain'))->group(function () {
                 'destroy' => 'dashboard.systems.category.destroy',
             ],
         ]);
-        
+
         $router->resource('comment', 'CommentController', [
             'only'  => [
                 'index', 'create', 'edit', 'update', 'store', 'destroy',
@@ -174,7 +168,6 @@ $this->domain(config('platform.domain'))->group(function () {
             $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
             $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
         });
-        
 
         $router->post('widget/{widget}/{key?}', [
             'as'   => 'dashboard.systems.widget',

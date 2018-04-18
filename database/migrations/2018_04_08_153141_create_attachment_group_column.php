@@ -16,7 +16,6 @@ class CreateAttachmentGroupColumn extends Migration
         Schema::table('attachmentable', function (Blueprint $table) {
             $table->string('attachmentable_group')->nullable();
         });
-
     }
 
     /**

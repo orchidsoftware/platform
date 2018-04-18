@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\Comment;
 use Orchid\Platform\Core\Models\Attachmentable;
+use Orchid\Platform\Core\Models\Comment;
+use Orchid\Platform\Core\Models\Post;
 
 class PostsTableSeeder extends Seeder
 {

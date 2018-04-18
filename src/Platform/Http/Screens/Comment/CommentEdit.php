@@ -15,21 +15,21 @@ use Orchid\Platform\Screen\Screen;
 class CommentEdit extends Screen
 {
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name = 'dashboard::systems/comment.title';
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
     public $description = 'dashboard::systems/comment.description';
 
     /**
-     * Query data
+     * Query data.
      *
      * @param int $id
      *
@@ -43,7 +43,7 @@ class CommentEdit extends Screen
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -60,7 +60,7 @@ class CommentEdit extends Screen
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
@@ -69,7 +69,7 @@ class CommentEdit extends Screen
         return [
             Layouts::columns([
                 'CommentEdit' => [
-                    CommentEditLayout::class
+                    CommentEditLayout::class,
                 ],
             ]),
 
@@ -94,8 +94,9 @@ class CommentEdit extends Screen
     /**
      * @param $comment
      *
-     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function remove(Comment $comment)
     {
@@ -105,5 +106,4 @@ class CommentEdit extends Screen
 
         return redirect()->route('dashboard.systems.comment');
     }
-
 }

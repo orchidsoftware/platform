@@ -11,6 +11,7 @@ trait SimpleSearch
     /**
      * @param      $column
      * @param null $query
+     *
      * @return mixed
      */
     public function simpleSearchByColumn($column, $query = null)

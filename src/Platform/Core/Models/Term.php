@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Core\Traits\MultiLanguage;
 
 class Term extends Model
 {

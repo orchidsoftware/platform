@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Forms;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 
 /**
  * @deprecated
  *
  * Class Form
- *
- * @package Orchid\Platform\Forms
  */
 abstract class Form
 {

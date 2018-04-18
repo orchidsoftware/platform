@@ -73,8 +73,9 @@ class Post extends Many
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -97,7 +98,7 @@ class Post extends Many
                         ->max(255)
                         ->required()
                         ->title('Article Title')
-                        ->help('SEO title')
+                        ->help('SEO title'),
 
                 ];
             }),
@@ -191,7 +192,7 @@ class Post extends Many
      */
     public function options(): array
     {
-       return [
+        return [
            Field::group(function () {
                return [
 
@@ -209,7 +210,7 @@ class Post extends Many
                        ->max(255)
                        ->required()
                        ->title('Article Title')
-                       ->help('SEO title')
+                       ->help('SEO title'),
 
                ];
            }),
@@ -222,7 +223,7 @@ class Post extends Many
     public function grid() : array
     {
         return [
-            TD::set('id','ID')
+            TD::set('id', 'ID')
                 ->align('center')
                 ->width('100px')
                 ->filter('numeric')

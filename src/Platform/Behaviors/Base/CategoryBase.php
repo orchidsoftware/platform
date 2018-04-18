@@ -44,8 +44,9 @@ class CategoryBase
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -73,7 +74,7 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            TD::set('created_at',trans('dashboard::systems/category.date_creation')),
+            TD::set('created_at', trans('dashboard::systems/category.date_creation')),
         ];
     }
 }

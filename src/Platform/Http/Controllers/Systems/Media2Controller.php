@@ -29,7 +29,7 @@ class Media2Controller extends Controller
         $this->checkPermission('dashboard.systems.media');
         $this->filesystem = config('platform.disks.media', 'public');
     }
-    
+
     /**
      * @param string $dir
      *
@@ -37,7 +37,7 @@ class Media2Controller extends Controller
      */
     public function index($dir = '')
     {
-        $dir = $this->directory . $dir;
+        $dir = $this->directory.$dir;
 
         $storageFiles = Storage::disk($this->filesystem)->files($dir);
         $storageFolders = Storage::disk($this->filesystem)->directories($dir);
@@ -51,7 +51,6 @@ class Media2Controller extends Controller
         }
 
         foreach ($storageFiles as $file) {
-
             $files[] = [
                 'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
                 'type'          => Storage::disk($this->filesystem)->mimeType($file),
@@ -60,7 +59,6 @@ class Media2Controller extends Controller
                 'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
             ];
         }
-
 
         return view('dashboard::container.systems.media2.index', [
             'name'        => trans('dashboard::systems/media.title'),
@@ -78,7 +76,6 @@ class Media2Controller extends Controller
      */
     public function files(Request $request)
     {
-
         return response()->json([
             'name'          => 'files',
             'type'          => 'folder',
@@ -142,7 +139,7 @@ class Media2Controller extends Controller
 
         if (Storage::disk($this->filesystem)->exists($new_folder)) {
             $error = trans('dashboard::systems/media.error_creating_folder');
-        } else if (Storage::disk($this->filesystem)->makeDirectory($new_folder)) {
+        } elseif (Storage::disk($this->filesystem)->makeDirectory($new_folder)) {
             $success = true;
         } else {
             $error = trans('dashboard::systems/media.error_creating_dir');
@@ -176,7 +173,7 @@ class Media2Controller extends Controller
                 $error = trans('dashboard::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } else if (!Storage::disk($this->filesystem)->delete($fileFolder)) {
+        } elseif (!Storage::disk($this->filesystem)->delete($fileFolder)) {
             $error = trans('dashboard::systems/media.error_deleting_file');
             $success = false;
         }
@@ -222,7 +219,7 @@ class Media2Controller extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination,
-            '/../') !== false ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
+            '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
         if (!file_exists($destination)) {

@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Core\Models;
 
-use Illuminate\Support\Str;
-use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
-use Illuminate\Support\Collection;
-use Orchid\Platform\Core\Traits\FilterTrait;
-use Orchid\Platform\Facades\Dashboard;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Platform\Core\Traits\Attachment;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Exceptions\TypeException;
-use Orchid\Platform\Core\Traits\JsonRelations;
-use Orchid\Platform\Core\Traits\MultiLanguage;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
+use Orchid\Platform\Core\Traits\Attachment;
+use Orchid\Platform\Core\Traits\FilterTrait;
+use Orchid\Platform\Core\Traits\JsonRelations;
+use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Exceptions\TypeException;
+use Orchid\Platform\Facades\Dashboard;
 
 class Post extends Model
 {
@@ -123,8 +123,9 @@ class Post extends Model
     /**
      * Get the indexable data array for the model.
      *
-     * @return array
      * @throws TypeException
+     *
+     * @return array
      */
     public function toSearchableArray()
     {
@@ -142,12 +143,13 @@ class Post extends Model
      *
      * @param null $slug
      *
-     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      * @throws TypeException
+     *
+     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
      */
     public function getBehaviorObject($slug = null)
     {
-        if (! is_null($this->behavior)) {
+        if (!is_null($this->behavior)) {
             return $this->behavior;
         }
 
@@ -157,8 +159,9 @@ class Post extends Model
     /**
      * @param $slug
      *
-     * @return $this
      * @throws TypeException
+     *
+     * @return $this
      */
     public function getBehavior($slug)
     {
@@ -396,14 +399,16 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
     {
-        if (! is_null($behavior)) {
+        if (!is_null($behavior)) {
             try {
                 $this->getBehavior($behavior);
             } catch (TypeException $e) {
             }
         }
+
         return $this->filter($query);
     }
+
     /**
      * @param Builder $query
      * @param bool    $dashboard
@@ -416,21 +421,24 @@ class Post extends Model
         foreach ($filters as $filter) {
             $query = $filter->filter($query);
         }
+
         return $query;
     }
+
     /**
      * @param Builder $query
      * @param null    $behavior
      *
-     * @return Builder
      * @throws TypeException
+     *
+     * @return Builder
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {
-        if (! is_null($behavior)) {
+        if (!is_null($behavior)) {
             $this->getBehavior($behavior);
         }
+
         return $this->filter($query, true);
     }
-
 }

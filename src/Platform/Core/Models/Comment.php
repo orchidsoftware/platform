@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\Attachment;
-use Orchid\Platform\Core\Builders\CommentBuilder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Orchid\Platform\Core\Traits\Attachment;
 
 class Comment extends Model
 {
@@ -132,5 +131,4 @@ class Comment extends Model
     {
         return $this->where('approved', 1);
     }
-
 }

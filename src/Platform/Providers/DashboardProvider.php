@@ -74,13 +74,13 @@ class DashboardProvider extends ServiceProvider
             ->getBehaviors()
             ->where('display', true)
             ->map(function ($post) {
-            return [
-                'slug'        => 'dashboard.posts.type.' . $post->slug,
+                return [
+                'slug'        => 'dashboard.posts.type.'.$post->slug,
                 'description' => $post->name,
             ];
-        });
+            });
 
-        if($posts->count() > 0){
+        if ($posts->count() > 0) {
             $permissions[trans('dashboard::permission.main.posts')] = $posts->toArray();
         }
 

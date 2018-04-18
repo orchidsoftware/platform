@@ -93,7 +93,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerRoute()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH . '/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
+            realpath(DASHBOARD_PATH.'/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
         ]);
 
         return $this;
@@ -151,13 +151,13 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! Route::hasMacro('screen')) {
+        if (!Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {
                 return Route::any($url.'/{method?}/{argument?}', "$screen@handle")->name($name);
             });
         }
 
-        if (! defined('DASHBOARD_PATH')) {
+        if (!defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
         }
     }

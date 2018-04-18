@@ -79,14 +79,15 @@ class Layouts
     /**
      * @param $post
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function build($post)
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout)->build($post);
+                $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout())->build($post);
             }
         }
 

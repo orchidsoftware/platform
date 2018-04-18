@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Platform\Core\Models\Role;
-use Illuminate\Database\Eloquent\Builder;
 
 class RoleFilter extends Filter
 {
@@ -41,8 +41,9 @@ class RoleFilter extends Filter
     }
 
     /**
-     * @return mixed
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return mixed
      */
     public function display()
     {

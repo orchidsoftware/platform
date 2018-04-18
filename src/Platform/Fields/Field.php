@@ -107,8 +107,9 @@ class Field implements FieldContract
     /**
      * @param $arguments
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function make($arguments)
     {
@@ -124,14 +125,15 @@ class Field implements FieldContract
     /**
      * @param string $type
      *
-     * @return FieldContract
      * @throws TypeException
+     *
+     * @return FieldContract
      */
     public static function tag(string $type) : FieldContract
     {
         $field = config('platform.fields.'.$type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
+        if (!is_subclass_of($field, FieldContract::class)) {
             throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
@@ -146,8 +148,8 @@ class Field implements FieldContract
      */
     public function __call($name, $arguments)
     {
-        foreach ($arguments as $key => $argument){
-            if($argument instanceof \Closure) {
+        foreach ($arguments as $key => $argument) {
+            if ($argument instanceof \Closure) {
                 $arguments[$key] = $argument();
             }
         }
@@ -193,28 +195,29 @@ class Field implements FieldContract
     }
 
     /**
-     * @return mixed|void
      * @throws FieldRequiredAttributeException
+     *
+     * @return mixed|void
      */
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (! collect($this->attributes)->offsetExists($attribute)) {
+            if (!collect($this->attributes)->offsetExists($attribute)) {
                 throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
             }
         }
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws FieldRequiredAttributeException
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function render()
     {
         $this->checkRequired();
 
         // TODO: Указать параметры в шаблонах, что бы не приходилось проверять на ошибки и т.п.
-
 
         $attributes = $this->getModifyAttributes();
         $this->attributes['id'] = $this->getId();
@@ -237,9 +240,6 @@ class Field implements FieldContract
         return $this->attributes;
     }
 
-    /**
-     *
-     */
     public function getModifyAttributes()
     {
         $modifiers = get_class_methods($this);
@@ -250,10 +250,9 @@ class Field implements FieldContract
                 if (in_array($signature, $modifiers)) {
                     $this->$signature($item);
                 }
-        });
+            });
 
         return  collect($this->getAttributes())->only(array_merge($this->universalAttributes, $this->inlineAttributes));
-
     }
 
     /**
@@ -275,7 +274,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -340,7 +339,6 @@ class Field implements FieldContract
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
 
-
         $this->attributes['name'] = $name;
 
         if (!is_null($prefix)) {
@@ -352,11 +350,11 @@ class Field implements FieldContract
         }
 
         if (!is_null($prefix) && !is_null($lang)) {
-            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
+            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
         if ($name instanceof \Closure) {
-            $this->attributes['name'] =  $name($this->attributes);
+            $this->attributes['name'] = $name($this->attributes);
         }
 
         return $this;
@@ -371,12 +369,12 @@ class Field implements FieldContract
     {
         $old = $this->getOldValue();
 
-        if (! is_null($old)) {
+        if (!is_null($old)) {
             $this->attributes['value'] = $old;
         }
 
         if ($value instanceof \Closure) {
-            $this->attributes['value'] =  $value($this->attributes);
+            $this->attributes['value'] = $value($this->attributes);
         }
 
         $this->attributes['value'] = $value;
@@ -386,9 +384,11 @@ class Field implements FieldContract
 
     /**
      * @param $group
+     *
      * @return mixed
      */
-    public static function group($group){
-        return call_user_func_array($group,[]);
+    public static function group($group)
+    {
+        return call_user_func_array($group, []);
     }
 }

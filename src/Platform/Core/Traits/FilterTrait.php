@@ -18,7 +18,7 @@ trait FilterTrait
     public function scopeFiltersApply(Builder $query, $filters = []) : Builder
     {
         foreach ($filters as $filter) {
-            if (! is_object($filter)) {
+            if (!is_object($filter)) {
                 $filter = app()->make($filter);
             }
 
@@ -30,11 +30,12 @@ trait FilterTrait
 
     /**
      * @param Builder $builder
+     *
      * @return Builder
      */
     public function scopeFilters(Builder $builder)
     {
-        $filter = new HttpFilter;
+        $filter = new HttpFilter();
         $filter->build($builder);
 
         return $builder;
@@ -44,12 +45,11 @@ trait FilterTrait
      * @param Builder $builder
      * @param         $column
      * @param string  $direction
-     * @return Builder
      *
+     * @return Builder
      */
     public function scopeDefaultSort(Builder $builder, $column, $direction = 'asc')
     {
-
         if (is_null($builder->getQuery()->orders)) {
             $builder->orderBy($column, $direction);
         }

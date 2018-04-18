@@ -21,8 +21,9 @@ abstract class Table
     /**
      * @param $query
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function build(Repository $query)
     {
@@ -30,7 +31,7 @@ abstract class Table
         $filters = $this->showFilterDashboard();
 
         return view($this->template, [
-            'form' => $form,
+            'form'    => $form,
             'filters' => $filters,
         ])->render();
     }
@@ -48,7 +49,6 @@ abstract class Table
         ];
     }
 
-
     /**
      * Display form for filtering.
      *
@@ -58,11 +58,13 @@ abstract class Table
     {
         $dashboardFilter = $this->getFilters(true);
         $chunk = ceil($dashboardFilter->count() / 4);
+
         return view('dashboard::container.layouts.filter', [
             'filters' => $dashboardFilter,
             'chunk'   => $chunk,
         ]);
     }
+
     /**
      * Get all the filters.
      *
@@ -79,6 +81,7 @@ abstract class Table
                 $filters->push($filter);
             }
         }
+
         return $filters;
     }
 

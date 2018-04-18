@@ -51,5 +51,4 @@ class CommentList extends Screen
             CommentListLayout::class,
         ];
     }
-
 }

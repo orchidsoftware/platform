@@ -24,6 +24,7 @@ class CategoryListLayout extends Table
         return [
         ];
     }
+
     /**
      * @return array
      */
@@ -40,11 +41,11 @@ class CategoryListLayout extends Table
                 ->title(trans('dashboard::systems/category.slug'))
                 ->setRender(function ($category) {
                     return $category->term->slug;
-                }),    
+                }),
             TD::name('created_at')->title(trans('dashboard::common.Created'))
                 ->setRender(function ($category) {
                     return $category->term->created_at;
-                }), 
+                }),
 
         ];
     }

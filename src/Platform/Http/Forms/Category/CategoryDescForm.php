@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Category;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Taxonomy;
+use Orchid\Platform\Forms\Form;
 
 class CategoryDescForm extends Form
 {
@@ -39,7 +39,7 @@ class CategoryDescForm extends Form
         $this->name = trans('dashboard::systems/category.display');
 
         $category = config('platform.category');
-        $this->behavior = (new $category);
+        $this->behavior = (new $category());
         parent::__construct($request);
     }
 
@@ -65,9 +65,9 @@ class CategoryDescForm extends Form
         ]);
 
         return view('dashboard::container.systems.category.desc', [
-            'language'     => App::getLocale(),
-            'termTaxonomy' => $termTaxonomy,
-            'locales'      => collect(config('platform.locales')),
+            'language'       => App::getLocale(),
+            'termTaxonomy'   => $termTaxonomy,
+            'locales'        => collect(config('platform.locales')),
             'behavior'       => $this->behavior,
         ]);
     }

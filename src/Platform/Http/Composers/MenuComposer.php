@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Orchid\Platform\Behaviors\Many;
 use Orchid\Platform\Behaviors\Single;
 use Orchid\Platform\Kernel\Dashboard;
 
 class MenuComposer
 {
-
     /**
      * @var Dashboard
      */
@@ -41,7 +39,7 @@ class MenuComposer
      *
      * @return $this
      */
-    protected function registerMenuPost(Dashboard $dashboard): MenuComposer
+    protected function registerMenuPost(Dashboard $dashboard): self
     {
         $allPost = $this->dashboard->getBehaviors()
             ->where('display', true)
@@ -54,16 +52,15 @@ class MenuComposer
             'label'      => trans('dashboard::menu.posts'),
             'childs'     => true,
             'main'       => true,
-            'active'     => ['dashboard.posts.*','dashboard.pages.*'],
+            'active'     => ['dashboard.posts.*', 'dashboard.pages.*'],
             'permission' => 'dashboard.posts',
             'sort'       => 100,
             'show'       => count($allPost) > 0,
         ]);
 
         foreach ($allPost as $key => $page) {
-
             $route = route('dashboard.posts.type', [$page->slug]);
-            if(is_a($page,Single::class)){
+            if (is_a($page, Single::class)) {
                 $route = route('dashboard.pages.show', [$page->slug]);
             }
 
@@ -72,7 +69,7 @@ class MenuComposer
                 'icon'       => $page->icon,
                 'route'      => $route,
                 'label'      => $page->name,
-                'permission' => 'dashboard.posts.type.' . $page->slug,
+                'permission' => 'dashboard.posts.type.'.$page->slug,
                 'sort'       => $key,
                 'groupname'  => $page->groupname,
                 'divider'    => $page->divider,
@@ -88,7 +85,7 @@ class MenuComposer
      *
      * @return $this
      */
-    protected function registerMenuSystems(Dashboard $dashboard): MenuComposer
+    protected function registerMenuSystems(Dashboard $dashboard): self
     {
         $dashboard->menu
             ->add('Main', [

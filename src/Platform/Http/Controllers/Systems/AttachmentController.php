@@ -87,6 +87,7 @@ class AttachmentController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getFilesByIds(Request $request)

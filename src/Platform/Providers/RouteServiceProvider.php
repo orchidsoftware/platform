@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Base64Url\Base64Url;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Core\Models\Category;
-use Orchid\Platform\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Orchid\Platform\Widget\WidgetContractInterface;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -77,7 +76,7 @@ class RouteServiceProvider extends ServiceProvider
                 return abort(404);
             }
 
-            if (! is_a($widget, WidgetContractInterface::class)) {
+            if (!is_a($widget, WidgetContractInterface::class)) {
                 return abort(404);
             }
 
@@ -123,7 +122,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->loadRoutesFrom($file);
         }
 
-        if(file_exists(base_path('routes/dashboard.php'))) {
+        if (file_exists(base_path('routes/dashboard.php'))) {
             Route::prefix('dashboard')
                 ->middleware('api')
                 ->namespace('App\Http\Controllers')

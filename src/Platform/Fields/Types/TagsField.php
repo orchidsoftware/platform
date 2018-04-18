@@ -61,8 +61,8 @@ class TagsField extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control select2-tags',
-        'multiple' =>"multiple"
+        'class'    => 'form-control select2-tags',
+        'multiple' => 'multiple',
     ];
 
     /**
@@ -100,9 +100,8 @@ class TagsField extends Field
         'type',
         'value',
     ];
-	
-	
-	 /**
+
+    /**
      * @param $name
      *
      * @return string
@@ -111,7 +110,7 @@ class TagsField extends Field
     {
         $prefix = $this->get('prefix');
         $lang = $this->get('lang');
-        $name .='[]';
+        $name .= '[]';
 
         $this->attributes['name'] = $name;
 
@@ -124,17 +123,17 @@ class TagsField extends Field
         }
 
         if (!is_null($prefix) && !is_null($lang)) {
-            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
+            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
         if ($name instanceof \Closure) {
-            $this->attributes['name'] =  $name($this->attributes);
+            $this->attributes['name'] = $name($this->attributes);
         }
-		
+
         return $this;
     }
-	
-	 /**
+
+    /**
      * @param $value
      *
      * @return mixed
@@ -142,22 +141,21 @@ class TagsField extends Field
     public function modifyValue($value)
     {
         $old = $this->getOldValue();
-		
+
         $this->attributes['value'] = $value;
-		
+
         if (is_array($value)) {
-            $this->attributes['value'] = implode(",", $value);
+            $this->attributes['value'] = implode(',', $value);
         }
-		
-        if (! is_null($old)) {
+
+        if (!is_null($old)) {
             $this->attributes['value'] = $old;
         }
 
         if ($value instanceof \Closure) {
-            $this->attributes['value'] =  $value($this->attributes);
+            $this->attributes['value'] = $value($this->attributes);
         }
 
         return $this;
     }
-	
 }

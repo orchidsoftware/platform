@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\User;
 

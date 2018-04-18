@@ -10,6 +10,7 @@ trait MultiLanguage
 {
     /**
      * Name row localization.
+     *
      * @var string
      */
     public $jsonColumnName = 'content';

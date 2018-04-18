@@ -11,10 +11,11 @@ use Orchid\Platform\Layouts\Rows;
 class RolePermissionLayout extends Rows
 {
     /**
-     * Views
+     * Views.
+     *
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields(): array
     {
@@ -24,31 +25,30 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @return array
-     *
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function generatedPermissionFields(Collection $permissionsRaw): array
     {
         foreach ($permissionsRaw as $group => $items) {
-
             $fields[] = Field::tag('label')
                 ->name($group)
                 ->title($group)
                 ->hr(false);
 
             foreach (collect($items)->chunk(3) as $chunks) {
-
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
                         $permissions[] = Field::tag('checkbox')
                             ->placeholder($permission['description'])
-                            ->name("permissions." . base64_encode($permission['slug']))
+                            ->name('permissions.'.base64_encode($permission['slug']))
                             ->modifyValue(function () use ($permission) {
                                 return (int) $permission['active'];
                             })
                             ->hr(false);
                     }
+
                     return $permissions ?? [];
                 });
             }
@@ -59,5 +59,4 @@ class RolePermissionLayout extends Rows
 
         return $fields ?? [];
     }
-
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Facades\Alert;
 use Illuminate\Support\Facades\Artisan;
+use Orchid\Platform\Facades\Alert;
 
 class CacheController
 {

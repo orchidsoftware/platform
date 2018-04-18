@@ -10,10 +10,11 @@ use Orchid\Platform\Layouts\Rows;
 class RoleEditLayout extends Rows
 {
     /**
-     * Views
+     * Views.
+     *
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields(): array
     {

@@ -54,8 +54,9 @@ class Page extends Single
     }
 
     /**
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields() : array
     {
@@ -78,7 +79,7 @@ class Page extends Single
                         ->max(255)
                         ->required()
                         ->title('Article Title')
-                        ->help('SEO title')
+                        ->help('SEO title'),
 
                 ];
             }),

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\View\View;
-use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Events\CategoryEvent;
+use Orchid\Platform\Forms\FormGroup;
 
 class CategoryFormGroup extends FormGroup
 {
@@ -40,7 +40,7 @@ class CategoryFormGroup extends FormGroup
     public function main(): View
     {
         $behavior = config('platform.category');
-        $behavior = new $behavior;
+        $behavior = new $behavior();
 
         return view('dashboard::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),

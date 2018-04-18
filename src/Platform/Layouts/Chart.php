@@ -43,8 +43,9 @@ abstract class Chart
     /**
      * @param $query
      *
-     * @return array
      * @throws \Throwable
+     *
+     * @return array
      */
     public function build($query)
     {

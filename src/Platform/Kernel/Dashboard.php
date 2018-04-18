@@ -25,12 +25,12 @@ class Dashboard
      * @var Collection
      */
     private $permission;
-    
+
     /**
      * @var Collection
      */
     public $fields;
-    
+
     /**
      * @var Collection
      */
@@ -66,7 +66,7 @@ class Dashboard
     }
 
     /**
-     * Get the route with the dashboard prefix
+     * Get the route with the dashboard prefix.
      *
      * @param $path
      *
@@ -78,7 +78,7 @@ class Dashboard
 
         return $prefix.$path;
     }
-    
+
     /**
      * @param array $permission
      *
@@ -88,7 +88,7 @@ class Dashboard
     {
         $old = $this->permission->get(key($permission), []);
         $this->permission->put(key($permission), array_merge_recursive($old, $permission));
-        
+
         return $this;
     }
 
@@ -100,7 +100,7 @@ class Dashboard
     public function registerBehaviors(array $value)
     {
         $this->behaviors = $this->behaviors->merge($value);
-        
+
         return $this;
     }
 
@@ -112,10 +112,10 @@ class Dashboard
     public function registerFields(array $value)
     {
         $this->fields = $this->fields->merge($value);
-        
+
         return $this;
     }
-    
+
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -123,7 +123,7 @@ class Dashboard
     {
         return $this->fields;
     }
-    
+
     /**
      * @param array $value
      *
@@ -132,12 +132,12 @@ class Dashboard
     public function registerResource(array $value)
     {
         $this->resources = $this->resources->merge($value);
-        
+
         return $this;
     }
-    
+
     /**
-     * Return CSS\JS
+     * Return CSS\JS.
      *
      * @param null $key
      *
@@ -145,13 +145,13 @@ class Dashboard
      */
     public function getResource($key = null)
     {
-        if(is_null($key)){
+        if (is_null($key)) {
             return $this->resources;
         }
-        
+
         return $this->resources->get($key);
     }
-    
+
     /**
      * Return Storage.
      *
@@ -171,16 +171,16 @@ class Dashboard
     public function getBehaviors() : Collection
     {
         $this->behaviors->transform(function ($value) {
-            if (! is_object($value) ) {
+            if (!is_object($value)) {
                 $value = new $value();
             }
-            
+
             return $value;
         });
-        
+
         return $this->behaviors;
     }
-    
+
     /**
      * @return null|Menu
      */
@@ -188,7 +188,7 @@ class Dashboard
     {
         return $this->menu;
     }
-    
+
     /**
      * @return \Illuminate\Support\Collection
      */

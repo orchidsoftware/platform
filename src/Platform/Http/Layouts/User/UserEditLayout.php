@@ -12,8 +12,9 @@ class UserEditLayout extends Rows
     /**
      * Views.
      *
-     * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
+     *
+     * @return array
      */
     public function fields(): array
     {

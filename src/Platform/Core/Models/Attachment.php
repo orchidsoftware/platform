@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
@@ -89,10 +89,10 @@ class Attachment extends Model
      */
     public function url($size = '', $prefix = 'public') : string
     {
-        if (! empty($size)) {
+        if (!empty($size)) {
             $size = '_'.$size;
 
-            if (! Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
+            if (!Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
                 return $this->url(null, $prefix);
             }
         }
@@ -103,8 +103,9 @@ class Attachment extends Model
     /**
      * @param string $storage
      *
-     * @return bool|null
      * @throws \Exception
+     *
+     * @return bool|null
      */
     public function delete($storage = 'public')
     {
@@ -130,9 +131,9 @@ class Attachment extends Model
      * Physical removal of all copies of a file.
      *
      * @param Attachment $attachment
-     * @param string $storageName
+     * @param string     $storageName
      */
-    private function removePhysicalFile(Attachment $attachment, $storageName)
+    private function removePhysicalFile(self $attachment, $storageName)
     {
         $storage = Storage::disk($storageName);
 
