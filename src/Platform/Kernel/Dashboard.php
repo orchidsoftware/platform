@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Kernel;
 
-use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
+use Orchid\Platform\Menu\Menu;
 
 class Dashboard
 {
@@ -49,7 +49,10 @@ class Dashboard
     public function __construct()
     {
         $this->menu = new Menu();
-        $this->permission = collect();
+        $this->permission = collect([
+            'all'     => collect(),
+            'removed' => collect(),
+        ]);
         $this->resources = collect();
         $this->behaviors = collect();
         $this->fields = collect();
@@ -60,7 +63,7 @@ class Dashboard
      *
      * @return string
      */
-    public static function version() : string
+    public static function version(): string
     {
         return static::VERSION;
     }
@@ -72,11 +75,11 @@ class Dashboard
      *
      * @return string
      */
-    public static function prefix($path = '') : string
+    public static function prefix($path = ''): string
     {
         $prefix = config('platform.prefix');
 
-        return $prefix.$path;
+        return $prefix . $path;
     }
 
     /**
@@ -86,8 +89,10 @@ class Dashboard
      */
     public function registerPermissions(array $permission)
     {
-        $old = $this->permission->get(key($permission), []);
-        $this->permission->put(key($permission), array_merge_recursive($old, $permission));
+        $old = $this->permission->get('all')->get(key($permission), []);
+        $this->permission
+            ->get('all')
+            ->put(key($permission), array_merge_recursive($old, $permission));
 
         return $this;
     }
@@ -168,10 +173,10 @@ class Dashboard
     /**
      * @return Collection
      */
-    public function getBehaviors() : Collection
+    public function getBehaviors(): Collection
     {
         $this->behaviors->transform(function ($value) {
-            if (! is_object($value)) {
+            if (!is_object($value)) {
                 $value = new $value();
             }
 
@@ -184,7 +189,7 @@ class Dashboard
     /**
      * @return null|Menu
      */
-    public function menu() : Menu
+    public function menu(): Menu
     {
         return $this->menu;
     }
@@ -192,8 +197,35 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getPermission() : Collection
+    public function getPermission(): Collection
     {
-        return $this->permission;
+        $all = $this->permission->get('all');
+        $removed = $this->permission->get('removed');
+
+        if (!$removed->count()) {
+            return $all;
+        }
+
+        return $all->map(function ($group) use ($removed) {
+
+            foreach ($group[key($group)] as $key => $item) {
+                if ($removed->contains($item['slug'])) {
+                    unset($group[key($group)][$key]);
+                }
+            }
+
+            return $group;
+        });
+    }
+
+    /**
+     * @param string $key
+     * @return $this
+     */
+    public function removePermission(string $key)
+    {
+        $this->permission->get('removed')->push($key);
+
+        return $this;
     }
 }
