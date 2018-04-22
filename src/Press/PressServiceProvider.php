@@ -28,7 +28,7 @@ class PressServiceProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         $this->dashboard
-            ->registerBehaviors(config('press.behaviors',[]))
+            ->registerBehaviors(config('press.behaviors', []))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsBehaviors())
             ->registerPermissions($this->registerPermissionsSystems());
@@ -85,7 +85,6 @@ class PressServiceProvider extends ServiceProvider
             RoutePressServiceProvider::class,
         ];
     }
-
 
     /**
      * @return array

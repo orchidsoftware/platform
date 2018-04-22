@@ -6,9 +6,9 @@ namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
+use Orchid\Press\Models\Taxonomy;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
-use Orchid\Press\Models\Taxonomy;
 
 class CategoryDescForm extends Form
 {

@@ -84,7 +84,6 @@ $this->resource('menu', 'MenuController', [
     ],
 ]);
 
-
 $this->get('page/{page}', [
     'as'   => 'dashboard.pages.show',
     'uses' => 'PageController@show',

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Category;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 class RoutePressServiceProvider extends RouteServiceProvider
@@ -39,7 +39,6 @@ class RoutePressServiceProvider extends RouteServiceProvider
      */
     public function binding()
     {
-
         Route::bind('category', function ($value) {
             if (is_numeric($value)) {
                 return Category::where('id', $value)->firstOrFail();
