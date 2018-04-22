@@ -135,7 +135,7 @@ Nos aliases de campo de configuração de campo são usados para abstrair de ele
 
 ```php
 'single' => [
-    App\Core\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Behaviors\Single\DemoPage::class,
 ],
 ```
 
@@ -148,7 +148,7 @@ Os comportamentos individuais são o tipo de comportamento que existe apenas num
 
 ```php
 'many' => [
-    App\Core\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Behaviors\Many\DemoPage::class,
 ],
 ```
 
@@ -161,7 +161,7 @@ Por exemplo, se precisas de criar algum tipo de catálogos ou livros de referên
 ```php
 'common' => [
     'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
+    'category' => Orchid\Press\Behaviors\Base\CategoryBase::class,
 ],
 ```
 

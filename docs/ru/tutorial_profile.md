@@ -362,7 +362,7 @@ Route::screen('/dashboard/profile', 'Screens\ProfileScreen','dashboard.screens.p
 ```php
 namespace App\Http\Composer;
 
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class MenuComposer
 {
@@ -478,7 +478,7 @@ php artisan make:widget CityWidget
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class CityWidget extends Widget {
 

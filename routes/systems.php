@@ -12,7 +12,7 @@
 $this->domain(config('platform.domain'))->group(function () {
     $this->group([
         'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
     ], function (\Illuminate\Routing\Router $router) {
         $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'dashboard.systems.users.edit');
         $router->screen('users/create', config('platform.screens.users.edit'), 'dashboard.systems.users.create');
@@ -24,7 +24,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
     $this->group([
         'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/systems'),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
         $router->get('/', [

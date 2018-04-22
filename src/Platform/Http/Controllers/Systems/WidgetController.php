@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Platform\Widget\WidgetContractInterface;
+use Orchid\Widget\WidgetContractInterface;
 
 class WidgetController
 {

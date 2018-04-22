@@ -146,7 +146,7 @@ Baguhin mo ito upang kokolektahin nito ang lahat ng mga aytem ng menu at ipadala
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 use Orchid\Platform\Core\Models\Menu;
 
 class MenuWidget extends Widget {
@@ -205,9 +205,9 @@ php artisan make:manyBehavior Blog
 Sa address na `/app/Core/Behaviors/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
 
 ```php
-namespace App\Core\Behaviors\Many;
+namespace Orchid\Press\Behaviors\Many;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Behaviors\Many;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
@@ -292,7 +292,7 @@ Pagkatapos ng deskripsyon, makakarehistro ka sa plataporma na `config/platform`
 */
 
 'many' => [
-    App\Core\Behaviors\Many\Blog::class,
+    Orchid\Press\Behaviors\Many\Blog::class,
 ],
 ```
 

@@ -40,7 +40,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -96,7 +96,7 @@ Mostly you ought to register all menu items using `View::composer` to do it crea
 namespace App\Http\Composer;
 
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class MenuComposer

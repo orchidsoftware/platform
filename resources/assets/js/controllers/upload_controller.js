@@ -26,20 +26,9 @@ export default class Upload extends Controller {
     const data = this.activeAttachment;
 
     $('#modalUploadAttachment').modal('toggle');
-
-    $.ajax({
-      type: 'POST',
-      url: dashboard.prefix('/systems/files/post/' + data.id),
-      data: {
-        _token: $("meta[name='csrf_token']").attr('content'),
-        attachment: data,
-        _method: 'PUT',
-      },
-      dataType: 'html',
-      success: function (data) {
-        console.log('file update');
-      },
-    });
+    axios
+        .put(dashboard.prefix(`/systems/files/post/${data.id}`), data)
+        .then();
   }
 
   getAttachmentTargetKey(dataKey) {
@@ -81,7 +70,7 @@ export default class Upload extends Controller {
         return
       }
 
-      if (key == 'url') {
+      if (key === 'url') {
         target.href = value
         return
       }
@@ -107,18 +96,12 @@ export default class Upload extends Controller {
           items[id] = index;
         });
 
-        $.ajax({
-          type: 'post',
-          url: dashboard.prefix('/systems/files/sort'),
-          data: {
-            _token: $("meta[name='csrf_token']").attr('content'),
-            files: items,
-          },
-          dataType: 'html',
-          success: function (response) {
-            console.log(response);
-          },
-        });
+        axios
+            .post(dashboard.prefix('/systems/files/sort'),{
+                files: items,
+            })
+            .then();
+
       },
     });
   }
@@ -129,7 +112,7 @@ export default class Upload extends Controller {
     const name = this.data.get('name')
     const loadInfo = this.loadInfo.bind(this)
 
-    const postDropzone = new Dropzone('.dropzone', {
+    new Dropzone('.dropzone', {
       url: dashboard.prefix('/systems/files'),
       method: 'post',
       uploadMultiple: false,
@@ -204,15 +187,11 @@ export default class Upload extends Controller {
 
         this.on('removedfile', function (file) {
           $('.files-' + file.data.id).remove();
-          $.ajax({
-            type: 'delete',
-            url: dashboard.prefix('/systems/files/' + file.data.id),
-            data: {
-              _token: $("meta[name='csrf_token']").attr('content'),
-              storage,
-            },
-            dataType: 'html'
-          });
+            axios
+                .delete(dashboard.prefix(`/systems/files/${file.data.id}`),{
+                    storage: $('#post-attachment-dropzone').data('storage'),
+                })
+                .then();
         });
       },
       error: function (file, response) {

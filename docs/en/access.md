@@ -68,7 +68,7 @@ Example of adding the custom permissions with the use of provider:
 
 ```php
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

@@ -75,7 +75,7 @@ Pagkatapos, ang katangiang `$query` ay kukuha ng isang halaga para sa paghahanap
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

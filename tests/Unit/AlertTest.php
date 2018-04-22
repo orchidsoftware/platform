@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Alert\Alert;
-use Orchid\Platform\Tests\TestUnitCase;
-use Orchid\Platform\Alert\SessionStoreInterface;
+use Orchid\Alert\Alert;
+use Orchid\Tests\TestUnitCase;
+use Orchid\Alert\SessionStoreInterface;
 
 class AlertTest extends TestUnitCase
 {

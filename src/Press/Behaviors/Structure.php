@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Behaviors;
+namespace Orchid\Press\Behaviors;
 
 use Illuminate\Support\Facades\Validator;
 

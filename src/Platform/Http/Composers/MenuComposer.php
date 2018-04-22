@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Orchid\Platform\Behaviors\Single;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Press\Behaviors\Single;
+use Orchid\Platform\Dashboard;
 
 class MenuComposer
 {
@@ -35,17 +35,17 @@ class MenuComposer
     }
 
     /**
-     * @param Dashboard $dashboard
+     * @param Dashboard $kernel
      *
      * @return $this
      */
-    protected function registerMenuPost(Dashboard $dashboard): self
+    protected function registerMenuPost(Dashboard $kernel): self
     {
         $allPost = $this->dashboard->getBehaviors()
             ->where('display', true)
             ->all();
 
-        $dashboard->menu->add('Main', [
+        $kernel->menu->add('Main', [
             'slug'       => 'Posts',
             'icon'       => 'icon-notebook',
             'route'      => '#',
@@ -64,7 +64,7 @@ class MenuComposer
                 $route = route('dashboard.pages.show', [$page->slug]);
             }
 
-            $dashboard->menu->add('Posts', [
+            $kernel->menu->add('Posts', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
                 'route'      => $route,
@@ -81,13 +81,13 @@ class MenuComposer
     }
 
     /**
-     * @param Dashboard $dashboard
+     * @param Dashboard $kernel
      *
      * @return $this
      */
-    protected function registerMenuSystems(Dashboard $dashboard): self
+    protected function registerMenuSystems(Dashboard $kernel): self
     {
-        $dashboard->menu
+        $kernel->menu
             ->add('Main', [
                 'slug'       => 'Systems',
                 'icon'       => 'icon-layers',

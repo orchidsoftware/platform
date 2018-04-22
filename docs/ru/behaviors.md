@@ -46,7 +46,7 @@ php artisan make:manyBehavior
 ```php
 namespace DummyNamespace;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Behaviors\Many;
 
 class DummyClass extends Many
 {

@@ -34,10 +34,16 @@
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\Platform\\": "src/Platform/"
+      "Orchid\\Alert\\": "src/Alert/",
+      "Orchid\\Platform\\": "src/Platform/",
+      "Orchid\\Setting\\": "src/Setting/",
+      "Orchid\\Auth\\": "src/Auth/",
+      "Orchid\\Press\\": "src/Press/",
+      "Orchid\\Support\\": "src/Support/",
+      "Orchid\\Widget\\": "src/Widget/"
     },
     "files": [
-      "src/Platform/Support/helpers.php"
+      "src/Support/helpers.php"
     ]
   },
   "autoload-dev": {
@@ -46,16 +52,20 @@
       "database/factories"
     ],
     "psr-4": {
-      "Orchid\\Platform\\Tests\\": "tests/"
+      "Orchid\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider",
+        "Orchid\\Alert\\AlertServiceProvider",
+        "Orchid\\Widget\\WidgetServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
+        "Dashboard": "Orchid\\Support\\Facades\\Dashboard",
+        "Alert": "Orchid\\Support\\Facades\\Alert",
+        "Setting": "Orchid\\Support\\Facades\\Setting"
       }
     }
   },

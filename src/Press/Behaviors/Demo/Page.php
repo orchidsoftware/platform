@@ -2,33 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Behaviors\Demo;
+namespace Orchid\Press\Behaviors\Demo;
 
-use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Http\Filters\SearchFilter;
-use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
-use Orchid\Platform\Http\Forms\Posts\BasePostForm;
+use Orchid\Press\Behaviors\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
-class Post extends Many
+class Page extends Single
 {
     /**
      * @var string
      */
-    public $name = 'Demo post';
+    public $name = 'Demo page';
 
     /**
      * @var string
      */
-    public $description = 'Demonstrative post';
+    public $description = 'Demonstrative page';
 
     /**
      * @var string
      */
-    public $slug = 'demo';
+    public $slug = 'demo-page';
 
     /**
      * Slug url /news/{name}.
@@ -42,7 +37,7 @@ class Post extends Many
      *
      * @var null
      */
-    public $groupname = 'dashboard::menu.common posts';
+    public $groupname = 'dashboard::menu.static pages';
 
     /**
      * Rules Validation.
@@ -55,20 +50,6 @@ class Post extends Many
             'id'             => 'sometimes|integer|unique:posts',
             'content.*.name' => 'required|string',
             'content.*.body' => 'required|string',
-        ];
-    }
-
-    /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-            SearchFilter::class,
-            StatusFilter::class,
-            CreatedFilter::class,
         ];
     }
 
@@ -175,75 +156,12 @@ class Post extends Many
     }
 
     /**
-     * @deprecated
-     *
      * @return array
      */
     public function modules() : array
     {
         return [
-            BasePostForm::class,
             UploadPostForm::class,
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function options(): array
-    {
-        return [
-           Field::group(function () {
-               return [
-
-                   Field::tag('input')
-                       ->type('text')
-                       ->name('name')
-                       ->max(255)
-                       ->required()
-                       ->title('Name Articles')
-                       ->help('Article title'),
-
-                   Field::tag('input')
-                       ->type('text')
-                       ->name('title')
-                       ->max(255)
-                       ->required()
-                       ->title('Article Title')
-                       ->help('SEO title'),
-
-               ];
-           }),
-       ];
-    }
-
-    /**
-     * Grid View for post type.
-     */
-    public function grid() : array
-    {
-        return [
-            TD::set('id', 'ID')
-                ->align('center')
-                ->width('100px')
-                ->filter('numeric')
-                ->sort()
-                ->linkPost(),
-
-            TD::set('name', 'Name')
-                ->locale()
-                ->column('content.name')
-                ->filter('text')
-                ->sort()
-                ->linkPost('name'),
-
-            TD::set('publish_at', 'Date of publication')
-                ->filter('date')
-                ->sort(),
-
-            TD::set('created_at', 'Date of creation')
-                ->filter('date')
-                ->sort(),
         ];
     }
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Database\Eloquent\Factory;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -20,7 +20,7 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
-        $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'))
+        $this->registerEloquentFactoriesFrom()
             ->registerRoute()
             ->registerDatabase()
             ->registerTranslations()
@@ -32,13 +32,11 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register factories.
      *
-     * @param $path
-     *
      * @return $this
      */
-    protected function registerEloquentFactoriesFrom($path)
+    protected function registerEloquentFactoriesFrom()
     {
-        $this->app->make(EloquentFactory::class)->load($path);
+        $this->app->make(Factory::class)->load(realpath(DASHBOARD_PATH.'/database/factories'));
 
         return $this;
     }
@@ -110,11 +108,7 @@ class FoundationServiceProvider extends ServiceProvider
             return $this;
         }
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/vendor/orchid/dashboard';
-        }, config('view.paths')), [
-            DASHBOARD_PATH.'/resources/views',
-        ]), 'dashboard');
+        $this->loadViewsFrom(DASHBOARD_PATH.'/resources/views', 'dashboard');
 
         return $this;
     }
@@ -137,8 +131,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            AlertServiceProvider::class,
-            WidgetServiceProvider::class,
             DashboardProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,

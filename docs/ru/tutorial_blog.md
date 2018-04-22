@@ -148,7 +148,7 @@ Artisan создаст пустой файл виджета в `/app/Http/Widget
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 use Orchid\Platform\Core\Models\Menu;
 
 class MenuWidget extends Widget {
@@ -210,7 +210,7 @@ php artisan make:manyBehavior Blog
 ```php
 namespace App\Behaviors\Many;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Behaviors\Many;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchid\Platform\Tests;
+namespace Orchid\Tests;
 
 use Orchestra\Testbench\Dusk\TestCase;
 

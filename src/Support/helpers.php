@@ -9,7 +9,7 @@ if (! function_exists('alert')) {
      * @param string|null $message
      * @param string      $level
      *
-     * @return \Orchid\Platform\Alert\Alert
+     * @return \Orchid\Alert\Alert
      */
     function alert($message = null, $level = 'info')
     {
@@ -32,7 +32,7 @@ if (! function_exists('setting')) {
      */
     function setting($key, $default = null)
     {
-        return \Orchid\Platform\Facades\Setting::get($key, $default);
+        return \Orchid\Support\Facades\Setting::get($key, $default);
     }
 }
 

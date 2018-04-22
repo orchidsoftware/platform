@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Facades;
+namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Alert\Alert as AlertClass;
+use Orchid\Alert\Alert as AlertClass;
 
 /**
  * Class Alert.

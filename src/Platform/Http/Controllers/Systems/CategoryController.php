@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Facades\Alert;
+use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;

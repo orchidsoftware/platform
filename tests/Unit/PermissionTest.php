@@ -1,11 +1,11 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Tests\TestUnitCase;
+use Orchid\Platform\Dashboard;
+use Orchid\Tests\TestUnitCase;
 
 class PermissionTest extends TestUnitCase
 {
@@ -75,7 +75,7 @@ class PermissionTest extends TestUnitCase
     {
         $dashboard = new Dashboard();
 
-        $dashboard->permission->registerPermissions([
+        $dashboard->registerPermissions([
             'Test' => [
                 [
                     'slug'        => 'test',
@@ -84,6 +84,6 @@ class PermissionTest extends TestUnitCase
             ],
         ]);
 
-        $this->assertEquals($dashboard->permission->get()->count(), 1);
+        $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 }

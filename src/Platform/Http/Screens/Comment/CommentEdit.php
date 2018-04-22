@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Screens\Comment;
 
 use Illuminate\Http\Request;
 use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Facades\Alert;
+use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Screen\Screen;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Core\Models\Comment;

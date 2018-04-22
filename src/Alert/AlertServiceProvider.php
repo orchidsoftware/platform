@@ -2,17 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Providers;
+namespace Orchid\Alert;
 
-use Orchid\Platform\Alert\Alert;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Alert\LaravelSessionStore;
-use Orchid\Platform\Alert\SessionStoreInterface;
 
 /**
- * Class AlertServiceProvider.
- *
- * @category PHP
+ * Class AlertServiceProvider
+ * @package Orchid\Alert
  */
 class AlertServiceProvider extends ServiceProvider
 {
@@ -33,13 +29,5 @@ class AlertServiceProvider extends ServiceProvider
         $this->app->singleton('alert', function () {
             return $this->app->make(Alert::class);
         });
-    }
-
-    /**
-     * Bootstrap the application events.
-     */
-    public function boot()
-    {
-        //
     }
 }

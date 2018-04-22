@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Facades\Dashboard;
+use Orchid\Support\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -35,7 +35,7 @@ class Post extends Model
     /**
      * Recording behavior.
      *
-     * @var \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
+     * @var \Orchid\Press\Behaviors\Many|\Orchid\Press\Behaviors\Single|null
      */
     protected $behavior = null;
 
@@ -145,7 +145,7 @@ class Post extends Model
      *
      * @throws TypeException
      *
-     * @return \Orchid\Platform\Behaviors\Many|\Orchid\Platform\Behaviors\Single|null
+     * @return \Orchid\Press\Behaviors\Many|\Orchid\Press\Behaviors\Single|null
      */
     public function getBehaviorObject($slug = null)
     {

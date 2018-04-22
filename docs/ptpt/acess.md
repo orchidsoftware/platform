@@ -65,7 +65,7 @@ O exemplo de adicionar as permissões personalizadas com o uso do provedor:
 
 ```php
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

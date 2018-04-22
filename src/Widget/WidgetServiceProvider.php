@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Providers;
+namespace Orchid\Widget;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -25,10 +25,10 @@ class WidgetServiceProvider extends ServiceProvider
             $segments = explode(',', preg_replace("/[\(\)\\\]/", '', $expression));
 
             if (! array_key_exists(1, $segments)) {
-                return '<?php echo (new \Orchid\Platform\Widget\Widget)->get('.$segments[0].'); ?>';
+                return '<?php echo (new \Orchid\Widget\Widget)->get('.$segments[0].'); ?>';
             }
 
-            return '<?php echo (new \Orchid\Platform\Widget\Widget)->get('.$segments[0].','.$segments[1].'); ?>';
+            return '<?php echo (new \Orchid\Widget\Widget)->get('.$segments[0].','.$segments[1].'); ?>';
         });
     }
 }

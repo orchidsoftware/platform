@@ -10,7 +10,7 @@ kailangan mong itakda ang isang domain at isang prefix. Maaaring magmumukha iton
 $this->domain (config ('platform.domain'))->group (function () {
     $this->group ([
         'middleware' => config ('platform.middleware.private'),
-        'prefix' =>\Orchid\Platform\Kernel\Dashboard::prefix (),
+        'prefix' =>\Orchid\Platform\Dashboard::prefix (),
         'namespace' => 'Orchid\Platform\Http\Controllers',
     ], function (\ Illuminate\Routing\Router $router) {
     
@@ -53,7 +53,7 @@ Kung kailangan mong magdagdag ng mga istilo at skrip sa pangkalahatan, bawat pah
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class AppServiceProvider extends ServiceProvider
 {

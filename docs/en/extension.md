@@ -9,7 +9,7 @@ ORCHID application can change request address. If you want your extensions to fo
 $this->domain(config('platform.domain'))->group(function () {
     $this->group([
         'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix(),
         'namespace'  => 'Orchid\Platform\Http\Controllers',
     ], function (\Illuminate\Routing\Router $router) {
     
@@ -51,7 +51,7 @@ If you need to add styles and scripts globally, to every page, then use the foll
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class AppServiceProvider extends ServiceProvider
 {

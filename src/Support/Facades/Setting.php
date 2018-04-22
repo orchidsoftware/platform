@@ -2,15 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Facades;
+namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Kernel\Dashboard as Dash;
+use Orchid\Platform\Core\Models\Setting as SettingModel;
 
-/**
- * Class Dashboard.
- */
-class Dashboard extends Facade
+class Setting extends Facade
 {
     /**
      * Initiate a mock expectation on the facade.
@@ -19,6 +16,6 @@ class Dashboard extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return Dash::class;
+        return SettingModel::class;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Kernel;
+namespace Orchid\Platform;
 
 use Illuminate\Support\Collection;
 use Orchid\Platform\Menu\Menu;
@@ -12,7 +12,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    const VERSION = '2.3.0';
+    const VERSION = '3.0';
 
     /**
      * @var Menu

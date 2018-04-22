@@ -29,12 +29,12 @@ Ang sariling paggalaw ay dapat nakarehistro sa `config/platform.php` sa uring se
 ```php
 //
 'single' => [
-    //App\Core\Behaviors\Single\DemoPage::class,
+    //Orchid\Press\Behaviors\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Core\Behaviors\Many\DemoPost::class,
+    //Orchid\Press\Behaviors\Many\DemoPost::class,
 ],
 ```
 
@@ -46,7 +46,7 @@ Ang uri ay nagmumukhang ganito:
 ```php
 namespace DummyNamespace;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Behaviors\Many;
 
 class DummyClass extends Many
 {

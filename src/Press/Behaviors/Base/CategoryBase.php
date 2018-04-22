@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Behaviors\Base;
+namespace Orchid\Press\Behaviors\Base;
 
 use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Fields\Field;

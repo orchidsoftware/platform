@@ -12,7 +12,7 @@
 $this->domain(config('platform.domain'))->group(function () {
     $this->group([
         'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/posts'),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix('/posts'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
     ], function (\Illuminate\Routing\Router $router) {
         $router->post('restore/{id?}', [
@@ -62,7 +62,7 @@ $this->domain(config('platform.domain'))->group(function () {
 
     $this->group([
         'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix('/pages'),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix('/pages'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
     ], function (\Illuminate\Routing\Router $router) {
         $router->get('{page}', [

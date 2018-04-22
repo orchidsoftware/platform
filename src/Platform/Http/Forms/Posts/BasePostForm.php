@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Core\Models\Taxonomy;
-use Orchid\Platform\Behaviors\Many as PostBehaviors;
+use Orchid\Press\Behaviors\Many as PostBehaviors;
 
 class BasePostForm extends Form
 {

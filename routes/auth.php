@@ -12,7 +12,7 @@
 $this->domain(config('platform.domain'))->group(function () {
     $this->group([
         'middleware' => config('platform.middleware.public'),
-        'prefix'     => \Orchid\Platform\Kernel\Dashboard::prefix(),
+        'prefix'     => \Orchid\Platform\Dashboard::prefix(),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Auth',
     ], function (\Illuminate\Routing\Router $router) {
         if (config('platform.auth.display', true)) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Widget;
+namespace Orchid\Widget;
 
 class Widget implements WidgetContractInterface
 {
@@ -22,7 +22,7 @@ class Widget implements WidgetContractInterface
     /**
      * @param string $key
      *
-     * @return \Orchid\Platform\Widget\Widget
+     * @return \Orchid\Widget\Widget
      */
     private function getWidgetFromConfig(string $key):self
     {

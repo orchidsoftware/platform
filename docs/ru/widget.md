@@ -88,7 +88,7 @@ public function handler($arguments = null){
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

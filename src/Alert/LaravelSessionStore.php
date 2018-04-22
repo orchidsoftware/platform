@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Alert;
+namespace Orchid\Alert;
 
 use Illuminate\Session\Store;
 
 /**
- * Class LaravelSessionStore.
- *
- * @category PHP
+ * Class LaravelSessionStore
+ * @package Orchid\Alert
  */
 class LaravelSessionStore implements SessionStoreInterface
 {

@@ -312,7 +312,7 @@ AjaxWidget will receive a search value inside the `$query` property and the `$ke
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

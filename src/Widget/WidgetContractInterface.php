@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Widget;
+namespace Orchid\Widget;
 
 interface WidgetContractInterface
 {

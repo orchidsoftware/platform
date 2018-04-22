@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Tests\TestUnitCase;
+use Orchid\Platform\Dashboard;
+use Orchid\Tests\TestUnitCase;
 
 class MenuTest extends TestUnitCase
 {

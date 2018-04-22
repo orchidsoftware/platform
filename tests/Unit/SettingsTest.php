@@ -1,8 +1,8 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Tests\TestUnitCase;
+use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Core\Models\Setting;
 
 class SettingsTest extends TestUnitCase

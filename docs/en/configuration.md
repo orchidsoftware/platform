@@ -135,7 +135,7 @@ In field configuration field aliases are used to abstract away from elements use
 
 ```php
 'single' => [
-    App\Core\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Behaviors\Single\DemoPage::class,
 ],
 ```
 
@@ -148,7 +148,7 @@ It's a great solution for creation of unique (Non-generic!) website pages.
 
 ```php
 'many' => [
-    App\Core\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Behaviors\Many\DemoPage::class,
 ],
 ```
 
@@ -161,7 +161,7 @@ For example if you need to create some kind of catalogs or reference books which
 ```php
 'common' => [
     'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
+    'category' => Orchid\Press\Behaviors\Base\CategoryBase::class,
 ],
 ```
 

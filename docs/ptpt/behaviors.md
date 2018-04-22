@@ -44,7 +44,7 @@ O tipo é o seguinte:
  ```php
 namespace DummyNamespace;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Behaviors\Many;
 
 class DummyClass extends Many
 {

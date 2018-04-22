@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\View;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\MenuComposer;
 
@@ -14,20 +14,20 @@ class DashboardProvider extends ServiceProvider
     /**
      * @var Dashboard
      */
-    protected $dashboard;
+    protected $kernel;
 
     /**
      * Boot the application events.
      *
      * @param Dashboard $dashboard
      */
-    public function boot(Dashboard $dashboard)
+    public function boot(Dashboard $kernel)
     {
         View::composer('dashboard::layouts.dashboard', MenuComposer::class);
 
-        $this->dashboard = $dashboard;
+        $this->kernel = $kernel;
 
-        $this->dashboard
+        $this->kernel
             ->registerFields(config('platform.fields'))
             ->registerBehaviors(config('platform.behaviors'))
             ->registerResource(config('platform.resource', []))
@@ -70,7 +70,7 @@ class DashboardProvider extends ServiceProvider
     {
         $permissions = [];
 
-        $posts = $this->dashboard
+        $posts = $this->kernel
             ->getBehaviors()
             ->where('display', true)
             ->map(function ($post) {

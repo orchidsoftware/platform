@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Platform\Console\Commands;
+namespace Orchid\Platform\Console\Commands;
 
 use Illuminate\Console\Command;
 use Orchid\Platform\Providers\FoundationServiceProvider;

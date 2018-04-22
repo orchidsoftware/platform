@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 use Illuminate\Foundation\Inspiring;
 
 class WelcomeQuote extends Widget

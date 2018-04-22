@@ -88,7 +88,7 @@ Then the `$query` property will take a search value and the `$key` key will get 
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

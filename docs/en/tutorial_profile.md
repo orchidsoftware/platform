@@ -359,7 +359,7 @@ Let's create the registration class `app/Http/Composers/MenuComposer.php`:
 ```php
 namespace App\Http\Composer;
 
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class MenuComposer
 {
@@ -475,7 +475,7 @@ We change it to always return the array of parameters:
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class CityWidget extends Widget {
 

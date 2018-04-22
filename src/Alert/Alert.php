@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Alert;
+namespace Orchid\Alert;
 
+/**
+ * Class Alert
+ * @package Orchid\Alert
+ */
 class Alert
 {
     /**

@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Alert;
+namespace Orchid\Alert;
 
 /**
- * Interface SessionStoreInterface.
- *
- * @category PHP
+ * Interface SessionStoreInterface
+ * @package Orchid\Alert
  */
 interface SessionStoreInterface
 {
