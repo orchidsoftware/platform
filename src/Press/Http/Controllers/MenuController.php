@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Orchid\Press\Models\Menu;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
-use Orchid\Press\Models\Menu;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class MenuController extends Controller

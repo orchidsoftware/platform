@@ -2,8 +2,8 @@
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Tests\TestUnitCase;
 use Orchid\Setting\Setting;
+use Orchid\Tests\TestUnitCase;
 
 class SettingsTest extends TestUnitCase
 {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Filters;
 
+use Orchid\Platform\Models\Role;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class RoleFilter extends Filter

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Traits\Attachment;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
