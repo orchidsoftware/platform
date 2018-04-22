@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Systems\Users;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Orchid\Platform\Forms\Form;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Forms\Form;
 
 class BaseUserForm extends Form
 {

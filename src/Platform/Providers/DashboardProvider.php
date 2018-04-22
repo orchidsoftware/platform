@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Kernel\Dashboard;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Fields\FieldStorage;
 use Orchid\Platform\Behaviors\Storage\ManyBehaviorStorage;
 use Orchid\Platform\Behaviors\Storage\SingleBehaviorStorage;
-use Orchid\Platform\Fields\FieldStorage;
-use Orchid\Platform\Kernel\Dashboard;
 
 class DashboardProvider extends ServiceProvider
 {

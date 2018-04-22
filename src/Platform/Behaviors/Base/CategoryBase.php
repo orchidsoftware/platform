@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Behaviors\Base;
 
-use Orchid\Platform\Core\Models\Category;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Platform\Core\Models\Category;
 
 class CategoryBase
 {

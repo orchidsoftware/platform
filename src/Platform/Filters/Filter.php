@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter implements FilterInterface
 {

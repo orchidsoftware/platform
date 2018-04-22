@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attachment extends Model
 {
@@ -89,10 +89,10 @@ class Attachment extends Model
      */
     public function url($size = '', $prefix = 'public') : string
     {
-        if (!empty($size)) {
+        if (! empty($size)) {
             $size = '_'.$size;
 
-            if (!Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
+            if (! Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
                 return $this->url(null, $prefix);
             }
         }

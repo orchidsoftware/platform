@@ -120,7 +120,7 @@ abstract class Screen
      */
     public function handle($method = null, $parameters = null)
     {
-        if (!$this->checkAccess()) {
+        if (! $this->checkAccess()) {
             abort(404);
         }
 
@@ -130,7 +130,7 @@ abstract class Screen
             return $this->view();
         }
 
-        if (!is_null($parameters)) {
+        if (! is_null($parameters)) {
             $this->arguments = is_array($method) ? $method : [$method];
 
             $this->reflectionParams($parameters);
@@ -197,7 +197,7 @@ abstract class Screen
 
         if (is_array($this->permission)) {
             foreach ($this->permission as $item) {
-                if (!Auth::user()->hasAccess($item)) {
+                if (! Auth::user()->hasAccess($item)) {
                     return false;
                 }
             }

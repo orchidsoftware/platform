@@ -125,7 +125,7 @@ trait Structure
      */
     public function checkModules() : bool
     {
-        if (method_exists($this, 'modules') && !empty($this->modules())) {
+        if (method_exists($this, 'modules') && ! empty($this->modules())) {
             return true;
         }
 
@@ -139,7 +139,7 @@ trait Structure
      */
     public function render()
     {
-        if (!is_null($this->cultivated)) {
+        if (! is_null($this->cultivated)) {
             return $this->cultivated;
         }
 
@@ -149,7 +149,7 @@ trait Structure
         $argc = array_values(request()->getRouteResolver()->call($this)->parameters());
 
         foreach ($groups as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
             if (method_exists($form, 'get')) {
@@ -170,7 +170,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -188,7 +188,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 
@@ -206,7 +206,7 @@ trait Structure
         $arg = func_get_args();
 
         foreach ($this->group as $form) {
-            if (!is_object($form)) {
+            if (! is_object($form)) {
                 $form = new $form();
             }
 

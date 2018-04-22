@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Systems\Roles;
 
 use Illuminate\Contracts\View\View;
+use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Core\Models\Role;
 use Orchid\Platform\Events\Systems\RolesEvent;
-use Orchid\Platform\Forms\FormGroup;
 
 class RoleFormGroup extends FormGroup
 {

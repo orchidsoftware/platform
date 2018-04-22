@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Behaviors\Many as PostBehavior;
-use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Facades\Alert;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Platform\Core\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Behaviors\Many as PostBehavior;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -154,7 +154,7 @@ class PostController extends Controller
             }
         }
 
-        if (!empty($slug) && $slug !== $post->slug) {
+        if (! empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Database\QueryException;
 use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Kernel\Dashboard;
+use Illuminate\Database\QueryException;
 
 class CreateAdminCommand extends Command
 {
