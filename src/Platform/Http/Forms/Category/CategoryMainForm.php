@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Orchid\Platform\Core\Models\Term;
-use Orchid\Platform\Core\Models\Category;
-use Orchid\Platform\Core\Models\Taxonomy;
+use Orchid\Press\Models\Category;
+use Orchid\Press\Models\Taxonomy;
 
 class CategoryMainForm extends Form
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Builders\TaxonomyBuilder;
+use Orchid\Press\Builders\TaxonomyBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

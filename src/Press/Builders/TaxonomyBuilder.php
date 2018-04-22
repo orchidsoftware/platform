@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Builders;
+namespace Orchid\Press\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -16,7 +16,7 @@ class TaxonomyBuilder extends Builder
     /**
      * Add posts to the relationship builder.
      *
-     * @return \Orchid\Platform\Core\Builders\TaxonomyBuilder
+     * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
     public function posts() : self
     {
@@ -26,7 +26,7 @@ class TaxonomyBuilder extends Builder
     /**
      * Set taxonomy type to category.
      *
-     * @return \Orchid\Platform\Core\Builders\TaxonomyBuilder
+     * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
     public function category() : self
     {
@@ -48,7 +48,7 @@ class TaxonomyBuilder extends Builder
      *
      * @param string
      *
-     * @return \Orchid\Platform\Core\Builders\TaxonomyBuilder
+     * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
     public function slug($slug = null) : self
     {

@@ -12,8 +12,8 @@
 Комментарии крепяться к записям ORCHID
 
 ```php
-use Orchid\Platform\Core\Models\Comment;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
 
 // Конкретная запись
 $post = Post::find(42);

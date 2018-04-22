@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Exceptions;
+namespace Orchid\Press;
 
 class TypeException extends \Exception
 {

@@ -80,7 +80,7 @@ A forma como o formulário é implementado não deve levantar qualquer dúvida, 
 Um exemplo:
 ```php
 use Orchid\Platform\Forms\Form;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 
 class BaseRolesForm extends Form
 {

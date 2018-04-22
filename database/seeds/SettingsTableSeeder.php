@@ -2,7 +2,7 @@
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Setting;
+use Orchid\Setting\Setting;
 
 class SettingsTableSeeder extends Seeder
 {

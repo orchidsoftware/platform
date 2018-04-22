@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Press\Models;
 
-use Orchid\Platform\Core\Traits\Attachment;
-use Orchid\Platform\Core\Traits\FilterTrait;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Traits\Attachment;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
 
 class Category extends Taxonomy
 {

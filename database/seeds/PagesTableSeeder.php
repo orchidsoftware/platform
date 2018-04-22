@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
-//use Orchid\Platform\Core\Models\Comment;
+//use Orchid\Press\Models\Comment;
 
 class PagesTableSeeder extends Seeder
 {

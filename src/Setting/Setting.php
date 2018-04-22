@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Settings;
+namespace Orchid\Setting;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;

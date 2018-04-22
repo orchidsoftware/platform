@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Filters;
 
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class RoleFilter extends Filter
@@ -41,7 +41,7 @@ class RoleFilter extends Filter
     }
 
     /**
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return mixed
      */

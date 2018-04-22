@@ -3,8 +3,8 @@
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Press\Models\Post;
+use Orchid\Platform\Models\User;
 
 /*
 |--------------------------------------------------------------------------

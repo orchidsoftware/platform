@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Platform\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

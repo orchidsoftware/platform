@@ -2,22 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Press\Models;
 
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Cartalyst\Tags\TaggableTrait;
 use Illuminate\Support\Collection;
+use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Platform\Core\Traits\Attachment;
-use Orchid\Platform\Core\Traits\FilterTrait;
+use Orchid\Platform\Traits\Attachment;
+use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Exceptions\TypeException;
-use Orchid\Platform\Core\Traits\JsonRelations;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Press\TypeException;
+use Orchid\Platform\Traits\JsonRelations;
+use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

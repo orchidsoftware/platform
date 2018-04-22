@@ -66,7 +66,7 @@ it's necessary to extend the base user model in `App\Users`:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {

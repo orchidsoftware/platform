@@ -15,7 +15,7 @@ Some of the approaches we reproduced intentionally using Laravel WordPress wchic
 You can get an information from database with the following commands:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 $posts = Post::all();
 ```
@@ -203,6 +203,6 @@ php artisan scout:import Orchid\\Platform\\Core\\Models\\Post
 Now we may use the search in our project:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 $articles = Post::search('как пропатчить kde2 под freebsd')->get();
 ```

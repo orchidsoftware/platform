@@ -12,7 +12,7 @@ class UserEditLayout extends Rows
     /**
      * Views.
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return array
      */

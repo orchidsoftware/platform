@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Orchid\Platform\Menu\Menu;
 use Illuminate\Support\Collection;
 
 class Dashboard

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model

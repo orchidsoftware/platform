@@ -93,13 +93,13 @@ class MyBehaviorPost extends Many
 
 A filtração pode ser iniciada pelo método `filtersApply`:
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 Post::type('news')->filtersApply()->simplePaginate();
 ```
 
 
-Para usares os filtros nos teus próprios modelos, é necessário aplicar `Orchid\Platform\Core\Traits\FilterTrait` trocar e passar para funcionar `filtersApply` variedade de classes:
+Para usares os filtros nos teus próprios modelos, é necessário aplicar `Orchid\Platform\Traits\FilterTrait` trocar e passar para funcionar `filtersApply` variedade de classes:
 
 ```php
 use App\MyModel;

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Platform\Models;
 
 use Orchid\Platform\Access\UserAccess;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserInterface;
-use Orchid\Platform\Core\Traits\FilterTrait;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

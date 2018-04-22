@@ -65,7 +65,7 @@ Kailang i-inherit ang basehang modelo sa `App\Users`:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {

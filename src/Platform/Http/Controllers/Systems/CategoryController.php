@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
-use Orchid\Platform\Core\Models\Taxonomy;
+use Orchid\Press\Models\Taxonomy;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
 

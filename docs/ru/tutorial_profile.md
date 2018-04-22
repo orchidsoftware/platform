@@ -131,8 +131,8 @@ php artisan make:model History
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\FilterTrait;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
 
 class History extends Model
 {
@@ -200,7 +200,7 @@ class History extends Model
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {
@@ -544,7 +544,7 @@ class ProfileLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function fields(): array
     {
@@ -735,7 +735,7 @@ class ProfilePasswordLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function fields(): array
     {
@@ -971,7 +971,7 @@ class BrowserFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function display() : Field
     {
@@ -1031,7 +1031,7 @@ class PlatformFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function display() : Field
     {

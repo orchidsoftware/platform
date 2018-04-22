@@ -161,7 +161,7 @@ Por exemplo, se precisas de criar algum tipo de catálogos ou livros de referên
 ```php
 'common' => [
     'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => Orchid\Press\Behaviors\Base\CategoryBase::class,
+    'category' => Orchid\Press\CategoryBase::class,
 ],
 ```
 

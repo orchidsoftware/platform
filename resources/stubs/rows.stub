@@ -11,7 +11,7 @@ class DummyClass extends Rows
      * Views
 
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function fields(): array
     {

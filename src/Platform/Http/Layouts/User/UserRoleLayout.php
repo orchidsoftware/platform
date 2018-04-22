@@ -13,7 +13,7 @@ class UserRoleLayout extends Rows
     /**
      * Views.
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return array
      */
@@ -44,7 +44,7 @@ class UserRoleLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return array
      */

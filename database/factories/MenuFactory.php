@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Press\Models\Menu;
 
 /*
 |--------------------------------------------------------------------------

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Events\Systems\Roles;
 
 use Illuminate\Support\Collection;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 use Illuminate\Queue\SerializesModels;
 
 class RemoveRoleEvent

@@ -10,7 +10,7 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Behaviors\Many as PostBehavior;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -129,7 +129,7 @@ class PostController extends Controller
      * @param PostBehavior $type
      * @param Post         $post
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return \Illuminate\Http\RedirectResponse
      */

@@ -35,7 +35,7 @@ Isang halimbawa ng pangunahing form:
 namespace Orchid\Platform\Http\Forms\Systems\Roles;
 
 use Orchid\Platform\Forms\FormGroup;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 use Orchid\Platform\Events\Systems\RolesEvent;
 
 class RoleFormGroup extends FormGroup
@@ -81,7 +81,7 @@ Halimbawa:
 namespace Orchid\Platform\Http\Forms\Systems\Roles;
 
 use Orchid\Platform\Forms\Form;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 use Alert;
 use Dashboard;
 

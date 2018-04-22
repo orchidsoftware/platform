@@ -109,7 +109,7 @@ class InstallCommand extends Command
 
         if (! file_exists(app_path('User.php'))) {
             $this->warn('Unable to locate "app/User.php".  Did you move this file?');
-            $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Core\Models\User" in your User model');
+            $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
 
             return;
         }
@@ -117,7 +117,7 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('User.php'));
 
         if ($str !== false) {
-            $str = str_replace('extends Authenticatable', "extends \Orchid\Platform\Core\Models\User", $str);
+            $str = str_replace('extends Authenticatable', "extends \Orchid\Platform\Models\User", $str);
             file_put_contents(app_path('User.php'), $str);
         }
     }

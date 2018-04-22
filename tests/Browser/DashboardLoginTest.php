@@ -4,7 +4,7 @@ namespace Orchid\Tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Orchid\Tests\TestBrowserCase;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 
 class DashboardLoginTest extends TestBrowserCase
 {

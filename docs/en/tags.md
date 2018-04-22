@@ -26,7 +26,7 @@ class Product extends Eloquent implements TaggableInterface
 This section will show you how to manage your tag subjects.
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 // Get the entity object
 $post = Post::find(1);

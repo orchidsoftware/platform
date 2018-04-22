@@ -147,7 +147,7 @@ Baguhin mo ito upang kokolektahin nito ang lahat ng mga aytem ng menu at ipadala
 namespace App\Http\Widgets;
 
 use Orchid\Widget\Widget;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Press\Models\Menu;
 
 class MenuWidget extends Widget {
 
@@ -312,7 +312,7 @@ php artisan make:controller BlogController
 ```php
 namespace App\Http\Controllers;
 
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 class BlogController extends Controller
 {

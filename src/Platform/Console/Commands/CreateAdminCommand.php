@@ -6,7 +6,7 @@ namespace Orchid\Platform\Console\Commands;
 
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 use Illuminate\Database\QueryException;
 
 class CreateAdminCommand extends Command

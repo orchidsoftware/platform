@@ -7,7 +7,7 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Press\Models\Menu;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class MenuController extends Controller

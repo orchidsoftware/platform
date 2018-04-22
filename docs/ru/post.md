@@ -17,7 +17,7 @@
 Итак, теперь вы можете получить данные базы данных:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 $posts = Post::all();
 ```
@@ -209,6 +209,6 @@ php artisan scout:import Orchid\\Platform\\Core\\Models\\Post
 Теперь мы можем использовать поиск в своих проектах:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 $articles = Post::search('как пропатчить kde2 под freebsd')->get();
 ```

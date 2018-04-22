@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 
 class UsersTableSeeder extends Seeder
 {

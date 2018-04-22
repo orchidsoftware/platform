@@ -149,7 +149,7 @@ Let's change it so it will gather all the menu elements and pass them to the vie
 namespace App\Http\Widgets;
 
 use Orchid\Widget\Widget;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Press\Models\Menu;
 
 class MenuWidget extends Widget {
 
@@ -256,7 +256,7 @@ class Blog extends Many
 
     /**
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      */
     public function fields() : array
     {
@@ -355,7 +355,7 @@ php artisan make:controller BlogController
 ```php
 namespace App\Http\Controllers;
 
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 class BlogController extends Controller
 {

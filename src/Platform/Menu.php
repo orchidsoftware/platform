@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Menu;
+namespace Orchid\Platform;
 
 use Illuminate\Support\Facades\Auth;
 

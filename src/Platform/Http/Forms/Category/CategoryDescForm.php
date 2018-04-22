@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Taxonomy;
+use Orchid\Press\Models\Taxonomy;
 
 class CategoryDescForm extends Form
 {

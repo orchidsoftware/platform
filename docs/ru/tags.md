@@ -26,7 +26,7 @@ class Product extends Eloquent implements TaggableInterface
 В этом разделе мы покажем, как вы можете управлять своими субъектами тегов.
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 // Get the entity object
 $post = Post::find(1);

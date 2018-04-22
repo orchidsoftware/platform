@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
-use Orchid\Platform\Core\Models\Comment;
+use Orchid\Press\Models\Comment;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Http\Forms\Comment\CommentFormGroup;
 

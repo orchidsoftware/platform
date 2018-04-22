@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Orchid\Platform\Core\Models\Setting as SettingModel;
+use Orchid\Setting\Setting as SettingModel;
 
 class Setting extends Facade
 {

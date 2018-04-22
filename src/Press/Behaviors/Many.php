@@ -6,7 +6,7 @@ namespace Orchid\Press\Behaviors;
 
 use Illuminate\View\View;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 abstract class Many
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Access;
 
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\Systems\Roles\AddRoleEvent;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

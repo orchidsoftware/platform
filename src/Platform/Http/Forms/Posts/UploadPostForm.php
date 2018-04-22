@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Forms\Posts;
 
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 class UploadPostForm extends Form
 {

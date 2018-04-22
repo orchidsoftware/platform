@@ -3,7 +3,7 @@
 namespace Orchid\Tests\Unit;
 
 use Orchid\Tests\TestUnitCase;
-use Orchid\Platform\Core\Models\Setting;
+use Orchid\Setting\Setting;
 
 class SettingsTest extends TestUnitCase
 {

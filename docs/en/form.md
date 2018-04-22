@@ -80,7 +80,7 @@ The way form is implemented should not raise any questions as it looks like a ge
 An example:
 ```php
 use Orchid\Platform\Forms\Form;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 
 class BaseRolesForm extends Form
 {

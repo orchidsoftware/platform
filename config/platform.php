@@ -136,8 +136,8 @@ return [
     */
 
     'behaviors' => [
-        Orchid\Press\Behaviors\Demo\Page::class,
-        Orchid\Press\Behaviors\Demo\Post::class,
+        Orchid\Press\Demo\Page::class,
+        Orchid\Press\Demo\Post::class,
     ],
 
     /*
@@ -149,7 +149,7 @@ return [
     |
     */
 
-    'category' => Orchid\Press\Behaviors\Base\CategoryBase::class,
+    'category' => Orchid\Press\CategoryBase::class,
 
     /*
     |--------------------------------------------------------------------------

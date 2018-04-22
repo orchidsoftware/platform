@@ -43,7 +43,7 @@ class SearchFilter extends Filter
     }
 
     /**
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return mixed
      */

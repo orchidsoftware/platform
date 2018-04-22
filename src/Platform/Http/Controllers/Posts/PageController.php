@@ -30,7 +30,7 @@ class PageController extends Controller
     /**
      * @param Page $page
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -49,7 +49,7 @@ class PageController extends Controller
      * @param Page    $page
      * @param Request $request
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

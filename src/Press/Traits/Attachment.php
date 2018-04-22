@@ -13,7 +13,7 @@ trait Attachment
      *
      * @var string
      */
-    protected static $attachmentModel = 'Orchid\Platform\Core\Models\Attachment';
+    protected static $attachmentModel = 'Orchid\Press\Models\Attachment';
 
     /**
      * @return string

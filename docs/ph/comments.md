@@ -12,8 +12,8 @@ upang suportahan o kontrahin ang mga opinyong naihayag, upang gumawa ng isang di
 Ang mga komento ay nakalakip sa mga tala ng ORCHID
 
 ```php
-use Orchid\Platform\Core\Models\Comment;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
 
 //Partikular na tala
 $post = Post::find (42);

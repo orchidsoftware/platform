@@ -85,7 +85,7 @@ class RoleFormGroup extends FormGroup
 Пример:
 ```php
 use Orchid\Platform\Forms\Form;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 
 class BaseRolesForm extends Form
 {

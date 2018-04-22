@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Models;
+namespace Orchid\Press\Models;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\Attachment;
+use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

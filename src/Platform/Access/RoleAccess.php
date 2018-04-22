@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Access;
 
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RoleAccess

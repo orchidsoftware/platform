@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Screens\User;
 
 use Orchid\Platform\Screen\Link;
 use Orchid\Platform\Screen\Screen;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen

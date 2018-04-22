@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Behaviors\Base;
+namespace Orchid\Press;
 
 use Orchid\Platform\Fields\TD;
 use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Core\Models\Category;
+use Orchid\Press\Models\Category;
 
 class CategoryBase
 {
@@ -44,14 +44,13 @@ class CategoryBase
     }
 
     /**
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\TypeException
      *
      * @return array
      */
     public function fields() : array
     {
         return [
-
             Field::tag('input')
                 ->type('text')
                 ->name('name')
