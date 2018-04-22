@@ -5,8 +5,8 @@ namespace Orchid\Tests;
 use Watson\Active\Active;
 use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Core\Models\User;
-use Illuminate\Support\Facades\Schema;
 use Orchid\Support\Facades\Dashboard;
+use Illuminate\Support\Facades\Schema;
 use Watson\Active\ActiveServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 

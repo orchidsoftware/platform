@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Alert;
 
 /**
- * Interface SessionStoreInterface
- * @package Orchid\Alert
+ * Interface SessionStoreInterface.
  */
 interface SessionStoreInterface
 {

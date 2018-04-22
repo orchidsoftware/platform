@@ -2,10 +2,10 @@
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\User;
 use Orchid\Platform\Dashboard;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Core\Models\User;
 
 class PermissionTest extends TestUnitCase
 {
