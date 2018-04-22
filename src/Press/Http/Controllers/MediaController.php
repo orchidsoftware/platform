@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Press\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
 
-class Media2Controller extends Controller
+class MediaController extends Controller
 {
     /**
      * @var string
@@ -31,41 +31,13 @@ class Media2Controller extends Controller
     }
 
     /**
-     * @param string $dir
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($dir = '')
+    public function index()
     {
-        $dir = $this->directory.$dir;
-
-        $storageFiles = Storage::disk($this->filesystem)->files($dir);
-        $storageFolders = Storage::disk($this->filesystem)->directories($dir);
-
-        foreach ($storageFolders as $folder) {
-            $files[] = [
-                'name' => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
-                'type' => 'folder',
-                'path' => Storage::disk($this->filesystem)->url($folder),
-            ];
-        }
-
-        foreach ($storageFiles as $file) {
-            $files[] = [
-                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
-                'type'          => Storage::disk($this->filesystem)->mimeType($file),
-                'path'          => Storage::disk($this->filesystem)->url($file),
-                'size'          => Storage::disk($this->filesystem)->size($file),
-                'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
-            ];
-        }
-
-        return view('dashboard::container.systems.media2.index', [
+        return view('dashboard::container.systems.media.index', [
             'name'        => trans('dashboard::systems/media.title'),
             'description' => trans('dashboard::systems/media.description'),
-            'path'        => $dir,
-            'folders'     => $folders ?? [],
-            'items'       => $files,
         ]);
     }
 
@@ -76,6 +48,16 @@ class Media2Controller extends Controller
      */
     public function files(Request $request)
     {
+        $folder = $request->folder;
+
+        if ($folder == DIRECTORY_SEPARATOR) {
+            $folder = '';
+        }
+
+        $dir = $this->directory.$folder;
+
+        $extensions = $request->get('mime', null);
+
         return response()->json([
             'name'          => 'files',
             'type'          => 'folder',

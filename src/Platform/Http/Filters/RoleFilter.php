@@ -41,7 +41,7 @@ class RoleFilter extends Filter
     }
 
     /**
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return mixed
      */

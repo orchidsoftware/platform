@@ -12,7 +12,7 @@ class RoleEditLayout extends Rows
     /**
      * Views.
      *
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return array
      */

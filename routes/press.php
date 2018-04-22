@@ -2,77 +2,127 @@
 
 /*
 |--------------------------------------------------------------------------
-| Post Web Routes
+| Press Web Routes
 |--------------------------------------------------------------------------
 |
 | Base route
 |
 */
 
-$this->domain(config('platform.domain'))->group(function () {
-    $this->group([
-        'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Dashboard::prefix('/posts'),
-        'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
-    ], function (\Illuminate\Routing\Router $router) {
-        $router->post('restore/{id?}', [
-            'as'   => 'dashboard.posts.restore',
-            'uses' => 'PostController@restore',
-        ]);
+$this->post('posts/restore/{id?}', [
+    'as'   => 'dashboard.posts.restore',
+    'uses' => 'PostController@restore',
+]);
 
-        $router->get('{type}/create', [
-            'as'   => 'dashboard.posts.type.create',
-            'uses' => 'PostController@create',
-        ]);
+$this->get('posts/{type}/create', [
+    'as'   => 'dashboard.posts.type.create',
+    'uses' => 'PostController@create',
+]);
 
-        $router->get('{type}/{post}/edit', [
-            'as'   => 'dashboard.posts.type.edit',
-            'uses' => 'PostController@edit',
-        ]);
+$this->get('posts/{type}/{post}/edit', [
+    'as'   => 'dashboard.posts.type.edit',
+    'uses' => 'PostController@edit',
+]);
 
-        $router->get('{type}/{post?}', [
-            'as'   => 'dashboard.posts.type',
-            'uses' => 'PostController@index',
-        ]);
+$this->get('posts/{type}/{post?}', [
+    'as'   => 'dashboard.posts.type',
+    'uses' => 'PostController@index',
+]);
 
-        $router->post('{type}', [
-            'as'   => 'dashboard.posts.type.store',
-            'uses' => 'PostController@store',
-        ]);
+$this->post('posts/{type}', [
+    'as'   => 'dashboard.posts.type.store',
+    'uses' => 'PostController@store',
+]);
 
-        $router->put('{type}/{post?}', [
-            'as'   => 'dashboard.posts.type.update',
-            'uses' => 'PostController@update',
-        ]);
+$this->put('posts/{type}/{post?}', [
+    'as'   => 'dashboard.posts.type.update',
+    'uses' => 'PostController@update',
+]);
 
-        $router->delete('{type}/{post?}', [
-            'as'   => 'dashboard.posts.type.destroy',
-            'uses' => 'PostController@destroy',
-        ]);
-    });
+$this->delete('posts/{type}/{post?}', [
+    'as'   => 'dashboard.posts.type.destroy',
+    'uses' => 'PostController@destroy',
+]);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Page Web Routes
-    |--------------------------------------------------------------------------
-    |
-    | Base route
-    |
-    */
+$this->resource('category', 'CategoryController', [
+    'only'  => [
+        'index', 'create', 'edit', 'update', 'store', 'destroy',
+    ],
+    'names' => [
+        'index'   => 'dashboard.systems.category',
+        'create'  => 'dashboard.systems.category.create',
+        'edit'    => 'dashboard.systems.category.edit',
+        'update'  => 'dashboard.systems.category.update',
+        'store'   => 'dashboard.systems.category.store',
+        'destroy' => 'dashboard.systems.category.destroy',
+    ],
+]);
 
-    $this->group([
-        'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Dashboard::prefix('/pages'),
-        'namespace'  => 'Orchid\Platform\Http\Controllers\Posts',
-    ], function (\Illuminate\Routing\Router $router) {
-        $router->get('{page}', [
-            'as'   => 'dashboard.pages.show',
-            'uses' => 'PageController@show',
-        ]);
+$this->resource('comment', 'CommentController', [
+    'only'  => [
+        'index', 'create', 'edit', 'update', 'store', 'destroy',
+    ],
+    'names' => [
+        'index'   => 'dashboard.systems.comment',
+        'create'  => 'dashboard.systems.comment.create',
+        'edit'    => 'dashboard.systems.comment.edit',
+        'update'  => 'dashboard.systems.comment.update',
+        'store'   => 'dashboard.systems.comment.store',
+        'destroy' => 'dashboard.systems.comment.destroy',
+    ],
+]);
 
-        $router->put('{page}', [
-            'as'   => 'dashboard.pages.update',
-            'uses' => 'PageController@update',
-        ]);
-    });
+$this->resource('menu', 'MenuController', [
+    'only'  => [
+        'index', 'show', 'update', 'destroy',
+    ],
+    'names' => [
+        'index'   => 'dashboard.systems.menu.index',
+        'show'    => 'dashboard.systems.menu.show',
+        'update'  => 'dashboard.systems.menu.update',
+        'destroy' => 'dashboard.systems.menu.destroy',
+    ],
+]);
+
+
+$this->get('page/{page}', [
+    'as'   => 'dashboard.pages.show',
+    'uses' => 'PageController@show',
+]);
+
+$this->put('page/{page}', [
+    'as'   => 'dashboard.pages.update',
+    'uses' => 'PageController@update',
+]);
+
+$this->group([
+    'as'     => 'dashboard.systems.media.',
+    'prefix' => 'media',
+], function () {
+    $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
+    $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
+    $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);
+    $this->post('delete_file_folder',
+        ['uses' => 'MediaController@deleteFileFolder', 'as' => 'deleteFileFolder']);
+    $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'getAllDirs']);
+    $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'moveFile']);
+    $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'renameFile']);
+    $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
+    $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
+});
+
+$this->group([
+    'as'     => 'dashboard.systems.media2.',
+    'prefix' => 'media2',
+], function () {
+    $this->get('/', ['uses' => 'Media2Controller@index', 'as' => 'index']);
+    $this->post('files', ['uses' => 'Media2Controller@files', 'as' => 'files']);
+    $this->post('new_folder', ['uses' => 'Media2Controller@newFolder', 'as' => 'newFolder']);
+    $this->post('delete_file_folder',
+        ['uses' => 'Media2Controller@deleteFileFolder', 'as' => 'deleteFileFolder']);
+    $this->post('directories', ['uses' => 'Media2Controller@getAllDirs', 'as' => 'getAllDirs']);
+    $this->post('move_file', ['uses' => 'Media2Controller@moveFile', 'as' => 'moveFile']);
+    $this->post('rename_file', ['uses' => 'Media2Controller@renameFile', 'as' => 'renameFile']);
+    $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
+    $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
 });

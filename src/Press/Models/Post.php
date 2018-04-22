@@ -16,7 +16,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Platform\Traits\Attachment;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Press\TypeException;
+use Orchid\Platform\Exceptions\TypeException;
 use Orchid\Platform\Traits\JsonRelations;
 use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasMany;

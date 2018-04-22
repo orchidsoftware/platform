@@ -78,8 +78,6 @@ class FoundationServiceProvider extends ServiceProvider
             realpath(DASHBOARD_PATH.'/config/widget.php')   => config_path('widget.php'),
         ]);
 
-        $this->mergeConfigFrom(realpath(DASHBOARD_PATH.'/config/platform.php'), 'platform');
-
         return $this;
     }
 
@@ -104,10 +102,6 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        if (config('platform.headless')) {
-            return $this;
-        }
-
         $this->loadViewsFrom(DASHBOARD_PATH.'/resources/views', 'dashboard');
 
         return $this;

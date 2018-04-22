@@ -62,34 +62,6 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'SettingController@store',
         ]);
 
-        $router->resource('category', 'CategoryController', [
-            'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy',
-            ],
-            'names' => [
-                'index'   => 'dashboard.systems.category',
-                'create'  => 'dashboard.systems.category.create',
-                'edit'    => 'dashboard.systems.category.edit',
-                'update'  => 'dashboard.systems.category.update',
-                'store'   => 'dashboard.systems.category.store',
-                'destroy' => 'dashboard.systems.category.destroy',
-            ],
-        ]);
-
-        $router->resource('comment', 'CommentController', [
-            'only'  => [
-                'index', 'create', 'edit', 'update', 'store', 'destroy',
-            ],
-            'names' => [
-                'index'   => 'dashboard.systems.comment',
-                'create'  => 'dashboard.systems.comment.create',
-                'edit'    => 'dashboard.systems.comment.edit',
-                'update'  => 'dashboard.systems.comment.update',
-                'store'   => 'dashboard.systems.comment.store',
-                'destroy' => 'dashboard.systems.comment.destroy',
-            ],
-        ]);
-
         $router->post('files', [
             'as'   => 'dashboard.systems.files.upload',
             'uses' => 'AttachmentController@upload',
@@ -120,54 +92,10 @@ $this->domain(config('platform.domain'))->group(function () {
             'uses' => 'AttachmentController@update',
         ]);
 
-        $router->resource('menu', 'MenuController', [
-            'only'  => [
-                'index', 'show', 'update', 'destroy',
-            ],
-            'names' => [
-                'index'   => 'dashboard.systems.menu.index',
-                'show'    => 'dashboard.systems.menu.show',
-                'update'  => 'dashboard.systems.menu.update',
-                'destroy' => 'dashboard.systems.menu.destroy',
-            ],
-        ]);
-
         $router->get('tags/{tags?}', [
             'as'   => 'dashboard.systems.tag.search',
             'uses' => 'TagsController@show',
         ]);
-
-        $router->group([
-            'as'     => 'dashboard.systems.media.',
-            'prefix' => 'media',
-        ], function () {
-            $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
-            $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
-            $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);
-            $this->post('delete_file_folder',
-                ['uses' => 'MediaController@deleteFileFolder', 'as' => 'deleteFileFolder']);
-            $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'getAllDirs']);
-            $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'moveFile']);
-            $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'renameFile']);
-            $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
-            $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
-        });
-
-        $router->group([
-            'as'     => 'dashboard.systems.media2.',
-            'prefix' => 'media2',
-        ], function () {
-            $this->get('/', ['uses' => 'Media2Controller@index', 'as' => 'index']);
-            $this->post('files', ['uses' => 'Media2Controller@files', 'as' => 'files']);
-            $this->post('new_folder', ['uses' => 'Media2Controller@newFolder', 'as' => 'newFolder']);
-            $this->post('delete_file_folder',
-                ['uses' => 'Media2Controller@deleteFileFolder', 'as' => 'deleteFileFolder']);
-            $this->post('directories', ['uses' => 'Media2Controller@getAllDirs', 'as' => 'getAllDirs']);
-            $this->post('move_file', ['uses' => 'Media2Controller@moveFile', 'as' => 'moveFile']);
-            $this->post('rename_file', ['uses' => 'Media2Controller@renameFile', 'as' => 'renameFile']);
-            $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
-            $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
-        });
 
         $router->post('widget/{widget}/{key?}', [
             'as'   => 'dashboard.systems.widget',

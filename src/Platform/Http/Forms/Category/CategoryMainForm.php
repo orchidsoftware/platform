@@ -7,7 +7,7 @@ namespace Orchid\Platform\Http\Forms\Category;
 use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
-use Orchid\Platform\Core\Models\Term;
+use Orchid\Platform\Models\Term;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
 

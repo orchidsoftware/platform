@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Posts;
+namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class PageController extends Controller
     /**
      * @param Page $page
      *
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -49,7 +49,7 @@ class PageController extends Controller
      * @param Page    $page
      * @param Request $request
      *
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

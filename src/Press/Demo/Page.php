@@ -54,7 +54,7 @@ class Page extends Single
     }
 
     /**
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return array
      */

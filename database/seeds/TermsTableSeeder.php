@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Term;
+use Orchid\Press\Models\Term;
 use Orchid\Press\Models\Taxonomy;
 
 class TermsTableSeeder extends Seeder

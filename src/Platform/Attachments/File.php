@@ -8,7 +8,7 @@ use Mimey\MimeTypes;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Platform\Core\Models\Attachment;
+use Orchid\Platform\Models\Attachment;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

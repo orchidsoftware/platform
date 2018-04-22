@@ -45,7 +45,7 @@ class DummyClass extends Screen
      * Views
      *
      * @return array
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function layout() : array
     {

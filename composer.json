@@ -59,6 +59,7 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
+        "Orchid\\Press\\PressServiceProvider",
         "Orchid\\Alert\\AlertServiceProvider",
         "Orchid\\Widget\\WidgetServiceProvider"
       ],

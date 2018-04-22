@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Systems;
+namespace Orchid\Press\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;

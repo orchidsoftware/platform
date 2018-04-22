@@ -3,8 +3,6 @@
 use Illuminate\Database\Seeder;
 use Orchid\Press\Models\Post;
 
-//use Orchid\Press\Models\Comment;
-
 class PagesTableSeeder extends Seeder
 {
     /**

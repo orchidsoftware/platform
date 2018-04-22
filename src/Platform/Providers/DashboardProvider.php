@@ -7,32 +7,30 @@ namespace Orchid\Platform\Providers;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\MenuComposer;
+use Orchid\Platform\Http\Composers\PlatformMenuComposer;
 
 class DashboardProvider extends ServiceProvider
 {
     /**
      * @var Dashboard
      */
-    protected $kernel;
+    protected $dashboard;
 
     /**
      * Boot the application events.
      *
      * @param Dashboard $dashboard
      */
-    public function boot(Dashboard $kernel)
+    public function boot(Dashboard $dashboard)
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('dashboard::layouts.dashboard', PlatformMenuComposer::class);
 
-        $this->kernel = $kernel;
+        $this->dashboard = $dashboard;
 
-        $this->kernel
+        $this->dashboard
             ->registerFields(config('platform.fields'))
-            ->registerBehaviors(config('platform.behaviors'))
             ->registerResource(config('platform.resource', []))
             ->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsBehaviors())
             ->registerPermissions($this->registerPermissionsSystems());
     }
 
@@ -51,40 +49,8 @@ class DashboardProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems',
                     'description' => trans('dashboard::permission.main.systems'),
                 ],
-                [
-                    'slug'        => 'dashboard.pages',
-                    'description' => trans('dashboard::permission.main.pages'),
-                ],
-                [
-                    'slug'        => 'dashboard.posts',
-                    'description' => trans('dashboard::permission.main.posts'),
-                ],
             ],
         ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function registerPermissionsBehaviors(): array
-    {
-        $permissions = [];
-
-        $posts = $this->kernel
-            ->getBehaviors()
-            ->where('display', true)
-            ->map(function ($post) {
-                return [
-                'slug'        => 'dashboard.posts.type.'.$post->slug,
-                'description' => $post->name,
-            ];
-            });
-
-        if ($posts->count() > 0) {
-            $permissions[trans('dashboard::permission.main.posts')] = $posts->toArray();
-        }
-
-        return $permissions;
     }
 
     /**
@@ -105,18 +71,6 @@ class DashboardProvider extends ServiceProvider
                 [
                     'slug'        => 'dashboard.systems.users',
                     'description' => trans('dashboard::permission.systems.users'),
-                ],
-                [
-                    'slug'        => 'dashboard.systems.menu',
-                    'description' => trans('dashboard::permission.systems.menu'),
-                ],
-                [
-                    'slug'        => 'dashboard.systems.category',
-                    'description' => trans('dashboard::permission.systems.category'),
-                ],
-                [
-                    'slug'        => 'dashboard.systems.comment',
-                    'description' => trans('dashboard::permission.systems.comment'),
                 ],
                 [
                     'slug'        => 'dashboard.systems.attachment',

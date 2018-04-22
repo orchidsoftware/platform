@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Composers;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Press\Behaviors\Single;
 
-class MenuComposer
+class PlatformMenuComposer
 {
     /**
      * @var Dashboard
@@ -29,65 +28,7 @@ class MenuComposer
      */
     public function compose()
     {
-        $this
-            ->registerMenuSystems($this->dashboard)
-            ->registerMenuPost($this->dashboard);
-    }
-
-    /**
-     * @param Dashboard $kernel
-     *
-     * @return $this
-     */
-    protected function registerMenuPost(Dashboard $kernel): self
-    {
-        $allPost = $this->dashboard->getBehaviors()
-            ->where('display', true)
-            ->all();
-
-        $kernel->menu->add('Main', [
-            'slug'       => 'Posts',
-            'icon'       => 'icon-notebook',
-            'route'      => '#',
-            'label'      => trans('dashboard::menu.posts'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => ['dashboard.posts.*', 'dashboard.pages.*'],
-            'permission' => 'dashboard.posts',
-            'sort'       => 100,
-            'show'       => count($allPost) > 0,
-        ]);
-
-        foreach ($allPost as $key => $page) {
-            $route = route('dashboard.posts.type', [$page->slug]);
-            if (is_a($page, Single::class)) {
-                $route = route('dashboard.pages.show', [$page->slug]);
-            }
-
-            $kernel->menu->add('Posts', [
-                'slug'       => $page->slug,
-                'icon'       => $page->icon,
-                'route'      => $route,
-                'label'      => $page->name,
-                'permission' => 'dashboard.posts.type.'.$page->slug,
-                'sort'       => $key,
-                'groupname'  => $page->groupname,
-                'divider'    => $page->divider,
-                'show'       => $page->display,
-            ]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Dashboard $kernel
-     *
-     * @return $this
-     */
-    protected function registerMenuSystems(Dashboard $kernel): self
-    {
-        $kernel->menu
+        $this->dashboard->menu
             ->add('Main', [
                 'slug'       => 'Systems',
                 'icon'       => 'icon-layers',
@@ -160,7 +101,5 @@ class MenuComposer
                 'permission' => 'dashboard.systems.roles',
                 'sort'       => 10,
             ]);
-
-        return $this;
     }
 }

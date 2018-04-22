@@ -16,18 +16,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Headless
-    |--------------------------------------------------------------------------
-    |
-    | If the dashboard is turned true, then all routes stop working,
-    | this is required if you are building your control panel or you do not need it
-    |
-    */
-
-    'headless' => false,
-
-    /*
-    |--------------------------------------------------------------------------
     | Sub-Domain Routing
     |--------------------------------------------------------------------------
     |
@@ -82,25 +70,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Locales
-    |--------------------------------------------------------------------------
-    |
-    | Localization of records
-    |
-    */
-
-    'locales' => [
-        'en' => [
-            'name'     => 'English',
-            'script'   => 'Latn',
-            'dir'      => 'ltr',
-            'native'   => 'English',
-            'regional' => 'en_GB',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Available fields to form templates
     |--------------------------------------------------------------------------
     |
@@ -128,59 +97,52 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Behaviors
+    | Dashboard Widgets
     |--------------------------------------------------------------------------
     |
-    | Добавить описание
+    | Widgets that will be displayed on the main screen
     |
     */
 
-    'behaviors' => [
-        Orchid\Press\Demo\Page::class,
-        Orchid\Press\Demo\Post::class,
+    'main_widgets' => [
+        Orchid\Platform\Http\Widgets\UpdateWidget::class,
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Category
+    | Dashboard Resource
     |--------------------------------------------------------------------------
     |
-    | Class of management category
+    | Automatically connect the stored links. For example js and css files
     |
     */
 
-    'category' => Orchid\Press\CategoryBase::class,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Available menu
-    |--------------------------------------------------------------------------
-    |
-    | Marked menu areas
-    |
-    */
-
-    'menu' => [
-        'header'  => 'Header menu',
-        'sidebar' => 'Sidebar menu',
-        'footer'  => 'Footer menu',
+    'resource' => [
+        'stylesheets' => [],
+        'scripts'     => [],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Filesystem Disks
+    | Dashboard .....
     |--------------------------------------------------------------------------
     |
-    | Here you may configure as many filesystem "disks" as you wish, and you
-    | may even configure multiple disks of the same driver. Defaults have
-    | been setup for each driver as an example of the required options.
-    |
-    | Supported Drivers: "local", "ftp", "s3", "rackspace"
+    | ....
     |
     */
-
-    'disks' => [
-        'media'      => 'public',
+    'screens' => [
+        'users' => [
+            'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\User\UserList::class,
+        ],
+        'roles' => [
+            'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
+        ],
+        'comment' => [
+            'edit'     => Orchid\Platform\Http\Screens\Comment\CommentEdit::class,
+            'list'     => Orchid\Platform\Http\Screens\Comment\CommentList::class,
+        ],
     ],
 
     /*
@@ -249,53 +211,4 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard Widgets
-    |--------------------------------------------------------------------------
-    |
-    | Widgets that will be displayed on the main screen
-    |
-    */
-
-    'main_widgets' => [
-        Orchid\Platform\Http\Widgets\UpdateWidget::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard Resource
-    |--------------------------------------------------------------------------
-    |
-    | Automatically connect the stored links. For example js and css files
-    |
-    */
-
-    'resource' => [
-        'stylesheets' => [],
-        'scripts'     => [],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard .....
-    |--------------------------------------------------------------------------
-    |
-    | ....
-    |
-    */
-    'screens' => [
-        'users' => [
-            'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\User\UserList::class,
-        ],
-        'roles' => [
-            'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
-        ],
-        'comment' => [
-            'edit'     => Orchid\Platform\Http\Screens\Comment\CommentEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\Comment\CommentList::class,
-        ],
-    ],
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Controllers\Posts;
+namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -129,7 +129,7 @@ class PostController extends Controller
      * @param PostBehavior $type
      * @param Post         $post
      *
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Platform\Exceptions\TypeException
      *
      * @return \Illuminate\Http\RedirectResponse
      */

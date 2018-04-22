@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Attachments\File;
 use Orchid\Press\Models\Post;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Platform\Core\Models\Attachment;
+use Orchid\Platform\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class AttachmentController extends Controller

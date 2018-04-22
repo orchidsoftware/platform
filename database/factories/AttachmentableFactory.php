@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use Orchid\Platform\Core\Models\Attachment;
-use Orchid\Platform\Core\Models\Attachmentable;
+use Orchid\Platform\Models\Attachment;
+use Orchid\Platform\Models\Attachmentable;
 
 /*
 |--------------------------------------------------------------------------

@@ -544,7 +544,7 @@ class ProfileLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {
@@ -735,7 +735,7 @@ class ProfilePasswordLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {
@@ -971,7 +971,7 @@ class BrowserFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function display() : Field
     {
@@ -1031,7 +1031,7 @@ class PlatformFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Press\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function display() : Field
     {
