@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Widgets;
 
-use Composer\Semver\Comparator;
 use Orchid\Widget\Widget;
-use Illuminate\Support\Facades\Cache;
 use Orchid\Platform\Dashboard;
+use Composer\Semver\Comparator;
+use Illuminate\Support\Facades\Cache;
 
 class UpdateWidget extends Widget
 {

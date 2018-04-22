@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\View;
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\MenuComposer;
 

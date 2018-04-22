@@ -11,11 +11,11 @@ use Orchid\Platform\Console\Commands\MakeTable;
 use Orchid\Platform\Console\Commands\MakeFilter;
 use Orchid\Platform\Console\Commands\MakeScreen;
 use Orchid\Platform\Console\Commands\MakeWidget;
+use Orchid\Platform\Console\Commands\InstallCommand;
 use Orchid\Platform\Console\Commands\MakeManyBehavior;
 use Orchid\Platform\Console\Commands\PublicLinkCommand;
 use Orchid\Platform\Console\Commands\CreateAdminCommand;
 use Orchid\Platform\Console\Commands\MakeSingleBehavior;
-use Orchid\Platform\Console\Commands\InstallCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

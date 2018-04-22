@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Orchid\Press\Behaviors\Single;
 use Orchid\Platform\Dashboard;
+use Orchid\Press\Behaviors\Single;
 
 class MenuComposer
 {

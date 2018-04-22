@@ -7,8 +7,7 @@ namespace Orchid\Alert;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class AlertServiceProvider
- * @package Orchid\Alert
+ * Class AlertServiceProvider.
  */
 class AlertServiceProvider extends ServiceProvider
 {

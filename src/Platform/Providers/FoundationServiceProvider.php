@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 

@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Alert;
 
 /**
- * Class Alert
- * @package Orchid\Alert
+ * Class Alert.
  */
 class Alert
 {
