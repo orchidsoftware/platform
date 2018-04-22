@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Support\Collection;
 use Orchid\Platform\Menu\Menu;
+use Illuminate\Support\Collection;
 
 class Dashboard
 {
@@ -79,7 +79,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return $prefix . $path;
+        return $prefix.$path;
     }
 
     /**
@@ -176,7 +176,7 @@ class Dashboard
     public function getBehaviors(): Collection
     {
         $this->behaviors->transform(function ($value) {
-            if (!is_object($value)) {
+            if (! is_object($value)) {
                 $value = new $value();
             }
 
@@ -202,12 +202,11 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (!$removed->count()) {
+        if (! $removed->count()) {
             return $all;
         }
 
         return $all->map(function ($group) use ($removed) {
-
             foreach ($group[key($group)] as $key => $item) {
                 if ($removed->contains($item['slug'])) {
                     unset($group[key($group)][$key]);

@@ -1,5 +1,5 @@
 @component('dashboard::partials.fields.group',get_defined_vars())
-    <select @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])></select>
+    <select id="{{$id}}" @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])></select>
 @endcomponent
 
 
