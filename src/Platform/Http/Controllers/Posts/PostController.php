@@ -6,11 +6,11 @@ namespace Orchid\Platform\Http\Controllers\Posts;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Orchid\Press\Models\Post;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Models\Post;
 use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Behaviors\Many as PostBehavior;
 use Cviebrock\EloquentSluggable\Services\SlugService;

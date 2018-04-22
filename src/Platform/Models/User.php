@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Orchid\Platform\Access\UserAccess;
+use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Access\UserInterface;
-use Orchid\Platform\Traits\FilterTrait;
 use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;

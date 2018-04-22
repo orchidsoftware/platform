@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Base64Url\Base64Url;
-use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Core\Models\Page;
 use Orchid\Press\Models\Post;
 use Orchid\Platform\Models\Role;
 use Orchid\Press\Models\Category;
+use Illuminate\Support\Facades\Route;
+use Orchid\Platform\Core\Models\Page;
 use Orchid\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

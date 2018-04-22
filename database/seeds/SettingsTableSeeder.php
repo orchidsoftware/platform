@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Factory as Faker;
-use Illuminate\Database\Seeder;
 use Orchid\Setting\Setting;
+use Illuminate\Database\Seeder;
 
 class SettingsTableSeeder extends Seeder
 {

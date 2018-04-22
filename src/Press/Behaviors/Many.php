@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Behaviors;
 
 use Illuminate\View\View;
-use Illuminate\Support\Collection;
 use Orchid\Press\Models\Post;
+use Illuminate\Support\Collection;
 
 abstract class Many
 {

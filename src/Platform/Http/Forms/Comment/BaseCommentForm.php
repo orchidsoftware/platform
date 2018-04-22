@@ -6,8 +6,8 @@ namespace Orchid\Platform\Http\Forms\Comment;
 
 use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
-use Illuminate\Contracts\View\View;
 use Orchid\Press\Models\Comment;
+use Illuminate\Contracts\View\View;
 
 class BaseCommentForm extends Form
 {
