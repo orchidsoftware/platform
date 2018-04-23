@@ -2,12 +2,12 @@
 
 namespace Orchid\Tests;
 
+use Orchid\Press\PressServiceProvider;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
-use Watson\Active\ActiveServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 trait Environment
@@ -23,6 +23,9 @@ trait Environment
 
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
+        ]);
+        $this->artisan('vendor:publish', [
+            '--provider' => 'Orchid\Press\PressServiceProvider',
         ]);
 
         $this->artisan('vendor:publish', [
@@ -73,8 +76,8 @@ trait Environment
     protected function getPackageProviders($app)
     {
         return [
-            ActiveServiceProvider::class,
             FoundationServiceProvider::class,
+            PressServiceProvider::class,
         ];
     }
 

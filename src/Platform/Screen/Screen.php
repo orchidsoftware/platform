@@ -153,13 +153,11 @@ abstract class Screen
     public function reflectionParams($method)
     {
         $class = new \ReflectionClass($this);
+        $parameters = $class->getMethod($method)->getParameters();
 
-        foreach ($class->getMethod($method)->getParameters() as $key => $parameter) {
-            if (is_null($parameter->getClass())) {
-                continue;
-            }
+        foreach ($parameters as $key => $parameter) {
 
-            if ($this->checkClassInArray($key)) {
+            if (is_null($parameter->getClass()) || $this->checkClassInArray($key)) {
                 continue;
             }
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\PlatformMenuComposer;
+use Orchid\Platform\Dashboard;
+use Orchid\Press\Http\Composers\PressMenuComposer;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -23,8 +23,6 @@ class PressServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        View::composer('dashboard::layouts.dashboard', PlatformMenuComposer::class);
-
         $this->dashboard = $dashboard;
 
         $this->dashboard
@@ -36,6 +34,9 @@ class PressServiceProvider extends ServiceProvider
         $this->registerDatabase()
             ->registerConfig()
             ->registerProviders();
+
+
+        View::composer('dashboard::layouts.dashboard', PressMenuComposer::class);
     }
 
     /**
@@ -45,7 +46,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations/press'));
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/database/migrations/press'));
 
         return $this;
     }
@@ -58,7 +59,7 @@ class PressServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH.'/config/press.php') => config_path('press.php'),
+            realpath(DASHBOARD_PATH . '/config/press.php') => config_path('press.php'),
         ]);
 
         return $this;
@@ -94,10 +95,6 @@ class PressServiceProvider extends ServiceProvider
         return [
             trans('dashboard::permission.main.main') => [
                 [
-                    'slug'        => 'dashboard.pages',
-                    'description' => trans('dashboard::permission.main.pages'),
-                ],
-                [
                     'slug'        => 'dashboard.posts',
                     'description' => trans('dashboard::permission.main.posts'),
                 ],
@@ -110,23 +107,21 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerPermissionsBehaviors(): array
     {
-        $permissions = [];
-
         $posts = $this->dashboard
             ->getBehaviors()
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                'slug'        => 'dashboard.posts.type.'.$post->slug,
-                'description' => $post->name,
-            ];
+                    'slug'        => 'dashboard.posts.type.' . $post->slug,
+                    'description' => $post->name,
+                ];
             });
 
         if ($posts->count() > 0) {
             $permissions[trans('dashboard::permission.main.posts')] = $posts->toArray();
         }
 
-        return $permissions;
+        return $permissions ?? [];
     }
 
     /**

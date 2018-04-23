@@ -27,10 +27,6 @@ class EventServiceProvider extends ServiceProvider
         Login::class         => [
             LogSuccessfulLogin::class,
         ],
-        SettingsEvent::class => [
-            SettingInfoListener::class,
-            SettingBaseListener::class,
-        ],
         CategoryEvent::class => [
             CategoryBaseLister::class,
             CategoryDescLister::class,

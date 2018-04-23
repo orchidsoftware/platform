@@ -28,7 +28,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->checkPermission('dashboard.posts');
-        $this->locales = collect(config('platform.locales'));
+        $this->locales = collect(config('press.locales'));
     }
 
     /**

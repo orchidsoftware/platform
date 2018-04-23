@@ -65,7 +65,7 @@ class MenuController extends Controller
 
         return view('dashboard::container.systems.menu.menu', [
             'nameMenu'      => $nameMenu,
-            'locales'       => config('platform.locales'),
+            'locales'       => config('press.locales'),
             'currentLocale' => $currentLocale,
             'menu'          => $menu,
             'url'           => config('app.url'),

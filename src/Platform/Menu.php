@@ -153,6 +153,9 @@ class Menu
     {
         $html = '';
 
+        /*
+         * Check access
+         */
         if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;

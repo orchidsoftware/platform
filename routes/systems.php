@@ -27,17 +27,13 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
+
         $router->get('/', [
             'as'   => 'dashboard.systems.index',
             'uses' => 'SystemController@index',
         ]);
 
         $router->get('cache', [
-            'as'   => 'dashboard.systems.cache',
-            'uses' => 'CacheController@index',
-        ]);
-
-        $router->post('cache', [
             'as'   => 'dashboard.systems.cache',
             'uses' => 'CacheController@store',
         ]);
@@ -50,16 +46,6 @@ $this->domain(config('platform.domain'))->group(function () {
         $router->post('notification/remove', [
             'as'   => 'dashboard.notification.remove',
             'uses' => 'NotificationController@remove',
-        ]);
-
-        $router->get('settings', [
-            'as'   => 'dashboard.systems.settings',
-            'uses' => 'SettingController@index',
-        ]);
-
-        $router->post('settings', [
-            'as'   => 'dashboard.systems.settings',
-            'uses' => 'SettingController@store',
         ]);
 
         $router->post('files', [

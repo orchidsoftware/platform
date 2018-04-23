@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Alert\AlertServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Orchid\Widget\WidgetServiceProvider;
+use Watson\Active\ActiveServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -125,6 +128,9 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            ActiveServiceProvider::class,
+            AlertServiceProvider::class,
+            WidgetServiceProvider::class,
             DashboardProvider::class,
             RouteServiceProvider::class,
             ConsoleServiceProvider::class,

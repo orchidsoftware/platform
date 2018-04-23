@@ -59,7 +59,7 @@ class BasePostForm extends Form
             'author'   => (is_null($post)) ? $post : $post->getUser(),
             'post'     => $post,
             'language' => App::getLocale(),
-            'locales'  => config('platform.locales'),
+            'locales'  => config('press.locales'),
             'category' => $category,
             'type'     => $type,
         ]);

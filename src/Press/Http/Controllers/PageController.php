@@ -6,10 +6,10 @@ namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Core\Models\Page;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Page;
+use Orchid\Support\Facades\Alert;
 
 class PageController extends Controller
 {
@@ -24,7 +24,7 @@ class PageController extends Controller
     public function __construct()
     {
         $this->checkPermission('dashboard.posts');
-        $this->locales = collect(config('platform.locales'));
+        $this->locales = collect(config('press.locales'));
     }
 
     /**
@@ -58,9 +58,7 @@ class PageController extends Controller
         $this->checkPermission('dashboard.pages.type.'.$page->slug);
         $type = $page->getBehaviorObject($page->slug);
 
-        $page->fill($request->all());
-
-        $page->fill([
+        $page->fill($request->all())->save([
             'user_id'    => Auth::user()->id,
             'type'       => 'page',
             'slug'       => $page->slug,
@@ -69,7 +67,6 @@ class PageController extends Controller
             'publish_at' => Carbon::now(),
         ]);
 
-        $page->save();
 
         foreach ($type->getModules() as $module) {
             $module = new $module();

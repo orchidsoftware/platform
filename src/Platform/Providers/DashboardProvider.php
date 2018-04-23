@@ -28,7 +28,7 @@ class DashboardProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         $this->dashboard
-            ->registerFields(config('platform.fields'))
+            ->registerFields(config('platform.fields',[]))
             ->registerResource(config('platform.resource', []))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsSystems());
@@ -49,6 +49,10 @@ class DashboardProvider extends ServiceProvider
                     'slug'        => 'dashboard.systems',
                     'description' => trans('dashboard::permission.main.systems'),
                 ],
+                [
+                    'slug'        => 'dashboard.systems.index',
+                    'description' => trans('dashboard::permission.systems.settings'),
+                ],
             ],
         ];
     }
@@ -63,10 +67,6 @@ class DashboardProvider extends ServiceProvider
                 [
                     'slug'        => 'dashboard.systems.roles',
                     'description' => trans('dashboard::permission.systems.roles'),
-                ],
-                [
-                    'slug'        => 'dashboard.systems.settings',
-                    'description' => trans('dashboard::permission.systems.settings'),
                 ],
                 [
                     'slug'        => 'dashboard.systems.users',

@@ -114,13 +114,14 @@
                         </ul>
 
                         <ul class="nav nav-footer-fix">
-                            <li>
-                                <a href="{{ route('dashboard.systems.index') }}">
-                                    <i class="icon-settings" aria-hidden="true"></i>
-                                    <span>{{trans('dashboard::menu.systems')}}</span>
-                                </a>
-                            </li>
-
+                            @if(Auth::user()->hasAccess('dashboard.systems.index'))
+                                <li>
+                                    <a href="{{ route('dashboard.systems.index') }}">
+                                        <i class="icon-settings" aria-hidden="true"></i>
+                                        <span>{{trans('dashboard::menu.systems')}}</span>
+                                    </a>
+                                </li>
+                            @endif
 
                             <li>
                                 <a href="{{ route('dashboard.logout') }}"

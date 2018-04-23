@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Http\Forms\Settings\SettingFormGroup;
 
 class SystemController extends Controller
 {
     /**
-     * SettingController constructor.
-     *
-     * @param SettingFormGroup $form
+     * SystemController constructor.
      */
-    public function __construct(SettingFormGroup $form)
+    public function __construct()
     {
-        $this->checkPermission('dashboard.systems.settings');
-        $this->form = $form;
+        $this->checkPermission('dashboard.systems.index');
     }
 
     /**

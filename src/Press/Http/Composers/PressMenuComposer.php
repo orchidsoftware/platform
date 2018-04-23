@@ -100,15 +100,6 @@ class PressMenuComposer
                 'sort'       => 1000,
             ])
             ->add('Systems', [
-                'slug'       => 'settings',
-                'icon'       => 'icon-settings',
-                'route'      => route('dashboard.systems.settings'),
-                'label'      => trans('dashboard::menu.constants'),
-                'groupname'  => trans('dashboard::menu.general settings'),
-                'permission' => 'dashboard.systems.settings',
-                'sort'       => 1,
-            ])
-            ->add('Systems', [
                 'slug'       => 'section',
                 'icon'       => 'icon-briefcase',
                 'route'      => route('dashboard.systems.category'),
