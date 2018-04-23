@@ -6,10 +6,10 @@ namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Models\Page;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -66,7 +66,6 @@ class PageController extends Controller
             'options'    => $page->getOptions(),
             'publish_at' => Carbon::now(),
         ]);
-
 
         foreach ($type->getModules() as $module) {
             $module = new $module();

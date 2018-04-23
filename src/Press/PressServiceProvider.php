@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 
 class PressServiceProvider extends ServiceProvider
@@ -35,7 +35,6 @@ class PressServiceProvider extends ServiceProvider
             ->registerConfig()
             ->registerProviders();
 
-
         View::composer('dashboard::layouts.dashboard', PressMenuComposer::class);
     }
 
@@ -46,7 +45,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH . '/database/migrations/press'));
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations/press'));
 
         return $this;
     }
@@ -59,7 +58,7 @@ class PressServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH . '/config/press.php') => config_path('press.php'),
+            realpath(DASHBOARD_PATH.'/config/press.php') => config_path('press.php'),
         ]);
 
         return $this;
@@ -112,7 +111,7 @@ class PressServiceProvider extends ServiceProvider
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                    'slug'        => 'dashboard.posts.type.' . $post->slug,
+                    'slug'        => 'dashboard.posts.type.'.$post->slug,
                     'description' => $post->name,
                 ];
             });
