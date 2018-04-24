@@ -51,7 +51,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations'));
+        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations/platform'));
 
         return $this;
     }
