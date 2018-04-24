@@ -156,7 +156,6 @@ abstract class Screen
         $parameters = $class->getMethod($method)->getParameters();
 
         foreach ($parameters as $key => $parameter) {
-
             if (is_null($parameter->getClass()) || $this->checkClassInArray($key)) {
                 continue;
             }

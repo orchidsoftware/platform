@@ -2,12 +2,12 @@
 
 namespace Orchid\Tests;
 
-use Orchid\Press\PressServiceProvider;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
+use Orchid\Press\PressServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 trait Environment

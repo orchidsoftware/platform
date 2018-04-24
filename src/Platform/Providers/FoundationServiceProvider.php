@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Alert\AlertServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
+use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Orchid\Widget\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
 
 class FoundationServiceProvider extends ServiceProvider
 {

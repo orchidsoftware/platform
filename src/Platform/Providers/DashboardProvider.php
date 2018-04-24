@@ -28,7 +28,7 @@ class DashboardProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         $this->dashboard
-            ->registerFields(config('platform.fields',[]))
+            ->registerFields(config('platform.fields', []))
             ->registerResource(config('platform.resource', []))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsSystems());

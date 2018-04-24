@@ -27,7 +27,6 @@ $this->domain(config('platform.domain'))->group(function () {
         'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
-
         $router->get('/', [
             'as'   => 'dashboard.systems.index',
             'uses' => 'SystemController@index',
