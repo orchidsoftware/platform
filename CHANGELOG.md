@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Test migration pgsql to sqlite
+- User routes for dashboard
+- The package was divided into several internal structures (Platform & Press) [634](https://github.com/orchidsoftware/platform/issues/634)
 
 ### Fixed
 - Require to required
