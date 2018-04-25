@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Press\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeManyBehavior extends GeneratorCommand
+class MakeSingleBehavior extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:manyBehavior';
+    protected $name = 'make:singleBehavior';
 
     /**
      * The console command description.
@@ -36,7 +36,7 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/many.stub';
+        return DASHBOARD_PATH.'/resources/stubs/single.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Behaviors\Many';
+        return $rootNamespace.'\Behaviors\Single';
     }
 }

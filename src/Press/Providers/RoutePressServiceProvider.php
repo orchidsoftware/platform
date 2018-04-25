@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press;
+namespace Orchid\Press\Providers;
 
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;

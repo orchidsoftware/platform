@@ -7,7 +7,7 @@ use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
-use Orchid\Press\PressServiceProvider;
+use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 trait Environment
@@ -25,7 +25,7 @@ trait Environment
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
         $this->artisan('vendor:publish', [
-            '--provider' => 'Orchid\Press\PressServiceProvider',
+            '--provider' => 'Orchid\Press\Providers\PressServiceProvider',
         ]);
 
         $this->artisan('vendor:publish', [

@@ -59,7 +59,7 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Press\\PressServiceProvider"
+        "Orchid\\Press\\Providers\\PressServiceProvider"
       ],
       "aliases": {
         "Dashboard": "Orchid\\Support\\Facades\\Dashboard",

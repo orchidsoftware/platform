@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press;
+namespace Orchid\Press\Providers;
 
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
@@ -82,6 +82,7 @@ class PressServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            ConsoleServiceProvider::class,
             RoutePressServiceProvider::class,
         ];
     }
