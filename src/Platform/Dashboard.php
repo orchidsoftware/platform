@@ -43,6 +43,13 @@ class Dashboard
     public $resources;
 
     /**
+     * The Dashboard configuration options.
+     *
+     * @var array
+     */
+    protected static $options = [];
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
@@ -157,19 +164,6 @@ class Dashboard
     }
 
     /**
-     * Return Storage.
-     *
-     * @param      $key
-     * @param null $default
-     *
-     * @return mixed
-     */
-    public function getStorage($key, $default = null)
-    {
-        return $this->storage->get($key, $default);
-    }
-
-    /**
      * @return Collection
      */
     public function getBehaviors(): Collection
@@ -225,5 +219,49 @@ class Dashboard
         $this->permission->get('removed')->push($key);
 
         return $this;
+    }
+
+    /**
+     * Configure the Dashboard application.
+     *
+     * @param  array  $options
+     * @return void
+     */
+    public static function configure(array $options)
+    {
+        static::$options = $options;
+    }
+
+    /**
+     * Get a Dashboard configuration option.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public static function option(string $key, $default)
+    {
+        return array_get(static::$options, $key, $default);
+    }
+
+    /**
+     * Get the class name for a given Dashboard model.
+     *
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public static function model(string $key, string $default = null)
+    {
+        return array_get(static::$options, 'models.'.$key, $default);
+    }
+
+    /**
+     * @param $key
+     * @param $custom
+     */
+    public static function useModel($key,$custom)
+    {
+        static::$options['models'.$key] = $custom;
     }
 }
