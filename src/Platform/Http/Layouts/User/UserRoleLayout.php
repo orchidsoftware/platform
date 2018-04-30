@@ -22,14 +22,9 @@ class UserRoleLayout extends Rows
         $fields[] = Field::tag('select')
             ->options($this->query
                 ->getContent('roles')
-                ->pluck('name', 'slug'))
-            ->modifyValue(function () {
-                return $this->query
-                    ->getContent('roles')
-                    ->where('active', true)
-                    ->pluck('name', 'slug')
-                    ->toArray();
-            })
+                ->where('active', true)
+                ->pluck('name', 'slug')
+                ->toArray())
             ->class('select2')
             ->multiple()
             ->name('roles[]')
@@ -62,9 +57,7 @@ class UserRoleLayout extends Rows
                         $permissions[] = Field::tag('checkbox')
                             ->placeholder($permission['description'])
                             ->name('permissions.'.base64_encode($permission['slug']))
-                            ->modifyValue(function () use ($permission) {
-                                return (int) $permission['active'];
-                            })
+                            ->value( (int) $permission['active'])
                             ->hr(false);
                     }
 

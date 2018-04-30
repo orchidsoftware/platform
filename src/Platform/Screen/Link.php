@@ -10,6 +10,7 @@ namespace Orchid\Platform\Screen;
  * @method static Link title(string $name)
  * @method static Link method(string $name)
  * @method static Link icon(string $name)
+ * @method static Link link(string $name)
  */
 class Link
 {
@@ -27,11 +28,6 @@ class Link
      * @var
      */
     public $method;
-
-    /**
-     * @var
-     */
-    public $url;
 
     /**
      * @var
