@@ -215,7 +215,7 @@ class Builder
         $data = $this->data->getContent($key);
 
         // default value
-        if(is_null($data)){
+        if (is_null($data)) {
             return $value;
         }
 
