@@ -57,7 +57,7 @@ class UserRoleLayout extends Rows
                         $permissions[] = Field::tag('checkbox')
                             ->placeholder($permission['description'])
                             ->name('permissions.'.base64_encode($permission['slug']))
-                            ->value( (int) $permission['active'])
+                            ->value((int) $permission['active'])
                             ->hr(false);
                     }
 
