@@ -260,7 +260,7 @@ class Dashboard
      * @param $key
      * @param $custom
      */
-    public static function useModel($key,$custom)
+    public static function useModel($key, $custom)
     {
         static::$options['models'.$key] = $custom;
     }
