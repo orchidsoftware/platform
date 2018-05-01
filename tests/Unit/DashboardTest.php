@@ -14,7 +14,7 @@ class DashboardTest extends TestUnitCase
 
         $default = new User();
 
-        $this->assertEquals($class,$default);
+        $this->assertEquals($class, $default);
     }
 
     public function testIsModelCustom()

@@ -255,7 +255,7 @@ class Dashboard
     {
         $model = array_get(static::$options, 'models.'.$key, $default ?? $key);
 
-        if(class_exists($model)) {
+        if (class_exists($model)) {
             return new $model;
         }
 
