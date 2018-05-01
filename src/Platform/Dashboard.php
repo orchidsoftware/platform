@@ -253,7 +253,13 @@ class Dashboard
      */
     public static function model(string $key, string $default = null)
     {
-        return array_get(static::$options, 'models.'.$key, $default);
+        $model = array_get(static::$options, 'models.'.$key, $default ?? $key);
+
+        if(class_exists($model)) {
+            return new $model;
+        }
+
+        return $model;
     }
 
     /**

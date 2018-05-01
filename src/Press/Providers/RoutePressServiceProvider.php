@@ -40,41 +40,40 @@ class RoutePressServiceProvider extends RouteServiceProvider
     public function binding()
     {
         Route::bind('category', function ($value) {
+            $category = Dashboard::model(Category::class);
+
             if (is_numeric($value)) {
-                return Category::where('id', $value)->firstOrFail();
+                return $category->where('id', $value)->firstOrFail();
             }
 
-            return Category::findOrFail($value);
+            return $category->findOrFail($value);
         });
 
         Route::bind('type', function ($value) {
-            $post = new Post();
+            $post = Dashboard::model(Post::class);
             $type = $post->getBehavior($value)->getBehaviorObject();
 
             return $type;
         });
 
         Route::bind('page', function ($value) {
+            $page = Dashboard::model(Page::class);
+
             if (is_numeric($value)) {
-                $page = Page::where('id', $value)->first();
-            } else {
-                $page = Page::where('slug', $value)->first();
-            }
-            if (is_null($page)) {
-                return new Page([
-                    'slug' => $value,
-                ]);
+                return $page->where('id', $value)->first();
             }
 
-            return $page;
+            return $page->where('slug', $value)->first();
         });
 
         Route::bind('post', function ($value) {
+            $post = Dashboard::model(Post::class);
+
             if (is_numeric($value)) {
-                return Post::where('id', $value)->firstOrFail();
+                return $post->where('id', $value)->firstOrFail();
             }
 
-            return Post::where('slug', $value)->firstOrFail();
+            return $post->where('slug', $value)->firstOrFail();
         });
     }
 

@@ -11,6 +11,7 @@ use Orchid\Platform\Access\UserInterface;
 use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -94,5 +95,31 @@ class User extends Authenticatable implements UserInterface
             $permissions[$key] = boolval($value);
         }
         $this->attributes['permissions'] = json_encode($permissions ?? []);
+    }
+
+    /**
+     * @param $name
+     * @param $email
+     * @param $password
+     *
+     * @return mixed
+     */
+    public static function createAdmin($name, $email, $password){
+        $permissions = collect();
+
+        Dashboard::getPermission()
+            ->collapse()
+            ->each(function ($items) use ($permissions) {
+                foreach ($items as $item) {
+                    $permissions->put($item['slug'], true);
+                }
+            });
+
+        return User::create([
+                'name'        => $name,
+                'email'       => $email,
+                'password'    => bcrypt($password),
+                'permissions' => $permissions,
+        ]);
     }
 }

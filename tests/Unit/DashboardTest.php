@@ -16,7 +16,9 @@ class DashboardTest extends TestUnitCase
     {
         $class = Dashboard::model('UnknownClass',User::class);
 
-        $this->assertEquals($class, User::class);
+        $default = new User();
+
+        $this->assertEquals($class,$default);
     }
 
     /**

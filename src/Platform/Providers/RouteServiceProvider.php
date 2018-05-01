@@ -45,11 +45,14 @@ class RouteServiceProvider extends ServiceProvider
     public function binding()
     {
         Route::bind('role', function ($value) {
+
+            $role = Dashboard::model(Role::class);
+
             if (is_numeric($value)) {
-                return Role::where('id', $value)->firstOrFail();
+                return $role->where('id', $value)->firstOrFail();
             }
 
-            return Role::where('slug', $value)->firstOrFail();
+            return $role->where('slug', $value)->firstOrFail();
         });
 
         Route::bind('widget', function ($value) {
