@@ -258,7 +258,7 @@ class MediaController extends Controller
     {
         try {
             foreach ($request->files as $file) {
-                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->getPathPrefix(), $file->getClientOriginalName());
+                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
             }
             $success = true;
             $message = trans('dashboard::systems/media.success_uploaded_file');

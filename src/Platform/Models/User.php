@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,6 @@ use Orchid\Platform\Access\UserInterface;
 use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -104,7 +104,8 @@ class User extends Authenticatable implements UserInterface
      *
      * @return mixed
      */
-    public static function createAdmin($name, $email, $password){
+    public static function createAdmin($name, $email, $password)
+    {
         $permissions = collect();
 
         Dashboard::getPermission()
@@ -115,7 +116,7 @@ class User extends Authenticatable implements UserInterface
                 }
             });
 
-        return User::create([
+        return self::create([
                 'name'        => $name,
                 'email'       => $email,
                 'password'    => bcrypt($password),
