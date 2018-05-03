@@ -38,7 +38,7 @@ document.addEventListener('turbolinks:load', () => {
                 },
                 sending(file, xhr, formData) {
                     formData.append('_token', CSRF_TOKEN);
-                    formData.append('upload_path', manager.files.path);
+                    formData.append('upload_path', manager.folders);
                 },
                 success(e, {success, message}) {
                     if (success) {
@@ -65,7 +65,7 @@ document.addEventListener('turbolinks:load', () => {
                 ) {
                     return false;
                 }
-                manager.folders.push($(this).data('folder'));
+                manager.folders.push(this.dataset.folder);
                 getFiles(manager.folders);
             });
 
