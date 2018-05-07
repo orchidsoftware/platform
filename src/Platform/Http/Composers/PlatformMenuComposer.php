@@ -50,15 +50,6 @@ class PlatformMenuComposer
                 'sort'       => 2,
             ])
             ->add('Systems', [
-                'slug'       => 'menu',
-                'icon'       => 'icon-menu',
-                'route'      => route('dashboard.systems.menu.index'),
-                'label'      => trans('dashboard::menu.menu'),
-                'permission' => 'dashboard.systems.menu',
-                'sort'       => 3,
-                'show'       => count(config('platform.menu', [])) > 0,
-            ])
-            ->add('Systems', [
                 'slug'       => 'comment',
                 'icon'       => 'icon-bubbles',
                 'route'      => route('dashboard.systems.comment'),

@@ -6,6 +6,7 @@ namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Platform\Dashboard;
 
 class TermRelationship extends Model
 {
@@ -33,7 +34,7 @@ class TermRelationship extends Model
      */
     public function post() : BelongsTo
     {
-        return $this->belongsTo(Post::class, 'post_id');
+        return $this->belongsTo(Dashboard::model(Post::class), 'post_id');
     }
 
     /**
@@ -41,6 +42,6 @@ class TermRelationship extends Model
      */
     public function taxonomy() : BelongsTo
     {
-        return $this->belongsTo(Taxonomy::class, 'term_taxonomy_id');
+        return $this->belongsTo(Dashboard::model(Taxonomy::class), 'term_taxonomy_id');
     }
 }

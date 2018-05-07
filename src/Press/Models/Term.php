@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -50,6 +51,6 @@ class Term extends Model
      */
     public function taxonomy() : HasOne
     {
-        return $this->hasOne(Taxonomy::class, 'term_id');
+        return $this->hasOne(Dashboard::model(Taxonomy::class), 'term_id');
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
@@ -60,7 +61,7 @@ class Comment extends Model
      */
     public function post() : BelongsTo
     {
-        return $this->belongsTo(Post::class, 'post_id');
+        return $this->belongsTo(Dashboard::model(Post::class), 'post_id');
     }
 
     /**
@@ -120,7 +121,7 @@ class Comment extends Model
      */
     public function author() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Dashboard::model(User::class), 'user_id');
     }
 
     /**

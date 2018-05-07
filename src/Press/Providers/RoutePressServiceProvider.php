@@ -40,7 +40,7 @@ class RoutePressServiceProvider extends RouteServiceProvider
     public function binding()
     {
         Route::bind('category', function ($value) {
-            $category = Dashboard::model(Category::class);
+            $category = Dashboard::modelClass(Category::class);
 
             if (is_numeric($value)) {
                 return $category->where('id', $value)->firstOrFail();
@@ -50,14 +50,14 @@ class RoutePressServiceProvider extends RouteServiceProvider
         });
 
         Route::bind('type', function ($value) {
-            $post = Dashboard::model(Post::class);
+            $post = Dashboard::modelClass(Post::class);
             $type = $post->getBehavior($value)->getBehaviorObject();
 
             return $type;
         });
 
         Route::bind('page', function ($value) {
-            $page = Dashboard::model(Page::class);
+            $page = Dashboard::modelClass(Page::class);
 
             if (is_numeric($value)) {
                 return $page->where('id', $value)->first();
@@ -67,7 +67,7 @@ class RoutePressServiceProvider extends RouteServiceProvider
         });
 
         Route::bind('post', function ($value) {
-            $post = Dashboard::model(Post::class);
+            $post = Dashboard::modelClass(Post::class);
 
             if (is_numeric($value)) {
                 return $post->where('id', $value)->firstOrFail();

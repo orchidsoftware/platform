@@ -45,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
     public function binding()
     {
         Route::bind('role', function ($value) {
-            $role = Dashboard::model(Role::class);
+            $role = Dashboard::modelClass(Role::class);
 
             if (is_numeric($value)) {
                 return $role->where('id', $value)->firstOrFail();

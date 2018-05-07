@@ -108,7 +108,7 @@ document.addEventListener('turbolinks:load', () => {
             },
             destroy(id) {
                 axios
-                    .delete(dashboard.prefix(`/systems/menu/${id}`))
+                    .delete(dashboard.prefix(`/press/menu/${id}`))
                     .then(response => {});
             },
             remove() {
@@ -136,7 +136,7 @@ document.addEventListener('turbolinks:load', () => {
                 };
 
                 axios
-                    .put(dashboard.prefix(`/systems/menu/${name}`), data)
+                    .put(dashboard.prefix(`/press/menu/${name}`), data)
                     .then(response => {});
             },
             exist() {

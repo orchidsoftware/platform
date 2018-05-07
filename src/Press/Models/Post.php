@@ -227,7 +227,7 @@ class Post extends Model
      */
     public function getUser()
     {
-        return $this->belongsTo(User::class, 'user_id')->first();
+        return $this->belongsTo(Dashboard::model(User::class), 'user_id')->first();
     }
 
     /**
@@ -261,7 +261,7 @@ class Post extends Model
      */
     public function comments() : HasMany
     {
-        return $this->hasMany(Comment::class, 'post_id');
+        return $this->hasMany(Dashboard::model(Comment::class), 'post_id');
     }
 
     /**
@@ -271,7 +271,7 @@ class Post extends Model
      */
     public function author() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Dashboard::model(User::class), 'user_id');
     }
 
     /**
@@ -310,7 +310,7 @@ class Post extends Model
      */
     public function scopeTaxonomies() : BelongsToMany
     {
-        return $this->belongsToMany(Taxonomy::class, 'term_relationships', 'post_id', 'term_taxonomy_id');
+        return $this->belongsToMany(Dashboard::model(Taxonomy::class), 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
 
     /**

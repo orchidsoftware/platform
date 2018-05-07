@@ -7,6 +7,7 @@ namespace Orchid\Platform\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Platform\Dashboard;
 
 class Attachment extends Model
 {
@@ -51,18 +52,6 @@ class Attachment extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Relation Post.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
-    public function post() : \Illuminate\Database\Eloquent\Relations\MorphToMany
-    {
-        //TODO: сделать
-        return $this->morphToMany(self::class, 'attachmentable', 'attachmentable', 'attachmentable_id',
-            'attachment_id');
     }
 
     /**
@@ -124,7 +113,7 @@ class Attachment extends Model
      */
     public function relationships()
     {
-        return $this->hasMany(Attachmentable::class, 'attachment_id');
+        return $this->hasMany(Dashboard::model(Attachmentable::class), 'attachment_id');
     }
 
     /**

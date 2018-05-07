@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Menu;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
@@ -35,14 +36,14 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menu = collect(config('platform.menu'));
+        $menu = collect(config('press.menu'));
 
         if ($menu->count() === 1) {
             return redirect()->route('dashboard.systems.menu.show', $menu->keys()->first());
         }
 
         return view('dashboard::container.systems.menu.listing', [
-            'menu' => collect(config('platform.menu')),
+            'menu' => collect(config('press.menu')),
         ]);
     }
 
@@ -56,7 +57,7 @@ class MenuController extends Controller
     {
         $currentLocale = $request->get('lang', App::getLocale());
 
-        $menu = Menu::where('lang', $currentLocale)
+        $menu = Dashboard::model(Menu::class)::where('lang', $currentLocale)
             ->where('parent', 0)
             ->where('type', $nameMenu)
             ->orderBy('sort', 'asc')
@@ -97,7 +98,7 @@ class MenuController extends Controller
     private function createMenuElement(array $items, $parent = 0)
     {
         foreach ($items as $item) {
-            Menu::firstOrNew([
+            Dashboard::model(Menu::class)::firstOrNew([
                 'id' => $item['id'],
             ])->fill(array_merge($item, [
                 'lang'   => $this->lang,
@@ -120,7 +121,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        Menu::where('parent', $menu->id)->delete();
+        Dashboard::model(Menu::class)::where('parent', $menu->id)->delete();
         $menu->delete();
 
         return response()->json([

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Dashboard;
 use Orchid\Press\Builders\TaxonomyBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -64,7 +65,7 @@ class Taxonomy extends Model
      */
     public function term() : BelongsTo
     {
-        return $this->belongsTo(Term::class, 'term_id');
+        return $this->belongsTo(Dashboard::model(Term::class), 'term_id');
     }
 
     /**
@@ -102,7 +103,7 @@ class Taxonomy extends Model
      */
     public function posts() : BelongsToMany
     {
-        return $this->belongsToMany(Post::class, 'term_relationships', 'term_taxonomy_id', 'post_id');
+        return $this->belongsToMany(Dashboard::model(Post::class), 'term_relationships', 'term_taxonomy_id', 'post_id');
     }
 
     /**

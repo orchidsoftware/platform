@@ -7,6 +7,7 @@ namespace Orchid\Platform\Attachments;
 use Mimey\MimeTypes;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\FilesystemAdapter;
@@ -119,7 +120,7 @@ class File
      */
     private function getMatchesHash()
     {
-        return Attachment::where('hash', $this->hash)->first();
+        return Dashboard::model(Attachment::class)::where('hash', $this->hash)->first();
     }
 
     /**
@@ -134,7 +135,7 @@ class File
             'mime_type' => $this->getMimeType(),
         ]);
 
-        return Attachment::create([
+        return Dashboard::model(Attachment::class)::create([
             'name'          => $hashName,
             'original_name' => $this->file->getClientOriginalName(),
             'mime'          => $this->getMimeType(),

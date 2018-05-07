@@ -115,7 +115,7 @@ class PressMenuComposer
                 'label'      => trans('dashboard::menu.menu'),
                 'permission' => 'dashboard.systems.menu',
                 'sort'       => 3,
-                'show'       => count(config('platform.menu', [])) > 0,
+                'show'       => count(config('press.menu', [])) > 0,
             ])
             ->add('Systems', [
                 'slug'       => 'comment',

@@ -22,7 +22,7 @@ class CategoryEditLayout extends Rows
                 ->type('text')
                 ->name('category.content.name')
                 ->modifyValue(function () {
-                    return $this->query->getContent('category')->term->GetContent('name');
+                    return $this->query->getContent('category')->term->getContent('name');
                 })
                 ->max(255)
                 ->require()
@@ -55,7 +55,7 @@ class CategoryEditLayout extends Rows
         $fields[] = Field::tag('wysiwyg')
                 ->name('category.content.body')
                 ->modifyValue(function () {
-                    return $this->query->getContent('category')->term->GetContent('body');
+                    return $this->query->getContent('category')->term->getContent('body');
                 })
                 ->title(trans('dashboard::systems/category.descriptions'));
 

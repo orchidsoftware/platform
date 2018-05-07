@@ -35,7 +35,7 @@ class CategoryListLayout extends Table
                 ->title(trans('dashboard::systems/category.name'))
                 ->setRender(function ($category) {
                     return '<a href="'.route('dashboard.systems.category.edit',
-                        $category->id).'">'.$category->term->GetContent('name').'</a>';
+                        $category->id).'">'.$category->term->getContent('name').'</a>';
                 }),
             TD::name('slug')
                 ->title(trans('dashboard::systems/category.slug'))

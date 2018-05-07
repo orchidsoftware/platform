@@ -10,18 +10,18 @@ class DashboardTest extends TestUnitCase
 {
     public function testIsModelDefault()
     {
-        $class = Dashboard::model('UnknownClass', User::class);
+        $class = Dashboard::modelClass('UnknownClass', User::class);
 
         $default = new User();
 
         $this->assertEquals($class, $default);
     }
 
-    public function testIsModelCustom()
+    public function testIsModelCustomNotFound()
     {
         Dashboard::useModel(User::class, 'MyCustomClass');
 
-        $user = Dashboard::model(User::class);
+        $user = Dashboard::modelClass(User::class);
 
         $this->assertEquals($user, 'MyCustomClass');
     }

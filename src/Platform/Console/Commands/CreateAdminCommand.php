@@ -57,7 +57,7 @@ class CreateAdminCommand extends Command
     public function handle()
     {
         try {
-            $user = Dashboard::model(User::class);
+            $user = Dashboard::modelClass(User::class);
 
             $user->createAdmin(
                 $this->argument('name'),

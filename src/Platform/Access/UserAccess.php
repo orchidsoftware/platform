@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Access;
 
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\Systems\Roles\AddRoleEvent;
@@ -30,7 +31,7 @@ trait UserAccess
      */
     public function roles() : BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Dashboard::model(Role::class), 'role_users', 'user_id', 'role_id');
     }
 
     /**
