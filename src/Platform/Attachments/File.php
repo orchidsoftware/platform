@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Attachments;
 
 use Mimey\MimeTypes;
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Filesystem\FilesystemAdapter;

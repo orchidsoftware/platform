@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class TagsController extends Controller
