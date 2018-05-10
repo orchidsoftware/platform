@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Access;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

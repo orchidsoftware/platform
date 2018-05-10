@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Dashboard;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Press\Builders\TaxonomyBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
