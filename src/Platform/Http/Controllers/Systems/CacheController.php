@@ -26,7 +26,7 @@ class CacheController
             Alert::warning($exception->getMessage());
         }
 
-        return back();
+        return response()->redirectToRoute('dashboard.systems.index');
     }
 
     /**

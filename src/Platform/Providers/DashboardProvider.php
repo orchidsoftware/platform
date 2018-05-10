@@ -8,6 +8,7 @@ use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\PlatformMenuComposer;
+use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class DashboardProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class DashboardProvider extends ServiceProvider
     public function boot(Dashboard $dashboard)
     {
         View::composer('dashboard::layouts.dashboard', PlatformMenuComposer::class);
+        View::composer('dashboard::container.systems.index', SystemMenuComposer::class);
 
         $this->dashboard = $dashboard;
 

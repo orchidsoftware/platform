@@ -10,7 +10,7 @@
         @if($item->children->count() > 0)
             <ol class="dd-list">
                 @include('dashboard::partials.menu.item',[
-                'menu' => $item->children
+                    'menu' => $item->children
                 ])
             </ol>
         @endif
