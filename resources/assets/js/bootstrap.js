@@ -50,10 +50,8 @@ require('croppie');
 require('./modules/datetimepicker');
 require('./modules/leftMenu');
 require('./modules/open-click');
-require('./modules/inputmask');
 
 window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
-
 
 require('./components/attachment');
 require('./components/filemanager');

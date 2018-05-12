@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{App::getLocale()}}">
+<html lang="{{App::getLocale()}}"  data-controller="layouts--html-load">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

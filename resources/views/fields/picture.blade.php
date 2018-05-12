@@ -1,5 +1,5 @@
 @component('dashboard::partials.fields.group',get_defined_vars())
-<div data-controller="picture"
+<div data-controller="fields--picture"
      data-picture-image="{{$attributes['value']}}"
      data-picture-width="{{$width}}"
      data-picture-height="{{$height}}">

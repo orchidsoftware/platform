@@ -2,7 +2,7 @@
 var anchor = (function () {
   'use strict';
 
-  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var isValidId = function (id) {
     return /^[A-Za-z][A-Za-z0-9\-:._]*$/.test(id);
@@ -24,23 +24,23 @@ var anchor = (function () {
       editor.execCommand('mceInsertContent', false, editor.dom.createHTML('a', { id: id }));
     }
   };
-  var $_fisviq81jfjm4jvk = {
+  var $_s489w7xje5o2t20 = {
     isValidId: isValidId,
     getId: getId,
     insert: insert
   };
 
   var insertAnchor = function (editor, newId) {
-    if (!$_fisviq81jfjm4jvk.isValidId(newId)) {
+    if (!$_s489w7xje5o2t20.isValidId(newId)) {
       editor.windowManager.alert('Id should start with a letter, followed only by letters, numbers, dashes, dots, colons or underscores.');
       return true;
     } else {
-      $_fisviq81jfjm4jvk.insert(editor, newId);
+      $_s489w7xje5o2t20.insert(editor, newId);
       return false;
     }
   };
   var open = function (editor) {
-    var currentId = $_fisviq81jfjm4jvk.getId(editor);
+    var currentId = $_s489w7xje5o2t20.getId(editor);
     editor.windowManager.open({
       title: 'Anchor',
       body: {
@@ -58,14 +58,14 @@ var anchor = (function () {
       }
     });
   };
-  var $_chz86780jfjm4jvi = { open: open };
+  var $_1exa757wje5o2t1z = { open: open };
 
   var register = function (editor) {
     editor.addCommand('mceAnchor', function () {
-      $_chz86780jfjm4jvi.open(editor);
+      $_1exa757wje5o2t1z.open(editor);
     });
   };
-  var $_7fhfs37zjfjm4jvh = { register: register };
+  var $_drh6zv7vje5o2t1x = { register: register };
 
   var isAnchorNode = function (node) {
     return !node.attr('href') && (node.attr('id') || node.attr('name')) && !node.firstChild;
@@ -85,7 +85,7 @@ var anchor = (function () {
       editor.serializer.addNodeFilter('a', setContentEditable(null));
     });
   };
-  var $_dzr43782jfjm4jvl = { setup: setup };
+  var $_6vjvi67yje5o2t22 = { setup: setup };
 
   var register$1 = function (editor) {
     editor.addButton('anchor', {
@@ -101,12 +101,12 @@ var anchor = (function () {
       cmd: 'mceAnchor'
     });
   };
-  var $_8v4s4483jfjm4jvm = { register: register$1 };
+  var $_13pa5s7zje5o2t23 = { register: register$1 };
 
-  global.add('anchor', function (editor) {
-    $_dzr43782jfjm4jvl.setup(editor);
-    $_7fhfs37zjfjm4jvh.register(editor);
-    $_8v4s4483jfjm4jvm.register(editor);
+  PluginManager.add('anchor', function (editor) {
+    $_6vjvi67yje5o2t22.setup(editor);
+    $_drh6zv7vje5o2t1x.register(editor);
+    $_13pa5s7zje5o2t23.register(editor);
   });
   function Plugin () {
   }

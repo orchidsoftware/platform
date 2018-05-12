@@ -2,9 +2,9 @@
 var directionality = (function () {
   'use strict';
 
-  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var Tools = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
   var setDir = function (editor, dir) {
     var dom = editor.dom;
@@ -12,7 +12,7 @@ var directionality = (function () {
     var blocks = editor.selection.getSelectedBlocks();
     if (blocks.length) {
       curDir = dom.getAttrib(blocks[0], 'dir');
-      global$1.each(blocks, function (block) {
+      Tools.each(blocks, function (block) {
         if (!dom.getParent(block.parentNode, '*[dir="' + dir + '"]', dom.getRoot())) {
           dom.setAttrib(block, 'dir', curDir !== dir ? dir : null);
         }
@@ -20,21 +20,21 @@ var directionality = (function () {
       editor.nodeChanged();
     }
   };
-  var $_9qn6dvafjfjm4k4j = { setDir: setDir };
+  var $_2bbzqhabje5o2tfw = { setDir: setDir };
 
   var register = function (editor) {
     editor.addCommand('mceDirectionLTR', function () {
-      $_9qn6dvafjfjm4k4j.setDir(editor, 'ltr');
+      $_2bbzqhabje5o2tfw.setDir(editor, 'ltr');
     });
     editor.addCommand('mceDirectionRTL', function () {
-      $_9qn6dvafjfjm4k4j.setDir(editor, 'rtl');
+      $_2bbzqhabje5o2tfw.setDir(editor, 'rtl');
     });
   };
-  var $_9r6iiiaejfjm4k4i = { register: register };
+  var $_bau4ijaaje5o2tfv = { register: register };
 
   var generateSelector = function (dir) {
     var selector = [];
-    global$1.each('h1 h2 h3 h4 h5 h6 div p'.split(' '), function (name) {
+    Tools.each('h1 h2 h3 h4 h5 h6 div p'.split(' '), function (name) {
       selector.push(name + '[dir=' + dir + ']');
     });
     return selector.join(',');
@@ -51,11 +51,11 @@ var directionality = (function () {
       stateSelector: generateSelector('rtl')
     });
   };
-  var $_3wbejoahjfjm4k4l = { register: register$1 };
+  var $_4hit6vadje5o2tfy = { register: register$1 };
 
-  global.add('directionality', function (editor) {
-    $_9r6iiiaejfjm4k4i.register(editor);
-    $_3wbejoahjfjm4k4l.register(editor);
+  PluginManager.add('directionality', function (editor) {
+    $_bau4ijaaje5o2tfv.register(editor);
+    $_4hit6vadje5o2tfy.register(editor);
   });
   function Plugin () {
   }
