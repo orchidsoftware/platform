@@ -7,8 +7,8 @@ namespace Orchid\Platform\Providers;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\PlatformMenuComposer;
 use Orchid\Platform\Http\Composers\SystemMenuComposer;
+use Orchid\Platform\Http\Composers\PlatformMenuComposer;
 
 class DashboardProvider extends ServiceProvider
 {

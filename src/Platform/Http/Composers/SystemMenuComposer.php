@@ -50,7 +50,7 @@ class SystemMenuComposer
                     'class' => 'bg-primary',
                     'data'  => function () {
                         return 7;
-                    }
+                    },
                 ],
             ])
             ->add('MainSystems', [
