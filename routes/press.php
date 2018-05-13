@@ -109,7 +109,7 @@ $this->group([
     $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
     $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
 });
-
+/*
 $this->group([
     'as'     => 'dashboard.systems.media2.',
     'prefix' => 'media2',
@@ -125,3 +125,4 @@ $this->group([
     $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
     $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
 });
+*/

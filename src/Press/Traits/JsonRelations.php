@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Core\Traits;
+namespace Orchid\Press\Traits;
 
 trait JsonRelations
 {

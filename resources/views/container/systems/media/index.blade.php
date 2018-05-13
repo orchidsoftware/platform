@@ -50,7 +50,7 @@
 
     <div class="page-content">
 
-        <div id="filemanager" data-url="{{ route('dashboard.index')}}/systems">
+        <div id="filemanager" data-url="{{ route('dashboard.index')}}/press">
 
 
             <div id="uploadPreview" style="display:none;"></div>
