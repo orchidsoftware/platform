@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{App::getLocale()}}" data-cotroller="layouts--html-load">
+<html lang="{{app()->getLocale()}}" data-cotroller="layouts--html-load">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,7 +54,7 @@
     <div class="login-container bg-white b-l b-l-light">
         <div class="padder-lg m-t-lg">
 
-            <a href="/{{Dashboard::prefix()}}">
+            <a href="{{Dashboard::prefix()}}">
                 <img src="/orchid/img/orchid.svg" alt="logo" data-src="assets/img/logo.png"
                      data-src-retina="assets/img/logo_2x.png" height="22">
             </a>
@@ -65,7 +65,8 @@
             <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
                     <div class="col-sm-3 col-md-2">
-                        <a href="https://orchid.software/"><img alt="ORCHID"
+                        <a href="https://orchid.software/">
+                            <img alt="ORCHID"
                                                                 class="m-t-xs"
                                                                 src="/orchid/img/logo.svg"
                                                                 width="78"

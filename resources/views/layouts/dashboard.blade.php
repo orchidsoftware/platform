@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{App::getLocale()}}"  data-controller="layouts--html-load">
+<html lang="{{app()->getLocale()}}"  data-controller="layouts--html-load">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
     <meta name="application-name" content="ORCHID">
     <meta name="theme-color" content="#ffffff">
 
-    <meta name="turbolinks-root" content="/{{Dashboard::prefix()}}">
+    <meta name="turbolinks-root" content="{{Dashboard::prefix()}}">
     <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
 
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
@@ -103,7 +103,7 @@
                             --}}
 
                             <li class="nav-item">
-                                <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
+                                <a href="{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
 
                                     <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
                                 </a>

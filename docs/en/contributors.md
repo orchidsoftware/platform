@@ -67,7 +67,7 @@ Add the local repository at `composer.json` of the application:
 "repositories": [
     {
         "type": "path",
-        "url": "/home/tabuna/orchid/platform"
+        "url": "./platform"
     }
 ]
 ```

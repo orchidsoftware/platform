@@ -23,7 +23,7 @@ The Menu class is common model of `Eloquent`, that has all its abilities, for ex
 ```php
 namespace Orchid\Press\Models\Menu;
 
-$menu = Menu::where('lang', App::getLocale())
+$menu = Menu::where('lang', app()->getLocale()())
     ->where('parent',0)
     ->where('type', 'footer')
     ->with('children')

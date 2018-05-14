@@ -9,7 +9,6 @@ use Orchid\Press\Models\Post;
 use Orchid\Platform\Forms\Form;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
-use Illuminate\Support\Facades\App;
 use Orchid\Press\Behaviors\Many as PostBehaviors;
 
 class BasePostForm extends Form
@@ -58,7 +57,7 @@ class BasePostForm extends Form
         return view('dashboard::container.posts.modules.base', [
             'author'   => (is_null($post)) ? $post : $post->getUser(),
             'post'     => $post,
-            'language' => App::getLocale(),
+            'language' => app()->getLocale(),
             'locales'  => config('press.locales'),
             'category' => $category,
             'type'     => $type,

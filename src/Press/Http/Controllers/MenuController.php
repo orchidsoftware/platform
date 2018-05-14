@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Orchid\Press\Models\Menu;
 use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\App;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class MenuController extends Controller
@@ -55,7 +54,7 @@ class MenuController extends Controller
      */
     public function show($nameMenu, Request $request)
     {
-        $currentLocale = $request->get('lang', App::getLocale());
+        $currentLocale = $request->get('lang', app()->getLocale();
 
         $menu = Dashboard::model(Menu::class)::where('lang', $currentLocale)
             ->where('parent', 0)
