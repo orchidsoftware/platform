@@ -54,7 +54,7 @@ class MenuController extends Controller
      */
     public function show($nameMenu, Request $request)
     {
-        $currentLocale = $request->get('lang', app()->getLocale();
+        $currentLocale = $request->get('lang', app()->getLocale());
 
         $menu = Dashboard::model(Menu::class)::where('lang', $currentLocale)
             ->where('parent', 0)

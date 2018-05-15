@@ -28,7 +28,7 @@ trait MultiLanguage
         }
 
         $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
-        $fullName = ($locale ?? app()->getLocale().'.'.$field;
+        $fullName = ($locale ?? app()->getLocale()).'.'.$field;
 
         if (array_has($jsonContent, $fullName)) {
             return array_get($jsonContent, $fullName);
