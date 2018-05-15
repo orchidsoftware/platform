@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Forms\Form;
 use Orchid\Press\Models\Term;
+use Orchid\Platform\Forms\Form;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
 use Illuminate\Contracts\View\View;
