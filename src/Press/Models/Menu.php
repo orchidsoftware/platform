@@ -50,7 +50,7 @@ class Menu extends Model
      */
     public function children() : HasMany
     {
-        return $this->hasMany(self::class, 'parent')->orderBy('sort', 'asc');
+        return $this->hasMany(static::class, 'parent')->orderBy('sort', 'asc');
     }
 
     /**
@@ -58,7 +58,7 @@ class Menu extends Model
      */
     public function parent() : HasOne
     {
-        return $this->hasOne(self::class);
+        return $this->hasOne(static::class);
     }
 
     /**
