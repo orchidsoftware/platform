@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Forms\Form;
 use Orchid\Press\Models\Taxonomy;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\App;
 
 class CategoryDescForm extends Form
 {
@@ -65,7 +64,7 @@ class CategoryDescForm extends Form
         ]);
 
         return view('dashboard::container.systems.category.desc', [
-            'language'       => App::getLocale(),
+            'language'       => app()->getLocale(),
             'termTaxonomy'   => $termTaxonomy,
             'locales'        => collect(config('press.locales')),
             'behavior'       => $this->behavior,

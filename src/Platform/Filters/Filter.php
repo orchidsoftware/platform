@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter
@@ -53,7 +52,7 @@ abstract class Filter
     {
         $this->behavior = $behavior;
         $this->request = request();
-        $this->lang = App::getLocale();
+        $this->lang = app()->getLocale();
     }
 
     /**

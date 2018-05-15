@@ -4,7 +4,6 @@ use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Orchid\Press\Models\Post;
 use Orchid\Platform\Models\User;
-use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\App;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
-    $lang = App::getLocale();
+    $lang = app()->getLocale();
 
     $user = User::inRandomOrder()->first()->id;
 

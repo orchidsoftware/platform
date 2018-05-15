@@ -142,7 +142,7 @@ class TD
         }
 
         if (! is_null($column) && $this->locale) {
-            $locale = '.'.App::getLocale().'.';
+            $locale = '.'.app()->getLocale().'.';
             $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
         }
 

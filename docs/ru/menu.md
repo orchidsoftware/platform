@@ -28,7 +28,7 @@ ORCHID включает в себя простой в использовании
 ```php
 namespace Orchid\Press\Models\Menu;
 
-$menu = Menu::where('lang', App::getLocale())
+$menu = Menu::where('lang', app()->getLocale()())
     ->where('parent',0)
     ->where('type', 'footer')
     ->with('children')

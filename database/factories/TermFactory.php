@@ -3,7 +3,6 @@
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Orchid\Press\Models\Term;
-use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\App;
 */
 
 $factory->define(Term::class, function (Faker $faker) {
-    $lang = App::getLocale();
+    $lang = app()->getLocale();
 
     return [
         'slug'       => Str::slug($faker->unique()->sentence($nbWords = 2, $variableNbWords = true)),

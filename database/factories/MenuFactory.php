@@ -3,7 +3,6 @@
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Orchid\Press\Models\Menu;
-use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\App;
 */
 
 $factory->define(Menu::class, function (Faker $faker) {
-    $lang = App::getLocale();
+    $lang = app()->getLocale();
     $MenuTitle = $faker->unique()->word;
 
     $RobotArr = ['answer', 'chapter', 'co-worker', 'colleague', 'contact',

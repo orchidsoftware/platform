@@ -67,7 +67,7 @@ git clone https://github.com/orchidsoftware/platform.git
 "repositories": [
     {
         "type": "path",
-        "url": "/home/tabuna/orchid/platform"
+        "url": "./platform"
     }
 ]
 ```
