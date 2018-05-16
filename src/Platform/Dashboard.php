@@ -33,7 +33,7 @@ class Dashboard
     /**
      * @var Collection
      */
-    private $behaviors;
+    private $entities;
 
     /**
      * JS and CSS resources for implementation in the panel.
@@ -60,7 +60,7 @@ class Dashboard
             'removed' => collect(),
         ]);
         $this->resources = collect();
-        $this->behaviors = collect();
+        $this->entities = collect();
         $this->fields = collect();
     }
 
@@ -108,9 +108,9 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerBehaviors(array $value)
+    public function registerEntities(array $value)
     {
-        $this->behaviors = $this->behaviors->merge($value);
+        $this->entities = $this->entities->merge($value);
 
         return $this;
     }
@@ -166,9 +166,9 @@ class Dashboard
     /**
      * @return Collection
      */
-    public function getBehaviors(): Collection
+    public function getEntities(): Collection
     {
-        $this->behaviors->transform(function ($value) {
+        $this->entities->transform(function ($value) {
             if (! is_object($value)) {
                 $value = new $value();
             }
@@ -176,7 +176,7 @@ class Dashboard
             return $value;
         });
 
-        return $this->behaviors;
+        return $this->entities;
     }
 
     /**

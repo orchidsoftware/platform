@@ -77,7 +77,7 @@
 }
 
 div.mce-fullscreen {
-			z-index: 1500;
+  z-index: 1500;
 }
 
 // SimpleMDE Markdown Editor
@@ -85,18 +85,6 @@ div.mce-fullscreen {
 .editor-toolbar.fullscreen,
 .editor-preview-side {
   z-index : 1300;
-}
-
-.sli {
-  display                : inline-block;
-  font-family            : 'simple-line-icons';
-  speak                  : none;
-  font-style             : normal;
-  font-weight            : normal;
-  font-variant           : normal;
-  text-transform         : none;
-  line-height            : 1;
-  -webkit-font-smoothing : antialiased;
 }
 
 // Datetimepicker
@@ -138,11 +126,15 @@ div.mce-fullscreen {
 
 .admin-wrapper {
 
+  min-height:  calc(100vh - 80px);
+
   .admin-element {
     box-sizing: border-box;
     padding: 20px 20px 18px 30px;
     display: inline-block;
     vertical-align: top;
+    justify-self: center;
+
     h3 {
       margin: 0;
       padding-left: 40px;

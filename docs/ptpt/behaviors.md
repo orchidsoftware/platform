@@ -7,7 +7,7 @@ Os comportamentos são aplicáveis apenas aos modelos 'Post', pois é modelo bas
 Deves descrever os campos que queres e os seus estados, enquanto o CRUD será montado automaticamente.
 Também podes especificar uma validação ou módulos. (Consulta a seção Formulários).
 
-![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
+![Entities](https://orchid.software/img/scheme/entities.jpg)
 
 ## Criar e registrar comportamentos
         
@@ -28,12 +28,12 @@ O comportamento privado deve ser registrado na seção `config/platform.php` na 
 ```php
 //
 'single' => [
-    //App\Behaviors\Single\DemoPage::class,
+    //App\Entities\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Behaviors\Many\DemoPost::class,
+    //App\Entities\Many\DemoPost::class,
 ],
 ```
 
@@ -44,7 +44,7 @@ O tipo é o seguinte:
  ```php
 namespace DummyNamespace;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {

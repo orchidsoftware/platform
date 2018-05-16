@@ -38,5 +38,8 @@
     "tinymce": "^4.7.9",
     "turbolinks": "^5.1",
     "vue": "^2.5.15"
+  },
+  "devDependencies": {
+    "file-loader": "^1.1.11"
   }
 }

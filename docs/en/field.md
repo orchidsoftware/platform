@@ -30,7 +30,7 @@ Field consists of one class with a mandatory `create` method that must implement
 ```
 
 
-Fields and behaviors are defined separately, that allows us to use only a key 
+Fields and entities are defined separately, that allows us to use only a key 
 to access them, for example if we need a `wysiwyg` redactor requested value will be our class. 
 This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one click.
 
@@ -290,7 +290,7 @@ services.google.maps.key
 
 
 
-## Behaviors
+## Entities
 
 Behavior fields may upload a dynamic data which is great if you need connections.
 

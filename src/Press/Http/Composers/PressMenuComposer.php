@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Composers;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Press\Behaviors\Single;
+use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
 {
@@ -30,7 +30,6 @@ class PressMenuComposer
     public function compose()
     {
         $this
-            ->registerMenuSystems($this->dashboard)
             ->registerMenuPost($this->dashboard);
     }
 
@@ -41,7 +40,7 @@ class PressMenuComposer
      */
     protected function registerMenuPost(Dashboard $kernel): self
     {
-        $allPost = $this->dashboard->getBehaviors()
+        $allPost = $this->dashboard->getEntities()
             ->where('display', true)
             ->all();
 
@@ -76,63 +75,6 @@ class PressMenuComposer
                 'show'       => $page->display,
             ]);
         }
-
-        return $this;
-    }
-
-    /**
-     * @param Dashboard $kernel
-     *
-     * @return $this
-     */
-    protected function registerMenuSystems(Dashboard $kernel): self
-    {
-        $kernel->menu
-            ->add('Main', [
-                'slug'       => 'Systems',
-                'icon'       => 'icon-layers',
-                'route'      => '#',
-                'label'      => trans('dashboard::menu.systems'),
-                'childs'     => true,
-                'main'       => true,
-                'active'     => 'dashboard.systems.*',
-                'permission' => 'dashboard.systems',
-                'sort'       => 1000,
-            ])
-            ->add('Systems', [
-                'slug'       => 'section',
-                'icon'       => 'icon-briefcase',
-                'route'      => route('dashboard.systems.category'),
-                'label'      => trans('dashboard::menu.sections'),
-                'permission' => 'dashboard.systems.category',
-                'groupname'  => trans('dashboard::menu.posts Managements'),
-                'sort'       => 2,
-            ])
-            ->add('Systems', [
-                'slug'       => 'menu',
-                'icon'       => 'icon-menu',
-                'route'      => route('dashboard.systems.menu.index'),
-                'label'      => trans('dashboard::menu.menu'),
-                'permission' => 'dashboard.systems.menu',
-                'sort'       => 3,
-                'show'       => count(config('press.menu', [])) > 0,
-            ])
-            ->add('Systems', [
-                'slug'       => 'comment',
-                'icon'       => 'icon-bubbles',
-                'route'      => route('dashboard.systems.comment'),
-                'label'      => trans('dashboard::menu.comments'),
-                'permission' => 'dashboard.systems.comment',
-                'sort'       => 4,
-            ])
-            ->add('Systems', [
-                'slug'       => 'media',
-                'icon'       => 'icon-folder-alt',
-                'route'      => route('dashboard.systems.media.index'),
-                'label'      => trans('dashboard::menu.media'),
-                'permission' => 'dashboard.systems.media',
-                'sort'       => 5,
-            ]);
 
         return $this;
     }

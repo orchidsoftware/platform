@@ -29,7 +29,7 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('SystemsMenu', [
+            ->add('Systems', [
                 'slug'       => 'MainSystems',
                 'icon'       => 'icon-layers',
                 'label'      => trans('dashboard::menu.systems'),
@@ -93,15 +93,15 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemsMenu', [
-                'slug'       => 'SystemCache',
+            ->add('Systems', [
+                'slug'       => 'Cache',
                 'icon'       => 'icon-refresh',
                 'label'      => 'Cache configuration',
                 'active'     => 'dashboard.systems.*',
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemCache', [
+            ->add('Cache', [
                 'slug'       => 'cache:clear',
                 'icon'       => 'icon-refresh',
                 'route'      => route('dashboard.systems.cache', ['action' => 'cache']),
@@ -111,7 +111,7 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemCache', [
+            ->add('Cache', [
                 'slug'       => 'config:cache',
                 'icon'       => 'icon-wrench',
                 'route'      => route('dashboard.systems.cache', ['action' => 'config']),
@@ -121,7 +121,7 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemCache', [
+            ->add('Cache', [
                 'slug'       => 'route:cache',
                 'icon'       => 'icon-directions',
                 'route'      => route('dashboard.systems.cache', ['action' => 'route']),
@@ -131,7 +131,7 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemCache', [
+            ->add('Cache', [
                 'slug'       => 'view:clear',
                 'icon'       => 'icon-monitor',
                 'route'      => route('dashboard.systems.cache', ['action' => 'view']),
@@ -141,7 +141,7 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
             ])
-            ->add('SystemCache', [
+            ->add('Cache', [
                 'slug'       => 'opcache:clear',
                 'icon'       => 'icon-settings',
                 'route'      => route('dashboard.systems.cache', ['action' => 'view']),
@@ -150,6 +150,33 @@ class SystemMenuComposer
                 'active'     => 'dashboard.systems.*',
                 'permission' => 'dashboard.systems',
                 'sort'       => 1000,
+            ])
+            ->add('Systems', [
+                'slug'       => 'Auth',
+                'icon'       => 'icon-lock',
+                'label'      => 'Разделение прав доступа',
+                'active'     => 'dashboard.systems.*',
+                'permission' => 'dashboard.systems',
+                'sort'       => 1000,
+            ])
+            ->add('Auth', [
+                'slug'       => 'users',
+                'icon'       => 'icon-user',
+                'route'      => route('dashboard.systems.users'),
+                'label'      => trans('dashboard::menu.users'),
+                'groupname'  => 'Как получилось, что под блокировки РКН едва не попали «ВКонтакте»',
+                'permission' => 'dashboard.systems.users',
+                'sort'       => 9,
+            ])
+            ->add('Auth', [
+                'slug'       => 'roles',
+                'icon'       => 'icon-lock',
+                'route'      => route('dashboard.systems.roles'),
+                'label'      => trans('dashboard::menu.roles'),
+                'groupname'  => 'Как получилось, что под блокировки РКН едва не попали «ВКонтакте»',
+                'permission' => 'dashboard.systems.roles',
+                'sort'       => 10,
             ]);
+
     }
 }

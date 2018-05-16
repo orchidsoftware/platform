@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Behaviors;
+namespace Orchid\Press\Entities;
 
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;

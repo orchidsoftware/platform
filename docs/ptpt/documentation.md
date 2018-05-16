@@ -41,7 +41,7 @@
 
 <h4 class="text-orchid font-thin">Controle de conteúdo</h4>
 <ul class="toc-links">
-    <li><a href="/en/docs/behaviors">Comportamentos</a></li>
+    <li><a href="/en/docs/entities">Comportamentos</a></li>
     <li><a href="/en/docs/post">Postagens</a></li>
     <li><a href="/en/docs/tags">Etiquetas</a></li>
     <li><a href="/en/docs/comments" title="Work with commentaries in ORCHID">Comentários</a></li>

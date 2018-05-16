@@ -202,12 +202,12 @@ Magaling, ngayon ipapakita natin ang mga tala ng ating mga blog, dito gagamit ta
 php artisan make:manyBehavior Blog
 ```
 
-Sa address na `/app/Core/Behaviors/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
+Sa address na `/app/Core/Entities/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
 
 ```php
-namespace Orchid\Press\Behaviors\Many;
+namespace Orchid\Press\Entities\Many;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
@@ -292,7 +292,7 @@ Pagkatapos ng deskripsyon, makakarehistro ka sa plataporma na `config/platform`
 */
 
 'many' => [
-    Orchid\Press\Behaviors\Many\Blog::class,
+    Orchid\Press\Entities\Many\Blog::class,
 ],
 ```
 

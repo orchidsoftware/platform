@@ -9,7 +9,7 @@ use Orchid\Press\Models\Post;
 use Orchid\Platform\Forms\Form;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
-use Orchid\Press\Behaviors\Many as PostBehaviors;
+use Orchid\Press\Entities\Many as PostEntities;
 
 class BasePostForm extends Form
 {
@@ -32,14 +32,14 @@ class BasePostForm extends Form
     /**
      * Display Base Options.
      *
-     * @param PostBehaviors|null $type
+     * @param PostEntities|null $type
      * @param Post|null          $post
      *
      * @return \Illuminate\Contracts\View\Factory|View
      *
      * @internal param null $type
      */
-    public function get(PostBehaviors $type = null, Post $post = null) : View
+    public function get(PostEntities $type = null, Post $post = null) : View
     {
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();

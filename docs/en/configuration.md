@@ -135,32 +135,32 @@ In field configuration field aliases are used to abstract away from elements use
 
 ```php
 'single' => [
-    Orchid\Press\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Entities\Single\DemoPage::class,
 ],
 ```
 
-Single behaviors is the many behavior type that exists only in one exemplary. 
+Single entities is the many behavior type that exists only in one exemplary. 
 It's a great solution for creation of unique (Non-generic!) website pages.
 
 
-## `Many` behaviors
+## `Many` entities
 
 
 ```php
 'many' => [
-    Orchid\Press\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Entities\Many\DemoPage::class,
 ],
 ```
 
-Many behaviors are used to reduce the time spent on creation of generic data with multiple entries.
+Many entities are used to reduce the time spent on creation of generic data with multiple entries.
 For example if you need to create some kind of catalogs or reference books which have the similar data in them.
 
 
-## Standard behaviors
+## Standard entities
 
 ```php
 'common' => [
-    'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
+    'user'     => Orchid\Platform\Entities\Base\UserBase::class,
     'category' => Orchid\Press\CategoryBase::class,
 ],
 ```

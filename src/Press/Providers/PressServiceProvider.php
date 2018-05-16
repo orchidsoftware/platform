@@ -8,6 +8,7 @@ use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
+use Orchid\Press\Http\Composers\SystemMenuComposer;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -25,10 +26,11 @@ class PressServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
+
         $this->dashboard
-            ->registerBehaviors(config('press.behaviors', []))
+            ->registerEntities(config('press.entities', []))
             ->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsBehaviors())
+            ->registerPermissions($this->registerPermissionsEntities())
             ->registerPermissions($this->registerPermissionsSystems());
 
         $this->registerDatabase()
@@ -36,6 +38,7 @@ class PressServiceProvider extends ServiceProvider
             ->registerProviders();
 
         View::composer('dashboard::layouts.dashboard', PressMenuComposer::class);
+        View::composer('dashboard::container.systems.index', SystemMenuComposer::class);
     }
 
     /**
@@ -105,10 +108,10 @@ class PressServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsBehaviors(): array
+    protected function registerPermissionsEntities(): array
     {
         $posts = $this->dashboard
-            ->getBehaviors()
+            ->getEntities()
             ->where('display', true)
             ->map(function ($post) {
                 return [

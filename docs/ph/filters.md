@@ -72,7 +72,7 @@ Kapag ang hanay ay bakante, gagana ang filter sa bawat kahilingan.
 
 Upang magamit ang filter, kailangan mong itakda ito sa iyong paggalaw na klase.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {

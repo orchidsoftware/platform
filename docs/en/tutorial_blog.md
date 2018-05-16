@@ -205,12 +205,12 @@ Great, let's display our blog posts, to do it we will use or platform's `many po
 php artisan make:manyBehavior Blog
 ```
 
-At the address `/app/Behaviors/Many` the empty `Blog.php` will be created, now let's fill it:
+At the address `/app/Entities/Many` the empty `Blog.php` will be created, now let's fill it:
 
 ```php
-namespace App\Behaviors\Many;
+namespace App\Entities\Many;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
@@ -325,13 +325,13 @@ After that we may register it on the platform `config/platform`
 ```php
 /*
 |--------------------------------------------------------------------------
-| Many Behaviors
+| Many Entities
 |--------------------------------------------------------------------------
 |
 */
 
 'many' => [
-    App\Behaviors\Many\Blog::class,
+    App\Entities\Many\Blog::class,
 ],
 ```
 

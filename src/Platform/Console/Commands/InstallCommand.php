@@ -117,7 +117,7 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('User.php'));
 
         if ($str !== false) {
-            $str = str_replace('extends Authenticatable', "extends \Orchid\Platform\Models\User", $str);
+            $str = str_replace('Illuminate\Foundation\Auth\User', "Orchid\Platform\Models\User", $str);
             file_put_contents(app_path('User.php'), $str);
         }
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Demo;
 
 use Orchid\Platform\Fields\TD;
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;

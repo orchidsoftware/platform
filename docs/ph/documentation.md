@@ -40,7 +40,7 @@
 
 <h4 class="text-orchid font-thin"> Pamamahala sa Nilalaman </h4>
 <ul class="toc-links">
-    <li> <a href="/en/docs/behaviors"> Mga Paggalaw </a> </li>
+    <li> <a href="/en/docs/entities"> Mga Paggalaw </a> </li>
     <li> <a href="/en/docs/post"> Mga Tala </a> </li>
     <li> <a href="/en/docs/tags"> Mga Tag </a> </li>
     <li> <a href="/en/docs/comments" title="Pagtatrabaho sa mga komento sa ORCHID"> Mga Komento </a> </li>

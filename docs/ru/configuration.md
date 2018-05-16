@@ -145,7 +145,7 @@ php artisan make:auth
 
 ```php
 'single' => [
-    Orchid\Press\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Entities\Single\DemoPage::class,
 ],
 ```
 
@@ -158,7 +158,7 @@ php artisan make:auth
 
 ```php
 'many' => [
-    Orchid\Press\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Entities\Many\DemoPage::class,
 ],
 ```
 
@@ -170,7 +170,7 @@ php artisan make:auth
 
 ```php
 'common' => [
-    'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
+    'user'     => Orchid\Platform\Entities\Base\UserBase::class,
     'category' => Orchid\Press\CategoryBase::class,
 ],
 ```

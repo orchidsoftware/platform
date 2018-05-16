@@ -1,24 +1,24 @@
-# Behaviors 
+# Entities 
 ----------
 
 Behavior is the main part of the ORCHID content management system. Rather than generating CRUD for every model, you can select any object under separate type and manage them easily. 
-Behaviors are applicable only to 'Post' based models, as it is base model for typical data.
+Entities are applicable only to 'Post' based models, as it is base model for typical data.
 
 You should describe the fields you want to have and their state, while its CRUD will be assembled automatically.
 Also you can specify a validation or modules. (See Forms section).
 
-![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
+![Entities](https://orchid.software/img/scheme/entities.jpg)
 
 ## Creating and registering behaviours
         
-Follow this procedure to create behaviors:
+Follow this procedure to create entities:
 
 
 ```php
-//Create behaviors for a single entry
+//Create entities for a single entry
 php artisan make:singleBehavior
 
-//Create behaviors for many entries 
+//Create entities for many entries 
 php artisan make:manyBehavior
 ```
 
@@ -28,12 +28,12 @@ Private behavior must be registered at `config/platform.php` in types section:
 ```php
 //
 'single' => [
-    //App\Behaviors\Single\DemoPage::class,
+    //App\Entities\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Behaviors\Many\DemoPost::class,
+    //App\Entities\Many\DemoPost::class,
 ],
 ```
 
@@ -44,7 +44,7 @@ The type is as follows:
  ```php
 namespace DummyNamespace;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {

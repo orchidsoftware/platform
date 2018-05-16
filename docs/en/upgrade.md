@@ -51,9 +51,9 @@ TD::name('appointment_time')
 ```
 
 
-### Behaviors
+### Entities
 
-Many behaviors now don't have a default property:
+Many entities now don't have a default property:
 
 ```php
 /**

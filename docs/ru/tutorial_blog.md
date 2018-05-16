@@ -205,12 +205,12 @@ class MenuWidget extends Widget {
 php artisan make:manyBehavior Blog
 ```
 
-По адресу `/app/Behaviors/Many`, будет создан пустой файл `Blog.php`, давайте наполним его :
+По адресу `/app/Entities/Many`, будет создан пустой файл `Blog.php`, давайте наполним его :
 
 ```php
-namespace App\Behaviors\Many;
+namespace App\Entities\Many;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Fields\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
@@ -325,13 +325,13 @@ class Blog extends Many
 ```php
 /*
 |--------------------------------------------------------------------------
-| Many Behaviors
+| Many Entities
 |--------------------------------------------------------------------------
 |
 */
 
 'many' => [
-    App\Behaviors\Many\Blog::class,
+    App\Entities\Many\Blog::class,
 ],
 ```
 

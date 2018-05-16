@@ -5,12 +5,13 @@ import {Controller} from "stimulus"
 import tinymce from 'tinymce/tinymce'
 
 // A theme is also required
-import 'tinymce/themes/modern/theme';
-import 'tinymce/themes/modern'
+import 'tinymce/themes/modern';
 import 'tinymce/themes/inlite'
 
 
 // Plugins
+
+/*
 import 'tinymce/plugins/advlist'
 import 'tinymce/plugins/anchor'
 import 'tinymce/plugins/autolink'
@@ -54,20 +55,20 @@ import 'tinymce/plugins/toc'
 import 'tinymce/plugins/visualblocks'
 import 'tinymce/plugins/visualchars'
 import 'tinymce/plugins/wordcount'
-
+*/
 
 export default class extends Controller {
 
     connect() {
 
-        //require.context(
-        //    'file?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
-        //    true,
-        //    /.*/
-        //);
+        require.context(
+            'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+            true,
+            /.*/
+        );
 
 
-        tinymce.baseURL = '/orchid/js/tinymce';
+        //tinymce.baseURL = '/orchid/js/tinymce';
 
         let selector = this.element.querySelector('.tinymce').id;
         let input = this.element.querySelector('input');

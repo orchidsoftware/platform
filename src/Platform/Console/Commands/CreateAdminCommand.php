@@ -62,7 +62,7 @@ class CreateAdminCommand extends Command
             $user->createAdmin(
                 $this->argument('name'),
                 $this->argument('email'),
-                bcrypt($this->argument('password'))
+                $this->argument('password')
             );
 
             $this->info('User created successfully.');

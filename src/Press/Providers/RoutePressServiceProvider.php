@@ -57,13 +57,20 @@ class RoutePressServiceProvider extends RouteServiceProvider
         });
 
         Route::bind('page', function ($value) {
-            $page = Dashboard::modelClass(Page::class);
+
+            $model = Dashboard::modelClass(Page::class);
 
             if (is_numeric($value)) {
-                return $page->where('id', $value)->first();
+                $page =  $model->where('id', $value)->first();
+            }else {
+                $page =  $model->where('slug', $value)->first();
             }
 
-            return $page->where('slug', $value)->first();
+            if (is_null($page)) {
+                $model->slug = $value;
+                $page = $model;
+            }
+            return $page;
         });
 
         Route::bind('post', function ($value) {

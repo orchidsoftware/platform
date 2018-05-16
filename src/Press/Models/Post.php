@@ -36,7 +36,7 @@ class Post extends Model
     /**
      * Recording behavior.
      *
-     * @var \Orchid\Press\Behaviors\Many|\Orchid\Press\Behaviors\Single|null
+     * @var \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      */
     protected $behavior = null;
 
@@ -146,7 +146,7 @@ class Post extends Model
      *
      * @throws TypeException
      *
-     * @return \Orchid\Press\Behaviors\Many|\Orchid\Press\Behaviors\Single|null
+     * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      */
     public function getBehaviorObject($slug = null)
     {
@@ -166,7 +166,7 @@ class Post extends Model
      */
     public function getBehavior($slug)
     {
-        $this->behavior = Dashboard::getBehaviors()->where('slug', $slug)->first();
+        $this->behavior = Dashboard::getEntities()->where('slug', $slug)->first();
 
         if (is_null($this->behavior)) {
             throw new TypeException("{$slug} Type is not found");

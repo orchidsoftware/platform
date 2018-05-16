@@ -72,7 +72,7 @@ class QueryFilter extends Filter
 
 Для использования фильтра, необходимо указать его в классе поведения.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {

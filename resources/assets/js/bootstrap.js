@@ -7,8 +7,9 @@ require('popper.js');
 require('jquery-ui-bundle');
 
 require('bootstrap');
-require('bootstrap-tagsinput');
 
+
+require('bootstrap-tagsinput');
 document.addEventListener('turbolinks:load', function() {
   $("input[data-role='tagsinput']").tagsinput('refresh');
 });

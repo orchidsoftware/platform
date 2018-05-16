@@ -1,4 +1,4 @@
-# Behaviors
+# Entities
 ----------
 
 Ang paggalaw ay ang pangunahing bahagi ng pangnilalamang sistema ng pamamahala ng ORCHID, sa halip na paglikha ng CRUD para sa bawat modelo
@@ -8,7 +8,7 @@ mga modelo na nakabase sa 'Post', dahil ito ang basehan sa karaniwang mga datos.
 Kailangan mong ilarawan ang mga field na gusto mong matanggap at kung anong anyo, at ang CRUD nito ay ginawa nito mismo.
 Makakatakda ka rin ng mga pagpapatunay, o mga modyul (Tingnan ang seksyon ng anyo).
 
-![Mga Paggalaw](https://orchid.software/img/scheme/behaviors.jpg)
+![Mga Paggalaw](https://orchid.software/img/scheme/entities.jpg)
 
 ## Paglilikha at pagtatala ng mga paggalaw
 
@@ -29,12 +29,12 @@ Ang sariling paggalaw ay dapat nakarehistro sa `config/platform.php` sa uring se
 ```php
 //
 'single' => [
-    //Orchid\Press\Behaviors\Single\DemoPage::class,
+    //Orchid\Press\Entities\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //Orchid\Press\Behaviors\Many\DemoPost::class,
+    //Orchid\Press\Entities\Many\DemoPost::class,
 ],
 ```
 
@@ -46,7 +46,7 @@ Ang uri ay nagmumukhang ganito:
 ```php
 namespace DummyNamespace;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {

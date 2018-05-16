@@ -70,7 +70,7 @@ A filter will work subject to availability of at least one of the parameters spe
 
 To use a filter you need to specify it at a behavior class.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {
@@ -88,7 +88,7 @@ class MyBehaviorPost extends Many
 }
 ```
 
-> **Note** that you can use same filters for different behaviors.
+> **Note** that you can use same filters for different entities.
 
 
 Filtration can be started by the method `filtersApply`:

@@ -8,7 +8,7 @@
 Вам необходимо описать поля которые хотите получить и в каком виде, а её CRUD построиться сам.
 Так же можно указать валидацию, или модули (См. Раздел формы).
 
-![Behaviors](https://orchid.software/img/scheme/behaviors.jpg)
+![Entities](https://orchid.software/img/scheme/entities.jpg)
 
 ## Создание и регистрация поведений
 
@@ -29,12 +29,12 @@ php artisan make:manyBehavior
 ```php
 //
 'single' => [
-    //App\Behaviors\Single\DemoPage::class,
+    //App\Entities\Single\DemoPage::class,
 ],
 
 //
 'many' => [
-    //App\Behaviors\Many\DemoPost::class,
+    //App\Entities\Many\DemoPost::class,
 ],
 ```
 
@@ -46,7 +46,7 @@ php artisan make:manyBehavior
 ```php
 namespace DummyNamespace;
 
-use Orchid\Press\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {

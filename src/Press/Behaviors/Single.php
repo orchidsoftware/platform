@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Behaviors;
+namespace Orchid\Press\Entities;
 
 abstract class Single
 {

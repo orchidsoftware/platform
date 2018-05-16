@@ -70,7 +70,7 @@ Um filtro irá funcionar sujeito à disponibilidade de pelo menos um dos parâme
 
 Para usar um filtro, precisas especificá-lo numa classe de comportamento.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {

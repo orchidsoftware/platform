@@ -103,7 +103,7 @@
                             --}}
 
                             <li class="nav-item">
-                                <a href="{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
+                                <a href="{{route('dashboard.index')}}" class="navbar-brand nav-link text-lt w-full">
 
                                     <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
                                 </a>

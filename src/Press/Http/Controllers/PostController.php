@@ -12,7 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Press\Behaviors\Many as PostBehavior;
+use Orchid\Press\Entities\Many as PostBehavior;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller

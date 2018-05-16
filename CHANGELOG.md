@@ -110,9 +110,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Upgrade to Bootstrap 4.0
-- Behaviors and Layouts has a separate folder
+- Entities and Layouts has a separate folder
 - Record fields as objects #391
-- Demo "behaviors" are no longer published
+- Demo "entities" are no longer published
 - Access validation does not create multiple database queries
 - Hide forms switching with their small number
 - Changing the menu, no longer changing the recording number
@@ -169,7 +169,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Error 403 to 404
 
 ### Fixed
-- Bug permission for behaviors
+- Bug permission for entities
 - Style for select2
 - Calling relation for new object in template #382
 
@@ -199,8 +199,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Left menu notification
 - New button logout
 - Added markdown fiends
-- Fields picture added stub behaviors
-- Fields SimpleMDE added stub behaviors
+- Fields picture added stub entities
+- Fields SimpleMDE added stub entities
 
 ### Deprecated
 - Deprecated widget Google analytics
