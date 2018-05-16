@@ -177,6 +177,5 @@ class SystemMenuComposer
                 'permission' => 'dashboard.systems.roles',
                 'sort'       => 10,
             ]);
-
     }
 }

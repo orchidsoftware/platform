@@ -26,7 +26,6 @@ class PressServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-
         $this->dashboard
             ->registerEntities(config('press.entities', []))
             ->registerPermissions($this->registerPermissionsMain())
