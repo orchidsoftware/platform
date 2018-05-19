@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
 @section('title','Systems')
 @section('description', 'Global for Systems')
@@ -11,7 +11,7 @@
 
         <div class="admin-wrapper">
              <div class="row">
-                {!! Dashboard::menu()->render('Systems',' dashboard::partials.systems.systemsMenu') !!}
+                {!! Dashboard::menu()->render('Systems',' platform::partials.systems.systemsMenu') !!}
             </div>
         </div>
 

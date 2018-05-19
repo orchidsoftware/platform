@@ -52,7 +52,7 @@
                 </button>
 
                 <!-- brand  -->
-                <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
+                <a href="{{route('platform.index')}}" class="navbar-brand text-lt center">
                     <i class="{{config('platform.logo')}}"></i>
                 </a>
                 <!-- / brand  -->
@@ -103,7 +103,7 @@
                             --}}
 
                             <li class="nav-item">
-                                <a href="{{route('dashboard.index')}}" class="navbar-brand nav-link text-lt w-full">
+                                <a href="{{route('platform.index')}}" class="navbar-brand nav-link text-lt w-full">
 
                                     <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
                                 </a>
@@ -114,24 +114,24 @@
                         </ul>
 
                         <ul class="nav nav-footer-fix">
-                            @if(Auth::user()->hasAccess('dashboard.systems.index'))
+                            @if(Auth::user()->hasAccess('platform.systems.index'))
                                 <li>
-                                    <a href="{{ route('dashboard.systems.index') }}">
+                                    <a href="{{ route('platform.systems.index') }}">
                                         <i class="icon-settings" aria-hidden="true"></i>
-                                        <span>{{trans('dashboard::menu.systems')}}</span>
+                                        <span>{{trans('platform::menu.systems')}}</span>
                                     </a>
                                 </li>
                             @endif
 
                             <li>
-                                <a href="{{ route('dashboard.logout') }}"
+                                <a href="{{ route('platform.logout') }}"
                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                                    dusk="logout-button">
                                     <i class="icon-logout" aria-hidden="true"></i>
-                                    <span>{{trans('dashboard::auth/account.sign_out')}}</span>
+                                    <span>{{trans('platform::auth/account.sign_out')}}</span>
                                 </a>
 
-                                <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}"
+                                <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
                                       method="POST">
                                     @csrf
                                 </form>
@@ -152,8 +152,8 @@
                     <nav class="navi clearfix">
 
                         <div class="nav tab-content flex-column" id="aside-wrap-list">
-                            @include('dashboard::partials.notifications')
-                            {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
+                            @include('platform::partials.notifications')
+                            {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
                         </div>
                     </nav>
                     <!-- nav  -->
@@ -171,7 +171,7 @@
         <div id="content" class="app-content" role="main">
             <div class="app-content-body" id="app-content-body">
 
-                @include('dashboard::partials.alert')
+                @include('platform::partials.alert')
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger m-b-none" role="alert">

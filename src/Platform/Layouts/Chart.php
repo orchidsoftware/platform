@@ -9,7 +9,7 @@ abstract class Chart
     /**
      * @var string
      */
-    public $template = 'dashboard::container.layouts.chart';
+    public $template = 'platform::container.layouts.chart';
 
     /**
      * @var string

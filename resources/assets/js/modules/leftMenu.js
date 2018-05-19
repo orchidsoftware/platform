@@ -13,6 +13,7 @@ document.addEventListener('turbolinks:load', function() {
 
 
 let activeMenu = false;
+
 $('#aside-wrap-list').children('.tab-pane').each(function () {
     if($(this).hasClass('active')){
         activeMenu = true;

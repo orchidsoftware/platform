@@ -19,7 +19,7 @@ class DashboardLoginTest extends TestBrowserCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser
                 ->resize(1920, 1080)
-                ->visitRoute('dashboard.login')
+                ->visitRoute('platform.login')
                 ->assertSee('Login')
                 ->type('email', $user->email)
                 ->type('password', 'password')
@@ -40,10 +40,10 @@ class DashboardLoginTest extends TestBrowserCase
             $browser
                 ->resize(1920, 1080)
                 ->loginAs($user)
-                ->visitRoute('dashboard.index')
+                ->visitRoute('platform.index')
                 ->click('@logout-button')
                 ->assertPathIsNot('/dashboard')
-                ->visitRoute('dashboard.index')
+                ->visitRoute('platform.index')
                 ->assertPathIs('/dashboard/login');
         });
     }

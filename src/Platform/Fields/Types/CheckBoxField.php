@@ -44,7 +44,7 @@ class CheckBoxField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.checkbox';
+    public $view = 'platform::fields.checkbox';
 
     /**
      * Required Attributes.

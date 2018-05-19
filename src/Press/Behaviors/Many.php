@@ -83,7 +83,7 @@ abstract class Many
         $dashboardFilter = $this->getFilters(true);
         $chunk = ceil($dashboardFilter->count() / 4);
 
-        return view('dashboard::container.posts.filter', [
+        return view('platform::container.posts.filter', [
             'filters' => $dashboardFilter,
             'chunk'   => $chunk,
         ]);

@@ -24,8 +24,8 @@ class DashboardProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        View::composer('dashboard::layouts.dashboard', PlatformMenuComposer::class);
-        View::composer('dashboard::container.systems.index', SystemMenuComposer::class);
+        View::composer('platform::layouts.dashboard', PlatformMenuComposer::class);
+        View::composer('platform::container.systems.index', SystemMenuComposer::class);
 
         $this->dashboard = $dashboard;
 
@@ -42,18 +42,18 @@ class DashboardProvider extends ServiceProvider
     protected function registerPermissionsMain(): array
     {
         return [
-            trans('dashboard::permission.main.main') => [
+            trans('platform::permission.main.main') => [
                 [
-                    'slug'        => 'dashboard.index',
-                    'description' => trans('dashboard::permission.main.main'),
+                    'slug'        => 'platform.index',
+                    'description' => trans('platform::permission.main.main'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems',
-                    'description' => trans('dashboard::permission.main.systems'),
+                    'slug'        => 'platform.systems',
+                    'description' => trans('platform::permission.main.systems'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.index',
-                    'description' => trans('dashboard::permission.systems.settings'),
+                    'slug'        => 'platform.systems.index',
+                    'description' => trans('platform::permission.systems.settings'),
                 ],
             ],
         ];
@@ -65,22 +65,22 @@ class DashboardProvider extends ServiceProvider
     protected function registerPermissionsSystems(): array
     {
         return [
-            trans('dashboard::permission.main.systems') => [
+            trans('platform::permission.main.systems') => [
                 [
-                    'slug'        => 'dashboard.systems.roles',
-                    'description' => trans('dashboard::permission.systems.roles'),
+                    'slug'        => 'platform.systems.roles',
+                    'description' => trans('platform::permission.systems.roles'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.users',
-                    'description' => trans('dashboard::permission.systems.users'),
+                    'slug'        => 'platform.systems.users',
+                    'description' => trans('platform::permission.systems.users'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.attachment',
-                    'description' => trans('dashboard::permission.systems.attachment'),
+                    'slug'        => 'platform.systems.attachment',
+                    'description' => trans('platform::permission.systems.attachment'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.media',
-                    'description' => trans('dashboard::permission.systems.media'),
+                    'slug'        => 'platform.systems.media',
+                    'description' => trans('platform::permission.systems.media'),
                 ],
             ],
         ];

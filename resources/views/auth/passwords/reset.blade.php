@@ -1,13 +1,13 @@
-@extends('dashboard::layouts.auth')
+@extends('platform::layouts.auth')
 @section('content')
-    <p class="m-t-lg">{{trans('dashboard::auth/account.password_reset')}}</p>
+    <p class="m-t-lg">{{trans('platform::auth/account.password_reset')}}</p>
     <form class="m-t-md" role="form" method="POST"
-          action="{{ route('dashboard.password.email') }}">
+          action="{{ route('platform.password.email') }}">
         @csrf
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
             <label>Email</label>
             <div class="controls">
-                <input type="email" name="email" placeholder="{{trans('dashboard::auth/account.enter_email')}}"
+                <input type="email" name="email" placeholder="{{trans('platform::auth/account.enter_email')}}"
                        class="form-control" required
                        value="{{ old('email') }}">
                 @if ($errors->has('email'))
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="form-group form-group-default {{ $errors->has('password') ? ' has-error' : '' }}">
-            <label>{{trans('dashboard::auth/account.password')}}</label>
+            <label>{{trans('platform::auth/account.password')}}</label>
             <div class="controls">
                 <input type="password" name="password" placeholder="Password"
                        class="form-control" required>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <button class="btn btn-primary m-t-md" type="submit">
-            <i class="icon-refresh text-xs m-r-xs"></i> {{trans('dashboard::auth/account.password_reset')}}
+            <i class="icon-refresh text-xs m-r-xs"></i> {{trans('platform::auth/account.password_reset')}}
         </button>
     </form>
 @endsection

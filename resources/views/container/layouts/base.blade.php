@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 @section('title',$name)
 @section('description',$description)
 @section('navbar')

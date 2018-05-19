@@ -1,5 +1,5 @@
-@component('dashboard::partials.fields.group',get_defined_vars())
-    <select id="{{$id}}" @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])></select>
+@component('platform::partials.fields.group',get_defined_vars())
+    <select id="{{$id}}" @include('platform::partials.fields.attributes', ['attributes' => $attributes])></select>
 @endcomponent
 
 
@@ -14,7 +14,7 @@
                     cache: true,
                     delay: 250,
                     url: function (params) {
-                        return '{{route('dashboard.systems.widget',Base64Url\Base64Url::encode($handler))}}';
+                        return '{{route('platform.systems.widget',Base64Url\Base64Url::encode($handler))}}';
                     },
                     dataType: 'json'
                 },
@@ -23,7 +23,7 @@
             });
 
             @if(!is_null($value))
-            axios.post('{{route('dashboard.systems.widget',[
+            axios.post('{{route('platform.systems.widget',[
                     'widget' => Base64Url\Base64Url::encode($handler),
                     'key'    => $value
                 ])}}').then(function (response) {

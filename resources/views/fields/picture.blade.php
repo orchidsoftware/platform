@@ -1,4 +1,4 @@
-@component('dashboard::partials.fields.group',get_defined_vars())
+@component('platform::partials.fields.group',get_defined_vars())
 <div data-controller="fields--picture"
      data-picture-image="{{$attributes['value']}}"
      data-picture-width="{{$width}}"
@@ -6,7 +6,7 @@
     <div class="b text-center wrapper-lg picture-actions">
 
         <div class="picture-container m-b-md">
-                <img src="#" class="picture-preview img-fluid img-thumbnail" alt=""/>
+            <img src="#" class="picture-preview img-fluid img-thumbnail" alt=""/>
         </div>
 
         <label class="btn btn-link">
@@ -26,7 +26,7 @@
     <input class="picture-path"
            type="hidden"
            data-target="picture.source"
-           @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
+           @include('platform::partials.fields.attributes', ['attributes' => $attributes])
     >
 
     <div id="picture-crop-modal-{{$lang}}-{{$slug}}" class="modal" role="dialog">

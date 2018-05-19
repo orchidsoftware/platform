@@ -346,7 +346,7 @@ Artisan will create a new file in `app/Http/Controllers/Screens` directiory, and
 Let's add our new screen to the routing file `routes/web.php`:
 
 ```php
-Route::screen('/dashboard/profile', 'Screens\ProfileScreen','dashboard.screens.profile');
+Route::screen('/dashboard/profile', 'Screens\ProfileScreen','platform.screens.profile');
 ```
 
 
@@ -381,7 +381,7 @@ class MenuComposer
         $this->dashboard->menu->add('Main', [
             'slug'   => 'profile',
             'icon'   => 'icon-user',
-            'route'  => route('dashboard.screens.profile'),
+            'route'  => route('platform.screens.profile'),
             'label'  => 'Profile',
             'childs' => false,
             'main'   => true,
@@ -409,7 +409,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('platform::layouts.dashboard', MenuComposer::class);
     }
 
     /**

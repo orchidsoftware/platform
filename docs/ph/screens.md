@@ -191,9 +191,9 @@ public function layout() : array
 
 Makakarehistro ka ng bawat screen gamit ang pamamaraang `screen` mula sa ruta
 ```php
-Route::screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+Route::screen ('/ news', 'NewsList', 'platform.screens.news.list');
 //or
-$route->screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+$route->screen ('/ news', 'NewsList', 'platform.screens.news.list');
 ```
 
 

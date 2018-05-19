@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
@@ -32,16 +32,16 @@
 
         <li>
             <button type="submit"
-                    onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
+                    onclick="window.platform.validateForm('post-form','{{trans('platform::common.alert.validate')}}')"
                     form="post-form"
-                    class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+                    class="btn btn-link"><i class="icon-check"></i> {{trans('platform::common.commands.save')}}
             </button>
         </li>
 
         <li>
             <button type="submit"
                     form="form-post-remove"
-                    class="btn btn-link"><i class="icon-trash"></i> {{trans('dashboard::common.commands.remove')}}
+                    class="btn btn-link"><i class="icon-trash"></i> {{trans('platform::common.commands.remove')}}
             </button>
         </li>
 
@@ -50,7 +50,7 @@
 @section('content')
     <div class="app-content-body app-content-full" id="post" data-post-id="{{$post->id}}">
         <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs  no-gutters" id="post-form" method="post" action="{{route('dashboard.posts.type.update',[
+        <form class="hbox hbox-auto-xs  no-gutters" id="post-form" method="post" action="{{route('platform.posts.type.update',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">
@@ -116,7 +116,7 @@
             @method('PUT')
         </form>
         <!-- /hbox layout  -->
-        <form id="form-post-remove" action="{{route('dashboard.posts.type.destroy',[
+        <form id="form-post-remove" action="{{route('platform.posts.type.destroy',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" method="POST">

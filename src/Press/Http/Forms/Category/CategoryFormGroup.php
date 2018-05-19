@@ -29,8 +29,8 @@ class CategoryFormGroup extends FormGroup
     public function attributes(): array
     {
         return [
-            'name'        => trans('dashboard::systems/category.title'),
-            'description' => trans('dashboard::systems/category.description'),
+            'name'        => trans('platform::systems/category.title'),
+            'description' => trans('platform::systems/category.description'),
         ];
     }
 
@@ -42,7 +42,7 @@ class CategoryFormGroup extends FormGroup
         $behavior = config('press.category');
         $behavior = new $behavior();
 
-        return view('dashboard::container.systems.category.grid', [
+        return view('platform::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
             'behavior' => $behavior,
             'filters'  => collect($behavior->filters()),

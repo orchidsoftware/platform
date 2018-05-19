@@ -17,17 +17,17 @@ $this->domain(config('platform.domain'))->group(function () {
     ], function (\Illuminate\Routing\Router $router) {
         if (config('platform.auth.display', true)) {
             // Authentication Routes...
-            $router->get('login', 'LoginController@showLoginForm')->name('dashboard.login');
-            $router->post('login', 'LoginController@login')->name('dashboard.login.auth');
+            $router->get('login', 'LoginController@showLoginForm')->name('platform.login');
+            $router->post('login', 'LoginController@login')->name('platform.login.auth');
 
             // Password Reset Routes...
             $this->get('password/reset',
-                'ForgotPasswordController@showLinkRequestForm')->name('dashboard.password.request');
-            $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('dashboard.password.email');
-            $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('dashboard.password.reset');
+                'ForgotPasswordController@showLinkRequestForm')->name('platform.password.request');
+            $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('platform.password.email');
+            $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('platform.password.reset');
             $this->post('password/reset', 'ResetPasswordController@reset');
         }
 
-        $router->post('logout', 'LoginController@logout')->name('dashboard.logout');
+        $router->post('logout', 'LoginController@logout')->name('platform.logout');
     });
 });

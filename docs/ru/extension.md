@@ -32,7 +32,7 @@ $this->domain(config('platform.domain'))->group(function () {
 что бы обеспечить единый внешний вид потребуется наследование:
 
 ```php
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
 
 @section('title','title')

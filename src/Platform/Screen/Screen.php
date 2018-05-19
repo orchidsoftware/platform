@@ -103,7 +103,7 @@ abstract class Screen
      */
     public function view()
     {
-        return view('dashboard::container.layouts.base', [
+        return view('platform::container.layouts.base', [
             'name'        => trans($this->name),
             'description' => trans($this->description),
             'arguments'   => $this->arguments,

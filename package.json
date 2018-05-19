@@ -11,21 +11,19 @@
   },
   "dependencies": {
     "axios": "^0.17",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "bootstrap": "^4.0",
+    "bootstrap": "^4.1.1",
     "bootstrap-tagsinput": "^0.7",
     "choices.js": "^3.0.4",
-    "croppie": "^2.6.1",
-    "cross-env": "^5.1.4",
+    "croppie": "^2.6.2",
+    "cross-env": "^5.1.5",
     "dropzone": "^5.4.0",
-    "eonasdan-bootstrap-datetimepicker": "^4.17",
     "frappe-charts": "0.0.8",
     "inputmask": "^3.3",
     "jquery": "^3.3",
     "jquery-ui": "^1.12",
     "jquery-ui-bundle": "^1.11",
-    "laravel-mix": "^2.1.0",
-    "moment": "^2.21.0",
+    "laravel-mix": "^2.1.11",
+    "moment": "^2.22.1",
     "nestable": "^0.2.0",
     "nestable2": "^1.6.0",
     "open-color": "^1.6.3",
@@ -35,11 +33,14 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simplemde": "^1.11",
     "stimulus": "^1.0.0",
-    "tinymce": "^4.7.9",
+    "tinymce": "^4.7.13",
     "turbolinks": "^5.1",
-    "vue": "^2.5.15"
+    "vue": "^2.5.16"
   },
   "devDependencies": {
-    "file-loader": "^1.1.11"
+    "file-loader": "^1.1.11",
+    "exports-loader": "^0.7.0",
+    "imports-loader": "^0.8.0",
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }

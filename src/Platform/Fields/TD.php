@@ -200,7 +200,7 @@ class TD
      */
     public function linkPost(string $text = null)
     {
-        return $this->link('dashboard.posts.type.edit', ['type', 'slug'], $text);
+        return $this->link('platform.posts.type.edit', ['type', 'slug'], $text);
     }
 
     /**
@@ -232,7 +232,7 @@ class TD
                 $text = $datum->getContent($text);
             }
 
-            return view('dashboard::partials.td.link', [
+            return view('platform::partials.td.link', [
                 'route'      => $route,
                 'attributes' => $attributes,
                 'text'       => $text,

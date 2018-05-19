@@ -42,7 +42,7 @@ alert('Message');
 Для отображения в необходимом месте требуется:
 ```html
 <div class="container">
-    @include('dashboard::partials.alert')
+    @include('platform::partials.alert')
     <p>Welcome to my website...</p>
 </div>
 ```

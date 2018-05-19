@@ -19,7 +19,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="submit-modal-{{$key}}"
-                                class="btn btn-primary">{{trans('dashboard::common.apply')}}</button>
+                                class="btn btn-primary">{{trans('platform::common.apply')}}</button>
                     </div>
                 </form>
             </div>

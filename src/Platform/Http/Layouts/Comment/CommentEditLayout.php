@@ -23,13 +23,13 @@ class CommentEditLayout extends Rows
                          ->max(255)
                          ->rows(10)
                          ->required()
-                         ->title(trans('dashboard::systems/comment.content'))
-                         ->help(trans('dashboard::systems/comment.user_comment'));
+                         ->title(trans('platform::systems/comment.content'))
+                         ->help(trans('platform::systems/comment.user_comment'));
 
         $fields[] = Field::tag('checkbox')
                     ->name('comment.approved')
-                    ->title(trans('dashboard::systems/comment.checking'))
-                    ->help(trans('dashboard::systems/comment.show_comment'));
+                    ->title(trans('platform::systems/comment.checking'))
+                    ->help(trans('platform::systems/comment.show_comment'));
 
         return $fields;
     }

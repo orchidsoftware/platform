@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::middlewareGroup('dashboard', [
+        Route::middlewareGroup('platform', [
             AccessMiddleware::class,
         ]);
 
@@ -76,16 +76,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->loadRoutesFrom(realpath(DASHBOARD_PATH.'/routes/dashboard.php'));
-        $this->loadRoutesFrom(realpath(DASHBOARD_PATH.'/routes/auth.php'));
-        $this->loadRoutesFrom(realpath(DASHBOARD_PATH.'/routes/systems.php'));
+        $this->loadRoutesFrom(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
+        $this->loadRoutesFrom(realpath(PLATFORM_PATH.'/routes/auth.php'));
+        $this->loadRoutesFrom(realpath(PLATFORM_PATH.'/routes/systems.php'));
 
-        if (file_exists(base_path('routes/dashboard.php'))) {
+        if (file_exists(base_path('routes/platform.php'))) {
             Route::domain((string) config('platform.domain'))
                 ->prefix(Dashboard::prefix('/'))
                 ->middleware(config('platform.middleware.private'))
                 ->namespace('App\Http\Controllers')
-                ->group(base_path('routes/dashboard.php'));
+                ->group(base_path('routes/platform.php'));
         }
     }
 }

@@ -36,8 +36,8 @@ class PressServiceProvider extends ServiceProvider
             ->registerConfig()
             ->registerProviders();
 
-        View::composer('dashboard::layouts.dashboard', PressMenuComposer::class);
-        View::composer('dashboard::container.systems.index', SystemMenuComposer::class);
+        View::composer('platform::layouts.dashboard', PressMenuComposer::class);
+        View::composer('platform::container.systems.index', SystemMenuComposer::class);
     }
 
     /**
@@ -47,7 +47,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations/press'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/press'));
 
         return $this;
     }
@@ -60,7 +60,7 @@ class PressServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH.'/config/press.php') => config_path('press.php'),
+            realpath(PLATFORM_PATH.'/config/press.php') => config_path('press.php'),
         ]);
 
         return $this;
@@ -95,10 +95,10 @@ class PressServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): array
     {
         return [
-            trans('dashboard::permission.main.main') => [
+            trans('platform::permission.main.main') => [
                 [
-                    'slug'        => 'dashboard.posts',
-                    'description' => trans('dashboard::permission.main.posts'),
+                    'slug'        => 'platform.posts',
+                    'description' => trans('platform::permission.main.posts'),
                 ],
             ],
         ];
@@ -114,13 +114,13 @@ class PressServiceProvider extends ServiceProvider
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                    'slug'        => 'dashboard.posts.type.'.$post->slug,
+                    'slug'        => 'platform.posts.type.'.$post->slug,
                     'description' => $post->name,
                 ];
             });
 
         if ($posts->count() > 0) {
-            $permissions[trans('dashboard::permission.main.posts')] = $posts->toArray();
+            $permissions[trans('platform::permission.main.posts')] = $posts->toArray();
         }
 
         return $permissions ?? [];
@@ -132,22 +132,22 @@ class PressServiceProvider extends ServiceProvider
     protected function registerPermissionsSystems(): array
     {
         return [
-            trans('dashboard::permission.main.systems') => [
+            trans('platform::permission.main.systems') => [
                 [
-                    'slug'        => 'dashboard.systems.menu',
-                    'description' => trans('dashboard::permission.systems.menu'),
+                    'slug'        => 'platform.systems.menu',
+                    'description' => trans('platform::permission.systems.menu'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.category',
-                    'description' => trans('dashboard::permission.systems.category'),
+                    'slug'        => 'platform.systems.category',
+                    'description' => trans('platform::permission.systems.category'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.comment',
-                    'description' => trans('dashboard::permission.systems.comment'),
+                    'slug'        => 'platform.systems.comment',
+                    'description' => trans('platform::permission.systems.comment'),
                 ],
                 [
-                    'slug'        => 'dashboard.systems.media',
-                    'description' => trans('dashboard::permission.systems.media'),
+                    'slug'        => 'platform.systems.media',
+                    'description' => trans('platform::permission.systems.media'),
                 ],
             ],
         ];

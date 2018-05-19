@@ -41,7 +41,7 @@ class StatusFilter extends Filter
      */
     public function display()
     {
-        return view('dashboard::container.posts.filters.status', [
+        return view('platform::container.posts.filters.status', [
             'request'  => $this->request,
             'behavior' => $this->behavior,
         ]);

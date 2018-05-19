@@ -42,7 +42,7 @@ class PasswordField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.password';
+    public $view = 'platform::fields.password';
 
     /**
      * Required Attributes.

@@ -48,19 +48,19 @@ class PressMenuComposer
             'slug'       => 'Posts',
             'icon'       => 'icon-notebook',
             'route'      => '#',
-            'label'      => trans('dashboard::menu.posts'),
+            'label'      => trans('platform::menu.posts'),
             'childs'     => true,
             'main'       => true,
-            'active'     => ['dashboard.posts.*', 'dashboard.pages.*'],
-            'permission' => 'dashboard.posts',
+            'active'     => ['platform.posts.*', 'platform.pages.*'],
+            'permission' => 'platform.posts',
             'sort'       => 100,
             'show'       => count($allPost) > 0,
         ]);
 
         foreach ($allPost as $key => $page) {
-            $route = route('dashboard.posts.type', [$page->slug]);
+            $route = route('platform.posts.type', [$page->slug]);
             if (is_a($page, Single::class)) {
-                $route = route('dashboard.pages.show', [$page->slug]);
+                $route = route('platform.pages.show', [$page->slug]);
             }
 
             $kernel->menu->add('Posts', [
@@ -68,7 +68,7 @@ class PressMenuComposer
                 'icon'       => $page->icon,
                 'route'      => $route,
                 'label'      => $page->name,
-                'permission' => 'dashboard.posts.type.'.$page->slug,
+                'permission' => 'platform.posts.type.'.$page->slug,
                 'sort'       => $key,
                 'groupname'  => $page->groupname,
                 'divider'    => $page->divider,

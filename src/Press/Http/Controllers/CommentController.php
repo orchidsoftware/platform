@@ -24,7 +24,7 @@ class CommentController extends Controller
      */
     public function __construct(CommentFormGroup $form)
     {
-        $this->checkPermission('dashboard.systems.comment');
+        $this->checkPermission('platform.systems.comment');
         $this->form = $form;
     }
 
@@ -46,9 +46,9 @@ class CommentController extends Controller
     {
         $this->form->save($request, $comment);
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.systems.comment.edit', $comment->id);
+        return redirect()->route('platform.systems.comment.edit', $comment->id);
     }
 
     /**
@@ -59,7 +59,7 @@ class CommentController extends Controller
     public function edit(Comment $comment)
     {
         return $this->form
-            ->route('dashboard.systems.comment.update')
+            ->route('platform.systems.comment.update')
             ->slug($comment->id)
             ->method('PUT')
             ->render($comment);
@@ -74,8 +74,8 @@ class CommentController extends Controller
     {
         $this->form->remove($comment);
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.systems.comment');
+        return redirect()->route('platform.systems.comment');
     }
 }

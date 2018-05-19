@@ -29,7 +29,7 @@ Sa kurso ng trabaho, baka kakailanganin mong gumawa ng iyong sariling mga opsyon
 na magbibigay ng pinag-iisang mukha ay mangangailangan ng ganitong pagmamana:
 
 ```php
-@extends ('dashboard::layouts.dashboard')
+@extends ('platform::layouts.dashboard')
 
 
 @section ('titulo', 'titulo')

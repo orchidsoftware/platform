@@ -11,7 +11,7 @@ abstract class Table
     /**
      * @var string
      */
-    public $template = 'dashboard::container.layouts.table';
+    public $template = 'platform::container.layouts.table';
 
     /**
      * @var string
@@ -59,7 +59,7 @@ abstract class Table
         $dashboardFilter = $this->getFilters(true);
         $chunk = ceil($dashboardFilter->count() / 4);
 
-        return view('dashboard::container.layouts.filter', [
+        return view('platform::container.layouts.filter', [
             'filters' => $dashboardFilter,
             'chunk'   => $chunk,
         ]);

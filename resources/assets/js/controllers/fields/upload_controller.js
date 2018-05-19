@@ -27,7 +27,7 @@ export default class Upload extends Controller {
 
     $('#modalUploadAttachment').modal('toggle');
     axios
-        .put(dashboard.prefix(`/systems/files/post/${data.id}`), data)
+        .put(platform.prefix(`/systems/files/post/${data.id}`), data)
         .then();
   }
 
@@ -97,7 +97,7 @@ export default class Upload extends Controller {
         });
 
         axios
-            .post(dashboard.prefix('/systems/files/sort'),{
+            .post(platform.prefix('/systems/files/sort'),{
                 files: items,
             })
             .then();
@@ -113,7 +113,7 @@ export default class Upload extends Controller {
     const loadInfo = this.loadInfo.bind(this)
 
     new Dropzone('.dropzone', {
-      url: dashboard.prefix('/systems/files'),
+      url: platform.prefix('/systems/files'),
       method: 'post',
       uploadMultiple: false,
       parallelUploads: 100,
@@ -188,7 +188,7 @@ export default class Upload extends Controller {
         this.on('removedfile', function (file) {
           $('.files-' + file.data.id).remove();
             axios
-                .delete(dashboard.prefix(`/systems/files/${file.data.id}`),{
+                .delete(platform.prefix(`/systems/files/${file.data.id}`),{
                     storage: $('#post-attachment-dropzone').data('storage'),
                 })
                 .then();

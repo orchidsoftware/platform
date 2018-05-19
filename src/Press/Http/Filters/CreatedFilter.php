@@ -43,7 +43,7 @@ class CreatedFilter extends Filter
      */
     public function display()
     {
-        return view('dashboard::container.posts.filters.created', [
+        return view('platform::container.posts.filters.created', [
             'request' => $this->request,
         ]);
     }

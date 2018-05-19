@@ -25,7 +25,7 @@ class RelationshipField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.relationship';
+    public $view = 'platform::fields.relationship';
 
     /**
      * Required Attributes.

@@ -13,7 +13,7 @@ class SystemController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.systems.index');
+        $this->checkPermission('platform.systems.index');
     }
 
     /**
@@ -21,6 +21,6 @@ class SystemController extends Controller
      */
     public function index()
     {
-        return view('dashboard::container.systems.index');
+        return view('platform::container.systems.index');
     }
 }

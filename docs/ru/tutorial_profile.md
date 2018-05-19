@@ -349,7 +349,7 @@ Artisan создаст файл в директории `app/Http/Controllers/Sc
 Добавим наш новый экран в файл маршрутизации `routes/web.php`:
 
 ```php
-Route::screen('/dashboard/profile', 'Screens\ProfileScreen','dashboard.screens.profile');
+Route::screen('/dashboard/profile', 'Screens\ProfileScreen','platform.screens.profile');
 ```
 
 
@@ -384,7 +384,7 @@ class MenuComposer
         $this->dashboard->menu->add('Main', [
             'slug'   => 'profile',
             'icon'   => 'icon-user',
-            'route'  => route('dashboard.screens.profile'),
+            'route'  => route('platform.screens.profile'),
             'label'  => 'Профиль',
             'childs' => false,
             'main'   => true,
@@ -412,7 +412,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('platform::layouts.dashboard', MenuComposer::class);
     }
 
     /**

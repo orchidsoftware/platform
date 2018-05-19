@@ -37,7 +37,7 @@ class Page extends Single
      *
      * @var null
      */
-    public $groupname = 'dashboard::menu.static pages';
+    public $groupname = 'platform::menu.static pages';
 
     /**
      * Rules Validation.
@@ -125,6 +125,13 @@ class Page extends Single
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            Field::tag('wysiwyg')
+                ->name('body')
+                ->required()
+                ->title('Name Articles')
+                ->help('Article title')
+                ->theme('modern'),
 
             Field::tag('picture')
                 ->name('picture')

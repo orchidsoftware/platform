@@ -35,7 +35,7 @@ class CategoryDescForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::systems/category.display');
+        $this->name = trans('platform::systems/category.display');
 
         $category = config('press.category');
         $this->behavior = (new $category());
@@ -63,7 +63,7 @@ class CategoryDescForm extends Form
             'id' => 0,
         ]);
 
-        return view('dashboard::container.systems.category.desc', [
+        return view('platform::container.systems.category.desc', [
             'language'       => app()->getLocale(),
             'termTaxonomy'   => $termTaxonomy,
             'locales'        => collect(config('press.locales')),

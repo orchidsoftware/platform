@@ -25,7 +25,7 @@ class BasePostForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::post/base.tabs.information');
+        $this->name = trans('platform::post/base.tabs.information');
         parent::__construct($request);
     }
 
@@ -54,7 +54,7 @@ class BasePostForm extends Form
             return $item;
         });
 
-        return view('dashboard::container.posts.modules.base', [
+        return view('platform::container.posts.modules.base', [
             'author'   => (is_null($post)) ? $post : $post->getUser(),
             'post'     => $post,
             'language' => app()->getLocale(),

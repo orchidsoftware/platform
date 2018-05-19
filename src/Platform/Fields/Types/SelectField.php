@@ -25,7 +25,7 @@ class SelectField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.select';
+    public $view = 'platform::fields.select';
 
     /**
      * Default attributes value.

@@ -80,7 +80,7 @@ class Link
      */
     public function build($arguments = null)
     {
-        return view('dashboard::partials.screen.link', [
+        return view('platform::partials.screen.link', [
             'slug'      => $this->slug,
             'name'      => $this->name,
             'method'    => $this->method,

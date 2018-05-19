@@ -3,9 +3,9 @@
 
 
         <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-            <label class="control-label">{{trans('dashboard::systems/users.roles')}}</label>
+            <label class="control-label">{{trans('platform::systems/users.roles')}}</label>
 
-            <select data-placeholder="{{trans('dashboard::systems/users.select_roles')}}" name="roles[]" multiple
+            <select data-placeholder="{{trans('platform::systems/users.select_roles')}}" name="roles[]" multiple
                     class="select2 form-control w-full">
                 @foreach($roles as $role)
                     <option value="{{$role->slug}}" @if($role->active) selected @endif>{{$role->name}}</option>
@@ -21,7 +21,7 @@
             @endif
 
             @php
-                $title=trans('dashboard::permission.main.'.strtolower($name));
+                $title=trans('platform::permission.main.'.strtolower($name));
             @endphp
 
             <div class="line line-dashed b-b line-lg"></div>

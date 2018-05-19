@@ -91,7 +91,7 @@ Buksan ang browser at pumunta sa `http: //localhost: 8000/dashboard`. Kapag ang 
 
 > ** Tandaan: ** Kapag ang iyong runtime ay na-configure sa ibang domain (halimbawa, orchid.loc),
  ang admin na panel ay hindi magagamit, kailangan mong tukuyin ito sa konpigurasyong file na `config/platform.php`
- o sa `.env`. Ginawa nitong magagamit ang admin na panel sa ibang domain o subdomain, bilang halimbawa `dashboard.example.com`.
+ o sa `.env`. Ginawa nitong magagamit ang admin na panel sa ibang domain o subdomain, bilang halimbawa `platform.example.com`.
  
  
 May problema sa instalasyon? Posibleng may isang taong may ganito nang problema https://github.com/orchidsoftware/platform/issues. Kung hindi, makakapagpadala ka ng mensahe o humingi ng [tulong](https://github.com/orchidsoftware/platform/issues).

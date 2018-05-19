@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
 @section('title',$name)
 @section('description',$description)
@@ -6,8 +6,8 @@
 @section('navbar')
     <ul class="nav justify-content-end  v-center" role="tablist">
         <li class="nav-item">
-            <a href="{{ route('dashboard.systems.category.create')}}" class="btn btn-link">
-                <i class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}</a>
+            <a href="{{ route('platform.systems.category.create')}}" class="btn btn-link">
+                <i class="icon-plus"></i> {{trans('platform::common.commands.add')}}</a>
         </li>
     </ul>
 @stop
@@ -19,14 +19,14 @@
 
             @if($category->count() > 0)
 
-                @include('dashboard::container.posts.filter')
+                @include('platform::container.posts.filter')
 
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                            <th>{{trans('dashboard::systems/category.name')}}</th>
+                            <th class="w-xs">{{trans('platform::common.Manage')}}</th>
+                            <th>{{trans('platform::systems/category.name')}}</th>
 
                             @foreach($behavior->grid() as $th)
                                 <th width="{{$th->width}}">{{$th->title}}</th>
@@ -38,7 +38,7 @@
 
                             <tr>
                                 <td class="text-center">
-                                    <a href="{{ route('dashboard.systems.category.edit',$item->id) }}">
+                                    <a href="{{ route('platform.systems.category.edit',$item->id) }}">
                                         <i class="icon-menu"></i>
                                     </a>
                                 </td>
@@ -56,7 +56,7 @@
                             </tr>
 
 
-                            @include('dashboard::partials.systems.categoryItem',[
+                            @include('platform::partials.systems.categoryItem',[
                                 'item' => $item->allChildrenTerm,
                                 'delimiter' => '- '
                             ])
@@ -70,12 +70,12 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <small class="text-muted inline m-t-sm m-b-sm">
-                                {{trans('dashboard::common.show')}} {{($category->currentPage()-1)*$category->perPage()+1}}
+                                {{trans('platform::common.show')}} {{($category->currentPage()-1)*$category->perPage()+1}}
                                 -
-                                {{($category->currentPage()-1)*$category->perPage()+count($category->items())}} {{trans('dashboard::common.of')}} {!! $category->total() !!} {{trans('dashboard::common.elements')}}</small>
+                                {{($category->currentPage()-1)*$category->perPage()+count($category->items())}} {{trans('platform::common.of')}} {!! $category->total() !!} {{trans('platform::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
-                            {!! $category->links('dashboard::partials.pagination') !!}
+                            {!! $category->links('platform::partials.pagination') !!}
                         </div>
                     </div>
                 </footer>
@@ -83,7 +83,7 @@
 
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">{{trans('dashboard::systems/category.not_found')}}</h3>
+                        <h3 class="font-thin">{{trans('platform::systems/category.not_found')}}</h3>
                     </div>
                 </div>
 

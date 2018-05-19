@@ -36,7 +36,7 @@ class MakeWidget extends GeneratorCommand
      */
     protected function getStub()
     {
-        return DASHBOARD_PATH.'/resources/stubs/widget.stub';
+        return PLATFORM_PATH.'/resources/stubs/widget.stub';
     }
 
     /**

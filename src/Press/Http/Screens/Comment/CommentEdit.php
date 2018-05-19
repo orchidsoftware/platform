@@ -19,14 +19,14 @@ class CommentEdit extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/comment.title';
+    public $name = 'platform::systems/comment.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/comment.description';
+    public $description = 'platform::systems/comment.description';
 
     /**
      * Query data.
@@ -50,10 +50,10 @@ class CommentEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('dashboard::common.commands.save'))
+            Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))
+            Link::name(trans('platform::common.commands.remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -86,9 +86,9 @@ class CommentEdit extends Screen
     {
         $comment->fill($request->get('comment'))->save();
 
-        Alert::info(trans('dashboard::systems/comment.Comment was saved'));
+        Alert::info(trans('platform::systems/comment.Comment was saved'));
 
-        return redirect()->route('dashboard.systems.comment');
+        return redirect()->route('platform.systems.comment');
     }
 
     /**
@@ -102,8 +102,8 @@ class CommentEdit extends Screen
     {
         $comment->delete();
 
-        Alert::info(trans('dashboard::systems/comment.Comment was removed'));
+        Alert::info(trans('platform::systems/comment.Comment was removed'));
 
-        return redirect()->route('dashboard.systems.comment');
+        return redirect()->route('platform.systems.comment');
     }
 }

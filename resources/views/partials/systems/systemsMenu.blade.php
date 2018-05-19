@@ -7,7 +7,7 @@
         <div class="line line-dashed b-b line-lg"></div>
         <ul class="list-group no-bg no-borders pull-in auto m-l-lg">
 
-            {!! Dashboard::menu()->render($slug,'dashboard::partials.systems.systemsSubMenu') !!}
+            {!! Dashboard::menu()->render($slug,'platform::partials.systems.systemsSubMenu') !!}
 
         </ul>
     </div>

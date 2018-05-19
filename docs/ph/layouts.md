@@ -63,7 +63,7 @@ class PatientListLayout extends Table
             'last_name' => [
                 'name' => 'Last name',
                 'action' => function ($patient) {
-                    return '<a href = "'. route ('dashboard.clinic.patient.edit',
+                    return '<a href = "'. route ('platform.clinic.patient.edit',
                             $patient->id). '">'. $patient->last_name. '</a>';
                 },
             ],

@@ -27,7 +27,7 @@ class MenuController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.systems.menu');
+        $this->checkPermission('platform.systems.menu');
     }
 
     /**
@@ -38,10 +38,10 @@ class MenuController extends Controller
         $menu = collect(config('press.menu'));
 
         if ($menu->count() === 1) {
-            return redirect()->route('dashboard.systems.menu.show', $menu->keys()->first());
+            return redirect()->route('platform.systems.menu.show', $menu->keys()->first());
         }
 
-        return view('dashboard::container.systems.menu.listing', [
+        return view('platform::container.systems.menu.listing', [
             'menu' => collect(config('press.menu')),
         ]);
     }
@@ -63,7 +63,7 @@ class MenuController extends Controller
             ->with('children')
             ->get();
 
-        return view('dashboard::container.systems.menu.menu', [
+        return view('platform::container.systems.menu.menu', [
             'nameMenu'      => $nameMenu,
             'locales'       => config('press.locales'),
             'currentLocale' => $currentLocale,

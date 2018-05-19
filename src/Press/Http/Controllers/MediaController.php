@@ -26,7 +26,7 @@ class MediaController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.systems.media');
+        $this->checkPermission('platform.systems.media');
         $this->filesystem = config('platform.disks.media', 'public');
     }
 
@@ -35,9 +35,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('dashboard::container.systems.media.index', [
-            'name'        => trans('dashboard::systems/media.title'),
-            'description' => trans('dashboard::systems/media.description'),
+        return view('platform::container.systems.media.index', [
+            'name'        => trans('platform::systems/media.title'),
+            'description' => trans('platform::systems/media.description'),
         ]);
     }
 
@@ -120,11 +120,11 @@ class MediaController extends Controller
         $error = '';
 
         if (Storage::disk($this->filesystem)->exists($new_folder)) {
-            $error = trans('dashboard::systems/media.error_creating_folder');
+            $error = trans('platform::systems/media.error_creating_folder');
         } elseif (Storage::disk($this->filesystem)->makeDirectory($new_folder)) {
             $success = true;
         } else {
-            $error = trans('dashboard::systems/media.error_creating_dir');
+            $error = trans('platform::systems/media.error_creating_dir');
         }
 
         return compact('success', 'error');
@@ -152,11 +152,11 @@ class MediaController extends Controller
 
         if ($type == 'folder') {
             if (! Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
-                $error = trans('dashboard::systems/media.error_deleting_folder');
+                $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
         } elseif (! Storage::disk($this->filesystem)->delete($fileFolder)) {
-            $error = trans('dashboard::systems/media.error_deleting_file');
+            $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
 
@@ -208,10 +208,10 @@ class MediaController extends Controller
             if (Storage::disk($this->filesystem)->move($source, $destination)) {
                 $success = true;
             } else {
-                $error = trans('dashboard::systems/media.error_moving');
+                $error = trans('platform::systems/media.error_moving');
             }
         } else {
-            $error = trans('dashboard::systems/media.error_already_exists');
+            $error = trans('platform::systems/media.error_already_exists');
         }
 
         return compact('success', 'error');
@@ -240,10 +240,10 @@ class MediaController extends Controller
             if (Storage::disk($this->filesystem)->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {
-                $error = trans('dashboard::systems/media.error_moving');
+                $error = trans('platform::systems/media.error_moving');
             }
         } else {
-            $error = trans('dashboard::systems/media.error_may_exist');
+            $error = trans('platform::systems/media.error_may_exist');
         }
 
         return compact('success', 'error');
@@ -261,7 +261,7 @@ class MediaController extends Controller
                 $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
             }
             $success = true;
-            $message = trans('dashboard::systems/media.success_uploaded_file');
+            $message = trans('platform::systems/media.success_uploaded_file');
         } catch (Exception $e) {
             $path = '';
             $success = false;
@@ -280,7 +280,7 @@ class MediaController extends Controller
             return response()->json([
                 'data' => [
                     'status'  => 200,
-                    'message' => trans('dashboard::systems/media.image_removed'),
+                    'message' => trans('platform::systems/media.image_removed'),
                 ],
             ]);
         } catch (Exception $e) {

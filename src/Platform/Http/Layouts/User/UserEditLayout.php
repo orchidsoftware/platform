@@ -24,19 +24,19 @@ class UserEditLayout extends Rows
                 ->name('user.name')
                 ->max(255)
                 ->required()
-                ->title(trans('dashboard::systems/users.name'))
-                ->placeholder(trans('dashboard::systems/users.name')),
+                ->title(trans('platform::systems/users.name'))
+                ->placeholder(trans('platform::systems/users.name')),
 
             Field::tag('input')
                 ->type('email')
                 ->name('user.email')
                 ->required()
-                ->title(trans('dashboard::systems/users.email'))
-                ->placeholder(trans('dashboard::systems/users.email')),
+                ->title(trans('platform::systems/users.email'))
+                ->placeholder(trans('platform::systems/users.email')),
 
             Field::tag('password')
                 ->name('user.password')
-                ->title(trans('dashboard::systems/users.password'))
+                ->title(trans('platform::systems/users.password'))
                 ->placeholder('********'),
         ];
     }

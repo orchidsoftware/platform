@@ -32,7 +32,7 @@ class CategoryMainForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::systems/category.information');
+        $this->name = trans('platform::systems/category.information');
         parent::__construct($request);
     }
 
@@ -58,7 +58,7 @@ class CategoryMainForm extends Form
         ]);
         $category = Category::where('id', '!=', $termTaxonomy->id)->get();
 
-        return view('dashboard::container.systems.category.info', [
+        return view('platform::container.systems.category.info', [
             'category'     => $category,
             'termTaxonomy' => $termTaxonomy,
         ]);

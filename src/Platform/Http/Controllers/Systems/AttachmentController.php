@@ -18,7 +18,7 @@ class AttachmentController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.systems.attachment');
+        $this->checkPermission('platform.systems.attachment');
     }
 
     /**

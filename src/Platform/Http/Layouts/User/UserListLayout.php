@@ -37,13 +37,13 @@ class UserListLayout extends Table
                 ->align('center')
                 ->width('100px')
                 ->sort()
-                ->link('dashboard.systems.users.edit', 'id'),
-            TD::set('name', trans('dashboard::systems/users.name'))
+                ->link('platform.systems.users.edit', 'id'),
+            TD::set('name', trans('platform::systems/users.name'))
                 ->sort()
-                ->link('dashboard.systems.users.edit', 'id', 'name'),
-            TD::set('email', trans('dashboard::systems/users.email'))
+                ->link('platform.systems.users.edit', 'id', 'name'),
+            TD::set('email', trans('platform::systems/users.email'))
                 ->sort(),
-            TD::set('updated_at', trans('dashboard::common.Last edit'))
+            TD::set('updated_at', trans('platform::common.Last edit'))
                 ->sort(),
         ];
     }

@@ -4,8 +4,8 @@
     <div class="dz-message">
         <hr>
         <p><span class="text-2x icon-cloud-upload"></span></p>
-        <p class="font-bold">{{trans('dashboard::post/uploads.title')}}</p>
-        <small>{{trans('dashboard::post/uploads.description')}}</small>
+        <p class="font-bold">{{trans('platform::post/uploads.title')}}</p>
+        <small>{{trans('platform::post/uploads.description')}}</small>
     </div>
 </div>
 
@@ -17,8 +17,8 @@
                 <div class="modal-header clearfix">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h5>{{trans('dashboard::post/uploads.information.title')}}</h5>
-                    <p class="m-b-md">{{trans('dashboard::post/uploads.information.sub_title')}}</p>
+                    <h5>{{trans('platform::post/uploads.information.title')}}</h5>
+                    <p class="m-b-md">{{trans('platform::post/uploads.information.sub_title')}}</p>
                 </div>
                 <div class="modal-body" v-if="active != null">
                     <div class="row justify-content-center">
@@ -26,27 +26,27 @@
                             <div class="wrapper">
 
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/uploads.information.system_name')}}</label>
+                                    <label>{{trans('platform::post/uploads.information.system_name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].name" readonly
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/uploads.information.system_name')}}">
+                                           placeholder="{{trans('platform::post/uploads.information.system_name')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/uploads.information.name')}}</label>
+                                    <label>{{trans('platform::post/uploads.information.name')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].original_name"
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/uploads.information.name')}}">
+                                           placeholder="{{trans('platform::post/uploads.information.name')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/uploads.information.alt')}}</label>
+                                    <label>{{trans('platform::post/uploads.information.alt')}}</label>
                                     <input type="text" class="form-control" v-model="attachment[active].alt"
                                            maxlength="255"
-                                           placeholder="{{trans('dashboard::post/uploads.information.alt')}}">
+                                           placeholder="{{trans('platform::post/uploads.information.alt')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>{{trans('dashboard::post/uploads.information.description')}}</label>
+                                    <label>{{trans('platform::post/uploads.information.description')}}</label>
                                     <textarea class="form-control no-resize" v-model="attachment[active].description"
-                                              placeholder="{{trans('dashboard::post/uploads.information.description')}}"
+                                              placeholder="{{trans('platform::post/uploads.information.description')}}"
                                               maxlength="255"
                                               rows="3"></textarea>
                                 </div>
@@ -58,11 +58,11 @@
                 <div class="modal-footer">
                     <a v-bind:href="attachment[active].url" target="_blank" class="btn btn-link pull-left"><i
                                 class="icon-link"></i>
-                        {{trans('dashboard::post/uploads.information.link')}}
+                        {{trans('platform::post/uploads.information.link')}}
                     </a>
 
                     <button type="button" v-on:click="save"
-                            class="btn btn-default">{{trans('dashboard::common.apply')}}</button>
+                            class="btn btn-default">{{trans('platform::common.apply')}}</button>
                 </div>
             </div>
         </div>

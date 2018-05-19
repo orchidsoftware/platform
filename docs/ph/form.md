@@ -185,7 +185,7 @@ class RoleController extends Controller
     public function create()
     {
         return $this->form
-            ->route('dashboard.systems.roles.update')
+            ->route('platform.systems.roles.update')
             ->method('POST')
             ->render();
     }
@@ -199,7 +199,7 @@ class RoleController extends Controller
     {
         $this->form->save();
 
-        return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
+        return redirect()->route('platform.systems.roles.edit', $request->get('slug'));
     }
 
     /**
@@ -212,7 +212,7 @@ class RoleController extends Controller
     {
         $this->form->save($role);
 
-        return redirect()->route('dashboard.systems.roles.edit', $request->get('slug'));
+        return redirect()->route('platform.systems.roles.edit', $request->get('slug'));
     }
 
     /**
@@ -223,7 +223,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         return $this->form
-            ->route('dashboard.systems.roles.update')
+            ->route('platform.systems.roles.update')
             ->slug($role->slug)
             ->method('PUT')
             ->render($role);
@@ -238,7 +238,7 @@ class RoleController extends Controller
     {
         $this->form->remove($role);
 
-        return redirect()->route('dashboard.systems.roles');
+        return redirect()->route('platform.systems.roles');
     }
 }
 

@@ -42,7 +42,7 @@ class Post extends Many
      *
      * @var null
      */
-    public $groupname = 'dashboard::menu.common posts';
+    public $groupname = 'platform::menu.common posts';
 
     /**
      * Rules Validation.

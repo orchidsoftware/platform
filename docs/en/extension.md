@@ -27,7 +27,7 @@ $this->domain(config('platform.domain'))->group(function () {
 During the work you might need to create your own display variation `(view)`, to provide common appearance you should proceed as follows:
 
 ```php
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
 
 @section('title','title')

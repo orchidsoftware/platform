@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Access\UserAccess;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Access\UserInterface;
-use Orchid\Platform\Traits\MultiLanguage;
-use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Orchid\Platform\Access\UserAccess;
+use Orchid\Platform\Access\UserInterface;
+use Orchid\Platform\Notifications\ResetPassword;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -116,11 +116,19 @@ class User extends Authenticatable implements UserInterface
                 }
             });
 
-        return self::create([
+        $user = self::create([
                 'name'        => $name,
                 'email'       => $email,
                 'password'    => bcrypt($password),
                 'permissions' => $permissions,
         ]);
+
+        $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
+            'title'   => "Welcome {$name}",
+            'message' => 'You can find the latest news of the project on the website',
+            'action'  => 'https://orchid.software/',
+            'type'    => 'info',
+        ]));
+
     }
 }

@@ -14,12 +14,12 @@ $this->domain(config('platform.domain'))->group(function () {
         'middleware' => config('platform.middleware.private'),
         'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
     ], function (\Illuminate\Routing\Router $router) {
-        $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'dashboard.systems.users.edit');
-        $router->screen('users/create', config('platform.screens.users.edit'), 'dashboard.systems.users.create');
-        $router->screen('users', config('platform.screens.users.list'), 'dashboard.systems.users');
-        $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'dashboard.systems.roles.edit');
-        $router->screen('roles/create', config('platform.screens.roles.edit'), 'dashboard.systems.roles.create');
-        $router->screen('roles', config('platform.screens.roles.list'), 'dashboard.systems.roles');
+        $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'platform.systems.users.edit');
+        $router->screen('users/create', config('platform.screens.users.edit'), 'platform.systems.users.create');
+        $router->screen('users', config('platform.screens.users.list'), 'platform.systems.users');
+        $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'platform.systems.roles.edit');
+        $router->screen('roles/create', config('platform.screens.roles.edit'), 'platform.systems.roles.create');
+        $router->screen('roles', config('platform.screens.roles.list'), 'platform.systems.roles');
     });
 
     $this->group([
@@ -28,62 +28,62 @@ $this->domain(config('platform.domain'))->group(function () {
         'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
     ], function (\Illuminate\Routing\Router $router) {
         $router->get('/', [
-            'as'   => 'dashboard.systems.index',
+            'as'   => 'platform.systems.index',
             'uses' => 'SystemController@index',
         ]);
 
         $router->get('cache', [
-            'as'   => 'dashboard.systems.cache',
+            'as'   => 'platform.systems.cache',
             'uses' => 'CacheController@store',
         ]);
 
         $router->post('notification/read', [
-            'as'   => 'dashboard.notification.read',
+            'as'   => 'platform.notification.read',
             'uses' => 'NotificationController@markAllAsRead',
         ]);
 
         $router->post('notification/remove', [
-            'as'   => 'dashboard.notification.remove',
+            'as'   => 'platform.notification.remove',
             'uses' => 'NotificationController@remove',
         ]);
 
         $router->post('files', [
-            'as'   => 'dashboard.systems.files.upload',
+            'as'   => 'platform.systems.files.upload',
             'uses' => 'AttachmentController@upload',
         ]);
 
         $router->post('files/sort', [
-            'as'   => 'dashboard.systems.files.sort',
+            'as'   => 'platform.systems.files.sort',
             'uses' => 'AttachmentController@sort',
         ]);
 
         $router->delete('files/{id}', [
-            'as'   => 'dashboard.systems.files.destroy',
+            'as'   => 'platform.systems.files.destroy',
             'uses' => 'AttachmentController@destroy',
         ]);
 
         $router->get('files/post/{id}', [
-            'as'   => 'dashboard.systems.files.destroy',
+            'as'   => 'platform.systems.files.destroy',
             'uses' => 'AttachmentController@getFilesPost',
         ]);
 
         $router->post('files/get', [
-            'as'   => 'dashboard.systems.files.destroy',
+            'as'   => 'platform.systems.files.destroy',
             'uses' => 'AttachmentController@getFilesByIds',
         ]);
 
         $router->put('files/post/{id}', [
-            'as'   => 'dashboard.systems.files.update',
+            'as'   => 'platform.systems.files.update',
             'uses' => 'AttachmentController@update',
         ]);
 
         $router->get('tags/{tags?}', [
-            'as'   => 'dashboard.systems.tag.search',
+            'as'   => 'platform.systems.tag.search',
             'uses' => 'TagsController@show',
         ]);
 
         $router->post('widget/{widget}/{key?}', [
-            'as'   => 'dashboard.systems.widget',
+            'as'   => 'platform.systems.widget',
             'uses' => 'WidgetController@index',
         ]);
     });

@@ -115,7 +115,7 @@ class Builder
             $group[] = $this->render($field);
         }
 
-        $this->form .= view('dashboard::partials.fields.groups', [
+        $this->form .= view('platform::partials.fields.groups', [
             'cols' => $group ?? [],
         ])->render();
     }

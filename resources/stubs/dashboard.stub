@@ -12,4 +12,4 @@
 */
 
 
-//Route::screen('/dashboard/screen/idea', 'App\Http\Controller\Screens\Idea','dashboard.screens.idea');
+//Route::screen('/dashboard/screen/idea', 'App\Http\Controller\Screens\Idea','platform.screens.idea');

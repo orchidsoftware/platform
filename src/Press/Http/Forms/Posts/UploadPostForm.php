@@ -32,7 +32,7 @@ class UploadPostForm extends Form
      */
     public function __construct($request = null)
     {
-        $this->name = trans('dashboard::post/uploads.tabs.uploads');
+        $this->name = trans('platform::post/uploads.tabs.uploads');
         parent::__construct($request);
     }
 
@@ -46,7 +46,7 @@ class UploadPostForm extends Form
      */
     public function get() : View
     {
-        return view('dashboard::container.posts.modules.upload', ['storage' => $this->storage, 'mime' => $this->mime]);
+        return view('platform::container.posts.modules.upload', ['storage' => $this->storage, 'mime' => $this->mime]);
     }
 
     /**

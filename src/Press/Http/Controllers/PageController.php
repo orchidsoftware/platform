@@ -23,7 +23,7 @@ class PageController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.posts');
+        $this->checkPermission('platform.posts');
         $this->locales = collect(config('press.locales'));
     }
 
@@ -36,9 +36,9 @@ class PageController extends Controller
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('dashboard.posts.type.'.$page->slug);
+        $this->checkPermission('platform.posts.type.'.$page->slug);
 
-        return view('dashboard::container.posts.page', [
+        return view('platform::container.posts.page', [
             'type'    => $page->getBehaviorObject($page->slug),
             'locales' => $this->locales,
             'post'    => $page,
@@ -55,7 +55,7 @@ class PageController extends Controller
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('dashboard.posts.type.'.$page->slug);
+        $this->checkPermission('platform.posts.type.'.$page->slug);
         $type = $page->getBehaviorObject($page->slug);
 
         $page->fill($request->all())->save([
@@ -72,7 +72,7 @@ class PageController extends Controller
             $module->save($type, $page);
         }
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
         return back();
     }

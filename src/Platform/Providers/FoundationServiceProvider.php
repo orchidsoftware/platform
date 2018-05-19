@@ -39,7 +39,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerEloquentFactoriesFrom()
     {
-        $this->app->make(Factory::class)->load(realpath(DASHBOARD_PATH.'/database/factories'));
+        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
 
         return $this;
     }
@@ -51,7 +51,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations/platform'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
 
         return $this;
     }
@@ -63,7 +63,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(realpath(DASHBOARD_PATH.'/resources/lang'), 'dashboard');
+        $this->loadTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang'), 'platform');
 
         return $this;
     }
@@ -76,9 +76,9 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH.'/config/scout.php')    => config_path('scout.php'),
-            realpath(DASHBOARD_PATH.'/config/platform.php') => config_path('platform.php'),
-            realpath(DASHBOARD_PATH.'/config/widget.php')   => config_path('widget.php'),
+            realpath(PLATFORM_PATH.'/config/scout.php')    => config_path('scout.php'),
+            realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
+            realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
         ]);
 
         return $this;
@@ -92,7 +92,7 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerRoute()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH.'/resources/stubs/route.stub') => base_path('routes/dashboard.php'),
+            realpath(PLATFORM_PATH.'/resources/stubs/route.stub') => base_path('routes/platform.php'),
         ]);
 
         return $this;
@@ -105,7 +105,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $this->loadViewsFrom(DASHBOARD_PATH.'/resources/views', 'dashboard');
+        $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
         return $this;
     }
@@ -149,8 +149,8 @@ class FoundationServiceProvider extends ServiceProvider
             });
         }
 
-        if (! defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
+        if (! defined('PLATFORM_PATH')) {
+            define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
     }
 }

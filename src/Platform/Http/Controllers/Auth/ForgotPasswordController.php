@@ -35,6 +35,6 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('dashboard::auth.passwords.email');
+        return view('platform::auth.passwords.email');
     }
 }

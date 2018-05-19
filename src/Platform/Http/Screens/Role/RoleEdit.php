@@ -21,14 +21,14 @@ class RoleEdit extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/roles.title';
+    public $name = 'platform::systems/roles.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/roles.description';
+    public $description = 'platform::systems/roles.description';
 
     /**
      * Query data.
@@ -69,10 +69,10 @@ class RoleEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('dashboard::common.commands.save'))
+            Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))
+            Link::name(trans('platform::common.commands.remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -114,9 +114,9 @@ class RoleEdit extends Screen
         $role->permissions = $permissions ?? [];
         $role->save();
 
-        Alert::info(trans('dashboard::systems/roles.Role was saved'));
+        Alert::info(trans('platform::systems/roles.Role was saved'));
 
-        return redirect()->route('dashboard.systems.roles');
+        return redirect()->route('platform.systems.roles');
     }
 
     /**
@@ -128,8 +128,8 @@ class RoleEdit extends Screen
     {
         $role->delete();
 
-        Alert::info(trans('dashboard::systems/roles.Role was removed'));
+        Alert::info(trans('platform::systems/roles.Role was removed'));
 
-        return redirect()->route('dashboard.systems.roles');
+        return redirect()->route('platform.systems.roles');
     }
 }

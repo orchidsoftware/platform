@@ -36,7 +36,7 @@ class MakeChart extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/chart.stub';
+        return PLATFORM_PATH.'/resources/stubs/chart.stub';
     }
 
     /**

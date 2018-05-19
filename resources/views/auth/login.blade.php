@@ -1,12 +1,12 @@
-@extends('dashboard::layouts.auth')
+@extends('platform::layouts.auth')
 @section('content')
-    <p class="m-t-lg">{{trans('dashboard::auth/account.title')}}</p>
-    <form class="m-t-md" role="form" method="POST" action="{{  route('dashboard.login.auth') }}">
+    <p class="m-t-lg">{{trans('platform::auth/account.title')}}</p>
+    <form class="m-t-md" role="form" method="POST" action="{{  route('platform.login.auth') }}">
         @csrf
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
             <label>Email</label>
             <div class="controls">
-                <input type="email" name="email" placeholder="{{trans('dashboard::auth/account.enter_email')}}"
+                <input type="email" name="email" placeholder="{{trans('platform::auth/account.enter_email')}}"
                        class="form-control" required
                        value="{{ old('email') }}">
                 @if ($errors->has('email'))
@@ -17,10 +17,10 @@
             </div>
         </div>
         <div class="form-group form-group-default {{ $errors->has('password') ? ' has-error' : '' }}">
-            <label>{{trans('dashboard::auth/account.password')}}</label>
+            <label>{{trans('platform::auth/account.password')}}</label>
             <div class="controls">
                 <input type="password" class="form-control" name="password"
-                       placeholder="{{trans('dashboard::auth/account.enter_password')}}" required>
+                       placeholder="{{trans('platform::auth/account.enter_password')}}" required>
                 @if ($errors->has('password'))
                     <span class="form-text text-muted">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -33,17 +33,17 @@
                 <div class="checkbox">
                     <label class="i-checks">
                         <input type="checkbox" checked
-                               name="remember"><i></i> {{trans('dashboard::auth/account.remember_me')}}
+                               name="remember"><i></i> {{trans('platform::auth/account.remember_me')}}
                     </label>
                 </div>
             </div>
             <div class="col-7 text-right">
-                <a href="{{ route('dashboard.password.request') }}"
-                   class="text-primary small">{{trans('dashboard::auth/account.forgot_password')}}</a>
+                <a href="{{ route('platform.password.request') }}"
+                   class="text-primary small">{{trans('platform::auth/account.forgot_password')}}</a>
             </div>
         </div>
         <button class="btn btn-primary m-t-md" type="submit" dusk="login-button">
-            <i class="icon-login text-xs m-r-xs"></i> {{trans('dashboard::auth/account.login')}}
+            <i class="icon-login text-xs m-r-xs"></i> {{trans('platform::auth/account.login')}}
         </button>
     </form>
 @endsection

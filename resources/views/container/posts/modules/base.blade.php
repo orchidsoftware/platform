@@ -1,13 +1,13 @@
 <div class="wrapper-md">
     <div class="form-group">
-        <label>{{trans('dashboard::post/base.semantic_url')}}</label>
+        <label>{{trans('platform::post/base.semantic_url')}}</label>
         <input type='text' class="form-control"
                value="{{$post->slug or ''}}"
-               placeholder="{{trans('dashboard::post/base.semantic_url_unique_name')}}" name="slug">
+               placeholder="{{trans('platform::post/base.semantic_url_unique_name')}}" name="slug">
     </div>
     <div class="line line-dashed b-b line-lg"></div>
     <div class="form-group">
-        <label>{{trans('dashboard::post/base.time_of_publication')}}</label>
+        <label>{{trans('platform::post/base.time_of_publication')}}</label>
         <div class="form-group">
             <input type='text' class="form-control datetimepicker"
                    value="{{$post->publish_at or ''}}"
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label>{{trans('dashboard::post/base.status')}}</label>
+        <label>{{trans('platform::post/base.status')}}</label>
         <select name="status" class="form-control">
             @foreach($type->status() as $key => $value)
                 <option value="{{$key}}"
@@ -30,7 +30,7 @@
 
     @if(!empty($type->views))
         <div class="form-group">
-            <label>{{trans('dashboard::post/base.view')}}</label>
+            <label>{{trans('platform::post/base.view')}}</label>
             <select name="options[view]" class="form-control">
                 @foreach($type->views as $key => $value)
                     <option value="{{$key}}"
@@ -43,11 +43,11 @@
     @endif
 
     <div class="form-group">
-        <label>{{trans('dashboard::post/base.tags')}}</label>
+        <label>{{trans('platform::post/base.tags')}}</label>
         <select class="form-control select2-tags"
                 name="tags[]"
                 multiple="multiple"
-                placeholder="{{trans('dashboard::post/base.generic_tags')}}">
+                placeholder="{{trans('platform::post/base.generic_tags')}}">
             @isset($post)
                 @foreach($post->tags as $tag)
                     <option value="{{$tag->name}}" selected="selected">{{$tag->name}}</option>
@@ -58,8 +58,8 @@
 
     <div class="line line-dashed b-b line-lg"></div>
     <div class="form-group">
-        <label class="control-label">{{trans('dashboard::post/base.show_in_categories')}}</label>
-        <select name="category[]" multiple data-placeholder="{{trans('dashboard::post/base.select_category')}}"
+        <label class="control-label">{{trans('platform::post/base.show_in_categories')}}</label>
+        <select name="category[]" multiple data-placeholder="{{trans('platform::post/base.select_category')}}"
                 class="select2 form-control">
             @foreach($category as  $value)
                 <option value="{{$value->id}}"
@@ -72,13 +72,13 @@
     @isset($author)
         <div class="line line-dashed b-b line-lg"></div>
         <p>
-            {{trans('dashboard::post/base.author')}}: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
+            {{trans('platform::post/base.author')}}: <i title="{{$author->email or ''}}">{{$author->name or ''}}</i>
         </p>
     @endisset
     @isset($post)
         <div class="line line-dashed b-b line-lg"></div>
         <p>
-            {{trans('dashboard::post/base.changed')}}: <span
+            {{trans('platform::post/base.changed')}}: <span
                     title="{{$post->updated_at}}">{{$post->updated_at->diffForHumans()}}</span>
         </p>
     @endisset
@@ -139,7 +139,7 @@
             cache: true,
             ajax: {
                 url: function (params) {
-                    return dashboard.prefix('/systems/tags/' + params.term);
+                    return platform.prefix('/systems/tags/' + params.term);
                 },
                 delay: 250,
                 processResults: function (data, page) {

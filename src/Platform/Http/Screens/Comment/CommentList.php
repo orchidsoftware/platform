@@ -15,14 +15,14 @@ class CommentList extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/comment.title';
+    public $name = 'platform::systems/comment.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/comment.description';
+    public $description = 'platform::systems/comment.description';
 
     /**
      * Query data.

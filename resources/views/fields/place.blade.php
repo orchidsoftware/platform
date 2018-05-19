@@ -1,6 +1,6 @@
 <div class="map-place-{{$name}}-{{$lang}}">
 
-    @component('dashboard::partials.fields.group',get_defined_vars())
+    @component('platform::partials.fields.group',get_defined_vars())
         @php
             if(isset($prefix))
                 $inputname=$prefix.'['.$lang.']'.$name;

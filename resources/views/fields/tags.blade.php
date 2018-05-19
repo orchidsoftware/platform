@@ -1,5 +1,5 @@
-@component('dashboard::partials.fields.group',get_defined_vars())
-	<select @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
+@component('platform::partials.fields.group',get_defined_vars())
+	<select @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
 	@isset($value)
 		@foreach(explode(",",$value) as $tag)
 			<option value="{{$tag}}" selected="selected">{{$tag}}</option>
@@ -34,7 +34,7 @@
             cache: true,
             ajax: {
                 url: function (params) {
-                    return dashboard.prefix('/systems/tags/' + params.term);
+                    return platform.prefix('/systems/tags/' + params.term);
                 },
                 delay: 250,
                 processResults: function (data, page) {

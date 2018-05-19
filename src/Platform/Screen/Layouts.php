@@ -15,10 +15,10 @@ class Layouts
      * @var array
      */
     public $templates = [
-        'tabs'    => 'dashboard::container.layouts.tabs',
-        'columns' => 'dashboard::container.layouts.columns',
-        'modals'  => 'dashboard::container.layouts.modals',
-        'div'     => 'dashboard::container.layouts.div',
+        'tabs'    => 'platform::container.layouts.tabs',
+        'columns' => 'platform::container.layouts.columns',
+        'modals'  => 'platform::container.layouts.modals',
+        'div'     => 'platform::container.layouts.div',
     ];
 
     /**

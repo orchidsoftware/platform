@@ -56,14 +56,14 @@ class CategoryBase
                 ->name('name')
                 ->max(255)
                 ->required()
-                ->title(trans('dashboard::systems/category.fields.name_title'))
-                ->help(trans('dashboard::systems/category.fields.name_help')),
+                ->title(trans('platform::systems/category.fields.name_title'))
+                ->help(trans('platform::systems/category.fields.name_help')),
 
             Field::tag('wysiwyg')
                 ->name('body')
                 ->max(255)
                 ->required()
-                ->title(trans('dashboard::systems/category.fields.body_title')),
+                ->title(trans('platform::systems/category.fields.body_title')),
         ];
     }
 
@@ -73,7 +73,7 @@ class CategoryBase
     public function grid() : array
     {
         return [
-            TD::set('created_at', trans('dashboard::systems/category.date_creation')),
+            TD::set('created_at', trans('platform::systems/category.date_creation')),
         ];
     }
 }

@@ -8,11 +8,11 @@
                @else value="0" @endif>
 
         <div class="form-group">
-            <label class="control-label">{{trans('dashboard::systems/category.parent')}}</label>
+            <label class="control-label">{{trans('platform::systems/category.parent')}}</label>
 
             <select data-placeholder="Select Category" name="parent_id" class="select2 form-control">
 
-                <option value="0">{{trans('dashboard::systems/category.not_parrent')}}</option>
+                <option value="0">{{trans('platform::systems/category.not_parrent')}}</option>
 
                 @foreach($category as  $value)
                     <option value="{{$value->id}}"
@@ -25,7 +25,7 @@
 
 
         <div class="form-group m-t-md">
-            <label class="control-label">{{trans('dashboard::systems/category.slug')}}</label>
+            <label class="control-label">{{trans('platform::systems/category.slug')}}</label>
             <input type="text" name="slug"
                    value="{{!$termTaxonomy->exists ? null : optional($termTaxonomy->term)->slug}}"
                    required class="form-control" placeholder="news">

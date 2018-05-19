@@ -1,4 +1,4 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
@@ -32,9 +32,9 @@
 
         <li class="nav-item">
             <button type="submit"
-                    onclick="window.dashboard.validateForm('post-form','{{trans('dashboard::common.alert.validate')}}')"
+                    onclick="window.platform.validateForm('post-form','{{trans('platform::common.alert.validate')}}')"
                     form="post-form"
-                    class="btn btn-link"><i class="icon-check"></i> {{trans('dashboard::common.commands.save')}}
+                    class="btn btn-link"><i class="icon-check"></i> {{trans('platform::common.commands.save')}}
             </button>
         </li>
 
@@ -44,7 +44,7 @@
     <div class="app-content-body app-content-full" id="post">
         <!-- hbox layout  -->
         <form class="hbox hbox-auto-xs no-gutters" id="post-form" method="post"
-              action="{{route('dashboard.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
+              action="{{route('platform.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
             <!-- column  -->
                 <div class="hbox-col lter b-r">

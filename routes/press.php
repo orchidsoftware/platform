@@ -10,37 +10,37 @@
 */
 
 $this->post('posts/restore/{id?}', [
-    'as'   => 'dashboard.posts.restore',
+    'as'   => 'platform.posts.restore',
     'uses' => 'PostController@restore',
 ]);
 
 $this->get('posts/{type}/create', [
-    'as'   => 'dashboard.posts.type.create',
+    'as'   => 'platform.posts.type.create',
     'uses' => 'PostController@create',
 ]);
 
 $this->get('posts/{type}/{post}/edit', [
-    'as'   => 'dashboard.posts.type.edit',
+    'as'   => 'platform.posts.type.edit',
     'uses' => 'PostController@edit',
 ]);
 
 $this->get('posts/{type}/{post?}', [
-    'as'   => 'dashboard.posts.type',
+    'as'   => 'platform.posts.type',
     'uses' => 'PostController@index',
 ]);
 
 $this->post('posts/{type}', [
-    'as'   => 'dashboard.posts.type.store',
+    'as'   => 'platform.posts.type.store',
     'uses' => 'PostController@store',
 ]);
 
 $this->put('posts/{type}/{post?}', [
-    'as'   => 'dashboard.posts.type.update',
+    'as'   => 'platform.posts.type.update',
     'uses' => 'PostController@update',
 ]);
 
 $this->delete('posts/{type}/{post?}', [
-    'as'   => 'dashboard.posts.type.destroy',
+    'as'   => 'platform.posts.type.destroy',
     'uses' => 'PostController@destroy',
 ]);
 
@@ -49,12 +49,12 @@ $this->resource('category', 'CategoryController', [
         'index', 'create', 'edit', 'update', 'store', 'destroy',
     ],
     'names' => [
-        'index'   => 'dashboard.systems.category',
-        'create'  => 'dashboard.systems.category.create',
-        'edit'    => 'dashboard.systems.category.edit',
-        'update'  => 'dashboard.systems.category.update',
-        'store'   => 'dashboard.systems.category.store',
-        'destroy' => 'dashboard.systems.category.destroy',
+        'index'   => 'platform.systems.category',
+        'create'  => 'platform.systems.category.create',
+        'edit'    => 'platform.systems.category.edit',
+        'update'  => 'platform.systems.category.update',
+        'store'   => 'platform.systems.category.store',
+        'destroy' => 'platform.systems.category.destroy',
     ],
 ]);
 
@@ -63,12 +63,12 @@ $this->resource('comment', 'CommentController', [
         'index', 'create', 'edit', 'update', 'store', 'destroy',
     ],
     'names' => [
-        'index'   => 'dashboard.systems.comment',
-        'create'  => 'dashboard.systems.comment.create',
-        'edit'    => 'dashboard.systems.comment.edit',
-        'update'  => 'dashboard.systems.comment.update',
-        'store'   => 'dashboard.systems.comment.store',
-        'destroy' => 'dashboard.systems.comment.destroy',
+        'index'   => 'platform.systems.comment',
+        'create'  => 'platform.systems.comment.create',
+        'edit'    => 'platform.systems.comment.edit',
+        'update'  => 'platform.systems.comment.update',
+        'store'   => 'platform.systems.comment.store',
+        'destroy' => 'platform.systems.comment.destroy',
     ],
 ]);
 
@@ -77,25 +77,25 @@ $this->resource('menu', 'MenuController', [
         'index', 'show', 'update', 'destroy',
     ],
     'names' => [
-        'index'   => 'dashboard.systems.menu.index',
-        'show'    => 'dashboard.systems.menu.show',
-        'update'  => 'dashboard.systems.menu.update',
-        'destroy' => 'dashboard.systems.menu.destroy',
+        'index'   => 'platform.systems.menu.index',
+        'show'    => 'platform.systems.menu.show',
+        'update'  => 'platform.systems.menu.update',
+        'destroy' => 'platform.systems.menu.destroy',
     ],
 ]);
 
 $this->get('page/{page}', [
-    'as'   => 'dashboard.pages.show',
+    'as'   => 'platform.pages.show',
     'uses' => 'PageController@show',
 ]);
 
 $this->put('page/{page}', [
-    'as'   => 'dashboard.pages.update',
+    'as'   => 'platform.pages.update',
     'uses' => 'PageController@update',
 ]);
 
 $this->group([
-    'as'     => 'dashboard.systems.media.',
+    'as'     => 'platform.systems.media.',
     'prefix' => 'media',
 ], function () {
     $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
@@ -109,20 +109,3 @@ $this->group([
     $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
     $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
 });
-/*
-$this->group([
-    'as'     => 'dashboard.systems.media2.',
-    'prefix' => 'media2',
-], function () {
-    $this->get('/', ['uses' => 'Media2Controller@index', 'as' => 'index']);
-    $this->post('files', ['uses' => 'Media2Controller@files', 'as' => 'files']);
-    $this->post('new_folder', ['uses' => 'Media2Controller@newFolder', 'as' => 'newFolder']);
-    $this->post('delete_file_folder',
-        ['uses' => 'Media2Controller@deleteFileFolder', 'as' => 'deleteFileFolder']);
-    $this->post('directories', ['uses' => 'Media2Controller@getAllDirs', 'as' => 'getAllDirs']);
-    $this->post('move_file', ['uses' => 'Media2Controller@moveFile', 'as' => 'moveFile']);
-    $this->post('rename_file', ['uses' => 'Media2Controller@renameFile', 'as' => 'renameFile']);
-    $this->post('upload', ['uses' => 'Media2Controller@upload', 'as' => 'upload']);
-    $this->post('remove', ['uses' => 'Media2Controller@remove', 'as' => 'remove']);
-});
-*/

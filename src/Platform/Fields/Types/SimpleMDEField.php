@@ -44,7 +44,7 @@ class SimpleMDEField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.simplemde';
+    public $view = 'platform::fields.simplemde';
 
     /**
      * Required Attributes.

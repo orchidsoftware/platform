@@ -16,7 +16,7 @@ class LabelField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.label';
+    public $view = 'platform::fields.label';
 
     /**
      * Required Attributes.

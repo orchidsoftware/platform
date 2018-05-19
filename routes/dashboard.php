@@ -16,7 +16,7 @@ $this->domain(config('platform.domain'))->group(function () {
         'namespace'  => 'Orchid\Platform\Http\Controllers',
     ], function (\Illuminate\Routing\Router $router) {
         $router->get('/', [
-            'as'   => 'dashboard.index',
+            'as'   => 'platform.index',
             'uses' => 'DashboardController@index',
         ]);
     });

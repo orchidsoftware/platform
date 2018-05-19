@@ -49,7 +49,7 @@ class UpdateWidget extends Widget
             return $this->getStatus();
         });
 
-        return view('dashboard::widgets.update', [
+        return view('platform::widgets.update', [
             'status' => $status,
         ]);
     }

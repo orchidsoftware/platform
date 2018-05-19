@@ -29,7 +29,7 @@ $this->domain(config('platform.domain'))->group(function () {
 Durante o trabalho tu poderás precisar de criar a tua própria variação de exibição `(view)`, para fornecer uma aparência comum deves proceder da seguinte maneira:
 
 ```php
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
 
 @section('title','title')

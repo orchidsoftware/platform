@@ -18,8 +18,8 @@
 'label'      => 'Название',
 'childs'     => 'Может ли пункт иметь дочерние элементы true/false',
 'main'       => 'Является ли пункт главным true/false',
-'active'     => 'На каких страницах меню должно быть активным /dashboard.mymenu.*',
-'permission' => 'Какими правами должен обладать пользователь /dashboard.mymenu',
+'active'     => 'На каких страницах меню должно быть активным /platform.mymenu.*',
+'permission' => 'Какими правами должен обладать пользователь /platform.mymenu',
 'sort'       => 'Сортировка элементов 1/2/3/4',
 'show'       => 'Условия показа true/false',
 ```
@@ -60,8 +60,8 @@ class AppServiceProvider extends ServiceProvider
             'label'      => 'My menu',
             'childs'     => true,
             'main'       => true,
-            //'active'     => 'dashboard.mymenu.*',
-            //'permission' => 'dashboard.mymenu',
+            //'active'     => 'platform.mymenu.*',
+            //'permission' => 'platform.mymenu',
             'badge'      => [
                 'class' => 'bg-primary',
                 'data' => function(){
@@ -255,7 +255,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('platform::layouts.dashboard', MenuComposer::class);
     }
 
     /**
@@ -280,5 +280,5 @@ class AppServiceProvider extends ServiceProvider
 название группы которую нужно отобразить и название шаблона который будет строить визуальное отображение.
 
 ```php
-{!! Dashboard::menu()->render('Main','dashboard::partials.leftMainMenu') !!}
+{!! Dashboard::menu()->render('Main','platform::partials.leftMainMenu') !!}
 ```

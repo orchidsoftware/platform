@@ -36,7 +36,7 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return DASHBOARD_PATH.'/resources/stubs/screen.stub';
+        return PLATFORM_PATH.'/resources/stubs/screen.stub';
     }
 
     /**

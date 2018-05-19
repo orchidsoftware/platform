@@ -13,27 +13,27 @@ const { mix } = require('laravel-mix');
 
 mix.setPublicPath('public');
 
-
+/*
 mix.webpackConfig({
     module: {
         loaders: [
             {
                 test: require.resolve('tinymce/tinymce'),
-                loaders: [
-                    'imports?this=>window',
-                    'exports?window.tinymce'
+                use: [
+                    'imports-loader?this=>window',
+                    'exports-loader?window.tinymce',
                 ]
             },
             {
                 test: /tinymce\/(themes|plugins|skins)\//,
-                loaders: [
-                    'imports?this=>window'
+                use: [
+                    'imports-loader?this=>window'
                 ]
-            }
+            },
         ]
     }
 });
-
+*/
 
 if (!mix.inProduction()) {
   mix

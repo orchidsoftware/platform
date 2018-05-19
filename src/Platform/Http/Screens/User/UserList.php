@@ -16,14 +16,14 @@ class UserList extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/users.title';
+    public $name = 'platform::systems/users.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/users.description';
+    public $description = 'platform::systems/users.description';
 
     /**
      * Query data.
@@ -47,7 +47,7 @@ class UserList extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('dashboard::common.commands.add'))
+            Link::name(trans('platform::common.commands.add'))
                 ->icon('icon-plus')
                 ->method('create'),
         ];
@@ -70,6 +70,6 @@ class UserList extends Screen
      */
     public function create()
     {
-        return redirect()->route('dashboard.systems.users.create');
+        return redirect()->route('platform.systems.users.create');
     }
 }

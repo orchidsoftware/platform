@@ -43,7 +43,7 @@ class DateTimerField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.datetime';
+    public $view = 'platform::fields.datetime';
 
     /**
      * Default attributes value.

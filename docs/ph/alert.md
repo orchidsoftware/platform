@@ -42,7 +42,7 @@ Kapag ginamit, maraming mga key ang mai-install sa sesyon:
 Upang ipakita sa kinakailangang lokasyon:
 ```html
 <div class = "container">
-    @include ('dashboard::partials.alert')
+    @include ('platform::partials.alert')
     <p> Maligayang pagdating sa aking websayt ... </ p>
 </ div>
 ```

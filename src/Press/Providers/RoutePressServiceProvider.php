@@ -95,6 +95,6 @@ class RoutePressServiceProvider extends RouteServiceProvider
             ->prefix(Dashboard::prefix('/press'))
             ->middleware(config('platform.middleware.private'))
             ->namespace('Orchid\Press\Http\Controllers')
-            ->group(realpath(DASHBOARD_PATH.'/routes/press.php'));
+            ->group(realpath(PLATFORM_PATH.'/routes/press.php'));
     }
 }

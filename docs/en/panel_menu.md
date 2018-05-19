@@ -18,8 +18,8 @@ Properties:
 'label'      => 'Name',
 'childs'     => 'Item may contain children true/false',
 'main'       => 'Item is main true/false',
-'active'     => 'Pages this menu must be active on /dashboard.mymenu.*',
-'permission' => 'Rights user must have /dashboard.mymenu',
+'active'     => 'Pages this menu must be active on /platform.mymenu.*',
+'permission' => 'Rights user must have /platform.mymenu',
 'sort'       => 'Element sorting 1/2/3/4',
 'show'       => 'Must be shown true/false',
 ```
@@ -60,8 +60,8 @@ class AppServiceProvider extends ServiceProvider
             'label'      => 'My menu',
             'childs'     => true,
             'main'       => true,
-            //'active'     => 'dashboard.mymenu.*',
-            //'permission' => 'dashboard.mymenu',
+            //'active'     => 'platform.mymenu.*',
+            //'permission' => 'platform.mymenu',
             'badge'      => [
                 'class' => 'bg-primary',
                 'data' => function(){
@@ -255,7 +255,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('platform::layouts.dashboard', MenuComposer::class);
     }
 
     /**
@@ -280,5 +280,5 @@ To call a menu rendering in template you may use a `Dashbord` facade passing it 
 a name of group that must be displayed and a name of rendering template.
 
 ```php
-{!! Dashboard::menu()->render('Main','dashboard::partials.leftMainMenu') !!}
+{!! Dashboard::menu()->render('Main','platform::partials.leftMainMenu') !!}
 ```

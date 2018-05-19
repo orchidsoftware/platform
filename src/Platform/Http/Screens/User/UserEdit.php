@@ -23,14 +23,14 @@ class UserEdit extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/users.title';
+    public $name = 'platform::systems/users.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/users.description';
+    public $description = 'platform::systems/users.description';
 
     /**
      * Query data.
@@ -84,10 +84,10 @@ class UserEdit extends Screen
     {
         return [
             Link::name('назад')->link(redirect()->back()->getTargetUrl()),
-            Link::name(trans('dashboard::common.commands.save'))
+            Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('dashboard::common.commands.remove'))
+            Link::name(trans('platform::common.commands.remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -145,9 +145,9 @@ class UserEdit extends Screen
         $roles = Role::whereIn('slug', $request->get('roles', []))->get();
         $user->replaceRoles($roles);
 
-        Alert::info(trans('dashboard::systems/users.User was saved'));
+        Alert::info(trans('platform::systems/users.User was saved'));
 
-        return redirect()->route('dashboard.systems.users');
+        return redirect()->route('platform.systems.users');
     }
 
     /**
@@ -161,8 +161,8 @@ class UserEdit extends Screen
 
         $user->delete();
 
-        Alert::info(trans('dashboard::systems/users.User was removed'));
+        Alert::info(trans('platform::systems/users.User was removed'));
 
-        return redirect()->route('dashboard.systems.users');
+        return redirect()->route('platform.systems.users');
     }
 }

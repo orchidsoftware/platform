@@ -5,8 +5,8 @@ import {Controller} from "stimulus"
 import tinymce from 'tinymce/tinymce'
 
 // A theme is also required
-import 'tinymce/themes/modern';
-import 'tinymce/themes/inlite'
+//import 'tinymce/themes/modern';
+//import 'tinymce/themes/inlite'
 
 
 // Plugins
@@ -61,14 +61,15 @@ export default class extends Controller {
 
     connect() {
 
-        require.context(
-            'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
-            true,
-            /.*/
-        );
+
+        //require.context(
+        //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+        //    true,
+        //    /.*/
+        //);
 
 
-        //tinymce.baseURL = '/orchid/js/tinymce';
+        tinymce.baseURL = '/orchid/js/tinymce';
 
         let selector = this.element.querySelector('.tinymce').id;
         let input = this.element.querySelector('input');
@@ -113,7 +114,7 @@ export default class extends Controller {
                 data.append('file', blobInfo.blob());
 
                 axios
-                    .post(dashboard.prefix('/systems/files'), data)
+                    .post(platform.prefix('/systems/files'), data)
                     .then(function (response) {
                         success(`/storage/${response.data.path}${response.data.name}.${response.data.extension}`);
                     })

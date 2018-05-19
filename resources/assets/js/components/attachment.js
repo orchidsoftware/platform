@@ -26,14 +26,14 @@ document.addEventListener('turbolinks:load', () => {
                 $('#modalAttachment').modal('toggle');
 
                 axios
-                    .put(dashboard.prefix(`/systems/files/post/${data.id}`), data)
+                    .put(platform.prefix(`/systems/files/post/${data.id}`), data)
                     .then();
             },
         },
     });
 
     new Dropzone('.dropzone', {
-        url: dashboard.prefix('/systems/files'),
+        url: platform.prefix('/systems/files'),
         method: 'post',
         uploadMultiple: false,
         parallelUploads: 100,
@@ -80,7 +80,7 @@ document.addEventListener('turbolinks:load', () => {
 
 
                 axios
-                    .get(dashboard.prefix(`/systems/files/post/${id}`))
+                    .get(platform.prefix(`/systems/files/post/${id}`))
                     .then(response => {
 
                         const images = response.data;
@@ -120,7 +120,7 @@ document.addEventListener('turbolinks:load', () => {
                 $(`.files-${data.id}`).remove();
 
                 axios
-                    .delete(dashboard.prefix(`/systems/files/${data.id}`),{
+                    .delete(platform.prefix(`/systems/files/${data.id}`),{
                         storage: $('#post-attachment-dropzone').data('storage'),
                     })
                     .then();
@@ -155,7 +155,7 @@ document.addEventListener('turbolinks:load', () => {
 
 
             axios
-                .post(dashboard.prefix('/systems/files/sort'),{
+                .post(platform.prefix('/systems/files/sort'),{
                     files: items,
                 })
                 .then();

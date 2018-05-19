@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryFormGroup $form)
     {
-        $this->checkPermission('dashboard.systems.category');
+        $this->checkPermission('platform.systems.category');
         $this->form = $form;
     }
 
@@ -42,7 +42,7 @@ class CategoryController extends Controller
     public function create()
     {
         return $this->form
-            ->route('dashboard.systems.category.store')
+            ->route('platform.systems.category.store')
             ->method('POST')
             ->render();
     }
@@ -57,7 +57,7 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
         return back();
     }
@@ -80,7 +80,7 @@ class CategoryController extends Controller
     public function edit(Taxonomy $termTaxonomy)
     {
         return $this->form
-            ->route('dashboard.systems.category.update')
+            ->route('platform.systems.category.update')
             ->slug($termTaxonomy->id)
             ->method('PUT')
             ->render($termTaxonomy);
@@ -96,7 +96,7 @@ class CategoryController extends Controller
     {
         $this->form->save($request, $termTaxonomy);
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
         return back();
     }
@@ -111,8 +111,8 @@ class CategoryController extends Controller
     {
         $this->form->remove($request, $termTaxonomy);
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.systems.category');
+        return redirect()->route('platform.systems.category');
     }
 }

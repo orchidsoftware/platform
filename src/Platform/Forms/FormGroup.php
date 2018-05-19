@@ -39,7 +39,7 @@ abstract class FormGroup
      *
      * @var
      */
-    public $view = 'dashboard::layouts.form.group';
+    public $view = 'platform::layouts.form.group';
 
     /**
      * @var

@@ -44,7 +44,7 @@ class UploadField extends Field
     /**
      * @var string
      */
-    public $view = 'dashboard::fields.upload';
+    public $view = 'platform::fields.upload';
 
     /**
      * Required Attributes.

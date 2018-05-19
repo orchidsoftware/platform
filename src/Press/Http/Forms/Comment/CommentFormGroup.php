@@ -24,8 +24,8 @@ class CommentFormGroup extends FormGroup
     public function attributes() : array
     {
         return [
-            'name'        => trans('dashboard::systems/comment.title'),
-            'description' => trans('dashboard::systems/comment.description'),
+            'name'        => trans('platform::systems/comment.title'),
+            'description' => trans('platform::systems/comment.description'),
         ];
     }
 
@@ -40,7 +40,7 @@ class CommentFormGroup extends FormGroup
             },
         ])->latest()->paginate();
 
-        return view('dashboard::container.systems.comment.grid', [
+        return view('platform::container.systems.comment.grid', [
             'comments' => $comments,
         ]);
     }

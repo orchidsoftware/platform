@@ -86,8 +86,8 @@ trait Structure
     public function status()
     {
         return [
-            'publish' => trans('dashboard::post/base.status_list.publish'),
-            'draft'   => trans('dashboard::post/base.status_list.draft'),
+            'publish' => trans('platform::post/base.status_list.publish'),
+            'draft'   => trans('platform::post/base.status_list.draft'),
         ];
     }
 

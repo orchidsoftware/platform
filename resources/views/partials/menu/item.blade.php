@@ -9,7 +9,7 @@
         <div class="edit icon-pencil"></div>
         @if($item->children->count() > 0)
             <ol class="dd-list">
-                @include('dashboard::partials.menu.item',[
+                @include('platform::partials.menu.item',[
                     'menu' => $item->children
                 ])
             </ol>

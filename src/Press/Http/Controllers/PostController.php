@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->checkPermission('dashboard.posts');
+        $this->checkPermission('platform.posts');
         $this->locales = collect(config('press.locales'));
     }
 
@@ -38,9 +38,9 @@ class PostController extends Controller
      */
     public function index(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
 
-        return view('dashboard::container.posts.main', $type->generateGrid());
+        return view('platform::container.posts.main', $type->generateGrid());
     }
 
     /**
@@ -50,11 +50,11 @@ class PostController extends Controller
      */
     public function create(PostBehavior $type) : View
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
-        return view('dashboard::container.posts.create', [
+        return view('platform::container.posts.create', [
             'type'    => $type,
             'locales' => $locales,
         ]);
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
         $this->validate($request, $type->rules());
 
         $post->fill($request->all())->fill([
@@ -95,9 +95,9 @@ class PostController extends Controller
             $module->save($type, $post);
         }
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.posts.type', [
+        return redirect()->route('platform.posts.type', [
             'type' => $post->type,
             'slug' => $post->id,
         ]);
@@ -113,11 +113,11 @@ class PostController extends Controller
      */
     public function edit(PostBehavior $type, Post $post) : View
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
 
         $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
 
-        return view('dashboard::container.posts.edit', [
+        return view('platform::container.posts.edit', [
             'type'    => $type,
             'locales' => $locales,
             'post'    => $post,
@@ -135,7 +135,7 @@ class PostController extends Controller
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
@@ -165,9 +165,9 @@ class PostController extends Controller
             $module->save($type, $post);
         }
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.posts.type', [
+        return redirect()->route('platform.posts.type', [
             'type' => $post->type,
             'slug' => $post->id,
         ]);
@@ -186,17 +186,17 @@ class PostController extends Controller
      */
     public function destroy(PostBehavior $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission('dashboard.posts.type.'.$type->slug);
+        $this->checkPermission('platform.posts.type.'.$type->slug);
 
         $id = $post->id;
         $post->delete();
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.posts.type', [
+        return redirect()->route('platform.posts.type', [
             'type'    => $type->slug,
         ])->with([
-            'restore' => route('dashboard.posts.restore', $id),
+            'restore' => route('platform.posts.restore', $id),
         ]);
     }
 
@@ -210,9 +210,9 @@ class PostController extends Controller
         $post = Post::onlyTrashed()->find($id);
         $post->restore();
 
-        Alert::success(trans('dashboard::common.alert.success'));
+        Alert::success(trans('platform::common.alert.success'));
 
-        return redirect()->route('dashboard.posts.type', [
+        return redirect()->route('platform.posts.type', [
             'type' => $post->type,
             'slug' => $post->id,
        ]);

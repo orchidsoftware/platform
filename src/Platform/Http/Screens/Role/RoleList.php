@@ -16,14 +16,14 @@ class RoleList extends Screen
      *
      * @var string
      */
-    public $name = 'dashboard::systems/roles.title';
+    public $name = 'platform::systems/roles.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'dashboard::systems/roles.description';
+    public $description = 'platform::systems/roles.description';
 
     /**
      * Query data.
@@ -45,7 +45,7 @@ class RoleList extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('dashboard::common.commands.add'))
+            Link::name(trans('platform::common.commands.add'))
                 ->icon('icon-plus')
                 ->method('create'),
         ];
@@ -68,6 +68,6 @@ class RoleList extends Screen
      */
     public function create()
     {
-        return redirect()->route('dashboard.systems.roles.create');
+        return redirect()->route('platform.systems.roles.create');
     }
 }

@@ -29,7 +29,7 @@
 
 
                             @isset($th->filter)
-                                @includeIf("dashboard::partials.filters.{$th->filter}",[
+                                @includeIf("platform::partials.filters.{$th->filter}",[
                                     'th' => $th
                                 ])
                             @endisset
@@ -60,13 +60,13 @@
             <footer class="card-footer col">
                 <div class="row">
                     <div class="col-sm-5">
-                        <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}}
+                        <small class="text-muted inline m-t-sm m-b-sm">{{trans('platform::common.show')}}
                             {{($form['data']->currentPage()-1)*$form['data']->perPage()+1}}
                             -{{($form['data']->currentPage()-1)*$form['data']->perPage()+count($form['data']->items())}}
-                            {{trans('dashboard::common.of')}} {{$form['data']->total()}} {{trans('dashboard::common.elements')}}</small>
+                            {{trans('platform::common.of')}} {{$form['data']->total()}} {{trans('platform::common.elements')}}</small>
                     </div>
                     <div class="col-sm-7 text-right text-center-xs">
-                        {!! $form['data']->appends(request()->except(['page','_token']))->links('dashboard::partials.pagination') !!}
+                        {!! $form['data']->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
                     </div>
                 </div>
             </footer>
@@ -76,9 +76,9 @@
 
         <div class="jumbotron text-center bg-white not-found">
             <div>
-                <h3 class="font-thin">{{trans('dashboard::systems/roles.not_found')}}</h3>
-                <a href="{{ route('dashboard.systems.roles.create')}}"
-                   class="btn btn-link">{{trans('dashboard::systems/roles.create')}}</a>
+                <h3 class="font-thin">{{trans('platform::systems/roles.not_found')}}</h3>
+                <a href="{{ route('platform.systems.roles.create')}}"
+                   class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
             </div>
         </div>
 

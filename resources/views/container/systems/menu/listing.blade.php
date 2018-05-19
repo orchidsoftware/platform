@@ -1,7 +1,7 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 
-@section('title',trans('dashboard::systems/menu.title'))
-@section('description',trans('dashboard::systems/menu.description'))
+@section('title',trans('platform::systems/menu.title'))
+@section('description',trans('platform::systems/menu.description'))
 
 @section('content')
 
@@ -14,10 +14,10 @@
                 <div class="card-body row no-gutter">
                 @if($menu->count() > 0)
 
-                    <h4 class="font-thin mt-4">{{trans('dashboard::systems/menu.description')}}</h4>
+                    <h4 class="font-thin mt-4">{{trans('platform::systems/menu.description')}}</h4>
                     <div class="list-group list-group-flush text-left col-md-12">
                         @foreach ($menu as $key => $value)
-                                <a href="{{ route('dashboard.systems.menu.show',$key) }}" class="list-group-item list-group-item-action">{{ $value }}</a>
+                                <a href="{{ route('platform.systems.menu.show',$key) }}" class="list-group-item list-group-item-action">{{ $value }}</a>
                         @endforeach
 
                     </div>
@@ -26,7 +26,7 @@
 
                     <div class="jumbotron text-center bg-white not-found">
                         <div>
-                            <h3 class="font-thin">{{trans('dashboard::systems/menu.not_found')}}</h3>
+                            <h3 class="font-thin">{{trans('platform::systems/menu.not_found')}}</h3>
                         </div>
                     </div>
 

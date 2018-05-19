@@ -10,8 +10,8 @@
      aria-labelledby="notise-tab">
 
     @if(count($notifications) > 0)
-        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('dashboard::common.notifications')}}
-            <form action="{{route('dashboard.notification.read')}}"
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('platform::common.notifications')}}
+            <form action="{{route('platform.notification.read')}}"
                   method="post"
                   id="clear-notications-form"
                   class="pull-right">
@@ -42,7 +42,7 @@
     @empty
 
         <div class="v-center" style="height: 80vh;">
-            <h5 class="text-center w-full text-muted font-thin">{{trans('dashboard::common.no_notifications')}}</h5>
+            <h5 class="text-center w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</h5>
         </div>
 
     @endforelse

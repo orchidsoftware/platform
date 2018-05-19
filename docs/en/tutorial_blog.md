@@ -515,7 +515,7 @@ Well, there's a little left to do: create views for all the data to do so we cre
 @endsection
 ```
 
-The new function (not present in Laravel) is provided here, the `getContent`, it returns the values we set as inputs in our dashboard.
+The new function (not present in Laravel) is provided here, the `getContent`, it returns the values we set as inputs in our platform.
 
 
 

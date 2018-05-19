@@ -62,7 +62,7 @@ class PatientListLayout extends Table
             TD::name('last_name')
                 ->title('Last name')
                 ->setRender(function ($patient) {
-                    return '<a href="' . route('dashboard.clinic.patient.edit',
+                    return '<a href="' . route('platform.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
                 }),
 

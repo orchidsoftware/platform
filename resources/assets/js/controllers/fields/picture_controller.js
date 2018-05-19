@@ -77,7 +77,7 @@ export default class extends Controller {
             data.append('storage', 'public');
 
             let element = this.element;
-            axios.post(dashboard.prefix('/systems/files'), data)
+            axios.post(platform.prefix('/systems/files'), data)
                 .then(function (response) {
 
                     let image = `/storage/${response.data.path}${response.data.name}.${response.data.extension}`;

@@ -1,11 +1,11 @@
-@extends('dashboard::layouts.dashboard')
+@extends('platform::layouts.dashboard')
 @section('title',$name)
 @section('description',$description)
 @section('navbar')
     <div class="text-right">
         <div class="btn-group" role="group">
-            <a href="{{ route('dashboard.systems.roles.create')}}" class="btn btn-link">
-                <i class="icon-plus"></i> {{trans('dashboard::common.commands.add')}}
+            <a href="{{ route('platform.systems.roles.create')}}" class="btn btn-link">
+                <i class="icon-plus"></i> {{trans('platform::common.commands.add')}}
             </a>
         </div>
     </div>
@@ -19,17 +19,17 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th class="w-xs">{{trans('dashboard::common.Manage')}}</th>
-                            <th>{{trans('dashboard::systems/roles.name')}}</th>
-                            <th>{{trans('dashboard::systems/roles.slug')}}</th>
-                            <th>{{trans('dashboard::common.Last edit')}}</th>
+                            <th class="w-xs">{{trans('platform::common.Manage')}}</th>
+                            <th>{{trans('platform::systems/roles.name')}}</th>
+                            <th>{{trans('platform::systems/roles.slug')}}</th>
+                            <th>{{trans('platform::common.Last edit')}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($roles as $role)
                             <tr>
                                 <td class="text-center">
-                                    <a href="{{ route('dashboard.systems.roles.edit',$role->slug) }}">
+                                    <a href="{{ route('platform.systems.roles.edit',$role->slug) }}">
                                         <i class="icon-menu"></i>
                                     </a>
                                 </td>
@@ -45,23 +45,23 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <small class="text-muted inline m-t-sm m-b-sm">
-                                {{trans('dashboard::common.show')}} {{($roles->currentPage()-1)*$roles->perPage()+1}} -
+                                {{trans('platform::common.show')}} {{($roles->currentPage()-1)*$roles->perPage()+1}} -
                                 {{($roles->currentPage()-1)*$roles->perPage()+count($roles->items())}}
-                                {{trans('dashboard::common.of')}}
+                                {{trans('platform::common.of')}}
                                 {!! $roles->total() !!}
-                                {{trans('dashboard::common.elements')}}</small>
+                                {{trans('platform::common.elements')}}</small>
                         </div>
                         <div class="col-sm-7 text-right text-center-xs">
-                            {!! $roles->links('dashboard::partials.pagination') !!}
+                            {!! $roles->links('platform::partials.pagination') !!}
                         </div>
                     </div>
                 </footer>
             @else
                 <div class="jumbotron text-center bg-white not-found">
                     <div>
-                        <h3 class="font-thin">{{trans('dashboard::systems/roles.not_found')}}</h3>
-                        <a href="{{ route('dashboard.systems.roles.create')}}"
-                           class="btn btn-link">{{trans('dashboard::systems/roles.create')}}</a>
+                        <h3 class="font-thin">{{trans('platform::systems/roles.not_found')}}</h3>
+                        <a href="{{ route('platform.systems.roles.create')}}"
+                           class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
                     </div>
                 </div>
             @endif
