@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Access\UserAccess;
-use Orchid\Platform\Access\UserInterface;
-use Orchid\Platform\Notifications\ResetPassword;
-use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Platform\Access\UserAccess;
+use Orchid\Platform\Traits\FilterTrait;
+use Illuminate\Notifications\Notifiable;
+use Orchid\Platform\Access\UserInterface;
+use Orchid\Platform\Traits\MultiLanguage;
+use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -129,6 +129,5 @@ class User extends Authenticatable implements UserInterface
             'action'  => 'https://orchid.software/',
             'type'    => 'info',
         ]));
-
     }
 }
