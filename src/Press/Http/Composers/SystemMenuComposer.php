@@ -71,6 +71,7 @@ class SystemMenuComposer
                     'class' => 'bg-primary',
                     'data'  => function () {
                         $count = Dashboard::model(Comment::class)::where('approved', 0)->count();
+
                         return $count ? $count : null;
                     },
                 ],
