@@ -152,7 +152,7 @@
                     <nav class="navi clearfix">
 
                         <div class="nav tab-content flex-column" id="aside-wrap-list">
-                            @include('platform::partials.notifications')
+                            @yield('aside', View::make('platform::partials.notifications'))
                             {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
                         </div>
                     </nav>
