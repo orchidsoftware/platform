@@ -38,6 +38,11 @@ $this->domain(config('platform.domain'))->group(function () {
 @section('title','title')
 @section('description', 'description')
 
+@section('aside')
+    <div>
+    </div>
+@endsection
+
 @section('content')
 
     <div>

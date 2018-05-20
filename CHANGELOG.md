@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added ability to change the logo [354](https://github.com/orchidsoftware/platform/issues/354)
 - New command for easy installation `orchid:install` [622](https://github.com/orchidsoftware/platform/issues/622)
 - User routes for dashboard
+- Custom templates for the sidebar [631](https://github.com/orchidsoftware/platform/issues/631)
 
 ### Deprecated
 - TD::name and TD::title use TD::set
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Test migration pgsql to sqlite
 - User routes for dashboard
 - The package was divided into several internal structures (Platform & Press) [634](https://github.com/orchidsoftware/platform/issues/634)
+- Rename 'dashboard' to 'platform'
 
 ### Fixed
 - Require to required
