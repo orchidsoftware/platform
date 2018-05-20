@@ -101,11 +101,17 @@ export default class extends Controller {
             image_caption: true,
             image_title: true,
             image_class_list: [
-                {title: 'None', value: ''},
-                {title: 'Responsive', value: 'img-fluid'},
+                {
+                    title: 'None',
+                    value: ''
+                },
+                {
+                    title: 'Responsive',
+                    value: 'img-fluid'
+                },
             ],
             setup: function (element) {
-                element.on('change', function() {
+                element.on('change', function () {
                     $(input).val(element.getContent());
                 });
             },
@@ -125,7 +131,7 @@ export default class extends Controller {
         });
     };
 
-    disconnect(){
+    disconnect() {
         tinymce.remove(`#${this.element.querySelector('.tinymce').id}`);
     }
 }

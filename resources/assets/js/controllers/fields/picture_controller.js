@@ -2,7 +2,10 @@ import {Controller} from "stimulus";
 
 export default class extends Controller {
 
-    static targets = ["source", "upload"];
+    static targets = [
+        "source",
+        "upload"
+    ];
 
     /**
      *

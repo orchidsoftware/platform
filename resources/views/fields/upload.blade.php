@@ -33,30 +33,30 @@
 
                   <div class="form-group">
                     <label>{{trans('platform::post/uploads.information.system_name')}}</label>
-                    <input type="text" class="form-control" data-target="upload.attachment_name" readonly maxlength="255" placeholder="{{trans('platform::post/uploads.information.system_name')}}">
+                    <input type="text" class="form-control" data-target="upload.name" readonly maxlength="255" placeholder="{{trans('platform::post/uploads.information.system_name')}}">
                   </div>
                   <div class="form-group">
                     <label>{{trans('platform::post/uploads.information.name')}}</label>
-                    <input type="text" class="form-control" data-target="upload.attachment_original_name" maxlength="255" placeholder="{{trans('platform::post/uploads.information.name')}}">
+                    <input type="text" class="form-control" data-target="upload.original_name" maxlength="255" placeholder="{{trans('platform::post/uploads.information.name')}}">
                   </div>
                   <div class="form-group">
                     <label>{{trans('platform::post/uploads.information.alt')}}</label>
-                    <input type="text" class="form-control" data-target="upload.attachment_alt" maxlength="255" placeholder="{{trans('platform::post/uploads.information.alt')}}">
+                    <input type="text" class="form-control" data-target="upload.alt" maxlength="255" placeholder="{{trans('platform::post/uploads.information.alt')}}">
                   </div>
                   <div class="form-group">
                     <label>{{trans('platform::post/uploads.information.description')}}</label>
-                    <textarea class="form-control no-resize" data-target="upload.attachment_description" placeholder="{{trans('platform::post/uploads.information.description')}}"
+                    <textarea class="form-control no-resize" data-target="upload.description" placeholder="{{trans('platform::post/uploads.information.description')}}"
                       maxlength="255" rows="3"></textarea>
                   </div>
 
 
                   <p class="text-right">
-                    <a data-target="upload.attachment_url" target="_blank " class="btn btn-link pull-left ">
+                    <a data-target="upload.url" target="_blank " class="btn btn-link pull-left ">
                       <i class="icon-link "></i>
                       {{trans('platform::post/uploads.information.link')}}
                     </a>
 
-                    <button type="button " data-action="click->upload#save" class="btn btn-default ">{{trans('platform::common.apply')}}</button>
+                    <button type="button" data-action="click->upload#save" class="btn btn-default ">{{trans('platform::common.apply')}}</button>
                   </p>
 
                 </div>

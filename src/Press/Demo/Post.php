@@ -165,6 +165,11 @@ class Post extends Many
                 ->title('Name Articles')
                 ->help('Article title'),
 
+            Field::tag('utm')
+                ->name('link')
+                ->title('UTM link')
+                ->help('Generated link'),
+
             /* need api key 'place'
             Field::tag('place')
                 ->name('place')

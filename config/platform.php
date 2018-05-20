@@ -93,6 +93,7 @@ return [
         'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
         'label'        => Orchid\Platform\Fields\Types\LabelField::class,
         'upload'       => Orchid\Platform\Fields\Types\UploadField::class,
+        'utm'          => Orchid\Platform\Fields\Types\UTMField::class,
     ],
 
     /*

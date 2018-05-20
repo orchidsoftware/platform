@@ -1,5 +1,5 @@
 import {Controller} from "stimulus"
-import SimpleMDE from "simplemde";
+import SimpleMDE    from "simplemde";
 
 export default class extends Controller {
 
