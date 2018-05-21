@@ -15,6 +15,10 @@ export default class extends Controller {
      *
      */
     connect() {
+        if (!this.urlTarget.value) {
+            return;
+        }
+
         let url = new URL(this.urlTarget.value);
 
         this.sourceTarget.value = this.loadParam(url, 'source');

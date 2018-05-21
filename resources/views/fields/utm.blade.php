@@ -1,6 +1,6 @@
 @component('platform::partials.fields.group',get_defined_vars())
 
-    <div data-controller="utm">
+    <div data-controller="fields--utm">
         <div class="input-group mb-3">
             <input @include('platform::partials.fields.attributes', ['attributes' => $attributes]) data-target="utm.url">
             <div class="input-group-append">
@@ -27,22 +27,22 @@
                                     <label>{{trans('platform::field.utm.Campaign Source')}} - <span class="font-bold">utm_source</span></label>
                                     <input type="text" data-target="utm.source"  placeholder="google"
                                            class="form-control">
-                                    <small class="help-block">{{trans('platform::field.utm.Campaign Source desc')}}</small>
+                                    <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Source desc')}}</small>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Medium')}} - <span class="font-bold">utm_medium</span></label>
                                     <input type="text" data-target="utm.medium"  placeholder="cpc" class="form-control">
-                                    <small class="help-block">{{trans('platform::field.utm.Campaign Medium desc')}}</small>
+                                    <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Medium desc')}}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Name')}} - <span class="font-bold">utm_campaign</span></label>
-                                    <input type="text" data-target="utm.campaign" pattern="[a-zA-Z0-9]+" 
+                                    <input type="text" data-target="utm.campaign" pattern="[a-zA-Z0-9]+"
                                            placeholder="sleeping_beds"
                                            class="form-control">
-                                    <small class="help-block">{{trans('platform::field.utm.Campaign Name desc')}}</small>
+                                    <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Name desc')}}</small>
                                 </div>
 
                             </div>
@@ -54,13 +54,13 @@
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Term')}} - <span class="font-bold">utm_term</span></label>
                                     <input type="text" data-target="utm.term" placeholder="Golf ball" class="form-control">
-                                    <small class="help-block">{{trans('platform::field.utm.Campaign Term desc')}}</small>
+                                    <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Term desc')}}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Content')}} - <span class="font-bold">utm_content</span></label>
                                     <input type="text" data-target="utm.content" placeholder="cpc" class="form-control">
-                                    <small class="help-block">{{trans('platform::field.utm.Campaign Content desc')}}
+                                    <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Content desc')}}
                                     </small>
                                 </div>
                             </div>
