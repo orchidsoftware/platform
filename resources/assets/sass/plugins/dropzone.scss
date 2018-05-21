@@ -4,6 +4,8 @@
 
 .dropzone {
   border: none;
+  overflow-x: hidden;
+  
   .dz-preview {
     margin: 0.5rem;
 

@@ -47,6 +47,7 @@ if (!mix.inProduction()) {
 
 mix
   .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
-  //.copyDirectory('./node_modules/tinymce', 'public/js/tinymce')
+  .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
+  .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
   .sass('resources/assets/sass/app.scss', 'css/orchid.css')
   .js('resources/assets/js/app.js', 'js/orchid.js');

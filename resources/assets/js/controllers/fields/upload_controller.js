@@ -89,6 +89,8 @@ export default class extends Controller {
 
     initSortable() {
         $('.sortable-dropzone').sortable({
+            scroll: false,
+            containment: "parent",
             update: function () {
                 const items = {};
                 $('.file-sort').each(function (index, value) {

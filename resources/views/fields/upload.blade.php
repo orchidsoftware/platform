@@ -1,5 +1,5 @@
 @component('platform::partials.fields.group',get_defined_vars())
-<div data-controller="fields--upload" data-upload-storage="{{$storage ?? 'public'}}" data-upload-name="{{$name}}" data-upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}">
+<div data-controller="fields--upload" data-fields--upload-storage="{{$storage ?? 'public'}}" data-fields--upload-name="{{$name}}" data-fields--upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}">
   <div class="dropzone">
     <div class="fallback">
       <input type="file" value="" multiple/>

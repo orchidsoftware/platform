@@ -17,6 +17,7 @@
     "croppie": "^2.6.2",
     "cross-env": "^5.1.5",
     "dropzone": "^5.4.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17",
     "frappe-charts": "0.0.8",
     "inputmask": "^3.3",
     "jquery": "^3.3",
