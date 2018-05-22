@@ -61,7 +61,12 @@ document.addEventListener('turbolinks:load', function() {
 
       getFiles('/');
 
-      files.on('dblclick', 'li .file_link', function() {
+      manager.$on('fm-folder-dbl-click', (item) => {
+          manager.folders.push(item.name);
+          getFiles(manager.folders);
+      });
+
+      /*files.on('dblclick', 'li .file_link', function() {
         if (
           !$(this)
             .children('.details')
@@ -71,7 +76,7 @@ document.addEventListener('turbolinks:load', function() {
         }
         manager.folders.push($(this).data('folder'));
         getFiles(manager.folders);
-      });
+      });*/
 
       files.on('click', 'li', function(e) {
         let clicked = e.target;
@@ -263,10 +268,10 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       function getFiles(folders) {
-        var folder_location = '/';
+        let folder_location = '/';
 
         if (folders != '/') {
-          var folder_location = '/' + folders.join('/');
+          folder_location = '/' + folders.join('/');
         }
 
         $('#file_loader').fadeIn();

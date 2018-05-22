@@ -81,37 +81,35 @@
 
                         <ul id="files">
 
-                            <li v-for="(file,index) in files.items">
-                                <div class="file_link" v-bind:data-folder="file.name" v-bind:data-index="index"
-                                     v-bind:title="file.name">
-                                    <div class="link_icon">
+                            <template v-for="(file,index) in files.items">
+                                <filemanager-item :file="file" :index="index" inline-template v-cloak>
+                                <li>
+                                    <div class="file_link" :data-folder="currFile.name" :data-index="index"
+                                         :title="currFile.name" @dblclick.prevent="dblClick">
+                                        <div class="link_icon">
 
-                                        <div v-if="file.type.includes('image')" class="img_icon"
-                                             style="background: no-repeat center center;display:inline-block; width:100%; height:100%;background-size: cover;"
-                                             v-bind:style="{ backgroundImage: 'url(' + encodeURI(file.path) + ')' }"
-                                        >
+                                            <div v-if="isImage" class="img_icon filemanager-item-img"
+                                                 :style="imageStyle"></div>
+
+                                            <i v-if="isVideo" class="icon icon-camrecorder"></i>
+
+                                            <i v-if="isAudio" class="icon icon-music-tone"></i>
+
+                                            <i v-if="isFolder" class="icon icon-folder-alt"></i>
+
+                                            <i v-if="isDoc"
+                                               class="icon icon-doc"></i>
                                         </div>
 
-                                        <i v-if="file.type.includes('video')"
-                                           class="icon icon-camrecorder"></i>
-
-                                        <i v-if="file.type.includes('audio')" class="icon icon-music-tone"></i>
-
-                                        <i v-if="file.type == 'folder'" class="icon icon-folder-alt"></i>
-
-                                        <i v-if="file.type != 'folder' && !file.type.includes('image') && !file.type.includes('video') && !file.type.includes('audio')"
-                                           class="icon icon-doc"></i>
-
+                                        <div class="details" :class="file.type"><h4>@{{ currFile.name }}</h4>
+                                            <small>
+                                                <span v-if="!isFolder" class="file_size">@{{ currFile.size }}</span>
+                                            </small>
+                                        </div>
                                     </div>
-                                    <div class="details" v-bind:class="file.type"><h4>@{{ file.name }}</h4>
-                                        <small>
-                                            <span v-if="file.type != 'folder'"
-                                                  class="file_size">@{{ file.size }}</span>
-                                        </small>
-                                    </div>
-                                </div>
-                            </li>
-
+                                </li>
+                                </filemanager-item>
+                            </template>
                         </ul>
 
                         <div id="file_loader">

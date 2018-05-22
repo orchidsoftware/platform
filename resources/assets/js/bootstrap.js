@@ -66,6 +66,9 @@ tinyMCE.baseURL = '/orchid/js/tinymce';
 //SimpleMDE editor
 window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
 
+// компоненты Vue
+require('./components/filemanager-item');
+
 require('./components/attachment');
 require('./components/filemanager');
 require('./components/menu');
