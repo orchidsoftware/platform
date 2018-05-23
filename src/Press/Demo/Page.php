@@ -126,17 +126,15 @@ class Page extends Single
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('wysiwyg')
-                ->name('body')
-                ->required()
-                ->title('Name Articles')
-                ->help('Article title')
-                ->theme('modern'),
-
             Field::tag('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
+
+            Field::tag('utm')
+                ->name('link')
+                ->title('UTM link')
+                ->help('Generated link'),
 
             Field::tag('datetime')
                 ->name('open')
@@ -168,7 +166,7 @@ class Page extends Single
     public function modules() : array
     {
         return [
-            UploadPostForm::class,
+            //UploadPostForm::class,
         ];
     }
 }

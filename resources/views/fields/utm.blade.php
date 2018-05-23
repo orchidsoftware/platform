@@ -22,14 +22,12 @@
                         <div class="row">
 
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Source')}} - <span class="font-bold">utm_source</span></label>
                                     <input type="text" data-target="fields--utm.source"  placeholder="google"
                                            class="form-control">
                                     <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Source desc')}}</small>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Medium')}} - <span class="font-bold">utm_medium</span></label>
@@ -44,13 +42,9 @@
                                            class="form-control">
                                     <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Name desc')}}</small>
                                 </div>
-
                             </div>
 
-
                             <div class="col-md-6">
-
-
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Term')}} - <span class="font-bold">utm_term</span></label>
                                     <input type="text" data-target="fields--utm.term" placeholder="Golf ball" class="form-control">
@@ -64,7 +58,6 @@
                                     </small>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>

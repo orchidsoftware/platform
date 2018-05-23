@@ -150,6 +150,11 @@ class Post extends Many
                 ->width(500)
                 ->height(300),
 
+            Field::tag('utm')
+                ->name('link')
+                ->title('UTM link')
+                ->help('Generated link'),
+
             Field::tag('datetime')
                 ->name('open')
                 ->title('Opening date')
@@ -165,10 +170,6 @@ class Post extends Many
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('utm')
-                ->name('link')
-                ->title('UTM link')
-                ->help('Generated link'),
 
             /* need api key 'place'
             Field::tag('place')
@@ -194,31 +195,33 @@ class Post extends Many
 
     /**
      * @return array
+     *
+     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function options(): array
     {
         return [
-           Field::group(function () {
-               return [
 
-                   Field::tag('input')
-                       ->type('text')
-                       ->name('name')
-                       ->max(255)
-                       ->required()
-                       ->title('Name Articles')
-                       ->help('Article title'),
+            Field::tag('input')
+                ->type('text')
+                ->name('slug')
+                ->max(255)
+                ->required()
+                ->title(trans('platform::post/base.semantic_url'))
+                ->placeholder(trans('platform::post/base.semantic_url_unique_name')),
 
-                   Field::tag('input')
-                       ->type('text')
-                       ->name('title')
-                       ->max(255)
-                       ->required()
-                       ->title('Article Title')
-                       ->help('SEO title'),
+            Field::tag('datetime')
+                ->name('publish_at')
+                ->title(trans('platform::post/base.time_of_publication')),
 
-               ];
-           }),
+            Field::tag('select')
+                ->options([
+                    'publish' => trans('platform::post/base.status_list.publish'),
+                    'draft'   => trans('platform::post/base.status_list.draft'),
+                ])
+                ->name('status')
+                ->title(trans('platform::post/base.status')),
+
        ];
     }
 
