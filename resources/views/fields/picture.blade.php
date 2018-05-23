@@ -13,7 +13,7 @@
             <i class="icon-cloud-upload"></i> {{trans('platform::field.picture.Browse')}}
             <input type="file"
                    accept="image/*"
-                   data-target="picture.upload"
+                   data-target="fields--picture.upload"
                    data-action="fields--picture#upload"
                    class="picture-input-file-{{$lang}}-{{$slug}} d-none">
         </label>
@@ -25,7 +25,7 @@
 
     <input class="picture-path"
            type="hidden"
-           data-target="picture.source"
+           data-target="fields--picture.source"
            @include('platform::partials.fields.attributes', ['attributes' => $attributes])
     >
 
