@@ -50,7 +50,7 @@ return [
 
     'middleware' => [
         'public'  => ['web'],
-        'private' => ['web', 'dashboard'],
+        'private' => ['web', 'platform'],
     ],
 
     /*
