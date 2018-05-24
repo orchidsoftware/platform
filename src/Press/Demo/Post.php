@@ -185,7 +185,6 @@ class Post extends Many
                 ->title('platform::post/base.semantic_url')
                 ->placeholder('platform::post/base.semantic_url_unique_name'),
 
-
         ];
     }
 

@@ -77,14 +77,14 @@ class Field implements FieldContract
 
     /**
      * A set of attributes for the assignment
-     * of which will automatically translate them
+     * of which will automatically translate them.
      *
      * @var array
      */
     public $translations = [
         'title',
         'placeholder',
-        'help'
+        'help',
     ];
 
     /**
@@ -246,19 +246,19 @@ class Field implements FieldContract
     }
 
     /**
-     * Localization of fields
+     * Localization of fields.
      */
     private function translate()
     {
-        if(empty($this->translations)){
+        if (empty($this->translations)) {
             return;
         }
 
         $lang = $this->get('lang');
 
-        foreach ($this->attributes as $key => $attribute){
-            if(in_array($key,$this->translations)){
-                $this->set($key,trans($attribute,[], $lang));
+        foreach ($this->attributes as $key => $attribute) {
+            if (in_array($key, $this->translations)) {
+                $this->set($key, trans($attribute, [], $lang));
             }
         }
     }
