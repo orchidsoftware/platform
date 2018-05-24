@@ -1,3 +1,5 @@
+import fileManagerItemComponent from './filemanager-item.js';
+
 document.addEventListener('turbolinks:load', function() {
   if (document.getElementById('filemanager') === null) {
     return;
@@ -12,9 +14,12 @@ document.addEventListener('turbolinks:load', function() {
       directories: [],
       new_filename: '',
     },
+      components: {
+        filemanagerItem: fileManagerItemComponent,
+      }
   });
 
-  CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
+  const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
 
   const managerMedia = function(o) {
     const files = $('#files');
@@ -61,16 +66,9 @@ document.addEventListener('turbolinks:load', function() {
 
       getFiles('/');
 
-      files.on('dblclick', 'li .file_link', function() {
-        if (
-          !$(this)
-            .children('.details')
-            .hasClass('folder')
-        ) {
-          return false;
-        }
-        manager.folders.push($(this).data('folder'));
-        getFiles(manager.folders);
+      manager.$on('fm-folder-dbl-click', (item) => {
+          manager.folders.push(item.name);
+          getFiles(manager.folders);
       });
 
       files.on('click', 'li', function(e) {
@@ -263,10 +261,10 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       function getFiles(folders) {
-        var folder_location = '/';
+        let folder_location = '/';
 
         if (folders != '/') {
-          var folder_location = '/' + folders.join('/');
+          folder_location = '/' + folders.join('/');
         }
 
         $('#file_loader').fadeIn();
@@ -308,7 +306,7 @@ document.addEventListener('turbolinks:load', function() {
         $('#files li .selected').removeClass('selected');
         $(cur).addClass('selected');
         manager.selected_file = manager.files.items[$(cur).data('index')];
-        manager.new_filename = manager.selected_file.name;
+        manager.new_filename = manager.selected_file ? manager.selected_file.name : '';
       }
 
       function bytesToSize(bytes) {
