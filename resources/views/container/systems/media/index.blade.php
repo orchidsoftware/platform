@@ -127,10 +127,8 @@
                             <i class="icon-cursor"></i>
                             <p> {{trans('dashboard::systems/media.nothing_selected')}}</p>
                         </div>
-                        <div class="right_details">
-                            <div class="detail_img"
-                                 v-if="selected_file != undefined && selected_file.type != undefined">
-
+                        <div class="right_details" v-if="selected_file != undefined && selected_file.type != undefined">
+                            <div class="detail_img">
 
                                 <a v-bind:href="selected_file.path" target="_blank"
                                    v-if="selected_file.type.indexOf('image')  !== -1">
@@ -189,7 +187,6 @@
                                     <td>@{{selected_file.last_modified}}</td>
                                 </tr>
                             </table>
-
                         </div>
 
                     </div>

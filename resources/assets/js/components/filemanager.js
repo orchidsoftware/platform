@@ -318,7 +318,7 @@ document.addEventListener('turbolinks:load', function() {
         $('#files li .selected').removeClass('selected');
         $(cur).addClass('selected');
         manager.selected_file = manager.files.items[$(cur).data('index')];
-        manager.new_filename = manager.selected_file.name;
+        manager.new_filename = manager.selected_file ? manager.selected_file.name : '';
       }
 
       function bytesToSize(bytes) {
