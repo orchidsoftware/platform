@@ -71,18 +71,6 @@ document.addEventListener('turbolinks:load', function() {
           getFiles(manager.folders);
       });
 
-      /*files.on('dblclick', 'li .file_link', function() {
-        if (
-          !$(this)
-            .children('.details')
-            .hasClass('folder')
-        ) {
-          return false;
-        }
-        manager.folders.push($(this).data('folder'));
-        getFiles(manager.folders);
-      });*/
-
       files.on('click', 'li', function(e) {
         let clicked = e.target;
         if (!$(clicked).hasClass('file_link')) {
