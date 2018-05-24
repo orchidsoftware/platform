@@ -1,3 +1,5 @@
+import fileManagerItemComponent from './filemanager-item.js';
+
 document.addEventListener('turbolinks:load', function() {
   if (document.getElementById('filemanager') === null) {
     return;
@@ -12,9 +14,12 @@ document.addEventListener('turbolinks:load', function() {
       directories: [],
       new_filename: '',
     },
+      components: {
+        filemanagerItem: fileManagerItemComponent,
+      }
   });
 
-  CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
+  const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
 
   const managerMedia = function(o) {
     const files = $('#files');
