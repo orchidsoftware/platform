@@ -76,6 +76,18 @@ class Field implements FieldContract
     public $slug;
 
     /**
+     * A set of attributes for the assignment
+     * of which will automatically translate them
+     *
+     * @var array
+     */
+    public $translations = [
+        'title',
+        'placeholder',
+        'help'
+    ];
+
+    /**
      * Universal attributes are applied to almost all tags,
      * so they are allocated to a separate group so that they do not repeat for all tags.
      *
@@ -216,6 +228,7 @@ class Field implements FieldContract
     public function render()
     {
         $this->checkRequired();
+        $this->translate();
 
         // TODO: Указать параметры в шаблонах, что бы не приходилось проверять на ошибки и т.п.
 
@@ -230,6 +243,24 @@ class Field implements FieldContract
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
         ]));
+    }
+
+    /**
+     * Localization of fields
+     */
+    private function translate()
+    {
+        if(empty($this->translations)){
+            return;
+        }
+
+        $lang = $this->get('lang');
+
+        foreach ($this->attributes as $key => $attribute){
+            if(in_array($key,$this->translations)){
+                $this->set($key,trans($attribute,[], $lang));
+            }
+        }
     }
 
     /**
