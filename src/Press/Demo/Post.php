@@ -170,13 +170,21 @@ class Post extends Many
                 ->title('Name Articles')
                 ->help('Article title'),
 
-
             /* need api key 'place'
             Field::tag('place')
                 ->name('place')
                 ->title('Place')
                 ->help('place for google maps'),
             */
+
+            Field::tag('input')
+                ->type('text')
+                ->name('slug')
+                ->max(255)
+                ->required()
+                ->title('platform::post/base.semantic_url')
+                ->placeholder('platform::post/base.semantic_url_unique_name'),
+
         ];
     }
 
