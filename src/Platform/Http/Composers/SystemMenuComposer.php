@@ -35,7 +35,7 @@ class SystemMenuComposer
                 'label'      => 'Cache configuration',
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems',
-                'sort'       => 1000,
+                'sort'       => 2000,
             ])
             ->add('Cache', [
                 'slug'       => 'cache:clear',

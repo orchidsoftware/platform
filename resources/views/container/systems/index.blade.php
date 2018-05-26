@@ -7,14 +7,23 @@
 
 <div class="bg-white">
 
-    <div class="container wrapper-md">
+    <div class="admin-wrapper container wrapper-md">
+        <div class="row">
 
-        <div class="admin-wrapper">
-             <div class="row">
-                {!! Dashboard::menu()->render('Systems',' platform::partials.systems.systemsMenu') !!}
-            </div>
+             @foreach(Dashboard::menu()->build('Systems')->chunk(2) as $items)
+                 <div class="col-md-5 col-md-4">
+
+                    @foreach($items as $item)
+                            @include('platform::partials.systems.systemsMenu', [
+                                'icon' => $item['icon'],
+                                'label' => $item['label'],
+                                'children' => $item['children'],
+                            ])
+                     @endforeach
+
+                 </div>
+             @endforeach
         </div>
-
     </div>
 
 </div>

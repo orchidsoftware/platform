@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class Menu
@@ -178,5 +179,46 @@ class Menu
         }
 
         return $html;
+    }
+
+    /**
+     * @param string $location
+     *
+     * @return Collection
+     */
+    public function build(string $location) : Collection
+    {
+        /*
+         * Check access
+         */
+        if (! isset($this->user)) {
+            $this->user = Auth::user();
+            $user = $this->user;
+
+            $this->container = $this->container->filter(function ($item) use ($user) {
+                return (isset($item['arg']['permission'])) ? $user->hasAccess($item['arg']['permission']) : true;
+            });
+        }
+
+
+        return $this->findAllChildren($location);
+    }
+
+
+    /**
+     * @param $key
+     *
+     * @return Collection
+     */
+    private function findAllChildren($key) : Collection
+    {
+        return $this->container
+            ->where('location', $key)
+            ->sortBy('sort')
+            ->map(function ($item,$key){
+                $item = $item['arg'];
+                $item['children'] = $this->findAllChildren($key);
+                return $item;
+            });
     }
 }
