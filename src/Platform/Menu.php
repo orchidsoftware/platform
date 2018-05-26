@@ -200,10 +200,8 @@ class Menu
             });
         }
 
-
         return $this->findAllChildren($location);
     }
-
 
     /**
      * @param $key
@@ -215,9 +213,10 @@ class Menu
         return $this->container
             ->where('location', $key)
             ->sortBy('sort')
-            ->map(function ($item,$key){
+            ->map(function ($item, $key) {
                 $item = $item['arg'];
                 $item['children'] = $this->findAllChildren($key);
+
                 return $item;
             });
     }
