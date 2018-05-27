@@ -9,82 +9,71 @@
 |
 */
 
-$this->domain(config('platform.domain'))->group(function () {
-    $this->group([
-        'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
-    ], function (\Illuminate\Routing\Router $router) {
-        $router->screen('users/{users}/edit', config('platform.screens.users.edit'), 'platform.systems.users.edit');
-        $router->screen('users/create', config('platform.screens.users.edit'), 'platform.systems.users.create');
-        $router->screen('users', config('platform.screens.users.list'), 'platform.systems.users');
-        $router->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'platform.systems.roles.edit');
-        $router->screen('roles/create', config('platform.screens.roles.edit'), 'platform.systems.roles.create');
-        $router->screen('roles', config('platform.screens.roles.list'), 'platform.systems.roles');
-    });
 
-    $this->group([
-        'middleware' => config('platform.middleware.private'),
-        'prefix'     => \Orchid\Platform\Dashboard::prefix('/systems'),
-        'namespace'  => 'Orchid\Platform\Http\Controllers\Systems',
-    ], function (\Illuminate\Routing\Router $router) {
-        $router->get('/', [
-            'as'   => 'platform.systems.index',
-            'uses' => 'SystemController@index',
-        ]);
+$this->screen('users/{users}/edit', config('platform.screens.users.edit'), 'platform.systems.users.edit');
+$this->screen('users/create', config('platform.screens.users.edit'), 'platform.systems.users.create');
+$this->screen('users', config('platform.screens.users.list'), 'platform.systems.users');
+$this->screen('roles/{roles}/edit', config('platform.screens.roles.edit'), 'platform.systems.roles.edit');
+$this->screen('roles/create', config('platform.screens.roles.edit'), 'platform.systems.roles.create');
+$this->screen('roles', config('platform.screens.roles.list'), 'platform.systems.roles');
 
-        $router->get('cache', [
-            'as'   => 'platform.systems.cache',
-            'uses' => 'CacheController@store',
-        ]);
 
-        $router->post('notification/read', [
-            'as'   => 'platform.notification.read',
-            'uses' => 'NotificationController@markAllAsRead',
-        ]);
+$this->get('/', [
+    'as'   => 'platform.systems.index',
+    'uses' => 'SystemController@index',
+]);
 
-        $router->post('notification/remove', [
-            'as'   => 'platform.notification.remove',
-            'uses' => 'NotificationController@remove',
-        ]);
+$this->get('cache', [
+    'as'   => 'platform.systems.cache',
+    'uses' => 'CacheController@store',
+]);
 
-        $router->post('files', [
-            'as'   => 'platform.systems.files.upload',
-            'uses' => 'AttachmentController@upload',
-        ]);
+$this->post('notification/read', [
+    'as'   => 'platform.notification.read',
+    'uses' => 'NotificationController@markAllAsRead',
+]);
 
-        $router->post('files/sort', [
-            'as'   => 'platform.systems.files.sort',
-            'uses' => 'AttachmentController@sort',
-        ]);
+$this->post('notification/remove', [
+    'as'   => 'platform.notification.remove',
+    'uses' => 'NotificationController@remove',
+]);
 
-        $router->delete('files/{id}', [
-            'as'   => 'platform.systems.files.destroy',
-            'uses' => 'AttachmentController@destroy',
-        ]);
+$this->post('files', [
+    'as'   => 'platform.systems.files.upload',
+    'uses' => 'AttachmentController@upload',
+]);
 
-        $router->get('files/post/{id}', [
-            'as'   => 'platform.systems.files.destroy',
-            'uses' => 'AttachmentController@getFilesPost',
-        ]);
+$this->post('files/sort', [
+    'as'   => 'platform.systems.files.sort',
+    'uses' => 'AttachmentController@sort',
+]);
 
-        $router->post('files/get', [
-            'as'   => 'platform.systems.files.destroy',
-            'uses' => 'AttachmentController@getFilesByIds',
-        ]);
+$this->delete('files/{id}', [
+    'as'   => 'platform.systems.files.destroy',
+    'uses' => 'AttachmentController@destroy',
+]);
 
-        $router->put('files/post/{id}', [
-            'as'   => 'platform.systems.files.update',
-            'uses' => 'AttachmentController@update',
-        ]);
+$this->get('files/post/{id}', [
+    'as'   => 'platform.systems.files.destroy',
+    'uses' => 'AttachmentController@getFilesPost',
+]);
 
-        $router->get('tags/{tags?}', [
-            'as'   => 'platform.systems.tag.search',
-            'uses' => 'TagsController@show',
-        ]);
+$this->post('files/get', [
+    'as'   => 'platform.systems.files.destroy',
+    'uses' => 'AttachmentController@getFilesByIds',
+]);
 
-        $router->post('widget/{widget}/{key?}', [
-            'as'   => 'platform.systems.widget',
-            'uses' => 'WidgetController@index',
-        ]);
-    });
-});
+$this->put('files/post/{id}', [
+    'as'   => 'platform.systems.files.update',
+    'uses' => 'AttachmentController@update',
+]);
+
+$this->get('tags/{tags?}', [
+    'as'   => 'platform.systems.tag.search',
+    'uses' => 'TagsController@show',
+]);
+
+$this->post('widget/{widget}/{key?}', [
+    'as'   => 'platform.systems.widget',
+    'uses' => 'WidgetController@index',
+]);

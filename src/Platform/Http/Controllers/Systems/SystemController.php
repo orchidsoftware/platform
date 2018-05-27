@@ -21,6 +21,20 @@ class SystemController extends Controller
      */
     public function index()
     {
-        return view('platform::container.systems.index');
+        $settings = collect(config('app'))->only([
+            'name',
+            'env',
+            'debug',
+            'url',
+            'timezone',
+            'locale',
+            'fallback_locale',
+            'log',
+            'log_level',
+        ]);
+
+        return view('platform::container.systems.index', [
+            'settings' => $settings,
+        ]);
     }
 }

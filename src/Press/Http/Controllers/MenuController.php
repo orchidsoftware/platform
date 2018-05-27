@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Menu;
-use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -35,40 +35,39 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menu = collect(config('press.menu'));
+        $availableMenus = collect(config('press.menu'));
 
-        if ($menu->count() === 1) {
-            return redirect()->route('platform.systems.menu.show', $menu->keys()->first());
+        if ($availableMenus->count() > 0) {
+            return redirect()->route('platform.systems.menu.show', $availableMenus->keys()->first());
         }
 
-        return view('platform::container.systems.menu.listing', [
-            'menu' => collect(config('press.menu')),
-        ]);
+        return abort(404);
     }
 
     /**
-     * @param         $nameMenu
+     * @param         $name
      * @param Request $request
      *
      * @return View
      */
-    public function show($nameMenu, Request $request)
+    public function show($name, Request $request)
     {
+        $availableMenus = config('press.menu');
         $currentLocale = $request->get('lang', app()->getLocale());
 
         $menu = Dashboard::model(Menu::class)::where('lang', $currentLocale)
             ->where('parent', 0)
-            ->where('type', $nameMenu)
+            ->where('type', $name)
             ->orderBy('sort', 'asc')
             ->with('children')
             ->get();
 
         return view('platform::container.systems.menu.menu', [
-            'nameMenu'      => $nameMenu,
-            'locales'       => config('press.locales'),
-            'currentLocale' => $currentLocale,
-            'menu'          => $menu,
-            'url'           => config('app.url'),
+            'name'           => $name,
+            'locales'        => config('press.locales'),
+            'currentLocale'  => $currentLocale,
+            'menu'           => $menu,
+            'availableMenus' => $availableMenus,
         ]);
     }
 

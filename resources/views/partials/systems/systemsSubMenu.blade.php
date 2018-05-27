@@ -1,6 +1,5 @@
-<li class="list-group-item padder-v">
+<li class="list-group-item padder-v admin-element-item">
     <a href="{{$route}}" class="d-block padder">
-        <div>
             @isset($badge)
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endisset
@@ -9,6 +8,5 @@
                 <div>{{trans($label)}}</div>
                 <small class="text-muted">{{trans($groupname ?? '')}}</small>
             </div>
-        </div>
     </a>
 </li>

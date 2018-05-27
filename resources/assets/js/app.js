@@ -1,6 +1,7 @@
 import { Application } from "stimulus";
 import { definitionsFromContext } from "stimulus/webpack-helpers";
 
+
 require('./bootstrap');
 
 window.application = Application.start();

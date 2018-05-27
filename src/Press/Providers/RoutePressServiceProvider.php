@@ -9,9 +9,9 @@ use Orchid\Press\Models\Post;
 use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Category;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
-class RoutePressServiceProvider extends RouteServiceProvider
+class RoutePressServiceProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to the controller routes in your routes file.
@@ -94,7 +94,7 @@ class RoutePressServiceProvider extends RouteServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/press'))
             ->middleware(config('platform.middleware.private'))
-            ->namespace('Orchid\Press\Http\Controllers')
+            ->namespace($this->namespace)
             ->group(realpath(PLATFORM_PATH.'/routes/press.php'));
     }
 }

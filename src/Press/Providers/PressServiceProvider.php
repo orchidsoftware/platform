@@ -28,9 +28,8 @@ class PressServiceProvider extends ServiceProvider
 
         $this->dashboard
             ->registerEntities(config('press.entities', []))
-            ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsEntities())
-            ->registerPermissions($this->registerPermissionsSystems());
+            ->registerPermissions($this->registerPermissions());
 
         $this->registerDatabase()
             ->registerConfig()
@@ -92,21 +91,6 @@ class PressServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsMain(): array
-    {
-        return [
-            trans('platform::permission.main.main') => [
-                [
-                    'slug'        => 'platform.posts',
-                    'description' => trans('platform::permission.main.posts'),
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @return array
-     */
     protected function registerPermissionsEntities(): array
     {
         $posts = $this->dashboard
@@ -129,9 +113,15 @@ class PressServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    protected function registerPermissionsSystems(): array
+    protected function registerPermissions(): array
     {
         return [
+            trans('platform::permission.main.main') => [
+                [
+                    'slug'        => 'platform.posts',
+                    'description' => trans('platform::permission.main.posts'),
+                ],
+            ],
             trans('platform::permission.main.systems') => [
                 [
                     'slug'        => 'platform.systems.menu',

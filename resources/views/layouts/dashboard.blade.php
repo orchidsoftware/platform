@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{app()->getLocale()}}"  data-controller="layouts--html-load">
+<html lang="{{app()->getLocale()}}" data-controller="layouts--html-load">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <div id="app" class="app">
+    <div id="app" class="app" data-controller="@yield('controller')">
 
         <!-- header  -->
         <header id="header" class="app-header navbar" role="menu">
@@ -85,7 +85,7 @@
 
 
         <!-- aside  -->
-        <aside id="aside" class="app-aside d-none d-md-block">
+        <aside id="aside" class="app-aside d-none d-md-block" data-controller="layouts--left-menu">
             <div class="aside-wrap-main">
 
                 <div class="navi-wrap">
@@ -152,7 +152,14 @@
                     <nav class="navi clearfix">
 
                         <div class="nav tab-content flex-column" id="aside-wrap-list">
-                            @yield('aside', View::make('platform::partials.notifications'))
+
+                            <div class="w-full tab-pane fade in nav show"
+                                 role="tabpanel"
+                                 id="menu-default"
+                                 aria-labelledby="notise-tab">
+                                @yield('aside', View::make('platform::partials.notifications'))
+                            </div>
+
                             {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
                         </div>
                     </nav>

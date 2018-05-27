@@ -2,7 +2,7 @@
 
 
 @section('title',trans('platform::systems/menu.title'))
-@section('description',$nameMenu)
+@section('description',$name)
 
 
 @section('navbar')
@@ -36,12 +36,29 @@
 
 
 
+@section('aside')
+
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+        <span>{{trans('platform::systems/menu.description')}}</span>
+    </li>
+
+    @foreach($availableMenus as $key => $value)
+        <li class="text-ellipsis text-white">
+            <a href="{{ route('platform.systems.menu.show',$key) }}">{{$value}}</a>
+        </li>
+    @endforeach
+
+    <li class="divider b-t m-t-sm b-dark"></li>
+
+@endsection
+
+
 @section('content')
 
 
     <div class="hbox hbox-auto-xs hbox-auto-sm"
          data-controller="components--menu"
-         data-content-loader-url="{{$nameMenu}}"
+         data-content-loader-url="{{$name}}"
          data-components--menu-count="0"
          data-components--menu-id=""
     >
@@ -139,7 +156,7 @@
 
 
                 <div class="text-center">
-                    
+
                     <div class="btn-group btn-group-sm w-full" role="group">
 
                         <button type="button" data-action="components--menu#remove"
@@ -176,7 +193,7 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$nameMenu}}">
+                        <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
                             <ol class="dd-list">
                                 @include('platform::partials.menu.item',[
                                     'menu'=>$menu
@@ -188,4 +205,5 @@
             </div>
         </div>
     </div>
+
 @stop
