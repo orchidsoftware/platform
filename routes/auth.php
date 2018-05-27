@@ -9,7 +9,6 @@
 |
 */
 
-
 if (config('platform.auth.display', true)) {
     // Authentication Routes...
     $this->get('login', 'LoginController@showLoginForm')->name('platform.login');

@@ -9,7 +9,6 @@
 |
 */
 
-
 $this->get('/', [
     'as'   => 'platform.index',
     'uses' => 'DashboardController@index',
