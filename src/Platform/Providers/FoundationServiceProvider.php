@@ -84,6 +84,13 @@ class FoundationServiceProvider extends ServiceProvider
         }, config('view.paths')), [
             DASHBOARD_PATH.'/resources/views',
         ]), 'dashboard');
+
+        /**
+         * Publish views
+         */
+        $this->publishes([
+            DASHBOARD_PATH . '/resources/views' => resource_path('/views/vendor/orchid/dashboard')
+        ], 'views');
     }
 
     public function registerProviders()
