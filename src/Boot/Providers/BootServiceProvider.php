@@ -36,7 +36,6 @@ class BootServiceProvider extends ServiceProvider
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
     }
 
-
     /**
      * Register provider.
      */
