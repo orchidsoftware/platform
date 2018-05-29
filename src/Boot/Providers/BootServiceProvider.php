@@ -7,8 +7,7 @@ namespace Orchid\Boot\Providers;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Press\Http\Composers\PressMenuComposer;
-use Orchid\Press\Http\Composers\SystemMenuComposer;
+use Orchid\Boot\Http\Composers\SystemMenuComposer;
 
 class BootServiceProvider extends ServiceProvider
 {
@@ -32,7 +31,6 @@ class BootServiceProvider extends ServiceProvider
 
         $this->registerProviders();
 
-        View::composer('platform::layouts.dashboard', PressMenuComposer::class);
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
     }
 
@@ -64,28 +62,10 @@ class BootServiceProvider extends ServiceProvider
     protected function registerPermissions(): array
     {
         return [
-            trans('platform::permission.main.main') => [
+            trans('platform::permission.boot') => [
                 [
-                    'slug'        => 'platform.posts',
-                    'description' => trans('platform::permission.main.posts'),
-                ],
-            ],
-            trans('platform::permission.main.systems') => [
-                [
-                    'slug'        => 'platform.systems.menu',
-                    'description' => trans('platform::permission.systems.menu'),
-                ],
-                [
-                    'slug'        => 'platform.systems.category',
-                    'description' => trans('platform::permission.systems.category'),
-                ],
-                [
-                    'slug'        => 'platform.systems.comment',
-                    'description' => trans('platform::permission.systems.comment'),
-                ],
-                [
-                    'slug'        => 'platform.systems.media',
-                    'description' => trans('platform::permission.systems.media'),
+                    'slug'        => 'platform.boot',
+                    'description' => 'Быстрый старт',
                 ],
             ],
         ];

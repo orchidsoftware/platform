@@ -14,7 +14,7 @@ class WelcomeQuote extends Widget
      */
     public function handler()
     {
-        return view('qoute', [
+        return view('platform::widgets.qoute', [
             'inspiration' => Inspiring::quote(),
         ]);
     }

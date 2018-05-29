@@ -8,7 +8,7 @@
     </div>
     <div class="dz-message">
       <hr>
-      <p>
+      <p class="m-t-md">
         <span class="text-2x icon-cloud-upload"></span>
       </p>
       <p class="font-bold">{{trans('platform::post/uploads.title')}}</p>

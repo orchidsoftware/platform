@@ -62,7 +62,7 @@
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
-                                        <div class="wrapper-lg  bg-white">
+                                        <div class="wrapper-lg bg-white">
 
                                             {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
 
@@ -76,9 +76,10 @@
                 <!-- /column  -->
         @endif
         @if($type->checkModules())
-            <!-- column  -->
+                <!-- column  -->
                 <div class="hbox-col wi-col lter">
                     <div class="vbox">
+                        {{--
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
                                 <ul class="nav nav-tabs bg-light">
@@ -92,7 +93,9 @@
                                 </ul>
                             @endif
                         </div>
+                        --}}
                         <div class="row-row">
+                            {{--
                             <div class="tab-content">
                                 @foreach($type->render() as $name => $view)
                                     <div class="tab-pane @if($loop->first) active @endif"
@@ -101,6 +104,7 @@
                                     </div>
                                 @endforeach
                             </div>
+                            --}}
 
                             <div class="wrapper-md">
                                 {!! generate_form($type->options(), $post->getOptions()->toArray(), null, 'options') !!}
@@ -108,7 +112,6 @@
 
                         </div>
                     </div>
-
                 </div>
                 <!-- /column  -->
             @endif

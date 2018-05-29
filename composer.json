@@ -41,7 +41,8 @@
       "Orchid\\Auth\\": "src/Auth/",
       "Orchid\\Press\\": "src/Press/",
       "Orchid\\Support\\": "src/Support/",
-      "Orchid\\Widget\\": "src/Widget/"
+      "Orchid\\Widget\\": "src/Widget/",
+      "Orchid\\Boot\\": "src/Boot/"
     },
     "files": [
       "src/Support/helpers.php"
@@ -60,7 +61,8 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Press\\Providers\\PressServiceProvider"
+        "Orchid\\Press\\Providers\\PressServiceProvider",
+        "Orchid\\Boot\\Providers\\BootServiceProvider"
       ],
       "aliases": {
         "Dashboard": "Orchid\\Support\\Facades\\Dashboard",

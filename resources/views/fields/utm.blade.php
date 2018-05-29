@@ -63,7 +63,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('platform::field.Close')}}</button>
-                        <button type="button" data-action="fields--utm#generate" class="btn btn-primary">{{trans('platform::field.utm.Generate URL')}}</button>
+                        <button type="button" data-action="fields--utm#generate" data-dismiss="modal" class="btn btn-primary">{{trans('platform::field.utm.Generate URL')}}</button>
                     </div>
                 </div>
             </div>
