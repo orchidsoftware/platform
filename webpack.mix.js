@@ -23,8 +23,18 @@ if (!mix.inProduction()) {
   mix.version();
 }
 
+const vendor = [
+    'jquery', 'vue', 'jquery-ui-bundle', 'bootstrap', 'bootstrap-tagsinput', 'axios', 'dropzone', 'nestable', 'moment',
+    'inputmask', 'select2', 'croppie', 'frappe-charts', 'brace', 'brace/mode/javascript', 'brace/theme/monokai',
+    'tinymce', 'simplemde', 'popper.js', 'turbolinks',
+];
+
 mix
   .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
   .copyDirectory('./node_modules/tinymce', 'public/js/tinymce')
   .sass('resources/assets/sass/app.scss', 'css/orchid.css')
-  .js('resources/assets/js/app.js', 'js/orchid.js');
+  .js('resources/assets/js/app.js', 'js/orchid.js')
+  .extract(vendor)
+  .autoload({
+      jquery: ['$', 'window.jQuery', 'jQuery', 'jquery'],
+  });
