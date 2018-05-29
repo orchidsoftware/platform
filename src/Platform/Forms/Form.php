@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 /**
- * Class Form
+ * Class Form.
  */
 abstract class Form
 {

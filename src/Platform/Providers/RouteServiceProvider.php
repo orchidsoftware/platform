@@ -112,7 +112,6 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(config('platform.middleware.private'))
             ->group(realpath(PLATFORM_PATH.'/routes/custom.php'));
 
-
         /*
          * Appication
          */

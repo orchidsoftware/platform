@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
 use Orchid\Setting\Setting as SettingModel;
 
 /**
- * Class Setting
+ * Class Setting.
  *
  * @method static Setting set(string $name, string|array $value)
  * @method static Setting get(string $name, string|null $default)

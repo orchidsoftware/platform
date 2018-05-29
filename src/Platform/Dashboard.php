@@ -95,9 +95,9 @@ class Dashboard
      */
     public function registerPermissions(array $permission)
     {
-        foreach ($permission as $key => $item){
+        foreach ($permission as $key => $item) {
             $old = $this->permission->get('all')->get($key, []);
-            $this->permission->get('all')->put($key,array_merge_recursive($old,$item));
+            $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
         }
 
         return $this;
