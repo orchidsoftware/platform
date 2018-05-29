@@ -39,13 +39,12 @@ class UserEdit extends Screen
      *
      * @return array
      */
-    public function query(int $id = null): array
+    public function query(int $id): array
     {
         $user = is_null($id) ? new User() : User::findOrFail($id);
 
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()
-            ->collapse()
             ->sort()
             ->transform(function ($group) use ($rolePermission) {
                 $group = collect($group)->sortBy('description')->toArray();
@@ -56,6 +55,7 @@ class UserEdit extends Screen
 
                 return $group;
             });
+
 
         $roles = Role::all();
         $userRoles = $user->getRoles();
@@ -83,7 +83,6 @@ class UserEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('назад')->link(redirect()->back()->getTargetUrl()),
             Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
@@ -128,8 +127,6 @@ class UserEdit extends Screen
             unset($attributes['password']);
         }
 
-        $user->fill($attributes);
-
         if ($request->filled('user.password', null)) {
             $user->password = Hash::make($request->get('user.password'));
         }
@@ -140,7 +137,7 @@ class UserEdit extends Screen
 
         $user->permissions = $permissions ?? [];
 
-        $user->save();
+        $user->fill($attributes)->save();
 
         $roles = Role::whereIn('slug', $request->get('roles', []))->get();
         $user->replaceRoles($roles);

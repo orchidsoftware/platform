@@ -79,7 +79,7 @@
                 <!-- column  -->
                 <div class="hbox-col wi-col lter">
                     <div class="vbox">
-                        {{--
+
                         <div class="nav-tabs-alt">
                             @if(count($type->render() ) > 1)
                                 <ul class="nav nav-tabs bg-light">
@@ -93,9 +93,9 @@
                                 </ul>
                             @endif
                         </div>
-                        --}}
+
                         <div class="row-row">
-                            {{--
+
                             <div class="tab-content">
                                 @foreach($type->render() as $name => $view)
                                     <div class="tab-pane @if($loop->first) active @endif"
@@ -104,7 +104,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            --}}
+
 
                             <div class="wrapper-md">
                                 {!! generate_form($type->options(), $post->getOptions()->toArray(), null, 'options') !!}

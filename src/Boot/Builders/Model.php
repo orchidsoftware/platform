@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Boot\Builders;
 
 use Zend\Code\Generator\DocBlock\Tag;

@@ -110,10 +110,8 @@ class User extends Authenticatable implements UserInterface
 
         Dashboard::getPermission()
             ->collapse()
-            ->each(function ($items) use ($permissions) {
-                foreach ($items as $item) {
-                    $permissions->put($item['slug'], true);
-                }
+            ->each(function ($item) use ($permissions) {
+                $permissions->put($item['slug'], true);
             });
 
         $user = self::create([

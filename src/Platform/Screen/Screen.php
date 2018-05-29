@@ -53,30 +53,21 @@ abstract class Screen
      *
      * @return array
      */
-    public function commandBar() : array
-    {
-        return [];
-    }
+    abstract public function commandBar() : array;
 
     /**
      * Query data.
      *
      * @return array
      */
-    public function query()
-    {
-        return [];
-    }
+    //abstract public function query() : array;
 
     /**
      * Views.
      *
      * @return array
      */
-    public function layout() : array
-    {
-        return [];
-    }
+    abstract public function layout() : array;
 
     /**
      * @return array

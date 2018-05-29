@@ -105,6 +105,15 @@ class RouteServiceProvider extends ServiceProvider
             ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
 
         /*
+         * Custom
+         */
+        Route::domain((string) config('platform.domain'))
+            ->prefix(Dashboard::prefix('/systems'))
+            ->middleware(config('platform.middleware.private'))
+            ->group(realpath(PLATFORM_PATH.'/routes/custom.php'));
+
+
+        /*
          * Appication
          */
         if (file_exists(base_path('routes/platform.php'))) {

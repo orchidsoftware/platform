@@ -57,6 +57,7 @@ class PostController extends Controller
         return view('platform::container.posts.create', [
             'type'    => $type,
             'locales' => $locales,
+            'post'    => new Post(),
         ]);
     }
 

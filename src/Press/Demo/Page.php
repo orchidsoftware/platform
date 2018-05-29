@@ -166,7 +166,7 @@ class Page extends Single
     public function modules() : array
     {
         return [
-            //UploadPostForm::class,
+            UploadPostForm::class,
         ];
     }
 }

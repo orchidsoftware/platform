@@ -35,9 +35,9 @@ class SystemMenuComposer
                 'label'      => 'Разработка',
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems',
-                'sort'       => 2000,
+                'sort'       => 9000,
             ])
-            ->add('Boot', [
+            ->add('Developer', [
                 'slug'       => 'boot',
                 'icon'       => 'icon-energy',
                 'route'      => route('platform.boot.index'),
@@ -45,7 +45,7 @@ class SystemMenuComposer
                 'groupname'  => 'Позволяет максимально быстро начать разрабатывать приложение',
                 'active'     => 'platform.boot.*',
                 'permission' => 'platform.boot',
-                'sort'       => 1000,
+                'sort'       => 9000,
             ]);
     }
 }
