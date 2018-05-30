@@ -41,8 +41,6 @@ class CreateOrchidAttachmentstableTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
-
-
     }
 
     /**

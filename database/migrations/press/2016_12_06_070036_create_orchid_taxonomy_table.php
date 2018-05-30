@@ -28,8 +28,6 @@ class CreateOrchidTaxonomyTable extends Migration
                 ->on('terms')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
-
         });
     }
 
