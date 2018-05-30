@@ -18,6 +18,18 @@ class CreateOrchidTaxonomyTable extends Migration
             $table->integer('parent_id')->default(0);
 
             $table->index(['id', 'taxonomy']);
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('term_taxonomy')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('term_id')
+                ->references('id')
+                ->on('terms')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+
         });
     }
 

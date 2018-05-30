@@ -106,6 +106,11 @@ class User extends Authenticatable implements UserInterface
      */
     public static function createAdmin($name, $email, $password)
     {
+        if(static::where('email',$email)->exists()){
+            echo  "User exist",PHP_EOL;
+            die();
+        }
+
         $permissions = collect();
 
         Dashboard::getPermission()

@@ -15,6 +15,16 @@ class CreateOrchidRoleUsersTable extends Migration
             $table->integer('user_id');
             $table->integer('role_id');
             $table->primary(['user_id', 'role_id']);
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

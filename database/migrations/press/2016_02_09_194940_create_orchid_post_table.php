@@ -23,6 +23,12 @@ class CreateOrchidPostTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->index(['status', 'type']);
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

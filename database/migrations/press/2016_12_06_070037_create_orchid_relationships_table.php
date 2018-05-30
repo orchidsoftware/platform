@@ -17,6 +17,16 @@ class CreateOrchidRelationshipsTable extends Migration
             $table->integer('term_order')->default(0);
 
             $table->index(['post_id', 'term_taxonomy_id']);
+            $table->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('term_taxonomy_id')
+                ->references('id')
+                ->on('term_taxonomy')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

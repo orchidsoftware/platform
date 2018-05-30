@@ -23,6 +23,19 @@ class CreateOrchidCommentsTable extends Migration
             $table->index(['approved', 'post_id']);
             $table->index('post_id');
             $table->index('parent_id');
+
+
+            $table->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
         });
     }
 
