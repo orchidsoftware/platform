@@ -267,7 +267,7 @@ class Blog extends Many
                 ->max(255)
                 ->required()
                 ->title('Article name')
-                ->help('What's the name of the article?'),
+                ->help('What\'s the name of the article?'),
 
             Field::tag('wysiwyg')
                 ->name('body')
