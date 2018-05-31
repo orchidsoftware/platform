@@ -113,8 +113,9 @@ export default class extends Controller {
         const storage = this.data.get('storage')
         const name = this.data.get('name')
         const loadInfo = this.loadInfo.bind(this)
-
-        new Dropzone('.dropzone', {
+        
+        Dropzone.autoDiscover = false; 
+        var UploadDropzone = new Dropzone('.dropzone', {
             url: platform.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: false,

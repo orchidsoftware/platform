@@ -3,6 +3,10 @@
   position:   relative;
   min-height: 200px;
 
+  &.dz-drag-hover {
+    border: 5px dashed #868E96;
+  }
+  
   #content {
     display:    block;
     background: $brand-white;
@@ -445,4 +449,6 @@
     word-break: keep-all;
   }
 
+  
+  
 }

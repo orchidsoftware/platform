@@ -16,7 +16,7 @@ document.addEventListener('turbolinks:load', function() {
 
 
 window.Dropzone = require('dropzone');
-Dropzone.autoDiscover = false;
+Dropzone.autoDiscover = false; 
 
 require('nestable');
 

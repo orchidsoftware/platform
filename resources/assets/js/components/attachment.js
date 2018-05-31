@@ -31,8 +31,8 @@ document.addEventListener('turbolinks:load', () => {
             },
         },
     });
-
-    new Dropzone('.dropzone', {
+    Dropzone.autoDiscover = false; 
+    var modalAttachmentDropzone = new Dropzone('.dropzone', {
         url: platform.prefix('/systems/files'),
         method: 'post',
         uploadMultiple: false,

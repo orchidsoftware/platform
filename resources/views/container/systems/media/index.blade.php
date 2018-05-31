@@ -52,7 +52,6 @@
 
         <div id="filemanager" data-url="{{ route('platform.index')}}/press">
 
-
             <div id="uploadPreview" style="display:none;"></div>
 
             <div id="uploadProgress" class="progress active progress-striped">
@@ -80,7 +79,6 @@
                     <div id="left" class="col">
 
                         <ul id="files">
-
                             <li v-for="(file,index) in files.items">
                                 <div class="file_link" v-bind:data-folder="file.name" v-bind:data-index="index"
                                      v-bind:title="file.name">
