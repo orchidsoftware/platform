@@ -20,9 +20,8 @@ document.addEventListener('turbolinks:load', () => {
         const files = $('#files');
         const options = $.extend(true, {}, o);
         this.init = () => {
-        Dropzone.autoDiscover = false; 
         
-        var filemanagerDropzone = new Dropzone("#filemanager", { 
+        var DropzoneOptions = { 
                 url: `${options.baseUrl}/media/upload`,
                 previewsContainer: '#uploadPreview',
                 totaluploadprogress(uploadProgress, totalBytes, totalBytesSent) {
@@ -55,45 +54,12 @@ document.addEventListener('turbolinks:load', () => {
                 queuecomplete() {
                     getFiles(manager.folders);
                 },
-            });
-            
-            
-            
-        var fileuploadDropzone = new Dropzone("#upload", { 
-        //Dropzone.options.upload = {
-                url: `${options.baseUrl}/media/upload`,
-                previewsContainer: '#uploadPreview',
-                totaluploadprogress(uploadProgress, totalBytes, totalBytesSent) {
-                    $('#uploadProgress .progress-bar').css('width', `${uploadProgress}%`);
-                    if (uploadProgress == 100) {
-                        $('#uploadProgress')
-                            .delay(1500)
-                            .slideUp(() => {
-                                $('#uploadProgress .progress-bar').css('width', '0%');
-                            });
-                    }
-                },
-                processing() {
-                    //$('#uploadProgress').fadeIn();
-                },
-                sending(file, xhr, formData) {
-                    formData.append('_token', CSRF_TOKEN);
-                    formData.append('upload_path', manager.folders);
-                },
-                success(e, {success, message}) {
-                    if (success) {
-                        //alert("Sweet Success!");
-                    } else {
-                        alert(message);
-                    }
-                },
-                error(e, {message}, xhr) {
-                    alert(message);
-                },
-                queuecomplete() {
-                    getFiles(manager.folders);
-                },
-            });
+            };
+        
+        Dropzone.autoDiscover = false;
+        
+        var filemanagerDropzone = new Dropzone("#filemanager",  DropzoneOptions);
+        var fileuploadDropzone  = new Dropzone("#upload",       DropzoneOptions);
 
             getFiles('/');
 

@@ -18,10 +18,15 @@ export default class extends Controller {
 
 
     connect() {
+        console.log(this.dropname);
         this.initDropZone()
         this.initSortable()
     }
 
+    get dropname() {
+        return '#dropzone-'+this.data.get('name')+' ';
+    }
+    
     save() {
         const data = this.activeAttachment;
 
@@ -88,7 +93,7 @@ export default class extends Controller {
     }
 
     initSortable() {
-        $('.sortable-dropzone').sortable({
+        $(this.dropname+'.sortable-dropzone').sortable({
             scroll: false,
             containment: "parent",
             update: function () {
@@ -113,9 +118,11 @@ export default class extends Controller {
         const storage = this.data.get('storage')
         const name = this.data.get('name')
         const loadInfo = this.loadInfo.bind(this)
+        const dropname = this.dropname
         
-        Dropzone.autoDiscover = false; 
-        var UploadDropzone = new Dropzone('.dropzone', {
+        Dropzone.autoDiscover = false;
+        //var UploadDropzone = [];
+        var UploadDropzone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: false,
@@ -123,7 +130,7 @@ export default class extends Controller {
             maxFilesize: 9999,
             paramName: 'files',
             maxThumbnailFilesize: 99999,
-            previewsContainer: '.visual-dropzone',
+            previewsContainer: dropname+'.visual-dropzone',
             addRemoveLinks: false,
             dictFileTooBig: 'File is big',
 
@@ -146,7 +153,7 @@ export default class extends Controller {
                 });
 
                 this.on('completemultiple', function (file, json) {
-                    $('.sortable-dropzone').sortable('enable');
+                    $(dropname+'.sortable-dropzone').sortable('enable');
                 });
 
                 const instanceDropZone = this;
@@ -165,7 +172,7 @@ export default class extends Controller {
                     instanceDropZone.emit('addedfile', mockFile);
                     instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
                     instanceDropZone.files.push(mockFile);
-                    $('.dz-preview:last-child')
+                    $(dropname+'.dz-preview:last-child')
                         .attr('data-file-id', item.id)
                         .addClass('file-sort');
                     $(
@@ -174,11 +181,11 @@ export default class extends Controller {
                         "' name='" + name + "[]' value='" +
                         item.id +
                         "'  />"
-                    ).appendTo('.dropzone');
+                    ).appendTo(dropname);
 
                 });
 
-                $('.dz-progress').remove();
+                $(dropname+'.dz-progress').remove();
 
                 this.on('sending', function (file, xhr, formData) {
                     formData.append('_token', $("meta[name='csrf_token']").attr('content'));
@@ -189,7 +196,7 @@ export default class extends Controller {
                 });
 
                 this.on('removedfile', function (file) {
-                    $('.files-' + file.data.id).remove();
+                    $(dropname+'.files-' + file.data.id).remove();
                     axios
                         .delete(platform.prefix(`/systems/files/${file.data.id}`), {
                             storage: $('#post-attachment-dropzone').data('storage'),
@@ -205,7 +212,7 @@ export default class extends Controller {
             },
             success: function (file, response) {
                 file.data = response;
-                $('.dz-preview:last-child')
+                $(dropname+'.dz-preview:last-child')
                     .attr('data-file-id', response.id)
                     .addClass('file-sort');
                 $(
@@ -214,7 +221,7 @@ export default class extends Controller {
                     "' name='" + name + "[]' value='" +
                     response.id +
                     "'  />"
-                ).appendTo('.dropzone');
+                ).appendTo(dropname);
             },
         });
     }
