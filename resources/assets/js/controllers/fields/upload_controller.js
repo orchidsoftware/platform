@@ -18,7 +18,6 @@ export default class extends Controller {
 
 
     connect() {
-        console.log(this.dropname);
         this.initDropZone()
         this.initSortable()
     }
@@ -121,7 +120,6 @@ export default class extends Controller {
         const dropname = this.dropname
         
         Dropzone.autoDiscover = false;
-        //var UploadDropzone = [];
         var UploadDropzone = new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
