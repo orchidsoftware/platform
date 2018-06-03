@@ -26,7 +26,7 @@ $.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 
 require('./modules/select');
 
-require('../../../node_modules/select2/dist/js/select2.full.min');
+require('select2');
 
 $(() => {
   $('.select2-enable').select2({
@@ -40,7 +40,8 @@ require('croppie');
 require('./modules/datetimepicker');
 require('./modules/open-click');
 
-window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+// window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+window.Chart = require('frappe-charts');
 
 require('./components/attachment');
 require('./components/filemanager');
