@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Boot\Builders;
 
-use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Generator\DocBlock\Tag;
+use Zend\Code\Generator\ClassGenerator;
+use Zend\Code\Reflection\ClassReflection;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\PropertyGenerator;
-use Zend\Code\Reflection\ClassReflection;
 
 /**
  * Class Model.
@@ -61,7 +61,7 @@ class Model
     {
         $this->parameters = collect($parameters);
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             $this->class = new ClassGenerator();
             $this->class->setName($class);
 
@@ -78,36 +78,30 @@ class Model
     public function setParameters($parameters)
     {
         $this->parameters = collect($parameters);
+
         return $this;
     }
 
-
     public function methodHasMany()
     {
-
     }
-
 
     public function methodHasOne()
     {
-
     }
 
     public function methodBelongsTo()
     {
-
     }
 
     public function methodBelongsToMany()
     {
-
     }
 
     public function generate()
     {
         $this->class->setExtendedClass(\Illuminate\Database\Eloquent\Model::class);
         $this->class->setNamespaceName('App\Models');
-
 
         foreach ($this->parameters->get('property', []) as $property => $value) {
             $this->setProperty($property, $value, $this->property[$property]['comment']);
@@ -128,7 +122,7 @@ class Model
      */
     protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var')
     {
-        if (!array_has($this->parameters, 'property.' . $property)) {
+        if (! array_has($this->parameters, 'property.'.$property)) {
             return $this;
         }
 

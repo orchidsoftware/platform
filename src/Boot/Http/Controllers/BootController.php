@@ -43,8 +43,6 @@ class BootController extends Controller
 
         dd($test->generate());
 
-
-
         return view('platform::container.boot.index');
     }
 
@@ -53,7 +51,6 @@ class BootController extends Controller
      */
     public function getModel(Request $request)
     {
-
     }
 
     /**
