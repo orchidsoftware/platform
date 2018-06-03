@@ -15,18 +15,20 @@
                     <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
 
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
-
+                <ul class="nav dropdown-menu" role="tablist">
                     @foreach($locales as $code => $lang)
-                        <a class="dropdown-item" data-target="#local-{{$code}}"
-                           role="tab"
-                           data-toggle="tab"
-                           onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
-                           aria-controls="local-{{$code}}"
-                           aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
-                        </a>
+                        <li class="nav-item">
+                            <a class="dropdown-item"
+                               href="#local-{{$code}}"
+                               role="tab"
+                               data-toggle="tab"
+                               onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
+                               aria-controls="local-{{$code}}"
+                               aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
+                            </a>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
             </li>
         @endif
 
@@ -52,9 +54,9 @@
                         <div class="bg-white">
                             <div class="tab-content @if(!$type->checkModules()) container @endif">
                                 @foreach($locales as $code => $lang)
-                                    <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
+                                    <div class="tab-pane @if($loop->first) active @endif" id="local-{{$code}}" role="tabpanel">
                                         <div class="wrapper-lg bg-white">
-                                            {!! generate_form($type->fields(), [], $code, 'content') !!}
+                                            {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
                                         </div>
                                     </div>
                                 @endforeach

@@ -114,6 +114,27 @@ trait Structure
     }
 
     /**
+     * Registered fields for main.
+     *
+     * @return mixed
+     */
+    abstract public function main() : array;
+
+    /**
+     * Registered fields for filling.
+     *
+     * @return mixed
+     */
+    abstract public function fields() : array;
+
+    /**
+     * Registered fields for options.
+     *
+     * @return mixed
+     */
+    abstract public function options() : array;
+
+    /**
      * @deprecated
      *
      * All registered extensions specified in the behavior.

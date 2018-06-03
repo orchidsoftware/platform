@@ -1,33 +1,4 @@
 <div class="wrapper-md">
-    <div class="form-group">
-        <label>{{trans('platform::post/base.semantic_url')}}</label>
-        <input type='text' class="form-control"
-               value="{{$post->slug or ''}}"
-               placeholder="{{trans('platform::post/base.semantic_url_unique_name')}}" name="slug">
-    </div>
-    <div class="line line-dashed b-b line-lg"></div>
-    <div class="form-group">
-        <label>{{trans('platform::post/base.time_of_publication')}}</label>
-        <div class="form-group">
-            <input type='text' class="form-control datetimepicker"
-                   value="{{$post->publish_at or ''}}"
-                   name="publish"
-                   data-date-format="YYYY-MM-DD HH:mm:ss"
-            >
-        </div>
-    </div>
-    <div class="form-group">
-        <label>{{trans('platform::post/base.status')}}</label>
-        <select name="status" class="form-control">
-            @foreach($type->status() as $key => $value)
-                <option value="{{$key}}"
-                        @if(!is_null($post) && $post->status == $key) selected @endif >
-                    {{$value}}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="line line-dashed b-b line-lg"></div>
-
     @if(!empty($type->views))
         <div class="form-group">
             <label>{{trans('platform::post/base.view')}}</label>
@@ -114,35 +85,35 @@
 
 
 <script>
-    document.addEventListener('turbolinks:load', function () {
+    document.addEventListener('turbolinks:load', () => {
         $('.select2-tags').select2({
             templateResult: function formatState(state) {
                 if (!state.id || !state.count) {
                     return state.text;
                 }
 
-                var str = '<span>' + state.text + '</span>' + ' <span class="pull-right badge bg-info">' + state.count + '</span>';
+                const str = `<span>${state.text}</span> <span class="pull-right badge bg-info">${state.count}</span>`;
 
                 return $(str);
             },
-            createTag: function (tag) {
+            createTag(tag) {
                 return {
                     id: tag.term,
                     text: tag.term,
                 };
             },
-            escapeMarkup: function (m) {
+            escapeMarkup(m) {
                 return m;
             },
             width: '100%',
             tags: true,
             cache: true,
             ajax: {
-                url: function (params) {
-                    return platform.prefix('/systems/tags/' + params.term);
+                url(params) {
+                    return platform.prefix(`/systems/tags/${params.term}`);
                 },
                 delay: 250,
-                processResults: function (data, page) {
+                processResults(data) {
                     return {
                         results: data
                     };

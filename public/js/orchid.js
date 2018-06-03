@@ -1,1 +1,4751 @@
-webpackJsonp([1],{0:function(e,t,n){n("sV/x"),e.exports=n("xZZD")},"1/BP":function(e,t,n){(function(e){document.addEventListener("turbolinks:load",function(){e(".datetimepicker").datetimepicker({defaultDate:moment(),locale:e("html").attr("lang"),icons:{time:"icon-clock",date:"icon-event",up:"icon-arrow-up",down:"icon-arrow-down",right:"icon-arrow-right",left:"icon-arrow-left",previous:"icon-arrow-left",next:"icon-arrow-right",today:"icon-target",clear:"icon-trash",close:"icon-close"}})})}).call(t,n("7t+N"))},"2DJt":function(e,t,n){(function(e){document.addEventListener("turbolinks:load",function(){e(".click").click(function(){var t=e(this).data("target"),n=e(this).data("toggle");e(t).hasClass(n)?e(t).removeClass(n):e(t).addClass(n)})})}).call(t,n("7t+N"))},"2tP0":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},i=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();function r(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var s=function(t){function n(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n);var t=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).call(this,e));return t.attachments={},t}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),i(n,[{key:"connect",value:function(){this.initDropZone(),this.initSortable()}},{key:"save",value:function(){var t=this.activeAttachment;e("#modalUploadAttachment").modal("toggle"),axios.put(platform.prefix("/systems/files/post/"+t.id),t).then()}},{key:"getAttachmentTargetKey",value:function(e){return e+"Target"}},{key:"loadInfo",value:function(e){var t=e.name+e.id;e.url="/storage/"+e.path+e.name+"."+e.extension,this.attachments.hasOwnProperty(t)||(this.attachments[t]=e),this.activeAttachment=e}},{key:"initSortable",value:function(){e(".sortable-dropzone").sortable({scroll:!1,containment:"parent",update:function(){var t={};e(".file-sort").each(function(n,a){var o=e(this).attr("data-file-id");t[o]=n}),axios.post(platform.prefix("/systems/files/sort"),{files:t}).then()}})}},{key:"initDropZone",value:function(){var t=this.data.get("data")&&JSON.parse(this.data.get("data")),n=this.data.get("storage"),a=this.data.get("name"),o=this.loadInfo.bind(this);new Dropzone(".dropzone",{url:platform.prefix("/systems/files"),method:"post",uploadMultiple:!1,parallelUploads:100,maxFilesize:9999,paramName:"files",maxThumbnailFilesize:99999,previewsContainer:".visual-dropzone",addRemoveLinks:!1,dictFileTooBig:"File is big",init:function(){this.on("addedfile",function(t){var n=this;(a=Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>')).addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),n.removeFile(t)}),t.previewElement.appendChild(a);var a;n=this;(a=Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon - note" aria-hidden="true"></i></a>')).addEventListener("click",function(n){o(t.data),e("#modalUploadAttachment").modal("show")}),t.previewElement.appendChild(a)}),this.on("completemultiple",function(t,n){e(".sortable-dropzone").sortable("enable")});var i=this;t.forEach(function(t,n,o){var r={id:t.id,name:t.original_name,size:t.size,type:t.mime,status:Dropzone.ADDED,url:"/storage/"+t.path+t.name+"."+t.extension,data:t};i.emit("addedfile",r),i.emit("thumbnail",r,r.url),i.files.push(r),e(".dz-preview:last-child").attr("data-file-id",t.id).addClass("file-sort"),e("<input type='hidden' class='files-"+t.id+"' name='"+a+"[]' value='"+t.id+"'  />").appendTo(".dropzone")}),e(".dz-progress").remove(),this.on("sending",function(t,a,o){o.append("_token",e("meta[name='csrf_token']").attr("content")),o.append("storage",n)}),this.on("removedfile",function(t){e(".files-"+t.data.id).remove(),axios.delete(platform.prefix("/systems/files/"+t.data.id),{storage:e("#post-attachment-dropzone").data("storage")}).then()})},error:function(t,n){return"string"===e.type(n)?n:n.message},success:function(t,n){t.data=n,e(".dz-preview:last-child").attr("data-file-id",n.id).addClass("file-sort"),e("<input type='hidden' class='files-"+n.id+"' name='"+a+"[]' value='"+n.id+"'  />").appendTo(".dropzone")}})}},{key:"activeAttachment",get:function(){var e=this,t=this.activeAchivmentId;return["name","original_name","alt","url","description"].reduce(function(t,n){var a=e.getAttachmentTargetKey(n),i=e[a];return o({},t,r({},n,"url"===n?i.href:i.value))},{id:t})},set:function(e){var t=this;this.activeAchivmentId=e.id,Object.keys(e).map(function(n){var a=e[n],o=t.getAttachmentTargetKey(n),i=t[o];i&&("url"!==n?i.value=a:i.href=a)})}}]),n}();s.targets=["name","original_name","alt","description","url","active"],t.default=s}.call(t,n("7t+N"))},"5ZvN":function(e,t,n){(function(e){var t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};document.addEventListener("turbolinks:load",function(){if(null!==document.getElementById("filemanager")){var n=new Vue({el:"#filemanager",data:{files:"",folders:[],selected_file:"",directories:[],new_filename:""}});CSRF_TOKEN=e('meta[name="csrf_token"]').attr("content");new function(a){var o=e("#files"),i=e.extend(!0,{},a);this.init=function(){function a(a){var r,l,d,c="/";"/"!=a&&(c="/"+a.join("/")),e("#file_loader").fadeIn(),e.post(i.baseUrl+"/media/directories",{folder_location:n.folders,_token:CSRF_TOKEN},function(e){n.directories=e}),e.post(i.baseUrl+"/media/files",(r={folder:c,_token:CSRF_TOKEN},l="_token",d=CSRF_TOKEN,l in r?Object.defineProperty(r,l,{value:d,enumerable:!0,configurable:!0,writable:!0}):r[l]=d,r),function(a){e("#file_loader").hide(),n.files=a,o.trigger("click");for(var i=0;i<n.files.items.length;i++)void 0!=t(n.files.items[i].size)&&(n.files.items[i].size=s(n.files.items[i].size))})}function r(t){e("#files li .selected").removeClass("selected"),e(t).addClass("selected"),n.selected_file=n.files.items[e(t).data("index")],n.new_filename=n.selected_file.name}function s(e){if(0==e)return"0 Bytes";var t=parseInt(Math.floor(Math.log(e)/Math.log(1024)));return Math.round(e/Math.pow(1024,t),2)+" "+["Bytes","KB","MB","GB","TB"][t]}e("#upload").dropzone({url:i.baseUrl+"/media/upload",previewsContainer:"#uploadPreview",totaluploadprogress:function(t,n,a){e("#uploadProgress .progress-bar").css("width",t+"%"),100==t&&e("#uploadProgress").delay(1500).slideUp(function(){e("#uploadProgress .progress-bar").css("width","0%")})},processing:function(){},sending:function(e,t,a){a.append("_token",CSRF_TOKEN),a.append("upload_path",n.folders)},success:function(e,t){var n=t.success,a=t.message;n||alert(a)},error:function(e,t,n){var a=t.message;alert(a)},queuecomplete:function(){a(n.folders)}}),a("/"),o.on("dblclick","li .file_link",function(){if(!e(this).children(".details").hasClass("folder"))return!1;n.folders.push(this.dataset.folder),a(n.folders)}),o.on("click","li",function(t){var n=t.target,a=n;e(a).hasClass("file_link")||(a=e(n).closest(".file_link")),r(a)}),e(".breadcrumb").on("click","li",function(){var t=e(this).data("index");n.folders=n.folders.splice(0,t),a(n.folders)}),e("#refresh").click(function(){a(n.folders)}),e("#new_folder_modal").on("shown.bs.modal",function(){e("#new_folder_name").focus()}),e("#new_folder_name").keydown(function(t){13==t.which&&e("#new_folder_submit").trigger("click")}),e("#move_file_modal").on("hidden.bs.modal",function(){e("#s2id_move_folder_dropdown").select2("close")}),e("#new_folder_submit").click(function(){new_folder_path=n.files.path+"/"+e("#new_folder_name").val(),e.post(i.baseUrl+"/media/new_folder",{new_folder:new_folder_path,_token:CSRF_TOKEN},function(t){1==t.success?a(n.folders):alert("Whoops!"),e("#new_folder_name").val(""),e("#new_folder_modal").modal("hide")})}),e("#delete").click(function(){"directory"==n.selected_file.type?e(".folder_warning").show():e(".folder_warning").hide(),e(".confirm_delete_name").text(n.selected_file.name),e("#confirm_delete_modal").modal("show")}),e("#confirm_delete").click(function(){e.post(i.baseUrl+"/media/delete_file_folder",{folder_location:n.folders,file_folder:n.selected_file.name,type:n.selected_file.type,_token:CSRF_TOKEN},function(t){1==t.success?(a(n.folders),e("#confirm_delete_modal").modal("hide")):alert("Whoops!")})}),e("#move").click(function(){e("#move_file_modal").modal("show")}),e("#rename").click(function(){void 0!==n.selected_file&&e("#rename_file").val(n.selected_file.name),e("#rename_file_modal").modal("show")}),e("#move_folder_dropdown").keydown(function(t){13==t.which&&e("#move_btn").trigger("click")}),e("#move_btn").click(function(){source=n.selected_file.name,destination=e("#move_folder_dropdown").val()+"/"+n.selected_file.name,e("#move_file_modal").modal("hide"),e.post(i.baseUrl+"/media/move_file",{folder_location:n.folders,source:source,destination:destination,_token:CSRF_TOKEN},function(e){var t=e.success,o=e.error;1==t?a(n.folders):alert(o,"Whoops!")})}),e("#rename_btn").click(function(){source=n.selected_file.path,filename=n.selected_file.name,new_filename=n.new_filename,e("#rename_file_modal").modal("hide"),e.post(i.baseUrl+"/media/rename_file",{folder_location:n.folders,filename:filename,new_filename:new_filename,_token:CSRF_TOKEN},function(e){var t=e.success,o=e.error;1==t?a(n.folders):alert(o,"Whoops!")})}),n.$watch("files",function(t,n){var a=t.items;r(e('*[data-index="0"]')),e("#filemanager #content #files").hide(),e("#filemanager #content #files").fadeIn("fast"),e("#filemanager .loader").fadeOut(function(){e("#filemanager #content").fadeIn()}),a.length<1?e("#no_files").show():e("#no_files").hide()}),n.$watch("directories",function(t,n){e("#move_folder_dropdown").select2()&&e("#move_folder_dropdown").select2("destroy"),e("#move_folder_dropdown").select2()}),n.$watch("selected_file",function(t,n){void 0===t?(e(".right_details").hide(),e(".right_none_selected").show(),e("#move").attr("disabled",!0),e("#delete").attr("disabled",!0)):(e(".right_details").show(),e(".right_none_selected").hide(),e("#move").removeAttr("disabled"),e("#delete").removeAttr("disabled"))})}}({baseUrl:e("#filemanager").data("url")}).init()}})}).call(t,n("7t+N"))},GR5e:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=n("5eDb"),i=n.n(o),r=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var s=function(t){function n(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),r(n,[{key:"connect",value:function(){i.a.baseURL="/orchid/js/tinymce";var t=this.element.querySelector(".tinymce").id,n=this.element.querySelector("input"),a="image media table link paste contextmenu textpattern autolink codesample",o="",r=!0;"modern"===this.element.dataset.theme&&(a="print autosave autoresize preview paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern",o="formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat",r=!1),i.a.init({branding:!1,selector:"#"+t,theme:this.element.dataset.theme,min_height:300,height:300,max_height:600,plugins:a,toolbar1:o,insert_toolbar:"quickimage quicktable media codesample fullscreen",selection_toolbar:"bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ",inline:r,convert_urls:!1,image_caption:!0,image_title:!0,image_class_list:[{title:"None",value:""},{title:"Responsive",value:"img-fluid"}],setup:function(t){t.on("change",function(){e(n).val(t.getContent())})},images_upload_handler:function(e,t){var n=new FormData;n.append("file",e.blob()),axios.post(platform.prefix("/systems/files"),n).then(function(e){t("/storage/"+e.data.path+e.data.name+"."+e.data.extension)}).catch(function(e){console.log(e)})}})}},{key:"disconnect",value:function(){i.a.remove("#"+this.element.querySelector(".tinymce").id)}}]),n}();t.default=s}.call(t,n("7t+N"))},HhB7:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var i=function(t){function n(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),o(n,[{key:"filter",value:function(t){var n=t.target.value.trim().toLowerCase();e(".admin-element-item").hide().filter(function(){return-1!==e(this).html().trim().toLowerCase().indexOf(n)}).show(),e(".admin-element").show().filter(function(){return 0===e(this).children(".list-group").children(":visible").length}).hide()}}]),n}();t.default=i}.call(t,n("7t+N"))},LalH:function(e,t,n){(function(e){document.addEventListener("turbolinks:load",function(){if(null!==document.getElementById("menu-vue")){var t=new Vue({el:"#menu-vue",data:{count:0,id:"",label:"",title:"",slug:"",auth:0,robot:"follow",style:"",target:"_self",errors:{title:!1,label:!1,slug:!1}},methods:{load:function(e){this.id=e.id,this.label=e.label,this.slug=e.slug,this.auth=e.auth,this.robot=e.robot,this.style=e.style,this.target=e.target,this.title=e.title},checkForm:function(){var e=!1;return this.errors={title:!1,label:!1,slug:!1},this.title||(this.errors.title=e=!0),this.label||(this.errors.label=e=!0),this.slug||(this.errors.slug=e=!0),!e},add:function(){this.checkForm()&&(e(".dd > .dd-list").append("<li class='dd-item dd3-item' data-id='"+this.count+"'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>"+this.label+"</div> <div  class='edit icon-pencil'></div></li>"),e("li[data-id="+this.count+"]").data({label:this.label,title:this.title,auth:this.auth,slug:this.slug,robot:this.robot,style:this.style,target:this.target}),this.count--,this.clear(),this.send())},edit:function(t){var n=e(t).parent().data();n.label=e(t).prev().text(),this.load(n)},save:function(){this.checkForm()&&(e("li[data-id="+this.id+"]").data({label:this.label,title:this.title,auth:this.auth,slug:this.slug,robot:this.robot,style:this.style,target:this.target}),e("li[data-id="+this.id+"] > .dd3-content").html(this.label),this.clear(),e("#menuEdit").modal("hide"),t.send())},destroy:function(e){axios.delete(platform.prefix("/press/menu/"+e)).then(function(e){})},remove:function(){e("li[data-id="+this.id+"]").remove(),e("#menuEdit").modal("hide"),this.destroy(this.id),this.clear()},clear:function(){this.label="",this.title="",this.auth=0,this.slug="",this.robot="follow",this.style="",this.target="_self",this.id=""},send:function(){var t=e(".dd").attr("data-name"),n={lang:e(".dd").attr("data-lang"),data:e(".dd").nestable("serialize")};axios.put(platform.prefix("/press/menu/"+t),n).then(function(e){})},exist:function(){return Number.isInteger(this.id)&&e("li[data-id="+this.id+"]").length>0}}});e(".dd").nestable({}),e(".dd-item").each(function(t,n){e(n).data({sort:t})}),e(".dd").on("change",function(){e(".dd-item").each(function(t,n){e(n).data({sort:t})}),t.send()}),e(".dd").on("click",".edit",function(){t.edit(this)}),e(".menu-save").click(function(){t.send()})}})}).call(t,n("7t+N"))},U9lS:function(e,t,n){var a={"./components/menu_controller.js":"khUe","./fields/input_controller.js":"Vde2","./fields/picture_controller.js":"cp1A","./fields/simplemde_controller.js":"v2+b","./fields/tinymce_controller.js":"GR5e","./fields/upload_controller.js":"2tP0","./fields/utm_controller.js":"aVBm","./layouts/html_load_controller.js":"lsGw","./layouts/left_menu_controller.js":"z0Ze","./layouts/systems_controller.js":"HhB7"};function o(e){return n(i(e))}function i(e){var t=a[e];if(!(t+1))throw new Error("Cannot find module '"+e+"'.");return t}o.keys=function(){return Object.keys(a)},o.resolve=i,e.exports=o,o.id="U9lS"},Vde2:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=n("5tcx"),o=n("7mJ/"),i=n.n(o),r=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var s=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a["Controller"]),r(t,[{key:"connect",value:function(){var e=this.element.querySelector("input");i()(e.dataset.mask).mask(e)}}]),t}();t.default=s},WRGp:function(e,t,n){(function(e,t){window.$=n("7t+N"),window.Vue=n("I3G/"),n("veyI"),n("K3J8"),n("69uM"),document.addEventListener("turbolinks:load",function(){t("input[data-role='tagsinput']").tagsinput("refresh")}),window.Dropzone=n("oLnp"),Dropzone.autoDiscover=!1,n("PNgH"),window.moment=n("PJh5"),t.fn.datetimepicker=n("YbI6"),n("Wnx6"),n("hv7s"),t(function(){t(".select2-enable").select2({theme:"bootstrap"})}),t.fn.select2.defaults.set("theme","bootstrap"),n("8QGE"),n("1/BP"),n("2DJt"),window.Chart=n("9Svm"),n("hu7o"),n("5ZvN"),n("LalH")}).call(t,n("7t+N"),n("7t+N"))},Wnx6:function(e,t,n){(function(e){document.addEventListener("turbolinks:load",function(){e(".select2").select2({width:"100%",theme:"bootstrap"})})}).call(t,n("7t+N"))},YbI6:function(e,t,n){var a,o,i,r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(r){"use strict";o=[n("7t+N"),n("PJh5")],void 0===(i="function"==typeof(a=r)?a.apply(t,o):a)||(e.exports=i)}(function(e,t){"use strict";if(!t)throw new Error("bootstrap-datetimepicker requires Moment.js to be loaded first");var n=function(n,a){var o,i,r,s,l,d,c,u,p,f={},h=!0,m=!1,y=!1,g=0,v=[{clsName:"days",navFnc:"M",navStep:1},{clsName:"months",navFnc:"y",navStep:1},{clsName:"years",navFnc:"y",navStep:10},{clsName:"decades",navFnc:"y",navStep:100}],b=["days","months","years","decades"],w=["top","bottom","auto"],k=["left","right","auto"],_=["default","top","bottom"],x={up:38,38:"up",down:40,40:"down",left:37,37:"left",right:39,39:"right",tab:9,9:"tab",escape:27,27:"escape",enter:13,13:"enter",pageUp:33,33:"pageUp",pageDown:34,34:"pageDown",shift:16,16:"shift",control:17,17:"control",space:32,32:"space",t:84,84:"t",delete:46,46:"delete"},C={},T=function(){return void 0!==t.tz&&void 0!==a.timeZone&&null!==a.timeZone&&""!==a.timeZone},D=function(e){var n=void 0;return n=void 0===e||null===e?t():t.isDate(e)||t.isMoment(e)?t(e):T()?t.tz(e,d,a.useStrict,a.timeZone):t(e,d,a.useStrict),T()&&n.tz(a.timeZone),n},O=function(e){if("string"!=typeof e||e.length>1)throw new TypeError("isEnabled expects a single character string parameter");switch(e){case"y":return-1!==l.indexOf("Y");case"M":return-1!==l.indexOf("M");case"d":return-1!==l.toLowerCase().indexOf("d");case"h":case"H":return-1!==l.toLowerCase().indexOf("h");case"m":return-1!==l.indexOf("m");case"s":return-1!==l.indexOf("s");default:return!1}},E=function(){return O("h")||O("m")||O("s")},P=function(){return O("y")||O("M")||O("d")},S=function(){var t,n,o,i=e("<div>").addClass("timepicker-hours").append(e("<table>").addClass("table-condensed")),r=e("<div>").addClass("timepicker-minutes").append(e("<table>").addClass("table-condensed")),l=e("<div>").addClass("timepicker-seconds").append(e("<table>").addClass("table-condensed")),d=[(t=e("<tr>"),n=e("<tr>"),o=e("<tr>"),O("h")&&(t.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.incrementHour}).addClass("btn").attr("data-action","incrementHours").append(e("<span>").addClass(a.icons.up)))),n.append(e("<td>").append(e("<span>").addClass("timepicker-hour").attr({"data-time-component":"hours",title:a.tooltips.pickHour}).attr("data-action","showHours"))),o.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.decrementHour}).addClass("btn").attr("data-action","decrementHours").append(e("<span>").addClass(a.icons.down))))),O("m")&&(O("h")&&(t.append(e("<td>").addClass("separator")),n.append(e("<td>").addClass("separator").html(":")),o.append(e("<td>").addClass("separator"))),t.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.incrementMinute}).addClass("btn").attr("data-action","incrementMinutes").append(e("<span>").addClass(a.icons.up)))),n.append(e("<td>").append(e("<span>").addClass("timepicker-minute").attr({"data-time-component":"minutes",title:a.tooltips.pickMinute}).attr("data-action","showMinutes"))),o.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.decrementMinute}).addClass("btn").attr("data-action","decrementMinutes").append(e("<span>").addClass(a.icons.down))))),O("s")&&(O("m")&&(t.append(e("<td>").addClass("separator")),n.append(e("<td>").addClass("separator").html(":")),o.append(e("<td>").addClass("separator"))),t.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.incrementSecond}).addClass("btn").attr("data-action","incrementSeconds").append(e("<span>").addClass(a.icons.up)))),n.append(e("<td>").append(e("<span>").addClass("timepicker-second").attr({"data-time-component":"seconds",title:a.tooltips.pickSecond}).attr("data-action","showSeconds"))),o.append(e("<td>").append(e("<a>").attr({href:"#",tabindex:"-1",title:a.tooltips.decrementSecond}).addClass("btn").attr("data-action","decrementSeconds").append(e("<span>").addClass(a.icons.down))))),s||(t.append(e("<td>").addClass("separator")),n.append(e("<td>").append(e("<button>").addClass("btn btn-primary").attr({"data-action":"togglePeriod",tabindex:"-1",title:a.tooltips.togglePeriod}))),o.append(e("<td>").addClass("separator"))),e("<div>").addClass("timepicker-picker").append(e("<table>").addClass("table-condensed").append([t,n,o])))];return O("h")&&d.push(i),O("m")&&d.push(r),O("s")&&d.push(l),d},j=function(){var t,n,o,i=e("<div>").addClass("bootstrap-datetimepicker-widget dropdown-menu"),r=e("<div>").addClass("datepicker").append((n=e("<thead>").append(e("<tr>").append(e("<th>").addClass("prev").attr("data-action","previous").append(e("<span>").addClass(a.icons.previous))).append(e("<th>").addClass("picker-switch").attr("data-action","pickerSwitch").attr("colspan",a.calendarWeeks?"6":"5")).append(e("<th>").addClass("next").attr("data-action","next").append(e("<span>").addClass(a.icons.next)))),o=e("<tbody>").append(e("<tr>").append(e("<td>").attr("colspan",a.calendarWeeks?"8":"7"))),[e("<div>").addClass("datepicker-days").append(e("<table>").addClass("table-condensed").append(n).append(e("<tbody>"))),e("<div>").addClass("datepicker-months").append(e("<table>").addClass("table-condensed").append(n.clone()).append(o.clone())),e("<div>").addClass("datepicker-years").append(e("<table>").addClass("table-condensed").append(n.clone()).append(o.clone())),e("<div>").addClass("datepicker-decades").append(e("<table>").addClass("table-condensed").append(n.clone()).append(o.clone()))])),l=e("<div>").addClass("timepicker").append(S()),d=e("<ul>").addClass("list-unstyled"),c=e("<li>").addClass("picker-switch"+(a.collapse?" accordion-toggle":"")).append((t=[],a.showTodayButton&&t.push(e("<td>").append(e("<a>").attr({"data-action":"today",title:a.tooltips.today}).append(e("<span>").addClass(a.icons.today)))),!a.sideBySide&&P()&&E()&&t.push(e("<td>").append(e("<a>").attr({"data-action":"togglePicker",title:a.tooltips.selectTime}).append(e("<span>").addClass(a.icons.time)))),a.showClear&&t.push(e("<td>").append(e("<a>").attr({"data-action":"clear",title:a.tooltips.clear}).append(e("<span>").addClass(a.icons.clear)))),a.showClose&&t.push(e("<td>").append(e("<a>").attr({"data-action":"close",title:a.tooltips.close}).append(e("<span>").addClass(a.icons.close)))),e("<table>").addClass("table-condensed").append(e("<tbody>").append(e("<tr>").append(t)))));return a.inline&&i.removeClass("dropdown-menu"),s&&i.addClass("usetwentyfour"),O("s")&&!s&&i.addClass("wider"),a.sideBySide&&P()&&E()?(i.addClass("timepicker-sbs"),"top"===a.toolbarPlacement&&i.append(c),i.append(e("<div>").addClass("row").append(r.addClass("col-md-6")).append(l.addClass("col-md-6"))),"bottom"===a.toolbarPlacement&&i.append(c),i):("top"===a.toolbarPlacement&&d.append(c),P()&&d.append(e("<li>").addClass(a.collapse&&E()?"collapse show":"").append(r)),"default"===a.toolbarPlacement&&d.append(c),E()&&d.append(e("<li>").addClass(a.collapse&&P()?"collapse":"").append(l)),"bottom"===a.toolbarPlacement&&d.append(c),i.append(d))},M=function(){var t=(m||n).position(),o=(m||n).offset(),i=a.widgetPositioning.vertical,r=a.widgetPositioning.horizontal,s=void 0;if(a.widgetParent)s=a.widgetParent.append(y);else if(n.is("input"))s=n.after(y).parent();else{if(a.inline)return void(s=n.append(y));s=n,n.children().first().after(y)}if("auto"===i&&(i=o.top+1.5*y.height()>=e(window).height()+e(window).scrollTop()&&y.height()+n.outerHeight()<o.top?"top":"bottom"),"auto"===r&&(r=s.width()<o.left+y.outerWidth()/2&&o.left+y.outerWidth()>e(window).width()?"right":"left"),"top"===i?y.addClass("top").removeClass("bottom"):y.addClass("bottom").removeClass("top"),"right"===r?y.addClass("pull-right"):y.removeClass("pull-right"),"static"===s.css("position")&&(s=s.parents().filter(function(){return"static"!==e(this).css("position")}).first()),0===s.length)throw new Error("datetimepicker component should be placed within a non-static positioned container");y.css({top:"top"===i?"auto":t.top+n.outerHeight(),bottom:"top"===i?s.outerHeight()-(s===n?0:t.top):"auto",left:"left"===r?s===n?0:t.left:"auto",right:"left"===r?"auto":s.outerWidth()-n.outerWidth()-(s===n?0:t.left)})},I=function(e){"dp.change"===e.type&&(e.date&&e.date.isSame(e.oldDate)||!e.date&&!e.oldDate)||n.trigger(e)},z=function(e){"y"===e&&(e="YYYY"),I({type:"dp.update",change:e,viewDate:i.clone()})},L=function(e){y&&(e&&(c=Math.max(g,Math.min(3,c+e))),y.find(".datepicker > div").hide().filter(".datepicker-"+v[c].clsName).show())},B=function(t,n){if(!t.isValid())return!1;if(a.disabledDates&&"d"===n&&(o=t,!0===a.disabledDates[o.format("YYYY-MM-DD")]))return!1;var o;if(a.enabledDates&&"d"===n&&!function(e){return!0===a.enabledDates[e.format("YYYY-MM-DD")]}(t))return!1;if(a.minDate&&t.isBefore(a.minDate,n))return!1;if(a.maxDate&&t.isAfter(a.maxDate,n))return!1;if(a.daysOfWeekDisabled&&"d"===n&&-1!==a.daysOfWeekDisabled.indexOf(t.day()))return!1;if(a.disabledHours&&("h"===n||"m"===n||"s"===n)&&function(e){return!0===a.disabledHours[e.format("H")]}(t))return!1;if(a.enabledHours&&("h"===n||"m"===n||"s"===n)&&!function(e){return!0===a.enabledHours[e.format("H")]}(t))return!1;if(a.disabledTimeIntervals&&("h"===n||"m"===n||"s"===n)){var i=!1;if(e.each(a.disabledTimeIntervals,function(){if(t.isBetween(this[0],this[1]))return i=!0,!1}),i)return!1}return!0},N=function(){var n=y.find(".datepicker-days"),r=n.find("th"),s=void 0,l=[],d=void 0,c=[],u=void 0;if(P()){for(r.eq(0).find("span").attr("title",a.tooltips.prevMonth),r.eq(1).attr("title",a.tooltips.selectMonth),r.eq(2).find("span").attr("title",a.tooltips.nextMonth),n.find(".disabled").removeClass("disabled"),r.eq(1).text(i.format(a.dayViewHeaderFormat)),B(i.clone().subtract(1,"M"),"M")||r.eq(0).addClass("disabled"),B(i.clone().add(1,"M"),"M")||r.eq(2).addClass("disabled"),s=i.clone().startOf("M").startOf("w").startOf("d"),u=0;u<42;u++)0===s.weekday()&&(d=e("<tr>"),a.calendarWeeks&&d.append('<td class="cw">'+s.week()+"</td>"),l.push(d)),c=["day"],s.isBefore(i,"M")&&c.push("old"),s.isAfter(i,"M")&&c.push("new"),s.isSame(o,"d")&&!h&&c.push("active"),B(s,"d")||c.push("disabled"),s.isSame(D(),"d")&&c.push("today"),0!==s.day()&&6!==s.day()||c.push("weekend"),I({type:"dp.classify",date:s,classNames:c}),d.append('<td data-action="selectDay" data-day="'+s.format("L")+'" class="'+c.join(" ")+'">'+s.date()+"</td>"),s.add(1,"d");var p,f,m;n.find("tbody").empty().append(l),p=y.find(".datepicker-months"),f=p.find("th"),m=p.find("tbody").find("span"),f.eq(0).find("span").attr("title",a.tooltips.prevYear),f.eq(1).attr("title",a.tooltips.selectYear),f.eq(2).find("span").attr("title",a.tooltips.nextYear),p.find(".disabled").removeClass("disabled"),B(i.clone().subtract(1,"y"),"y")||f.eq(0).addClass("disabled"),f.eq(1).text(i.year()),B(i.clone().add(1,"y"),"y")||f.eq(2).addClass("disabled"),m.removeClass("active"),o.isSame(i,"y")&&!h&&m.eq(o.month()).addClass("active"),m.each(function(t){B(i.clone().month(t),"M")||e(this).addClass("disabled")}),function(){var e=y.find(".datepicker-years"),t=e.find("th"),n=i.clone().subtract(5,"y"),r=i.clone().add(6,"y"),s="";for(t.eq(0).find("span").attr("title",a.tooltips.prevDecade),t.eq(1).attr("title",a.tooltips.selectDecade),t.eq(2).find("span").attr("title",a.tooltips.nextDecade),e.find(".disabled").removeClass("disabled"),a.minDate&&a.minDate.isAfter(n,"y")&&t.eq(0).addClass("disabled"),t.eq(1).text(n.year()+"-"+r.year()),a.maxDate&&a.maxDate.isBefore(r,"y")&&t.eq(2).addClass("disabled");!n.isAfter(r,"y");)s+='<span data-action="selectYear" class="year'+(n.isSame(o,"y")&&!h?" active":"")+(B(n,"y")?"":" disabled")+'">'+n.year()+"</span>",n.add(1,"y");e.find("td").html(s)}(),function(){var e=y.find(".datepicker-decades"),n=e.find("th"),r=t({y:i.year()-i.year()%100-1}),s=r.clone().add(100,"y"),l=r.clone(),d=!1,c=!1,u=void 0,p="";for(n.eq(0).find("span").attr("title",a.tooltips.prevCentury),n.eq(2).find("span").attr("title",a.tooltips.nextCentury),e.find(".disabled").removeClass("disabled"),(r.isSame(t({y:1900}))||a.minDate&&a.minDate.isAfter(r,"y"))&&n.eq(0).addClass("disabled"),n.eq(1).text(r.year()+"-"+s.year()),(r.isSame(t({y:2e3}))||a.maxDate&&a.maxDate.isBefore(s,"y"))&&n.eq(2).addClass("disabled");!r.isAfter(s,"y");)u=r.year()+12,d=a.minDate&&a.minDate.isAfter(r,"y")&&a.minDate.year()<=u,c=a.maxDate&&a.maxDate.isAfter(r,"y")&&a.maxDate.year()<=u,p+='<span data-action="selectDecade" class="decade'+(o.isAfter(r)&&o.year()<=u?" active":"")+(B(r,"y")||d||c?"":" disabled")+'" data-selection="'+(r.year()+6)+'">'+(r.year()+1)+" - "+(r.year()+12)+"</span>",r.add(12,"y");p+="<span></span><span></span><span></span>",e.find("td").html(p),n.eq(1).text(l.year()+1+"-"+r.year())}()}},H=function(){var t=void 0,n=void 0,r=y.find(".timepicker span[data-time-component]");s||(t=y.find(".timepicker [data-action=togglePeriod]"),n=o.clone().add(o.hours()>=12?-12:12,"h"),t.text(o.format("A")),B(n,"h")?t.removeClass("disabled"):t.addClass("disabled")),r.filter("[data-time-component=hours]").text(o.format(s?"HH":"hh")),r.filter("[data-time-component=minutes]").text(o.format("mm")),r.filter("[data-time-component=seconds]").text(o.format("ss")),function(){var t=y.find(".timepicker-hours table"),n=i.clone().startOf("d"),a=[],o=e("<tr>");for(i.hour()>11&&!s&&n.hour(12);n.isSame(i,"d")&&(s||i.hour()<12&&n.hour()<12||i.hour()>11);)n.hour()%4==0&&(o=e("<tr>"),a.push(o)),o.append('<td data-action="selectHour" class="hour'+(B(n,"h")?"":" disabled")+'">'+n.format(s?"HH":"hh")+"</td>"),n.add(1,"h");t.empty().append(a)}(),function(){for(var t=y.find(".timepicker-minutes table"),n=i.clone().startOf("h"),o=[],r=e("<tr>"),s=1===a.stepping?5:a.stepping;i.isSame(n,"h");)n.minute()%(4*s)==0&&(r=e("<tr>"),o.push(r)),r.append('<td data-action="selectMinute" class="minute'+(B(n,"m")?"":" disabled")+'">'+n.format("mm")+"</td>"),n.add(s,"m");t.empty().append(o)}(),function(){for(var t=y.find(".timepicker-seconds table"),n=i.clone().startOf("m"),a=[],o=e("<tr>");i.isSame(n,"m");)n.second()%20==0&&(o=e("<tr>"),a.push(o)),o.append('<td data-action="selectSecond" class="second'+(B(n,"s")?"":" disabled")+'">'+n.format("ss")+"</td>"),n.add(5,"s");t.empty().append(a)}()},q=function(){y&&(N(),H())},F=function(e){var t=h?null:o;if(!e)return h=!0,r.val(""),n.data("date",""),I({type:"dp.change",date:!1,oldDate:t}),void q();if(e=e.clone().locale(a.locale),T()&&e.tz(a.timeZone),1!==a.stepping)for(e.minutes(Math.round(e.minutes()/a.stepping)*a.stepping).seconds(0);a.minDate&&e.isBefore(a.minDate);)e.add(a.stepping,"minutes");B(e)?(i=(o=e).clone(),r.val(o.format(l)),n.data("date",o.format(l)),h=!1,q(),I({type:"dp.change",date:o.clone(),oldDate:t})):(a.keepInvalid?I({type:"dp.change",date:e,oldDate:t}):r.val(h?"":o.format(l)),I({type:"dp.error",date:e,oldDate:t}))},A=function(){var t=!1;return y?(y.find(".collapse").each(function(){var n=e(this).data("collapse");return!n||!n.transitioning||(t=!0,!1)}),t?f:(m&&m.hasClass("btn")&&m.toggleClass("active"),y.hide(),e(window).off("resize",M),y.off("click","[data-action]"),y.off("mousedown",!1),y.remove(),y=!1,I({type:"dp.hide",date:o.clone()}),r.blur(),i=o.clone(),f)):f},R=function(){F(null)},Y=function(e){return void 0===a.parseInputDate?(!t.isMoment(e)||e instanceof Date)&&(e=D(e)):e=a.parseInputDate(e),e},W={next:function(){var e=v[c].navFnc;i.add(v[c].navStep,e),N(),z(e)},previous:function(){var e=v[c].navFnc;i.subtract(v[c].navStep,e),N(),z(e)},pickerSwitch:function(){L(1)},selectMonth:function(t){var n=e(t.target).closest("tbody").find("span").index(e(t.target));i.month(n),c===g?(F(o.clone().year(i.year()).month(i.month())),a.inline||A()):(L(-1),N()),z("M")},selectYear:function(t){var n=parseInt(e(t.target).text(),10)||0;i.year(n),c===g?(F(o.clone().year(i.year())),a.inline||A()):(L(-1),N()),z("YYYY")},selectDecade:function(t){var n=parseInt(e(t.target).data("selection"),10)||0;i.year(n),c===g?(F(o.clone().year(i.year())),a.inline||A()):(L(-1),N()),z("YYYY")},selectDay:function(t){var n=i.clone();e(t.target).is(".old")&&n.subtract(1,"M"),e(t.target).is(".new")&&n.add(1,"M"),F(n.date(parseInt(e(t.target).text(),10))),E()||a.keepOpen||a.inline||A()},incrementHours:function(){var e=o.clone().add(1,"h");B(e,"h")&&F(e)},incrementMinutes:function(){var e=o.clone().add(a.stepping,"m");B(e,"m")&&F(e)},incrementSeconds:function(){var e=o.clone().add(1,"s");B(e,"s")&&F(e)},decrementHours:function(){var e=o.clone().subtract(1,"h");B(e,"h")&&F(e)},decrementMinutes:function(){var e=o.clone().subtract(a.stepping,"m");B(e,"m")&&F(e)},decrementSeconds:function(){var e=o.clone().subtract(1,"s");B(e,"s")&&F(e)},togglePeriod:function(){F(o.clone().add(o.hours()>=12?-12:12,"h"))},togglePicker:function(t){var n=e(t.target),o=n.closest("ul"),i=o.find(".show"),r=o.find(".collapse:not(.show)"),s=void 0;if(i&&i.length){if((s=i.data("collapse"))&&s.transitioning)return;i.collapse?(i.collapse("hide"),r.collapse("show")):(i.removeClass("show"),r.addClass("show")),n.is("span")?n.toggleClass(a.icons.time+" "+a.icons.date):n.find("span").toggleClass(a.icons.time+" "+a.icons.date)}},showPicker:function(){y.find(".timepicker > div:not(.timepicker-picker)").hide(),y.find(".timepicker .timepicker-picker").show()},showHours:function(){y.find(".timepicker .timepicker-picker").hide(),y.find(".timepicker .timepicker-hours").show()},showMinutes:function(){y.find(".timepicker .timepicker-picker").hide(),y.find(".timepicker .timepicker-minutes").show()},showSeconds:function(){y.find(".timepicker .timepicker-picker").hide(),y.find(".timepicker .timepicker-seconds").show()},selectHour:function(t){var n=parseInt(e(t.target).text(),10);s||(o.hours()>=12?12!==n&&(n+=12):12===n&&(n=0)),F(o.clone().hours(n)),W.showPicker.call(f)},selectMinute:function(t){F(o.clone().minutes(parseInt(e(t.target).text(),10))),W.showPicker.call(f)},selectSecond:function(t){F(o.clone().seconds(parseInt(e(t.target).text(),10))),W.showPicker.call(f)},clear:R,today:function(){var e=D();B(e,"d")&&F(e)},close:A},U=function(t){return!e(t.currentTarget).is(".disabled")&&(W[e(t.currentTarget).data("action")].apply(f,arguments),!1)},V=function(){var t=void 0;return r.prop("disabled")||!a.ignoreReadonly&&r.prop("readonly")||y?f:(void 0!==r.val()&&0!==r.val().trim().length?F(Y(r.val().trim())):h&&a.useCurrent&&(a.inline||r.is("input")&&0===r.val().trim().length)&&(t=D(),"string"==typeof a.useCurrent&&(t={year:function(e){return e.month(0).date(1).hours(0).seconds(0).minutes(0)},month:function(e){return e.date(1).hours(0).seconds(0).minutes(0)},day:function(e){return e.hours(0).seconds(0).minutes(0)},hour:function(e){return e.seconds(0).minutes(0)},minute:function(e){return e.seconds(0)}}[a.useCurrent](t)),F(t)),y=j(),function(){var t=e("<tr>"),n=i.clone().startOf("w").startOf("d");for(!0===a.calendarWeeks&&t.append(e("<th>").addClass("cw").text("#"));n.isBefore(i.clone().endOf("w"));)t.append(e("<th>").addClass("dow").text(n.format("dd"))),n.add(1,"d");y.find(".datepicker-days thead").append(t)}(),function(){for(var t=[],n=i.clone().startOf("y").startOf("d");n.isSame(i,"y");)t.push(e("<span>").attr("data-action","selectMonth").addClass("month").text(n.format("MMM"))),n.add(1,"M");y.find(".datepicker-months td").empty().append(t)}(),y.find(".timepicker-hours").hide(),y.find(".timepicker-minutes").hide(),y.find(".timepicker-seconds").hide(),q(),L(),e(window).on("resize",M),y.on("click","[data-action]",U),y.on("mousedown",!1),m&&m.hasClass("btn")&&m.toggleClass("active"),M(),y.show(),a.focusOnShow&&!r.is(":focus")&&r.focus(),I({type:"dp.show"}),f)},Z=function(){return y?A():V()},K=function(e){var t=null,n=void 0,o=void 0,i=[],r={},s=e.which,l=void 0,d=void 0;for(n in C[s]="p",C)C.hasOwnProperty(n)&&"p"===C[n]&&(i.push(n),parseInt(n,10)!==s&&(r[n]=!0));for(n in a.keyBinds)if(a.keyBinds.hasOwnProperty(n)&&"function"==typeof a.keyBinds[n]&&(l=n.split(" ")).length===i.length&&x[s]===l[l.length-1]){for(d=!0,o=l.length-2;o>=0;o--)if(!(x[l[o]]in r)){d=!1;break}if(d){t=a.keyBinds[n];break}}t&&(t.call(f,y),e.stopPropagation(),e.preventDefault())},G=function(e){C[e.which]="r",e.stopPropagation(),e.preventDefault()},J=function(t){var n=e(t.target).val().trim(),a=n?Y(n):null;return F(a),t.stopImmediatePropagation(),!1},Q=function(t){var n={};return e.each(t,function(){var e=Y(this);e.isValid()&&(n[e.format("YYYY-MM-DD")]=!0)}),!!Object.keys(n).length&&n},$=function(t){var n={};return e.each(t,function(){n[this]=!0}),!!Object.keys(n).length&&n},X=function(){var e=a.format||"L LT";l=e.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(e){return(o.localeData().longDateFormat(e)||e).replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,function(e){return o.localeData().longDateFormat(e)||e})}),(d=a.extraFormats?a.extraFormats.slice():[]).indexOf(e)<0&&d.indexOf(l)<0&&d.push(l),s=l.toLowerCase().indexOf("a")<1&&l.replace(/\[.*?\]/g,"").indexOf("h")<1,O("y")&&(g=2),O("M")&&(g=1),O("d")&&(g=0),c=Math.max(g,c),h||F(o)};if(f.destroy=function(){A(),r.off({change:J,blur:blur,keydown:K,keyup:G,focus:a.allowInputToggle?A:""}),n.is("input")?r.off({focus:V}):m&&(m.off("click",Z),m.off("mousedown",!1)),n.removeData("DateTimePicker"),n.removeData("date")},f.toggle=Z,f.show=V,f.hide=A,f.disable=function(){return A(),m&&m.hasClass("btn")&&m.addClass("disabled"),r.prop("disabled",!0),f},f.enable=function(){return m&&m.hasClass("btn")&&m.removeClass("disabled"),r.prop("disabled",!1),f},f.ignoreReadonly=function(e){if(0===arguments.length)return a.ignoreReadonly;if("boolean"!=typeof e)throw new TypeError("ignoreReadonly () expects a boolean parameter");return a.ignoreReadonly=e,f},f.options=function(t){if(0===arguments.length)return e.extend(!0,{},a);if(!(t instanceof Object))throw new TypeError("options() options parameter should be an object");return e.extend(!0,a,t),e.each(a,function(e,t){if(void 0===f[e])throw new TypeError("option "+e+" is not recognized!");f[e](t)}),f},f.date=function(e){if(0===arguments.length)return h?null:o.clone();if(!(null===e||"string"==typeof e||t.isMoment(e)||e instanceof Date))throw new TypeError("date() parameter must be one of [null, string, moment or Date]");return F(null===e?null:Y(e)),f},f.format=function(e){if(0===arguments.length)return a.format;if("string"!=typeof e&&("boolean"!=typeof e||!1!==e))throw new TypeError("format() expects a string or boolean:false parameter "+e);return a.format=e,l&&X(),f},f.timeZone=function(e){if(0===arguments.length)return a.timeZone;if("string"!=typeof e)throw new TypeError("newZone() expects a string parameter");return a.timeZone=e,f},f.dayViewHeaderFormat=function(e){if(0===arguments.length)return a.dayViewHeaderFormat;if("string"!=typeof e)throw new TypeError("dayViewHeaderFormat() expects a string parameter");return a.dayViewHeaderFormat=e,f},f.extraFormats=function(e){if(0===arguments.length)return a.extraFormats;if(!1!==e&&!(e instanceof Array))throw new TypeError("extraFormats() expects an array or false parameter");return a.extraFormats=e,d&&X(),f},f.disabledDates=function(t){if(0===arguments.length)return a.disabledDates?e.extend({},a.disabledDates):a.disabledDates;if(!t)return a.disabledDates=!1,q(),f;if(!(t instanceof Array))throw new TypeError("disabledDates() expects an array parameter");return a.disabledDates=Q(t),a.enabledDates=!1,q(),f},f.enabledDates=function(t){if(0===arguments.length)return a.enabledDates?e.extend({},a.enabledDates):a.enabledDates;if(!t)return a.enabledDates=!1,q(),f;if(!(t instanceof Array))throw new TypeError("enabledDates() expects an array parameter");return a.enabledDates=Q(t),a.disabledDates=!1,q(),f},f.daysOfWeekDisabled=function(e){if(0===arguments.length)return a.daysOfWeekDisabled.splice(0);if("boolean"==typeof e&&!e)return a.daysOfWeekDisabled=!1,q(),f;if(!(e instanceof Array))throw new TypeError("daysOfWeekDisabled() expects an array parameter");if(a.daysOfWeekDisabled=e.reduce(function(e,t){return(t=parseInt(t,10))>6||t<0||isNaN(t)?e:(-1===e.indexOf(t)&&e.push(t),e)},[]).sort(),a.useCurrent&&!a.keepInvalid){for(var t=0;!B(o,"d");){if(o.add(1,"d"),31===t)throw"Tried 31 times to find a valid date";t++}F(o)}return q(),f},f.maxDate=function(e){if(0===arguments.length)return a.maxDate?a.maxDate.clone():a.maxDate;if("boolean"==typeof e&&!1===e)return a.maxDate=!1,q(),f;"string"==typeof e&&("now"!==e&&"moment"!==e||(e=D()));var t=Y(e);if(!t.isValid())throw new TypeError("maxDate() Could not parse date parameter: "+e);if(a.minDate&&t.isBefore(a.minDate))throw new TypeError("maxDate() date parameter is before options.minDate: "+t.format(l));return a.maxDate=t,a.useCurrent&&!a.keepInvalid&&o.isAfter(e)&&F(a.maxDate),i.isAfter(t)&&(i=t.clone().subtract(a.stepping,"m")),q(),f},f.minDate=function(e){if(0===arguments.length)return a.minDate?a.minDate.clone():a.minDate;if("boolean"==typeof e&&!1===e)return a.minDate=!1,q(),f;"string"==typeof e&&("now"!==e&&"moment"!==e||(e=D()));var t=Y(e);if(!t.isValid())throw new TypeError("minDate() Could not parse date parameter: "+e);if(a.maxDate&&t.isAfter(a.maxDate))throw new TypeError("minDate() date parameter is after options.maxDate: "+t.format(l));return a.minDate=t,a.useCurrent&&!a.keepInvalid&&o.isBefore(e)&&F(a.minDate),i.isBefore(t)&&(i=t.clone().add(a.stepping,"m")),q(),f},f.defaultDate=function(e){if(0===arguments.length)return a.defaultDate?a.defaultDate.clone():a.defaultDate;if(!e)return a.defaultDate=!1,f;"string"==typeof e&&(e="now"===e||"moment"===e?D():D(e));var t=Y(e);if(!t.isValid())throw new TypeError("defaultDate() Could not parse date parameter: "+e);if(!B(t))throw new TypeError("defaultDate() date passed is invalid according to component setup validations");return a.defaultDate=t,(a.defaultDate&&a.inline||""===r.val().trim())&&F(a.defaultDate),f},f.locale=function(e){if(0===arguments.length)return a.locale;if(!t.localeData(e))throw new TypeError("locale() locale "+e+" is not loaded from moment locales!");return a.locale=e,o.locale(a.locale),i.locale(a.locale),l&&X(),y&&(A(),V()),f},f.stepping=function(e){return 0===arguments.length?a.stepping:(e=parseInt(e,10),(isNaN(e)||e<1)&&(e=1),a.stepping=e,f)},f.useCurrent=function(e){var t=["year","month","day","hour","minute"];if(0===arguments.length)return a.useCurrent;if("boolean"!=typeof e&&"string"!=typeof e)throw new TypeError("useCurrent() expects a boolean or string parameter");if("string"==typeof e&&-1===t.indexOf(e.toLowerCase()))throw new TypeError("useCurrent() expects a string parameter of "+t.join(", "));return a.useCurrent=e,f},f.collapse=function(e){if(0===arguments.length)return a.collapse;if("boolean"!=typeof e)throw new TypeError("collapse() expects a boolean parameter");return a.collapse===e?f:(a.collapse=e,y&&(A(),V()),f)},f.icons=function(t){if(0===arguments.length)return e.extend({},a.icons);if(!(t instanceof Object))throw new TypeError("icons() expects parameter to be an Object");return e.extend(a.icons,t),y&&(A(),V()),f},f.tooltips=function(t){if(0===arguments.length)return e.extend({},a.tooltips);if(!(t instanceof Object))throw new TypeError("tooltips() expects parameter to be an Object");return e.extend(a.tooltips,t),y&&(A(),V()),f},f.useStrict=function(e){if(0===arguments.length)return a.useStrict;if("boolean"!=typeof e)throw new TypeError("useStrict() expects a boolean parameter");return a.useStrict=e,f},f.sideBySide=function(e){if(0===arguments.length)return a.sideBySide;if("boolean"!=typeof e)throw new TypeError("sideBySide() expects a boolean parameter");return a.sideBySide=e,y&&(A(),V()),f},f.viewMode=function(e){if(0===arguments.length)return a.viewMode;if("string"!=typeof e)throw new TypeError("viewMode() expects a string parameter");if(-1===b.indexOf(e))throw new TypeError("viewMode() parameter must be one of ("+b.join(", ")+") value");return a.viewMode=e,c=Math.max(b.indexOf(e),g),L(),f},f.toolbarPlacement=function(e){if(0===arguments.length)return a.toolbarPlacement;if("string"!=typeof e)throw new TypeError("toolbarPlacement() expects a string parameter");if(-1===_.indexOf(e))throw new TypeError("toolbarPlacement() parameter must be one of ("+_.join(", ")+") value");return a.toolbarPlacement=e,y&&(A(),V()),f},f.widgetPositioning=function(t){if(0===arguments.length)return e.extend({},a.widgetPositioning);if("[object Object]"!=={}.toString.call(t))throw new TypeError("widgetPositioning() expects an object variable");if(t.horizontal){if("string"!=typeof t.horizontal)throw new TypeError("widgetPositioning() horizontal variable must be a string");if(t.horizontal=t.horizontal.toLowerCase(),-1===k.indexOf(t.horizontal))throw new TypeError("widgetPositioning() expects horizontal parameter to be one of ("+k.join(", ")+")");a.widgetPositioning.horizontal=t.horizontal}if(t.vertical){if("string"!=typeof t.vertical)throw new TypeError("widgetPositioning() vertical variable must be a string");if(t.vertical=t.vertical.toLowerCase(),-1===w.indexOf(t.vertical))throw new TypeError("widgetPositioning() expects vertical parameter to be one of ("+w.join(", ")+")");a.widgetPositioning.vertical=t.vertical}return q(),f},f.calendarWeeks=function(e){if(0===arguments.length)return a.calendarWeeks;if("boolean"!=typeof e)throw new TypeError("calendarWeeks() expects parameter to be a boolean value");return a.calendarWeeks=e,q(),f},f.showTodayButton=function(e){if(0===arguments.length)return a.showTodayButton;if("boolean"!=typeof e)throw new TypeError("showTodayButton() expects a boolean parameter");return a.showTodayButton=e,y&&(A(),V()),f},f.showClear=function(e){if(0===arguments.length)return a.showClear;if("boolean"!=typeof e)throw new TypeError("showClear() expects a boolean parameter");return a.showClear=e,y&&(A(),V()),f},f.widgetParent=function(t){if(0===arguments.length)return a.widgetParent;if("string"==typeof t&&(t=e(t)),null!==t&&"string"!=typeof t&&!(t instanceof e))throw new TypeError("widgetParent() expects a string or a jQuery object parameter");return a.widgetParent=t,y&&(A(),V()),f},f.keepOpen=function(e){if(0===arguments.length)return a.keepOpen;if("boolean"!=typeof e)throw new TypeError("keepOpen() expects a boolean parameter");return a.keepOpen=e,f},f.focusOnShow=function(e){if(0===arguments.length)return a.focusOnShow;if("boolean"!=typeof e)throw new TypeError("focusOnShow() expects a boolean parameter");return a.focusOnShow=e,f},f.inline=function(e){if(0===arguments.length)return a.inline;if("boolean"!=typeof e)throw new TypeError("inline() expects a boolean parameter");return a.inline=e,f},f.clear=function(){return R(),f},f.keyBinds=function(e){return 0===arguments.length?a.keyBinds:(a.keyBinds=e,f)},f.getMoment=function(e){return D(e)},f.debug=function(e){if("boolean"!=typeof e)throw new TypeError("debug() expects a boolean parameter");return a.debug=e,f},f.allowInputToggle=function(e){if(0===arguments.length)return a.allowInputToggle;if("boolean"!=typeof e)throw new TypeError("allowInputToggle() expects a boolean parameter");return a.allowInputToggle=e,f},f.showClose=function(e){if(0===arguments.length)return a.showClose;if("boolean"!=typeof e)throw new TypeError("showClose() expects a boolean parameter");return a.showClose=e,f},f.keepInvalid=function(e){if(0===arguments.length)return a.keepInvalid;if("boolean"!=typeof e)throw new TypeError("keepInvalid() expects a boolean parameter");return a.keepInvalid=e,f},f.datepickerInput=function(e){if(0===arguments.length)return a.datepickerInput;if("string"!=typeof e)throw new TypeError("datepickerInput() expects a string parameter");return a.datepickerInput=e,f},f.parseInputDate=function(e){if(0===arguments.length)return a.parseInputDate;if("function"!=typeof e)throw new TypeError("parseInputDate() sholud be as function");return a.parseInputDate=e,f},f.disabledTimeIntervals=function(t){if(0===arguments.length)return a.disabledTimeIntervals?e.extend({},a.disabledTimeIntervals):a.disabledTimeIntervals;if(!t)return a.disabledTimeIntervals=!1,q(),f;if(!(t instanceof Array))throw new TypeError("disabledTimeIntervals() expects an array parameter");return a.disabledTimeIntervals=t,q(),f},f.disabledHours=function(t){if(0===arguments.length)return a.disabledHours?e.extend({},a.disabledHours):a.disabledHours;if(!t)return a.disabledHours=!1,q(),f;if(!(t instanceof Array))throw new TypeError("disabledHours() expects an array parameter");if(a.disabledHours=$(t),a.enabledHours=!1,a.useCurrent&&!a.keepInvalid){for(var n=0;!B(o,"h");){if(o.add(1,"h"),24===n)throw"Tried 24 times to find a valid date";n++}F(o)}return q(),f},f.enabledHours=function(t){if(0===arguments.length)return a.enabledHours?e.extend({},a.enabledHours):a.enabledHours;if(!t)return a.enabledHours=!1,q(),f;if(!(t instanceof Array))throw new TypeError("enabledHours() expects an array parameter");if(a.enabledHours=$(t),a.disabledHours=!1,a.useCurrent&&!a.keepInvalid){for(var n=0;!B(o,"h");){if(o.add(1,"h"),24===n)throw"Tried 24 times to find a valid date";n++}F(o)}return q(),f},f.viewDate=function(e){if(0===arguments.length)return i.clone();if(!e)return i=o.clone(),f;if(!("string"==typeof e||t.isMoment(e)||e instanceof Date))throw new TypeError("viewDate() parameter must be one of [string, moment or Date]");return i=Y(e),z(),f},n.is("input"))r=n;else if(0===(r=n.find(a.datepickerInput)).length)r=n.find("input");else if(!r.is("input"))throw new Error('CSS class "'+a.datepickerInput+'" cannot be applied to non input element');if(n.hasClass("input-group")&&(m=0===n.find(".datepickerbutton").length?n.find(".input-group-addon"):n.find(".datepickerbutton")),!a.inline&&!r.is("input"))throw new Error("Could not initialize DateTimePicker without an input element");return o=D(),i=o.clone(),e.extend(!0,a,(u=void 0,p={},(u=n.is("input")||a.inline?n.data():n.find("input").data()).dateOptions&&u.dateOptions instanceof Object&&(p=e.extend(!0,p,u.dateOptions)),e.each(a,function(e){var t="date"+e.charAt(0).toUpperCase()+e.slice(1);void 0!==u[t]&&(p[e]=u[t])}),p)),f.options(a),X(),r.on({change:J,blur:a.debug?"":A,keydown:K,keyup:G,focus:a.allowInputToggle?V:""}),n.is("input")?r.on({focus:V}):m&&(m.on("click",Z),m.on("mousedown",!1)),r.prop("disabled")&&f.disable(),r.is("input")&&0!==r.val().trim().length?F(Y(r.val().trim())):a.defaultDate&&void 0===r.attr("placeholder")&&F(a.defaultDate),a.inline&&V(),f};return e.fn.datetimepicker=function(t){t=t||{};var a=Array.prototype.slice.call(arguments,1),o=!0,i=void 0;if("object"===(void 0===t?"undefined":r(t)))return this.each(function(){var a=e(this),o=void 0;a.data("DateTimePicker")||(o=e.extend(!0,{},e.fn.datetimepicker.defaults,t),a.data("DateTimePicker",n(a,o)))});if("string"==typeof t)return this.each(function(){var n=e(this).data("DateTimePicker");if(!n)throw new Error('bootstrap-datetimepicker("'+t+'") method was called on an element that is not using DateTimePicker');i=n[t].apply(n,a),o=i===n}),o||e.inArray(t,["destroy","hide","show","toggle"])>-1?this:i;throw new TypeError("Invalid arguments for DateTimePicker: "+t)},e.fn.datetimepicker.defaults={timeZone:"",format:!1,dayViewHeaderFormat:"MMMM YYYY",extraFormats:!1,stepping:1,minDate:!1,maxDate:!1,useCurrent:!0,collapse:!0,locale:t.locale(),defaultDate:!1,disabledDates:!1,enabledDates:!1,icons:{time:"glyphicon glyphicon-time",date:"glyphicon glyphicon-calendar",up:"glyphicon glyphicon-chevron-up",down:"glyphicon glyphicon-chevron-down",previous:"glyphicon glyphicon-chevron-left",next:"glyphicon glyphicon-chevron-right",today:"glyphicon glyphicon-screenshot",clear:"glyphicon glyphicon-trash",close:"glyphicon glyphicon-remove"},tooltips:{today:"Go to today",clear:"Clear selection",close:"Close the picker",selectMonth:"Select Month",prevMonth:"Previous Month",nextMonth:"Next Month",selectYear:"Select Year",prevYear:"Previous Year",nextYear:"Next Year",selectDecade:"Select Decade",prevDecade:"Previous Decade",nextDecade:"Next Decade",prevCentury:"Previous Century",nextCentury:"Next Century",pickHour:"Pick Hour",incrementHour:"Increment Hour",decrementHour:"Decrement Hour",pickMinute:"Pick Minute",incrementMinute:"Increment Minute",decrementMinute:"Decrement Minute",pickSecond:"Pick Second",incrementSecond:"Increment Second",decrementSecond:"Decrement Second",togglePeriod:"Toggle Period",selectTime:"Select Time"},useStrict:!1,sideBySide:!1,daysOfWeekDisabled:!1,calendarWeeks:!1,viewMode:"days",toolbarPlacement:"default",showTodayButton:!1,showClear:!1,showClose:!1,widgetPositioning:{horizontal:"auto",vertical:"auto"},widgetParent:null,ignoreReadonly:!1,keepOpen:!1,focusOnShow:!0,inline:!1,keepInvalid:!1,datepickerInput:".datepickerinput",keyBinds:{up:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")?this.date(t.clone().subtract(7,"d")):this.date(t.clone().add(this.stepping(),"m"))}},down:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")?this.date(t.clone().add(7,"d")):this.date(t.clone().subtract(this.stepping(),"m"))}else this.show()},"control up":function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")?this.date(t.clone().subtract(1,"y")):this.date(t.clone().add(1,"h"))}},"control down":function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")?this.date(t.clone().add(1,"y")):this.date(t.clone().subtract(1,"h"))}},left:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")&&this.date(t.clone().subtract(1,"d"))}},right:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")&&this.date(t.clone().add(1,"d"))}},pageUp:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")&&this.date(t.clone().subtract(1,"M"))}},pageDown:function(e){if(e){var t=this.date()||this.getMoment();e.find(".datepicker").is(":visible")&&this.date(t.clone().add(1,"M"))}},enter:function(){this.hide()},escape:function(){this.hide()},"control space":function(e){e&&e.find(".timepicker").is(":visible")&&e.find('.btn[data-action="togglePeriod"]').click()},t:function(){this.date(this.getMoment())},delete:function(){this.clear()}},debug:!1,allowInputToggle:!1,disabledTimeIntervals:!1,disabledHours:!1,enabledHours:!1,viewDate:!1},e.fn.datetimepicker})},aVBm:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=n("5tcx"),o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var i=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a["Controller"]),o(t,[{key:"connect",value:function(){if(this.urlTarget.value){var e=new URL(this.urlTarget.value);this.sourceTarget.value=this.loadParam(e,"source"),this.mediumTarget.value=this.loadParam(e,"medium"),this.campaignTarget.value=this.loadParam(e,"campaign"),this.termTarget.value=this.loadParam(e,"term"),this.contentTarget.value=this.loadParam(e,"content")}}},{key:"generate",value:function(){var e=new URL(this.urlTarget.value);this.urlTarget.value=e.protocol+"//"+e.host+e.pathname,this.addParms("source",this.sourceTarget.value),this.addParms("medium",this.mediumTarget.value),this.addParms("campaign",this.campaignTarget.value),this.addParms("term",this.termTarget.value),this.addParms("content",this.contentTarget.value)}},{key:"slugify",value:function(e){return e.toString().toLowerCase().trim().replace(/\s+/g,"-").replace(/&/g,"-and-").replace(/[^\w\-]+/g,"").replace(/\-\-+/g,"-")}},{key:"add",value:function(e,t,n){this.urlTarget.value+=e+t+"="+encodeURIComponent(n)}},{key:"change",value:function(e,t){this.urlTarget.value=this.urlTarget.value.replace(e,"$1"+encodeURIComponent(t))}},{key:"addParms",value:function(e,t){if(e="utm_"+e,0!==(t=this.slugify(t)).trim().length){var n=new RegExp("([?&]"+e+"=)[^&]+","");-1!==this.urlTarget.value.indexOf("?")?n.test(this.link)?this.change(n,t):this.add("&",e,t):this.add("?",e,t)}}},{key:"loadParam",value:function(e,t){return e.searchParams.get("utm_"+t)}}]),t}();i.targets=["url","source","medium","campaign","term","content"],t.default=i},cp1A:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var i=function(t){function n(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),o(n,[{key:"connect",value:function(){var e=this.data.get("image");e?this.element.querySelector(".picture-preview").src=e:(this.element.querySelector(".picture-preview").classList.add("none"),this.element.querySelector(".picture-remove").classList.add("none"))}},{key:"upload",value:function(t){var n=this.element.querySelector(".upload-panel");if(e(n).croppie("destroy"),t.target.files[0]){var a=this.data.get("width"),o=this.data.get("height");e(n).croppie({viewport:{width:a,height:o},boundary:{width:"100%",height:500},enforceBoundary:!0});var i=new FileReader;i.readAsDataURL(t.target.files[0]),i.onloadend=function(){e(n).croppie("bind",{url:i.result})},e(this.element.querySelector(".modal")).modal("show")}}},{key:"crop",value:function(){var t=this,n=this.element.querySelector(".upload-panel");e(n).croppie("result",{type:"blob",size:"viewport",format:"png"}).then(function(n){var a=new FormData;a.append("file",n),a.append("storage","public");var o=t.element;axios.post(platform.prefix("/systems/files"),a).then(function(t){var n="/storage/"+t.data.path+t.data.name+"."+t.data.extension;o.querySelector(".picture-preview").src=n,o.querySelector(".picture-preview").classList.remove("none"),o.querySelector(".picture-remove").classList.remove("none"),o.querySelector(".picture-path").value=n,e(o.querySelector(".modal")).modal("hide")})})}},{key:"clear",value:function(){this.element.querySelector(".picture-path").value="",this.element.querySelector(".picture-preview").src="",this.element.querySelector(".picture-preview").classList.add("none"),this.element.querySelector(".picture-remove").classList.add("none")}}]),n}();i.targets=["source","upload"],t.default=i}.call(t,n("7t+N"))},hu7o:function(e,t,n){(function(e){document.addEventListener("turbolinks:load",function(){if(null!==document.getElementById("post-attachment-dropzone")){var t=new Vue({el:"#modalAttachment",data:{attachment:{},active:null},methods:{loadInfo:function(e){var t=e.name+e.id;e.url="/storage/"+e.path+e.name+"."+e.extension,this.attachment.hasOwnProperty(t)||(this.attachment[t]=e),this.active=t},save:function(){var t=this.attachment[this.active];e("#modalAttachment").modal("toggle"),axios.put(platform.prefix("/systems/files/post/"+t.id),t).then()}}});new Dropzone(".dropzone",{url:platform.prefix("/systems/files"),method:"post",uploadMultiple:!1,parallelUploads:100,maxFilesize:9999,paramName:"files",acceptedFiles:e("#post-attachment-dropzone").data("accepted"),maxThumbnailFilesize:99999,previewsContainer:".visual-dropzone",addRemoveLinks:!1,dictFileTooBig:"File is big",init:function(){this.on("addedfile",function(n){var a=this;(o=Dropzone.createElement("<a href='javascript:;' class='btn-remove'><i class='icon-cross' aria-hidden='true'></i></a>")).addEventListener("click",function(e){e.preventDefault(),e.stopPropagation(),a.removeFile(n)}),n.previewElement.appendChild(o);var o;a=this;(o=Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='icon-note' aria-hidden='true'></i></a>")).addEventListener("click",function(a){t.loadInfo(n.data),e("#modalAttachment").modal("show")}),n.previewElement.appendChild(o)}),this.on("completemultiple",function(t,n){e(".sortable-dropzone").sortable("enable")});var n=this,a=e("#post").data("post-id");void 0!==a&&axios.get(platform.prefix("/systems/files/post/"+a)).then(function(t){t.data.forEach(function(t){var a={id:t.id,name:t.original_name,size:t.size,type:t.mime,status:Dropzone.ADDED,url:"/storage/"+t.path+t.name+"."+t.extension,data:t};n.emit("addedfile",a),n.emit("thumbnail",a,a.url),n.files.push(a),e(".dz-preview:last-child").attr("data-file-id",t.id).addClass("file-sort")}),e(".dz-progress").remove()}),this.on("sending",function(t,n,a){a.append("_token",e("meta[name='csrf_token']").attr("content")),a.append("storage",e("#post-attachment-dropzone").data("storage"))}),this.on("removedfile",function(t){var n=t.data;e(".files-"+n.id).remove(),axios.delete(platform.prefix("/systems/files/"+n.id),{storage:e("#post-attachment-dropzone").data("storage")}).then()})},error:function(t,n){return"string"===e.type(n)?n:n.message},success:function(t,n){t.data=n,e(".dz-preview:last-child").attr("data-file-id",n.id).addClass("file-sort"),e("<input type='hidden' class='files-"+n.id+"' name='files[]' value='"+n.id+"'  />").appendTo(".dropzone")}}),e(".sortable-dropzone").sortable({update:function(){var t={};e(".file-sort").each(function(n,a){var o=e(this).attr("data-file-id");t[o]=n}),axios.post(platform.prefix("/systems/files/sort"),{files:t}).then()}})}})}).call(t,n("7t+N"))},khUe:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var i=function(t){function n(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),o(n,[{key:"connect",value:function(){var t=this;e(".dd").nestable({}).on("change",function(){e(".dd-item").each(function(t,n){e(n).data({sort:t})}),t.send()}).on("click",".edit",function(){t.edit(this)}),e(".dd-item").each(function(t,n){e(n).data({sort:t})}),this.checkExist()}},{key:"load",value:function(e){this.id=e.id,this.labelTarget.value=e.label,this.slugTarget.value=e.slug,this.authTarget.value=e.auth,this.robotTarget.value=e.robot,this.styleTarget.value=e.style,this.targetTarget.value=e.target,this.titleTarget.value=e.title,this.checkExist()}},{key:"edit",value:function(t){var n=e(t).parent().data();n.label=e(t).prev().text(),this.load(n)}},{key:"add",value:function(){this.checkForm()&&(e(".dd > .dd-list").append("<li class='dd-item dd3-item' data-id='"+this.count+"'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>"+this.labelTarget.value+"</div> <div  class='edit icon-pencil'></div></li>"),e("li[data-id="+this.count+"]").data({label:this.labelTarget.value,title:this.titleTarget.value,auth:this.authTarget.value,slug:this.slugTarget.value,robot:this.robotTarget.value,style:this.styleTarget.value,target:this.targetTarget.value}),this.count--,this.clear(),this.send())}},{key:"save",value:function(){this.checkForm()&&(e("li[data-id="+this.id+"]").data({label:this.labelTarget.value,title:this.titleTarget.value,auth:this.authTarget.value,slug:this.slugTarget.value,robot:this.robotTarget.value,style:this.styleTarget.value,target:this.targetTarget.value}),e("li[data-id="+this.id+"] > .dd3-content").html(this.labelTarget.value),this.clear(),this.send())}},{key:"destroy",value:function(e){axios.delete(platform.prefix("/press/menu/"+e)).then(function(e){})}},{key:"remove",value:function(){e("li[data-id="+this.id+"]").remove(),this.destroy(this.id),this.clear()}},{key:"clear",value:function(){this.labelTarget.value="",this.titleTarget.value="",this.authTarget.value=0,this.slugTarget.value="",this.robotTarget.value="follow",this.styleTarget.value="",this.targetTarget.value="_self",this.id="",this.checkExist(),window.Turbolinks.visit(window.location,{action:"replace"})}},{key:"send",value:function(){var t=e(".dd").attr("data-name"),n={lang:e(".dd").attr("data-lang"),data:e(".dd").nestable("serialize")};axios.put(platform.prefix("/press/menu/"+t),n).then(function(e){})}},{key:"checkForm",value:function(){return this.labelTarget.value?this.titleTarget.value?this.slugTarget.value?(document.getElementById("errors.slug").classList.add("none"),document.getElementById("errors.label").classList.add("none"),document.getElementById("errors.title").classList.add("none"),!0):(document.getElementById("errors.slug").classList.remove("none"),!1):(document.getElementById("errors.title").classList.remove("none"),!1):(document.getElementById("errors.label").classList.remove("none"),!1)}},{key:"checkExist",value:function(){this.exist()?(document.getElementById("menu.remove").classList.remove("none"),document.getElementById("menu.reset").classList.remove("none"),document.getElementById("menu.add").classList.add("none"),document.getElementById("menu.save").classList.remove("none")):(document.getElementById("menu.remove").classList.add("none"),document.getElementById("menu.reset").classList.add("none"),document.getElementById("menu.add").classList.remove("none"),document.getElementById("menu.save").classList.add("none"))}},{key:"exist",value:function(){return Number.isInteger(this.id)&&e("li[data-id="+this.id+"]").length>0}}]),n}();i.targets=["id","label","slug","auth","robot","style","target","title"],t.default=i}.call(t,n("7t+N"))},lsGw:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=n("5tcx"),o=n("ZJja"),i=n.n(o),r=n("u68Q"),s=n("mtWM"),l=n.n(s),d=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var c=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a["Controller"]),d(t,[{key:"initialize",value:function(){i.a.start(),window.platform=Object(r.a)()}},{key:"connect",value:function(){this.csrf()}},{key:"csrf",value:function(){var e=document.head.querySelector('meta[name="csrf_token"]');window.axios=l.a,window.axios.defaults.headers.common["X-CSRF-TOKEN"]=e.content,window.axios.defaults.headers.common["X-Requested-With"]="XMLHttpRequest"}}]),t}();t.default=c},"sV/x":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=n("5tcx"),o=n("m+gM");n("WRGp"),window.application=a.Application.start();var i=n("U9lS");application.load(Object(o.definitionsFromContext)(i))},u68Q:function(e,t,n){"use strict";(function(e){t.a=function(){return{prefix:function(e){var t=document.head.querySelector('meta[name="dashboard-prefix"]');return t&&"/"!==t.content.charAt(0)&&(t="/"+t.content),t+e},alert:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"danger",a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"#dashboard-alerts";e(a).append(e("<div/>",{class:"alert m-b-none alert-"+n,text:t}).append(e("<button/>",{class:"close","data-dismiss":"alert","aria-label":"Close","aria-hidden":"true"}).append(e("<span/>",{"aria-hidden":"true",html:"&times;"}))),e("<div/>",{class:"clearfix"}))},validateForm:function(e,t){return!!document.getElementById(e).checkValidity()||(window.platform.alert(t,"warning b-b"),!1)}}}}).call(t,n("7t+N"))},"v2+b":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=n("5tcx"),o=n("5x2J"),i=n.n(o),r=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var s=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,a["Controller"]),r(t,[{key:"connect",value:function(){var e=this.element.querySelector("textarea");new i.a({autoDownloadFontAwesome:!1,forceSync:!0,element:e,toolbar:[{name:"bold",action:i.a.toggleBold,className:"icon-bold",title:"Bold"},{name:"italic",action:i.a.toggleItalic,className:"icon-italic",title:"Italic"},{name:"heading",action:i.a.toggleHeadingSmaller,className:"icon-font",title:"Heading"},"|",{name:"quote",action:i.a.toggleBlockquote,className:"icon-quote",title:"Quote"},{name:"code",action:i.a.toggleCodeBlock,className:"icon-code",title:"Code"},{name:"unordered-list",action:i.a.toggleUnorderedList,className:"icon-list",title:"Generic List"},{name:"ordered-list",action:i.a.toggleOrderedList,className:"icon-number-list",title:"Numbered List"},"|",{name:"link",action:i.a.drawLink,className:"icon-link",title:"Link"},{name:"image",action:i.a.drawImage,className:"icon-picture",title:"Insert Image"},{name:"table",action:i.a.drawTable,className:"icon-table",title:"Insert Table"},"|",{name:"preview",action:i.a.togglePreview,className:"icon-eye no-disable",title:"Toggle Preview"},{name:"side-by-side",action:i.a.toggleSideBySide,className:"icon-browser no-disable no-mobile",title:"Toggle Side by Side"},{name:"fullscreen",action:i.a.toggleFullScreen,className:"icon-full-screen no-disable no-mobile",title:"Toggle Fullscreen"},"|",{name:"horizontal-rule",action:i.a.drawHorizontalRule,className:"icon-options",title:"Insert Horizontal Line"},{name:"guide",action:"https://simplemde.com/markdown-guide",className:"icon-help",title:"Markdown Guide"}],placeholder:e.placeholder,spellChecker:!1})}}]),t}();t.default=s},xZZD:function(e,t){},z0Ze:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),function(e){var a=n("5tcx"),o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}();var i=function(t){function n(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(n,a["Controller"]),o(n,[{key:"connect",value:function(){var t=!1;e("#aside-wrap-list").children(".tab-pane").each(function(){e(this).hasClass("active")&&(t=!0)}),t||e("#menu-default").addClass("active"),e("ul.dropdown-menu [data-toggle=dropdown]").on("click",function(t){t.preventDefault(),t.stopPropagation(),e(this).parent().siblings().removeClass("open"),e(this).parent().toggleClass("open")})}}]),n}();t.default=i}.call(t,n("7t+N"))}},[0]);
+webpackJsonp([1],{
+
+/***/ 170:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(171);
+module.exports = __webpack_require__(249);
+
+
+/***/ }),
+
+/***/ 171:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_stimulus_webpack_helpers__ = __webpack_require__(21);
+
+
+
+__webpack_require__(188);
+
+window.application = __WEBPACK_IMPORTED_MODULE_0_stimulus__["Application"].start();
+var context = __webpack_require__(199);
+application.load(Object(__WEBPACK_IMPORTED_MODULE_1_stimulus_webpack_helpers__["definitionsFromContext"])(context));
+
+/***/ }),
+
+/***/ 188:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, $) {window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(1);
+
+window.Vue = __webpack_require__(22);
+
+//require('popper.js');
+
+__webpack_require__(24);
+
+__webpack_require__(25);
+
+__webpack_require__(26);
+
+document.addEventListener('turbolinks:load', function () {
+  $("input[data-role='tagsinput']").tagsinput('refresh');
+});
+
+window.Dropzone = __webpack_require__(27);
+Dropzone.autoDiscover = false;
+
+__webpack_require__(28);
+
+window.moment = __webpack_require__(0);
+
+$.fn.datetimepicker = __webpack_require__(192);
+
+__webpack_require__(193);
+
+__webpack_require__(152);
+
+$(function () {
+  $('.select2-enable').select2({
+    theme: 'bootstrap'
+  });
+});
+
+$.fn.select2.defaults.set('theme', 'bootstrap');
+__webpack_require__(153);
+
+__webpack_require__(194);
+__webpack_require__(195);
+
+// window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+window.Chart = __webpack_require__(154);
+
+__webpack_require__(196);
+__webpack_require__(197);
+__webpack_require__(198);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 192:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*! version : 4.17.47
+ =========================================================
+ bootstrap-datetimejs
+ https://github.com/Eonasdan/bootstrap-datetimepicker
+ Copyright (c) 2015 Jonathan Peterson
+ =========================================================
+ */
+/*
+ The MIT License (MIT)
+
+ Copyright (c) 2015 Jonathan Peterson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ */
+/*global define:false */
+/*global exports:false */
+/*global require:false */
+/*global jQuery:false */
+/*global moment:false */
+(function (factory) {
+  'use strict';
+
+  if (true) {
+    // AMD is used - Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+    module.exports = factory(require('jquery'), require('moment'));
+  } else {
+    // Neither AMD nor CommonJS used. Use global variables.
+    if (typeof jQuery === 'undefined') {
+      throw 'bootstrap-datetimepicker requires jQuery to be loaded first';
+    }
+    if (typeof moment === 'undefined') {
+      throw 'bootstrap-datetimepicker requires Moment.js to be loaded first';
+    }
+    factory(jQuery, moment);
+  }
+})(function ($, moment) {
+  'use strict';
+
+  if (!moment) {
+    throw new Error('bootstrap-datetimepicker requires Moment.js to be loaded first');
+  }
+
+  var dateTimePicker = function dateTimePicker(element, options) {
+    var picker = {},
+        date,
+        viewDate,
+        unset = true,
+        input,
+        component = false,
+        widget = false,
+        use24Hours,
+        minViewModeNumber = 0,
+        actualFormat,
+        parseFormats,
+        currentViewMode,
+        datePickerModes = [{
+      clsName: 'days',
+      navFnc: 'M',
+      navStep: 1
+    }, {
+      clsName: 'months',
+      navFnc: 'y',
+      navStep: 1
+    }, {
+      clsName: 'years',
+      navFnc: 'y',
+      navStep: 10
+    }, {
+      clsName: 'decades',
+      navFnc: 'y',
+      navStep: 100
+    }],
+        viewModes = ['days', 'months', 'years', 'decades'],
+        verticalModes = ['top', 'bottom', 'auto'],
+        horizontalModes = ['left', 'right', 'auto'],
+        toolbarPlacements = ['default', 'top', 'bottom'],
+        keyMap = {
+      up: 38,
+      38: 'up',
+      down: 40,
+      40: 'down',
+      left: 37,
+      37: 'left',
+      right: 39,
+      39: 'right',
+      tab: 9,
+      9: 'tab',
+      escape: 27,
+      27: 'escape',
+      enter: 13,
+      13: 'enter',
+      pageUp: 33,
+      33: 'pageUp',
+      pageDown: 34,
+      34: 'pageDown',
+      shift: 16,
+      16: 'shift',
+      control: 17,
+      17: 'control',
+      space: 32,
+      32: 'space',
+      t: 84,
+      84: 't',
+      delete: 46,
+      46: 'delete'
+    },
+        keyState = {},
+
+    /********************************************************************************
+     *
+     * Private functions
+     *
+     ********************************************************************************/
+
+    hasTimeZone = function hasTimeZone() {
+      return moment.tz !== undefined && options.timeZone !== undefined && options.timeZone !== null && options.timeZone !== '';
+    },
+        getMoment = function getMoment(d) {
+      var returnMoment = void 0;
+
+      if (d === undefined || d === null) {
+        returnMoment = moment(); //TODO should this use format? and locale?
+      } else if (moment.isDate(d) || moment.isMoment(d)) {
+        // If the date that is passed in is already a Date() or moment() object,
+        // pass it directly to moment.
+        returnMoment = moment(d);
+      } else if (hasTimeZone()) {
+        // There is a string to parse and a default time zone
+        // parse with the tz function which takes a default time zone if it is not in the format string
+        returnMoment = moment.tz(d, parseFormats, options.useStrict, options.timeZone);
+      } else {
+        returnMoment = moment(d, parseFormats, options.useStrict);
+      }
+
+      if (hasTimeZone()) {
+        returnMoment.tz(options.timeZone);
+      }
+
+      return returnMoment;
+    },
+        isEnabled = function isEnabled(granularity) {
+      if (typeof granularity !== 'string' || granularity.length > 1) {
+        throw new TypeError('isEnabled expects a single character string parameter');
+      }
+      switch (granularity) {
+        case 'y':
+          return actualFormat.indexOf('Y') !== -1;
+        case 'M':
+          return actualFormat.indexOf('M') !== -1;
+        case 'd':
+          return actualFormat.toLowerCase().indexOf('d') !== -1;
+        case 'h':
+        case 'H':
+          return actualFormat.toLowerCase().indexOf('h') !== -1;
+        case 'm':
+          return actualFormat.indexOf('m') !== -1;
+        case 's':
+          return actualFormat.indexOf('s') !== -1;
+        default:
+          return false;
+      }
+    },
+        hasTime = function hasTime() {
+      return isEnabled('h') || isEnabled('m') || isEnabled('s');
+    },
+        hasDate = function hasDate() {
+      return isEnabled('y') || isEnabled('M') || isEnabled('d');
+    },
+        getDatePickerTemplate = function getDatePickerTemplate() {
+      var headTemplate = $('<thead>').append($('<tr>').append($('<th>').addClass('prev').attr('data-action', 'previous').append($('<span>').addClass(options.icons.previous))).append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', options.calendarWeeks ? '6' : '5')).append($('<th>').addClass('next').attr('data-action', 'next').append($('<span>').addClass(options.icons.next)))),
+          contTemplate = $('<tbody>').append($('<tr>').append($('<td>').attr('colspan', options.calendarWeeks ? '8' : '7')));
+
+      return [$('<div>').addClass('datepicker-days').append($('<table>').addClass('table-condensed').append(headTemplate).append($('<tbody>'))), $('<div>').addClass('datepicker-months').append($('<table>').addClass('table-condensed').append(headTemplate.clone()).append(contTemplate.clone())), $('<div>').addClass('datepicker-years').append($('<table>').addClass('table-condensed').append(headTemplate.clone()).append(contTemplate.clone())), $('<div>').addClass('datepicker-decades').append($('<table>').addClass('table-condensed').append(headTemplate.clone()).append(contTemplate.clone()))];
+    },
+        getTimePickerMainTemplate = function getTimePickerMainTemplate() {
+      var topRow = $('<tr>'),
+          middleRow = $('<tr>'),
+          bottomRow = $('<tr>');
+
+      if (isEnabled('h')) {
+        topRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.incrementHour
+        }).addClass('btn').attr('data-action', 'incrementHours').append($('<span>').addClass(options.icons.up))));
+        middleRow.append($('<td>').append($('<span>').addClass('timepicker-hour').attr({
+          'data-time-component': 'hours',
+          title: options.tooltips.pickHour
+        }).attr('data-action', 'showHours')));
+        bottomRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.decrementHour
+        }).addClass('btn').attr('data-action', 'decrementHours').append($('<span>').addClass(options.icons.down))));
+      }
+      if (isEnabled('m')) {
+        if (isEnabled('h')) {
+          topRow.append($('<td>').addClass('separator'));
+          middleRow.append($('<td>').addClass('separator').html(':'));
+          bottomRow.append($('<td>').addClass('separator'));
+        }
+        topRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.incrementMinute
+        }).addClass('btn').attr('data-action', 'incrementMinutes').append($('<span>').addClass(options.icons.up))));
+        middleRow.append($('<td>').append($('<span>').addClass('timepicker-minute').attr({
+          'data-time-component': 'minutes',
+          title: options.tooltips.pickMinute
+        }).attr('data-action', 'showMinutes')));
+        bottomRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.decrementMinute
+        }).addClass('btn').attr('data-action', 'decrementMinutes').append($('<span>').addClass(options.icons.down))));
+      }
+      if (isEnabled('s')) {
+        if (isEnabled('m')) {
+          topRow.append($('<td>').addClass('separator'));
+          middleRow.append($('<td>').addClass('separator').html(':'));
+          bottomRow.append($('<td>').addClass('separator'));
+        }
+        topRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.incrementSecond
+        }).addClass('btn').attr('data-action', 'incrementSeconds').append($('<span>').addClass(options.icons.up))));
+        middleRow.append($('<td>').append($('<span>').addClass('timepicker-second').attr({
+          'data-time-component': 'seconds',
+          title: options.tooltips.pickSecond
+        }).attr('data-action', 'showSeconds')));
+        bottomRow.append($('<td>').append($('<a>').attr({
+          href: '#',
+          tabindex: '-1',
+          title: options.tooltips.decrementSecond
+        }).addClass('btn').attr('data-action', 'decrementSeconds').append($('<span>').addClass(options.icons.down))));
+      }
+
+      if (!use24Hours) {
+        topRow.append($('<td>').addClass('separator'));
+        middleRow.append($('<td>').append($('<button>').addClass('btn btn-primary').attr({
+          'data-action': 'togglePeriod',
+          tabindex: '-1',
+          title: options.tooltips.togglePeriod
+        })));
+        bottomRow.append($('<td>').addClass('separator'));
+      }
+
+      return $('<div>').addClass('timepicker-picker').append($('<table>').addClass('table-condensed').append([topRow, middleRow, bottomRow]));
+    },
+        getTimePickerTemplate = function getTimePickerTemplate() {
+      var hoursView = $('<div>').addClass('timepicker-hours').append($('<table>').addClass('table-condensed')),
+          minutesView = $('<div>').addClass('timepicker-minutes').append($('<table>').addClass('table-condensed')),
+          secondsView = $('<div>').addClass('timepicker-seconds').append($('<table>').addClass('table-condensed')),
+          ret = [getTimePickerMainTemplate()];
+
+      if (isEnabled('h')) {
+        ret.push(hoursView);
+      }
+      if (isEnabled('m')) {
+        ret.push(minutesView);
+      }
+      if (isEnabled('s')) {
+        ret.push(secondsView);
+      }
+
+      return ret;
+    },
+        getToolbar = function getToolbar() {
+      var row = [];
+      if (options.showTodayButton) {
+        row.push($('<td>').append($('<a>').attr({ 'data-action': 'today', title: options.tooltips.today }).append($('<span>').addClass(options.icons.today))));
+      }
+      if (!options.sideBySide && hasDate() && hasTime()) {
+        row.push($('<td>').append($('<a>').attr({
+          'data-action': 'togglePicker',
+          title: options.tooltips.selectTime
+        }).append($('<span>').addClass(options.icons.time))));
+      }
+      if (options.showClear) {
+        row.push($('<td>').append($('<a>').attr({ 'data-action': 'clear', title: options.tooltips.clear }).append($('<span>').addClass(options.icons.clear))));
+      }
+      if (options.showClose) {
+        row.push($('<td>').append($('<a>').attr({ 'data-action': 'close', title: options.tooltips.close }).append($('<span>').addClass(options.icons.close))));
+      }
+      return $('<table>').addClass('table-condensed').append($('<tbody>').append($('<tr>').append(row)));
+    },
+        getTemplate = function getTemplate() {
+      var template = $('<div>').addClass('bootstrap-datetimepicker-widget dropdown-menu'),
+          dateView = $('<div>').addClass('datepicker').append(getDatePickerTemplate()),
+          timeView = $('<div>').addClass('timepicker').append(getTimePickerTemplate()),
+          content = $('<ul>').addClass('list-unstyled'),
+          toolbar = $('<li>').addClass('picker-switch' + (options.collapse ? ' accordion-toggle' : '')).append(getToolbar());
+
+      if (options.inline) {
+        template.removeClass('dropdown-menu');
+      }
+
+      if (use24Hours) {
+        template.addClass('usetwentyfour');
+      }
+
+      if (isEnabled('s') && !use24Hours) {
+        template.addClass('wider');
+      }
+
+      if (options.sideBySide && hasDate() && hasTime()) {
+        template.addClass('timepicker-sbs');
+        if (options.toolbarPlacement === 'top') {
+          template.append(toolbar);
+        }
+        template.append($('<div>').addClass('row').append(dateView.addClass('col-md-6')).append(timeView.addClass('col-md-6')));
+        if (options.toolbarPlacement === 'bottom') {
+          template.append(toolbar);
+        }
+        return template;
+      }
+
+      if (options.toolbarPlacement === 'top') {
+        content.append(toolbar);
+      }
+      if (hasDate()) {
+        content.append($('<li>').addClass(options.collapse && hasTime() ? 'collapse show' : '').append(dateView));
+      }
+      if (options.toolbarPlacement === 'default') {
+        content.append(toolbar);
+      }
+      if (hasTime()) {
+        content.append($('<li>').addClass(options.collapse && hasDate() ? 'collapse' : '').append(timeView));
+      }
+      if (options.toolbarPlacement === 'bottom') {
+        content.append(toolbar);
+      }
+      return template.append(content);
+    },
+        dataToOptions = function dataToOptions() {
+      var eData = void 0,
+          dataOptions = {};
+
+      if (element.is('input') || options.inline) {
+        eData = element.data();
+      } else {
+        eData = element.find('input').data();
+      }
+
+      if (eData.dateOptions && eData.dateOptions instanceof Object) {
+        dataOptions = $.extend(true, dataOptions, eData.dateOptions);
+      }
+
+      $.each(options, function (key) {
+        var attributeName = 'date' + key.charAt(0).toUpperCase() + key.slice(1);
+        if (eData[attributeName] !== undefined) {
+          dataOptions[key] = eData[attributeName];
+        }
+      });
+      return dataOptions;
+    },
+        place = function place() {
+      var position = (component || element).position(),
+          offset = (component || element).offset();
+      var vertical = options.widgetPositioning.vertical,
+          horizontal = options.widgetPositioning.horizontal,
+          parent = void 0;
+
+      if (options.widgetParent) {
+        parent = options.widgetParent.append(widget);
+      } else if (element.is('input')) {
+        parent = element.after(widget).parent();
+      } else if (options.inline) {
+        parent = element.append(widget);
+        return;
+      } else {
+        parent = element;
+        element.children().first().after(widget);
+      }
+
+      // Top and bottom logic
+      if (vertical === 'auto') {
+        if (offset.top + widget.height() * 1.5 >= $(window).height() + $(window).scrollTop() && widget.height() + element.outerHeight() < offset.top) {
+          vertical = 'top';
+        } else {
+          vertical = 'bottom';
+        }
+      }
+
+      // Left and right logic
+      if (horizontal === 'auto') {
+        if (parent.width() < offset.left + widget.outerWidth() / 2 && offset.left + widget.outerWidth() > $(window).width()) {
+          horizontal = 'right';
+        } else {
+          horizontal = 'left';
+        }
+      }
+
+      if (vertical === 'top') {
+        widget.addClass('top').removeClass('bottom');
+      } else {
+        widget.addClass('bottom').removeClass('top');
+      }
+
+      if (horizontal === 'right') {
+        widget.addClass('pull-right');
+      } else {
+        widget.removeClass('pull-right');
+      }
+
+      // find the first parent element that has a non-static css positioning
+      if (parent.css('position') === 'static') {
+        parent = parent.parents().filter(function () {
+          return $(this).css('position') !== 'static';
+        }).first();
+      }
+
+      if (parent.length === 0) {
+        throw new Error('datetimepicker component should be placed within a non-static positioned container');
+      }
+
+      widget.css({
+        top: vertical === 'top' ? 'auto' : position.top + element.outerHeight(),
+        bottom: vertical === 'top' ? parent.outerHeight() - (parent === element ? 0 : position.top) : 'auto',
+        left: horizontal === 'left' ? parent === element ? 0 : position.left : 'auto',
+        right: horizontal === 'left' ? 'auto' : parent.outerWidth() - element.outerWidth() - (parent === element ? 0 : position.left)
+      });
+    },
+        notifyEvent = function notifyEvent(e) {
+      if (e.type === 'dp.change' && (e.date && e.date.isSame(e.oldDate) || !e.date && !e.oldDate)) {
+        return;
+      }
+      element.trigger(e);
+    },
+        viewUpdate = function viewUpdate(e) {
+      if (e === 'y') {
+        e = 'YYYY';
+      }
+      notifyEvent({
+        type: 'dp.update',
+        change: e,
+        viewDate: viewDate.clone()
+      });
+    },
+        showMode = function showMode(dir) {
+      if (!widget) {
+        return;
+      }
+      if (dir) {
+        currentViewMode = Math.max(minViewModeNumber, Math.min(3, currentViewMode + dir));
+      }
+      widget.find('.datepicker > div').hide().filter('.datepicker-' + datePickerModes[currentViewMode].clsName).show();
+    },
+        fillDow = function fillDow() {
+      var row = $('<tr>'),
+          currentDate = viewDate.clone().startOf('w').startOf('d');
+
+      if (options.calendarWeeks === true) {
+        row.append($('<th>').addClass('cw').text('#'));
+      }
+
+      while (currentDate.isBefore(viewDate.clone().endOf('w'))) {
+        row.append($('<th>').addClass('dow').text(currentDate.format('dd')));
+        currentDate.add(1, 'd');
+      }
+      widget.find('.datepicker-days thead').append(row);
+    },
+        isInDisabledDates = function isInDisabledDates(testDate) {
+      return options.disabledDates[testDate.format('YYYY-MM-DD')] === true;
+    },
+        isInEnabledDates = function isInEnabledDates(testDate) {
+      return options.enabledDates[testDate.format('YYYY-MM-DD')] === true;
+    },
+        isInDisabledHours = function isInDisabledHours(testDate) {
+      return options.disabledHours[testDate.format('H')] === true;
+    },
+        isInEnabledHours = function isInEnabledHours(testDate) {
+      return options.enabledHours[testDate.format('H')] === true;
+    },
+        isValid = function isValid(targetMoment, granularity) {
+      if (!targetMoment.isValid()) {
+        return false;
+      }
+      if (options.disabledDates && granularity === 'd' && isInDisabledDates(targetMoment)) {
+        return false;
+      }
+      if (options.enabledDates && granularity === 'd' && !isInEnabledDates(targetMoment)) {
+        return false;
+      }
+      if (options.minDate && targetMoment.isBefore(options.minDate, granularity)) {
+        return false;
+      }
+      if (options.maxDate && targetMoment.isAfter(options.maxDate, granularity)) {
+        return false;
+      }
+      if (options.daysOfWeekDisabled && granularity === 'd' && options.daysOfWeekDisabled.indexOf(targetMoment.day()) !== -1) {
+        return false;
+      }
+      if (options.disabledHours && (granularity === 'h' || granularity === 'm' || granularity === 's') && isInDisabledHours(targetMoment)) {
+        return false;
+      }
+      if (options.enabledHours && (granularity === 'h' || granularity === 'm' || granularity === 's') && !isInEnabledHours(targetMoment)) {
+        return false;
+      }
+      if (options.disabledTimeIntervals && (granularity === 'h' || granularity === 'm' || granularity === 's')) {
+        var found = false;
+        $.each(options.disabledTimeIntervals, function () {
+          if (targetMoment.isBetween(this[0], this[1])) {
+            found = true;
+            return false;
+          }
+        });
+        if (found) {
+          return false;
+        }
+      }
+      return true;
+    },
+        fillMonths = function fillMonths() {
+      var spans = [],
+          monthsShort = viewDate.clone().startOf('y').startOf('d');
+      while (monthsShort.isSame(viewDate, 'y')) {
+        spans.push($('<span>').attr('data-action', 'selectMonth').addClass('month').text(monthsShort.format('MMM')));
+        monthsShort.add(1, 'M');
+      }
+      widget.find('.datepicker-months td').empty().append(spans);
+    },
+        updateMonths = function updateMonths() {
+      var monthsView = widget.find('.datepicker-months'),
+          monthsViewHeader = monthsView.find('th'),
+          months = monthsView.find('tbody').find('span');
+
+      monthsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevYear);
+      monthsViewHeader.eq(1).attr('title', options.tooltips.selectYear);
+      monthsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextYear);
+
+      monthsView.find('.disabled').removeClass('disabled');
+
+      if (!isValid(viewDate.clone().subtract(1, 'y'), 'y')) {
+        monthsViewHeader.eq(0).addClass('disabled');
+      }
+
+      monthsViewHeader.eq(1).text(viewDate.year());
+
+      if (!isValid(viewDate.clone().add(1, 'y'), 'y')) {
+        monthsViewHeader.eq(2).addClass('disabled');
+      }
+
+      months.removeClass('active');
+      if (date.isSame(viewDate, 'y') && !unset) {
+        months.eq(date.month()).addClass('active');
+      }
+
+      months.each(function (index) {
+        if (!isValid(viewDate.clone().month(index), 'M')) {
+          $(this).addClass('disabled');
+        }
+      });
+    },
+        updateYears = function updateYears() {
+      var yearsView = widget.find('.datepicker-years'),
+          yearsViewHeader = yearsView.find('th'),
+          startYear = viewDate.clone().subtract(5, 'y'),
+          endYear = viewDate.clone().add(6, 'y');
+      var html = '';
+
+      yearsViewHeader.eq(0).find('span').attr('title', options.tooltips.prevDecade);
+      yearsViewHeader.eq(1).attr('title', options.tooltips.selectDecade);
+      yearsViewHeader.eq(2).find('span').attr('title', options.tooltips.nextDecade);
+
+      yearsView.find('.disabled').removeClass('disabled');
+
+      if (options.minDate && options.minDate.isAfter(startYear, 'y')) {
+        yearsViewHeader.eq(0).addClass('disabled');
+      }
+
+      yearsViewHeader.eq(1).text(startYear.year() + '-' + endYear.year());
+
+      if (options.maxDate && options.maxDate.isBefore(endYear, 'y')) {
+        yearsViewHeader.eq(2).addClass('disabled');
+      }
+
+      while (!startYear.isAfter(endYear, 'y')) {
+        html += '<span data-action="selectYear" class="year' + (startYear.isSame(date, 'y') && !unset ? ' active' : '') + (!isValid(startYear, 'y') ? ' disabled' : '') + '">' + startYear.year() + '</span>';
+        startYear.add(1, 'y');
+      }
+
+      yearsView.find('td').html(html);
+    },
+        updateDecades = function updateDecades() {
+      var decadesView = widget.find('.datepicker-decades'),
+          decadesViewHeader = decadesView.find('th'),
+          startDecade = moment({
+        y: viewDate.year() - viewDate.year() % 100 - 1
+      }),
+          endDecade = startDecade.clone().add(100, 'y'),
+          startedAt = startDecade.clone();
+      var minDateDecade = false,
+          maxDateDecade = false,
+          endDecadeYear = void 0,
+          html = '';
+
+      decadesViewHeader.eq(0).find('span').attr('title', options.tooltips.prevCentury);
+      decadesViewHeader.eq(2).find('span').attr('title', options.tooltips.nextCentury);
+
+      decadesView.find('.disabled').removeClass('disabled');
+
+      if (startDecade.isSame(moment({ y: 1900 })) || options.minDate && options.minDate.isAfter(startDecade, 'y')) {
+        decadesViewHeader.eq(0).addClass('disabled');
+      }
+
+      decadesViewHeader.eq(1).text(startDecade.year() + '-' + endDecade.year());
+
+      if (startDecade.isSame(moment({ y: 2000 })) || options.maxDate && options.maxDate.isBefore(endDecade, 'y')) {
+        decadesViewHeader.eq(2).addClass('disabled');
+      }
+
+      while (!startDecade.isAfter(endDecade, 'y')) {
+        endDecadeYear = startDecade.year() + 12;
+        minDateDecade = options.minDate && options.minDate.isAfter(startDecade, 'y') && options.minDate.year() <= endDecadeYear;
+        maxDateDecade = options.maxDate && options.maxDate.isAfter(startDecade, 'y') && options.maxDate.year() <= endDecadeYear;
+        html += '<span data-action="selectDecade" class="decade' + (date.isAfter(startDecade) && date.year() <= endDecadeYear ? ' active' : '') + (!isValid(startDecade, 'y') && !minDateDecade && !maxDateDecade ? ' disabled' : '') + '" data-selection="' + (startDecade.year() + 6) + '">' + (startDecade.year() + 1) + ' - ' + (startDecade.year() + 12) + '</span>';
+        startDecade.add(12, 'y');
+      }
+      html += '<span></span><span></span><span></span>'; //push the dangling block over, at least this way it's even
+
+      decadesView.find('td').html(html);
+      decadesViewHeader.eq(1).text(startedAt.year() + 1 + '-' + startDecade.year());
+    },
+        fillDate = function fillDate() {
+      var daysView = widget.find('.datepicker-days'),
+          daysViewHeader = daysView.find('th');
+      var currentDate = void 0;
+      var html = [];
+      var row = void 0,
+          clsNames = [],
+          i = void 0;
+
+      if (!hasDate()) {
+        return;
+      }
+
+      daysViewHeader.eq(0).find('span').attr('title', options.tooltips.prevMonth);
+      daysViewHeader.eq(1).attr('title', options.tooltips.selectMonth);
+      daysViewHeader.eq(2).find('span').attr('title', options.tooltips.nextMonth);
+
+      daysView.find('.disabled').removeClass('disabled');
+      daysViewHeader.eq(1).text(viewDate.format(options.dayViewHeaderFormat));
+
+      if (!isValid(viewDate.clone().subtract(1, 'M'), 'M')) {
+        daysViewHeader.eq(0).addClass('disabled');
+      }
+      if (!isValid(viewDate.clone().add(1, 'M'), 'M')) {
+        daysViewHeader.eq(2).addClass('disabled');
+      }
+
+      currentDate = viewDate.clone().startOf('M').startOf('w').startOf('d');
+
+      for (i = 0; i < 42; i++) {
+        //always display 42 days (should show 6 weeks)
+        if (currentDate.weekday() === 0) {
+          row = $('<tr>');
+          if (options.calendarWeeks) {
+            row.append('<td class="cw">' + currentDate.week() + '</td>');
+          }
+          html.push(row);
+        }
+        clsNames = ['day'];
+        if (currentDate.isBefore(viewDate, 'M')) {
+          clsNames.push('old');
+        }
+        if (currentDate.isAfter(viewDate, 'M')) {
+          clsNames.push('new');
+        }
+        if (currentDate.isSame(date, 'd') && !unset) {
+          clsNames.push('active');
+        }
+        if (!isValid(currentDate, 'd')) {
+          clsNames.push('disabled');
+        }
+        if (currentDate.isSame(getMoment(), 'd')) {
+          clsNames.push('today');
+        }
+        if (currentDate.day() === 0 || currentDate.day() === 6) {
+          clsNames.push('weekend');
+        }
+        notifyEvent({
+          type: 'dp.classify',
+          date: currentDate,
+          classNames: clsNames
+        });
+        row.append('<td data-action="selectDay" data-day="' + currentDate.format('L') + '" class="' + clsNames.join(' ') + '">' + currentDate.date() + '</td>');
+        currentDate.add(1, 'd');
+      }
+
+      daysView.find('tbody').empty().append(html);
+
+      updateMonths();
+
+      updateYears();
+
+      updateDecades();
+    },
+        fillHours = function fillHours() {
+      var table = widget.find('.timepicker-hours table'),
+          currentHour = viewDate.clone().startOf('d'),
+          html = [];
+      var row = $('<tr>');
+
+      if (viewDate.hour() > 11 && !use24Hours) {
+        currentHour.hour(12);
+      }
+      while (currentHour.isSame(viewDate, 'd') && (use24Hours || viewDate.hour() < 12 && currentHour.hour() < 12 || viewDate.hour() > 11)) {
+        if (currentHour.hour() % 4 === 0) {
+          row = $('<tr>');
+          html.push(row);
+        }
+        row.append('<td data-action="selectHour" class="hour' + (!isValid(currentHour, 'h') ? ' disabled' : '') + '">' + currentHour.format(use24Hours ? 'HH' : 'hh') + '</td>');
+        currentHour.add(1, 'h');
+      }
+      table.empty().append(html);
+    },
+        fillMinutes = function fillMinutes() {
+      var table = widget.find('.timepicker-minutes table'),
+          currentMinute = viewDate.clone().startOf('h'),
+          html = [];
+      var row = $('<tr>');
+      var step = options.stepping === 1 ? 5 : options.stepping;
+
+      while (viewDate.isSame(currentMinute, 'h')) {
+        if (currentMinute.minute() % (step * 4) === 0) {
+          row = $('<tr>');
+          html.push(row);
+        }
+        row.append('<td data-action="selectMinute" class="minute' + (!isValid(currentMinute, 'm') ? ' disabled' : '') + '">' + currentMinute.format('mm') + '</td>');
+        currentMinute.add(step, 'm');
+      }
+      table.empty().append(html);
+    },
+        fillSeconds = function fillSeconds() {
+      var table = widget.find('.timepicker-seconds table'),
+          currentSecond = viewDate.clone().startOf('m'),
+          html = [];
+      var row = $('<tr>');
+
+      while (viewDate.isSame(currentSecond, 'm')) {
+        if (currentSecond.second() % 20 === 0) {
+          row = $('<tr>');
+          html.push(row);
+        }
+        row.append('<td data-action="selectSecond" class="second' + (!isValid(currentSecond, 's') ? ' disabled' : '') + '">' + currentSecond.format('ss') + '</td>');
+        currentSecond.add(5, 's');
+      }
+
+      table.empty().append(html);
+    },
+        fillTime = function fillTime() {
+      var toggle = void 0,
+          newDate = void 0;
+      var timeComponents = widget.find('.timepicker span[data-time-component]');
+
+      if (!use24Hours) {
+        toggle = widget.find('.timepicker [data-action=togglePeriod]');
+        newDate = date.clone().add(date.hours() >= 12 ? -12 : 12, 'h');
+
+        toggle.text(date.format('A'));
+
+        if (isValid(newDate, 'h')) {
+          toggle.removeClass('disabled');
+        } else {
+          toggle.addClass('disabled');
+        }
+      }
+      timeComponents.filter('[data-time-component=hours]').text(date.format(use24Hours ? 'HH' : 'hh'));
+      timeComponents.filter('[data-time-component=minutes]').text(date.format('mm'));
+      timeComponents.filter('[data-time-component=seconds]').text(date.format('ss'));
+
+      fillHours();
+      fillMinutes();
+      fillSeconds();
+    },
+        update = function update() {
+      if (!widget) {
+        return;
+      }
+      fillDate();
+      fillTime();
+    },
+        setValue = function setValue(targetMoment) {
+      var oldDate = unset ? null : date;
+
+      // case of calling setValue(null or false)
+      if (!targetMoment) {
+        unset = true;
+        input.val('');
+        element.data('date', '');
+        notifyEvent({
+          type: 'dp.change',
+          date: false,
+          oldDate: oldDate
+        });
+        update();
+        return;
+      }
+
+      targetMoment = targetMoment.clone().locale(options.locale);
+
+      if (hasTimeZone()) {
+        targetMoment.tz(options.timeZone);
+      }
+
+      if (options.stepping !== 1) {
+        targetMoment.minutes(Math.round(targetMoment.minutes() / options.stepping) * options.stepping).seconds(0);
+
+        while (options.minDate && targetMoment.isBefore(options.minDate)) {
+          targetMoment.add(options.stepping, 'minutes');
+        }
+      }
+
+      if (isValid(targetMoment)) {
+        date = targetMoment;
+        viewDate = date.clone();
+        input.val(date.format(actualFormat));
+        element.data('date', date.format(actualFormat));
+        unset = false;
+        update();
+        notifyEvent({
+          type: 'dp.change',
+          date: date.clone(),
+          oldDate: oldDate
+        });
+      } else {
+        if (!options.keepInvalid) {
+          input.val(unset ? '' : date.format(actualFormat));
+        } else {
+          notifyEvent({
+            type: 'dp.change',
+            date: targetMoment,
+            oldDate: oldDate
+          });
+        }
+        notifyEvent({
+          type: 'dp.error',
+          date: targetMoment,
+          oldDate: oldDate
+        });
+      }
+    },
+
+    /**
+     * Hides the widget. Possibly will emit dp.hide
+     */
+    hide = function hide() {
+      var transitioning = false;
+      if (!widget) {
+        return picker;
+      }
+      // Ignore event if in the middle of a picker transition
+      widget.find('.collapse').each(function () {
+        var collapseData = $(this).data('collapse');
+        if (collapseData && collapseData.transitioning) {
+          transitioning = true;
+          return false;
+        }
+        return true;
+      });
+      if (transitioning) {
+        return picker;
+      }
+      if (component && component.hasClass('btn')) {
+        component.toggleClass('active');
+      }
+      widget.hide();
+
+      $(window).off('resize', place);
+      widget.off('click', '[data-action]');
+      widget.off('mousedown', false);
+
+      widget.remove();
+      widget = false;
+
+      notifyEvent({
+        type: 'dp.hide',
+        date: date.clone()
+      });
+
+      input.blur();
+
+      viewDate = date.clone();
+
+      return picker;
+    },
+        clear = function clear() {
+      setValue(null);
+    },
+        parseInputDate = function parseInputDate(inputDate) {
+      if (options.parseInputDate === undefined) {
+        if (!moment.isMoment(inputDate) || inputDate instanceof Date) {
+          inputDate = getMoment(inputDate);
+        }
+      } else {
+        inputDate = options.parseInputDate(inputDate);
+      }
+      //inputDate.locale(options.locale);
+      return inputDate;
+    },
+
+    /********************************************************************************
+     *
+     * Widget UI interaction functions
+     *
+     ********************************************************************************/
+    actions = {
+      next: function next() {
+        var navFnc = datePickerModes[currentViewMode].navFnc;
+        viewDate.add(datePickerModes[currentViewMode].navStep, navFnc);
+        fillDate();
+        viewUpdate(navFnc);
+      },
+
+      previous: function previous() {
+        var navFnc = datePickerModes[currentViewMode].navFnc;
+        viewDate.subtract(datePickerModes[currentViewMode].navStep, navFnc);
+        fillDate();
+        viewUpdate(navFnc);
+      },
+
+      pickerSwitch: function pickerSwitch() {
+        showMode(1);
+      },
+
+      selectMonth: function selectMonth(e) {
+        var month = $(e.target).closest('tbody').find('span').index($(e.target));
+        viewDate.month(month);
+        if (currentViewMode === minViewModeNumber) {
+          setValue(date.clone().year(viewDate.year()).month(viewDate.month()));
+          if (!options.inline) {
+            hide();
+          }
+        } else {
+          showMode(-1);
+          fillDate();
+        }
+        viewUpdate('M');
+      },
+
+      selectYear: function selectYear(e) {
+        var year = parseInt($(e.target).text(), 10) || 0;
+        viewDate.year(year);
+        if (currentViewMode === minViewModeNumber) {
+          setValue(date.clone().year(viewDate.year()));
+          if (!options.inline) {
+            hide();
+          }
+        } else {
+          showMode(-1);
+          fillDate();
+        }
+        viewUpdate('YYYY');
+      },
+
+      selectDecade: function selectDecade(e) {
+        var year = parseInt($(e.target).data('selection'), 10) || 0;
+        viewDate.year(year);
+        if (currentViewMode === minViewModeNumber) {
+          setValue(date.clone().year(viewDate.year()));
+          if (!options.inline) {
+            hide();
+          }
+        } else {
+          showMode(-1);
+          fillDate();
+        }
+        viewUpdate('YYYY');
+      },
+
+      selectDay: function selectDay(e) {
+        var day = viewDate.clone();
+        if ($(e.target).is('.old')) {
+          day.subtract(1, 'M');
+        }
+        if ($(e.target).is('.new')) {
+          day.add(1, 'M');
+        }
+        setValue(day.date(parseInt($(e.target).text(), 10)));
+        if (!hasTime() && !options.keepOpen && !options.inline) {
+          hide();
+        }
+      },
+
+      incrementHours: function incrementHours() {
+        var newDate = date.clone().add(1, 'h');
+        if (isValid(newDate, 'h')) {
+          setValue(newDate);
+        }
+      },
+
+      incrementMinutes: function incrementMinutes() {
+        var newDate = date.clone().add(options.stepping, 'm');
+        if (isValid(newDate, 'm')) {
+          setValue(newDate);
+        }
+      },
+
+      incrementSeconds: function incrementSeconds() {
+        var newDate = date.clone().add(1, 's');
+        if (isValid(newDate, 's')) {
+          setValue(newDate);
+        }
+      },
+
+      decrementHours: function decrementHours() {
+        var newDate = date.clone().subtract(1, 'h');
+        if (isValid(newDate, 'h')) {
+          setValue(newDate);
+        }
+      },
+
+      decrementMinutes: function decrementMinutes() {
+        var newDate = date.clone().subtract(options.stepping, 'm');
+        if (isValid(newDate, 'm')) {
+          setValue(newDate);
+        }
+      },
+
+      decrementSeconds: function decrementSeconds() {
+        var newDate = date.clone().subtract(1, 's');
+        if (isValid(newDate, 's')) {
+          setValue(newDate);
+        }
+      },
+
+      togglePeriod: function togglePeriod() {
+        setValue(date.clone().add(date.hours() >= 12 ? -12 : 12, 'h'));
+      },
+
+      togglePicker: function togglePicker(e) {
+        var $this = $(e.target),
+            $parent = $this.closest('ul'),
+            expanded = $parent.find('.show'),
+            closed = $parent.find('.collapse:not(.show)');
+        var collapseData = void 0;
+
+        if (expanded && expanded.length) {
+          collapseData = expanded.data('collapse');
+          if (collapseData && collapseData.transitioning) {
+            return;
+          }
+          if (expanded.collapse) {
+            // if collapse plugin is available through bootstrap.js then use it
+            expanded.collapse('hide');
+            closed.collapse('show');
+          } else {
+            // otherwise just toggle in class on the two views
+            expanded.removeClass('show');
+            closed.addClass('show');
+          }
+          if ($this.is('span')) {
+            $this.toggleClass(options.icons.time + ' ' + options.icons.date);
+          } else {
+            $this.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
+          }
+
+          // NOTE: uncomment if toggled state will be restored in show()
+          //if (component) {
+          //    component.find('span').toggleClass(options.icons.time + ' ' + options.icons.date);
+          //}
+        }
+      },
+
+      showPicker: function showPicker() {
+        widget.find('.timepicker > div:not(.timepicker-picker)').hide();
+        widget.find('.timepicker .timepicker-picker').show();
+      },
+
+      showHours: function showHours() {
+        widget.find('.timepicker .timepicker-picker').hide();
+        widget.find('.timepicker .timepicker-hours').show();
+      },
+
+      showMinutes: function showMinutes() {
+        widget.find('.timepicker .timepicker-picker').hide();
+        widget.find('.timepicker .timepicker-minutes').show();
+      },
+
+      showSeconds: function showSeconds() {
+        widget.find('.timepicker .timepicker-picker').hide();
+        widget.find('.timepicker .timepicker-seconds').show();
+      },
+
+      selectHour: function selectHour(e) {
+        var hour = parseInt($(e.target).text(), 10);
+
+        if (!use24Hours) {
+          if (date.hours() >= 12) {
+            if (hour !== 12) {
+              hour += 12;
+            }
+          } else {
+            if (hour === 12) {
+              hour = 0;
+            }
+          }
+        }
+        setValue(date.clone().hours(hour));
+        actions.showPicker.call(picker);
+      },
+
+      selectMinute: function selectMinute(e) {
+        setValue(date.clone().minutes(parseInt($(e.target).text(), 10)));
+        actions.showPicker.call(picker);
+      },
+
+      selectSecond: function selectSecond(e) {
+        setValue(date.clone().seconds(parseInt($(e.target).text(), 10)));
+        actions.showPicker.call(picker);
+      },
+
+      clear: clear,
+
+      today: function today() {
+        var todaysDate = getMoment();
+        if (isValid(todaysDate, 'd')) {
+          setValue(todaysDate);
+        }
+      },
+
+      close: hide
+    },
+        doAction = function doAction(e) {
+      if ($(e.currentTarget).is('.disabled')) {
+        return false;
+      }
+      actions[$(e.currentTarget).data('action')].apply(picker, arguments);
+      return false;
+    },
+
+    /**
+     * Shows the widget. Possibly will emit dp.show and dp.change
+     */
+    show = function show() {
+      var currentMoment = void 0;
+      var useCurrentGranularity = {
+        year: function year(m) {
+          return m.month(0).date(1).hours(0).seconds(0).minutes(0);
+        },
+        month: function month(m) {
+          return m.date(1).hours(0).seconds(0).minutes(0);
+        },
+        day: function day(m) {
+          return m.hours(0).seconds(0).minutes(0);
+        },
+        hour: function hour(m) {
+          return m.seconds(0).minutes(0);
+        },
+        minute: function minute(m) {
+          return m.seconds(0);
+        }
+      };
+
+      if (input.prop('disabled') || !options.ignoreReadonly && input.prop('readonly') || widget) {
+        return picker;
+      }
+      if (input.val() !== undefined && input.val().trim().length !== 0) {
+        setValue(parseInputDate(input.val().trim()));
+      } else if (unset && options.useCurrent && (options.inline || input.is('input') && input.val().trim().length === 0)) {
+        currentMoment = getMoment();
+        if (typeof options.useCurrent === 'string') {
+          currentMoment = useCurrentGranularity[options.useCurrent](currentMoment);
+        }
+        setValue(currentMoment);
+      }
+      widget = getTemplate();
+
+      fillDow();
+      fillMonths();
+
+      widget.find('.timepicker-hours').hide();
+      widget.find('.timepicker-minutes').hide();
+      widget.find('.timepicker-seconds').hide();
+
+      update();
+      showMode();
+
+      $(window).on('resize', place);
+      widget.on('click', '[data-action]', doAction); // this handles clicks on the widget
+      widget.on('mousedown', false);
+
+      if (component && component.hasClass('btn')) {
+        component.toggleClass('active');
+      }
+      place();
+      widget.show();
+      if (options.focusOnShow && !input.is(':focus')) {
+        input.focus();
+      }
+
+      notifyEvent({
+        type: 'dp.show'
+      });
+      return picker;
+    },
+
+    /**
+     * Shows or hides the widget
+     */
+    toggle = function toggle() {
+      return widget ? hide() : show();
+    },
+        keydown = function keydown(e) {
+      var handler = null,
+          index = void 0,
+          index2 = void 0;
+      var pressedKeys = [],
+          pressedModifiers = {},
+          currentKey = e.which;
+      var keyBindKeys = void 0,
+          allModifiersPressed = void 0;
+      var pressed = 'p';
+
+      keyState[currentKey] = pressed;
+
+      for (index in keyState) {
+        if (keyState.hasOwnProperty(index) && keyState[index] === pressed) {
+          pressedKeys.push(index);
+          if (parseInt(index, 10) !== currentKey) {
+            pressedModifiers[index] = true;
+          }
+        }
+      }
+
+      for (index in options.keyBinds) {
+        if (options.keyBinds.hasOwnProperty(index) && typeof options.keyBinds[index] === 'function') {
+          keyBindKeys = index.split(' ');
+          if (keyBindKeys.length === pressedKeys.length && keyMap[currentKey] === keyBindKeys[keyBindKeys.length - 1]) {
+            allModifiersPressed = true;
+            for (index2 = keyBindKeys.length - 2; index2 >= 0; index2--) {
+              if (!(keyMap[keyBindKeys[index2]] in pressedModifiers)) {
+                allModifiersPressed = false;
+                break;
+              }
+            }
+            if (allModifiersPressed) {
+              handler = options.keyBinds[index];
+              break;
+            }
+          }
+        }
+      }
+
+      if (handler) {
+        handler.call(picker, widget);
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    },
+        keyup = function keyup(e) {
+      keyState[e.which] = 'r';
+      e.stopPropagation();
+      e.preventDefault();
+    },
+        change = function change(e) {
+      var val = $(e.target).val().trim(),
+          parsedDate = val ? parseInputDate(val) : null;
+      setValue(parsedDate);
+      e.stopImmediatePropagation();
+      return false;
+    },
+        attachDatePickerElementEvents = function attachDatePickerElementEvents() {
+      input.on({
+        change: change,
+        blur: options.debug ? '' : hide,
+        keydown: keydown,
+        keyup: keyup,
+        focus: options.allowInputToggle ? show : ''
+      });
+
+      if (element.is('input')) {
+        input.on({
+          focus: show
+        });
+      } else if (component) {
+        component.on('click', toggle);
+        component.on('mousedown', false);
+      }
+    },
+        detachDatePickerElementEvents = function detachDatePickerElementEvents() {
+      input.off({
+        change: change,
+        blur: blur,
+        keydown: keydown,
+        keyup: keyup,
+        focus: options.allowInputToggle ? hide : ''
+      });
+
+      if (element.is('input')) {
+        input.off({
+          focus: show
+        });
+      } else if (component) {
+        component.off('click', toggle);
+        component.off('mousedown', false);
+      }
+    },
+        indexGivenDates = function indexGivenDates(givenDatesArray) {
+      // Store given enabledDates and disabledDates as keys.
+      // This way we can check their existence in O(1) time instead of looping through whole array.
+      // (for example: options.enabledDates['2014-02-27'] === true)
+      var givenDatesIndexed = {};
+      $.each(givenDatesArray, function () {
+        var dDate = parseInputDate(this);
+        if (dDate.isValid()) {
+          givenDatesIndexed[dDate.format('YYYY-MM-DD')] = true;
+        }
+      });
+      return Object.keys(givenDatesIndexed).length ? givenDatesIndexed : false;
+    },
+        indexGivenHours = function indexGivenHours(givenHoursArray) {
+      // Store given enabledHours and disabledHours as keys.
+      // This way we can check their existence in O(1) time instead of looping through whole array.
+      // (for example: options.enabledHours['2014-02-27'] === true)
+      var givenHoursIndexed = {};
+      $.each(givenHoursArray, function () {
+        givenHoursIndexed[this] = true;
+      });
+      return Object.keys(givenHoursIndexed).length ? givenHoursIndexed : false;
+    },
+        initFormatting = function initFormatting() {
+      var format = options.format || 'L LT';
+
+      actualFormat = format.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput) {
+        var newinput = date.localeData().longDateFormat(formatInput) || formatInput;
+        return newinput.replace(/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, function (formatInput2) {
+          //temp fix for #740
+          return date.localeData().longDateFormat(formatInput2) || formatInput2;
+        });
+      });
+
+      parseFormats = options.extraFormats ? options.extraFormats.slice() : [];
+      if (parseFormats.indexOf(format) < 0 && parseFormats.indexOf(actualFormat) < 0) {
+        parseFormats.push(actualFormat);
+      }
+
+      use24Hours = actualFormat.toLowerCase().indexOf('a') < 1 && actualFormat.replace(/\[.*?\]/g, '').indexOf('h') < 1;
+
+      if (isEnabled('y')) {
+        minViewModeNumber = 2;
+      }
+      if (isEnabled('M')) {
+        minViewModeNumber = 1;
+      }
+      if (isEnabled('d')) {
+        minViewModeNumber = 0;
+      }
+
+      currentViewMode = Math.max(minViewModeNumber, currentViewMode);
+
+      if (!unset) {
+        setValue(date);
+      }
+    };
+
+    /********************************************************************************
+     *
+     * Public API functions
+     * =====================
+     *
+     * Important: Do not expose direct references to private objects or the options
+     * object to the outer world. Always return a clone when returning values or make
+     * a clone when setting a private variable.
+     *
+     ********************************************************************************/
+    picker.destroy = function () {
+      ///<summary>Destroys the widget and removes all attached event listeners</summary>
+      hide();
+      detachDatePickerElementEvents();
+      element.removeData('DateTimePicker');
+      element.removeData('date');
+    };
+
+    picker.toggle = toggle;
+
+    picker.show = show;
+
+    picker.hide = hide;
+
+    picker.disable = function () {
+      ///<summary>Disables the input element, the component is attached to, by adding a disabled="true" attribute to it.
+      ///If the widget was visible before that call it is hidden. Possibly emits dp.hide</summary>
+      hide();
+      if (component && component.hasClass('btn')) {
+        component.addClass('disabled');
+      }
+      input.prop('disabled', true);
+      return picker;
+    };
+
+    picker.enable = function () {
+      ///<summary>Enables the input element, the component is attached to, by removing disabled attribute from it.</summary>
+      if (component && component.hasClass('btn')) {
+        component.removeClass('disabled');
+      }
+      input.prop('disabled', false);
+      return picker;
+    };
+
+    picker.ignoreReadonly = function (ignoreReadonly) {
+      if (arguments.length === 0) {
+        return options.ignoreReadonly;
+      }
+      if (typeof ignoreReadonly !== 'boolean') {
+        throw new TypeError('ignoreReadonly () expects a boolean parameter');
+      }
+      options.ignoreReadonly = ignoreReadonly;
+      return picker;
+    };
+
+    picker.options = function (newOptions) {
+      if (arguments.length === 0) {
+        return $.extend(true, {}, options);
+      }
+
+      if (!(newOptions instanceof Object)) {
+        throw new TypeError('options() options parameter should be an object');
+      }
+      $.extend(true, options, newOptions);
+      $.each(options, function (key, value) {
+        if (picker[key] !== undefined) {
+          picker[key](value);
+        } else {
+          throw new TypeError('option ' + key + ' is not recognized!');
+        }
+      });
+      return picker;
+    };
+
+    picker.date = function (newDate) {
+      ///<signature helpKeyword="$.fn.datetimepicker.date">
+      ///<summary>Returns the component's model current date, a moment object or null if not set.</summary>
+      ///<returns type="Moment">date.clone()</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Sets the components model current moment to it. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.</summary>
+      ///<param name="newDate" locid="$.fn.datetimepicker.date_p:newDate">Takes string, Date, moment, null parameter.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        if (unset) {
+          return null;
+        }
+        return date.clone();
+      }
+
+      if (newDate !== null && typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
+        throw new TypeError('date() parameter must be one of [null, string, moment or Date]');
+      }
+
+      setValue(newDate === null ? null : parseInputDate(newDate));
+      return picker;
+    };
+
+    picker.format = function (newFormat) {
+      ///<summary>test su</summary>
+      ///<param name="newFormat">info about para</param>
+      ///<returns type="string|boolean">returns foo</returns>
+      if (arguments.length === 0) {
+        return options.format;
+      }
+
+      if (typeof newFormat !== 'string' && (typeof newFormat !== 'boolean' || newFormat !== false)) {
+        throw new TypeError('format() expects a string or boolean:false parameter ' + newFormat);
+      }
+
+      options.format = newFormat;
+      if (actualFormat) {
+        initFormatting(); // reinit formatting
+      }
+      return picker;
+    };
+
+    picker.timeZone = function (newZone) {
+      if (arguments.length === 0) {
+        return options.timeZone;
+      }
+
+      if (typeof newZone !== 'string') {
+        throw new TypeError('newZone() expects a string parameter');
+      }
+
+      options.timeZone = newZone;
+
+      return picker;
+    };
+
+    picker.dayViewHeaderFormat = function (newFormat) {
+      if (arguments.length === 0) {
+        return options.dayViewHeaderFormat;
+      }
+
+      if (typeof newFormat !== 'string') {
+        throw new TypeError('dayViewHeaderFormat() expects a string parameter');
+      }
+
+      options.dayViewHeaderFormat = newFormat;
+      return picker;
+    };
+
+    picker.extraFormats = function (formats) {
+      if (arguments.length === 0) {
+        return options.extraFormats;
+      }
+
+      if (formats !== false && !(formats instanceof Array)) {
+        throw new TypeError('extraFormats() expects an array or false parameter');
+      }
+
+      options.extraFormats = formats;
+      if (parseFormats) {
+        initFormatting(); // reinit formatting
+      }
+      return picker;
+    };
+
+    picker.disabledDates = function (dates) {
+      ///<signature helpKeyword="$.fn.datetimepicker.disabledDates">
+      ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
+      ///<returns type="array">options.disabledDates</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+      ///options.enabledDates if such exist.</summary>
+      ///<param name="dates" locid="$.fn.datetimepicker.disabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.disabledDates ? $.extend({}, options.disabledDates) : options.disabledDates;
+      }
+
+      if (!dates) {
+        options.disabledDates = false;
+        update();
+        return picker;
+      }
+      if (!(dates instanceof Array)) {
+        throw new TypeError('disabledDates() expects an array parameter');
+      }
+      options.disabledDates = indexGivenDates(dates);
+      options.enabledDates = false;
+      update();
+      return picker;
+    };
+
+    picker.enabledDates = function (dates) {
+      ///<signature helpKeyword="$.fn.datetimepicker.enabledDates">
+      ///<summary>Returns an array with the currently set enabled dates on the component.</summary>
+      ///<returns type="array">options.enabledDates</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledDates if such exist.</summary>
+      ///<param name="dates" locid="$.fn.datetimepicker.enabledDates_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.enabledDates ? $.extend({}, options.enabledDates) : options.enabledDates;
+      }
+
+      if (!dates) {
+        options.enabledDates = false;
+        update();
+        return picker;
+      }
+      if (!(dates instanceof Array)) {
+        throw new TypeError('enabledDates() expects an array parameter');
+      }
+      options.enabledDates = indexGivenDates(dates);
+      options.disabledDates = false;
+      update();
+      return picker;
+    };
+
+    picker.daysOfWeekDisabled = function (daysOfWeekDisabled) {
+      if (arguments.length === 0) {
+        return options.daysOfWeekDisabled.splice(0);
+      }
+
+      if (typeof daysOfWeekDisabled === 'boolean' && !daysOfWeekDisabled) {
+        options.daysOfWeekDisabled = false;
+        update();
+        return picker;
+      }
+
+      if (!(daysOfWeekDisabled instanceof Array)) {
+        throw new TypeError('daysOfWeekDisabled() expects an array parameter');
+      }
+      options.daysOfWeekDisabled = daysOfWeekDisabled.reduce(function (previousValue, currentValue) {
+        currentValue = parseInt(currentValue, 10);
+        if (currentValue > 6 || currentValue < 0 || isNaN(currentValue)) {
+          return previousValue;
+        }
+        if (previousValue.indexOf(currentValue) === -1) {
+          previousValue.push(currentValue);
+        }
+        return previousValue;
+      }, []).sort();
+      if (options.useCurrent && !options.keepInvalid) {
+        var tries = 0;
+        while (!isValid(date, 'd')) {
+          date.add(1, 'd');
+          if (tries === 31) {
+            throw 'Tried 31 times to find a valid date';
+          }
+          tries++;
+        }
+        setValue(date);
+      }
+      update();
+      return picker;
+    };
+
+    picker.maxDate = function (maxDate) {
+      if (arguments.length === 0) {
+        return options.maxDate ? options.maxDate.clone() : options.maxDate;
+      }
+
+      if (typeof maxDate === 'boolean' && maxDate === false) {
+        options.maxDate = false;
+        update();
+        return picker;
+      }
+
+      if (typeof maxDate === 'string') {
+        if (maxDate === 'now' || maxDate === 'moment') {
+          maxDate = getMoment();
+        }
+      }
+
+      var parsedDate = parseInputDate(maxDate);
+
+      if (!parsedDate.isValid()) {
+        throw new TypeError('maxDate() Could not parse date parameter: ' + maxDate);
+      }
+      if (options.minDate && parsedDate.isBefore(options.minDate)) {
+        throw new TypeError('maxDate() date parameter is before options.minDate: ' + parsedDate.format(actualFormat));
+      }
+      options.maxDate = parsedDate;
+      if (options.useCurrent && !options.keepInvalid && date.isAfter(maxDate)) {
+        setValue(options.maxDate);
+      }
+      if (viewDate.isAfter(parsedDate)) {
+        viewDate = parsedDate.clone().subtract(options.stepping, 'm');
+      }
+      update();
+      return picker;
+    };
+
+    picker.minDate = function (minDate) {
+      if (arguments.length === 0) {
+        return options.minDate ? options.minDate.clone() : options.minDate;
+      }
+
+      if (typeof minDate === 'boolean' && minDate === false) {
+        options.minDate = false;
+        update();
+        return picker;
+      }
+
+      if (typeof minDate === 'string') {
+        if (minDate === 'now' || minDate === 'moment') {
+          minDate = getMoment();
+        }
+      }
+
+      var parsedDate = parseInputDate(minDate);
+
+      if (!parsedDate.isValid()) {
+        throw new TypeError('minDate() Could not parse date parameter: ' + minDate);
+      }
+      if (options.maxDate && parsedDate.isAfter(options.maxDate)) {
+        throw new TypeError('minDate() date parameter is after options.maxDate: ' + parsedDate.format(actualFormat));
+      }
+      options.minDate = parsedDate;
+      if (options.useCurrent && !options.keepInvalid && date.isBefore(minDate)) {
+        setValue(options.minDate);
+      }
+      if (viewDate.isBefore(parsedDate)) {
+        viewDate = parsedDate.clone().add(options.stepping, 'm');
+      }
+      update();
+      return picker;
+    };
+
+    picker.defaultDate = function (defaultDate) {
+      ///<signature helpKeyword="$.fn.datetimepicker.defaultDate">
+      ///<summary>Returns a moment with the options.defaultDate option configuration or false if not set</summary>
+      ///<returns type="Moment">date.clone()</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Will set the picker's inital date. If a boolean:false value is passed the options.defaultDate parameter is cleared.</summary>
+      ///<param name="defaultDate" locid="$.fn.datetimepicker.defaultDate_p:defaultDate">Takes a string, Date, moment, boolean:false</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.defaultDate ? options.defaultDate.clone() : options.defaultDate;
+      }
+      if (!defaultDate) {
+        options.defaultDate = false;
+        return picker;
+      }
+
+      if (typeof defaultDate === 'string') {
+        if (defaultDate === 'now' || defaultDate === 'moment') {
+          defaultDate = getMoment();
+        } else {
+          defaultDate = getMoment(defaultDate);
+        }
+      }
+
+      var parsedDate = parseInputDate(defaultDate);
+      if (!parsedDate.isValid()) {
+        throw new TypeError('defaultDate() Could not parse date parameter: ' + defaultDate);
+      }
+      if (!isValid(parsedDate)) {
+        throw new TypeError('defaultDate() date passed is invalid according to component setup validations');
+      }
+
+      options.defaultDate = parsedDate;
+
+      if (options.defaultDate && options.inline || input.val().trim() === '') {
+        setValue(options.defaultDate);
+      }
+      return picker;
+    };
+
+    picker.locale = function (locale) {
+      if (arguments.length === 0) {
+        return options.locale;
+      }
+
+      if (!moment.localeData(locale)) {
+        throw new TypeError('locale() locale ' + locale + ' is not loaded from moment locales!');
+      }
+
+      options.locale = locale;
+      date.locale(options.locale);
+      viewDate.locale(options.locale);
+
+      if (actualFormat) {
+        initFormatting(); // reinit formatting
+      }
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.stepping = function (stepping) {
+      if (arguments.length === 0) {
+        return options.stepping;
+      }
+
+      stepping = parseInt(stepping, 10);
+      if (isNaN(stepping) || stepping < 1) {
+        stepping = 1;
+      }
+      options.stepping = stepping;
+      return picker;
+    };
+
+    picker.useCurrent = function (useCurrent) {
+      var useCurrentOptions = ['year', 'month', 'day', 'hour', 'minute'];
+      if (arguments.length === 0) {
+        return options.useCurrent;
+      }
+
+      if (typeof useCurrent !== 'boolean' && typeof useCurrent !== 'string') {
+        throw new TypeError('useCurrent() expects a boolean or string parameter');
+      }
+      if (typeof useCurrent === 'string' && useCurrentOptions.indexOf(useCurrent.toLowerCase()) === -1) {
+        throw new TypeError('useCurrent() expects a string parameter of ' + useCurrentOptions.join(', '));
+      }
+      options.useCurrent = useCurrent;
+      return picker;
+    };
+
+    picker.collapse = function (collapse) {
+      if (arguments.length === 0) {
+        return options.collapse;
+      }
+
+      if (typeof collapse !== 'boolean') {
+        throw new TypeError('collapse() expects a boolean parameter');
+      }
+      if (options.collapse === collapse) {
+        return picker;
+      }
+      options.collapse = collapse;
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.icons = function (icons) {
+      if (arguments.length === 0) {
+        return $.extend({}, options.icons);
+      }
+
+      if (!(icons instanceof Object)) {
+        throw new TypeError('icons() expects parameter to be an Object');
+      }
+      $.extend(options.icons, icons);
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.tooltips = function (tooltips) {
+      if (arguments.length === 0) {
+        return $.extend({}, options.tooltips);
+      }
+
+      if (!(tooltips instanceof Object)) {
+        throw new TypeError('tooltips() expects parameter to be an Object');
+      }
+      $.extend(options.tooltips, tooltips);
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.useStrict = function (useStrict) {
+      if (arguments.length === 0) {
+        return options.useStrict;
+      }
+
+      if (typeof useStrict !== 'boolean') {
+        throw new TypeError('useStrict() expects a boolean parameter');
+      }
+      options.useStrict = useStrict;
+      return picker;
+    };
+
+    picker.sideBySide = function (sideBySide) {
+      if (arguments.length === 0) {
+        return options.sideBySide;
+      }
+
+      if (typeof sideBySide !== 'boolean') {
+        throw new TypeError('sideBySide() expects a boolean parameter');
+      }
+      options.sideBySide = sideBySide;
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.viewMode = function (viewMode) {
+      if (arguments.length === 0) {
+        return options.viewMode;
+      }
+
+      if (typeof viewMode !== 'string') {
+        throw new TypeError('viewMode() expects a string parameter');
+      }
+
+      if (viewModes.indexOf(viewMode) === -1) {
+        throw new TypeError('viewMode() parameter must be one of (' + viewModes.join(', ') + ') value');
+      }
+
+      options.viewMode = viewMode;
+      currentViewMode = Math.max(viewModes.indexOf(viewMode), minViewModeNumber);
+
+      showMode();
+      return picker;
+    };
+
+    picker.toolbarPlacement = function (toolbarPlacement) {
+      if (arguments.length === 0) {
+        return options.toolbarPlacement;
+      }
+
+      if (typeof toolbarPlacement !== 'string') {
+        throw new TypeError('toolbarPlacement() expects a string parameter');
+      }
+      if (toolbarPlacements.indexOf(toolbarPlacement) === -1) {
+        throw new TypeError('toolbarPlacement() parameter must be one of (' + toolbarPlacements.join(', ') + ') value');
+      }
+      options.toolbarPlacement = toolbarPlacement;
+
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.widgetPositioning = function (widgetPositioning) {
+      if (arguments.length === 0) {
+        return $.extend({}, options.widgetPositioning);
+      }
+
+      if ({}.toString.call(widgetPositioning) !== '[object Object]') {
+        throw new TypeError('widgetPositioning() expects an object variable');
+      }
+      if (widgetPositioning.horizontal) {
+        if (typeof widgetPositioning.horizontal !== 'string') {
+          throw new TypeError('widgetPositioning() horizontal variable must be a string');
+        }
+        widgetPositioning.horizontal = widgetPositioning.horizontal.toLowerCase();
+        if (horizontalModes.indexOf(widgetPositioning.horizontal) === -1) {
+          throw new TypeError('widgetPositioning() expects horizontal parameter to be one of (' + horizontalModes.join(', ') + ')');
+        }
+        options.widgetPositioning.horizontal = widgetPositioning.horizontal;
+      }
+      if (widgetPositioning.vertical) {
+        if (typeof widgetPositioning.vertical !== 'string') {
+          throw new TypeError('widgetPositioning() vertical variable must be a string');
+        }
+        widgetPositioning.vertical = widgetPositioning.vertical.toLowerCase();
+        if (verticalModes.indexOf(widgetPositioning.vertical) === -1) {
+          throw new TypeError('widgetPositioning() expects vertical parameter to be one of (' + verticalModes.join(', ') + ')');
+        }
+        options.widgetPositioning.vertical = widgetPositioning.vertical;
+      }
+      update();
+      return picker;
+    };
+
+    picker.calendarWeeks = function (calendarWeeks) {
+      if (arguments.length === 0) {
+        return options.calendarWeeks;
+      }
+
+      if (typeof calendarWeeks !== 'boolean') {
+        throw new TypeError('calendarWeeks() expects parameter to be a boolean value');
+      }
+
+      options.calendarWeeks = calendarWeeks;
+      update();
+      return picker;
+    };
+
+    picker.showTodayButton = function (showTodayButton) {
+      if (arguments.length === 0) {
+        return options.showTodayButton;
+      }
+
+      if (typeof showTodayButton !== 'boolean') {
+        throw new TypeError('showTodayButton() expects a boolean parameter');
+      }
+
+      options.showTodayButton = showTodayButton;
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.showClear = function (showClear) {
+      if (arguments.length === 0) {
+        return options.showClear;
+      }
+
+      if (typeof showClear !== 'boolean') {
+        throw new TypeError('showClear() expects a boolean parameter');
+      }
+
+      options.showClear = showClear;
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.widgetParent = function (widgetParent) {
+      if (arguments.length === 0) {
+        return options.widgetParent;
+      }
+
+      if (typeof widgetParent === 'string') {
+        widgetParent = $(widgetParent);
+      }
+
+      if (widgetParent !== null && typeof widgetParent !== 'string' && !(widgetParent instanceof $)) {
+        throw new TypeError('widgetParent() expects a string or a jQuery object parameter');
+      }
+
+      options.widgetParent = widgetParent;
+      if (widget) {
+        hide();
+        show();
+      }
+      return picker;
+    };
+
+    picker.keepOpen = function (keepOpen) {
+      if (arguments.length === 0) {
+        return options.keepOpen;
+      }
+
+      if (typeof keepOpen !== 'boolean') {
+        throw new TypeError('keepOpen() expects a boolean parameter');
+      }
+
+      options.keepOpen = keepOpen;
+      return picker;
+    };
+
+    picker.focusOnShow = function (focusOnShow) {
+      if (arguments.length === 0) {
+        return options.focusOnShow;
+      }
+
+      if (typeof focusOnShow !== 'boolean') {
+        throw new TypeError('focusOnShow() expects a boolean parameter');
+      }
+
+      options.focusOnShow = focusOnShow;
+      return picker;
+    };
+
+    picker.inline = function (inline) {
+      if (arguments.length === 0) {
+        return options.inline;
+      }
+
+      if (typeof inline !== 'boolean') {
+        throw new TypeError('inline() expects a boolean parameter');
+      }
+
+      options.inline = inline;
+      return picker;
+    };
+
+    picker.clear = function () {
+      clear();
+      return picker;
+    };
+
+    picker.keyBinds = function (keyBinds) {
+      if (arguments.length === 0) {
+        return options.keyBinds;
+      }
+
+      options.keyBinds = keyBinds;
+      return picker;
+    };
+
+    picker.getMoment = function (d) {
+      return getMoment(d);
+    };
+
+    picker.debug = function (debug) {
+      if (typeof debug !== 'boolean') {
+        throw new TypeError('debug() expects a boolean parameter');
+      }
+
+      options.debug = debug;
+      return picker;
+    };
+
+    picker.allowInputToggle = function (allowInputToggle) {
+      if (arguments.length === 0) {
+        return options.allowInputToggle;
+      }
+
+      if (typeof allowInputToggle !== 'boolean') {
+        throw new TypeError('allowInputToggle() expects a boolean parameter');
+      }
+
+      options.allowInputToggle = allowInputToggle;
+      return picker;
+    };
+
+    picker.showClose = function (showClose) {
+      if (arguments.length === 0) {
+        return options.showClose;
+      }
+
+      if (typeof showClose !== 'boolean') {
+        throw new TypeError('showClose() expects a boolean parameter');
+      }
+
+      options.showClose = showClose;
+      return picker;
+    };
+
+    picker.keepInvalid = function (keepInvalid) {
+      if (arguments.length === 0) {
+        return options.keepInvalid;
+      }
+
+      if (typeof keepInvalid !== 'boolean') {
+        throw new TypeError('keepInvalid() expects a boolean parameter');
+      }
+      options.keepInvalid = keepInvalid;
+      return picker;
+    };
+
+    picker.datepickerInput = function (datepickerInput) {
+      if (arguments.length === 0) {
+        return options.datepickerInput;
+      }
+
+      if (typeof datepickerInput !== 'string') {
+        throw new TypeError('datepickerInput() expects a string parameter');
+      }
+
+      options.datepickerInput = datepickerInput;
+      return picker;
+    };
+
+    picker.parseInputDate = function (parseInputDate) {
+      if (arguments.length === 0) {
+        return options.parseInputDate;
+      }
+
+      if (typeof parseInputDate !== 'function') {
+        throw new TypeError('parseInputDate() sholud be as function');
+      }
+
+      options.parseInputDate = parseInputDate;
+
+      return picker;
+    };
+
+    picker.disabledTimeIntervals = function (disabledTimeIntervals) {
+      ///<signature helpKeyword="$.fn.datetimepicker.disabledTimeIntervals">
+      ///<summary>Returns an array with the currently set disabled dates on the component.</summary>
+      ///<returns type="array">options.disabledTimeIntervals</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+      ///options.enabledDates if such exist.</summary>
+      ///<param name="dates" locid="$.fn.datetimepicker.disabledTimeIntervals_p:dates">Takes an [ string or Date or moment ] of values and allows the user to select only from those days.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.disabledTimeIntervals ? $.extend({}, options.disabledTimeIntervals) : options.disabledTimeIntervals;
+      }
+
+      if (!disabledTimeIntervals) {
+        options.disabledTimeIntervals = false;
+        update();
+        return picker;
+      }
+      if (!(disabledTimeIntervals instanceof Array)) {
+        throw new TypeError('disabledTimeIntervals() expects an array parameter');
+      }
+      options.disabledTimeIntervals = disabledTimeIntervals;
+      update();
+      return picker;
+    };
+
+    picker.disabledHours = function (hours) {
+      ///<signature helpKeyword="$.fn.datetimepicker.disabledHours">
+      ///<summary>Returns an array with the currently set disabled hours on the component.</summary>
+      ///<returns type="array">options.disabledHours</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of
+      ///options.enabledHours if such exist.</summary>
+      ///<param name="hours" locid="$.fn.datetimepicker.disabledHours_p:hours">Takes an [ int ] of values and disallows the user to select only from those hours.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.disabledHours ? $.extend({}, options.disabledHours) : options.disabledHours;
+      }
+
+      if (!hours) {
+        options.disabledHours = false;
+        update();
+        return picker;
+      }
+      if (!(hours instanceof Array)) {
+        throw new TypeError('disabledHours() expects an array parameter');
+      }
+      options.disabledHours = indexGivenHours(hours);
+      options.enabledHours = false;
+      if (options.useCurrent && !options.keepInvalid) {
+        var tries = 0;
+        while (!isValid(date, 'h')) {
+          date.add(1, 'h');
+          if (tries === 24) {
+            throw 'Tried 24 times to find a valid date';
+          }
+          tries++;
+        }
+        setValue(date);
+      }
+      update();
+      return picker;
+    };
+
+    picker.enabledHours = function (hours) {
+      ///<signature helpKeyword="$.fn.datetimepicker.enabledHours">
+      ///<summary>Returns an array with the currently set enabled hours on the component.</summary>
+      ///<returns type="array">options.enabledHours</returns>
+      ///</signature>
+      ///<signature>
+      ///<summary>Setting this takes precedence over options.minDate, options.maxDate configuration. Also calling this function removes the configuration of options.disabledHours if such exist.</summary>
+      ///<param name="hours" locid="$.fn.datetimepicker.enabledHours_p:hours">Takes an [ int ] of values and allows the user to select only from those hours.</param>
+      ///</signature>
+      if (arguments.length === 0) {
+        return options.enabledHours ? $.extend({}, options.enabledHours) : options.enabledHours;
+      }
+
+      if (!hours) {
+        options.enabledHours = false;
+        update();
+        return picker;
+      }
+      if (!(hours instanceof Array)) {
+        throw new TypeError('enabledHours() expects an array parameter');
+      }
+      options.enabledHours = indexGivenHours(hours);
+      options.disabledHours = false;
+      if (options.useCurrent && !options.keepInvalid) {
+        var tries = 0;
+        while (!isValid(date, 'h')) {
+          date.add(1, 'h');
+          if (tries === 24) {
+            throw 'Tried 24 times to find a valid date';
+          }
+          tries++;
+        }
+        setValue(date);
+      }
+      update();
+      return picker;
+    };
+    /**
+     * Returns the component's model current viewDate, a moment object or null if not set. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.
+     * @param {Takes string, viewDate, moment, null parameter.} newDate
+     * @returns {viewDate.clone()}
+     */
+    picker.viewDate = function (newDate) {
+      if (arguments.length === 0) {
+        return viewDate.clone();
+      }
+
+      if (!newDate) {
+        viewDate = date.clone();
+        return picker;
+      }
+
+      if (typeof newDate !== 'string' && !moment.isMoment(newDate) && !(newDate instanceof Date)) {
+        throw new TypeError('viewDate() parameter must be one of [string, moment or Date]');
+      }
+
+      viewDate = parseInputDate(newDate);
+      viewUpdate();
+      return picker;
+    };
+
+    // initializing element and component attributes
+    if (element.is('input')) {
+      input = element;
+    } else {
+      input = element.find(options.datepickerInput);
+      if (input.length === 0) {
+        input = element.find('input');
+      } else if (!input.is('input')) {
+        throw new Error('CSS class "' + options.datepickerInput + '" cannot be applied to non input element');
+      }
+    }
+
+    if (element.hasClass('input-group')) {
+      // in case there is more then one 'input-group-addon' Issue #48
+      if (element.find('.datepickerbutton').length === 0) {
+        component = element.find('.input-group-addon');
+      } else {
+        component = element.find('.datepickerbutton');
+      }
+    }
+
+    if (!options.inline && !input.is('input')) {
+      throw new Error('Could not initialize DateTimePicker without an input element');
+    }
+
+    // Set defaults for date here now instead of in var declaration
+    date = getMoment();
+    viewDate = date.clone();
+
+    $.extend(true, options, dataToOptions());
+
+    picker.options(options);
+
+    initFormatting();
+
+    attachDatePickerElementEvents();
+
+    if (input.prop('disabled')) {
+      picker.disable();
+    }
+    if (input.is('input') && input.val().trim().length !== 0) {
+      setValue(parseInputDate(input.val().trim()));
+    } else if (options.defaultDate && input.attr('placeholder') === undefined) {
+      setValue(options.defaultDate);
+    }
+    if (options.inline) {
+      show();
+    }
+    return picker;
+  };
+
+  /********************************************************************************
+   *
+   * jQuery plugin constructor and defaults object
+   *
+   ********************************************************************************/
+
+  /**
+   * See (http://jquery.com/).
+   * @name jQuery
+   * @class
+   * See the jQuery Library  (http://jquery.com/) for full details.  This just
+   * documents the function and classes that are added to jQuery by this plug-in.
+   */
+  /**
+   * See (http://jquery.com/)
+   * @name fn
+   * @class
+   * See the jQuery Library  (http://jquery.com/) for full details.  This just
+   * documents the function and classes that are added to jQuery by this plug-in.
+   * @memberOf jQuery
+   */
+  /**
+   * Show comments
+   * @class datetimepicker
+   * @memberOf jQuery.fn
+   */
+  $.fn.datetimepicker = function (options) {
+    options = options || {};
+
+    var args = Array.prototype.slice.call(arguments, 1);
+    var isInstance = true;
+    var thisMethods = ['destroy', 'hide', 'show', 'toggle'];
+    var returnValue = void 0;
+
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object') {
+      return this.each(function () {
+        var $this = $(this);
+        var _options = void 0;
+        if (!$this.data('DateTimePicker')) {
+          // create a private copy of the defaults object
+          _options = $.extend(true, {}, $.fn.datetimepicker.defaults, options);
+          $this.data('DateTimePicker', dateTimePicker($this, _options));
+        }
+      });
+    } else if (typeof options === 'string') {
+      this.each(function () {
+        var $this = $(this);
+        var instance = $this.data('DateTimePicker');
+        if (!instance) {
+          throw new Error('bootstrap-datetimepicker("' + options + '") method was called on an element that is not using DateTimePicker');
+        }
+
+        returnValue = instance[options].apply(instance, args);
+        isInstance = returnValue === instance;
+      });
+
+      if (isInstance || $.inArray(options, thisMethods) > -1) {
+        return this;
+      }
+
+      return returnValue;
+    }
+
+    throw new TypeError('Invalid arguments for DateTimePicker: ' + options);
+  };
+
+  $.fn.datetimepicker.defaults = {
+    timeZone: '',
+    format: false,
+    dayViewHeaderFormat: 'MMMM YYYY',
+    extraFormats: false,
+    stepping: 1,
+    minDate: false,
+    maxDate: false,
+    useCurrent: true,
+    collapse: true,
+    locale: moment.locale(),
+    defaultDate: false,
+    disabledDates: false,
+    enabledDates: false,
+    icons: {
+      time: 'glyphicon glyphicon-time',
+      date: 'glyphicon glyphicon-calendar',
+      up: 'glyphicon glyphicon-chevron-up',
+      down: 'glyphicon glyphicon-chevron-down',
+      previous: 'glyphicon glyphicon-chevron-left',
+      next: 'glyphicon glyphicon-chevron-right',
+      today: 'glyphicon glyphicon-screenshot',
+      clear: 'glyphicon glyphicon-trash',
+      close: 'glyphicon glyphicon-remove'
+    },
+    tooltips: {
+      today: 'Go to today',
+      clear: 'Clear selection',
+      close: 'Close the picker',
+      selectMonth: 'Select Month',
+      prevMonth: 'Previous Month',
+      nextMonth: 'Next Month',
+      selectYear: 'Select Year',
+      prevYear: 'Previous Year',
+      nextYear: 'Next Year',
+      selectDecade: 'Select Decade',
+      prevDecade: 'Previous Decade',
+      nextDecade: 'Next Decade',
+      prevCentury: 'Previous Century',
+      nextCentury: 'Next Century',
+      pickHour: 'Pick Hour',
+      incrementHour: 'Increment Hour',
+      decrementHour: 'Decrement Hour',
+      pickMinute: 'Pick Minute',
+      incrementMinute: 'Increment Minute',
+      decrementMinute: 'Decrement Minute',
+      pickSecond: 'Pick Second',
+      incrementSecond: 'Increment Second',
+      decrementSecond: 'Decrement Second',
+      togglePeriod: 'Toggle Period',
+      selectTime: 'Select Time'
+    },
+    useStrict: false,
+    sideBySide: false,
+    daysOfWeekDisabled: false,
+    calendarWeeks: false,
+    viewMode: 'days',
+    toolbarPlacement: 'default',
+    showTodayButton: false,
+    showClear: false,
+    showClose: false,
+    widgetPositioning: {
+      horizontal: 'auto',
+      vertical: 'auto'
+    },
+    widgetParent: null,
+    ignoreReadonly: false,
+    keepOpen: false,
+    focusOnShow: true,
+    inline: false,
+    keepInvalid: false,
+    datepickerInput: '.datepickerinput',
+    keyBinds: {
+      up: function up(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().subtract(7, 'd'));
+        } else {
+          this.date(d.clone().add(this.stepping(), 'm'));
+        }
+      },
+      down: function down(widget) {
+        if (!widget) {
+          this.show();
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().add(7, 'd'));
+        } else {
+          this.date(d.clone().subtract(this.stepping(), 'm'));
+        }
+      },
+      'control up': function controlUp(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().subtract(1, 'y'));
+        } else {
+          this.date(d.clone().add(1, 'h'));
+        }
+      },
+      'control down': function controlDown(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().add(1, 'y'));
+        } else {
+          this.date(d.clone().subtract(1, 'h'));
+        }
+      },
+      left: function left(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().subtract(1, 'd'));
+        }
+      },
+      right: function right(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().add(1, 'd'));
+        }
+      },
+      pageUp: function pageUp(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().subtract(1, 'M'));
+        }
+      },
+      pageDown: function pageDown(widget) {
+        if (!widget) {
+          return;
+        }
+        var d = this.date() || this.getMoment();
+        if (widget.find('.datepicker').is(':visible')) {
+          this.date(d.clone().add(1, 'M'));
+        }
+      },
+      enter: function enter() {
+        this.hide();
+      },
+      escape: function escape() {
+        this.hide();
+      },
+      //tab: function (widget) { //this break the flow of the form. disabling for now
+      //    var toggle = widget.find('.picker-switch a[data-action="togglePicker"]');
+      //    if(toggle.length > 0) toggle.click();
+      //},
+      'control space': function controlSpace(widget) {
+        if (!widget) {
+          return;
+        }
+        if (widget.find('.timepicker').is(':visible')) {
+          widget.find('.btn[data-action="togglePeriod"]').click();
+        }
+      },
+      t: function t() {
+        this.date(this.getMoment());
+      },
+      delete: function _delete() {
+        this.clear();
+      }
+    },
+    debug: false,
+    allowInputToggle: false,
+    disabledTimeIntervals: false,
+    disabledHours: false,
+    enabledHours: false,
+    viewDate: false
+  };
+
+  return $.fn.datetimepicker;
+});
+
+/***/ }),
+
+/***/ 193:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
+  $('.select2').select2({
+    width: '100%',
+    theme: 'bootstrap'
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 194:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
+  $('.datetimepicker').datetimepicker({
+    defaultDate: moment(),
+    locale: $('html').attr('lang'),
+    icons: {
+      time: 'icon-clock',
+      date: 'icon-event',
+      up: 'icon-arrow-up',
+      down: 'icon-arrow-down',
+      right: 'icon-arrow-right',
+      left: 'icon-arrow-left',
+      previous: 'icon-arrow-left',
+      next: 'icon-arrow-right',
+      today: 'icon-target',
+      clear: 'icon-trash',
+      close: 'icon-close'
+    }
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 195:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
+  $('.click').click(function () {
+    var target = $(this).data('target');
+    var toggle = $(this).data('toggle');
+
+    if ($(target).hasClass(toggle)) {
+      $(target).removeClass(toggle);
+    } else {
+      $(target).addClass(toggle);
+    }
+  });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 196:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
+    if (document.getElementById('post-attachment-dropzone') === null) {
+        return;
+    }
+
+    var attachmentDescription = new Vue({
+        el: '#modalAttachment',
+        data: {
+            attachment: {},
+            active: null
+        },
+        methods: {
+            loadInfo: function loadInfo(data) {
+                var name = data.name + data.id;
+
+                data.url = '/storage/' + data.path + data.name + '.' + data.extension;
+
+                if (!this.attachment.hasOwnProperty(name)) {
+                    this.attachment[name] = data;
+                }
+                this.active = name;
+            },
+            save: function save() {
+                var data = this.attachment[this.active];
+
+                $('#modalAttachment').modal('toggle');
+
+                axios.put(platform.prefix('/systems/files/post/' + data.id), data).then();
+            }
+        }
+    });
+    Dropzone.autoDiscover = false;
+    var modalAttachmentDropzone = new Dropzone('.dropzone', {
+        url: platform.prefix('/systems/files'),
+        method: 'post',
+        uploadMultiple: false,
+        parallelUploads: 100,
+        maxFilesize: 9999,
+        paramName: 'files',
+        acceptedFiles: $('#post-attachment-dropzone').data('accepted'),
+        maxThumbnailFilesize: 99999,
+        previewsContainer: '.visual-dropzone',
+        addRemoveLinks: false,
+        dictFileTooBig: 'File is big',
+
+        init: function init() {
+            this.on('addedfile', function (e) {
+                var n = Dropzone.createElement("<a href='javascript:;' class='btn-remove'><i class='icon-cross' aria-hidden='true'></i></a>");
+
+                var t = this;
+                n.addEventListener('click', function (n) {
+                    n.preventDefault(), n.stopPropagation(), t.removeFile(e);
+                }), e.previewElement.appendChild(n);
+
+                var n = Dropzone.createElement("<a href='javascript:;'' class='btn-edit'><i class='icon-note' aria-hidden='true'></i></a>");
+
+                var t = this;
+                n.addEventListener('click', function (n) {
+                    attachmentDescription.loadInfo(e.data);
+                    $('#modalAttachment').modal('show');
+                }), e.previewElement.appendChild(n);
+            });
+
+            this.on('completemultiple', function (file, json) {
+                $('.sortable-dropzone').sortable('enable');
+            });
+
+            var instanceDropZone = this;
+
+            var id = $('#post').data('post-id');
+            if (id !== undefined) {
+
+                axios.get(platform.prefix('/systems/files/post/' + id)).then(function (response) {
+
+                    var images = response.data;
+
+                    images.forEach(function (item) {
+                        var mockFile = {
+                            id: item.id,
+                            name: item.original_name,
+                            size: item.size,
+                            type: item.mime,
+                            status: Dropzone.ADDED,
+                            url: '/storage/' + item.path + item.name + '.' + item.extension,
+                            data: item
+                        };
+
+                        instanceDropZone.emit('addedfile', mockFile);
+                        instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
+                        instanceDropZone.files.push(mockFile);
+                        $('.dz-preview:last-child').attr('data-file-id', item.id).addClass('file-sort');
+                    });
+
+                    $('.dz-progress').remove();
+                });
+            }
+
+            this.on('sending', function (file, xhr, formData) {
+                formData.append('_token', $("meta[name='csrf_token']").attr('content'));
+                formData.append('storage', $('#post-attachment-dropzone').data('storage'));
+            });
+
+            this.on('removedfile', function (_ref) {
+                var data = _ref.data;
+
+                $('.files-' + data.id).remove();
+
+                axios.delete(platform.prefix('/systems/files/' + data.id), {
+                    storage: $('#post-attachment-dropzone').data('storage')
+                }).then();
+            });
+        },
+        error: function error(file, response) {
+            if ($.type(response) === 'string') {
+                return response; //dropzone sends it's own error messages in string
+            }
+            return response.message;
+        },
+        success: function success(file, response) {
+            file.data = response;
+            $('.dz-preview:last-child').attr('data-file-id', response.id).addClass('file-sort');
+            $('<input type=\'hidden\' class=\'files-' + response.id + '\' name=\'files[]\' value=\'' + response.id + '\'  />').appendTo('.dropzone');
+        }
+    });
+
+    $('.sortable-dropzone').sortable({
+        update: function update() {
+            var items = {};
+            $('.file-sort').each(function (index, value) {
+                var id = $(this).attr('data-file-id');
+                items[id] = index;
+            });
+
+            axios.post(platform.prefix('/systems/files/sort'), {
+                files: items
+            }).then();
+        }
+    });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 197:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+document.addEventListener('turbolinks:load', function () {
+    if (document.getElementById('filemanager') === null) {
+        return;
+    }
+
+    var manager = new Vue({
+        el: '#filemanager',
+        data: {
+            files: '',
+            folders: [],
+            selected_file: '',
+            directories: [],
+            new_filename: ''
+        }
+    });
+
+    CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
+
+    var managerMedia = function managerMedia(o) {
+        var files = $('#files');
+        var options = $.extend(true, {}, o);
+        this.init = function () {
+
+            var DropzoneOptions = {
+                url: options.baseUrl + '/media/upload',
+                previewsContainer: '#uploadPreview',
+                totaluploadprogress: function totaluploadprogress(uploadProgress, totalBytes, totalBytesSent) {
+                    $('#uploadProgress .progress-bar').css('width', uploadProgress + '%');
+                    if (uploadProgress == 100) {
+                        $('#uploadProgress').delay(1500).slideUp(function () {
+                            $('#uploadProgress .progress-bar').css('width', '0%');
+                        });
+                    }
+                },
+                processing: function processing() {
+                    //$('#uploadProgress').fadeIn();
+                },
+                sending: function sending(file, xhr, formData) {
+                    formData.append('_token', CSRF_TOKEN);
+                    formData.append('upload_path', manager.folders);
+                },
+                success: function success(e, _ref) {
+                    var success = _ref.success,
+                        message = _ref.message;
+
+                    if (success) {
+                        //alert("Sweet Success!");
+                    } else {
+                        alert(message);
+                    }
+                },
+                error: function error(e, _ref2, xhr) {
+                    var message = _ref2.message;
+
+                    alert(message);
+                },
+                queuecomplete: function queuecomplete() {
+                    getFiles(manager.folders);
+                }
+            };
+
+            Dropzone.autoDiscover = false;
+
+            var filemanagerDropzone = new Dropzone("#filemanager", DropzoneOptions);
+            var fileuploadDropzone = new Dropzone("#upload", DropzoneOptions);
+
+            getFiles('/');
+
+            files.on('dblclick', 'li .file_link', function () {
+                if (!$(this).children('.details').hasClass('folder')) {
+                    return false;
+                }
+                manager.folders.push(this.dataset.folder);
+                getFiles(manager.folders);
+            });
+
+            files.on('click', 'li', function (_ref3) {
+                var target = _ref3.target;
+
+                var clicked = target;
+                if (!$(clicked).hasClass('file_link')) {
+                    clicked = $(target).closest('.file_link');
+                }
+                setCurrentSelected(clicked);
+            });
+
+            $('.breadcrumb').on('click', 'li', function () {
+                var index = $(this).data('index');
+                manager.folders = manager.folders.splice(0, index);
+                getFiles(manager.folders);
+            });
+
+            /********** TOOLBAR BUTTONS **********/
+            $('#refresh').click(function () {
+                getFiles(manager.folders);
+            });
+
+            $('#new_folder_modal').on('shown.bs.modal', function () {
+                $('#new_folder_name').focus();
+            });
+
+            $('#new_folder_name').keydown(function (_ref4) {
+                var which = _ref4.which;
+
+                if (which == 13) {
+                    $('#new_folder_submit').trigger('click');
+                }
+            });
+
+            $('#move_file_modal').on('hidden.bs.modal', function () {
+                $('#s2id_move_folder_dropdown').select2('close');
+            });
+
+            $('#new_folder_submit').click(function () {
+                new_folder_path = manager.files.path + '/' + $('#new_folder_name').val();
+                $.post(options.baseUrl + '/media/new_folder', {
+                    new_folder: new_folder_path,
+                    _token: CSRF_TOKEN
+                }, function (_ref5) {
+                    var success = _ref5.success;
+
+                    if (success == true) {
+                        //alert('successfully created ' + $('#new_folder_name').val(), "Sweet Success!");
+                        getFiles(manager.folders);
+                    } else {
+                        alert('Whoops!');
+                    }
+                    $('#new_folder_name').val('');
+                    $('#new_folder_modal').modal('hide');
+                });
+            });
+
+            $('#delete').click(function () {
+                if (manager.selected_file.type == 'directory') {
+                    $('.folder_warning').show();
+                } else {
+                    $('.folder_warning').hide();
+                }
+                $('.confirm_delete_name').text(manager.selected_file.name);
+                $('#confirm_delete_modal').modal('show');
+            });
+
+            $('#confirm_delete').click(function () {
+                $.post(options.baseUrl + '/media/delete_file_folder', {
+                    folder_location: manager.folders,
+                    file_folder: manager.selected_file.name,
+                    type: manager.selected_file.type,
+                    _token: CSRF_TOKEN
+                }, function (_ref6) {
+                    var success = _ref6.success;
+
+                    if (success == true) {
+                        //alert('successfully deleted ' + manager.selected_file.name, "Sweet Success!");
+                        getFiles(manager.folders);
+                        $('#confirm_delete_modal').modal('hide');
+                    } else {
+                        alert('Whoops!');
+                    }
+                });
+            });
+
+            $('#move').click(function () {
+                $('#move_file_modal').modal('show');
+            });
+
+            $('#rename').click(function () {
+                if (typeof manager.selected_file !== 'undefined') {
+                    $('#rename_file').val(manager.selected_file.name);
+                }
+                $('#rename_file_modal').modal('show');
+            });
+
+            $('#move_folder_dropdown').keydown(function (_ref7) {
+                var which = _ref7.which;
+
+                if (which == 13) {
+                    $('#move_btn').trigger('click');
+                }
+            });
+
+            $('#move_btn').click(function () {
+                source = manager.selected_file.name;
+                destination = $('#move_folder_dropdown').val() + '/' + manager.selected_file.name;
+                $('#move_file_modal').modal('hide');
+                $.post(options.baseUrl + '/media/move_file', {
+                    folder_location: manager.folders,
+                    source: source,
+                    destination: destination,
+                    _token: CSRF_TOKEN
+                }, function (_ref8) {
+                    var success = _ref8.success,
+                        error = _ref8.error;
+
+                    if (success == true) {
+                        //alert('Successfully moved file/folder', "Sweet Success!");
+                        getFiles(manager.folders);
+                    } else {
+                        alert(error, 'Whoops!');
+                    }
+                });
+            });
+
+            $('#rename_btn').click(function () {
+                source = manager.selected_file.path;
+                filename = manager.selected_file.name;
+                new_filename = manager.new_filename;
+                $('#rename_file_modal').modal('hide');
+                $.post(options.baseUrl + '/media/rename_file', {
+                    folder_location: manager.folders,
+                    filename: filename,
+                    new_filename: new_filename,
+                    _token: CSRF_TOKEN
+                }, function (_ref9) {
+                    var success = _ref9.success,
+                        error = _ref9.error;
+
+                    if (success == true) {
+                        //alert('Successfully renamed file/folder', "Sweet Success!");
+                        getFiles(manager.folders);
+                    } else {
+                        alert(error, 'Whoops!');
+                    }
+                });
+            });
+
+            /********** END TOOLBAR BUTTONS **********/
+
+            manager.$watch('files', function (_ref10, oldVal) {
+                var items = _ref10.items;
+
+                setCurrentSelected($('*[data-index="0"]'));
+                $('#filemanager #content #files').hide();
+                $('#filemanager #content #files').fadeIn('fast');
+                $('#filemanager .loader').fadeOut(function () {
+                    $('#filemanager #content').fadeIn();
+                });
+
+                if (items.length < 1) {
+                    $('#no_files').show();
+                } else {
+                    $('#no_files').hide();
+                }
+            });
+
+            manager.$watch('directories', function (newVal, oldVal) {
+                if ($('#move_folder_dropdown').select2()) {
+                    $('#move_folder_dropdown').select2('destroy');
+                }
+                $('#move_folder_dropdown').select2();
+            });
+
+            manager.$watch('selected_file', function (newVal, oldVal) {
+                if (typeof newVal == 'undefined') {
+                    $('.right_details').hide();
+                    $('.right_none_selected').show();
+                    $('#move').attr('disabled', true);
+                    $('#delete').attr('disabled', true);
+                } else {
+                    $('.right_details').show();
+                    $('.right_none_selected').hide();
+                    $('#move').removeAttr('disabled');
+                    $('#delete').removeAttr('disabled');
+                }
+            });
+
+            function getFiles(folders) {
+                var folder_location = '/';
+
+                if (folders != '/') {
+                    var folder_location = '/' + folders.join('/');
+                }
+
+                $('#file_loader').fadeIn();
+
+                $.post(options.baseUrl + '/media/directories', {
+                    folder_location: manager.folders,
+                    _token: CSRF_TOKEN
+                }, function (data) {
+                    manager.directories = data;
+                });
+
+                $.post(options.baseUrl + '/media/files', _defineProperty({
+                    folder: folder_location,
+                    _token: CSRF_TOKEN
+                }, '_token', CSRF_TOKEN), function (data) {
+                    $('#file_loader').hide();
+                    manager.files = data;
+                    files.trigger('click');
+                    for (var i = 0; i < manager.files.items.length; i++) {
+                        if (_typeof(manager.files.items[i].size) != undefined) {
+                            manager.files.items[i].size = bytesToSize(manager.files.items[i].size);
+                        }
+                    }
+                });
+            }
+
+            function setCurrentSelected(cur) {
+                $('#files li .selected').removeClass('selected');
+                $(cur).addClass('selected');
+                manager.selected_file = manager.files.items[$(cur).data('index')];
+                manager.new_filename = manager.selected_file.name;
+            }
+
+            function bytesToSize(bytes) {
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                if (bytes == 0) return '0 Bytes';
+                var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+            }
+        };
+    };
+
+    var media = new managerMedia({
+        baseUrl: $('#filemanager').data('url')
+    });
+
+    media.init();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
+    if (document.getElementById('menu-vue') === null) {
+        return;
+    }
+
+    var menu = new Vue({
+        el: '#menu-vue',
+        data: {
+            count: 0,
+            id: '',
+            label: '',
+            title: '',
+            slug: '',
+            auth: 0,
+            robot: 'follow',
+            style: '',
+            target: '_self',
+            errors: {
+                title: false,
+                label: false,
+                slug: false
+            }
+        },
+        methods: {
+            load: function load(object) {
+                this.id = object.id;
+                this.label = object.label;
+                this.slug = object.slug;
+                this.auth = object.auth;
+                this.robot = object.robot;
+                this.style = object.style;
+                this.target = object.target;
+                this.title = object.title;
+            },
+            checkForm: function checkForm() {
+                var valid = false;
+                this.errors = {
+                    title: false,
+                    label: false,
+                    slug: false
+                };
+
+                if (!this.title) {
+                    this.errors.title = valid = true;
+                }
+
+                if (!this.label) {
+                    this.errors.label = valid = true;
+                }
+
+                if (!this.slug) {
+                    this.errors.slug = valid = true;
+                }
+
+                return !valid;
+            },
+            add: function add() {
+                if (!this.checkForm()) {
+                    return;
+                }
+
+                $('.dd > .dd-list').append('<li class=\'dd-item dd3-item\' data-id=\'' + this.count + '\'> <div  class=\'dd-handle dd3-handle\'>Drag</div><div  class=\'dd3-content\'>' + this.label + '</div> <div  class=\'edit icon-pencil\'></div></li>');
+
+                $('li[data-id=' + this.count + ']').data({
+                    label: this.label,
+                    title: this.title,
+                    auth: this.auth,
+                    slug: this.slug,
+                    robot: this.robot,
+                    style: this.style,
+                    target: this.target
+                });
+
+                this.count--;
+                this.clear();
+                this.send();
+            },
+            edit: function edit(element) {
+                var data = $(element).parent().data();
+                data.label = $(element).prev().text();
+                this.load(data);
+            },
+            save: function save() {
+                if (!this.checkForm()) {
+                    return;
+                }
+
+                $('li[data-id=' + this.id + ']').data({
+                    label: this.label,
+                    title: this.title,
+                    auth: this.auth,
+                    slug: this.slug,
+                    robot: this.robot,
+                    style: this.style,
+                    target: this.target
+                });
+                $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
+
+                this.clear();
+                $('#menuEdit').modal('hide');
+                menu.send();
+            },
+            destroy: function destroy(id) {
+                axios.delete(platform.prefix('/press/menu/' + id)).then(function (response) {});
+            },
+            remove: function remove() {
+                $('li[data-id=' + this.id + ']').remove();
+                $('#menuEdit').modal('hide');
+                this.destroy(this.id);
+                this.clear();
+            },
+            clear: function clear() {
+                this.label = '';
+                this.title = '';
+                this.auth = 0;
+                this.slug = '';
+                this.robot = 'follow';
+                this.style = '';
+                this.target = '_self';
+                this.id = '';
+            },
+            send: function send() {
+                var name = $('.dd').attr('data-name');
+
+                var data = {
+                    lang: $('.dd').attr('data-lang'),
+                    data: $('.dd').nestable('serialize')
+                };
+
+                axios.put(platform.prefix('/press/menu/' + name), data).then(function (response) {});
+            },
+            exist: function exist() {
+                return Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0;
+            }
+        }
+    });
+
+    $('.dd').nestable({});
+
+    $('.dd-item').each(function (i, item) {
+        $(item).data({
+            sort: i
+        });
+    });
+
+    $('.dd').on('change', function () {
+        $('.dd-item').each(function (i, item) {
+            $(item).data({
+                sort: i
+            });
+        });
+
+        menu.send();
+    });
+
+    $('.dd').on('click', '.edit', function () {
+        menu.edit(this);
+    });
+
+    $('.menu-save').click(function () {
+        menu.send();
+    });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 199:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/menu_controller.js": 200,
+	"./fields/input_controller.js": 201,
+	"./fields/picture_controller.js": 206,
+	"./fields/simplemde_controller.js": 207,
+	"./fields/tinymce_controller.js": 223,
+	"./fields/upload_controller.js": 224,
+	"./fields/utm_controller.js": 225,
+	"./layouts/html_load_controller.js": 226,
+	"./layouts/left_menu_controller.js": 247,
+	"./layouts/systems_controller.js": 248
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 199;
+
+/***/ }),
+
+/***/ 200:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+        value: function connect() {
+
+            var menu = this;
+
+            $('.dd').nestable({}).on('change', function () {
+                $('.dd-item').each(function (i, item) {
+                    $(item).data({
+                        sort: i
+                    });
+                });
+
+                menu.send();
+            }).on('click', '.edit', function () {
+                menu.edit(this);
+            });
+
+            $('.dd-item').each(function (i, item) {
+                $(item).data({
+                    sort: i
+                });
+            });
+
+            this.checkExist();
+        }
+    }, {
+        key: "load",
+        value: function load(object) {
+            this.id = object.id;
+            this.labelTarget.value = object.label;
+            this.slugTarget.value = object.slug;
+            this.authTarget.value = object.auth;
+            this.robotTarget.value = object.robot;
+            this.styleTarget.value = object.style;
+            this.targetTarget.value = object.target;
+            this.titleTarget.value = object.title;
+
+            this.checkExist();
+        }
+    }, {
+        key: "edit",
+        value: function edit(element) {
+            var data = $(element).parent().data();
+            data.label = $(element).prev().text();
+            this.load(data);
+        }
+    }, {
+        key: "add",
+        value: function add() {
+            if (!this.checkForm()) {
+                return;
+            }
+
+            $('.dd > .dd-list').append("<li class='dd-item dd3-item' data-id='" + this.count + "'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" + this.labelTarget.value + "</div> <div  class='edit icon-pencil'></div></li>");
+
+            $("li[data-id=" + this.count + "]").data({
+                label: this.labelTarget.value,
+                title: this.titleTarget.value,
+                auth: this.authTarget.value,
+                slug: this.slugTarget.value,
+                robot: this.robotTarget.value,
+                style: this.styleTarget.value,
+                target: this.targetTarget.value
+            });
+
+            this.count--;
+            this.clear();
+            this.send();
+        }
+    }, {
+        key: "save",
+        value: function save() {
+            if (!this.checkForm()) {
+                return;
+            }
+
+            $("li[data-id=" + this.id + "]").data({
+                label: this.labelTarget.value,
+                title: this.titleTarget.value,
+                auth: this.authTarget.value,
+                slug: this.slugTarget.value,
+                robot: this.robotTarget.value,
+                style: this.styleTarget.value,
+                target: this.targetTarget.value
+            });
+            $("li[data-id=" + this.id + "] > .dd3-content").html(this.labelTarget.value);
+
+            this.clear();
+            this.send();
+        }
+    }, {
+        key: "destroy",
+        value: function destroy(id) {
+            axios.delete(platform.prefix("/press/menu/" + id)).then(function (response) {});
+        }
+    }, {
+        key: "remove",
+        value: function remove() {
+            $("li[data-id=" + this.id + "]").remove();
+            this.destroy(this.id);
+            this.clear();
+        }
+    }, {
+        key: "clear",
+        value: function clear() {
+            this.labelTarget.value = '';
+            this.titleTarget.value = '';
+            this.authTarget.value = 0;
+            this.slugTarget.value = '';
+            this.robotTarget.value = 'follow';
+            this.styleTarget.value = '';
+            this.targetTarget.value = '_self';
+            this.id = '';
+
+            this.checkExist();
+            window.Turbolinks.visit(window.location, { action: 'replace' });
+        }
+    }, {
+        key: "send",
+        value: function send() {
+            var name = $('.dd').attr('data-name');
+            var data = {
+                lang: $('.dd').attr('data-lang'),
+                data: $('.dd').nestable('serialize')
+            };
+
+            axios.put(platform.prefix("/press/menu/" + name), data).then(function (response) {});
+        }
+    }, {
+        key: "checkForm",
+        value: function checkForm() {
+            if (!this.labelTarget.value) {
+                document.getElementById('errors.label').classList.remove("none");
+                return false;
+            }
+
+            if (!this.titleTarget.value) {
+                document.getElementById('errors.title').classList.remove("none");
+                return false;
+            }
+
+            if (!this.slugTarget.value) {
+                document.getElementById('errors.slug').classList.remove("none");
+                return false;
+            }
+
+            document.getElementById('errors.slug').classList.add("none");
+            document.getElementById('errors.label').classList.add("none");
+            document.getElementById('errors.title').classList.add("none");
+
+            return true;
+        }
+    }, {
+        key: "checkExist",
+        value: function checkExist() {
+            if (this.exist()) {
+                document.getElementById('menu.remove').classList.remove("none");
+                document.getElementById('menu.reset').classList.remove("none");
+                document.getElementById('menu.add').classList.add("none");
+                document.getElementById('menu.save').classList.remove("none");
+            } else {
+                document.getElementById('menu.remove').classList.add("none");
+                document.getElementById('menu.reset').classList.add("none");
+                document.getElementById('menu.add').classList.remove("none");
+                document.getElementById('menu.save').classList.add("none");
+            }
+        }
+    }, {
+        key: "exist",
+        value: function exist() {
+            return Number.isInteger(this.id) && $("li[data-id=" + this.id + "]").length > 0;
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+_class.targets = ["id", "label", "slug", "auth", "robot", "style", "target", "title"];
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 201:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inputmask__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inputmask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inputmask__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+
+
+        /**
+         *
+         */
+        value: function connect() {
+            var element = this.element.querySelector('input');
+            __WEBPACK_IMPORTED_MODULE_1_inputmask___default()(element.dataset.mask).mask(element);
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+
+/***/ }),
+
+/***/ 206:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+
+
+        /**
+         *
+         */
+        value: function connect() {
+            var image = this.data.get('image');
+
+            if (image) {
+                this.element.querySelector('.picture-preview').src = image;
+            } else {
+                this.element.querySelector('.picture-preview').classList.add('none');
+                this.element.querySelector('.picture-remove').classList.add('none');
+            }
+        }
+
+        /**
+         * Event for uploading image
+         *
+         * @param event
+         */
+
+    }, {
+        key: "upload",
+        value: function upload(event) {
+
+            var cropPanel = this.element.querySelector('.upload-panel');
+            $(cropPanel).croppie('destroy');
+
+            if (!event.target.files[0]) {
+                return;
+            }
+
+            var width = this.data.get('width');
+            var height = this.data.get('height');
+            $(cropPanel).croppie({
+                viewport: {
+                    width: width,
+                    height: height
+                },
+                boundary: {
+                    width: '100%',
+                    height: 500
+                },
+                enforceBoundary: true
+            });
+
+            var reader = new FileReader();
+            reader.readAsDataURL(event.target.files[0]);
+
+            reader.onloadend = function () {
+                $(cropPanel).croppie('bind', {
+                    url: reader.result
+                });
+            };
+
+            $(this.element.querySelector('.modal')).modal('show');
+        }
+
+        /**
+         * Action on click button "Crop"
+         */
+
+    }, {
+        key: "crop",
+        value: function crop() {
+            var _this2 = this;
+
+            var cropPanel = this.element.querySelector('.upload-panel');
+
+            $(cropPanel).croppie('result', {
+                type: 'blob',
+                size: 'viewport',
+                format: 'png'
+            }).then(function (blob) {
+
+                var data = new FormData();
+                data.append('file', blob);
+                data.append('storage', 'public');
+
+                var element = _this2.element;
+                axios.post(platform.prefix('/systems/files'), data).then(function (response) {
+
+                    var image = "/storage/" + response.data.path + response.data.name + "." + response.data.extension;
+
+                    element.querySelector('.picture-preview').src = image;
+                    element.querySelector('.picture-preview').classList.remove('none');
+                    element.querySelector('.picture-remove').classList.remove('none');
+                    element.querySelector('.picture-path').value = image;
+                    $(element.querySelector('.modal')).modal('hide');
+                });
+            });
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "clear",
+        value: function clear() {
+            this.element.querySelector('.picture-path').value = '';
+            this.element.querySelector('.picture-preview').src = '';
+            this.element.querySelector('.picture-preview').classList.add('none');
+            this.element.querySelector('.picture-remove').classList.add('none');
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+_class.targets = ["source", "upload"];
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 207:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_simplemde__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_simplemde___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_simplemde__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+        value: function connect() {
+
+            var textarea = this.element.querySelector('textarea');
+
+            new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
+                autoDownloadFontAwesome: false,
+                forceSync: true,
+                element: textarea,
+                toolbar: [{
+                    name: "bold",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBold,
+                    className: "icon-bold",
+                    title: "Bold"
+                }, {
+                    name: "italic",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleItalic,
+                    className: "icon-italic",
+                    title: "Italic"
+                }, {
+                    name: "heading",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleHeadingSmaller,
+                    className: "icon-font",
+                    title: "Heading"
+                }, '|', {
+                    name: "quote",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBlockquote,
+                    className: "icon-quote",
+                    title: "Quote"
+                }, {
+                    name: "code",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleCodeBlock,
+                    className: "icon-code",
+                    title: "Code"
+                }, {
+                    name: "unordered-list",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleUnorderedList,
+                    className: "icon-list",
+                    title: "Generic List"
+                }, {
+                    name: "ordered-list",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleOrderedList,
+                    className: "icon-number-list",
+                    title: "Numbered List"
+                }, '|', {
+                    name: "link",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawLink,
+                    className: "icon-link",
+                    title: "Link"
+                }, {
+                    name: "image",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawImage,
+                    className: "icon-picture",
+                    title: "Insert Image"
+                }, {
+                    name: "table",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawTable,
+                    className: "icon-table",
+                    title: "Insert Table"
+                }, '|', {
+                    name: "preview",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.togglePreview,
+                    className: "icon-eye no-disable",
+                    title: "Toggle Preview"
+                }, {
+                    name: "side-by-side",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleSideBySide,
+                    className: "icon-browser no-disable no-mobile",
+                    title: "Toggle Side by Side"
+                }, {
+                    name: "fullscreen",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleFullScreen,
+                    className: "icon-full-screen no-disable no-mobile",
+                    title: "Toggle Fullscreen"
+                }, '|', {
+                    name: "horizontal-rule",
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawHorizontalRule,
+                    className: "icon-options",
+                    title: "Insert Horizontal Line"
+                }, {
+                    name: "guide",
+                    action: "https://simplemde.com/markdown-guide",
+                    className: "icon-help",
+                    title: "Markdown Guide"
+                }],
+                placeholder: textarea.placeholder,
+                spellChecker: false
+            });
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+
+/***/ }),
+
+/***/ 223:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+// Core
+
+
+// A theme is also required
+//import 'tinymce/themes/modern';
+//import 'tinymce/themes/inlite'
+
+
+// Plugins
+
+/*
+import 'tinymce/plugins/advlist'
+import 'tinymce/plugins/anchor'
+import 'tinymce/plugins/autolink'
+import 'tinymce/plugins/autoresize'
+import 'tinymce/plugins/autosave'
+import 'tinymce/plugins/bbcode'
+import 'tinymce/plugins/charmap'
+import 'tinymce/plugins/code'
+import 'tinymce/plugins/codesample'
+import 'tinymce/plugins/colorpicker'
+import 'tinymce/plugins/contextmenu'
+import 'tinymce/plugins/directionality'
+import 'tinymce/plugins/emoticons'
+import 'tinymce/plugins/fullpage'
+import 'tinymce/plugins/fullscreen'
+import 'tinymce/plugins/help'
+import 'tinymce/plugins/hr'
+import 'tinymce/plugins/image'
+import 'tinymce/plugins/imagetools'
+import 'tinymce/plugins/importcss'
+import 'tinymce/plugins/insertdatetime'
+import 'tinymce/plugins/legacyoutput'
+import 'tinymce/plugins/link'
+import 'tinymce/plugins/lists'
+import 'tinymce/plugins/media'
+import 'tinymce/plugins/nonbreaking'
+import 'tinymce/plugins/noneditable'
+import 'tinymce/plugins/pagebreak'
+import 'tinymce/plugins/paste'
+import 'tinymce/plugins/preview'
+import 'tinymce/plugins/print'
+import 'tinymce/plugins/save'
+import 'tinymce/plugins/searchreplace'
+import 'tinymce/plugins/spellchecker'
+import 'tinymce/plugins/tabfocus'
+import 'tinymce/plugins/table'
+import 'tinymce/plugins/template'
+import 'tinymce/plugins/textcolor'
+import 'tinymce/plugins/textpattern'
+import 'tinymce/plugins/toc'
+import 'tinymce/plugins/visualblocks'
+import 'tinymce/plugins/visualchars'
+import 'tinymce/plugins/wordcount'
+*/
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: 'connect',
+        value: function connect() {
+
+            //require.context(
+            //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+            //    true,
+            //    /.*/
+            //);
+
+
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.baseURL = '/orchid/js/tinymce';
+
+            var selector = this.element.querySelector('.tinymce').id;
+            var input = this.element.querySelector('input');
+
+            var plugins = 'image media table link paste contextmenu textpattern autolink codesample';
+            var toolbar1 = '';
+            var inline = true;
+
+            if (this.element.dataset.theme === 'modern') {
+                plugins = 'print autosave autoresize preview paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern';
+                toolbar1 = 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat';
+                inline = false;
+            }
+
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.init({
+                branding: false,
+                selector: '#' + selector,
+                theme: this.element.dataset.theme,
+                min_height: 300,
+                height: 300,
+                max_height: 600,
+                plugins: plugins,
+                toolbar1: toolbar1,
+                insert_toolbar: 'quickimage quicktable media codesample fullscreen',
+                selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
+                inline: inline,
+                convert_urls: false,
+                image_caption: true,
+                image_title: true,
+                image_class_list: [{
+                    title: 'None',
+                    value: ''
+                }, {
+                    title: 'Responsive',
+                    value: 'img-fluid'
+                }],
+                setup: function setup(element) {
+                    element.on('change', function () {
+                        $(input).val(element.getContent());
+                    });
+                },
+                images_upload_handler: function images_upload_handler(blobInfo, success) {
+                    var data = new FormData();
+                    data.append('file', blobInfo.blob());
+
+                    axios.post(platform.prefix('/systems/files'), data).then(function (response) {
+                        success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove('#' + this.element.querySelector('.tinymce').id);
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 224:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class(props) {
+        _classCallCheck(this, _class);
+
+        var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
+
+        _this.attachments = {};
+        return _this;
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+        value: function connect() {
+            this.initDropZone();
+            this.initSortable();
+        }
+    }, {
+        key: "save",
+        value: function save() {
+            var data = this.activeAttachment;
+
+            $('#modalUploadAttachment').modal('toggle');
+            axios.put(platform.prefix("/systems/files/post/" + data.id), data).then();
+        }
+    }, {
+        key: "getAttachmentTargetKey",
+        value: function getAttachmentTargetKey(dataKey) {
+            return dataKey + "Target";
+        }
+    }, {
+        key: "loadInfo",
+        value: function loadInfo(data) {
+            var name = data.name + data.id;
+            data.url = '/storage/' + data.path + data.name + '.' + data.extension;
+            if (!this.attachments.hasOwnProperty(name)) {
+                this.attachments[name] = data;
+            }
+            this.activeAttachment = data;
+        }
+    }, {
+        key: "initSortable",
+        value: function initSortable() {
+            $(this.dropname + '.sortable-dropzone').sortable({
+                scroll: false,
+                containment: "parent",
+                update: function update() {
+                    var items = {};
+                    $('.file-sort').each(function (index, value) {
+                        var id = $(this).attr('data-file-id');
+                        items[id] = index;
+                    });
+
+                    axios.post(platform.prefix('/systems/files/sort'), {
+                        files: items
+                    }).then();
+                }
+            });
+        }
+    }, {
+        key: "initDropZone",
+        value: function initDropZone() {
+            var data = this.data.get('data') && JSON.parse(this.data.get('data'));
+            var storage = this.data.get('storage');
+            var name = this.data.get('name');
+            var loadInfo = this.loadInfo.bind(this);
+            var dropname = this.dropname;
+
+            Dropzone.autoDiscover = false;
+            var UploadDropzone = new Dropzone(dropname, {
+                url: platform.prefix('/systems/files'),
+                method: 'post',
+                uploadMultiple: false,
+                parallelUploads: 100,
+                maxFilesize: 9999,
+                paramName: 'files',
+                maxThumbnailFilesize: 99999,
+                previewsContainer: dropname + '.visual-dropzone',
+                addRemoveLinks: false,
+                dictFileTooBig: 'File is big',
+
+                init: function init() {
+                    this.on('addedfile', function (e) {
+                        var n = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>'),
+                            t = this;
+                        n.addEventListener('click', function (n) {
+                            n.preventDefault(), n.stopPropagation(), t.removeFile(e);
+                        }), e.previewElement.appendChild(n);
+
+                        var n = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon - note" aria-hidden="true"></i></a>'),
+                            t = this;
+                        n.addEventListener('click', function (n) {
+                            loadInfo(e.data);
+                            $('#modalUploadAttachment').modal('show');
+                        }), e.previewElement.appendChild(n);
+                    });
+
+                    this.on('completemultiple', function (file, json) {
+                        $(dropname + '.sortable-dropzone').sortable('enable');
+                    });
+
+                    var instanceDropZone = this;
+                    var images = data;
+                    images.forEach(function (item, i, arr) {
+                        var mockFile = {
+                            id: item.id,
+                            name: item.original_name,
+                            size: item.size,
+                            type: item.mime,
+                            status: Dropzone.ADDED,
+                            url: '/storage/' + item.path + item.name + '.' + item.extension,
+                            data: item
+                        };
+
+                        instanceDropZone.emit('addedfile', mockFile);
+                        instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
+                        instanceDropZone.files.push(mockFile);
+                        $(dropname + '.dz-preview:last-child').attr('data-file-id', item.id).addClass('file-sort');
+                        $("<input type='hidden' class='files-" + item.id + "' name='" + name + "[]' value='" + item.id + "'  />").appendTo(dropname);
+                    });
+
+                    $(dropname + '.dz-progress').remove();
+
+                    this.on('sending', function (file, xhr, formData) {
+                        formData.append('_token', $("meta[name='csrf_token']").attr('content'));
+                        formData.append('storage', storage);
+                    });
+
+                    this.on('removedfile', function (file) {
+                        $(dropname + '.files-' + file.data.id).remove();
+                        axios.delete(platform.prefix("/systems/files/" + file.data.id), {
+                            storage: $('#post-attachment-dropzone').data('storage')
+                        }).then();
+                    });
+                },
+                error: function error(file, response) {
+                    if ($.type(response) === 'string') {
+                        return response; //dropzone sends it's own error messages in string
+                    }
+                    return response.message;
+                },
+                success: function success(file, response) {
+                    file.data = response;
+                    $(dropname + '.dz-preview:last-child').attr('data-file-id', response.id).addClass('file-sort');
+                    $("<input type='hidden' class='files-" + response.id + "' name='" + name + "[]' value='" + response.id + "'  />").appendTo(dropname);
+                }
+            });
+        }
+    }, {
+        key: "dropname",
+        get: function get() {
+            return '#dropzone-' + this.data.get('name') + ' ';
+        }
+    }, {
+        key: "activeAttachment",
+        get: function get() {
+            var _this2 = this;
+
+            var id = this.activeAchivmentId;
+            return ['name', 'original_name', 'alt', 'url', 'description'].reduce(function (res, key) {
+                var targetKey = _this2.getAttachmentTargetKey(key);
+                var target = _this2[targetKey];
+                if (key === 'url') {
+                    return _extends({}, res, _defineProperty({}, key, target.href));
+                }
+                return _extends({}, res, _defineProperty({}, key, target.value));
+            }, { id: id });
+        },
+        set: function set(data) {
+            var _this3 = this;
+
+            this.activeAchivmentId = data.id;
+            Object.keys(data).map(function (key) {
+                var value = data[key];
+                var targetKey = _this3.getAttachmentTargetKey(key);
+                var target = _this3[targetKey];
+
+                if (!target) {
+                    return;
+                }
+
+                if (key === 'url') {
+                    target.href = value;
+                    return;
+                }
+                target.value = value;
+            });
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+_class.targets = ["name", "original_name", "alt", "description", "url", "active"];
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 225:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "connect",
+
+
+        /**
+         *
+         */
+        value: function connect() {
+            if (!this.urlTarget.value) {
+                return;
+            }
+
+            var url = new URL(this.urlTarget.value);
+
+            this.sourceTarget.value = this.loadParam(url, 'source');
+            this.mediumTarget.value = this.loadParam(url, 'medium');
+            this.campaignTarget.value = this.loadParam(url, 'campaign');
+            this.termTarget.value = this.loadParam(url, 'term');
+            this.contentTarget.value = this.loadParam(url, 'content');
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "generate",
+        value: function generate() {
+            var url = new URL(this.urlTarget.value);
+            this.urlTarget.value = url.protocol + '//' + url.host + url.pathname;
+
+            this.addParms('source', this.sourceTarget.value);
+            this.addParms('medium', this.mediumTarget.value);
+            this.addParms('campaign', this.campaignTarget.value);
+            this.addParms('term', this.termTarget.value);
+            this.addParms('content', this.contentTarget.value);
+        }
+
+        /**
+         *
+         * @param text
+         * @returns {string}
+         */
+
+    }, {
+        key: "slugify",
+        value: function slugify(text) {
+            return text.toString().toLowerCase().trim().replace(/\s+/g, '-') // Replace spaces with -
+            .replace(/&/g, '-and-') // Replace & with 'and'
+            .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+            .replace(/\-\-+/g, '-'); // Replace multiple - with single -
+        }
+
+        /**
+         *
+         * @param replace
+         * @param name
+         * @param value
+         */
+
+    }, {
+        key: "add",
+        value: function add(replace, name, value) {
+            this.urlTarget.value += replace + name + "=" + encodeURIComponent(value);
+        }
+
+        /**
+         *
+         * @param replace
+         * @param value
+         */
+
+    }, {
+        key: "change",
+        value: function change(replace, value) {
+            this.urlTarget.value = this.urlTarget.value.replace(replace, "$1" + encodeURIComponent(value));
+        }
+
+        /**
+         *
+         * @param name
+         * @param value
+         */
+
+    }, {
+        key: "addParms",
+        value: function addParms(name, value) {
+            name = "utm_" + name;
+            value = this.slugify(value);
+
+            if (value.trim().length === 0) {
+                return;
+            }
+
+            var replace = new RegExp("([?&]" + name + "=)[^&]+", "");
+
+            if (this.urlTarget.value.indexOf("?") === -1) {
+                this.add("?", name, value);
+                return;
+            }
+
+            if (replace.test(this.link)) {
+                this.change(replace, value);
+                return;
+            }
+
+            this.add("&", name, value);
+        }
+
+        /**
+         *
+         * @param url
+         * @param param
+         * @returns {string | null}
+         */
+
+    }, {
+        key: "loadParam",
+        value: function loadParam(url, param) {
+            return url.searchParams.get('utm_' + param);
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+_class.targets = ["url", "source", "medium", "campaign", "term", "content"];
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+
+/***/ }),
+
+/***/ 226:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_turbolinks__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var _class = function (_Controller) {
+  _inherits(_class, _Controller);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+  }
+
+  _createClass(_class, [{
+    key: "initialize",
+
+
+    /**
+     *
+     */
+    value: function initialize() {
+      __WEBPACK_IMPORTED_MODULE_1_turbolinks___default.a.start();
+      window.platform = Object(__WEBPACK_IMPORTED_MODULE_2__platform__["a" /* platform */])();
+    }
+
+    /**
+     *
+     */
+
+  }, {
+    key: "connect",
+    value: function connect() {
+      this.csrf();
+    }
+
+    /**
+     * We'll load the axios HTTP library which allows us to easily issue requests
+     * to our Laravel back-end. This library automatically handles sending the
+     * CSRF token as a header based on the value of the "XSRF" token cookie.
+     */
+
+  }, {
+    key: "csrf",
+    value: function csrf() {
+      var token = document.head.querySelector('meta[name="csrf_token"]');
+      window.axios = __WEBPACK_IMPORTED_MODULE_3_axios___default.a;
+
+      /**
+       * Next we will register the CSRF Token as a common header with Axios so that
+       * all outgoing HTTP requests automatically have it attached. This is just
+       * a simple convenience so we don't have to attach every token manually.
+       */
+      window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+      window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    }
+  }]);
+
+  return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+
+/***/ }),
+
+/***/ 228:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (immutable) */ __webpack_exports__["a"] = platform;
+function platform() {
+    return {
+
+        /**
+         *
+         * @param path
+         * @returns {*}
+         */
+        prefix: function prefix(path) {
+            var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
+
+            if (prefix && prefix.content.charAt(0) !== '/') {
+                prefix = '/' + prefix.content;
+            }
+
+            return prefix + path;
+        },
+
+
+        /**
+         *
+         * @param message
+         * @param type
+         * @param target
+         */
+        alert: function alert(message) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'danger';
+            var target = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '#dashboard-alerts';
+
+            $(target).append($('<div/>', {
+                class: 'alert m-b-none alert-' + type,
+                text: message
+            }).append($('<button/>', {
+                class: 'close',
+                'data-dismiss': 'alert',
+                'aria-label': 'Close',
+                'aria-hidden': 'true'
+            }).append($('<span/>', { 'aria-hidden': 'true', html: '&times;' }))), $('<div/>', { class: 'clearfix' }));
+        },
+
+
+        /**
+         *
+         * @param idForm
+         * @param message
+         * @returns {boolean}
+         */
+        validateForm: function validateForm(idForm, message) {
+            if (!document.getElementById(idForm).checkValidity()) {
+                window.platform.alert(message, 'warning b-b');
+                return false;
+            }
+            return true;
+        }
+    };
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 247:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: 'connect',
+
+
+        /**
+         *
+         */
+        value: function connect() {
+            var activeMenu = false;
+
+            $('#aside-wrap-list').children('.tab-pane').each(function () {
+                if ($(this).hasClass('active')) {
+                    activeMenu = true;
+                }
+            });
+
+            if (!activeMenu) {
+                $('#menu-default').addClass('active');
+            }
+
+            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 248:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+//import {$, jQuery}  from 'jquery';
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: "filter",
+
+
+        /**
+         * Stimulus gives the possibility of a change event when the field loses focus
+         */
+        value: function filter(event) {
+
+            var search = event.target.value.trim().toLowerCase();
+
+            $(".admin-element-item").hide().filter(function () {
+                return $(this).html().trim().toLowerCase().indexOf(search) !== -1;
+            }).show();
+
+            $(".admin-element").show().filter(function () {
+                return $(this).children('.list-group').children(":visible").length === 0;
+            }).hide();
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 249:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+
+},[170]);
+//# sourceMappingURL=orchid.js.map

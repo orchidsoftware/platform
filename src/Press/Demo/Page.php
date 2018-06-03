@@ -163,6 +163,14 @@ class Page extends Single
     /**
      * @return array
      */
+    public function options(): array
+    {
+
+    }
+
+    /**
+     * @return array
+     */
     public function modules() : array
     {
         return [

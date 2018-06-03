@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Boot\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Orchid\Boot\Builders\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class BootController extends Controller
@@ -16,9 +20,65 @@ class BootController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \ReflectionException
      */
     public function index()
     {
+        $test = new Model('Test', [
+            'property' => [
+                'fillable' => ['id', 'name'],
+                'guarded'  => [''],
+                'hidden'   => [''],
+                'visible'  => [''],
+            ],
+            'methods'  => [
+                [
+                    'model'            => '',
+                    'relationshipType' => '',
+                    'localKey'         => '',
+                    'relatedKey'       => '',
+                ],
+            ],
+        ]);
+
+        dd($test->generate());
+
+
+
         return view('platform::container.boot.index');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function getModel(Request $request)
+    {
+
+    }
+
+    /**
+     * @param Request $request
+     * @throws \ReflectionException
+     */
+    public function saveModel(Request $request)
+    {
+        $test = new Model('Test', [
+            'property' => [
+                'fillable' => ['id', 'name'],
+                'guarded'  => [''],
+                'hidden'   => [''],
+                'visible'  => [''],
+            ],
+            'methods'  => [
+                [
+                    'model'            => '',
+                    'relationshipType' => '',
+                    'localKey'         => '',
+                    'relatedKey'       => '',
+                ],
+            ],
+        ]);
+
+        dd($test->generate());
     }
 }
