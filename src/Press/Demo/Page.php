@@ -165,7 +165,6 @@ class Page extends Single
      */
     public function options(): array
     {
-
     }
 
     /**

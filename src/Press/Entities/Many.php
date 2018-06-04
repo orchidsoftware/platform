@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
 use Orchid\Platform\Fields\Field;
+use Illuminate\Support\Collection;
 
 abstract class Many
 {
