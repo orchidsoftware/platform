@@ -1,7 +1,5 @@
 <?php
 
 
-$this->get('/', [
-    'as'   => 'platform.boot.index',
-    'uses' => 'BootController@index',
-]);
+
+$this->screen('/{model?}','Screens\BootModelScreen','platform.boot.index');

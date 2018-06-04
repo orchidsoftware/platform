@@ -7,7 +7,7 @@
             id="show-button-modal-{{$modal or ''}}"
             data-modal-title="{{$title or ''}}"
             data-modal-action="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}">
-        <i class="{{$icon or ''}}"></i>{{$name or ''}}
+        <i class="{{$icon or ''}} m-r-xs"></i>{{$name or ''}}
     </button>
 @elseif(!is_null($method))
 
@@ -21,6 +21,6 @@
 @else
 
     <a href="{{$link or ''}}" class="btn btn-link">
-        <i class="{{$icon or ''}}"></i>{{$name or ''}}
+        <i class="{{$icon or ''}} m-r-xs"></i>{{$name or ''}}
     </a>
 @endif

@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Screen;
 
 /**
+ * Class Link
+ *
  * @method static Link name(string $name)
  * @method static Link modal(string $name)
  * @method static Link title(string $name)
  * @method static Link method(string $name)
  * @method static Link icon(string $name)
  * @method static Link link(string $name)
+ * @method static Link show(bool $name)
  */
 class Link
 {
@@ -50,6 +53,11 @@ class Link
     public $link;
 
     /**
+     * @var
+     */
+    public $show = true;
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -80,6 +88,11 @@ class Link
      */
     public function build($arguments = null)
     {
+        if(!$this->show){
+            return;
+        }
+
+
         return view('platform::partials.screen.link', [
             'slug'      => $this->slug,
             'name'      => $this->name,

@@ -31,4 +31,12 @@ class Repository
     {
         return array_get($this->attributes, $key, $default);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray() : array
+    {
+        return $this->attributes;
+    }
 }

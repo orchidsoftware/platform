@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Screen;
 
+/**
+ * Class Layouts
+ *
+ * @method static Layouts tabs(array $name)
+ * @method static Layouts columns(array $name)
+ * @method static Layouts modals(array $name)
+ * @method static Layouts div(array $name)
+ * @method static Layouts view(string $name)
+ */
 class Layouts
 {
     /**
@@ -85,6 +94,14 @@ class Layouts
      */
     public function build($post)
     {
+        if (is_string($this->layouts)) {
+
+            $params = $post->toArray();
+            $params['compose'] = $this->compose;
+
+            return view($this->layouts, $params);
+        }
+
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
                 $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout())->build($post);
@@ -94,6 +111,6 @@ class Layouts
         return view($this->templates[$this->active], [
             'manyForms' => $build ?? [],
             'compose'   => $this->compose,
-        ])->render();
+        ]);
     }
 }
