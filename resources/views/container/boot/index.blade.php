@@ -1,3 +1,4 @@
+@section('controller','components--boot')
 @section('aside')
 
     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
@@ -14,8 +15,6 @@
         </li>
 
     @endforeach
-
-
 @endsection
 
 
@@ -37,29 +36,25 @@
                             <div class="padder m-t-md">
                                 <div class="checkbox m-t-sm">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i> Use Timestamps
                                     </label>
                                 </div>
                                 <div class="checkbox m-t-sm">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i> Use Timestamps with Timezone
                                     </label>
                                 </div>
                                 <div class="checkbox m-t-sm">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i> Use Soft Deletes
                                     </label>
                                 </div>
                                 <div class="checkbox m-t-sm">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i> Use Remember Token
                                     </label>
                                 </div>
@@ -80,8 +75,10 @@
         </div>
 
 
+
         <div class="hbox-col bg-white">
             <div class="row">
+                @isset($model)
                 <div class="col-sm-12">
 
 
@@ -99,9 +96,17 @@
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label class="sr-only">Columns</label>
-                                    <input type="text" class="form-control" placeholder="Column">
+                                    <input type="text"
+                                           data-target="components--boot.column"
+                                           class="form-control"
+                                           required
+                                           placeholder="Column">
                                 </div>
-                                <button type="submit" class="btn btn-default mb-2">Add Columns</button>
+                                <button type="button"
+                                        data-action="components--boot#addColumn"
+                                        class="btn btn-default mb-2">
+                                    Add Columns
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -124,90 +129,39 @@
                             <tr>
                                 <td class="text-center">id</td>
                                 <td class="text-center">
-                                    <select name="model" class="form-control">
-                                        <option value="">Select Type</option>
-                                        <option value="4">boolean</option>
-                                        <option value="7">dateTime</option>
-                                        <option value="15">increments</option>
-                                        <option value="16">integer</option>
-                                        <option value="36">string</option>
-                                        <option value="37">text</option>
-                                        <option value="44">unsignedInteger</option>
-                                        <option value="1">bigIncrements</option>
-                                        <option value="2">bigInteger</option>
-                                        <option value="3">binary</option>
-                                        <option value="5">char</option>
-                                        <option value="6">date</option>
-                                        <option value="8">dateTimeTz</option>
-                                        <option value="9">decimal</option>
-                                        <option value="10">double</option>
-                                        <option value="11">enum</option>
-                                        <option value="12">float</option>
-                                        <option value="13">geometry</option>
-                                        <option value="14">geometryCollection</option>
-                                        <option value="17">ipAddress</option>
-                                        <option value="18">json</option>
-                                        <option value="19">jsonb</option>
-                                        <option value="20">lineString</option>
-                                        <option value="21">longText</option>
-                                        <option value="22">macAddress</option>
-                                        <option value="23">mediumIncrements</option>
-                                        <option value="24">mediumInteger</option>
-                                        <option value="25">mediumText</option>
-                                        <option value="26">morphs</option>
-                                        <option value="27">multiLineString</option>
-                                        <option value="28">multiPoint</option>
-                                        <option value="29">multiPolygon</option>
-                                        <option value="30">nullableMorphs</option>
-                                        <option value="31">nullableTimestamps</option>
-                                        <option value="32">point</option>
-                                        <option value="33">polygon</option>
-                                        <option value="34">smallIncrements</option>
-                                        <option value="35">smallInteger</option>
-                                        <option value="38">time</option>
-                                        <option value="39">timeTz</option>
-                                        <option value="40">tinyInteger</option>
-                                        <option value="41">timestamp</option>
-                                        <option value="42">timestampTz</option>
-                                        <option value="43">unsignedBigInteger</option>
-                                        <option value="45">unsignedMediumInteger</option>
-                                        <option value="46">unsignedSmallInteger</option>
-                                        <option value="47">unsignedTinyInteger</option>
-                                        <option value="48">uuid</option>
+                                    <select name="model" class="form-control" required>
+                                      @foreach($fieldTypes as $key => $type)
+                                            <option value="{{$key}}">{{$type}}</option>
+                                      @endforeach
                                     </select>
                                 </td>
                                 <td class="text-center">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i>
                                     </label>
                                 </td>
                                 <td class="text-center">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i>
                                     </label>
                                 </td>
                                 <td class="text-center">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i>
                                     </label>
                                 </td>
                                 <td class="text-center">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i>
                                     </label>
                                 </td>
                                 <td class="text-center">
                                     <label class="i-checks">
-                                        <input type="checkbox" value="230" name="content[en][free]" title="Free"
-                                               placeholder="Event for free" lang="en" checked="">
+                                        <input type="checkbox" value="1" name="content[en][free]">
                                         <i></i>
                                     </label>
                                 </td>
@@ -234,9 +188,17 @@
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label class="sr-only">Choose Model:</label>
-                                    <input type="text" class="form-control" placeholder="Model">
+                                    <input type="text"
+                                           data-target="components--boot.relation"
+                                           required
+                                           class="form-control"
+                                           placeholder="Model">
                                 </div>
-                                <button type="submit" class="btn btn-default mb-2">Add Columns</button>
+                                <button type="button"
+                                        data-action="components--boot#addRelation"
+                                        class="btn btn-default mb-2">
+                                    Add Columns
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -257,13 +219,9 @@
                                 <td class="text-center">id</td>
                                 <td class="text-center">
                                     <select name="model" class="form-control">
-                                        <option value="">Select Relation</option>
-                                        <option value="1">One to One (hasOne)</option>
-                                        <option value="2">One to Many (hasMany)</option>
-                                        <option value="3">Many to Many (belongsToMany)</option>
-                                        <option value="4">Has Many Through (belongsToMany)</option>
-                                        <option value="5">Polymorphic (morphMany)</option>
-                                        <option value="6">Many to Many Polymorphic (morphedByMany)</option>
+                                        @foreach ($relationTypes as $key => $relation)
+                                            <option value="{{$key}}">{{$relation}}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td class="text-center">
@@ -300,8 +258,11 @@
                     </div>
 
                 </div>
+                @endisset
             </div>
         </div>
+
+
     </div>
 
 </div>

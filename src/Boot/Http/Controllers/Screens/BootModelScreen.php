@@ -6,6 +6,8 @@ namespace Orchid\Boot\Http\Controllers\Screens;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Orchid\Boot\Builders\Migration;
+use Orchid\Boot\Builders\Model;
 use Orchid\Boot\Layouts\BootCreateModel;
 use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
@@ -68,12 +70,13 @@ class BootModelScreen extends Screen
         if ($model) {
             $this->exist = true;
             $this->name = "Boot for '{$model}' model";
-
         }
 
         return [
-            'models' => $this->models,
-            'model'  => $model,
+            'models'        => $this->models,
+            'model'         => $model,
+            'fieldTypes'    => Migration::TYPES,
+            'relationTypes' => Model::RELATIONS,
         ];
     }
 
