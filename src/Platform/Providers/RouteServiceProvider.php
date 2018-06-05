@@ -61,9 +61,7 @@ class RouteServiceProvider extends ServiceProvider
                 return abort(404);
             }
 
-            if (! is_a($widget, WidgetContractInterface::class)) {
-                return abort(404);
-            }
+            abort_if(! is_a($widget, WidgetContractInterface::class), 403);
 
             return $widget;
         });

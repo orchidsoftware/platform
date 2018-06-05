@@ -54,9 +54,8 @@ class Page extends Single
     }
 
     /**
-     * @throws \Orchid\Platform\Exceptions\TypeException
-     *
      * @return array
+     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
      */
     public function fields() : array
     {
@@ -165,6 +164,9 @@ class Page extends Single
      */
     public function options(): array
     {
+        return [
+
+        ];
     }
 
     /**

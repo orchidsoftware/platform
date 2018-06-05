@@ -34,6 +34,7 @@ trait Attachment
     /**
      * @param null $type
      *
+     * @param null $group
      * @return MorphToMany
      */
     public function attachment($type = null, $group = null): MorphToMany

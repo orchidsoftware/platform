@@ -112,9 +112,7 @@ abstract class Screen
      */
     public function handle($method = null, $parameters = null)
     {
-        if (! $this->checkAccess()) {
-            abort(404);
-        }
+        abort_if(! $this->checkAccess(), 403);
 
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
             $this->arguments = is_array($method) ? $method : [$method];

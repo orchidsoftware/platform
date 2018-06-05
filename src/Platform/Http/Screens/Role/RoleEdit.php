@@ -33,8 +33,7 @@ class RoleEdit extends Screen
     /**
      * Query data.
      *
-     * @param int $roleSlug
-     *
+     * @param null $role
      * @return array
      */
     public function query($role = null): array

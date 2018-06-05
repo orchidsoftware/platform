@@ -73,9 +73,8 @@ class Post extends Many
     }
 
     /**
-     * @throws \Orchid\Platform\Exceptions\TypeException
-     *
      * @return array
+     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
      */
     public function fields() : array
     {
@@ -198,7 +197,6 @@ class Post extends Many
     /**
      * @return array
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function options(): array
     {
