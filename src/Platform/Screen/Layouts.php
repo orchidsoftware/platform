@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Screen;
 
 /**
- * Class Layouts
+ * Class Layouts.
  *
  * @method static Layouts tabs(array $name)
  * @method static Layouts columns(array $name)
@@ -95,7 +95,6 @@ class Layouts
     public function build($post)
     {
         if (is_string($this->layouts)) {
-
             $params = $post->toArray();
             $params['compose'] = $this->compose;
 

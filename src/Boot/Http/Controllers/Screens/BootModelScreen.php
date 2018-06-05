@@ -5,28 +5,25 @@ declare(strict_types=1);
 namespace Orchid\Boot\Http\Controllers\Screens;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Orchid\Boot\Layouts\BootCreateModel;
-use Orchid\Platform\Screen\Layouts;
 use Orchid\Platform\Screen\Link;
+use Illuminate\Support\Collection;
 use Orchid\Platform\Screen\Screen;
+use Orchid\Platform\Screen\Layouts;
+use Orchid\Boot\Layouts\BootCreateModel;
 
 class BootModelScreen extends Screen
 {
-    /**
-     *
-     */
     const MODELS = 'platform::boot.models';
 
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name = 'Boot Models';
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
@@ -58,7 +55,7 @@ class BootModelScreen extends Screen
     }
 
     /**
-     * Query data
+     * Query data.
      *
      * @param $model
      * @return array
@@ -68,7 +65,6 @@ class BootModelScreen extends Screen
         if ($model) {
             $this->exist = true;
             $this->name = "Boot for '{$model}' model";
-
         }
 
         return [
@@ -78,7 +74,7 @@ class BootModelScreen extends Screen
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -102,7 +98,7 @@ class BootModelScreen extends Screen
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      * @throws \Orchid\Press\TypeException
@@ -131,6 +127,7 @@ class BootModelScreen extends Screen
 
         if ($this->models->offsetExists($name)) {
             alert('Модель с таким именем уже существует');
+
             return back();
         }
 
@@ -139,7 +136,8 @@ class BootModelScreen extends Screen
         cache()->forever(self::MODELS, $this->models);
 
         alert('Модель успешно сохранена');
-        return redirect()->route('platform.boot.index',$name);
+
+        return redirect()->route('platform.boot.index', $name);
     }
 
     /**
@@ -153,14 +151,11 @@ class BootModelScreen extends Screen
         cache()->forever(self::MODELS, $this->models);
 
         alert('Модель была удалена');
+
         return redirect()->route('platform.boot.index');
     }
 
-    /**
-     *
-     */
     public function save()
     {
-
     }
 }

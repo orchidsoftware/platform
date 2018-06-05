@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Screen;
 
 /**
- * Class Link
+ * Class Link.
  *
  * @method static Link name(string $name)
  * @method static Link modal(string $name)
@@ -88,10 +88,9 @@ class Link
      */
     public function build($arguments = null)
     {
-        if(!$this->show){
+        if (! $this->show) {
             return;
         }
-
 
         return view('platform::partials.screen.link', [
             'slug'      => $this->slug,
