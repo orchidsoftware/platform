@@ -1,5 +1,4 @@
 <?php
 
 
-
-$this->screen('/{model?}','Screens\BootModelScreen','platform.boot.index');
+$this->screen('/{model?}', 'Screens\BootModelScreen', 'platform.boot.index');

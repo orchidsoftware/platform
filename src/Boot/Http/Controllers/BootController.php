@@ -6,14 +6,11 @@ namespace Orchid\Boot\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Orchid\Boot\Builders\Model;
-use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class BootController extends Controller
 {
-    /**
-     *
-     */
     const MODELS = 'platform::boot.models';
 
     /**
@@ -49,28 +46,25 @@ class BootController extends Controller
 
         //dd($test->generate());
 
-        return view('platform::container.boot.index',[
-            'models' => Cache::get(self::MODELS,[]),
+        return view('platform::container.boot.index', [
+            'models' => Cache::get(self::MODELS, []),
         ]);
     }
 
-
     /**
      * @param         $model
      * @param Request $request
      */
-    public function store($model, Request $request){
-
+    public function store($model, Request $request)
+    {
     }
 
-
     /**
      * @param         $model
      * @param Request $request
      */
-    public function edit($model,Request $request)
+    public function edit($model, Request $request)
     {
-
     }
 
     /**

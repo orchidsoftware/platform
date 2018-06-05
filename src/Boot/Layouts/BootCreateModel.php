@@ -10,7 +10,7 @@ use Orchid\Platform\Layouts\Rows;
 class BootCreateModel extends Rows
 {
     /**
-     * Views
+     * Views.
      *
      * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
@@ -22,7 +22,7 @@ class BootCreateModel extends Rows
                 ->title('Model Name:')
                 ->help('Create a new model for your application')
                 ->name('name')
-                ->required()
+                ->required(),
         ];
     }
 }
