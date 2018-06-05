@@ -100,7 +100,7 @@ abstract class Many
      * Registered fields for main.
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
      */
     public function main(): array
     {

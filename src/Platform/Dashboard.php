@@ -85,7 +85,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return $prefix.$path;
+        return str_start($prefix.$path, '/');
     }
 
     /**

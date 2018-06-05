@@ -11,6 +11,7 @@ use Orchid\Platform\Exceptions\FieldRequiredAttributeException;
  * Class Field.
  *
  * @method $this accesskey($value = true)
+ * @method $this type($value = true)
  * @method $this class($value = true)
  * @method $this contenteditable($value = true)
  * @method $this contextmenu($value = true)
@@ -119,9 +120,9 @@ class Field implements FieldContract
     /**
      * @param $arguments
      *
-     * @throws TypeException
-     *
      * @return FieldContract
+     *
+     * @throws \Throwable|TypeException
      */
     public static function make($arguments)
     {
@@ -137,17 +138,17 @@ class Field implements FieldContract
     /**
      * @param string $type
      *
-     * @throws TypeException
-     *
      * @return FieldContract
+     *
+     * @throws \Throwable TypeException
      */
     public static function tag(string $type) : FieldContract
     {
         $field = config('platform.fields.'.$type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
-        }
+        throw_if(! is_subclass_of($field, FieldContract::class),
+            TypeException::class,
+            'Field '.$type.' does not exist or inheritance FieldContract');
 
         return new $field();
     }
@@ -207,23 +208,23 @@ class Field implements FieldContract
     }
 
     /**
-     * @throws FieldRequiredAttributeException
-     *
      * @return mixed|void
+     *
+     * @throws \Throwable FieldRequiredAttributeException
      */
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            if (! collect($this->attributes)->offsetExists($attribute)) {
-                throw new FieldRequiredAttributeException('Field must have the following attribute: '.$attribute);
-            }
+            throw_if(! collect($this->attributes)->offsetExists($attribute),
+                FieldRequiredAttributeException::class,
+                'Field must have the following attribute: '.$attribute);
         }
     }
 
     /**
-     * @throws FieldRequiredAttributeException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     *
+     * @throws \Throwable
      */
     public function render()
     {

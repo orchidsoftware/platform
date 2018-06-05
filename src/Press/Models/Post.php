@@ -124,9 +124,9 @@ class Post extends Model
     /**
      * Get the indexable data array for the model.
      *
-     * @throws TypeException
-     *
      * @return array
+     *
+     * @throws \Throwable| TypeException
      */
     public function toSearchableArray()
     {
@@ -144,9 +144,9 @@ class Post extends Model
      *
      * @param null $slug
      *
-     * @throws TypeException
-     *
      * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
+     *
+     * @throws \Throwable|TypeException
      */
     public function getBehaviorObject($slug = null)
     {
@@ -159,18 +159,15 @@ class Post extends Model
 
     /**
      * @param $slug
-     *
-     * @throws TypeException
-     *
      * @return $this
+     *
+     * @throws \Throwable|TypeException
      */
     public function getBehavior($slug)
     {
         $this->behavior = Dashboard::getEntities()->where('slug', $slug)->first();
 
-        if (is_null($this->behavior)) {
-            throw new TypeException("{$slug} Type is not found");
-        }
+        throw_if(is_null($this->behavior), TypeException::class, "{$slug} Type is not found");
 
         return $this;
     }
@@ -397,6 +394,7 @@ class Post extends Model
      * @param null    $behavior
      *
      * @return Builder
+     * @throws \Throwable
      */
     public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
     {
@@ -430,9 +428,8 @@ class Post extends Model
      * @param Builder $query
      * @param null    $behavior
      *
-     * @throws TypeException
-     *
      * @return Builder
+     * @throws \Throwable | TypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
     {

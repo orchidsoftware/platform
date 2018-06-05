@@ -13,9 +13,9 @@ class RolePermissionLayout extends Rows
     /**
      * Views.
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
-     *
      * @return array
+     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     public function fields(): array
     {
@@ -25,9 +25,8 @@ class RolePermissionLayout extends Rows
     /**
      * @param Collection $permissionsRaw
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
-     *
      * @return array
+     * @throws \Throwable
      */
     public function generatedPermissionFields(Collection $permissionsRaw): array
     {
