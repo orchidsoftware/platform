@@ -196,7 +196,6 @@ class Post extends Many
 
     /**
      * @return array
-     *
      */
     public function options(): array
     {

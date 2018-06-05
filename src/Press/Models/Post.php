@@ -167,7 +167,7 @@ class Post extends Model
     {
         $this->behavior = Dashboard::getEntities()->where('slug', $slug)->first();
 
-        throw_if(is_null($this->behavior), TypeException::class,"{$slug} Type is not found");
+        throw_if(is_null($this->behavior), TypeException::class, "{$slug} Type is not found");
 
         return $this;
     }
