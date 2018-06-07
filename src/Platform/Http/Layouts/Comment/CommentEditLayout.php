@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\Comment;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Layouts\Rows;
+use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Layouts\Rows;
 
 class CommentEditLayout extends Rows
 {
     /**
      * Views.
      *
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      *
      * @return array
      */

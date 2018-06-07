@@ -52,10 +52,10 @@ if (! function_exists('generate_form')) {
     function generate_form(array $fields, $data = [], string $language = null, string $prefix = null)
     {
         if (is_array($data)) {
-            $data = new \Orchid\Platform\Screen\Repository($data);
+            $data = new \Orchid\Screen\Repository($data);
         }
 
-        return (new \Orchid\Platform\Fields\Builder($fields, $data, $language, $prefix))->generateForm();
+        return (new \Orchid\Screen\Fields\Builder($fields, $data, $language, $prefix))->generateForm();
     }
 }
 

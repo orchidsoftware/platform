@@ -36,13 +36,16 @@
   "autoload": {
     "psr-4": {
       "Orchid\\Alert\\": "src/Alert/",
+      "Orchid\\Access\\": "src/Access/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Auth\\": "src/Auth/",
       "Orchid\\Press\\": "src/Press/",
       "Orchid\\Support\\": "src/Support/",
       "Orchid\\Widget\\": "src/Widget/",
-      "Orchid\\Boot\\": "src/Boot/"
+      "Orchid\\Boot\\": "src/Boot/",
+      "Orchid\\Screen\\": "src/Screen/",
+      "Orchid\\Forms\\": "src/Forms/"
     },
     "files": [
       "src/Support/helpers.php"

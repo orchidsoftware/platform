@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Validator;
 trait Structure
 {
     /**
-     * Visible name of behavior.
+     * Visible name of entity.
      *
      * @var
      */
     public $name = '';
 
     /**
-     * Visible description of behavior.
+     * Visible description of entity.
      *
      * @var string
      */
     public $description = '';
 
     /**
-     * A unique name for behavior.
+     * A unique name for entity.
      *
      * @var string
      */
@@ -137,7 +137,7 @@ trait Structure
     /**
      * @deprecated
      *
-     * All registered extensions specified in the behavior.
+     * All registered extensions specified in the entity.
      *
      * @return array
      */
@@ -153,7 +153,7 @@ trait Structure
     /**
      * @deprecated
      *
-     * Check for a registered extension in the behavior.
+     * Check for a registered extension in the entity.
      *
      * @return bool
      */

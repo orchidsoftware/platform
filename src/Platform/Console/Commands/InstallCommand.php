@@ -153,9 +153,10 @@ class InstallCommand extends Command
                 'email'    => $this->ask('What is your email?', 'admin@admin.com'),
                 'password' => $this->secret('What is the password?', 'password'),
             ]);
-        } else {
-            $this->line("To create a user, run 'artisan make:admin'");
+            return $this;
         }
+
+        $this->line("To create a user, run 'artisan make:admin'");
 
         return $this;
     }

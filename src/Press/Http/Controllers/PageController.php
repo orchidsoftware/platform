@@ -32,14 +32,14 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function show(Page $page = null)
     {
         $this->checkPermission('platform.posts.type.'.$page->slug);
 
         return view('platform::container.posts.page', [
-            'type'    => $page->getBehaviorObject($page->slug),
+            'type'    => $page->getEntityObject($page->slug),
             'locales' => $this->locales,
             'post'    => $page,
         ]);
@@ -51,12 +51,12 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function update(Page $page, Request $request)
     {
         $this->checkPermission('platform.posts.type.'.$page->slug);
-        $type = $page->getBehaviorObject($page->slug);
+        $type = $page->getEntityObject($page->slug);
 
         $page->fill($request->all())->save([
             'user_id'    => Auth::user()->id,

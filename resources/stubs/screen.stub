@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Screen;
+use Orchid\Screen\Screen;
 
 class DummyClass extends Screen
 {

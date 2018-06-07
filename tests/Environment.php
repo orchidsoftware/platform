@@ -2,13 +2,15 @@
 
 namespace Orchid\Tests;
 
-use Watson\Active\Active;
+use Illuminate\Support\Facades\Schema;
+use Intervention\Image\Facades\Image;
+use Orchid\Boot\Providers\BootServiceProvider;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
-use Illuminate\Support\Facades\Schema;
-use Orchid\Press\Providers\PressServiceProvider;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Watson\Active\Active;
 
 trait Environment
 {
@@ -38,7 +40,7 @@ trait Environment
 
         $this->artisan('orchid:link');
 
-        $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
+        $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
             '--class' => 'OrchidDatabaseSeeder',
@@ -78,6 +80,7 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             PressServiceProvider::class,
+            BootServiceProvider::class,
         ];
     }
 
@@ -92,6 +95,7 @@ trait Environment
             'Alert'     => Alert::class,
             'Active'    => Active::class,
             'Dashboard' => Dashboard::class,
+            'Image'     => Image::class,
         ];
     }
 }

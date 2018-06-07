@@ -43,7 +43,7 @@ class StatusFilter extends Filter
     {
         return view('platform::container.posts.filters.status', [
             'request'  => $this->request,
-            'behavior' => $this->behavior,
+            'entity' => $this->entity,
         ]);
     }
 }

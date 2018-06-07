@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Forms\Form;
+use Orchid\Forms\Form;
 use Orchid\Press\Models\Taxonomy;
 use Illuminate\Contracts\View\View;
 
@@ -26,7 +26,7 @@ class CategoryDescForm extends Form
     /**
      * @var null
      */
-    protected $behavior;
+    protected $entity;
 
     /**
      * CategoryDescForm constructor.
@@ -38,7 +38,7 @@ class CategoryDescForm extends Form
         $this->name = trans('platform::systems/category.display');
 
         $category = config('press.category');
-        $this->behavior = (new $category());
+        $this->entity = (new $category());
         parent::__construct($request);
     }
 
@@ -49,7 +49,7 @@ class CategoryDescForm extends Form
     {
         return array_merge([
             'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
-        ], $this->behavior->rules());
+        ], $this->entity->rules());
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryDescForm extends Form
             'language'       => app()->getLocale(),
             'termTaxonomy'   => $termTaxonomy,
             'locales'        => collect(config('press.locales')),
-            'behavior'       => $this->behavior,
+            'entity'       => $this->entity,
         ]);
     }
 

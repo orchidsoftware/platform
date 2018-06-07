@@ -131,7 +131,7 @@ class PostController extends Controller
      * @param Post         $post
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
     {
@@ -148,9 +148,9 @@ class PostController extends Controller
             $slug = $request->get('slug');
         } else {
             $content = $request->get('content');
-            $behaviorObject = $post->getBehaviorObject();
-            if (property_exists($behaviorObject, 'slugFields')) {
-                $slug = head($content)[$behaviorObject->slugFields];
+            $entityObject = $post->getEntityObject();
+            if (property_exists($entityObject, 'slugFields')) {
+                $slug = head($content)[$entityObject->slugFields];
             }
         }
 

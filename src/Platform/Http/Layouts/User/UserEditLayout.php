@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\User;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Layouts\Rows;
+use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Layouts\Rows;
 
 class UserEditLayout extends Rows
 {
@@ -14,7 +14,7 @@ class UserEditLayout extends Rows
      *
      * @return array
      *
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function fields(): array
     {

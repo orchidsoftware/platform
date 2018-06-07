@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Demo;
 
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Press\Entities\Single;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
@@ -55,7 +55,7 @@ class Page extends Single
 
     /**
      * @return array
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function fields() : array
     {

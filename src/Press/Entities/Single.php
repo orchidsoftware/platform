@@ -12,7 +12,6 @@ abstract class Single
      * Registered fields for main.
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function main(): array
     {

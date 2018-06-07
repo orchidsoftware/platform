@@ -120,7 +120,7 @@ export default class extends Controller {
         const dropname = this.dropname
         
         Dropzone.autoDiscover = false;
-        var UploadDropzone = new Dropzone(dropname, {
+        new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
             method: 'post',
             uploadMultiple: false,

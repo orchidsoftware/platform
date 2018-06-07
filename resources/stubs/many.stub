@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Press\Entities\Many;
-use Orchid\Platform\Platform\Fields\TD;
+use Orchid\Screen\Fields\TD;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 

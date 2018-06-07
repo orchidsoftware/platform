@@ -101,7 +101,7 @@ php artisan make:auth
 ],
 ```
 
-Generic entries created with `behavior` system may be localized, it means you may create the same entries in different languages; to add new language you only need to add new element to array.
+Generic entries created with `entity` system may be localized, it means you may create the same entries in different languages; to add new language you only need to add new element to array.
 
 
 
@@ -139,7 +139,7 @@ In field configuration field aliases are used to abstract away from elements use
 ],
 ```
 
-Single entities is the many behavior type that exists only in one exemplary. 
+Single entities is the many entity type that exists only in one exemplary. 
 It's a great solution for creation of unique (Non-generic!) website pages.
 
 

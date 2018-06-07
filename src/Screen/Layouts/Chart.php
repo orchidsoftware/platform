@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Orchid\Screen\Layouts;
+
+abstract class Chart
+{
+    /**
+     * @var string
+     */
+    public $template = 'platform::container.layouts.chart';
+
+    /**
+     * @var string
+     */
+    public $title = 'My Chart';
+
+    /**
+     * Available options:
+     * 'bar', 'line', 'scatter',
+     * 'pie', 'percentage'.
+     *
+     * @var string
+     */
+    public $type = 'line';
+
+    /**
+     * @var int
+     */
+    public $height = 250;
+
+    /**
+     * @var array
+     */
+    public $labels = [];
+
+    /**
+     * @var array
+     */
+    public $data = '';
+
+    /**
+     * @param $query
+     *
+     * @throws \Throwable
+     *
+     * @return array
+     */
+    public function build($query)
+    {
+        return view($this->template, [
+            'title'  => $this->title,
+            'slug'   => str_slug($this->title),
+            'type'   => $this->type,
+            'height' => $this->height,
+            'labels' => json_encode(collect($this->labels)),
+            'data'   => json_encode($query->getContent($this->data)),
+        ])->render();
+    }
+}

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\Role;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Layouts\Rows;
+use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Layouts\Rows;
 use Illuminate\Support\Collection;
 
 class RolePermissionLayout extends Rows
@@ -14,7 +14,6 @@ class RolePermissionLayout extends Rows
      * Views.
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      * @throws \Throwable
      */
     public function fields(): array

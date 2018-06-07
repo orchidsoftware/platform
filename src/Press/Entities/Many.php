@@ -6,7 +6,7 @@ namespace Orchid\Press\Entities;
 
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Illuminate\Support\Collection;
 
 abstract class Many
@@ -100,7 +100,7 @@ abstract class Many
      * Registered fields for main.
      *
      * @return array
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function main(): array
     {

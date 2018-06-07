@@ -17,7 +17,7 @@
             <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
                 <div class="wrapper-lg">
                     <div class="container">
-                        {!! generate_form($behavior->fields(), !$termTaxonomy->exists ? [] : optional($termTaxonomy->term)->toArray(), $code,'content') !!}
+                        {!! generate_form($entity->fields(), !$termTaxonomy->exists ? [] : optional($termTaxonomy->term)->toArray(), $code,'content') !!}
                     </div>
                 </div>
             </div>

@@ -262,6 +262,11 @@ class Dashboard
         return $model;
     }
 
+    /**
+     * @param string      $key
+     * @param string|null $default
+     * @return mixed
+     */
     public static function modelClass(string $key, string $default = null)
     {
         $model = self::model($key, $default);

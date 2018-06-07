@@ -28,7 +28,7 @@
                             $filter= $filter->display();
                         @endphp
 
-                        @if(is_a($filter,\Orchid\Platform\Fields\FieldContract::class))
+                        @if(is_a($filter,\Orchid\Screen\Fields\FieldContract::class))
                             {!! $filter->form('filters')->render() !!}
                         @else
                             {!! $filter !!}

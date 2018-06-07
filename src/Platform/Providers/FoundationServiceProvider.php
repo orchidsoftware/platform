@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Intervention\Image\ImageServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -129,6 +130,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         return [
             ActiveServiceProvider::class,
+            ImageServiceProvider::class,
             AlertServiceProvider::class,
             WidgetServiceProvider::class,
             DashboardProvider::class,

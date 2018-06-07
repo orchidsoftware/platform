@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens\Comment;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Link;
+use Orchid\Screen\Link;
 use Orchid\Press\Models\Comment;
 use Orchid\Support\Facades\Alert;
-use Orchid\Platform\Screen\Screen;
-use Orchid\Platform\Screen\Layouts;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
 use Orchid\Platform\Http\Layouts\Comment\CommentEditLayout;
 
 class CommentEdit extends Screen

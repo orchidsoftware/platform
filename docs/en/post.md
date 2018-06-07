@@ -61,7 +61,7 @@ echo $post->getOption('countPlace',10);
 
 If you decided to create a new class for your custom message type you may return this class for all instatnes of this message type.
 
-Definition of post behavior is based on the defined `type`.
+Definition of post entity is based on the defined `type`.
 ```php
 //All the objects in $videos collection will be Post instances
 $videos = Post::type('video')->status('publish')->get();
@@ -148,7 +148,7 @@ The platform is shipped with the Scout package which acts as the abstraction for
 Scout does not include the search "driver" itself, you must install the required solution by yourself, it may be, for example elasticsearch, algolia, sphinx or others.
 
 
-To use the full text search you need to add a new method to your behavior class:
+To use the full text search you need to add a new method to your entity class:
 
 ```php
 /**

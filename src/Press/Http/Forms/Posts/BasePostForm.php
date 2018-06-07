@@ -6,7 +6,7 @@ namespace Orchid\Platform\Http\Forms\Posts;
 
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Forms\Form;
+use Orchid\Forms\Form;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Entities\Many as PostEntities;

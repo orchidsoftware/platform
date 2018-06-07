@@ -9,9 +9,9 @@ use Illuminate\Support\Collection;
 use Orchid\Boot\Builders\Migration;
 use Orchid\Boot\Builders\Model;
 use Orchid\Boot\Layouts\BootCreateModel;
-use Orchid\Platform\Screen\Layouts;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 
 class BootModelScreen extends Screen
 {

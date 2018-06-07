@@ -110,6 +110,12 @@ class Model
     {
     }
 
+    /**
+     * @return string
+     */
+    /**
+     * @return string
+     */
     public function generate()
     {
         $this->class->setExtendedClass(\Illuminate\Database\Eloquent\Model::class);
