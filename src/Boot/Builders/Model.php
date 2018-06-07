@@ -4,27 +4,24 @@ declare(strict_types=1);
 
 namespace Orchid\Boot\Builders;
 
-use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Generator\DocBlock\Tag;
+use Zend\Code\Generator\ClassGenerator;
+use Zend\Code\Reflection\ClassReflection;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\PropertyGenerator;
-use Zend\Code\Reflection\ClassReflection;
 
 /**
  * Class Model.
  */
 class Model
 {
-    /**
-     *
-     */
     const RELATIONS = [
-        'hasOne'         => "One to One (hasOne)",
-        'hasMany'        => "One to Many (hasMany)",
-        'belongsToMany'  => "Many to Many (belongsToMany)",
-        'hasManyThrough' => "Has Many Through (belongsToMany)",
-        'morphMany'      => "Polymorphic (morphMany)",
-        'morphedByMany'  => "Many to Many Polymorphic (morphedByMany)",
+        'hasOne'         => 'One to One (hasOne)',
+        'hasMany'        => 'One to Many (hasMany)',
+        'belongsToMany'  => 'Many to Many (belongsToMany)',
+        'hasManyThrough' => 'Has Many Through (belongsToMany)',
+        'morphMany'      => 'Polymorphic (morphMany)',
+        'morphedByMany'  => 'Many to Many Polymorphic (morphedByMany)',
     ];
 
     /**
@@ -73,7 +70,7 @@ class Model
     {
         $this->parameters = collect($parameters);
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             $this->class = new ClassGenerator();
             $this->class->setName($class);
 
@@ -140,7 +137,7 @@ class Model
      */
     protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var')
     {
-        if (!array_has($this->parameters, 'property.' . $property)) {
+        if (! array_has($this->parameters, 'property.'.$property)) {
             return $this;
         }
 
