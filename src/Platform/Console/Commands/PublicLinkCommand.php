@@ -31,6 +31,7 @@ class PublicLinkCommand extends Command
     {
         if (file_exists(public_path('orchid'))) {
             $this->error('The "public/orchid" directory already exists.');
+
             return;
         }
 

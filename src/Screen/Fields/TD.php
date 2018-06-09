@@ -6,7 +6,6 @@ namespace Orchid\Screen\Fields;
 
 use Closure;
 
-
 class TD
 {
     /**

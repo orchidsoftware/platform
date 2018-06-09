@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
+use Orchid\Forms\Form;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Orchid\Forms\Form;
 use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Entities\Many as PostEntities;

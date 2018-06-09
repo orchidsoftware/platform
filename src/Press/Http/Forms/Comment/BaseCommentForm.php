@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Comment;
 
-use Illuminate\Http\Request;
 use Orchid\Forms\Form;
+use Illuminate\Http\Request;
 use Orchid\Press\Models\Comment;
 use Illuminate\Contracts\View\View;
 

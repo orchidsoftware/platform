@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\Role;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Link;
-use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Platform\Models\Role;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Http\Layouts\Role\RoleEditLayout;
 use Orchid\Platform\Http\Layouts\Role\RolePermissionLayout;
