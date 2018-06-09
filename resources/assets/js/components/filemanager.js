@@ -14,9 +14,14 @@ document.addEventListener('turbolinks:load', function() {
       directories: [],
       new_filename: '',
     },
-      components: {
-        filemanagerItem: fileManagerItemComponent,
-      }
+    computed: {
+      currPath: function()  {
+          return '/' + this.folders.join('/');
+      },
+    },
+    components: {
+      filemanagerItem: fileManagerItemComponent,
+    }
   });
 
   const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('content');
@@ -47,7 +52,8 @@ document.addEventListener('turbolinks:load', function() {
         },
         sending: function(file, xhr, formData) {
           formData.append('_token', CSRF_TOKEN);
-          formData.append('upload_path', manager.files.path);
+          // formData.append('upload_path', manager.files.path);
+          formData.append('upload_path', manager.currPath);
         },
         success: function(e, res) {
           if (res.success) {
@@ -105,8 +111,8 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       $('#new_folder_submit').click(function() {
-        new_folder_path =
-          manager.files.path + '/' + $('#new_folder_name').val();
+        let new_folder_path = manager.files.path + '/' + $('#new_folder_name').val();
+
         $.post(
           options.baseUrl + '/media/new_folder',
           {
@@ -175,10 +181,11 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       $('#move_btn').click(function() {
-        source = manager.selected_file.name;
-        destination =
-          $('#move_folder_dropdown').val() + '/' + manager.selected_file.name;
+        let source = manager.selected_file.name,
+            destination = $('#move_folder_dropdown').val() + '/' + manager.selected_file.name;
+
         $('#move_file_modal').modal('hide');
+
         $.post(
           options.baseUrl + '/media/move_file',
           {
@@ -199,10 +206,12 @@ document.addEventListener('turbolinks:load', function() {
       });
 
       $('#rename_btn').click(function() {
-        source = manager.selected_file.path;
-        filename = manager.selected_file.name;
-        new_filename = manager.new_filename;
+        let source = manager.selected_file.path,
+            filename = manager.selected_file.name,
+            new_filename = manager.new_filename;
+
         $('#rename_file_modal').modal('hide');
+
         $.post(
           options.baseUrl + '/media/rename_file',
           {
@@ -264,7 +273,7 @@ document.addEventListener('turbolinks:load', function() {
         let folder_location = '/';
 
         if (folders != '/') {
-          folder_location = '/' + folders.join('/');
+          folder_location = manager.currPath;
         }
 
         $('#file_loader').fadeIn();
