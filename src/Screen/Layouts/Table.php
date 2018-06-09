@@ -6,6 +6,9 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Repository;
 
+/**
+ * Class Table
+ */
 abstract class Table
 {
     /**
@@ -19,11 +22,9 @@ abstract class Table
     public $data;
 
     /**
-     * @param $query
+     * @param \Orchid\Screen\Repository $query
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {
@@ -33,7 +34,7 @@ abstract class Table
         return view($this->template, [
             'form'    => $form,
             'filters' => $filters,
-        ])->render();
+        ]);
     }
 
     /**

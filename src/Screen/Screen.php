@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,27 +64,24 @@ abstract class Screen
     abstract public function layout() : array;
 
     /**
-     * @return array
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Throwable
      */
-    public function build() : array
+    public function build() : View
     {
         $query = call_user_func_array([$this, 'query'], $this->arguments);
         $post = new Repository($query);
 
-        foreach ($this->layout() as $layout) {
-            if (is_object($layout)) {
-                $build[] = $layout->build($post);
-                continue;
-            }
+        $layout = Layouts::blank([
+            $this->layout()
+        ]);
 
-            $build[] = (new $layout())->build($post);
-        }
-
-        return $build ?? [];
+        return $layout->build($post);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function view()
     {
@@ -98,9 +96,9 @@ abstract class Screen
      * @param null $method
      * @param null $parameters
      *
-     * @throws \ReflectionException
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
     public function handle($method = null, $parameters = null)
     {

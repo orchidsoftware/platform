@@ -210,7 +210,7 @@ class TD
      *
      * @return TD
      */
-    public function link(string $route, $options, string $text = null)
+    public function link(string $route, $options, string $text = null) : self
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
@@ -237,6 +237,46 @@ class TD
                 'attributes' => $attributes,
                 'text'       => $text,
             ]);
+        });
+
+        return $this;
+    }
+
+    /**
+     * @param string      $modal
+     * @param             $options
+     * @param string|null $text
+     *
+     * @return \Orchid\Screen\Fields\TD
+     */
+    public function loadModalAsync(string $modal, $options, string $text = null) : self
+    {
+        $this->setRender(function ($datum) use ($modal, $options, $text) {
+            $attributes = [];
+
+            if (! is_array($options)) {
+                $options = [$options];
+            }
+
+            foreach ($options as $option) {
+                if (method_exists($datum, 'getContent')) {
+                    $attributes[] = $datum->getContent($option);
+                    continue;
+                }
+
+                $attributes[] = $datum->getAttribute($option);
+            }
+
+            if (! is_null($text)) {
+                $text = $datum->getContent($text);
+            }
+
+            return view('platform::partials.td.async', [
+                'modal'      => $modal,
+                'attributes' => $attributes,
+                'text'       => $text,
+            ]);
+
         });
 
         return $this;

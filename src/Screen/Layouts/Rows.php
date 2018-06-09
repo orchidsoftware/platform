@@ -7,6 +7,9 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Fields\Builder;
 use Orchid\Screen\Repository;
 
+/**
+ * Class Rows
+ */
 abstract class Rows
 {
     /**
@@ -20,26 +23,25 @@ abstract class Rows
     public $query;
 
     /**
-     * @param $query
+     * @param \Orchid\Screen\Repository $query
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Throwable
-     *
-     * @return array
      */
-    public function build($query)
+    public function build(Repository $query)
     {
         $this->query = $query;
         $form = new Builder($this->fields(), $query);
 
         return view($this->template, [
             'form' => $form->generateForm(),
-        ])->render();
+        ]);
     }
 
     /**
      * @return array
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [];
     }

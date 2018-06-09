@@ -7,6 +7,7 @@ namespace Orchid\Screen;
 /**
  * Class Layouts.
  *
+ * @method static Layouts blank(array $name)
  * @method static Layouts tabs(array $name)
  * @method static Layouts columns(array $name)
  * @method static Layouts modals(array $name)
@@ -24,6 +25,7 @@ class Layouts
      * @var array
      */
     public $templates = [
+        'blank'   => 'platform::container.layouts.blank',
         'tabs'    => 'platform::container.layouts.tabs',
         'columns' => 'platform::container.layouts.columns',
         'modals'  => 'platform::container.layouts.modals',
@@ -36,9 +38,40 @@ class Layouts
     public $layouts = [];
 
     /**
+     * @var bool
+     */
+    public $async = false;
+
+    /**
+     * @var array
+     */
+    public $asyncData = [];
+
+    /**
+     * @var
+     */
+    public $slug;
+
+    /**
      * @var array
      */
     public $compose = [];
+
+    /**
+     * Layouts constructor.
+     */
+    public function __construct()
+    {
+        /*
+        foreach ($this->layouts as $key => $template){
+            $obj = new class extends BaseLayouts{};
+            $obj->template = $template;
+            $this->layouts[$key] = $obj;
+        }
+        */
+
+        $this->slug = spl_object_hash($this);
+    }
 
     /**
      * @param $name
@@ -92,24 +125,36 @@ class Layouts
      *
      * @return array
      */
-    public function build($post)
+    public function build(Repository $post)
     {
-        if (is_string($this->layouts)) {
-            $params = $post->toArray();
-            $params['compose'] = $this->compose;
-
-            return view($this->layouts, $params);
-        }
-
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                $build[$key][] = is_object($layout) ? $layout->build($post) : (new $layout())->build($post);
+                if(!is_object($layout)) {
+                    $layout = new $layout();
+                }
+                $build[$key][] = $layout->build($post);
             }
         }
 
         return view($this->templates[$this->active], [
             'manyForms' => $build ?? [],
             'compose'   => $this->compose,
+            'templateSlug'  => $this->slug,
+            'templateAsync' => $this->async,
         ]);
+    }
+
+    /**
+     * @param \Closure $post
+     * @param bool     $async
+     *
+     * @return \Orchid\Screen\Layouts
+     */
+    public function async(\Closure $post,$async = true) : self
+    {
+        $this->async = $async;
+        $this->asyncData = $post;
+
+        return $this;
     }
 }

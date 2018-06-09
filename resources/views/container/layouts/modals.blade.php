@@ -12,7 +12,13 @@
                     </div>
                     <div class="modal-body">
                         @foreach($modal as $item)
+
+                            <div data-controller="layouts-loader"
+                                 data-layouts-loader-slug="{{$templateSlug}}"
+                                 data-layouts-loader-async="{{$templateAsync}}"
+                                 data-layouts-loader-url="Указать адрес">
                             {!! $item or '' !!}
+                            </div>
                         @endforeach
 
                         @csrf
@@ -24,13 +30,6 @@
                 </form>
             </div>
         </div>
-
-        <script>
-            $('#title-modal-{{$key}}').html($('#show-button-modal-{{$key}}').data('modalTitle'));
-            $('#submit-modal-{{$key}}').attr('formaction', $('#show-button-modal-{{$key}}').data('modalAction'));
-            $('#screen-modal-type-{{$key}}').addClass($('#show-button-modal-{{$key}}').data('modalType'));
-        </script>
-
     @endforeach
 
 

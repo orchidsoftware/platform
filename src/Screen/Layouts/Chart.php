@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Repository;
+
+/**
+ * Class Chart
+ */
 abstract class Chart
 {
     /**
@@ -41,13 +46,11 @@ abstract class Chart
     public $data = '';
 
     /**
-     * @param $query
+     * @param \Orchid\Screen\Repository $query
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function build($query)
+    public function build(Repository $query)
     {
         return view($this->template, [
             'title'  => $this->title,
@@ -56,6 +59,6 @@ abstract class Chart
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
             'data'   => json_encode($query->getContent($this->data)),
-        ])->render();
+        ]);
     }
 }

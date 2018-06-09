@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
+use App\Layouts\TestRow;
 use Orchid\Platform\Models\User;
+use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
@@ -50,6 +52,10 @@ class UserList extends Screen
             Link::name(trans('platform::common.commands.add'))
                 ->icon('icon-plus')
                 ->method('create'),
+            Link::name('Edit password')
+                ->modal('oneSynhModal')
+                ->title('Change password')
+                ->method('changePassword'),
         ];
     }
 
@@ -61,6 +67,21 @@ class UserList extends Screen
     public function layout() : array
     {
         return [
+/*
+            Layouts::modals([
+                'oneSynhModal' => [
+                    TestRow::class
+                ]
+            ]),
+*/
+            Layouts::modals([
+               'oneAsyncModal' => [
+                   TestRow::class
+               ]
+            ])->async(function (){
+                return $this->getUser();
+            }),
+
             UserListLayout::class,
         ];
     }
@@ -71,5 +92,13 @@ class UserList extends Screen
     public function create()
     {
         return redirect()->route('platform.systems.users.create');
+    }
+
+
+    private function getUser()
+    {
+        return [
+            'id' => '1',
+        ];
     }
 }
