@@ -13,7 +13,7 @@
         </li>
         <li class="nav-item">
             <button type="button" class="btn btn-link" id="new_folder"
-                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
+                    onclick="$('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
                 {{trans('dashboard::systems/media.create_new_folder')}}
             </button>
         </li>
