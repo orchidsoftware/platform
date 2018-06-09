@@ -28,11 +28,6 @@
             </button>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
-                {{trans('dashboard::systems/media.move_file_folder')}}
-            </button>
-        </li>
-        <li class="nav-item">
             <button type="button" class="btn btn-link" id="rename"><i class="icon-font"></i>
                 {{trans('dashboard::systems/media.new_file_folder')}}
             </button>
