@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 abstract class Screen
@@ -73,7 +73,7 @@ abstract class Screen
         $post = new Repository($query);
 
         $layout = Layouts::blank([
-            $this->layout()
+            $this->layout(),
         ]);
 
         return $layout->build($post);

@@ -8,7 +8,7 @@ use Orchid\Screen\Repository;
 use Orchid\Screen\Fields\Builder;
 
 /**
- * Class Rows
+ * Class Rows.
  */
 abstract class Rows
 {

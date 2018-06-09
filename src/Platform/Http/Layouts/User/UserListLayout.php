@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\User;
 
-use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Fields\TD;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Platform\Http\Filters\RoleFilter;
@@ -43,7 +42,7 @@ class UserListLayout extends Table
                 ->sort()
                 ->link('platform.systems.users.edit', 'id', 'name'),
             TD::set('email', trans('platform::systems/users.email'))
-                ->loadModalAsync('oneAsyncModal','id', 'email')
+                ->loadModalAsync('oneAsyncModal', 'id', 'email')
                 ->sort(),
             TD::set('updated_at', trans('platform::common.Last edit'))
                 ->sort(),

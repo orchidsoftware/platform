@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
-use App\Layouts\TestRow;
-use Orchid\Platform\Models\User;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
+use App\Layouts\TestRow;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Platform\Models\User;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen
@@ -76,9 +76,9 @@ class UserList extends Screen
 */
             Layouts::modals([
                'oneAsyncModal' => [
-                   TestRow::class
-               ]
-            ])->async(function (){
+                   TestRow::class,
+               ],
+            ])->async(function () {
                 return $this->getUser();
             }),
 
@@ -93,7 +93,6 @@ class UserList extends Screen
     {
         return redirect()->route('platform.systems.users.create');
     }
-
 
     private function getUser()
     {

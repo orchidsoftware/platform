@@ -275,7 +275,6 @@ class TD
                 'attributes' => $attributes,
                 'text'       => $text,
             ]);
-
         });
 
         return $this;
