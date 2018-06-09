@@ -13,18 +13,13 @@
         </li>
         <li class="nav-item">
             <button type="button" class="btn btn-link" id="new_folder"
-                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
+                    onclick="$('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
                 {{trans('dashboard::systems/media.create_new_folder')}}
             </button>
         </li>
         <li class="nav-item">
             <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
                 {{trans('dashboard::systems/media.refresh')}}
-            </button>
-        </li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
-                {{trans('dashboard::systems/media.move_file_folder')}}
             </button>
         </li>
         <li class="nav-item">
