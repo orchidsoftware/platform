@@ -37,7 +37,7 @@ require('./modules/select');
 
 window.Inputmask = require('inputmask');
 
-require('../../../node_modules/select2/dist/js/select2.full.min');
+require('select2');
 $(() => {
   $('.select2-enable').select2({
     theme: 'bootstrap',
@@ -52,7 +52,7 @@ require('./modules/leftMenu');
 require('./modules/open-click');
 require('./modules/inputmask');
 
-window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
+window.Chart = require('frappe-charts');
 
 //Code editor
 window.ace = require('brace');
@@ -60,11 +60,11 @@ require('brace/mode/javascript');
 require('brace/theme/monokai');
 
 //Tinymce editor
-require('../../../node_modules/tinymce/tinymce.min');
+require('tinymce');
 tinyMCE.baseURL = '/orchid/js/tinymce';
 
 //SimpleMDE editor
-window.SimpleMDE = require('../../../node_modules/simplemde/dist/simplemde.min.js');
+window.SimpleMDE = require('simplemde');
 
 require('./components/attachment');
 require('./components/filemanager');

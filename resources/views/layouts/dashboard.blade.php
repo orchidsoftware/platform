@@ -32,6 +32,8 @@
 
     @stack('stylesheets')
 
+    <script src="{{ mix('/js/manifest.js','orchid')}}" type="text/javascript"></script>
+    <script src="{{ mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>
     <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
 </head>
 
