@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
-use Orchid\Platform\Models\User;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Platform\Models\User;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen

@@ -153,6 +153,7 @@ class InstallCommand extends Command
                 'email'    => $this->ask('What is your email?', 'admin@admin.com'),
                 'password' => $this->secret('What is the password?', 'password'),
             ]);
+
             return $this;
         }
 

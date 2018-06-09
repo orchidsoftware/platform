@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\View\View;
-use Orchid\Press\Models\Category;
 use Orchid\Forms\FormGroup;
+use Orchid\Press\Models\Category;
 use Orchid\Platform\Events\CategoryEvent;
 
 class CategoryFormGroup extends FormGroup

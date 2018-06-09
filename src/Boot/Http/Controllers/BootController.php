@@ -11,9 +11,6 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class BootController extends Controller
 {
-    /**
-     *
-     */
     const MODELS = 'platform::boot.models';
 
     /**

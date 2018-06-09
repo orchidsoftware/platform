@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Link;
 use Orchid\Support\Facades\Alert;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Http\Layouts\User\UserEditLayout;
