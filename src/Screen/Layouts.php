@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-/**
+/*
  * Class Layouts.
  *
  * @method static Layouts blank(array $name)
@@ -14,9 +14,9 @@ namespace Orchid\Screen;
  * @method static Layouts div(array $name)
  * @method static Layouts view(string $name)
  */
- 
-use Illuminate\Support\Facades\Route; 
- 
+
+use Illuminate\Support\Facades\Route;
+
 class Layouts
 {
     /**
@@ -158,7 +158,7 @@ class Layouts
         //if (is_null($route)) {$route=Route::currentRouteName();}
         $this->async = $async;
         $this->asyncMethod = $method;
-        $this->asyncRoute  = !is_null($route)?$route:Route::currentRouteName();
+        $this->asyncRoute = ! is_null($route) ? $route : Route::currentRouteName();
 
         return $this;
     }
