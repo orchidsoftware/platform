@@ -1,6 +1,5 @@
 @push('modals-container')
 
-
     @foreach($manyForms as $key => $modal)
 
         <div class="modal fade in"
@@ -21,9 +20,11 @@
                         <h4 class="modal-title" data-target="screen--modal.title"></h4>
                     </div>
                     <div class="modal-body">
-                        @foreach($modal as $item)
-                            {!! $item or '' !!}
-                        @endforeach
+                        <div class="async-content">
+                            @foreach($modal as $item)
+                                {!! $item or '' !!}
+                            @endforeach
+                        </div>
 
                         @csrf
                     </div>

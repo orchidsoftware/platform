@@ -86,20 +86,17 @@ abstract class Screen
      * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
      */
-    public function asyncBuild(string $method, string $slugLayouts)
+    public function asyncBuild($method, $slugLayouts)
     {
         $query = call_user_func_array([$this, $method], $this->arguments);
         $post = new Repository($query);
 
-        foreach ($this->layout() as $layout) {
-            if (is_object($layout) && property_exists($layout, 'slug') && $layout->slug == $slugLayouts) {
-                return view('platform::container.layouts.async', [
-                    'builds'    => $layout->build($post),
-                    'arguments' => $this->arguments,
-                    'screen'    => $this,
-                ]);
+        foreach ($this->layout() as $layout){
+            if(is_object($layout) && property_exists($layout,'slug') && $layout->slug == $slugLayouts){
+                return $layout->build($post,true);
             }
         }
+
     }
 
     /**
@@ -133,8 +130,8 @@ abstract class Screen
             return $this->view();
         }
 
-        if (starts_with($method, 'async')) {
-            return $this->asyncBuild($method, $parameters);
+        if(starts_with($method,'async')){
+           return $this->asyncBuild($method,$parameters);
         }
 
         if (! is_null($parameters)) {

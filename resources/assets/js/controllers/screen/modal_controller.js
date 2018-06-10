@@ -30,10 +30,9 @@ export default class extends Controller {
      * @param params
      */
     asyncLoadData(params) {
+        let modal = this;
         axios.post( this.data.get('url') +'/'+ this.data.get('method') + '/' + this.data.get('slug'),params).then(function (response) {
-            console.log(response);
+            modal.element.querySelector('[class="async-content"]').innerHTML = response.data;
         });
-
-        console.log('Асинхроно загрузить форму')
     }
 }

@@ -4912,11 +4912,10 @@ var _class = function (_Controller) {
     }, {
         key: "asyncLoadData",
         value: function asyncLoadData(params) {
+            var modal = this;
             axios.post(this.data.get('url') + '/' + this.data.get('method') + '/' + this.data.get('slug'), params).then(function (response) {
-                console.log(response);
+                modal.element.querySelector('[class="async-content"]').innerHTML = response.data;
             });
-
-            console.log('Асинхроно загрузить форму');
         }
     }]);
 

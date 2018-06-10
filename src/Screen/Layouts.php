@@ -118,7 +118,7 @@ class Layouts
      *
      * @return array
      */
-    public function build(Repository $post)
+    public function build(Repository $post,$async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
@@ -129,7 +129,7 @@ class Layouts
             }
         }
 
-        return view($this->templates[$this->active], [
+        return view($async ? 'platform::container.layouts.async' : $this->templates[$this->active], [
             'manyForms' => $build ?? [],
             'compose'   => $this->compose,
             'templateSlug'  => $this->slug,
