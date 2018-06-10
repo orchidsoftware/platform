@@ -1,7 +1,7 @@
 @extends('platform::layouts.dashboard')
 @section('title',trans($screen->name))
 @section('description',trans($screen->description))
-@section('controller','screens--base')
+@section('controller','screen--base')
 @section('navbar')
     <ul class="nav justify-content-end v-center">
         @foreach($screen->commandBar() as $command)
@@ -21,7 +21,7 @@
         </div>
     </section>
     <div id="modals-container">
-        @yield('modals-container')
+        @stack('modals-container')
     </div>
     <form id="filters"></form>
 @stop

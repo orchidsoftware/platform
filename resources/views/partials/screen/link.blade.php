@@ -2,7 +2,7 @@
 
     <button type="button"
             class="btn btn-link"
-            data-action="screens--base#targetModal"
+            data-action="screen--base#targetModal"
             data-modal-title="{{$title or ''}}"
             data-modal-key="{{$modal or ''}}"
             data-modal-action="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}"

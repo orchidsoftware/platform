@@ -45,7 +45,7 @@ class Layouts
     /**
      * @var array
      */
-    public $asyncData = [];
+    public $asyncMethod;
 
     /**
      * @var
@@ -62,15 +62,7 @@ class Layouts
      */
     public function __construct()
     {
-        /*
-        foreach ($this->layouts as $key => $template){
-            $obj = new class extends BaseLayouts{};
-            $obj->template = $template;
-            $this->layouts[$key] = $obj;
-        }
-        */
-
-        $this->slug = spl_object_hash($this);
+        $this->slug = sha1(serialize($this));
     }
 
     /**
@@ -114,6 +106,7 @@ class Layouts
     protected function setLayouts($property)
     {
         $this->layouts = $property;
+        $this->slug = sha1(serialize($this));
 
         return $this;
     }
@@ -141,19 +134,20 @@ class Layouts
             'compose'   => $this->compose,
             'templateSlug'  => $this->slug,
             'templateAsync' => $this->async,
+            'templateAsyncMethod' => $this->asyncMethod,
         ]);
     }
 
     /**
-     * @param \Closure $post
-     * @param bool     $async
+     * @param string $method
+     * @param bool   $async
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(\Closure $post,$async = true) : self
+    public function async(string $method,$async = true) : self
     {
         $this->async = $async;
-        $this->asyncData = $post;
+        $this->asyncMethod = $method;
 
         return $this;
     }

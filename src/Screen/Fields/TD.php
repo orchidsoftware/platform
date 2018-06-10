@@ -136,13 +136,13 @@ class TD
      */
     public function column(string $column = null)
     {
-        if (! is_null($column)) {
+        if (!is_null($column)) {
             $this->column = $column;
         }
 
-        if (! is_null($column) && $this->locale) {
-            $locale = '.'.app()->getLocale().'.';
-            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
+        if (!is_null($column) && $this->locale) {
+            $locale = '.' . app()->getLocale() . '.';
+            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
         }
 
         return $this;
@@ -166,18 +166,6 @@ class TD
     public function sort()
     {
         $this->sort = true;
-
-        return $this;
-    }
-
-    /**
-     * @param \Closure $closure
-     *
-     * @return $this
-     */
-    public function setRender(Closure $closure)
-    {
-        $this->render = $closure;
 
         return $this;
     }
@@ -209,12 +197,12 @@ class TD
      *
      * @return TD
      */
-    public function link(string $route, $options, string $text = null) : self
+    public function link(string $route, $options, string $text = null): self
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
 
-            if (! is_array($options)) {
+            if (!is_array($options)) {
                 $options = [$options];
             }
 
@@ -227,7 +215,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (! is_null($text)) {
+            if (!is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
@@ -242,18 +230,31 @@ class TD
     }
 
     /**
+     * @param \Closure $closure
+     *
+     * @return $this
+     */
+    public function setRender(Closure $closure)
+    {
+        $this->render = $closure;
+
+        return $this;
+    }
+
+    /**
      * @param string      $modal
+     * @param             $method
      * @param             $options
      * @param string|null $text
      *
      * @return \Orchid\Screen\Fields\TD
      */
-    public function loadModalAsync(string $modal, $options, string $text = null) : self
+    public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
-        $this->setRender(function ($datum) use ($modal, $options, $text) {
+        $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
 
-            if (! is_array($options)) {
+            if (!is_array($options)) {
                 $options = [$options];
             }
 
@@ -266,7 +267,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (! is_null($text)) {
+            if (!is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
@@ -274,6 +275,7 @@ class TD
                 'modal'      => $modal,
                 'attributes' => $attributes,
                 'text'       => $text,
+                'method'     => $method,
             ]);
 
         });

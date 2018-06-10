@@ -1,8 +1,10 @@
 <a href="#"
-   data-action="screens--base#targetAsyncModal"
+   data-action="screen--base#targetModal"
    data-modal-title="Асинхронная модалочка"
+   data-modal-async="true"
    data-modal-key="{{$modal or ''}}"
-   data-modal-action="{{route(Route::currentRouteName(),$attributes)}}/async"
+   data-modal-params="@json($attributes)"
+   data-modal-action="{{route(Route::currentRouteName(),$attributes)}}/{{$method}}"
 >
     {{$text}}
 </a>

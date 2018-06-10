@@ -43,7 +43,7 @@ class UserListLayout extends Table
                 ->sort()
                 ->link('platform.systems.users.edit', 'id', 'name'),
             TD::set('email', trans('platform::systems/users.email'))
-                ->loadModalAsync('oneAsyncModal','id', 'email')
+                ->loadModalAsync('oneAsyncModal','saveUser','id', 'email')
                 ->sort(),
             TD::set('updated_at', trans('platform::common.Last edit'))
                 ->sort(),

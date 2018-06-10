@@ -67,20 +67,18 @@ class UserList extends Screen
     public function layout() : array
     {
         return [
-/*
+
             Layouts::modals([
                 'oneSynhModal' => [
                     TestRow::class
                 ]
             ]),
-*/
+
             Layouts::modals([
                'oneAsyncModal' => [
                    TestRow::class
                ]
-            ])->async(function (){
-                return $this->getUser();
-            }),
+            ])->async('asyncGetUser'),
 
             UserListLayout::class,
         ];
@@ -95,7 +93,10 @@ class UserList extends Screen
     }
 
 
-    private function getUser()
+    /**
+     *
+     */
+    public function asyncGetUser() : array
     {
         return [
             'id' => '1',
