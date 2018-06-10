@@ -243,7 +243,6 @@ class TD
 
     /**
      * @param string      $modal
-     * @param string      $route
      * @param             $method
      * @param             $options
      * @param string|null $text
