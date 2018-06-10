@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
-use App\Layouts\TestRow;
-use Orchid\Platform\Http\Layouts\User\UserEditLayout;
-use Orchid\Platform\Http\Layouts\User\UserRoleLayout;
-use Orchid\Platform\Models\User;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Platform\Models\User;
+use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen
@@ -70,7 +68,7 @@ class UserList extends Screen
             Layouts::modals([
                 'oneAsyncModal' => [
                     UserEditLayout::class,
-                ]
+                ],
             ])->async('asyncGetUser'),
         ];
     }
@@ -83,14 +81,11 @@ class UserList extends Screen
         return redirect()->route('platform.systems.users.create');
     }
 
-    /**
-     *
-     */
     public function asyncGetUser() : array
     {
         // переписать эту херню
-            $id = $this->request->json()->all();
-            $id = array_shift($id);
+        $id = $this->request->json()->all();
+        $id = array_shift($id);
         // переписать эту херню
 
         $user = is_null($id) ? new User() : User::findOrFail($id);

@@ -91,12 +91,11 @@ abstract class Screen
         $query = call_user_func_array([$this, $method], $this->arguments);
         $post = new Repository($query);
 
-        foreach ($this->layout() as $layout){
-            if(is_object($layout) && property_exists($layout,'slug') && $layout->slug == $slugLayouts){
-                return $layout->build($post,true);
+        foreach ($this->layout() as $layout) {
+            if (is_object($layout) && property_exists($layout, 'slug') && $layout->slug == $slugLayouts) {
+                return $layout->build($post, true);
             }
         }
-
     }
 
     /**
@@ -130,8 +129,8 @@ abstract class Screen
             return $this->view();
         }
 
-        if(starts_with($method,'async')){
-           return $this->asyncBuild($method,$parameters);
+        if (starts_with($method, 'async')) {
+            return $this->asyncBuild($method, $parameters);
         }
 
         if (! is_null($parameters)) {

@@ -118,7 +118,7 @@ class Layouts
      *
      * @return array
      */
-    public function build(Repository $post,$async = false)
+    public function build(Repository $post, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
