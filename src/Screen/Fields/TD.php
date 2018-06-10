@@ -136,13 +136,13 @@ class TD
      */
     public function column(string $column = null)
     {
-        if (!is_null($column)) {
+        if (! is_null($column)) {
             $this->column = $column;
         }
 
-        if (!is_null($column) && $this->locale) {
-            $locale = '.' . app()->getLocale() . '.';
-            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
+        if (! is_null($column) && $this->locale) {
+            $locale = '.'.app()->getLocale().'.';
+            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
         }
 
         return $this;
@@ -202,7 +202,7 @@ class TD
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
 
-            if (!is_array($options)) {
+            if (! is_array($options)) {
                 $options = [$options];
             }
 
@@ -215,7 +215,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (!is_null($text)) {
+            if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
@@ -254,7 +254,7 @@ class TD
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
 
-            if (!is_array($options)) {
+            if (! is_array($options)) {
                 $options = [$options];
             }
 
@@ -267,7 +267,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (!is_null($text)) {
+            if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
 

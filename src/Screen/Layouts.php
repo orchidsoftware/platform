@@ -122,7 +122,7 @@ class Layouts
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                if(!is_object($layout)) {
+                if (! is_object($layout)) {
                     $layout = new $layout();
                 }
                 $build[$key][] = $layout->build($post);
@@ -144,7 +144,7 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(string $method,$async = true) : self
+    public function async(string $method, $async = true) : self
     {
         $this->async = $async;
         $this->asyncMethod = $method;
