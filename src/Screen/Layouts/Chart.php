@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Chart
+ * Class Chart.
  */
 abstract class Chart
 {

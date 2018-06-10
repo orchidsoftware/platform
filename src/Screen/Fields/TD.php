@@ -277,7 +277,6 @@ class TD
                 'text'       => $text,
                 'method'     => $method,
             ]);
-
         });
 
         return $this;

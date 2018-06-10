@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Table
+ * Class Table.
  */
 abstract class Table
 {
