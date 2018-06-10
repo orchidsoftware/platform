@@ -14,6 +14,9 @@ namespace Orchid\Screen;
  * @method static Layouts div(array $name)
  * @method static Layouts view(string $name)
  */
+ 
+use Illuminate\Support\Facades\Route; 
+ 
 class Layouts
 {
     /**
@@ -46,6 +49,11 @@ class Layouts
      * @var array
      */
     public $asyncMethod;
+
+    /**
+     * @var array
+     */
+    public $asyncRoute;
 
     /**
      * @var
@@ -135,6 +143,7 @@ class Layouts
             'templateSlug'  => $this->slug,
             'templateAsync' => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
+            'templateAsyncRoute'  => $this->asyncRoute,
         ]);
     }
 
@@ -144,10 +153,12 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(string $method, $async = true) : self
+    public function async(string $method, string $route = null, $async = true) : self
     {
+        //if (is_null($route)) {$route=Route::currentRouteName();}
         $this->async = $async;
         $this->asyncMethod = $method;
+        $this->asyncRoute  = !is_null($route)?$route:Route::currentRouteName();
 
         return $this;
     }

@@ -37,6 +37,8 @@ $(() => {
 $.fn.select2.defaults.set('theme', 'bootstrap');
 require('croppie');
 
+require('form-serializer');
+
 require('./modules/datetimepicker');
 require('./modules/open-click');
 

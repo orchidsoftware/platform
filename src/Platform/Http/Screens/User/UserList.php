@@ -7,6 +7,8 @@ namespace Orchid\Platform\Http\Screens\User;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
+use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
@@ -95,8 +97,22 @@ class UserList extends Screen
         ];
     }
 
-    public function saveUser()
+    public function saveUser($id)
     {
-        dd('Сохранить пользователя');
+        $user = User::findOrFail($id);
+        $attributes = $this->request->get('user');
+        
+        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
+            unset($attributes['password']);
+        } else {
+            $user->password = Hash::make($attributes['password']);
+            unset($attributes['password']);
+        }
+
+        $user->fill($attributes)->save();
+
+        Alert::info(trans('platform::systems/users.User was saved')); 
+        //Alert показывается только после перехода на другую страницу
+        //Также изменения видны только после перезагрузки страницы
     }
 }

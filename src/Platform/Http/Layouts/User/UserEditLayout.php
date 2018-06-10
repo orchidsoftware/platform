@@ -18,6 +18,7 @@ class UserEditLayout extends Rows
      */
     public function fields(): array
     {
+        //dd($this->query);
         return [
             Field::tag('input')
                 ->type('text')

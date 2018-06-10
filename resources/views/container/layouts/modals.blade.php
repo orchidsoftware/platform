@@ -10,7 +10,7 @@
              data-screen--modal-slug="{{$templateSlug}}"
              data-screen--modal-async="{{$templateAsync}}"
              data-screen--modal-method ="{{$templateAsyncMethod}}"
-             data-screen--modal-url="{{route(Route::currentRouteName())}}"
+             data-screen--modal-url="{{route($templateAsyncRoute)}}"
         >
             <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content" method="post" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="submit-modal-{{$key}}"
-                                class="btn btn-primary">{{trans('platform::common.apply')}}</button>
+                                class="btn btn-primary" data-action="screen--modal#submit">{{trans('platform::common.apply')}}</button>
                     </div>
                 </form>
             </div>

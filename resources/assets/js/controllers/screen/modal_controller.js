@@ -17,7 +17,7 @@ export default class extends Controller {
     open(options) {
         this.titleTarget.textContent = options.title;
         this.element.querySelector('form').action = options.submit;
-
+        
         if(this.data.get('async')){
             this.asyncLoadData(JSON.parse(options.params));
         }
@@ -35,4 +35,16 @@ export default class extends Controller {
             modal.element.querySelector('[class="async-content"]').innerHTML = response.data;
         });
     }
+    
+    submit (event) {
+        event.preventDefault();
+        const posturl = this.element.querySelector('form').action ;
+        
+        var formData = $(this.element.querySelector('form')).serializeObject();
+        axios.post( posturl,formData).then();
+        
+        $(this.element).modal('toggle');
+    }
+    
+    
 }
