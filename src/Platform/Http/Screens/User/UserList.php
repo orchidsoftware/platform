@@ -100,7 +100,7 @@ class UserList extends Screen
     public function saveUser($id)
     {
         $user = User::findOrFail($id);
-        
+
         $attributes = $this->request->get('user');
 
         if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
@@ -113,7 +113,7 @@ class UserList extends Screen
         $user->fill($attributes)->save();
 
         Alert::info(trans('platform::systems/users.User was saved'));
-        
+
         return redirect()->route('platform.systems.users');
     }
 }
