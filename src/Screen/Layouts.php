@@ -49,12 +49,12 @@ class Layouts
      * @var array
      */
     public $asyncRoute;
-    
+
     /**
      * @var bool
      */
     public $async = false;
-    
+
     /**
      * @var bool
      */
@@ -164,7 +164,7 @@ class Layouts
         $this->async = $async;
         $this->asyncMethod = $method;
         $this->asyncRoute = ! is_null($route) ? $route : Route::currentRouteName();
-        $this->asyncSaveAjax = $saveajax;    
+        $this->asyncSaveAjax = $saveajax;
 
         return $this;
     }
