@@ -15,8 +15,6 @@ namespace Orchid\Screen;
  * @method static Layouts view(string $name)
  */
 
-use Illuminate\Support\Facades\Route;
-
 class Layouts
 {
     /**
@@ -163,8 +161,8 @@ class Layouts
     {
         $this->async = $async;
         $this->asyncMethod = $method;
-        $this->asyncRoute  = $route;
-        $this->asyncSaveAjax = $saveajax;    
+        $this->asyncRoute = $route;
+        $this->asyncSaveAjax = $saveajax;
 
         return $this;
     }
