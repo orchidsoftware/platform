@@ -49,12 +49,12 @@ class Layouts
      * @var array
      */
     public $asyncRoute;
-    
+
     /**
      * @var bool
      */
     public $async = false;
-    
+
     /**
      * @var bool
      */
