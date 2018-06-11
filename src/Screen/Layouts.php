@@ -163,7 +163,7 @@ class Layouts
     {
         $this->async = $async;
         $this->asyncMethod = $method;
-        $this->asyncRoute = ! is_null($route) ? $route : Route::currentRouteName();
+        $this->asyncRoute  = $route;
         $this->asyncSaveAjax = $saveajax;    
 
         return $this;

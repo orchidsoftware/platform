@@ -221,6 +221,17 @@ public function layout() : array
                 PatientFirstRows::class,
             ],
         ]),
+        // Модальное окно получающее данные через POST запрос
+        Layouts::modals([
+            'oneAsyncModal' => [
+                UserEditLayout::class,
+            ],
+        ])->async($method,$route,$async,$saveajax), 
+        /* Где $method - функция которая отсылает данные на POST запрос
+         * $route - Роут к функции $method (по умолчанию Route::currentRouteName() )
+         * $async - если true модельное окно получающее данные через POST (по умолчанию true)
+         * $saveajax - также позволяет сохранить данные через POST
+         */
     ];
 }
 ```

@@ -10,7 +10,7 @@
              data-screen--modal-slug="{{$templateSlug}}"
              data-screen--modal-async="{{$templateAsync}}"
              data-screen--modal-method ="{{$templateAsyncMethod}}"
-             data-screen--modal-url="{{route($templateAsyncRoute)}}"
+             data-screen--modal-url="{{route($templateAsyncRoute ?? Route::currentRouteName())}}"
         >
             <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content" method="post" enctype="multipart/form-data">

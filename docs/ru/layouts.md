@@ -27,11 +27,11 @@ php artisan make:table PatientListLayout
 ```php
 namespace App\Layouts\Clinic\Patient;
 
-use App\Http\Filters\LastNamePatient;
-use Orchid\Platform\Http\Filters\CreatedFilter;
+use Orchid\Screen\Fields\TD;
+use Orchid\Screen\Layouts\Table;
+
 use Orchid\Platform\Http\Filters\SearchFilter;
-use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Layouts\Table;
+use App\Http\Filters\LastNamePatient;
 
 class PatientListLayout extends Table
 {
@@ -60,32 +60,78 @@ class PatientListLayout extends Table
     public function fields() : array
     {
         return [
-            TD::name('last_name')
-                ->title('Last name')
+            TD::set('last_name','Last name')
+                ->align('center')
+                ->width('100px')
                 ->setRender(function ($patient) {
                     return '<a href="' . route('platform.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
                 }),
 
             TD::name('first_name')
-                ->title('First Name'),
+                ->title('First Name')
+                ->sort()
+                ->link('platform.clinic.patient.edit', 'id'),
                 
-            TD::name('phone')
-                ->title('Phone'),
+            TD::set('phone','Phone')
+                ->loadModalAsync('oneAsyncModal', 'savePhone', 'id', 'phone'),
                 
-            TD::name('first_name')
-                ->title('First Name'),
+            TD::set('email','Email'),
                 
-            TD::name('email')
-                ->title('Email'),
-                
-            TD::name('created_at')
-                ->title('Date of publication'),
+            TD::set('created_at','Date of publication'),
                
         ];
     }
 }
 ```
+### Доступные методы
+
+
+#### align()
+
+Метод `align()` горизонтальное выравнивание текста, принимает значения: 'left', 'center', 'right'
+
+#### link()
+
+Метод `link($route,$key)` добавляет в ячейку ссылку, например на редактирование данной записи.
+
+#### linkPost()
+
+Метод `linkPost($text)` добавляет в ячейку ссылку на текущий пост (используется в списке постов).
+
+#### locale()
+
+Метод `locale()` отображение данных столбца согласно текущему языку локали.
+
+#### loadModalAsync()
+
+Метод `loadModalAsync($modal, $method, $options, $text)` добавляет модальное окно к каждой ячейке столбца. Где атрибуты $modal - название модального окна, $method - метод (функция) который отправляет данные через POST запрос, $options дополнителиные атрибуты, например id или slug, $text - отображаемое значение ячейки.
+
+#### name()
+
+Метод `name($key)` устанавливает имя ключа из массива значения которого отображать в таблице.
+
+#### set()
+
+Метод `set($key, $name)` основной метод устанавливает имя ключа из массива и отображаемое название. Заменяет методы `name()` и `title()`.
+
+#### setRender()
+
+Метод `setRender(function ($item) { return $item->id})` возможность генерации ячейки согласно функции. В $item передаются данные текущей строки.
+
+#### sort()
+
+Метод `sort()` добавляет в заголовок возможность сортировки по данному столбцу.
+
+#### title()
+
+Метод `title($name)` устанавливает заголовок столбца.
+
+#### width()
+
+Метод `width()` явно задает ширину столбца `width('100px')`
+
+
 
 ## Строки
 
