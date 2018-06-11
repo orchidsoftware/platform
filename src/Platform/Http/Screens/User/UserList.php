@@ -71,7 +71,7 @@ class UserList extends Screen
                 'oneAsyncModal' => [
                     UserEditLayout::class,
                 ],
-            ])->async('asyncGetUser'),
+            ])->async('asyncGetUser',null,true,true),
         ];
     }
 

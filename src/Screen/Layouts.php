@@ -41,11 +41,6 @@ class Layouts
     public $layouts = [];
 
     /**
-     * @var bool
-     */
-    public $async = false;
-
-    /**
      * @var array
      */
     public $asyncMethod;
@@ -54,6 +49,16 @@ class Layouts
      * @var array
      */
     public $asyncRoute;
+    
+    /**
+     * @var bool
+     */
+    public $async = false;
+    
+    /**
+     * @var bool
+     */
+    public $asyncSaveAjax = false;
 
     /**
      * @var
@@ -144,6 +149,7 @@ class Layouts
             'templateAsync' => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
             'templateAsyncRoute'  => $this->asyncRoute,
+            'templateSaveAjax'    => $this->asyncSaveAjax,
         ]);
     }
 
@@ -153,12 +159,12 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(string $method, string $route = null, $async = true) : self
+    public function async(string $method, string $route = null, $async = true, $saveajax = false) : self
     {
-        //if (is_null($route)) {$route=Route::currentRouteName();}
         $this->async = $async;
         $this->asyncMethod = $method;
         $this->asyncRoute = ! is_null($route) ? $route : Route::currentRouteName();
+        $this->asyncSaveAjax = $saveajax;    
 
         return $this;
     }
