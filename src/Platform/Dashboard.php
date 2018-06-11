@@ -269,7 +269,7 @@ class Dashboard
      */
     public static function modelClass(string $key, string $default = null)
     {
-        $model = self::model($key, $default);
+        $model = static::model($key, $default);
 
         if (class_exists($model)) {
             return new $model;

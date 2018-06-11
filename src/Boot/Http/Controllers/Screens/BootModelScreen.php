@@ -15,6 +15,9 @@ use Orchid\Boot\Layouts\BootCreateModel;
 
 class BootModelScreen extends Screen
 {
+    /**
+     *
+     */
     const MODELS = 'platform::boot.models';
 
     /**
@@ -53,7 +56,7 @@ class BootModelScreen extends Screen
     {
         parent::__construct();
 
-        $this->models = cache(self::MODELS, collect());
+        $this->models = cache(static::MODELS, collect());
     }
 
     /**
@@ -137,7 +140,7 @@ class BootModelScreen extends Screen
 
         $this->models->put($name, collect());
 
-        cache()->forever(self::MODELS, $this->models);
+        cache()->forever(static::MODELS, $this->models);
 
         alert('Модель успешно сохранена');
 
@@ -152,7 +155,7 @@ class BootModelScreen extends Screen
     public function delete(string $model)
     {
         $this->models = $this->models->except($model);
-        cache()->forever(self::MODELS, $this->models);
+        cache()->forever(static::MODELS, $this->models);
 
         alert('Модель была удалена');
 

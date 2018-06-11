@@ -126,7 +126,7 @@ class Field implements FieldContract
      */
     public static function make($arguments)
     {
-        $field = self::tag($arguments['tag']);
+        $field = static::tag($arguments['tag']);
 
         foreach ($arguments as $key => $value) {
             $field->set($key, $value);

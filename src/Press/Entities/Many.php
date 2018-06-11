@@ -118,7 +118,7 @@ abstract class Many
                 ->title(trans('platform::post/base.time_of_publication')),
 
             Field::tag('select')
-                ->options(self::status())
+                ->options(static::status())
                 ->name('status')
                 ->title(trans('platform::post/base.status')),
         ];

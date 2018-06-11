@@ -72,7 +72,7 @@ class TD
      */
     public static function set(string $name, string $title)
     {
-        $td = new self($name);
+        $td = new static($name);
         $td->column = $name;
         $td->title = $title;
 
@@ -88,7 +88,7 @@ class TD
      */
     public static function name(string $name)
     {
-        return new self($name);
+        return new static($name);
     }
 
     /**

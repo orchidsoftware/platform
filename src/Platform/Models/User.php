@@ -119,7 +119,7 @@ class User extends Authenticatable implements UserInterface
                 $permissions->put($item['slug'], true);
             });
 
-        $user = self::create([
+        $user = static::create([
                 'name'        => $name,
                 'email'       => $email,
                 'password'    => bcrypt($password),

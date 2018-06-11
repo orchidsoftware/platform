@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-/*
+/**
  * Class Layouts.
  *
  * @method static Layouts blank(array $name)
@@ -14,6 +14,8 @@ namespace Orchid\Screen;
  * @method static Layouts div(array $name)
  * @method static Layouts view(string $name)
  */
+
+use Illuminate\Support\Facades\Route;
 
 class Layouts
 {
@@ -84,7 +86,7 @@ class Layouts
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new self();
+        $new = new static();
         $new->active = $name;
 
         return call_user_func_array([$new, 'setLayouts'], $arguments);
@@ -123,28 +125,33 @@ class Layouts
     }
 
     /**
-     * @param $post
+     * @param \Orchid\Screen\Repository $post
+     * @param bool                      $async
      *
-     * @throws \Throwable
-     *
-     * @return array
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function build(Repository $post, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                if (! is_object($layout)) {
+                if (!is_object($layout)) {
                     $layout = new $layout();
                 }
+
+                if (is_a($layout, self::class) && $layout->active === 'view') {
+                    $build[$key][] = view($layout->templates[$layout->active],$post->toArray());
+                    continue;
+                }
+
                 $build[$key][] = $layout->build($post);
             }
         }
 
         return view($async ? 'platform::container.layouts.async' : $this->templates[$this->active], [
-            'manyForms' => $build ?? [],
-            'compose'   => $this->compose,
-            'templateSlug'  => $this->slug,
-            'templateAsync' => $this->async,
+            'manyForms'           => $build ?? [],
+            'compose'             => $this->compose,
+            'templateSlug'        => $this->slug,
+            'templateAsync'       => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
             'templateAsyncRoute'  => $this->asyncRoute,
             'templateSaveAjax'    => $this->asyncSaveAjax,
@@ -166,4 +173,19 @@ class Layouts
 
         return $this;
     }
+
+    /**
+     * @param string $view
+     *
+     * @return static
+     */
+    public static function view(string $view)
+    {
+        $new = new static();
+        $new->active = 'view';
+        $new->templates['view'] = $view;
+        $new->slug = sha1(serialize($new));
+        return $new;
+    }
+
 }

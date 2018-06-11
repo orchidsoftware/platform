@@ -75,7 +75,7 @@ class Taxonomy extends Model
      */
     public function parentTerm() : BelongsTo
     {
-        return $this->belongsTo(self::class, 'parent_id');
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     /**
@@ -93,7 +93,7 @@ class Taxonomy extends Model
      */
     public function childrenTerm() : HasMany
     {
-        return $this->hasMany(self::class, 'parent_id');
+        return $this->hasMany(static::class, 'parent_id');
     }
 
     /**

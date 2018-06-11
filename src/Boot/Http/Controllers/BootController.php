@@ -47,7 +47,7 @@ class BootController extends Controller
         //dd($test->generate());
 
         return view('platform::container.boot.index', [
-            'models' => Cache::get(self::MODELS, []),
+            'models' => Cache::get(static::MODELS, []),
         ]);
     }
 

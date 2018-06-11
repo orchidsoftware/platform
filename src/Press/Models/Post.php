@@ -339,7 +339,7 @@ class Post extends Model
     public function makeSlug($title) : string
     {
         $slug = Str::slug($title);
-        $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+        $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
 
         return $count ? "{$slug}-{$count}" : $slug;
     }

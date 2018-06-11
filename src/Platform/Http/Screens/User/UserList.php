@@ -83,6 +83,9 @@ class UserList extends Screen
         return redirect()->route('platform.systems.users.create');
     }
 
+    /**
+     * @return array
+     */
     public function asyncGetUser() : array
     {
         // переписать эту херню
@@ -97,6 +100,11 @@ class UserList extends Screen
         ];
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function saveUser($id)
     {
         $user = User::findOrFail($id);
@@ -114,6 +122,6 @@ class UserList extends Screen
 
         Alert::info(trans('platform::systems/users.User was saved'));
 
-        return redirect()->route('platform.systems.users');
+        return back();
     }
 }
