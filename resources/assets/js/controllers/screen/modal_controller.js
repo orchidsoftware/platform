@@ -36,15 +36,4 @@ export default class extends Controller {
         });
     }
     
-    submit (event) {
-        event.preventDefault();
-        const posturl = this.element.querySelector('form').action ;
-        
-        var formData = $(this.element.querySelector('form')).serializeObject();
-        axios.post( posturl,formData).then();
-        
-        $(this.element).modal('toggle');
-    }
-    
-    
 }

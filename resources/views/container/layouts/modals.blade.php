@@ -30,7 +30,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="submit-modal-{{$key}}"
-                                class="btn btn-primary" @if ($templateSaveAjax) data-action="screen--modal#submit" @endif>{{trans('platform::common.apply')}}</button>
+                                class="btn btn-primary">{{trans('platform::common.apply')}}</button>
                     </div>
                 </form>
             </div>

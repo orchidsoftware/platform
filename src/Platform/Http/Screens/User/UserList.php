@@ -71,7 +71,7 @@ class UserList extends Screen
                 'oneAsyncModal' => [
                     UserEditLayout::class,
                 ],
-            ])->async('asyncGetUser', null, true, true),
+            ])->async('asyncGetUser'),
         ];
     }
 
@@ -100,6 +100,7 @@ class UserList extends Screen
     public function saveUser($id)
     {
         $user = User::findOrFail($id);
+        
         $attributes = $this->request->get('user');
 
         if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
@@ -112,7 +113,7 @@ class UserList extends Screen
         $user->fill($attributes)->save();
 
         Alert::info(trans('platform::systems/users.User was saved'));
-        //Alert показывается только после перехода на другую страницу
-        //Также изменения видны только после перезагрузки страницы
+        
+        return redirect()->route('platform.systems.users');
     }
 }
