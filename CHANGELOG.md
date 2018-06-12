@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New command for easy installation `orchid:install` [622](https://github.com/orchidsoftware/platform/issues/622)
 - User routes for dashboard
 - Custom templates for the sidebar [631](https://github.com/orchidsoftware/platform/issues/631)
+- Saved the state of the tabs [666](https://github.com/orchidsoftware/platform/issues/666)
 
 ### Deprecated
 - TD::name and TD::title use TD::set

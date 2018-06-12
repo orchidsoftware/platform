@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(252);
+module.exports = __webpack_require__(253);
 
 
 /***/ }),
@@ -3390,7 +3390,8 @@ var map = {
 	"./layouts/left_menu_controller.js": 248,
 	"./layouts/systems_controller.js": 249,
 	"./screen/base_controller.js": 250,
-	"./screen/modal_controller.js": 251
+	"./screen/modal_controller.js": 251,
+	"./screen/tabs_controller.js": 252
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4929,6 +4930,103 @@ _class.targets = ["title"];
 /***/ }),
 
 /***/ 252:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: 'connect',
+
+
+        /**
+         *
+         */
+        value: function connect() {
+            var tabs = this.tabs();
+
+            var activeId = tabs[window.location.href][this.data.get('slug')];
+
+            console.log(activeId);
+
+            if (activeId !== null) {
+                $('#' + activeId).tab('show');
+            }
+        }
+
+        /**
+         *
+         * @param event
+         */
+
+    }, {
+        key: 'setActiveTab',
+        value: function setActiveTab(event) {
+
+            var activeId = event.target.id;
+            var tabs = this.tabs();
+
+            tabs[window.location.href][this.data.get('slug')] = activeId;
+            localStorage.setItem('tabs', JSON.stringify(tabs));
+            $('#' + activeId).tab('show');
+
+            return event.preventDefault();
+        }
+
+        /**
+         *
+         * @returns {any}
+         */
+
+    }, {
+        key: 'tabs',
+        value: function tabs() {
+            var tabs = JSON.parse(localStorage.getItem('tabs'));
+
+            if (tabs === null) {
+                tabs = {};
+            }
+
+            if (tabs[window.location.href] === undefined) {
+                tabs[window.location.href] = {};
+            }
+
+            if (tabs[window.location.href][this.data.get('slug')] === undefined) {
+                tabs[window.location.href][this.data.get('slug')] = null;
+            }
+
+            return tabs;
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 253:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
