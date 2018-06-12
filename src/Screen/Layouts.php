@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-/*
+/**
  * Class Layouts.
  *
  * @method static Layouts blank(array $name)
@@ -12,7 +12,6 @@ namespace Orchid\Screen;
  * @method static Layouts columns(array $name)
  * @method static Layouts modals(array $name)
  * @method static Layouts div(array $name)
- * @method static Layouts view(string $name)
  */
 
 class Layouts

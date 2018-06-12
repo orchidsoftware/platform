@@ -37,7 +37,7 @@ class Builder
     public $prefix;
 
     /**
-     * XTML form string.
+     * HTML form string.
      *
      * @var
      */

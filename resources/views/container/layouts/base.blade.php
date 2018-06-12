@@ -15,7 +15,7 @@
     <section>
         <div class="bg-white b-b box-shadow">
             <form id="post-form" method="post" enctype="multipart/form-data">
-                {!! $builds !!}
+                {!! $screen->build() !!}
                 @csrf
             </form>
         </div>
