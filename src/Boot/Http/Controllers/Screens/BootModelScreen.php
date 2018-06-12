@@ -15,9 +15,6 @@ use Orchid\Boot\Layouts\BootCreateModel;
 
 class BootModelScreen extends Screen
 {
-    /**
-     *
-     */
     const MODELS = 'platform::boot.models';
 
     /**

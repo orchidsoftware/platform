@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-/**
+/*
  * Class Layouts.
  *
  * @method static Layouts blank(array $name)
@@ -14,8 +14,6 @@ namespace Orchid\Screen;
  * @method static Layouts div(array $name)
  * @method static Layouts view(string $name)
  */
-
-use Illuminate\Support\Facades\Route;
 
 class Layouts
 {
@@ -134,12 +132,12 @@ class Layouts
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                if (!is_object($layout)) {
+                if (! is_object($layout)) {
                     $layout = new $layout();
                 }
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
-                    $build[$key][] = view($layout->templates[$layout->active],$post->toArray());
+                    $build[$key][] = view($layout->templates[$layout->active], $post->toArray());
                     continue;
                 }
 
@@ -185,7 +183,7 @@ class Layouts
         $new->active = 'view';
         $new->templates['view'] = $view;
         $new->slug = sha1(serialize($new));
+
         return $new;
     }
-
 }
