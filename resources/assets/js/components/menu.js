@@ -71,7 +71,6 @@ document.addEventListener('turbolinks:load', function () {
         if (!this.checkForm()) {
           return;
         }
-
         let $vm = this, $dd = $('.dd'),
           data = {
             menu: $dd.attr('data-name'),
