@@ -72,11 +72,7 @@ document.addEventListener('turbolinks:load', function () {
           return;
         }
         let $vm = this, $dd = $('.dd'),
-          data = {
-            menu: $dd.attr('data-name'),
-            lang: $dd.attr('data-lang'),
-            data: this.menuData,
-          };
+          data = {menu: $dd.attr('data-name'), lang: $dd.attr('data-lang'), data: this.menuData};
 
         axios
           .get(dashboard.prefix('/systems/menu/create/'), {params: data})
