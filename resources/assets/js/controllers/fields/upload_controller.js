@@ -156,32 +156,34 @@ export default class extends Controller {
 
                 const instanceDropZone = this;
                 const images = data
-                images.forEach(function (item, i, arr) {
-                    const mockFile = {
-                        id: item.id,
-                        name: item.original_name,
-                        size: item.size,
-                        type: item.mime,
-                        status: Dropzone.ADDED,
-                        url: '/storage/' + item.path + item.name + '.' + item.extension,
-                        data: item,
-                    };
+                if (images) {
+                    images.forEach(function (item, i, arr) {
+                        const mockFile = {
+                            id: item.id,
+                            name: item.original_name,
+                            size: item.size,
+                            type: item.mime,
+                            status: Dropzone.ADDED,
+                            url: '/storage/' + item.path + item.name + '.' + item.extension,
+                            data: item,
+                        };
 
-                    instanceDropZone.emit('addedfile', mockFile);
-                    instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
-                    instanceDropZone.files.push(mockFile);
-                    $(dropname+'.dz-preview:last-child')
-                        .attr('data-file-id', item.id)
-                        .addClass('file-sort');
-                    $(
-                        "<input type='hidden' class='files-" +
-                        item.id +
-                        "' name='" + name + "[]' value='" +
-                        item.id +
-                        "'  />"
-                    ).appendTo(dropname);
+                        instanceDropZone.emit('addedfile', mockFile);
+                        instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
+                        instanceDropZone.files.push(mockFile);
+                        $(dropname+'.dz-preview:last-child')
+                            .attr('data-file-id', item.id)
+                            .addClass('file-sort');
+                        $(
+                            "<input type='hidden' class='files-" +
+                            item.id +
+                            "' name='" + name + "[]' value='" +
+                            item.id +
+                            "'  />"
+                        ).appendTo(dropname);
 
-                });
+                    });
+                }
 
                 $(dropname+'.dz-progress').remove();
 
