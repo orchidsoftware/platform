@@ -21,6 +21,19 @@ document.addEventListener('turbolinks:load', function () {
         slug: false,
       },
     },
+    computed: {
+      menuData: function () {
+        return {
+          label: this.label,
+          title: this.title,
+          auth: this.auth,
+          slug: this.slug,
+          robot: this.robot,
+          style: this.style,
+          target: this.target,
+        }
+      }
+    },
     methods: {
       load: function (object) {
         this.id = object.id;
@@ -59,21 +72,11 @@ document.addEventListener('turbolinks:load', function () {
           return;
         }
 
-        let
-          $vm = this,
-          $dd = $('.dd'),
+        let $vm = this, $dd = $('.dd'),
           data = {
             menu: $dd.attr('data-name'),
             lang: $dd.attr('data-lang'),
-            data: {
-              label: this.label,
-              title: this.title,
-              auth: this.auth,
-              slug: this.slug,
-              robot: this.robot,
-              style: this.style,
-              target: this.target,
-            }
+            data: this.menuData,
           };
 
         axios
@@ -84,25 +87,12 @@ document.addEventListener('turbolinks:load', function () {
 
         function addItem(id) {
           $('.dd > .dd-list').append(
-            "<li class='dd-item dd3-item' data-id='" +
-            id +
-            "'> " +
-            "<div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" +
-            $vm.label +
-            '</div> ' +
-            "<div  class='edit icon-pencil'></div>" +
-            '</li>',
+            "<li class='dd-item dd3-item' data-id='" + id + "'> " +
+            "<div class='dd-handle dd3-handle'>Drag</div><div class='dd3-content'>" + $vm.label + '</div> ' +
+            "<div class='edit icon-pencil'></div>" + '</li>',
           );
 
-          $('li[data-id=' + id + ']').data({
-            label: $vm.label,
-            title: $vm.title,
-            auth: $vm.auth,
-            slug: $vm.slug,
-            robot: $vm.robot,
-            style: $vm.style,
-            target: $vm.target,
-          });
+          $('li[data-id=' + id + ']').data($vm.menuData);
 
           $vm.count--;
           sortItems();
@@ -124,15 +114,7 @@ document.addEventListener('turbolinks:load', function () {
           return;
         }
 
-        $('li[data-id=' + this.id + ']').data({
-          label: this.label,
-          title: this.title,
-          auth: this.auth,
-          slug: this.slug,
-          robot: this.robot,
-          style: this.style,
-          target: this.target,
-        });
+        $('li[data-id=' + this.id + ']').data(this.menuData);
         $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
 
         this.clear();
