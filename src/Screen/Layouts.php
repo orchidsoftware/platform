@@ -43,19 +43,9 @@ class Layouts
     public $asyncMethod;
 
     /**
-     * @var array
-     */
-    public $asyncRoute;
-
-    /**
      * @var bool
      */
     public $async = false;
-
-    /**
-     * @var bool
-     */
-    public $asyncSaveAjax = false;
 
     /**
      * @var
@@ -150,8 +140,6 @@ class Layouts
             'templateSlug'        => $this->slug,
             'templateAsync'       => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
-            'templateAsyncRoute'  => $this->asyncRoute,
-            'templateSaveAjax'    => $this->asyncSaveAjax,
         ]);
     }
 
@@ -161,12 +149,10 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(string $method, string $route = null, $async = true, $saveajax = false) : self
+    public function async(string $method, $async = true) : self
     {
         $this->async = $async;
         $this->asyncMethod = $method;
-        $this->asyncRoute = $route;
-        $this->asyncSaveAjax = $saveajax;
 
         return $this;
     }
