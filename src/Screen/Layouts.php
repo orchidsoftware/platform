@@ -13,7 +13,6 @@ namespace Orchid\Screen;
  * @method static Layouts modals(array $name)
  * @method static Layouts div(array $name)
  */
-
 class Layouts
 {
     /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.
@@ -144,10 +144,10 @@ class Field implements FieldContract
      */
     public static function tag(string $type): FieldContract
     {
-        $field = config('platform.fields.' . $type);
+        $field = config('platform.fields.'.$type);
 
-        if (!is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException('Field ' . $type . ' does not exist or inheritance FieldContract');
+        if (! is_subclass_of($field, FieldContract::class)) {
+            throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
         return new $field();
