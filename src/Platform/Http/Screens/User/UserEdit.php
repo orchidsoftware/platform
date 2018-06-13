@@ -41,7 +41,7 @@ class UserEdit extends Screen
      */
     public function query(int $id): array
     {
-        $user = is_null($id) ? new User() : User::findOrFail($id);
+        $user = is_null($id) ? new User() : User::with('roles')->findOrFail($id);
 
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()
@@ -57,7 +57,7 @@ class UserEdit extends Screen
             });
 
         $roles = Role::all();
-        $userRoles = $user->getRoles();
+        $userRoles = $user->roles ?? collect();
 
         $userRoles->transform(function ($role) {
             $role->active = true;
