@@ -8,11 +8,14 @@ export function platform() {
          */
         prefix(path) {
             let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
-
-            if (prefix && prefix.content.charAt(0) !== '/') {
-                prefix = `/${prefix.content}`;
+            
+            if (prefix) {
+                if (prefix.content.charAt(0) !== '/') {
+                    prefix = `/${prefix.content}`;
+                } else {
+                    prefix = `${prefix.content}`;
+                }
             }
-
             return prefix + path;
         },
 
