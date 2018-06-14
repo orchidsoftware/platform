@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function () {
   if (document.getElementById('menu-vue') === null) {
     return;
   }
@@ -21,8 +21,21 @@ document.addEventListener('turbolinks:load', function() {
         slug: false,
       },
     },
+    computed: {
+      menuData: function () {
+        return {
+          label: this.label,
+          title: this.title,
+          auth: this.auth,
+          slug: this.slug,
+          robot: this.robot,
+          style: this.style,
+          target: this.target,
+        }
+      }
+    },
     methods: {
-      load: function(object) {
+      load: function (object) {
         this.id = object.id;
         this.label = object.label;
         this.slug = object.slug;
@@ -32,7 +45,7 @@ document.addEventListener('turbolinks:load', function() {
         this.target = object.target;
         this.title = object.title;
       },
-      checkForm: function() {
+      checkForm: function () {
         let valid = false;
         this.errors = {
           title: false,
@@ -54,37 +67,35 @@ document.addEventListener('turbolinks:load', function() {
 
         return !valid;
       },
-      add: function() {
+      add: function () {
         if (!this.checkForm()) {
           return;
         }
+        let $vm = this, $dd = $('.dd'),
+          data = {menu: $dd.attr('data-name'), lang: $dd.attr('data-lang'), data: this.menuData};
 
-        $('.dd > .dd-list').append(
-          "<li class='dd-item dd3-item' data-id='" +
-            this.count +
-            "'> " +
-            "<div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" +
-            this.label +
-            '</div> ' +
-            "<div  class='edit icon-pencil'></div>" +
-            '</li>',
-        );
+        axios
+          .get(dashboard.prefix('/systems/menu/create/'), {params: data})
+          .then(function (response) {
+            addItem(response.data.id)
+          });
 
-        $('li[data-id=' + this.count + ']').data({
-          label: this.label,
-          title: this.title,
-          auth: this.auth,
-          slug: this.slug,
-          robot: this.robot,
-          style: this.style,
-          target: this.target,
-        });
+        function addItem(id) {
+          $('.dd > .dd-list').append(
+            "<li class='dd-item dd3-item' data-id='" + id + "'> " +
+            "<div class='dd-handle dd3-handle'>Drag</div><div class='dd3-content'>" + $vm.label + '</div> ' +
+            "<div class='edit icon-pencil'></div>" + '</li>',
+          );
 
-        this.count--;
-        this.clear();
-        this.send();
+          $('li[data-id=' + id + ']').data($vm.menuData);
+
+          $vm.count--;
+          sortItems();
+          $vm.clear();
+          $vm.send();
+        }
       },
-      edit: function(element) {
+      edit: function (element) {
         let data = $(element)
           .parent()
           .data();
@@ -93,38 +104,31 @@ document.addEventListener('turbolinks:load', function() {
           .text();
         this.load(data);
       },
-      save: function() {
+      save: function () {
         if (!this.checkForm()) {
           return;
         }
 
-        $('li[data-id=' + this.id + ']').data({
-          label: this.label,
-          title: this.title,
-          auth: this.auth,
-          slug: this.slug,
-          robot: this.robot,
-          style: this.style,
-          target: this.target,
-        });
+        $('li[data-id=' + this.id + ']').data(this.menuData);
         $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
 
         this.clear();
         $('#menuEdit').modal('hide');
         menu.send();
       },
-      destroy: function(id) {
+      destroy: function (id) {
         axios
           .delete(dashboard.prefix('/systems/menu/' + id))
-          .then(function(response) {});
+          .then(function (response) {
+          });
       },
-      remove: function() {
+      remove: function () {
         $('li[data-id=' + this.id + ']').remove();
         $('#menuEdit').modal('hide');
         this.destroy(this.id);
         this.clear();
       },
-      clear: function() {
+      clear: function () {
         this.label = '';
         this.title = '';
         this.auth = 0;
@@ -134,7 +138,7 @@ document.addEventListener('turbolinks:load', function() {
         this.target = '_self';
         this.id = '';
       },
-      send: function() {
+      send: function () {
         let name = $('.dd').attr('data-name');
 
         let data = {
@@ -144,9 +148,10 @@ document.addEventListener('turbolinks:load', function() {
 
         axios
           .put(dashboard.prefix('/systems/menu/' + name), data)
-          .then(function(response) {});
+          .then(function (response) {
+          });
       },
-      exist: function() {
+      exist: function () {
         return (
           Number.isInteger(this.id) &&
           $('li[data-id=' + this.id + ']').length > 0
@@ -155,29 +160,31 @@ document.addEventListener('turbolinks:load', function() {
     },
   });
 
-  $('.dd').nestable({});
+  let $dd = $('.dd');
 
-  $('.dd-item').each(function(i, item) {
-    $(item).data({
-      sort: i,
+  $dd.nestable({});
+
+  sortItems();
+
+  $dd
+    .on('change', function () {
+      sortItems();
+
+      menu.send();
+    })
+    .on('click', '.edit', function () {
+      menu.edit(this);
     });
+
+  $('.menu-save').click(function () {
+    menu.send();
   });
 
-  $('.dd').on('change', function() {
-    $('.dd-item').each(function(i, item) {
+  function sortItems() {
+    $('.dd-item').each(function (i, item) {
       $(item).data({
         sort: i,
       });
     });
-
-    menu.send();
-  });
-
-  $('.dd').on('click', '.edit', function() {
-    menu.edit(this);
-  });
-
-  $('.menu-save').click(function() {
-    menu.send();
-  });
+  }
 });
