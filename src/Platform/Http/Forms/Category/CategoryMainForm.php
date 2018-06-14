@@ -49,7 +49,7 @@ class CategoryMainForm extends Form
     /**
      * @param Taxonomy|null $termTaxonomy
      *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return View
      */
     public function get(Taxonomy $termTaxonomy = null) : View
     {

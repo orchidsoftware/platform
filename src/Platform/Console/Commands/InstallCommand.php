@@ -164,8 +164,8 @@ class InstallCommand extends Command
 
     /**
      * @param string $question
-     * @param        $constant
-     * @param null   $default
+     * @param        string $constant
+     * @param string   $default
      *
      * @return $this
      */

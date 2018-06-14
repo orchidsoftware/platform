@@ -248,8 +248,8 @@ class Dashboard
      * Get the class name for a given Dashboard model.
      *
      * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
+     * @param  null|string  $default
+     * @return string
      */
     public static function model(string $key, string $default = null)
     {

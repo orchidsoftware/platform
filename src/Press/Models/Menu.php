@@ -64,7 +64,7 @@ class Menu extends Model
     /**
      * @param $id
      *
-     * @return mixed
+     * @return Collection
      */
     public function getSons($id) : Collection
     {
@@ -74,7 +74,7 @@ class Menu extends Model
     /**
      * @param $id
      *
-     * @return mixed
+     * @return Collection
      */
     public function getAll($id) : Collection
     {

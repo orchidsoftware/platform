@@ -52,7 +52,7 @@ $factory->define(Post::class, function (Faker $faker) {
                 'en' => 'true',
             ],
         ],
-        'slug'    => ($type == 'page') ? 'demo-page' : Str::slug($name),  //'slug' => "demo-page"
+        'slug'    => ($type == 'page') ? 'demo-page' : Str::slug($name), //'slug' => "demo-page"
     ];
 
     return $post;

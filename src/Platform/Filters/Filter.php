@@ -72,7 +72,7 @@ abstract class Filter
     /**
      * @param Builder $builder
      *
-     * @return mixed
+     * @return Builder
      */
     abstract public function run(Builder $builder) : Builder;
 
