@@ -21,10 +21,10 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('widget', function ($expression) {
+        Blade::directive('widget', function($expression) {
             $segments = explode(',', preg_replace("/[\(\)\\\]/", '', $expression));
 
-            if (! array_key_exists(1, $segments)) {
+            if (!array_key_exists(1, $segments)) {
                 return '<?php echo (new \Orchid\Widget\Widget)->get('.$segments[0].'); ?>';
             }
 

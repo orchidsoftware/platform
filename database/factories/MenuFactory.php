@@ -15,7 +15,7 @@ use Orchid\Press\Models\Menu;
 |
 */
 
-$factory->define(Menu::class, function (Faker $faker) {
+$factory->define(Menu::class, function(Faker $faker) {
     $lang = app()->getLocale();
     $MenuTitle = $faker->unique()->word;
 

@@ -49,7 +49,7 @@ class CategoryMainForm extends Form
     /**
      * @param Taxonomy|null $termTaxonomy
      *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return View
      */
     public function get(Taxonomy $termTaxonomy = null) : View
     {
@@ -92,7 +92,7 @@ class CategoryMainForm extends Form
      */
     public function delete(Request $request, Taxonomy $termTaxonomy)
     {
-        $termTaxonomy->allChildrenTerm()->get()->each(function ($item) {
+        $termTaxonomy->allChildrenTerm()->get()->each(function($item) {
             $item->update([
                 'parent_id' => 0,
             ]);

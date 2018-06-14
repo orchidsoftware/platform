@@ -120,7 +120,7 @@ abstract class Screen
      */
     public function handle($method = null, $parameters = null)
     {
-        abort_if(! $this->checkAccess(), 403);
+        abort_if(!$this->checkAccess(), 403);
 
         if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
             $this->arguments = is_array($method) ? $method : [$method];
@@ -132,7 +132,7 @@ abstract class Screen
             return $this->asyncBuild($method, $parameters);
         }
 
-        if (! is_null($parameters)) {
+        if (!is_null($parameters)) {
             $this->arguments = is_array($method) ? $method : [$method];
 
             $this->reflectionParams($parameters);
@@ -166,7 +166,7 @@ abstract class Screen
     }
 
     /**
-     * @param $class
+     * @param integer $class
      *
      * @return bool
      */
@@ -196,7 +196,7 @@ abstract class Screen
 
         if (is_array($this->permission)) {
             foreach ($this->permission as $item) {
-                if (! Auth::user()->hasAccess($item)) {
+                if (!Auth::user()->hasAccess($item)) {
                     return false;
                 }
             }

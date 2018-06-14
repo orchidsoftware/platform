@@ -32,7 +32,7 @@ trait Attachment
     }
 
     /**
-     * @param null $group
+     * @param string $group
      *
      * @return MorphToMany
      */
@@ -46,7 +46,7 @@ trait Attachment
             'attachment_id'
         );
 
-        if (! is_null($group)) {
+        if (!is_null($group)) {
             $query->where('attachmentable_group', $group);
         }
 

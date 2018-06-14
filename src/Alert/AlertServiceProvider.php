@@ -25,7 +25,7 @@ class AlertServiceProvider extends ServiceProvider
     {
         $this->app->bind(SessionStoreInterface::class, LaravelSessionStore::class);
 
-        $this->app->singleton('alert', function () {
+        $this->app->singleton('alert', function() {
             return $this->app->make(Alert::class);
         });
     }

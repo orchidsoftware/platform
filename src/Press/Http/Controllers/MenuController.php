@@ -31,7 +31,7 @@ class MenuController extends Controller
     }
 
     /**
-     * @return View
+     * @return \Illuminate\Http\RedirectResponse|null
      */
     public function index()
     {

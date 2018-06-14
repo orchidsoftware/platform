@@ -19,9 +19,9 @@ return [
     'Category was removed'=> 'Category was removed',
 
     'fields'       => [
-      'name_title' => 'Name Category',
-      'name_help'  => 'Category title',
-      'body_title' => 'Body category',
+        'name_title' => 'Name Category',
+        'name_help'  => 'Category title',
+        'body_title' => 'Body category',
     ],
 
 ];

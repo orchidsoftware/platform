@@ -33,7 +33,7 @@ class CommentListLayout extends Table
         return  [
             TD::name('approved')
                 ->title(trans('platform::systems/comment.status'))
-                ->setRender(function ($comment) {
+                ->setRender(function($comment) {
                     if ($comment->approved) {
                         return '<i class="icon-check mx-3"></i>';
                     } else {
@@ -42,17 +42,17 @@ class CommentListLayout extends Table
                 }),
             TD::name('content')
                 ->title(trans('platform::systems/comment.content'))
-                ->setRender(function ($comment) {
+                ->setRender(function($comment) {
                     return '<a href="'.route('platform.systems.comment.edit',
                         $comment->id).'">'.$comment->content.'</a>';
                 }),
             TD::name('post_id')
                 ->title(trans('platform::systems/comment.recording'))
-                ->setRender(function ($comment) {
-                    if (! is_null($comment->post)) {
+                ->setRender(function($comment) {
+                    if (!is_null($comment->post)) {
                         return '<a href="'.route('platform.posts.type.edit', [
-                                  $comment->post->type,
-                                  $comment->post->id,
+                                    $comment->post->type,
+                                    $comment->post->id,
                         ]).'">'.trans('platform::systems/comment.go').'</a>';
                     } else {
                         return trans('platform::systems/comment.delete');
@@ -60,13 +60,13 @@ class CommentListLayout extends Table
                 }),
             TD::name('user_id')
                 ->title(trans('platform::systems/comment.user'))
-                ->setRender(function ($comment) {
+                ->setRender(function($comment) {
                     return '<a href="'.route('platform.systems.users.edit',
                         $comment->user_id).'">'.trans('platform::systems/comment.go').'</a>';
                 }),
             TD::name('updated_at')
                 ->title(trans('platform::common.Last edit'))
-                ->setRender(function ($comment) {
+                ->setRender(function($comment) {
                     return $comment->updated_at;
                 }),
 

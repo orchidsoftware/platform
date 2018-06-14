@@ -146,7 +146,7 @@ class Field implements FieldContract
     {
         $field = config('platform.fields.'.$type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
+        if (!is_subclass_of($field, FieldContract::class)) {
             throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
         }
 
@@ -215,7 +215,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            throw_if(! collect($this->attributes)->offsetExists($attribute),
+            throw_if(!collect($this->attributes)->offsetExists($attribute),
                 FieldRequiredAttributeException::class,
                 'Field must have the following attribute: '.$attribute);
         }
@@ -271,14 +271,14 @@ class Field implements FieldContract
     }
 
     /**
-     * @return static
+     * @return \Illuminate\Support\Collection
      */
     public function getModifyAttributes()
     {
         $modifiers = get_class_methods($this);
 
         collect($this->getAttributes())->only(array_merge($this->universalAttributes,
-            $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
+            $this->inlineAttributes))->map(function($item, $key) use ($modifiers) {
                 $signature = 'modify'.title_case($key);
                 if (in_array($signature, $modifiers)) {
                     $this->$signature($item);
@@ -300,14 +300,14 @@ class Field implements FieldContract
     }
 
     /**
-     * @param      $key
+     * @param      string $key
      * @param null $value
      *
      * @return $this|mixed|null
      */
     public function get($key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -365,7 +365,7 @@ class Field implements FieldContract
     /**
      * @param $name
      *
-     * @return string
+     * @return Field
      */
     public function modifyName($name)
     {
@@ -374,15 +374,15 @@ class Field implements FieldContract
 
         $this->attributes['name'] = $name;
 
-        if (! is_null($prefix)) {
+        if (!is_null($prefix)) {
             $this->attributes['name'] = $prefix.$name;
         }
 
-        if (is_null($prefix) && ! is_null($lang)) {
+        if (is_null($prefix) && !is_null($lang)) {
             $this->attributes['name'] = $lang.$name;
         }
 
-        if (! is_null($prefix) && ! is_null($lang)) {
+        if (!is_null($prefix) && !is_null($lang)) {
             $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
@@ -396,13 +396,13 @@ class Field implements FieldContract
     /**
      * @param $value
      *
-     * @return mixed
+     * @return Field
      */
     public function modifyValue($value)
     {
         $old = $this->getOldValue();
 
-        if (! is_null($old)) {
+        if (!is_null($old)) {
             $this->attributes['value'] = $old;
         }
 
@@ -416,7 +416,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $group
+     * @param \Closure $group
      *
      * @return mixed
      */

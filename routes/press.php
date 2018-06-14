@@ -97,7 +97,7 @@ $this->put('page/{page}', [
 $this->group([
     'as'     => 'platform.systems.media.',
     'prefix' => 'media',
-], function () {
+], function() {
     $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
     $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
     $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);

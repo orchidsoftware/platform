@@ -44,11 +44,11 @@ return [
     'yes_delete'             => 'Yes, Delete it!',
 
     'fileinfo'               => [
-      'title'                => 'Title',
-      'type'                 => 'Type',
-      'size'                 => 'Size',
-      'public_url'           => 'Public URL',
-      'click_here'           => 'Click Here',
-      'last_modified'        => 'Last Modified',
+        'title'                => 'Title',
+        'type'                 => 'Type',
+        'size'                 => 'Size',
+        'public_url'           => 'Public URL',
+        'click_here'           => 'Click Here',
+        'last_modified'        => 'Last Modified',
     ],
 ];

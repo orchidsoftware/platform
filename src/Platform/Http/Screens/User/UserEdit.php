@@ -46,7 +46,7 @@ class UserEdit extends Screen
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->sort()
-            ->transform(function ($group) use ($rolePermission) {
+            ->transform(function($group) use ($rolePermission) {
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
@@ -59,7 +59,7 @@ class UserEdit extends Screen
         $roles = Role::all();
         $userRoles = $user->getRoles();
 
-        $userRoles->transform(function ($role) {
+        $userRoles->transform(function($role) {
             $role->active = true;
 
             return $role;
@@ -104,7 +104,7 @@ class UserEdit extends Screen
                     UserEditLayout::class,
                 ],
                 'Right column' => [
-                      UserRoleLayout::class,
+                        UserRoleLayout::class,
                 ],
             ]),
         ];

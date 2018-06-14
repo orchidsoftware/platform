@@ -114,15 +114,15 @@ class TagsField extends Field
 
         $this->attributes['name'] = $name;
 
-        if (! is_null($prefix)) {
+        if (!is_null($prefix)) {
             $this->attributes['name'] = $prefix.$name;
         }
 
-        if (is_null($prefix) && ! is_null($lang)) {
+        if (is_null($prefix) && !is_null($lang)) {
             $this->attributes['name'] = $lang.$name;
         }
 
-        if (! is_null($prefix) && ! is_null($lang)) {
+        if (!is_null($prefix) && !is_null($lang)) {
             $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
@@ -148,7 +148,7 @@ class TagsField extends Field
             $this->attributes['value'] = implode(',', $value);
         }
 
-        if (! is_null($old)) {
+        if (!is_null($old)) {
             $this->attributes['value'] = $old;
         }
 

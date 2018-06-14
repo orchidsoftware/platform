@@ -43,7 +43,7 @@ class RoleEdit extends Screen
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->sort()
-            ->transform(function ($group) use ($rolePermission) {
+            ->transform(function($group) use ($rolePermission) {
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
@@ -89,7 +89,7 @@ class RoleEdit extends Screen
                     RoleEditLayout::class,
                 ],
                 'Right column' => [
-                     RolePermissionLayout::class,
+                        RolePermissionLayout::class,
                 ],
             ]),
         ];

@@ -80,7 +80,7 @@ class Post extends Many
     {
         return [
 
-            Field::group(function () {
+            Field::group(function() {
                 return [
 
                     Field::tag('input')
@@ -102,7 +102,7 @@ class Post extends Many
                 ];
             }),
 
-            Field::group(function () {
+            Field::group(function() {
                 return [
 
                     Field::tag('select')
@@ -201,7 +201,7 @@ class Post extends Many
     {
         return [
 
-       ];
+        ];
     }
 
     /**

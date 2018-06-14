@@ -50,7 +50,7 @@ class UserRoleLayout extends Rows
                 ->hr(false);
 
             foreach (collect($items)->chunk(3) as $chunks) {
-                $fields[] = Field::group(function () use ($chunks) {
+                $fields[] = Field::group(function() use ($chunks) {
                     foreach ($chunks as $permission) {
                         $permissions[] = Field::tag('checkbox')
                             ->placeholder($permission['description'])

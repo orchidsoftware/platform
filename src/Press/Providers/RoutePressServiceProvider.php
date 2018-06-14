@@ -39,7 +39,7 @@ class RoutePressServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('category', function ($value) {
+        Route::bind('category', function($value) {
             $category = Dashboard::modelClass(Category::class);
 
             if (is_numeric($value)) {
@@ -49,14 +49,14 @@ class RoutePressServiceProvider extends ServiceProvider
             return $category->findOrFail($value);
         });
 
-        Route::bind('type', function ($value) {
+        Route::bind('type', function($value) {
             $post = Dashboard::modelClass(Post::class);
             $type = $post->getEntity($value)->getEntityObject();
 
             return $type;
         });
 
-        Route::bind('page', function ($value) {
+        Route::bind('page', function($value) {
             $model = Dashboard::modelClass(Page::class);
 
             if (is_numeric($value)) {
@@ -73,7 +73,7 @@ class RoutePressServiceProvider extends ServiceProvider
             return $page;
         });
 
-        Route::bind('post', function ($value) {
+        Route::bind('post', function($value) {
             $post = Dashboard::modelClass(Post::class);
 
             if (is_numeric($value)) {

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait RoleAccess
 {
     /**
-     * @return mixed
+     * @return integer
      */
     public function getRoleId() : int
     {
@@ -18,7 +18,7 @@ trait RoleAccess
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRoleSlug() : string
     {
@@ -49,7 +49,7 @@ trait RoleAccess
     public function delete() : bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-        if ($this->exists && ! $isSoftDeleted) {
+        if ($this->exists && !$isSoftDeleted) {
             $this->users()->detach();
         }
 

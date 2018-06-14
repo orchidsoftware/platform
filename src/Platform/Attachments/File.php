@@ -165,11 +165,11 @@ class File
      */
     public function getMimeType()
     {
-        if (! is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
             return $type;
         }
 
-        if (! is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
 
@@ -184,14 +184,14 @@ class File
      */
     private function saveImageProcessing($name = null, $width = null, $height = null, $quality = 100)
     {
-        if (! is_null($name)) {
+        if (!is_null($name)) {
             $name = '_'.$name;
         }
 
         $name = sha1($this->time.$this->file->getClientOriginalName()).$name.'.'.$this->getClientOriginalExtension();
 
         $content = Image::make($this->file)
-            ->resize($width, $height, function ($constraint) {
+            ->resize($width, $height, function($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })

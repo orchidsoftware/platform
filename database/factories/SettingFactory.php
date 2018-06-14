@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Setting::class, function (Faker $faker) {
+$factory->define(Setting::class, function(Faker $faker) {
     return [
         [
             'key'   => 'site_adress',
