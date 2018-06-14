@@ -80,7 +80,7 @@ class InstallCommand extends Command
      */
     private function executeCommand(string $command, $parameters = [])
     {
-        if (!$this->progressBar->getProgress()) {
+        if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();
             echo ' ';
         }
@@ -107,7 +107,7 @@ class InstallCommand extends Command
 
         $this->info(' Attempting to set ORCHID User model as parent to App\User');
 
-        if (!file_exists(app_path('User.php'))) {
+        if (! file_exists(app_path('User.php'))) {
             $this->warn('Unable to locate "app/User.php".  Did you move this file?');
             $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
 
@@ -128,7 +128,7 @@ class InstallCommand extends Command
 
         $this->info(' Add semantic links to public files to ignore VCS');
 
-        if (!file_exists(app_path('../.gitignore'))) {
+        if (! file_exists(app_path('../.gitignore'))) {
             $this->warn('Unable to locate ".gitignore".  Did you move this file?');
             $this->warn('A semantic link to public files was not added to the ignore list');
 

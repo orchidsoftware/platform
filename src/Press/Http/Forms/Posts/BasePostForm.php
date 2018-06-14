@@ -44,7 +44,7 @@ class BasePostForm extends Form
         $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();
 
-        $category = $category->map(function($item) use ($currentCategory) {
+        $category = $category->map(function ($item) use ($currentCategory) {
             $item->active = false;
 
             if (array_key_exists($item->id, $currentCategory)) {

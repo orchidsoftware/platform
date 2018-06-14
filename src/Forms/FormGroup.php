@@ -84,8 +84,8 @@ abstract class FormGroup
     public function __construct()
     {
         $registerForm = event(new $this->event($this));
-        $this->group = collect($registerForm)->filter(function($item) {
-            return !is_null($item) || !empty($item);
+        $this->group = collect($registerForm)->filter(function ($item) {
+            return ! is_null($item) || ! empty($item);
         });
         $this->commands = collect();
         $this->html = collect();

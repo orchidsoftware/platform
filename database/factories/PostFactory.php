@@ -16,7 +16,7 @@ use Orchid\Platform\Models\User;
 |
 */
 
-$factory->define(Post::class, function(Faker $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     $lang = app()->getLocale();
 
     $user = User::inRandomOrder()->first()->id;

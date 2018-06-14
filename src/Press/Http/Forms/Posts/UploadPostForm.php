@@ -57,7 +57,7 @@ class UploadPostForm extends Form
      */
     public function persist($type = null, $post = null)
     {
-        if (!$this->request->filled('files')) {
+        if (! $this->request->filled('files')) {
             return;
         }
 

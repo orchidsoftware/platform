@@ -19,11 +19,11 @@ class TagsController extends Controller
     {
         $tags = Dashboard::model(Post::class)::allTags()->latest('count')->limit(10);
 
-        if (!is_null($tag)) {
+        if (! is_null($tag)) {
             $tags = $tags->where('name', 'like', '%'.$tag.'%');
         }
 
-        $tags = $tags->get()->transform(function($item) {
+        $tags = $tags->get()->transform(function ($item) {
             return [
                 'id'    => $item['name'],
                 'text'  => $item['name'],

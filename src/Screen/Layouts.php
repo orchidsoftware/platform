@@ -120,7 +120,7 @@ class Layouts
     {
         foreach ($this->layouts as $key => $layouts) {
             foreach ($layouts as $layout) {
-                if (!is_object($layout)) {
+                if (! is_object($layout)) {
                     $layout = new $layout();
                 }
 

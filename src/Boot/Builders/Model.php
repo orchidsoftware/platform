@@ -70,7 +70,7 @@ class Model
     {
         $this->parameters = collect($parameters);
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             $this->class = new ClassGenerator();
             $this->class->setName($class);
 
@@ -138,7 +138,7 @@ class Model
      */
     protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var')
     {
-        if (!array_has($this->parameters, 'property.'.$property)) {
+        if (! array_has($this->parameters, 'property.'.$property)) {
             return $this;
         }
 

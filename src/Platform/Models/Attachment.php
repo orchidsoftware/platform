@@ -56,10 +56,10 @@ class Attachment extends Model
      */
     public function url($size = '', $prefix = 'public') : string
     {
-        if (!empty($size)) {
+        if (! empty($size)) {
             $size = '_'.$size;
 
-            if (!Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
+            if (! Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
                 return $this->url(null, $prefix);
             }
         }

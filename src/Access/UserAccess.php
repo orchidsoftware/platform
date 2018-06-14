@@ -41,7 +41,7 @@ trait UserAccess
      */
     public function inRole($role) : bool
     {
-        $role = array_first($this->roles, function($instance) use ($role) {
+        $role = array_first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
@@ -63,7 +63,7 @@ trait UserAccess
      */
     public function hasAccess($checkPermissions, $cache = true) : bool
     {
-        if (is_null($this->cachePermissions) || !$cache) {
+        if (is_null($this->cachePermissions) || ! $cache) {
             $this->cachePermissions = $this->roles()->pluck('permissions')->prepend($this->permissions);
         }
 
@@ -140,7 +140,7 @@ trait UserAccess
     public function delete() : bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-        if ($this->exists && !$isSoftDeleted) {
+        if ($this->exists && ! $isSoftDeleted) {
             $this->roles()->detach();
         }
 

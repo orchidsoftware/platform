@@ -69,7 +69,7 @@ class SystemMenuComposer
                 'sort'       => 4,
                 'badge'      => [
                     'class' => 'bg-primary',
-                    'data'  => function() {
+                    'data'  => function () {
                         $count = Dashboard::model(Comment::class)::where('approved', 0)->count();
 
                         return $count ? $count : null;

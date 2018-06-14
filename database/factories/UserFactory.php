@@ -14,7 +14,7 @@ use Orchid\Platform\Models\User as User;
 |
 */
 
-$factory->define(User::class, function(Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     static $password;
 
     $roles = [

@@ -154,7 +154,7 @@ class PostController extends Controller
             }
         }
 
-        if (!empty($slug) && $slug !== $post->slug) {
+        if (! empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 

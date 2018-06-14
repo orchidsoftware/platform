@@ -13,7 +13,7 @@ class CreateAttachmentGroupColumn extends Migration
      */
     public function up()
     {
-        Schema::table('attachmentable', function(Blueprint $table) {
+        Schema::table('attachmentable', function (Blueprint $table) {
             $table->string('attachmentable_group')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class CreateAttachmentGroupColumn extends Migration
      */
     public function down()
     {
-        Schema::table('attachmentable', function(Blueprint $table) {
+        Schema::table('attachmentable', function (Blueprint $table) {
             $table->dropColumn('attachmentable_group');
         });
     }
