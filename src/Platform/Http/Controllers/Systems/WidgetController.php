@@ -12,7 +12,7 @@ class WidgetController
      * @param WidgetContractInterface $widget
      * @param null                    $key
      *
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(WidgetContractInterface $widget, $key = null)
     {

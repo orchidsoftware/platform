@@ -187,7 +187,7 @@ class Post extends Model
     }
 
     /**
-     * @param      $key
+     * @param      string $key
      * @param null $default
      *
      * @return null

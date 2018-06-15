@@ -97,7 +97,7 @@ class HttpFilter
     {
         $allowedFilters = $this->options->get('allowedFilters')->toArray();
 
-        $this->filters->each(function ($value, $property) use ($builder,$allowedFilters) {
+        $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
             if (false !== stristr($property, '.')) {
                 $allowProperty = stristr($property, '.', true);
@@ -129,7 +129,7 @@ class HttpFilter
     /**
      * @param null $property
      *
-     * @return mixed
+     * @return bool
      */
     public function isSort($property = null)
     {

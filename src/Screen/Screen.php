@@ -166,7 +166,7 @@ abstract class Screen
     }
 
     /**
-     * @param $class
+     * @param int $class
      *
      * @return bool
      */

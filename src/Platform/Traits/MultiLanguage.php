@@ -21,7 +21,7 @@ trait MultiLanguage
      */
     public function getContent($field, $locale = null)
     {
-        $attributes = array_keys($this->getAttributes());
+        $attributes = array_keys($this->toArray());
 
         if (in_array($field, $attributes)) {
             return $this->getAttribute($field);

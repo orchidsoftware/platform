@@ -51,8 +51,8 @@ class CommentListLayout extends Table
                 ->setRender(function ($comment) {
                     if (! is_null($comment->post)) {
                         return '<a href="'.route('platform.posts.type.edit', [
-                                  $comment->post->type,
-                                  $comment->post->id,
+                                    $comment->post->type,
+                                    $comment->post->id,
                         ]).'">'.trans('platform::systems/comment.go').'</a>';
                     } else {
                         return trans('platform::systems/comment.delete');

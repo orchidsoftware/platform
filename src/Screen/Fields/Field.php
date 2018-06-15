@@ -271,7 +271,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return static
+     * @return \Illuminate\Support\Collection
      */
     public function getModifyAttributes()
     {
@@ -300,7 +300,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @param      $key
+     * @param      string $key
      * @param null $value
      *
      * @return $this|mixed|null
@@ -365,7 +365,7 @@ class Field implements FieldContract
     /**
      * @param $name
      *
-     * @return string
+     * @return Field
      */
     public function modifyName($name)
     {
@@ -396,7 +396,7 @@ class Field implements FieldContract
     /**
      * @param $value
      *
-     * @return mixed
+     * @return Field
      */
     public function modifyValue($value)
     {
@@ -416,7 +416,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $group
+     * @param \Closure $group
      *
      * @return mixed
      */

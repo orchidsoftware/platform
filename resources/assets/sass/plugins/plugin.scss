@@ -116,6 +116,16 @@ div.mce-fullscreen {
   padding: 5px;
 }
 
+// Flatpickr
+.flatpickr-input {
+    &.form-control[readonly] {
+        background: #fff;
+        color: #1c2b36;
+    }
+}
+
+
+
 
 .form-group,.CodeMirror-wrap pre{
   word-wrap: break-word;

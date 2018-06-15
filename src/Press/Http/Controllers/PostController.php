@@ -179,7 +179,7 @@ class PostController extends Controller
      *
      * @throws \Exception
      *
-     * @return mixed
+     * @return RedirectResponse
      *
      * @internal param Request $request
      * @internal param Post $type
@@ -215,6 +215,6 @@ class PostController extends Controller
         return redirect()->route('platform.posts.type', [
             'type' => $post->type,
             'slug' => $post->id,
-       ]);
+        ]);
     }
 }

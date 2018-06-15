@@ -89,7 +89,7 @@ class RoleEdit extends Screen
                     RoleEditLayout::class,
                 ],
                 'Right column' => [
-                     RolePermissionLayout::class,
+                        RolePermissionLayout::class,
                 ],
             ]),
         ];

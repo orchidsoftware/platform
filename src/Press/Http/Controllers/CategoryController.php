@@ -29,7 +29,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function index()
     {
