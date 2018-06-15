@@ -40,6 +40,7 @@ return [
         'date_created' => 'Date of creation',
         'search'       => 'Search by content',
         'status'       => 'Status',
+        'apply'        => 'Apply',        
     ],
 
     'widgets' => [

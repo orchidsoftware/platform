@@ -22,7 +22,7 @@ require('nestable');
 
 window.moment = require('moment');
 
-$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
+//$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
 
 require('./modules/select');
 
