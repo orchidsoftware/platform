@@ -72,6 +72,28 @@ class MenuController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(Request $request)
+    {
+        $this->lang = $request->get('lang');
+        $this->menu = $request->get('menu');
+        $data = json_decode($request->get('data'), true);
+
+        $menu = Dashboard::model(Menu::class)::create(array_merge($data, [
+            'lang'   => $this->lang,
+            'type'   => $this->menu,
+            'parent' => 0,
+        ]));
+
+        return response()->json([
+            'type' => 'success',
+            'id' => $menu->id,
+        ]);
+    }
+
+    /**
      * @param         $menu
      * @param Request $request
      *

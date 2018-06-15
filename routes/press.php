@@ -74,12 +74,13 @@ $this->resource('comment', 'CommentController', [
 
 $this->resource('menu', 'MenuController', [
     'only'  => [
-        'index', 'show', 'update', 'destroy',
+        'index', 'show', 'update', 'create', 'destroy',
     ],
     'names' => [
         'index'   => 'platform.systems.menu.index',
         'show'    => 'platform.systems.menu.show',
         'update'  => 'platform.systems.menu.update',
+        'create'  => 'platform.systems.menu.create',
         'destroy' => 'platform.systems.menu.destroy',
     ],
 ]);
