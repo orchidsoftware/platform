@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(253);
+module.exports = __webpack_require__(252);
 
 
 /***/ }),
@@ -22,7 +22,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__(188);
 
 window.application = __WEBPACK_IMPORTED_MODULE_0_stimulus__["Application"].start();
-var context = __webpack_require__(199);
+var context = __webpack_require__(198);
 application.load(Object(__WEBPACK_IMPORTED_MODULE_1_stimulus_webpack_helpers__["definitionsFromContext"])(context));
 
 /***/ }),
@@ -76,7 +76,7 @@ window.Chart = __webpack_require__(154);
 
 __webpack_require__(196);
 __webpack_require__(197);
-__webpack_require__(198);
+// require('./components/menu');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
 
 /***/ }),
@@ -3207,191 +3207,21 @@ document.addEventListener('turbolinks:load', function () {
 /***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {document.addEventListener('turbolinks:load', function () {
-    if (document.getElementById('menu-vue') === null) {
-        return;
-    }
-
-    var menu = new Vue({
-        el: '#menu-vue',
-        data: {
-            count: 0,
-            id: '',
-            label: '',
-            title: '',
-            slug: '',
-            auth: 0,
-            robot: 'follow',
-            style: '',
-            target: '_self',
-            errors: {
-                title: false,
-                label: false,
-                slug: false
-            }
-        },
-        methods: {
-            load: function load(object) {
-                this.id = object.id;
-                this.label = object.label;
-                this.slug = object.slug;
-                this.auth = object.auth;
-                this.robot = object.robot;
-                this.style = object.style;
-                this.target = object.target;
-                this.title = object.title;
-            },
-            checkForm: function checkForm() {
-                var valid = false;
-                this.errors = {
-                    title: false,
-                    label: false,
-                    slug: false
-                };
-
-                if (!this.title) {
-                    this.errors.title = valid = true;
-                }
-
-                if (!this.label) {
-                    this.errors.label = valid = true;
-                }
-
-                if (!this.slug) {
-                    this.errors.slug = valid = true;
-                }
-
-                return !valid;
-            },
-            add: function add() {
-                if (!this.checkForm()) {
-                    return;
-                }
-
-                $('.dd > .dd-list').append('<li class=\'dd-item dd3-item\' data-id=\'' + this.count + '\'> <div  class=\'dd-handle dd3-handle\'>Drag</div><div  class=\'dd3-content\'>' + this.label + '</div> <div  class=\'edit icon-pencil\'></div></li>');
-
-                $('li[data-id=' + this.count + ']').data({
-                    label: this.label,
-                    title: this.title,
-                    auth: this.auth,
-                    slug: this.slug,
-                    robot: this.robot,
-                    style: this.style,
-                    target: this.target
-                });
-
-                this.count--;
-                this.clear();
-                this.send();
-            },
-            edit: function edit(element) {
-                var data = $(element).parent().data();
-                data.label = $(element).prev().text();
-                this.load(data);
-            },
-            save: function save() {
-                if (!this.checkForm()) {
-                    return;
-                }
-
-                $('li[data-id=' + this.id + ']').data({
-                    label: this.label,
-                    title: this.title,
-                    auth: this.auth,
-                    slug: this.slug,
-                    robot: this.robot,
-                    style: this.style,
-                    target: this.target
-                });
-                $('li[data-id=' + this.id + '] > .dd3-content').html(this.label);
-
-                this.clear();
-                $('#menuEdit').modal('hide');
-                menu.send();
-            },
-            destroy: function destroy(id) {
-                axios.delete(platform.prefix('/press/menu/' + id)).then(function (response) {});
-            },
-            remove: function remove() {
-                $('li[data-id=' + this.id + ']').remove();
-                $('#menuEdit').modal('hide');
-                this.destroy(this.id);
-                this.clear();
-            },
-            clear: function clear() {
-                this.label = '';
-                this.title = '';
-                this.auth = 0;
-                this.slug = '';
-                this.robot = 'follow';
-                this.style = '';
-                this.target = '_self';
-                this.id = '';
-            },
-            send: function send() {
-                var name = $('.dd').attr('data-name');
-
-                var data = {
-                    lang: $('.dd').attr('data-lang'),
-                    data: $('.dd').nestable('serialize')
-                };
-
-                axios.put(platform.prefix('/press/menu/' + name), data).then(function (response) {});
-            },
-            exist: function exist() {
-                return Number.isInteger(this.id) && $('li[data-id=' + this.id + ']').length > 0;
-            }
-        }
-    });
-
-    $('.dd').nestable({});
-
-    $('.dd-item').each(function (i, item) {
-        $(item).data({
-            sort: i
-        });
-    });
-
-    $('.dd').on('change', function () {
-        $('.dd-item').each(function (i, item) {
-            $(item).data({
-                sort: i
-            });
-        });
-
-        menu.send();
-    });
-
-    $('.dd').on('click', '.edit', function () {
-        menu.edit(this);
-    });
-
-    $('.menu-save').click(function () {
-        menu.send();
-    });
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-
-/***/ 199:
-/***/ (function(module, exports, __webpack_require__) {
-
 var map = {
-	"./components/boot_controller.js": 200,
-	"./components/menu_controller.js": 201,
-	"./fields/input_controller.js": 202,
-	"./fields/picture_controller.js": 207,
-	"./fields/simplemde_controller.js": 208,
-	"./fields/tinymce_controller.js": 224,
-	"./fields/upload_controller.js": 225,
-	"./fields/utm_controller.js": 226,
-	"./layouts/html_load_controller.js": 227,
-	"./layouts/left_menu_controller.js": 248,
-	"./layouts/systems_controller.js": 249,
-	"./screen/base_controller.js": 250,
-	"./screen/modal_controller.js": 251,
-	"./screen/tabs_controller.js": 252
+	"./components/boot_controller.js": 199,
+	"./components/menu_controller.js": 200,
+	"./fields/input_controller.js": 201,
+	"./fields/picture_controller.js": 206,
+	"./fields/simplemde_controller.js": 207,
+	"./fields/tinymce_controller.js": 223,
+	"./fields/upload_controller.js": 224,
+	"./fields/utm_controller.js": 225,
+	"./layouts/html_load_controller.js": 226,
+	"./layouts/left_menu_controller.js": 247,
+	"./layouts/systems_controller.js": 248,
+	"./screen/base_controller.js": 249,
+	"./screen/modal_controller.js": 250,
+	"./screen/tabs_controller.js": 251
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -3407,11 +3237,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 199;
+webpackContext.id = 198;
 
 /***/ }),
 
-/***/ 200:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3466,7 +3296,7 @@ _class.targets = ["column", "relation"];
 
 /***/ }),
 
-/***/ 201:
+/***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3498,22 +3328,14 @@ var _class = function (_Controller) {
             var menu = this;
 
             $('.dd').nestable({}).on('change', function () {
-                $('.dd-item').each(function (i, item) {
-                    $(item).data({
-                        sort: i
-                    });
-                });
+                menu.sort();
 
                 menu.send();
             }).on('click', '.edit', function () {
                 menu.edit(this);
             });
 
-            $('.dd-item').each(function (i, item) {
-                $(item).data({
-                    sort: i
-                });
-            });
+            menu.sort();
 
             this.checkExist();
         }
@@ -3532,11 +3354,33 @@ var _class = function (_Controller) {
             this.checkExist();
         }
     }, {
+        key: "sort",
+        value: function sort() {
+            $('.dd-item').each(function (i, item) {
+                $(item).data({
+                    sort: i
+                });
+            });
+        }
+    }, {
         key: "edit",
         value: function edit(element) {
             var data = $(element).parent().data();
             data.label = $(element).prev().text();
             this.load(data);
+        }
+    }, {
+        key: "getFormData",
+        value: function getFormData() {
+            return {
+                label: this.labelTarget.value,
+                title: this.titleTarget.value,
+                auth: this.authTarget.value,
+                slug: this.slugTarget.value,
+                robot: this.robotTarget.value,
+                style: this.styleTarget.value,
+                target: this.targetTarget.value
+            };
         }
     }, {
         key: "add",
@@ -3545,19 +3389,22 @@ var _class = function (_Controller) {
                 return;
             }
 
-            $('.dd > .dd-list').append("<li class='dd-item dd3-item' data-id='" + this.count + "'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" + this.labelTarget.value + "</div> <div  class='edit icon-pencil'></div></li>");
+            var $menu = this,
+                $dd = $('.dd'),
+                data = { menu: $dd.attr('data-name'), lang: $dd.attr('data-lang'), data: this.getFormData() };
 
-            $("li[data-id=" + this.count + "]").data({
-                label: this.labelTarget.value,
-                title: this.titleTarget.value,
-                auth: this.authTarget.value,
-                slug: this.slugTarget.value,
-                robot: this.robotTarget.value,
-                style: this.styleTarget.value,
-                target: this.targetTarget.value
+            axios.get(this.getUri('create/'), { params: data }).then(function (response) {
+                $menu.add2Dom(response.data.id);
             });
+        }
+    }, {
+        key: "add2Dom",
+        value: function add2Dom(id) {
+            $('.dd > .dd-list').append("<li class='dd-item dd3-item' data-id='" + id + "'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" + this.labelTarget.value + "</div> <div  class='edit icon-pencil'></div></li>");
 
-            this.count--;
+            $("li[data-id=" + id + "]").data(this.getFormData());
+
+            this.sort();
             this.clear();
             this.send();
         }
@@ -3568,15 +3415,7 @@ var _class = function (_Controller) {
                 return;
             }
 
-            $("li[data-id=" + this.id + "]").data({
-                label: this.labelTarget.value,
-                title: this.titleTarget.value,
-                auth: this.authTarget.value,
-                slug: this.slugTarget.value,
-                robot: this.robotTarget.value,
-                style: this.styleTarget.value,
-                target: this.targetTarget.value
-            });
+            $("li[data-id=" + this.id + "]").data(this.getFormData());
             $("li[data-id=" + this.id + "] > .dd3-content").html(this.labelTarget.value);
 
             this.clear();
@@ -3585,7 +3424,7 @@ var _class = function (_Controller) {
     }, {
         key: "destroy",
         value: function destroy(id) {
-            axios.delete(platform.prefix("/press/menu/" + id)).then(function (response) {});
+            axios.delete(this.getUri(id)).then(function (response) {});
         }
     }, {
         key: "remove",
@@ -3612,13 +3451,14 @@ var _class = function (_Controller) {
     }, {
         key: "send",
         value: function send() {
-            var name = $('.dd').attr('data-name');
-            var data = {
-                lang: $('.dd').attr('data-lang'),
-                data: $('.dd').nestable('serialize')
+            var $dd = $('.dd'),
+                name = $dd.attr('data-name'),
+                data = {
+                lang: $dd.attr('data-lang'),
+                data: $dd.nestable('serialize')
             };
 
-            axios.put(platform.prefix("/press/menu/" + name), data).then(function (response) {});
+            axios.put(this.getUri(name), data).then(function (response) {});
         }
     }, {
         key: "checkForm",
@@ -3650,12 +3490,12 @@ var _class = function (_Controller) {
             if (this.exist()) {
                 document.getElementById('menu.remove').classList.remove("none");
                 document.getElementById('menu.reset').classList.remove("none");
-                document.getElementById('menu.add').classList.add("none");
+                document.getElementById('menu.create').classList.add("none");
                 document.getElementById('menu.save').classList.remove("none");
             } else {
                 document.getElementById('menu.remove').classList.add("none");
                 document.getElementById('menu.reset').classList.add("none");
-                document.getElementById('menu.add').classList.remove("none");
+                document.getElementById('menu.create').classList.remove("none");
                 document.getElementById('menu.save').classList.add("none");
             }
         }
@@ -3663,6 +3503,13 @@ var _class = function (_Controller) {
         key: "exist",
         value: function exist() {
             return Number.isInteger(this.id) && $("li[data-id=" + this.id + "]").length > 0;
+        }
+    }, {
+        key: "getUri",
+        value: function getUri() {
+            var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+            return platform.prefix("/press/menu/" + path);
         }
     }]);
 
@@ -3675,7 +3522,7 @@ _class.targets = ["id", "label", "slug", "auth", "robot", "style", "target", "ti
 
 /***/ }),
 
-/***/ 202:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3723,7 +3570,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 207:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3867,7 +3714,7 @@ _class.targets = ["source", "upload"];
 
 /***/ }),
 
-/***/ 208:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3994,7 +3841,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4157,7 +4004,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 225:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4377,7 +4224,7 @@ _class.targets = ["name", "original_name", "alt", "description", "url", "active"
 
 /***/ }),
 
-/***/ 226:
+/***/ 225:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4533,7 +4380,7 @@ _class.targets = ["url", "source", "medium", "campaign", "term", "content"];
 
 /***/ }),
 
-/***/ 227:
+/***/ 226:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4541,7 +4388,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_turbolinks__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -4617,7 +4464,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 229:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4635,6 +4482,10 @@ function platform() {
 
             if (prefix && prefix.content.charAt(0) !== '/') {
                 prefix = '/' + prefix.content;
+            } else if (prefix) {
+                prefix = prefix.content;
+            } else {
+                return path;
             }
 
             return prefix + path;
@@ -4682,7 +4533,7 @@ function platform() {
 
 /***/ }),
 
-/***/ 248:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4744,7 +4595,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4799,7 +4650,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4855,7 +4706,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4929,7 +4780,7 @@ _class.targets = ["title"];
 
 /***/ }),
 
-/***/ 252:
+/***/ 251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5026,7 +4877,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 253:
+/***/ 252:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
