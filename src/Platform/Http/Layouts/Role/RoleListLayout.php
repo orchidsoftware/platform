@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts\Role;
 
-use Orchid\Platform\Fields\TD;
-use Orchid\Platform\Layouts\Table;
+use Orchid\Screen\Fields\TD;
+use Orchid\Screen\Layouts\Table;
 
 class RoleListLayout extends Table
 {

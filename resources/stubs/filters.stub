@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 

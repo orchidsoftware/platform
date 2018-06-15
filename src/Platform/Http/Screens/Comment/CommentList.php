@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\Comment;
 
+use Orchid\Screen\Screen;
 use Orchid\Press\Models\Comment;
-use Orchid\Platform\Screen\Screen;
 use Orchid\Platform\Http\Layouts\Comment\CommentListLayout;
 
 class CommentList extends Screen
@@ -38,6 +38,14 @@ class CommentList extends Screen
                 },
             ])->latest()->paginate(),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function commandBar(): array
+    {
+        return [];
     }
 
     /**

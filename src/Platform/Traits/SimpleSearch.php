@@ -16,10 +16,10 @@ trait SimpleSearch
      */
     public function simpleSearchByColumn($column, $query = null)
     {
-        if (self::getQuery()->getConnection() instanceof PostgresConnection) {
-            return self::whereRaw("{$column}::TEXT ILIKE ?", "%{$query}%");
+        if (static::getQuery()->getConnection() instanceof PostgresConnection) {
+            return static::whereRaw("{$column}::TEXT ILIKE ?", "%{$query}%");
         }
 
-        return self::where($column, 'LIKE', "%{$query}%");
+        return static::where($column, 'LIKE', "%{$query}%");
     }
 }

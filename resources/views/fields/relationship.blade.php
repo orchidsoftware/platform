@@ -2,8 +2,6 @@
     <select id="{{$id}}" @include('platform::partials.fields.attributes', ['attributes' => $attributes])></select>
 @endcomponent
 
-
-
 @push('scripts')
     <script>
         document.addEventListener('turbolinks:load', function () {

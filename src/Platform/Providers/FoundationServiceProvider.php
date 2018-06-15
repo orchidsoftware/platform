@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Widget\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Intervention\Image\ImageServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {
@@ -129,6 +130,7 @@ class FoundationServiceProvider extends ServiceProvider
     {
         return [
             ActiveServiceProvider::class,
+            ImageServiceProvider::class,
             AlertServiceProvider::class,
             WidgetServiceProvider::class,
             DashboardProvider::class,

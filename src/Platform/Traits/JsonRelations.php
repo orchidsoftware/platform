@@ -71,6 +71,6 @@ trait JsonRelations
             $option[$name] = [];
         }
 
-        return self::whereIn('id', $option[$name]);
+        return static::whereIn('id', $option[$name]);
     }
 }

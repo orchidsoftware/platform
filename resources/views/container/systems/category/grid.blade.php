@@ -28,7 +28,7 @@
                             <th class="w-xs">{{trans('platform::common.Manage')}}</th>
                             <th>{{trans('platform::systems/category.name')}}</th>
 
-                            @foreach($behavior->grid() as $th)
+                            @foreach($entity->grid() as $th)
                                 <th width="{{$th->width}}">{{$th->title}}</th>
                             @endforeach
                         </tr>
@@ -44,7 +44,7 @@
                                 </td>
                                 <td>{{$item->term->getContent('name')}}</td>
 
-                                @foreach($behavior->grid() as $td)
+                                @foreach($entity->grid() as $td)
                                     <td>
                                         @isset($td->render)
                                             {!! $td->handler($item->term) !!}

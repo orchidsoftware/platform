@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press;
 
-use Orchid\Platform\Fields\TD;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\TD;
+use Orchid\Screen\Fields\Field;
 use Orchid\Press\Models\Category;
 
 class CategoryBase
@@ -45,7 +45,7 @@ class CategoryBase
 
     /**
      * @return array
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function fields() : array
     {

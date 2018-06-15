@@ -1,5 +1,6 @@
 <h4 class="text-orchid font-thin">C чего начать</h4>
 <ul class="toc-links">
+    <li><a href="/ru/docs/preface">Предисловие</a></li>
     <li><a href="/ru/docs" title="ORCHID - это ...">Введение</a></li>
     <li><a href="/ru/docs/requirements" title="Данное руководство содержит подробные системные требования для установки ORCHID на Laravel Framework">Требования</a></li>
     <li><a href="/ru/docs/installation" title="Данное руководство охватывает подготовку, запуск сценария установки и шаги, которые должны быть выполнены после завершения сценария установки">Установка</a></li>
@@ -41,7 +42,7 @@
 
 <h4 class="text-orchid font-thin">Управление содержимым</h4>
 <ul class="toc-links">
-    <li><a href="/ru/docs/entities">Поведения</a></li>
+    <li><a href="/ru/docs/entities">Сущности</a></li>
     <li><a href="/ru/docs/post">Записи</a></li>
     <li><a href="/ru/docs/tags">Теги</a></li>
     <li><a href="/ru/docs/comments" title="Работа с комментариями в ORCHID">Комментарии</a></li>

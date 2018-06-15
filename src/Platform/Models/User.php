@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Orchid\Access\UserAccess;
+use Orchid\Access\UserInterface;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Access\UserAccess;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Access\UserInterface;
 use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -119,7 +119,7 @@ class User extends Authenticatable implements UserInterface
                 $permissions->put($item['slug'], true);
             });
 
-        $user = self::create([
+        $user = static::create([
                 'name'        => $name,
                 'email'       => $email,
                 'password'    => bcrypt($password),

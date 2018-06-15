@@ -71,7 +71,7 @@ class Comment extends Model
      */
     public function original() : BelongsTo
     {
-        return $this->belongsTo(self::class, 'parent_id');
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     /**
@@ -81,7 +81,7 @@ class Comment extends Model
      */
     public function replies() : HasMany
     {
-        return $this->hasMany(self::class, 'parent_id');
+        return $this->hasMany(static::class, 'parent_id');
     }
 
     /**

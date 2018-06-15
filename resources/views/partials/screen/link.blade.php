@@ -1,12 +1,12 @@
 @if(!is_null($modal))
 
     <button type="button"
-            data-toggle="modal"
-            data-target="#screen-modal-{{$modal or ''}}"
             class="btn btn-link"
-            id="show-button-modal-{{$modal or ''}}"
+            data-action="screen--base#targetModal"
             data-modal-title="{{$title or ''}}"
-            data-modal-action="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}">
+            data-modal-key="{{$modal or ''}}"
+            data-modal-action="{{route(Route::currentRouteName(),$arguments)}}/{{$method}}"
+    >
         <i class="{{$icon or ''}} m-r-xs"></i>{{$name or ''}}
     </button>
 @elseif(!is_null($method))

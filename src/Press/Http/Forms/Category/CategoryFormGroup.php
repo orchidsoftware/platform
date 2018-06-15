@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\View\View;
+use Orchid\Forms\FormGroup;
 use Orchid\Press\Models\Category;
-use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Events\CategoryEvent;
 
 class CategoryFormGroup extends FormGroup
@@ -39,14 +39,14 @@ class CategoryFormGroup extends FormGroup
      */
     public function main(): View
     {
-        $behavior = config('press.category');
-        $behavior = new $behavior();
+        $entity = config('press.category');
+        $entity = new $entity();
 
         return view('platform::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),
-            'behavior' => $behavior,
-            'filters'  => collect($behavior->filters()),
-            'chunk'    => $behavior->chunk,
+            'entity' => $entity,
+            'filters'  => collect($entity->filters()),
+            'chunk'    => $entity->chunk,
         ]);
     }
 }

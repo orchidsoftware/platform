@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Boot\Layouts;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Layouts\Rows;
+use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Layouts\Rows;
 
 class BootCreateModel extends Rows
 {
@@ -13,7 +13,7 @@ class BootCreateModel extends Rows
      * Views.
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     public function fields(): array
     {

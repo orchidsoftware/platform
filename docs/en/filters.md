@@ -68,7 +68,7 @@ A filter will work subject to availability of at least one of the parameters spe
 
 ## Use
 
-To use a filter you need to specify it at a behavior class.
+To use a filter you need to specify it at a entity class.
 ```php
 use Orchid\Entities\Many;
 

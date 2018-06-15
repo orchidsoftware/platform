@@ -3,7 +3,7 @@
 Fields are used to generate the output for the form template.
 
 All possible fields are defined in the `config/platform.php` file inside the fields section
-Every field may be used in a behavior, template or filter. 
+Every field may be used in a entity, template or filter. 
 
 If you need to create your own field don't be shy to do it.
 Field consists of one class with a mandatory `create` method that must implement the `view`  to display to user.

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Boot\Http\Controllers\Screens;
 
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Boot\Builders\Model;
-use Orchid\Platform\Screen\Link;
 use Illuminate\Support\Collection;
-use Orchid\Platform\Screen\Screen;
 use Orchid\Boot\Builders\Migration;
-use Orchid\Platform\Screen\Layouts;
 use Orchid\Boot\Layouts\BootCreateModel;
 
 class BootModelScreen extends Screen
@@ -53,7 +53,7 @@ class BootModelScreen extends Screen
     {
         parent::__construct();
 
-        $this->models = cache(self::MODELS, collect());
+        $this->models = cache(static::MODELS, collect());
     }
 
     /**
@@ -137,7 +137,7 @@ class BootModelScreen extends Screen
 
         $this->models->put($name, collect());
 
-        cache()->forever(self::MODELS, $this->models);
+        cache()->forever(static::MODELS, $this->models);
 
         alert('Модель успешно сохранена');
 
@@ -152,7 +152,7 @@ class BootModelScreen extends Screen
     public function delete(string $model)
     {
         $this->models = $this->models->except($model);
-        cache()->forever(self::MODELS, $this->models);
+        cache()->forever(static::MODELS, $this->models);
 
         alert('Модель была удалена');
 

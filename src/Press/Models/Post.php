@@ -17,16 +17,22 @@ use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Traits\JsonRelations;
 use Orchid\Platform\Traits\MultiLanguage;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Orchid\Screen\Exceptions\TypeException;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Exceptions\TypeException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
-    use TaggableTrait;
-    use SoftDeletes, Sluggable, MultiLanguage, Searchable, Attachment, JsonRelations, FilterTrait;
+    use TaggableTrait,
+        SoftDeletes,
+        Sluggable,
+        MultiLanguage,
+        Searchable,
+        Attachment,
+        JsonRelations,
+        FilterTrait;
 
     /**
      * @var string
@@ -34,11 +40,11 @@ class Post extends Model
     protected $table = 'posts';
 
     /**
-     * Recording behavior.
+     * Recording entity.
      *
      * @var \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      */
-    protected $behavior = null;
+    protected $entity = null;
 
     /**
      * @var array
@@ -130,10 +136,10 @@ class Post extends Model
      */
     public function toSearchableArray()
     {
-        $behavior = $this->getBehaviorObject();
+        $entity = $this->getEntityObject();
 
-        if (method_exists($behavior, 'toSearchableArray')) {
-            return $behavior->toSearchableArray($this->toArray());
+        if (method_exists($entity, 'toSearchableArray')) {
+            return $entity->toSearchableArray($this->toArray());
         }
 
         return [];
@@ -148,13 +154,13 @@ class Post extends Model
      *
      * @throws \Throwable|TypeException
      */
-    public function getBehaviorObject($slug = null)
+    public function getEntityObject($slug = null)
     {
-        if (! is_null($this->behavior)) {
-            return $this->behavior;
+        if (! is_null($this->entity)) {
+            return $this->entity;
         }
 
-        return $this->getBehavior($slug ?: $this->getAttribute('type'))->behavior;
+        return $this->getEntity($slug ?: $this->getAttribute('type'))->entity;
     }
 
     /**
@@ -163,11 +169,11 @@ class Post extends Model
      *
      * @throws \Throwable|TypeException
      */
-    public function getBehavior($slug)
+    public function getEntity($slug)
     {
-        $this->behavior = Dashboard::getEntities()->where('slug', $slug)->first();
+        $this->entity = Dashboard::getEntities()->where('slug', $slug)->first();
 
-        throw_if(is_null($this->behavior), TypeException::class, "{$slug} Type is not found");
+        throw_if(is_null($this->entity), TypeException::class, "{$slug} Type is not found");
 
         return $this;
     }
@@ -333,7 +339,7 @@ class Post extends Model
     public function makeSlug($title) : string
     {
         $slug = Str::slug($title);
-        $count = self::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
+        $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
 
         return $count ? "{$slug}-{$count}" : $slug;
     }
@@ -391,16 +397,16 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null    $behavior
+     * @param null    $entity
      *
      * @return Builder
      * @throws \Throwable
      */
-    public function scopeFiltersApply(Builder $query, $behavior = null) : Builder
+    public function scopeFiltersApply(Builder $query, $entity = null) : Builder
     {
-        if (! is_null($behavior)) {
+        if (! is_null($entity)) {
             try {
-                $this->getBehavior($behavior);
+                $this->getEntity($entity);
             } catch (TypeException $e) {
             }
         }
@@ -416,7 +422,7 @@ class Post extends Model
      */
     private function filter(Builder $query, $dashboard = false) : Builder
     {
-        $filters = $this->behavior->getFilters($dashboard);
+        $filters = $this->entity->getFilters($dashboard);
         foreach ($filters as $filter) {
             $query = $filter->filter($query);
         }
@@ -426,15 +432,15 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null    $behavior
+     * @param null    $entity
      *
      * @return Builder
      * @throws \Throwable | TypeException
      */
-    public function scopeFiltersApplyDashboard(Builder $query, $behavior = null) : Builder
+    public function scopeFiltersApplyDashboard(Builder $query, $entity = null) : Builder
     {
-        if (! is_null($behavior)) {
-            $this->getBehavior($behavior);
+        if (! is_null($entity)) {
+            $this->getEntity($entity);
         }
 
         return $this->filter($query, true);

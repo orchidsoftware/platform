@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Demo;
 
-use Orchid\Platform\Fields\TD;
+use Orchid\Screen\Fields\TD;
 use Orchid\Press\Entities\Many;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Http\Filters\SearchFilter;
 use Orchid\Platform\Http\Filters\StatusFilter;
 use Orchid\Platform\Http\Filters\CreatedFilter;
@@ -74,7 +74,7 @@ class Post extends Many
 
     /**
      * @return array
-     * @throws \Throwable|\Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
     public function fields() : array
     {

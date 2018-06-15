@@ -41,16 +41,16 @@ abstract class Filter
     /**
      * @var null
      */
-    public $behavior = null;
+    public $entity = null;
 
     /**
      * Filter constructor.
      *
-     * @param $behavior
+     * @param $entity
      */
-    public function __construct($behavior = null)
+    public function __construct($entity = null)
     {
-        $this->behavior = $behavior;
+        $this->entity = $entity;
         $this->request = request();
         $this->lang = app()->getLocale();
     }

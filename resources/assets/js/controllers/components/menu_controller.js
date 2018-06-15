@@ -19,23 +19,14 @@ export default class extends Controller {
 
         $('.dd').nestable({})
             .on('change', () => {
-                $('.dd-item').each((i, item) => {
-                    $(item).data({
-                        sort: i,
-                    });
-                });
+                menu.sort();
 
                 menu.send();
             }).on('click', '.edit', function () {
             menu.edit(this);
         });
 
-        $('.dd-item').each((i, item) => {
-            $(item).data({
-                sort: i,
-            });
-        });
-
+        menu.sort();
 
         this.checkExist();
     }
@@ -54,6 +45,14 @@ export default class extends Controller {
         this.checkExist();
     }
 
+    sort() {
+        $('.dd-item').each((i, item) => {
+            $(item).data({
+                sort: i,
+            });
+        });
+    }
+
     edit(element) {
         let data = $(element)
             .parent()
@@ -64,16 +63,8 @@ export default class extends Controller {
         this.load(data);
     }
 
-    add() {
-        if (!this.checkForm()) {
-            return;
-        }
-
-        $('.dd > .dd-list').append(
-            `<li class='dd-item dd3-item' data-id='${this.count}'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>${this.labelTarget.value}</div> <div  class='edit icon-pencil'></div></li>`,
-        );
-
-        $(`li[data-id=${this.count}]`).data({
+    getFormData() {
+        return {
             label: this.labelTarget.value,
             title: this.titleTarget.value,
             auth: this.authTarget.value,
@@ -81,9 +72,32 @@ export default class extends Controller {
             robot: this.robotTarget.value,
             style: this.styleTarget.value,
             target: this.targetTarget.value,
-        });
+        }
+    }
 
-        this.count--;
+    add() {
+        if (!this.checkForm()) {
+            return;
+        }
+
+        let $menu = this, $dd = $('.dd'),
+            data = {menu: $dd.attr('data-name'), lang: $dd.attr('data-lang'), data: this.getFormData()};
+
+        axios
+            .get(this.getUri('create/'), {params: data})
+            .then(function (response) {
+                $menu.add2Dom(response.data.id)
+            });
+    }
+
+    add2Dom(id) {
+        $('.dd > .dd-list').append(
+            `<li class='dd-item dd3-item' data-id='${id}'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>${this.labelTarget.value}</div> <div  class='edit icon-pencil'></div></li>`,
+        );
+
+        $(`li[data-id=${id}]`).data(this.getFormData());
+
+        this.sort();
         this.clear();
         this.send();
     }
@@ -93,15 +107,7 @@ export default class extends Controller {
             return;
         }
 
-        $(`li[data-id=${this.id}]`).data({
-            label: this.labelTarget.value,
-            title: this.titleTarget.value,
-            auth: this.authTarget.value,
-            slug: this.slugTarget.value,
-            robot: this.robotTarget.value,
-            style: this.styleTarget.value,
-            target: this.targetTarget.value,
-        });
+        $(`li[data-id=${this.id}]`).data(this.getFormData());
         $(`li[data-id=${this.id}] > .dd3-content`).html(this.labelTarget.value);
 
         this.clear();
@@ -110,7 +116,7 @@ export default class extends Controller {
 
     destroy(id) {
         axios
-            .delete(platform.prefix(`/press/menu/${id}`))
+            .delete(this.getUri(id))
             .then(response => {});
     }
 
@@ -136,14 +142,15 @@ export default class extends Controller {
     }
 
     send() {
-        let name = $('.dd').attr('data-name');
-        let data = {
-            lang: $('.dd').attr('data-lang'),
-            data: $('.dd').nestable('serialize'),
-        };
+        let $dd = $('.dd'),
+            name = $dd.attr('data-name'),
+            data = {
+                lang: $dd.attr('data-lang'),
+                data: $dd.nestable('serialize'),
+            };
 
         axios
-            .put(platform.prefix(`/press/menu/${name}`), data)
+            .put(this.getUri(name), data)
             .then(response => {});
     }
 
@@ -170,17 +177,16 @@ export default class extends Controller {
         return true;
     }
 
-
     checkExist() {
         if(this.exist()){
             document.getElementById('menu.remove').classList.remove("none");
             document.getElementById('menu.reset').classList.remove("none");
-            document.getElementById('menu.add').classList.add("none");
+            document.getElementById('menu.create').classList.add("none");
             document.getElementById('menu.save').classList.remove("none");
         }else{
             document.getElementById('menu.remove').classList.add("none");
             document.getElementById('menu.reset').classList.add("none");
-            document.getElementById('menu.add').classList.remove("none");
+            document.getElementById('menu.create').classList.remove("none");
             document.getElementById('menu.save').classList.add("none");
         }
     }
@@ -190,4 +196,7 @@ export default class extends Controller {
             $(`li[data-id=${this.id}]`).length > 0;
     }
 
+    getUri(path = '') {
+        return platform.prefix(`/press/menu/${path}`);
+    }
 }

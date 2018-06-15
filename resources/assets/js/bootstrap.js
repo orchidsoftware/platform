@@ -45,5 +45,5 @@ window.Chart = require('frappe-charts');
 
 require('./components/attachment');
 require('./components/filemanager');
-require('./components/menu');
+// require('./components/menu');
 

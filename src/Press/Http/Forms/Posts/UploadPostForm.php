@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Posts;
 
+use Orchid\Forms\Form;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 
 class UploadPostForm extends Form

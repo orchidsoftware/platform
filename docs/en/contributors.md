@@ -18,7 +18,7 @@ As a reminder, bug reports are designed to let the other users with the same pro
 
 ## Participation in main discussions
 
-You can offer new functions and enhancements of the ORCHID's current behavior. If you offer a new function, you should be ready to run at least the code samples required for a call/use of the function.
+You can offer new functions and enhancements of the ORCHID's current entity. If you offer a new function, you should be ready to run at least the code samples required for a call/use of the function.
 
  Non-formal discussions concerning bugs/problems and new possibilities:
   1. [Telegram group @orchid_community](https://t.me/orchid_community)

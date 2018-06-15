@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Screen\Link;
-use Orchid\Platform\Screen\Screen;
+use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
+use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
 
 class UserList extends Screen
@@ -62,6 +66,12 @@ class UserList extends Screen
     {
         return [
             UserListLayout::class,
+
+            Layouts::modals([
+                'oneAsyncModal' => [
+                    UserEditLayout::class,
+                ],
+            ])->async('asyncGetUser'),
         ];
     }
 
@@ -71,5 +81,47 @@ class UserList extends Screen
     public function create()
     {
         return redirect()->route('platform.systems.users.create');
+    }
+
+    /**
+     * @return array
+     */
+    public function asyncGetUser() : array
+    {
+        // переписать эту херню
+        $id = $this->request->json()->all();
+        $id = array_shift($id);
+        // переписать эту херню
+
+        $user = is_null($id) ? new User() : User::findOrFail($id);
+
+        return [
+            'user' => $user,
+        ];
+    }
+
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        $attributes = $this->request->get('user');
+
+        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
+            unset($attributes['password']);
+        } else {
+            $user->password = Hash::make($attributes['password']);
+            unset($attributes['password']);
+        }
+
+        $user->fill($attributes)->save();
+
+        Alert::info(trans('platform::systems/users.User was saved'));
+
+        return back();
     }
 }

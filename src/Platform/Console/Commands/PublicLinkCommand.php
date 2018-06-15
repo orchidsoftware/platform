@@ -30,7 +30,9 @@ class PublicLinkCommand extends Command
     public function handle()
     {
         if (file_exists(public_path('orchid'))) {
-            return $this->error('The "public/orchid" directory already exists.');
+            $this->error('The "public/orchid" directory already exists.');
+
+            return;
         }
 
         $this->laravel->make('files')->link(realpath(PLATFORM_PATH.'/public/'), public_path('orchid'));

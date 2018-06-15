@@ -12,13 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Attachment extends Model
 {
     /**
-     * Attachment types.
-     *
-     * @var array
-     */
-    public $types = [];
-
-    /**
      * @var array
      */
     protected $fillable = [
@@ -42,7 +35,6 @@ class Attachment extends Model
      */
     public function __construct(array $attributes = [])
     {
-        $this->types = config('platform.attachment', []);
         parent::__construct($attributes);
     }
 
@@ -52,20 +44,6 @@ class Attachment extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * @param $type
-     *
-     * @return Attachment
-     */
-    public function type($type) : self
-    {
-        if (array_key_exists($type, $this->types)) {
-            return $this->whereIn('extension', $this->types[$type]);
-        }
-
-        return $this;
     }
 
     /**
@@ -119,8 +97,8 @@ class Attachment extends Model
     /**
      * Physical removal of all copies of a file.
      *
-     * @param Attachment $attachment
-     * @param string     $storageName
+     * @param self   $attachment
+     * @param string $storageName
      */
     private function removePhysicalFile(self $attachment, $storageName)
     {

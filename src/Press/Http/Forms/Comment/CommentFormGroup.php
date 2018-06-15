@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Forms\Comment;
 
+use Orchid\Forms\FormGroup;
 use Orchid\Press\Models\Comment;
 use Illuminate\Contracts\View\View;
-use Orchid\Platform\Forms\FormGroup;
 use Orchid\Platform\Events\CommentEvent;
 
 class CommentFormGroup extends FormGroup

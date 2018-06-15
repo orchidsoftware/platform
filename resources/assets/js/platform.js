@@ -11,6 +11,10 @@ export function platform() {
 
             if (prefix && prefix.content.charAt(0) !== '/') {
                 prefix = `/${prefix.content}`;
+            } else if (prefix) {
+                prefix = prefix.content;
+            } else {
+                return path;
             }
 
             return prefix + path;
