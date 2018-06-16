@@ -109,7 +109,7 @@ class Setting extends Model
 
     /**
      * @param      $key
-     * @param null $default
+     * @param string|null $default
      *
      * @return null
      */

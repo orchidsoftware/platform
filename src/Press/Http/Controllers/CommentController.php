@@ -29,7 +29,7 @@ class CommentController extends Controller
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function index()
     {

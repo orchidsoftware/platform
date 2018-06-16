@@ -104,7 +104,7 @@ class UserEdit extends Screen
                     UserEditLayout::class,
                 ],
                 'Right column' => [
-                      UserRoleLayout::class,
+                        UserRoleLayout::class,
                 ],
             ]),
         ];

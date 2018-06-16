@@ -69,7 +69,7 @@ class MediaController extends Controller
     }
 
     /**
-     * @param      $dir
+     * @param      string $dir
      * @param null $mime
      *
      * @return array

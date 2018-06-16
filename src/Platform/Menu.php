@@ -204,7 +204,7 @@ class Menu
     }
 
     /**
-     * @param $key
+     * @param string $key
      *
      * @return Collection
      */

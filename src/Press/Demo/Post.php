@@ -201,7 +201,7 @@ class Post extends Many
     {
         return [
 
-       ];
+        ];
     }
 
     /**

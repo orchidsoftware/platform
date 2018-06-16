@@ -31,7 +31,7 @@
             </div>
 
             <div class="line line-dashed b-b line-lg"></div>
-            <button type="submit" class="btn btn-default btn-sm w-full">Применить</button>
+            <button type="submit" class="btn btn-default btn-sm w-full">{{trans('platform::common.filters.apply')}}</button>
         </form>
     </div>
 </div>

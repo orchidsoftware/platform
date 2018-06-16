@@ -100,7 +100,7 @@ class Layouts
     /**
      * @param $property
      *
-     * @return mixed
+     * @return Layouts
      */
     protected function setLayouts($property)
     {

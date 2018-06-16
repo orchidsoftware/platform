@@ -243,8 +243,8 @@ class TD
 
     /**
      * @param string      $modal
-     * @param             $method
-     * @param             $options
+     * @param             string $method
+     * @param             string $options
      * @param string|null $text
      *
      * @return \Orchid\Screen\Fields\TD

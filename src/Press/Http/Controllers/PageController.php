@@ -49,7 +49,7 @@ class PageController extends Controller
      * @param Page    $page
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */

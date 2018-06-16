@@ -52,7 +52,11 @@ class DateTimerField extends Field
      */
     public $attributes = [
         'type'  => 'text',
-        'class' => 'form-control datetimepicker',
+        'class' => 'form-control',
+        'data-controller' => 'components--datetime',
+        'data-components--datetime-enable-time' => 'true',
+        'data-components--datetime-time_24hr' => 'true',
+        'data-components--datetime-allow-input' => 'true',
     ];
 
     /**
@@ -97,5 +101,9 @@ class DateTimerField extends Field
         'step',
         'tabindex',
         'value',
+        'data-controller',
+        'data-components--datetime-enable-time',
+        'data-components--datetime-time_24hr',
+        'data-components--datetime-allow-input',
     ];
 }

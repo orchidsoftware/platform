@@ -62,7 +62,7 @@ class Model
 
     /**
      * Model constructor.
-     * @param null  $class
+     * @param string  $class
      * @param array $parameters
      * @throws \ReflectionException
      */

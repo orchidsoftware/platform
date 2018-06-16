@@ -44,11 +44,11 @@ return [
     'yes_delete'             => 'Так, видалити!',
 
     'fileinfo'               => [
-      'title'                => 'Назва',
-      'type'                 => 'Тип файлу',
-      'size'                 => 'Розмір',
-      'public_url'           => 'Шлях до файлу',
-      'click_here'           => 'Відкрити',
-      'last_modified'        => 'Остання зміна',
+        'title'                => 'Назва',
+        'type'                 => 'Тип файлу',
+        'size'                 => 'Розмір',
+        'public_url'           => 'Шлях до файлу',
+        'click_here'           => 'Відкрити',
+        'last_modified'        => 'Остання зміна',
     ],
 ];

@@ -32,7 +32,7 @@ trait Attachment
     }
 
     /**
-     * @param null $group
+     * @param string $group
      *
      * @return MorphToMany
      */

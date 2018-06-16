@@ -26,9 +26,9 @@ class BaseCommentForm extends Form
     /**
      * Display Settings App.
      *
-     * @param Comment|null $comment
+     * @param Comment $comment
      *
-     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return View
      */
     public function get(Comment $comment) : View
     {

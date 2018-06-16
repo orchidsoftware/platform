@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 trait RoleAccess
 {
     /**
-     * @return mixed
+     * @return int
      */
     public function getRoleId() : int
     {
@@ -18,7 +18,7 @@ trait RoleAccess
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRoleSlug() : string
     {
