@@ -37,6 +37,11 @@ abstract class Screen
     public $permission;
 
     /**
+     * @var Repository
+     */
+    private $post;
+
+    /**
      * @var array
      */
     protected $arguments = [];
@@ -69,14 +74,11 @@ abstract class Screen
      */
     public function build() : View
     {
-        $query = call_user_func_array([$this, 'query'], $this->arguments);
-        $post = new Repository($query);
-
         $layout = Layouts::blank([
             $this->layout(),
         ]);
 
-        return $layout->build($post);
+        return $layout->build($this->post);
     }
 
     /**
@@ -104,6 +106,10 @@ abstract class Screen
      */
     public function view()
     {
+        $query = call_user_func_array([$this, 'query'], $this->arguments);
+        $post = new Repository($query);
+        $this->post = $post;
+
         return view('platform::container.layouts.base', [
             'arguments' => $this->arguments,
             'screen'    => $this,

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
 ## [Unreleased]
 ### Added
 - Grouping items using Field::group 
@@ -15,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - User routes for dashboard
 - Custom templates for the sidebar [631](https://github.com/orchidsoftware/platform/issues/631)
 - Saved the state of the tabs [666](https://github.com/orchidsoftware/platform/issues/666)
+- Added permission for cache
 
 ### Deprecated
 - TD::name and TD::title use TD::set
@@ -24,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - User routes for dashboard
 - The package was divided into several internal structures (Platform & Press) [634](https://github.com/orchidsoftware/platform/issues/634)
 - Rename 'dashboard' to 'platform'
+- Order of calling functions in the screen, now the query is executed earlier
 
 ### Fixed
 - Require to required

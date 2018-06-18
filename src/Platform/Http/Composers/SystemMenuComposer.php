@@ -34,7 +34,7 @@ class SystemMenuComposer
                 'icon'       => 'icon-refresh',
                 'label'      => 'Cache configuration',
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 2000,
             ])
             ->add('Cache', [
@@ -44,7 +44,7 @@ class SystemMenuComposer
                 'label'      => trans('platform::systems/cache.cache'),
                 'groupname'  => trans('platform::systems/cache.cache.description'),
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
             ])
             ->add('Cache', [
@@ -54,7 +54,7 @@ class SystemMenuComposer
                 'label'      => trans('platform::systems/cache.config'),
                 'groupname'  => trans('platform::systems/cache.config.description'),
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
             ])
             ->add('Cache', [
@@ -64,7 +64,7 @@ class SystemMenuComposer
                 'label'      => trans('platform::systems/cache.route'),
                 'groupname'  => trans('platform::systems/cache.route.description'),
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
             ])
             ->add('Cache', [
@@ -74,7 +74,7 @@ class SystemMenuComposer
                 'label'      => trans('platform::systems/cache.view'),
                 'groupname'  => trans('platform::systems/cache.view.description'),
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
             ])
             ->add('Cache', [
@@ -84,7 +84,7 @@ class SystemMenuComposer
                 'label'      => trans('platform::systems/cache.opcache'),
                 'groupname'  => trans('platform::systems/cache.opcache.description'),
                 'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
+                'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
             ])
             ->add('Systems', [

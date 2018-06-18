@@ -22,8 +22,6 @@ require('nestable');
 
 window.moment = require('moment');
 
-//$.fn.datetimepicker = require('./modules/bootstrap-datetimepicker.js');
-
 require('./modules/select');
 
 require('select2');
@@ -37,10 +35,7 @@ $(() => {
 $.fn.select2.defaults.set('theme', 'bootstrap');
 require('croppie');
 
-require('./modules/datetimepicker');
 require('./modules/open-click');
-
-// window.Chart = require('../../../node_modules/frappe-charts/dist/frappe-charts.min.cjs');
 window.Chart = require('frappe-charts');
 
 require('./components/attachment');

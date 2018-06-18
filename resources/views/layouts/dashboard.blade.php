@@ -57,7 +57,7 @@
                 <a href="{{route('platform.index')}}" class="navbar-brand text-lt center">
                     <i class="{{config('platform.logo')}}"></i>
                 </a>
-                <!-- / brand  -->
+                <!-- /brand  -->
 
                 <button class="pull-right"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -65,7 +65,7 @@
                 </button>
 
             </div>
-            <!-- / navbar header  -->
+            <!-- /navbar header  -->
 
             <!-- navbar collapse  -->
             <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">

@@ -1,0 +1,248 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Orchid\Bulldozer\Http\Controllers\Screens;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Orchid\Bulldozer\Builders\Migration;
+use Orchid\Bulldozer\Builders\Model;
+use Orchid\Bulldozer\Layouts\BootCreateModel;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+
+class BootModelScreen extends Screen
+{
+    /**
+     *
+     */
+    const MODELS = 'platform::boot.models';
+
+    /**
+     * Display header name.
+     *
+     * @var string
+     */
+    public $name = 'Boot Models';
+
+    /**
+     * Display header description.
+     *
+     * @var string
+     */
+    public $description = 'Add your Models, customize your columns, and even setup relationships.';
+
+    /**
+     * @var string
+     */
+    public $permission = 'platform.boot';
+
+    /**
+     * @var Collection|Collection[]
+     */
+    public $models;
+
+    /**
+     * @var
+     */
+    public $exist = false;
+
+    /**
+     * BootModelScreen constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->models = cache(static::MODELS, collect());
+    }
+
+    /**
+     * Query data.
+     *
+     * @param $model
+     *
+     * @return array
+     */
+    public function query($model): array
+    {
+        if ($model) {
+            $this->exist = true;
+            $this->name = "Boot for '{$model}' model";
+        }
+
+        return [
+            'models'        => $this->models,
+            'name'          => $model,
+            'model'         => $this->models->get($model),
+            'fieldTypes'    => Migration::TYPES,
+            'relationTypes' => Model::RELATIONS,
+        ];
+    }
+
+    /**
+     * Button commands.
+     *
+     * @return array
+     */
+    public function commandBar(): array
+    {
+        return [
+            Link::name('Построить все модели')
+                ->icon('icon-magic-wand')
+                ->show($this->exist)
+                ->method('buildModels'),
+            Link::name('Сохранить')
+                ->icon('icon-check')
+                ->show($this->exist)
+                ->method('save'),
+            Link::name('Удалить')
+                ->icon('icon-trash')
+                ->show($this->exist)
+                ->method('delete'),
+            Link::name('Добавить новую модель')
+                ->icon('icon-plus')
+                ->modal('CreateModelModal')
+                ->title('Добавить новую модель')
+                ->method('createModel'),
+        ];
+    }
+
+    /**
+     * Views.
+     *
+     * @return array
+     */
+    public function layout(): array
+    {
+        return [
+            Layouts::view('platform::container.boot.index'),
+            Layouts::modals([
+                'CreateModelModal' => [
+                    BootCreateModel::class,
+                ],
+            ]),
+        ];
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function createModel(Request $request)
+    {
+        $name = studly_case($request->get('name'));
+
+        if ($this->models->offsetExists($name)) {
+            alert('Модель с таким именем уже существует');
+
+            return back();
+        }
+
+        $this->models->put($name, collect());
+
+        cache()->forever(static::MODELS, $this->models);
+
+        alert('Модель успешно сохранена');
+
+        return redirect()->route('platform.boot.index', $name);
+    }
+
+    /**
+     * @param string $model
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete(string $model)
+    {
+        $this->models = $this->models->except($model);
+        cache()->forever(static::MODELS, $this->models);
+
+        alert('Модель была удалена');
+
+        return redirect()->route('platform.boot.index');
+    }
+
+    /**
+     * @param string                   $model
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function save(string $model, Request $request)
+    {
+        $attributes = collect($request->except('_token'));
+        $this->models->put($model, $attributes);
+
+        cache()->forever(static::MODELS, $this->models);
+        alert('Модель успешно сохранена');
+
+        return back();
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function buildModels()
+    {
+        foreach ($this->models as $name => $model) {
+
+            $property = [
+                'fillable' => [],
+                'guarded'  => [],
+                'hidden'   => [],
+                'visible'  => [],
+            ];
+
+            $migration = [];
+
+            $columns = $model->get('columns');
+
+            foreach ($columns as $key => $column) {
+                if (isset($column['fillable'])) {
+                    $property['fillable'][] = $key;
+                }
+                if (isset($column['guarded'])) {
+                    $property['guarded'][] = $key;
+                }
+                if (isset($column['hidden'])) {
+                    $property['hidden'][] = $key;
+                }
+                if (isset($column['visible'])) {
+                    $property['visible'][] = $key;
+                }
+
+
+                $migrate = $column['name'] . ':' . Migration::TYPES[$column['type']];
+
+                if (isset($column['unique'])) {
+                    $migrate .= ':unique';
+                }
+
+                if (isset($column['nullable'])) {
+                    $migrate .= ':nullable';
+                }
+
+                $migration[] = $migrate;
+            }
+
+
+            $model = new Model($name, [
+                'property' => array_filter($property),
+            ]);
+
+            $model = $model->generate();
+
+            file_put_contents(app_path($name . '.php'), $model);
+            Migration::make($name, implode(',', $migration));
+        }
+
+        cache()->forget(static::MODELS);
+    }
+
+}

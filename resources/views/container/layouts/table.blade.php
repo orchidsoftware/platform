@@ -74,7 +74,7 @@
 
     @else
 
-        <div class="jumbotron text-center bg-white not-found">
+        <div class="text-center bg-white not-found">
             <div>
                 <h3 class="font-thin">{{trans('platform::systems/roles.not_found')}}</h3>
                 <a href="{{ route('platform.systems.roles.create')}}"

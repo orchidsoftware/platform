@@ -82,6 +82,10 @@ class DashboardProvider extends ServiceProvider
                     'slug'        => 'platform.systems.media',
                     'description' => trans('platform::permission.systems.media'),
                 ],
+                [
+                    'slug'        => 'platform.systems.cache',
+                    'description' => trans('platform::permission.systems.cache'),
+                ],
             ],
         ];
     }

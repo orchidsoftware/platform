@@ -1,4 +1,4 @@
-<div class="jumbotron text-center bg-white not-found">
+<div class="text-center bg-white not-found">
     <div>
         <h4 class="font-thin l-h-2x m-b">
             <em>

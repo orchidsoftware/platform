@@ -13,7 +13,7 @@
 @stop
 @section('content')
     <section>
-        <div class="bg-white b-b box-shadow">
+        <div class="not-found">
             <form id="post-form" method="post" enctype="multipart/form-data">
                 {!! $screen->build() !!}
                 @csrf

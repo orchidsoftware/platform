@@ -13919,6 +13919,10 @@ h3,
     width: 250px;
     z-index: 1050;
     background-color: #222c3c;
+    -webkit-transition: -webkit-transform 400ms;
+    transition: -webkit-transform 400ms;
+    transition: transform 400ms;
+    transition: transform 400ms, -webkit-transform 400ms;
   }
 
   .app-aside .aside-wrap .navi-wrap {
