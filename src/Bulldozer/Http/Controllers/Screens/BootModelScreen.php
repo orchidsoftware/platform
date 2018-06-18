@@ -4,17 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Controllers\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Orchid\Bulldozer\Builders\Model;
 use Orchid\Bulldozer\Builders\Migration;
+use Orchid\Bulldozer\Builders\Model;
 use Orchid\Bulldozer\Layouts\BootCreateModel;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+
 
 class BootModelScreen extends Screen
 {
+
+    /**
+     * Key for cache
+     */
     const MODELS = 'platform::boot.models';
 
     /**
@@ -144,7 +149,7 @@ class BootModelScreen extends Screen
 
         cache()->forever(static::MODELS, $this->models);
 
-        alert('Модель успешно сохранена');
+        alert('Модель успешно создана');
 
         return redirect()->route('platform.boot.index', $name);
     }
@@ -213,7 +218,7 @@ class BootModelScreen extends Screen
                     $property['visible'][] = $key;
                 }
 
-                $migrate = $column['name'].':'.Migration::TYPES[$column['type']];
+                $migrate = $column['name'] . ':' . Migration::TYPES[$column['type']];
 
                 if (isset($column['unique'])) {
                     $migrate .= ':unique';
@@ -226,16 +231,35 @@ class BootModelScreen extends Screen
                 $migration[] = $migrate;
             }
 
+
             $model = new Model($name, [
-                'property' => array_filter($property),
+                'property'  => array_filter($property),
+                'relations' => $model->get('relations', []),
             ]);
 
             $model = $model->generate();
 
-            file_put_contents(app_path($name.'.php'), $model);
+            file_put_contents(app_path($name . '.php'), $model);
             Migration::make($name, implode(',', $migration));
         }
 
         cache()->forget(static::MODELS);
+
+        alert('Все модели были успешно сгенерированы');
+
+        return redirect()->route('platform.boot.index');
+    }
+
+    /**
+     * @param string $model
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getRelated(string $model)
+    {
+        return view('platform::partials.boot.relatedOption', [
+            'name'   => $model,
+            'models' => $this->models,
+        ]);
     }
 }

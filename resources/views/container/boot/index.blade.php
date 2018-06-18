@@ -20,7 +20,7 @@
 
 
 @isset($model)
-    <div data-controller="components--boot">
+    <div class="app-content-body app-content-full" data-controller="components--boot">
         <div class="hbox hbox-auto-xs hbox-auto-sm" style="min-height: calc(100vh - 80px);">
 
             <div class="hbox-col bg-white b-r">
@@ -131,12 +131,17 @@
                                     <th class="text-center">Relationship Type</th>
                                     <th class="text-center">Local Key</th>
                                     <th class="text-center">Related Key</th>
-                                    <th class="text-center"></th>
                                 </tr>
                                 </thead>
                                 <tbody id="boot-container-relationship">
-
-
+                                    @foreach($model->get('relations',[]) as $relation)
+                                        @include('platform::partials.boot.relationship', [
+                                            'model' => $model,
+                                            'relation' => $relation,
+                                            'columns' =>  $model ? $model->get('columns',[]) : [],
+                                            'relationTypes' => $relationTypes
+                                        ])
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -149,7 +154,9 @@
 
     </div>
 @else
-    <p>Выберите или создайте модель</p>
+    <div class="not-found">
+        <p>Выберите или создайте модель</p>
+    </div>
 @endisset
 
 
@@ -168,6 +175,7 @@
     <script type="text/x-tmpl" id="boot-template-relationship">
         @include('platform::partials.boot.relationship', [
             'relations' => [],
+            'columns' =>  $model ? $model->get('columns',[]) : [],
             'relationTypes' => $relationTypes
         ])
     </script>

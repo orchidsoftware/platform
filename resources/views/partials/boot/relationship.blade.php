@@ -1,48 +1,50 @@
 <tr>
     <td class="text-left">
         <button type="button" class="btn btn-sm btn-link" data-action="components--boot#removeColumn">
-            <i class="icon-trash m-r-xs"></i> {{$relation['model'] ?? '{%=o.field%}'}}
+            <i class="icon-trash m-r-xs"></i> {{$relation['name'] ?? '{%=o.field%}'}}
         </button>
-        <input type="hidden"  value="{{$relation['model'] ?? '{%=o.field%}'}}" name="columns[{{$relation['model'] ?? '{%=o.field%}'}}][model]">
+        <input type="hidden" value="{{$relation['name'] ?? '{%=o.field%}'}}" name="relations[{{$relation['name'] ?? '{%=o.field%}'}}][name]">
     </td>
-
     <td class="text-center">
-        <select name="model" class="form-control">
-            @foreach ($relationTypes as $key => $relation)
-                <option value="{{$key}}">{{$relation}}</option>
+        <select name="relations[{{$relation['name'] ?? '{%=o.field%}'}}][type]" class="form-control">
+            @foreach ($relationTypes as $key => $relationType)
+                <option
+                        value="{{$key}}"
+                        @isset($relation['type'])
+                            @if($relation['type'] == $key)
+                                selected
+                            @endif
+                        @endisset
+                >
+                    {{$relationType}}
+                </option>
             @endforeach
         </select>
     </td>
     <td class="text-center">
-        <select name="model"
-                class="form-control">
-            <option value="null">Don't Use</option>
-            <option value="id">id</option>
-            <option value="name">name</option>
-            <option value="email">email</option>
-            <option value="password">password</option>
-            <option value="test">test</option>
-            <option value="trhrhtrhrt">trhrhtrhrt</option>
+        <select name="relations[{{$relation['name'] ?? '{%=o.field%}'}}][local]" class="form-control">
+            <option value="">Don't Use</option>
+            @foreach($columns as $column)
+                <option
+                        value="{{$column['name']}}"
+                        @isset($relation['local'])
+                            @if($relation['local'] == $column['name'])
+                                selected
+                            @endif
+                        @endisset
+                >
+                    {{$column['name']}}
+                </option>
+            @endforeach
         </select>
     </td>
     <td class="text-center">
-        <select name="model"
-                class="form-control">
-            <option value="null">Don't Use</option>
-            <option value="id">id</option>
-            <option value="name">name</option>
-            <option value="email">email</option>
-            <option value="password">password</option>
-            <option value="test">test</option>
-            <option value="trhrhtrhrt">trhrhtrhrt</option>
+        <select name="relations[{{$relation['name'] ?? '{%=o.field%}'}}][related]" class="form-control">
+                @include('platform::partials.boot.relatedOption',[
+                    'models' => $models,
+                    'name' => $relation['name'] ?? '',
+                    'related' => $relation['related'] ?? ''
+                ])
         </select>
-    </td>
-    <td class="text-center">
-        <button type="button"
-                class="btn btn-danger"
-                data-action="components--boot#removeColumn"
-        >
-            <i class="icon-trash"></i>
-        </button>
     </td>
 </tr>

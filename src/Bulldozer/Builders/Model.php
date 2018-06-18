@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Bulldozer\Builders;
 
 use Zend\Code\Generator\DocBlock\Tag;
-use Zend\Code\Generator\FileGenerator;
 use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Code\Generator\FileGenerator;
+use Zend\Code\Generator\MethodGenerator;
 use Zend\Code\Generator\PropertyGenerator;
 
 /**
@@ -14,6 +15,9 @@ use Zend\Code\Generator\PropertyGenerator;
  */
 class Model extends Builder
 {
+    /**
+     *
+     */
     const RELATIONS = [
         'hasOne'         => 'One to One (hasOne)',
         'hasMany'        => 'One to Many (hasMany)',
@@ -49,26 +53,10 @@ class Model extends Builder
         ],
     ];
 
-    public function methodHasMany()
-    {
-    }
-
-    public function methodHasOne()
-    {
-    }
-
-    public function methodBelongsTo()
-    {
-    }
-
-    public function methodBelongsToMany()
-    {
-    }
-
     /**
      * @return string
      */
-    public function generate() : string
+    public function generate(): string
     {
         $this->class->setExtendedClass(\Illuminate\Database\Eloquent\Model::class);
         $this->class->setNamespaceName('App'); //app()->getNamespace()
@@ -77,14 +65,17 @@ class Model extends Builder
             $this->setProperty($property, $value, $this->property[$property]['comment']);
         }
 
+        foreach ($this->parameters->get('relations', []) as $relation => $value) {
+            $this->setRelation($relation, $value['type'], $value['local'], $value['related']);
+        }
+
+
         $this->clearDefaultConstantTrash();
 
         $file = new FileGenerator();
         $file->setClass($this->class);
 
         return $file->generate();
-
-        return $this->class->generate();
     }
 
     /**
@@ -93,11 +84,12 @@ class Model extends Builder
      * @param null   $comment
      * @param string $docContent
      * @param string $docName
+     *
      * @return $this
      */
-    protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var') : self
+    protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var'): self
     {
-        if (! array_has($this->parameters, 'property.'.$property)) {
+        if (!array_has($this->parameters, 'property.' . $property)) {
             return $this;
         }
 
@@ -110,6 +102,53 @@ class Model extends Builder
         $property->setDocBlock($docBlock);
 
         $this->class->addPropertyFromGenerator($property);
+
+        return $this;
+    }
+
+    /**
+     * @param string      $name
+     * @param string      $type
+     * @param string|null $local
+     * @param null        $related
+     *
+     * @return \Orchid\Bulldozer\Builders\Model
+     */
+    public function setRelation(string $name, string $type, string $local = null, $related = null): self
+    {
+        $params = [];
+
+        if (!is_null($local) || !is_null($related)) {
+            $params[] = "'$local'";
+        }
+
+        if (!is_null($related)) {
+            $params[] = "'$related'";
+        }
+
+        $params = implode(",", $params);
+
+        if (!empty($params)) {
+            $params = ',' . $params;
+        }
+
+        $method = new MethodGenerator(
+            $name,
+            [],
+            MethodGenerator::FLAG_PUBLIC,
+            'return $this->' . $type . '(' . $name . '::class' . $params . ');',
+            DocBlockGenerator::fromArray([
+                'shortDescription' => 'Generated attitude',
+                'longDescription'  => null,
+                'tags'             => [
+                    new Tag\ReturnTag([
+                        'datatype' => "\Illuminate\Database\Eloquent\Relations\\" . $type,
+                    ]),
+                ],
+            ])
+        );
+
+        $this->class->addMethodFromGenerator($method);
 
         return $this;
     }

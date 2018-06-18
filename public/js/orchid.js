@@ -650,24 +650,14 @@ var _class = function (_Controller) {
     }
 
     _createClass(_class, [{
-        key: "connect",
+        key: "addColumn",
 
-
-        /**
-         *
-         */
-        value: function connect() {
-            console.log('Тест');
-        }
 
         /**
          *
          * @param event
          * @returns {*}
          */
-
-    }, {
-        key: "addColumn",
         value: function addColumn(event) {
 
             if (event.which !== 13 && event.which !== 1) {
@@ -675,6 +665,10 @@ var _class = function (_Controller) {
             }
 
             if (this.columnTarget.value.trim() === '') {
+                return;
+            }
+
+            if (document.querySelector("input[name=\"columns[" + this.columnTarget.value + "][name]\"]") !== null) {
                 return;
             }
 
@@ -695,18 +689,45 @@ var _class = function (_Controller) {
     }, {
         key: "removeColumn",
         value: function removeColumn(event) {
-
             event.path.forEach(function (element) {
                 if (element.nodeName === 'TR') {
                     element.remove();
-                    return;
+                    return event.preventDefault();
                 }
             });
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "addRelation",
-        value: function addRelation() {
-            alert('test');
+        value: function addRelation(event) {
+            var _this2 = this;
+
+            if (event.which !== 13 && event.which !== 1) {
+                return;
+            }
+
+            if (this.relationTarget.value.trim() === '') {
+                return;
+            }
+
+            if (document.querySelector("input[name=\"relations[" + this.relationTarget.value + "][name]\"]") !== null) {
+                return;
+            }
+
+            var element = this.createTrFromHTML(__WEBPACK_IMPORTED_MODULE_1_blueimp_tmpl___default()("boot-template-relationship", {
+                "field": this.relationTarget.value
+            }));
+
+            axios.post(platform.prefix("/boot/" + this.relationTarget.value + "/getRelated")).then(function (response) {
+                document.querySelector("select[name=\"relations[" + _this2.relationTarget.value + "][related]\"]").innerHTML = response.data;
+            });
+
+            document.getElementById('boot-container-relationship').appendChild(element);
+            return event.preventDefault();
         }
 
         /**

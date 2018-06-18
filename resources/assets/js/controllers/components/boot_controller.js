@@ -10,13 +10,6 @@ export default class extends Controller {
 
     /**
      *
-     */
-    connect() {
-        console.log('Тест');
-    }
-
-    /**
-     *
      * @param event
      * @returns {*}
      */
@@ -29,6 +22,11 @@ export default class extends Controller {
         if (this.columnTarget.value.trim() === '') {
             return;
         }
+
+        if(document.querySelector(`input[name="columns[${this.columnTarget.value}][name]"]`) !== null){
+            return;
+        }
+
 
         let element = this.createTrFromHTML(tmpl("boot-template-column", {
             "field": this.columnTarget.value,
@@ -44,19 +42,45 @@ export default class extends Controller {
      * @param event
      */
     removeColumn(event) {
-
         event.path.forEach(function (element) {
             if (element.nodeName === 'TR') {
                 element.remove();
-                return;
+                return event.preventDefault();
             }
         });
     }
 
-    addRelation() {
-        alert('test');
-    }
+    /**
+     *
+     */
+    addRelation(event) {
 
+        if(event.which !== 13 && event.which !== 1){
+            return;
+        }
+
+        if (this.relationTarget.value.trim() === '') {
+            return;
+        }
+
+        if(document.querySelector(`input[name="relations[${this.relationTarget.value}][name]"]`) !== null){
+            return;
+        }
+
+
+        let element = this.createTrFromHTML(tmpl("boot-template-relationship", {
+            "field": this.relationTarget.value,
+        }));
+
+        axios
+            .post(platform.prefix(`/boot/${this.relationTarget.value}/getRelated`))
+            .then(response => {
+                document.querySelector(`select[name="relations[${this.relationTarget.value}][related]"]`).innerHTML = response.data;
+            });
+
+        document.getElementById('boot-container-relationship').appendChild(element);
+        return event.preventDefault();
+    }
 
     /**
      *
