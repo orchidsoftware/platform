@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -13,6 +12,7 @@ use Orchid\Widget\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
+use Laracasts\Generators\GeneratorsServiceProvider;
 
 class FoundationServiceProvider extends ServiceProvider
 {

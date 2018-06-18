@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Bulldozer\Builders;
 
 use Zend\Code\Generator\DocBlock\Tag;
+use Zend\Code\Generator\FileGenerator;
 use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\PropertyGenerator;
-use Zend\Code\Generator\FileGenerator;
 
 /**
  * Class Model.
  */
 class Model extends Builder
 {
-    /**
-     *
-     */
     const RELATIONS = [
         'hasOne'         => 'One to One (hasOne)',
         'hasMany'        => 'One to Many (hasMany)',
@@ -68,15 +65,11 @@ class Model extends Builder
     {
     }
 
-
     /**
      * @return string
      */
     public function generate() : string
     {
-
-
-
         $this->class->setExtendedClass(\Illuminate\Database\Eloquent\Model::class);
         $this->class->setNamespaceName('App'); //app()->getNamespace()
 
@@ -88,6 +81,7 @@ class Model extends Builder
 
         $file = new FileGenerator();
         $file->setClass($this->class);
+
         return $file->generate();
 
         return $this->class->generate();

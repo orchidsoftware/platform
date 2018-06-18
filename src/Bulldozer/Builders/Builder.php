@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Builders;
 
-use Zend\Code\Generator\DocBlock\Tag;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Reflection\ClassReflection;
-use Zend\Code\Generator\DocBlockGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 
 abstract class Builder
 {
@@ -57,5 +54,5 @@ abstract class Builder
     /**
      * @return string
      */
-    abstract function generate(): string ;
+    abstract public function generate(): string;
 }

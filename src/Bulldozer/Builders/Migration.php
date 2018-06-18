@@ -7,14 +7,10 @@ namespace Orchid\Bulldozer\Builders;
 use Illuminate\Support\Facades\Artisan;
 
 /**
- * Class Migration
+ * Class Migration.
  */
 class Migration
 {
-
-    /**
-     *
-     */
     const TYPES = [
         1  => 'bigIncrements',
         2  => 'bigInteger',
@@ -66,7 +62,6 @@ class Migration
         48 => 'uuid',
     ];
 
-
     /**
      * @param string $name
      * @param string $schema
@@ -84,5 +79,4 @@ class Migration
             '--schema' => $schema,
         ]);
     }
-
 }
