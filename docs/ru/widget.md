@@ -42,16 +42,13 @@ class MySuperWidget extends Widget {
 }
 ```
 
-
 Для регистрации Вашего нового виджета необходимо занести его в `config/widget.php`:
-
 ```php
 'widgets' => [
-    'NameForMySuperWidget' => App\Widgets\MySuperWidget::class
- ],
+	'NameForMySuperWidget' => App\Widgets\MySuperWidget::class,
+	]
 ```
-	
-
+Если виджет будет работать через ajax, регистрировать его не нужно.
 
 ## Использование
 
@@ -60,6 +57,16 @@ class MySuperWidget extends Widget {
 Для подключения виджета необходимо выполнить в коде используя синтаксис Blade:
 ```php
 @widget('NameForMySuperWidget')
+```
+или добавить в метод fields в шаблоне страницы
+```php
+return [
+	Field::tag('relationship')
+		->name('my_title')
+		->required()
+		->title('My title')
+		->handler(MySuperWidget::class),
+        ];
 ```
 
 ## Переменные
@@ -81,8 +88,14 @@ public function handler($arguments = null){
 ## AJAX Widget
 
 Виджеты могут быть использованы для загрузки и подгруздки информации в полях для связи.
+Метод `handler` должен возвращать массив содержащий массивы с ключами `id` и `text`. На пример:
+```
+[[ "id" => 1, "text" => "some text"]]
+```
 
-Тогда в свойство `$query` будет принимать значение для поиска, а `$key` выбранное значение.
+свойство `$query` будет принимать текстовые значение для поиска, а `$key` цифровое значение. Например:
+если введено значение `12345`, то это значение попадет в  `$key`, если введено слово `test`, то это значение
+попадет в `$query`
 
 
 ```php
