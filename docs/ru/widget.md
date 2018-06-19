@@ -41,8 +41,14 @@ class MySuperWidget extends Widget {
 
 }
 ```
-	
 
+Для регистрации Вашего нового виджета необходимо занести его в `config/widget.php`:
+```php
+'widgets' => [
+	'NameForMySuperWidget' => App\Widgets\MySuperWidget::class,
+	]
+```
+Если виджет будет работать через ajax, регистрировать его не нужно.
 
 ## Использование
 
