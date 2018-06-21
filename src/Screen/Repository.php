@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 /**
- * Class Repository
+ * Class Repository.
  */
 class Repository
 {

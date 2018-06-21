@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Orchid\Platform\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
+use Illuminate\Queue\SerializesModels;
+use Orchid\Platform\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-use Orchid\Platform\Models\Attachment;
 
 /**
- * Class ImageAttachment
+ * Class ImageAttachment.
  */
 class ImageAttachment implements ShouldQueue
 {
@@ -74,11 +74,11 @@ class ImageAttachment implements ShouldQueue
      */
     private function saveImageProcessing(Attachment $attachment, $name = null, $width = null, $height = null, $quality = 100)
     {
-        if (!is_null($name)) {
-            $name = '_' . $name;
+        if (! is_null($name)) {
+            $name = '_'.$name;
         }
 
-        $name = sha1($this->time . $attachment->original_name) . $name . '.' . $attachment->extension;
+        $name = sha1($this->time.$attachment->original_name).$name.'.'.$attachment->extension;
 
         $content = Image::make($attachment->physicalPath)
             ->resize($width, $height, function ($constraint) {
@@ -87,7 +87,7 @@ class ImageAttachment implements ShouldQueue
             })
             ->encode($attachment->original_name, $quality);
 
-        Storage::disk($attachment->getAttribute('disk'))->put(date('Y/m/d', $this->time) . '/' . $name, $content, [
+        Storage::disk($attachment->getAttribute('disk'))->put(date('Y/m/d', $this->time).'/'.$name, $content, [
             'mime_type' => $attachment->getMimeType(),
         ]);
     }

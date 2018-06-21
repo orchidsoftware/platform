@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Attachments;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\Jobs\ImageAttachment;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
+use Orchid\Platform\Jobs\ImageAttachment;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File
@@ -99,6 +99,7 @@ class File
 
         if (is_null($file)) {
             $this->storage->makeDirectory($this->date);
+
             return $this->save();
         }
 
@@ -121,8 +122,8 @@ class File
      */
     private function save()
     {
-        $hashName = sha1($this->time . $this->file->getClientOriginalName());
-        $name = $hashName . '.' . $this->getClientOriginalExtension();
+        $hashName = sha1($this->time.$this->file->getClientOriginalName());
+        $name = $hashName.'.'.$this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),
@@ -134,7 +135,7 @@ class File
             'mime'          => $this->getMimeType(),
             'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getClientSize(),
-            'path'          => $this->date . DIRECTORY_SEPARATOR,
+            'path'          => $this->date.DIRECTORY_SEPARATOR,
             'hash'          => $this->hash,
             'disk'          => $this->disk,
             'user_id'       => Auth::id(),
@@ -163,11 +164,11 @@ class File
      */
     public function getMimeType()
     {
-        if (!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
+        if (! is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
             return $type;
         }
 
-        if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
+        if (! is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
 

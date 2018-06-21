@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Tests;
@@ -6,7 +7,7 @@ namespace Orchid\Tests;
 use Orchestra\Testbench\Dusk\TestCase;
 
 /**
- * Class TestBrowserCase
+ * Class TestBrowserCase.
  */
 abstract class TestBrowserCase extends TestCase
 {

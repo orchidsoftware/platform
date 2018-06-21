@@ -7,7 +7,7 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Orchid\Widget\WidgetContractInterface;
 
 /**
- * Class WidgetController
+ * Class WidgetController.
  */
 class WidgetController
 {

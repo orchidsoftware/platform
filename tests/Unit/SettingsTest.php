@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
@@ -22,9 +23,6 @@ class SettingsTest extends TestUnitCase
      */
     public $setting;
 
-    /**
-     *
-     */
     protected function setUp()
     {
         parent::setUp();
@@ -87,9 +85,6 @@ class SettingsTest extends TestUnitCase
         $this->assertEquals(3, $result);
     }
 
-    /**
-     *
-     */
     public function testHelper()
     {
         $this->setting->set('helper', 'run');

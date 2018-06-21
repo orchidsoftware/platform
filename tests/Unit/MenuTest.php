@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
@@ -7,7 +8,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Tests\TestUnitCase;
 
 /**
- * Class MenuTest
+ * Class MenuTest.
  */
 class MenuTest extends TestUnitCase
 {

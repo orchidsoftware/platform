@@ -9,7 +9,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
- * Class TagsController
+ * Class TagsController.
  */
 class TagsController extends Controller
 {

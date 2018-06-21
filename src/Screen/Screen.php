@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class Screen
+ * Class Screen.
  */
 abstract class Screen
 {

@@ -1,26 +1,23 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Orchid\Tests\TestUnitCase;
 use Illuminate\Http\UploadedFile;
 use Orchid\Platform\Attachments\File;
-use Orchid\Tests\TestUnitCase;
 
 /**
- * Class AttachmentTest
+ * Class AttachmentTest.
  */
 class AttachmentTest extends TestUnitCase
 {
-
     /**
      * @var string
      */
     public $disk;
 
-    /**
-     *
-     */
     protected function setUp()
     {
         parent::setUp();
@@ -44,7 +41,7 @@ class AttachmentTest extends TestUnitCase
             'name' => $upload->original_name,
         ]);
 
-        $this->assertContains($upload->name . ".xml", $upload->url());
+        $this->assertContains($upload->name.'.xml', $upload->url());
     }
 
     /**
@@ -57,8 +54,8 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-        $this->assertContains("low", $upload->url('low'));
-        $this->assertContains("medium", $upload->url('medium'));
-        $this->assertContains("high", $upload->url('high'));
+        $this->assertContains('low', $upload->url('low'));
+        $this->assertContains('medium', $upload->url('medium'));
+        $this->assertContains('high', $upload->url('high'));
     }
 }

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Attachments\File;
-use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Models\Attachment;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Attachments\File;
+use Orchid\Platform\Models\Attachment;
+use Orchid\Platform\Http\Controllers\Controller;
 
 /**
- * Class AttachmentController
+ * Class AttachmentController.
  */
 class AttachmentController extends Controller
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Exceptions;
 
 /**
- * Class TypeException
+ * Class TypeException.
  */
 class TypeException extends \Exception
 {
@@ -16,10 +16,9 @@ class TypeException extends \Exception
      * @param int             $code
      * @param \Throwable|null $previous
      */
-    public function __construct(string $type = "", int $code = 0, \Throwable $previous = null)
+    public function __construct(string $type = '', int $code = 0, \Throwable $previous = null)
     {
         parent::__construct($type, $code, $previous);
         $this->message = 'Field '.$type.' does not exist or inheritance FieldContract';
     }
-
 }

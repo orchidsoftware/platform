@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attachment extends Model
 {
@@ -27,7 +27,7 @@ class Attachment extends Model
         'description',
         'alt',
         'hash',
-        'disk'
+        'disk',
     ];
 
     /**
@@ -60,15 +60,15 @@ class Attachment extends Model
     {
         $disk = $this->getAttribute('disk');
 
-        if (!empty($size)) {
-            $size = '_' . $size;
+        if (! empty($size)) {
+            $size = '_'.$size;
 
-            if (!Storage::disk($disk)->exists($this->physicalPath())) {
+            if (! Storage::disk($disk)->exists($this->physicalPath())) {
                 return $this->url(null);
             }
         }
 
-        return Storage::disk($disk)->url($this->path . $this->name . $size . '.' . $this->extension);
+        return Storage::disk($disk)->url($this->path.$this->name.$size.'.'.$this->extension);
     }
 
     /**
@@ -76,7 +76,7 @@ class Attachment extends Model
      */
     public function physicalPath() : string
     {
-        return $this->path . $this->name . '.' . $this->extension;
+        return $this->path.$this->name.'.'.$this->extension;
     }
 
     /**
@@ -112,14 +112,14 @@ class Attachment extends Model
     {
         $storage = Storage::disk($storageName);
 
-        $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
+        $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
 
         if (substr($this->mime, 0, 5) !== 'image') {
             return;
         }
 
         foreach (array_keys(config('platform.images', [])) as $format) {
-            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
+            $storage->delete($attachment->path.$attachment->name.'_'.$format.'.'.$attachment->extension);
         }
     }
 
@@ -134,7 +134,7 @@ class Attachment extends Model
 
         $type = $mimes->getMimeType(static::getAttribute('extension'));
 
-        if(is_null($type)){
+        if (is_null($type)) {
             return 'unknown';
         }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Filters;
 
-use Orchid\Press\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
