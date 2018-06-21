@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Orchid\Platform\Listeners\Attachment;
 
 use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
+use Orchid\Platform\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Orchid\Platform\Events\UploadFileEvent;
-use Orchid\Platform\Models\Attachment;
 
 /**
- * Class UploadFileLister
+ * Class UploadFileLister.
  */
 class UploadFileLister implements ShouldQueue
 {

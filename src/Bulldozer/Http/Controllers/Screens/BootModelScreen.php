@@ -14,7 +14,7 @@ use Orchid\Bulldozer\Builders\Migration;
 use Orchid\Bulldozer\Layouts\BootCreateModel;
 
 /**
- * Class BootModelScreen
+ * Class BootModelScreen.
  */
 class BootModelScreen extends Screen
 {

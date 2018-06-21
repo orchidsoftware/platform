@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 /**
- * Class RouteBootServiceProvider
+ * Class RouteBootServiceProvider.
  */
 class RouteBootServiceProvider extends RouteServiceProvider
 {

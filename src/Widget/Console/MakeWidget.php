@@ -7,7 +7,7 @@ namespace Orchid\Widget\Console\Commands;
 use Illuminate\Console\GeneratorCommand;
 
 /**
- * Class MakeWidget
+ * Class MakeWidget.
  */
 class MakeWidget extends GeneratorCommand
 {

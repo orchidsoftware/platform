@@ -8,7 +8,7 @@ use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Reflection\ClassReflection;
 
 /**
- * Class Builder
+ * Class Builder.
  */
 abstract class Builder
 {

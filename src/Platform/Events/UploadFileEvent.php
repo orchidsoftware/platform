@@ -7,11 +7,10 @@ namespace Orchid\Platform\Events;
 use Orchid\Platform\Models\Attachment;
 
 /**
- * Class UploadFileEvent
+ * Class UploadFileEvent.
  */
 class UploadFileEvent
 {
-
     /**
      * @var \Orchid\Platform\Models\Attachment
      */
@@ -33,5 +32,4 @@ class UploadFileEvent
         $this->attachment = $attachment;
         $this->time = $this;
     }
-
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Class AddRoleEvent
+ * Class AddRoleEvent.
  */
 class AddRoleEvent
 {

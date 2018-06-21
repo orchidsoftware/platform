@@ -9,8 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 
 /**
- * Class AccessMiddleware
- * @package Orchid\Platform\Http\Middleware
+ * Class AccessMiddleware.
  */
 class AccessMiddleware
 {

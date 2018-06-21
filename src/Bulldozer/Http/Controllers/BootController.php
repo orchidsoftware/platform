@@ -10,13 +10,10 @@ use Illuminate\Support\Facades\Cache;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
- * Class BootController
+ * Class BootController.
  */
 class BootController extends Controller
 {
-    /**
-     *
-     */
     const MODELS = 'platform::boot.models';
 
     /**

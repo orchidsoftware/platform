@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Filters;
 
-use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Fields\Field;
+use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
 

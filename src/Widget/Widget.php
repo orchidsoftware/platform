@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Widget;
 
 /**
- * Class Widget
+ * Class Widget.
  */
 class Widget implements WidgetContractInterface
 {

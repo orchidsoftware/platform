@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class WidgetServiceProvider
+ * Class WidgetServiceProvider.
  */
 class WidgetServiceProvider extends ServiceProvider
 {
