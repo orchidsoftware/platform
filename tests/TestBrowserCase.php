@@ -25,7 +25,7 @@ abstract class TestBrowserCase extends TestCase
      *
      * @var int
      */
-    protected static $baseServePort = 9000;
+    protected static $baseServePort = 8000;
 
     /**
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer

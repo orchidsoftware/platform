@@ -6,6 +6,9 @@ namespace Orchid\Bulldozer\Http\Composers;
 
 use Orchid\Platform\Dashboard;
 
+/**
+ * Class SystemMenuComposer
+ */
 class SystemMenuComposer
 {
     /**

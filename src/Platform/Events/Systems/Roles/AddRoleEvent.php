@@ -8,6 +8,9 @@ use Orchid\Platform\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class AddRoleEvent
+ */
 class AddRoleEvent
 {
     use SerializesModels;

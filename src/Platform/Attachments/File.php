@@ -7,6 +7,7 @@ namespace Orchid\Platform\Attachments;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Auth;
+use Orchid\Platform\Events\UploadFileEvent;
 use Orchid\Platform\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Jobs\ImageAttachment;
@@ -141,7 +142,7 @@ class File
             'user_id'       => Auth::id(),
         ]);
 
-        ImageAttachment::dispatch($attach, $this->time);
+        event(new UploadFileEvent($attach, $this->time));
 
         return $attach;
     }

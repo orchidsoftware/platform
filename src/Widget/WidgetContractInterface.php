@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Widget;
 
+/**
+ * Interface WidgetContractInterface
+ */
 interface WidgetContractInterface
 {
     /**

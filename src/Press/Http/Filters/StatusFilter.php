@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
 
 class StatusFilter extends Filter
 {

@@ -202,7 +202,6 @@
 
     </div>
 
-
 @stack('scripts')
 
 </body>

@@ -7,6 +7,9 @@ namespace Orchid\Bulldozer\Layouts;
 use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Layouts\Rows;
 
+/**
+ * Class BootCreateModel
+ */
 class BootCreateModel extends Rows
 {
     /**

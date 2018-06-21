@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Events;
 
-use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
+use Orchid\Press\Http\Forms\Category\CategoryFormGroup;
 
 class CategoryEvent
 {

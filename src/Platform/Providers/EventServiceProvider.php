@@ -7,6 +7,8 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Auth\Events\Login;
 use Orchid\Platform\Events\CommentEvent;
 use Orchid\Platform\Events\CategoryEvent;
+use Orchid\Platform\Events\UploadFileEvent;
+use Orchid\Platform\Listeners\Attachment\UploadFileLister;
 use Orchid\Platform\Listeners\Category\CategoryBaseLister;
 use Orchid\Platform\Listeners\Category\CategoryDescLister;
 use Orchid\Platform\Listeners\Comment\CommentBaseListener;
@@ -30,6 +32,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CommentEvent::class  => [
             CommentBaseListener::class,
+        ],
+        UploadFileEvent::class => [
+              UploadFileLister::class,
         ],
     ];
 

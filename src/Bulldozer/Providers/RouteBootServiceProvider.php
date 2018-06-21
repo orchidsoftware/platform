@@ -8,6 +8,9 @@ use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
+/**
+ * Class RouteBootServiceProvider
+ */
 class RouteBootServiceProvider extends RouteServiceProvider
 {
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Listeners\Category;
 
-use Orchid\Platform\Http\Forms\Category\CategoryMainForm;
+use Orchid\Press\Http\Forms\Category\CategoryMainForm;
 
 class CategoryBaseLister
 {

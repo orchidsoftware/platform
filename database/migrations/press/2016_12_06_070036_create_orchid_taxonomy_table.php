@@ -13,11 +13,12 @@ class CreateOrchidTaxonomyTable extends Migration
     {
         Schema::create('term_taxonomy', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('term_id');
+            $table->integer('term_id')->unsigned();;
             $table->string('taxonomy');
-            $table->integer('parent_id')->default(0);
+            $table->integer('parent_id')->unsigned()->default(0);
 
             $table->index(['id', 'taxonomy']);
+
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('term_taxonomy')
@@ -28,6 +29,7 @@ class CreateOrchidTaxonomyTable extends Migration
                 ->on('terms')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
         });
     }
 

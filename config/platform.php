@@ -142,8 +142,8 @@ return [
             'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
         ],
         'comment' => [
-            'edit'     => Orchid\Platform\Http\Screens\Comment\CommentEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\Comment\CommentList::class,
+            'edit'     => Orchid\Press\Http\Screens\Comment\CommentEdit::class,
+            'list'     => Orchid\Press\Http\Screens\Comment\CommentList::class,
         ],
     ],
 

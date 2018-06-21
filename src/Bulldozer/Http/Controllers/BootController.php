@@ -9,8 +9,14 @@ use Orchid\Bulldozer\Builders\Model;
 use Illuminate\Support\Facades\Cache;
 use Orchid\Platform\Http\Controllers\Controller;
 
+/**
+ * Class BootController
+ */
 class BootController extends Controller
 {
+    /**
+     *
+     */
     const MODELS = 'platform::boot.models';
 
     /**

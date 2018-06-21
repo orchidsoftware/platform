@@ -2,64 +2,50 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Jobs;
+namespace Orchid\Platform\Listeners\Attachment;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Log;
-use Intervention\Image\Facades\Image;
-use Illuminate\Queue\SerializesModels;
-use Orchid\Platform\Models\Attachment;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Orchid\Platform\Events\UploadFileEvent;
+use Orchid\Platform\Models\Attachment;
 
 /**
- * Class ImageAttachment.
+ * Class UploadFileLister
  */
-class ImageAttachment implements ShouldQueue
+class UploadFileLister implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    /**
-     * @var \Orchid\Platform\Models\Attachment
-     */
-    protected $attachment;
+    use InteractsWithQueue;
 
     /**
      * @var int
      */
-    private $time;
+    public $time;
 
     /**
-     * ImageAttachment constructor.
+     * Handle the event.
      *
-     * @param \Orchid\Platform\Models\Attachment $attachment
-     * @param int                                $time
-     */
-    public function __construct(Attachment $attachment, int $time)
-    {
-        $this->attachment = $attachment;
-        $this->time = $this;
-    }
-
-    /**
-     * Execute the job.
+     * @param Login $event
      *
      * @return void
      */
-    public function handle()
+    public function handle(UploadFileEvent $event)
     {
-        if (substr($this->attachment->getMimeType(), 0, 5) !== 'image') {
+        $this->time = $event->time;
+
+        if (substr($event->attachment->getMimeType(), 0, 5) !== 'image') {
             return;
         }
 
         foreach (config('platform.images', []) as $key => $value) {
             try {
-                $this->saveImageProcessing($this->attachment, $key, $value['width'], $value['height'], $value['quality']);
+                $this->saveImageProcessing($event->attachment, $key, $value['width'], $value['height'], $value['quality']);
             } catch (\Exception $exception) {
                 Log::info($exception->getMessage(), [
-                    'attachment' => $this->attachment,
+                    'attachment' => $event->attachment,
                 ]);
             }
         }

@@ -13,8 +13,8 @@ class CreateOrchidCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
-            $table->integer('user_id');
+            $table->integer('post_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('parent_id');
             $table->text('content');
             $table->boolean('approved')->nullable();
@@ -23,7 +23,6 @@ class CreateOrchidCommentsTable extends Migration
             $table->index(['approved', 'post_id']);
             $table->index('post_id');
             $table->index('parent_id');
-
             $table->foreign('post_id')
                 ->references('id')
                 ->on('posts')

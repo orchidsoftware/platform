@@ -6,6 +6,10 @@ namespace Orchid\Platform\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * Trait Attachment
+ * @package Orchid\Platform\Traits
+ */
 trait Attachment
 {
     /**

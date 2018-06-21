@@ -7,6 +7,9 @@ namespace Orchid\Bulldozer\Builders;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Reflection\ClassReflection;
 
+/**
+ * Class Builder
+ */
 abstract class Builder
 {
     /**

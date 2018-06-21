@@ -7,6 +7,9 @@ namespace Orchid\Widget;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class WidgetServiceProvider
+ */
 class WidgetServiceProvider extends ServiceProvider
 {
     /**
