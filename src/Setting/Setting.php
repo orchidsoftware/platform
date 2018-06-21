@@ -7,6 +7,9 @@ namespace Orchid\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Setting
+ */
 class Setting extends Model
 {
     /**

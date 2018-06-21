@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Forms\Posts;
+namespace Orchid\Press\Http\Forms\Posts;
 
 use Orchid\Forms\Form;
 use Orchid\Press\Models\Post;

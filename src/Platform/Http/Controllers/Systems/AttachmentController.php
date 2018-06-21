@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
 use Orchid\Platform\Attachments\File;
-use Orchid\Platform\Models\Attachment;
-use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Models\Attachment;
+use Orchid\Press\Models\Post;
 
+/**
+ * Class AttachmentController
+ */
 class AttachmentController extends Controller
 {
     /**
@@ -30,10 +32,9 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
-            $storage = $request->get('storage', 'public');
             $attachment[] = app()->make(File::class, [
-                'file'    => $file,
-                'storage' => Storage::disk($storage),
+                'file'  => $file,
+                'disk' => $request->get('disk', 'public'),
             ])->load();
         }
 
@@ -80,7 +81,10 @@ class AttachmentController extends Controller
      */
     public function getFilesPost($id)
     {
-        $files = Post::find($id)->attachment()->oldest('sort')->get();
+        $files = Post::find($id)
+            ->attachment()
+            ->oldest('sort')
+            ->get();
 
         return response()->json($files);
     }
@@ -92,7 +96,9 @@ class AttachmentController extends Controller
      */
     public function getFilesByIds(Request $request)
     {
-        $files = Attachment::whereIn('id', $request->get('files'))->oldest('sort')->get();
+        $files = Attachment::whereIn('id', $request->get('files'))
+            ->oldest('sort')
+            ->get();
 
         return response()->json($files);
     }

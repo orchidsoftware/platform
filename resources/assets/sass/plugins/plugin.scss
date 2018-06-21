@@ -119,8 +119,8 @@ div.mce-fullscreen {
 // Flatpickr
 .flatpickr-input {
     &.form-control[readonly] {
-        background: #fff;
-        color: #1c2b36;
+        background: $white;
+        color: $brand-black;
     }
 }
 
@@ -136,7 +136,7 @@ div.mce-fullscreen {
 
 .admin-wrapper {
 
-  min-height:  calc(100vh - 80px);
+  min-height: calc(100vh - #{$app-header-height});
 
   .admin-element {
     box-sizing: border-box;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Layouts\Comment;
+namespace Orchid\Press\Http\Layouts\Comment;
 
 use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Layouts\Rows;

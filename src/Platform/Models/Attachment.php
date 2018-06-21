@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
+use Mimey\MimeTypes;
+use Orchid\Platform\Dashboard;
 
 class Attachment extends Model
 {
@@ -26,6 +27,7 @@ class Attachment extends Model
         'description',
         'alt',
         'hash',
+        'disk'
     ];
 
     /**
@@ -41,7 +43,7 @@ class Attachment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -54,31 +56,37 @@ class Attachment extends Model
      *
      * @return string
      */
-    public function url($size = '', $prefix = 'public') : string
+    public function url($size = ''): string
     {
-        if (! empty($size)) {
-            $size = '_'.$size;
+        $disk = $this->getAttribute('disk');
 
-            if (! Storage::disk($prefix)->exists($this->path.$this->name.$size.'.'.$this->extension)) {
-                return $this->url(null, $prefix);
+        if (!empty($size)) {
+            $size = '_' . $size;
+
+            if (!Storage::disk($disk)->exists($this->physicalPath())) {
+                return $this->url(null);
             }
         }
 
-        return Storage::disk($prefix)->url($this->path.$this->name.$size.'.'.$this->extension);
+        return Storage::disk($disk)->url($this->path . $this->name . $size . '.' . $this->extension);
     }
 
     /**
-     * @param string $storage
-     *
-     * @throws \Exception
-     *
+     * @return string
+     */
+    public function physicalPath() : string
+    {
+        return $this->path . $this->name . '.' . $this->extension;
+    }
+
+    /**
      * @return bool|null
      */
-    public function delete($storage = 'public')
+    public function delete()
     {
         if ($this->exists) {
             if (self::where('hash', $this->hash)->count() <= 1) {
-                $this->removePhysicalFile($this, $storage);
+                $this->removePhysicalFile($this, $this->getAttribute('disk'));
             }
             $this->relationships()->delete();
         }
@@ -104,14 +112,32 @@ class Attachment extends Model
     {
         $storage = Storage::disk($storageName);
 
-        $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
+        $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
 
         if (substr($this->mime, 0, 5) !== 'image') {
             return;
         }
 
         foreach (array_keys(config('platform.images', [])) as $format) {
-            $storage->delete($attachment->path.$attachment->name.'_'.$format.'.'.$attachment->extension);
+            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
         }
+    }
+
+    /**
+     * Get MIME type for file.
+     *
+     * @return string
+     */
+    public function getMimeType() : string
+    {
+        $mimes = new MimeTypes();
+
+        $type = $mimes->getMimeType(static::getAttribute('extension'));
+
+        if(is_null($type)){
+            return 'unknown';
+        }
+
+        return $type;
     }
 }

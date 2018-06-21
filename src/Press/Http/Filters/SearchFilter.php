@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Filters;
+namespace Orchid\Press\Filters;
 
 use Orchid\Screen\Fields\Field;
-use Orchid\Platform\Filters\Filter;
+use Orchid\Press\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
 

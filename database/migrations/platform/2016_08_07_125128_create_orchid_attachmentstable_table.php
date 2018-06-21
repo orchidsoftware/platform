@@ -23,6 +23,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->text('description')->nullable();
             $table->text('alt')->nullable();
             $table->text('hash')->nullable();
+            $table->string('disk')->default('public');
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

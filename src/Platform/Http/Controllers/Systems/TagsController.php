@@ -8,6 +8,9 @@ use Orchid\Press\Models\Post;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
 
+/**
+ * Class TagsController
+ */
 class TagsController extends Controller
 {
     /**

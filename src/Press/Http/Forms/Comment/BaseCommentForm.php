@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Forms\Comment;
+namespace Orchid\Press\Http\Forms\Comment;
 
 use Orchid\Forms\Form;
 use Illuminate\Http\Request;

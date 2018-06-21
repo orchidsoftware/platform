@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
+/**
+ * Class DashboardController
+ */
 class DashboardController extends Controller
 {
     /**

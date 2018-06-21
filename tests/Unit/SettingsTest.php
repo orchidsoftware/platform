@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
@@ -17,17 +18,24 @@ class SettingsTest extends TestUnitCase
     /**
      * Setting Model.
      *
-     * @var
+     * @var Setting
      */
     public $setting;
+
+    /**
+     *
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $setting = new Setting();
+        $setting->cache = false;
+        $this->setting = $setting;
+    }
 
     /** @test */
     public function testOneValue()
     {
-        $setting = new Setting();
-        $setting->cache = false;
-        $this->setting = $setting;
-
         //Запишем значение
         $key = 'test-'.str_random(40);
         $value = 'value-'.str_random(40);
@@ -50,10 +58,6 @@ class SettingsTest extends TestUnitCase
     /** @test */
     public function testManyValue()
     {
-        $setting = new Setting();
-        $setting->cache = false;
-        $this->setting = $setting;
-
         $valueArray = [
             'test-1' => 'value-'.str_random(40),
             'test-2' => 'value-'.str_random(40),
@@ -81,5 +85,17 @@ class SettingsTest extends TestUnitCase
         ]);
 
         $this->assertEquals(3, $result);
+    }
+
+    /**
+     *
+     */
+    public function testHelper()
+    {
+        $this->setting->set('helper', 'run');
+
+        $this->assertEquals('run', setting('helper'));
+
+        $this->assertEquals('default', setting('not-found', 'default'));
     }
 }

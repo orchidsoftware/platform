@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Orchid\Press\Models\Comment;
 use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Http\Forms\Comment\CommentFormGroup;
+use Orchid\Press\Http\Forms\Comment\CommentFormGroup;
 
 class CommentController extends Controller
 {

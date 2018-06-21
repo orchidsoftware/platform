@@ -65,7 +65,6 @@ http://localhost:8000/dashboard
 ```
 
 
-
 ## Change log
 
 See [CHANGELOG](CHANGELOG.md).
@@ -81,6 +80,13 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
+
+
+## Test
+
+```bash
+php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
+```
 
 ## License
 

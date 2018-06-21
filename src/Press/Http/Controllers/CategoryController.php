@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Orchid\Press\Models\Taxonomy;
 use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Platform\Http\Forms\Category\CategoryFormGroup;
+use Orchid\Press\Http\Forms\Category\CategoryFormGroup;
 
 class CategoryController extends Controller
 {

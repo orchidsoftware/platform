@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Screens\Comment;
+namespace Orchid\Press\Http\Screens\Comment;
 
 use Orchid\Screen\Screen;
 use Orchid\Press\Models\Comment;
-use Orchid\Platform\Http\Layouts\Comment\CommentListLayout;
+use Orchid\Press\Http\Layouts\Comment\CommentListLayout;
 
 class CommentList extends Screen
 {

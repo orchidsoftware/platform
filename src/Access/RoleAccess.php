@@ -6,6 +6,7 @@ namespace Orchid\Access;
 
 use Orchid\Platform\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Platform\Dashboard;
 
 trait RoleAccess
 {
@@ -40,7 +41,7 @@ trait RoleAccess
      */
     public function users() : BelongsToMany
     {
-        return $this->belongsToMany(Dashbord::model(User::class), 'role_users', 'role_id', 'user_id');
+        return $this->belongsToMany(Dashboard::model(User::class), 'role_users', 'role_id', 'user_id');
     }
 
     /**

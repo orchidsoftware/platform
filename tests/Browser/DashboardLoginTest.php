@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Browser;
 
 use Laravel\Dusk\Browser;
@@ -12,7 +14,7 @@ class DashboardLoginTest extends TestBrowserCase
      * @throws \Exception
      * @throws \Throwable
      */
-    public function test_is_login()
+    public function test_is_login_logout()
     {
         $user = User::where('email', 'admin@admin.com')->first();
 

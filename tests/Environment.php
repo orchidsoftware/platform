@@ -1,23 +1,27 @@
 <?php
+declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Watson\Active\Active;
-use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Alert;
-use Intervention\Image\Facades\Image;
-use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
-use Orchid\Boot\Providers\BootServiceProvider;
-use Orchid\Press\Providers\PressServiceProvider;
+use Intervention\Image\Facades\Image;
+use Orchid\Bulldozer\Providers\BootServiceProvider;
+use Orchid\Platform\Models\User;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Press\Providers\PressServiceProvider;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Dashboard;
+use Watson\Active\Active;
 
+/**
+ * Trait Environment
+ */
 trait Environment
 {
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
@@ -26,6 +30,7 @@ trait Environment
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
+
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Press\Providers\PressServiceProvider',
         ]);

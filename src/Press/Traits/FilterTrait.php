@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
-use Orchid\Platform\Filters\HttpFilter;
+use Orchid\Press\Filters\HttpFilter;
 use Illuminate\Database\Eloquent\Builder;
 
 trait FilterTrait

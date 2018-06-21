@@ -7,11 +7,11 @@ namespace Orchid\Press\Demo;
 use Orchid\Screen\Fields\TD;
 use Orchid\Press\Entities\Many;
 use Orchid\Screen\Fields\Field;
-use Orchid\Platform\Http\Filters\SearchFilter;
-use Orchid\Platform\Http\Filters\StatusFilter;
-use Orchid\Platform\Http\Filters\CreatedFilter;
-use Orchid\Platform\Http\Forms\Posts\BasePostForm;
-use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
+use Orchid\Press\Http\Filters\SearchFilter;
+use Orchid\Press\Http\Filters\StatusFilter;
+use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Press\Http\Forms\Posts\BasePostForm;
+use Orchid\Press\Http\Forms\Posts\UploadPostForm;
 
 class Post extends Many
 {

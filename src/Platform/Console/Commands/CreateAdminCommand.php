@@ -59,6 +59,10 @@ class CreateAdminCommand extends Command
         try {
             $user = Dashboard::modelClass(User::class);
 
+            if(is_string($user)){
+                dd($user);
+            }
+
             $user->createAdmin(
                 $this->argument('name'),
                 $this->argument('email'),

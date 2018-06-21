@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Attachments;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
+use Orchid\Platform\Jobs\ImageAttachment;
 use Orchid\Platform\Models\Attachment;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Filesystem\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class File
@@ -51,20 +50,26 @@ class File
     private $hash;
 
     /**
+     * @var string
+     */
+    public $disk;
+
+    /**
      * File constructor.
      *
-     * @param UploadedFile      $file
-     * @param FilesystemAdapter $storage
+     * @param UploadedFile $file
+     * @param string       $disk
      */
-    public function __construct(UploadedFile $file, FilesystemAdapter $storage)
+    public function __construct(UploadedFile $file, string $disk)
     {
         $this->time = time();
-        $this->date = date('Y/m/d');
+        $this->date = date('Y/m/d', $this->time);
         $this->file = $file;
         $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
-        $this->storage = $storage;
+        $this->disk = $disk;
+        $this->storage = Storage::disk($disk);
     }
 
     /**
@@ -94,25 +99,13 @@ class File
 
         if (is_null($file)) {
             $this->storage->makeDirectory($this->date);
-
-            if (substr($this->file->getMimeType(), 0, 5) == 'image') {
-                foreach (config('platform.images', []) as $key => $value) {
-                    $this->saveImageProcessing($key, $value['width'], $value['height'], $value['quality']);
-                }
-            }
-
-            $file = $this->save();
-
-            return $file;
+            return $this->save();
         }
 
-        $file = $file->replicate()->fill([
+        return $file->replicate()->fill([
             'sort'    => 0,
             'user_id' => Auth::id(),
-        ]);
-        $file->save();
-
-        return $file;
+        ])->save();
     }
 
     /**
@@ -128,23 +121,28 @@ class File
      */
     private function save()
     {
-        $hashName = sha1($this->time.$this->file->getClientOriginalName());
-        $name = $hashName.'.'.$this->getClientOriginalExtension();
+        $hashName = sha1($this->time . $this->file->getClientOriginalName());
+        $name = $hashName . '.' . $this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),
         ]);
 
-        return Dashboard::model(Attachment::class)::create([
+        $attach = Dashboard::model(Attachment::class)::create([
             'name'          => $hashName,
             'original_name' => $this->file->getClientOriginalName(),
             'mime'          => $this->getMimeType(),
             'extension'     => $this->getClientOriginalExtension(),
             'size'          => $this->file->getClientSize(),
-            'path'          => $this->date.DIRECTORY_SEPARATOR,
+            'path'          => $this->date . DIRECTORY_SEPARATOR,
             'hash'          => $this->hash,
+            'disk'          => $this->disk,
             'user_id'       => Auth::id(),
         ]);
+
+        ImageAttachment::dispatch($attach, $this->time);
+
+        return $attach;
     }
 
     /**
@@ -165,40 +163,14 @@ class File
      */
     public function getMimeType()
     {
-        if (! is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
             return $type;
         }
 
-        if (! is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
+        if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
 
         return 'unknown';
-    }
-
-    /**
-     * @param null $name
-     * @param null $width
-     * @param null $height
-     * @param int  $quality
-     */
-    private function saveImageProcessing($name = null, $width = null, $height = null, $quality = 100)
-    {
-        if (! is_null($name)) {
-            $name = '_'.$name;
-        }
-
-        $name = sha1($this->time.$this->file->getClientOriginalName()).$name.'.'.$this->getClientOriginalExtension();
-
-        $content = Image::make($this->file)
-            ->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })
-            ->encode($this->getClientOriginalExtension(), $quality);
-
-        $this->storage->put($this->date.'/'.$name, $content, [
-            'mime_type' => $this->getMimeType(),
-        ]);
     }
 }

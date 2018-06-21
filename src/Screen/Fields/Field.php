@@ -147,7 +147,7 @@ class Field implements FieldContract
         $field = config('platform.fields.'.$type);
 
         if (! is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException('Field '.$type.' does not exist or inheritance FieldContract');
+            throw new TypeException($type);
         }
 
         return new $field();
@@ -216,8 +216,7 @@ class Field implements FieldContract
     {
         foreach ($this->required as $attribute) {
             throw_if(! collect($this->attributes)->offsetExists($attribute),
-                FieldRequiredAttributeException::class,
-                'Field must have the following attribute: '.$attribute);
+                FieldRequiredAttributeException::class, $attribute);
         }
     }
 

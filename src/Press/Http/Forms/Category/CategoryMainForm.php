@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Forms\Category;
+namespace Orchid\Press\Http\Forms\Category;
 
 use Orchid\Forms\Form;
 use Illuminate\Http\Request;

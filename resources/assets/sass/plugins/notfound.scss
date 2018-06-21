@@ -1,5 +1,5 @@
 .not-found {
-  height          : calc(100vh - 80px);
+  height          : calc(100vh - #{$app-header-height});
   min-height      : 200px;
   display         : flex;
   align-items     : center;
