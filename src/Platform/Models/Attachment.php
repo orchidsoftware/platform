@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Orchid\Platform\Dashboard;
+use Intervention\Image\Facades\Image;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attachment extends Model
 {
@@ -103,7 +103,7 @@ class Attachment extends Model
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->encode(static::getAttribute('extension'), $quality);
-        },10,true);
+        }, 10, true);
     }
 
     /**
@@ -157,7 +157,7 @@ class Attachment extends Model
      */
     public function getMimeType() : string
     {
-        $mimes =  new \Mimey\MimeTypes();
+        $mimes = new \Mimey\MimeTypes();
 
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 

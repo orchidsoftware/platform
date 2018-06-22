@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Attachments;
 
 use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
 use Orchid\Platform\Models\Attachment;
+use Intervention\Image\Filters\FilterInterface;
 
 /**
- * Class BaseTemplate
+ * Class BaseTemplate.
  */
 abstract class BaseTemplate implements FilterInterface
 {

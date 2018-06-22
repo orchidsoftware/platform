@@ -99,6 +99,7 @@ class File
 
         if (is_null($file)) {
             $this->storage->makeDirectory($this->date);
+
             return $this->save();
         }
 
@@ -110,7 +111,6 @@ class File
         $file->save();
 
         return $file;
-
     }
 
     /**

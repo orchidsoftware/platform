@@ -38,7 +38,6 @@ class AttachmentController extends Controller
             ])->load();
         }
 
-
         if (count($attachment) > 1) {
             return response()->json($attachment);
         }

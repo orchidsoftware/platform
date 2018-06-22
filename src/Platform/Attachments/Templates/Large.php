@@ -7,7 +7,7 @@ namespace Orchid\Platform\Attachments\Templates;
 use Orchid\Platform\Attachments\BaseTemplate;
 
 /**
- * Class Large
+ * Class Large.
  */
 class Large extends BaseTemplate
 {
