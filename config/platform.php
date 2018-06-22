@@ -132,6 +132,7 @@ return [
     | ....
     |
     */
+
     'screens' => [
         'users' => [
             'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
@@ -152,29 +153,14 @@ return [
     | Images
     |--------------------------------------------------------------------------
     |
-    | Image processing 100x150x75
-    | 100 - integer width
-    | 150 - integer height
-    | 75  - integer quality
+    | ....
     |
     */
 
     'images' => [
-        'low'    => [
-            'width'   => '50',
-            'height'  => '50',
-            'quality' => '50',
-        ],
-        'medium' => [
-            'width'   => '600',
-            'height'  => '300',
-            'quality' => '75',
-        ],
-        'high'   => [
-            'width'   => '1000',
-            'height'  => '500',
-            'quality' => '95',
-        ],
+        'small'  => Orchid\Platform\Attachments\Templates\Small::class,
+        'medium' => Orchid\Platform\Attachments\Templates\Medium::class,
+        'large'  => Orchid\Platform\Attachments\Templates\Large::class,
     ],
 
 ];

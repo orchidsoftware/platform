@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Events;
 
+use Illuminate\Queue\SerializesModels;
 use Orchid\Platform\Models\Attachment;
 
 /**
@@ -11,6 +12,8 @@ use Orchid\Platform\Models\Attachment;
  */
 class UploadFileEvent
 {
+    use SerializesModels;
+
     /**
      * @var \Orchid\Platform\Models\Attachment
      */
@@ -30,6 +33,14 @@ class UploadFileEvent
     public function __construct(Attachment $attachment, int $time)
     {
         $this->attachment = $attachment;
-        $this->time = $this;
+        $this->time = $time;
+    }
+
+    /**
+     * @return int|\Orchid\Platform\Events\UploadFileEvent
+     */
+    public function getTime()
+    {
+        return $this->time;
     }
 }

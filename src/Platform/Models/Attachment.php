@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Mimey\MimeTypes;
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Orchid\Platform\Dashboard;
 
 class Attachment extends Model
 {
@@ -80,6 +80,33 @@ class Attachment extends Model
     }
 
     /**
+     * Get the contents of a file.
+     *
+     * @return string
+     */
+    public function read() : string
+    {
+        return Storage::disk(static::getAttribute('disk'))->get(static::physicalPath());
+    }
+
+    /**
+     * @param null $width
+     * @param null $height
+     * @param int  $quality
+     *
+     * @return \Intervention\Image\Image
+     */
+    public function getSizeImage($width = null, $height = null, $quality = 100)
+    {
+        return Image::cache(function ($image) use ($width, $height, $quality) {
+            $image->make(static::read())->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode(static::getAttribute('extension'), $quality);
+        },10,true);
+    }
+
+    /**
      * @return bool|null
      */
     public function delete()
@@ -130,9 +157,9 @@ class Attachment extends Model
      */
     public function getMimeType() : string
     {
-        $mimes = new MimeTypes();
+        $mimes =  new \Mimey\MimeTypes();
 
-        $type = $mimes->getMimeType(static::getAttribute('extension'));
+        $type = $mimes->getMimeType($this->getAttribute('extension'));
 
         if (is_null($type)) {
             return 'unknown';

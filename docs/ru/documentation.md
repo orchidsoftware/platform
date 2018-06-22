@@ -47,5 +47,6 @@
     <li><a href="/ru/docs/tags">Теги</a></li>
     <li><a href="/ru/docs/comments" title="Работа с комментариями в ORCHID">Комментарии</a></li>
     <li><a href="/ru/docs/menu" title="Управление меню ORCHID, ссылки на меню и пользовательские настройки и параметры меню.">Меню</a></li>
+    <li><a href="/ru/docs/attachments">Вложения</a></li>
 </ul>
 

@@ -99,14 +99,18 @@ class File
 
         if (is_null($file)) {
             $this->storage->makeDirectory($this->date);
-
             return $this->save();
         }
 
-        return $file->replicate()->fill([
+        $file = $file->replicate()->fill([
             'sort'    => 0,
             'user_id' => Auth::id(),
-        ])->save();
+        ]);
+
+        $file->save();
+
+        return $file;
+
     }
 
     /**
@@ -120,7 +124,7 @@ class File
     /**
      * @return mixed
      */
-    private function save()
+    private function save() : Attachment
     {
         $hashName = sha1($this->time.$this->file->getClientOriginalName());
         $name = $hashName.'.'.$this->getClientOriginalExtension();

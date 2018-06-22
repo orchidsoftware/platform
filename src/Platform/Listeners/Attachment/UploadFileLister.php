@@ -7,6 +7,7 @@ namespace Orchid\Platform\Listeners\Attachment;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
+use Orchid\Platform\Attachments\BaseTemplate;
 use Orchid\Platform\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
@@ -40,10 +41,12 @@ class UploadFileLister implements ShouldQueue
             return;
         }
 
-        foreach (config('platform.images', []) as $key => $value) {
+        foreach (config('platform.images', []) as $key => $template) {
             try {
-                $this->saveImageProcessing($event->attachment, $key, $value['width'], $value['height'], $value['quality']);
+                $template = new $template($event->attachment);
+                $this->saveImageProcessing($event->attachment, $key, $template);
             } catch (\Exception $exception) {
+                dd($exception->getMessage());
                 Log::info($exception->getMessage(), [
                     'attachment' => $event->attachment,
                 ]);
@@ -52,26 +55,21 @@ class UploadFileLister implements ShouldQueue
     }
 
     /**
-     * @param \Orchid\Platform\Models\Attachment $attachment
-     * @param null                               $name
-     * @param null                               $width
-     * @param null                               $height
-     * @param int                                $quality
+     * @param \Orchid\Platform\Models\Attachment        $attachment
+     * @param string                                    $name
+     * @param \Orchid\Platform\Attachments\BaseTemplate $template
      */
-    private function saveImageProcessing(Attachment $attachment, $name = null, $width = null, $height = null, $quality = 100)
+    private function saveImageProcessing(Attachment $attachment, string $name, BaseTemplate $template)
     {
         if (! is_null($name)) {
             $name = '_'.$name;
         }
 
-        $name = sha1($this->time.$attachment->original_name).$name.'.'.$attachment->extension;
+        $name = sha1($this->time.$attachment->getAttribute('original_name')).$name.'.'.$attachment->getAttribute('extension');
 
-        $content = Image::make($attachment->physicalPath)
-            ->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })
-            ->encode($attachment->original_name, $quality);
+        $content = Image::make($attachment->read())
+            ->filter($template)
+            ->encode($template->extension, $template->quality);
 
         Storage::disk($attachment->getAttribute('disk'))->put(date('Y/m/d', $this->time).'/'.$name, $content, [
             'mime_type' => $attachment->getMimeType(),

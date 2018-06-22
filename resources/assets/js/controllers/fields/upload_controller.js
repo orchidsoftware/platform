@@ -1,4 +1,5 @@
 import {Controller} from "stimulus"
+import Dropzone from 'dropzone';
 
 export default class extends Controller {
 
