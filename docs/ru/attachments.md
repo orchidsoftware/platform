@@ -8,8 +8,6 @@
 Вложения могут быть прикреплены к любой модели посредством связей, для этого необходимо добавить трейд:
 
 ```
-<?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -32,19 +30,19 @@ $item->attachment()->get();
 По-умолчанию вложение имеет следующие свойства:
 
 ```php
-     [
-        'name' => 'Системное имя',
-        'original_name' => 'Оригинальное имя',
-        'mime' => 'MIME тип',
-        'extension' => 'Расширение файла',
-        'size' => 'Размер файла',
-        'path' => 'Путь',
-        'user_id' => 'Номер пользователя загрузивший запись',
-        'description' => 'Описание файла',
-        'alt' => 'Альтернативное название файла',
-        'hash' => 'Хеш файла',
-        'disk' => 'Указатель на диск, где распологается файл',
-    ];
+ [
+    'name' => 'Системное имя',
+    'original_name' => 'Оригинальное имя',
+    'mime' => 'MIME тип',
+    'extension' => 'Расширение файла',
+    'size' => 'Размер файла',
+    'path' => 'Путь',
+    'user_id' => 'Номер пользователя загрузивший запись',
+    'description' => 'Описание файла',
+    'alt' => 'Альтернативное название файла',
+    'hash' => 'Хеш файла',
+    'disk' => 'Указатель на диск, где распологается файл',
+];
 ```
 
 
@@ -55,15 +53,15 @@ $item->attachment()->get();
 Пример метода контроллера:
 
 ```php
-    use Orchid\Platform\Attachments\File;
-    
-    public function upload(Request $request)
-    {
-        $file = new File($request->file('photo'));
-        $attachment = $file->load();
-        
-        return response()->json()
-    }
+use Orchid\Platform\Attachments\File;
+
+public function upload(Request $request)
+{
+    $file = new File($request->file('photo'));
+    $attachment = $file->load();
+
+    return response()->json()
+}
 ```
 
 Это автоматически загрузит ваш файл в хронилище по умолчанию (`public`) и создаст запись в базе данных.
@@ -97,10 +95,7 @@ $image->url('standart');
 это возможно благодаря событию, на которое можно подписаться стандартными средствами и выполнить задачу в фоне:
 
 ```php
-
-
 namespace App\Providers;
-
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Listener\UploadListener;
@@ -131,8 +126,6 @@ class EventServiceProvider extends ServiceProvider
 Каждая подписка получит объект `UploadFileEvent`:
 
 ```php
-
-
 namespace App\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
