@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Filters;
+namespace Orchid\Press\Http\Filters;
 
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
