@@ -18,17 +18,11 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 class PostController extends Controller
 {
     /**
-     * @var
-     */
-    public $locales;
-
-    /**
      * PostController constructor.
      */
     public function __construct()
     {
         $this->checkPermission('platform.posts');
-        $this->locales = collect(config('press.locales'));
     }
 
     /**
@@ -52,11 +46,9 @@ class PostController extends Controller
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
-        $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
-
         return view('platform::container.posts.create', [
             'type'    => $type,
-            'locales' => $locales,
+            'locales' => collect($type->locale()),
             'post'    => new Post(),
         ]);
     }
@@ -116,11 +108,9 @@ class PostController extends Controller
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
-        $locales = (method_exists($type, 'locale')) ? collect($type->locale()) : $this->locales;
-
         return view('platform::container.posts.edit', [
             'type'    => $type,
-            'locales' => $locales,
+            'locales' => collect($type->locale()),
             'post'    => $post,
         ]);
     }

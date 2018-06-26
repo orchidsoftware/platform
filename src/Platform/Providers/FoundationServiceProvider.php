@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -14,6 +15,9 @@ use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
 
+/**
+ * Class FoundationServiceProvider
+ */
 class FoundationServiceProvider extends ServiceProvider
 {
     /**
@@ -130,6 +134,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
             ImageServiceProvider::class,

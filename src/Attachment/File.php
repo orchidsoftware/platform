@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Attachments;
+namespace Orchid\Attachment;
 
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Models\Attachment;
+use Orchid\Attachment\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Events\UploadFileEvent;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class File
+ */
 class File
 {
     /**

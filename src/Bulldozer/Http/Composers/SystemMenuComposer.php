@@ -33,18 +33,28 @@ class SystemMenuComposer
     {
         $this->dashboard->menu
             ->add('Systems', [
-                'slug'       => 'Developer',
+                'slug'       => 'Bulldozer',
                 'icon'       => 'icon-code',
-                'label'      => 'Разработка',
+                'label'      => 'Быстрый старт',
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems',
                 'sort'       => 9000,
             ])
-            ->add('Developer', [
-                'slug'       => 'boot',
-                'icon'       => 'icon-energy',
+            ->add('Bulldozer', [
+                'slug'       => 'Entities',
+                'icon'       => 'icon-notebook',
                 'route'      => route('platform.boot.index'),
-                'label'      => 'Быстрый старт',
+                'label'      => 'Строитель моделей',
+                'groupname'  => 'Позволяет максимально быстро начать разрабатывать приложение',
+                'active'     => 'platform.boot.*',
+                'permission' => 'platform.boot',
+                'sort'       => 9000,
+            ])
+            ->add('Bulldozer', [
+                'slug'       => 'Models',
+                'icon'       => 'icon-database',
+                'route'      => route('platform.boot.index'),
+                'label'      => 'Строитель моделей',
                 'groupname'  => 'Позволяет максимально быстро начать разрабатывать приложение',
                 'active'     => 'platform.boot.*',
                 'permission' => 'platform.boot',

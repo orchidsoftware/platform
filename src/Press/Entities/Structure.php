@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
 trait Structure
@@ -133,6 +134,16 @@ trait Structure
      * @return mixed
      */
     abstract public function options() : array;
+
+    /**
+     * Language support for recording
+     *
+     * @return array
+     */
+    public function locale(): array
+    {
+        return config('press.locales');
+    }
 
     /**
      * @deprecated

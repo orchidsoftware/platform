@@ -148,19 +148,4 @@ return [
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Images
-    |--------------------------------------------------------------------------
-    |
-    | ....
-    |
-    */
-
-    'images' => [
-        'small'  => Orchid\Platform\Attachments\Templates\Small::class,
-        'medium' => Orchid\Platform\Attachments\Templates\Medium::class,
-        'large'  => Orchid\Platform\Attachments\Templates\Large::class,
-    ],
-
 ];

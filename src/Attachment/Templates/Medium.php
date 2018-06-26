@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Attachments\Templates;
+namespace Orchid\Attachment\Templates;
 
-use Orchid\Platform\Attachments\BaseTemplate;
+use Orchid\Attachment\BaseTemplate;
 
 /**
  * Class Medium.

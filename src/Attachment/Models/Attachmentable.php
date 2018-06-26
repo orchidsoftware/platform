@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Models;
+namespace Orchid\Attachment\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Attachmentable
+ */
 class Attachmentable extends Model
 {
     /**

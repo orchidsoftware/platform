@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Models;
+namespace Orchid\Attachment\Models;
 
 use Orchid\Platform\Dashboard;
 use Intervention\Image\Facades\Image;
@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class Attachment
+ */
 class Attachment extends Model
 {
     /**

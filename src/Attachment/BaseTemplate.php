@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Attachments;
+namespace Orchid\Attachment;
 
 use Intervention\Image\Image;
-use Orchid\Platform\Models\Attachment;
+use Orchid\Attachment\Models\Attachment;
 use Intervention\Image\Filters\FilterInterface;
 
 /**

@@ -6,8 +6,8 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Attachments\File;
-use Orchid\Platform\Models\Attachment;
+use Orchid\Attachment\File;
+use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**

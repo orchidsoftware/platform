@@ -14,17 +14,11 @@ use Orchid\Platform\Http\Controllers\Controller;
 class PageController extends Controller
 {
     /**
-     * @var
-     */
-    public $locales;
-
-    /**
      * PostController constructor.
      */
     public function __construct()
     {
         $this->checkPermission('platform.posts');
-        $this->locales = collect(config('press.locales'));
     }
 
     /**
@@ -38,9 +32,11 @@ class PageController extends Controller
     {
         $this->checkPermission('platform.posts.type.'.$page->slug);
 
+        $type = $page->getEntityObject($page->slug);
+
         return view('platform::container.posts.page', [
-            'type'    => $page->getEntityObject($page->slug),
-            'locales' => $this->locales,
+            'type'    => $type,
+            'locales' => collect($type->locale()),
             'post'    => $page,
         ]);
     }

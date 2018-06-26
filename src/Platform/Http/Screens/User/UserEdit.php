@@ -39,7 +39,7 @@ class UserEdit extends Screen
      *
      * @return array
      */
-    public function query(int $id): array
+    public function query(int $id = null): array
     {
         $user = is_null($id) ? new User() : User::with('roles')->findOrFail($id);
 
