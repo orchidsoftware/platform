@@ -7,7 +7,7 @@ namespace Orchid\Attachment\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Attachmentable
+ * Class Attachmentable.
  */
 class Attachmentable extends Model
 {

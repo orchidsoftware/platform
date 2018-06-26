@@ -7,7 +7,7 @@ namespace Orchid\Attachment\Providers;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class AttachmentServiceProvider
+ * Class AttachmentServiceProvider.
  */
 class AttachmentServiceProvider extends ServiceProvider
 {

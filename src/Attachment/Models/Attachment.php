@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Attachment
+ * Class Attachment.
  */
 class Attachment extends Model
 {
