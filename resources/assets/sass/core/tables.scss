@@ -14,6 +14,14 @@
         &:first-child {
           padding-left: 18px !important;
         }
+        .form-group.row {
+            select.form-control {
+                padding-left: 0.6rem;
+            }
+            input.form-control {
+                padding: 0 0.3rem;
+            }
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown  d-inline-block">
     <button class="btn btn-sm btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
         <i class="icon-filter"></i>
