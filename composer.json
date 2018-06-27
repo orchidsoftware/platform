@@ -82,7 +82,7 @@
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
         "Orchid\\Press\\Providers\\PressServiceProvider",
-        "Orchid\\Bulldozer\\Providers\\BootServiceProvider",
+        "Orchid\\Bulldozer\\Providers\\BootServiceProvider"
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",
