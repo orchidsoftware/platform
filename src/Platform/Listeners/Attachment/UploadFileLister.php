@@ -7,12 +7,12 @@ namespace Orchid\Platform\Listeners\Attachment;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
-use Orchid\Platform\Models\Attachment;
+use Orchid\Attachment\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Orchid\Platform\Events\UploadFileEvent;
-use Orchid\Platform\Attachments\BaseTemplate;
+use Orchid\Attachment\BaseTemplate;
 
 /**
  * Class UploadFileLister.
@@ -41,12 +41,11 @@ class UploadFileLister implements ShouldQueue
             return;
         }
 
-        foreach (config('platform.images', []) as $key => $template) {
+        foreach (config('attachment.images', []) as $key => $template) {
             try {
                 $template = new $template($event->attachment);
                 $this->saveImageProcessing($event->attachment, $key, $template);
             } catch (\Exception $exception) {
-                dd($exception->getMessage());
                 Log::info($exception->getMessage(), [
                     'attachment' => $event->attachment,
                 ]);
@@ -55,9 +54,9 @@ class UploadFileLister implements ShouldQueue
     }
 
     /**
-     * @param \Orchid\Platform\Models\Attachment        $attachment
-     * @param string                                    $name
-     * @param \Orchid\Platform\Attachments\BaseTemplate $template
+     * @param \Orchid\Attachment\Models\Attachment $attachment
+     * @param string                               $name
+     * @param \Orchid\Attachment\BaseTemplate      $template
      */
     private function saveImageProcessing(Attachment $attachment, string $name, BaseTemplate $template)
     {

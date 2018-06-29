@@ -29,7 +29,7 @@ abstract class BaseTemplate implements FilterInterface
     public $quality = 100;
 
     /**
-     * @var \Orchid\Platform\Models\Attachment
+     * @var \Orchid\Attachment\Models\Attachment
      */
     public $attachment;
 
@@ -41,7 +41,7 @@ abstract class BaseTemplate implements FilterInterface
     /**
      * Small constructor.
      *
-     * @param \Orchid\Platform\Models\Attachment $attachment
+     * @param \Orchid\Attachment\Models\Attachment $attachment
      */
     public function __construct(Attachment $attachment)
     {

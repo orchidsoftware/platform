@@ -6,7 +6,7 @@ namespace Orchid\Tests\Unit;
 
 use Orchid\Tests\TestUnitCase;
 use Illuminate\Http\UploadedFile;
-use Orchid\Platform\Attachments\File;
+use Orchid\Attachment\File;
 
 /**
  * Class AttachmentTest.

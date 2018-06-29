@@ -54,8 +54,10 @@ class PageController extends Controller
         $this->checkPermission('platform.posts.type.'.$page->slug);
         $type = $page->getEntityObject($page->slug);
 
-        $page->fill($request->all())->save([
-            'user_id'    => Auth::user()->id,
+        $page
+            ->fill($request->all())
+            ->fill([
+            'user_id'    => Auth::id(),
             'type'       => 'page',
             'slug'       => $page->slug,
             'status'     => 'publish',

@@ -3,7 +3,7 @@
 use Orchid\Press\Models\Post;
 use Illuminate\Database\Seeder;
 use Orchid\Press\Models\Comment;
-use Orchid\Platform\Models\Attachmentable;
+use Orchid\Attachment\Models\Attachmentable;
 
 class PostsTableSeeder extends Seeder
 {

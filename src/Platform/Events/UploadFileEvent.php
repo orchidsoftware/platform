@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Events;
 
 use Illuminate\Queue\SerializesModels;
-use Orchid\Platform\Models\Attachment;
+use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class UploadFileEvent.
@@ -15,7 +15,7 @@ class UploadFileEvent
     use SerializesModels;
 
     /**
-     * @var \Orchid\Platform\Models\Attachment
+     * @var \Orchid\Attachment\Models\Attachment
      */
     public $attachment;
 
@@ -27,7 +27,7 @@ class UploadFileEvent
     /**
      * ImageAttachment constructor.
      *
-     * @param \Orchid\Platform\Models\Attachment $attachment
+     * @param \Orchid\Attachment\Models\Attachment $attachment
      * @param int                                $time
      */
     public function __construct(Attachment $attachment, int $time)
