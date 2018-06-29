@@ -10,12 +10,11 @@ use Orchid\Tests\TestBrowserCase;
 
 class PressPageTest extends TestBrowserCase
 {
-
     /**
      * @throws \Throwable
      */
-    public function test_is_page(){
-
+    public function test_is_page()
+    {
         $user = User::where('email', 'admin@admin.com')->first();
 
         $this->browse(function (Browser $browser) use ($user) {
@@ -37,7 +36,7 @@ class PressPageTest extends TestBrowserCase
             $browser->press('Generate URL');
             $browser->type('content[en][open]', '2018-06-30 12:00:00');
             $browser->press('Save');
-           // $browser->press('×');
+            // $browser->press('×');
             $browser->clickLink('en');
             $browser->clickLink('Россия');
             $browser->type('content[ru][name]', 'test');
@@ -52,5 +51,4 @@ class PressPageTest extends TestBrowserCase
             $browser->assertPathIs('/dashboard/press/page/demo-page');
         });
     }
-
 }

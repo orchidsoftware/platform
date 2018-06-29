@@ -6,13 +6,13 @@ namespace Orchid\Platform\Listeners\Attachment;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Log;
+use Orchid\Attachment\BaseTemplate;
 use Intervention\Image\Facades\Image;
-use Orchid\Attachment\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
+use Orchid\Attachment\Models\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Orchid\Platform\Events\UploadFileEvent;
-use Orchid\Attachment\BaseTemplate;
 
 /**
  * Class UploadFileLister.
