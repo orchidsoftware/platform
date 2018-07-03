@@ -42,7 +42,7 @@ class TD
      * @var
      */
     public $column;
-    
+
     /**
      * @var string
      */
@@ -256,7 +256,6 @@ class TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
-       
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
 
@@ -272,7 +271,7 @@ class TD
 
                 $attributes[] = $datum->getAttribute($option);
             }
-                     
+
             if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
@@ -300,7 +299,7 @@ class TD
 
         return $this;
     }
-    
+
     /**
      * @param string $route
      *

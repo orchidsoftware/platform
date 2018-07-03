@@ -40,12 +40,12 @@ class Layouts
      * @var array
      */
     public $asyncMethod;
-    
+
     /**
      * @var string
      */
     public $asyncRoute;
-    
+
     /**
      * @var bool
      */
@@ -161,7 +161,7 @@ class Layouts
 
         return $this;
     }
-    
+
     /**
      * @param string $route
      *

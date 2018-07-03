@@ -24,7 +24,7 @@ return [
     'show'         => 'показано',
     'of'           => 'из',
     'search_posts' => 'Поиск записей..',
-    
+
     'screen' => [
         'Records not found' => 'Записи не найдены',
     ],
