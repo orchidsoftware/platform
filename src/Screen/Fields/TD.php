@@ -42,6 +42,11 @@ class TD
      * @var
      */
     public $column;
+    
+    /**
+     * @var string
+     */
+    public $asyncRoute;
 
     /**
      * @var
@@ -251,6 +256,7 @@ class TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
+       
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
 
@@ -266,7 +272,7 @@ class TD
 
                 $attributes[] = $datum->getAttribute($option);
             }
-
+                     
             if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
@@ -276,6 +282,7 @@ class TD
                 'attributes' => $attributes,
                 'text'       => $text,
                 'method'     => $method,
+                'route'      => $this->asyncRoute,
             ]);
         });
 
@@ -290,6 +297,18 @@ class TD
     public function align(string $align)
     {
         $this->align = $align;
+
+        return $this;
+    }
+    
+    /**
+     * @param string $route
+     *
+     * @return $this
+     */
+    public function asyncRoute(string $route) : self
+    {
+        $this->asyncRoute = $route;
 
         return $this;
     }

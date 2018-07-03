@@ -76,9 +76,12 @@
 
         <div class="text-center bg-white not-found">
             <div>
-                <h3 class="font-thin">{{trans('platform::systems/roles.not_found')}}</h3>
+                <h3 class="font-thin">{{trans('platform::common.screen.Records not found')}}</h3>
+                {{--
+                Нужно как-то плучить роут
                 <a href="{{ route('platform.systems.roles.create')}}"
                    class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
+                --}}
             </div>
         </div>
 

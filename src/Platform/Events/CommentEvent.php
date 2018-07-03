@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Events;
 
-use Orchid\Platform\Http\Forms\Comment\CommentFormGroup;
+use Orchid\Press\Http\Forms\Comment\CommentFormGroup;
 
 class CommentEvent
 {

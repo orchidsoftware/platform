@@ -40,7 +40,12 @@ class Layouts
      * @var array
      */
     public $asyncMethod;
-
+    
+    /**
+     * @var string
+     */
+    public $asyncRoute;
+    
     /**
      * @var bool
      */
@@ -139,6 +144,7 @@ class Layouts
             'templateSlug'        => $this->slug,
             'templateAsync'       => $this->async,
             'templateAsyncMethod' => $this->asyncMethod,
+            'templateAsyncRoute'  => $this->asyncRoute,
         ]);
     }
 
@@ -152,6 +158,18 @@ class Layouts
     {
         $this->async = $async;
         $this->asyncMethod = $method;
+
+        return $this;
+    }
+    
+    /**
+     * @param string $route
+     *
+     * @return \Orchid\Screen\Layouts
+     */
+    public function route(string $route) : self
+    {
+        $this->asyncRoute = $route;
 
         return $this;
     }

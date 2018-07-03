@@ -24,6 +24,10 @@ return [
     'show'         => 'show',
     'of'           => 'of',
     'search_posts' => 'Search post...',
+    
+    'screen' => [
+        'Records not found' => 'Records not found',
+    ],
 
     'access_denied' => [
         'label' => 'Access denied',
