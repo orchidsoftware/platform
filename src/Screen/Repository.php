@@ -9,7 +9,6 @@ namespace Orchid\Screen;
  */
 class Repository extends \Illuminate\Config\Repository
 {
-
     /**
      * @param      $key
      * @param null $default

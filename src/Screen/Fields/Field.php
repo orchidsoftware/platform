@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Fields;
 
-use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.

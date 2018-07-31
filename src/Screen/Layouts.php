@@ -124,8 +124,7 @@ class Layouts
     public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
-
-            if(!is_array($layouts)){
+            if (! is_array($layouts)) {
                 $layouts = [$layouts];
             }
 

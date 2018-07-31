@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Contracts\View\View;
 use Orchid\Tests\TestUnitCase;
+use Illuminate\Contracts\View\View;
 
 /**
  * Class FieldTest.
@@ -21,69 +21,69 @@ class FieldTest extends TestUnitCase
             [\Orchid\Screen\Fields\Types\TextAreaField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\InputField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\TagsField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\SelectField::class,
                 [
                     'name'    => 'example',
                     'options' => [],
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\RelationshipField::class,
                 [
                     'name'    => 'example',
                     'handler' => 'handler',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\PlaceField::class,
                 [
                     'name' => 'example',
                     'lang' => 'en',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\PictureField::class,
                 [
                     'name'   => 'example',
                     'width'  => '100',
                     'height' => '100',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\DateTimerField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\CheckBoxField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\TinyMCEField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\PasswordField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\SimpleMDEField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\LabelField::class,
                 [
                     'name'  => 'example',
                     'value' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\UploadField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
             [\Orchid\Screen\Fields\Types\UTMField::class,
                 [
                     'name' => 'example',
-                ]],
+                ], ],
         ];
     }
 
