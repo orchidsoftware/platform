@@ -93,6 +93,6 @@ class BootController extends Controller
             ],
         ]);
 
-        dd($test->generate());
+        //dd($test->generate());
     }
 }

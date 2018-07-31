@@ -154,7 +154,7 @@
 
     </div>
 @else
-    <div class="not-found">
+    <div class="app-content-center">
         <p>Выберите или создайте модель</p>
     </div>
 @endisset

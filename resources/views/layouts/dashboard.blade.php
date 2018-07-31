@@ -180,6 +180,15 @@
         <div id="content" class="app-content" role="main">
             <div class="app-content-body" id="app-content-body">
 
+                <nav aria-label="breadcrumb" class="m-b-n">
+                    <ol class="breadcrumb padder-lg">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    </ol>
+                </nav>
+
+
                 @include('platform::partials.alert')
 
                 @if (count($errors) > 0)

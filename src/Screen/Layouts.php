@@ -116,25 +116,30 @@ class Layouts
     }
 
     /**
-     * @param \Orchid\Screen\Repository $post
+     * @param \Orchid\Screen\Repository $repository
      * @param bool                      $async
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function build(Repository $post, $async = false)
+    public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
+
+            if(!is_array($layouts)){
+                $layouts = [$layouts];
+            }
+
             foreach ($layouts as $layout) {
                 if (! is_object($layout)) {
                     $layout = new $layout();
                 }
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
-                    $build[$key][] = view($layout->templates[$layout->active], $post->toArray());
+                    $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());
                     continue;
                 }
 
-                $build[$key][] = $layout->build($post);
+                $build[$key][] = $layout->build($repository);
             }
         }
 

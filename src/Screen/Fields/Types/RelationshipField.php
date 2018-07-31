@@ -44,6 +44,7 @@ class RelationshipField extends Field
      */
     public $attributes = [
         'class' => 'form-control',
+        'value' => null,
     ];
 
     /**

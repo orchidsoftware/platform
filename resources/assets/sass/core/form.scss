@@ -95,8 +95,8 @@
       padding-left: 12px;
     }
     .input-group-addon {
-      height: calc($form-group-height - 4px);
-      min-width: calc($form-group-height - 4px);
+      height: calc(#{$form-group-height} - 4px);
+      min-width: calc(#{$form-group-height} - 4px);
       border-radius: 0;
       border: none;
     }

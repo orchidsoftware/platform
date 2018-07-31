@@ -33,7 +33,7 @@
         <section>
             <div class="bg-white-only bg-auto no-border-xs">
 
-                <div class="text-center bg-white not-found">
+                <div class="text-center bg-white app-content-center">
                     <div>
                         <h3 class="font-thin">{{trans('platform::post/base.not_found')}}</h3>
                         <a href="{{ route('platform.posts.type.create',$type->slug)}}"

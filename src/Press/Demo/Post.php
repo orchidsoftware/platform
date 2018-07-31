@@ -7,9 +7,9 @@ namespace Orchid\Press\Demo;
 use Orchid\Screen\Fields\TD;
 use Orchid\Press\Entities\Many;
 use Orchid\Screen\Fields\Field;
-use Orchid\Press\Filters\SearchFilter;
-use Orchid\Press\Filters\StatusFilter;
-use Orchid\Press\Filters\CreatedFilter;
+use Orchid\Press\Http\Filters\SearchFilter;
+use Orchid\Press\Http\Filters\StatusFilter;
+use Orchid\Press\Http\Filters\CreatedFilter;
 use Orchid\Press\Http\Forms\Posts\BasePostForm;
 use Orchid\Press\Http\Forms\Posts\UploadPostForm;
 
@@ -166,6 +166,11 @@ class Post extends Many
 
             Field::tag('markdown')
                 ->name('body2')
+                ->title('Name Articles')
+                ->help('Article title'),
+
+            Field::tag('code')
+                ->name('code')
                 ->title('Name Articles')
                 ->help('Article title'),
 

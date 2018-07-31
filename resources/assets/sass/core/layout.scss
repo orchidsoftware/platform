@@ -81,6 +81,16 @@ h3, .h3 {
   width: 100%;
 }
 
+.app-content-center {
+  height          : calc(100vh - #{$app-header-height});
+  min-height      : 200px;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  margin-bottom   : 0;
+}
+
+
 
 .hbox {
   display: table;
@@ -208,7 +218,7 @@ h3, .h3 {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 100px;
+  width: $aside-wrap-main-width;
   z-index: 1050;
   background-color: #1d2531;
   li {
@@ -239,8 +249,8 @@ h3, .h3 {
       overflow: hidden;
       top: 0;
       bottom: 0;
-      left: 100px;
-      width: $app-aside-width - 100px;
+      left: $aside-wrap-main-width;
+      width: $app-aside-width - $aside-wrap-main-width;
       z-index: 1050;
       background-color: #222c3c;
       .navi-wrap {
@@ -363,10 +373,10 @@ h3, .h3 {
       z-index    : 10000;
       background : #1d2839;
       min-height : 100vh;
-      left       : 100px;
+      left       : $aside-wrap-main-width;
       top        : 0;
       bottom     : 0;
-      width: calc(100vw - 100px);
+      width: calc(100vw - #{$aside-wrap-main-width});
       overflow: auto;
     }
   }

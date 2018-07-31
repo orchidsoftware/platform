@@ -16420,6 +16420,21 @@ h3,
   width: 100%;
 }
 
+.app-content-center {
+  height: calc(100vh - 80px);
+  min-height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+}
+
 .hbox {
   display: table;
   table-layout: fixed;
@@ -21452,8 +21467,8 @@ fieldset[disabled] .form-control-grey {
 }
 
 .form-group-default.input-group .input-group-addon {
-  height: calc($form-group-height - 4px);
-  min-width: calc($form-group-height - 4px);
+  height: calc(54px - 4px);
+  min-width: calc(54px - 4px);
   border-radius: 0;
   border: none;
 }
@@ -22021,21 +22036,6 @@ select.bootstrap-tagsinput {
   }
 }
 */
-
-.not-found {
-  height: calc(100vh - 80px);
-  min-height: 200px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 0;
-}
 
 #filemanager {
   position: relative;

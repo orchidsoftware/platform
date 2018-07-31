@@ -1,4 +1,4 @@
-<div class="text-center bg-white not-found">
+<div class="text-center bg-white app-content-center">
     <div>
         <h4 class="font-thin l-h-2x m-b">
             <em>

@@ -7,22 +7,8 @@ namespace Orchid\Screen;
 /**
  * Class Repository.
  */
-class Repository
+class Repository extends \Illuminate\Config\Repository
 {
-    /**
-     * @var array
-     */
-    protected $attributes = [];
-
-    /**
-     * Repository constructor.
-     *
-     * @param array $attributes
-     */
-    public function __construct(array $attributes = [])
-    {
-        $this->attributes = $attributes;
-    }
 
     /**
      * @param      $key
@@ -32,14 +18,14 @@ class Repository
      */
     public function getContent($key, $default = null)
     {
-        return array_get($this->attributes, $key, $default);
+        return array_get($this->items, $key, $default);
     }
 
     /**
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
-        return $this->attributes;
+        return $this->items;
     }
 }

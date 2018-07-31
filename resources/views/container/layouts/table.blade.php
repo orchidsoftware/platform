@@ -56,7 +56,7 @@
                 </tbody>
             </table>
         </div>
-        @if(is_object($form['data']))
+        @if(is_object($form['data']) && ($form['data'] instanceof \Illuminate\Contracts\Pagination\Paginator))
             <footer class="card-footer col">
                 <div class="row">
                     <div class="col-sm-5">
@@ -74,7 +74,7 @@
 
     @else
 
-        <div class="text-center bg-white not-found">
+        <div class="text-center bg-white app-content-center">
             <div>
                 <h3 class="font-thin">{{trans('platform::common.screen.Records not found')}}</h3>
                 {{--

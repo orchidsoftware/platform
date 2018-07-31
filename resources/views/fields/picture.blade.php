@@ -6,7 +6,7 @@
         <div class="b text-center wrapper-lg picture-actions">
 
             <div class="picture-container m-b-md">
-                <img src="#" class="picture-preview img-fluid img-thumbnail" alt=""/>
+                <img src="#" class="picture-preview img-fluid img-thumbnail" alt="">
             </div>
 
             <label class="btn btn-link">
@@ -15,13 +15,13 @@
                        accept="image/*"
                        data-target="fields--picture.upload"
                        data-action="fields--picture#upload"
-                       class="picture-input-file-{{$lang}}-{{$slug}} d-none">
+                       class="d-none">
             </label>
 
             <button type="button" class="btn btn-danger picture-remove"
                     data-action="fields--picture#clear">{{trans('platform::field.picture.Remove')}}</button>
 
-            <input type="file" class="picture-input-file-{{$lang}}-{{$slug}} d-none">
+            <input type="file" class="d-none">
         </div>
 
         <input class="picture-path"
@@ -30,7 +30,7 @@
                @include('platform::partials.fields.attributes', ['attributes' => $attributes])
         >
 
-        <div id="picture-crop-modal-{{$lang}}-{{$slug}}" class="modal" role="dialog">
+        <div class="modal" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content-wrapper">
                     <div class="modal-content">

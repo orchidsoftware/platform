@@ -79,7 +79,7 @@
 
             @else
 
-                <div class="text-center bg-white not-found">
+                <div class="text-center bg-white app-content-center">
                     <div>
                         <h3 class="font-thin">{{trans('platform::systems/users.not_found')}}</h3>
 

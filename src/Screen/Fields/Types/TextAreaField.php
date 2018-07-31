@@ -48,6 +48,7 @@ class TextAreaField extends Field
      */
     public $attributes = [
         'class' => 'form-control no-resize',
+        'value' => null,
     ];
 
     /**
