@@ -3,10 +3,21 @@ import tmpl         from 'blueimp-tmpl';
 
 export default class extends Controller {
 
+    /**
+     *
+     * @type {string[]}
+     */
     static targets = [
         "column",
         "relation"
     ];
+
+    /**
+     *
+     */
+    connect() {
+        document.querySelector(`#post-form`).addEventListener('change', this.saveModel)
+    }
 
     /**
      *
@@ -27,13 +38,14 @@ export default class extends Controller {
             return;
         }
 
-
         let element = this.createTrFromHTML(tmpl("boot-template-column", {
             "field": this.columnTarget.value,
         }));
 
         document.getElementById('boot-container-column').appendChild(element);
         this.columnTarget.value = '';
+        this.saveModel();
+
         return event.preventDefault();
     }
 
@@ -48,6 +60,7 @@ export default class extends Controller {
                 return event.preventDefault();
             }
         });
+        this.saveModel();
     }
 
     /**
@@ -67,7 +80,6 @@ export default class extends Controller {
             return;
         }
 
-
         let element = this.createTrFromHTML(tmpl("boot-template-relationship", {
             "field": this.relationTarget.value,
         }));
@@ -79,6 +91,8 @@ export default class extends Controller {
             });
 
         document.getElementById('boot-container-relationship').appendChild(element);
+        this.saveModel();
+
         return event.preventDefault();
     }
 
@@ -90,6 +104,17 @@ export default class extends Controller {
     createTrFromHTML(htmlString) {
         let tr = document.createElement('tr');
         tr.innerHTML = htmlString.trim();
+
         return tr;
+    }
+
+    /**
+     * Save model for background
+     */
+    saveModel() {
+        let oData = new FormData(document.querySelector(`#post-form`));
+
+        axios
+            .post(window.location.toString() + `/save`, oData);
     }
 }

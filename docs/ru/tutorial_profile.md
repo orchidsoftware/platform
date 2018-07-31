@@ -535,7 +535,7 @@ php artisan make:row ProfileLayout
 namespace App\Layouts;
 
 use App\Http\Widgets\CityWidget;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfileLayout extends Rows
@@ -726,7 +726,7 @@ php artisan make:row ProfilePasswordLayout
 ```php
 namespace App\Layouts;
 
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfilePasswordLayout extends Rows
@@ -936,7 +936,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 
 class BrowserFilter extends Filter
@@ -996,7 +996,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 
 class PlatformFilter extends Filter

@@ -97,19 +97,15 @@ class BootModelScreen extends Screen
                 ->icon('icon-magic-wand')
                 ->show($this->exist)
                 ->method('buildModels'),
-            Link::name('Сохранить')
-                ->icon('icon-check')
-                ->show($this->exist)
-                ->method('save'),
-            Link::name('Удалить')
-                ->icon('icon-trash')
-                ->show($this->exist)
-                ->method('delete'),
             Link::name('Добавить новую модель')
                 ->icon('icon-plus')
                 ->modal('CreateModelModal')
                 ->title('Добавить новую модель')
                 ->method('createModel'),
+            Link::name('Удалить')
+                ->icon('icon-trash')
+                ->show($this->exist)
+                ->method('delete'),
         ];
     }
 
@@ -175,7 +171,7 @@ class BootModelScreen extends Screen
      * @param string                   $model
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function save(string $model, Request $request)
     {
@@ -183,9 +179,8 @@ class BootModelScreen extends Screen
         $this->models->put($model, $attributes);
 
         cache()->forever(static::MODELS, $this->models);
-        alert('Модель успешно сохранена');
 
-        return back();
+        return abort(200);
     }
 
     /**

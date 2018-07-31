@@ -148,7 +148,7 @@ php artisan make:rows PatientFirstRows
 namespace App\Layouts\Clinic\Patient;
 
 use App\Http\Widgets\AppointmentTypes;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class Appointment extends Rows
