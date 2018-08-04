@@ -37,7 +37,8 @@ class CodeField extends Field
     public $attributes = [
         'class'       => 'form-control',
         'language'    => 'js',
-        'lineNumbers' => false,
+        'lineNumbers' => true,
+        'defaultTheme' => true,
     ];
 
     /**
@@ -58,6 +59,8 @@ class CodeField extends Field
         'formmethod',
         'formnovalidate',
         'formtarget',
+        'language',
+        'lineNumbers',
         'list',
         'max',
         'maxlength',
