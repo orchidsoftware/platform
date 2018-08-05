@@ -21688,6 +21688,7 @@ select.bootstrap-tagsinput {
 .dropzone {
   border: none;
   overflow-x: hidden;
+  background: inherit;
 }
 
 .dropzone .dz-preview {

@@ -11,7 +11,7 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Entities\Many as PostBehavior;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Http\Controllers\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -26,11 +26,11 @@ class PostController extends Controller
     }
 
     /**
-     * @param PostBehavior $type
+     * @param Many $type
      *
      * @return View
      */
-    public function index(PostBehavior $type) : View
+    public function index(Many $type) : View
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
@@ -38,55 +38,52 @@ class PostController extends Controller
     }
 
     /**
-     * @param PostBehavior $type
+     * @param Many $type
      *
      * @return View
      */
-    public function create(PostBehavior $type) : View
+    public function create(Many $type) : View
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
         return view('platform::container.posts.create', [
             'type'    => $type,
             'locales' => collect($type->locale()),
-            'post'    => new Post(),
+            'post'    => $type->create(new Post()),
         ]);
     }
 
     /**
      * @param Request      $request
      * @param Post         $post
-     * @param PostBehavior $type
+     * @param Many $type
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, PostBehavior $type, Post $post) : RedirectResponse
+    public function store(Request $request, Many $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
         $this->validate($request, $type->rules());
 
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
-            'user_id'    => Auth::user()->id,
+            'user_id'    => Auth::id(),
             'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
             'options'    => $post->getOptions(),
         ]);
 
-        if ($request->filled('slug')) {
-            $slug = $request->get('slug');
-        } else {
+
+        $slug = $request->get('slug');
+
+        if (!$request->filled('slug')) {
             $content = $request->get('content');
-            $slug = $type->slugFields ? head($content)[$type->slugFields] : 1;
+            $slug = $type->slugFields ? head($content)[$type->slugFields] : "";
         }
 
         $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
 
-        $post->save();
+        $type->save($post);
 
-        foreach ($type->getModules() as $module) {
-            $module = new $module();
-            $module->save($type, $post);
-        }
 
         Alert::success(trans('platform::common.alert.success'));
 
@@ -97,14 +94,14 @@ class PostController extends Controller
     }
 
     /**
-     * @param PostBehavior $type
+     * @param Many $type
      * @param Post         $post
      *
      * @return View
      *
      * @internal param Request $request
      */
-    public function edit(PostBehavior $type, Post $post) : View
+    public function edit(Many $type, Post $post) : View
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
@@ -117,22 +114,21 @@ class PostController extends Controller
 
     /**
      * @param Request      $request
-     * @param PostBehavior $type
+     * @param Many $type
      * @param Post         $post
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function update(Request $request, PostBehavior $type, Post $post) : RedirectResponse
+    public function update(Request $request, Many $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
+
         $post->fill($request->except('slug'));
         $post->user_id = Auth::user()->id;
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
         $post->options = $post->getOptions();
-
-        $slug = null;
 
         if ($request->filled('slug')) {
             $slug = $request->get('slug');
@@ -140,7 +136,7 @@ class PostController extends Controller
             $content = $request->get('content');
             $entityObject = $post->getEntityObject();
             if (property_exists($entityObject, 'slugFields')) {
-                $slug = head($content)[$entityObject->slugFields];
+                $slug = head($content)[$entityObject->slugFields] ?? '';
             }
         }
 
@@ -148,12 +144,7 @@ class PostController extends Controller
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 
-        $post->save();
-
-        foreach ($type->getModules() as $module) {
-            $module = new $module();
-            $module->save($type, $post);
-        }
+        $type->save($post);
 
         Alert::success(trans('platform::common.alert.success'));
 
@@ -164,7 +155,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param PostBehavior $type
+     * @param Many $type
      * @param Post         $post
      *
      * @throws \Exception
@@ -174,19 +165,18 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(PostBehavior $type, Post $post) : RedirectResponse
+    public function destroy(Many $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
-        $id = $post->id;
-        $post->delete();
+        $type->delete($post);
 
         Alert::success(trans('platform::common.alert.success'));
 
         return redirect()->route('platform.posts.type', [
             'type'    => $type->slug,
         ])->with([
-            'restore' => route('platform.posts.restore', $id),
+            'restore' => route('platform.posts.restore', $post->id),
         ]);
     }
 

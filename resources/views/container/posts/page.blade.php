@@ -52,7 +52,7 @@
                 <div class="hbox-col  lter b-r">
                     <div class="vbox">
                         <div class="bg-white">
-                            <div class="tab-content @if(!$type->checkModules()) container @endif">
+                            <div class="tab-content">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
                                         <div class="wrapper-lg  bg-white">
@@ -66,37 +66,20 @@
                 </div>
                 <!-- /column  -->
         @endif
-        @if($type->checkModules())
-            <!-- column  -->
-                <div class="hbox-col wi-col lter">
-                    <div class="vbox">
-                        <div class="nav-tabs-alt">
-                            @if(count($type->render() ) > 1)
-                                <ul class="nav nav-tabs bg-light">
-                                    @foreach($type->render() as $name => $view)
-                                        <li class="nav-item">
-                                            <a class="nav-link @if ($loop->first) active @endif"
-                                               data-target="#module-{{str_slug($name)}}" role="tab" data-toggle="tab"
-                                               aria-expanded="true">{{$name}}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
-                        <div class="row-row">
-                            <div class="tab-content">
-                                @foreach($type->render() as $name => $view)
-                                    <div class="tab-pane @if($loop->first) active @endif"
-                                         id="module-{{str_slug($name)}}">
-                                        {!! $view !!}
-                                    </div>
-                                @endforeach
-                            </div>
+        <!-- column  -->
+            <div class="hbox-col wi-col lter">
+                <div class="vbox">
+                    <div class="row-row">
+                        <div class="wrapper-md">
+                            {!! generate_form($type->main(), $post->toArray()) !!}
+                            {!! generate_form($type->options(), $post->getOptions()->toArray(), null, 'options') !!}
+
+                            @include('platform::container.posts.locale')
                         </div>
                     </div>
                 </div>
-                <!-- /column  -->
-            @endif
+            </div>
+            <!-- /column  -->
             @csrf
             @method('PUT')
         </form>

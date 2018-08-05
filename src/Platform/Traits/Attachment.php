@@ -29,7 +29,7 @@ trait Attachment
     /**
      * @param $model
      */
-    public static function setAttachmentModel($model): void
+    public static function setAttachmentModel($model)
     {
         static::$attachmentModel = $model;
     }

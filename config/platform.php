@@ -94,6 +94,7 @@ return [
         'label'        => Orchid\Screen\Fields\Types\LabelField::class,
         'upload'       => Orchid\Screen\Fields\Types\UploadField::class,
         'utm'          => Orchid\Screen\Fields\Types\UTMField::class,
+        'view'         => Orchid\Screen\Fields\Types\ViewField::class,
     ],
 
     /*
@@ -134,17 +135,17 @@ return [
     */
 
     'screens' => [
-        'users' => [
-            'edit'     => Orchid\Platform\Http\Screens\User\UserEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\User\UserList::class,
+        'users'   => [
+            'edit' => Orchid\Platform\Http\Screens\User\UserEdit::class,
+            'list' => Orchid\Platform\Http\Screens\User\UserList::class,
         ],
-        'roles' => [
-            'edit'     => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
-            'list'     => Orchid\Platform\Http\Screens\Role\RoleList::class,
+        'roles'   => [
+            'edit' => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
+            'list' => Orchid\Platform\Http\Screens\Role\RoleList::class,
         ],
         'comment' => [
-            'edit'     => Orchid\Press\Http\Screens\Comment\CommentEdit::class,
-            'list'     => Orchid\Press\Http\Screens\Comment\CommentList::class,
+            'edit' => Orchid\Press\Http\Screens\Comment\CommentEdit::class,
+            'list' => Orchid\Press\Http\Screens\Comment\CommentList::class,
         ],
     ],
 

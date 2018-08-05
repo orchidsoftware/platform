@@ -29,7 +29,7 @@ class UploadFileLister implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param Login $event
+     * @param \Orchid\Platform\Events\UploadFileEvent $event
      *
      * @return void
      */

@@ -55,7 +55,6 @@ class Attachment extends Model
      * Return the address by which you can access the file.
      *
      * @param string $size
-     * @param string $prefix
      *
      * @return string
      */

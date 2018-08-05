@@ -1,5 +1,5 @@
 @if($filters->count() > 0)
-    <form id="filters"></form>
+    <form id="filters" autocomplete="off"></form>
     <div class="wrapper-md b-b">
         <div class="row">
             <div class="col-md-12">

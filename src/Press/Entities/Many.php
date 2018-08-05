@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
 use Orchid\Screen\Fields\Field;
-use Illuminate\Support\Collection;
 
 abstract class Many
 {
-    use Structure;
+    use Structure, Actions;
 
     /**
      * Eloquent Eager Loading.
@@ -19,6 +19,11 @@ abstract class Many
      * @var array
      */
     public $with = [];
+
+    /**
+     * @var null
+     */
+    public $slugFields = null;
 
     /**
      * Registered fields to display in the table.

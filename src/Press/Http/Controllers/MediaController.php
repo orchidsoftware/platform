@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
 
+/**
+ * Class MediaController
+ */
 class MediaController extends Controller
 {
     /**
-     * @var string
+     * @var \Illuminate\Contracts\Filesystem\Filesystem
      */
     private $filesystem;
 
@@ -22,90 +27,109 @@ class MediaController extends Controller
     private $directory = '';
 
     /**
+     * @var \Illuminate\Config\Repository|mixed|string
+     */
+    private $disk = 'public';
+
+    /**
      * MediaController constructor.
      */
     public function __construct()
     {
         $this->checkPermission('platform.systems.media');
-        $this->filesystem = config('platform.disks.media', 'public');
+
+        $this->disk = config('platform.disks.media', 'public');
+
+        $this->filesystem = Storage::disk($this->disk);
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $dir = $request->get('dir', DIRECTORY_SEPARATOR);
+
         return view('platform::container.systems.media.index', [
             'name'        => trans('platform::systems/media.title'),
             'description' => trans('platform::systems/media.description'),
+            'dir'         => $this->getDirPath($dir),
+            'files'       => $this->getFiles($dir),
+            'directories' => $this->getDirectories($dir),
         ]);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function files(Request $request)
-    {
-        $folder = $request->folder;
-
-        if ($folder == DIRECTORY_SEPARATOR) {
-            $folder = '';
-        }
-
-        $dir = $this->directory.$folder;
-
-        $extensions = $request->get('mime', null);
-
-        return response()->json([
-            'name'          => 'files',
-            'type'          => 'folder',
-            'path'          => $dir,
-            'folder'        => $folder,
-            'items'         => $this->getFiles($dir, $extensions),
-            'last_modified' => 'asdf',
-        ]);
-    }
 
     /**
-     * @param      string $dir
-     * @param null $mime
+     * @param string $dir
      *
      * @return array
      */
-    private function getFiles($dir, $mime = null)
+    private function getDirPath(string $dir): array
     {
-        $files = [];
-        $storageFiles = Storage::disk($this->filesystem)->files($dir);
-        $storageFolders = Storage::disk($this->filesystem)->directories($dir);
+        $dirs = explode(DIRECTORY_SEPARATOR, $dir);
 
-        foreach ($storageFolders as $folder) {
-            $files[] = [
-                'name'          => strpos($folder, '/') > 1 ? str_replace('/', '', strrchr($folder, '/')) : $folder,
-                'type'          => 'folder',
-                'path'          => Storage::disk($this->filesystem)->url($folder),
-                'items'         => '',
-                'last_modified' => '',
-            ];
+        if (count($dirs) > 1) {
+            return $dirs;
         }
 
-        foreach ($storageFiles as $file) {
-            $mimetype = Storage::disk($this->filesystem)->mimeType($file);
-            if ($mime && strpos($mimetype, $mime) === false) {
-                continue;
-            }
+        return [];
+    }
 
-            $files[] = [
-                'name'          => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
-                'type'          => $mimetype,
-                'path'          => Storage::disk($this->filesystem)->url($file),
-                'size'          => Storage::disk($this->filesystem)->size($file),
-                'last_modified' => Storage::disk($this->filesystem)->lastModified($file),
+    /**
+     * @param string $dir
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function getFiles(string $dir): Collection
+    {
+        return $this->filesToFormat(collect($this->filesystem->files($dir)));
+    }
+
+    /**
+     * @param string $dir
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function getDirectories(string $dir): Collection
+    {
+
+        return $this->filesToFormat(collect($this->filesystem->directories($dir)));
+    }
+
+    /**
+     * @param \Illuminate\Support\Collection $files
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function filesToFormat(Collection $files): Collection
+    {
+        return $files->map(function ($file) {
+
+            $modified = $this->filesystem->lastModified($file);
+
+            return [
+                'name'              => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
+                'type'              => $this->filesystem->mimeType($file),
+                'path'              => $this->filesystem->url($file),
+                'size'              => $this->filesystem->size($file),
+                'lastModified'      => $modified,
+                'humanLastModified' => $this->getHumanDate($modified),
             ];
-        }
+        })->sortBy('name');
+    }
 
-        return $files;
+
+    /**
+     * @param int $time
+     *
+     * @return string
+     */
+    private function getHumanDate(int $time): string
+    {
+        return Carbon::createFromTimestamp($time)->diffForHumans();
     }
 
     /**
@@ -119,9 +143,9 @@ class MediaController extends Controller
         $success = false;
         $error = '';
 
-        if (Storage::disk($this->filesystem)->exists($new_folder)) {
+        if ($this->filesystem->exists($new_folder)) {
             $error = trans('platform::systems/media.error_creating_folder');
-        } elseif (Storage::disk($this->filesystem)->makeDirectory($new_folder)) {
+        } else if ($this->filesystem->makeDirectory($new_folder)) {
             $success = true;
         } else {
             $error = trans('platform::systems/media.error_creating_dir');
@@ -151,11 +175,11 @@ class MediaController extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type == 'folder') {
-            if (! Storage::disk($this->filesystem)->deleteDirectory($fileFolder)) {
+            if (!$this->filesystem->deleteDirectory($fileFolder)) {
                 $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } elseif (! Storage::disk($this->filesystem)->delete($fileFolder)) {
+        } else if (!$this->filesystem->delete($fileFolder)) {
             $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
@@ -178,7 +202,7 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        return response()->json(str_replace($location, '', Storage::disk($this->filesystem)->directories($location)));
+        return response()->json(str_replace($location, '', $this->filesystem->directories($location)));
     }
 
     /**
@@ -201,11 +225,11 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination,
-            '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
+            '/../') !== false ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-        if (! file_exists($destination)) {
-            if (Storage::disk($this->filesystem)->move($source, $destination)) {
+        if (!file_exists($destination)) {
+            if ($this->filesystem->move($source, $destination)) {
                 $success = true;
             } else {
                 $error = trans('platform::systems/media.error_moving');
@@ -236,8 +260,8 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        if (! Storage::disk($this->filesystem)->exists("{$location}/{$newFilename}")) {
-            if (Storage::disk($this->filesystem)->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
+        if (!$this->filesystem->exists("{$location}/{$newFilename}")) {
+            if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {
                 $error = trans('platform::systems/media.error_moving');
@@ -258,7 +282,7 @@ class MediaController extends Controller
     {
         try {
             foreach ($request->files as $file) {
-                $path = $file->move(Storage::disk($this->filesystem)->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
+                $path = $file->move($this->filesystem->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
             }
             $success = true;
             $message = trans('platform::systems/media.success_uploaded_file');
