@@ -7,11 +7,11 @@ namespace Orchid\Press\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Post;
+use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Entities\Many;
 use Orchid\Platform\Http\Controllers\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -72,18 +72,16 @@ class PostController extends Controller
             'options'    => $post->getOptions(),
         ]);
 
-
         $slug = $request->get('slug');
 
-        if (!$request->filled('slug')) {
+        if (! $request->filled('slug')) {
             $content = $request->get('content');
-            $slug = $type->slugFields ? head($content)[$type->slugFields] : "";
+            $slug = $type->slugFields ? head($content)[$type->slugFields] : '';
         }
 
         $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
 
         $type->save($post);
-
 
         Alert::success(trans('platform::common.alert.success'));
 

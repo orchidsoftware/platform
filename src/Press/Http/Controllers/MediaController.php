@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
- * Class MediaController
+ * Class MediaController.
  */
 class MediaController extends Controller
 {
@@ -61,7 +61,6 @@ class MediaController extends Controller
         ]);
     }
 
-
     /**
      * @param string $dir
      *
@@ -95,7 +94,6 @@ class MediaController extends Controller
      */
     private function getDirectories(string $dir): Collection
     {
-
         return $this->filesToFormat(collect($this->filesystem->directories($dir)));
     }
 
@@ -107,7 +105,6 @@ class MediaController extends Controller
     private function filesToFormat(Collection $files): Collection
     {
         return $files->map(function ($file) {
-
             $modified = $this->filesystem->lastModified($file);
 
             return [
@@ -120,7 +117,6 @@ class MediaController extends Controller
             ];
         })->sortBy('name');
     }
-
 
     /**
      * @param int $time
@@ -145,7 +141,7 @@ class MediaController extends Controller
 
         if ($this->filesystem->exists($new_folder)) {
             $error = trans('platform::systems/media.error_creating_folder');
-        } else if ($this->filesystem->makeDirectory($new_folder)) {
+        } elseif ($this->filesystem->makeDirectory($new_folder)) {
             $success = true;
         } else {
             $error = trans('platform::systems/media.error_creating_dir');
@@ -175,11 +171,11 @@ class MediaController extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type == 'folder') {
-            if (!$this->filesystem->deleteDirectory($fileFolder)) {
+            if (! $this->filesystem->deleteDirectory($fileFolder)) {
                 $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } else if (!$this->filesystem->delete($fileFolder)) {
+        } elseif (! $this->filesystem->delete($fileFolder)) {
             $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
@@ -225,10 +221,10 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $source = "{$location}/{$source}";
         $destination = strpos($destination,
-            '/../') !== false ? $this->directory . DIRECTORY_SEPARATOR . dirname($folderLocation) . DIRECTORY_SEPARATOR . str_replace('/../',
+            '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-        if (!file_exists($destination)) {
+        if (! file_exists($destination)) {
             if ($this->filesystem->move($source, $destination)) {
                 $success = true;
             } else {
@@ -260,7 +256,7 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        if (!$this->filesystem->exists("{$location}/{$newFilename}")) {
+        if (! $this->filesystem->exists("{$location}/{$newFilename}")) {
             if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {

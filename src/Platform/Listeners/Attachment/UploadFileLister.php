@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Listeners\Attachment;
 
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Log;
 use Orchid\Attachment\BaseTemplate;
 use Intervention\Image\Facades\Image;

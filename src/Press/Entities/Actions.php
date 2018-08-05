@@ -8,7 +8,6 @@ use Orchid\Press\Models\Post;
 
 trait Actions
 {
-
     /**
      * @param \Orchid\Press\Models\Post $post
      *
@@ -36,5 +35,4 @@ trait Actions
     {
         $post->delete();
     }
-
 }
