@@ -198,7 +198,7 @@ class BootModelScreen extends Screen
 
             $migration = [];
 
-            $columns = $model->get('columns',[]);
+            $columns = $model->get('columns', []);
 
             foreach ($columns as $key => $column) {
                 if (isset($column['fillable'])) {
