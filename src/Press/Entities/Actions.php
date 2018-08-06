@@ -4,34 +4,44 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Orchid\Press\Models\Post;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Model;
 
 trait Actions
 {
+
     /**
-     * @param \Orchid\Press\Models\Post $post
-     *
-     * @return \Orchid\Press\Models\Post
+     * @return \Illuminate\Contracts\Pagination\Paginator
      */
-    public function create(Post $post)
+    public function get(): Paginator
+    {
+        return collect();
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $post
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function create(Model $post) : Model
     {
         return $post;
     }
 
     /**
-     * @param \Orchid\Press\Models\Post $post
+     * @param \Illuminate\Database\Eloquent\Model $post
      */
-    public function save(Post $post)
+    public function save(Model $post)
     {
         $post->save();
     }
 
     /**
-     * @param \Orchid\Press\Models\Post $post
+     * @param \Illuminate\Database\Eloquent\Model $post
      *
      * @throws \Exception
      */
-    public function delete(Post $post)
+    public function delete(Model $post)
     {
         $post->delete();
     }

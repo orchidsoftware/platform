@@ -55,7 +55,7 @@ class BootServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            RouteBootServiceProvider::class,
+            RouteBulldozerServiceProvider::class,
         ];
     }
 
@@ -67,7 +67,7 @@ class BootServiceProvider extends ServiceProvider
         return [
             trans('platform::permission.boot') => [
                 [
-                    'slug'        => 'platform.boot',
+                    'slug'        => 'platform.bulldozer',
                     'description' => 'Быстрый старт',
                 ],
             ],

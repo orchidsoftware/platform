@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
 use Orchid\Screen\Fields\Field;
-use Illuminate\Support\Collection;
 
 abstract class Many
 {
@@ -43,24 +44,28 @@ abstract class Many
     }
 
     /**
+     * @return \Illuminate\Contracts\Pagination\Paginator
+     */
+    public function get(): Paginator
+    {
+        return Post::type($this->slug)
+            ->filtersApplyDashboard($this->slug)
+            ->filters()
+            ->with($this->with)
+            ->orderBy('id', 'Desc')
+            ->paginate();
+    }
+
+    /**
      * Raw data and fields to display.
      *
      * @return array
      */
     public function generateGrid(): array
     {
-        $fields = $this->grid();
-
-        $data = Post::type($this->slug)
-            ->filtersApplyDashboard($this->slug)
-            ->filters()
-            ->with($this->with)
-            ->orderBy('id', 'Desc')
-            ->paginate();
-
         return [
-            'data'   => $data,
-            'fields' => $fields,
+            'data'   => $this->get(),
+            'fields' => $this->grid(),
             'type'   => $this,
         ];
     }

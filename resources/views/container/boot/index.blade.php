@@ -6,7 +6,7 @@
 
     @foreach($models as $name => $value)
         <li>
-            <a href="{{route('platform.boot.index',$name)}}">
+            <a href="{{route('platform.bulldozer.index',$name)}}">
                 <i class="icon-folder"></i>
                 <span class="text-ellipsis"> {{ $name }}</span>
             </a>

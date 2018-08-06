@@ -84,12 +84,12 @@ class Link
     /**
      * @param null $arguments
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
     public function build($arguments = null)
     {
         if (! $this->show) {
-            return;
+            return '';
         }
 
         return view('platform::partials.screen.link', [

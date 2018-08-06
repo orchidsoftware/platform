@@ -43,21 +43,21 @@ class SystemMenuComposer
             ->add('Bulldozer', [
                 'slug'       => 'Entities',
                 'icon'       => 'icon-notebook',
-                'route'      => route('platform.boot.index'),
+                'route'      => route('platform.bulldozer.index'),
                 'label'      => 'Строитель моделей',
                 'groupname'  => 'Позволяет максимально быстро начать разрабатывать приложение',
-                'active'     => 'platform.boot.*',
-                'permission' => 'platform.boot',
+                'active'     => 'platform.bulldozer.*',
+                'permission' => 'platform.bulldozer',
                 'sort'       => 9000,
             ])
             ->add('Bulldozer', [
                 'slug'       => 'Models',
                 'icon'       => 'icon-database',
-                'route'      => route('platform.boot.index'),
+                'route'      => route('platform.bulldozer.index'),
                 'label'      => 'Строитель моделей',
                 'groupname'  => 'Позволяет максимально быстро начать разрабатывать приложение',
-                'active'     => 'platform.boot.*',
-                'permission' => 'platform.boot',
+                'active'     => 'platform.bulldozer.*',
+                'permission' => 'platform.bulldozer',
                 'sort'       => 9000,
             ]);
     }

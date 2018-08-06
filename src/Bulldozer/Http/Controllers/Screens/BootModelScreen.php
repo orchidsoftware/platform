@@ -40,7 +40,7 @@ class BootModelScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.boot';
+    public $permission = 'platform.bulldozer';
 
     /**
      * @var Collection|Collection[]
@@ -148,7 +148,7 @@ class BootModelScreen extends Screen
 
         alert('Модель успешно создана');
 
-        return redirect()->route('platform.boot.index', $name);
+        return redirect()->route('platform.bulldozer.index', $name);
     }
 
     /**
@@ -164,7 +164,7 @@ class BootModelScreen extends Screen
 
         alert('Модель была удалена');
 
-        return redirect()->route('platform.boot.index');
+        return redirect()->route('platform.bulldozer.index');
     }
 
     /**
@@ -242,7 +242,7 @@ class BootModelScreen extends Screen
 
         alert('Все модели были успешно сгенерированы');
 
-        return redirect()->route('platform.boot.index');
+        return redirect()->route('platform.bulldozer.index');
     }
 
     /**
