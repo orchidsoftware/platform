@@ -80,12 +80,13 @@ class SystemMenuComposer
             ->add('Cache', [
                 'slug'       => 'opcache:clear',
                 'icon'       => 'icon-settings',
-                'route'      => route('platform.systems.cache', ['action' => 'view']),
+                'route'      => route('platform.systems.cache', ['action' => 'opcache']),
                 'label'      => trans('platform::systems/cache.opcache'),
                 'groupname'  => trans('platform::systems/cache.opcache.description'),
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
+                'show'       => function_exists('opcache_reset'),
             ])
             ->add('Systems', [
                 'slug'       => 'Auth',

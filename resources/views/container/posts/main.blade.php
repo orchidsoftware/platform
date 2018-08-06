@@ -11,7 +11,6 @@
     </div>
 @stop
 
-
 @section('flash_notification.sub_message')
     @includeWhen(session('restore'),'platform::container.posts.restore')
 @stop
@@ -19,17 +18,8 @@
 
 @section('content')
 
-    @if($data->count() > 0)
+    @empty($data->count())
 
-        @include('platform::container.layouts.table',[
-            'form' => [
-                'fields'    => $fields,
-                'data'      => $data,
-            ],
-            'filters'   => $type->showFilterDashboard()
-        ])
-
-    @else
         <section>
             <div class="bg-white-only bg-auto no-border-xs">
 
@@ -42,5 +32,18 @@
                 </div>
             </div>
         </section>
-    @endif
+
+    @else
+
+        @include('platform::container.layouts.table',[
+            'form' => [
+                'fields'    => $fields,
+                'data'      => $data,
+            ],
+            'filters'   => $type->showFilterDashboard()
+        ])
+
+    @endempty
+
+
 @stop

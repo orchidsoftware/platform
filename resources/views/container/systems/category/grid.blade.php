@@ -17,7 +17,15 @@
     <section>
         <div class="bg-white-only bg-auto no-border-xs">
 
-            @if($category->count() > 0)
+            @empty($category->count())
+
+                <div class="text-center bg-white app-content-center">
+                    <div>
+                        <h3 class="font-thin">{{trans('platform::systems/category.not_found')}}</h3>
+                    </div>
+                </div>
+
+            @else
 
                 @include('platform::container.posts.filter')
 
@@ -79,15 +87,9 @@
                         </div>
                     </div>
                 </footer>
-            @else
 
-                <div class="text-center bg-white app-content-center">
-                    <div>
-                        <h3 class="font-thin">{{trans('platform::systems/category.not_found')}}</h3>
-                    </div>
-                </div>
+            @endempty
 
-            @endif
 
         </div>
     </section>

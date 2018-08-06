@@ -5,17 +5,14 @@
     </li>
 
     @foreach($models as $name => $value)
-
         <li>
             <a href="{{route('platform.boot.index',$name)}}">
                 <i class="icon-folder"></i>
                 <span class="text-ellipsis"> {{ $name }}</span>
             </a>
         </li>
-
     @endforeach
 @endsection
-
 
 
 
@@ -29,8 +26,6 @@
 
                             <div class="wrapper">
                                 <div class="container">
-                                    <h3 class="font-thin text-black m-b-md">"History" Columns</h3>
-
 
                                     <div class="form-inline">
                                         <div class="form-group mb-2">
@@ -91,9 +86,6 @@
                     <div class="col-sm-12">
                         <div class="wrapper">
                             <div class="container">
-                                <h3 class="font-thin text-black  m-b-md">"History" Relationships</h3>
-
-
                                 <div class="form-inline">
                                     <div class="form-group mb-2">
                                         <div>

@@ -27,7 +27,6 @@
     "jquery-ui-bundle": "^1.11",
     "laravel-mix": "^2.1.11",
     "moment": "^2.22.2",
-    "monaco-editor": "^0.13.1",
     "nestable": "^0.2.0",
     "nestable2": "^1.6.0",
     "open-color": "^1.6.3",
@@ -38,7 +37,7 @@
     "simplemde": "^1.11",
     "stimulus": "^1.0.0",
     "stimulus-flatpickr": "^0.3.0",
-    "tinymce": "^4.7.13",
+    "tinymce": "^4.8.1",
     "turbolinks": "^5.1",
     "vue": "^2.5.16"
   },

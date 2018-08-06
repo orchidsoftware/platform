@@ -2,7 +2,21 @@
 
     {!! $filters or '' !!}
 
-    @if(count($form['data']) > 0)
+
+    @empty($form['data'])
+
+        <div class="text-center bg-white app-content-center">
+            <div>
+                <h3 class="font-thin">{{trans('platform::common.screen.Records not found')}}</h3>
+                {{--
+                Нужно как-то плучить роут
+                <a href="{{ route('platform.systems.roles.create')}}"
+                   class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
+                --}}
+            </div>
+        </div>
+
+    @else
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -72,20 +86,9 @@
             </footer>
         @endif
 
-    @else
 
-        <div class="text-center bg-white app-content-center">
-            <div>
-                <h3 class="font-thin">{{trans('platform::common.screen.Records not found')}}</h3>
-                {{--
-                Нужно как-то плучить роут
-                <a href="{{ route('platform.systems.roles.create')}}"
-                   class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
-                --}}
-            </div>
-        </div>
+    @endempty
 
-    @endif
 
 </div>
 

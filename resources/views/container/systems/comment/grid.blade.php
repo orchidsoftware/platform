@@ -5,7 +5,18 @@
     <!-- main content  -->
     <section>
         <div class="bg-white-only bg-auto no-border-xs">
-            @if($comments->count() > 0)
+
+
+            @empty($comments->count())
+
+                <div class="text-center bg-white app-content-center">
+                    <div>
+                        <h3 class="font-thin">{{trans('platform::systems/comment.not_found')}}</h3>
+                    </div>
+                </div>
+
+            @else
+
                 <div class="card">
                     <div class="card-body row">
                         <div class="table-responsive">
@@ -77,13 +88,9 @@
                         </div>
                     </footer>
                 </div>
-            @else
-                <div class="text-center bg-white app-content-center">
-                    <div>
-                        <h3 class="font-thin">{{trans('platform::systems/comment.not_found')}}</h3>
-                    </div>
-                </div>
-            @endif
+
+            @endempty
+
         </div>
     </section>
     <!-- / main content  -->

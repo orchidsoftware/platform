@@ -10,7 +10,6 @@ use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Platform\Http\Controllers\Controller;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -67,7 +66,7 @@ class PostController extends Controller
 
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
-            'user_id'    => Auth::id(),
+            'user_id'    => $request->user()->id,
             'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
             'options'    => $post->getOptions(),
         ]);
@@ -123,7 +122,7 @@ class PostController extends Controller
         $this->checkPermission('platform.posts.type.'.$type->slug);
 
         $post->fill($request->except('slug'));
-        $post->user_id = Auth::user()->id;
+        $post->user_id = $request->user()->id;
 
         $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
         $post->options = $post->getOptions();

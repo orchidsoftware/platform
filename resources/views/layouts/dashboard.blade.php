@@ -197,7 +197,7 @@
 
                 @include('platform::partials.alert')
 
-                @if (count($errors) > 0)
+                @empty(!$errors->count())
                     <div class="alert alert-danger m-b-none" role="alert">
                         <strong>Oh snap!</strong>
                         Change a few things up and try submitting again.

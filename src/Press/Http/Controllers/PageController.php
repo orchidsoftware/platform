@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Page;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -57,7 +56,7 @@ class PageController extends Controller
         $page
             ->fill($request->all())
             ->fill([
-            'user_id'    => Auth::id(),
+            'user_id'    => $request->user()->id,
             'type'       => 'page',
             'slug'       => $page->slug,
             'status'     => 'publish',

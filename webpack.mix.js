@@ -55,8 +55,9 @@ mix
   .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
   .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
   .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
-  .sass('resources/assets/sass/app.scss', 'css/orchid.css')
-  .js('resources/assets/js/app.js', 'js/orchid.js')
+  .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
+  .sass('resources/sass/app.scss', 'css/orchid.css')
+  .js('resources/js/app.js', 'js/orchid.js')
   .extract(vendor)
   .autoload({
       jquery: ['$', 'window.jQuery', 'jQuery', 'jquery'],
