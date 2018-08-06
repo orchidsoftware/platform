@@ -82,7 +82,6 @@ class PressMenuComposer
             'show'       => count($allPost) > 0,
         ]);
 
-
         return $this;
     }
 }

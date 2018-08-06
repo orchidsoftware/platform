@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Pagination\Paginator;
 
 trait Actions
 {
-
     /**
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
