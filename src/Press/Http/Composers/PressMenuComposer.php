@@ -44,20 +44,13 @@ class PressMenuComposer
             ->where('display', true)
             ->all();
 
-        $kernel->menu->add('Main', [
-            'slug'       => 'Posts',
-            'icon'       => 'icon-notebook',
-            'route'      => '#',
-            'label'      => trans('platform::menu.posts'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => ['platform.posts.*', 'platform.pages.*'],
-            'permission' => 'platform.posts',
-            'sort'       => 100,
-            'show'       => count($allPost) > 0,
-        ]);
+        $active = collect();
 
         foreach ($allPost as $key => $page) {
+            $active
+                ->push("platform.posts.{$page->slug}.*")
+                ->push("platform.pages.{$page->slug}.*");
+
             $route = route('platform.posts.type', [$page->slug]);
             if (is_a($page, Single::class)) {
                 $route = route('platform.pages.show', [$page->slug]);
@@ -75,6 +68,20 @@ class PressMenuComposer
                 'show'       => $page->display,
             ]);
         }
+
+        $kernel->menu->add('Main', [
+            'slug'       => 'Posts',
+            'icon'       => 'icon-notebook',
+            'route'      => '#',
+            'label'      => trans('platform::menu.posts'),
+            'childs'     => true,
+            'main'       => true,
+            'active'     => $active,
+            'permission' => 'platform.posts',
+            'sort'       => 100,
+            'show'       => count($allPost) > 0,
+        ]);
+
 
         return $this;
     }
