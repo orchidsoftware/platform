@@ -1,92 +1,182 @@
-{{--
-<div class="text-center bg-white app-content-center">
-    <div>
-        <h4 class="font-thin l-h-2x m-b">
-            <em>
-                {{ explode(" - ", $inspiration)[0] }}
-            </em>
-        </h4>
-        <p class="text-muted  text-right">- {{ explode(" - ", $inspiration)[1] }}</p>
-    </div>
-</div>
+<div class="admin-wrapper container wrapper-md">
 
---}}
-
-
-<div class="container">
     <div class="wrapper-lg">
         <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
-        <p class="lead">Something short and leading about the collection below—its contents, the creator,
-                        etc. <br>Make it short and sweet, but not too short so folks don't simply skip over it
-                        entirely.</p>
+        <p class="lead m-b-n">Make it short and sweet, but not too short so folks don't simply skip over it
+                              entirely.</p>
     </div>
 
 
-    <div class="bg-white b box-shadow m-b-lg">
-        <div class="wrapper-lg">
+    <div class="bg-white b box-shadow m-b-lg wrapper-lg">
+        <div class="row">
+            <div class="col-md-4 no-padder admin-element-item">
 
-            <div class="row m-b-lg m-t-lg">
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-screen-desktop m-r-xs"></i> Screens</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-screen-desktop"></i> Screens
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-layers m-r-xs"></i> Layouts</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-equalizer"></i> Configuration
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-list m-r-xs"></i> Fields</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam.</p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-settings"></i> Settings
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row m-b-lg m-t-lg">
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-equalizer m-r-xs"></i> Configuration</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-grid m-r-xs"></i> Widgets</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-filter m-r-xs"></i> Filters</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam.</p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-            </div>
-            <div class="row m-b-lg m-t-lg">
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-settings m-r-xs"></i> Settings</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-energy m-r-xs"></i> Behaviors</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam. </p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-                <div class="col-md-4">
-                    <h3 class="text-black font-thin padder-v"><i class="icon-docs m-r-xs"></i> Posts</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget suscipit nunc.
-                       Phasellus at elit pulvinar, egestas sem sit amet, dapibus quam.</p>
-                    <p class="text-right"><a class="btn btn-link" href="#" role="button">View details »</a></p>
-                </div>
-            </div>
 
 
+            </div>
+            <div class="col-md-4 no-padder admin-element-item">
+
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-layers"></i> Layouts
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-grid"></i> Widgets
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-energy"></i> Behaviors
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-4 no-padder admin-element-item">
+
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-list"></i> Fields
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-filter"></i> Filters
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-element w-full">
+                    <h3 class="font-thin h3 text-black">
+                        <i class="icon-docs"></i> Posts
+                    </h3>
+                    <div class="line line-dashed b-b line-lg"></div>
+                    <div class="list-group no-bg no-borders pull-in auto">
+                        <div class="list-group-item padder-v admin-element-item">
+                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
+                                <small class="text-muted">Something short and leading about the collection below—its
+                                                          contents, the creator, etc.
+                                                          Make it short and sweet, but not too short so folks don't
+                                                          simply skip over it entirely.
+                                </small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
 
