@@ -171,11 +171,11 @@ class File
      */
     public function getMimeType()
     {
-        if (!is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
+        if (! is_null($type = $this->mimes->getMimeType($this->getClientOriginalExtension()))) {
             return $type;
         }
 
-        if (!is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
+        if (! is_null($type = $this->mimes->getMimeType($this->file->getClientMimeType()))) {
             return $type;
         }
 

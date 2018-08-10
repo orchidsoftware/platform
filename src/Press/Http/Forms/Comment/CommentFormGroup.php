@@ -35,7 +35,7 @@ class CommentFormGroup extends FormGroup
     public function main() : View
     {
         $comments = (new Comment())::with([
-            'post' => function($query) {
+            'post' => function ($query) {
                 $query->select('id', 'type', 'slug');
             },
         ])->latest()->paginate();

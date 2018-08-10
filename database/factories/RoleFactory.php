@@ -14,7 +14,7 @@ use Orchid\Platform\Models\Role;
 |
 */
 
-$factory->define(Role::class, function(Faker $faker) {
+$factory->define(Role::class, function (Faker $faker) {
     $role = ['Admin', 'User', 'Autor'];
     $roles = [
         $role[0] => [

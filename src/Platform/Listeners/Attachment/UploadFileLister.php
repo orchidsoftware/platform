@@ -59,7 +59,7 @@ class UploadFileLister implements ShouldQueue
      */
     private function saveImageProcessing(Attachment $attachment, string $name, BaseTemplate $template)
     {
-        if (!is_null($name)) {
+        if (! is_null($name)) {
             $name = '_'.$name;
         }
 

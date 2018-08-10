@@ -20,7 +20,7 @@ class CategoryEditLayout extends Rows
         $fields[] = Field::tag('input')
                 ->type('text')
                 ->name('category.content.name')
-                ->modifyValue(function() {
+                ->modifyValue(function () {
                     return $this->query->getContent('category')->term->getContent('name');
                 })
                 ->max(255)
@@ -37,11 +37,11 @@ class CategoryEditLayout extends Rows
                 ->title(trans('platform::systems/category.slug'));
 
         $fields[] = Field::tag('select')
-                ->options(function() {
+                ->options(function () {
                     return $this->query
                         ->getContent('catselect');
                 })
-                ->modifyValue(function() {
+                ->modifyValue(function () {
                     $parent_id = $this->query->getContent('category')->parent_id;
 
                     return  [$parent_id => $this->query->getContent('catselect')[$parent_id]];
@@ -53,7 +53,7 @@ class CategoryEditLayout extends Rows
 
         $fields[] = Field::tag('wysiwyg')
                 ->name('category.content.body')
-                ->modifyValue(function() {
+                ->modifyValue(function () {
                     return $this->query->getContent('category')->term->getContent('body');
                 })
                 ->title(trans('platform::systems/category.descriptions'));

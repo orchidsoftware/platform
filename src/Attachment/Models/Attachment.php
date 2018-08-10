@@ -62,10 +62,10 @@ class Attachment extends Model
     {
         $disk = $this->getAttribute('disk');
 
-        if (!empty($size)) {
+        if (! empty($size)) {
             $size = '_'.$size;
 
-            if (!Storage::disk($disk)->exists($this->physicalPath())) {
+            if (! Storage::disk($disk)->exists($this->physicalPath())) {
                 return $this->url(null);
             }
         }
@@ -100,8 +100,8 @@ class Attachment extends Model
      */
     public function getSizeImage($width = null, $height = null, $quality = 100)
     {
-        return Image::cache(function($image) use ($width, $height, $quality) {
-            $image->make(static::read())->resize($width, $height, function($constraint) {
+        return Image::cache(function ($image) use ($width, $height, $quality) {
+            $image->make(static::read())->resize($width, $height, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->encode(static::getAttribute('extension'), $quality);

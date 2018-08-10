@@ -73,7 +73,7 @@ class PostController extends Controller
 
         $slug = $request->get('slug');
 
-        if (!$request->filled('slug')) {
+        if (! $request->filled('slug')) {
             $content = $request->get('content');
             $slug = $type->slugFields ? head($content)[$type->slugFields] : '';
         }
@@ -137,7 +137,7 @@ class PostController extends Controller
             }
         }
 
-        if (!empty($slug) && $slug !== $post->slug) {
+        if (! empty($slug) && $slug !== $post->slug) {
             $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
         }
 

@@ -33,7 +33,7 @@ class CommentList extends Screen
     {
         return [
             'comment' => Comment::with([
-                'post' => function($query) {
+                'post' => function ($query) {
                     $query->select('id', 'type', 'slug');
                 },
             ])->latest()->paginate(),

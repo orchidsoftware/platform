@@ -56,7 +56,7 @@ abstract class BaseTemplate implements FilterInterface
      */
     public function applyFilter(Image $image)
     {
-        return $image->resize($this->width, $this->height, function($constraint) {
+        return $image->resize($this->width, $this->height, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
