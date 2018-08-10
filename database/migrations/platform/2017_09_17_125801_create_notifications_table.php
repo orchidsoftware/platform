@@ -13,8 +13,8 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('notifications')) {
-            Schema::create('notifications', function (Blueprint $table) {
+        if (!Schema::hasTable('notifications')) {
+            Schema::create('notifications', function(Blueprint $table) {
                 $table->uuid('id')->primary();
                 $table->string('type');
                 $table->morphs('notifiable');

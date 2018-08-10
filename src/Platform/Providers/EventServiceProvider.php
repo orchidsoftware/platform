@@ -34,7 +34,7 @@ class EventServiceProvider extends ServiceProvider
             CommentBaseListener::class,
         ],
         UploadFileEvent::class => [
-              UploadFileLister::class,
+                UploadFileLister::class,
         ],
     ];
 

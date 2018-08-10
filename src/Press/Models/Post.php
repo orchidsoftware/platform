@@ -159,7 +159,7 @@ class Post extends Model
      */
     public function getEntityObject($slug = null)
     {
-        if (! is_null($this->entity)) {
+        if (!is_null($this->entity)) {
             return $this->entity;
         }
 
@@ -327,8 +327,8 @@ class Post extends Model
      */
     public function taxonomy($taxonomy, $term)
     {
-        return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
-            $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
+        return $this->whereHas('taxonomies', function($query) use ($taxonomy, $term) {
+            $query->where('taxonomy', $taxonomy)->whereHas('term', function($query) use ($term) {
                 $query->where('slug', $term);
             });
         });
@@ -407,7 +407,7 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $entity = null) : Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             try {
                 $this->getEntity($entity);
             } catch (TypeException $e) {
@@ -442,7 +442,7 @@ class Post extends Model
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null) : Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             $this->getEntity($entity);
         }
 

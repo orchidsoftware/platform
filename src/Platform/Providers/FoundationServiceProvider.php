@@ -25,7 +25,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Dashboard::class, function () {
+        $this->app->singleton(Dashboard::class, function() {
             return new Dashboard();
         });
 
@@ -152,15 +152,15 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name) {
+        if (!Route::hasMacro('screen')) {
+            Route::macro('screen', function($url, $screen, $name) {
                 return Route::any($url.'/{method?}/{argument?}')
                     ->uses($screen.'@handle')
                     ->name($name);
             });
         }
 
-        if (! defined('PLATFORM_PATH')) {
+        if (!defined('PLATFORM_PATH')) {
             define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
     }

@@ -31,7 +31,7 @@ class SystemController extends Controller
             'fallback_locale',
             'log',
             'log_level',
-        ])->map(function ($item) {
+        ])->map(function($item) {
             if (is_bool($item)) {
                 $item = $item ? 'Enabled' : 'Disabled';
             }

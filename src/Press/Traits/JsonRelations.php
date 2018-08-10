@@ -67,7 +67,7 @@ trait JsonRelations
     {
         $option = $this->jsonRelationInit();
 
-        if (! array_key_exists($name, $option)) {
+        if (!array_key_exists($name, $option)) {
             $option[$name] = [];
         }
 

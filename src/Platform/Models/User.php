@@ -115,7 +115,7 @@ class User extends Authenticatable implements UserInterface
 
         Dashboard::getPermission()
             ->collapse()
-            ->each(function ($item) use ($permissions) {
+            ->each(function($item) use ($permissions) {
                 $permissions->put($item['slug'], true);
             });
 

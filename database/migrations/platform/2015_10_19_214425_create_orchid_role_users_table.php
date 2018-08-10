@@ -11,7 +11,7 @@ class CreateOrchidRoleUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_users', function (Blueprint $table) {
+        Schema::create('role_users', function(Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->primary(['user_id', 'role_id']);

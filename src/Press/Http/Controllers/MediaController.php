@@ -104,7 +104,7 @@ class MediaController extends Controller
      */
     private function filesToFormat(Collection $files): Collection
     {
-        return $files->map(function ($file) {
+        return $files->map(function($file) {
             $modified = $this->filesystem->lastModified($file);
 
             return [
@@ -171,11 +171,11 @@ class MediaController extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type == 'folder') {
-            if (! $this->filesystem->deleteDirectory($fileFolder)) {
+            if (!$this->filesystem->deleteDirectory($fileFolder)) {
                 $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } elseif (! $this->filesystem->delete($fileFolder)) {
+        } elseif (!$this->filesystem->delete($fileFolder)) {
             $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
@@ -224,7 +224,7 @@ class MediaController extends Controller
             '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-        if (! file_exists($destination)) {
+        if (!file_exists($destination)) {
             if ($this->filesystem->move($source, $destination)) {
                 $success = true;
             } else {
@@ -256,7 +256,7 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
-        if (! $this->filesystem->exists("{$location}/{$newFilename}")) {
+        if (!$this->filesystem->exists("{$location}/{$newFilename}")) {
             if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
             } else {

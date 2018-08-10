@@ -15,7 +15,7 @@ use Orchid\Press\Models\Term;
 |
 */
 
-$factory->define(Term::class, function (Faker $faker) {
+$factory->define(Term::class, function(Faker $faker) {
     $lang = app()->getLocale();
 
     return [

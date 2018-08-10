@@ -88,7 +88,7 @@ class Link
      */
     public function build($arguments = null)
     {
-        if (! $this->show) {
+        if (!$this->show) {
             return '';
         }
 

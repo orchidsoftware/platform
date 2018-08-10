@@ -52,12 +52,12 @@ class TaxonomyBuilder extends Builder
      */
     public function slug($slug = null) : self
     {
-        if (! is_null($slug) && ! empty($slug)) {
+        if (!is_null($slug) && !empty($slug)) {
             // set this slug to be used in with callback
             $this->slug = $slug;
 
             // exception to filter on specific slug
-            $exception = function ($query) {
+            $exception = function($query) {
                 $query->where('slug', '=', $this->slug);
             };
 

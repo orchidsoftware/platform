@@ -15,7 +15,7 @@ use Orchid\Press\Models\Comment;
 |
 */
 
-$factory->define(Comment::class, function (Faker $faker) {
+$factory->define(Comment::class, function(Faker $faker) {
     $user = User::inRandomOrder()->first()->id;
 
     return [

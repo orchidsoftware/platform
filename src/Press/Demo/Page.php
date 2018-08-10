@@ -61,7 +61,7 @@ class Page extends Single
     {
         return [
 
-            Field::group(function () {
+            Field::group(function() {
                 return [
 
                     Field::tag('input')
@@ -83,7 +83,7 @@ class Page extends Single
                 ];
             }),
 
-            Field::group(function () {
+            Field::group(function() {
                 return [
 
                     Field::tag('select')

@@ -92,7 +92,7 @@ class CategoryMainForm extends Form
      */
     public function delete(Request $request, Taxonomy $termTaxonomy)
     {
-        $termTaxonomy->allChildrenTerm()->get()->each(function ($item) {
+        $termTaxonomy->allChildrenTerm()->get()->each(function($item) {
             $item->update([
                 'parent_id' => 0,
             ]);

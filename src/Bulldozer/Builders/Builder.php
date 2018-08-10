@@ -33,7 +33,7 @@ abstract class Builder
     {
         $this->parameters = collect($parameters);
 
-        if (! class_exists($class)) {
+        if (!class_exists($class)) {
             $this->class = new ClassGenerator();
             $this->class->setName($class);
 

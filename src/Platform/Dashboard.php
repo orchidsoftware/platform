@@ -168,8 +168,8 @@ class Dashboard
      */
     public function getEntities(): Collection
     {
-        $this->entities->transform(function ($value) {
-            if (! is_object($value)) {
+        $this->entities->transform(function($value) {
+            if (!is_object($value)) {
                 $value = new $value();
             }
 
@@ -195,11 +195,11 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (! $removed->count()) {
+        if (!$removed->count()) {
             return $all;
         }
 
-        return $all->map(function ($group) use ($removed) {
+        return $all->map(function($group) use ($removed) {
             foreach ($group[key($group)] as $key => $item) {
                 if ($removed->contains($item['slug'])) {
                     unset($group[key($group)][$key]);
@@ -249,7 +249,7 @@ class Dashboard
      *
      * @param  string  $key
      * @param  null|string  $default
-     * @return object|string
+     * @return string
      */
     public static function model(string $key, string $default = null)
     {
