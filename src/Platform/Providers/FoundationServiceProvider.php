@@ -16,18 +16,12 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Dashboard::class, function () {
-            return new Dashboard();
-        });
-
         $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'));
 
         $this->registerDatabase();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-
-        $this->registerProviders();
     }
 
     /**
@@ -126,5 +120,11 @@ class FoundationServiceProvider extends ServiceProvider
         if (! defined('DASHBOARD_PATH')) {
             define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
         }
+
+        $this->app->singleton(Dashboard::class, function () {
+            return new Dashboard();
+        });
+
+        $this->registerProviders();
     }
 }
