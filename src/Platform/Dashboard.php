@@ -249,7 +249,7 @@ class Dashboard
      *
      * @param  string  $key
      * @param  null|string  $default
-     * @return object|string
+     * @return string
      */
     public static function model(string $key, string $default = null)
     {

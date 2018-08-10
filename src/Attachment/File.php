@@ -125,7 +125,7 @@ class File
     }
 
     /**
-     * @return mixed
+     * @return Attachment
      */
     private function save() : Attachment
     {

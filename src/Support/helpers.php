@@ -28,7 +28,7 @@ if (! function_exists('setting')) {
      * @param      $key
      * @param null $default
      *
-     * @return mixed
+     * @return Orchid\Support\Facades\Setting
      */
     function setting($key, $default = null)
     {
@@ -81,7 +81,7 @@ if (! function_exists('is_sort')) {
     /**
      * @param null $property
      *
-     * @return string
+     * @return bool
      */
     function is_sort($property = null)
     {
