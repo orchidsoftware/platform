@@ -8,6 +8,7 @@ return [
     ],
     'title'              => 'User',
     'description'        => 'All registered users',
+    'groupname'          => 'List all registered users',
     'not_found'          => 'No user found',
     'create'             => 'Create',
     'name'               => 'Name',

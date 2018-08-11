@@ -3,6 +3,7 @@
 return [
     'title'                  => 'Media',
     'description'            => 'Filemanager',
+    'groupname'              => 'Filemanager',
     'upload'                 => 'Upload',
     'delete'                 => 'Delete',
     'refresh'                => 'Refresh',

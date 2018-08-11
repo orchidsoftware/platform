@@ -32,7 +32,7 @@ class SystemMenuComposer
             ->add('Systems', [
                 'slug'       => 'Cache',
                 'icon'       => 'icon-refresh',
-                'label'      => 'Cache configuration',
+                'label'      => trans('platform::systems/settings.system_menu.Cache configuration'),
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems.cache',
                 'sort'       => 2000,
@@ -91,7 +91,7 @@ class SystemMenuComposer
             ->add('Systems', [
                 'slug'       => 'Auth',
                 'icon'       => 'icon-lock',
-                'label'      => 'Разделение прав доступа',
+                'label'      => trans('platform::systems/settings.system_menu.Sharing access rights'),
                 'active'     => 'platform.systems.*',
                 'permission' => 'platform.systems',
                 'sort'       => 1000,
@@ -101,7 +101,7 @@ class SystemMenuComposer
                 'icon'       => 'icon-user',
                 'route'      => route('platform.systems.users'),
                 'label'      => trans('platform::menu.users'),
-                'groupname'  => 'Как получилось, что под блокировки РКН едва не попали «ВКонтакте»',
+                'groupname'  => trans('platform::systems/users.groupname'),
                 'permission' => 'platform.systems.users',
                 'sort'       => 9,
             ])
@@ -110,7 +110,7 @@ class SystemMenuComposer
                 'icon'       => 'icon-lock',
                 'route'      => route('platform.systems.roles'),
                 'label'      => trans('platform::menu.roles'),
-                'groupname'  => 'Как получилось, что под блокировки РКН едва не попали «ВКонтакте»',
+                'groupname'  => trans('platform::systems/roles.groupname'),
                 'permission' => 'platform.systems.roles',
                 'sort'       => 10,
             ]);

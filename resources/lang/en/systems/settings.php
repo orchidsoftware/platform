@@ -17,4 +17,10 @@ return [
         'log'             => 'The event log',
         'log_level'       => 'Level Event Log',
     ],
+    'system_menu' => [
+        'Content management'    => 'Content management',
+        'Sharing access rights' => 'Sharing access rights',
+        'Cache configuration'   => 'Cache configuration',
+        'Fast start'            => 'Fast start',
+    ],
 ];

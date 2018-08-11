@@ -3,6 +3,7 @@
 return [
     'title'       => 'Menu',
     'description' => 'Choose an accessible menu',
+    'groupname'   => 'Editing of a custom menu (navigation) using drag & drop and localization support.',
 
     'not_found' => 'No menu available',
     'form'      => [

@@ -7,6 +7,7 @@ return [
     ],
     'title'            => 'Roles',
     'description'      => 'Sharing access rights',
+    'groupname'        => 'List all user roles',
     'not_found'        => 'No roles found',
     'create'           => 'Create',
     'information'      => 'Information',

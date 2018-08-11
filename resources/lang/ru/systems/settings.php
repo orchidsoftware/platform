@@ -17,5 +17,10 @@ return [
         'log'             => 'Журнал событий',
         'log_level'       => 'Уровень журнала событий',
     ],
-
+    'system_menu' => [
+        'Content management'      => 'Управление содержимым',
+        'Sharing access rights'   => 'Разделение прав доступа',
+        'Cache configuration'     => 'Управление кэшем',
+        'Fast start'              => 'Быстрый старт',
+    ],
 ];

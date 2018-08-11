@@ -4,6 +4,7 @@ return [
 
     'title'               => 'Comments',
     'description'         => 'User Comments',
+    'groupname'           => 'User Comments',
     'not_found'           => 'No comments have been created yet.',
     'status'              => 'Status',
     'content'             => 'Content',

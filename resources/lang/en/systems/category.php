@@ -4,6 +4,7 @@ return [
 
     'title'        => 'Sections',
     'description'  => 'Sections of the website',
+    'groupname'    => 'Sections of the website',
 
     'information'  => 'Information',
     'display'      => 'Display',

@@ -4,6 +4,7 @@ return [
 
     'title'       => 'Разделы',
     'description' => 'Разделы веб-сайта',
+    'groupname'   => 'Разделы веб-сайта',
 
     'information' => 'Информация',
     'display'     => 'Отображение',
