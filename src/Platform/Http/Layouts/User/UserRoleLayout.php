@@ -37,6 +37,7 @@ class UserRoleLayout extends Rows
             ->placeholder(trans('platform::systems/users.select_roles'));
 
         $permissionFields = $this->generatedPermissionFields($this->query->getContent('permission'));
+
         return array_merge($fields, $permissionFields);
     }
 
