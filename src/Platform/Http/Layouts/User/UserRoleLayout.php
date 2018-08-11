@@ -21,9 +21,15 @@ class UserRoleLayout extends Rows
         $fields[] = Field::tag('select')
             ->options($this->query
                 ->getContent('roles')
-                ->where('active', true)
                 ->pluck('name', 'slug')
                 ->toArray())
+            ->value(function () {
+                return $this->query
+                    ->getContent('roles')
+                    ->where('active', true)
+                    ->pluck('name', 'slug')
+                    ->toArray();
+            })
             ->class('select2')
             ->multiple()
             ->name('roles[]')
@@ -31,7 +37,6 @@ class UserRoleLayout extends Rows
             ->placeholder(trans('platform::systems/users.select_roles'));
 
         $permissionFields = $this->generatedPermissionFields($this->query->getContent('permission'));
-
         return array_merge($fields, $permissionFields);
     }
 
