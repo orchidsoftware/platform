@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(257);
+module.exports = __webpack_require__(258);
 
 
 /***/ }),
@@ -586,16 +586,17 @@ var map = {
 	"./fields/input_controller.js": 205,
 	"./fields/picture_controller.js": 210,
 	"./fields/simplemde_controller.js": 211,
-	"./fields/tinymce_controller.js": 227,
-	"./fields/upload_controller.js": 228,
-	"./fields/utm_controller.js": 229,
-	"./layouts/charts_controller.js": 230,
-	"./layouts/html_load_controller.js": 231,
-	"./layouts/left_menu_controller.js": 252,
-	"./layouts/systems_controller.js": 253,
-	"./screen/base_controller.js": 254,
-	"./screen/modal_controller.js": 255,
-	"./screen/tabs_controller.js": 256
+	"./fields/tag_controller.js": 227,
+	"./fields/tinymce_controller.js": 228,
+	"./fields/upload_controller.js": 229,
+	"./fields/utm_controller.js": 230,
+	"./layouts/charts_controller.js": 231,
+	"./layouts/html_load_controller.js": 232,
+	"./layouts/left_menu_controller.js": 253,
+	"./layouts/systems_controller.js": 254,
+	"./screen/base_controller.js": 255,
+	"./screen/modal_controller.js": 256,
+	"./screen/tabs_controller.js": 257
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1145,13 +1146,10 @@ var _class = function (_Controller) {
          *
          */
         value: function connect() {
-
-            console.log(this.data.get('language'), this.data.get('lineNumbers'), this.data.get('defaultTheme'));
-
             var input = this.element.querySelector('input');
 
             var language = this.data.get('language');
-            if (language == 'json') language = 'js';
+            if (language === 'json') language = 'js';
 
             var element = this.element.querySelector('.code');
             var flask = new __WEBPACK_IMPORTED_MODULE_1_codeflask__["a" /* default */](element, {
@@ -1168,7 +1166,6 @@ var _class = function (_Controller) {
                 // this will trigger whenever the code
                 // in the editor changes.
                 //flask.updateCode(flask.getCode());
-                console.log(flask.getCode());
                 $(input).val(flask.getCode());
             });
         }
@@ -4924,7 +4921,7 @@ _class.targets = ["source", "upload"];
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_simplemde__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_simplemde___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_simplemde__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -4949,14 +4946,18 @@ var _class = function (_Controller) {
 
     _createClass(_class, [{
         key: "connect",
+
+
+        /**
+         *
+         */
         value: function connect() {
+            var _this2 = this;
 
-            var textarea = this.element.querySelector('textarea');
-
-            new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
+            this.editor = new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
                 autoDownloadFontAwesome: false,
                 forceSync: true,
-                element: textarea,
+                element: this.textarea,
                 toolbar: [{
                     name: "bold",
                     action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBold,
@@ -5003,6 +5004,13 @@ var _class = function (_Controller) {
                     className: "icon-picture",
                     title: "Insert Image"
                 }, {
+                    name: "upload",
+                    action: function action() {
+                        return _this2.showDialogUpload();
+                    },
+                    className: "icon-cloud-upload",
+                    title: "Upload File"
+                }, {
                     name: "table",
                     action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawTable,
                     className: "icon-table",
@@ -5029,13 +5037,85 @@ var _class = function (_Controller) {
                     title: "Insert Horizontal Line"
                 }, {
                     name: "guide",
-                    action: "https://simplemde.com/markdown-guide",
+                    action: function action() {
+                        return _this2.showModal();
+                    },
                     className: "icon-help",
                     title: "Markdown Guide"
                 }],
-                placeholder: textarea.placeholder,
+                placeholder: this.textarea.placeholder,
                 spellChecker: false
             });
+        }
+
+        /**
+         *
+         * @returns {Element}
+         */
+
+    }, {
+        key: "showModal",
+
+
+        /**
+         *
+         * @returns {Element}
+         */
+        value: function showModal() {
+            $(this.element.querySelector('.modal')).modal('show');
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: "showDialogUpload",
+
+
+        /**
+         *
+         */
+        value: function showDialogUpload() {
+            this.uploadInput.click();
+        }
+
+        /**
+         *
+         * @param editor
+         * @param event
+         */
+
+    }, {
+        key: "upload",
+        value: function upload(event) {
+            var file = event.target.files[0];
+
+            if (file === undefined || file === null) {
+                return;
+            }
+
+            var cm = this.editor.codemirror;
+            var formData = new FormData();
+            formData.append("file", file);
+
+            axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+                cm.replaceSelection(response.data.url);
+                event.target.value = null;
+            }).catch(function (error) {
+                console.warn(error);
+                event.target.value = null;
+            });
+        }
+    }, {
+        key: "textarea",
+        get: function get() {
+            return this.element.querySelector('textarea');
+        }
+    }, {
+        key: "uploadInput",
+        get: function get() {
+            return this.element.querySelector('.upload');
         }
     }]);
 
@@ -5043,10 +5123,88 @@ var _class = function (_Controller) {
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
 
 /***/ 227:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var _class = function (_Controller) {
+    _inherits(_class, _Controller);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+    }
+
+    _createClass(_class, [{
+        key: 'connect',
+        value: function connect() {
+
+            var select = this.element.querySelector('select');
+
+            setTimeout(function () {
+                $(select).select2({
+                    templateResult: function formatState(state) {
+                        if (!state.id || !state.count) {
+                            return state.text;
+                        }
+                        return $('<span>' + state.text + '</span><span class="pull-right badge bg-info">' + state.count + '</span>');
+                    },
+                    createTag: function createTag(tag) {
+                        return {
+                            id: tag.term,
+                            text: tag.term
+                        };
+                    },
+                    escapeMarkup: function escapeMarkup(m) {
+                        return m;
+                    },
+
+                    width: '100%',
+                    tags: true,
+                    cache: true,
+                    ajax: {
+                        url: function url(params) {
+                            return platform.prefix('/systems/tags/' + params.term);
+                        },
+
+                        delay: 340,
+                        processResults: function processResults(data) {
+                            return {
+                                results: data
+                            };
+                        }
+                    }
+                });
+            }, 1000);
+        }
+    }]);
+
+    return _class;
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (_class);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5187,9 +5345,9 @@ var _class = function (_Controller) {
                     data.append('file', blobInfo.blob());
 
                     axios.post(platform.prefix('/systems/files'), data).then(function (response) {
-                        success('/storage/' + response.data.path + response.data.name + '.' + response.data.extension);
+                        success(response.data.url);
                     }).catch(function (error) {
-                        console.log(error);
+                        console.warn(error);
                     });
                 }
             });
@@ -5209,7 +5367,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 228:
+/***/ 229:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5434,7 +5592,7 @@ _class.targets = ["name", "original_name", "alt", "description", "url", "active"
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5590,7 +5748,7 @@ _class.targets = ["url", "source", "medium", "campaign", "term", "content"];
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5652,7 +5810,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5660,7 +5818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_turbolinks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_turbolinks__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -5736,7 +5894,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5806,7 +5964,7 @@ function platform() {
 
 /***/ }),
 
-/***/ 252:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5868,7 +6026,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5923,7 +6081,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5979,7 +6137,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 255:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6053,7 +6211,7 @@ _class.targets = ["title"];
 
 /***/ }),
 
-/***/ 256:
+/***/ 257:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6150,7 +6308,7 @@ var _class = function (_Controller) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 258:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

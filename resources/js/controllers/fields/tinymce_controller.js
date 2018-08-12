@@ -1,8 +1,6 @@
 import {Controller} from "stimulus"
-
-
 // Core
-import tinymce from 'tinymce/tinymce'
+import tinymce      from 'tinymce/tinymce'
 
 // A theme is also required
 //import 'tinymce/themes/modern';
@@ -59,6 +57,10 @@ import 'tinymce/plugins/wordcount'
 
 export default class extends Controller {
 
+
+    /**
+     *
+     */
     connect() {
 
 
@@ -110,26 +112,39 @@ export default class extends Controller {
                     value: 'img-fluid'
                 },
             ],
-            setup: function (element) {
-                element.on('change', function () {
-                    $(input).val(element.getContent());
-                });
-            },
-            images_upload_handler: function (blobInfo, success) {
-                let data = new FormData();
-                data.append('file', blobInfo.blob());
-
-                axios
-                    .post(platform.prefix('/systems/files'), data)
-                    .then(function (response) {
-                        success(`/storage/${response.data.path}${response.data.name}.${response.data.extension}`);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
+            setup: this.setup,
+            images_upload_handler: this.upload
         });
     };
+
+    /**
+     *
+     * @param element
+     */
+    setup(element) {
+        element.on('change', () => {
+            $(input).val(element.getContent());
+        });
+    }
+
+    /**
+     *
+     * @param blobInfo
+     * @param success
+     */
+    upload(blobInfo, success) {
+        let data = new FormData();
+        data.append('file', blobInfo.blob());
+
+        axios
+            .post(platform.prefix('/systems/files'), data)
+            .then((response) => {
+                success(response.data.url);
+            })
+            .catch((error) => {
+                console.warn(error);
+            });
+    }
 
     disconnect() {
         tinymce.remove(`#${this.element.querySelector('.tinymce').id}`);

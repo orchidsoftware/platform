@@ -1,8 +1,12 @@
 import {Controller} from "stimulus"
-import Dropzone from 'dropzone';
+import Dropzone     from 'dropzone';
 
 export default class extends Controller {
 
+    /**
+     *
+     * @type {string[]}
+     */
     static targets = [
         "name",
         "original_name",
@@ -10,36 +14,29 @@ export default class extends Controller {
         "description",
         "url",
         "active"
-    ]
+    ];
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.attachments = {}
     }
 
-
-    connect() {
-        this.initDropZone()
-        this.initSortable()
-    }
-
+    /**
+     *
+     * @returns {string}
+     */
     get dropname() {
-        return '#dropzone-'+this.data.get('name')+' ';
-    }
-    
-    save() {
-        const data = this.activeAttachment;
-
-        $('#modalUploadAttachment').modal('toggle');
-        axios
-            .put(platform.prefix(`/systems/files/post/${data.id}`), data)
-            .then();
+        return '#dropzone-' + this.data.get('name') + ' ';
     }
 
-    getAttachmentTargetKey(dataKey) {
-        return `${dataKey}Target`
-    }
-
+    /**
+     *
+     * @returns {string|{id: *}}
+     */
     get activeAttachment() {
         const id = this.activeAchivmentId
         return ([
@@ -49,8 +46,8 @@ export default class extends Controller {
             'url',
             'description'
         ]).reduce((res, key) => {
-            const targetKey = this.getAttachmentTargetKey(key)
-            const target = this[targetKey]
+            const targetKey = this.getAttachmentTargetKey(key);
+            const target = this[targetKey];
             if (key === 'url') {
                 return {
                     ...res,
@@ -64,25 +61,62 @@ export default class extends Controller {
         }, {id})
     }
 
+    /**
+     *
+     * @param data
+     */
     set activeAttachment(data) {
-        this.activeAchivmentId = data.id
+        this.activeAchivmentId = data.id;
         Object.keys(data).map((key) => {
-            const value = data[key]
-            const targetKey = this.getAttachmentTargetKey(key)
-            const target = this[targetKey]
+            const value = data[key];
+            const targetKey = this.getAttachmentTargetKey(key);
+            const target = this[targetKey];
 
             if (!target) {
                 return
             }
 
             if (key === 'url') {
-                target.href = value
+                target.href = value;
                 return
             }
             target.value = value
         })
     }
 
+    /**
+     *
+     */
+    connect() {
+        this.initDropZone();
+        this.initSortable();
+    }
+
+    /**
+     *
+     */
+    save() {
+        const data = this.activeAttachment;
+
+        $('#modalUploadAttachment').modal('toggle');
+        axios
+            .put(platform.prefix(`/systems/files/post/${data.id}`), data)
+            .then();
+    }
+
+    /**
+     *
+     * @param dataKey
+     * @returns {string}
+     */
+    getAttachmentTargetKey(dataKey) {
+        return `${dataKey}Target`
+    }
+
+    /**
+     *
+     * @param data
+     */
     loadInfo(data) {
         const name = data.name + data.id;
         data.url = '/storage/' + data.path + data.name + '.' + data.extension;
@@ -92,8 +126,11 @@ export default class extends Controller {
         this.activeAttachment = data
     }
 
+    /**
+     *
+     */
     initSortable() {
-        $(this.dropname+'.sortable-dropzone').sortable({
+        $(this.dropname + '.sortable-dropzone').sortable({
             scroll: false,
             containment: "parent",
             update: function () {
@@ -113,13 +150,16 @@ export default class extends Controller {
         });
     }
 
+    /**
+     *
+     */
     initDropZone() {
         const data = this.data.get('data') && JSON.parse(this.data.get('data'))
         const storage = this.data.get('storage')
         const name = this.data.get('name')
         const loadInfo = this.loadInfo.bind(this)
         const dropname = this.dropname
-        
+
         Dropzone.autoDiscover = false;
         new Dropzone(dropname, {
             url: platform.prefix('/systems/files'),
@@ -129,7 +169,7 @@ export default class extends Controller {
             maxFilesize: 9999,
             paramName: 'files',
             maxThumbnailFilesize: 99999,
-            previewsContainer: dropname+'.visual-dropzone',
+            previewsContainer: dropname + '.visual-dropzone',
             addRemoveLinks: false,
             dictFileTooBig: 'File is big',
 
@@ -152,7 +192,7 @@ export default class extends Controller {
                 });
 
                 this.on('completemultiple', function (file, json) {
-                    $(dropname+'.sortable-dropzone').sortable('enable');
+                    $(dropname + '.sortable-dropzone').sortable('enable');
                 });
 
                 const instanceDropZone = this;
@@ -172,7 +212,7 @@ export default class extends Controller {
                         instanceDropZone.emit('addedfile', mockFile);
                         instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
                         instanceDropZone.files.push(mockFile);
-                        $(dropname+'.dz-preview:last-child')
+                        $(dropname + '.dz-preview:last-child')
                             .attr('data-file-id', item.id)
                             .addClass('file-sort');
                         $(
@@ -186,7 +226,7 @@ export default class extends Controller {
                     });
                 }
 
-                $(dropname+'.dz-progress').remove();
+                $(dropname + '.dz-progress').remove();
 
                 this.on('sending', function (file, xhr, formData) {
                     formData.append('_token', $("meta[name='csrf_token']").attr('content'));
@@ -197,7 +237,7 @@ export default class extends Controller {
                 });
 
                 this.on('removedfile', function (file) {
-                    $(dropname+'.files-' + file.data.id).remove();
+                    $(dropname + '.files-' + file.data.id).remove();
                     axios
                         .delete(platform.prefix(`/systems/files/${file.data.id}`), {
                             storage: $('#post-attachment-dropzone').data('storage'),
@@ -213,7 +253,7 @@ export default class extends Controller {
             },
             success: function (file, response) {
                 file.data = response;
-                $(dropname+'.dz-preview:last-child')
+                $(dropname + '.dz-preview:last-child')
                     .attr('data-file-id', response.id)
                     .addClass('file-sort');
                 $(

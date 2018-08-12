@@ -54,7 +54,7 @@ export default class extends Controller {
      * @param event
      */
     removeColumn(event) {
-        event.path.forEach(function (element) {
+        event.path.forEach( (element) => {
             if (element.nodeName === 'TR') {
                 element.remove();
                 return event.preventDefault();

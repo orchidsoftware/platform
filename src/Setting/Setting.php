@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Setting.
@@ -77,11 +77,11 @@ class Setting extends Model
      */
     private function cacheForget($key)
     {
-        if (! $this->cache) {
+        if (!$this->cache) {
             return;
         }
 
-        if (! is_array($key)) {
+        if (!is_array($key)) {
             Cache::forget($key);
 
             return;
@@ -101,17 +101,17 @@ class Setting extends Model
      */
     public function get($key, $default = null)
     {
-        if (! $this->cache) {
+        if (!$this->cache) {
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-' . implode(',', (array) $key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }
 
     /**
-     * @param      $key
+     * @param             $key
      * @param string|null $default
      *
      * @return null
@@ -136,12 +136,11 @@ class Setting extends Model
      */
     public function forget($key)
     {
-        if (is_array($key)) {
-            $result = $this->whereIn('key', $key)->delete();
-        } else {
-            $result = $this->where('key', $key)->delete();
+        if (!is_array($key)) {
+            $key = [$key];
         }
 
+        $result = $this->whereIn('key', $key)->delete();
         $this->cacheForget($key);
 
         return $result;

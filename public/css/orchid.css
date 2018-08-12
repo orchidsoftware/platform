@@ -16744,6 +16744,11 @@ h3,
   }
 }
 
+.full-height {
+  height: 100vh;
+  overflow: auto;
+}
+
 .nav-sub {
   opacity: 0;
   height: 0;

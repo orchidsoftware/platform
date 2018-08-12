@@ -53,7 +53,7 @@ export default class extends Controller {
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
 
-        reader.onloadend = function () {
+        reader.onloadend = () => {
             $(cropPanel).croppie('bind', {
                 url: reader.result
             });
@@ -81,7 +81,7 @@ export default class extends Controller {
 
             let element = this.element;
             axios.post(platform.prefix('/systems/files'), data)
-                .then(function (response) {
+                .then((response) => {
 
                     let image = `/storage/${response.data.path}${response.data.name}.${response.data.extension}`;
 

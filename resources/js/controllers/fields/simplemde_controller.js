@@ -3,14 +3,31 @@ import SimpleMDE    from "simplemde";
 
 export default class extends Controller {
 
+
+    /**
+     *
+     * @returns {Element}
+     */
+    get textarea() {
+        return this.element.querySelector('textarea');
+    }
+
+    /**
+     *
+     */
+    get uploadInput() {
+        return this.element.querySelector('.upload');
+    }
+
+    /**
+     *
+     */
     connect() {
 
-        let textarea = this.element.querySelector('textarea');
-
-        new SimpleMDE({
+        this.editor = new SimpleMDE({
             autoDownloadFontAwesome: false,
             forceSync: true,
-            element: textarea,
+            element: this.textarea,
             toolbar: [
                 {
                     name: "bold",
@@ -64,6 +81,11 @@ export default class extends Controller {
                     action: SimpleMDE.drawImage,
                     className: "icon-picture",
                     title: "Insert Image",
+                }, {
+                    name: "upload",
+                    action: () => this.showDialogUpload(),
+                    className: "icon-cloud-upload",
+                    title: "Upload File",
                 },
                 {
                     name: "table",
@@ -96,14 +118,58 @@ export default class extends Controller {
                     title: "Insert Horizontal Line",
                 }, {
                     name: "guide",
-                    action: "https://simplemde.com/markdown-guide",
+                    action: () => this.showModal(),
                     className: "icon-help",
                     title: "Markdown Guide",
                 },
             ],
-            placeholder: textarea.placeholder,
+            placeholder: this.textarea.placeholder,
             spellChecker: false,
         });
     }
+
+    /**
+     *
+     * @returns {Element}
+     */
+    showModal() {
+        $(this.element.querySelector('.modal')).modal('show');
+    }
+
+    /**
+     *
+     */
+    showDialogUpload() {
+        this.uploadInput.click();
+    }
+
+    /**
+     *
+     * @param editor
+     * @param event
+     */
+    upload(event) {
+        let file = event.target.files[0];
+
+        if (file === undefined || file === null) {
+            return;
+        }
+
+        let cm = this.editor.codemirror;
+        let formData = new FormData();
+        formData.append("file", file);
+
+        axios
+            .post(platform.prefix('/systems/files'), formData)
+            .then((response) => {
+                cm.replaceSelection(response.data.url);
+                event.target.value = null;
+            })
+            .catch((error) => {
+                console.warn(error);
+                event.target.value = null;
+            });
+    }
+
 
 }
