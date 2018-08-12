@@ -116,7 +116,7 @@ class TagsField extends Field
             $this->attributes['value'] = $value($this->attributes);
         }
 
-        if(is_null($value)){
+        if (is_null($value)) {
             $this->attributes['value'] = [];
         }
 

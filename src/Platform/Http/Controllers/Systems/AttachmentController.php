@@ -32,7 +32,7 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $file) {
-            $model =  app()->make(File::class, [
+            $model = app()->make(File::class, [
                 'file'  => $file,
                 'disk' => $request->get('disk', 'public'),
             ])->load();
