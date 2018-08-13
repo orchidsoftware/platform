@@ -1,5 +1,5 @@
-document.addEventListener('turbolinks:load', () => {
-  $('.click').click(() => {
+document.addEventListener('turbolinks:load', function() {
+  $('.click').click( function(){
     let target = $(this).data('target');
     let toggle = $(this).data('toggle');
 

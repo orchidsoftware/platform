@@ -161,11 +161,32 @@ class Page extends Single
 
     /**
      * @return array
+     * @throws \Throwable
      */
     public function options(): array
     {
         return [
+            Field::tag('upload')
+                //default
+                ->name('field.options.upload')
+                ->title('Upload')
+                ->help('place for google maps')
+                ->value('id')
 
+                //only upload
+                ->class(Page::class)
+                ->storage('public')
+                ->mime('image/png')
+                ->maxFileSize(2)
+                ->parallelUploads(10)
+                ->maxFiles(10)
+
+                //only image
+                ->resizeMethod('contain/crop')
+                ->resizeQuality(0.75)
+                ->resizeMimeType('image/jpeg')
+                ->resizeWidth(200)
+                ->resizeHeight(200)
         ];
     }
 

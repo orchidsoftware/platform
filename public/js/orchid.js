@@ -91,9 +91,10 @@ __webpack_require__(193);
 
     if ($(target).hasClass(toggle)) {
       $(target).removeClass(toggle);
-    } else {
-      $(target).addClass(toggle);
+      return;
     }
+
+    $(target).addClass(toggle);
   });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -912,6 +913,11 @@ var _class = function (_Controller) {
 
     _createClass(_class, [{
         key: "connect",
+
+
+        /**
+         *
+         */
         value: function connect() {
 
             var menu = this;
@@ -920,14 +926,26 @@ var _class = function (_Controller) {
                 menu.sort();
 
                 menu.send();
-            }).on('click', '.edit', function () {
-                menu.edit(this);
+            }).on('click', '.edit', function (event) {
+                menu.edit(event.target);
             });
 
             menu.sort();
 
             this.checkExist();
         }
+
+        /**
+         *
+         * @param object
+         */
+
+
+        /**
+         *
+         * @type {string[]}
+         */
+
     }, {
         key: "load",
         value: function load(object) {
@@ -942,6 +960,11 @@ var _class = function (_Controller) {
 
             this.checkExist();
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "sort",
         value: function sort() {
@@ -951,13 +974,26 @@ var _class = function (_Controller) {
                 });
             });
         }
+
+        /**
+         *
+         * @param element
+         */
+
     }, {
         key: "edit",
         value: function edit(element) {
             var data = $(element).parent().data();
+
             data.label = $(element).prev().text();
             this.load(data);
         }
+
+        /**
+         *
+         * @returns {{label: *, title: *, auth: *, slug: *, robot: *, style: *, target: *}}
+         */
+
     }, {
         key: "getFormData",
         value: function getFormData() {
@@ -971,6 +1007,11 @@ var _class = function (_Controller) {
                 target: this.targetTarget.value
             };
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "add",
         value: function add() {
@@ -980,16 +1021,26 @@ var _class = function (_Controller) {
 
             var $menu = this,
                 $dd = $('.dd'),
-                data = { menu: $dd.attr('data-name'), lang: $dd.attr('data-lang'), data: this.getFormData() };
+                data = {
+                menu: $dd.attr('data-name'),
+                lang: $dd.attr('data-lang'),
+                data: this.getFormData()
+            };
 
             axios.get(this.getUri('create/'), { params: data }).then(function (response) {
                 $menu.add2Dom(response.data.id);
             });
         }
+
+        /**
+         *
+         * @param id
+         */
+
     }, {
         key: "add2Dom",
         value: function add2Dom(id) {
-            $('.dd > .dd-list').append("<li class='dd-item dd3-item' data-id='" + id + "'> <div  class='dd-handle dd3-handle'>Drag</div><div  class='dd3-content'>" + this.labelTarget.value + "</div> <div  class='edit icon-pencil'></div></li>");
+            $('.dd > .dd-list').append("<li class=\"dd-item dd3-item\" data-id=\"" + id + "\"> <div  class=\"dd-handle dd3-handle\">Drag</div><div  class=\"dd3-content\">" + this.labelTarget.value + "</div> <div  class=\"edit icon-pencil\"></div></li>");
 
             $("li[data-id=" + id + "]").data(this.getFormData());
 
@@ -997,6 +1048,11 @@ var _class = function (_Controller) {
             this.clear();
             this.send();
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "save",
         value: function save() {
@@ -1010,11 +1066,22 @@ var _class = function (_Controller) {
             this.clear();
             this.send();
         }
+
+        /**
+         *
+         * @param id
+         */
+
     }, {
         key: "destroy",
         value: function destroy(id) {
             axios.delete(this.getUri(id)).then(function (response) {});
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "remove",
         value: function remove() {
@@ -1022,6 +1089,11 @@ var _class = function (_Controller) {
             this.destroy(this.id);
             this.clear();
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "clear",
         value: function clear() {
@@ -1037,6 +1109,11 @@ var _class = function (_Controller) {
             this.checkExist();
             window.Turbolinks.visit(window.location, { action: 'replace' });
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "send",
         value: function send() {
@@ -1049,56 +1126,110 @@ var _class = function (_Controller) {
 
             axios.put(this.getUri(name), data).then(function (response) {});
         }
+
+        /**
+         *
+         * @returns {boolean}
+         */
+
     }, {
         key: "checkForm",
         value: function checkForm() {
             if (!this.labelTarget.value) {
-                document.getElementById('errors.label').classList.remove("none");
+                this.showBlocks('errors.label');
                 return false;
             }
 
             if (!this.titleTarget.value) {
-                document.getElementById('errors.title').classList.remove("none");
+                this.showBlocks('errors.title');
                 return false;
             }
 
             if (!this.slugTarget.value) {
-                document.getElementById('errors.slug').classList.remove("none");
+                this.showBlocks('errors.slug');
                 return false;
             }
 
-            document.getElementById('errors.slug').classList.add("none");
-            document.getElementById('errors.label').classList.add("none");
-            document.getElementById('errors.title').classList.add("none");
+            this.hiddenBlocks(['errors.slug', 'errors.label', 'errors.title']);
 
             return true;
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "checkExist",
         value: function checkExist() {
             if (this.exist()) {
-                document.getElementById('menu.remove').classList.remove("none");
-                document.getElementById('menu.reset').classList.remove("none");
-                document.getElementById('menu.create').classList.add("none");
-                document.getElementById('menu.save').classList.remove("none");
-            } else {
-                document.getElementById('menu.remove').classList.add("none");
-                document.getElementById('menu.reset').classList.add("none");
-                document.getElementById('menu.create').classList.remove("none");
-                document.getElementById('menu.save').classList.add("none");
+
+                this.showBlocks(['menu.remove', 'menu.reset', 'menu.save']);
+
+                this.hiddenBlocks('menu.create');
+                return;
             }
+
+            this.showBlocks(['menu.create']);
+
+            this.hiddenBlocks(['menu.remove', 'menu.reset', 'menu.save']);
         }
+
+        /**
+         *
+         * @returns {boolean}
+         */
+
     }, {
         key: "exist",
         value: function exist() {
             return Number.isInteger(this.id) && $("li[data-id=" + this.id + "]").length > 0;
         }
+
+        /**
+         *
+         * @param path
+         * @returns {*}
+         */
+
     }, {
         key: "getUri",
         value: function getUri() {
             var path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
             return platform.prefix("/press/menu/" + path);
+        }
+
+        /**
+         *
+         * @param blocks
+         */
+
+    }, {
+        key: "hiddenBlocks",
+        value: function hiddenBlocks(blocks) {
+            if (!Array.isArray(blocks)) {
+                blocks = [blocks];
+            }
+            blocks.forEach(function (element) {
+                document.getElementById(element).classList.add("none");
+            });
+        }
+
+        /**
+         *
+         * @param blocks
+         */
+
+    }, {
+        key: "showBlocks",
+        value: function showBlocks(blocks) {
+            if (!Array.isArray(blocks)) {
+                blocks = [blocks];
+            }
+            blocks.forEach(function (element) {
+                document.getElementById(element).classList.remove("none");
+            });
         }
     }]);
 
@@ -1194,13 +1325,12 @@ var _class = function (_Controller) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_stimulus_flatpickr__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_stimulus_flatpickr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_stimulus_flatpickr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_plugins_rangePlugin_js__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_plugins_rangePlugin_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_plugins_rangePlugin_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_flatpickr_dist_l10n__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_flatpickr_dist_l10n___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_flatpickr_dist_l10n__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus_flatpickr__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_stimulus_flatpickr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_stimulus_flatpickr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_l10n__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_l10n___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_l10n__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -1210,7 +1340,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -1227,10 +1356,15 @@ var _class = function (_Flatpickr) {
 
     _createClass(_class, [{
         key: "initialize",
+
+
+        /**
+         *
+         */
         value: function initialize() {
             var plugins = [];
             if (this.data.get('range')) {
-                plugins.push(new __WEBPACK_IMPORTED_MODULE_2_flatpickr_dist_plugins_rangePlugin_js___default.a({ input: this.data.get('range') }));
+                plugins.push(new __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js___default.a({ input: this.data.get('range') }));
             }
 
             this.config = {
@@ -1238,11 +1372,25 @@ var _class = function (_Flatpickr) {
                 "plugins": plugins
             };
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "connect",
         value: function connect() {
             _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), "connect", this).call(this);
         }
+
+        /**
+         *
+         * @param selectedDates
+         * @param dateStr
+         * @param instance
+         * @returns {*}
+         */
+
     }, {
         key: "change",
         value: function change(selectedDates, dateStr, instance) {
@@ -1251,7 +1399,7 @@ var _class = function (_Flatpickr) {
     }]);
 
     return _class;
-}(__WEBPACK_IMPORTED_MODULE_1_stimulus_flatpickr___default.a);
+}(__WEBPACK_IMPORTED_MODULE_0_stimulus_flatpickr___default.a);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
 
@@ -5055,12 +5203,6 @@ var _class = function (_Controller) {
 
     }, {
         key: "showModal",
-
-
-        /**
-         *
-         * @returns {Element}
-         */
         value: function showModal() {
             $(this.element.querySelector('.modal')).modal('show');
         }
@@ -5071,11 +5213,6 @@ var _class = function (_Controller) {
 
     }, {
         key: "showDialogUpload",
-
-
-        /**
-         *
-         */
         value: function showDialogUpload() {
             this.uploadInput.click();
         }
@@ -5109,9 +5246,20 @@ var _class = function (_Controller) {
         }
     }, {
         key: "textarea",
+
+
+        /**
+         *
+         * @returns {Element}
+         */
         get: function get() {
             return this.element.querySelector('textarea');
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "uploadInput",
         get: function get() {
@@ -5160,7 +5308,7 @@ var _class = function (_Controller) {
 
             setTimeout(function () {
                 $(select).select2({
-                    templateResult: function formatState(state) {
+                    templateResult: function templateResult(state) {
                         if (!state.id || !state.count) {
                             return state.text;
                         }
@@ -5192,7 +5340,7 @@ var _class = function (_Controller) {
                         }
                     }
                 });
-            }, 1000);
+            }, 500);
         }
     }]);
 
@@ -5219,7 +5367,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 // Core
@@ -5289,6 +5436,11 @@ var _class = function (_Controller) {
 
     _createClass(_class, [{
         key: 'connect',
+
+
+        /**
+         *
+         */
         value: function connect() {
 
             //require.context(
@@ -5335,21 +5487,40 @@ var _class = function (_Controller) {
                     title: 'Responsive',
                     value: 'img-fluid'
                 }],
-                setup: function setup(element) {
-                    element.on('change', function () {
-                        $(input).val(element.getContent());
-                    });
-                },
-                images_upload_handler: function images_upload_handler(blobInfo, success) {
-                    var data = new FormData();
-                    data.append('file', blobInfo.blob());
+                setup: this.setup,
+                images_upload_handler: this.upload
+            });
+        }
+    }, {
+        key: 'setup',
 
-                    axios.post(platform.prefix('/systems/files'), data).then(function (response) {
-                        success(response.data.url);
-                    }).catch(function (error) {
-                        console.warn(error);
-                    });
-                }
+
+        /**
+         *
+         * @param element
+         */
+        value: function setup(element) {
+            element.on('change', function () {
+                $(input).val(element.getContent());
+            });
+        }
+
+        /**
+         *
+         * @param blobInfo
+         * @param success
+         */
+
+    }, {
+        key: 'upload',
+        value: function upload(blobInfo, success) {
+            var data = new FormData();
+            data.append('file', blobInfo.blob());
+
+            axios.post(platform.prefix('/systems/files'), data).then(function (response) {
+                success(response.data.url);
+            }).catch(function (error) {
+                console.warn(error);
             });
         }
     }, {
@@ -5393,6 +5564,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _class = function (_Controller) {
     _inherits(_class, _Controller);
 
+    /**
+     *
+     * @param props
+     */
     function _class(props) {
         _classCallCheck(this, _class);
 
@@ -5402,12 +5577,34 @@ var _class = function (_Controller) {
         return _this;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
+
+
+    /**
+     *
+     * @type {string[]}
+     */
+
+
     _createClass(_class, [{
         key: "connect",
+
+
+        /**
+         *
+         */
         value: function connect() {
             this.initDropZone();
             this.initSortable();
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "save",
         value: function save() {
@@ -5416,11 +5613,24 @@ var _class = function (_Controller) {
             $('#modalUploadAttachment').modal('toggle');
             axios.put(platform.prefix("/systems/files/post/" + data.id), data).then();
         }
+
+        /**
+         *
+         * @param dataKey
+         * @returns {string}
+         */
+
     }, {
         key: "getAttachmentTargetKey",
         value: function getAttachmentTargetKey(dataKey) {
             return dataKey + "Target";
         }
+
+        /**
+         *
+         * @param data
+         */
+
     }, {
         key: "loadInfo",
         value: function loadInfo(data) {
@@ -5431,6 +5641,11 @@ var _class = function (_Controller) {
             }
             this.activeAttachment = data;
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "initSortable",
         value: function initSortable() {
@@ -5450,6 +5665,11 @@ var _class = function (_Controller) {
                 }
             });
         }
+
+        /**
+         *
+         */
+
     }, {
         key: "initDropZone",
         value: function initDropZone() {
@@ -5546,6 +5766,12 @@ var _class = function (_Controller) {
         get: function get() {
             return '#dropzone-' + this.data.get('name') + ' ';
         }
+
+        /**
+         *
+         * @returns {string|{id: *}}
+         */
+
     }, {
         key: "activeAttachment",
         get: function get() {
@@ -5560,7 +5786,13 @@ var _class = function (_Controller) {
                 }
                 return _extends({}, res, _defineProperty({}, key, target.value));
             }, { id: id });
-        },
+        }
+
+        /**
+         *
+         * @param data
+         */
+        ,
         set: function set(data) {
             var _this3 = this;
 
@@ -6041,7 +6273,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
-//import {$, jQuery}  from 'jquery';
 
 var _class = function (_Controller) {
     _inherits(_class, _Controller);

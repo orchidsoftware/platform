@@ -13,7 +13,6 @@
     "axios": "^0.17",
     "blueimp-tmpl": "^3.11.0",
     "bootstrap": "^4.1.1",
-    "bootstrap-tagsinput": "^0.7",
     "choices.js": "^3.0.4",
     "codeflask": "^1.1.0",
     "croppie": "^2.6.2",
@@ -39,9 +38,7 @@
     "stimulus-flatpickr": "^0.3.0",
     "tinymce": "^4.8.1",
     "turbolinks": "^5.1",
-    "vue": "^2.5.16"
-  },
-  "devDependencies": {
+    "vue": "^2.5.16",
     "file-loader": "^1.1.11",
     "exports-loader": "^0.7.0",
     "imports-loader": "^0.8.0",

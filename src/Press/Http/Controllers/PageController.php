@@ -64,10 +64,7 @@ class PageController extends Controller
             'publish_at' => Carbon::now(),
         ]);
 
-        foreach ($type->getModules() as $module) {
-            $module = new $module();
-            $module->save($type, $page);
-        }
+        $type->save($page);
 
         Alert::success(trans('platform::common.alert.success'));
 

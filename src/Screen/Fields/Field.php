@@ -280,9 +280,10 @@ class Field implements FieldContract
 
         collect($this->getAttributes())->only(array_merge($this->universalAttributes,
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
-                $signature = 'modify'.title_case($key);
+                $key = title_case($key);
+                $signature = 'modify'.$key;
                 if (in_array($signature, $modifiers)) {
-                    $this->$signature($item);
+                    $this->attributes[$key] = $this->$signature($item);
                 }
             });
 

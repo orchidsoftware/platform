@@ -102,12 +102,28 @@ class TagsField extends Field
     ];
 
     /**
+     * @param $name
+     *
+     * @return \Orchid\Screen\Fields\Field|void
+     */
+    public function modifyName($name)
+    {
+        if (substr($name, -1) !== '.') {
+            $this->attributes['name'] = $name . '[]';
+        }
+
+        parent::modifyName($this->attributes['name']);
+    }
+
+
+    /**
      * @param $value
      *
      * @return mixed
      */
     public function modifyValue($value)
     {
+
         if (is_string($value)) {
             $this->attributes['value'] = explode(',', $value);
         }
@@ -116,7 +132,7 @@ class TagsField extends Field
             $this->attributes['value'] = $value($this->attributes);
         }
 
-        if(is_null($value)){
+        if (is_null($value)) {
             $this->attributes['value'] = [];
         }
 

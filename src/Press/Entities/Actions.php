@@ -18,30 +18,30 @@ trait Actions
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $post
+     * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function create(Model $post) : Model
+    public function create(Model $model) : Model
     {
-        return $post;
+        return $model;
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $post
+     * @param \Illuminate\Database\Eloquent\Model $model
      */
-    public function save(Model $post)
+    public function save(Model $model)
     {
-        $post->save();
+        $model->save();
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $post
+     * @param \Illuminate\Database\Eloquent\Model $model
      *
      * @throws \Exception
      */
-    public function delete(Model $post)
+    public function delete(Model $model)
     {
-        $post->delete();
+        $model->delete();
     }
 }

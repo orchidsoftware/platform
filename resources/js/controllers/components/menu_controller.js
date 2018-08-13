@@ -29,8 +29,8 @@ export default class extends Controller {
                 menu.sort();
 
                 menu.send();
-            }).on('click', '.edit',  () => {
-            menu.edit(this);
+            }).on('click', '.edit', (event) => {
+            menu.edit(event.target);
         });
 
         menu.sort();
@@ -75,6 +75,7 @@ export default class extends Controller {
         let data = $(element)
             .parent()
             .data();
+
         data.label = $(element)
             .prev()
             .text();
@@ -211,23 +212,26 @@ export default class extends Controller {
      */
     checkForm() {
         if (!this.labelTarget.value) {
-            document.getElementById('errors.label').classList.remove("none");
+            this.showBlocks('errors.label');
             return false;
         }
 
         if (!this.titleTarget.value) {
-            document.getElementById('errors.title').classList.remove("none");
+            this.showBlocks('errors.title');
             return false;
         }
 
         if (!this.slugTarget.value) {
-            document.getElementById('errors.slug').classList.remove("none");
+            this.showBlocks('errors.slug');
             return false;
         }
 
-        document.getElementById('errors.slug').classList.add("none");
-        document.getElementById('errors.label').classList.add("none");
-        document.getElementById('errors.title').classList.add("none");
+
+        this.hiddenBlocks([
+            'errors.slug',
+            'errors.label',
+            'errors.title',
+        ]);
 
         return true;
     }
@@ -237,17 +241,27 @@ export default class extends Controller {
      */
     checkExist() {
         if (this.exist()) {
-            document.getElementById('menu.remove').classList.remove("none");
-            document.getElementById('menu.reset').classList.remove("none");
-            document.getElementById('menu.create').classList.add("none");
-            document.getElementById('menu.save').classList.remove("none");
+
+            this.showBlocks([
+                'menu.remove',
+                'menu.reset',
+                'menu.save'
+            ]);
+
+            this.hiddenBlocks('menu.create');
             return;
         }
-        document.getElementById('menu.remove').classList.add("none");
-        document.getElementById('menu.reset').classList.add("none");
-        document.getElementById('menu.create').classList.remove("none");
-        document.getElementById('menu.save').classList.add("none");
 
+
+        this.showBlocks([
+            'menu.create',
+        ]);
+
+        this.hiddenBlocks([
+            'menu.remove',
+            'menu.reset',
+            'menu.save'
+        ]);
     }
 
     /**
@@ -266,5 +280,31 @@ export default class extends Controller {
      */
     getUri(path = '') {
         return platform.prefix(`/press/menu/${path}`);
+    }
+
+    /**
+     *
+     * @param blocks
+     */
+    hiddenBlocks(blocks) {
+        if (!Array.isArray((blocks))) {
+            blocks = [blocks];
+        }
+        blocks.forEach(function (element) {
+            document.getElementById(element).classList.add("none");
+        });
+    }
+
+    /**
+     *
+     * @param blocks
+     */
+    showBlocks(blocks) {
+        if (!Array.isArray((blocks))) {
+            blocks = [blocks];
+        }
+        blocks.forEach(function (element) {
+            document.getElementById(element).classList.remove("none");
+        });
     }
 }

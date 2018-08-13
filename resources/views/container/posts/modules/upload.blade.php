@@ -61,8 +61,7 @@
                         {{trans('platform::post/uploads.information.link')}}
                     </a>
 
-                    <button type="button" v-on:click="save"
-                            class="btn btn-default">{{trans('platform::common.apply')}}</button>
+                    <button type="button" v-on:click="save" class="btn btn-default">{{trans('platform::common.apply')}}</button>
                 </div>
             </div>
         </div>
