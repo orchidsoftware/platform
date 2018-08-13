@@ -95,6 +95,7 @@ return [
         'upload'       => Orchid\Screen\Fields\Types\UploadField::class,
         'utm'          => Orchid\Screen\Fields\Types\UTMField::class,
         'view'         => Orchid\Screen\Fields\Types\ViewField::class,
+        'code'         => Orchid\Screen\Fields\Types\CodeField::class,
     ],
 
     /*
