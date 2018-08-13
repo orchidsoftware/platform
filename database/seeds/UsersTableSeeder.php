@@ -1,5 +1,7 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Illuminate\Database\Seeder;
 use Orchid\Platform\Models\User;
 

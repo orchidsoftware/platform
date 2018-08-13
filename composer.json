@@ -51,6 +51,7 @@
   },
   "autoload": {
     "psr-4": {
+      "Orchid\\Database\\Seeds\\": "database/seeds/",
       "Orchid\\Access\\": "src/Access/",
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
