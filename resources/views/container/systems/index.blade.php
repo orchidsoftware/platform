@@ -33,26 +33,33 @@
 
 
 @section('content')
-<div class="bg-white">
+    <div class="bg-white">
 
-    <div class="admin-wrapper container wrapper-md">
-        <div class="row">
-             @foreach(Dashboard::menu()->build('Systems')->chunk(2) as $items)
-                 <div class="col-md-5 col-md-4 admin-element-item">
+        <div class="admin-wrapper container wrapper-md">
+            <div class="row">
 
-                    @foreach($items as $item)
+                @php
+                    $menu = Dashboard::menu()->build('Systems');
+                    $chunk = ceil($menu->count() / 2);
+                    $menu =  $menu->chunk($chunk);
+                @endphp
+
+                @foreach($menu as $items)
+                    <div class="col-md-5 col-md-4 admin-element-item">
+
+                        @foreach($items as $item)
                             @include('platform::partials.systems.systemsMenu', [
                                 'icon' => $item['icon'],
                                 'label' => $item['label'],
                                 'children' => $item['children'],
                             ])
-                     @endforeach
+                        @endforeach
 
-                 </div>
-             @endforeach
+                    </div>
+                @endforeach
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 @stop

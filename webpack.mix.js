@@ -47,7 +47,7 @@ if (!mix.inProduction()) {
 
 const vendor = [
     'stimulus', 'stimulus/webpack-helpers', 'lodash', 'jquery', 'vue', /*'popper.js',*/ 'jquery-ui-bundle', 'bootstrap',
-    'bootstrap-tagsinput', 'dropzone', 'nestable', 'moment', 'select2', 'croppie', 'frappe-charts', 'inputmask',
+    'dropzone', 'nestable', 'moment', 'select2', 'croppie', 'frappe-charts', 'inputmask',
     'simplemde', 'tinymce', 'axios', 'turbolinks',
 ];
 

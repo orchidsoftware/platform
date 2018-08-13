@@ -38,6 +38,7 @@
     "laravel/framework": "5.6.*",
     "laravel/scout": "^4.0",
     "ralouphie/mimey": "^1.0",
+    "spatie/laravel-backup": "^5.10",
     "spomky-labs/base64url": "^1.0",
     "watson/active": "^2.0",
     "zendframework/zend-code": "^3.3"
@@ -59,6 +60,7 @@
       "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Press\\": "src/Press/",
+      "Orchid\\Savior\\": "src/Savior/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Support\\": "src/Support/",
@@ -81,8 +83,9 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
+        "Orchid\\Savior\\Providers\\SaviorServiceProvider",
         "Orchid\\Press\\Providers\\PressServiceProvider",
-        "Orchid\\Bulldozer\\Providers\\BootServiceProvider"
+        "Orchid\\Bulldozer\\Providers\\BulldozerServiceProvider"
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",
