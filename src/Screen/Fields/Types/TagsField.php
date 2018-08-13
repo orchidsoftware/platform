@@ -109,12 +109,11 @@ class TagsField extends Field
     public function modifyName($name)
     {
         if (substr($name, -1) !== '.') {
-            $this->attributes['name'] = $name . '[]';
+            $this->attributes['name'] = $name.'[]';
         }
 
         parent::modifyName($this->attributes['name']);
     }
-
 
     /**
      * @param $value
@@ -123,7 +122,6 @@ class TagsField extends Field
      */
     public function modifyValue($value)
     {
-
         if (is_string($value)) {
             $this->attributes['value'] = explode(',', $value);
         }

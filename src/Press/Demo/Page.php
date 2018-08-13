@@ -174,7 +174,7 @@ class Page extends Single
                 ->value('id')
 
                 //only upload
-                ->class(Page::class)
+                ->class(self::class)
                 ->storage('public')
                 ->mime('image/png')
                 ->maxFileSize(2)
@@ -186,7 +186,7 @@ class Page extends Single
                 ->resizeQuality(0.75)
                 ->resizeMimeType('image/jpeg')
                 ->resizeWidth(200)
-                ->resizeHeight(200)
+                ->resizeHeight(200),
         ];
     }
 
