@@ -1,4 +1,4 @@
-@isset($childs)
+@if (!empty($childs))
     @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans($groupname)}}</li>
     @endisset
@@ -37,4 +37,4 @@
     @isset($divider)
         <li class="divider b-t b-dark"></li>
     @endisset
-@endisset
+@endif

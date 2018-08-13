@@ -1,5 +1,7 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Orchid\Press\Models\Menu;
 use Illuminate\Database\Seeder;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Orchid\Press\Models\Term;
 use Illuminate\Database\Seeder;
 use Orchid\Press\Models\Taxonomy;
