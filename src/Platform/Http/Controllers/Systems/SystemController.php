@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Support\Facades\Dashboard;
 
 class SystemController extends Controller
 {
@@ -39,7 +38,6 @@ class SystemController extends Controller
 
             return $item;
         });
-
 
         return view('platform::container.systems.index', [
             'settings' => $settings,

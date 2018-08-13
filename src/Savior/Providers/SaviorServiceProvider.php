@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Savior\Providers;
 
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Savior\Http\Composers\SystemMenuComposer;
-use Illuminate\Support\Facades\View;
 
 class SaviorServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,6 @@ class SaviorServiceProvider extends ServiceProvider
     {
         $dashboard
             ->registerPermissions($this->registerPermissions());
-
 
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
         //$this->registerConfig();

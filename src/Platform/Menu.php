@@ -203,8 +203,6 @@ class Menu
         return $this->findAllChildren($location)->filter(function ($value) {
             return count($value['children']);
         });
-
-
     }
 
     /**

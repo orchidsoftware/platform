@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Savior\Http\Screens;
 
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Alert;
+use League\Flysystem\Adapter\Local;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
-use League\Flysystem\Adapter\Local;
-use Orchid\Support\Facades\Alert;
 use Orchid\Savior\Http\Layouts\BackupLayout;
-use Orchid\Screen\Link;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Screen;
 
 class BackupScreen extends Screen
 {
@@ -75,9 +75,9 @@ class BackupScreen extends Screen
     {
         $queue = config('queue.default');
 
-        if($queue === 'sync' || $queue === 'null'){
+        if ($queue === 'sync' || $queue === 'null') {
             Alert::info('Влючите очередь задач, что бы сделать резервную копию');
-        }else{
+        } else {
             Artisan::queue('backup:run');
         }
 

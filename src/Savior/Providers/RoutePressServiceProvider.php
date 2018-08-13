@@ -29,7 +29,6 @@ class RoutePressServiceProvider extends ServiceProvider
         parent::boot();
     }
 
-
     /**
      * Define the routes for the application.
      *
