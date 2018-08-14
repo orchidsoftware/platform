@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Bulldozer\Http\Composers\SystemMenuComposer;
 
 /**
- * Class BootServiceProvider.
+ * Class BulldozerServiceProvider.
  */
 class BulldozerServiceProvider extends ServiceProvider
 {

@@ -11,7 +11,7 @@ use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
-use Orchid\Bulldozer\Providers\BootServiceProvider;
+use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
@@ -86,7 +86,7 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             PressServiceProvider::class,
-            BootServiceProvider::class,
+            BulldozerServiceProvider::class,
         ];
     }
 

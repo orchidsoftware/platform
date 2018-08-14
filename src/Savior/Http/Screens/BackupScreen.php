@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Savior\Http\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Alert;
-use League\Flysystem\Adapter\Local;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Savior\Http\Layouts\BackupLayout;
+use Orchid\Screen\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class BackupScreen extends Screen
 {
@@ -33,6 +33,21 @@ class BackupScreen extends Screen
      * @var string
      */
     public $permission = 'platform.savior.backups';
+
+    /**
+     * @var array
+     */
+    public $disk = [];
+
+    /**
+     * BackupScreen constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->disk = config('backup.backup.destination.disks', []);
+    }
 
     /**
      * Query data.
@@ -87,30 +102,52 @@ class BackupScreen extends Screen
     /**
      * @return array
      */
-    private function getBackups()
+    private function getBackups(): array
     {
-        $backups = [];
-        foreach (config('backup.backup.destination.disks') as $diskName) {
+        foreach ($this->disk as $diskName) {
+
             $disk = Storage::disk($diskName);
-            $adapter = $disk->getDriver()->getAdapter();
             $files = $disk->allFiles();
-            // make an array of backup files, with their filesize and creation date
-            foreach ($files as $file) {
-                // only take the zip files into account
-                if (substr($file, -4) == '.zip' && $disk->exists($file)) {
+
+            collect($files)
+                ->filter(function ($file) {
+                    // only take the zip files into account
+                    return preg_match("/^(.*)(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2}).zip$/", $file);
+                })
+                ->each(function ($file) use ($disk, $diskName, &$backups) {
+                    // make an array of backup files, with their filesize and creation date
                     $backups[] = new Repository([
-                        'file_path'     => $file,
-                        'file_name'     => str_replace('backups/', '', $file),
-                        'file_size'     => $disk->size($file),
-                        'last_modified' => $disk->lastModified($file),
+                        'path'          => $file,
+                        'size'          => self::formatBytes($disk->size($file)),
+                        'last_modified' => Carbon::createFromTimestamp($disk->lastModified($file))->diffForHumans(),
                         'disk'          => $diskName,
-                        'download'      => $adapter instanceof Local,
                         'url'           => $disk->url($file),
                     ]);
-                }
-            }
+                });
         }
+
         // reverse the backups, so the newest one would be on top
-        return array_reverse($backups);
+        return array_reverse($backups ?? []);
     }
+
+    /**
+     * Format bytes to kb, mb, gb, tb
+     *
+     * @param int $size
+     * @param int $precision
+     *
+     * @return int|string
+     */
+    public static function formatBytes(int $size, int $precision = 2): string
+    {
+        if ($size <= 0) {
+            return (string) $size;
+        }
+
+        $base = log($size) / log(1024);
+        $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
+
+        return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+    }
+
 }

@@ -37,15 +37,6 @@ trait Structure
     public $icon = 'icon-folder';
 
     /**
-     * @deprecated
-     *
-     * Fields for content.
-     *
-     * @var array
-     */
-    public $fields = [];
-
-    /**
      * @var string
      */
     public $prefix = 'content';
@@ -55,14 +46,14 @@ trait Structure
      *
      * @var null
      */
-    public $groupname = null;
+    public $groupname;
 
     /**
      * Status divider.
      *
      * @var null
      */
-    public $divider = null;
+    public $divider;
 
     /**
      * Show the data to the user.
@@ -70,13 +61,6 @@ trait Structure
      * @var bool
      */
     public $display = true;
-
-    /**
-     * Container for HTML render.
-     *
-     * @var null
-     */
-    private $cultivated = null;
 
     /**
      * Basic statuses possible for the object.
