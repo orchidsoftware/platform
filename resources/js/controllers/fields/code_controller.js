@@ -9,25 +9,16 @@ export default class extends Controller {
     connect() {
         let input = this.element.querySelector('input');
 
-        let language = this.data.get('language');
-        if (language === 'json') language = 'js';
-
-        let element = this.element.querySelector('.code');
-        const flask = new CodeFlask(element, {
-            language: language,
+        const flask = new CodeFlask(this.element.querySelector('.code'), {
+            language: this.data.get('language'),
             lineNumbers: this.data.get('lineNumbers'),
             defaultTheme: this.data.get('defaultTheme')
         });
 
-        //flask.updateCode("Hello");
-        flask.updateCode($(input).val());
+        flask.updateCode(input.value);
 
         flask.onUpdate((code) => {
-            // do something with code here.
-            // this will trigger whenever the code
-            // in the editor changes.
-            //flask.updateCode(flask.getCode());
-            $(input).val(flask.getCode());
+            input.value = code;
         });
     }
 }
