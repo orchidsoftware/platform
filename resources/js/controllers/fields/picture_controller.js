@@ -1,7 +1,12 @@
 import {Controller} from "stimulus";
+import {Croppie}    from 'croppie';
 
 export default class extends Controller {
 
+    /**
+     *
+     * @type {string[]}
+     */
     static targets = [
         "source",
         "upload"
@@ -19,6 +24,19 @@ export default class extends Controller {
             this.element.querySelector('.picture-preview').classList.add('none');
             this.element.querySelector('.picture-remove').classList.add('none');
         }
+
+        let cropPanel = this.element.querySelector('.upload-panel');
+        this.croppie = new Croppie(cropPanel, {
+            viewport: {
+                width: this.data.get('width'),
+                height: this.data.get('height'),
+            },
+            boundary: {
+                width: '100%',
+                height: 500
+            },
+            enforceBoundary: true
+        });
     }
 
     /**
@@ -28,33 +46,15 @@ export default class extends Controller {
      */
     upload(event) {
 
-        let cropPanel = this.element.querySelector('.upload-panel');
-        $(cropPanel).croppie('destroy');
-
         if (!event.target.files[0]) {
             return;
         }
-
-        let width = this.data.get('width');
-        let height = this.data.get('height');
-        $(cropPanel).croppie({
-            viewport: {
-                width: width,
-                height: height,
-            },
-            boundary: {
-                width: '100%',
-                height: 500
-            },
-            enforceBoundary: true
-        });
-
 
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
 
         reader.onloadend = () => {
-            $(cropPanel).croppie('bind', {
+            this.croppie.bind({
                 url: reader.result
             });
         };
@@ -67,9 +67,7 @@ export default class extends Controller {
      */
     crop() {
 
-        let cropPanel = this.element.querySelector('.upload-panel');
-
-        $(cropPanel).croppie('result', {
+        this.croppie.result('result', {
             type: 'blob',
             size: 'viewport',
             format: 'png'
