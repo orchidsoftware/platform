@@ -7,9 +7,9 @@ namespace Orchid\Press\Models;
 use Illuminate\Support\Collection;
 use Orchid\Press\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Menu extends Model
 {

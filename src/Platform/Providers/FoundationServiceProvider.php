@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Widget\WidgetServiceProvider;
-use Spatie\Activitylog\ActivitylogServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
 

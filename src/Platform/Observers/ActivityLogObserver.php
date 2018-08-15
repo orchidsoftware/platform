@@ -19,12 +19,11 @@ class ActivityLogObserver
     {
         $request = request();
 
-        $activity->properties->put('request',[
+        $activity->properties->put('request', [
 
             'referer'    => $request->header('referer'),
             'user-agent' => $request->header('user-agent'),
             'ip'         => $request->ip(),
         ]);
     }
-
 }

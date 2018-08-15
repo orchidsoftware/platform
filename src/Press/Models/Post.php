@@ -18,11 +18,11 @@ use Orchid\Platform\Traits\JsonRelations;
 use Orchid\Platform\Traits\MultiLanguage;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Screen\Exceptions\TypeException;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * @property mixed options

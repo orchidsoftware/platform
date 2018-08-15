@@ -7,10 +7,10 @@ namespace Orchid\Press\Models;
 use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Press\Builders\TaxonomyBuilder;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Taxonomy extends Model
 {
