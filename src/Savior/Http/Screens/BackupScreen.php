@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Savior\Http\Screens;
 
 use Carbon\Carbon;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Savior\Http\Layouts\BackupLayout;
-use Orchid\Screen\Link;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
 
 class BackupScreen extends Screen
 {
@@ -105,7 +105,6 @@ class BackupScreen extends Screen
     private function getBackups(): array
     {
         foreach ($this->disk as $diskName) {
-
             $disk = Storage::disk($diskName);
             $files = $disk->allFiles();
 
@@ -131,7 +130,7 @@ class BackupScreen extends Screen
     }
 
     /**
-     * Format bytes to kb, mb, gb, tb
+     * Format bytes to kb, mb, gb, tb.
      *
      * @param int $size
      * @param int $precision
@@ -147,7 +146,6 @@ class BackupScreen extends Screen
         $base = log($size) / log(1024);
         $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
-        return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+        return round(pow(1024, $base - floor($base)), $precision).$suffixes[floor($base)];
     }
-
 }
