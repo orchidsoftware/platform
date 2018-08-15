@@ -14,6 +14,8 @@ use Orchid\Platform\Listeners\Category\CategoryDescLister;
 use Orchid\Platform\Listeners\Comment\CommentBaseListener;
 use Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Orchid\Platform\Observers\ActivityLogObserver;
+use Spatie\Activitylog\Models\Activity;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -44,5 +46,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Activity::observe(ActivityLogObserver::class);
     }
 }

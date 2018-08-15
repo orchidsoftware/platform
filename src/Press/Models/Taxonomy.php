@@ -10,9 +10,12 @@ use Orchid\Press\Builders\TaxonomyBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Taxonomy extends Model
 {
+    use LogsActivity;
+
     /**
      * @var bool
      */
@@ -39,6 +42,11 @@ class Taxonomy extends Model
     protected $with = [
         'term',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Magic method to return the meta data like the post original fields.

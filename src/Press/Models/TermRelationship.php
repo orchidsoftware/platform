@@ -7,9 +7,12 @@ namespace Orchid\Press\Models;
 use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class TermRelationship extends Model
 {
+    use LogsActivity;
+
     /**
      * @var bool
      */
@@ -28,6 +31,11 @@ class TermRelationship extends Model
         'term_taxonomy_id',
         'term_order',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -10,10 +10,11 @@ use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends Model
 {
-    use Attachment;
+    use Attachment, LogsActivity;
     /**
      * @var string
      */
@@ -39,6 +40,11 @@ class Comment extends Model
         'parent_id' => 'integer',
         'approved'  => 'boolean',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Find a comment by post ID.

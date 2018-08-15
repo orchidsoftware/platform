@@ -8,10 +8,11 @@ use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Term extends Model
 {
-    use MultiLanguage;
+    use MultiLanguage,LogsActivity;
 
     /**
      * @var string
@@ -35,6 +36,11 @@ class Term extends Model
         'content' => 'array',
         'slug'    => 'string',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Get the route key for the model.

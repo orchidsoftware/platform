@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Widget\WidgetServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
@@ -134,6 +135,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            ActivitylogServiceProvider::class,
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,

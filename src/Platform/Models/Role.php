@@ -9,10 +9,11 @@ use Orchid\Access\RoleInterface;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\FilterTrait;
 use Orchid\Platform\Traits\MultiLanguage;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, FilterTrait, MultiLanguage;
+    use RoleAccess, FilterTrait, MultiLanguage, LogsActivity;
 
     /**
      * @var string
@@ -54,6 +55,11 @@ class Role extends Model implements RoleInterface
         'name',
         'slug',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Set permission as boolean.

@@ -9,10 +9,11 @@ use Orchid\Press\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Menu extends Model
 {
-    use Attachment;
+    use Attachment, LogsActivity;
 
     /**
      * @var string
@@ -44,6 +45,11 @@ class Menu extends Model
         'parent' => 'integer',
         'sort'   => 'integer',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -9,12 +9,15 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Attachment.
  */
 class Attachment extends Model
 {
+    use LogsActivity;
+
     /**
      * @var array
      */
@@ -32,6 +35,11 @@ class Attachment extends Model
         'hash',
         'disk',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Attachment constructor.

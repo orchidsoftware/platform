@@ -12,10 +12,11 @@ use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Traits\MultiLanguage;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, MultiLanguage, FilterTrait;
+    use Notifiable, UserAccess, MultiLanguage, FilterTrait, LogsActivity;
 
     /**
      * The database table used by the model.
@@ -71,6 +72,11 @@ class User extends Authenticatable implements UserInterface
         'name',
         'email',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Send the password reset notification.

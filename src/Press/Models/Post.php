@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * @property mixed options
@@ -35,7 +36,8 @@ class Post extends Model
         Searchable,
         Attachment,
         JsonRelations,
-        FilterTrait;
+        FilterTrait,
+        LogsActivity;
 
     /**
      * @var string
@@ -115,6 +117,11 @@ class Post extends Model
         'created_at',
         'deleted_at',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * Return the sluggable configuration array for this model.

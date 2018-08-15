@@ -6,12 +6,15 @@ namespace Orchid\Setting;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Setting.
  */
 class Setting extends Model
 {
+    use LogsActivity;
+
     /**
      * @var bool
      */
@@ -48,6 +51,11 @@ class Setting extends Model
     protected $casts = [
         'value' => 'array',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * @param string       $key
