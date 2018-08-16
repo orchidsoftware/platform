@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Exception;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
+use phpDocumentor\Reflection\Types\Null_;
 
 /**
  * Class MediaController.
@@ -44,20 +45,23 @@ class MediaController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param string $path
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index($path = DIRECTORY_SEPARATOR)
     {
-        $dir = $request->get('dir', DIRECTORY_SEPARATOR);
+        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path . DIRECTORY_SEPARATOR : $path ;
+        $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media.index', [
             'name'        => trans('platform::systems/media.title'),
             'description' => trans('platform::systems/media.description'),
-            'dir'         => $this->getDirPath($dir),
-            'files'       => $this->getFiles($dir),
-            'directories' => $this->getDirectories($dir),
+            'dir'         => $this->getDirPath($path),
+            'files'       => $this->getFiles($path),
+            'directories' => $this->getDirectories($path),
+            'breadcrumbs' => $this->getBreadcrumb($path),
+            'route'       => $path,
         ]);
     }
 
@@ -322,5 +326,29 @@ class MediaController extends Controller
                 ],
             ], $code);
         }
+    }
+
+    /**
+     * @param string $path
+     * @param string $delimetr
+     *
+     * @return array
+     */
+    private function getBreadcrumb(string $path, string $delimetr = DIRECTORY_SEPARATOR): array
+    {
+        $breadcrumbs = array_filter(explode($delimetr, $path));
+
+        return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimetr) {
+            foreach ($breadcrumbs as $bkey => $breadcrumb) {
+                if ($bkey === $key) break;
+                $path = $path . $delimetr . $breadcrumb;
+            }
+
+            return [
+                'name'   => $item,
+                'active' => end($breadcrumbs) === $item,
+                'path'   => empty($path) ? $delimetr : $path,
+            ];
+        }, $breadcrumbs, array_keys($breadcrumbs));
     }
 }

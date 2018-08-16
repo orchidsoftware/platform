@@ -99,7 +99,7 @@ $this->group([
     'as'     => 'platform.systems.media.',
     'prefix' => 'media',
 ], function () {
-    $this->get('/', ['uses' => 'MediaController@index', 'as' => 'index']);
+    $this->get('/{parameters?}', ['uses' => 'MediaController@index', 'as' => 'index'])->where('parameters', '.*');
     $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
     $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);
     $this->post('delete_file_folder',

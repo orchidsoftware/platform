@@ -17,26 +17,6 @@
                 Создать новую папку
             </button>
         </li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-link" id="refresh"><i class="icon-refresh"></i>
-                Обновить
-            </button>
-        </li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-link" id="move"><i class="icon-cursor-move"></i>
-                Переместить
-            </button>
-        </li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-link" id="rename"><i class="icon-font"></i>
-                Переименовать
-            </button>
-        </li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-link" id="delete"><i class="icon-trash"></i>
-                Удалить
-            </button>
-        </li>
     </ul>
 
 
@@ -123,9 +103,23 @@
         <div id="content">
             <div class="breadcrumb-container">
                 <ol class="breadcrumb filemanager b-t small">
-                    <li data-folder="/" data-index="0" class="selected"><span class="arrow"></span>
-                        <span> Медиа библиотека</span></li>
-                    <li data-folder="2018" data-index="1"><span class="arrow"></span>2018</li>
+
+                    <li>
+                        @empty(!$breadcrumbs) <a href="{{route('platform.systems.media.index')}}"> @endempty
+                            <span class="arrow"></span>
+                            <span>Медиа библиотека</span>
+                            @empty(!$breadcrumbs) </a> @endempty
+                    </li>
+
+                    @foreach ($breadcrumbs as $breadcrumb)
+                        <li>
+                            @if(!$breadcrumb['active']) <a
+                                    href="{{route('platform.systems.media.index',$breadcrumb['path'])}}"> @endif
+                                <span class="arrow"></span>{{$breadcrumb['name']}}
+                                @if(!$breadcrumb['active']) </a> @endif
+                        </li>
+                    @endforeach
+
                     <li>
                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
@@ -171,13 +165,12 @@
                     @foreach($directories as $directory)
                         <tr>
                             <td class="text-center">
-
-                                <a href="http://localhost:8000/dashboard/press/posts/demo/wefewfwe/edit">
+                                <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
                                     <i class="icon icon-folder-alt main-icon"></i> </a>
 
                             </td>
                             <td class="text-left">
-                                <a href="http://localhost:8000/dashboard/press/posts/demo/wefewfwe/edit">
+                                <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
                                     {{$directory['name']}}
                                 </a>
                             </td>
@@ -187,9 +180,9 @@
                                     <i class="icon-options"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#"><i class="icon-cloud-upload"></i> Загрузить</a>
-                                    <a class="dropdown-item" href="#"><i class="icon icon-folder-alt"></i> Каталог</a>
-                                    <a class="dropdown-item" href="#"><i class="icon-doc"></i> Текстовый файл</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-cursor-move"></i> Переместить</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-font"></i> Переименовать</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-trash"></i> Удалить</a>
                                 </div>
                             </td>
                             <td class="text-left">
@@ -229,9 +222,10 @@
                                     <i class="icon-options"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#"><i class="icon-cloud-upload"></i> Загрузить</a>
-                                    <a class="dropdown-item" href="#"><i class="icon icon-folder-alt"></i> Каталог</a>
-                                    <a class="dropdown-item" href="#"><i class="icon-doc"></i> Текстовый файл</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-link"></i> Скопировать ссылку</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-cursor-move"></i> Переместить</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-font"></i> Переименовать</a>
+                                    <a class="dropdown-item" href="#"><i class="icon-trash"></i> Удалить</a>
                                 </div>
                             </td>
                             <td class="text-left">

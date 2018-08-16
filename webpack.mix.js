@@ -46,9 +46,10 @@ if (!mix.inProduction()) {
 }
 
 const vendor = [
-    'stimulus', 'stimulus/webpack-helpers', 'lodash', 'jquery', 'vue', /*'popper.js',*/ 'jquery-ui-bundle', 'bootstrap',
-    'dropzone', 'nestable', 'moment', 'select2', 'croppie', 'frappe-charts', 'inputmask',
-    'simplemde', 'tinymce', 'axios', 'turbolinks',
+    'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
+    'jquery', 'popper.js', 'jquery-ui-bundle', 'bootstrap',
+    'dropzone', 'nestable', 'select2', 'croppie', 'frappe-charts', 'inputmask',
+    'simplemde', 'tinymce', 'axios',
 ];
 
 mix

@@ -135,8 +135,8 @@ export default class extends Controller {
             containment: "parent",
             update: function () {
                 const items = {};
-                $('.file-sort').each(function (index, value) {
-                    const id = $(this).attr('data-file-id');
+                $('.file-sort').each( (index, value) => {
+                    const id = $(value).attr('data-file-id');
                     items[id] = index;
                 });
 
