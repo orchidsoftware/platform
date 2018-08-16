@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
-use phpDocumentor\Reflection\Types\Null_;
 
 /**
  * Class MediaController.
@@ -51,7 +50,7 @@ class MediaController extends Controller
      */
     public function index($path = DIRECTORY_SEPARATOR)
     {
-        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path . DIRECTORY_SEPARATOR : $path ;
+        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path.DIRECTORY_SEPARATOR : $path;
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media.index', [
@@ -340,8 +339,10 @@ class MediaController extends Controller
 
         return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimetr) {
             foreach ($breadcrumbs as $bkey => $breadcrumb) {
-                if ($bkey === $key) break;
-                $path = $path . $delimetr . $breadcrumb;
+                if ($bkey === $key) {
+                    break;
+                }
+                $path = $path.$delimetr.$breadcrumb;
             }
 
             return [
