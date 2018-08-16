@@ -13,14 +13,13 @@ class ActivityLogObserver
      *
      * @param  \Spatie\Activitylog\Models\Activity $activity
      *
-     * @return \Spatie\Activitylog\Models\Activity
+     * @return void
      */
     public function creating(Activity $activity)
     {
         $request = request();
 
-        $activity->properties->put('request', [
-
+        $activity->properties = $activity->properties->put('request', [
             'referer'    => $request->header('referer'),
             'user-agent' => $request->header('user-agent'),
             'ip'         => $request->ip(),

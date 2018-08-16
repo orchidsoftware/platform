@@ -7,12 +7,7 @@
         <ul class="list-group no-bg no-borders pull-in auto m-l-lg">
 
             @foreach ($children as $item)
-                @include('platform::partials.systems.systemsSubMenu', [
-                    'icon' => $item['icon'],
-                    'route' => $item['route'],
-                    'label' => $item['label'],
-                    'groupname' => $item['groupname'],
-                ])
+                @include('platform::partials.systems.systemsSubMenu', $item)
             @endforeach
 
         </ul>

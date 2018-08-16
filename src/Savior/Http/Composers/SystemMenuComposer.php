@@ -47,6 +47,19 @@ class SystemMenuComposer
                 'divider'    => false,
                 'permission' => 'platform.savior.backups',
                 'sort'       => 1,
+            ])
+            ->add('Savior', [
+                'slug'       => 'activity-log',
+                'icon'       => 'icon-action-undo',
+                'route'      => route('platform.savior.backups'),
+                'label'      => 'Журнал активности',
+                'groupname'  => 'Наглядное представление о том, над чем работали вы и другие участники проекта – в хронологическом порядке.',
+                'childs'     => false,
+                'divider'    => false,
+                'permission' => 'platform.savior.backups',
+                'sort'       => 1,
             ]);
+
+
     }
 }

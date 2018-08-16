@@ -40,6 +40,8 @@ class SystemMenuComposer
                 'permission' => 'platform.systems',
                 'sort'       => 9000,
             ])
+            /*
+             * TODO: Added generator for Entities
             ->add('Bulldozer', [
                 'slug'       => 'Entities',
                 'icon'       => 'icon-notebook',
@@ -50,6 +52,7 @@ class SystemMenuComposer
                 'permission' => 'platform.bulldozer',
                 'sort'       => 9000,
             ])
+            */
             ->add('Bulldozer', [
                 'slug'       => 'Models',
                 'icon'       => 'icon-database',

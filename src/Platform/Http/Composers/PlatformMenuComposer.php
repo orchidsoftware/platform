@@ -28,5 +28,6 @@ class PlatformMenuComposer
      */
     public function compose()
     {
+
     }
 }

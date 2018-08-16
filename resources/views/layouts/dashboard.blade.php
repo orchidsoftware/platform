@@ -106,18 +106,18 @@
 
                             <li class="nav-item">
                                 <a href="{{route('platform.index')}}" class="navbar-brand nav-link text-lt w-full">
-
                                     <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
                                 </a>
                             </li>
 
+
                             <li role="presentation" class="nav-item">
                                 <a href="#globalSearch" id="globalSearch-tab" class="nav-link" role="tab" data-toggle="tab">
-                                    <i class="icon-magnifier">
-                                    </i>
+                                    <i class="icon-magnifier"></i>
                                     <span>Поиск</span>
                                 </a>
                             </li>
+
 
                             {!! Dashboard::menu()->render('Main') !!}
 
@@ -174,6 +174,16 @@
                                  role="tabpanel"
                                  id="globalSearch"
                                  aria-labelledby="globalSearch-tab">
+
+                                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Глобальный поиск</li>
+                                <form role="search">
+                                    <div class="form-group b-b b-dark">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm bg-black text-white no-border rounded padder" placeholder="Search projects..."
+                                            style="background: #222c3c!important">
+                                        </div>
+                                    </div>
+                                </form>
 
                             </div>
 

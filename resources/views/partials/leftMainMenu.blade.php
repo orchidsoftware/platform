@@ -1,6 +1,6 @@
 @isset($childs)
     @if(Dashboard::menu()->container->where('location',$slug)->count())
-        <li role="presentation" class="nav-item @if(isset($active)) {{active($active)}} @endif">
+        <li role="presentation" class="nav-item @isset($active) {{active($active)}} @endisset">
             <a href="#{{$slug}}" id="{{$slug}}-tab" class="nav-link" role="tab" data-toggle="tab">
                 <i class="{{$icon}}">
                     @isset($badge)
