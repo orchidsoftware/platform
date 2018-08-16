@@ -59,7 +59,5 @@ class SystemMenuComposer
                 'permission' => 'platform.savior.backups',
                 'sort'       => 1,
             ]);
-
-
     }
 }
