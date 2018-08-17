@@ -27,7 +27,7 @@
 
                         @csrf
                     </div>
-                    <div class="modal-footer">git
+                    <div class="modal-footer">
                         <button type="submit" id="submit-modal-{{$key}}"
                                 class="btn btn-primary">{{trans('platform::common.apply')}}</button>
                     </div>
