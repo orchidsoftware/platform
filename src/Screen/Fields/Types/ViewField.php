@@ -14,11 +14,6 @@ use Orchid\Screen\Fields\Field;
 class ViewField extends Field
 {
     /**
-     * @var string
-     */
-    public $view = null;
-
-    /**
      * Required Attributes.
      *
      * @var array

@@ -36,7 +36,7 @@ class UploadFileLister implements ShouldQueue
     {
         $this->time = $event->time;
 
-        if (substr($event->attachment->getMimeType(), 0, 5) !== 'image') {
+        if (strpos($event->attachment->getMimeType(), 'image') !== 0) {
             return;
         }
 
@@ -56,6 +56,8 @@ class UploadFileLister implements ShouldQueue
      * @param \Orchid\Attachment\Models\Attachment $attachment
      * @param string                               $name
      * @param \Orchid\Attachment\BaseTemplate      $template
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     private function saveImageProcessing(Attachment $attachment, string $name, BaseTemplate $template)
     {

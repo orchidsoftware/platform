@@ -41,7 +41,7 @@ class BasePostForm extends Form
      */
     public function get(PostEntities $type = null, Post $post = null) : View
     {
-        $currentCategory = (is_null($post)) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
+        $currentCategory = is_null($post) ? [] : $post->taxonomies()->get()->pluck('taxonomy', 'id')->toArray();
         $category = Category::get();
 
         $category = $category->map(function ($item) use ($currentCategory) {

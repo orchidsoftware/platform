@@ -40,7 +40,7 @@ class CategoryFormGroup extends FormGroup
     public function main(): View
     {
         $entity = config('press.category');
-        $entity = new $entity();
+        $entity = new $entity;
 
         return view('platform::container.systems.category.grid', [
             'category' => Category::where('parent_id', 0)->with('allChildrenTerm')->paginate(),

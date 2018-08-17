@@ -47,15 +47,6 @@ class CheckBoxField extends Field
     public $view = 'platform::fields.checkbox';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

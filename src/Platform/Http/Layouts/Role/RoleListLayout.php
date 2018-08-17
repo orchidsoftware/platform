@@ -15,16 +15,6 @@ class RoleListLayout extends Table
     public $data = 'roles';
 
     /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [];
-    }
-
-    /**
      * @return array
      */
     public function fields() : array

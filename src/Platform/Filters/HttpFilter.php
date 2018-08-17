@@ -99,11 +99,11 @@ class HttpFilter
 
         $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
-            if (false !== stristr($property, '.')) {
-                $allowProperty = stristr($property, '.', true);
+            if (false !== strpos($property, '.')) {
+                $allowProperty = strstr($property, '.', true);
             }
 
-            if (in_array($allowProperty, $allowedFilters)) {
+            if (in_array($allowProperty, $allowedFilters, true)) {
                 $property = str_replace('.', '->', $property);
                 $this->filtersExact($builder, $value, $property);
             }

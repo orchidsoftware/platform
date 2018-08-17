@@ -47,10 +47,8 @@ class PressMenuComposer
         $active = collect();
 
         foreach ($allPost as $key => $page) {
-            $route = route('platform.posts.type', [$page->slug]);
-            if (is_a($page, Single::class)) {
-                $route = route('platform.pages.show', [$page->slug]);
-            }
+
+            $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
 
             $active
                 ->push($route)
@@ -59,7 +57,7 @@ class PressMenuComposer
             $kernel->menu->add('Posts', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
-                'route'      => $route,
+                'route'      => route($route, [$page->slug]),
                 'label'      => $page->name,
                 'permission' => 'platform.posts.type.'.$page->slug,
                 'sort'       => $key,

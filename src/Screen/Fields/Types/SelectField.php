@@ -37,15 +37,6 @@ class SelectField extends Field
     ];
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Attributes available for a particular tag.
      *
      * @var array

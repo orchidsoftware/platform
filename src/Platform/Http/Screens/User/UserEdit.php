@@ -41,7 +41,7 @@ class UserEdit extends Screen
      */
     public function query(int $id = null): array
     {
-        $user = is_null($id) ? new User() : User::with('roles')->findOrFail($id);
+        $user = is_null($id) ? new User : User::with('roles')->findOrFail($id);
 
         $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()

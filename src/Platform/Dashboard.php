@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    const VERSION = '3.0';
+    public const VERSION = '3.0';
 
     /**
      * @var Menu
@@ -54,7 +54,7 @@ class Dashboard
      */
     public function __construct()
     {
-        $this->menu = new Menu();
+        $this->menu = new Menu;
         $this->permission = collect([
             'all'     => collect(),
             'removed' => collect(),
@@ -93,7 +93,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerPermissions(array $permission)
+    public function registerPermissions(array $permission): self
     {
         foreach ($permission as $key => $item) {
             $old = $this->permission->get('all')->get($key, []);
@@ -108,7 +108,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerEntities(array $value)
+    public function registerEntities(array $value): self
     {
         $this->entities = $this->entities->merge($value);
 
@@ -120,7 +120,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerFields(array $value)
+    public function registerFields(array $value): self
     {
         $this->fields = $this->fields->merge($value);
 
@@ -130,7 +130,7 @@ class Dashboard
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getFields()
+    public function getFields(): Collection
     {
         return $this->fields;
     }
@@ -140,7 +140,7 @@ class Dashboard
      *
      * @return $this
      */
-    public function registerResource(array $value)
+    public function registerResource(array $value): self
     {
         $this->resources = $this->resources->merge($value);
 
@@ -170,7 +170,7 @@ class Dashboard
     {
         $this->entities->transform(function ($value) {
             if (! is_object($value)) {
-                $value = new $value();
+                $value = new $value;
             }
 
             return $value;
@@ -214,7 +214,7 @@ class Dashboard
      * @param string $key
      * @return $this
      */
-    public function removePermission(string $key)
+    public function removePermission(string $key): self
     {
         $this->permission->get('removed')->push($key);
 
@@ -227,7 +227,7 @@ class Dashboard
      * @param  array  $options
      * @return void
      */
-    public static function configure(array $options)
+    public static function configure(array $options): void
     {
         static::$options = $options;
     }
@@ -251,7 +251,7 @@ class Dashboard
      * @param  null|string  $default
      * @return string
      */
-    public static function model(string $key, string $default = null)
+    public static function model(string $key, string $default = null): string
     {
         return array_get(static::$options, 'models.'.$key, $default ?? $key);
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Exception;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +29,7 @@ class MediaController extends Controller
     /**
      * @var \Illuminate\Config\Repository|mixed|string
      */
-    private $disk = 'public';
+    private $disk;
 
     /**
      * MediaController constructor.
@@ -50,7 +50,7 @@ class MediaController extends Controller
      */
     public function index($path = DIRECTORY_SEPARATOR)
     {
-        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path.DIRECTORY_SEPARATOR : $path;
+        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path . DIRECTORY_SEPARATOR : $path ;
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media.index', [
@@ -173,7 +173,7 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
         $fileFolder = "{$location}/{$fileFolder}";
 
-        if ($type == 'folder') {
+        if ($type === 'folder') {
             if (! $this->filesystem->deleteDirectory($fileFolder)) {
                 $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
@@ -342,7 +342,7 @@ class MediaController extends Controller
                 if ($bkey === $key) {
                     break;
                 }
-                $path = $path.$delimetr.$breadcrumb;
+                $path = $path . $delimetr . $breadcrumb;
             }
 
             return [

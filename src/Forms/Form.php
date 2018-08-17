@@ -17,7 +17,7 @@ abstract class Form
     /**
      * @var string
      */
-    public $name;
+    public  $name;
 
     /**
      * @var array
@@ -48,7 +48,7 @@ abstract class Form
      */
     public function __construct(Request $request = null)
     {
-        $this->model = $this->model ? new $this->model() : null;
+        $this->model = $this->model ? new $this->model : null;
         $this->request = $request ?: request();
     }
 

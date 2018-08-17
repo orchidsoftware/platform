@@ -46,9 +46,9 @@ class AccessMiddleware
         if ($this->auth->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->route('platform.login');
             }
+
+            return redirect()->route('platform.login');
         }
 
         if ($this->auth->user()->hasAccess('platform.index')) {

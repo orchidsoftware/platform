@@ -31,7 +31,7 @@ class Alert
      *
      * @return Alert
      */
-    public function info($message)
+    public function info($message): Alert
     {
         $this->message($message, 'info');
 
@@ -46,7 +46,7 @@ class Alert
      *
      * @return Alert
      */
-    public function message($message, $level = 'info')
+    public function message($message, $level = 'info'): Alert
     {
         $this->session->flash('flash_notification.message', $message);
         $this->session->flash('flash_notification.level', $level);
@@ -61,7 +61,7 @@ class Alert
      *
      * @return Alert
      */
-    public function success($message)
+    public function success($message): Alert
     {
         $this->message($message, 'success');
 
@@ -75,7 +75,7 @@ class Alert
      *
      * @return Alert
      */
-    public function error($message)
+    public function error($message): Alert
     {
         $this->message($message, 'danger');
 
@@ -89,7 +89,7 @@ class Alert
      *
      * @return Alert
      */
-    public function warning($message)
+    public function warning($message): Alert
     {
         $this->message($message, 'warning');
 

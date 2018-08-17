@@ -15,17 +15,6 @@ class CategoryListLayout extends Table
     public $data = 'category';
 
     /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-        ];
-    }
-
-    /**
      * @return array
      */
     public function fields() : array

@@ -47,15 +47,6 @@ class UploadField extends Field
     public $view = 'platform::fields.upload';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Attributes available for a particular tag.
      *
      * @var array

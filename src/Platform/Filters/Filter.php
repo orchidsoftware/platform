@@ -17,7 +17,7 @@ abstract class Filter
     /**
      * @var null
      */
-    public $parameters = null;
+    public $parameters;
 
     /**
      * @var bool
@@ -41,7 +41,7 @@ abstract class Filter
     /**
      * @var null
      */
-    public $entity = null;
+    public $entity;
 
     /**
      * Filter constructor.

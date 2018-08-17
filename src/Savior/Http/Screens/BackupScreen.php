@@ -86,7 +86,7 @@ class BackupScreen extends Screen
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function runBackup()
+    public function runBackup(): \Illuminate\Http\RedirectResponse
     {
         $queue = config('queue.default');
 
@@ -146,6 +146,6 @@ class BackupScreen extends Screen
         $base = log($size) / log(1024);
         $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
-        return round(pow(1024, $base - floor($base)), $precision).$suffixes[floor($base)];
+        return round(1024 ** ($base - floor($base)), $precision).$suffixes[floor($base)];
     }
 }

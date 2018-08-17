@@ -8,6 +8,7 @@ use Orchid\Platform\Dashboard;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Orchid\Platform\Models\User;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -93,10 +94,11 @@ class Attachment extends Model
      * Get the contents of a file.
      *
      * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function read() : string
     {
-        return Storage::disk(static::getAttribute('disk'))->get(static::physicalPath());
+        return Storage::disk($this->getAttribute('disk'))->get($this->physicalPath());
     }
 
     /**
@@ -118,6 +120,7 @@ class Attachment extends Model
 
     /**
      * @return bool|null
+     * @throws \Exception
      */
     public function delete()
     {
@@ -142,16 +145,16 @@ class Attachment extends Model
     /**
      * Physical removal of all copies of a file.
      *
-     * @param self   $attachment
+     * @param Attachment   $attachment
      * @param string $storageName
      */
-    private function removePhysicalFile(self $attachment, $storageName)
+    private function removePhysicalFile(Attachment $attachment, string $storageName)
     {
         $storage = Storage::disk($storageName);
 
         $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
 
-        if (substr($this->mime, 0, 5) !== 'image') {
+        if (strpos($this->mime, 'image') !== 0) {
             return;
         }
 

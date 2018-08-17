@@ -48,7 +48,7 @@ class PostController extends Controller
         return view('platform::container.posts.create', [
             'type'    => $type,
             'locales' => collect($type->locale()),
-            'post'    => $type->create(new Post()),
+            'post'    => $type->create(new Post),
         ]);
     }
 
@@ -67,7 +67,7 @@ class PostController extends Controller
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => $request->user()->id,
-            'publish_at' => (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish')),
+            'publish_at' => is_null($request->get('publish')) ? null : Carbon::parse($request->get('publish')),
             'options'    => $post->getOptions(),
         ]);
 
@@ -124,7 +124,7 @@ class PostController extends Controller
         $post->fill($request->except('slug'));
         $post->user_id = $request->user()->id;
 
-        $post->publish_at = (is_null($request->get('publish'))) ? null : Carbon::parse($request->get('publish'));
+        $post->publish_at = is_null($request->get('publish')) ? null : Carbon::parse($request->get('publish'));
         $post->options = $post->getOptions();
 
         if ($request->filled('slug')) {

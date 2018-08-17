@@ -21,15 +21,6 @@ class CodeField extends Field
     public $view = 'platform::fields.code';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

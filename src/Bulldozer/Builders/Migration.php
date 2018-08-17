@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Artisan;
  */
 class Migration
 {
-    const TYPES = [
+    public const TYPES = [
         1  => 'bigIncrements',
         2  => 'bigInteger',
         3  => 'binary',

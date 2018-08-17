@@ -17,7 +17,8 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
-        $fields[] = Field::tag('input')
+        return [
+            Field::tag('input')
                 ->type('text')
                 ->name('category.content.name')
                 ->modifyValue(function () {
@@ -27,16 +28,16 @@ class CategoryEditLayout extends Rows
                 ->require()
                 ->title(trans('platform::systems/category.fields.name_title'))
                 ->placeholder(trans('platform::systems/category.fields.name_title'))
-                ->help(trans('platform::systems/category.fields.name_help'));
+                ->help(trans('platform::systems/category.fields.name_help')),
 
-        $fields[] = Field::tag('input')
+            Field::tag('input')
                 ->type('text')
                 ->name('category.term.slug')
                 ->max(255)
                 ->require()
-                ->title(trans('platform::systems/category.slug'));
+                ->title(trans('platform::systems/category.slug')),
 
-        $fields[] = Field::tag('select')
+            Field::tag('select')
                 ->options(function () {
                     return $this->query
                         ->getContent('catselect');
@@ -49,15 +50,14 @@ class CategoryEditLayout extends Rows
                 ->class('select2')
                 ->name('category.parent_id')
                 ->title(trans('platform::systems/category.parent'))
-                ->placeholder(trans('platform::systems/category.parent'));
+                ->placeholder(trans('platform::systems/category.parent')),
 
-        $fields[] = Field::tag('wysiwyg')
+            Field::tag('wysiwyg')
                 ->name('category.content.body')
                 ->modifyValue(function () {
                     return $this->query->getContent('category')->term->getContent('body');
                 })
-                ->title(trans('platform::systems/category.descriptions'));
-
-        return $fields;
+                ->title(trans('platform::systems/category.descriptions')),
+        ];
     }
 }

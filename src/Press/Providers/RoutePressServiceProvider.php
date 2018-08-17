@@ -51,9 +51,8 @@ class RoutePressServiceProvider extends ServiceProvider
 
         Route::bind('type', function ($value) {
             $post = Dashboard::modelClass(Post::class);
-            $type = $post->getEntity($value)->getEntityObject();
 
-            return $type;
+            return $post->getEntity($value)->getEntityObject();
         });
 
         Route::bind('page', function ($value) {

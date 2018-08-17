@@ -79,7 +79,7 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function executeCommand(string $command, $parameters = [])
+    private function executeCommand(string $command, array $parameters = [])
     {
         if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();

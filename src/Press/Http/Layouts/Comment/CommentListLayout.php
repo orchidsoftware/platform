@@ -15,17 +15,6 @@ class CommentListLayout extends Table
     public $data = 'comment';
 
     /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters() : array
-    {
-        return [
-        ];
-    }
-
-    /**
      * @return array
      */
     public function fields() : array
@@ -36,9 +25,9 @@ class CommentListLayout extends Table
                 ->setRender(function ($comment) {
                     if ($comment->approved) {
                         return '<i class="icon-check mx-3"></i>';
-                    } else {
-                        return '<i class="icon-close mx-3"></i>';
                     }
+
+                    return '<i class="icon-close mx-3"></i>';
                 }),
             TD::name('content')
                 ->title(trans('platform::systems/comment.content'))
@@ -54,9 +43,9 @@ class CommentListLayout extends Table
                                     $comment->post->type,
                                     $comment->post->id,
                         ]).'">'.trans('platform::systems/comment.go').'</a>';
-                    } else {
-                        return trans('platform::systems/comment.delete');
                     }
+
+                    return trans('platform::systems/comment.delete');
                 }),
             TD::name('user_id')
                 ->title(trans('platform::systems/comment.user'))

@@ -47,15 +47,6 @@ class SimpleMDEField extends Field
     public $view = 'platform::fields.simplemde';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Attributes available for a particular tag.
      *
      * @var array

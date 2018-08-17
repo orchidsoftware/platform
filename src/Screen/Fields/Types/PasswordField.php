@@ -45,15 +45,6 @@ class PasswordField extends Field
     public $view = 'platform::fields.password';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

@@ -18,7 +18,7 @@ class Layouts
     /**
      * @var null
      */
-    public $active = null;
+    public $active;
 
     /**
      * @var array
@@ -77,7 +77,7 @@ class Layouts
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new static();
+        $new = new static;
         $new->active = $name;
 
         return call_user_func_array([$new, 'setLayouts'], $arguments);
@@ -130,7 +130,7 @@ class Layouts
 
             foreach ($layouts as $layout) {
                 if (! is_object($layout)) {
-                    $layout = new $layout();
+                    $layout = new $layout;
                 }
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
@@ -185,7 +185,7 @@ class Layouts
      */
     public static function view(string $view)
     {
-        $new = new static();
+        $new = new static;
         $new->active = 'view';
         $new->templates['view'] = $view;
         $new->slug = sha1(serialize($new));

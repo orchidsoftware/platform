@@ -55,7 +55,7 @@ class Comment extends Model
      */
     public static function findByPostId($postId)
     {
-        $instance = new static();
+        $instance = new static;
 
         return $instance->where('post_id', $postId)->get();
     }

@@ -17,13 +17,4 @@ class PlaceField extends Field
      * @var string
      */
     public $view = 'platform::fields.place';
-
-    /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
 }

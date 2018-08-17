@@ -17,13 +17,4 @@ class LabelField extends Field
      * @var string
      */
     public $view = 'platform::fields.label';
-
-    /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
 }

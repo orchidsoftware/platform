@@ -170,10 +170,10 @@ class Field implements FieldContract
         }
 
         if (method_exists($this, $name)) {
-            call_user_func_array([$this, $name], [$arguments]);
+            call_user_func([$this, $name], $arguments);
         }
 
-        return call_user_func_array([$this, 'set'], [$name, array_shift($arguments) ?? true]);
+        return call_user_func([$this, 'set'], $name, array_shift($arguments) ?? true);
     }
 
     /**
@@ -257,7 +257,7 @@ class Field implements FieldContract
         $lang = $this->get('lang');
 
         foreach ($this->attributes as $key => $attribute) {
-            if (in_array($key, $this->translations)) {
+            if (in_array($key, $this->translations, true)) {
                 $this->set($key, trans($attribute, [], $lang));
             }
         }
@@ -282,7 +282,7 @@ class Field implements FieldContract
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
                 $key = title_case($key);
                 $signature = 'modify'.$key;
-                if (in_array($signature, $modifiers)) {
+                if (in_array($signature, $modifiers, true)) {
                     $this->attributes[$key] = $this->$signature($item);
                 }
             });
@@ -293,7 +293,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         $lang = $this->get('lang');
         $slug = $this->getSlug();
@@ -402,17 +402,11 @@ class Field implements FieldContract
      */
     public function modifyValue($value)
     {
-        $old = $this->getOldValue();
-
-        if (! is_null($old)) {
-            $this->attributes['value'] = $old;
-        }
+        $this->attributes['value'] = $this->getOldValue()?: $value;
 
         if ($value instanceof \Closure) {
             $this->attributes['value'] = $value($this->attributes);
         }
-
-        $this->attributes['value'] = $value;
 
         return $this;
     }
@@ -424,6 +418,6 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        return call_user_func_array($group, []);
+        return call_user_func($group);
     }
 }

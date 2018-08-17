@@ -97,7 +97,7 @@ abstract class Screen
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            if (is_object($layout) && property_exists($layout, 'slug') && $layout->slug == $slugLayouts) {
+            if (property_exists($layout, 'slug') && $layout->slug == $slugLayouts) {
                 return $layout->build($post, true);
             }
         }
@@ -166,7 +166,7 @@ abstract class Screen
         $parameters = $class->getMethod($method)->getParameters();
 
         foreach ($parameters as $key => $parameter) {
-            if (is_null($parameter->getClass()) || $this->checkClassInArray($key)) {
+            if ($this->checkClassInArray($key) || is_null($parameter->getClass())) {
                 continue;
             }
 
@@ -179,7 +179,7 @@ abstract class Screen
      *
      * @return bool
      */
-    private function checkClassInArray($class)
+    private function checkClassInArray($class): bool
     {
         foreach ($this->arguments as $value) {
             if (is_object($value) && get_class($value) == $class) {
@@ -193,7 +193,7 @@ abstract class Screen
     /**
      * @return bool
      */
-    private function checkAccess()
+    private function checkAccess(): bool
     {
         if (is_null($this->permission)) {
             return true;

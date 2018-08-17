@@ -24,7 +24,7 @@ abstract class Many
     /**
      * @var null
      */
-    public $slugFields = null;
+    public $slugFields;
 
     /**
      * Registered fields to display in the table.
@@ -128,7 +128,7 @@ abstract class Many
                 ->title(trans('platform::post/base.time_of_publication')),
 
             Field::tag('select')
-                ->options(static::status())
+                ->options($this->status())
                 ->name('status')
                 ->title(trans('platform::post/base.status')),
         ];

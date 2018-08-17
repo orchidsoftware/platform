@@ -136,8 +136,7 @@ abstract class FormGroup
     /**
      * Action save for sub form.
      *
-     * @param array ...$arg
-     * @param \Illuminate\Http\Request $arg
+     * @param mixed ...$arg
      */
     public function save(...$arg)
     {

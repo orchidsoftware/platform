@@ -21,11 +21,6 @@ class SearchFilter extends Filter
     /**
      * @var bool
      */
-    public $display = true;
-
-    /**
-     * @var bool
-     */
     public $dashboard = true;
 
     /**

@@ -93,7 +93,7 @@ class UserList extends Screen
         $id = array_shift($id);
         // переписать эту херню
 
-        $user = is_null($id) ? new User() : User::findOrFail($id);
+        $user = is_null($id) ? new User : User::findOrFail($id);
 
         return [
             'user' => $user,

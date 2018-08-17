@@ -38,7 +38,7 @@ class RoleEdit extends Screen
      */
     public function query($role = null): array
     {
-        $role = is_null($role) ? new Role() : $role;
+        $role = is_null($role) ? new Role : $role;
 
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()

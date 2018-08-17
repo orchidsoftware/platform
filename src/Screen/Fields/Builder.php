@@ -64,7 +64,7 @@ class Builder
      *
      * @return $this
      */
-    public function setLanguage(string $language)
+    public function setLanguage(string $language): self
     {
         $this->language = $language;
 
@@ -76,7 +76,7 @@ class Builder
      *
      * @return $this
      */
-    public function setPrefix(string $prefix)
+    public function setPrefix(string $prefix): self
     {
         $this->prefix = $prefix;
 
@@ -142,7 +142,7 @@ class Builder
     /**
      * @param $field
      *
-     * @return string
+     * @return string|null
      */
     private function buildPrefix($field)
     {
@@ -219,7 +219,7 @@ class Builder
             return $value;
         }
 
-        if (! is_null($value) && $value instanceof \Closure) {
+        if ($value instanceof \Closure) {
             return $value($data, $this->data);
         }
 

@@ -31,11 +31,9 @@ class ResetPassword extends Notification
     /**
      * Get the notification's channels.
      *
-     * @param mixed $notifiable
-     *
      * @return array|string
      */
-    public function via($notifiable)
+    public function via()
     {
         return ['mail'];
     }
@@ -43,11 +41,9 @@ class ResetPassword extends Notification
     /**
      * Build the mail representation of the notification.
      *
-     * @param mixed $notifiable
-     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail()
     {
         return (new MailMessage())->line('You are receiving this email because we received a password reset request for your account.')->action('Reset Password',
             url(config('app.url').route('platform.password.reset', $this->token,

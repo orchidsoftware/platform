@@ -75,7 +75,7 @@ class TD
      *
      * @return TD
      */
-    public static function set(string $name, string $title)
+    public static function set(string $name, string $title): TD
     {
         $td = new static($name);
         $td->column = $name;
@@ -91,7 +91,7 @@ class TD
      *
      * @return TD
      */
-    public static function name(string $name)
+    public static function name(string $name): TD
     {
         return new static($name);
     }
@@ -101,9 +101,9 @@ class TD
      *
      * @param string $title
      *
-     * @return $this
+     * @return TD
      */
-    public function title(string $title)
+    public function title(string $title): TD
     {
         $this->title = $title;
 
@@ -113,9 +113,9 @@ class TD
     /**
      * @param string $width
      *
-     * @return $this
+     * @return TD
      */
-    public function width(string $width)
+    public function width(string $width): TD
     {
         $this->width = $width;
 
@@ -125,9 +125,9 @@ class TD
     /**
      * Set current columns is multi language.
      *
-     * @return $this
+     * @return TD
      */
-    public function locale()
+    public function locale(): TD
     {
         $this->locale = true;
 
@@ -137,15 +137,15 @@ class TD
     /**
      * @param string|null $column
      *
-     * @return $this
+     * @return TD
      */
-    public function column(string $column = null)
+    public function column(string $column = null): TD
     {
         if (! is_null($column)) {
             $this->column = $column;
         }
 
-        if (! is_null($column) && $this->locale) {
+        if ($this->locale && ! is_null($column)) {
             $locale = '.'.app()->getLocale().'.';
             $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
         }
@@ -156,9 +156,9 @@ class TD
     /**
      * @param string $filter
      *
-     * @return $this
+     * @return TD
      */
-    public function filter(string $filter)
+    public function filter(string $filter): TD
     {
         $this->filter = $filter;
 
@@ -166,11 +166,13 @@ class TD
     }
 
     /**
-     * @return $this
+     * @param bool $sort
+     *
+     * @return \Orchid\Screen\Fields\TD
      */
-    public function sort()
+    public function sort(bool $sort = true): TD
     {
-        $this->sort = true;
+        $this->sort = $sort;
 
         return $this;
     }
@@ -190,7 +192,7 @@ class TD
      *
      * @return TD
      */
-    public function linkPost(string $text = null)
+    public function linkPost(string $text = null): TD
     {
         return $this->link('platform.posts.type.edit', ['type', 'slug'], $text);
     }
@@ -239,7 +241,7 @@ class TD
      *
      * @return $this
      */
-    public function setRender(Closure $closure)
+    public function setRender(Closure $closure): self
     {
         $this->render = $closure;
 
@@ -258,10 +260,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
-
-            if (! is_array($options)) {
-                $options = [$options];
-            }
+            $options = is_array($options) ? $options : [$options];
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -272,9 +271,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (! is_null($text)) {
-                $text = $datum->getContent($text);
-            }
+            $text = is_null($text) ? $text : $datum->getContent($text);
 
             return view('platform::partials.td.async', [
                 'modal'      => $modal,
@@ -293,7 +290,7 @@ class TD
      *
      * @return $this
      */
-    public function align(string $align)
+    public function align(string $align): self
     {
         $this->align = $align;
 

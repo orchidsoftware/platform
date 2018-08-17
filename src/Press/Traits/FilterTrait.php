@@ -15,7 +15,7 @@ trait FilterTrait
      *
      * @return Builder
      */
-    public function scopeFiltersApply(Builder $query, $filters = []) : Builder
+    public function scopeFiltersApply(Builder $query, array $filters = []) : Builder
     {
         foreach ($filters as $filter) {
             if (! is_object($filter)) {

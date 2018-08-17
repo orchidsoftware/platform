@@ -33,15 +33,6 @@ class TextAreaField extends Field
     public $view = 'platform::fields.textarea';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

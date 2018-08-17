@@ -38,7 +38,7 @@ class CategoryDescForm extends Form
         $this->name = trans('platform::systems/category.display');
 
         $category = config('press.category');
-        $this->entity = (new $category());
+        $this->entity = new $category;
         parent::__construct($request);
     }
 
@@ -80,7 +80,7 @@ class CategoryDescForm extends Form
     public function persist(Request $request = null, Taxonomy $termTaxonomy = null)
     {
         if (is_null($termTaxonomy)) {
-            $termTaxonomy = new $this->model();
+            $termTaxonomy = new $this->model;
         }
 
         $termTaxonomy->term->fill($request->all());

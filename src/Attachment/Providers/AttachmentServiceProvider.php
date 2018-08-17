@@ -25,7 +25,7 @@ class AttachmentServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerDatabase()
+    protected function registerDatabase(): self
     {
         $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/attachment'));
 
@@ -37,7 +37,7 @@ class AttachmentServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerConfig()
+    protected function registerConfig(): self
     {
         $this->publishes([
             realpath(PLATFORM_PATH.'/config/attachment.php') => config_path('attachment.php'),

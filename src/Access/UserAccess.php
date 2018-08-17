@@ -16,7 +16,7 @@ trait UserAccess
     /**
      * @var null
      */
-    private $cachePermissions = null;
+    private $cachePermissions;
 
     /**
      * @return \Illuminate\Database\Eloquent\Collection
@@ -45,7 +45,7 @@ trait UserAccess
             if ($role instanceof RoleInterface) {
                 return $instance->getRoleId() === $role->getRoleId();
             }
-            if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
+            if ($instance->getRoleId() === $role || $instance->getRoleSlug() === $role) {
                 return true;
             }
 
@@ -63,7 +63,7 @@ trait UserAccess
      */
     public function hasAccess($checkPermissions, $cache = true) : bool
     {
-        if (is_null($this->cachePermissions) || ! $cache) {
+        if ( ! $cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()->pluck('permissions')->prepend($this->permissions);
         }
 

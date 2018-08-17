@@ -48,15 +48,6 @@ class UTMField extends Field
     public $view = 'platform::fields.utm';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

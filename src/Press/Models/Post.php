@@ -49,7 +49,7 @@ class Post extends Model
      *
      * @var \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      */
-    protected $entity = null;
+    protected $entity;
 
     /**
      * @var array
@@ -128,7 +128,7 @@ class Post extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
@@ -144,7 +144,7 @@ class Post extends Model
      *
      * @throws \Throwable| TypeException
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         $entity = $this->getEntityObject();
 
@@ -179,7 +179,7 @@ class Post extends Model
      *
      * @throws \Throwable|TypeException
      */
-    public function getEntity($slug)
+    public function getEntity($slug): self
     {
         $this->entity = Dashboard::getEntities()->where('slug', $slug)->first();
 
@@ -297,7 +297,7 @@ class Post extends Model
      */
     public function hasTerm($taxonomy, $term) : bool
     {
-        return isset($this->terms[$taxonomy]) && isset($this->terms[$taxonomy][$term]);
+        return isset($this->terms[$taxonomy][$term]);
     }
 
     /**
@@ -309,7 +309,7 @@ class Post extends Model
     {
         $taxonomies = $this->taxonomies;
         foreach ($taxonomies as $taxonomy) {
-            $taxonomyName = $taxonomy['taxonomy'] == 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
+            $taxonomyName = $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
             $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term['name'];
         }
 

@@ -40,10 +40,10 @@ if (! function_exists('generate_form')) {
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @param array       $fields
-     * @param array       $data
-     * @param string|null $language
-     * @param string|null $prefix
+     * @param array                           $fields
+     * @param array|\Orchid\Screen\Repository $data
+     * @param string|null                     $language
+     * @param string|null                     $prefix
      *
      * @throws \Throwable
      *
@@ -69,7 +69,7 @@ if (! function_exists('dashboard_domain')) {
     function dashboard_domain($default = 'localhost')
     {
         try {
-            return isset(parse_url(config('app.url'))['host']) ? parse_url(config('app.url'))['host'] : $default;
+            return parse_url(config('app.url'))['host'] ?? $default;
         } catch (\TypeError $exception) {
             return 'localhost';
         }
@@ -85,7 +85,7 @@ if (! function_exists('is_sort')) {
      */
     function is_sort($property = null)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter;
 
         return $filter->isSort($property);
     }
@@ -100,7 +100,7 @@ if (! function_exists('get_sort')) {
      */
     function get_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter;
 
         return $filter->getSort($property);
     }
@@ -115,7 +115,7 @@ if (! function_exists('get_filter')) {
      */
     function get_filter($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter;
 
         return $filter->getFilter($property);
     }
@@ -130,7 +130,7 @@ if (! function_exists('revert_sort')) {
      */
     function revert_sort($property)
     {
-        $filter = new \Orchid\Platform\Filters\HttpFilter();
+        $filter = new \Orchid\Platform\Filters\HttpFilter;
 
         return $filter->revertSort($property);
     }

@@ -21,7 +21,7 @@ class BootModelScreen extends Screen
     /**
      * Key for cache.
      */
-    const MODELS = 'platform::boot.models';
+    public const MODELS = 'platform::boot.models';
 
     /**
      * Display header name.
@@ -54,6 +54,7 @@ class BootModelScreen extends Screen
 
     /**
      * BootModelScreen constructor.
+     * @throws \Exception
      */
     public function __construct()
     {
@@ -132,7 +133,7 @@ class BootModelScreen extends Screen
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function createModel(Request $request)
+    public function createModel(Request $request): \Illuminate\Http\RedirectResponse
     {
         $name = studly_case($request->get('name'));
 
@@ -157,7 +158,7 @@ class BootModelScreen extends Screen
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function delete(string $model)
+    public function delete(string $model): \Illuminate\Http\RedirectResponse
     {
         $this->models = $this->models->except($model);
         cache()->forever(static::MODELS, $this->models);

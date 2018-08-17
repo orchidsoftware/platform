@@ -31,7 +31,7 @@ class Widget implements WidgetContractInterface
     {
         $class = config('widget.widgets.'.$key);
 
-        return new $class();
+        return new $class;
     }
 
     /**

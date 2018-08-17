@@ -15,7 +15,7 @@ use Zend\Code\Generator\PropertyGenerator;
  */
 class Model extends Builder
 {
-    const RELATIONS = [
+    public const RELATIONS = [
         'hasOne'         => 'One to One (hasOne)',
         'hasMany'        => 'One to Many (hasMany)',
         'belongsToMany'  => 'Many to Many (belongsToMany)',
@@ -27,7 +27,7 @@ class Model extends Builder
     /**
      * @var array
      */
-    protected $constants = [
+    private $constants = [
         'CREATED_AT' => 'created_at',
         'UPDATED_AT' => 'updated_at',
     ];
@@ -94,10 +94,10 @@ class Model extends Builder
             $tag,
         ]);
 
-        $property = new PropertyGenerator($property, $value, PropertyGenerator::FLAG_PROTECTED);
-        $property->setDocBlock($docBlock);
+        $propertyObject = new PropertyGenerator($property, $value, PropertyGenerator::FLAG_PROTECTED);
+        $propertyObject->setDocBlock($docBlock);
 
-        $this->class->addPropertyFromGenerator($property);
+        $this->class->addPropertyFromGenerator($propertyObject);
 
         return $this;
     }

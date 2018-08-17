@@ -47,15 +47,6 @@ class TagsField extends Field
     public $view = 'platform::fields.tags';
 
     /**
-     * Required Attributes.
-     *
-     * @var array
-     */
-    public $required = [
-        'name',
-    ];
-
-    /**
      * Default attributes value.
      *
      * @var array

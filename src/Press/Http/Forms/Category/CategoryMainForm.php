@@ -73,7 +73,7 @@ class CategoryMainForm extends Form
     public function persist(Request $request = null, Taxonomy $termTaxonomy = null)
     {
         if (is_null($termTaxonomy)) {
-            $termTaxonomy = new $this->model();
+            $termTaxonomy = new $this->model;
         }
 
         $term = ($request->get('term_id') == 0) ? Term::create($request->all()) : Term::find($request->get('term_id'));
