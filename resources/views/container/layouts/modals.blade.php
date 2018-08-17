@@ -1,5 +1,4 @@
 @push('modals-container')
-
     @foreach($manyForms as $key => $modal)
 
         <div class="modal fade in"
@@ -12,7 +11,7 @@
              data-screen--modal-method ="{{$templateAsyncMethod}}"
              data-screen--modal-url="{{$templateAsyncRoute?route($templateAsyncRoute):url()->current()}}"
         >
-            <div class="modal-dialog" role="document" id="screen-modal-type-{{$key}}">
+            <div class="modal-dialog {{$compose['class'] ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
                 <form class="modal-content" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -28,7 +27,7 @@
 
                         @csrf
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer">git
                         <button type="submit" id="submit-modal-{{$key}}"
                                 class="btn btn-primary">{{trans('platform::common.apply')}}</button>
                     </div>

@@ -4,13 +4,41 @@ var help = (function () {
 
   var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
+  var noop = function () {
+    var x = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+      x[_i] = arguments[_i];
+    }
+  };
+  var noarg = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return f();
+    };
+  };
+  var compose = function (fa, fb) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return fa(fb.apply(null, arguments));
+    };
+  };
   var constant = function (value) {
     return function () {
       return value;
     };
   };
-
-
+  var identity = function (x) {
+    return x;
+  };
+  var tripleEquals = function (a, b) {
+    return a === b;
+  };
   var curry = function (f) {
     var x = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -40,14 +68,37 @@ var help = (function () {
       return !f.apply(null, arguments);
     };
   };
-
-
-
+  var die = function (msg) {
+    return function () {
+      throw new Error(msg);
+    };
+  };
+  var apply = function (f) {
+    return f();
+  };
+  var call = function (f) {
+    f();
+  };
   var never = constant(false);
   var always = constant(true);
+  var $_e9igd3b4jh8lz02c = {
+    noop: noop,
+    noarg: noarg,
+    compose: compose,
+    constant: constant,
+    identity: identity,
+    tripleEquals: tripleEquals,
+    curry: curry,
+    not: not,
+    die: die,
+    apply: apply,
+    call: call,
+    never: never,
+    always: always
+  };
 
-  var never$1 = never;
-  var always$1 = always;
+  var never$1 = $_e9igd3b4jh8lz02c.never;
+  var always$1 = $_e9igd3b4jh8lz02c.always;
   var none = function () {
     return NONE;
   };
@@ -55,19 +106,13 @@ var help = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call$$1 = function (thunk) {
+    var call = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop$$1 = function () {
-    };
-    var nul = function () {
-      return null;
-    };
-    var undef = function () {
-      return undefined;
+    var noop = function () {
     };
     var me = {
       fold: function (n, s) {
@@ -77,17 +122,15 @@ var help = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call$$1,
+      getOrThunk: call,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
-      getOrNull: nul,
-      getOrUndefined: undef,
       or: id,
-      orThunk: call$$1,
+      orThunk: call,
       map: none,
       ap: none,
-      each: noop$$1,
+      each: noop,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -98,7 +141,7 @@ var help = (function () {
       toArray: function () {
         return [];
       },
-      toString: constant('none()')
+      toString: $_e9igd3b4jh8lz02c.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -129,8 +172,6 @@ var help = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
-      getOrNull: constant_a,
-      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -190,13 +231,16 @@ var help = (function () {
       return typeOf(value) === type;
     };
   };
-
-
-
-
-
-
-  var isFunction = isType('function');
+  var $_6peqe3b5jh8lz02f = {
+    isString: isType('string'),
+    isObject: isType('object'),
+    isArray: isType('array'),
+    isNull: isType('null'),
+    isBoolean: isType('boolean'),
+    isUndefined: isType('undefined'),
+    isFunction: isType('function'),
+    isNumber: isType('number')
+  };
 
   var rawIndexOf = function () {
     var pIndexOf = Array.prototype.indexOf;
@@ -208,13 +252,31 @@ var help = (function () {
     };
     return pIndexOf === undefined ? slowIndex : fastIndex;
   }();
-
+  var indexOf = function (xs, x) {
+    var r = rawIndexOf(xs, x);
+    return r === -1 ? Option.none() : Option.some(r);
+  };
   var contains = function (xs, x) {
     return rawIndexOf(xs, x) > -1;
   };
-
-
-
+  var exists = function (xs, pred) {
+    return findIndex(xs, pred).isSome();
+  };
+  var range = function (num, f) {
+    var r = [];
+    for (var i = 0; i < num; i++) {
+      r.push(f(i));
+    }
+    return r;
+  };
+  var chunk = function (array, size) {
+    var r = [];
+    for (var i = 0; i < array.length; i += size) {
+      var s = array.slice(i, i + size);
+      r.push(s);
+    }
+    return r;
+  };
   var map = function (xs, f) {
     var len = xs.length;
     var r = new Array(len);
@@ -224,9 +286,31 @@ var help = (function () {
     }
     return r;
   };
-
-
-
+  var each = function (xs, f) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      f(x, i, xs);
+    }
+  };
+  var eachr = function (xs, f) {
+    for (var i = xs.length - 1; i >= 0; i--) {
+      var x = xs[i];
+      f(x, i, xs);
+    }
+  };
+  var partition = function (xs, pred) {
+    var pass = [];
+    var fail = [];
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      var arr = pred(x, i, xs) ? pass : fail;
+      arr.push(x);
+    }
+    return {
+      pass: pass,
+      fail: fail
+    };
+  };
   var filter = function (xs, pred) {
     var r = [];
     for (var i = 0, len = xs.length; i < len; i++) {
@@ -237,9 +321,41 @@ var help = (function () {
     }
     return r;
   };
-
-
-
+  var groupBy = function (xs, f) {
+    if (xs.length === 0) {
+      return [];
+    } else {
+      var wasType = f(xs[0]);
+      var r = [];
+      var group = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        var type = f(x);
+        if (type !== wasType) {
+          r.push(group);
+          group = [];
+        }
+        wasType = type;
+        group.push(x);
+      }
+      if (group.length !== 0) {
+        r.push(group);
+      }
+      return r;
+    }
+  };
+  var foldr = function (xs, f, acc) {
+    eachr(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
+  var foldl = function (xs, f, acc) {
+    each(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
   var find = function (xs, pred) {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
@@ -249,7 +365,15 @@ var help = (function () {
     }
     return Option.none();
   };
-
+  var findIndex = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      if (pred(x, i, xs)) {
+        return Option.some(i);
+      }
+    }
+    return Option.none();
+  };
   var slowIndexOf = function (xs, x) {
     for (var i = 0, len = xs.length; i < len; ++i) {
       if (xs[i] === x) {
@@ -258,20 +382,98 @@ var help = (function () {
     }
     return -1;
   };
-
-
-
-
+  var push = Array.prototype.push;
+  var flatten = function (xs) {
+    var r = [];
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      if (!Array.prototype.isPrototypeOf(xs[i]))
+        throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
+      push.apply(r, xs[i]);
+    }
+    return r;
+  };
+  var bind = function (xs, f) {
+    var output = map(xs, f);
+    return flatten(output);
+  };
+  var forall = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      var x = xs[i];
+      if (pred(x, i, xs) !== true) {
+        return false;
+      }
+    }
+    return true;
+  };
+  var equal = function (a1, a2) {
+    return a1.length === a2.length && forall(a1, function (x, i) {
+      return x === a2[i];
+    });
+  };
   var slice = Array.prototype.slice;
-
-
-
-
-
-
-
-  var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+  var reverse = function (xs) {
+    var r = slice.call(xs, 0);
+    r.reverse();
+    return r;
+  };
+  var difference = function (a1, a2) {
+    return filter(a1, function (x) {
+      return !contains(a2, x);
+    });
+  };
+  var mapToObject = function (xs, f) {
+    var r = {};
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      r[String(x)] = f(x, i);
+    }
+    return r;
+  };
+  var pure = function (x) {
+    return [x];
+  };
+  var sort = function (xs, comparator) {
+    var copy = slice.call(xs, 0);
+    copy.sort(comparator);
+    return copy;
+  };
+  var head = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+  };
+  var from$1 = $_6peqe3b5jh8lz02f.isFunction(Array.from) ? Array.from : function (x) {
     return slice.call(x);
+  };
+  var $_39vm4xb2jh8lz022 = {
+    map: map,
+    each: each,
+    eachr: eachr,
+    partition: partition,
+    filter: filter,
+    groupBy: groupBy,
+    indexOf: indexOf,
+    foldr: foldr,
+    foldl: foldl,
+    find: find,
+    findIndex: findIndex,
+    flatten: flatten,
+    bind: bind,
+    forall: forall,
+    exists: exists,
+    contains: contains,
+    equal: equal,
+    reverse: reverse,
+    chunk: chunk,
+    difference: difference,
+    mapToObject: mapToObject,
+    pure: pure,
+    sort: sort,
+    range: range,
+    head: head,
+    last: last,
+    from: from$1
   };
 
   var global$1 = tinymce.util.Tools.resolve('tinymce.util.I18n');
@@ -370,13 +572,13 @@ var help = (function () {
       action: 'Find (if searchreplace plugin activated)'
     }
   ];
-  var $_ca3by6bmjkmcwofx = { shortcuts: shortcuts };
+  var $_bbc8gcb7jh8lz02j = { shortcuts: shortcuts };
 
   var makeTab = function () {
     var makeAriaLabel = function (shortcut) {
       return 'aria-label="Action: ' + shortcut.action + ', Shortcut: ' + shortcut.shortcut.replace(/Ctrl/g, 'Control') + '"';
     };
-    var shortcutLisString = map($_ca3by6bmjkmcwofx.shortcuts, function (shortcut) {
+    var shortcutLisString = $_39vm4xb2jh8lz022.map($_bbc8gcb7jh8lz02j.shortcuts, function (shortcut) {
       return '<tr data-mce-tabstop="1" tabindex="-1" ' + makeAriaLabel(shortcut) + '>' + '<td>' + global$1.translate(shortcut.action) + '</td>' + '<td>' + shortcut.shortcut + '</td>' + '</tr>';
     }).join('');
     return {
@@ -389,19 +591,201 @@ var help = (function () {
         }]
     };
   };
-  var $_dvk2vcbgjkmcwoet = { makeTab: makeTab };
+  var $_ek7dnlb1jh8lz01t = { makeTab: makeTab };
 
-  var keys = Object.keys;
+  var keys = function () {
+    var fastKeys = Object.keys;
+    var slowKeys = function (o) {
+      var r = [];
+      for (var i in o) {
+        if (o.hasOwnProperty(i)) {
+          r.push(i);
+        }
+      }
+      return r;
+    };
+    return fastKeys === undefined ? slowKeys : fastKeys;
+  }();
+  var each$1 = function (obj, f) {
+    var props = keys(obj);
+    for (var k = 0, len = props.length; k < len; k++) {
+      var i = props[k];
+      var x = obj[i];
+      f(x, i, obj);
+    }
+  };
+  var objectMap = function (obj, f) {
+    return tupleMap(obj, function (x, i, obj) {
+      return {
+        k: i,
+        v: f(x, i, obj)
+      };
+    });
+  };
+  var tupleMap = function (obj, f) {
+    var r = {};
+    each$1(obj, function (x, i) {
+      var tuple = f(x, i, obj);
+      r[tuple.k] = tuple.v;
+    });
+    return r;
+  };
+  var bifilter = function (obj, pred) {
+    var t = {};
+    var f = {};
+    each$1(obj, function (x, i) {
+      var branch = pred(x, i) ? t : f;
+      branch[i] = x;
+    });
+    return {
+      t: t,
+      f: f
+    };
+  };
+  var mapToArray = function (obj, f) {
+    var r = [];
+    each$1(obj, function (value, name) {
+      r.push(f(value, name));
+    });
+    return r;
+  };
+  var find$1 = function (obj, pred) {
+    var props = keys(obj);
+    for (var k = 0, len = props.length; k < len; k++) {
+      var i = props[k];
+      var x = obj[i];
+      if (pred(x, i, obj)) {
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+  };
+  var values = function (obj) {
+    return mapToArray(obj, function (v) {
+      return v;
+    });
+  };
+  var size = function (obj) {
+    return values(obj).length;
+  };
+  var $_268rpbajh8lz02v = {
+    bifilter: bifilter,
+    each: each$1,
+    map: objectMap,
+    mapToArray: mapToArray,
+    tupleMap: tupleMap,
+    find: find$1,
+    keys: keys,
+    values: values,
+    size: size
+  };
 
+  var addToStart = function (str, prefix) {
+    return prefix + str;
+  };
+  var addToEnd = function (str, suffix) {
+    return str + suffix;
+  };
+  var removeFromStart = function (str, numChars) {
+    return str.substring(numChars);
+  };
+  var removeFromEnd = function (str, numChars) {
+    return str.substring(0, str.length - numChars);
+  };
+  var $_fxe4agbcjh8lz033 = {
+    addToStart: addToStart,
+    addToEnd: addToEnd,
+    removeFromStart: removeFromStart,
+    removeFromEnd: removeFromEnd
+  };
+
+  var first = function (str, count) {
+    return str.substr(0, count);
+  };
+  var last$1 = function (str, count) {
+    return str.substr(str.length - count, str.length);
+  };
+  var head$1 = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substr(0, 1));
+  };
+  var tail = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substring(1));
+  };
+  var $_3atz2wbdjh8lz035 = {
+    first: first,
+    last: last$1,
+    head: head$1,
+    tail: tail
+  };
+
+  var checkRange = function (str, substr, start) {
+    if (substr === '')
+      return true;
+    if (str.length < substr.length)
+      return false;
+    var x = str.substr(start, start + substr.length);
+    return x === substr;
+  };
   var supplant = function (str, obj) {
     var isStringOrNumber = function (a) {
       var t = typeof a;
       return t === 'string' || t === 'number';
     };
-    return str.replace(/\$\{([^{}]*)\}/g, function (fullMatch, key) {
-      var value = obj[key];
-      return isStringOrNumber(value) ? value.toString() : fullMatch;
+    return str.replace(/\${([^{}]*)}/g, function (a, b) {
+      var value = obj[b];
+      return isStringOrNumber(value) ? value : a;
     });
+  };
+  var removeLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? $_fxe4agbcjh8lz033.removeFromStart(str, prefix.length) : str;
+  };
+  var removeTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? $_fxe4agbcjh8lz033.removeFromEnd(str, prefix.length) : str;
+  };
+  var ensureLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? str : $_fxe4agbcjh8lz033.addToStart(str, prefix);
+  };
+  var ensureTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? str : $_fxe4agbcjh8lz033.addToEnd(str, prefix);
+  };
+  var contains$1 = function (str, substr) {
+    return str.indexOf(substr) !== -1;
+  };
+  var capitalize = function (str) {
+    return $_3atz2wbdjh8lz035.head(str).bind(function (head) {
+      return $_3atz2wbdjh8lz035.tail(str).map(function (tail) {
+        return head.toUpperCase() + tail;
+      });
+    }).getOr(str);
+  };
+  var startsWith = function (str, prefix) {
+    return checkRange(str, prefix, 0);
+  };
+  var endsWith = function (str, suffix) {
+    return checkRange(str, suffix, str.length - suffix.length);
+  };
+  var trim = function (str) {
+    return str.replace(/^\s+|\s+$/g, '');
+  };
+  var lTrim = function (str) {
+    return str.replace(/^\s+/g, '');
+  };
+  var rTrim = function (str) {
+    return str.replace(/\s+$/g, '');
+  };
+  var $_86un3kbbjh8lz02z = {
+    supplant: supplant,
+    startsWith: startsWith,
+    removeLeading: removeLeading,
+    removeTrailing: removeTrailing,
+    ensureLeading: ensureLeading,
+    ensureTrailing: ensureTrailing,
+    endsWith: endsWith,
+    contains: contains$1,
+    trim: trim,
+    lTrim: lTrim,
+    rTrim: rTrim,
+    capitalize: capitalize
   };
 
   var urls = [
@@ -582,11 +966,11 @@ var help = (function () {
       name: 'Word Count'
     }
   ];
-  var $_dyqrh9btjkmcwogi = { urls: urls };
+  var $_gdjp4ubejh8lz036 = { urls: urls };
 
-  var makeLink = curry(supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
+  var makeLink = $_e9igd3b4jh8lz02c.curry($_86un3kbbjh8lz02z.supplant, '<a href="${url}" target="_blank" rel="noopener">${name}</a>');
   var maybeUrlize = function (editor, key) {
-    return find($_dyqrh9btjkmcwogi.urls, function (x) {
+    return $_39vm4xb2jh8lz022.find($_gdjp4ubejh8lz036.urls, function (x) {
       return x.key === key;
     }).fold(function () {
       var getMetadata = editor.plugins[key].getMetadata;
@@ -599,12 +983,12 @@ var help = (function () {
     });
   };
   var getPluginKeys = function (editor) {
-    var keys$$1 = keys(editor.plugins);
-    return editor.settings.forced_plugins === undefined ? keys$$1 : filter(keys$$1, not(curry(contains, editor.settings.forced_plugins)));
+    var keys = $_268rpbajh8lz02v.keys(editor.plugins);
+    return editor.settings.forced_plugins === undefined ? keys : $_39vm4xb2jh8lz022.filter(keys, $_e9igd3b4jh8lz02c.not($_e9igd3b4jh8lz02c.curry($_39vm4xb2jh8lz022.contains, editor.settings.forced_plugins)));
   };
   var pluginLister = function (editor) {
     var pluginKeys = getPluginKeys(editor);
-    var pluginLis = map(pluginKeys, function (key) {
+    var pluginLis = $_39vm4xb2jh8lz022.map(pluginKeys, function (key) {
       return '<li>' + maybeUrlize(editor, key) + '</li>';
     });
     var count = pluginLis.length;
@@ -642,7 +1026,7 @@ var help = (function () {
       ]
     };
   };
-  var $_4umya5bojkmcwog1 = { makeTab: makeTab$1 };
+  var $_1s6vnjb9jh8lz02m = { makeTab: makeTab$1 };
 
   var global$3 = tinymce.util.Tools.resolve('tinymce.EditorManager');
 
@@ -672,7 +1056,7 @@ var help = (function () {
       }
     ];
   };
-  var $_65igs5bujkmcwogo = { makeRow: makeRow };
+  var $_8ftfzrbfjh8lz038 = { makeRow: makeRow };
 
   var open = function (editor, pluginUrl) {
     return function () {
@@ -681,10 +1065,10 @@ var help = (function () {
         bodyType: 'tabpanel',
         layout: 'flex',
         body: [
-          $_dvk2vcbgjkmcwoet.makeTab(),
-          $_4umya5bojkmcwog1.makeTab(editor)
+          $_ek7dnlb1jh8lz01t.makeTab(),
+          $_1s6vnjb9jh8lz02m.makeTab(editor)
         ],
-        buttons: $_65igs5bujkmcwogo.makeRow(),
+        buttons: $_8ftfzrbfjh8lz038.makeRow(),
         onPostRender: function () {
           var title = this.getEl('title');
           title.innerHTML = '<img src="' + pluginUrl + '/img/logo.png" alt="TinyMCE Logo" style="display: inline-block; width: 200px; height: 50px">';
@@ -692,30 +1076,30 @@ var help = (function () {
       });
     };
   };
-  var $_bqz00lbfjkmcwoes = { open: open };
+  var $_ddpiq1b0jh8lz01s = { open: open };
 
   var register = function (editor, pluginUrl) {
-    editor.addCommand('mceHelp', $_bqz00lbfjkmcwoes.open(editor, pluginUrl));
+    editor.addCommand('mceHelp', $_ddpiq1b0jh8lz01s.open(editor, pluginUrl));
   };
-  var $_rfsc8bejkmcwoeq = { register: register };
+  var $_3xejl8azjh8lz01r = { register: register };
 
   var register$1 = function (editor, pluginUrl) {
     editor.addButton('help', {
       icon: 'help',
-      onclick: $_bqz00lbfjkmcwoes.open(editor, pluginUrl)
+      onclick: $_ddpiq1b0jh8lz01s.open(editor, pluginUrl)
     });
     editor.addMenuItem('help', {
       text: 'Help',
       icon: 'help',
       context: 'help',
-      onclick: $_bqz00lbfjkmcwoes.open(editor, pluginUrl)
+      onclick: $_ddpiq1b0jh8lz01s.open(editor, pluginUrl)
     });
   };
-  var $_aex9i7bwjkmcwogq = { register: register$1 };
+  var $_6lvglcbhjh8lz03a = { register: register$1 };
 
   global.add('help', function (editor, pluginUrl) {
-    $_aex9i7bwjkmcwogq.register(editor, pluginUrl);
-    $_rfsc8bejkmcwoeq.register(editor, pluginUrl);
+    $_6lvglcbhjh8lz03a.register(editor, pluginUrl);
+    $_3xejl8azjh8lz01r.register(editor, pluginUrl);
     editor.shortcuts.add('Alt+0', 'Open help dialog', 'mceHelp');
   });
   function Plugin () {

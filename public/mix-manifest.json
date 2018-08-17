@@ -1,6 +1,6 @@
 {
-    "/js/vendor.js": "/js/vendor.js?id=d32a616e72555d339ad1",
-    "/js/orchid.js": "/js/orchid.js?id=90b3e9265536163869eb",
-    "/css/orchid.css": "/css/orchid.css?id=6ec60bbea3fa594ea0bf",
-    "/js/manifest.js": "/js/manifest.js?id=40dcfff9d09d402daf38"
+    "/js/vendor.js": "/js/vendor.js",
+    "/js/orchid.js": "/js/orchid.js",
+    "/css/orchid.css": "/css/orchid.css",
+    "/js/manifest.js": "/js/manifest.js"
 }

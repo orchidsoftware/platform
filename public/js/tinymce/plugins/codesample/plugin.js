@@ -36,16 +36,16 @@ var codesample = (function () {
   var getDialogMinHeight = function (editor) {
     return Math.min(global$1.DOM.getViewPort().w, editor.getParam('codesample_dialog_height', 650));
   };
-  var $_fwpmvkabjkmcwo95 = {
+  var $_9ij57q9xjh8lyzx3 = {
     getContentCss: getContentCss,
     getLanguages: getLanguages,
     getDialogMinWidth: getDialogMinWidth,
     getDialogMinHeight: getDialogMinHeight
   };
 
-  var window$$1 = {};
-  var global$2 = window$$1;
-  var _self = typeof window$$1 !== 'undefined' ? window$$1 : typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope ? self : {};
+  var window = {};
+  var global$2 = window;
+  var _self = typeof window !== 'undefined' ? window : typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope ? self : {};
   var Prism = function () {
     var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
     var _ = _self.Prism = {
@@ -142,21 +142,21 @@ var codesample = (function () {
         }
       },
       highlightElement: function (element, async, callback) {
-        var language, grammar, parent$$1 = element;
-        while (parent$$1 && !lang.test(parent$$1.className)) {
-          parent$$1 = parent$$1.parentNode;
+        var language, grammar, parent = element;
+        while (parent && !lang.test(parent.className)) {
+          parent = parent.parentNode;
         }
-        if (parent$$1) {
-          language = (parent$$1.className.match(lang) || [
+        if (parent) {
+          language = (parent.className.match(lang) || [
             ,
             ''
           ])[1];
           grammar = _.languages[language];
         }
         element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-        parent$$1 = element.parentNode;
-        if (/pre/i.test(parent$$1.nodeName)) {
-          parent$$1.className = parent$$1.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+        parent = element.parentNode;
+        if (/pre/i.test(parent.nodeName)) {
+          parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
         }
         var code = element.textContent;
         var env = {
@@ -264,13 +264,13 @@ var codesample = (function () {
       },
       hooks: {
         all: {},
-        add: function (name$$1, callback) {
+        add: function (name, callback) {
           var hooks = _.hooks.all;
-          hooks[name$$1] = hooks[name$$1] || [];
-          hooks[name$$1].push(callback);
+          hooks[name] = hooks[name] || [];
+          hooks[name].push(callback);
         },
-        run: function (name$$1, env) {
-          var callbacks = _.hooks.all[name$$1];
+        run: function (name, env) {
+          var callbacks = _.hooks.all[name];
           if (!callbacks || !callbacks.length) {
             return;
           }
@@ -285,7 +285,7 @@ var codesample = (function () {
       this.content = content;
       this.alias = alias;
     };
-    Token.stringify = function (o, language, parent$$1) {
+    Token.stringify = function (o, language, parent) {
       if (typeof o === 'string') {
         return o;
       }
@@ -296,7 +296,7 @@ var codesample = (function () {
       }
       var env = {
         type: o.type,
-        content: Token.stringify(o.content, language, parent$$1),
+        content: Token.stringify(o.content, language, parent),
         tag: 'span',
         classes: [
           'token',
@@ -304,7 +304,7 @@ var codesample = (function () {
         ],
         attributes: {},
         language: language,
-        parent: parent$$1
+        parent: parent
       };
       if (env.type === 'comment') {
         env.attributes.spellcheck = 'true';
@@ -315,8 +315,8 @@ var codesample = (function () {
       }
       _.hooks.run('wrap', env);
       var attributes = '';
-      for (var name$$1 in env.attributes) {
-        attributes += (attributes ? ' ' : '') + name$$1 + '="' + (env.attributes[name$$1] || '') + '"';
+      for (var name_1 in env.attributes) {
+        attributes += (attributes ? ' ' : '') + name_1 + '="' + (env.attributes[name_1] || '') + '"';
       }
       return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
     };
@@ -718,14 +718,14 @@ var codesample = (function () {
       return predicateFn(arg2);
     };
   }
-  var $_45zyxsagjkmcwoas = {
+  var $_72m2wna1jh8lyzy4 = {
     isCodeSample: isCodeSample,
     trimArg: trimArg
   };
 
   var getSelectedCodeSample = function (editor) {
     var node = editor.selection.getNode();
-    if ($_45zyxsagjkmcwoas.isCodeSample(node)) {
+    if ($_72m2wna1jh8lyzy4.isCodeSample(node)) {
       return node;
     }
     return null;
@@ -752,7 +752,7 @@ var codesample = (function () {
     }
     return '';
   };
-  var $_7llv6ladjkmcwo9b = {
+  var $_9zg93m9zjh8lyzx4 = {
     getSelectedCodeSample: getSelectedCodeSample,
     insertCodeSample: insertCodeSample,
     getCurrentCode: getCurrentCode
@@ -801,30 +801,30 @@ var codesample = (function () {
         value: 'cpp'
       }
     ];
-    var customLanguages = $_fwpmvkabjkmcwo95.getLanguages(editor);
+    var customLanguages = $_9ij57q9xjh8lyzx3.getLanguages(editor);
     return customLanguages ? customLanguages : defaultLanguages;
   };
   var getCurrentLanguage = function (editor) {
     var matches;
-    var node = $_7llv6ladjkmcwo9b.getSelectedCodeSample(editor);
+    var node = $_9zg93m9zjh8lyzx4.getSelectedCodeSample(editor);
     if (node) {
       matches = node.className.match(/language-(\w+)/);
       return matches ? matches[1] : '';
     }
     return '';
   };
-  var $_ehme9lahjkmcwoat = {
+  var $_8d2hqua2jh8lyzy6 = {
     getLanguages: getLanguages$1,
     getCurrentLanguage: getCurrentLanguage
   };
 
-  var $_7apbbvaajkmcwo93 = {
+  var $_2xh9sm9wjh8lyzx1 = {
     open: function (editor) {
-      var minWidth = $_fwpmvkabjkmcwo95.getDialogMinWidth(editor);
-      var minHeight = $_fwpmvkabjkmcwo95.getDialogMinHeight(editor);
-      var currentLanguage = $_ehme9lahjkmcwoat.getCurrentLanguage(editor);
-      var currentLanguages = $_ehme9lahjkmcwoat.getLanguages(editor);
-      var currentCode = $_7llv6ladjkmcwo9b.getCurrentCode(editor);
+      var minWidth = $_9ij57q9xjh8lyzx3.getDialogMinWidth(editor);
+      var minHeight = $_9ij57q9xjh8lyzx3.getDialogMinHeight(editor);
+      var currentLanguage = $_8d2hqua2jh8lyzy6.getCurrentLanguage(editor);
+      var currentLanguages = $_8d2hqua2jh8lyzy6.getLanguages(editor);
+      var currentCode = $_9zg93m9zjh8lyzx4.getCurrentCode(editor);
       editor.windowManager.open({
         title: 'Insert/Edit code sample',
         minWidth: minWidth,
@@ -855,7 +855,7 @@ var codesample = (function () {
           }
         ],
         onSubmit: function (e) {
-          $_7llv6ladjkmcwo9b.insertCodeSample(editor, e.data.language, e.data.code);
+          $_9zg93m9zjh8lyzx4.insertCodeSample(editor, e.data.language, e.data.code);
         }
       });
     }
@@ -864,19 +864,19 @@ var codesample = (function () {
   var register = function (editor) {
     editor.addCommand('codesample', function () {
       var node = editor.selection.getNode();
-      if (editor.selection.isCollapsed() || $_45zyxsagjkmcwoas.isCodeSample(node)) {
-        $_7apbbvaajkmcwo93.open(editor);
+      if (editor.selection.isCollapsed() || $_72m2wna1jh8lyzy4.isCodeSample(node)) {
+        $_2xh9sm9wjh8lyzx1.open(editor);
       } else {
         editor.formatter.toggle('code');
       }
     });
   };
-  var $_3nzffua9jkmcwo92 = { register: register };
+  var $_71kv1u9vjh8lyzx0 = { register: register };
 
   var setup = function (editor) {
     var $ = editor.$;
     editor.on('PreProcess', function (e) {
-      $('pre[contenteditable=false]', e.node).filter($_45zyxsagjkmcwoas.trimArg($_45zyxsagjkmcwoas.isCodeSample)).each(function (idx, elm) {
+      $('pre[contenteditable=false]', e.node).filter($_72m2wna1jh8lyzy4.trimArg($_72m2wna1jh8lyzy4.isCodeSample)).each(function (idx, elm) {
         var $elm = $(elm), code = elm.textContent;
         $elm.attr('class', $.trim($elm.attr('class')));
         $elm.removeAttr('contentEditable');
@@ -886,7 +886,7 @@ var codesample = (function () {
       });
     });
     editor.on('SetContent', function () {
-      var unprocessedCodeSamples = $('pre').filter($_45zyxsagjkmcwoas.trimArg($_45zyxsagjkmcwoas.isCodeSample)).filter(function (idx, elm) {
+      var unprocessedCodeSamples = $('pre').filter($_72m2wna1jh8lyzy4.trimArg($_72m2wna1jh8lyzy4.isCodeSample)).filter(function (idx, elm) {
         return elm.contentEditable !== 'false';
       });
       if (unprocessedCodeSamples.length) {
@@ -904,11 +904,11 @@ var codesample = (function () {
       }
     });
   };
-  var $_cywqvhaijkmcwoav = { setup: setup };
+  var $_8cld0ma3jh8lyzy8 = { setup: setup };
 
   var loadCss = function (editor, pluginUrl, addedInlineCss, addedCss) {
     var linkElm;
-    var contentCss = $_fwpmvkabjkmcwo95.getContentCss(editor);
+    var contentCss = $_9ij57q9xjh8lyzx3.getContentCss(editor);
     if (editor.inline && addedInlineCss.get()) {
       return;
     }
@@ -928,7 +928,7 @@ var codesample = (function () {
       editor.getDoc().getElementsByTagName('head')[0].appendChild(linkElm);
     }
   };
-  var $_8uv0xyajjkmcwoax = { loadCss: loadCss };
+  var $_fe8180a4jh8lyzya = { loadCss: loadCss };
 
   var register$1 = function (editor) {
     editor.addButton('codesample', {
@@ -941,20 +941,20 @@ var codesample = (function () {
       icon: 'codesample'
     });
   };
-  var $_91sx9bakjkmcwoaz = { register: register$1 };
+  var $_56hoija5jh8lyzyb = { register: register$1 };
 
   var addedInlineCss = Cell(false);
   global.add('codesample', function (editor, pluginUrl) {
     var addedCss = Cell(false);
-    $_cywqvhaijkmcwoav.setup(editor);
-    $_91sx9bakjkmcwoaz.register(editor);
-    $_3nzffua9jkmcwo92.register(editor);
+    $_8cld0ma3jh8lyzy8.setup(editor);
+    $_56hoija5jh8lyzyb.register(editor);
+    $_71kv1u9vjh8lyzx0.register(editor);
     editor.on('init', function () {
-      $_8uv0xyajjkmcwoax.loadCss(editor, pluginUrl, addedInlineCss, addedCss);
+      $_fe8180a4jh8lyzya.loadCss(editor, pluginUrl, addedInlineCss, addedCss);
     });
     editor.on('dblclick', function (ev) {
-      if ($_45zyxsagjkmcwoas.isCodeSample(ev.target)) {
-        $_7apbbvaajkmcwo93.open(editor);
+      if ($_72m2wna1jh8lyzy4.isCodeSample(ev.target)) {
+        $_2xh9sm9wjh8lyzx1.open(editor);
       }
     });
   });

@@ -83,11 +83,11 @@ var modern = (function () {
   var getIndexedToolbars = function (settings, defaultToolbar) {
     var toolbars = [];
     for (var i = 1; i < 10; i++) {
-      var toolbar = settings['toolbar' + i];
-      if (!toolbar) {
+      var toolbar_1 = settings['toolbar' + i];
+      if (!toolbar_1) {
         break;
       }
-      toolbars.push(toolbar);
+      toolbars.push(toolbar_1);
     }
     var mainToolbar = settings.toolbar ? [settings.toolbar] : [defaultToolbar];
     return toolbars.length > 0 ? toolbars : mainToolbar;
@@ -121,7 +121,7 @@ var modern = (function () {
   var fireBeforeRenderUI = function (editor) {
     return editor.fire('BeforeRenderUI');
   };
-  var $_1jkxpltzjkmcwsg4 = {
+  var $_aycuj2t7jh8lz3jp = {
     fireSkinLoaded: fireSkinLoaded,
     fireResizeEditor: fireResizeEditor,
     fireBeforeRenderUI: fireBeforeRenderUI
@@ -143,7 +143,7 @@ var modern = (function () {
       editor.focus();
     });
   };
-  var $_1mdekmu0jkmcwsg5 = { addKeys: addKeys };
+  var $_47hpztt8jh8lz3jq = { addKeys: addKeys };
 
   var global$6 = tinymce.util.Tools.resolve('tinymce.geom.Rect');
 
@@ -155,7 +155,15 @@ var modern = (function () {
       x[_i] = arguments[_i];
     }
   };
-
+  var noarg = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return f();
+    };
+  };
   var compose = function (fa, fb) {
     return function () {
       var x = [];
@@ -170,8 +178,12 @@ var modern = (function () {
       return value;
     };
   };
-
-
+  var identity = function (x) {
+    return x;
+  };
+  var tripleEquals = function (a, b) {
+    return a === b;
+  };
   var curry = function (f) {
     var x = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -192,15 +204,46 @@ var modern = (function () {
       return f.apply(null, all);
     };
   };
-
-
-
-
+  var not = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return !f.apply(null, arguments);
+    };
+  };
+  var die = function (msg) {
+    return function () {
+      throw new Error(msg);
+    };
+  };
+  var apply = function (f) {
+    return f();
+  };
+  var call = function (f) {
+    f();
+  };
   var never = constant(false);
   var always = constant(true);
+  var $_3pjweotejh8lz3k4 = {
+    noop: noop,
+    noarg: noarg,
+    compose: compose,
+    constant: constant,
+    identity: identity,
+    tripleEquals: tripleEquals,
+    curry: curry,
+    not: not,
+    die: die,
+    apply: apply,
+    call: call,
+    never: never,
+    always: always
+  };
 
-  var never$1 = never;
-  var always$1 = always;
+  var never$1 = $_3pjweotejh8lz3k4.never;
+  var always$1 = $_3pjweotejh8lz3k4.always;
   var none = function () {
     return NONE;
   };
@@ -208,19 +251,13 @@ var modern = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call$$1 = function (thunk) {
+    var call = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop$$1 = function () {
-    };
-    var nul = function () {
-      return null;
-    };
-    var undef = function () {
-      return undefined;
+    var noop = function () {
     };
     var me = {
       fold: function (n, s) {
@@ -230,17 +267,15 @@ var modern = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call$$1,
+      getOrThunk: call,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
-      getOrNull: nul,
-      getOrUndefined: undef,
       or: id,
-      orThunk: call$$1,
+      orThunk: call,
       map: none,
       ap: none,
-      each: noop$$1,
+      each: noop,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -251,7 +286,7 @@ var modern = (function () {
       toArray: function () {
         return [];
       },
-      toString: constant('none()')
+      toString: $_3pjweotejh8lz3k4.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -282,8 +317,6 @@ var modern = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
-      getOrNull: constant_a,
-      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -352,7 +385,7 @@ var modern = (function () {
   var inheritUiContainer = function (fromCtrl, toCtrl) {
     return toCtrl.uiContainer = getUiContainer(fromCtrl);
   };
-  var $_5kmlp5u4jkmcwsge = {
+  var $_1jk3jvtcjh8lz3jy = {
     getUiContainerDelta: getUiContainerDelta,
     setUiContainer: setUiContainer,
     getUiContainer: getUiContainer,
@@ -435,7 +468,7 @@ var modern = (function () {
       };
     }
   };
-  var $_5g1hacu7jkmcwsgn = {
+  var $_fudqhrtfjh8lz3k7 = {
     createToolbar: createToolbar,
     createToolbars: createToolbars
   };
@@ -535,7 +568,7 @@ var modern = (function () {
       elementRect = getElementRect(match.element);
       panelRect = DOM.getRect(panel.getEl());
       contentAreaRect = DOM.getRect(editor.getContentAreaContainer() || editor.getBody());
-      var delta = $_5kmlp5u4jkmcwsge.getUiContainerDelta(panel).getOr({
+      var delta = $_1jk3jvtcjh8lz3jy.getUiContainerDelta(panel).getOr({
         x: 0,
         y: 0
       });
@@ -598,7 +631,7 @@ var modern = (function () {
     var bindScrollEvent = function (panel) {
       if (!scrollContainer) {
         var reposition_1 = repositionHandler(true);
-        var uiContainer_1 = $_5kmlp5u4jkmcwsge.getUiContainer(panel);
+        var uiContainer_1 = $_1jk3jvtcjh8lz3jy.getUiContainer(panel);
         scrollContainer = editor.selection.getScrollContainer() || editor.getWin();
         DOM.bind(scrollContainer, 'scroll', reposition_1);
         DOM.bind(uiContainer_1, 'scroll', reposition_1);
@@ -627,12 +660,12 @@ var modern = (function () {
         autofix: true,
         fixed: true,
         border: 1,
-        items: $_5g1hacu7jkmcwsgn.createToolbar(editor, match.toolbar.items),
+        items: $_fudqhrtfjh8lz3k7.createToolbar(editor, match.toolbar.items),
         oncancel: function () {
           editor.focus();
         }
       });
-      $_5kmlp5u4jkmcwsge.setUiContainer(editor, panel);
+      $_1jk3jvtcjh8lz3jy.setUiContainer(editor, panel);
       bindScrollEvent(panel);
       match.toolbar.panel = panel;
       panel.renderTo().reflow();
@@ -700,7 +733,7 @@ var modern = (function () {
       }
     });
   };
-  var $_44ggy0u1jkmcwsg7 = { addContextualToolbars: addContextualToolbars };
+  var $_5kodmdt9jh8lz3js = { addContextualToolbars: addContextualToolbars };
 
   var typeOf = function (x) {
     if (x === null)
@@ -717,14 +750,16 @@ var modern = (function () {
       return typeOf(value) === type;
     };
   };
-
-
-
-
-
-
-  var isFunction = isType('function');
-  var isNumber = isType('number');
+  var $_d8bie3tijh8lz3kn = {
+    isString: isType('string'),
+    isObject: isType('object'),
+    isArray: isType('array'),
+    isNull: isType('null'),
+    isBoolean: isType('boolean'),
+    isUndefined: isType('undefined'),
+    isFunction: isType('function'),
+    isNumber: isType('number')
+  };
 
   var rawIndexOf = function () {
     var pIndexOf = Array.prototype.indexOf;
@@ -740,12 +775,27 @@ var modern = (function () {
     var r = rawIndexOf(xs, x);
     return r === -1 ? Option.none() : Option.some(r);
   };
-
+  var contains = function (xs, x) {
+    return rawIndexOf(xs, x) > -1;
+  };
   var exists = function (xs, pred) {
     return findIndex(xs, pred).isSome();
   };
-
-
+  var range = function (num, f) {
+    var r = [];
+    for (var i = 0; i < num; i++) {
+      r.push(f(i));
+    }
+    return r;
+  };
+  var chunk = function (array, size) {
+    var r = [];
+    for (var i = 0; i < array.length; i += size) {
+      var s = array.slice(i, i + size);
+      r.push(s);
+    }
+    return r;
+  };
   var map = function (xs, f) {
     var len = xs.length;
     var r = new Array(len);
@@ -761,8 +811,25 @@ var modern = (function () {
       f(x, i, xs);
     }
   };
-
-
+  var eachr = function (xs, f) {
+    for (var i = xs.length - 1; i >= 0; i--) {
+      var x = xs[i];
+      f(x, i, xs);
+    }
+  };
+  var partition = function (xs, pred) {
+    var pass = [];
+    var fail = [];
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      var arr = pred(x, i, xs) ? pass : fail;
+      arr.push(x);
+    }
+    return {
+      pass: pass,
+      fail: fail
+    };
+  };
   var filter = function (xs, pred) {
     var r = [];
     for (var i = 0, len = xs.length; i < len; i++) {
@@ -773,8 +840,35 @@ var modern = (function () {
     }
     return r;
   };
-
-
+  var groupBy = function (xs, f) {
+    if (xs.length === 0) {
+      return [];
+    } else {
+      var wasType = f(xs[0]);
+      var r = [];
+      var group = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        var type = f(x);
+        if (type !== wasType) {
+          r.push(group);
+          group = [];
+        }
+        wasType = type;
+        group.push(x);
+      }
+      if (group.length !== 0) {
+        r.push(group);
+      }
+      return r;
+    }
+  };
+  var foldr = function (xs, f, acc) {
+    eachr(xs, function (x) {
+      acc = f(acc, x);
+    });
+    return acc;
+  };
   var foldl = function (xs, f, acc) {
     each(xs, function (x) {
       acc = f(acc, x);
@@ -817,23 +911,88 @@ var modern = (function () {
     }
     return r;
   };
-
-
-
+  var bind = function (xs, f) {
+    var output = map(xs, f);
+    return flatten(output);
+  };
+  var forall = function (xs, pred) {
+    for (var i = 0, len = xs.length; i < len; ++i) {
+      var x = xs[i];
+      if (pred(x, i, xs) !== true) {
+        return false;
+      }
+    }
+    return true;
+  };
+  var equal = function (a1, a2) {
+    return a1.length === a2.length && forall(a1, function (x, i) {
+      return x === a2[i];
+    });
+  };
   var slice = Array.prototype.slice;
   var reverse = function (xs) {
     var r = slice.call(xs, 0);
     r.reverse();
     return r;
   };
-
-
-
-
-
-
-  var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+  var difference = function (a1, a2) {
+    return filter(a1, function (x) {
+      return !contains(a2, x);
+    });
+  };
+  var mapToObject = function (xs, f) {
+    var r = {};
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      r[String(x)] = f(x, i);
+    }
+    return r;
+  };
+  var pure = function (x) {
+    return [x];
+  };
+  var sort = function (xs, comparator) {
+    var copy = slice.call(xs, 0);
+    copy.sort(comparator);
+    return copy;
+  };
+  var head = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+  };
+  var from$1 = $_d8bie3tijh8lz3kn.isFunction(Array.from) ? Array.from : function (x) {
     return slice.call(x);
+  };
+  var $_f3qxhzthjh8lz3kg = {
+    map: map,
+    each: each,
+    eachr: eachr,
+    partition: partition,
+    filter: filter,
+    groupBy: groupBy,
+    indexOf: indexOf,
+    foldr: foldr,
+    foldl: foldl,
+    find: find,
+    findIndex: findIndex,
+    flatten: flatten,
+    bind: bind,
+    forall: forall,
+    exists: exists,
+    contains: contains,
+    equal: equal,
+    reverse: reverse,
+    chunk: chunk,
+    difference: difference,
+    mapToObject: mapToObject,
+    pure: pure,
+    sort: sort,
+    range: range,
+    head: head,
+    last: last,
+    from: from$1
   };
 
   var defaultMenus = {
@@ -878,7 +1037,7 @@ var modern = (function () {
     return name === '|' ? delimiterMenuNamePair() : menuItem;
   };
   var hasItemName = function (namedMenuItems, name) {
-    return findIndex(namedMenuItems, function (namedMenuItem) {
+    return $_f3qxhzthjh8lz3kg.findIndex(namedMenuItems, function (namedMenuItem) {
       return namedMenuItem.name === name;
     }).isSome();
   };
@@ -886,13 +1045,13 @@ var modern = (function () {
     return namedMenuItem && namedMenuItem.item.text === '|';
   };
   var cleanupMenu = function (namedMenuItems, removedMenuItems) {
-    var menuItemsPass1 = filter(namedMenuItems, function (namedMenuItem) {
+    var menuItemsPass1 = $_f3qxhzthjh8lz3kg.filter(namedMenuItems, function (namedMenuItem) {
       return removedMenuItems.hasOwnProperty(namedMenuItem.name) === false;
     });
-    var menuItemsPass2 = filter(menuItemsPass1, function (namedMenuItem, i, namedMenuItems) {
+    var menuItemsPass2 = $_f3qxhzthjh8lz3kg.filter(menuItemsPass1, function (namedMenuItem, i, namedMenuItems) {
       return !isSeparator(namedMenuItem) || !isSeparator(namedMenuItems[i - 1]);
     });
-    return filter(menuItemsPass2, function (namedMenuItem, i, namedMenuItems) {
+    return $_f3qxhzthjh8lz3kg.filter(menuItemsPass2, function (namedMenuItem, i, namedMenuItems) {
       return !isSeparator(namedMenuItem) || i > 0 && i < namedMenuItems.length - 1;
     });
   };
@@ -930,7 +1089,7 @@ var modern = (function () {
           }
         });
       }
-      menuButton.menu = map(cleanupMenu(namedMenuItems, removedMenuItems), function (menuItem) {
+      menuButton.menu = $_f3qxhzthjh8lz3kg.map(cleanupMenu(namedMenuItems, removedMenuItems), function (menuItem) {
         return menuItem.item;
       });
       if (!menuButton.menu.length) {
@@ -969,7 +1128,7 @@ var modern = (function () {
     }
     return menuButtons;
   };
-  var $_3ke8tlu8jkmcwsgq = { createMenuButtons: createMenuButtons };
+  var $_8i78rftgjh8lz3ka = { createMenuButtons: createMenuButtons };
 
   var DOM$1 = global$3.DOM;
   var getSize = function (elm) {
@@ -993,13 +1152,13 @@ var modern = (function () {
     height = Math.max(getMinHeight(editor), height);
     height = Math.min(getMaxHeight(editor), height);
     DOM$1.setStyle(iframeElm, 'height', height);
-    $_1jkxpltzjkmcwsg4.fireResizeEditor(editor);
+    $_aycuj2t7jh8lz3jp.fireResizeEditor(editor);
   };
   var resizeBy = function (editor, dw, dh) {
     var elm = editor.getContentAreaContainer();
     resizeTo(editor, elm.clientWidth + dw, elm.clientHeight + dh);
   };
-  var $_focm2tubjkmcwsh5 = {
+  var $_5toavetjjh8lz3ko = {
     resizeTo: resizeTo,
     resizeBy: resizeBy
   };
@@ -1068,7 +1227,7 @@ var modern = (function () {
         }
         btnCtrl.active(true);
       }
-      $_1jkxpltzjkmcwsg4.fireResizeEditor(editor);
+      $_aycuj2t7jh8lz3jp.fireResizeEditor(editor);
     };
   };
   var isModernBrowser = function () {
@@ -1101,7 +1260,7 @@ var modern = (function () {
         }]
     };
   };
-  var $_93h32bucjkmcwsh7 = {
+  var $_5buua9tkjh8lz3kq = {
     hasSidebar: hasSidebar,
     createSidebar: createSidebar
   };
@@ -1109,7 +1268,7 @@ var modern = (function () {
   var fireSkinLoaded$1 = function (editor) {
     var done = function () {
       editor._skinLoaded = true;
-      $_1jkxpltzjkmcwsg4.fireSkinLoaded(editor);
+      $_aycuj2t7jh8lz3jp.fireSkinLoaded(editor);
     };
     return function () {
       if (editor.initialized) {
@@ -1119,7 +1278,7 @@ var modern = (function () {
       }
     };
   };
-  var $_2tsyb2uejkmcwsha = { fireSkinLoaded: fireSkinLoaded$1 };
+  var $_231e94tmjh8lz3ku = { fireSkinLoaded: fireSkinLoaded$1 };
 
   var DOM$2 = global$3.DOM;
   var switchMode = function (panel) {
@@ -1145,16 +1304,16 @@ var modern = (function () {
       border: '1 0 0 0',
       items: [
         editArea('0'),
-        $_93h32bucjkmcwsh7.createSidebar(editor)
+        $_5buua9tkjh8lz3kq.createSidebar(editor)
       ]
     };
   };
   var render = function (editor, theme, args) {
     var panel, resizeHandleCtrl, startSize;
     if (isSkinDisabled(editor) === false && args.skinUiCss) {
-      DOM$2.styleSheetLoader.load(args.skinUiCss, $_2tsyb2uejkmcwsha.fireSkinLoaded(editor));
+      DOM$2.styleSheetLoader.load(args.skinUiCss, $_231e94tmjh8lz3ku.fireSkinLoaded(editor));
     } else {
-      $_2tsyb2uejkmcwsha.fireSkinLoaded(editor)();
+      $_231e94tmjh8lz3ku.fireSkinLoaded(editor)();
     }
     panel = theme.panel = global$4.create({
       type: 'panel',
@@ -1171,15 +1330,15 @@ var modern = (function () {
             hasMenubar(editor) === false ? null : {
               type: 'menubar',
               border: '0 0 1 0',
-              items: $_3ke8tlu8jkmcwsgq.createMenuButtons(editor)
+              items: $_8i78rftgjh8lz3ka.createMenuButtons(editor)
             },
-            $_5g1hacu7jkmcwsgn.createToolbars(editor, getToolbarSize(editor))
+            $_fudqhrtfjh8lz3k7.createToolbars(editor, getToolbarSize(editor))
           ]
         },
-        $_93h32bucjkmcwsh7.hasSidebar(editor) ? editAreaContainer(editor) : editArea('1 0 0 0')
+        $_5buua9tkjh8lz3kq.hasSidebar(editor) ? editAreaContainer(editor) : editArea('1 0 0 0')
       ]
     });
-    $_5kmlp5u4jkmcwsge.setUiContainer(editor, panel);
+    $_1jk3jvtcjh8lz3jy.setUiContainer(editor, panel);
     if (getResize(editor) !== 'none') {
       resizeHandleCtrl = {
         type: 'resizehandle',
@@ -1193,9 +1352,9 @@ var modern = (function () {
         },
         onResize: function (e) {
           if (getResize(editor) === 'both') {
-            $_focm2tubjkmcwsh5.resizeTo(editor, startSize.width + e.deltaX, startSize.height + e.deltaY);
+            $_5toavetjjh8lz3ko.resizeTo(editor, startSize.width + e.deltaX, startSize.height + e.deltaY);
           } else {
-            $_focm2tubjkmcwsh5.resizeTo(editor, null, startSize.height + e.deltaY);
+            $_5toavetjjh8lz3ko.resizeTo(editor, null, startSize.height + e.deltaY);
           }
         }
       };
@@ -1228,7 +1387,7 @@ var modern = (function () {
         ]
       });
     }
-    $_1jkxpltzjkmcwsg4.fireBeforeRenderUI(editor);
+    $_aycuj2t7jh8lz3jp.fireBeforeRenderUI(editor);
     editor.on('SwitchMode', switchMode(panel));
     panel.renderBefore(args.targetNode).reflow();
     if (isReadOnly(editor)) {
@@ -1241,14 +1400,14 @@ var modern = (function () {
       panel.remove();
       panel = null;
     });
-    $_1mdekmu0jkmcwsg5.addKeys(editor, panel);
-    $_44ggy0u1jkmcwsg7.addContextualToolbars(editor);
+    $_47hpztt8jh8lz3jq.addKeys(editor, panel);
+    $_5kodmdt9jh8lz3js.addContextualToolbars(editor);
     return {
       iframeContainer: panel.find('#iframe')[0].getEl(),
       editorContainer: panel.getEl()
     };
   };
-  var $_9mz4sntvjkmcwsft = { render: render };
+  var $_4cj0a3t3jh8lz3jk = { render: render };
 
   var global$9 = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
 
@@ -1257,8 +1416,8 @@ var modern = (function () {
     id: function () {
       return 'mceu_' + count++;
     },
-    create: function (name$$1, attrs, children) {
-      var elm = document.createElement(name$$1);
+    create: function (name, attrs, children) {
+      var elm = document.createElement(name);
       global$3.DOM.setAttribs(elm, attrs);
       if (typeof children === 'string') {
         elm.innerHTML = children;
@@ -1316,20 +1475,20 @@ var modern = (function () {
     toggleClass: function (elm, cls, state) {
       return global$3.DOM.toggleClass(elm, cls, state);
     },
-    css: function (elm, name$$1, value) {
-      return global$3.DOM.setStyle(elm, name$$1, value);
+    css: function (elm, name, value) {
+      return global$3.DOM.setStyle(elm, name, value);
     },
-    getRuntimeStyle: function (elm, name$$1) {
-      return global$3.DOM.getStyle(elm, name$$1, true);
+    getRuntimeStyle: function (elm, name) {
+      return global$3.DOM.getStyle(elm, name, true);
     },
-    on: function (target, name$$1, callback, scope) {
-      return global$3.DOM.bind(target, name$$1, callback, scope);
+    on: function (target, name, callback, scope) {
+      return global$3.DOM.bind(target, name, callback, scope);
     },
-    off: function (target, name$$1, callback) {
-      return global$3.DOM.unbind(target, name$$1, callback);
+    off: function (target, name, callback) {
+      return global$3.DOM.unbind(target, name, callback);
     },
-    fire: function (target, name$$1, args) {
-      return global$3.DOM.fire(target, name$$1, args);
+    fire: function (target, name, args) {
+      return global$3.DOM.fire(target, name, args);
     },
     innerHtml: function (elm, html) {
       global$3.DOM.setHTML(elm, html);
@@ -1345,7 +1504,7 @@ var modern = (function () {
   function calculateRelativePosition(ctrl, targetElm, rel) {
     var ctrlElm, pos, x, y, selfW, selfH, targetW, targetH, viewport, size;
     viewport = getWindowViewPort();
-    pos = funcs.getPos(targetElm, $_5kmlp5u4jkmcwsge.getUiContainer(ctrl));
+    pos = funcs.getPos(targetElm, $_1jk3jvtcjh8lz3jy.getUiContainer(ctrl));
     x = pos.x;
     y = pos.y;
     if (isFixed(ctrl) && isStatic(document.body)) {
@@ -1413,10 +1572,10 @@ var modern = (function () {
     };
   };
   var getViewPortRect = function (ctrl) {
-    var customUiContainer = $_5kmlp5u4jkmcwsge.getUiContainer(ctrl);
+    var customUiContainer = $_1jk3jvtcjh8lz3jy.getUiContainer(ctrl);
     return customUiContainer && !isFixed(ctrl) ? getUiContainerViewPort(customUiContainer) : getWindowViewPort();
   };
-  var $_77p0ikukjkmcwsie = {
+  var $_d97gfctrjh8lz3lm = {
     testMoveRel: function (elm, rels) {
       var viewPortRect = getViewPortRect(this);
       for (var i = 0; i < rels.length; i++) {
@@ -1441,12 +1600,12 @@ var modern = (function () {
       return this.moveTo(pos.x, pos.y);
     },
     moveBy: function (dx, dy) {
-      var self$$1 = this, rect = self$$1.layoutRect();
-      self$$1.moveTo(rect.x + dx, rect.y + dy);
-      return self$$1;
+      var self = this, rect = self.layoutRect();
+      self.moveTo(rect.x + dx, rect.y + dy);
+      return self;
     },
     moveTo: function (x, y) {
-      var self$$1 = this;
+      var self = this;
       function constrain(value, max, size) {
         if (value < 0) {
           return 0;
@@ -1457,14 +1616,14 @@ var modern = (function () {
         }
         return value;
       }
-      if (self$$1.settings.constrainToViewport) {
+      if (self.settings.constrainToViewport) {
         var viewPortRect = getViewPortRect(this);
-        var layoutRect = self$$1.layoutRect();
+        var layoutRect = self.layoutRect();
         x = constrain(x, viewPortRect.w, layoutRect.w);
         y = constrain(y, viewPortRect.h, layoutRect.h);
       }
-      var uiContainer = $_5kmlp5u4jkmcwsge.getUiContainer(self$$1);
-      if (uiContainer && isStatic(uiContainer) && !isFixed(self$$1)) {
+      var uiContainer = $_1jk3jvtcjh8lz3jy.getUiContainer(self);
+      if (uiContainer && isStatic(uiContainer) && !isFixed(self)) {
         x -= uiContainer.scrollLeft;
         y -= uiContainer.scrollTop;
       }
@@ -1472,20 +1631,20 @@ var modern = (function () {
         x += 1;
         y += 1;
       }
-      if (self$$1.state.get('rendered')) {
-        self$$1.layoutRect({
+      if (self.state.get('rendered')) {
+        self.layoutRect({
           x: x,
           y: y
         }).repaint();
       } else {
-        self$$1.settings.x = x;
-        self$$1.settings.y = y;
+        self.settings.x = x;
+        self.settings.y = y;
       }
-      self$$1.fire('move', {
+      self.fire('move', {
         x: x,
         y: y
       });
-      return self$$1;
+      return self;
     }
   };
 
@@ -1493,7 +1652,7 @@ var modern = (function () {
 
   var global$11 = tinymce.util.Tools.resolve('tinymce.util.EventDispatcher');
 
-  var $_79d0aauqjkmcwsj9 = {
+  var $_focdcktxjh8lz3mn = {
     parseBox: function (value) {
       var len;
       var radix = 10;
@@ -2110,15 +2269,15 @@ var modern = (function () {
 
   var dirtyCtrls = {};
   var animationFrameRequested;
-  var $_921m08uxjkmcwsk2 = {
+  var $_ef12j5u4jh8lz3nl = {
     add: function (ctrl) {
-      var parent$$1 = ctrl.parent();
-      if (parent$$1) {
-        if (!parent$$1._layout || parent$$1._layout.isNative()) {
+      var parent = ctrl.parent();
+      if (parent) {
+        if (!parent._layout || parent._layout.isNative()) {
           return;
         }
-        if (!dirtyCtrls[parent$$1._id]) {
-          dirtyCtrls[parent$$1._id] = parent$$1;
+        if (!dirtyCtrls[parent._id]) {
+          dirtyCtrls[parent._id] = parent;
         }
         if (!animationFrameRequested) {
           animationFrameRequested = true;
@@ -2155,64 +2314,64 @@ var modern = (function () {
     },
     classPrefix: classPrefix,
     init: function (settings) {
-      var self$$1 = this;
+      var self = this;
       var classes, defaultClasses;
       function applyClasses(classes) {
         var i;
         classes = classes.split(' ');
         for (i = 0; i < classes.length; i++) {
-          self$$1.classes.add(classes[i]);
+          self.classes.add(classes[i]);
         }
       }
-      self$$1.settings = settings = global$2.extend({}, self$$1.Defaults, settings);
-      self$$1._id = settings.id || 'mceu_' + idCounter++;
-      self$$1._aria = { role: settings.role };
-      self$$1._elmCache = {};
-      self$$1.$ = global$9;
-      self$$1.state = new ObservableObject({
+      self.settings = settings = global$2.extend({}, self.Defaults, settings);
+      self._id = settings.id || 'mceu_' + idCounter++;
+      self._aria = { role: settings.role };
+      self._elmCache = {};
+      self.$ = global$9;
+      self.state = new ObservableObject({
         visible: true,
         active: false,
         disabled: false,
         value: ''
       });
-      self$$1.data = new ObservableObject(settings.data);
-      self$$1.classes = new ClassList(function () {
-        if (self$$1.state.get('rendered')) {
-          self$$1.getEl().className = this.toString();
+      self.data = new ObservableObject(settings.data);
+      self.classes = new ClassList(function () {
+        if (self.state.get('rendered')) {
+          self.getEl().className = this.toString();
         }
       });
-      self$$1.classes.prefix = self$$1.classPrefix;
+      self.classes.prefix = self.classPrefix;
       classes = settings.classes;
       if (classes) {
-        if (self$$1.Defaults) {
-          defaultClasses = self$$1.Defaults.classes;
+        if (self.Defaults) {
+          defaultClasses = self.Defaults.classes;
           if (defaultClasses && classes !== defaultClasses) {
             applyClasses(defaultClasses);
           }
         }
         applyClasses(classes);
       }
-      global$2.each('title text name visible disabled active value'.split(' '), function (name$$1) {
-        if (name$$1 in settings) {
-          self$$1[name$$1](settings[name$$1]);
+      global$2.each('title text name visible disabled active value'.split(' '), function (name) {
+        if (name in settings) {
+          self[name](settings[name]);
         }
       });
-      self$$1.on('click', function () {
-        if (self$$1.disabled()) {
+      self.on('click', function () {
+        if (self.disabled()) {
           return false;
         }
       });
-      self$$1.settings = settings;
-      self$$1.borderBox = $_79d0aauqjkmcwsj9.parseBox(settings.border);
-      self$$1.paddingBox = $_79d0aauqjkmcwsj9.parseBox(settings.padding);
-      self$$1.marginBox = $_79d0aauqjkmcwsj9.parseBox(settings.margin);
+      self.settings = settings;
+      self.borderBox = $_focdcktxjh8lz3mn.parseBox(settings.border);
+      self.paddingBox = $_focdcktxjh8lz3mn.parseBox(settings.padding);
+      self.marginBox = $_focdcktxjh8lz3mn.parseBox(settings.margin);
       if (settings.hidden) {
-        self$$1.hide();
+        self.hide();
       }
     },
     Properties: 'parent,name',
     getContainerElm: function () {
-      var uiContainer = $_5kmlp5u4jkmcwsge.getUiContainer(this);
+      var uiContainer = $_1jk3jvtcjh8lz3jy.getUiContainer(this);
       return uiContainer ? uiContainer : funcs.getContainer();
     },
     getParentCtrl: function (elm) {
@@ -2228,15 +2387,15 @@ var modern = (function () {
       return ctrl;
     },
     initLayoutRect: function () {
-      var self$$1 = this;
-      var settings = self$$1.settings;
+      var self = this;
+      var settings = self.settings;
       var borderBox, layoutRect;
-      var elm = self$$1.getEl();
+      var elm = self.getEl();
       var width, height, minWidth, minHeight, autoResize;
       var startMinWidth, startMinHeight, initialSize;
-      borderBox = self$$1.borderBox = self$$1.borderBox || $_79d0aauqjkmcwsj9.measureBox(elm, 'border');
-      self$$1.paddingBox = self$$1.paddingBox || $_79d0aauqjkmcwsj9.measureBox(elm, 'padding');
-      self$$1.marginBox = self$$1.marginBox || $_79d0aauqjkmcwsj9.measureBox(elm, 'margin');
+      borderBox = self.borderBox = self.borderBox || $_focdcktxjh8lz3mn.measureBox(elm, 'border');
+      self.paddingBox = self.paddingBox || $_focdcktxjh8lz3mn.measureBox(elm, 'padding');
+      self.marginBox = self.marginBox || $_focdcktxjh8lz3mn.measureBox(elm, 'margin');
       initialSize = funcs.getSize(elm);
       startMinWidth = settings.minWidth;
       startMinHeight = settings.minHeight;
@@ -2252,7 +2411,7 @@ var modern = (function () {
       var deltaH = borderBox.top + borderBox.bottom;
       var maxW = settings.maxWidth || 65535;
       var maxH = settings.maxHeight || 65535;
-      self$$1._layoutRect = layoutRect = {
+      self._layoutRect = layoutRect = {
         x: settings.x || 0,
         y: settings.y || 0,
         w: width,
@@ -2272,14 +2431,14 @@ var modern = (function () {
         autoResize: autoResize,
         scrollW: 0
       };
-      self$$1._lastLayoutRect = {};
+      self._lastLayoutRect = {};
       return layoutRect;
     },
     layoutRect: function (newRect) {
-      var self$$1 = this;
-      var curRect = self$$1._layoutRect, lastLayoutRect, size, deltaWidth, deltaHeight, repaintControls;
+      var self = this;
+      var curRect = self._layoutRect, lastLayoutRect, size, deltaWidth, deltaHeight, repaintControls;
       if (!curRect) {
-        curRect = self$$1.initLayoutRect();
+        curRect = self.initLayoutRect();
       }
       if (newRect) {
         deltaWidth = curRect.deltaW;
@@ -2330,13 +2489,13 @@ var modern = (function () {
         if (newRect.contentH !== undefined) {
           curRect.contentH = newRect.contentH;
         }
-        lastLayoutRect = self$$1._lastLayoutRect;
+        lastLayoutRect = self._lastLayoutRect;
         if (lastLayoutRect.x !== curRect.x || lastLayoutRect.y !== curRect.y || lastLayoutRect.w !== curRect.w || lastLayoutRect.h !== curRect.h) {
           repaintControls = Control.repaintControls;
           if (repaintControls) {
-            if (repaintControls.map && !repaintControls.map[self$$1._id]) {
-              repaintControls.push(self$$1);
-              repaintControls.map[self$$1._id] = true;
+            if (repaintControls.map && !repaintControls.map[self._id]) {
+              repaintControls.push(self);
+              repaintControls.map[self._id] = true;
             }
           }
           lastLayoutRect.x = curRect.x;
@@ -2344,21 +2503,21 @@ var modern = (function () {
           lastLayoutRect.w = curRect.w;
           lastLayoutRect.h = curRect.h;
         }
-        return self$$1;
+        return self;
       }
       return curRect;
     },
     repaint: function () {
-      var self$$1 = this;
+      var self = this;
       var style, bodyStyle, bodyElm, rect, borderBox;
       var borderW, borderH, lastRepaintRect, round, value;
       round = !document.createRange ? Math.round : function (value) {
         return value;
       };
-      style = self$$1.getEl().style;
-      rect = self$$1._layoutRect;
-      lastRepaintRect = self$$1._lastRepaintRect || {};
-      borderBox = self$$1.borderBox;
+      style = self.getEl().style;
+      rect = self._layoutRect;
+      lastRepaintRect = self._lastRepaintRect || {};
+      borderBox = self.borderBox;
       borderW = borderBox.left + borderBox.right;
       borderH = borderBox.top + borderBox.bottom;
       if (rect.x !== lastRepaintRect.x) {
@@ -2379,92 +2538,92 @@ var modern = (function () {
         style.height = (value >= 0 ? value : 0) + 'px';
         lastRepaintRect.h = rect.h;
       }
-      if (self$$1._hasBody && rect.innerW !== lastRepaintRect.innerW) {
+      if (self._hasBody && rect.innerW !== lastRepaintRect.innerW) {
         value = round(rect.innerW);
-        bodyElm = self$$1.getEl('body');
+        bodyElm = self.getEl('body');
         if (bodyElm) {
           bodyStyle = bodyElm.style;
           bodyStyle.width = (value >= 0 ? value : 0) + 'px';
         }
         lastRepaintRect.innerW = rect.innerW;
       }
-      if (self$$1._hasBody && rect.innerH !== lastRepaintRect.innerH) {
+      if (self._hasBody && rect.innerH !== lastRepaintRect.innerH) {
         value = round(rect.innerH);
-        bodyElm = bodyElm || self$$1.getEl('body');
+        bodyElm = bodyElm || self.getEl('body');
         if (bodyElm) {
           bodyStyle = bodyStyle || bodyElm.style;
           bodyStyle.height = (value >= 0 ? value : 0) + 'px';
         }
         lastRepaintRect.innerH = rect.innerH;
       }
-      self$$1._lastRepaintRect = lastRepaintRect;
-      self$$1.fire('repaint', {}, false);
+      self._lastRepaintRect = lastRepaintRect;
+      self.fire('repaint', {}, false);
     },
     updateLayoutRect: function () {
-      var self$$1 = this;
-      self$$1.parent()._lastRect = null;
-      funcs.css(self$$1.getEl(), {
+      var self = this;
+      self.parent()._lastRect = null;
+      funcs.css(self.getEl(), {
         width: '',
         height: ''
       });
-      self$$1._layoutRect = self$$1._lastRepaintRect = self$$1._lastLayoutRect = null;
-      self$$1.initLayoutRect();
+      self._layoutRect = self._lastRepaintRect = self._lastLayoutRect = null;
+      self.initLayoutRect();
     },
-    on: function (name$$1, callback) {
-      var self$$1 = this;
-      function resolveCallbackName(name$$1) {
+    on: function (name, callback) {
+      var self = this;
+      function resolveCallbackName(name) {
         var callback, scope;
-        if (typeof name$$1 !== 'string') {
-          return name$$1;
+        if (typeof name !== 'string') {
+          return name;
         }
         return function (e) {
           if (!callback) {
-            self$$1.parentsAndSelf().each(function (ctrl) {
+            self.parentsAndSelf().each(function (ctrl) {
               var callbacks = ctrl.settings.callbacks;
-              if (callbacks && (callback = callbacks[name$$1])) {
+              if (callbacks && (callback = callbacks[name])) {
                 scope = ctrl;
                 return false;
               }
             });
           }
           if (!callback) {
-            e.action = name$$1;
+            e.action = name;
             this.fire('execute', e);
             return;
           }
           return callback.call(scope, e);
         };
       }
-      getEventDispatcher(self$$1).on(name$$1, resolveCallbackName(callback));
-      return self$$1;
+      getEventDispatcher(self).on(name, resolveCallbackName(callback));
+      return self;
     },
-    off: function (name$$1, callback) {
-      getEventDispatcher(this).off(name$$1, callback);
+    off: function (name, callback) {
+      getEventDispatcher(this).off(name, callback);
       return this;
     },
-    fire: function (name$$1, args, bubble) {
-      var self$$1 = this;
+    fire: function (name, args, bubble) {
+      var self = this;
       args = args || {};
       if (!args.control) {
-        args.control = self$$1;
+        args.control = self;
       }
-      args = getEventDispatcher(self$$1).fire(name$$1, args);
-      if (bubble !== false && self$$1.parent) {
-        var parent$$1 = self$$1.parent();
-        while (parent$$1 && !args.isPropagationStopped()) {
-          parent$$1.fire(name$$1, args, false);
-          parent$$1 = parent$$1.parent();
+      args = getEventDispatcher(self).fire(name, args);
+      if (bubble !== false && self.parent) {
+        var parent_1 = self.parent();
+        while (parent_1 && !args.isPropagationStopped()) {
+          parent_1.fire(name, args, false);
+          parent_1 = parent_1.parent();
         }
       }
       return args;
     },
-    hasEventListeners: function (name$$1) {
-      return getEventDispatcher(this).has(name$$1);
+    hasEventListeners: function (name) {
+      return getEventDispatcher(this).has(name);
     },
     parents: function (selector) {
-      var self$$1 = this;
+      var self = this;
       var ctrl, parents = new Collection$2();
-      for (ctrl = self$$1.parent(); ctrl; ctrl = ctrl.parent()) {
+      for (ctrl = self.parent(); ctrl; ctrl = ctrl.parent()) {
         parents.add(ctrl);
       }
       if (selector) {
@@ -2511,16 +2670,16 @@ var modern = (function () {
       this.getEl().blur();
       return this;
     },
-    aria: function (name$$1, value) {
-      var self$$1 = this, elm = self$$1.getEl(self$$1.ariaTarget);
+    aria: function (name, value) {
+      var self = this, elm = self.getEl(self.ariaTarget);
       if (typeof value === 'undefined') {
-        return self$$1._aria[name$$1];
+        return self._aria[name];
       }
-      self$$1._aria[name$$1] = value;
-      if (self$$1.state.get('rendered')) {
-        elm.setAttribute(name$$1 === 'role' ? name$$1 : 'aria-' + name$$1, value);
+      self._aria[name] = value;
+      if (self.state.get('rendered')) {
+        elm.setAttribute(name === 'role' ? name : 'aria-' + name, value);
       }
-      return self$$1;
+      return self;
     },
     encode: function (text, translate) {
       if (translate !== false) {
@@ -2534,55 +2693,55 @@ var modern = (function () {
       return Control.translate ? Control.translate(text) : text;
     },
     before: function (items) {
-      var self$$1 = this, parent$$1 = self$$1.parent();
-      if (parent$$1) {
-        parent$$1.insert(items, parent$$1.items().indexOf(self$$1), true);
+      var self = this, parent = self.parent();
+      if (parent) {
+        parent.insert(items, parent.items().indexOf(self), true);
       }
-      return self$$1;
+      return self;
     },
     after: function (items) {
-      var self$$1 = this, parent$$1 = self$$1.parent();
-      if (parent$$1) {
-        parent$$1.insert(items, parent$$1.items().indexOf(self$$1));
+      var self = this, parent = self.parent();
+      if (parent) {
+        parent.insert(items, parent.items().indexOf(self));
       }
-      return self$$1;
+      return self;
     },
     remove: function () {
-      var self$$1 = this;
-      var elm = self$$1.getEl();
-      var parent$$1 = self$$1.parent();
+      var self = this;
+      var elm = self.getEl();
+      var parent = self.parent();
       var newItems, i;
-      if (self$$1.items) {
-        var controls = self$$1.items().toArray();
+      if (self.items) {
+        var controls = self.items().toArray();
         i = controls.length;
         while (i--) {
           controls[i].remove();
         }
       }
-      if (parent$$1 && parent$$1.items) {
+      if (parent && parent.items) {
         newItems = [];
-        parent$$1.items().each(function (item) {
-          if (item !== self$$1) {
+        parent.items().each(function (item) {
+          if (item !== self) {
             newItems.push(item);
           }
         });
-        parent$$1.items().set(newItems);
-        parent$$1._lastRect = null;
+        parent.items().set(newItems);
+        parent._lastRect = null;
       }
-      if (self$$1._eventsRoot && self$$1._eventsRoot === self$$1) {
+      if (self._eventsRoot && self._eventsRoot === self) {
         global$9(elm).off();
       }
-      var lookup = self$$1.getRoot().controlIdLookup;
+      var lookup = self.getRoot().controlIdLookup;
       if (lookup) {
-        delete lookup[self$$1._id];
+        delete lookup[self._id];
       }
       if (elm && elm.parentNode) {
         elm.parentNode.removeChild(elm);
       }
-      self$$1.state.set('rendered', false);
-      self$$1.state.destroy();
-      self$$1.fire('remove');
-      return self$$1;
+      self.state.set('rendered', false);
+      self.state.destroy();
+      self.fire('remove');
+      return self;
     },
     renderBefore: function (elm) {
       global$9(elm).before(this.renderHtml());
@@ -2602,81 +2761,81 @@ var modern = (function () {
       return '<div id="' + this._id + '" class="' + this.classes + '"></div>';
     },
     postRender: function () {
-      var self$$1 = this;
-      var settings = self$$1.settings;
-      var elm, box, parent$$1, name$$1, parentEventsRoot;
-      self$$1.$el = global$9(self$$1.getEl());
-      self$$1.state.set('rendered', true);
-      for (name$$1 in settings) {
-        if (name$$1.indexOf('on') === 0) {
-          self$$1.on(name$$1.substr(2), settings[name$$1]);
+      var self = this;
+      var settings = self.settings;
+      var elm, box, parent, name, parentEventsRoot;
+      self.$el = global$9(self.getEl());
+      self.state.set('rendered', true);
+      for (name in settings) {
+        if (name.indexOf('on') === 0) {
+          self.on(name.substr(2), settings[name]);
         }
       }
-      if (self$$1._eventsRoot) {
-        for (parent$$1 = self$$1.parent(); !parentEventsRoot && parent$$1; parent$$1 = parent$$1.parent()) {
-          parentEventsRoot = parent$$1._eventsRoot;
+      if (self._eventsRoot) {
+        for (parent = self.parent(); !parentEventsRoot && parent; parent = parent.parent()) {
+          parentEventsRoot = parent._eventsRoot;
         }
         if (parentEventsRoot) {
-          for (name$$1 in parentEventsRoot._nativeEvents) {
-            self$$1._nativeEvents[name$$1] = true;
+          for (name in parentEventsRoot._nativeEvents) {
+            self._nativeEvents[name] = true;
           }
         }
       }
-      bindPendingEvents(self$$1);
+      bindPendingEvents(self);
       if (settings.style) {
-        elm = self$$1.getEl();
+        elm = self.getEl();
         if (elm) {
           elm.setAttribute('style', settings.style);
           elm.style.cssText = settings.style;
         }
       }
-      if (self$$1.settings.border) {
-        box = self$$1.borderBox;
-        self$$1.$el.css({
+      if (self.settings.border) {
+        box = self.borderBox;
+        self.$el.css({
           'border-top-width': box.top,
           'border-right-width': box.right,
           'border-bottom-width': box.bottom,
           'border-left-width': box.left
         });
       }
-      var root = self$$1.getRoot();
+      var root = self.getRoot();
       if (!root.controlIdLookup) {
         root.controlIdLookup = {};
       }
-      root.controlIdLookup[self$$1._id] = self$$1;
-      for (var key in self$$1._aria) {
-        self$$1.aria(key, self$$1._aria[key]);
+      root.controlIdLookup[self._id] = self;
+      for (var key in self._aria) {
+        self.aria(key, self._aria[key]);
       }
-      if (self$$1.state.get('visible') === false) {
-        self$$1.getEl().style.display = 'none';
+      if (self.state.get('visible') === false) {
+        self.getEl().style.display = 'none';
       }
-      self$$1.bindStates();
-      self$$1.state.on('change:visible', function (e) {
+      self.bindStates();
+      self.state.on('change:visible', function (e) {
         var state = e.value;
         var parentCtrl;
-        if (self$$1.state.get('rendered')) {
-          self$$1.getEl().style.display = state === false ? 'none' : '';
-          self$$1.getEl().getBoundingClientRect();
+        if (self.state.get('rendered')) {
+          self.getEl().style.display = state === false ? 'none' : '';
+          self.getEl().getBoundingClientRect();
         }
-        parentCtrl = self$$1.parent();
+        parentCtrl = self.parent();
         if (parentCtrl) {
           parentCtrl._lastRect = null;
         }
-        self$$1.fire(state ? 'show' : 'hide');
-        $_921m08uxjkmcwsk2.add(self$$1);
+        self.fire(state ? 'show' : 'hide');
+        $_ef12j5u4jh8lz3nl.add(self);
       });
-      self$$1.fire('postrender', {}, false);
+      self.fire('postrender', {}, false);
     },
     bindStates: function () {
     },
     scrollIntoView: function (align) {
       function getOffset(elm, rootElm) {
-        var x, y, parent$$1 = elm;
+        var x, y, parent = elm;
         x = y = 0;
-        while (parent$$1 && parent$$1 !== rootElm && parent$$1.nodeType) {
-          x += parent$$1.offsetLeft || 0;
-          y += parent$$1.offsetTop || 0;
-          parent$$1 = parent$$1.offsetParent;
+        while (parent && parent !== rootElm && parent.nodeType) {
+          x += parent.offsetLeft || 0;
+          y += parent.offsetTop || 0;
+          parent = parent.offsetParent;
         }
         return {
           x: x,
@@ -2725,21 +2884,21 @@ var modern = (function () {
       return rootControl;
     },
     reflow: function () {
-      $_921m08uxjkmcwsk2.remove(this);
-      var parent$$1 = this.parent();
-      if (parent$$1 && parent$$1._layout && !parent$$1._layout.isNative()) {
-        parent$$1.reflow();
+      $_ef12j5u4jh8lz3nl.remove(this);
+      var parent = this.parent();
+      if (parent && parent._layout && !parent._layout.isNative()) {
+        parent.reflow();
       }
       return this;
     }
   };
-  global$2.each('text title visible disabled active value'.split(' '), function (name$$1) {
-    proto$1[name$$1] = function (value) {
+  global$2.each('text title visible disabled active value'.split(' '), function (name) {
+    proto$1[name] = function (value) {
       if (arguments.length === 0) {
-        return this.state.get(name$$1);
+        return this.state.get(name);
       }
       if (typeof value !== 'undefined') {
-        this.state.set(name$$1, value);
+        this.state.set(name, value);
       }
       return this;
     };
@@ -2749,12 +2908,12 @@ var modern = (function () {
     if (!obj._eventDispatcher) {
       obj._eventDispatcher = new global$11({
         scope: obj,
-        toggleEvent: function (name$$1, state) {
-          if (state && global$11.isNative(name$$1)) {
+        toggleEvent: function (name, state) {
+          if (state && global$11.isNative(name)) {
             if (!obj._nativeEvents) {
               obj._nativeEvents = {};
             }
-            obj._nativeEvents[name$$1] = true;
+            obj._nativeEvents[name] = true;
             if (obj.state.get('rendered')) {
               bindPendingEvents(obj);
             }
@@ -2765,7 +2924,7 @@ var modern = (function () {
     return obj._eventDispatcher;
   }
   function bindPendingEvents(eventCtrl) {
-    var i, l, parents, eventRootCtrl, nativeEvents, name$$1;
+    var i, l, parents, eventRootCtrl, nativeEvents, name;
     function delegate(e) {
       var control = eventCtrl.getParentCtrl(e.target);
       if (control) {
@@ -2838,11 +2997,11 @@ var modern = (function () {
       if (!eventRootDelegates) {
         eventRootDelegates = eventRootCtrl._delegates = {};
       }
-      for (name$$1 in nativeEvents) {
+      for (name in nativeEvents) {
         if (!nativeEvents) {
           return false;
         }
-        if (name$$1 === 'wheel' && !hasWheelEventSupport) {
+        if (name === 'wheel' && !hasWheelEventSupport) {
           if (hasMouseWheelEventSupport) {
             global$9(eventCtrl.getEl()).on('mousewheel', fixWheelEvent);
           } else {
@@ -2850,16 +3009,16 @@ var modern = (function () {
           }
           continue;
         }
-        if (name$$1 === 'mouseenter' || name$$1 === 'mouseleave') {
+        if (name === 'mouseenter' || name === 'mouseleave') {
           if (!eventRootCtrl._hasMouseEnter) {
             global$9(eventRootCtrl.getEl()).on('mouseleave', mouseLeaveHandler).on('mouseover', mouseEnterHandler);
             eventRootCtrl._hasMouseEnter = 1;
           }
-        } else if (!eventRootDelegates[name$$1]) {
-          global$9(eventRootCtrl.getEl()).on(name$$1, delegate);
-          eventRootDelegates[name$$1] = true;
+        } else if (!eventRootDelegates[name]) {
+          global$9(eventRootCtrl.getEl()).on(name, delegate);
+          eventRootDelegates[name] = true;
         }
-        nativeEvents[name$$1] = false;
+        nativeEvents[name] = false;
       }
     }
   }
@@ -2888,17 +3047,17 @@ var modern = (function () {
       return null;
     }
     function getParentRole(elm) {
-      var role, parent$$1 = elm || focusedElement;
-      while (parent$$1 = parent$$1.parentNode) {
-        if (role = getRole(parent$$1)) {
+      var role, parent = elm || focusedElement;
+      while (parent = parent.parentNode) {
+        if (role = getRole(parent)) {
           return role;
         }
       }
     }
-    function getAriaProp(name$$1) {
+    function getAriaProp(name) {
       var elm = focusedElement;
       if (isElement(elm)) {
-        return elm.getAttribute('aria-' + name$$1);
+        return elm.getAttribute('aria-' + name);
       }
     }
     function isTextInputElement(elm) {
@@ -3210,7 +3369,7 @@ var modern = (function () {
             global$9(containerElm).append(ctrl.renderHtml());
           }
           ctrl.postRender();
-          $_921m08uxjkmcwsk2.add(ctrl);
+          $_ef12j5u4jh8lz3nl.add(ctrl);
         }
       });
       self._layout.applyClasses(self.items().filter(':visible'));
@@ -3242,8 +3401,8 @@ var modern = (function () {
     },
     fromJSON: function (data) {
       var self = this;
-      for (var name in data) {
-        self.find('#' + name).value(data[name]);
+      for (var name_1 in data) {
+        self.find('#' + name_1).value(data[name_1]);
       }
       return self;
     },
@@ -3310,7 +3469,7 @@ var modern = (function () {
     },
     reflow: function () {
       var i;
-      $_921m08uxjkmcwsk2.remove(this);
+      $_ef12j5u4jh8lz3nl.remove(this);
       if (this.visible()) {
         Control$1.repaintControls = [];
         Control$1.repaintControls.map = {};
@@ -3358,7 +3517,7 @@ var modern = (function () {
     var $eventOverlay;
     var doc = settings.document || document;
     var downButton;
-    var start, stop$$1, drag, startX, startY;
+    var start, stop, drag, startX, startY;
     settings = settings || {};
     var handleElement = doc.getElementById(settings.handle || id);
     start = function (e) {
@@ -3385,22 +3544,22 @@ var modern = (function () {
         opacity: 0.0001,
         cursor: cursor
       }).appendTo(doc.body);
-      global$9(doc).on('mousemove touchmove', drag).on('mouseup touchend', stop$$1);
+      global$9(doc).on('mousemove touchmove', drag).on('mouseup touchend', stop);
       settings.start(e);
     };
     drag = function (e) {
       updateWithTouchData(e);
       if (e.button !== downButton) {
-        return stop$$1(e);
+        return stop(e);
       }
       e.deltaX = e.screenX - startX;
       e.deltaY = e.screenY - startY;
       e.preventDefault();
       settings.drag(e);
     };
-    stop$$1 = function (e) {
+    stop = function (e) {
       updateWithTouchData(e);
-      global$9(doc).off('mousemove touchmove', drag).off('mouseup touchend', stop$$1);
+      global$9(doc).off('mousemove touchmove', drag).off('mouseup touchend', stop);
       $eventOverlay.remove();
       if (settings.stop) {
         settings.stop(e);
@@ -3412,7 +3571,7 @@ var modern = (function () {
     global$9(handleElement).on('mousedown touchstart', start);
   }
 
-  var $_c9juz9uzjkmcwskb = {
+  var $_4acv48u6jh8lz3ns = {
     init: function () {
       var self = this;
       self.on('repaint', self.renderScroll);
@@ -3508,7 +3667,7 @@ var modern = (function () {
       layout: 'fit',
       containerCls: 'panel'
     },
-    Mixins: [$_c9juz9uzjkmcwskb],
+    Mixins: [$_4acv48u6jh8lz3ns],
     renderHtml: function () {
       var self = this;
       var layout = self._layout;
@@ -3527,7 +3686,7 @@ var modern = (function () {
     }
   });
 
-  var $_4ci2x6v1jkmcwski = {
+  var $_8a2gtru8jh8lz3ny = {
     resizeToContent: function () {
       this._layoutRect.autoResize = true;
       this._lastRect = null;
@@ -3559,9 +3718,9 @@ var modern = (function () {
   var visiblePanels = [];
   var zOrder = [];
   var hasModal;
-  function isChildOf(ctrl, parent$$1) {
+  function isChildOf(ctrl, parent) {
     while (ctrl) {
-      if (ctrl === parent$$1) {
+      if (ctrl === parent) {
         return true;
       }
       ctrl = ctrl.parent();
@@ -3622,14 +3781,14 @@ var modern = (function () {
     }
   }
   function repositionPanel(panel) {
-    var scrollY$$1 = funcs.getViewPort().y;
+    var scrollY = funcs.getViewPort().y;
     function toggleFixedChildPanels(fixed, deltaY) {
-      var parent$$1;
+      var parent;
       for (var i = 0; i < visiblePanels.length; i++) {
         if (visiblePanels[i] !== panel) {
-          parent$$1 = visiblePanels[i].parent();
-          while (parent$$1 && (parent$$1 = parent$$1.parent())) {
-            if (parent$$1 === panel) {
+          parent = visiblePanels[i].parent();
+          while (parent && (parent = parent.parent())) {
+            if (parent === panel) {
               visiblePanels[i].fixed(fixed).moveBy(0, deltaY).repaint();
             }
           }
@@ -3639,14 +3798,14 @@ var modern = (function () {
     if (panel.settings.autofix) {
       if (!panel.state.get('fixed')) {
         panel._autoFixY = panel.layoutRect().y;
-        if (panel._autoFixY < scrollY$$1) {
+        if (panel._autoFixY < scrollY) {
           panel.fixed(true).layoutRect({ y: 0 }).repaint();
-          toggleFixedChildPanels(true, scrollY$$1 - panel._autoFixY);
+          toggleFixedChildPanels(true, scrollY - panel._autoFixY);
         }
       } else {
-        if (panel._autoFixY > scrollY$$1) {
+        if (panel._autoFixY > scrollY) {
           panel.fixed(false).layoutRect({ y: panel._autoFixY }).repaint();
-          toggleFixedChildPanels(false, panel._autoFixY - scrollY$$1);
+          toggleFixedChildPanels(false, panel._autoFixY - scrollY);
         }
       }
     }
@@ -3685,87 +3844,87 @@ var modern = (function () {
   }
   var FloatPanel = Panel.extend({
     Mixins: [
-      $_77p0ikukjkmcwsie,
-      $_4ci2x6v1jkmcwski
+      $_d97gfctrjh8lz3lm,
+      $_8a2gtru8jh8lz3ny
     ],
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._super(settings);
-      self$$1._eventsRoot = self$$1;
-      self$$1.classes.add('floatpanel');
+      var self = this;
+      self._super(settings);
+      self._eventsRoot = self;
+      self.classes.add('floatpanel');
       if (settings.autohide) {
         bindDocumentClickHandler();
         bindWindowResizeHandler();
-        visiblePanels.push(self$$1);
+        visiblePanels.push(self);
       }
       if (settings.autofix) {
         bindDocumentScrollHandler();
-        self$$1.on('move', function () {
+        self.on('move', function () {
           repositionPanel(this);
         });
       }
-      self$$1.on('postrender show', function (e) {
-        if (e.control === self$$1) {
+      self.on('postrender show', function (e) {
+        if (e.control === self) {
           var $modalBlockEl_1;
-          var prefix_1 = self$$1.classPrefix;
-          if (self$$1.modal && !hasModal) {
-            $modalBlockEl_1 = global$9('#' + prefix_1 + 'modal-block', self$$1.getContainerElm());
+          var prefix_1 = self.classPrefix;
+          if (self.modal && !hasModal) {
+            $modalBlockEl_1 = global$9('#' + prefix_1 + 'modal-block', self.getContainerElm());
             if (!$modalBlockEl_1[0]) {
-              $modalBlockEl_1 = global$9('<div id="' + prefix_1 + 'modal-block" class="' + prefix_1 + 'reset ' + prefix_1 + 'fade"></div>').appendTo(self$$1.getContainerElm());
+              $modalBlockEl_1 = global$9('<div id="' + prefix_1 + 'modal-block" class="' + prefix_1 + 'reset ' + prefix_1 + 'fade"></div>').appendTo(self.getContainerElm());
             }
             global$7.setTimeout(function () {
               $modalBlockEl_1.addClass(prefix_1 + 'in');
-              global$9(self$$1.getEl()).addClass(prefix_1 + 'in');
+              global$9(self.getEl()).addClass(prefix_1 + 'in');
             });
             hasModal = true;
           }
-          addRemove(true, self$$1);
+          addRemove(true, self);
         }
       });
-      self$$1.on('show', function () {
-        self$$1.parents().each(function (ctrl) {
+      self.on('show', function () {
+        self.parents().each(function (ctrl) {
           if (ctrl.state.get('fixed')) {
-            self$$1.fixed(true);
+            self.fixed(true);
             return false;
           }
         });
       });
       if (settings.popover) {
-        self$$1._preBodyHtml = '<div class="' + self$$1.classPrefix + 'arrow"></div>';
-        self$$1.classes.add('popover').add('bottom').add(self$$1.isRtl() ? 'end' : 'start');
+        self._preBodyHtml = '<div class="' + self.classPrefix + 'arrow"></div>';
+        self.classes.add('popover').add('bottom').add(self.isRtl() ? 'end' : 'start');
       }
-      self$$1.aria('label', settings.ariaLabel);
-      self$$1.aria('labelledby', self$$1._id);
-      self$$1.aria('describedby', self$$1.describedBy || self$$1._id + '-none');
+      self.aria('label', settings.ariaLabel);
+      self.aria('labelledby', self._id);
+      self.aria('describedby', self.describedBy || self._id + '-none');
     },
     fixed: function (state) {
-      var self$$1 = this;
-      if (self$$1.state.get('fixed') !== state) {
-        if (self$$1.state.get('rendered')) {
+      var self = this;
+      if (self.state.get('fixed') !== state) {
+        if (self.state.get('rendered')) {
           var viewport = funcs.getViewPort();
           if (state) {
-            self$$1.layoutRect().y -= viewport.y;
+            self.layoutRect().y -= viewport.y;
           } else {
-            self$$1.layoutRect().y += viewport.y;
+            self.layoutRect().y += viewport.y;
           }
         }
-        self$$1.classes.toggle('fixed', state);
-        self$$1.state.set('fixed', state);
+        self.classes.toggle('fixed', state);
+        self.state.set('fixed', state);
       }
-      return self$$1;
+      return self;
     },
     show: function () {
-      var self$$1 = this;
+      var self = this;
       var i;
-      var state = self$$1._super();
+      var state = self._super();
       i = visiblePanels.length;
       while (i--) {
-        if (visiblePanels[i] === self$$1) {
+        if (visiblePanels[i] === self) {
           break;
         }
       }
       if (i === -1) {
-        visiblePanels.push(self$$1);
+        visiblePanels.push(self);
       }
       return state;
     },
@@ -3778,23 +3937,23 @@ var modern = (function () {
       FloatPanel.hideAll();
     },
     close: function () {
-      var self$$1 = this;
-      if (!self$$1.fire('close').isDefaultPrevented()) {
-        self$$1.remove();
-        addRemove(false, self$$1);
+      var self = this;
+      if (!self.fire('close').isDefaultPrevented()) {
+        self.remove();
+        addRemove(false, self);
       }
-      return self$$1;
+      return self;
     },
     remove: function () {
       removeVisiblePanel(this);
       this._super();
     },
     postRender: function () {
-      var self$$1 = this;
-      if (self$$1.settings.bodyRole) {
-        this.getEl('body').setAttribute('role', self$$1.settings.bodyRole);
+      var self = this;
+      if (self.settings.bodyRole) {
+        this.getEl('body').setAttribute('role', self.settings.bodyRole);
       }
-      return self$$1._super();
+      return self._super();
     }
   });
   FloatPanel.hideAll = function () {
@@ -3888,21 +4047,21 @@ var modern = (function () {
           hasMenubar(editor) === false ? null : {
             type: 'menubar',
             border: '0 0 1 0',
-            items: $_3ke8tlu8jkmcwsgq.createMenuButtons(editor)
+            items: $_8i78rftgjh8lz3ka.createMenuButtons(editor)
           },
-          $_5g1hacu7jkmcwsgn.createToolbars(editor, getToolbarSize(editor))
+          $_fudqhrtfjh8lz3k7.createToolbars(editor, getToolbarSize(editor))
         ]
       });
-      $_5kmlp5u4jkmcwsge.setUiContainer(editor, panel);
-      $_1jkxpltzjkmcwsg4.fireBeforeRenderUI(editor);
+      $_1jk3jvtcjh8lz3jy.setUiContainer(editor, panel);
+      $_aycuj2t7jh8lz3jp.fireBeforeRenderUI(editor);
       if (inlineToolbarContainer) {
         panel.renderTo(inlineToolbarContainer).reflow();
       } else {
         panel.renderTo().reflow();
       }
-      $_1mdekmu0jkmcwsg5.addKeys(editor, panel);
+      $_47hpztt8jh8lz3jq.addKeys(editor, panel);
       show();
-      $_44ggy0u1jkmcwsg7.addContextualToolbars(editor);
+      $_5kodmdt9jh8lz3js.addContextualToolbars(editor);
       editor.on('nodeChange', reposition);
       editor.on('ResizeWindow', reposition);
       editor.on('activate', show);
@@ -3925,13 +4084,13 @@ var modern = (function () {
       }
     });
     if (isSkinDisabled(editor) === false && args.skinUiCss) {
-      DOM.styleSheetLoader.load(args.skinUiCss, $_2tsyb2uejkmcwsha.fireSkinLoaded(editor));
+      DOM.styleSheetLoader.load(args.skinUiCss, $_231e94tmjh8lz3ku.fireSkinLoaded(editor));
     } else {
-      $_2tsyb2uejkmcwsha.fireSkinLoaded(editor)();
+      $_231e94tmjh8lz3ku.fireSkinLoaded(editor)();
     }
     return {};
   };
-  var $_aqv3nuufjkmcwshc = { render: render$1 };
+  var $_7wdylstnjh8lz3kv = { render: render$1 };
 
   function Throbber (elm, inline) {
     var self = this;
@@ -3978,7 +4137,7 @@ var modern = (function () {
       }
     });
   };
-  var $_575jhev2jkmcwskj = { setup: setup };
+  var $_e9w0qfu9jh8lz3nz = { setup: setup };
 
   var renderUI = function (editor, theme, args) {
     var skinUrl = getSkinUrl(editor);
@@ -3986,13 +4145,13 @@ var modern = (function () {
       args.skinUiCss = skinUrl + '/skin.min.css';
       editor.contentCSS.push(skinUrl + '/content' + (editor.inline ? '.inline' : '') + '.min.css');
     }
-    $_575jhev2jkmcwskj.setup(editor, theme);
-    return isInline(editor) ? $_aqv3nuufjkmcwshc.render(editor, theme, args) : $_9mz4sntvjkmcwsft.render(editor, theme, args);
+    $_e9w0qfu9jh8lz3nz.setup(editor, theme);
+    return isInline(editor) ? $_7wdylstnjh8lz3kv.render(editor, theme, args) : $_4cj0a3t3jh8lz3jk.render(editor, theme, args);
   };
-  var $_7k92xgtrjkmcwsfn = { renderUI: renderUI };
+  var $_5ent4szjh8lz3ja = { renderUI: renderUI };
 
   var Tooltip = Control$1.extend({
-    Mixins: [$_77p0ikukjkmcwsie],
+    Mixins: [$_d97gfctrjh8lz3lm],
     Defaults: { classes: 'widget tooltip tooltip-n' },
     renderHtml: function () {
       var self = this, prefix = self.classPrefix;
@@ -4049,7 +4208,7 @@ var modern = (function () {
     tooltip: function () {
       if (!this._tooltip) {
         this._tooltip = new Tooltip({ type: 'tooltip' });
-        $_5kmlp5u4jkmcwsge.inheritUiContainer(this, this._tooltip);
+        $_1jk3jvtcjh8lz3jy.inheritUiContainer(this, this._tooltip);
         this._tooltip.renderTo();
       }
       return this._tooltip;
@@ -4139,7 +4298,7 @@ var modern = (function () {
     ctx.getEl().lastChild.textContent = text + (ctx.progressBar ? ' ' + ctx.progressBar.value() + '%' : '');
   };
   var Notification = Control$1.extend({
-    Mixins: [$_77p0ikukjkmcwsie],
+    Mixins: [$_d97gfctrjh8lz3lm],
     Defaults: { classes: 'widget notification' },
     init: function (settings) {
       var self = this;
@@ -4237,7 +4396,7 @@ var modern = (function () {
       return funcs.getSize(container).width;
     };
     var prePositionNotifications = function (notifications) {
-      each(notifications, function (notification) {
+      $_f3qxhzthjh8lz3kg.each(notifications, function (notification) {
         notification.moveTo(0, 0);
       });
     };
@@ -4246,7 +4405,7 @@ var modern = (function () {
         var firstItem = notifications.slice(0, 1)[0];
         var container = getEditorContainer(editor);
         firstItem.moveRel(container, 'tc-tc');
-        each(notifications, function (notification, index) {
+        $_f3qxhzthjh8lz3kg.each(notifications, function (notification, index) {
           if (index > 0) {
             notification.moveRel(notifications[index - 1].getEl(), 'bc-tc');
           }
@@ -4350,7 +4509,7 @@ var modern = (function () {
     }
     global$9(window).on('resize', reposition);
   }
-  var Window$$1 = FloatPanel.extend({
+  var Window = FloatPanel.extend({
     modal: true,
     Defaults: {
       border: 1,
@@ -4367,73 +4526,73 @@ var modern = (function () {
       }
     },
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._super(settings);
-      if (self$$1.isRtl()) {
-        self$$1.classes.add('rtl');
+      var self = this;
+      self._super(settings);
+      if (self.isRtl()) {
+        self.classes.add('rtl');
       }
-      self$$1.classes.add('window');
-      self$$1.bodyClasses.add('window-body');
-      self$$1.state.set('fixed', true);
+      self.classes.add('window');
+      self.bodyClasses.add('window-body');
+      self.state.set('fixed', true);
       if (settings.buttons) {
-        self$$1.statusbar = new Panel({
+        self.statusbar = new Panel({
           layout: 'flex',
           border: '1 0 0 0',
           spacing: 3,
           padding: 10,
           align: 'center',
-          pack: self$$1.isRtl() ? 'start' : 'end',
+          pack: self.isRtl() ? 'start' : 'end',
           defaults: { type: 'button' },
           items: settings.buttons
         });
-        self$$1.statusbar.classes.add('foot');
-        self$$1.statusbar.parent(self$$1);
+        self.statusbar.classes.add('foot');
+        self.statusbar.parent(self);
       }
-      self$$1.on('click', function (e) {
-        var closeClass = self$$1.classPrefix + 'close';
+      self.on('click', function (e) {
+        var closeClass = self.classPrefix + 'close';
         if (funcs.hasClass(e.target, closeClass) || funcs.hasClass(e.target.parentNode, closeClass)) {
-          self$$1.close();
+          self.close();
         }
       });
-      self$$1.on('cancel', function () {
-        self$$1.close();
+      self.on('cancel', function () {
+        self.close();
       });
-      self$$1.on('move', function (e) {
-        if (e.control === self$$1) {
+      self.on('move', function (e) {
+        if (e.control === self) {
           FloatPanel.hideAll();
         }
       });
-      self$$1.aria('describedby', self$$1.describedBy || self$$1._id + '-none');
-      self$$1.aria('label', settings.title);
-      self$$1._fullscreen = false;
+      self.aria('describedby', self.describedBy || self._id + '-none');
+      self.aria('label', settings.title);
+      self._fullscreen = false;
     },
     recalc: function () {
-      var self$$1 = this;
-      var statusbar$$1 = self$$1.statusbar;
+      var self = this;
+      var statusbar = self.statusbar;
       var layoutRect, width, x, needsRecalc;
-      if (self$$1._fullscreen) {
-        self$$1.layoutRect(funcs.getWindowSize());
-        self$$1.layoutRect().contentH = self$$1.layoutRect().innerH;
+      if (self._fullscreen) {
+        self.layoutRect(funcs.getWindowSize());
+        self.layoutRect().contentH = self.layoutRect().innerH;
       }
-      self$$1._super();
-      layoutRect = self$$1.layoutRect();
-      if (self$$1.settings.title && !self$$1._fullscreen) {
+      self._super();
+      layoutRect = self.layoutRect();
+      if (self.settings.title && !self._fullscreen) {
         width = layoutRect.headerW;
         if (width > layoutRect.w) {
           x = layoutRect.x - Math.max(0, width / 2);
-          self$$1.layoutRect({
+          self.layoutRect({
             w: width,
             x: x
           });
           needsRecalc = true;
         }
       }
-      if (statusbar$$1) {
-        statusbar$$1.layoutRect({ w: self$$1.layoutRect().innerW }).recalc();
-        width = statusbar$$1.layoutRect().minW + layoutRect.deltaW;
+      if (statusbar) {
+        statusbar.layoutRect({ w: self.layoutRect().innerW }).recalc();
+        width = statusbar.layoutRect().minW + layoutRect.deltaW;
         if (width > layoutRect.w) {
           x = layoutRect.x - Math.max(0, width - layoutRect.w);
-          self$$1.layoutRect({
+          self.layoutRect({
             w: width,
             x: x
           });
@@ -4441,158 +4600,158 @@ var modern = (function () {
         }
       }
       if (needsRecalc) {
-        self$$1.recalc();
+        self.recalc();
       }
     },
     initLayoutRect: function () {
-      var self$$1 = this;
-      var layoutRect = self$$1._super();
+      var self = this;
+      var layoutRect = self._super();
       var deltaH = 0, headEl;
-      if (self$$1.settings.title && !self$$1._fullscreen) {
-        headEl = self$$1.getEl('head');
+      if (self.settings.title && !self._fullscreen) {
+        headEl = self.getEl('head');
         var size = funcs.getSize(headEl);
         layoutRect.headerW = size.width;
         layoutRect.headerH = size.height;
         deltaH += layoutRect.headerH;
       }
-      if (self$$1.statusbar) {
-        deltaH += self$$1.statusbar.layoutRect().h;
+      if (self.statusbar) {
+        deltaH += self.statusbar.layoutRect().h;
       }
       layoutRect.deltaH += deltaH;
       layoutRect.minH += deltaH;
       layoutRect.h += deltaH;
       var rect = funcs.getWindowSize();
-      layoutRect.x = self$$1.settings.x || Math.max(0, rect.w / 2 - layoutRect.w / 2);
-      layoutRect.y = self$$1.settings.y || Math.max(0, rect.h / 2 - layoutRect.h / 2);
+      layoutRect.x = self.settings.x || Math.max(0, rect.w / 2 - layoutRect.w / 2);
+      layoutRect.y = self.settings.y || Math.max(0, rect.h / 2 - layoutRect.h / 2);
       return layoutRect;
     },
     renderHtml: function () {
-      var self$$1 = this, layout = self$$1._layout, id = self$$1._id, prefix = self$$1.classPrefix;
-      var settings = self$$1.settings;
+      var self = this, layout = self._layout, id = self._id, prefix = self.classPrefix;
+      var settings = self.settings;
       var headerHtml = '', footerHtml = '', html = settings.html;
-      self$$1.preRender();
-      layout.preRender(self$$1);
+      self.preRender();
+      layout.preRender(self);
       if (settings.title) {
-        headerHtml = '<div id="' + id + '-head" class="' + prefix + 'window-head">' + '<div id="' + id + '-title" class="' + prefix + 'title">' + self$$1.encode(settings.title) + '</div>' + '<div id="' + id + '-dragh" class="' + prefix + 'dragh"></div>' + '<button type="button" class="' + prefix + 'close" aria-hidden="true">' + '<i class="mce-ico mce-i-remove"></i>' + '</button>' + '</div>';
+        headerHtml = '<div id="' + id + '-head" class="' + prefix + 'window-head">' + '<div id="' + id + '-title" class="' + prefix + 'title">' + self.encode(settings.title) + '</div>' + '<div id="' + id + '-dragh" class="' + prefix + 'dragh"></div>' + '<button type="button" class="' + prefix + 'close" aria-hidden="true">' + '<i class="mce-ico mce-i-remove"></i>' + '</button>' + '</div>';
       }
       if (settings.url) {
         html = '<iframe src="' + settings.url + '" tabindex="-1"></iframe>';
       }
       if (typeof html === 'undefined') {
-        html = layout.renderHtml(self$$1);
+        html = layout.renderHtml(self);
       }
-      if (self$$1.statusbar) {
-        footerHtml = self$$1.statusbar.renderHtml();
+      if (self.statusbar) {
+        footerHtml = self.statusbar.renderHtml();
       }
-      return '<div id="' + id + '" class="' + self$$1.classes + '" hidefocus="1">' + '<div class="' + self$$1.classPrefix + 'reset" role="application">' + headerHtml + '<div id="' + id + '-body" class="' + self$$1.bodyClasses + '">' + html + '</div>' + footerHtml + '</div>' + '</div>';
+      return '<div id="' + id + '" class="' + self.classes + '" hidefocus="1">' + '<div class="' + self.classPrefix + 'reset" role="application">' + headerHtml + '<div id="' + id + '-body" class="' + self.bodyClasses + '">' + html + '</div>' + footerHtml + '</div>' + '</div>';
     },
     fullscreen: function (state) {
-      var self$$1 = this;
+      var self = this;
       var documentElement = document.documentElement;
       var slowRendering;
-      var prefix = self$$1.classPrefix;
+      var prefix = self.classPrefix;
       var layoutRect;
-      if (state !== self$$1._fullscreen) {
+      if (state !== self._fullscreen) {
         global$9(window).on('resize', function () {
           var time;
-          if (self$$1._fullscreen) {
+          if (self._fullscreen) {
             if (!slowRendering) {
               time = new Date().getTime();
               var rect = funcs.getWindowSize();
-              self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
+              self.moveTo(0, 0).resizeTo(rect.w, rect.h);
               if (new Date().getTime() - time > 50) {
                 slowRendering = true;
               }
             } else {
-              if (!self$$1._timer) {
-                self$$1._timer = global$7.setTimeout(function () {
+              if (!self._timer) {
+                self._timer = global$7.setTimeout(function () {
                   var rect = funcs.getWindowSize();
-                  self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
-                  self$$1._timer = 0;
+                  self.moveTo(0, 0).resizeTo(rect.w, rect.h);
+                  self._timer = 0;
                 }, 50);
               }
             }
           }
         });
-        layoutRect = self$$1.layoutRect();
-        self$$1._fullscreen = state;
+        layoutRect = self.layoutRect();
+        self._fullscreen = state;
         if (!state) {
-          self$$1.borderBox = $_79d0aauqjkmcwsj9.parseBox(self$$1.settings.border);
-          self$$1.getEl('head').style.display = '';
+          self.borderBox = $_focdcktxjh8lz3mn.parseBox(self.settings.border);
+          self.getEl('head').style.display = '';
           layoutRect.deltaH += layoutRect.headerH;
           global$9([
             documentElement,
             document.body
           ]).removeClass(prefix + 'fullscreen');
-          self$$1.classes.remove('fullscreen');
-          self$$1.moveTo(self$$1._initial.x, self$$1._initial.y).resizeTo(self$$1._initial.w, self$$1._initial.h);
+          self.classes.remove('fullscreen');
+          self.moveTo(self._initial.x, self._initial.y).resizeTo(self._initial.w, self._initial.h);
         } else {
-          self$$1._initial = {
+          self._initial = {
             x: layoutRect.x,
             y: layoutRect.y,
             w: layoutRect.w,
             h: layoutRect.h
           };
-          self$$1.borderBox = $_79d0aauqjkmcwsj9.parseBox('0');
-          self$$1.getEl('head').style.display = 'none';
+          self.borderBox = $_focdcktxjh8lz3mn.parseBox('0');
+          self.getEl('head').style.display = 'none';
           layoutRect.deltaH -= layoutRect.headerH + 2;
           global$9([
             documentElement,
             document.body
           ]).addClass(prefix + 'fullscreen');
-          self$$1.classes.add('fullscreen');
+          self.classes.add('fullscreen');
           var rect = funcs.getWindowSize();
-          self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
+          self.moveTo(0, 0).resizeTo(rect.w, rect.h);
         }
       }
-      return self$$1.reflow();
+      return self.reflow();
     },
     postRender: function () {
-      var self$$1 = this;
+      var self = this;
       var startPos;
       setTimeout(function () {
-        self$$1.classes.add('in');
-        self$$1.fire('open');
+        self.classes.add('in');
+        self.fire('open');
       }, 0);
-      self$$1._super();
-      if (self$$1.statusbar) {
-        self$$1.statusbar.postRender();
+      self._super();
+      if (self.statusbar) {
+        self.statusbar.postRender();
       }
-      self$$1.focus();
-      this.dragHelper = new DragHelper(self$$1._id + '-dragh', {
+      self.focus();
+      this.dragHelper = new DragHelper(self._id + '-dragh', {
         start: function () {
           startPos = {
-            x: self$$1.layoutRect().x,
-            y: self$$1.layoutRect().y
+            x: self.layoutRect().x,
+            y: self.layoutRect().y
           };
         },
         drag: function (e) {
-          self$$1.moveTo(startPos.x + e.deltaX, startPos.y + e.deltaY);
+          self.moveTo(startPos.x + e.deltaX, startPos.y + e.deltaY);
         }
       });
-      self$$1.on('submit', function (e) {
+      self.on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-          self$$1.close();
+          self.close();
         }
       });
-      windows.push(self$$1);
+      windows.push(self);
       toggleFullScreenState(true);
     },
     submit: function () {
       return this.fire('submit', { data: this.toJSON() });
     },
     remove: function () {
-      var self$$1 = this;
+      var self = this;
       var i;
-      self$$1.dragHelper.destroy();
-      self$$1._super();
-      if (self$$1.statusbar) {
+      self.dragHelper.destroy();
+      self._super();
+      if (self.statusbar) {
         this.statusbar.remove();
       }
-      toggleBodyFullScreenClasses(self$$1.classPrefix, false);
+      toggleBodyFullScreenClasses(self.classPrefix, false);
       i = windows.length;
       while (i--) {
-        if (windows[i] === self$$1) {
+        if (windows[i] === self) {
           windows.splice(i, 1);
         }
       }
@@ -4605,7 +4764,7 @@ var modern = (function () {
   });
   handleWindowResize();
 
-  var MessageBox = Window$$1.extend({
+  var MessageBox = Window.extend({
     init: function (settings) {
       settings = {
         border: 1,
@@ -4638,14 +4797,14 @@ var modern = (function () {
         var buttons;
         var callback = settings.callback || function () {
         };
-        function createButton(text, status$$1, primary) {
+        function createButton(text, status, primary) {
           return {
             type: 'button',
             text: text,
             subtype: primary ? 'primary' : '',
             onClick: function (e) {
               e.control.parents()[1].close();
-              callback(status$$1);
+              callback(status);
             }
           };
         }
@@ -4670,7 +4829,7 @@ var modern = (function () {
           buttons = [createButton('Ok', true, true)];
           break;
         }
-        return new Window$$1({
+        return new Window({
           padding: 20,
           x: settings.x,
           y: settings.y,
@@ -4717,7 +4876,7 @@ var modern = (function () {
   });
 
   function WindowManagerImpl (editor) {
-    var open$$1 = function (args, params, closeCallback) {
+    var open = function (args, params, closeCallback) {
       var win;
       args.title = args.title || ' ';
       args.url = args.url || args.file;
@@ -4751,16 +4910,16 @@ var modern = (function () {
           }
         ];
       }
-      win = new Window$$1(args);
+      win = new Window(args);
       win.on('close', function () {
         closeCallback(win);
       });
       if (args.data) {
         win.on('postRender', function () {
           this.find('*').each(function (ctrl) {
-            var name$$1 = ctrl.name();
-            if (name$$1 in args.data) {
-              ctrl.value(args.data[name$$1]);
+            var name = ctrl.name();
+            if (name in args.data) {
+              ctrl.value(args.data[name]);
             }
           });
         });
@@ -4770,7 +4929,7 @@ var modern = (function () {
       win = win.renderTo(document.body).reflow();
       return win;
     };
-    var alert$$1 = function (message, choiceCallback, closeCallback) {
+    var alert = function (message, choiceCallback, closeCallback) {
       var win;
       win = MessageBox.alert(message, function () {
         choiceCallback();
@@ -4780,7 +4939,7 @@ var modern = (function () {
       });
       return win;
     };
-    var confirm$$1 = function (message, choiceCallback, closeCallback) {
+    var confirm = function (message, choiceCallback, closeCallback) {
       var win;
       win = MessageBox.confirm(message, function (state) {
         choiceCallback(state);
@@ -4790,20 +4949,20 @@ var modern = (function () {
       });
       return win;
     };
-    var close$$1 = function (window$$1) {
-      window$$1.close();
+    var close = function (window) {
+      window.close();
     };
-    var getParams = function (window$$1) {
-      return window$$1.params;
+    var getParams = function (window) {
+      return window.params;
     };
-    var setParams = function (window$$1, params) {
-      window$$1.params = params;
+    var setParams = function (window, params) {
+      window.params = params;
     };
     return {
-      open: open$$1,
-      alert: alert$$1,
-      confirm: confirm$$1,
-      close: close$$1,
+      open: open,
+      alert: alert,
+      confirm: confirm,
+      close: close,
       getParams: getParams,
       setParams: setParams
     };
@@ -4811,13 +4970,13 @@ var modern = (function () {
 
   var get = function (editor) {
     var renderUI = function (args) {
-      return $_7k92xgtrjkmcwsfn.renderUI(editor, this, args);
+      return $_5ent4szjh8lz3ja.renderUI(editor, this, args);
     };
     var resizeTo = function (w, h) {
-      return $_focm2tubjkmcwsh5.resizeTo(editor, w, h);
+      return $_5toavetjjh8lz3ko.resizeTo(editor, w, h);
     };
     var resizeBy = function (dw, dh) {
-      return $_focm2tubjkmcwsh5.resizeBy(editor, dw, dh);
+      return $_5toavetjjh8lz3ko.resizeBy(editor, dw, dh);
     };
     var getNotificationManagerImpl = function () {
       return NotificationManagerImpl(editor);
@@ -4833,7 +4992,7 @@ var modern = (function () {
       getWindowManagerImpl: getWindowManagerImpl
     };
   };
-  var $_f0tepxtqjkmcwsfm = { get: get };
+  var $_1os0v5syjh8lz3j9 = { get: get };
 
   var Layout = global$10.extend({
     Defaults: {
@@ -4916,26 +5075,26 @@ var modern = (function () {
       role: 'button'
     },
     init: function (settings) {
-      var self$$1 = this;
+      var self = this;
       var size;
-      self$$1._super(settings);
-      settings = self$$1.settings;
-      size = self$$1.settings.size;
-      self$$1.on('click mousedown', function (e) {
+      self._super(settings);
+      settings = self.settings;
+      size = self.settings.size;
+      self.on('click mousedown', function (e) {
         e.preventDefault();
       });
-      self$$1.on('touchstart', function (e) {
-        self$$1.fire('click', e);
+      self.on('touchstart', function (e) {
+        self.fire('click', e);
         e.preventDefault();
       });
       if (settings.subtype) {
-        self$$1.classes.add(settings.subtype);
+        self.classes.add(settings.subtype);
       }
       if (size) {
-        self$$1.classes.add('btn-' + size);
+        self.classes.add('btn-' + size);
       }
       if (settings.icon) {
-        self$$1.icon(settings.icon);
+        self.icon(settings.icon);
       }
     },
     icon: function (icon) {
@@ -4955,12 +5114,12 @@ var modern = (function () {
       this._super();
     },
     renderHtml: function () {
-      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
-      var icon = self$$1.state.get('icon'), image;
-      var text = self$$1.state.get('text');
+      var self = this, id = self._id, prefix = self.classPrefix;
+      var icon = self.state.get('icon'), image;
+      var text = self.state.get('text');
       var textHtml = '';
       var ariaPressed;
-      var settings = self$$1.settings;
+      var settings = self.settings;
       image = settings.image;
       if (image) {
         icon = 'none';
@@ -4972,37 +5131,37 @@ var modern = (function () {
         image = '';
       }
       if (text) {
-        self$$1.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
+        self.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
       }
       icon = icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
       ariaPressed = typeof settings.active === 'boolean' ? ' aria-pressed="' + settings.active + '"' : '';
-      return '<div id="' + id + '" class="' + self$$1.classes + '" tabindex="-1"' + ariaPressed + '>' + '<button id="' + id + '-button" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '</div>';
+      return '<div id="' + id + '" class="' + self.classes + '" tabindex="-1"' + ariaPressed + '>' + '<button id="' + id + '-button" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '</div>';
     },
     bindStates: function () {
-      var self$$1 = this, $ = self$$1.$, textCls = self$$1.classPrefix + 'txt';
+      var self = this, $ = self.$, textCls = self.classPrefix + 'txt';
       function setButtonText(text) {
-        var $span = $('span.' + textCls, self$$1.getEl());
+        var $span = $('span.' + textCls, self.getEl());
         if (text) {
           if (!$span[0]) {
-            $('button:first', self$$1.getEl()).append('<span class="' + textCls + '"></span>');
-            $span = $('span.' + textCls, self$$1.getEl());
+            $('button:first', self.getEl()).append('<span class="' + textCls + '"></span>');
+            $span = $('span.' + textCls, self.getEl());
           }
-          $span.html(self$$1.encode(text));
+          $span.html(self.encode(text));
         } else {
           $span.remove();
         }
-        self$$1.classes.toggle('btn-has-text', !!text);
+        self.classes.toggle('btn-has-text', !!text);
       }
-      self$$1.state.on('change:text', function (e) {
+      self.state.on('change:text', function (e) {
         setButtonText(e.value);
       });
-      self$$1.state.on('change:icon', function (e) {
+      self.state.on('change:icon', function (e) {
         var icon = e.value;
-        var prefix = self$$1.classPrefix;
-        self$$1.settings.icon = icon;
-        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self$$1.settings.icon : '';
-        var btnElm = self$$1.getEl().firstChild;
+        var prefix = self.classPrefix;
+        self.settings.icon = icon;
+        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
+        var btnElm = self.getEl().firstChild;
         var iconElm = btnElm.getElementsByTagName('i')[0];
         if (icon) {
           if (!iconElm || iconElm !== btnElm.firstChild) {
@@ -5013,9 +5172,9 @@ var modern = (function () {
         } else if (iconElm) {
           btnElm.removeChild(iconElm);
         }
-        setButtonText(self$$1.state.get('text'));
+        setButtonText(self.state.get('text'));
       });
-      return self$$1._super();
+      return self._super();
     }
   });
 
@@ -5094,18 +5253,18 @@ var modern = (function () {
       checked: false
     },
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._super(settings);
-      self$$1.on('click mousedown', function (e) {
+      var self = this;
+      self._super(settings);
+      self.on('click mousedown', function (e) {
         e.preventDefault();
       });
-      self$$1.on('click', function (e) {
+      self.on('click', function (e) {
         e.preventDefault();
-        if (!self$$1.disabled()) {
-          self$$1.checked(!self$$1.checked());
+        if (!self.disabled()) {
+          self.checked(!self.checked());
         }
       });
-      self$$1.checked(self$$1.settings.checked);
+      self.checked(self.settings.checked);
     },
     checked: function (state) {
       if (!arguments.length) {
@@ -5121,31 +5280,31 @@ var modern = (function () {
       return this.checked(state);
     },
     renderHtml: function () {
-      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
-      return '<div id="' + id + '" class="' + self$$1.classes + '" unselectable="on" aria-labelledby="' + id + '-al" tabindex="-1">' + '<i class="' + prefix + 'ico ' + prefix + 'i-checkbox"></i>' + '<span id="' + id + '-al" class="' + prefix + 'label">' + self$$1.encode(self$$1.state.get('text')) + '</span>' + '</div>';
+      var self = this, id = self._id, prefix = self.classPrefix;
+      return '<div id="' + id + '" class="' + self.classes + '" unselectable="on" aria-labelledby="' + id + '-al" tabindex="-1">' + '<i class="' + prefix + 'ico ' + prefix + 'i-checkbox"></i>' + '<span id="' + id + '-al" class="' + prefix + 'label">' + self.encode(self.state.get('text')) + '</span>' + '</div>';
     },
     bindStates: function () {
-      var self$$1 = this;
+      var self = this;
       function checked(state) {
-        self$$1.classes.toggle('checked', state);
-        self$$1.aria('checked', state);
+        self.classes.toggle('checked', state);
+        self.aria('checked', state);
       }
-      self$$1.state.on('change:text', function (e) {
-        self$$1.getEl('al').firstChild.data = self$$1.translate(e.value);
+      self.state.on('change:text', function (e) {
+        self.getEl('al').firstChild.data = self.translate(e.value);
       });
-      self$$1.state.on('change:checked change:value', function (e) {
-        self$$1.fire('change');
+      self.state.on('change:checked change:value', function (e) {
+        self.fire('change');
         checked(e.value);
       });
-      self$$1.state.on('change:icon', function (e) {
+      self.state.on('change:icon', function (e) {
         var icon = e.value;
-        var prefix = self$$1.classPrefix;
+        var prefix = self.classPrefix;
         if (typeof icon === 'undefined') {
-          return self$$1.settings.icon;
+          return self.settings.icon;
         }
-        self$$1.settings.icon = icon;
-        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self$$1.settings.icon : '';
-        var btnElm = self$$1.getEl().firstChild;
+        self.settings.icon = icon;
+        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
+        var btnElm = self.getEl().firstChild;
         var iconElm = btnElm.getElementsByTagName('i')[0];
         if (icon) {
           if (!iconElm || iconElm !== btnElm.firstChild) {
@@ -5157,10 +5316,10 @@ var modern = (function () {
           btnElm.removeChild(iconElm);
         }
       });
-      if (self$$1.state.get('checked')) {
+      if (self.state.get('checked')) {
         checked(true);
       }
-      return self$$1._super();
+      return self._super();
     }
   });
 
@@ -5168,62 +5327,62 @@ var modern = (function () {
 
   var ComboBox = Widget.extend({
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._super(settings);
-      settings = self$$1.settings;
-      self$$1.classes.add('combobox');
-      self$$1.subinput = true;
-      self$$1.ariaTarget = 'inp';
+      var self = this;
+      self._super(settings);
+      settings = self.settings;
+      self.classes.add('combobox');
+      self.subinput = true;
+      self.ariaTarget = 'inp';
       settings.menu = settings.menu || settings.values;
       if (settings.menu) {
         settings.icon = 'caret';
       }
-      self$$1.on('click', function (e) {
+      self.on('click', function (e) {
         var elm = e.target;
-        var root = self$$1.getEl();
+        var root = self.getEl();
         if (!global$9.contains(root, elm) && elm !== root) {
           return;
         }
         while (elm && elm !== root) {
           if (elm.id && elm.id.indexOf('-open') !== -1) {
-            self$$1.fire('action');
+            self.fire('action');
             if (settings.menu) {
-              self$$1.showMenu();
+              self.showMenu();
               if (e.aria) {
-                self$$1.menu.items()[0].focus();
+                self.menu.items()[0].focus();
               }
             }
           }
           elm = elm.parentNode;
         }
       });
-      self$$1.on('keydown', function (e) {
+      self.on('keydown', function (e) {
         var rootControl;
         if (e.keyCode === 13 && e.target.nodeName === 'INPUT') {
           e.preventDefault();
-          self$$1.parents().reverse().each(function (ctrl) {
+          self.parents().reverse().each(function (ctrl) {
             if (ctrl.toJSON) {
               rootControl = ctrl;
               return false;
             }
           });
-          self$$1.fire('submit', { data: rootControl.toJSON() });
+          self.fire('submit', { data: rootControl.toJSON() });
         }
       });
-      self$$1.on('keyup', function (e) {
+      self.on('keyup', function (e) {
         if (e.target.nodeName === 'INPUT') {
-          var oldValue = self$$1.state.get('value');
+          var oldValue = self.state.get('value');
           var newValue = e.target.value;
           if (newValue !== oldValue) {
-            self$$1.state.set('value', newValue);
-            self$$1.fire('autocomplete', e);
+            self.state.set('value', newValue);
+            self.fire('autocomplete', e);
           }
         }
       });
-      self$$1.on('mouseover', function (e) {
-        var tooltip = self$$1.tooltip().moveTo(-65535);
-        if (self$$1.statusLevel() && e.target.className.indexOf(self$$1.classPrefix + 'status') !== -1) {
-          var statusMessage = self$$1.statusMessage() || 'Ok';
+      self.on('mouseover', function (e) {
+        var tooltip = self.tooltip().moveTo(-65535);
+        if (self.statusLevel() && e.target.className.indexOf(self.classPrefix + 'status') !== -1) {
+          var statusMessage = self.statusMessage() || 'Ok';
           var rel = tooltip.text(statusMessage).show().testMoveRel(e.target, [
             'bc-tc',
             'bc-tl',
@@ -5249,10 +5408,10 @@ var modern = (function () {
       return this.state.get('statusMessage');
     },
     showMenu: function () {
-      var self$$1 = this;
-      var settings = self$$1.settings;
+      var self = this;
+      var settings = self.settings;
       var menu;
-      if (!self$$1.menu) {
+      if (!self.menu) {
         menu = settings.menu || [];
         if (menu.length) {
           menu = {
@@ -5262,32 +5421,32 @@ var modern = (function () {
         } else {
           menu.type = menu.type || 'menu';
         }
-        self$$1.menu = global$4.create(menu).parent(self$$1).renderTo(self$$1.getContainerElm());
-        self$$1.fire('createmenu');
-        self$$1.menu.reflow();
-        self$$1.menu.on('cancel', function (e) {
-          if (e.control === self$$1.menu) {
-            self$$1.focus();
+        self.menu = global$4.create(menu).parent(self).renderTo(self.getContainerElm());
+        self.fire('createmenu');
+        self.menu.reflow();
+        self.menu.on('cancel', function (e) {
+          if (e.control === self.menu) {
+            self.focus();
           }
         });
-        self$$1.menu.on('show hide', function (e) {
+        self.menu.on('show hide', function (e) {
           e.control.items().each(function (ctrl) {
-            ctrl.active(ctrl.value() === self$$1.value());
+            ctrl.active(ctrl.value() === self.value());
           });
         }).fire('show');
-        self$$1.menu.on('select', function (e) {
-          self$$1.value(e.control.value());
+        self.menu.on('select', function (e) {
+          self.value(e.control.value());
         });
-        self$$1.on('focusin', function (e) {
+        self.on('focusin', function (e) {
           if (e.target.tagName.toUpperCase() === 'INPUT') {
-            self$$1.menu.hide();
+            self.menu.hide();
           }
         });
-        self$$1.aria('expanded', true);
+        self.aria('expanded', true);
       }
-      self$$1.menu.show();
-      self$$1.menu.layoutRect({ w: self$$1.layoutRect().w });
-      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
+      self.menu.show();
+      self.menu.layoutRect({ w: self.layoutRect().w });
+      self.menu.moveRel(self.getEl(), self.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
@@ -5299,10 +5458,10 @@ var modern = (function () {
       this.getEl('inp').focus();
     },
     repaint: function () {
-      var self$$1 = this, elm = self$$1.getEl(), openElm = self$$1.getEl('open'), rect = self$$1.layoutRect();
+      var self = this, elm = self.getEl(), openElm = self.getEl('open'), rect = self.layoutRect();
       var width, lineHeight, innerPadding = 0;
       var inputElm = elm.firstChild;
-      if (self$$1.statusLevel() && self$$1.statusLevel() !== 'none') {
+      if (self.statusLevel() && self.statusLevel() !== 'none') {
         innerPadding = parseInt(funcs.getRuntimeStyle(inputElm, 'padding-right'), 10) - parseInt(funcs.getRuntimeStyle(inputElm, 'padding-left'), 10);
       }
       if (openElm) {
@@ -5312,26 +5471,26 @@ var modern = (function () {
       }
       var doc = document;
       if (doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
-        lineHeight = self$$1.layoutRect().h - 2 + 'px';
+        lineHeight = self.layoutRect().h - 2 + 'px';
       }
       global$9(inputElm).css({
         width: width - innerPadding,
         lineHeight: lineHeight
       });
-      self$$1._super();
-      return self$$1;
+      self._super();
+      return self;
     },
     postRender: function () {
-      var self$$1 = this;
+      var self = this;
       global$9(this.getEl('inp')).on('change', function (e) {
-        self$$1.state.set('value', e.target.value);
-        self$$1.fire('change', e);
+        self.state.set('value', e.target.value);
+        self.fire('change', e);
       });
-      return self$$1._super();
+      return self._super();
     },
     renderHtml: function () {
-      var self$$1 = this, id = self$$1._id, settings = self$$1.settings, prefix = self$$1.classPrefix;
-      var value = self$$1.state.get('value') || '';
+      var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix;
+      var value = self.state.get('value') || '';
       var icon, text, openBtnHtml = '', extraAttrs = '', statusHtml = '';
       if ('spellcheck' in settings) {
         extraAttrs += ' spellcheck="' + settings.spellcheck + '"';
@@ -5346,19 +5505,19 @@ var modern = (function () {
         extraAttrs += ' type="' + settings.subtype + '"';
       }
       statusHtml = '<i id="' + id + '-status" class="mce-status mce-ico" style="display: none"></i>';
-      if (self$$1.disabled()) {
+      if (self.disabled()) {
         extraAttrs += ' disabled="disabled"';
       }
       icon = settings.icon;
       if (icon && icon !== 'caret') {
         icon = prefix + 'ico ' + prefix + 'i-' + settings.icon;
       }
-      text = self$$1.state.get('text');
+      text = self.state.get('text');
       if (icon || text) {
         openBtnHtml = '<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1" role="button">' + '<button id="' + id + '-action" type="button" hidefocus="1" tabindex="-1">' + (icon !== 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') + (text ? (icon ? ' ' : '') + text : '') + '</button>' + '</div>';
-        self$$1.classes.add('has-open');
+        self.classes.add('has-open');
       }
-      return '<div id="' + id + '" class="' + self$$1.classes + '">' + '<input id="' + id + '-inp" class="' + prefix + 'textbox" value="' + self$$1.encode(value, false) + '" hidefocus="1"' + extraAttrs + ' placeholder="' + self$$1.encode(settings.placeholder) + '" />' + statusHtml + openBtnHtml + '</div>';
+      return '<div id="' + id + '" class="' + self.classes + '">' + '<input id="' + id + '-inp" class="' + prefix + 'textbox" value="' + self.encode(value, false) + '" hidefocus="1"' + extraAttrs + ' placeholder="' + self.encode(settings.placeholder) + '" />' + statusHtml + openBtnHtml + '</div>';
     },
     value: function (value) {
       if (arguments.length) {
@@ -5371,30 +5530,30 @@ var modern = (function () {
       return this.state.get('value');
     },
     showAutoComplete: function (items, term) {
-      var self$$1 = this;
+      var self = this;
       if (items.length === 0) {
-        self$$1.hideMenu();
+        self.hideMenu();
         return;
       }
       var insert = function (value, title) {
         return function () {
-          self$$1.fire('selectitem', {
+          self.fire('selectitem', {
             title: title,
             value: value
           });
         };
       };
-      if (self$$1.menu) {
-        self$$1.menu.items().remove();
+      if (self.menu) {
+        self.menu.items().remove();
       } else {
-        self$$1.menu = global$4.create({
+        self.menu = global$4.create({
           type: 'menu',
           classes: 'combobox-menu',
           layout: 'flow'
-        }).parent(self$$1).renderTo();
+        }).parent(self).renderTo();
       }
       global$2.each(items, function (item) {
-        self$$1.menu.add({
+        self.menu.add({
           text: item.title,
           url: item.previewUrl,
           match: term,
@@ -5402,28 +5561,28 @@ var modern = (function () {
           onclick: insert(item.value, item.title)
         });
       });
-      self$$1.menu.renderNew();
-      self$$1.hideMenu();
-      self$$1.menu.on('cancel', function (e) {
-        if (e.control.parent() === self$$1.menu) {
+      self.menu.renderNew();
+      self.hideMenu();
+      self.menu.on('cancel', function (e) {
+        if (e.control.parent() === self.menu) {
           e.stopPropagation();
-          self$$1.focus();
-          self$$1.hideMenu();
+          self.focus();
+          self.hideMenu();
         }
       });
-      self$$1.menu.on('select', function () {
-        self$$1.focus();
+      self.menu.on('select', function () {
+        self.focus();
       });
-      var maxW = self$$1.layoutRect().w;
-      self$$1.menu.layoutRect({
+      var maxW = self.layoutRect().w;
+      self.menu.layoutRect({
         w: maxW,
         minW: 0,
         maxW: maxW
       });
-      self$$1.menu.repaint();
-      self$$1.menu.reflow();
-      self$$1.menu.show();
-      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
+      self.menu.repaint();
+      self.menu.reflow();
+      self.menu.show();
+      self.menu.moveRel(self.getEl(), self.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
@@ -5437,32 +5596,32 @@ var modern = (function () {
       }
     },
     bindStates: function () {
-      var self$$1 = this;
-      self$$1.state.on('change:value', function (e) {
-        if (self$$1.getEl('inp').value !== e.value) {
-          self$$1.getEl('inp').value = e.value;
+      var self = this;
+      self.state.on('change:value', function (e) {
+        if (self.getEl('inp').value !== e.value) {
+          self.getEl('inp').value = e.value;
         }
       });
-      self$$1.state.on('change:disabled', function (e) {
-        self$$1.getEl('inp').disabled = e.value;
+      self.state.on('change:disabled', function (e) {
+        self.getEl('inp').disabled = e.value;
       });
-      self$$1.state.on('change:statusLevel', function (e) {
-        var statusIconElm = self$$1.getEl('status');
-        var prefix = self$$1.classPrefix, value = e.value;
+      self.state.on('change:statusLevel', function (e) {
+        var statusIconElm = self.getEl('status');
+        var prefix = self.classPrefix, value = e.value;
         funcs.css(statusIconElm, 'display', value === 'none' ? 'none' : '');
         funcs.toggleClass(statusIconElm, prefix + 'i-checkmark', value === 'ok');
         funcs.toggleClass(statusIconElm, prefix + 'i-warning', value === 'warn');
         funcs.toggleClass(statusIconElm, prefix + 'i-error', value === 'error');
-        self$$1.classes.toggle('has-status', value !== 'none');
-        self$$1.repaint();
+        self.classes.toggle('has-status', value !== 'none');
+        self.repaint();
       });
-      funcs.on(self$$1.getEl('status'), 'mouseleave', function () {
-        self$$1.tooltip().hide();
+      funcs.on(self.getEl('status'), 'mouseleave', function () {
+        self.tooltip().hide();
       });
-      self$$1.on('cancel', function (e) {
-        if (self$$1.menu && self$$1.menu.visible()) {
+      self.on('cancel', function (e) {
+        if (self.menu && self.menu.visible()) {
           e.stopPropagation();
-          self$$1.hideMenu();
+          self.hideMenu();
         }
       });
       var focusIdx = function (idx, menu) {
@@ -5470,20 +5629,20 @@ var modern = (function () {
           menu.items().eq(idx)[0].focus();
         }
       };
-      self$$1.on('keydown', function (e) {
+      self.on('keydown', function (e) {
         var keyCode = e.keyCode;
         if (e.target.nodeName === 'INPUT') {
           if (keyCode === global$13.DOWN) {
             e.preventDefault();
-            self$$1.fire('autocomplete');
-            focusIdx(0, self$$1.menu);
+            self.fire('autocomplete');
+            focusIdx(0, self.menu);
           } else if (keyCode === global$13.UP) {
             e.preventDefault();
-            focusIdx(-1, self$$1.menu);
+            focusIdx(-1, self.menu);
           }
         }
       });
-      return self$$1._super();
+      return self._super();
     },
     remove: function () {
       global$9(this.getEl('inp')).off();
@@ -6092,6 +6251,7 @@ var modern = (function () {
     unique$1++;
     return prefix + '_' + random + unique$1 + String(time);
   };
+  var $_gdeezvv5jh8lz3rl = { generate: generate };
 
   var fromHtml = function (html, scope) {
     var doc = scope || document;
@@ -6116,13 +6276,12 @@ var modern = (function () {
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
-    return { dom: constant(node) };
+    return { dom: $_3pjweotejh8lz3k4.constant(node) };
   };
-  var fromPoint = function (docElm, x, y) {
-    var doc = docElm.dom();
-    return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
+  var fromPoint = function (doc, x, y) {
+    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
   };
-  var Element$$1 = {
+  var $_3bkrfxv6jh8lz3rm = {
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -6134,31 +6293,28 @@ var modern = (function () {
     var called = false;
     var r;
     return function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
       if (!called) {
         called = true;
-        r = f.apply(null, args);
+        r = f.apply(null, arguments);
       }
       return r;
     };
   };
+  var $_8me1xevajh8lz3s0 = { cached: cached };
 
-  var $_g9js5fw5jkmcwsoh = {
-    ATTRIBUTE: Node.ATTRIBUTE_NODE,
-    CDATA_SECTION: Node.CDATA_SECTION_NODE,
-    COMMENT: Node.COMMENT_NODE,
-    DOCUMENT: Node.DOCUMENT_NODE,
-    DOCUMENT_TYPE: Node.DOCUMENT_TYPE_NODE,
-    DOCUMENT_FRAGMENT: Node.DOCUMENT_FRAGMENT_NODE,
-    ELEMENT: Node.ELEMENT_NODE,
-    TEXT: Node.TEXT_NODE,
-    PROCESSING_INSTRUCTION: Node.PROCESSING_INSTRUCTION_NODE,
-    ENTITY_REFERENCE: Node.ENTITY_REFERENCE_NODE,
-    ENTITY: Node.ENTITY_NODE,
-    NOTATION: Node.NOTATION_NODE
+  var $_8xkvw6vcjh8lz3s2 = {
+    ATTRIBUTE: 2,
+    CDATA_SECTION: 4,
+    COMMENT: 8,
+    DOCUMENT: 9,
+    DOCUMENT_TYPE: 10,
+    DOCUMENT_FRAGMENT: 11,
+    ELEMENT: 1,
+    TEXT: 3,
+    PROCESSING_INSTRUCTION: 7,
+    ENTITY_REFERENCE: 5,
+    ENTITY: 6,
+    NOTATION: 12
   };
 
   var name = function (element) {
@@ -6177,12 +6333,12 @@ var modern = (function () {
     };
   };
   var isComment = function (element) {
-    return type(element) === $_g9js5fw5jkmcwsoh.COMMENT || name(element) === '#comment';
+    return type(element) === $_8xkvw6vcjh8lz3s2.COMMENT || name(element) === '#comment';
   };
-  var isElement = isType$1($_g9js5fw5jkmcwsoh.ELEMENT);
-  var isText = isType$1($_g9js5fw5jkmcwsoh.TEXT);
-  var isDocument = isType$1($_g9js5fw5jkmcwsoh.DOCUMENT);
-  var $_dg0wqww4jkmcwsog = {
+  var isElement = isType$1($_8xkvw6vcjh8lz3s2.ELEMENT);
+  var isText = isType$1($_8xkvw6vcjh8lz3s2.TEXT);
+  var isDocument = isType$1($_8xkvw6vcjh8lz3s2.DOCUMENT);
+  var $_11h2nlvbjh8lz3s1 = {
     name: name,
     type: type,
     value: value,
@@ -6193,25 +6349,25 @@ var modern = (function () {
   };
 
   var inBody = function (element) {
-    var dom = $_dg0wqww4jkmcwsog.isText(element) ? element.dom().parentNode : element.dom();
+    var dom = $_11h2nlvbjh8lz3s1.isText(element) ? element.dom().parentNode : element.dom();
     return dom !== undefined && dom !== null && dom.ownerDocument.body.contains(dom);
   };
-  var body = cached(function () {
-    return getBody(Element$$1.fromDom(document));
+  var body = $_8me1xevajh8lz3s0.cached(function () {
+    return getBody($_3bkrfxv6jh8lz3rm.fromDom(document));
   });
   var getBody = function (doc) {
     var body = doc.dom().body;
     if (body === null || body === undefined)
       throw 'Body is not available yet';
-    return Element$$1.fromDom(body);
+    return $_3bkrfxv6jh8lz3rm.fromDom(body);
   };
-  var $_9gi0tmw2jkmcwsob = {
+  var $_35bizev9jh8lz3rx = {
     body: body,
     getBody: getBody,
     inBody: inBody
   };
 
-  var Immutable = function () {
+  function Immutable () {
     var fields = [];
     for (var _i = 0; _i < arguments.length; _i++) {
       fields[_i] = arguments[_i];
@@ -6225,11 +6381,171 @@ var modern = (function () {
         throw new Error('Wrong number of arguments to struct. Expected "[' + fields.length + ']", got ' + values.length + ' arguments');
       }
       var struct = {};
-      each(fields, function (name, i) {
-        struct[name] = constant(values[i]);
+      $_f3qxhzthjh8lz3kg.each(fields, function (name, i) {
+        struct[name] = $_3pjweotejh8lz3k4.constant(values[i]);
       });
       return struct;
     };
+  }
+
+  var keys = function () {
+    var fastKeys = Object.keys;
+    var slowKeys = function (o) {
+      var r = [];
+      for (var i in o) {
+        if (o.hasOwnProperty(i)) {
+          r.push(i);
+        }
+      }
+      return r;
+    };
+    return fastKeys === undefined ? slowKeys : fastKeys;
+  }();
+  var each$1 = function (obj, f) {
+    var props = keys(obj);
+    for (var k = 0, len = props.length; k < len; k++) {
+      var i = props[k];
+      var x = obj[i];
+      f(x, i, obj);
+    }
+  };
+  var objectMap = function (obj, f) {
+    return tupleMap(obj, function (x, i, obj) {
+      return {
+        k: i,
+        v: f(x, i, obj)
+      };
+    });
+  };
+  var tupleMap = function (obj, f) {
+    var r = {};
+    each$1(obj, function (x, i) {
+      var tuple = f(x, i, obj);
+      r[tuple.k] = tuple.v;
+    });
+    return r;
+  };
+  var bifilter = function (obj, pred) {
+    var t = {};
+    var f = {};
+    each$1(obj, function (x, i) {
+      var branch = pred(x, i) ? t : f;
+      branch[i] = x;
+    });
+    return {
+      t: t,
+      f: f
+    };
+  };
+  var mapToArray = function (obj, f) {
+    var r = [];
+    each$1(obj, function (value, name) {
+      r.push(f(value, name));
+    });
+    return r;
+  };
+  var find$1 = function (obj, pred) {
+    var props = keys(obj);
+    for (var k = 0, len = props.length; k < len; k++) {
+      var i = props[k];
+      var x = obj[i];
+      if (pred(x, i, obj)) {
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+  };
+  var values = function (obj) {
+    return mapToArray(obj, function (v) {
+      return v;
+    });
+  };
+  var size = function (obj) {
+    return values(obj).length;
+  };
+  var $_el35e0vhjh8lz3sl = {
+    bifilter: bifilter,
+    each: each$1,
+    map: objectMap,
+    mapToArray: mapToArray,
+    tupleMap: tupleMap,
+    find: find$1,
+    keys: keys,
+    values: values,
+    size: size
+  };
+
+  var sort$1 = function (arr) {
+    return arr.slice(0).sort();
+  };
+  var reqMessage = function (required, keys) {
+    throw new Error('All required keys (' + sort$1(required).join(', ') + ') were not specified. Specified keys were: ' + sort$1(keys).join(', ') + '.');
+  };
+  var unsuppMessage = function (unsupported) {
+    throw new Error('Unsupported keys for object: ' + sort$1(unsupported).join(', '));
+  };
+  var validateStrArr = function (label, array) {
+    if (!$_d8bie3tijh8lz3kn.isArray(array))
+      throw new Error('The ' + label + ' fields must be an array. Was: ' + array + '.');
+    $_f3qxhzthjh8lz3kg.each(array, function (a) {
+      if (!$_d8bie3tijh8lz3kn.isString(a))
+        throw new Error('The value ' + a + ' in the ' + label + ' fields was not a string.');
+    });
+  };
+  var invalidTypeMessage = function (incorrect, type) {
+    throw new Error('All values need to be of type: ' + type + '. Keys (' + sort$1(incorrect).join(', ') + ') were not.');
+  };
+  var checkDupes = function (everything) {
+    var sorted = sort$1(everything);
+    var dupe = $_f3qxhzthjh8lz3kg.find(sorted, function (s, i) {
+      return i < sorted.length - 1 && s === sorted[i + 1];
+    });
+    dupe.each(function (d) {
+      throw new Error('The field: ' + d + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
+    });
+  };
+  var $_6xoomwvijh8lz3sn = {
+    sort: sort$1,
+    reqMessage: reqMessage,
+    unsuppMessage: unsuppMessage,
+    validateStrArr: validateStrArr,
+    invalidTypeMessage: invalidTypeMessage,
+    checkDupes: checkDupes
+  };
+
+  function MixedBag (required, optional) {
+    var everything = required.concat(optional);
+    if (everything.length === 0)
+      throw new Error('You must specify at least one required or optional field.');
+    $_6xoomwvijh8lz3sn.validateStrArr('required', required);
+    $_6xoomwvijh8lz3sn.validateStrArr('optional', optional);
+    $_6xoomwvijh8lz3sn.checkDupes(everything);
+    return function (obj) {
+      var keys = $_el35e0vhjh8lz3sl.keys(obj);
+      var allReqd = $_f3qxhzthjh8lz3kg.forall(required, function (req) {
+        return $_f3qxhzthjh8lz3kg.contains(keys, req);
+      });
+      if (!allReqd)
+        $_6xoomwvijh8lz3sn.reqMessage(required, keys);
+      var unsupported = $_f3qxhzthjh8lz3kg.filter(keys, function (key) {
+        return !$_f3qxhzthjh8lz3kg.contains(everything, key);
+      });
+      if (unsupported.length > 0)
+        $_6xoomwvijh8lz3sn.unsuppMessage(unsupported);
+      var r = {};
+      $_f3qxhzthjh8lz3kg.each(required, function (req) {
+        r[req] = $_3pjweotejh8lz3k4.constant(obj[req]);
+      });
+      $_f3qxhzthjh8lz3kg.each(optional, function (opt) {
+        r[opt] = $_3pjweotejh8lz3k4.constant(Object.prototype.hasOwnProperty.call(obj, opt) ? Option.some(obj[opt]) : Option.none());
+      });
+      return r;
+    };
+  }
+
+  var $_57mdu6vejh8lz3sg = {
+    immutable: Immutable,
+    immutableBag: MixedBag
   };
 
   var toArray = function (target, f) {
@@ -6244,12 +6560,12 @@ var modern = (function () {
     } while (cur.isSome());
     return r;
   };
-  var $_9vmnzpwcjkmcwsph = { toArray: toArray };
+  var $_861s8bvjjh8lz3sp = { toArray: toArray };
 
-  var Global = typeof window !== 'undefined' ? window : Function('return this;')();
+  var global$15 = typeof window !== 'undefined' ? window : Function('return this;')();
 
   var path = function (parts, scope) {
-    var o = scope !== undefined && scope !== null ? scope : Global;
+    var o = scope !== undefined && scope !== null ? scope : global$15;
     for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
       o = o[parts[i]];
     return o;
@@ -6258,9 +6574,30 @@ var modern = (function () {
     var parts = p.split('.');
     return path(parts, scope);
   };
+  var step = function (o, part) {
+    if (o[part] === undefined || o[part] === null)
+      o[part] = {};
+    return o[part];
+  };
+  var forge = function (parts, target) {
+    var o = target !== undefined ? target : global$15;
+    for (var i = 0; i < parts.length; ++i)
+      o = step(o, parts[i]);
+    return o;
+  };
+  var namespace = function (name, target) {
+    var parts = name.split('.');
+    return forge(parts, target);
+  };
+  var $_1cxe7nvnjh8lz3td = {
+    path: path,
+    resolve: resolve,
+    forge: forge,
+    namespace: namespace
+  };
 
   var unsafe = function (name, scope) {
-    return resolve(name, scope);
+    return $_1cxe7nvnjh8lz3td.resolve(name, scope);
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -6268,10 +6605,10 @@ var modern = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
-  var $_22q3m2wfjkmcwsps = { getOrDie: getOrDie };
+  var $_eol4qgvmjh8lz3t9 = { getOrDie: getOrDie };
 
   var node = function () {
-    var f = $_22q3m2wfjkmcwsps.getOrDie('Node');
+    var f = $_eol4qgvmjh8lz3t9.getOrDie('Node');
     return f;
   };
   var compareDocumentPosition = function (a, b, match) {
@@ -6283,7 +6620,7 @@ var modern = (function () {
   var documentPositionContainedBy = function (a, b) {
     return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
   };
-  var $_60zxbqwejkmcwspr = {
+  var $_7n27kvvljh8lz3t8 = {
     documentPositionPreceding: documentPositionPreceding,
     documentPositionContainedBy: documentPositionContainedBy
   };
@@ -6323,7 +6660,7 @@ var modern = (function () {
       minor: minor
     };
   };
-  var $_7ota5pwljkmcwsq4 = {
+  var $_afos0kvsjh8lz3tm = {
     nu: nu,
     detect: detect,
     unknown: unknown
@@ -6343,7 +6680,7 @@ var modern = (function () {
   var unknown$1 = function () {
     return nu$1({
       current: undefined,
-      version: $_7ota5pwljkmcwsq4.unknown()
+      version: $_afos0kvsjh8lz3tm.unknown()
     });
   };
   var nu$1 = function (info) {
@@ -6360,15 +6697,15 @@ var modern = (function () {
       isSafari: isBrowser(safari, current)
     };
   };
-  var $_fknyifwkjkmcwsq1 = {
+  var $_fidpetvrjh8lz3tj = {
     unknown: unknown$1,
     nu: nu$1,
-    edge: constant(edge),
-    chrome: constant(chrome),
-    ie: constant(ie),
-    opera: constant(opera),
-    firefox: constant(firefox),
-    safari: constant(safari)
+    edge: $_3pjweotejh8lz3k4.constant(edge),
+    chrome: $_3pjweotejh8lz3k4.constant(chrome),
+    ie: $_3pjweotejh8lz3k4.constant(ie),
+    opera: $_3pjweotejh8lz3k4.constant(opera),
+    firefox: $_3pjweotejh8lz3k4.constant(firefox),
+    safari: $_3pjweotejh8lz3k4.constant(safari)
   };
 
   var windows$1 = 'Windows';
@@ -6386,7 +6723,7 @@ var modern = (function () {
   var unknown$2 = function () {
     return nu$2({
       current: undefined,
-      version: $_7ota5pwljkmcwsq4.unknown()
+      version: $_afos0kvsjh8lz3tm.unknown()
     });
   };
   var nu$2 = function (info) {
@@ -6404,16 +6741,16 @@ var modern = (function () {
       isFreeBSD: isOS(freebsd, current)
     };
   };
-  var $_4dmnqawmjkmcwsq6 = {
+  var $_1z8n9kvtjh8lz3to = {
     unknown: unknown$2,
     nu: nu$2,
-    windows: constant(windows$1),
-    ios: constant(ios),
-    android: constant(android),
-    linux: constant(linux),
-    osx: constant(osx),
-    solaris: constant(solaris),
-    freebsd: constant(freebsd)
+    windows: $_3pjweotejh8lz3k4.constant(windows$1),
+    ios: $_3pjweotejh8lz3k4.constant(ios),
+    android: $_3pjweotejh8lz3k4.constant(android),
+    linux: $_3pjweotejh8lz3k4.constant(linux),
+    osx: $_3pjweotejh8lz3k4.constant(osx),
+    solaris: $_3pjweotejh8lz3k4.constant(solaris),
+    freebsd: $_3pjweotejh8lz3k4.constant(freebsd)
   };
 
   function DeviceType (os, browser, userAgent) {
@@ -6426,26 +6763,26 @@ var modern = (function () {
     var isPhone = isTouch && !isTablet;
     var iOSwebview = browser.isSafari() && os.isiOS() && /safari/i.test(userAgent) === false;
     return {
-      isiPad: constant(isiPad),
-      isiPhone: constant(isiPhone),
-      isTablet: constant(isTablet),
-      isPhone: constant(isPhone),
-      isTouch: constant(isTouch),
+      isiPad: $_3pjweotejh8lz3k4.constant(isiPad),
+      isiPhone: $_3pjweotejh8lz3k4.constant(isiPhone),
+      isTablet: $_3pjweotejh8lz3k4.constant(isTablet),
+      isPhone: $_3pjweotejh8lz3k4.constant(isPhone),
+      isTouch: $_3pjweotejh8lz3k4.constant(isTouch),
       isAndroid: os.isAndroid,
       isiOS: os.isiOS,
-      isWebView: constant(iOSwebview)
+      isWebView: $_3pjweotejh8lz3k4.constant(iOSwebview)
     };
   }
 
   var detect$1 = function (candidates, userAgent) {
     var agent = String(userAgent).toLowerCase();
-    return find(candidates, function (candidate) {
+    return $_f3qxhzthjh8lz3kg.find(candidates, function (candidate) {
       return candidate.search(agent);
     });
   };
   var detectBrowser = function (browsers, userAgent) {
     return detect$1(browsers, userAgent).map(function (browser) {
-      var version = $_7ota5pwljkmcwsq4.detect(browser.versionRegexes, userAgent);
+      var version = $_afos0kvsjh8lz3tm.detect(browser.versionRegexes, userAgent);
       return {
         current: browser.name,
         version: version
@@ -6454,26 +6791,130 @@ var modern = (function () {
   };
   var detectOs = function (oses, userAgent) {
     return detect$1(oses, userAgent).map(function (os) {
-      var version = $_7ota5pwljkmcwsq4.detect(os.versionRegexes, userAgent);
+      var version = $_afos0kvsjh8lz3tm.detect(os.versionRegexes, userAgent);
       return {
         current: os.name,
         version: version
       };
     });
   };
-  var $_21yllowojkmcwsqc = {
+  var $_bvrih8vvjh8lz3tv = {
     detectBrowser: detectBrowser,
     detectOs: detectOs
   };
 
+  var addToStart = function (str, prefix) {
+    return prefix + str;
+  };
+  var addToEnd = function (str, suffix) {
+    return str + suffix;
+  };
+  var removeFromStart = function (str, numChars) {
+    return str.substring(numChars);
+  };
+  var removeFromEnd = function (str, numChars) {
+    return str.substring(0, str.length - numChars);
+  };
+  var $_enj27ovyjh8lz3u7 = {
+    addToStart: addToStart,
+    addToEnd: addToEnd,
+    removeFromStart: removeFromStart,
+    removeFromEnd: removeFromEnd
+  };
+
+  var first = function (str, count) {
+    return str.substr(0, count);
+  };
+  var last$1 = function (str, count) {
+    return str.substr(str.length - count, str.length);
+  };
+  var head$1 = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substr(0, 1));
+  };
+  var tail = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substring(1));
+  };
+  var $_49etxbvzjh8lz3u8 = {
+    first: first,
+    last: last$1,
+    head: head$1,
+    tail: tail
+  };
+
+  var checkRange = function (str, substr, start) {
+    if (substr === '')
+      return true;
+    if (str.length < substr.length)
+      return false;
+    var x = str.substr(start, start + substr.length);
+    return x === substr;
+  };
+  var supplant = function (str, obj) {
+    var isStringOrNumber = function (a) {
+      var t = typeof a;
+      return t === 'string' || t === 'number';
+    };
+    return str.replace(/\${([^{}]*)}/g, function (a, b) {
+      var value = obj[b];
+      return isStringOrNumber(value) ? value : a;
+    });
+  };
+  var removeLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? $_enj27ovyjh8lz3u7.removeFromStart(str, prefix.length) : str;
+  };
+  var removeTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? $_enj27ovyjh8lz3u7.removeFromEnd(str, prefix.length) : str;
+  };
+  var ensureLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? str : $_enj27ovyjh8lz3u7.addToStart(str, prefix);
+  };
+  var ensureTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? str : $_enj27ovyjh8lz3u7.addToEnd(str, prefix);
+  };
   var contains$1 = function (str, substr) {
     return str.indexOf(substr) !== -1;
+  };
+  var capitalize = function (str) {
+    return $_49etxbvzjh8lz3u8.head(str).bind(function (head) {
+      return $_49etxbvzjh8lz3u8.tail(str).map(function (tail) {
+        return head.toUpperCase() + tail;
+      });
+    }).getOr(str);
+  };
+  var startsWith = function (str, prefix) {
+    return checkRange(str, prefix, 0);
+  };
+  var endsWith = function (str, suffix) {
+    return checkRange(str, suffix, str.length - suffix.length);
+  };
+  var trim = function (str) {
+    return str.replace(/^\s+|\s+$/g, '');
+  };
+  var lTrim = function (str) {
+    return str.replace(/^\s+/g, '');
+  };
+  var rTrim = function (str) {
+    return str.replace(/\s+$/g, '');
+  };
+  var $_2absfgvxjh8lz3u4 = {
+    supplant: supplant,
+    startsWith: startsWith,
+    removeLeading: removeLeading,
+    removeTrailing: removeTrailing,
+    ensureLeading: ensureLeading,
+    ensureTrailing: ensureTrailing,
+    endsWith: endsWith,
+    contains: contains$1,
+    trim: trim,
+    lTrim: lTrim,
+    rTrim: rTrim,
+    capitalize: capitalize
   };
 
   var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
   var checkContains = function (target) {
     return function (uastring) {
-      return contains$1(uastring, target);
+      return $_2absfgvxjh8lz3u4.contains(uastring, target);
     };
   };
   var browsers = [
@@ -6481,7 +6922,7 @@ var modern = (function () {
       name: 'Edge',
       versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
       search: function (uastring) {
-        var monstrosity = contains$1(uastring, 'edge/') && contains$1(uastring, 'chrome') && contains$1(uastring, 'safari') && contains$1(uastring, 'applewebkit');
+        var monstrosity = $_2absfgvxjh8lz3u4.contains(uastring, 'edge/') && $_2absfgvxjh8lz3u4.contains(uastring, 'chrome') && $_2absfgvxjh8lz3u4.contains(uastring, 'safari') && $_2absfgvxjh8lz3u4.contains(uastring, 'applewebkit');
         return monstrosity;
       }
     },
@@ -6492,7 +6933,7 @@ var modern = (function () {
         normalVersionRegex
       ],
       search: function (uastring) {
-        return contains$1(uastring, 'chrome') && !contains$1(uastring, 'chromeframe');
+        return $_2absfgvxjh8lz3u4.contains(uastring, 'chrome') && !$_2absfgvxjh8lz3u4.contains(uastring, 'chromeframe');
       }
     },
     {
@@ -6502,7 +6943,7 @@ var modern = (function () {
         /.*?rv:([0-9]+)\.([0-9]+).*/
       ],
       search: function (uastring) {
-        return contains$1(uastring, 'msie') || contains$1(uastring, 'trident');
+        return $_2absfgvxjh8lz3u4.contains(uastring, 'msie') || $_2absfgvxjh8lz3u4.contains(uastring, 'trident');
       }
     },
     {
@@ -6525,7 +6966,7 @@ var modern = (function () {
         /.*?cpu os ([0-9]+)_([0-9]+).*/
       ],
       search: function (uastring) {
-        return (contains$1(uastring, 'safari') || contains$1(uastring, 'mobile/')) && contains$1(uastring, 'applewebkit');
+        return ($_2absfgvxjh8lz3u4.contains(uastring, 'safari') || $_2absfgvxjh8lz3u4.contains(uastring, 'mobile/')) && $_2absfgvxjh8lz3u4.contains(uastring, 'applewebkit');
       }
     }
   ];
@@ -6538,7 +6979,7 @@ var modern = (function () {
     {
       name: 'iOS',
       search: function (uastring) {
-        return contains$1(uastring, 'iphone') || contains$1(uastring, 'ipad');
+        return $_2absfgvxjh8lz3u4.contains(uastring, 'iphone') || $_2absfgvxjh8lz3u4.contains(uastring, 'ipad');
       },
       versionRegexes: [
         /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
@@ -6572,16 +7013,16 @@ var modern = (function () {
       versionRegexes: []
     }
   ];
-  var $_993j3rwpjkmcwsqg = {
-    browsers: constant(browsers),
-    oses: constant(oses)
+  var $_dne06dvwjh8lz3ty = {
+    browsers: $_3pjweotejh8lz3k4.constant(browsers),
+    oses: $_3pjweotejh8lz3k4.constant(oses)
   };
 
   var detect$2 = function (userAgent) {
-    var browsers = $_993j3rwpjkmcwsqg.browsers();
-    var oses = $_993j3rwpjkmcwsqg.oses();
-    var browser = $_21yllowojkmcwsqc.detectBrowser(browsers, userAgent).fold($_fknyifwkjkmcwsq1.unknown, $_fknyifwkjkmcwsq1.nu);
-    var os = $_21yllowojkmcwsqc.detectOs(oses, userAgent).fold($_4dmnqawmjkmcwsq6.unknown, $_4dmnqawmjkmcwsq6.nu);
+    var browsers = $_dne06dvwjh8lz3ty.browsers();
+    var oses = $_dne06dvwjh8lz3ty.oses();
+    var browser = $_bvrih8vvjh8lz3tv.detectBrowser(browsers, userAgent).fold($_fidpetvrjh8lz3tj.unknown, $_fidpetvrjh8lz3tj.nu);
+    var os = $_bvrih8vvjh8lz3tv.detectOs(oses, userAgent).fold($_1z8n9kvtjh8lz3to.unknown, $_1z8n9kvtjh8lz3to.nu);
     var deviceType = DeviceType(os, browser, userAgent);
     return {
       browser: browser,
@@ -6589,16 +7030,16 @@ var modern = (function () {
       deviceType: deviceType
     };
   };
-  var $_4sbeluwjjkmcwsq0 = { detect: detect$2 };
+  var $_8gsy8vqjh8lz3ti = { detect: detect$2 };
 
-  var detect$3 = cached(function () {
+  var detect$3 = $_8me1xevajh8lz3s0.cached(function () {
     var userAgent = navigator.userAgent;
-    return $_4sbeluwjjkmcwsq0.detect(userAgent);
+    return $_8gsy8vqjh8lz3ti.detect(userAgent);
   });
-  var $_g4vzapwijkmcwspx = { detect: detect$3 };
+  var $_2rbkegvpjh8lz3tf = { detect: detect$3 };
 
-  var ELEMENT = $_g9js5fw5jkmcwsoh.ELEMENT;
-  var DOCUMENT = $_g9js5fw5jkmcwsoh.DOCUMENT;
+  var ELEMENT = $_8xkvw6vcjh8lz3s2.ELEMENT;
+  var DOCUMENT = $_8xkvw6vcjh8lz3s2.DOCUMENT;
   var is = function (element, selector) {
     var elem = element.dom();
     if (elem.nodeType !== ELEMENT)
@@ -6619,13 +7060,13 @@ var modern = (function () {
   };
   var all = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? [] : map(base.querySelectorAll(selector), Element$$1.fromDom);
+    return bypassSelector(base) ? [] : $_f3qxhzthjh8lz3kg.map(base.querySelectorAll(selector), $_3bkrfxv6jh8lz3rm.fromDom);
   };
   var one = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map(Element$$1.fromDom);
+    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
-  var $_3tbwnywtjkmcwsqr = {
+  var $_2nczsvw0jh8lz3ua = {
     all: all,
     is: is,
     one: one
@@ -6638,55 +7079,56 @@ var modern = (function () {
     return e1.dom().isEqualNode(e2.dom());
   };
   var member = function (element, elements) {
-    return exists(elements, curry(eq, element));
+    return $_f3qxhzthjh8lz3kg.exists(elements, $_3pjweotejh8lz3k4.curry(eq, element));
   };
   var regularContains = function (e1, e2) {
     var d1 = e1.dom(), d2 = e2.dom();
     return d1 === d2 ? false : d1.contains(d2);
   };
   var ieContains = function (e1, e2) {
-    return $_60zxbqwejkmcwspr.documentPositionContainedBy(e1.dom(), e2.dom());
+    return $_7n27kvvljh8lz3t8.documentPositionContainedBy(e1.dom(), e2.dom());
   };
-  var browser = $_g4vzapwijkmcwspx.detect().browser;
+  var browser = $_2rbkegvpjh8lz3tf.detect().browser;
   var contains$2 = browser.isIE() ? ieContains : regularContains;
-  var $_622morwdjkmcwspi = {
+  var $_9ypjy6vkjh8lz3sq = {
     eq: eq,
     isEqualNode: isEqualNode,
     member: member,
     contains: contains$2,
-    is: $_3tbwnywtjkmcwsqr.is
+    is: $_2nczsvw0jh8lz3ua.is
   };
 
   var owner = function (element) {
-    return Element$$1.fromDom(element.dom().ownerDocument);
+    return $_3bkrfxv6jh8lz3rm.fromDom(element.dom().ownerDocument);
   };
   var documentElement = function (element) {
-    return Element$$1.fromDom(element.dom().ownerDocument.documentElement);
+    var doc = owner(element);
+    return $_3bkrfxv6jh8lz3rm.fromDom(doc.dom().documentElement);
   };
   var defaultView = function (element) {
     var el = element.dom();
     var defaultView = el.ownerDocument.defaultView;
-    return Element$$1.fromDom(defaultView);
+    return $_3bkrfxv6jh8lz3rm.fromDom(defaultView);
   };
   var parent = function (element) {
     var dom = element.dom();
-    return Option.from(dom.parentNode).map(Element$$1.fromDom);
+    return Option.from(dom.parentNode).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var findIndex$1 = function (element) {
     return parent(element).bind(function (p) {
       var kin = children(p);
-      return findIndex(kin, function (elem) {
-        return $_622morwdjkmcwspi.eq(element, elem);
+      return $_f3qxhzthjh8lz3kg.findIndex(kin, function (elem) {
+        return $_9ypjy6vkjh8lz3sq.eq(element, elem);
       });
     });
   };
   var parents = function (element, isRoot) {
-    var stop = isFunction(isRoot) ? isRoot : constant(false);
+    var stop = $_d8bie3tijh8lz3kn.isFunction(isRoot) ? isRoot : $_3pjweotejh8lz3k4.constant(false);
     var dom = element.dom();
     var ret = [];
     while (dom.parentNode !== null && dom.parentNode !== undefined) {
       var rawParent = dom.parentNode;
-      var parent = Element$$1.fromDom(rawParent);
+      var parent = $_3bkrfxv6jh8lz3rm.fromDom(rawParent);
       ret.push(parent);
       if (stop(parent) === true)
         break;
@@ -6697,37 +7139,37 @@ var modern = (function () {
   };
   var siblings = function (element) {
     var filterSelf = function (elements) {
-      return filter(elements, function (x) {
-        return !$_622morwdjkmcwspi.eq(element, x);
+      return $_f3qxhzthjh8lz3kg.filter(elements, function (x) {
+        return !$_9ypjy6vkjh8lz3sq.eq(element, x);
       });
     };
     return parent(element).map(children).map(filterSelf).getOr([]);
   };
   var offsetParent = function (element) {
     var dom = element.dom();
-    return Option.from(dom.offsetParent).map(Element$$1.fromDom);
+    return Option.from(dom.offsetParent).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var prevSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.previousSibling).map(Element$$1.fromDom);
+    return Option.from(dom.previousSibling).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var nextSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.nextSibling).map(Element$$1.fromDom);
+    return Option.from(dom.nextSibling).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var prevSiblings = function (element) {
-    return reverse($_9vmnzpwcjkmcwsph.toArray(element, prevSibling));
+    return $_f3qxhzthjh8lz3kg.reverse($_861s8bvjjh8lz3sp.toArray(element, prevSibling));
   };
   var nextSiblings = function (element) {
-    return $_9vmnzpwcjkmcwsph.toArray(element, nextSibling);
+    return $_861s8bvjjh8lz3sp.toArray(element, nextSibling);
   };
   var children = function (element) {
     var dom = element.dom();
-    return map(dom.childNodes, Element$$1.fromDom);
+    return $_f3qxhzthjh8lz3kg.map(dom.childNodes, $_3bkrfxv6jh8lz3rm.fromDom);
   };
   var child = function (element, index) {
     var children = element.dom().childNodes;
-    return Option.from(children[index]).map(Element$$1.fromDom);
+    return Option.from(children[index]).map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var firstChild = function (element) {
     return child(element, 0);
@@ -6741,12 +7183,12 @@ var modern = (function () {
   var hasChildNodes = function (element) {
     return element.dom().hasChildNodes();
   };
-  var spot = Immutable('element', 'offset');
+  var spot = $_57mdu6vejh8lz3sg.immutable('element', 'offset');
   var leaf = function (element, offset) {
     var cs = children(element);
     return cs.length > 0 && offset < cs.length ? spot(cs[offset], 0) : spot(element, offset);
   };
-  var $_adk4mbw6jkmcwsok = {
+  var $_3jmbxmvdjh8lz3s4 = {
     owner: owner,
     defaultView: defaultView,
     documentElement: documentElement,
@@ -6769,20 +7211,20 @@ var modern = (function () {
   };
 
   var all$1 = function (predicate) {
-    return descendants($_9gi0tmw2jkmcwsob.body(), predicate);
+    return descendants($_35bizev9jh8lz3rx.body(), predicate);
   };
   var ancestors = function (scope, predicate, isRoot) {
-    return filter($_adk4mbw6jkmcwsok.parents(scope, isRoot), predicate);
+    return $_f3qxhzthjh8lz3kg.filter($_3jmbxmvdjh8lz3s4.parents(scope, isRoot), predicate);
   };
   var siblings$1 = function (scope, predicate) {
-    return filter($_adk4mbw6jkmcwsok.siblings(scope), predicate);
+    return $_f3qxhzthjh8lz3kg.filter($_3jmbxmvdjh8lz3s4.siblings(scope), predicate);
   };
   var children$1 = function (scope, predicate) {
-    return filter($_adk4mbw6jkmcwsok.children(scope), predicate);
+    return $_f3qxhzthjh8lz3kg.filter($_3jmbxmvdjh8lz3s4.children(scope), predicate);
   };
   var descendants = function (scope, predicate) {
     var result = [];
-    each($_adk4mbw6jkmcwsok.children(scope), function (x) {
+    $_f3qxhzthjh8lz3kg.each($_3jmbxmvdjh8lz3s4.children(scope), function (x) {
       if (predicate(x)) {
         result = result.concat([x]);
       }
@@ -6790,7 +7232,7 @@ var modern = (function () {
     });
     return result;
   };
-  var $_bf8vd5w1jkmcwso8 = {
+  var $_dz5cwuv8jh8lz3rt = {
     all: all$1,
     ancestors: ancestors,
     siblings: siblings$1,
@@ -6799,27 +7241,27 @@ var modern = (function () {
   };
 
   var all$2 = function (selector) {
-    return $_3tbwnywtjkmcwsqr.all(selector);
+    return $_2nczsvw0jh8lz3ua.all(selector);
   };
   var ancestors$1 = function (scope, selector, isRoot) {
-    return $_bf8vd5w1jkmcwso8.ancestors(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_dz5cwuv8jh8lz3rt.ancestors(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     }, isRoot);
   };
   var siblings$2 = function (scope, selector) {
-    return $_bf8vd5w1jkmcwso8.siblings(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_dz5cwuv8jh8lz3rt.siblings(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     });
   };
   var children$2 = function (scope, selector) {
-    return $_bf8vd5w1jkmcwso8.children(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_dz5cwuv8jh8lz3rt.children(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     });
   };
   var descendants$1 = function (scope, selector) {
-    return $_3tbwnywtjkmcwsqr.all(selector, scope);
+    return $_2nczsvw0jh8lz3ua.all(selector, scope);
   };
-  var $_4ig9ruw0jkmcwso7 = {
+  var $_am3j0fv7jh8lz3rs = {
     all: all$2,
     ancestors: ancestors$1,
     siblings: siblings$2,
@@ -6862,7 +7304,7 @@ var modern = (function () {
     return false;
   };
   var select = function (selector, root) {
-    return map($_4ig9ruw0jkmcwso7.descendants(Element$$1.fromDom(root), selector), function (element) {
+    return $_f3qxhzthjh8lz3kg.map($_am3j0fv7jh8lz3rs.descendants($_3bkrfxv6jh8lz3rm.fromDom(root), selector), function (element) {
       return element.dom();
     });
   };
@@ -6870,7 +7312,7 @@ var modern = (function () {
     return elm.innerText || elm.textContent;
   };
   var getOrGenerateId = function (elm) {
-    return elm.id ? elm.id : generate('h');
+    return elm.id ? elm.id : $_gdeezvv5jh8lz3rl.generate('h');
   };
   var isAnchor = function (elm) {
     return elm && elm.nodeName === 'A' && (elm.id || elm.name);
@@ -6900,13 +7342,13 @@ var modern = (function () {
   var anchorTarget = function (elm) {
     var anchorId = elm.id || elm.name;
     var anchorText = getElementText(elm);
-    return create('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, noop);
+    return create('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, $_3pjweotejh8lz3k4.noop);
   };
   var getHeaderTargets = function (elms) {
-    return map(filter(elms, isValidHeader), headerTarget);
+    return $_f3qxhzthjh8lz3kg.map($_f3qxhzthjh8lz3kg.filter(elms, isValidHeader), headerTarget);
   };
   var getAnchorTargets = function (elms) {
-    return map(filter(elms, isValidAnchor), anchorTarget);
+    return $_f3qxhzthjh8lz3kg.map($_f3qxhzthjh8lz3kg.filter(elms, isValidAnchor), anchorTarget);
   };
   var getTargetElements = function (elm) {
     var elms = select('h1,h2,h3,h4,h5,h6,a:not([href])', elm);
@@ -6917,9 +7359,9 @@ var modern = (function () {
   };
   var find$3 = function (elm) {
     var elms = getTargetElements(elm);
-    return filter(getHeaderTargets(elms).concat(getAnchorTargets(elms)), hasTitle);
+    return $_f3qxhzthjh8lz3kg.filter(getHeaderTargets(elms).concat(getAnchorTargets(elms)), hasTitle);
   };
-  var $_cb7rvvvxjkmcwsnn = { find: find$3 };
+  var $_p3wpev4jh8lz3ra = { find: find$3 };
 
   var getActiveEditor = function () {
     return window.tinymce ? window.tinymce.activeEditor : global$1.activeEditor;
@@ -6948,12 +7390,12 @@ var modern = (function () {
       value: {
         title: title,
         url: url,
-        attach: noop
+        attach: $_3pjweotejh8lz3k4.noop
       }
     };
   };
   var isUniqueUrl = function (url, targets) {
-    var foundTarget = exists(targets, function (target) {
+    var foundTarget = $_f3qxhzthjh8lz3kg.exists(targets, function (target) {
       return target.url === url;
     });
     return !foundTarget;
@@ -6966,7 +7408,7 @@ var modern = (function () {
     var separator = { title: '-' };
     var fromHistoryMenuItems = function (history) {
       var historyItems = history.hasOwnProperty(fileType) ? history[fileType] : [];
-      var uniqueHistory = filter(historyItems, function (url) {
+      var uniqueHistory = $_f3qxhzthjh8lz3kg.filter(historyItems, function (url) {
         return isUniqueUrl(url, targets);
       });
       return global$2.map(uniqueHistory, function (url) {
@@ -6975,13 +7417,13 @@ var modern = (function () {
           value: {
             title: url,
             url: url,
-            attach: noop
+            attach: $_3pjweotejh8lz3k4.noop
           }
         };
       });
     };
     var fromMenuItems = function (type) {
-      var filteredTargets = filter(targets, function (target) {
+      var filteredTargets = $_f3qxhzthjh8lz3kg.filter(targets, function (target) {
         return target.type === type;
       });
       return toMenuItems(filteredTargets);
@@ -6999,7 +7441,7 @@ var modern = (function () {
       return anchorMenuItems;
     };
     var join = function (items) {
-      return foldl(items, function (a, b) {
+      return $_f3qxhzthjh8lz3kg.foldl(items, function (a, b) {
         var bothEmpty = a.length === 0 || b.length === 0;
         return bothEmpty ? a.concat(b) : a.concat(separator, b);
       }, []);
@@ -7019,7 +7461,7 @@ var modern = (function () {
       return;
     }
     if (items) {
-      if (indexOf(items, url).isNone()) {
+      if ($_f3qxhzthjh8lz3kg.indexOf(items, url).isNone()) {
         history[fileType] = items.slice(0, HISTORY_LENGTH).concat(url);
       }
     } else {
@@ -7039,7 +7481,7 @@ var modern = (function () {
   };
   var setupAutoCompleteHandler = function (ctrl, editorSettings, bodyElm, fileType) {
     var autocomplete = function (term) {
-      var linkTargets = $_cb7rvvvxjkmcwsnn.find(bodyElm);
+      var linkTargets = $_p3wpev4jh8lz3ra.find(bodyElm);
       var menuItems = createMenuItems(term, linkTargets, fileType, editorSettings);
       ctrl.showAutoComplete(menuItems, term);
     };
@@ -7366,18 +7808,18 @@ var modern = (function () {
   });
 
   function ClosestOrAncestor (is, ancestor, scope, a, isRoot) {
-    return is(scope, a) ? Option.some(scope) : isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
+    return is(scope, a) ? Option.some(scope) : $_d8bie3tijh8lz3kn.isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
   }
 
   var first$1 = function (predicate) {
-    return descendant($_9gi0tmw2jkmcwsob.body(), predicate);
+    return descendant($_35bizev9jh8lz3rx.body(), predicate);
   };
   var ancestor = function (scope, predicate, isRoot) {
     var element = scope.dom();
-    var stop = isFunction(isRoot) ? isRoot : constant(false);
+    var stop = $_d8bie3tijh8lz3kn.isFunction(isRoot) ? isRoot : $_3pjweotejh8lz3k4.constant(false);
     while (element.parentNode) {
       element = element.parentNode;
-      var el = Element$$1.fromDom(element);
+      var el = $_3bkrfxv6jh8lz3rm.fromDom(element);
       if (predicate(el))
         return Option.some(el);
       else if (stop(el))
@@ -7395,20 +7837,20 @@ var modern = (function () {
     var element = scope.dom();
     if (!element.parentNode)
       return Option.none();
-    return child$1(Element$$1.fromDom(element.parentNode), function (x) {
-      return !$_622morwdjkmcwspi.eq(scope, x) && predicate(x);
+    return child$1($_3bkrfxv6jh8lz3rm.fromDom(element.parentNode), function (x) {
+      return !$_9ypjy6vkjh8lz3sq.eq(scope, x) && predicate(x);
     });
   };
   var child$1 = function (scope, predicate) {
-    var result = find(scope.dom().childNodes, compose(predicate, Element$$1.fromDom));
-    return result.map(Element$$1.fromDom);
+    var result = $_f3qxhzthjh8lz3kg.find(scope.dom().childNodes, $_3pjweotejh8lz3k4.compose(predicate, $_3bkrfxv6jh8lz3rm.fromDom));
+    return result.map($_3bkrfxv6jh8lz3rm.fromDom);
   };
   var descendant = function (scope, predicate) {
-    var descend = function (node) {
-      for (var i = 0; i < node.childNodes.length; i++) {
-        if (predicate(Element$$1.fromDom(node.childNodes[i])))
-          return Option.some(Element$$1.fromDom(node.childNodes[i]));
-        var res = descend(node.childNodes[i]);
+    var descend = function (element) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        if (predicate($_3bkrfxv6jh8lz3rm.fromDom(element.childNodes[i])))
+          return Option.some($_3bkrfxv6jh8lz3rm.fromDom(element.childNodes[i]));
+        var res = descend(element.childNodes[i]);
         if (res.isSome())
           return res;
       }
@@ -7416,7 +7858,7 @@ var modern = (function () {
     };
     return descend(scope.dom());
   };
-  var $_13w0c1wzjkmcwsri = {
+  var $_5a72sw6jh8lz3uv = {
     first: first$1,
     ancestor: ancestor,
     closest: closest,
@@ -7426,30 +7868,30 @@ var modern = (function () {
   };
 
   var first$2 = function (selector) {
-    return $_3tbwnywtjkmcwsqr.one(selector);
+    return $_2nczsvw0jh8lz3ua.one(selector);
   };
   var ancestor$1 = function (scope, selector, isRoot) {
-    return $_13w0c1wzjkmcwsri.ancestor(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_5a72sw6jh8lz3uv.ancestor(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     }, isRoot);
   };
   var sibling$1 = function (scope, selector) {
-    return $_13w0c1wzjkmcwsri.sibling(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_5a72sw6jh8lz3uv.sibling(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     });
   };
   var child$2 = function (scope, selector) {
-    return $_13w0c1wzjkmcwsri.child(scope, function (e) {
-      return $_3tbwnywtjkmcwsqr.is(e, selector);
+    return $_5a72sw6jh8lz3uv.child(scope, function (e) {
+      return $_2nczsvw0jh8lz3ua.is(e, selector);
     });
   };
   var descendant$1 = function (scope, selector) {
-    return $_3tbwnywtjkmcwsqr.one(selector, scope);
+    return $_2nczsvw0jh8lz3ua.one(selector, scope);
   };
   var closest$1 = function (scope, selector, isRoot) {
-    return ClosestOrAncestor($_3tbwnywtjkmcwsqr.is, ancestor$1, scope, selector, isRoot);
+    return ClosestOrAncestor($_2nczsvw0jh8lz3ua.is, ancestor$1, scope, selector, isRoot);
   };
-  var $_epq3p6wyjkmcwsrh = {
+  var $_9rr9rgw5jh8lz3uu = {
     first: first$2,
     ancestor: ancestor$1,
     sibling: sibling$1,
@@ -7571,7 +8013,7 @@ var modern = (function () {
       });
     });
   };
-  var $_ffg0cgx1jkmcwsrx = { register: register };
+  var $_a6x5k4w8jh8lz3vh = { register: register };
 
   var getFirstFont = function (fontFamily) {
     return fontFamily ? fontFamily.split(',')[0] : '';
@@ -7594,7 +8036,6 @@ var modern = (function () {
   var createFontNameListBoxChangeHandler = function (editor, items) {
     return function () {
       var self = this;
-      self.state.set('value', null);
       editor.on('init nodeChange', function (e) {
         var fontFamily = editor.queryCommandValue('FontName');
         var match = findMatchingValue(items, fontFamily);
@@ -7645,7 +8086,7 @@ var modern = (function () {
   var register$1 = function (editor) {
     registerButtons(editor);
   };
-  var $_1be6fjx3jkmcwss1 = { register: register$1 };
+  var $_4hdsyewajh8lz3vk = { register: register$1 };
 
   var round = function (number, precision) {
     var factor = Math.pow(10, precision);
@@ -7724,7 +8165,7 @@ var modern = (function () {
   var register$2 = function (editor) {
     registerButtons$1(editor);
   };
-  var $_fnu5cxx4jkmcwss4 = { register: register$2 };
+  var $_du9atdwbjh8lz3vn = { register: register$2 };
 
   var hideMenuObjects = function (editor, menu) {
     var count = menu.length;
@@ -7986,7 +8427,7 @@ var modern = (function () {
     registerMenuItems(editor, formatMenu);
     registerButtons$2(editor, formatMenu);
   };
-  var $_cmdomhx5jkmcwss6 = { register: register$3 };
+  var $_5xlhbcwcjh8lz3vr = { register: register$3 };
 
   var defaultBlocks = 'Paragraph=p;' + 'Heading 1=h1;' + 'Heading 2=h2;' + 'Heading 3=h3;' + 'Heading 4=h4;' + 'Heading 5=h5;' + 'Heading 6=h6;' + 'Preformatted=pre';
   var createFormats$1 = function (formats) {
@@ -8072,14 +8513,14 @@ var modern = (function () {
     });
     editor.addButton('formatselect', lazyFormatSelectBoxItems(editor, blocks));
   };
-  var $_cl4rffx6jkmcwssb = { register: register$4 };
+  var $_bj8nxmwdjh8lz3vw = { register: register$4 };
 
   var createCustomMenuItems = function (editor, names) {
     var items, nameList;
     if (typeof names === 'string') {
       nameList = names.split(' ');
     } else if (global$2.isArray(names)) {
-      return flatten(global$2.map(names, function (names) {
+      return $_f3qxhzthjh8lz3kg.flatten(global$2.map(names, function (names) {
         return createCustomMenuItems(editor, names);
       }));
     }
@@ -8094,10 +8535,10 @@ var modern = (function () {
     return menuItem && menuItem.text === '-';
   };
   var trimMenuItems = function (menuItems) {
-    var menuItems2 = filter(menuItems, function (menuItem, i, menuItems) {
+    var menuItems2 = $_f3qxhzthjh8lz3kg.filter(menuItems, function (menuItem, i, menuItems) {
       return !isSeparator$1(menuItem) || !isSeparator$1(menuItems[i - 1]);
     });
-    return filter(menuItems2, function (menuItem, i, menuItems) {
+    return $_f3qxhzthjh8lz3kg.filter(menuItems2, function (menuItem, i, menuItems) {
       return !isSeparator$1(menuItem) || i > 0 && i < menuItems.length - 1;
     });
   };
@@ -8143,7 +8584,7 @@ var modern = (function () {
   var register$5 = function (editor) {
     registerButtons$3(editor);
   };
-  var $_7ix8zax7jkmcwssd = { register: register$5 };
+  var $_drvzmkwejh8lz3vz = { register: register$5 };
 
   var registerFormatButtons = function (editor) {
     global$2.each({
@@ -8318,7 +8759,7 @@ var modern = (function () {
     registerButtons$4(editor);
     registerMenuItems$1(editor);
   };
-  var $_gbsmm2x8jkmcwssh = { register: register$6 };
+  var $_2d67dwfjh8lz3w2 = { register: register$6 };
 
   var toggleUndoRedoState = function (editor, type) {
     return function () {
@@ -8365,7 +8806,7 @@ var modern = (function () {
     registerMenuItems$2(editor);
     registerButtons$5(editor);
   };
-  var $_1bdkmax9jkmcwssr = { register: register$7 };
+  var $_cd5m9xwgjh8lz3w5 = { register: register$7 };
 
   var toggleVisualAidState = function (editor) {
     return function () {
@@ -8387,7 +8828,7 @@ var modern = (function () {
   var register$8 = function (editor) {
     registerMenuItems$3(editor);
   };
-  var $_21pl3hxajkmcwsst = { register: register$8 };
+  var $_1ojpofwhjh8lz3w6 = { register: register$8 };
 
   var setupEnvironment = function () {
     Widget.tooltips = !global$8.iOS;
@@ -8397,7 +8838,7 @@ var modern = (function () {
   };
   var setupUiContainer = function (editor) {
     if (editor.settings.ui_container) {
-      global$8.container = $_epq3p6wyjkmcwsrh.descendant(Element$$1.fromDom(document.body), editor.settings.ui_container).fold(constant(null), function (elm) {
+      global$8.container = $_9rr9rgw5jh8lz3uu.descendant($_3bkrfxv6jh8lz3rm.fromDom(document.body), editor.settings.ui_container).fold($_3pjweotejh8lz3k4.constant(null), function (elm) {
         return elm.dom();
       });
     }
@@ -8417,17 +8858,17 @@ var modern = (function () {
     setupHideFloatPanels(editor);
     setupUiContainer(editor);
     setupEnvironment();
-    $_cl4rffx6jkmcwssb.register(editor);
-    $_ffg0cgx1jkmcwsrx.register(editor);
-    $_gbsmm2x8jkmcwssh.register(editor);
-    $_1bdkmax9jkmcwssr.register(editor);
-    $_fnu5cxx4jkmcwss4.register(editor);
-    $_1be6fjx3jkmcwss1.register(editor);
-    $_cmdomhx5jkmcwss6.register(editor);
-    $_21pl3hxajkmcwsst.register(editor);
-    $_7ix8zax7jkmcwssd.register(editor);
+    $_bj8nxmwdjh8lz3vw.register(editor);
+    $_a6x5k4w8jh8lz3vh.register(editor);
+    $_2d67dwfjh8lz3w2.register(editor);
+    $_cd5m9xwgjh8lz3w5.register(editor);
+    $_du9atdwbjh8lz3vn.register(editor);
+    $_4hdsyewajh8lz3vk.register(editor);
+    $_5xlhbcwcjh8lz3vr.register(editor);
+    $_1ojpofwhjh8lz3w6.register(editor);
+    $_drvzmkwejh8lz3vz.register(editor);
   };
-  var $_drujjnwxjkmcwsrc = { setup: setup$1 };
+  var $_4qdht3w4jh8lz3uo = { setup: setup$1 };
 
   var GridLayout = AbsoluteLayout.extend({
     recalc: function (container) {
@@ -8734,9 +9175,9 @@ var modern = (function () {
     }
   });
 
-  function isChildOf$1(node, parent$$1) {
+  function isChildOf$1(node, parent) {
     while (node) {
-      if (parent$$1 === node) {
+      if (parent === node) {
         return true;
       }
       node = node.parentNode;
@@ -8745,26 +9186,26 @@ var modern = (function () {
   }
   var MenuButton = Button.extend({
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._renderOpen = true;
-      self$$1._super(settings);
-      settings = self$$1.settings;
-      self$$1.classes.add('menubtn');
+      var self = this;
+      self._renderOpen = true;
+      self._super(settings);
+      settings = self.settings;
+      self.classes.add('menubtn');
       if (settings.fixedWidth) {
-        self$$1.classes.add('fixed-width');
+        self.classes.add('fixed-width');
       }
-      self$$1.aria('haspopup', true);
-      self$$1.state.set('menu', settings.menu || self$$1.render());
+      self.aria('haspopup', true);
+      self.state.set('menu', settings.menu || self.render());
     },
     showMenu: function (toggle) {
-      var self$$1 = this;
+      var self = this;
       var menu;
-      if (self$$1.menu && self$$1.menu.visible() && toggle !== false) {
-        return self$$1.hideMenu();
+      if (self.menu && self.menu.visible() && toggle !== false) {
+        return self.hideMenu();
       }
-      if (!self$$1.menu) {
-        menu = self$$1.state.get('menu') || [];
-        self$$1.classes.add('opened');
+      if (!self.menu) {
+        menu = self.state.get('menu') || [];
+        self.classes.add('opened');
         if (menu.length) {
           menu = {
             type: 'menu',
@@ -8776,62 +9217,62 @@ var modern = (function () {
           menu.animate = true;
         }
         if (!menu.renderTo) {
-          self$$1.menu = global$4.create(menu).parent(self$$1).renderTo();
+          self.menu = global$4.create(menu).parent(self).renderTo();
         } else {
-          self$$1.menu = menu.parent(self$$1).show().renderTo();
+          self.menu = menu.parent(self).show().renderTo();
         }
-        self$$1.fire('createmenu');
-        self$$1.menu.reflow();
-        self$$1.menu.on('cancel', function (e) {
-          if (e.control.parent() === self$$1.menu) {
+        self.fire('createmenu');
+        self.menu.reflow();
+        self.menu.on('cancel', function (e) {
+          if (e.control.parent() === self.menu) {
             e.stopPropagation();
-            self$$1.focus();
-            self$$1.hideMenu();
+            self.focus();
+            self.hideMenu();
           }
         });
-        self$$1.menu.on('select', function () {
-          self$$1.focus();
+        self.menu.on('select', function () {
+          self.focus();
         });
-        self$$1.menu.on('show hide', function (e) {
-          if (e.control === self$$1.menu) {
-            self$$1.activeMenu(e.type === 'show');
-            self$$1.classes.toggle('opened', e.type === 'show');
+        self.menu.on('show hide', function (e) {
+          if (e.control === self.menu) {
+            self.activeMenu(e.type === 'show');
+            self.classes.toggle('opened', e.type === 'show');
           }
-          self$$1.aria('expanded', e.type === 'show');
+          self.aria('expanded', e.type === 'show');
         }).fire('show');
       }
-      self$$1.menu.show();
-      self$$1.menu.layoutRect({ w: self$$1.layoutRect().w });
-      self$$1.menu.repaint();
-      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
+      self.menu.show();
+      self.menu.layoutRect({ w: self.layoutRect().w });
+      self.menu.repaint();
+      self.menu.moveRel(self.getEl(), self.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
         'bl-tl',
         'tl-bl'
       ]);
-      self$$1.fire('showmenu');
+      self.fire('showmenu');
     },
     hideMenu: function () {
-      var self$$1 = this;
-      if (self$$1.menu) {
-        self$$1.menu.items().each(function (item) {
+      var self = this;
+      if (self.menu) {
+        self.menu.items().each(function (item) {
           if (item.hideMenu) {
             item.hideMenu();
           }
         });
-        self$$1.menu.hide();
+        self.menu.hide();
       }
     },
     activeMenu: function (state) {
       this.classes.toggle('active', state);
     },
     renderHtml: function () {
-      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
-      var icon = self$$1.settings.icon, image;
-      var text = self$$1.state.get('text');
+      var self = this, id = self._id, prefix = self.classPrefix;
+      var icon = self.settings.icon, image;
+      var text = self.state.get('text');
       var textHtml = '';
-      image = self$$1.settings.image;
+      image = self.settings.image;
       if (image) {
         icon = 'none';
         if (typeof image !== 'string') {
@@ -8842,30 +9283,30 @@ var modern = (function () {
         image = '';
       }
       if (text) {
-        self$$1.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
+        self.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
       }
-      icon = self$$1.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
-      self$$1.aria('role', self$$1.parent() instanceof MenuBar ? 'menuitem' : 'button');
-      return '<div id="' + id + '" class="' + self$$1.classes + '" tabindex="-1" aria-labelledby="' + id + '">' + '<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
+      icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
+      self.aria('role', self.parent() instanceof MenuBar ? 'menuitem' : 'button');
+      return '<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' + '<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
     },
     postRender: function () {
-      var self$$1 = this;
-      self$$1.on('click', function (e) {
-        if (e.control === self$$1 && isChildOf$1(e.target, self$$1.getEl())) {
-          self$$1.focus();
-          self$$1.showMenu(!e.aria);
+      var self = this;
+      self.on('click', function (e) {
+        if (e.control === self && isChildOf$1(e.target, self.getEl())) {
+          self.focus();
+          self.showMenu(!e.aria);
           if (e.aria) {
-            self$$1.menu.items().filter(':visible')[0].focus();
+            self.menu.items().filter(':visible')[0].focus();
           }
         }
       });
-      self$$1.on('mouseenter', function (e) {
+      self.on('mouseenter', function (e) {
         var overCtrl = e.control;
-        var parent$$1 = self$$1.parent();
+        var parent = self.parent();
         var hasVisibleSiblingMenu;
-        if (overCtrl && parent$$1 && overCtrl instanceof MenuButton && overCtrl.parent() === parent$$1) {
-          parent$$1.items().filter('MenuButton').each(function (ctrl) {
+        if (overCtrl && parent && overCtrl instanceof MenuButton && overCtrl.parent() === parent) {
+          parent.items().filter('MenuButton').each(function (ctrl) {
             if (ctrl.hideMenu && ctrl !== overCtrl) {
               if (ctrl.menu && ctrl.menu.visible()) {
                 hasVisibleSiblingMenu = true;
@@ -8879,17 +9320,17 @@ var modern = (function () {
           }
         }
       });
-      return self$$1._super();
+      return self._super();
     },
     bindStates: function () {
-      var self$$1 = this;
-      self$$1.state.on('change:menu', function () {
-        if (self$$1.menu) {
-          self$$1.menu.remove();
+      var self = this;
+      self.state.on('change:menu', function () {
+        if (self.menu) {
+          self.menu.remove();
         }
-        self$$1.menu = null;
+        self.menu = null;
       });
-      return self$$1._super();
+      return self._super();
     },
     remove: function () {
       this._super();
@@ -9530,8 +9971,8 @@ var modern = (function () {
       if (settings.orientation === 'v') {
         self.classes.add('vertical');
       }
-      self._minValue = isNumber(settings.minValue) ? settings.minValue : 0;
-      self._maxValue = isNumber(settings.maxValue) ? settings.maxValue : 100;
+      self._minValue = $_d8bie3tijh8lz3kn.isNumber(settings.minValue) ? settings.minValue : 0;
+      self._maxValue = $_d8bie3tijh8lz3kn.isNumber(settings.maxValue) ? settings.maxValue : 100;
       self._initValue = self.state.get('value');
     },
     renderHtml: function () {
@@ -9644,11 +10085,11 @@ var modern = (function () {
       role: 'button'
     },
     repaint: function () {
-      var self$$1 = this;
-      var elm = self$$1.getEl();
-      var rect = self$$1.layoutRect();
+      var self = this;
+      var elm = self.getEl();
+      var rect = self.layoutRect();
       var mainButtonElm, menuButtonElm;
-      self$$1._super();
+      self._super();
       mainButtonElm = elm.firstChild;
       menuButtonElm = elm.lastChild;
       global$9(mainButtonElm).css({
@@ -9656,20 +10097,20 @@ var modern = (function () {
         height: rect.h - 2
       });
       global$9(menuButtonElm).css({ height: rect.h - 2 });
-      return self$$1;
+      return self;
     },
     activeMenu: function (state) {
-      var self$$1 = this;
-      global$9(self$$1.getEl().lastChild).toggleClass(self$$1.classPrefix + 'active', state);
+      var self = this;
+      global$9(self.getEl().lastChild).toggleClass(self.classPrefix + 'active', state);
     },
     renderHtml: function () {
-      var self$$1 = this;
-      var id = self$$1._id;
-      var prefix = self$$1.classPrefix;
+      var self = this;
+      var id = self._id;
+      var prefix = self.classPrefix;
       var image;
-      var icon = self$$1.state.get('icon');
-      var text = self$$1.state.get('text');
-      var settings = self$$1.settings;
+      var icon = self.state.get('icon');
+      var text = self.state.get('text');
+      var settings = self.settings;
       var textHtml = '', ariaPressed;
       image = settings.image;
       if (image) {
@@ -9683,15 +10124,15 @@ var modern = (function () {
       }
       icon = settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
       if (text) {
-        self$$1.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
+        self.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
       }
       ariaPressed = typeof settings.active === 'boolean' ? ' aria-pressed="' + settings.active + '"' : '';
-      return '<div id="' + id + '" class="' + self$$1.classes + '" role="button"' + ariaPressed + ' tabindex="-1">' + '<button type="button" hidefocus="1" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' + (self$$1._menuBtnText ? (icon ? '\xA0' : '') + self$$1._menuBtnText : '') + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
+      return '<div id="' + id + '" class="' + self.classes + '" role="button"' + ariaPressed + ' tabindex="-1">' + '<button type="button" hidefocus="1" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' + (self._menuBtnText ? (icon ? '\xA0' : '') + self._menuBtnText : '') + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
     },
     postRender: function () {
-      var self$$1 = this, onClickHandler = self$$1.settings.onclick;
-      self$$1.on('click', function (e) {
+      var self = this, onClickHandler = self.settings.onclick;
+      self.on('click', function (e) {
         var node = e.target;
         if (e.control === this) {
           while (node) {
@@ -9706,8 +10147,8 @@ var modern = (function () {
           }
         }
       });
-      delete self$$1.settings.onclick;
-      return self$$1._super();
+      delete self.settings.onclick;
+      return self._super();
     }
   });
 
@@ -9812,43 +10253,43 @@ var modern = (function () {
 
   var TextBox = Widget.extend({
     init: function (settings) {
-      var self$$1 = this;
-      self$$1._super(settings);
-      self$$1.classes.add('textbox');
+      var self = this;
+      self._super(settings);
+      self.classes.add('textbox');
       if (settings.multiline) {
-        self$$1.classes.add('multiline');
+        self.classes.add('multiline');
       } else {
-        self$$1.on('keydown', function (e) {
+        self.on('keydown', function (e) {
           var rootControl;
           if (e.keyCode === 13) {
             e.preventDefault();
-            self$$1.parents().reverse().each(function (ctrl) {
+            self.parents().reverse().each(function (ctrl) {
               if (ctrl.toJSON) {
                 rootControl = ctrl;
                 return false;
               }
             });
-            self$$1.fire('submit', { data: rootControl.toJSON() });
+            self.fire('submit', { data: rootControl.toJSON() });
           }
         });
-        self$$1.on('keyup', function (e) {
-          self$$1.state.set('value', e.target.value);
+        self.on('keyup', function (e) {
+          self.state.set('value', e.target.value);
         });
       }
     },
     repaint: function () {
-      var self$$1 = this;
+      var self = this;
       var style, rect, borderBox, borderW, borderH = 0, lastRepaintRect;
-      style = self$$1.getEl().style;
-      rect = self$$1._layoutRect;
-      lastRepaintRect = self$$1._lastRepaintRect || {};
+      style = self.getEl().style;
+      rect = self._layoutRect;
+      lastRepaintRect = self._lastRepaintRect || {};
       var doc = document;
-      if (!self$$1.settings.multiline && doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
+      if (!self.settings.multiline && doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
         style.lineHeight = rect.h - borderH + 'px';
       }
-      borderBox = self$$1.borderBox;
+      borderBox = self.borderBox;
       borderW = borderBox.left + borderBox.right + 8;
-      borderH = borderBox.top + borderBox.bottom + (self$$1.settings.multiline ? 8 : 0);
+      borderH = borderBox.top + borderBox.bottom + (self.settings.multiline ? 8 : 0);
       if (rect.x !== lastRepaintRect.x) {
         style.left = rect.x + 'px';
         lastRepaintRect.x = rect.x;
@@ -9865,16 +10306,16 @@ var modern = (function () {
         style.height = rect.h - borderH + 'px';
         lastRepaintRect.h = rect.h;
       }
-      self$$1._lastRepaintRect = lastRepaintRect;
-      self$$1.fire('repaint', {}, false);
-      return self$$1;
+      self._lastRepaintRect = lastRepaintRect;
+      self.fire('repaint', {}, false);
+      return self;
     },
     renderHtml: function () {
-      var self$$1 = this;
-      var settings = self$$1.settings;
+      var self = this;
+      var settings = self.settings;
       var attrs, elm;
       attrs = {
-        id: self$$1._id,
+        id: self._id,
         hidefocus: '1'
       };
       global$2.each([
@@ -9891,18 +10332,18 @@ var modern = (function () {
         'placeholder',
         'required',
         'multiple'
-      ], function (name$$1) {
-        attrs[name$$1] = settings[name$$1];
+      ], function (name) {
+        attrs[name] = settings[name];
       });
-      if (self$$1.disabled()) {
+      if (self.disabled()) {
         attrs.disabled = 'disabled';
       }
       if (settings.subtype) {
         attrs.type = settings.subtype;
       }
       elm = funcs.create(settings.multiline ? 'textarea' : 'input', attrs);
-      elm.value = self$$1.state.get('value');
-      elm.className = self$$1.classes.toString();
+      elm.value = self.state.get('value');
+      elm.className = self.classes.toString();
       return elm.outerHTML;
     },
     value: function (value) {
@@ -9916,25 +10357,25 @@ var modern = (function () {
       return this.state.get('value');
     },
     postRender: function () {
-      var self$$1 = this;
-      self$$1.getEl().value = self$$1.state.get('value');
-      self$$1._super();
-      self$$1.$el.on('change', function (e) {
-        self$$1.state.set('value', e.target.value);
-        self$$1.fire('change', e);
+      var self = this;
+      self.getEl().value = self.state.get('value');
+      self._super();
+      self.$el.on('change', function (e) {
+        self.state.set('value', e.target.value);
+        self.fire('change', e);
       });
     },
     bindStates: function () {
-      var self$$1 = this;
-      self$$1.state.on('change:value', function (e) {
-        if (self$$1.getEl().value !== e.value) {
-          self$$1.getEl().value = e.value;
+      var self = this;
+      self.state.on('change:value', function (e) {
+        if (self.getEl().value !== e.value) {
+          self.getEl().value = e.value;
         }
       });
-      self$$1.state.on('change:disabled', function (e) {
-        self$$1.getEl().disabled = e.value;
+      self.state.on('change:disabled', function (e) {
+        self.getEl().disabled = e.value;
       });
-      return self$$1._super();
+      return self._super();
     },
     remove: function () {
       this.$el.off();
@@ -9946,18 +10387,18 @@ var modern = (function () {
     return {
       Selector: Selector,
       Collection: Collection$2,
-      ReflowQueue: $_921m08uxjkmcwsk2,
+      ReflowQueue: $_ef12j5u4jh8lz3nl,
       Control: Control$1,
       Factory: global$4,
       KeyboardNavigation: KeyboardNavigation,
       Container: Container,
       DragHelper: DragHelper,
-      Scrollable: $_c9juz9uzjkmcwskb,
+      Scrollable: $_4acv48u6jh8lz3ns,
       Panel: Panel,
-      Movable: $_77p0ikukjkmcwsie,
-      Resizable: $_4ci2x6v1jkmcwski,
+      Movable: $_d97gfctrjh8lz3lm,
+      Resizable: $_8a2gtru8jh8lz3ny,
       FloatPanel: FloatPanel,
-      Window: Window$$1,
+      Window: Window,
       MessageBox: MessageBox,
       Tooltip: Tooltip,
       Widget: Widget,
@@ -9982,7 +10423,7 @@ var modern = (function () {
       FitLayout: FitLayout,
       FlexLayout: FlexLayout,
       FlowLayout: FlowLayout,
-      FormatControls: $_drujjnwxjkmcwsrc,
+      FormatControls: $_4qdht3w4jh8lz3uo,
       GridLayout: GridLayout,
       Iframe: Iframe$1,
       InfoBox: InfoBox,
@@ -10029,8 +10470,8 @@ var modern = (function () {
   Api.registerToFactory();
   Api.appendTo(window.tinymce ? window.tinymce : {});
   global.add('modern', function (editor) {
-    $_drujjnwxjkmcwsrc.setup(editor);
-    return $_f0tepxtqjkmcwsfm.get(editor);
+    $_4qdht3w4jh8lz3uo.setup(editor);
+    return $_1os0v5syjh8lz3j9.get(editor);
   });
   function Theme () {
   }
