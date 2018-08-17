@@ -22,7 +22,7 @@ var tabfocus = (function () {
   var getTabFocus = function (editor) {
     return editor.getParam('tab_focus', getTabFocusElements(editor));
   };
-  var $_97qheekwjkmcwpw7 = { getTabFocus: getTabFocus };
+  var $_949n7ik8jh8lz19m = { getTabFocus: getTabFocus };
 
   var DOM = global$1.DOM;
   var tabCancel = function (e) {
@@ -65,7 +65,7 @@ var tabfocus = (function () {
         }
         return null;
       }
-      v = global$5.explode($_97qheekwjkmcwpw7.getTabFocus(editor));
+      v = global$5.explode($_949n7ik8jh8lz19m.getTabFocus(editor));
       if (v.length === 1) {
         v[1] = v[0];
         v[0] = ':prev';
@@ -110,10 +110,10 @@ var tabfocus = (function () {
       }
     });
   };
-  var $_5ayj4bkpjkmcwpw2 = { setup: setup };
+  var $_5hsd2hk1jh8lz19f = { setup: setup };
 
   global.add('tabfocus', function (editor) {
-    $_5ayj4bkpjkmcwpw2.setup(editor);
+    $_5hsd2hk1jh8lz19f.setup(editor);
   });
   function Plugin () {
   }

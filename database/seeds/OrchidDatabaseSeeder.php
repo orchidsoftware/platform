@@ -26,7 +26,7 @@ class OrchidDatabaseSeeder extends Seeder
             //TermsTableSeeder::class,
             //MenusTableSeeder::class,
             //PagesTableSeeder::class,
-            //DemoPostsTableSeeder::class,
+            //Add1DemoPostsTableSeeder::class,
         ]);
     }
 }

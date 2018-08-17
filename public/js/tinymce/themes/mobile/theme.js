@@ -8,7 +8,15 @@ var mobile = (function () {
       x[_i] = arguments[_i];
     }
   };
-
+  var noarg = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return f();
+    };
+  };
   var compose = function (fa, fb) {
     return function () {
       var x = [];
@@ -26,7 +34,9 @@ var mobile = (function () {
   var identity = function (x) {
     return x;
   };
-
+  var tripleEquals = function (a, b) {
+    return a === b;
+  };
   var curry = function (f) {
     var x = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -64,9 +74,26 @@ var mobile = (function () {
   var apply = function (f) {
     return f();
   };
-
+  var call = function (f) {
+    f();
+  };
   var never = constant(false);
   var always = constant(true);
+  var $_7vemb6x3jh8lz4ig = {
+    noop: noop,
+    noarg: noarg,
+    compose: compose,
+    constant: constant,
+    identity: identity,
+    tripleEquals: tripleEquals,
+    curry: curry,
+    not: not,
+    die: die,
+    apply: apply,
+    call: call,
+    never: never,
+    always: always
+  };
 
   var typeOf = function (x) {
     if (x === null)
@@ -83,21 +110,22 @@ var mobile = (function () {
       return typeOf(value) === type;
     };
   };
-  var isString = isType('string');
-  var isObject = isType('object');
-  var isArray = isType('array');
+  var $_dx88esx5jh8lz4is = {
+    isString: isType('string'),
+    isObject: isType('object'),
+    isArray: isType('array'),
+    isNull: isType('null'),
+    isBoolean: isType('boolean'),
+    isUndefined: isType('undefined'),
+    isFunction: isType('function'),
+    isNumber: isType('number')
+  };
 
-  var isBoolean = isType('boolean');
-
-  var isFunction = isType('function');
-  var isNumber = isType('number');
-
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
   var shallow = function (old, nu) {
     return nu;
   };
   var deep = function (old, nu) {
-    var bothObjects = isObject(old) && isObject(nu);
+    var bothObjects = $_dx88esx5jh8lz4is.isObject(old) && $_dx88esx5jh8lz4is.isObject(nu);
     return bothObjects ? deepMerge(old, nu) : nu;
   };
   var baseMerge = function (merger) {
@@ -111,7 +139,7 @@ var mobile = (function () {
       for (var j = 0; j < objects.length; j++) {
         var curObject = objects[j];
         for (var key in curObject)
-          if (hasOwnProperty.call(curObject, key)) {
+          if (curObject.hasOwnProperty(key)) {
             ret[key] = merger(ret[key], curObject[key]);
           }
       }
@@ -120,9 +148,13 @@ var mobile = (function () {
   };
   var deepMerge = baseMerge(deep);
   var merge = baseMerge(shallow);
+  var $_b00d1jx4jh8lz4ij = {
+    deepMerge: deepMerge,
+    merge: merge
+  };
 
-  var never$1 = never;
-  var always$1 = always;
+  var never$1 = $_7vemb6x3jh8lz4ig.never;
+  var always$1 = $_7vemb6x3jh8lz4ig.always;
   var none = function () {
     return NONE;
   };
@@ -130,19 +162,13 @@ var mobile = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call$$1 = function (thunk) {
+    var call = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop$$1 = function () {
-    };
-    var nul = function () {
-      return null;
-    };
-    var undef = function () {
-      return undefined;
+    var noop = function () {
     };
     var me = {
       fold: function (n, s) {
@@ -152,17 +178,15 @@ var mobile = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call$$1,
+      getOrThunk: call,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
-      getOrNull: nul,
-      getOrUndefined: undef,
       or: id,
-      orThunk: call$$1,
+      orThunk: call,
       map: none,
       ap: none,
-      each: noop$$1,
+      each: noop,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -173,7 +197,7 @@ var mobile = (function () {
       toArray: function () {
         return [];
       },
-      toString: constant('none()')
+      toString: $_7vemb6x3jh8lz4ig.constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -204,8 +228,6 @@ var mobile = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
-      getOrNull: constant_a,
-      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -250,7 +272,19 @@ var mobile = (function () {
     from: from
   };
 
-  var keys = Object.keys;
+  var keys = function () {
+    var fastKeys = Object.keys;
+    var slowKeys = function (o) {
+      var r = [];
+      for (var i in o) {
+        if (o.hasOwnProperty(i)) {
+          r.push(i);
+        }
+      }
+      return r;
+    };
+    return fastKeys === undefined ? slowKeys : fastKeys;
+  }();
   var each = function (obj, f) {
     var props = keys(obj);
     for (var k = 0, len = props.length; k < len; k++) {
@@ -259,7 +293,7 @@ var mobile = (function () {
       f(x, i, obj);
     }
   };
-  var map = function (obj, f) {
+  var objectMap = function (obj, f) {
     return tupleMap(obj, function (x, i, obj) {
       return {
         k: i,
@@ -275,7 +309,18 @@ var mobile = (function () {
     });
     return r;
   };
-
+  var bifilter = function (obj, pred) {
+    var t = {};
+    var f = {};
+    each(obj, function (x, i) {
+      var branch = pred(x, i) ? t : f;
+      branch[i] = x;
+    });
+    return {
+      t: t,
+      f: f
+    };
+  };
   var mapToArray = function (obj, f) {
     var r = [];
     each(obj, function (value, name) {
@@ -283,36 +328,68 @@ var mobile = (function () {
     });
     return r;
   };
+  var find = function (obj, pred) {
+    var props = keys(obj);
+    for (var k = 0, len = props.length; k < len; k++) {
+      var i = props[k];
+      var x = obj[i];
+      if (pred(x, i, obj)) {
+        return Option.some(x);
+      }
+    }
+    return Option.none();
+  };
+  var values = function (obj) {
+    return mapToArray(obj, function (v) {
+      return v;
+    });
+  };
+  var size = function (obj) {
+    return values(obj).length;
+  };
+  var $_23xamox6jh8lz4iu = {
+    bifilter: bifilter,
+    each: each,
+    map: objectMap,
+    mapToArray: mapToArray,
+    tupleMap: tupleMap,
+    find: find,
+    keys: keys,
+    values: values,
+    size: size
+  };
 
-  var touchstart = constant('touchstart');
-  var touchmove = constant('touchmove');
-  var touchend = constant('touchend');
-  var mousedown = constant('mousedown');
-  var mousemove = constant('mousemove');
-  var mouseup = constant('mouseup');
-  var mouseover = constant('mouseover');
-  var keydown = constant('keydown');
-  var input = constant('input');
-  var change = constant('change');
-  var click = constant('click');
-  var transitionend = constant('transitionend');
-  var selectstart = constant('selectstart');
+  var contextmenu = $_7vemb6x3jh8lz4ig.constant('contextmenu');
+  var touchstart = $_7vemb6x3jh8lz4ig.constant('touchstart');
+  var touchmove = $_7vemb6x3jh8lz4ig.constant('touchmove');
+  var touchend = $_7vemb6x3jh8lz4ig.constant('touchend');
+  var gesturestart = $_7vemb6x3jh8lz4ig.constant('gesturestart');
+  var mousedown = $_7vemb6x3jh8lz4ig.constant('mousedown');
+  var mousemove = $_7vemb6x3jh8lz4ig.constant('mousemove');
+  var mouseout = $_7vemb6x3jh8lz4ig.constant('mouseout');
+  var mouseup = $_7vemb6x3jh8lz4ig.constant('mouseup');
+  var mouseover = $_7vemb6x3jh8lz4ig.constant('mouseover');
+  var focusin = $_7vemb6x3jh8lz4ig.constant('focusin');
+  var keydown = $_7vemb6x3jh8lz4ig.constant('keydown');
+  var input = $_7vemb6x3jh8lz4ig.constant('input');
+  var change = $_7vemb6x3jh8lz4ig.constant('change');
+  var focus = $_7vemb6x3jh8lz4ig.constant('focus');
+  var click = $_7vemb6x3jh8lz4ig.constant('click');
+  var transitionend = $_7vemb6x3jh8lz4ig.constant('transitionend');
+  var selectstart = $_7vemb6x3jh8lz4ig.constant('selectstart');
 
   var cached = function (f) {
     var called = false;
     var r;
     return function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
       if (!called) {
         called = true;
-        r = f.apply(null, args);
+        r = f.apply(null, arguments);
       }
       return r;
     };
   };
+  var $_5hshsbxbjh8lz4jc = { cached: cached };
 
   var firstMatch = function (regexes, s) {
     for (var i = 0; i < regexes.length; i++) {
@@ -349,7 +426,7 @@ var mobile = (function () {
       minor: minor
     };
   };
-  var $_9006f6y7jkmcwti0 = {
+  var $_685xipxejh8lz4jh = {
     nu: nu,
     detect: detect,
     unknown: unknown
@@ -369,7 +446,7 @@ var mobile = (function () {
   var unknown$1 = function () {
     return nu$1({
       current: undefined,
-      version: $_9006f6y7jkmcwti0.unknown()
+      version: $_685xipxejh8lz4jh.unknown()
     });
   };
   var nu$1 = function (info) {
@@ -386,15 +463,15 @@ var mobile = (function () {
       isSafari: isBrowser(safari, current)
     };
   };
-  var $_388mcgy6jkmcwthw = {
+  var $_d16hxoxdjh8lz4je = {
     unknown: unknown$1,
     nu: nu$1,
-    edge: constant(edge),
-    chrome: constant(chrome),
-    ie: constant(ie),
-    opera: constant(opera),
-    firefox: constant(firefox),
-    safari: constant(safari)
+    edge: $_7vemb6x3jh8lz4ig.constant(edge),
+    chrome: $_7vemb6x3jh8lz4ig.constant(chrome),
+    ie: $_7vemb6x3jh8lz4ig.constant(ie),
+    opera: $_7vemb6x3jh8lz4ig.constant(opera),
+    firefox: $_7vemb6x3jh8lz4ig.constant(firefox),
+    safari: $_7vemb6x3jh8lz4ig.constant(safari)
   };
 
   var windows = 'Windows';
@@ -412,7 +489,7 @@ var mobile = (function () {
   var unknown$2 = function () {
     return nu$2({
       current: undefined,
-      version: $_9006f6y7jkmcwti0.unknown()
+      version: $_685xipxejh8lz4jh.unknown()
     });
   };
   var nu$2 = function (info) {
@@ -430,16 +507,16 @@ var mobile = (function () {
       isFreeBSD: isOS(freebsd, current)
     };
   };
-  var $_bik5l8y8jkmcwti1 = {
+  var $_2b8dkaxfjh8lz4ji = {
     unknown: unknown$2,
     nu: nu$2,
-    windows: constant(windows),
-    ios: constant(ios),
-    android: constant(android),
-    linux: constant(linux),
-    osx: constant(osx),
-    solaris: constant(solaris),
-    freebsd: constant(freebsd)
+    windows: $_7vemb6x3jh8lz4ig.constant(windows),
+    ios: $_7vemb6x3jh8lz4ig.constant(ios),
+    android: $_7vemb6x3jh8lz4ig.constant(android),
+    linux: $_7vemb6x3jh8lz4ig.constant(linux),
+    osx: $_7vemb6x3jh8lz4ig.constant(osx),
+    solaris: $_7vemb6x3jh8lz4ig.constant(solaris),
+    freebsd: $_7vemb6x3jh8lz4ig.constant(freebsd)
   };
 
   function DeviceType (os, browser, userAgent) {
@@ -452,14 +529,14 @@ var mobile = (function () {
     var isPhone = isTouch && !isTablet;
     var iOSwebview = browser.isSafari() && os.isiOS() && /safari/i.test(userAgent) === false;
     return {
-      isiPad: constant(isiPad),
-      isiPhone: constant(isiPhone),
-      isTablet: constant(isTablet),
-      isPhone: constant(isPhone),
-      isTouch: constant(isTouch),
+      isiPad: $_7vemb6x3jh8lz4ig.constant(isiPad),
+      isiPhone: $_7vemb6x3jh8lz4ig.constant(isiPhone),
+      isTablet: $_7vemb6x3jh8lz4ig.constant(isTablet),
+      isPhone: $_7vemb6x3jh8lz4ig.constant(isPhone),
+      isTouch: $_7vemb6x3jh8lz4ig.constant(isTouch),
       isAndroid: os.isAndroid,
       isiOS: os.isiOS,
-      isWebView: constant(iOSwebview)
+      isWebView: $_7vemb6x3jh8lz4ig.constant(iOSwebview)
     };
   }
 
@@ -473,16 +550,32 @@ var mobile = (function () {
     };
     return pIndexOf === undefined ? slowIndex : fastIndex;
   }();
-
+  var indexOf = function (xs, x) {
+    var r = rawIndexOf(xs, x);
+    return r === -1 ? Option.none() : Option.some(r);
+  };
   var contains = function (xs, x) {
     return rawIndexOf(xs, x) > -1;
   };
   var exists = function (xs, pred) {
     return findIndex(xs, pred).isSome();
   };
-
-
-  var map$1 = function (xs, f) {
+  var range = function (num, f) {
+    var r = [];
+    for (var i = 0; i < num; i++) {
+      r.push(f(i));
+    }
+    return r;
+  };
+  var chunk = function (array, size) {
+    var r = [];
+    for (var i = 0; i < array.length; i += size) {
+      var s = array.slice(i, i + size);
+      r.push(s);
+    }
+    return r;
+  };
+  var map = function (xs, f) {
     var len = xs.length;
     var r = new Array(len);
     for (var i = 0; i < len; i++) {
@@ -503,7 +596,19 @@ var mobile = (function () {
       f(x, i, xs);
     }
   };
-
+  var partition = function (xs, pred) {
+    var pass = [];
+    var fail = [];
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      var arr = pred(x, i, xs) ? pass : fail;
+      arr.push(x);
+    }
+    return {
+      pass: pass,
+      fail: fail
+    };
+  };
   var filter = function (xs, pred) {
     var r = [];
     for (var i = 0, len = xs.length; i < len; i++) {
@@ -514,7 +619,29 @@ var mobile = (function () {
     }
     return r;
   };
-
+  var groupBy = function (xs, f) {
+    if (xs.length === 0) {
+      return [];
+    } else {
+      var wasType = f(xs[0]);
+      var r = [];
+      var group = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        var type = f(x);
+        if (type !== wasType) {
+          r.push(group);
+          group = [];
+        }
+        wasType = type;
+        group.push(x);
+      }
+      if (group.length !== 0) {
+        r.push(group);
+      }
+      return r;
+    }
+  };
   var foldr = function (xs, f, acc) {
     eachr(xs, function (x) {
       acc = f(acc, x);
@@ -564,7 +691,7 @@ var mobile = (function () {
     return r;
   };
   var bind = function (xs, f) {
-    var output = map$1(xs, f);
+    var output = map(xs, f);
     return flatten(output);
   };
   var forall = function (xs, pred) {
@@ -576,7 +703,11 @@ var mobile = (function () {
     }
     return true;
   };
-
+  var equal = function (a1, a2) {
+    return a1.length === a2.length && forall(a1, function (x, i) {
+      return x === a2[i];
+    });
+  };
   var slice = Array.prototype.slice;
   var reverse = function (xs) {
     var r = slice.call(xs, 0);
@@ -588,26 +719,70 @@ var mobile = (function () {
       return !contains(a2, x);
     });
   };
-
+  var mapToObject = function (xs, f) {
+    var r = {};
+    for (var i = 0, len = xs.length; i < len; i++) {
+      var x = xs[i];
+      r[String(x)] = f(x, i);
+    }
+    return r;
+  };
   var pure = function (x) {
     return [x];
   };
-
-
-
-  var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+  var sort = function (xs, comparator) {
+    var copy = slice.call(xs, 0);
+    copy.sort(comparator);
+    return copy;
+  };
+  var head = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
+  };
+  var last = function (xs) {
+    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
+  };
+  var from$1 = $_dx88esx5jh8lz4is.isFunction(Array.from) ? Array.from : function (x) {
     return slice.call(x);
+  };
+  var $_ffek9lxijh8lz4jt = {
+    map: map,
+    each: each$1,
+    eachr: eachr,
+    partition: partition,
+    filter: filter,
+    groupBy: groupBy,
+    indexOf: indexOf,
+    foldr: foldr,
+    foldl: foldl,
+    find: find$2,
+    findIndex: findIndex,
+    flatten: flatten,
+    bind: bind,
+    forall: forall,
+    exists: exists,
+    contains: contains,
+    equal: equal,
+    reverse: reverse,
+    chunk: chunk,
+    difference: difference,
+    mapToObject: mapToObject,
+    pure: pure,
+    sort: sort,
+    range: range,
+    head: head,
+    last: last,
+    from: from$1
   };
 
   var detect$1 = function (candidates, userAgent) {
     var agent = String(userAgent).toLowerCase();
-    return find$2(candidates, function (candidate) {
+    return $_ffek9lxijh8lz4jt.find(candidates, function (candidate) {
       return candidate.search(agent);
     });
   };
   var detectBrowser = function (browsers, userAgent) {
     return detect$1(browsers, userAgent).map(function (browser) {
-      var version = $_9006f6y7jkmcwti0.detect(browser.versionRegexes, userAgent);
+      var version = $_685xipxejh8lz4jh.detect(browser.versionRegexes, userAgent);
       return {
         current: browser.name,
         version: version
@@ -616,16 +791,54 @@ var mobile = (function () {
   };
   var detectOs = function (oses, userAgent) {
     return detect$1(oses, userAgent).map(function (os) {
-      var version = $_9006f6y7jkmcwti0.detect(os.versionRegexes, userAgent);
+      var version = $_685xipxejh8lz4jh.detect(os.versionRegexes, userAgent);
       return {
         current: os.name,
         version: version
       };
     });
   };
-  var $_8rokcbyajkmcwti8 = {
+  var $_80c3x1xhjh8lz4jp = {
     detectBrowser: detectBrowser,
     detectOs: detectOs
+  };
+
+  var addToStart = function (str, prefix) {
+    return prefix + str;
+  };
+  var addToEnd = function (str, suffix) {
+    return str + suffix;
+  };
+  var removeFromStart = function (str, numChars) {
+    return str.substring(numChars);
+  };
+  var removeFromEnd = function (str, numChars) {
+    return str.substring(0, str.length - numChars);
+  };
+  var $_8xh9pkxljh8lz4k9 = {
+    addToStart: addToStart,
+    addToEnd: addToEnd,
+    removeFromStart: removeFromStart,
+    removeFromEnd: removeFromEnd
+  };
+
+  var first = function (str, count) {
+    return str.substr(0, count);
+  };
+  var last$1 = function (str, count) {
+    return str.substr(str.length - count, str.length);
+  };
+  var head$1 = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substr(0, 1));
+  };
+  var tail = function (str) {
+    return str === '' ? Option.none() : Option.some(str.substring(1));
+  };
+  var $_gdike4xmjh8lz4ka = {
+    first: first,
+    last: last$1,
+    head: head$1,
+    tail: tail
   };
 
   var checkRange = function (str, substr, start) {
@@ -641,31 +854,67 @@ var mobile = (function () {
       var t = typeof a;
       return t === 'string' || t === 'number';
     };
-    return str.replace(/\$\{([^{}]*)\}/g, function (fullMatch, key) {
-      var value = obj[key];
-      return isStringOrNumber(value) ? value.toString() : fullMatch;
+    return str.replace(/\${([^{}]*)}/g, function (a, b) {
+      var value = obj[b];
+      return isStringOrNumber(value) ? value : a;
     });
   };
-
-
-
-
+  var removeLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? $_8xh9pkxljh8lz4k9.removeFromStart(str, prefix.length) : str;
+  };
+  var removeTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? $_8xh9pkxljh8lz4k9.removeFromEnd(str, prefix.length) : str;
+  };
+  var ensureLeading = function (str, prefix) {
+    return startsWith(str, prefix) ? str : $_8xh9pkxljh8lz4k9.addToStart(str, prefix);
+  };
+  var ensureTrailing = function (str, prefix) {
+    return endsWith(str, prefix) ? str : $_8xh9pkxljh8lz4k9.addToEnd(str, prefix);
+  };
   var contains$1 = function (str, substr) {
     return str.indexOf(substr) !== -1;
   };
-
-
+  var capitalize = function (str) {
+    return $_gdike4xmjh8lz4ka.head(str).bind(function (head) {
+      return $_gdike4xmjh8lz4ka.tail(str).map(function (tail) {
+        return head.toUpperCase() + tail;
+      });
+    }).getOr(str);
+  };
+  var startsWith = function (str, prefix) {
+    return checkRange(str, prefix, 0);
+  };
   var endsWith = function (str, suffix) {
     return checkRange(str, suffix, str.length - suffix.length);
   };
   var trim = function (str) {
     return str.replace(/^\s+|\s+$/g, '');
   };
+  var lTrim = function (str) {
+    return str.replace(/^\s+/g, '');
+  };
+  var rTrim = function (str) {
+    return str.replace(/\s+$/g, '');
+  };
+  var $_6n62nuxkjh8lz4k7 = {
+    supplant: supplant,
+    startsWith: startsWith,
+    removeLeading: removeLeading,
+    removeTrailing: removeTrailing,
+    ensureLeading: ensureLeading,
+    ensureTrailing: ensureTrailing,
+    endsWith: endsWith,
+    contains: contains$1,
+    trim: trim,
+    lTrim: lTrim,
+    rTrim: rTrim,
+    capitalize: capitalize
+  };
 
   var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
   var checkContains = function (target) {
     return function (uastring) {
-      return contains$1(uastring, target);
+      return $_6n62nuxkjh8lz4k7.contains(uastring, target);
     };
   };
   var browsers = [
@@ -673,7 +922,7 @@ var mobile = (function () {
       name: 'Edge',
       versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
       search: function (uastring) {
-        var monstrosity = contains$1(uastring, 'edge/') && contains$1(uastring, 'chrome') && contains$1(uastring, 'safari') && contains$1(uastring, 'applewebkit');
+        var monstrosity = $_6n62nuxkjh8lz4k7.contains(uastring, 'edge/') && $_6n62nuxkjh8lz4k7.contains(uastring, 'chrome') && $_6n62nuxkjh8lz4k7.contains(uastring, 'safari') && $_6n62nuxkjh8lz4k7.contains(uastring, 'applewebkit');
         return monstrosity;
       }
     },
@@ -684,7 +933,7 @@ var mobile = (function () {
         normalVersionRegex
       ],
       search: function (uastring) {
-        return contains$1(uastring, 'chrome') && !contains$1(uastring, 'chromeframe');
+        return $_6n62nuxkjh8lz4k7.contains(uastring, 'chrome') && !$_6n62nuxkjh8lz4k7.contains(uastring, 'chromeframe');
       }
     },
     {
@@ -694,7 +943,7 @@ var mobile = (function () {
         /.*?rv:([0-9]+)\.([0-9]+).*/
       ],
       search: function (uastring) {
-        return contains$1(uastring, 'msie') || contains$1(uastring, 'trident');
+        return $_6n62nuxkjh8lz4k7.contains(uastring, 'msie') || $_6n62nuxkjh8lz4k7.contains(uastring, 'trident');
       }
     },
     {
@@ -717,7 +966,7 @@ var mobile = (function () {
         /.*?cpu os ([0-9]+)_([0-9]+).*/
       ],
       search: function (uastring) {
-        return (contains$1(uastring, 'safari') || contains$1(uastring, 'mobile/')) && contains$1(uastring, 'applewebkit');
+        return ($_6n62nuxkjh8lz4k7.contains(uastring, 'safari') || $_6n62nuxkjh8lz4k7.contains(uastring, 'mobile/')) && $_6n62nuxkjh8lz4k7.contains(uastring, 'applewebkit');
       }
     }
   ];
@@ -730,7 +979,7 @@ var mobile = (function () {
     {
       name: 'iOS',
       search: function (uastring) {
-        return contains$1(uastring, 'iphone') || contains$1(uastring, 'ipad');
+        return $_6n62nuxkjh8lz4k7.contains(uastring, 'iphone') || $_6n62nuxkjh8lz4k7.contains(uastring, 'ipad');
       },
       versionRegexes: [
         /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
@@ -764,16 +1013,16 @@ var mobile = (function () {
       versionRegexes: []
     }
   ];
-  var $_fppup5ycjkmcwtih = {
-    browsers: constant(browsers),
-    oses: constant(oses)
+  var $_avsrw9xjjh8lz4jy = {
+    browsers: $_7vemb6x3jh8lz4ig.constant(browsers),
+    oses: $_7vemb6x3jh8lz4ig.constant(oses)
   };
 
   var detect$2 = function (userAgent) {
-    var browsers = $_fppup5ycjkmcwtih.browsers();
-    var oses = $_fppup5ycjkmcwtih.oses();
-    var browser = $_8rokcbyajkmcwti8.detectBrowser(browsers, userAgent).fold($_388mcgy6jkmcwthw.unknown, $_388mcgy6jkmcwthw.nu);
-    var os = $_8rokcbyajkmcwti8.detectOs(oses, userAgent).fold($_bik5l8y8jkmcwti1.unknown, $_bik5l8y8jkmcwti1.nu);
+    var browsers = $_avsrw9xjjh8lz4jy.browsers();
+    var oses = $_avsrw9xjjh8lz4jy.oses();
+    var browser = $_80c3x1xhjh8lz4jp.detectBrowser(browsers, userAgent).fold($_d16hxoxdjh8lz4je.unknown, $_d16hxoxdjh8lz4je.nu);
+    var os = $_80c3x1xhjh8lz4jp.detectOs(oses, userAgent).fold($_2b8dkaxfjh8lz4ji.unknown, $_2b8dkaxfjh8lz4ji.nu);
     var deviceType = DeviceType(os, browser, userAgent);
     return {
       browser: browser,
@@ -781,27 +1030,30 @@ var mobile = (function () {
       deviceType: deviceType
     };
   };
-  var $_8b7ot9y5jkmcwthv = { detect: detect$2 };
+  var $_4rhqqyxcjh8lz4jd = { detect: detect$2 };
 
-  var detect$3 = cached(function () {
+  var detect$3 = $_5hshsbxbjh8lz4jc.cached(function () {
     var userAgent = navigator.userAgent;
-    return $_8b7ot9y5jkmcwthv.detect(userAgent);
+    return $_4rhqqyxcjh8lz4jd.detect(userAgent);
   });
-  var $_b90373y3jkmcwths = { detect: detect$3 };
+  var $_cjnu0pxajh8lz4j9 = { detect: detect$3 };
 
-  var alloy = { tap: constant('alloy.tap') };
-  var focus$1 = constant('alloy.focus');
-  var postBlur = constant('alloy.blur.post');
-  var receive = constant('alloy.receive');
-  var execute = constant('alloy.execute');
-  var focusItem = constant('alloy.focus.item');
+  var alloy = { tap: $_7vemb6x3jh8lz4ig.constant('alloy.tap') };
+  var focus$1 = $_7vemb6x3jh8lz4ig.constant('alloy.focus');
+  var postBlur = $_7vemb6x3jh8lz4ig.constant('alloy.blur.post');
+  var receive = $_7vemb6x3jh8lz4ig.constant('alloy.receive');
+  var execute = $_7vemb6x3jh8lz4ig.constant('alloy.execute');
+  var focusItem = $_7vemb6x3jh8lz4ig.constant('alloy.focus.item');
   var tap = alloy.tap;
-  var tapOrClick = $_b90373y3jkmcwths.detect().deviceType.isTouch() ? alloy.tap : click;
-  var longpress = constant('alloy.longpress');
-  var systemInit = constant('alloy.system.init');
-  var windowScroll = constant('alloy.system.scroll');
-  var attachedToDom = constant('alloy.system.attached');
-  var detachedFromDom = constant('alloy.system.detached');
+  var tapOrClick = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch() ? alloy.tap : click;
+  var longpress = $_7vemb6x3jh8lz4ig.constant('alloy.longpress');
+  var sandboxClose = $_7vemb6x3jh8lz4ig.constant('alloy.sandbox.close');
+  var systemInit = $_7vemb6x3jh8lz4ig.constant('alloy.system.init');
+  var windowScroll = $_7vemb6x3jh8lz4ig.constant('alloy.system.scroll');
+  var attachedToDom = $_7vemb6x3jh8lz4ig.constant('alloy.system.attached');
+  var detachedFromDom = $_7vemb6x3jh8lz4ig.constant('alloy.system.detached');
+  var changeTab = $_7vemb6x3jh8lz4ig.constant('alloy.change.tab');
+  var dismissTab = $_7vemb6x3jh8lz4ig.constant('alloy.dismiss.tab');
 
   var emit = function (component, event) {
     dispatchWith(component, component.element(), event, {});
@@ -816,8 +1068,8 @@ var mobile = (function () {
     dispatchWith(component, target, event, {});
   };
   var dispatchWith = function (component, target, event, properties) {
-    var data = deepMerge({ target: target }, properties);
-    component.getSystem().triggerEvent(event, target, map(data, constant));
+    var data = $_b00d1jx4jh8lz4ij.deepMerge({ target: target }, properties);
+    component.getSystem().triggerEvent(event, target, $_23xamox6jh8lz4iu.map(data, $_7vemb6x3jh8lz4ig.constant));
   };
   var dispatchEvent = function (component, target, event, simulatedEvent) {
     component.getSystem().triggerEvent(event, target, simulatedEvent.event());
@@ -849,13 +1101,12 @@ var mobile = (function () {
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
-    return { dom: constant(node) };
+    return { dom: $_7vemb6x3jh8lz4ig.constant(node) };
   };
-  var fromPoint = function (docElm, x, y) {
-    var doc = docElm.dom();
-    return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
+  var fromPoint = function (doc, x, y) {
+    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
   };
-  var Element$$1 = {
+  var $_2ykjbpxpjh8lz4l0 = {
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -863,19 +1114,19 @@ var mobile = (function () {
     fromPoint: fromPoint
   };
 
-  var $_evhzkgyljkmcwtk0 = {
-    ATTRIBUTE: Node.ATTRIBUTE_NODE,
-    CDATA_SECTION: Node.CDATA_SECTION_NODE,
-    COMMENT: Node.COMMENT_NODE,
-    DOCUMENT: Node.DOCUMENT_NODE,
-    DOCUMENT_TYPE: Node.DOCUMENT_TYPE_NODE,
-    DOCUMENT_FRAGMENT: Node.DOCUMENT_FRAGMENT_NODE,
-    ELEMENT: Node.ELEMENT_NODE,
-    TEXT: Node.TEXT_NODE,
-    PROCESSING_INSTRUCTION: Node.PROCESSING_INSTRUCTION_NODE,
-    ENTITY_REFERENCE: Node.ENTITY_REFERENCE_NODE,
-    ENTITY: Node.ENTITY_NODE,
-    NOTATION: Node.NOTATION_NODE
+  var $_dj3uqlxrjh8lz4l9 = {
+    ATTRIBUTE: 2,
+    CDATA_SECTION: 4,
+    COMMENT: 8,
+    DOCUMENT: 9,
+    DOCUMENT_TYPE: 10,
+    DOCUMENT_FRAGMENT: 11,
+    ELEMENT: 1,
+    TEXT: 3,
+    PROCESSING_INSTRUCTION: 7,
+    ENTITY_REFERENCE: 5,
+    ENTITY: 6,
+    NOTATION: 12
   };
 
   var name = function (element) {
@@ -894,12 +1145,12 @@ var mobile = (function () {
     };
   };
   var isComment = function (element) {
-    return type(element) === $_evhzkgyljkmcwtk0.COMMENT || name(element) === '#comment';
+    return type(element) === $_dj3uqlxrjh8lz4l9.COMMENT || name(element) === '#comment';
   };
-  var isElement = isType$1($_evhzkgyljkmcwtk0.ELEMENT);
-  var isText = isType$1($_evhzkgyljkmcwtk0.TEXT);
-  var isDocument = isType$1($_evhzkgyljkmcwtk0.DOCUMENT);
-  var $_b0ubstykjkmcwtjz = {
+  var isElement = isType$1($_dj3uqlxrjh8lz4l9.ELEMENT);
+  var isText = isType$1($_dj3uqlxrjh8lz4l9.TEXT);
+  var isDocument = isType$1($_dj3uqlxrjh8lz4l9.DOCUMENT);
+  var $_2dp7e0xqjh8lz4l7 = {
     name: name,
     type: type,
     value: value,
@@ -910,25 +1161,25 @@ var mobile = (function () {
   };
 
   var inBody = function (element) {
-    var dom = $_b0ubstykjkmcwtjz.isText(element) ? element.dom().parentNode : element.dom();
+    var dom = $_2dp7e0xqjh8lz4l7.isText(element) ? element.dom().parentNode : element.dom();
     return dom !== undefined && dom !== null && dom.ownerDocument.body.contains(dom);
   };
-  var body = cached(function () {
-    return getBody(Element$$1.fromDom(document));
+  var body = $_5hshsbxbjh8lz4jc.cached(function () {
+    return getBody($_2ykjbpxpjh8lz4l0.fromDom(document));
   });
   var getBody = function (doc) {
     var body = doc.dom().body;
     if (body === null || body === undefined)
       throw 'Body is not available yet';
-    return Element$$1.fromDom(body);
+    return $_2ykjbpxpjh8lz4l0.fromDom(body);
   };
-  var $_3wo4fwyhjkmcwtje = {
+  var $_847aynxojh8lz4kx = {
     body: body,
     getBody: getBody,
     inBody: inBody
   };
 
-  var Immutable = function () {
+  function Immutable () {
     var fields = [];
     for (var _i = 0; _i < arguments.length; _i++) {
       fields[_i] = arguments[_i];
@@ -942,12 +1193,12 @@ var mobile = (function () {
         throw new Error('Wrong number of arguments to struct. Expected "[' + fields.length + ']", got ' + values.length + ' arguments');
       }
       var struct = {};
-      each$1(fields, function (name, i) {
-        struct[name] = constant(values[i]);
+      $_ffek9lxijh8lz4jt.each(fields, function (name, i) {
+        struct[name] = $_7vemb6x3jh8lz4ig.constant(values[i]);
       });
       return struct;
     };
-  };
+  }
 
   var sort$1 = function (arr) {
     return arr.slice(0).sort();
@@ -959,10 +1210,10 @@ var mobile = (function () {
     throw new Error('Unsupported keys for object: ' + sort$1(unsupported).join(', '));
   };
   var validateStrArr = function (label, array) {
-    if (!isArray(array))
+    if (!$_dx88esx5jh8lz4is.isArray(array))
       throw new Error('The ' + label + ' fields must be an array. Was: ' + array + '.');
-    each$1(array, function (a) {
-      if (!isString(a))
+    $_ffek9lxijh8lz4jt.each(array, function (a) {
+      if (!$_dx88esx5jh8lz4is.isString(a))
         throw new Error('The value ' + a + ' in the ' + label + ' fields was not a string.');
     });
   };
@@ -971,42 +1222,55 @@ var mobile = (function () {
   };
   var checkDupes = function (everything) {
     var sorted = sort$1(everything);
-    var dupe = find$2(sorted, function (s, i) {
+    var dupe = $_ffek9lxijh8lz4jt.find(sorted, function (s, i) {
       return i < sorted.length - 1 && s === sorted[i + 1];
     });
     dupe.each(function (d) {
       throw new Error('The field: ' + d + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
     });
   };
+  var $_3tgbiwxxjh8lz4ls = {
+    sort: sort$1,
+    reqMessage: reqMessage,
+    unsuppMessage: unsuppMessage,
+    validateStrArr: validateStrArr,
+    invalidTypeMessage: invalidTypeMessage,
+    checkDupes: checkDupes
+  };
 
-  var MixedBag = function (required, optional) {
+  function MixedBag (required, optional) {
     var everything = required.concat(optional);
     if (everything.length === 0)
       throw new Error('You must specify at least one required or optional field.');
-    validateStrArr('required', required);
-    validateStrArr('optional', optional);
-    checkDupes(everything);
+    $_3tgbiwxxjh8lz4ls.validateStrArr('required', required);
+    $_3tgbiwxxjh8lz4ls.validateStrArr('optional', optional);
+    $_3tgbiwxxjh8lz4ls.checkDupes(everything);
     return function (obj) {
-      var keys$$1 = keys(obj);
-      var allReqd = forall(required, function (req) {
-        return contains(keys$$1, req);
+      var keys = $_23xamox6jh8lz4iu.keys(obj);
+      var allReqd = $_ffek9lxijh8lz4jt.forall(required, function (req) {
+        return $_ffek9lxijh8lz4jt.contains(keys, req);
       });
       if (!allReqd)
-        reqMessage(required, keys$$1);
-      var unsupported = filter(keys$$1, function (key) {
-        return !contains(everything, key);
+        $_3tgbiwxxjh8lz4ls.reqMessage(required, keys);
+      var unsupported = $_ffek9lxijh8lz4jt.filter(keys, function (key) {
+        return !$_ffek9lxijh8lz4jt.contains(everything, key);
       });
       if (unsupported.length > 0)
-        unsuppMessage(unsupported);
+        $_3tgbiwxxjh8lz4ls.unsuppMessage(unsupported);
       var r = {};
-      each$1(required, function (req) {
-        r[req] = constant(obj[req]);
+      $_ffek9lxijh8lz4jt.each(required, function (req) {
+        r[req] = $_7vemb6x3jh8lz4ig.constant(obj[req]);
       });
-      each$1(optional, function (opt) {
-        r[opt] = constant(Object.prototype.hasOwnProperty.call(obj, opt) ? Option.some(obj[opt]) : Option.none());
+      $_ffek9lxijh8lz4jt.each(optional, function (opt) {
+        r[opt] = $_7vemb6x3jh8lz4ig.constant(Object.prototype.hasOwnProperty.call(obj, opt) ? Option.some(obj[opt]) : Option.none());
       });
       return r;
     };
+  }
+
+  var $_dti8klxujh8lz4lo = {
+    immutable: Immutable,
+    immutableBag: MixedBag
   };
 
   var toArray = function (target, f) {
@@ -1021,12 +1285,12 @@ var mobile = (function () {
     } while (cur.isSome());
     return r;
   };
-  var $_g5dvt3ysjkmcwtku = { toArray: toArray };
+  var $_cinar1xyjh8lz4lu = { toArray: toArray };
 
-  var Global = typeof window !== 'undefined' ? window : Function('return this;')();
+  var global = typeof window !== 'undefined' ? window : Function('return this;')();
 
   var path = function (parts, scope) {
-    var o = scope !== undefined && scope !== null ? scope : Global;
+    var o = scope !== undefined && scope !== null ? scope : global;
     for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
       o = o[parts[i]];
     return o;
@@ -1035,9 +1299,30 @@ var mobile = (function () {
     var parts = p.split('.');
     return path(parts, scope);
   };
+  var step = function (o, part) {
+    if (o[part] === undefined || o[part] === null)
+      o[part] = {};
+    return o[part];
+  };
+  var forge = function (parts, target) {
+    var o = target !== undefined ? target : global;
+    for (var i = 0; i < parts.length; ++i)
+      o = step(o, parts[i]);
+    return o;
+  };
+  var namespace = function (name, target) {
+    var parts = name.split('.');
+    return forge(parts, target);
+  };
+  var $_m7cuqy2jh8lz4m7 = {
+    path: path,
+    resolve: resolve,
+    forge: forge,
+    namespace: namespace
+  };
 
   var unsafe = function (name, scope) {
-    return resolve(name, scope);
+    return $_m7cuqy2jh8lz4m7.resolve(name, scope);
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -1045,10 +1330,10 @@ var mobile = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
-  var $_dlxzecyvjkmcwtl6 = { getOrDie: getOrDie };
+  var $_2rfe40y1jh8lz4m5 = { getOrDie: getOrDie };
 
   var node = function () {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('Node');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('Node');
     return f;
   };
   var compareDocumentPosition = function (a, b, match) {
@@ -1060,13 +1345,13 @@ var mobile = (function () {
   var documentPositionContainedBy = function (a, b) {
     return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
   };
-  var $_d18qkiyujkmcwtl5 = {
+  var $_4xg997y0jh8lz4m4 = {
     documentPositionPreceding: documentPositionPreceding,
     documentPositionContainedBy: documentPositionContainedBy
   };
 
-  var ELEMENT = $_evhzkgyljkmcwtk0.ELEMENT;
-  var DOCUMENT = $_evhzkgyljkmcwtk0.DOCUMENT;
+  var ELEMENT = $_dj3uqlxrjh8lz4l9.ELEMENT;
+  var DOCUMENT = $_dj3uqlxrjh8lz4l9.DOCUMENT;
   var is = function (element, selector) {
     var elem = element.dom();
     if (elem.nodeType !== ELEMENT)
@@ -1087,13 +1372,13 @@ var mobile = (function () {
   };
   var all = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? [] : map$1(base.querySelectorAll(selector), Element$$1.fromDom);
+    return bypassSelector(base) ? [] : $_ffek9lxijh8lz4jt.map(base.querySelectorAll(selector), $_2ykjbpxpjh8lz4l0.fromDom);
   };
   var one = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map(Element$$1.fromDom);
+    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
-  var $_2lpyciyyjkmcwtlc = {
+  var $_uope4y4jh8lz4ma = {
     all: all,
     is: is,
     one: one
@@ -1106,55 +1391,56 @@ var mobile = (function () {
     return e1.dom().isEqualNode(e2.dom());
   };
   var member = function (element, elements) {
-    return exists(elements, curry(eq, element));
+    return $_ffek9lxijh8lz4jt.exists(elements, $_7vemb6x3jh8lz4ig.curry(eq, element));
   };
   var regularContains = function (e1, e2) {
     var d1 = e1.dom(), d2 = e2.dom();
     return d1 === d2 ? false : d1.contains(d2);
   };
   var ieContains = function (e1, e2) {
-    return $_d18qkiyujkmcwtl5.documentPositionContainedBy(e1.dom(), e2.dom());
+    return $_4xg997y0jh8lz4m4.documentPositionContainedBy(e1.dom(), e2.dom());
   };
-  var browser = $_b90373y3jkmcwths.detect().browser;
+  var browser = $_cjnu0pxajh8lz4j9.detect().browser;
   var contains$2 = browser.isIE() ? ieContains : regularContains;
-  var $_cpo6bcytjkmcwtkv = {
+  var $_6liejjxzjh8lz4lv = {
     eq: eq,
     isEqualNode: isEqualNode,
     member: member,
     contains: contains$2,
-    is: $_2lpyciyyjkmcwtlc.is
+    is: $_uope4y4jh8lz4ma.is
   };
 
   var owner = function (element) {
-    return Element$$1.fromDom(element.dom().ownerDocument);
+    return $_2ykjbpxpjh8lz4l0.fromDom(element.dom().ownerDocument);
   };
   var documentElement = function (element) {
-    return Element$$1.fromDom(element.dom().ownerDocument.documentElement);
+    var doc = owner(element);
+    return $_2ykjbpxpjh8lz4l0.fromDom(doc.dom().documentElement);
   };
   var defaultView = function (element) {
     var el = element.dom();
     var defaultView = el.ownerDocument.defaultView;
-    return Element$$1.fromDom(defaultView);
+    return $_2ykjbpxpjh8lz4l0.fromDom(defaultView);
   };
   var parent = function (element) {
     var dom = element.dom();
-    return Option.from(dom.parentNode).map(Element$$1.fromDom);
+    return Option.from(dom.parentNode).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var findIndex$1 = function (element) {
     return parent(element).bind(function (p) {
       var kin = children(p);
-      return findIndex(kin, function (elem) {
-        return $_cpo6bcytjkmcwtkv.eq(element, elem);
+      return $_ffek9lxijh8lz4jt.findIndex(kin, function (elem) {
+        return $_6liejjxzjh8lz4lv.eq(element, elem);
       });
     });
   };
   var parents = function (element, isRoot) {
-    var stop = isFunction(isRoot) ? isRoot : constant(false);
+    var stop = $_dx88esx5jh8lz4is.isFunction(isRoot) ? isRoot : $_7vemb6x3jh8lz4ig.constant(false);
     var dom = element.dom();
     var ret = [];
     while (dom.parentNode !== null && dom.parentNode !== undefined) {
       var rawParent = dom.parentNode;
-      var parent = Element$$1.fromDom(rawParent);
+      var parent = $_2ykjbpxpjh8lz4l0.fromDom(rawParent);
       ret.push(parent);
       if (stop(parent) === true)
         break;
@@ -1165,37 +1451,37 @@ var mobile = (function () {
   };
   var siblings = function (element) {
     var filterSelf = function (elements) {
-      return filter(elements, function (x) {
-        return !$_cpo6bcytjkmcwtkv.eq(element, x);
+      return $_ffek9lxijh8lz4jt.filter(elements, function (x) {
+        return !$_6liejjxzjh8lz4lv.eq(element, x);
       });
     };
     return parent(element).map(children).map(filterSelf).getOr([]);
   };
   var offsetParent = function (element) {
     var dom = element.dom();
-    return Option.from(dom.offsetParent).map(Element$$1.fromDom);
+    return Option.from(dom.offsetParent).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var prevSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.previousSibling).map(Element$$1.fromDom);
+    return Option.from(dom.previousSibling).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var nextSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.nextSibling).map(Element$$1.fromDom);
+    return Option.from(dom.nextSibling).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var prevSiblings = function (element) {
-    return reverse($_g5dvt3ysjkmcwtku.toArray(element, prevSibling));
+    return $_ffek9lxijh8lz4jt.reverse($_cinar1xyjh8lz4lu.toArray(element, prevSibling));
   };
   var nextSiblings = function (element) {
-    return $_g5dvt3ysjkmcwtku.toArray(element, nextSibling);
+    return $_cinar1xyjh8lz4lu.toArray(element, nextSibling);
   };
   var children = function (element) {
     var dom = element.dom();
-    return map$1(dom.childNodes, Element$$1.fromDom);
+    return $_ffek9lxijh8lz4jt.map(dom.childNodes, $_2ykjbpxpjh8lz4l0.fromDom);
   };
   var child = function (element, index) {
     var children = element.dom().childNodes;
-    return Option.from(children[index]).map(Element$$1.fromDom);
+    return Option.from(children[index]).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var firstChild = function (element) {
     return child(element, 0);
@@ -1209,12 +1495,12 @@ var mobile = (function () {
   var hasChildNodes = function (element) {
     return element.dom().hasChildNodes();
   };
-  var spot = Immutable('element', 'offset');
+  var spot = $_dti8klxujh8lz4lo.immutable('element', 'offset');
   var leaf = function (element, offset) {
     var cs = children(element);
     return cs.length > 0 && offset < cs.length ? spot(cs[offset], 0) : spot(element, offset);
   };
-  var $_a7cj16ynjkmcwtk5 = {
+  var $_4x0y5axtjh8lz4lc = {
     owner: owner,
     defaultView: defaultView,
     documentElement: documentElement,
@@ -1237,15 +1523,15 @@ var mobile = (function () {
   };
 
   var before = function (marker, element) {
-    var parent = $_a7cj16ynjkmcwtk5.parent(marker);
+    var parent = $_4x0y5axtjh8lz4lc.parent(marker);
     parent.each(function (v) {
       v.dom().insertBefore(element.dom(), marker.dom());
     });
   };
   var after = function (marker, element) {
-    var sibling = $_a7cj16ynjkmcwtk5.nextSibling(marker);
+    var sibling = $_4x0y5axtjh8lz4lc.nextSibling(marker);
     sibling.fold(function () {
-      var parent = $_a7cj16ynjkmcwtk5.parent(marker);
+      var parent = $_4x0y5axtjh8lz4lc.parent(marker);
       parent.each(function (v) {
         append(v, element);
       });
@@ -1254,7 +1540,7 @@ var mobile = (function () {
     });
   };
   var prepend = function (parent, element) {
-    var firstChild = $_a7cj16ynjkmcwtk5.firstChild(parent);
+    var firstChild = $_4x0y5axtjh8lz4lc.firstChild(parent);
     firstChild.fold(function () {
       append(parent, element);
     }, function (v) {
@@ -1265,7 +1551,7 @@ var mobile = (function () {
     parent.dom().appendChild(element.dom());
   };
   var appendAt = function (parent, element, index) {
-    $_a7cj16ynjkmcwtk5.child(parent, index).fold(function () {
+    $_4x0y5axtjh8lz4lc.child(parent, index).fold(function () {
       append(parent, element);
     }, function (v) {
       before(v, element);
@@ -1275,7 +1561,7 @@ var mobile = (function () {
     before(element, wrapper);
     append(wrapper, element);
   };
-  var $_1qcoujymjkmcwtk3 = {
+  var $_b7kmpsxsjh8lz4la = {
     before: before,
     after: after,
     prepend: prepend,
@@ -1285,27 +1571,27 @@ var mobile = (function () {
   };
 
   var before$1 = function (marker, elements) {
-    each$1(elements, function (x) {
-      $_1qcoujymjkmcwtk3.before(marker, x);
+    $_ffek9lxijh8lz4jt.each(elements, function (x) {
+      $_b7kmpsxsjh8lz4la.before(marker, x);
     });
   };
   var after$1 = function (marker, elements) {
-    each$1(elements, function (x, i) {
+    $_ffek9lxijh8lz4jt.each(elements, function (x, i) {
       var e = i === 0 ? marker : elements[i - 1];
-      $_1qcoujymjkmcwtk3.after(e, x);
+      $_b7kmpsxsjh8lz4la.after(e, x);
     });
   };
   var prepend$1 = function (parent, elements) {
-    each$1(elements.slice().reverse(), function (x) {
-      $_1qcoujymjkmcwtk3.prepend(parent, x);
+    $_ffek9lxijh8lz4jt.each(elements.slice().reverse(), function (x) {
+      $_b7kmpsxsjh8lz4la.prepend(parent, x);
     });
   };
   var append$1 = function (parent, elements) {
-    each$1(elements, function (x) {
-      $_1qcoujymjkmcwtk3.append(parent, x);
+    $_ffek9lxijh8lz4jt.each(elements, function (x) {
+      $_b7kmpsxsjh8lz4la.append(parent, x);
     });
   };
-  var $_4ags7uz0jkmcwtlm = {
+  var $_vq36dy6jh8lz4mp = {
     before: before$1,
     after: after$1,
     prepend: prepend$1,
@@ -1314,7 +1600,7 @@ var mobile = (function () {
 
   var empty = function (element) {
     element.dom().textContent = '';
-    each$1($_a7cj16ynjkmcwtk5.children(element), function (rogue) {
+    $_ffek9lxijh8lz4jt.each($_4x0y5axtjh8lz4lc.children(element), function (rogue) {
       remove(rogue);
     });
   };
@@ -1324,12 +1610,12 @@ var mobile = (function () {
       dom.parentNode.removeChild(dom);
   };
   var unwrap = function (wrapper) {
-    var children = $_a7cj16ynjkmcwtk5.children(wrapper);
+    var children = $_4x0y5axtjh8lz4lc.children(wrapper);
     if (children.length > 0)
-      $_4ags7uz0jkmcwtlm.before(wrapper, children);
+      $_vq36dy6jh8lz4mp.before(wrapper, children);
     remove(wrapper);
   };
-  var $_cxmsuayzjkmcwtlj = {
+  var $_8s1zycy5jh8lz4mm = {
     empty: empty,
     remove: remove,
     unwrap: unwrap
@@ -1338,31 +1624,31 @@ var mobile = (function () {
   var fireDetaching = function (component) {
     emit(component, detachedFromDom());
     var children = component.components();
-    each$1(children, fireDetaching);
+    $_ffek9lxijh8lz4jt.each(children, fireDetaching);
   };
   var fireAttaching = function (component) {
     var children = component.components();
-    each$1(children, fireAttaching);
+    $_ffek9lxijh8lz4jt.each(children, fireAttaching);
     emit(component, attachedToDom());
   };
   var attach = function (parent, child) {
-    attachWith(parent, child, $_1qcoujymjkmcwtk3.append);
+    attachWith(parent, child, $_b7kmpsxsjh8lz4la.append);
   };
   var attachWith = function (parent, child, insertion) {
     parent.getSystem().addToWorld(child);
     insertion(parent.element(), child.element());
-    if ($_3wo4fwyhjkmcwtje.inBody(parent.element())) {
+    if ($_847aynxojh8lz4kx.inBody(parent.element())) {
       fireAttaching(child);
     }
     parent.syncComponents();
   };
   var doDetach = function (component) {
     fireDetaching(component);
-    $_cxmsuayzjkmcwtlj.remove(component.element());
+    $_8s1zycy5jh8lz4mm.remove(component.element());
     component.getSystem().removeFromWorld(component);
   };
   var detach = function (component) {
-    var parent = $_a7cj16ynjkmcwtk5.parent(component.element()).bind(function (p) {
+    var parent = $_4x0y5axtjh8lz4lc.parent(component.element()).bind(function (p) {
       return component.getSystem().getByDom(p).fold(Option.none, Option.some);
     });
     doDetach(component);
@@ -1372,14 +1658,14 @@ var mobile = (function () {
   };
   var detachChildren = function (component) {
     var subs = component.components();
-    each$1(subs, doDetach);
-    $_cxmsuayzjkmcwtlj.empty(component.element());
+    $_ffek9lxijh8lz4jt.each(subs, doDetach);
+    $_8s1zycy5jh8lz4mm.empty(component.element());
     component.syncComponents();
   };
   var attachSystem = function (element, guiSystem) {
-    $_1qcoujymjkmcwtk3.append(element, guiSystem.element());
-    var children = $_a7cj16ynjkmcwtk5.children(guiSystem.element());
-    each$1(children, function (child) {
+    $_b7kmpsxsjh8lz4la.append(element, guiSystem.element());
+    var children = $_4x0y5axtjh8lz4lc.children(guiSystem.element());
+    $_ffek9lxijh8lz4jt.each(children, function (child) {
       guiSystem.getByDom(child).each(fireAttaching);
     });
   };
@@ -1417,11 +1703,11 @@ var mobile = (function () {
     };
     return {
       is: is,
-      isValue: always,
-      isError: never,
-      getOr: constant(o),
-      getOrThunk: constant(o),
-      getOrDie: constant(o),
+      isValue: $_7vemb6x3jh8lz4ig.always,
+      isError: $_7vemb6x3jh8lz4ig.never,
+      getOr: $_7vemb6x3jh8lz4ig.constant(o),
+      getOrThunk: $_7vemb6x3jh8lz4ig.constant(o),
+      getOrDie: $_7vemb6x3jh8lz4ig.constant(o),
       or: or,
       orThunk: orThunk,
       fold: fold,
@@ -1438,7 +1724,7 @@ var mobile = (function () {
       return f();
     };
     var getOrDie = function () {
-      return die(String(message))();
+      return $_7vemb6x3jh8lz4ig.die(String(message))();
     };
     var or = function (opt) {
       return opt;
@@ -1456,20 +1742,20 @@ var mobile = (function () {
       return onError(message);
     };
     return {
-      is: never,
-      isValue: never,
-      isError: always,
-      getOr: identity,
+      is: $_7vemb6x3jh8lz4ig.never,
+      isValue: $_7vemb6x3jh8lz4ig.never,
+      isError: $_7vemb6x3jh8lz4ig.always,
+      getOr: $_7vemb6x3jh8lz4ig.identity,
       getOrThunk: getOrThunk,
       getOrDie: getOrDie,
       or: or,
       orThunk: orThunk,
       fold: fold,
       map: map,
-      each: noop,
+      each: $_7vemb6x3jh8lz4ig.noop,
       bind: bind,
-      exists: never,
-      forall: always,
+      exists: $_7vemb6x3jh8lz4ig.never,
+      forall: $_7vemb6x3jh8lz4ig.always,
       toOption: Option.none
     };
   };
@@ -1479,7 +1765,7 @@ var mobile = (function () {
   };
 
   var generate = function (cases) {
-    if (!isArray(cases)) {
+    if (!$_dx88esx5jh8lz4is.isArray(cases)) {
       throw new Error('cases must be an array');
     }
     if (cases.length === 0) {
@@ -1487,18 +1773,18 @@ var mobile = (function () {
     }
     var constructors = [];
     var adt = {};
-    each$1(cases, function (acase, count) {
-      var keys$$1 = keys(acase);
-      if (keys$$1.length !== 1) {
+    $_ffek9lxijh8lz4jt.each(cases, function (acase, count) {
+      var keys = $_23xamox6jh8lz4iu.keys(acase);
+      if (keys.length !== 1) {
         throw new Error('one and only one name per case');
       }
-      var key = keys$$1[0];
+      var key = keys[0];
       var value = acase[key];
       if (adt[key] !== undefined) {
         throw new Error('duplicate key detected:' + key);
       } else if (key === 'cata') {
         throw new Error('cannot have a case named cata (sorry)');
-      } else if (!isArray(value)) {
+      } else if (!$_dx88esx5jh8lz4is.isArray(value)) {
         throw new Error('case arguments must be an array');
       }
       constructors.push(key);
@@ -1511,12 +1797,12 @@ var mobile = (function () {
         for (var i = 0; i < args.length; i++)
           args[i] = arguments[i];
         var match = function (branches) {
-          var branchKeys = keys(branches);
+          var branchKeys = $_23xamox6jh8lz4iu.keys(branches);
           if (constructors.length !== branchKeys.length) {
             throw new Error('Wrong number of arguments to match. Expected: ' + constructors.join(',') + '\nActual: ' + branchKeys.join(','));
           }
-          var allReqd = forall(constructors, function (reqKey) {
-            return contains(branchKeys, reqKey);
+          var allReqd = $_ffek9lxijh8lz4jt.forall(constructors, function (reqKey) {
+            return $_ffek9lxijh8lz4jt.contains(branchKeys, reqKey);
           });
           if (!allReqd)
             throw new Error('Not all branches were specified when using match. Specified: ' + branchKeys.join(', ') + '\nRequired: ' + constructors.join(', '));
@@ -1543,9 +1829,9 @@ var mobile = (function () {
     });
     return adt;
   };
-  var Adt = { generate: generate };
+  var $_aruf06ycjh8lz4o4 = { generate: generate };
 
-  var adt = Adt.generate([
+  var adt = $_aruf06ycjh8lz4o4.generate([
     { strict: [] },
     { defaultedThunk: ['fallbackThunk'] },
     { asOption: [] },
@@ -1553,10 +1839,10 @@ var mobile = (function () {
     { mergeWithThunk: ['baseThunk'] }
   ]);
   var defaulted = function (fallback) {
-    return adt.defaultedThunk(constant(fallback));
+    return adt.defaultedThunk($_7vemb6x3jh8lz4ig.constant(fallback));
   };
   var mergeWith = function (base) {
-    return adt.mergeWithThunk(constant(base));
+    return adt.mergeWithThunk($_7vemb6x3jh8lz4ig.constant(base));
   };
   var strict = adt.strict;
   var asOption = adt.asOption;
@@ -1564,7 +1850,7 @@ var mobile = (function () {
   var asDefaultedOptionThunk = adt.asDefaultedOptionThunk;
   var mergeWithThunk = adt.mergeWithThunk;
 
-  var comparison = Adt.generate([
+  var comparison = $_aruf06ycjh8lz4o4.generate([
     {
       bothErrors: [
         'error1',
@@ -1593,7 +1879,7 @@ var mobile = (function () {
   var partition$1 = function (results) {
     var errors = [];
     var values = [];
-    each$1(results, function (result) {
+    $_ffek9lxijh8lz4jt.each(results, function (result) {
       result.fold(function (err) {
         errors.push(err);
       }, function (value) {
@@ -1605,19 +1891,38 @@ var mobile = (function () {
       values: values
     };
   };
+  var compare = function (result1, result2) {
+    return result1.fold(function (err1) {
+      return result2.fold(function (err2) {
+        return comparison.bothErrors(err1, err2);
+      }, function (val2) {
+        return comparison.firstError(err1, val2);
+      });
+    }, function (val1) {
+      return result2.fold(function (err2) {
+        return comparison.secondError(val1, err2);
+      }, function (val2) {
+        return comparison.bothValues(val1, val2);
+      });
+    });
+  };
+  var $_6vuc80ygjh8lz4oy = {
+    partition: partition$1,
+    compare: compare
+  };
 
   var mergeValues = function (values, base) {
-    return Result.value(deepMerge.apply(undefined, [base].concat(values)));
+    return Result.value($_b00d1jx4jh8lz4ij.deepMerge.apply(undefined, [base].concat(values)));
   };
   var mergeErrors = function (errors) {
-    return compose(Result.error, flatten)(errors);
+    return $_7vemb6x3jh8lz4ig.compose(Result.error, $_ffek9lxijh8lz4jt.flatten)(errors);
   };
   var consolidateObj = function (objects, base) {
-    var partitions = partition$1(objects);
+    var partitions = $_6vuc80ygjh8lz4oy.partition(objects);
     return partitions.errors.length > 0 ? mergeErrors(partitions.errors) : mergeValues(partitions.values, base);
   };
   var consolidateArr = function (objects) {
-    var partitions = partition$1(objects);
+    var partitions = $_6vuc80ygjh8lz4oy.partition(objects);
     return partitions.errors.length > 0 ? mergeErrors(partitions.errors) : Result.value(partitions.values);
   };
   var ResultCombine = {
@@ -1627,7 +1932,7 @@ var mobile = (function () {
 
   var narrow = function (obj, fields) {
     var r = {};
-    each$1(fields, function (field) {
+    $_ffek9lxijh8lz4jt.each(fields, function (field) {
       if (obj[field] !== undefined && obj.hasOwnProperty(field)) {
         r[field] = obj[field];
       }
@@ -1636,8 +1941,8 @@ var mobile = (function () {
   };
   var exclude = function (obj, fields) {
     var r = {};
-    each(obj, function (v, k) {
-      if (!contains(fields, k)) {
+    $_23xamox6jh8lz4iu.each(obj, function (v, k) {
+      if (!$_ffek9lxijh8lz4jt.contains(fields, k)) {
         r[k] = v;
       }
     });
@@ -1668,7 +1973,7 @@ var mobile = (function () {
   };
   var wrapAll = function (keyvalues) {
     var r = {};
-    each$1(keyvalues, function (kv) {
+    $_ffek9lxijh8lz4jt.each(keyvalues, function (kv) {
       r[kv.key] = kv.value;
     });
     return r;
@@ -1702,7 +2007,7 @@ var mobile = (function () {
     return hasKey(obj, key);
   };
 
-  var typeAdt = Adt.generate([
+  var typeAdt = $_aruf06ycjh8lz4o4.generate([
     {
       setOf: [
         'validator',
@@ -1726,7 +2031,7 @@ var mobile = (function () {
       ]
     }
   ]);
-  var fieldAdt = Adt.generate([
+  var fieldAdt = $_aruf06ycjh8lz4o4.generate([
     {
       field: [
         'name',
@@ -1738,7 +2043,7 @@ var mobile = (function () {
   ]);
 
   var json = function () {
-    return $_dlxzecyvjkmcwtl6.getOrDie('JSON');
+    return $_2rfe40y1jh8lz4m5.getOrDie('JSON');
   };
   var parse = function (obj) {
     return json().parse(obj);
@@ -1746,13 +2051,13 @@ var mobile = (function () {
   var stringify = function (obj, replacer, space) {
     return json().stringify(obj, replacer, space);
   };
-  var $_ccklnrzhjkmcwton = {
+  var $_37gedlynjh8lz4pr = {
     parse: parse,
     stringify: stringify
   };
 
   var formatObj = function (input) {
-    return isObject(input) && keys(input).length > 100 ? ' removed due to size' : $_ccklnrzhjkmcwton.stringify(input, null, 2);
+    return $_dx88esx5jh8lz4is.isObject(input) && $_23xamox6jh8lz4iu.keys(input).length > 100 ? ' removed due to size' : $_37gedlynjh8lz4pr.stringify(input, null, 2);
   };
   var formatErrors = function (errors) {
     var es = errors.length > 10 ? errors.slice(0, 10).concat([{
@@ -1761,7 +2066,7 @@ var mobile = (function () {
           return '... (only showing first ten failures)';
         }
       }]) : errors;
-    return map$1(es, function (e) {
+    return $_ffek9lxijh8lz4jt.map(es, function (e) {
       return 'Failed path: (' + e.path.join(' > ') + ')\n' + e.getErrorInfo();
     });
   };
@@ -1798,7 +2103,7 @@ var mobile = (function () {
     });
   };
 
-  var adt$1 = Adt.generate([
+  var adt$1 = $_aruf06ycjh8lz4o4.generate([
     {
       field: [
         'key',
@@ -1822,7 +2127,7 @@ var mobile = (function () {
   var fallbackAccess = function (obj, key, fallbackThunk) {
     var v = readOptFrom(obj, key).fold(function () {
       return fallbackThunk(obj);
-    }, identity);
+    }, $_7vemb6x3jh8lz4ig.identity);
     return Result.value(v);
   };
   var optionAccess = function (obj, key) {
@@ -1862,8 +2167,8 @@ var mobile = (function () {
           return optionDefaultedAccess(obj, key, fallbackThunk).bind(bundleAsOption);
         }, function (baseThunk) {
           var base = baseThunk(obj);
-          return fallbackAccess(obj, key, constant({})).map(function (v) {
-            return deepMerge(base, v);
+          return fallbackAccess(obj, key, $_7vemb6x3jh8lz4ig.constant({})).map(function (v) {
+            return $_b00d1jx4jh8lz4ij.deepMerge(base, v);
           }).bind(bundle);
         });
       }();
@@ -1873,7 +2178,7 @@ var mobile = (function () {
     });
   };
   var cExtract = function (path, obj, fields, strength) {
-    var results = map$1(fields, function (field) {
+    var results = $_ffek9lxijh8lz4jt.map(fields, function (field) {
       return cExtractOne(path, obj, field, strength);
     });
     return ResultCombine.consolidateObj(results, {});
@@ -1897,21 +2202,21 @@ var mobile = (function () {
     };
   };
   var getSetKeys = function (obj) {
-    var keys$$1 = keys(obj);
-    return filter(keys$$1, function (k) {
+    var keys = $_23xamox6jh8lz4iu.keys(obj);
+    return $_ffek9lxijh8lz4jt.filter(keys, function (k) {
       return hasKey$1(obj, k);
     });
   };
   var objOfOnly = function (fields) {
     var delegate = objOf(fields);
-    var fieldNames = foldr(fields, function (acc, f) {
+    var fieldNames = $_ffek9lxijh8lz4jt.foldr(fields, function (acc, f) {
       return f.fold(function (key) {
-        return deepMerge(acc, wrap$2(key, true));
-      }, constant(acc));
+        return $_b00d1jx4jh8lz4ij.deepMerge(acc, wrap$2(key, true));
+      }, $_7vemb6x3jh8lz4ig.constant(acc));
     }, {});
     var extract = function (path, strength, o) {
-      var keys$$1 = isBoolean(o) ? [] : getSetKeys(o);
-      var extra = filter(keys$$1, function (k) {
+      var keys = $_dx88esx5jh8lz4is.isBoolean(o) ? [] : getSetKeys(o);
+      var extra = $_ffek9lxijh8lz4jt.filter(keys, function (k) {
         return !hasKey$1(fieldNames, k);
       });
       return extra.length === 0 ? delegate.extract(path, strength, o) : unsupportedFields(path, extra);
@@ -1927,7 +2232,7 @@ var mobile = (function () {
       return cExtract(path, o, fields, strength);
     };
     var toString$$1 = function () {
-      var fieldStrings = map$1(fields, function (field) {
+      var fieldStrings = $_ffek9lxijh8lz4jt.map(fields, function (field) {
         return field.fold(function (key, okey, presence, prop) {
           return key + ' -> ' + prop.toString();
         }, function (okey, instantiator) {
@@ -1937,7 +2242,7 @@ var mobile = (function () {
       return 'obj{\n' + fieldStrings.join('\n') + '}';
     };
     var toDsl = function () {
-      return typeAdt.objOf(map$1(fields, function (f) {
+      return typeAdt.objOf($_ffek9lxijh8lz4jt.map(fields, function (f) {
         return f.fold(function (key, okey, presence, prop) {
           return fieldAdt.field(key, presence, prop);
         }, function (okey, instantiator) {
@@ -1953,7 +2258,7 @@ var mobile = (function () {
   };
   var arrOf = function (prop) {
     var extract = function (path, strength, array) {
-      var results = map$1(array, function (a, i) {
+      var results = $_ffek9lxijh8lz4jt.map(array, function (a, i) {
         return prop.extract(path.concat(['[' + i + ']']), strength, a);
       });
       return ResultCombine.consolidateArr(results);
@@ -1971,13 +2276,13 @@ var mobile = (function () {
     };
   };
   var setOf = function (validator, prop) {
-    var validateKeys = function (path, keys$$1) {
-      return arrOf(value$2(validator)).extract(path, identity, keys$$1);
+    var validateKeys = function (path, keys) {
+      return arrOf(value$2(validator)).extract(path, $_7vemb6x3jh8lz4ig.identity, keys);
     };
     var extract = function (path, strength, o) {
-      var keys$$1 = keys(o);
-      return validateKeys(path, keys$$1).bind(function (validKeys) {
-        var schema = map$1(validKeys, function (vk) {
+      var keys = $_23xamox6jh8lz4iu.keys(o);
+      return validateKeys(path, keys).bind(function (validKeys) {
+        var schema = $_ffek9lxijh8lz4jt.map(validKeys, function (vk) {
           return adt$1.field(vk, vk, strict(), prop);
         });
         return objOf(schema).extract(path, strength, o);
@@ -1995,7 +2300,8 @@ var mobile = (function () {
       toDsl: toDsl
     };
   };
-  var anyValue = constant(value$2(Result.value));
+  var anyValue = $_7vemb6x3jh8lz4ig.constant(value$2(Result.value));
+  var arrOfObj = $_7vemb6x3jh8lz4ig.compose(arrOf, objOf);
   var state = adt$1.state;
   var field = adt$1.field;
 
@@ -2017,7 +2323,7 @@ var mobile = (function () {
       });
     };
     var toString$$1 = function () {
-      return 'chooseOn(' + key + '). Possible values: ' + keys(branches);
+      return 'chooseOn(' + key + '). Possible values: ' + $_23xamox6jh8lz4iu.keys(branches);
     };
     var toDsl = function () {
       return typeAdt.choiceOf(key, branches);
@@ -2044,15 +2350,15 @@ var mobile = (function () {
     }, Result.value);
   };
   var asStruct = function (label, prop, obj) {
-    return extract(label, prop, constant, obj);
+    return extract(label, prop, $_7vemb6x3jh8lz4ig.constant, obj);
   };
   var asRaw = function (label, prop, obj) {
-    return extract(label, prop, identity, obj);
+    return extract(label, prop, $_7vemb6x3jh8lz4ig.identity, obj);
   };
   var getOrDie$1 = function (extraction) {
     return extraction.fold(function (errInfo) {
       throw new Error(formatError(errInfo));
-    }, identity);
+    }, $_7vemb6x3jh8lz4ig.identity);
   };
   var asRawOrDie = function (label, prop, obj) {
     return getOrDie$1(asRaw(label, prop, obj));
@@ -2066,14 +2372,14 @@ var mobile = (function () {
   var choose$1 = function (key, branches) {
     return choose(key, branches);
   };
-  var anyValue$1 = constant(_anyValue);
+  var anyValue$1 = $_7vemb6x3jh8lz4ig.constant(_anyValue);
   var typedValue = function (validator, expectedType) {
     return value$2(function (a) {
       var actualType = typeof a;
       return validator(a) ? Result.value(a) : Result.error('Expected type: ' + expectedType + ' but got: ' + actualType);
     });
   };
-  var functionProcessor = typedValue(isFunction, 'function');
+  var functionProcessor = typedValue($_dx88esx5jh8lz4is.isFunction, 'function');
 
   var strict$1 = function (key) {
     return field(key, key, strict(), anyValue());
@@ -2118,45 +2424,39 @@ var mobile = (function () {
   };
 
   var isSource = function (component, simulatedEvent) {
-    return $_cpo6bcytjkmcwtkv.eq(component.element(), simulatedEvent.event().target());
+    return $_6liejjxzjh8lz4lv.eq(component.element(), simulatedEvent.event().target());
   };
 
   var nu$4 = function (parts) {
     if (!hasKey$1(parts, 'can') && !hasKey$1(parts, 'abort') && !hasKey$1(parts, 'run')) {
-      throw new Error('EventHandler defined by: ' + $_ccklnrzhjkmcwton.stringify(parts, null, 2) + ' does not have can, abort, or run!');
+      throw new Error('EventHandler defined by: ' + $_37gedlynjh8lz4pr.stringify(parts, null, 2) + ' does not have can, abort, or run!');
     }
     return asRawOrDie('Extracting event.handler', objOfOnly([
-      defaulted$1('can', constant(true)),
-      defaulted$1('abort', constant(false)),
-      defaulted$1('run', noop)
+      defaulted$1('can', $_7vemb6x3jh8lz4ig.constant(true)),
+      defaulted$1('abort', $_7vemb6x3jh8lz4ig.constant(false)),
+      defaulted$1('run', $_7vemb6x3jh8lz4ig.noop)
     ]), parts);
   };
   var all$1 = function (handlers, f) {
     return function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
-      return foldl(handlers, function (acc, handler) {
+      var args = Array.prototype.slice.call(arguments, 0);
+      return $_ffek9lxijh8lz4jt.foldl(handlers, function (acc, handler) {
         return acc && f(handler).apply(undefined, args);
       }, true);
     };
   };
   var any = function (handlers, f) {
     return function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
-      return foldl(handlers, function (acc, handler) {
+      var args = Array.prototype.slice.call(arguments, 0);
+      return $_ffek9lxijh8lz4jt.foldl(handlers, function (acc, handler) {
         return acc || f(handler).apply(undefined, args);
       }, false);
     };
   };
   var read = function (handler) {
-    return isFunction(handler) ? {
-      can: constant(true),
-      abort: constant(false),
+    return $_dx88esx5jh8lz4is.isFunction(handler) ? {
+      can: $_7vemb6x3jh8lz4ig.constant(true),
+      abort: $_7vemb6x3jh8lz4ig.constant(false),
       run: handler
     } : handler;
   };
@@ -2168,11 +2468,8 @@ var mobile = (function () {
       return handler.abort;
     });
     var run = function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
-      each$1(handlers, function (handler) {
+      var args = Array.prototype.slice.call(arguments, 0);
+      $_ffek9lxijh8lz4jt.each(handlers, function (handler) {
         handler.run.apply(undefined, args);
       });
     };
@@ -2183,9 +2480,7 @@ var mobile = (function () {
     });
   };
 
-  var derive = function (configs) {
-    return wrapAll$1(configs);
-  };
+  var derive = wrapAll$1;
   var abort = function (name, predicate) {
     return {
       key: name,
@@ -2246,8 +2541,7 @@ var mobile = (function () {
   };
   var runWithTarget = function (name, f) {
     return run(name, function (component, simulatedEvent) {
-      var ev = simulatedEvent.event();
-      component.getSystem().getByDom(ev.target()).each(function (target) {
+      component.getSystem().getByDom(simulatedEvent.event().target()).each(function (target) {
         f(component, target, simulatedEvent);
       });
     });
@@ -2281,8 +2575,8 @@ var mobile = (function () {
     return f;
   };
   var cleanParameters = function (parameters) {
-    return map$1(parameters, function (p) {
-      return endsWith(p, '/*') ? p.substring(0, p.length - '/*'.length) : p;
+    return $_ffek9lxijh8lz4jt.map(parameters, function (p) {
+      return $_6n62nuxkjh8lz4k7.endsWith(p, '/*') ? p.substring(0, p.length - '/*'.length) : p;
     });
   };
   var markAsExtraApi = function (f, extraName) {
@@ -2312,7 +2606,7 @@ var mobile = (function () {
     return f;
   };
 
-  var nu$5 = MixedBag(['tag'], [
+  var nu$5 = $_dti8klxujh8lz4lo.immutableBag(['tag'], [
     'classes',
     'attributes',
     'styles',
@@ -2323,7 +2617,7 @@ var mobile = (function () {
   ]);
   var defToStr = function (defn) {
     var raw = defToRaw(defn);
-    return $_ccklnrzhjkmcwton.stringify(raw, null, 2);
+    return $_37gedlynjh8lz4pr.stringify(raw, null, 2);
   };
   var defToRaw = function (defn) {
     return {
@@ -2333,11 +2627,7 @@ var mobile = (function () {
       styles: defn.styles().getOr({}),
       value: defn.value().getOr('<none>'),
       innerHtml: defn.innerHtml().getOr('<none>'),
-      defChildren: defn.defChildren().fold(function () {
-        return '<none>';
-      }, function (d) {
-        return $_ccklnrzhjkmcwton.stringify(d, null, 2);
-      }),
+      defChildren: defn.defChildren().getOr('<none>'),
       domChildren: defn.domChildren().fold(function () {
         return '<none>';
       }, function (children) {
@@ -2355,7 +2645,7 @@ var mobile = (function () {
     'defChildren',
     'domChildren'
   ];
-  var nu$6 = MixedBag([], fields);
+  var nu$6 = $_dti8klxujh8lz4lo.immutableBag([], fields);
   var clashingOptArrays = function (key, oArr1, oArr2) {
     return oArr1.fold(function () {
       return oArr2.fold(function () {
@@ -2372,11 +2662,11 @@ var mobile = (function () {
     });
   };
   var merge$1 = function (defnA, mod) {
-    var raw = deepMerge({
+    var raw = $_b00d1jx4jh8lz4ij.deepMerge({
       tag: defnA.tag(),
       classes: mod.classes().getOr([]).concat(defnA.classes().getOr([])),
-      attributes: merge(defnA.attributes().getOr({}), mod.attributes().getOr({})),
-      styles: merge(defnA.styles().getOr({}), mod.styles().getOr({}))
+      attributes: $_b00d1jx4jh8lz4ij.merge(defnA.attributes().getOr({}), mod.attributes().getOr({})),
+      styles: $_b00d1jx4jh8lz4ij.merge(defnA.styles().getOr({}), mod.styles().getOr({}))
     }, mod.innerHtml().or(defnA.innerHtml()).map(function (innerHtml) {
       return wrap$2('innerHtml', innerHtml);
     }).getOr({}), clashingOptArrays('domChildren', mod.domChildren(), defnA.domChildren()), clashingOptArrays('defChildren', mod.defChildren(), defnA.defChildren()), mod.value().or(defnA.value()).map(function (value) {
@@ -2407,12 +2697,8 @@ var mobile = (function () {
   };
   var wrapApi = function (bName, apiFunction, apiName) {
     var f = function (component) {
-      var rest = [];
-      for (var _i = 1; _i < arguments.length; _i++) {
-        rest[_i - 1] = arguments[_i];
-      }
-      var args = [component].concat(rest);
-      return component.config({ name: constant(bName) }).fold(function () {
+      var args = arguments;
+      return component.config({ name: $_7vemb6x3jh8lz4ig.constant(bName) }).fold(function () {
         throw new Error('We could not find any behaviour configuration for: ' + bName + '. Using API: ' + apiName);
       }, function (info) {
         var rest = Array.prototype.slice.call(args, 1);
@@ -2435,14 +2721,14 @@ var mobile = (function () {
     var getConfig = function (info) {
       return hasKey$1(info, name) ? info[name]() : Option.none();
     };
-    var wrappedApis = map(apis, function (apiF, apiName) {
+    var wrappedApis = $_23xamox6jh8lz4iu.map(apis, function (apiF, apiName) {
       return wrapApi(name, apiF, apiName);
     });
-    var wrappedExtra = map(extra, function (extraF, extraName) {
+    var wrappedExtra = $_23xamox6jh8lz4iu.map(extra, function (extraF, extraName) {
       return markAsExtraApi(extraF, extraName);
     });
-    var me = deepMerge(wrappedExtra, wrappedApis, {
-      revoke: curry(revokeBehaviour, name),
+    var me = $_b00d1jx4jh8lz4ij.deepMerge(wrappedExtra, wrappedApis, {
+      revoke: $_7vemb6x3jh8lz4ig.curry(revokeBehaviour, name),
       config: function (spec) {
         var prepared = asStructOrDie(name + '-config', configSchema, spec);
         return {
@@ -2450,7 +2736,7 @@ var mobile = (function () {
           value: {
             config: prepared,
             me: me,
-            configAsRaw: cached(function () {
+            configAsRaw: $_5hshsbxbjh8lz4jc.cached(function () {
               return asRawOrDie(name + '-config', configSchema, spec);
             }),
             initialConfig: spec,
@@ -2484,59 +2770,59 @@ var mobile = (function () {
 
   var base = function (handleUnsupported, required) {
     return baseWith(handleUnsupported, required, {
-      validate: isFunction,
+      validate: $_dx88esx5jh8lz4is.isFunction,
       label: 'function'
     });
   };
   var baseWith = function (handleUnsupported, required, pred) {
     if (required.length === 0)
       throw new Error('You must specify at least one required field.');
-    validateStrArr('required', required);
-    checkDupes(required);
+    $_3tgbiwxxjh8lz4ls.validateStrArr('required', required);
+    $_3tgbiwxxjh8lz4ls.checkDupes(required);
     return function (obj) {
-      var keys$$1 = keys(obj);
-      var allReqd = forall(required, function (req) {
-        return contains(keys$$1, req);
+      var keys = $_23xamox6jh8lz4iu.keys(obj);
+      var allReqd = $_ffek9lxijh8lz4jt.forall(required, function (req) {
+        return $_ffek9lxijh8lz4jt.contains(keys, req);
       });
       if (!allReqd)
-        reqMessage(required, keys$$1);
-      handleUnsupported(required, keys$$1);
-      var invalidKeys = filter(required, function (key) {
+        $_3tgbiwxxjh8lz4ls.reqMessage(required, keys);
+      handleUnsupported(required, keys);
+      var invalidKeys = $_ffek9lxijh8lz4jt.filter(required, function (key) {
         return !pred.validate(obj[key], key);
       });
       if (invalidKeys.length > 0)
-        invalidTypeMessage(invalidKeys, pred.label);
+        $_3tgbiwxxjh8lz4ls.invalidTypeMessage(invalidKeys, pred.label);
       return obj;
     };
   };
-  var handleExact = function (required, keys$$1) {
-    var unsupported = filter(keys$$1, function (key) {
-      return !contains(required, key);
+  var handleExact = function (required, keys) {
+    var unsupported = $_ffek9lxijh8lz4jt.filter(keys, function (key) {
+      return !$_ffek9lxijh8lz4jt.contains(required, key);
     });
     if (unsupported.length > 0)
-      unsuppMessage(unsupported);
+      $_3tgbiwxxjh8lz4ls.unsuppMessage(unsupported);
   };
-  var allowExtra = noop;
-  var exactly = function (required) {
-    return base(handleExact, required);
-  };
-  var ensure = function (required) {
-    return base(allowExtra, required);
+  var allowExtra = $_7vemb6x3jh8lz4ig.noop;
+  var $_9q0hgqyzjh8lz4sq = {
+    exactly: $_7vemb6x3jh8lz4ig.curry(base, handleExact),
+    ensure: $_7vemb6x3jh8lz4ig.curry(base, allowExtra),
+    ensureWith: $_7vemb6x3jh8lz4ig.curry(baseWith, allowExtra)
   };
 
-  var NoState = {
-    init: function () {
-      return nu$7({
-        readState: function () {
-          return 'No State required';
-        }
-      });
-    }
+  var BehaviourState = $_9q0hgqyzjh8lz4sq.ensure(['readState']);
+
+  var init = function () {
+    return BehaviourState({
+      readState: function () {
+        return 'No State required';
+      }
+    });
   };
-  var nu$7 = function (spec) {
-    ensure(['readState'])(spec);
-    return spec;
-  };
+
+
+  var NoState = Object.freeze({
+  	init: init
+  });
 
   var derive$2 = function (capabilities) {
     return wrapAll$1(capabilities);
@@ -2546,8 +2832,8 @@ var mobile = (function () {
     strict$1('name'),
     defaulted$1('active', {}),
     defaulted$1('apis', {}),
-    defaulted$1('state', NoState),
-    defaulted$1('extra', {})
+    defaulted$1('extra', {}),
+    defaulted$1('state', NoState)
   ]);
   var create$1 = function (data) {
     var value = asRawOrDie('Creating behaviour: ' + data.name, simpleSchema, data);
@@ -2559,14 +2845,18 @@ var mobile = (function () {
     strict$1('name'),
     defaulted$1('active', {}),
     defaulted$1('apis', {}),
-    defaulted$1('state', NoState),
-    defaulted$1('extra', {})
+    defaulted$1('extra', {}),
+    defaulted$1('state', NoState)
   ]);
   var createModes$1 = function (data) {
     var value = asRawOrDie('Creating behaviour: ' + data.name, modeSchema, data);
     return createModes(choose$1(value.branchKey, value.branches), value.name, value.active, value.apis, value.extra, value.state);
   };
-  var revoke = constant(undefined);
+  var revoke = $_7vemb6x3jh8lz4ig.constant(undefined);
+  var noActive = $_7vemb6x3jh8lz4ig.constant({});
+  var noApis = $_7vemb6x3jh8lz4ig.constant({});
+  var noExtra = $_7vemb6x3jh8lz4ig.constant({});
+  var noState = $_7vemb6x3jh8lz4ig.constant(NoState);
 
   function Toggler (turnOff, turnOn, initial) {
     var active = initial || false;
@@ -2594,7 +2884,7 @@ var mobile = (function () {
   }
 
   var rawSet = function (dom, key, value) {
-    if (isString(value) || isBoolean(value) || isNumber(value)) {
+    if ($_dx88esx5jh8lz4is.isString(value) || $_dx88esx5jh8lz4is.isBoolean(value) || $_dx88esx5jh8lz4is.isNumber(value)) {
       dom.setAttribute(key, value + '');
     } else {
       console.error('Invalid call to Attr.set. Key ', key, ':: Value ', value, ':: Element ', dom);
@@ -2606,7 +2896,7 @@ var mobile = (function () {
   };
   var setAll = function (element, attrs) {
     var dom = element.dom();
-    each(attrs, function (v, k) {
+    $_23xamox6jh8lz4iu.each(attrs, function (v, k) {
       rawSet(dom, k, v);
     });
   };
@@ -2626,7 +2916,7 @@ var mobile = (function () {
     return attrs === undefined || attrs === null || attrs.length === 0;
   };
   var clone = function (element) {
-    return foldl(element.dom().attributes, function (acc, attr) {
+    return $_ffek9lxijh8lz4jt.foldl(element.dom().attributes, function (acc, attr) {
       acc[attr.name] = attr.value;
       return acc;
     }, {});
@@ -2636,13 +2926,13 @@ var mobile = (function () {
       set(destination, attr, get(source, attr));
   };
   var transfer = function (source, destination, attrs) {
-    if (!$_b0ubstykjkmcwtjz.isElement(source) || !$_b0ubstykjkmcwtjz.isElement(destination))
+    if (!$_2dp7e0xqjh8lz4l7.isElement(source) || !$_2dp7e0xqjh8lz4l7.isElement(destination))
       return;
-    each$1(attrs, function (attr) {
+    $_ffek9lxijh8lz4jt.each(attrs, function (attr) {
       transferOne(source, destination, attr);
     });
   };
-  var $_ga5avvzwjkmcwtro = {
+  var $_4d7m82z3jh8lz4t3 = {
     clone: clone,
     set: set,
     setAll: setAll,
@@ -2654,26 +2944,24 @@ var mobile = (function () {
   };
 
   var read$1 = function (element, attr) {
-    var value = $_ga5avvzwjkmcwtro.get(element, attr);
+    var value = $_4d7m82z3jh8lz4t3.get(element, attr);
     return value === undefined || value === '' ? [] : value.split(' ');
   };
   var add = function (element, attr, id) {
     var old = read$1(element, attr);
     var nu = old.concat([id]);
-    $_ga5avvzwjkmcwtro.set(element, attr, nu.join(' '));
-    return true;
+    $_4d7m82z3jh8lz4t3.set(element, attr, nu.join(' '));
   };
   var remove$2 = function (element, attr, id) {
-    var nu = filter(read$1(element, attr), function (v) {
+    var nu = $_ffek9lxijh8lz4jt.filter(read$1(element, attr), function (v) {
       return v !== id;
     });
     if (nu.length > 0)
-      $_ga5avvzwjkmcwtro.set(element, attr, nu.join(' '));
+      $_4d7m82z3jh8lz4t3.set(element, attr, nu.join(' '));
     else
-      $_ga5avvzwjkmcwtro.remove(element, attr);
-    return false;
+      $_4d7m82z3jh8lz4t3.remove(element, attr);
   };
-  var $_7l3yeszyjkmcwts5 = {
+  var $_5lwfcfz5jh8lz4tf = {
     read: read$1,
     add: add,
     remove: remove$2
@@ -2683,22 +2971,22 @@ var mobile = (function () {
     return element.dom().classList !== undefined;
   };
   var get$1 = function (element) {
-    return $_7l3yeszyjkmcwts5.read(element, 'class');
+    return $_5lwfcfz5jh8lz4tf.read(element, 'class');
   };
   var add$1 = function (element, clazz) {
-    return $_7l3yeszyjkmcwts5.add(element, 'class', clazz);
+    return $_5lwfcfz5jh8lz4tf.add(element, 'class', clazz);
   };
   var remove$3 = function (element, clazz) {
-    return $_7l3yeszyjkmcwts5.remove(element, 'class', clazz);
+    return $_5lwfcfz5jh8lz4tf.remove(element, 'class', clazz);
   };
   var toggle = function (element, clazz) {
-    if (contains(get$1(element), clazz)) {
-      return remove$3(element, clazz);
+    if ($_ffek9lxijh8lz4jt.contains(get$1(element), clazz)) {
+      remove$3(element, clazz);
     } else {
-      return add$1(element, clazz);
+      add$1(element, clazz);
     }
   };
-  var $_7te3evzxjkmcwtrx = {
+  var $_5hz96tz4jh8lz4tb = {
     get: get$1,
     add: add$1,
     remove: remove$3,
@@ -2707,49 +2995,49 @@ var mobile = (function () {
   };
 
   var add$2 = function (element, clazz) {
-    if ($_7te3evzxjkmcwtrx.supports(element))
+    if ($_5hz96tz4jh8lz4tb.supports(element))
       element.dom().classList.add(clazz);
     else
-      $_7te3evzxjkmcwtrx.add(element, clazz);
+      $_5hz96tz4jh8lz4tb.add(element, clazz);
   };
   var cleanClass = function (element) {
-    var classList = $_7te3evzxjkmcwtrx.supports(element) ? element.dom().classList : $_7te3evzxjkmcwtrx.get(element);
+    var classList = $_5hz96tz4jh8lz4tb.supports(element) ? element.dom().classList : $_5hz96tz4jh8lz4tb.get(element);
     if (classList.length === 0) {
-      $_ga5avvzwjkmcwtro.remove(element, 'class');
+      $_4d7m82z3jh8lz4t3.remove(element, 'class');
     }
   };
   var remove$4 = function (element, clazz) {
-    if ($_7te3evzxjkmcwtrx.supports(element)) {
+    if ($_5hz96tz4jh8lz4tb.supports(element)) {
       var classList = element.dom().classList;
       classList.remove(clazz);
     } else
-      $_7te3evzxjkmcwtrx.remove(element, clazz);
+      $_5hz96tz4jh8lz4tb.remove(element, clazz);
     cleanClass(element);
   };
   var toggle$1 = function (element, clazz) {
-    return $_7te3evzxjkmcwtrx.supports(element) ? element.dom().classList.toggle(clazz) : $_7te3evzxjkmcwtrx.toggle(element, clazz);
+    return $_5hz96tz4jh8lz4tb.supports(element) ? element.dom().classList.toggle(clazz) : $_5hz96tz4jh8lz4tb.toggle(element, clazz);
   };
   var toggler = function (element, clazz) {
-    var hasClasslist = $_7te3evzxjkmcwtrx.supports(element);
+    var hasClasslist = $_5hz96tz4jh8lz4tb.supports(element);
     var classList = element.dom().classList;
     var off = function () {
       if (hasClasslist)
         classList.remove(clazz);
       else
-        $_7te3evzxjkmcwtrx.remove(element, clazz);
+        $_5hz96tz4jh8lz4tb.remove(element, clazz);
     };
     var on = function () {
       if (hasClasslist)
         classList.add(clazz);
       else
-        $_7te3evzxjkmcwtrx.add(element, clazz);
+        $_5hz96tz4jh8lz4tb.add(element, clazz);
     };
     return Toggler(off, on, has$1(element, clazz));
   };
   var has$1 = function (element, clazz) {
-    return $_7te3evzxjkmcwtrx.supports(element) && element.dom().classList.contains(clazz);
+    return $_5hz96tz4jh8lz4tb.supports(element) && element.dom().classList.contains(clazz);
   };
-  var $_4fq2lwzujkmcwtrk = {
+  var $_eyo6psz1jh8lz4sw = {
     add: add$2,
     remove: remove$4,
     toggle: toggle$1,
@@ -2758,8 +3046,8 @@ var mobile = (function () {
   };
 
   var swap = function (element, addCls, removeCls) {
-    $_4fq2lwzujkmcwtrk.remove(element, removeCls);
-    $_4fq2lwzujkmcwtrk.add(element, addCls);
+    $_eyo6psz1jh8lz4sw.remove(element, removeCls);
+    $_eyo6psz1jh8lz4sw.add(element, addCls);
   };
   var toAlpha = function (component, swapConfig, swapState) {
     swap(component.element(), swapConfig.alpha(), swapConfig.omega());
@@ -2768,14 +3056,14 @@ var mobile = (function () {
     swap(component.element(), swapConfig.omega(), swapConfig.alpha());
   };
   var clear = function (component, swapConfig, swapState) {
-    $_4fq2lwzujkmcwtrk.remove(component.element(), swapConfig.alpha());
-    $_4fq2lwzujkmcwtrk.remove(component.element(), swapConfig.omega());
+    $_eyo6psz1jh8lz4sw.remove(component.element(), swapConfig.alpha());
+    $_eyo6psz1jh8lz4sw.remove(component.element(), swapConfig.omega());
   };
   var isAlpha = function (component, swapConfig, swapState) {
-    return $_4fq2lwzujkmcwtrk.has(component.element(), swapConfig.alpha());
+    return $_eyo6psz1jh8lz4sw.has(component.element(), swapConfig.alpha());
   };
   var isOmega = function (component, swapConfig, swapState) {
-    return $_4fq2lwzujkmcwtrk.has(component.element(), swapConfig.omega());
+    return $_eyo6psz1jh8lz4sw.has(component.element(), swapConfig.omega());
   };
 
 
@@ -2817,18 +3105,18 @@ var mobile = (function () {
   };
 
   function ClosestOrAncestor (is, ancestor, scope, a, isRoot) {
-    return is(scope, a) ? Option.some(scope) : isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
+    return is(scope, a) ? Option.some(scope) : $_dx88esx5jh8lz4is.isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
   }
 
   var first$1 = function (predicate) {
-    return descendant($_3wo4fwyhjkmcwtje.body(), predicate);
+    return descendant($_847aynxojh8lz4kx.body(), predicate);
   };
   var ancestor = function (scope, predicate, isRoot) {
     var element = scope.dom();
-    var stop = isFunction(isRoot) ? isRoot : constant(false);
+    var stop = $_dx88esx5jh8lz4is.isFunction(isRoot) ? isRoot : $_7vemb6x3jh8lz4ig.constant(false);
     while (element.parentNode) {
       element = element.parentNode;
-      var el = Element$$1.fromDom(element);
+      var el = $_2ykjbpxpjh8lz4l0.fromDom(element);
       if (predicate(el))
         return Option.some(el);
       else if (stop(el))
@@ -2846,20 +3134,20 @@ var mobile = (function () {
     var element = scope.dom();
     if (!element.parentNode)
       return Option.none();
-    return child$1(Element$$1.fromDom(element.parentNode), function (x) {
-      return !$_cpo6bcytjkmcwtkv.eq(scope, x) && predicate(x);
+    return child$1($_2ykjbpxpjh8lz4l0.fromDom(element.parentNode), function (x) {
+      return !$_6liejjxzjh8lz4lv.eq(scope, x) && predicate(x);
     });
   };
   var child$1 = function (scope, predicate) {
-    var result = find$2(scope.dom().childNodes, compose(predicate, Element$$1.fromDom));
-    return result.map(Element$$1.fromDom);
+    var result = $_ffek9lxijh8lz4jt.find(scope.dom().childNodes, $_7vemb6x3jh8lz4ig.compose(predicate, $_2ykjbpxpjh8lz4l0.fromDom));
+    return result.map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var descendant = function (scope, predicate) {
-    var descend = function (node) {
-      for (var i = 0; i < node.childNodes.length; i++) {
-        if (predicate(Element$$1.fromDom(node.childNodes[i])))
-          return Option.some(Element$$1.fromDom(node.childNodes[i]));
-        var res = descend(node.childNodes[i]);
+    var descend = function (element) {
+      for (var i = 0; i < element.childNodes.length; i++) {
+        if (predicate($_2ykjbpxpjh8lz4l0.fromDom(element.childNodes[i])))
+          return Option.some($_2ykjbpxpjh8lz4l0.fromDom(element.childNodes[i]));
+        var res = descend(element.childNodes[i]);
         if (res.isSome())
           return res;
       }
@@ -2867,7 +3155,7 @@ var mobile = (function () {
     };
     return descend(scope.dom());
   };
-  var $_exwlcm103jkmcwtsk = {
+  var $_1pk55azajh8lz4tu = {
     first: first$1,
     ancestor: ancestor,
     closest: closest,
@@ -2877,24 +3165,24 @@ var mobile = (function () {
   };
 
   var any$1 = function (predicate) {
-    return $_exwlcm103jkmcwtsk.first(predicate).isSome();
+    return $_1pk55azajh8lz4tu.first(predicate).isSome();
   };
   var ancestor$1 = function (scope, predicate, isRoot) {
-    return $_exwlcm103jkmcwtsk.ancestor(scope, predicate, isRoot).isSome();
+    return $_1pk55azajh8lz4tu.ancestor(scope, predicate, isRoot).isSome();
   };
   var closest$1 = function (scope, predicate, isRoot) {
-    return $_exwlcm103jkmcwtsk.closest(scope, predicate, isRoot).isSome();
+    return $_1pk55azajh8lz4tu.closest(scope, predicate, isRoot).isSome();
   };
   var sibling$1 = function (scope, predicate) {
-    return $_exwlcm103jkmcwtsk.sibling(scope, predicate).isSome();
+    return $_1pk55azajh8lz4tu.sibling(scope, predicate).isSome();
   };
   var child$2 = function (scope, predicate) {
-    return $_exwlcm103jkmcwtsk.child(scope, predicate).isSome();
+    return $_1pk55azajh8lz4tu.child(scope, predicate).isSome();
   };
   var descendant$1 = function (scope, predicate) {
-    return $_exwlcm103jkmcwtsk.descendant(scope, predicate).isSome();
+    return $_1pk55azajh8lz4tu.descendant(scope, predicate).isSome();
   };
-  var $_4o5r1x102jkmcwtsi = {
+  var $_g8wc0cz9jh8lz4ts = {
     any: any$1,
     ancestor: ancestor$1,
     closest: closest$1,
@@ -2906,43 +3194,43 @@ var mobile = (function () {
   var focus$2 = function (element) {
     element.dom().focus();
   };
-  var blur$$1 = function (element) {
+  var blur = function (element) {
     element.dom().blur();
   };
   var hasFocus = function (element) {
-    var doc = $_a7cj16ynjkmcwtk5.owner(element).dom();
+    var doc = $_4x0y5axtjh8lz4lc.owner(element).dom();
     return element.dom() === doc.activeElement;
   };
   var active = function (_doc) {
     var doc = _doc !== undefined ? _doc.dom() : document;
-    return Option.from(doc.activeElement).map(Element$$1.fromDom);
+    return Option.from(doc.activeElement).map($_2ykjbpxpjh8lz4l0.fromDom);
   };
   var focusInside = function (element) {
-    var doc = $_a7cj16ynjkmcwtk5.owner(element);
+    var doc = $_4x0y5axtjh8lz4lc.owner(element);
     var inside = active(doc).filter(function (a) {
-      return $_4o5r1x102jkmcwtsi.closest(a, curry($_cpo6bcytjkmcwtkv.eq, element));
+      return $_g8wc0cz9jh8lz4ts.closest(a, $_7vemb6x3jh8lz4ig.curry($_6liejjxzjh8lz4lv.eq, element));
     });
     inside.fold(function () {
       focus$2(element);
-    }, noop);
+    }, $_7vemb6x3jh8lz4ig.noop);
   };
   var search = function (element) {
-    return active($_a7cj16ynjkmcwtk5.owner(element)).filter(function (e) {
+    return active($_4x0y5axtjh8lz4lc.owner(element)).filter(function (e) {
       return element.dom().contains(e.dom());
     });
   };
-  var $_fci5qy101jkmcwtsc = {
+  var $_1z851az8jh8lz4tn = {
     hasFocus: hasFocus,
     focus: focus$2,
-    blur: blur$$1,
+    blur: blur,
     active: active,
     search: search,
     focusInside: focusInside
   };
 
-  var global = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-  var global$1 = tinymce.util.Tools.resolve('tinymce.ThemeManager');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.ThemeManager');
 
   var openLink = function (target) {
     var link = document.createElement('a');
@@ -2955,7 +3243,7 @@ var mobile = (function () {
     link.dispatchEvent(nuEvt);
     document.body.removeChild(link);
   };
-  var $_p54dh107jkmcwtt3 = { openLink: openLink };
+  var $_ex7qd9zejh8lz4u9 = { openLink: openLink };
 
   var isSkinDisabled = function (editor) {
     return editor.settings.skin === false;
@@ -2967,32 +3255,32 @@ var mobile = (function () {
   var formatChanged = 'formatChanged';
   var orientationChanged = 'orientationChanged';
   var dropupDismissed = 'dropupDismissed';
-  var $_5zff6b109jkmcwtt8 = {
-    formatChanged: constant(formatChanged),
-    orientationChanged: constant(orientationChanged),
-    dropupDismissed: constant(dropupDismissed)
+  var $_8dtsfgzgjh8lz4uf = {
+    formatChanged: $_7vemb6x3jh8lz4ig.constant(formatChanged),
+    orientationChanged: $_7vemb6x3jh8lz4ig.constant(orientationChanged),
+    dropupDismissed: $_7vemb6x3jh8lz4ig.constant(dropupDismissed)
   };
 
   var fromHtml$1 = function (html, scope) {
     var doc = scope || document;
     var div = doc.createElement('div');
     div.innerHTML = html;
-    return $_a7cj16ynjkmcwtk5.children(Element$$1.fromDom(div));
+    return $_4x0y5axtjh8lz4lc.children($_2ykjbpxpjh8lz4l0.fromDom(div));
   };
   var fromTags = function (tags, scope) {
-    return map$1(tags, function (x) {
-      return Element$$1.fromTag(x, scope);
+    return $_ffek9lxijh8lz4jt.map(tags, function (x) {
+      return $_2ykjbpxpjh8lz4l0.fromTag(x, scope);
     });
   };
   var fromText$1 = function (texts, scope) {
-    return map$1(texts, function (x) {
-      return Element$$1.fromText(x, scope);
+    return $_ffek9lxijh8lz4jt.map(texts, function (x) {
+      return $_2ykjbpxpjh8lz4l0.fromText(x, scope);
     });
   };
   var fromDom$1 = function (nodes) {
-    return map$1(nodes, Element$$1.fromDom);
+    return $_ffek9lxijh8lz4jt.map(nodes, $_2ykjbpxpjh8lz4l0.fromDom);
   };
-  var $_1wri9810gjkmcwtua = {
+  var $_g94p65znjh8lz4vd = {
     fromHtml: fromHtml$1,
     fromTags: fromTags,
     fromText: fromText$1,
@@ -3003,28 +3291,28 @@ var mobile = (function () {
     return element.dom().innerHTML;
   };
   var set$1 = function (element, content) {
-    var owner = $_a7cj16ynjkmcwtk5.owner(element);
+    var owner = $_4x0y5axtjh8lz4lc.owner(element);
     var docDom = owner.dom();
-    var fragment = Element$$1.fromDom(docDom.createDocumentFragment());
-    var contentElements = $_1wri9810gjkmcwtua.fromHtml(content, docDom);
-    $_4ags7uz0jkmcwtlm.append(fragment, contentElements);
-    $_cxmsuayzjkmcwtlj.empty(element);
-    $_1qcoujymjkmcwtk3.append(element, fragment);
+    var fragment = $_2ykjbpxpjh8lz4l0.fromDom(docDom.createDocumentFragment());
+    var contentElements = $_g94p65znjh8lz4vd.fromHtml(content, docDom);
+    $_vq36dy6jh8lz4mp.append(fragment, contentElements);
+    $_8s1zycy5jh8lz4mm.empty(element);
+    $_b7kmpsxsjh8lz4la.append(element, fragment);
   };
   var getOuter = function (element) {
-    var container = Element$$1.fromTag('div');
-    var clone = Element$$1.fromDom(element.dom().cloneNode(true));
-    $_1qcoujymjkmcwtk3.append(container, clone);
+    var container = $_2ykjbpxpjh8lz4l0.fromTag('div');
+    var clone = $_2ykjbpxpjh8lz4l0.fromDom(element.dom().cloneNode(true));
+    $_b7kmpsxsjh8lz4la.append(container, clone);
     return get$2(container);
   };
-  var $_bu5gev10fjkmcwtu8 = {
+  var $_23hn4uzmjh8lz4vc = {
     get: get$2,
     set: set$1,
     getOuter: getOuter
   };
 
   var clone$1 = function (original, deep) {
-    return Element$$1.fromDom(original.dom().cloneNode(deep));
+    return $_2ykjbpxpjh8lz4l0.fromDom(original.dom().cloneNode(deep));
   };
   var shallow$1 = function (original) {
     return clone$1(original, false);
@@ -3033,26 +3321,26 @@ var mobile = (function () {
     return clone$1(original, true);
   };
   var shallowAs = function (original, tag) {
-    var nu = Element$$1.fromTag(tag);
-    var attributes = $_ga5avvzwjkmcwtro.clone(original);
-    $_ga5avvzwjkmcwtro.setAll(nu, attributes);
+    var nu = $_2ykjbpxpjh8lz4l0.fromTag(tag);
+    var attributes = $_4d7m82z3jh8lz4t3.clone(original);
+    $_4d7m82z3jh8lz4t3.setAll(nu, attributes);
     return nu;
   };
   var copy = function (original, tag) {
     var nu = shallowAs(original, tag);
-    var cloneChildren = $_a7cj16ynjkmcwtk5.children(deep$1(original));
-    $_4ags7uz0jkmcwtlm.append(nu, cloneChildren);
+    var cloneChildren = $_4x0y5axtjh8lz4lc.children(deep$1(original));
+    $_vq36dy6jh8lz4mp.append(nu, cloneChildren);
     return nu;
   };
   var mutate = function (original, tag) {
     var nu = shallowAs(original, tag);
-    $_1qcoujymjkmcwtk3.before(original, nu);
-    var children = $_a7cj16ynjkmcwtk5.children(original);
-    $_4ags7uz0jkmcwtlm.append(nu, children);
-    $_cxmsuayzjkmcwtlj.remove(original);
+    $_b7kmpsxsjh8lz4la.before(original, nu);
+    var children = $_4x0y5axtjh8lz4lc.children(original);
+    $_vq36dy6jh8lz4mp.append(nu, children);
+    $_8s1zycy5jh8lz4mm.remove(original);
     return nu;
   };
-  var $_3qh3xu10hjkmcwtue = {
+  var $_61mjr8zojh8lz4vh = {
     shallow: shallow$1,
     shallowAs: shallowAs,
     deep: deep$1,
@@ -3061,8 +3349,8 @@ var mobile = (function () {
   };
 
   var getHtml = function (element) {
-    var clone = $_3qh3xu10hjkmcwtue.shallow(element);
-    return $_bu5gev10fjkmcwtu8.getOuter(clone);
+    var clone = $_61mjr8zojh8lz4vh.shallow(element);
+    return $_23hn4uzmjh8lz4vc.getOuter(clone);
   };
 
   var element = function (elem) {
@@ -3070,16 +3358,16 @@ var mobile = (function () {
   };
 
   var chooseChannels = function (channels, message) {
-    return message.universal() ? channels : filter(channels, function (ch) {
-      return contains(message.channels(), ch);
+    return message.universal() ? channels : $_ffek9lxijh8lz4jt.filter(channels, function (ch) {
+      return $_ffek9lxijh8lz4jt.contains(message.channels(), ch);
     });
   };
   var events = function (receiveConfig) {
     return derive([run(receive(), function (component, message) {
         var channelMap = receiveConfig.channels();
-        var channels = keys(channelMap);
+        var channels = $_23xamox6jh8lz4iu.keys(channelMap);
         var targetChannels = chooseChannels(channels, message);
-        each$1(targetChannels, function (ch) {
+        $_ffek9lxijh8lz4jt.each(targetChannels, function (ch) {
           var channelInfo = channelMap[ch]();
           var channelSchema = channelInfo.schema();
           var data = asStructOrDie('channel[' + ch + '] data\nReceiver: ' + element(component.element()), channelSchema, message.data());
@@ -3112,6 +3400,23 @@ var mobile = (function () {
     }
     return Option.none();
   };
+  var liftN = function (arr, f) {
+    var r = [];
+    for (var i = 0; i < arr.length; i++) {
+      var x = arr[i];
+      if (x.isSome()) {
+        r.push(x.getOrDie());
+      } else {
+        return Option.none();
+      }
+    }
+    return Option.some(f.apply(null, r));
+  };
+  var $_3g4qukzsjh8lz4wq = {
+    cat: cat,
+    findMap: findMap,
+    liftN: liftN
+  };
 
   var unknown$3 = 'unknown';
   var debugging = true;
@@ -3127,8 +3432,8 @@ var mobile = (function () {
     var err = new Error();
     if (err.stack !== undefined) {
       var lines = err.stack.split('\n');
-      return find$2(lines, function (line) {
-        return line.indexOf('alloy') > 0 && !exists(path$1, function (p) {
+      return $_ffek9lxijh8lz4jt.find(lines, function (line) {
+        return line.indexOf('alloy') > 0 && !$_ffek9lxijh8lz4jt.exists(path$1, function (p) {
           return line.indexOf(p) > -1;
         });
       }).getOr(unknown$3);
@@ -3137,45 +3442,45 @@ var mobile = (function () {
     }
   };
   var ignoreEvent = {
-    logEventCut: noop,
-    logEventStopped: noop,
-    logNoParent: noop,
-    logEventNoHandlers: noop,
-    logEventResponse: noop,
-    write: noop
+    logEventCut: $_7vemb6x3jh8lz4ig.noop,
+    logEventStopped: $_7vemb6x3jh8lz4ig.noop,
+    logNoParent: $_7vemb6x3jh8lz4ig.noop,
+    logEventNoHandlers: $_7vemb6x3jh8lz4ig.noop,
+    logEventResponse: $_7vemb6x3jh8lz4ig.noop,
+    write: $_7vemb6x3jh8lz4ig.noop
   };
   var monitorEvent = function (eventName, initialTarget, f) {
-    var logger = debugging && (eventsMonitored === '*' || contains(eventsMonitored, eventName)) ? function () {
+    var logger = debugging && (eventsMonitored === '*' || $_ffek9lxijh8lz4jt.contains(eventsMonitored, eventName)) ? function () {
       var sequence = [];
       return {
-        logEventCut: function (name$$1, target, purpose) {
+        logEventCut: function (name, target, purpose) {
           sequence.push({
             outcome: 'cut',
             target: target,
             purpose: purpose
           });
         },
-        logEventStopped: function (name$$1, target, purpose) {
+        logEventStopped: function (name, target, purpose) {
           sequence.push({
             outcome: 'stopped',
             target: target,
             purpose: purpose
           });
         },
-        logNoParent: function (name$$1, target, purpose) {
+        logNoParent: function (name, target, purpose) {
           sequence.push({
             outcome: 'no-parent',
             target: target,
             purpose: purpose
           });
         },
-        logEventNoHandlers: function (name$$1, target) {
+        logEventNoHandlers: function (name, target) {
           sequence.push({
             outcome: 'no-handlers-left',
             target: target
           });
         },
-        logEventResponse: function (name$$1, target, purpose) {
+        logEventResponse: function (name, target, purpose) {
           sequence.push({
             outcome: 'response',
             purpose: purpose,
@@ -3183,7 +3488,7 @@ var mobile = (function () {
           });
         },
         write: function () {
-          if (contains([
+          if ($_ffek9lxijh8lz4jt.contains([
               'mousemove',
               'mouseover',
               'mouseout',
@@ -3194,8 +3499,8 @@ var mobile = (function () {
           console.log(eventName, {
             event: eventName,
             target: initialTarget.dom(),
-            sequence: map$1(sequence, function (s) {
-              if (!contains([
+            sequence: $_ffek9lxijh8lz4jt.map(sequence, function (s) {
+              if (!$_ffek9lxijh8lz4jt.contains([
                   'cut',
                   'stopped',
                   'response'
@@ -3213,17 +3518,19 @@ var mobile = (function () {
     logger.write();
     return output;
   };
+  var noLogger = $_7vemb6x3jh8lz4ig.constant(ignoreEvent);
+  var isDebugging = $_7vemb6x3jh8lz4ig.constant(debugging);
 
-  var menuFields = constant([
+  var menuFields = $_7vemb6x3jh8lz4ig.constant([
     strict$1('menu'),
     strict$1('selectedMenu')
   ]);
-  var itemFields = constant([
+  var itemFields = $_7vemb6x3jh8lz4ig.constant([
     strict$1('item'),
     strict$1('selectedItem')
   ]);
-  var schema = constant(objOfOnly(itemFields().concat(menuFields())));
-  var itemSchema = constant(objOfOnly(itemFields()));
+  var schema = $_7vemb6x3jh8lz4ig.constant(objOfOnly(itemFields().concat(menuFields())));
+  var itemSchema = $_7vemb6x3jh8lz4ig.constant(objOfOnly(itemFields()));
 
   var _initSize = strictObjOf('initSize', [
     strict$1('numColumns'),
@@ -3236,22 +3543,18 @@ var mobile = (function () {
     return strictObjOf('markers', [strict$1('backgroundMenu')].concat(menuFields()).concat(itemFields()));
   };
   var markers = function (required) {
-    return strictObjOf('markers', map$1(required, strict$1));
+    return strictObjOf('markers', $_ffek9lxijh8lz4jt.map(required, strict$1));
   };
   var onPresenceHandler = function (label, fieldName, presence) {
     var trace = getTrace();
     return field(fieldName, fieldName, presence, valueOf(function (f) {
       return Result.value(function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-          args[_i] = arguments[_i];
-        }
-        return f.apply(undefined, args);
+        return f.apply(undefined, arguments);
       });
     }));
   };
   var onHandler = function (fieldName) {
-    return onPresenceHandler('onHandler', fieldName, defaulted(noop));
+    return onPresenceHandler('onHandler', fieldName, defaulted($_7vemb6x3jh8lz4ig.noop));
   };
   var onKeyboardHandler = function (fieldName) {
     return onPresenceHandler('onKeyboardHandler', fieldName, defaulted(Option.none));
@@ -3263,12 +3566,12 @@ var mobile = (function () {
     return onPresenceHandler('onKeyboardHandler', fieldName, strict());
   };
   var output$1 = function (name, value) {
-    return state$1(name, constant(value));
+    return state$1(name, $_7vemb6x3jh8lz4ig.constant(value));
   };
   var snapshot$1 = function (name) {
-    return state$1(name, identity);
+    return state$1(name, $_7vemb6x3jh8lz4ig.identity);
   };
-  var initSize = constant(_initSize);
+  var initSize = $_7vemb6x3jh8lz4ig.constant(_initSize);
 
   var ReceivingSchema = [strictOf('channels', setOf(Result.value, objOfOnly([
       onStrictHandler('onReceive'),
@@ -3287,19 +3590,19 @@ var mobile = (function () {
     ariaInfo.update()(component, ariaInfo, pressed);
   };
   var toggle$2 = function (component, toggleConfig, toggleState) {
-    $_4fq2lwzujkmcwtrk.toggle(component.element(), toggleConfig.toggleClass());
+    $_eyo6psz1jh8lz4sw.toggle(component.element(), toggleConfig.toggleClass());
     updateAriaState(component, toggleConfig);
   };
   var on = function (component, toggleConfig, toggleState) {
-    $_4fq2lwzujkmcwtrk.add(component.element(), toggleConfig.toggleClass());
+    $_eyo6psz1jh8lz4sw.add(component.element(), toggleConfig.toggleClass());
     updateAriaState(component, toggleConfig);
   };
   var off = function (component, toggleConfig, toggleState) {
-    $_4fq2lwzujkmcwtrk.remove(component.element(), toggleConfig.toggleClass());
+    $_eyo6psz1jh8lz4sw.remove(component.element(), toggleConfig.toggleClass());
     updateAriaState(component, toggleConfig);
   };
   var isOn = function (component, toggleConfig) {
-    return $_4fq2lwzujkmcwtrk.has(component.element(), toggleConfig.toggleClass());
+    return $_eyo6psz1jh8lz4sw.has(component.element(), toggleConfig.toggleClass());
   };
   var onLoad = function (component, toggleConfig, toggleState) {
     var api = toggleConfig.selected() ? on : off;
@@ -3321,7 +3624,7 @@ var mobile = (function () {
   var events$1 = function (toggleConfig, toggleState) {
     var execute = executeEvent(toggleConfig, toggleState, toggle$2);
     var load = loadEvent(toggleConfig, toggleState, onLoad);
-    return derive(flatten([
+    return derive($_ffek9lxijh8lz4jt.flatten([
       toggleConfig.toggleOnExecute() ? [execute] : [],
       [load]
     ]));
@@ -3334,19 +3637,19 @@ var mobile = (function () {
   });
 
   var updatePressed = function (component, ariaInfo, status) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-pressed', status);
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-pressed', status);
     if (ariaInfo.syncWithExpanded()) {
       updateExpanded(component, ariaInfo, status);
     }
   };
   var updateSelected = function (component, ariaInfo, status) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-selected', status);
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-selected', status);
   };
   var updateChecked = function (component, ariaInfo, status) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-checked', status);
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-checked', status);
   };
   var updateExpanded = function (component, ariaInfo, status) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-expanded', status);
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-expanded', status);
   };
 
   var ToggleSchema = [
@@ -3361,7 +3664,7 @@ var mobile = (function () {
       checked: [output$1('update', updateChecked)],
       expanded: [output$1('update', updateExpanded)],
       selected: [output$1('update', updateSelected)],
-      none: [output$1('update', noop)]
+      none: [output$1('update', $_7vemb6x3jh8lz4ig.noop)]
     }))
   ];
 
@@ -3374,7 +3677,7 @@ var mobile = (function () {
 
   var format = function (command, update) {
     return Receiving.config({
-      channels: wrap$2($_5zff6b109jkmcwtt8.formatChanged(), {
+      channels: wrap$2($_8dtsfgzgjh8lz4uf.formatChanged(), {
         onReceive: function (button, data) {
           if (data.command === command) {
             update(button, data.state);
@@ -3384,7 +3687,7 @@ var mobile = (function () {
     });
   };
   var orientation = function (onReceive) {
-    return Receiving.config({ channels: wrap$2($_5zff6b109jkmcwtt8.orientationChanged(), { onReceive: onReceive }) });
+    return Receiving.config({ channels: wrap$2($_8dtsfgzgjh8lz4uf.orientationChanged(), { onReceive: onReceive }) });
   };
   var receive$1 = function (channel, onReceive) {
     return {
@@ -3392,7 +3695,7 @@ var mobile = (function () {
       value: { onReceive: onReceive }
     };
   };
-  var $_46xi8a10sjkmcwtws = {
+  var $_dbkfwdzzjh8lz4xv = {
     format: format,
     orientation: orientation,
     receive: receive$1
@@ -3402,9 +3705,9 @@ var mobile = (function () {
   var resolve$1 = function (p) {
     return prefix + '-' + p;
   };
-  var $_dpmvs510tjkmcwtwz = {
+  var $_9mxjlz100jh8lz4y0 = {
     resolve: resolve$1,
-    prefix: constant(prefix)
+    prefix: $_7vemb6x3jh8lz4ig.constant(prefix)
   };
 
   var events$2 = function (optAction) {
@@ -3421,11 +3724,11 @@ var mobile = (function () {
     var onMousedown = function (component, simulatedEvent) {
       simulatedEvent.cut();
     };
-    var pointerEvents = $_b90373y3jkmcwths.detect().deviceType.isTouch() ? [run(tap(), onClick)] : [
+    var pointerEvents = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch() ? [run(tap(), onClick)] : [
       run(click(), onClick),
       run(mousedown(), onMousedown)
     ];
-    return derive(flatten([
+    return derive($_ffek9lxijh8lz4jt.flatten([
       optAction.map(executeHandler).toArray(),
       pointerEvents
     ]));
@@ -3433,17 +3736,17 @@ var mobile = (function () {
 
   var focus$3 = function (component, focusConfig) {
     if (!focusConfig.ignore()) {
-      $_fci5qy101jkmcwtsc.focus(component.element());
+      $_1z851az8jh8lz4tn.focus(component.element());
       focusConfig.onFocus()(component);
     }
   };
   var blur$1 = function (component, focusConfig) {
     if (!focusConfig.ignore()) {
-      $_fci5qy101jkmcwtsc.blur(component.element());
+      $_1z851az8jh8lz4tn.blur(component.element());
     }
   };
   var isFocused = function (component) {
-    return $_fci5qy101jkmcwtsc.hasFocus(component.element());
+    return $_1z851az8jh8lz4tn.hasFocus(component.element());
   };
 
 
@@ -3488,18 +3791,18 @@ var mobile = (function () {
   var isSupported = function (dom) {
     return dom.style !== undefined;
   };
-  var $_88h3un117jkmcwtza = { isSupported: isSupported };
+  var $_3j0hdd10ejh8lz50t = { isSupported: isSupported };
 
   var internalSet = function (dom, property, value) {
-    if (!isString(value)) {
+    if (!$_dx88esx5jh8lz4is.isString(value)) {
       console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value, ':: Element ', dom);
       throw new Error('CSS value must be a string: ' + value);
     }
-    if ($_88h3un117jkmcwtza.isSupported(dom))
+    if ($_3j0hdd10ejh8lz50t.isSupported(dom))
       dom.style.setProperty(property, value);
   };
   var internalRemove = function (dom, property) {
-    if ($_88h3un117jkmcwtza.isSupported(dom))
+    if ($_3j0hdd10ejh8lz50t.isSupported(dom))
       dom.style.removeProperty(property);
   };
   var set$2 = function (element, property, value) {
@@ -3508,13 +3811,13 @@ var mobile = (function () {
   };
   var setAll$1 = function (element, css) {
     var dom = element.dom();
-    each(css, function (v, k) {
+    $_23xamox6jh8lz4iu.each(css, function (v, k) {
       internalSet(dom, k, v);
     });
   };
   var setOptions = function (element, css) {
     var dom = element.dom();
-    each(css, function (v, k) {
+    $_23xamox6jh8lz4iu.each(css, function (v, k) {
       v.fold(function () {
         internalRemove(dom, k);
       }, function (value) {
@@ -3526,11 +3829,11 @@ var mobile = (function () {
     var dom = element.dom();
     var styles = window.getComputedStyle(dom);
     var r = styles.getPropertyValue(property);
-    var v = r === '' && !$_3wo4fwyhjkmcwtje.inBody(element) ? getUnsafeProperty(dom, property) : r;
+    var v = r === '' && !$_847aynxojh8lz4kx.inBody(element) ? getUnsafeProperty(dom, property) : r;
     return v === null ? undefined : v;
   };
   var getUnsafeProperty = function (dom, property) {
-    return $_88h3un117jkmcwtza.isSupported(dom) ? dom.style.getPropertyValue(property) : '';
+    return $_3j0hdd10ejh8lz50t.isSupported(dom) ? dom.style.getPropertyValue(property) : '';
   };
   var getRaw = function (element, property) {
     var dom = element.dom();
@@ -3542,7 +3845,7 @@ var mobile = (function () {
   var getAllRaw = function (element) {
     var css = {};
     var dom = element.dom();
-    if ($_88h3un117jkmcwtza.isSupported(dom)) {
+    if ($_3j0hdd10ejh8lz50t.isSupported(dom)) {
       for (var i = 0; i < dom.style.length; i++) {
         var ruleName = dom.style.item(i);
         css[ruleName] = dom.style[ruleName];
@@ -3551,7 +3854,7 @@ var mobile = (function () {
     return css;
   };
   var isValidValue = function (tag, property, value) {
-    var element = Element$$1.fromTag(tag);
+    var element = $_2ykjbpxpjh8lz4l0.fromTag(tag);
     set$2(element, property, value);
     var style = getRaw(element, property);
     return style.isSome();
@@ -3559,21 +3862,21 @@ var mobile = (function () {
   var remove$5 = function (element, property) {
     var dom = element.dom();
     internalRemove(dom, property);
-    if ($_ga5avvzwjkmcwtro.has(element, 'style') && trim($_ga5avvzwjkmcwtro.get(element, 'style')) === '') {
-      $_ga5avvzwjkmcwtro.remove(element, 'style');
+    if ($_4d7m82z3jh8lz4t3.has(element, 'style') && $_6n62nuxkjh8lz4k7.trim($_4d7m82z3jh8lz4t3.get(element, 'style')) === '') {
+      $_4d7m82z3jh8lz4t3.remove(element, 'style');
     }
   };
   var preserve = function (element, f) {
-    var oldStyles = $_ga5avvzwjkmcwtro.get(element, 'style');
+    var oldStyles = $_4d7m82z3jh8lz4t3.get(element, 'style');
     var result = f(element);
-    var restore = oldStyles === undefined ? $_ga5avvzwjkmcwtro.remove : $_ga5avvzwjkmcwtro.set;
+    var restore = oldStyles === undefined ? $_4d7m82z3jh8lz4t3.remove : $_4d7m82z3jh8lz4t3.set;
     restore(element, 'style', oldStyles);
     return result;
   };
   var copy$1 = function (source, target) {
     var sourceDom = source.dom();
     var targetDom = target.dom();
-    if ($_88h3un117jkmcwtza.isSupported(sourceDom) && $_88h3un117jkmcwtza.isSupported(targetDom)) {
+    if ($_3j0hdd10ejh8lz50t.isSupported(sourceDom) && $_3j0hdd10ejh8lz50t.isSupported(targetDom)) {
       targetDom.style.cssText = sourceDom.style.cssText;
     }
   };
@@ -3587,13 +3890,13 @@ var mobile = (function () {
     });
   };
   var transfer$1 = function (source, destination, styles) {
-    if (!$_b0ubstykjkmcwtjz.isElement(source) || !$_b0ubstykjkmcwtjz.isElement(destination))
+    if (!$_2dp7e0xqjh8lz4l7.isElement(source) || !$_2dp7e0xqjh8lz4l7.isElement(destination))
       return;
-    each$1(styles, function (style) {
+    $_ffek9lxijh8lz4jt.each(styles, function (style) {
       transferOne$1(source, destination, style);
     });
   };
-  var $_ezdyn3116jkmcwtyw = {
+  var $_g3k65w10djh8lz50c = {
     copy: copy$1,
     set: set$2,
     preserve: preserve,
@@ -3610,24 +3913,24 @@ var mobile = (function () {
 
   function Dimension (name, getOffset) {
     var set = function (element, h) {
-      if (!isNumber(h) && !h.match(/^[0-9]+$/))
+      if (!$_dx88esx5jh8lz4is.isNumber(h) && !h.match(/^[0-9]+$/))
         throw name + '.set accepts only positive integer values. Value was ' + h;
       var dom = element.dom();
-      if ($_88h3un117jkmcwtza.isSupported(dom))
+      if ($_3j0hdd10ejh8lz50t.isSupported(dom))
         dom.style[name] = h + 'px';
     };
     var get = function (element) {
       var r = getOffset(element);
       if (r <= 0 || r === null) {
-        var css = $_ezdyn3116jkmcwtyw.get(element, name);
+        var css = $_g3k65w10djh8lz50c.get(element, name);
         return parseFloat(css) || 0;
       }
       return r;
     };
     var getOuter = get;
     var aggregate = function (element, properties) {
-      return foldl(properties, function (acc, property) {
-        var val = $_ezdyn3116jkmcwtyw.get(element, property);
+      return $_ffek9lxijh8lz4jt.foldl(properties, function (acc, property) {
+        var val = $_g3k65w10djh8lz50c.get(element, property);
         var value = val === undefined ? 0 : parseInt(val, 10);
         return isNaN(value) ? acc : acc + value;
       }, 0);
@@ -3647,8 +3950,7 @@ var mobile = (function () {
   }
 
   var api = Dimension('height', function (element) {
-    var dom = element.dom();
-    return $_3wo4fwyhjkmcwtje.inBody(element) ? dom.getBoundingClientRect().height : dom.offsetHeight;
+    return $_847aynxojh8lz4kx.inBody(element) ? element.dom().getBoundingClientRect().height : element.dom().offsetHeight;
   });
   var set$3 = function (element, h) {
     api.set(element, h);
@@ -3669,9 +3971,9 @@ var mobile = (function () {
       'margin-bottom'
     ];
     var absMax = api.max(element, value, inclusions);
-    $_ezdyn3116jkmcwtyw.set(element, 'max-height', absMax + 'px');
+    $_g3k65w10djh8lz50c.set(element, 'max-height', absMax + 'px');
   };
-  var $_3mqbs115jkmcwtyu = {
+  var $_1avprm10cjh8lz50a = {
     set: set$3,
     get: get$4,
     getOuter: getOuter$1,
@@ -3679,20 +3981,20 @@ var mobile = (function () {
   };
 
   var all$2 = function (predicate) {
-    return descendants($_3wo4fwyhjkmcwtje.body(), predicate);
+    return descendants($_847aynxojh8lz4kx.body(), predicate);
   };
   var ancestors = function (scope, predicate, isRoot) {
-    return filter($_a7cj16ynjkmcwtk5.parents(scope, isRoot), predicate);
+    return $_ffek9lxijh8lz4jt.filter($_4x0y5axtjh8lz4lc.parents(scope, isRoot), predicate);
   };
   var siblings$1 = function (scope, predicate) {
-    return filter($_a7cj16ynjkmcwtk5.siblings(scope), predicate);
+    return $_ffek9lxijh8lz4jt.filter($_4x0y5axtjh8lz4lc.siblings(scope), predicate);
   };
   var children$1 = function (scope, predicate) {
-    return filter($_a7cj16ynjkmcwtk5.children(scope), predicate);
+    return $_ffek9lxijh8lz4jt.filter($_4x0y5axtjh8lz4lc.children(scope), predicate);
   };
   var descendants = function (scope, predicate) {
     var result = [];
-    each$1($_a7cj16ynjkmcwtk5.children(scope), function (x) {
+    $_ffek9lxijh8lz4jt.each($_4x0y5axtjh8lz4lc.children(scope), function (x) {
       if (predicate(x)) {
         result = result.concat([x]);
       }
@@ -3700,7 +4002,7 @@ var mobile = (function () {
     });
     return result;
   };
-  var $_cpeyp611ajkmcwtzi = {
+  var $_bgbvup10hjh8lz511 = {
     all: all$2,
     ancestors: ancestors,
     siblings: siblings$1,
@@ -3709,27 +4011,27 @@ var mobile = (function () {
   };
 
   var all$3 = function (selector) {
-    return $_2lpyciyyjkmcwtlc.all(selector);
+    return $_uope4y4jh8lz4ma.all(selector);
   };
   var ancestors$1 = function (scope, selector, isRoot) {
-    return $_cpeyp611ajkmcwtzi.ancestors(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_bgbvup10hjh8lz511.ancestors(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     }, isRoot);
   };
   var siblings$2 = function (scope, selector) {
-    return $_cpeyp611ajkmcwtzi.siblings(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_bgbvup10hjh8lz511.siblings(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     });
   };
   var children$2 = function (scope, selector) {
-    return $_cpeyp611ajkmcwtzi.children(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_bgbvup10hjh8lz511.children(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     });
   };
   var descendants$1 = function (scope, selector) {
-    return $_2lpyciyyjkmcwtlc.all(selector, scope);
+    return $_uope4y4jh8lz4ma.all(selector, scope);
   };
-  var $_bpsi2e119jkmcwtzh = {
+  var $_bhctx310gjh8lz510 = {
     all: all$3,
     ancestors: ancestors$1,
     siblings: siblings$2,
@@ -3738,30 +4040,30 @@ var mobile = (function () {
   };
 
   var first$2 = function (selector) {
-    return $_2lpyciyyjkmcwtlc.one(selector);
+    return $_uope4y4jh8lz4ma.one(selector);
   };
   var ancestor$2 = function (scope, selector, isRoot) {
-    return $_exwlcm103jkmcwtsk.ancestor(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_1pk55azajh8lz4tu.ancestor(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     }, isRoot);
   };
   var sibling$2 = function (scope, selector) {
-    return $_exwlcm103jkmcwtsk.sibling(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_1pk55azajh8lz4tu.sibling(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     });
   };
   var child$3 = function (scope, selector) {
-    return $_exwlcm103jkmcwtsk.child(scope, function (e) {
-      return $_2lpyciyyjkmcwtlc.is(e, selector);
+    return $_1pk55azajh8lz4tu.child(scope, function (e) {
+      return $_uope4y4jh8lz4ma.is(e, selector);
     });
   };
   var descendant$2 = function (scope, selector) {
-    return $_2lpyciyyjkmcwtlc.one(selector, scope);
+    return $_uope4y4jh8lz4ma.one(selector, scope);
   };
   var closest$2 = function (scope, selector, isRoot) {
-    return ClosestOrAncestor($_2lpyciyyjkmcwtlc.is, ancestor$2, scope, selector, isRoot);
+    return ClosestOrAncestor($_uope4y4jh8lz4ma.is, ancestor$2, scope, selector, isRoot);
   };
-  var $_cbcewd11bjkmcwtzq = {
+  var $_gi1kpl10ijh8lz515 = {
     first: first$2,
     ancestor: ancestor$2,
     sibling: sibling$2,
@@ -3770,75 +4072,73 @@ var mobile = (function () {
     closest: closest$2
   };
 
-  var BACKSPACE = function () {
-    return [8];
-  };
-  var TAB = function () {
-    return [9];
-  };
-  var ENTER = function () {
-    return [13];
-  };
-  var ESCAPE = function () {
-    return [27];
-  };
-  var SPACE = function () {
-    return [32];
-  };
-  var LEFT = function () {
-    return [37];
-  };
-  var UP = function () {
-    return [38];
-  };
-  var RIGHT = function () {
-    return [39];
-  };
-  var DOWN = function () {
-    return [40];
+  var $_42xeh910jjh8lz517 = {
+    BACKSPACE: $_7vemb6x3jh8lz4ig.constant([8]),
+    TAB: $_7vemb6x3jh8lz4ig.constant([9]),
+    ENTER: $_7vemb6x3jh8lz4ig.constant([13]),
+    SHIFT: $_7vemb6x3jh8lz4ig.constant([16]),
+    CTRL: $_7vemb6x3jh8lz4ig.constant([17]),
+    ALT: $_7vemb6x3jh8lz4ig.constant([18]),
+    CAPSLOCK: $_7vemb6x3jh8lz4ig.constant([20]),
+    ESCAPE: $_7vemb6x3jh8lz4ig.constant([27]),
+    SPACE: $_7vemb6x3jh8lz4ig.constant([32]),
+    PAGEUP: $_7vemb6x3jh8lz4ig.constant([33]),
+    PAGEDOWN: $_7vemb6x3jh8lz4ig.constant([34]),
+    END: $_7vemb6x3jh8lz4ig.constant([35]),
+    HOME: $_7vemb6x3jh8lz4ig.constant([36]),
+    LEFT: $_7vemb6x3jh8lz4ig.constant([37]),
+    UP: $_7vemb6x3jh8lz4ig.constant([38]),
+    RIGHT: $_7vemb6x3jh8lz4ig.constant([39]),
+    DOWN: $_7vemb6x3jh8lz4ig.constant([40]),
+    INSERT: $_7vemb6x3jh8lz4ig.constant([45]),
+    DEL: $_7vemb6x3jh8lz4ig.constant([46]),
+    META: $_7vemb6x3jh8lz4ig.constant([
+      91,
+      93,
+      224
+    ]),
+    F10: $_7vemb6x3jh8lz4ig.constant([121])
   };
 
   var cyclePrev = function (values, index, predicate) {
-    var before = reverse(values.slice(0, index));
-    var after = reverse(values.slice(index + 1));
-    return find$2(before.concat(after), predicate);
+    var before = $_ffek9lxijh8lz4jt.reverse(values.slice(0, index));
+    var after = $_ffek9lxijh8lz4jt.reverse(values.slice(index + 1));
+    return $_ffek9lxijh8lz4jt.find(before.concat(after), predicate);
   };
   var tryPrev = function (values, index, predicate) {
-    var before = reverse(values.slice(0, index));
-    return find$2(before, predicate);
+    var before = $_ffek9lxijh8lz4jt.reverse(values.slice(0, index));
+    return $_ffek9lxijh8lz4jt.find(before, predicate);
   };
   var cycleNext = function (values, index, predicate) {
     var before = values.slice(0, index);
     var after = values.slice(index + 1);
-    return find$2(after.concat(before), predicate);
+    return $_ffek9lxijh8lz4jt.find(after.concat(before), predicate);
   };
   var tryNext = function (values, index, predicate) {
     var after = values.slice(index + 1);
-    return find$2(after, predicate);
+    return $_ffek9lxijh8lz4jt.find(after, predicate);
   };
 
   var inSet = function (keys) {
     return function (event) {
-      var raw = event.raw();
-      return contains(keys, raw.which);
+      return $_ffek9lxijh8lz4jt.contains(keys, event.raw().which);
     };
   };
   var and = function (preds) {
     return function (event) {
-      return forall(preds, function (pred) {
+      return $_ffek9lxijh8lz4jt.forall(preds, function (pred) {
         return pred(event);
       });
     };
   };
   var isShift = function (event) {
-    var raw = event.raw();
-    return raw.shiftKey === true;
+    return event.raw().shiftKey === true;
   };
   var isControl = function (event) {
-    var raw = event.raw();
-    return raw.ctrlKey === true;
+    return event.raw().ctrlKey === true;
   };
-  var isNotShift = not(isShift);
+  var isNotControl = $_7vemb6x3jh8lz4ig.not(isControl);
+  var isNotShift = $_7vemb6x3jh8lz4ig.not(isShift);
 
   var rule = function (matches, action) {
     return {
@@ -3847,7 +4147,7 @@ var mobile = (function () {
     };
   };
   var choose$2 = function (transitions, event) {
-    var transition = find$2(transitions, function (t) {
+    var transition = $_ffek9lxijh8lz4jt.find(transitions, function (t) {
       return t.matches(event);
     });
     return transition.map(function (t) {
@@ -3872,9 +4172,9 @@ var mobile = (function () {
   };
 
   var dehighlightAll = function (component, hConfig, hState) {
-    var highlighted = $_bpsi2e119jkmcwtzh.descendants(component.element(), '.' + hConfig.highlightClass());
-    each$1(highlighted, function (h) {
-      $_4fq2lwzujkmcwtrk.remove(h, hConfig.highlightClass());
+    var highlighted = $_bhctx310gjh8lz510.descendants(component.element(), '.' + hConfig.highlightClass());
+    $_ffek9lxijh8lz4jt.each(highlighted, function (h) {
+      $_eyo6psz1jh8lz4sw.remove(h, hConfig.highlightClass());
       component.getSystem().getByDom(h).each(function (target) {
         hConfig.onDehighlight()(component, target);
       });
@@ -3882,7 +4182,7 @@ var mobile = (function () {
   };
   var dehighlight = function (component, hConfig, hState, target) {
     var wasHighlighted = isHighlighted(component, hConfig, hState, target);
-    $_4fq2lwzujkmcwtrk.remove(target.element(), hConfig.highlightClass());
+    $_eyo6psz1jh8lz4sw.remove(target.element(), hConfig.highlightClass());
     if (wasHighlighted) {
       hConfig.onDehighlight()(component, target);
     }
@@ -3890,7 +4190,7 @@ var mobile = (function () {
   var highlight = function (component, hConfig, hState, target) {
     var wasHighlighted = isHighlighted(component, hConfig, hState, target);
     dehighlightAll(component, hConfig, hState);
-    $_4fq2lwzujkmcwtrk.add(target.element(), hConfig.highlightClass());
+    $_eyo6psz1jh8lz4sw.add(target.element(), hConfig.highlightClass());
     if (!wasHighlighted) {
       hConfig.onHighlight()(component, target);
     }
@@ -3913,49 +4213,43 @@ var mobile = (function () {
     });
   };
   var highlightBy = function (component, hConfig, hState, predicate) {
-    var items = $_bpsi2e119jkmcwtzh.descendants(component.element(), '.' + hConfig.itemClass());
-    var itemComps = cat(map$1(items, function (i) {
+    var items = $_bhctx310gjh8lz510.descendants(component.element(), '.' + hConfig.itemClass());
+    var itemComps = $_3g4qukzsjh8lz4wq.cat($_ffek9lxijh8lz4jt.map(items, function (i) {
       return component.getSystem().getByDom(i).toOption();
     }));
-    var targetComp = find$2(itemComps, predicate);
+    var targetComp = $_ffek9lxijh8lz4jt.find(itemComps, predicate);
     targetComp.each(function (c) {
       highlight(component, hConfig, hState, c);
     });
   };
   var isHighlighted = function (component, hConfig, hState, queryTarget) {
-    return $_4fq2lwzujkmcwtrk.has(queryTarget.element(), hConfig.highlightClass());
+    return $_eyo6psz1jh8lz4sw.has(queryTarget.element(), hConfig.highlightClass());
   };
   var getHighlighted = function (component, hConfig, hState) {
-    return $_cbcewd11bjkmcwtzq.descendant(component.element(), '.' + hConfig.highlightClass()).bind(function (e) {
-      return component.getSystem().getByDom(e).toOption();
-    });
+    return $_gi1kpl10ijh8lz515.descendant(component.element(), '.' + hConfig.highlightClass()).bind(component.getSystem().getByDom);
   };
   var getByIndex = function (component, hConfig, hState, index) {
-    var items = $_bpsi2e119jkmcwtzh.descendants(component.element(), '.' + hConfig.itemClass());
+    var items = $_bhctx310gjh8lz510.descendants(component.element(), '.' + hConfig.itemClass());
     return Option.from(items[index]).fold(function () {
       return Result.error('No element found with index ' + index);
     }, component.getSystem().getByDom);
   };
   var getFirst = function (component, hConfig, hState) {
-    return $_cbcewd11bjkmcwtzq.descendant(component.element(), '.' + hConfig.itemClass()).bind(function (e) {
-      return component.getSystem().getByDom(e).toOption();
-    });
+    return $_gi1kpl10ijh8lz515.descendant(component.element(), '.' + hConfig.itemClass()).bind(component.getSystem().getByDom);
   };
   var getLast = function (component, hConfig, hState) {
-    var items = $_bpsi2e119jkmcwtzh.descendants(component.element(), '.' + hConfig.itemClass());
-    var last$$1 = items.length > 0 ? Option.some(items[items.length - 1]) : Option.none();
-    return last$$1.bind(function (c) {
-      return component.getSystem().getByDom(c).toOption();
-    });
+    var items = $_bhctx310gjh8lz510.descendants(component.element(), '.' + hConfig.itemClass());
+    var last = items.length > 0 ? Option.some(items[items.length - 1]) : Option.none();
+    return last.bind(component.getSystem().getByDom);
   };
   var getDelta = function (component, hConfig, hState, delta) {
-    var items = $_bpsi2e119jkmcwtzh.descendants(component.element(), '.' + hConfig.itemClass());
-    var current = findIndex(items, function (item) {
-      return $_4fq2lwzujkmcwtrk.has(item, hConfig.highlightClass());
+    var items = $_bhctx310gjh8lz510.descendants(component.element(), '.' + hConfig.itemClass());
+    var current = $_ffek9lxijh8lz4jt.findIndex(items, function (item) {
+      return $_eyo6psz1jh8lz4sw.has(item, hConfig.highlightClass());
     });
     return current.bind(function (selected) {
       var dest = cycleBy(selected, delta, 0, items.length - 1);
-      return component.getSystem().getByDom(items[dest]).toOption();
+      return component.getSystem().getByDom(items[dest]);
     });
   };
   var getPrevious = function (component, hConfig, hState) {
@@ -3997,7 +4291,7 @@ var mobile = (function () {
 
   var dom = function () {
     var get = function (component) {
-      return $_fci5qy101jkmcwtsc.search(component.element());
+      return $_1z851az8jh8lz4tn.search(component.element());
     };
     var set = function (component, focusee) {
       component.getSystem().triggerFocus(focusee, component.element());
@@ -4014,7 +4308,7 @@ var mobile = (function () {
       });
     };
     var set = function (component, element) {
-      component.getSystem().getByDom(element).fold(noop, function (item) {
+      component.getSystem().getByDom(element).fold($_7vemb6x3jh8lz4ig.noop, function (item) {
         Highlighting.highlight(component, item);
       });
     };
@@ -4050,7 +4344,7 @@ var mobile = (function () {
             simulatedEvent.stop();
           });
         })]));
-      return deepMerge(otherEvents, keyEvents);
+      return $_b00d1jx4jh8lz4ij.deepMerge(otherEvents, keyEvents);
     };
     var me = {
       schema: schema,
@@ -4067,31 +4361,31 @@ var mobile = (function () {
       option('onEnter'),
       defaulted$1('selector', '[data-alloy-tabstop="true"]'),
       defaulted$1('firstTabstop', 0),
-      defaulted$1('useTabstopAt', constant(true)),
+      defaulted$1('useTabstopAt', $_7vemb6x3jh8lz4ig.constant(true)),
       option('visibilitySelector')
     ].concat([cyclicField]);
     var isVisible = function (tabbingConfig, element) {
       var target = tabbingConfig.visibilitySelector().bind(function (sel) {
-        return $_cbcewd11bjkmcwtzq.closest(element, sel);
+        return $_gi1kpl10ijh8lz515.closest(element, sel);
       }).getOr(element);
-      return $_3mqbs115jkmcwtyu.get(target) > 0;
+      return $_1avprm10cjh8lz50a.get(target) > 0;
     };
     var findInitial = function (component, tabbingConfig) {
-      var tabstops = $_bpsi2e119jkmcwtzh.descendants(component.element(), tabbingConfig.selector());
-      var visibles = filter(tabstops, function (elem) {
+      var tabstops = $_bhctx310gjh8lz510.descendants(component.element(), tabbingConfig.selector());
+      var visibles = $_ffek9lxijh8lz4jt.filter(tabstops, function (elem) {
         return isVisible(tabbingConfig, elem);
       });
       return Option.from(visibles[tabbingConfig.firstTabstop()]);
     };
     var findCurrent = function (component, tabbingConfig) {
       return tabbingConfig.focusManager().get(component).bind(function (elem) {
-        return $_cbcewd11bjkmcwtzq.closest(elem, tabbingConfig.selector());
+        return $_gi1kpl10ijh8lz515.closest(elem, tabbingConfig.selector());
       });
     };
     var isTabstop = function (tabbingConfig, element) {
       return isVisible(tabbingConfig, element) && tabbingConfig.useTabstopAt()(element);
     };
-    var focusIn = function (component, tabbingConfig) {
+    var focusIn = function (component, tabbingConfig, tabbingState) {
       findInitial(component, tabbingConfig).each(function (target) {
         tabbingConfig.focusManager().set(component, target);
       });
@@ -4107,9 +4401,9 @@ var mobile = (function () {
       });
     };
     var go = function (component, simulatedEvent, tabbingConfig, cycle) {
-      var tabstops = $_bpsi2e119jkmcwtzh.descendants(component.element(), tabbingConfig.selector());
+      var tabstops = $_bhctx310gjh8lz510.descendants(component.element(), tabbingConfig.selector());
       return findCurrent(component, tabbingConfig).bind(function (tabstop) {
-        var optStopIndex = findIndex(tabstops, curry($_cpo6bcytjkmcwtkv.eq, tabstop));
+        var optStopIndex = $_ffek9lxijh8lz4jt.findIndex(tabstops, $_7vemb6x3jh8lz4ig.curry($_6liejjxzjh8lz4lv.eq, tabstop));
         return optStopIndex.bind(function (stopIndex) {
           return goFromTabstop(component, tabstops, stopIndex, tabbingConfig, cycle);
         });
@@ -4133,29 +4427,29 @@ var mobile = (function () {
         return f(component, simulatedEvent);
       });
     };
-    var getRules = constant([
+    var getRules = $_7vemb6x3jh8lz4ig.constant([
       rule(and([
         isShift,
-        inSet(TAB())
+        inSet($_42xeh910jjh8lz517.TAB())
       ]), goBackwards),
-      rule(inSet(TAB()), goForwards),
-      rule(inSet(ESCAPE()), exit),
+      rule(inSet($_42xeh910jjh8lz517.TAB()), goForwards),
+      rule(inSet($_42xeh910jjh8lz517.ESCAPE()), exit),
       rule(and([
         isNotShift,
-        inSet(ENTER())
+        inSet($_42xeh910jjh8lz517.ENTER())
       ]), execute)
     ]);
-    var getEvents = constant({});
-    var getApis = constant({});
-    return typical(schema, NoState.init, getRules, getEvents, getApis, Option.some(focusIn));
+    var getEvents = $_7vemb6x3jh8lz4ig.constant({});
+    var getApis = $_7vemb6x3jh8lz4ig.constant({});
+    return typical(schema, init, getRules, getEvents, getApis, Option.some(focusIn));
   };
 
-  var AcyclicType = create$2(state$1('cyclic', constant(false)));
+  var AcyclicType = create$2(state$1('cyclic', $_7vemb6x3jh8lz4ig.constant(false)));
 
-  var CyclicType = create$2(state$1('cyclic', constant(true)));
+  var CyclicType = create$2(state$1('cyclic', $_7vemb6x3jh8lz4ig.constant(true)));
 
   var inside = function (target) {
-    return $_b0ubstykjkmcwtjz.name(target) === 'input' && $_ga5avvzwjkmcwtro.get(target, 'type') !== 'radio' || $_b0ubstykjkmcwtjz.name(target) === 'textarea';
+    return $_2dp7e0xqjh8lz4l7.name(target) === 'input' && $_4d7m82z3jh8lz4t3.get(target, 'type') !== 'radio' || $_2dp7e0xqjh8lz4l7.name(target) === 'textarea';
   };
 
   var doDefaultExecute = function (component, simulatedEvent, focused) {
@@ -4163,7 +4457,7 @@ var mobile = (function () {
     return Option.some(true);
   };
   var defaultExecute = function (component, simulatedEvent, focused) {
-    return inside(focused) && inSet(SPACE())(simulatedEvent.event()) ? Option.none() : doDefaultExecute(component, simulatedEvent, focused);
+    return inside(focused) && inSet($_42xeh910jjh8lz517.SPACE())(simulatedEvent.event()) ? Option.none() : doDefaultExecute(component, simulatedEvent, focused);
   };
 
   var schema$1 = [
@@ -4173,29 +4467,29 @@ var mobile = (function () {
     defaulted$1('useControlEnter', false),
     defaulted$1('useDown', false)
   ];
-  var execute$1 = function (component, simulatedEvent, executeConfig) {
+  var execute$1 = function (component, simulatedEvent, executeConfig, executeState) {
     return executeConfig.execute()(component, simulatedEvent, component.element());
   };
   var getRules = function (component, simulatedEvent, executeConfig, executeState) {
-    var spaceExec = executeConfig.useSpace() && !inside(component.element()) ? SPACE() : [];
-    var enterExec = executeConfig.useEnter() ? ENTER() : [];
-    var downExec = executeConfig.useDown() ? DOWN() : [];
+    var spaceExec = executeConfig.useSpace() && !inside(component.element()) ? $_42xeh910jjh8lz517.SPACE() : [];
+    var enterExec = executeConfig.useEnter() ? $_42xeh910jjh8lz517.ENTER() : [];
+    var downExec = executeConfig.useDown() ? $_42xeh910jjh8lz517.DOWN() : [];
     var execKeys = spaceExec.concat(enterExec).concat(downExec);
     return [rule(inSet(execKeys), execute$1)].concat(executeConfig.useControlEnter() ? [rule(and([
         isControl,
-        inSet(ENTER())
+        inSet($_42xeh910jjh8lz517.ENTER())
       ]), execute$1)] : []);
   };
-  var getEvents = constant({});
-  var getApis = constant({});
-  var ExecutionType = typical(schema$1, NoState.init, getRules, getEvents, getApis, Option.none());
+  var getEvents = $_7vemb6x3jh8lz4ig.constant({});
+  var getApis = $_7vemb6x3jh8lz4ig.constant({});
+  var ExecutionType = typical(schema$1, init, getRules, getEvents, getApis, Option.none());
 
   var flatgrid = function (spec) {
     var dimensions = Cell(Option.none());
     var setGridSize = function (numRows, numColumns) {
       dimensions.set(Option.some({
-        numRows: constant(numRows),
-        numColumns: constant(numColumns)
+        numRows: $_7vemb6x3jh8lz4ig.constant(numRows),
+        numColumns: $_7vemb6x3jh8lz4ig.constant(numColumns)
       }));
     };
     var getNumRows = function () {
@@ -4208,21 +4502,21 @@ var mobile = (function () {
         return d.numColumns();
       });
     };
-    return nu$7({
-      readState: constant({}),
+    return BehaviourState({
+      readState: $_7vemb6x3jh8lz4ig.constant({}),
       setGridSize: setGridSize,
       getNumRows: getNumRows,
       getNumColumns: getNumColumns
     });
   };
-  var init = function (spec) {
+  var init$1 = function (spec) {
     return spec.state()(spec);
   };
 
 
   var KeyingState = Object.freeze({
   	flatgrid: flatgrid,
-  	init: init
+  	init: init$1
   });
 
   var onDirection = function (isLtr, isRtl) {
@@ -4231,9 +4525,9 @@ var mobile = (function () {
     };
   };
   var getDirection = function (element) {
-    return $_ezdyn3116jkmcwtyw.get(element, 'direction') === 'rtl' ? 'rtl' : 'ltr';
+    return $_g3k65w10djh8lz50c.get(element, 'direction') === 'rtl' ? 'rtl' : 'ltr';
   };
-  var $_9g9iwt11tjkmcwu2j = {
+  var $_aezbbf110jh8lz53z = {
     onDirection: onDirection,
     getDirection: getDirection
   };
@@ -4245,11 +4539,11 @@ var mobile = (function () {
     };
   };
   var west = function (moveLeft, moveRight) {
-    var movement = $_9g9iwt11tjkmcwu2j.onDirection(moveLeft, moveRight);
+    var movement = $_aezbbf110jh8lz53z.onDirection(moveLeft, moveRight);
     return useH(movement);
   };
   var east = function (moveLeft, moveRight) {
-    var movement = $_9g9iwt11tjkmcwu2j.onDirection(moveRight, moveLeft);
+    var movement = $_aezbbf110jh8lz53z.onDirection(moveRight, moveLeft);
     return useH(movement);
   };
   var useV = function (move) {
@@ -4271,12 +4565,12 @@ var mobile = (function () {
   var move = useV;
 
   var visibilityToggler = function (element, property, hiddenValue, visibleValue) {
-    var initial = $_ezdyn3116jkmcwtyw.get(element, property);
+    var initial = $_g3k65w10djh8lz50c.get(element, property);
     if (initial === undefined)
       initial = '';
     var value = initial === hiddenValue ? visibleValue : hiddenValue;
-    var off = curry($_ezdyn3116jkmcwtyw.set, element, property, initial);
-    var on = curry($_ezdyn3116jkmcwtyw.set, element, property, value);
+    var off = $_7vemb6x3jh8lz4ig.curry($_g3k65w10djh8lz50c.set, element, property, initial);
+    var on = $_7vemb6x3jh8lz4ig.curry($_g3k65w10djh8lz50c.set, element, property, value);
     return Toggler(off, on, false);
   };
   var toggler$1 = function (element) {
@@ -4292,18 +4586,18 @@ var mobile = (function () {
     var dom = element.dom();
     return !isHidden(dom);
   };
-  var $_6sysyw11vjkmcwu2u = {
+  var $_1zzbii112jh8lz54k = {
     toggler: toggler$1,
     displayToggler: displayToggler,
     isVisible: isVisible
   };
 
-  var indexInfo = MixedBag([
+  var indexInfo = $_dti8klxujh8lz4lo.immutableBag([
     'index',
     'candidates'
   ], []);
   var locate = function (candidates, predicate) {
-    return findIndex(candidates, predicate).map(function (index) {
+    return $_ffek9lxijh8lz4jt.findIndex(candidates, predicate).map(function (index) {
       return indexInfo({
         index: index,
         candidates: candidates
@@ -4312,18 +4606,18 @@ var mobile = (function () {
   };
 
   var locateVisible = function (container, current, selector) {
-    var filter$$1 = $_6sysyw11vjkmcwu2u.isVisible;
-    return locateIn(container, current, selector, filter$$1);
+    var filter = $_1zzbii112jh8lz54k.isVisible;
+    return locateIn(container, current, selector, filter);
   };
-  var locateIn = function (container, current, selector, filter$$1) {
-    var predicate = curry($_cpo6bcytjkmcwtkv.eq, current);
-    var candidates = $_bpsi2e119jkmcwtzh.descendants(container, selector);
-    var visible = filter(candidates, $_6sysyw11vjkmcwu2u.isVisible);
+  var locateIn = function (container, current, selector, filter) {
+    var predicate = $_7vemb6x3jh8lz4ig.curry($_6liejjxzjh8lz4lv.eq, current);
+    var candidates = $_bhctx310gjh8lz510.descendants(container, selector);
+    var visible = $_ffek9lxijh8lz4jt.filter(candidates, $_1zzbii112jh8lz54k.isVisible);
     return locate(visible, predicate);
   };
   var findIndex$2 = function (elements, target) {
-    return findIndex(elements, function (elem) {
-      return $_cpo6bcytjkmcwtkv.eq(target, elem);
+    return $_ffek9lxijh8lz4jt.findIndex(elements, function (elem) {
+      return $_6liejjxzjh8lz4lv.eq(target, elem);
     });
   };
 
@@ -4341,8 +4635,8 @@ var mobile = (function () {
       var colsInRow = onLastRow ? values.length - oldRow * numCols : numCols;
       var newColumn = cycleBy(oldColumn, delta, 0, colsInRow - 1);
       return Option.some({
-        row: constant(oldRow),
-        column: constant(newColumn)
+        row: $_7vemb6x3jh8lz4ig.constant(oldRow),
+        column: $_7vemb6x3jh8lz4ig.constant(newColumn)
       });
     });
   };
@@ -4353,8 +4647,8 @@ var mobile = (function () {
       var colsInRow = onLastRow ? values.length - newRow * numCols : numCols;
       var newCol = cap(oldColumn, 0, colsInRow - 1);
       return Option.some({
-        row: constant(newRow),
-        column: constant(newCol)
+        row: $_7vemb6x3jh8lz4ig.constant(newRow),
+        column: $_7vemb6x3jh8lz4ig.constant(newCol)
       });
     });
   };
@@ -4379,13 +4673,13 @@ var mobile = (function () {
     initSize()
   ];
   var focusIn = function (component, gridConfig, gridState) {
-    $_cbcewd11bjkmcwtzq.descendant(component.element(), gridConfig.selector()).each(function (first) {
+    $_gi1kpl10ijh8lz515.descendant(component.element(), gridConfig.selector()).each(function (first) {
       gridConfig.focusManager().set(component, first);
     });
   };
   var findCurrent = function (component, gridConfig) {
     return gridConfig.focusManager().get(component).bind(function (elem) {
-      return $_cbcewd11bjkmcwtzq.closest(elem, gridConfig.selector());
+      return $_gi1kpl10ijh8lz515.closest(elem, gridConfig.selector());
     });
   };
   var execute$2 = function (component, simulatedEvent, gridConfig, gridState) {
@@ -4410,23 +4704,23 @@ var mobile = (function () {
   var moveRight = doMove(cycleRight);
   var moveNorth = doMove(cycleUp);
   var moveSouth = doMove(cycleDown);
-  var getRules$1 = constant([
-    rule(inSet(LEFT()), west(moveLeft, moveRight)),
-    rule(inSet(RIGHT()), east(moveLeft, moveRight)),
-    rule(inSet(UP()), north(moveNorth)),
-    rule(inSet(DOWN()), south(moveSouth)),
+  var getRules$1 = $_7vemb6x3jh8lz4ig.constant([
+    rule(inSet($_42xeh910jjh8lz517.LEFT()), west(moveLeft, moveRight)),
+    rule(inSet($_42xeh910jjh8lz517.RIGHT()), east(moveLeft, moveRight)),
+    rule(inSet($_42xeh910jjh8lz517.UP()), north(moveNorth)),
+    rule(inSet($_42xeh910jjh8lz517.DOWN()), south(moveSouth)),
     rule(and([
       isShift,
-      inSet(TAB())
+      inSet($_42xeh910jjh8lz517.TAB())
     ]), handleTab),
     rule(and([
       isNotShift,
-      inSet(TAB())
+      inSet($_42xeh910jjh8lz517.TAB())
     ]), handleTab),
-    rule(inSet(ESCAPE()), doEscape),
-    rule(inSet(SPACE().concat(ENTER())), execute$2)
+    rule(inSet($_42xeh910jjh8lz517.ESCAPE()), doEscape),
+    rule(inSet($_42xeh910jjh8lz517.SPACE().concat($_42xeh910jjh8lz517.ENTER())), execute$2)
   ]);
-  var getEvents$1 = constant({});
+  var getEvents$1 = $_7vemb6x3jh8lz4ig.constant({});
   var getApis$1 = {};
   var FlatgridType = typical(schema$2, flatgrid, getRules$1, getEvents$1, getApis$1, Option.some(focusIn));
 
@@ -4443,12 +4737,11 @@ var mobile = (function () {
     strict$1('selector'),
     defaulted$1('getInitial', Option.none),
     defaulted$1('execute', defaultExecute),
-    defaulted$1('executeOnMove', false),
-    defaulted$1('allowVertical', true)
+    defaulted$1('executeOnMove', false)
   ];
   var findCurrent$1 = function (component, flowConfig) {
     return flowConfig.focusManager().get(component).bind(function (elem) {
-      return $_cbcewd11bjkmcwtzq.closest(elem, flowConfig.selector());
+      return $_gi1kpl10ijh8lz515.closest(elem, flowConfig.selector());
     });
   };
   var execute$3 = function (component, simulatedEvent, flowConfig) {
@@ -4457,7 +4750,7 @@ var mobile = (function () {
     });
   };
   var focusIn$1 = function (component, flowConfig) {
-    flowConfig.getInitial()(component).or($_cbcewd11bjkmcwtzq.descendant(component.element(), flowConfig.selector())).each(function (first) {
+    flowConfig.getInitial()(component).or($_gi1kpl10ijh8lz515.descendant(component.element(), flowConfig.selector())).each(function (first) {
       flowConfig.focusManager().set(component, first);
     });
   };
@@ -4474,21 +4767,19 @@ var mobile = (function () {
       });
     };
   };
-  var getRules$2 = function (_component, _se, flowConfig, _flowState) {
-    var westMovers = LEFT().concat(flowConfig.allowVertical() ? UP() : []);
-    var eastMovers = RIGHT().concat(flowConfig.allowVertical() ? DOWN() : []);
+  var getRules$2 = function (_) {
     return [
-      rule(inSet(westMovers), doMove$1(west(moveLeft$1, moveRight$1))),
-      rule(inSet(eastMovers), doMove$1(east(moveLeft$1, moveRight$1))),
-      rule(inSet(ENTER()), execute$3),
-      rule(inSet(SPACE()), execute$3)
+      rule(inSet($_42xeh910jjh8lz517.LEFT().concat($_42xeh910jjh8lz517.UP())), doMove$1(west(moveLeft$1, moveRight$1))),
+      rule(inSet($_42xeh910jjh8lz517.RIGHT().concat($_42xeh910jjh8lz517.DOWN())), doMove$1(east(moveLeft$1, moveRight$1))),
+      rule(inSet($_42xeh910jjh8lz517.ENTER()), execute$3),
+      rule(inSet($_42xeh910jjh8lz517.SPACE()), execute$3)
     ];
   };
-  var getEvents$2 = constant({});
-  var getApis$2 = constant({});
-  var FlowType = typical(schema$3, NoState.init, getRules$2, getEvents$2, getApis$2, Option.some(focusIn$1));
+  var getEvents$2 = $_7vemb6x3jh8lz4ig.constant({});
+  var getApis$2 = $_7vemb6x3jh8lz4ig.constant({});
+  var FlowType = typical(schema$3, init, getRules$2, getEvents$2, getApis$2, Option.some(focusIn$1));
 
-  var outcome = MixedBag([
+  var outcome = $_dti8klxujh8lz4lo.immutableBag([
     'rowIndex',
     'columnIndex',
     'cell'
@@ -4565,29 +4856,29 @@ var mobile = (function () {
   var focusIn$2 = function (component, matrixConfig) {
     var focused = matrixConfig.previousSelector()(component).orThunk(function () {
       var selectors = matrixConfig.selectors();
-      return $_cbcewd11bjkmcwtzq.descendant(component.element(), selectors.cell());
+      return $_gi1kpl10ijh8lz515.descendant(component.element(), selectors.cell());
     });
     focused.each(function (cell) {
       matrixConfig.focusManager().set(component, cell);
     });
   };
   var execute$4 = function (component, simulatedEvent, matrixConfig) {
-    return $_fci5qy101jkmcwtsc.search(component.element()).bind(function (focused) {
+    return $_1z851az8jh8lz4tn.search(component.element()).bind(function (focused) {
       return matrixConfig.execute()(component, simulatedEvent, focused);
     });
   };
   var toMatrix = function (rows, matrixConfig) {
-    return map$1(rows, function (row) {
-      return $_bpsi2e119jkmcwtzh.descendants(row, matrixConfig.selectors().cell());
+    return $_ffek9lxijh8lz4jt.map(rows, function (row) {
+      return $_bhctx310gjh8lz510.descendants(row, matrixConfig.selectors().cell());
     });
   };
   var doMove$2 = function (ifCycle, ifMove) {
     return function (element, focused, matrixConfig) {
       var move$$1 = matrixConfig.cycles() ? ifCycle : ifMove;
-      return $_cbcewd11bjkmcwtzq.closest(focused, matrixConfig.selectors().row()).bind(function (inRow) {
-        var cellsInRow = $_bpsi2e119jkmcwtzh.descendants(inRow, matrixConfig.selectors().cell());
+      return $_gi1kpl10ijh8lz515.closest(focused, matrixConfig.selectors().row()).bind(function (inRow) {
+        var cellsInRow = $_bhctx310gjh8lz510.descendants(inRow, matrixConfig.selectors().cell());
         return findIndex$2(cellsInRow, focused).bind(function (colIndex) {
-          var allRows = $_bpsi2e119jkmcwtzh.descendants(element, matrixConfig.selectors().row());
+          var allRows = $_bhctx310gjh8lz510.descendants(element, matrixConfig.selectors().row());
           return findIndex$2(allRows, inRow).bind(function (rowIndex) {
             var matrix = toMatrix(allRows, matrixConfig);
             return move$$1(matrix, rowIndex, colIndex).map(function (next) {
@@ -4602,16 +4893,16 @@ var mobile = (function () {
   var moveRight$3 = doMove$2(cycleRight$1, moveRight$2);
   var moveNorth$1 = doMove$2(cycleUp$1, moveUp);
   var moveSouth$1 = doMove$2(cycleDown$1, moveDown);
-  var getRules$3 = constant([
-    rule(inSet(LEFT()), west(moveLeft$3, moveRight$3)),
-    rule(inSet(RIGHT()), east(moveLeft$3, moveRight$3)),
-    rule(inSet(UP()), north(moveNorth$1)),
-    rule(inSet(DOWN()), south(moveSouth$1)),
-    rule(inSet(SPACE().concat(ENTER())), execute$4)
+  var getRules$3 = $_7vemb6x3jh8lz4ig.constant([
+    rule(inSet($_42xeh910jjh8lz517.LEFT()), west(moveLeft$3, moveRight$3)),
+    rule(inSet($_42xeh910jjh8lz517.RIGHT()), east(moveLeft$3, moveRight$3)),
+    rule(inSet($_42xeh910jjh8lz517.UP()), north(moveNorth$1)),
+    rule(inSet($_42xeh910jjh8lz517.DOWN()), south(moveSouth$1)),
+    rule(inSet($_42xeh910jjh8lz517.SPACE().concat($_42xeh910jjh8lz517.ENTER())), execute$4)
   ]);
-  var getEvents$3 = constant({});
-  var getApis$3 = constant({});
-  var MatrixType = typical(schema$4, NoState.init, getRules$3, getEvents$3, getApis$3, Option.some(focusIn$2));
+  var getEvents$3 = $_7vemb6x3jh8lz4ig.constant({});
+  var getApis$3 = $_7vemb6x3jh8lz4ig.constant({});
+  var MatrixType = typical(schema$4, init, getRules$3, getEvents$3, getApis$3, Option.some(focusIn$2));
 
   var schema$5 = [
     strict$1('selector'),
@@ -4623,8 +4914,8 @@ var mobile = (function () {
       return menuConfig.execute()(component, simulatedEvent, focused);
     });
   };
-  var focusIn$3 = function (component, menuConfig) {
-    $_cbcewd11bjkmcwtzq.descendant(component.element(), menuConfig.selector()).each(function (first) {
+  var focusIn$3 = function (component, menuConfig, simulatedEvent) {
+    $_gi1kpl10ijh8lz515.descendant(component.element(), menuConfig.selector()).each(function (first) {
       menuConfig.focusManager().set(component, first);
     });
   };
@@ -4640,23 +4931,23 @@ var mobile = (function () {
   var fireTab = function (component, simulatedEvent, menuConfig) {
     return menuConfig.moveOnTab() ? move(moveDown$1)(component, simulatedEvent, menuConfig) : Option.none();
   };
-  var getRules$4 = constant([
-    rule(inSet(UP()), move(moveUp$1)),
-    rule(inSet(DOWN()), move(moveDown$1)),
+  var getRules$4 = $_7vemb6x3jh8lz4ig.constant([
+    rule(inSet($_42xeh910jjh8lz517.UP()), move(moveUp$1)),
+    rule(inSet($_42xeh910jjh8lz517.DOWN()), move(moveDown$1)),
     rule(and([
       isShift,
-      inSet(TAB())
+      inSet($_42xeh910jjh8lz517.TAB())
     ]), fireShiftTab),
     rule(and([
       isNotShift,
-      inSet(TAB())
+      inSet($_42xeh910jjh8lz517.TAB())
     ]), fireTab),
-    rule(inSet(ENTER()), execute$5),
-    rule(inSet(SPACE()), execute$5)
+    rule(inSet($_42xeh910jjh8lz517.ENTER()), execute$5),
+    rule(inSet($_42xeh910jjh8lz517.SPACE()), execute$5)
   ]);
-  var getEvents$4 = constant({});
-  var getApis$4 = constant({});
-  var MenuType = typical(schema$5, NoState.init, getRules$4, getEvents$4, getApis$4, Option.some(focusIn$3));
+  var getEvents$4 = $_7vemb6x3jh8lz4ig.constant({});
+  var getApis$4 = $_7vemb6x3jh8lz4ig.constant({});
+  var MenuType = typical(schema$5, init, getRules$4, getEvents$4, getApis$4, Option.some(focusIn$3));
 
   var schema$6 = [
     onKeyboardHandler('onSpace'),
@@ -4671,70 +4962,56 @@ var mobile = (function () {
     onKeyboardHandler('onEscape'),
     option('focusIn')
   ];
-  var getRules$5 = function (component, simulatedEvent, specialInfo) {
+  var getRules$5 = function (component, simulatedEvent, executeInfo) {
     return [
-      rule(inSet(SPACE()), specialInfo.onSpace()),
+      rule(inSet($_42xeh910jjh8lz517.SPACE()), executeInfo.onSpace()),
       rule(and([
         isNotShift,
-        inSet(ENTER())
-      ]), specialInfo.onEnter()),
+        inSet($_42xeh910jjh8lz517.ENTER())
+      ]), executeInfo.onEnter()),
       rule(and([
         isShift,
-        inSet(ENTER())
-      ]), specialInfo.onShiftEnter()),
+        inSet($_42xeh910jjh8lz517.ENTER())
+      ]), executeInfo.onShiftEnter()),
       rule(and([
         isShift,
-        inSet(TAB())
-      ]), specialInfo.onShiftTab()),
+        inSet($_42xeh910jjh8lz517.TAB())
+      ]), executeInfo.onShiftTab()),
       rule(and([
         isNotShift,
-        inSet(TAB())
-      ]), specialInfo.onTab()),
-      rule(inSet(UP()), specialInfo.onUp()),
-      rule(inSet(DOWN()), specialInfo.onDown()),
-      rule(inSet(LEFT()), specialInfo.onLeft()),
-      rule(inSet(RIGHT()), specialInfo.onRight()),
-      rule(inSet(SPACE()), specialInfo.onSpace()),
-      rule(inSet(ESCAPE()), specialInfo.onEscape())
+        inSet($_42xeh910jjh8lz517.TAB())
+      ]), executeInfo.onTab()),
+      rule(inSet($_42xeh910jjh8lz517.UP()), executeInfo.onUp()),
+      rule(inSet($_42xeh910jjh8lz517.DOWN()), executeInfo.onDown()),
+      rule(inSet($_42xeh910jjh8lz517.LEFT()), executeInfo.onLeft()),
+      rule(inSet($_42xeh910jjh8lz517.RIGHT()), executeInfo.onRight()),
+      rule(inSet($_42xeh910jjh8lz517.SPACE()), executeInfo.onSpace()),
+      rule(inSet($_42xeh910jjh8lz517.ESCAPE()), executeInfo.onEscape())
     ];
   };
-  var focusIn$4 = function (component, specialInfo) {
-    return specialInfo.focusIn().bind(function (f) {
-      return f(component, specialInfo);
+  var focusIn$4 = function (component, executeInfo) {
+    return executeInfo.focusIn().bind(function (f) {
+      return f(component, executeInfo);
     });
   };
-  var getEvents$5 = function () {
-    return {};
+  var getEvents$5 = $_7vemb6x3jh8lz4ig.constant({});
+  var getApis$5 = $_7vemb6x3jh8lz4ig.constant({});
+  var SpecialType = typical(schema$6, init, getRules$5, getEvents$5, getApis$5, Option.some(focusIn$4));
+
+  var $_fqdu7109jh8lz4zh = {
+    acyclic: AcyclicType.schema(),
+    cyclic: CyclicType.schema(),
+    flow: FlowType.schema(),
+    flatgrid: FlatgridType.schema(),
+    matrix: MatrixType.schema(),
+    execution: ExecutionType.schema(),
+    menu: MenuType.schema(),
+    special: SpecialType.schema()
   };
-  var getApis$5 = function () {
-    return {};
-  };
-  var SpecialType = typical(schema$6, NoState.init, getRules$5, getEvents$5, getApis$5, Option.some(focusIn$4));
-
-  var acyclic = AcyclicType.schema();
-  var cyclic = CyclicType.schema();
-  var flow = FlowType.schema();
-  var flatgrid$1 = FlatgridType.schema();
-  var matrix = MatrixType.schema();
-  var execution = ExecutionType.schema();
-  var menu = MenuType.schema();
-  var special = SpecialType.schema();
-
-
-  var KeyboardBranches = Object.freeze({
-  	acyclic: acyclic,
-  	cyclic: cyclic,
-  	flow: flow,
-  	flatgrid: flatgrid$1,
-  	matrix: matrix,
-  	execution: execution,
-  	menu: menu,
-  	special: special
-  });
 
   var Keying = createModes$1({
     branchKey: 'mode',
-    branches: KeyboardBranches,
+    branches: $_fqdu7109jh8lz4zh,
     name: 'keying',
     active: {
       events: function (keyingConfig, keyingState) {
@@ -4758,16 +5035,16 @@ var mobile = (function () {
   });
 
   var field$1 = function (name, forbidden) {
-    return defaultedObjOf(name, {}, map$1(forbidden, function (f) {
+    return defaultedObjOf(name, {}, $_ffek9lxijh8lz4jt.map(forbidden, function (f) {
       return forbid(f.name(), 'Cannot configure ' + f.name() + ' for ' + name);
-    }).concat([state$1('dump', identity)]));
+    }).concat([state$1('dump', $_7vemb6x3jh8lz4ig.identity)]));
   };
   var get$5 = function (data) {
     return data.dump();
   };
 
   var _placeholder = 'placeholder';
-  var adt$2 = Adt.generate([
+  var adt$2 = $_aruf06ycjh8lz4o4.generate([
     {
       single: [
         'required',
@@ -4785,10 +5062,10 @@ var mobile = (function () {
     if (owner.exists(function (o) {
         return o !== compSpec.owner;
       })) {
-      return adt$2.single(true, constant(compSpec));
+      return adt$2.single(true, $_7vemb6x3jh8lz4ig.constant(compSpec));
     }
     return readOptFrom$1(placeholders, compSpec.name).fold(function () {
-      throw new Error('Unknown placeholder component: ' + compSpec.name + '\nKnown: [' + keys(placeholders) + ']\nNamespace: ' + owner.getOr('none') + '\nSpec: ' + $_ccklnrzhjkmcwton.stringify(compSpec, null, 2));
+      throw new Error('Unknown placeholder component: ' + compSpec.name + '\nKnown: [' + $_23xamox6jh8lz4iu.keys(placeholders) + ']\nNamespace: ' + owner.getOr('none') + '\nSpec: ' + $_37gedlynjh8lz4pr.stringify(compSpec, null, 2));
     }, function (newSpec) {
       return newSpec.replace();
     });
@@ -4797,7 +5074,7 @@ var mobile = (function () {
     if (compSpec.uiType === _placeholder) {
       return subPlaceholder(owner, detail, compSpec, placeholders);
     } else {
-      return adt$2.single(false, constant(compSpec));
+      return adt$2.single(false, $_7vemb6x3jh8lz4ig.constant(compSpec));
     }
   };
   var substitute = function (owner, detail, compSpec, placeholders) {
@@ -4805,17 +5082,17 @@ var mobile = (function () {
     return base.fold(function (req, valueThunk) {
       var value = valueThunk(detail, compSpec.config, compSpec.validated);
       var childSpecs = readOptFrom$1(value, 'components').getOr([]);
-      var substituted = bind(childSpecs, function (c) {
+      var substituted = $_ffek9lxijh8lz4jt.bind(childSpecs, function (c) {
         return substitute(owner, detail, c, placeholders);
       });
-      return [deepMerge(value, { components: substituted })];
+      return [$_b00d1jx4jh8lz4ij.deepMerge(value, { components: substituted })];
     }, function (req, valuesThunk) {
-      var values$$1 = valuesThunk(detail, compSpec.config, compSpec.validated);
-      return values$$1;
+      var values = valuesThunk(detail, compSpec.config, compSpec.validated);
+      return values;
     });
   };
   var substituteAll = function (owner, detail, components, placeholders) {
-    return bind(components, function (c) {
+    return $_ffek9lxijh8lz4jt.bind(components, function (c) {
       return substitute(owner, detail, c, placeholders);
     });
   };
@@ -4839,27 +5116,27 @@ var mobile = (function () {
       });
     };
     return {
-      name: constant(label),
+      name: $_7vemb6x3jh8lz4ig.constant(label),
       required: required,
       used: used,
       replace: replace
     };
   };
   var substitutePlaces = function (owner, detail, components, placeholders) {
-    var ps = map(placeholders, function (ph, name) {
+    var ps = $_23xamox6jh8lz4iu.map(placeholders, function (ph, name) {
       return oneReplace(name, ph);
     });
     var outcome = substituteAll(owner, detail, components, ps);
-    each(ps, function (p) {
+    $_23xamox6jh8lz4iu.each(ps, function (p) {
       if (p.used() === false && p.required()) {
-        throw new Error('Placeholder: ' + p.name() + ' was not found in components list\nNamespace: ' + owner.getOr('none') + '\nComponents: ' + $_ccklnrzhjkmcwton.stringify(detail.components(), null, 2));
+        throw new Error('Placeholder: ' + p.name() + ' was not found in components list\nNamespace: ' + owner.getOr('none') + '\nComponents: ' + $_37gedlynjh8lz4pr.stringify(detail.components(), null, 2));
       }
     });
     return outcome;
   };
   var single = adt$2.single;
   var multiple = adt$2.multiple;
-  var placeholder = constant(_placeholder);
+  var placeholder = $_7vemb6x3jh8lz4ig.constant(_placeholder);
 
   var unique = 0;
   var generate$1 = function (prefix) {
@@ -4869,21 +5146,22 @@ var mobile = (function () {
     unique++;
     return prefix + '_' + random + unique + String(time);
   };
+  var $_dpycsh11hjh8lz59l = { generate: generate$1 };
 
-  var adt$3 = Adt.generate([
+  var adt$3 = $_aruf06ycjh8lz4o4.generate([
     { required: ['data'] },
     { external: ['data'] },
     { optional: ['data'] },
     { group: ['data'] }
   ]);
-  var fFactory = defaulted$1('factory', { sketch: identity });
+  var fFactory = defaulted$1('factory', { sketch: $_7vemb6x3jh8lz4ig.identity });
   var fSchema = defaulted$1('schema', []);
   var fName = strict$1('name');
   var fPname = field('pname', 'pname', defaultedThunk(function (typeSpec) {
-    return '<alloy.' + generate$1(typeSpec.name) + '>';
+    return '<alloy.' + $_dpycsh11hjh8lz59l.generate(typeSpec.name) + '>';
   }), anyValue$1());
-  var fDefaults = defaulted$1('defaults', constant({}));
-  var fOverrides = defaulted$1('overrides', constant({}));
+  var fDefaults = defaulted$1('defaults', $_7vemb6x3jh8lz4ig.constant({}));
+  var fOverrides = defaulted$1('overrides', $_7vemb6x3jh8lz4ig.constant({}));
   var requiredSpec = objOf([
     fFactory,
     fSchema,
@@ -4925,9 +5203,9 @@ var mobile = (function () {
     };
     return part.fold(get, get, get, get);
   };
-  var convert = function (adtConstructor, partSchema) {
+  var convert = function (adtConstructor, partSpec) {
     return function (spec) {
-      var data = asStructOrDie('Converting part type', partSchema, spec);
+      var data = asStructOrDie('Converting part type', partSpec, spec);
       return adtConstructor(data);
     };
   };
@@ -4935,23 +5213,23 @@ var mobile = (function () {
   var external = convert(adt$3.external, externalSpec);
   var optional = convert(adt$3.optional, optionalSpec);
   var group = convert(adt$3.group, groupSpec);
-  var original = constant('entirety');
+  var original = $_7vemb6x3jh8lz4ig.constant('entirety');
 
   var combine = function (detail, data, partSpec, partValidated) {
     var spec = partSpec;
-    return deepMerge(data.defaults()(detail, partSpec, partValidated), partSpec, { uid: detail.partUids()[data.name()] }, data.overrides()(detail, partSpec, partValidated), { 'debug.sketcher': wrap$2('part-' + data.name(), spec) });
+    return $_b00d1jx4jh8lz4ij.deepMerge(data.defaults()(detail, partSpec, partValidated), partSpec, { uid: detail.partUids()[data.name()] }, data.overrides()(detail, partSpec, partValidated), { 'debug.sketcher': wrap$2('part-' + data.name(), spec) });
   };
   var subs = function (owner, detail, parts) {
     var internals = {};
     var externals = {};
-    each$1(parts, function (part) {
+    $_ffek9lxijh8lz4jt.each(parts, function (part) {
       part.fold(function (data) {
         internals[data.pname()] = single(true, function (detail, partSpec, partValidated) {
           return data.factory().sketch(combine(detail, data, partSpec, partValidated));
         });
       }, function (data) {
         var partSpec = detail.parts()[data.name()]();
-        externals[data.name()] = constant(combine(detail, data, partSpec[original()]()));
+        externals[data.name()] = $_7vemb6x3jh8lz4ig.constant(combine(detail, data, partSpec[original()]()));
       }, function (data) {
         internals[data.pname()] = single(false, function (detail, partSpec, partValidated) {
           return data.factory().sketch(combine(detail, data, partSpec, partValidated));
@@ -4959,26 +5237,26 @@ var mobile = (function () {
       }, function (data) {
         internals[data.pname()] = multiple(true, function (detail, _partSpec, _partValidated) {
           var units = detail[data.name()]();
-          return map$1(units, function (u) {
-            return data.factory().sketch(deepMerge(data.defaults()(detail, u), u, data.overrides()(detail, u)));
+          return $_ffek9lxijh8lz4jt.map(units, function (u) {
+            return data.factory().sketch($_b00d1jx4jh8lz4ij.deepMerge(data.defaults()(detail, u), u, data.overrides()(detail, u)));
           });
         });
       });
     });
     return {
-      internals: constant(internals),
-      externals: constant(externals)
+      internals: $_7vemb6x3jh8lz4ig.constant(internals),
+      externals: $_7vemb6x3jh8lz4ig.constant(externals)
     };
   };
 
   var generate$2 = function (owner, parts) {
     var r = {};
-    each$1(parts, function (part) {
+    $_ffek9lxijh8lz4jt.each(parts, function (part) {
       asNamedPart(part).each(function (np) {
         var g = doGenerateOne(owner, np.pname());
         r[np.name()] = function (config) {
           var validated = asRawOrDie('Part: ' + np.name() + ' in ' + owner, objOf(np.schema()), config);
-          return deepMerge(g, {
+          return $_b00d1jx4jh8lz4ij.deepMerge(g, {
             config: config,
             validated: validated
           });
@@ -5004,14 +5282,14 @@ var mobile = (function () {
     };
   };
   var schemas = function (parts) {
-    return bind(parts, function (part) {
+    return $_ffek9lxijh8lz4jt.bind(parts, function (part) {
       return part.fold(Option.none, Option.some, Option.none, Option.none).map(function (data) {
         return strictObjOf(data.name(), data.schema().concat([snapshot$1(original())]));
       }).toArray();
     });
   };
   var names = function (parts) {
-    return map$1(parts, name$1);
+    return $_ffek9lxijh8lz4jt.map(parts, name$1);
   };
   var substitutes = function (owner, detail, parts) {
     return subs(owner, detail, parts);
@@ -5028,13 +5306,13 @@ var mobile = (function () {
   };
   var getAllParts = function (component, detail) {
     var system = component.getSystem();
-    return map(detail.partUids(), function (pUid, k) {
-      return constant(system.getByUid(pUid));
+    return $_23xamox6jh8lz4iu.map(detail.partUids(), function (pUid, k) {
+      return $_7vemb6x3jh8lz4ig.constant(system.getByUid(pUid));
     });
   };
   var defaultUids = function (baseUid, partTypes) {
     var partNames = names(partTypes);
-    return wrapAll$1(map$1(partNames, function (pn) {
+    return wrapAll$1($_ffek9lxijh8lz4jt.map(partNames, function (pn) {
       return {
         key: pn,
         value: baseUid + '-' + pn
@@ -5047,8 +5325,8 @@ var mobile = (function () {
     }), anyValue$1());
   };
 
-  var premadeTag = generate$1('alloy-premade');
-  var _apiConfig = generate$1('api');
+  var premadeTag = $_dpycsh11hjh8lz59l.generate('alloy-premade');
+  var _apiConfig = $_dpycsh11hjh8lz59l.generate('api');
   var premade = function (comp) {
     return wrap$2(premadeTag, comp);
   };
@@ -5057,36 +5335,34 @@ var mobile = (function () {
   };
   var makeApi = function (f) {
     return markAsSketchApi(function (component) {
-      var rest = [];
-      for (var _i = 1; _i < arguments.length; _i++) {
-        rest[_i - 1] = arguments[_i];
-      }
+      var args = Array.prototype.slice.call(arguments, 0);
       var spi = component.config(_apiConfig);
-      return f.apply(undefined, [spi].concat([component].concat(rest)));
+      return f.apply(undefined, [spi].concat(args));
     }, f);
   };
-  var apiConfig = constant(_apiConfig);
+  var apiConfig = $_7vemb6x3jh8lz4ig.constant(_apiConfig);
 
-  var prefix$1 = constant('alloy-id-');
-  var idAttr = constant('data-alloy-id');
+  var prefix$1 = $_7vemb6x3jh8lz4ig.constant('alloy-id-');
+  var idAttr = $_7vemb6x3jh8lz4ig.constant('data-alloy-id');
 
   var prefix$2 = prefix$1();
   var idAttr$1 = idAttr();
   var write = function (label, elem) {
-    var id = generate$1(prefix$2 + label);
-    $_ga5avvzwjkmcwtro.set(elem, idAttr$1, id);
+    var id = $_dpycsh11hjh8lz59l.generate(prefix$2 + label);
+    $_4d7m82z3jh8lz4t3.set(elem, idAttr$1, id);
     return id;
   };
   var writeOnly = function (elem, uid) {
-    $_ga5avvzwjkmcwtro.set(elem, idAttr$1, uid);
+    $_4d7m82z3jh8lz4t3.set(elem, idAttr$1, uid);
   };
   var read$2 = function (elem) {
-    var id = $_b0ubstykjkmcwtjz.isElement(elem) ? $_ga5avvzwjkmcwtro.get(elem, idAttr$1) : null;
+    var id = $_2dp7e0xqjh8lz4l7.isElement(elem) ? $_4d7m82z3jh8lz4t3.get(elem, idAttr$1) : null;
     return Option.from(id);
   };
   var generate$3 = function (prefix) {
-    return generate$1(prefix);
+    return $_dpycsh11hjh8lz59l.generate(prefix);
   };
+  var attribute = $_7vemb6x3jh8lz4ig.constant(idAttr$1);
 
   var base$1 = function (label, partSchemas, partUidsSchemas, spec) {
     var ps = partSchemas.length > 0 ? [strictObjOf('parts', partSchemas)] : [];
@@ -5106,7 +5382,7 @@ var mobile = (function () {
   var single$1 = function (owner, schema, factory, spec) {
     var specWithUid = supplyUid(spec);
     var detail = asStructOrDie$1(owner, schema, specWithUid, [], []);
-    return deepMerge(factory(detail, specWithUid), { 'debug.sketcher': wrap$2(owner, spec) });
+    return $_b00d1jx4jh8lz4ij.deepMerge(factory(detail, specWithUid), { 'debug.sketcher': wrap$2(owner, spec) });
   };
   var composite = function (owner, schema, partTypes, factory, spec) {
     var specWithUid = supplyUid(spec);
@@ -5115,10 +5391,10 @@ var mobile = (function () {
     var detail = asStructOrDie$1(owner, schema, specWithUid, partSchemas, [partUidsSchema]);
     var subs = substitutes(owner, detail, partTypes);
     var components$$1 = components(owner, detail, subs.internals());
-    return deepMerge(factory(detail, components$$1, specWithUid, subs.externals()), { 'debug.sketcher': wrap$2(owner, spec) });
+    return $_b00d1jx4jh8lz4ij.deepMerge(factory(detail, components$$1, specWithUid, subs.externals()), { 'debug.sketcher': wrap$2(owner, spec) });
   };
   var supplyUid = function (spec) {
-    return deepMerge({ uid: generate$3('uid') }, spec);
+    return $_b00d1jx4jh8lz4ij.deepMerge({ uid: generate$3('uid') }, spec);
   };
 
   function isSketchSpec(spec) {
@@ -5144,14 +5420,14 @@ var mobile = (function () {
     var sketch = function (spec) {
       return single$1(config.name, config.configFields, config.factory, spec);
     };
-    var apis = map(config.apis, makeApi);
-    var extraApis = map(config.extraApis, function (f, k) {
+    var apis = $_23xamox6jh8lz4iu.map(config.apis, makeApi);
+    var extraApis = $_23xamox6jh8lz4iu.map(config.extraApis, function (f, k) {
       return markAsExtraApi(f, k);
     });
-    return deepMerge({
-      name: constant(config.name),
-      partFields: constant([]),
-      configFields: constant(config.configFields),
+    return $_b00d1jx4jh8lz4ij.deepMerge({
+      name: $_7vemb6x3jh8lz4ig.constant(config.name),
+      partFields: $_7vemb6x3jh8lz4ig.constant([]),
+      configFields: $_7vemb6x3jh8lz4ig.constant(config.configFields),
       sketch: sketch
     }, apis, extraApis);
   };
@@ -5161,20 +5437,20 @@ var mobile = (function () {
       return composite(config.name, config.configFields, config.partFields, config.factory, spec);
     };
     var parts = generate$2(config.name, config.partFields);
-    var apis = map(config.apis, makeApi);
-    var extraApis = map(config.extraApis, function (f, k) {
+    var apis = $_23xamox6jh8lz4iu.map(config.apis, makeApi);
+    var extraApis = $_23xamox6jh8lz4iu.map(config.extraApis, function (f, k) {
       return markAsExtraApi(f, k);
     });
-    return deepMerge({
-      name: constant(config.name),
-      partFields: constant(config.partFields),
-      configFields: constant(config.configFields),
+    return $_b00d1jx4jh8lz4ij.deepMerge({
+      name: $_7vemb6x3jh8lz4ig.constant(config.name),
+      partFields: $_7vemb6x3jh8lz4ig.constant(config.partFields),
+      configFields: $_7vemb6x3jh8lz4ig.constant(config.configFields),
       sketch: sketch,
-      parts: constant(parts)
+      parts: $_7vemb6x3jh8lz4ig.constant(parts)
     }, apis, extraApis);
   };
 
-  var factory = function (detail) {
+  var factory = function (detail, spec) {
     var events = events$2(detail.action());
     var optType = readOptFrom$1(detail.dom(), 'attributes').bind(readOpt$1('type'));
     var optTag = readOptFrom$1(detail.dom(), 'tag');
@@ -5183,7 +5459,7 @@ var mobile = (function () {
       dom: detail.dom(),
       components: detail.components(),
       events: events,
-      behaviours: deepMerge(derive$2([
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
         Focusing.config({}),
         Keying.config({
           mode: 'execution',
@@ -5192,7 +5468,7 @@ var mobile = (function () {
         })
       ]), get$5(detail.buttonBehaviours())),
       domModification: {
-        attributes: deepMerge(optType.fold(function () {
+        attributes: $_b00d1jx4jh8lz4ij.deepMerge(optType.fold(function () {
           return optTag.is('button') ? { type: 'button' } : {};
         }, function (t) {
           return {};
@@ -5230,7 +5506,7 @@ var mobile = (function () {
     });
   };
   var events$4 = function (unselectConfig) {
-    return derive([abort(selectstart(), constant(true))]);
+    return derive([abort(selectstart(), $_7vemb6x3jh8lz4ig.constant(true))]);
   };
 
 
@@ -5247,11 +5523,11 @@ var mobile = (function () {
 
   var getAttrs = function (elem) {
     var attributes = elem.dom().attributes !== undefined ? elem.dom().attributes : [];
-    return foldl(attributes, function (b, attr) {
+    return $_ffek9lxijh8lz4jt.foldl(attributes, function (b, attr) {
       if (attr.name === 'class') {
         return b;
       } else {
-        return deepMerge(b, wrap$2(attr.name, attr.value));
+        return $_b00d1jx4jh8lz4ij.deepMerge(b, wrap$2(attr.name, attr.value));
       }
     }, {});
   };
@@ -5259,20 +5535,20 @@ var mobile = (function () {
     return Array.prototype.slice.call(elem.dom().classList, 0);
   };
   var fromHtml$2 = function (html) {
-    var elem = Element$$1.fromHtml(html);
-    var children = $_a7cj16ynjkmcwtk5.children(elem);
+    var elem = $_2ykjbpxpjh8lz4l0.fromHtml(html);
+    var children = $_4x0y5axtjh8lz4lc.children(elem);
     var attrs = getAttrs(elem);
     var classes = getClasses(elem);
-    var contents = children.length === 0 ? {} : { innerHtml: $_bu5gev10fjkmcwtu8.get(elem) };
-    return deepMerge({
-      tag: $_b0ubstykjkmcwtjz.name(elem),
+    var contents = children.length === 0 ? {} : { innerHtml: $_23hn4uzmjh8lz4vc.get(elem) };
+    return $_b00d1jx4jh8lz4ij.deepMerge({
+      tag: $_2dp7e0xqjh8lz4l7.name(elem),
       classes: classes,
       attributes: attrs
     }, contents);
   };
 
   var dom$1 = function (rawHtml) {
-    var html = supplant(rawHtml, { prefix: $_dpmvs510tjkmcwtwz.prefix() });
+    var html = $_6n62nuxkjh8lz4k7.supplant(rawHtml, { prefix: $_9mxjlz100jh8lz4y0.prefix() });
     return fromHtml$2(html);
   };
   var spec = function (rawHtml) {
@@ -5288,11 +5564,11 @@ var mobile = (function () {
   var getToggleBehaviours = function (command) {
     return derive$2([
       Toggling.config({
-        toggleClass: $_dpmvs510tjkmcwtwz.resolve('toolbar-button-selected'),
+        toggleClass: $_9mxjlz100jh8lz4y0.resolve('toolbar-button-selected'),
         toggleOnExecute: false,
         aria: { mode: 'pressed' }
       }),
-      $_46xi8a10sjkmcwtws.format(command, function (button, status) {
+      $_dbkfwdzzjh8lz4xv.format(command, function (button, status) {
         var toggle = status ? Toggling.on : Toggling.off;
         toggle(button);
       })
@@ -5312,27 +5588,15 @@ var mobile = (function () {
     return Button.sketch({
       dom: dom$1('<span class="${prefix}-toolbar-button ${prefix}-icon-' + clazz + ' ${prefix}-icon"></span>'),
       action: action,
-      buttonBehaviours: deepMerge(derive$2([Unselecting.config({})]), extraBehaviours)
+      buttonBehaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([Unselecting.config({})]), extraBehaviours)
     });
   };
-  var $_3u2u4g10ujkmcwtx2 = {
+  var $_7cxrim101jh8lz4y2 = {
     forToolbar: forToolbar,
     forToolbarCommand: forToolbarCommand,
     forToolbarStateAction: forToolbarStateAction,
     forToolbarStateCommand: forToolbarStateCommand
   };
-
-  var r = function (left, top) {
-    var translate = function (x, y) {
-      return r(left + x, top + y);
-    };
-    return {
-      left: constant(left),
-      top: constant(top),
-      translate: translate
-    };
-  };
-  var Position = r;
 
   var reduceBy = function (value, min, max, step) {
     if (value < min) {
@@ -5389,25 +5653,23 @@ var mobile = (function () {
   };
 
   var _changeEvent = 'slider.change.value';
-  var isTouch = $_b90373y3jkmcwths.detect().deviceType.isTouch();
+  var isTouch = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch();
   var getEventSource = function (simulatedEvent) {
     var evt = simulatedEvent.event().raw();
-    if (isTouch) {
-      var touchEvent = evt;
-      return touchEvent.touches !== undefined && touchEvent.touches.length === 1 ? Option.some(touchEvent.touches[0]).map(function (t) {
-        return Position(t.clientX, t.clientY);
-      }) : Option.none();
+    if (isTouch && evt.touches !== undefined && evt.touches.length === 1) {
+      return Option.some(evt.touches[0]);
+    } else if (isTouch && evt.touches !== undefined) {
+      return Option.none();
+    } else if (!isTouch && evt.clientX !== undefined) {
+      return Option.some(evt);
     } else {
-      var mouseEvent = evt;
-      return mouseEvent.clientX !== undefined ? Option.some(mouseEvent).map(function (me) {
-        return Position(me.clientX, me.clientY);
-      }) : Option.none();
+      return Option.none();
     }
   };
   var getEventX = function (simulatedEvent) {
     var spot = getEventSource(simulatedEvent);
     return spot.map(function (s) {
-      return s.left();
+      return s.clientX;
     });
   };
   var fireChange = function (component, value) {
@@ -5437,11 +5699,9 @@ var mobile = (function () {
     var newValue = increaseBy(detail.value().get(), detail.min(), detail.max(), detail.stepSize());
     fireChange(spectrum, newValue);
   };
-  var changeEvent = function () {
-    return _changeEvent;
-  };
+  var changeEvent = $_7vemb6x3jh8lz4ig.constant(_changeEvent);
 
-  var platform = $_b90373y3jkmcwths.detect();
+  var platform = $_cjnu0pxajh8lz4j9.detect();
   var isTouch$1 = platform.deviceType.isTouch();
   var edgePart = function (name, action) {
     return optional({
@@ -5464,7 +5724,7 @@ var mobile = (function () {
   var redgePart = edgePart('right', setToRedge);
   var thumbPart = required({
     name: 'thumb',
-    defaults: constant({ dom: { styles: { position: 'absolute' } } }),
+    defaults: $_7vemb6x3jh8lz4ig.constant({ dom: { styles: { position: 'absolute' } } }),
     overrides: function (detail) {
       return {
         events: derive([
@@ -5482,8 +5742,7 @@ var mobile = (function () {
     name: 'spectrum',
     overrides: function (detail) {
       var moveToX = function (spectrum, simulatedEvent) {
-        var domElem = spectrum.element().dom();
-        var spectrumBounds = domElem.getBoundingClientRect();
+        var spectrumBounds = spectrum.element().dom().getBoundingClientRect();
         setXFromEvent(spectrum, detail, spectrumBounds, simulatedEvent);
       };
       var touchEvents = derive([
@@ -5576,7 +5835,7 @@ var mobile = (function () {
     var clear = function () {
       data.set(null);
     };
-    return nu$7({
+    return BehaviourState({
       set: data.set,
       get: data.get,
       isNotSet: isNotSet,
@@ -5587,7 +5846,7 @@ var mobile = (function () {
   var manual = function () {
     var readState = function () {
     };
-    return nu$7({ readState: readState });
+    return BehaviourState({ readState: readState });
   };
   var dataset = function () {
     var data = Cell({});
@@ -5597,13 +5856,13 @@ var mobile = (function () {
         dataset: data.get()
       };
     };
-    return nu$7({
+    return BehaviourState({
       readState: readState,
       set: data.set,
       get: data.get
     });
   };
-  var init$1 = function (spec) {
+  var init$2 = function (spec) {
     return spec.store().manager().state(spec);
   };
 
@@ -5612,7 +5871,7 @@ var mobile = (function () {
   	memory: memory,
   	dataset: dataset,
   	manual: manual,
-  	init: init$1
+  	init: init$2
   });
 
   var setValue$1 = function (component, repConfig, repState, data) {
@@ -5666,14 +5925,14 @@ var mobile = (function () {
   };
   var ManualStore = [
     strict$1('getValue'),
-    defaulted$1('setValue', noop),
+    defaulted$1('setValue', $_7vemb6x3jh8lz4ig.noop),
     option('initialValue'),
     output$1('manager', {
       setValue: setValue$2,
       getValue: getValue$2,
       onLoad: onLoad$3,
-      onUnload: noop,
-      state: NoState.init
+      onUnload: $_7vemb6x3jh8lz4ig.noop,
+      state: init
     })
   ];
 
@@ -5729,15 +5988,15 @@ var mobile = (function () {
     state: RepresentState
   });
 
-  var isTouch$2 = $_b90373y3jkmcwths.detect().deviceType.isTouch();
+  var isTouch$2 = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch();
   var SliderSchema = [
     strict$1('min'),
     strict$1('max'),
     defaulted$1('stepSize', 1),
-    defaulted$1('onChange', noop),
-    defaulted$1('onInit', noop),
-    defaulted$1('onDragStart', noop),
-    defaulted$1('onDragEnd', noop),
+    defaulted$1('onChange', $_7vemb6x3jh8lz4ig.noop),
+    defaulted$1('onInit', $_7vemb6x3jh8lz4ig.noop),
+    defaulted$1('onDragStart', $_7vemb6x3jh8lz4ig.noop),
+    defaulted$1('onDragEnd', $_7vemb6x3jh8lz4ig.noop),
     defaulted$1('snapToGrid', false),
     option('snapStart'),
     strict$1('getInitialValue'),
@@ -5774,18 +6033,18 @@ var mobile = (function () {
       'margin-right'
     ];
     var absMax = api$1.max(element, value, inclusions);
-    $_ezdyn3116jkmcwtyw.set(element, 'max-width', absMax + 'px');
+    $_g3k65w10djh8lz50c.set(element, 'max-width', absMax + 'px');
   };
-  var $_4k1oht130jkmcwucs = {
+  var $_cibxss126jh8lz5ej = {
     set: set$4,
     get: get$6,
     getOuter: getOuter$2,
     setMax: setMax$1
   };
 
-  var isTouch$3 = $_b90373y3jkmcwths.detect().deviceType.isTouch();
+  var isTouch$3 = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch();
   var sketch$1 = function (detail, components$$1, spec, externals) {
-    var range$$1 = detail.max() - detail.min();
+    var range = detail.max() - detail.min();
     var getXCentre = function (component) {
       var rect = component.element().dom().getBoundingClientRect();
       return (rect.left + rect.right) / 2;
@@ -5808,7 +6067,7 @@ var mobile = (function () {
           return getXCentre(redge) - spectrumBounds.left;
         });
       } else {
-        return (detail.value().get() - detail.min()) / range$$1 * spectrumBounds.width;
+        return (detail.value().get() - detail.min()) / range * spectrumBounds.width;
       }
     };
     var getXPos = function (slider) {
@@ -5821,13 +6080,13 @@ var mobile = (function () {
     var refresh = function (component) {
       var pos = getXPos(component);
       var thumb = getThumb(component);
-      var thumbRadius = $_4k1oht130jkmcwucs.get(thumb.element()) / 2;
-      $_ezdyn3116jkmcwtyw.set(thumb.element(), 'left', pos - thumbRadius + 'px');
+      var thumbRadius = $_cibxss126jh8lz5ej.get(thumb.element()) / 2;
+      $_g3k65w10djh8lz50c.set(thumb.element(), 'left', pos - thumbRadius + 'px');
     };
     var changeValue = function (component, newValue) {
       var oldValue = detail.value().get();
       var thumb = getThumb(component);
-      if (oldValue !== newValue || $_ezdyn3116jkmcwtyw.getRaw(thumb.element(), 'left').isNone()) {
+      if (oldValue !== newValue || $_g3k65w10djh8lz50c.getRaw(thumb.element(), 'left').isNone()) {
         detail.value().set(newValue);
         refresh(component);
         detail.onChange()(component, thumb, newValue);
@@ -5864,11 +6123,11 @@ var mobile = (function () {
       uid: detail.uid(),
       dom: detail.dom(),
       components: components$$1,
-      behaviours: deepMerge(derive$2(flatten([
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2($_ffek9lxijh8lz4jt.flatten([
         !isTouch$3 ? [Keying.config({
             mode: 'special',
             focusIn: function (slider) {
-              return getPart(slider, detail, 'spectrum').map(Keying.focusIn).map(constant(true));
+              return getPart(slider, detail, 'spectrum').map(Keying.focusIn).map($_7vemb6x3jh8lz4ig.constant(true));
             }
           })] : [],
         [Representing.config({
@@ -5919,7 +6178,7 @@ var mobile = (function () {
   });
 
   var button = function (realm, clazz, makeItems) {
-    return $_3u2u4g10ujkmcwtx2.forToolbar(clazz, function () {
+    return $_7cxrim101jh8lz4y2.forToolbar(clazz, function () {
       var items = makeItems();
       realm.setContextToolbar([{
           label: clazz + ' group',
@@ -5941,11 +6200,11 @@ var mobile = (function () {
     };
     var onInit = function (slider, thumb, value) {
       var color = getColor(value);
-      $_ezdyn3116jkmcwtyw.set(thumb.element(), 'background-color', color);
+      $_g3k65w10djh8lz50c.set(thumb.element(), 'background-color', color);
     };
     var onChange = function (slider, thumb, value) {
       var color = getColor(value);
-      $_ezdyn3116jkmcwtyw.set(thumb.element(), 'background-color', color);
+      $_g3k65w10djh8lz50c.set(thumb.element(), 'background-color', color);
       spec$$1.onChange(slider, thumb, color);
     };
     return Slider.sketch({
@@ -5955,12 +6214,12 @@ var mobile = (function () {
         Slider.parts().spectrum({
           dom: dom$1('<div class="${prefix}-slider-gradient-container"></div>'),
           components: [spec('<div class="${prefix}-slider-gradient"></div>')],
-          behaviours: derive$2([Toggling.config({ toggleClass: $_dpmvs510tjkmcwtwz.resolve('thumb-active') })])
+          behaviours: derive$2([Toggling.config({ toggleClass: $_9mxjlz100jh8lz4y0.resolve('thumb-active') })])
         }),
         Slider.parts()['right-edge'](spec('<div class="${prefix}-hue-slider-white"></div>')),
         Slider.parts().thumb({
           dom: dom$1('<div class="${prefix}-slider-thumb"></div>'),
-          behaviours: derive$2([Toggling.config({ toggleClass: $_dpmvs510tjkmcwtwz.resolve('thumb-active') })])
+          behaviours: derive$2([Toggling.config({ toggleClass: $_9mxjlz100jh8lz4y0.resolve('thumb-active') })])
         })
       ],
       onChange: onChange,
@@ -5975,7 +6234,7 @@ var mobile = (function () {
       min: 0,
       max: 360,
       getInitialValue: spec$$1.getInitialValue,
-      sliderBehaviours: derive$2([$_46xi8a10sjkmcwtws.orientation(Slider.refresh)])
+      sliderBehaviours: derive$2([$_dbkfwdzzjh8lz4xv.orientation(Slider.refresh)])
     });
   };
   var makeItems = function (spec$$1) {
@@ -5997,7 +6256,7 @@ var mobile = (function () {
       return makeItems(spec$$1);
     });
   };
-  var $_7d2wns12kjkmcwu9s = {
+  var $_2666zm11rjh8lz5br = {
     makeItems: makeItems,
     sketch: sketch$2
   };
@@ -6022,9 +6281,9 @@ var mobile = (function () {
       dom: {
         tag: 'div',
         classes: [
-          $_dpmvs510tjkmcwtwz.resolve('slider-' + spec$$1.category + '-size-container'),
-          $_dpmvs510tjkmcwtwz.resolve('slider'),
-          $_dpmvs510tjkmcwtwz.resolve('slider-size-container')
+          $_9mxjlz100jh8lz4y0.resolve('slider-' + spec$$1.category + '-size-container'),
+          $_9mxjlz100jh8lz4y0.resolve('slider'),
+          $_9mxjlz100jh8lz4y0.resolve('slider-size-container')
         ]
       },
       onChange: onChange,
@@ -6039,7 +6298,7 @@ var mobile = (function () {
       stepSize: 1,
       getInitialValue: spec$$1.getInitialValue,
       snapToGrid: true,
-      sliderBehaviours: derive$2([$_46xi8a10sjkmcwtws.orientation(Slider.refresh)]),
+      sliderBehaviours: derive$2([$_dbkfwdzzjh8lz4xv.orientation(Slider.refresh)]),
       components: [
         Slider.parts().spectrum({
           dom: dom$1('<div class="${prefix}-slider-size-container"></div>'),
@@ -6047,12 +6306,37 @@ var mobile = (function () {
         }),
         Slider.parts().thumb({
           dom: dom$1('<div class="${prefix}-slider-thumb"></div>'),
-          behaviours: derive$2([Toggling.config({ toggleClass: $_dpmvs510tjkmcwtwz.resolve('thumb-active') })])
+          behaviours: derive$2([Toggling.config({ toggleClass: $_9mxjlz100jh8lz4y0.resolve('thumb-active') })])
         })
       ]
     });
   };
-  var $_2gwoi3133jkmcwucy = { sketch: sketch$3 };
+  var $_a3ozag129jh8lz5ep = { sketch: sketch$3 };
+
+  var ancestor$3 = function (scope, transform, isRoot) {
+    var element = scope.dom();
+    var stop = $_dx88esx5jh8lz4is.isFunction(isRoot) ? isRoot : $_7vemb6x3jh8lz4ig.constant(false);
+    while (element.parentNode) {
+      element = element.parentNode;
+      var el = $_2ykjbpxpjh8lz4l0.fromDom(element);
+      var transformed = transform(el);
+      if (transformed.isSome())
+        return transformed;
+      else if (stop(el))
+        break;
+    }
+    return Option.none();
+  };
+  var closest$3 = function (scope, transform, isRoot) {
+    var current = transform(scope);
+    return current.orThunk(function () {
+      return isRoot(scope) ? Option.none() : ancestor$3(scope, transform, isRoot);
+    });
+  };
+  var $_b7a81512bjh8lz5fe = {
+    ancestor: ancestor$3,
+    closest: closest$3
+  };
 
   var candidates = [
     '9px',
@@ -6073,32 +6357,30 @@ var mobile = (function () {
     return Option.from(candidates[index]);
   };
   var sizeToIndex = function (size) {
-    return findIndex(candidates, function (v) {
+    return $_ffek9lxijh8lz4jt.findIndex(candidates, function (v) {
       return v === size;
     });
   };
   var getRawOrComputed = function (isRoot, rawStart) {
-    var optStart = $_b0ubstykjkmcwtjz.isElement(rawStart) ? Option.some(rawStart) : $_a7cj16ynjkmcwtk5.parent(rawStart);
+    var optStart = $_2dp7e0xqjh8lz4l7.isElement(rawStart) ? Option.some(rawStart) : $_4x0y5axtjh8lz4lc.parent(rawStart);
     return optStart.map(function (start) {
-      var inline = $_exwlcm103jkmcwtsk.closest(start, function (elem) {
-        return $_ezdyn3116jkmcwtyw.getRaw(elem, 'font-size').isSome();
-      }, isRoot).bind(function (elem) {
-        return $_ezdyn3116jkmcwtyw.getRaw(elem, 'font-size');
-      });
+      var inline = $_b7a81512bjh8lz5fe.closest(start, function (elem) {
+        return $_g3k65w10djh8lz50c.getRaw(elem, 'font-size');
+      }, isRoot);
       return inline.getOrThunk(function () {
-        return $_ezdyn3116jkmcwtyw.get(start, 'font-size');
+        return $_g3k65w10djh8lz50c.get(start, 'font-size');
       });
     }).getOr('');
   };
   var getSize = function (editor) {
     var node = editor.selection.getStart();
-    var elem = Element$$1.fromDom(node);
-    var root = Element$$1.fromDom(editor.getBody());
+    var elem = $_2ykjbpxpjh8lz4l0.fromDom(node);
+    var root = $_2ykjbpxpjh8lz4l0.fromDom(editor.getBody());
     var isRoot = function (e) {
-      return $_cpo6bcytjkmcwtkv.eq(root, e);
+      return $_6liejjxzjh8lz4lv.eq(root, e);
     };
     var elemSize = getRawOrComputed(isRoot, elem);
-    return find$2(candidates, function (size) {
+    return $_ffek9lxijh8lz4jt.find(candidates, function (size) {
       return elemSize === size;
     }).getOr(defaultSize);
   };
@@ -6117,15 +6399,15 @@ var mobile = (function () {
       applySize(editor, size);
     });
   };
-  var $_3mcpbk134jkmcwud8 = {
-    candidates: constant(candidates),
+  var $_2k57gi12ajh8lz5ey = {
+    candidates: $_7vemb6x3jh8lz4ig.constant(candidates),
     get: get$7,
     apply: apply$1
   };
 
-  var sizes = $_3mcpbk134jkmcwud8.candidates();
+  var sizes = $_2k57gi12ajh8lz5ey.candidates();
   var makeSlider$1 = function (spec$$1) {
-    return $_2gwoi3133jkmcwucy.sketch({
+    return $_a3ozag129jh8lz5ep.sketch({
       onChange: spec$$1.onChange,
       sizes: sizes,
       category: 'font',
@@ -6142,10 +6424,10 @@ var mobile = (function () {
   var sketch$4 = function (realm, editor) {
     var spec$$1 = {
       onChange: function (value) {
-        $_3mcpbk134jkmcwud8.apply(editor, value);
+        $_2k57gi12ajh8lz5ey.apply(editor, value);
       },
       getInitialValue: function () {
-        return $_3mcpbk134jkmcwud8.get(editor);
+        return $_2k57gi12ajh8lz5ey.get(editor);
       }
     };
     return button(realm, 'font-size', function () {
@@ -6155,14 +6437,14 @@ var mobile = (function () {
 
   var record = function (spec) {
     var uid = isSketchSpec(spec) && hasKey$1(spec, 'uid') ? spec.uid : generate$3('memento');
-    var get = function (anyInSystem) {
-      return anyInSystem.getSystem().getByUid(uid).getOrDie();
+    var get = function (any) {
+      return any.getSystem().getByUid(uid).getOrDie();
     };
-    var getOpt = function (anyInSystem) {
-      return anyInSystem.getSystem().getByUid(uid).fold(Option.none, Option.some);
+    var getOpt = function (any) {
+      return any.getSystem().getByUid(uid).fold(Option.none, Option.some);
     };
     var asSpec = function () {
-      return deepMerge(spec, { uid: uid });
+      return $_b00d1jx4jh8lz4ij.deepMerge(spec, { uid: uid });
     };
     return {
       get: get,
@@ -6200,7 +6482,7 @@ var mobile = (function () {
     canvas.height = height;
     return canvas;
   }
-  var $_gg65x7139jkmcwueu = {
+  var $_5l4lqm12gjh8lz5gt = {
     create: create$3,
     clone: clone$2,
     resize: resize,
@@ -6214,7 +6496,7 @@ var mobile = (function () {
   function getHeight(image) {
     return image.naturalHeight || image.height;
   }
-  var $_coszfc13ajkmcwuew = {
+  var $_9u4jnr12hjh8lz5gv = {
     getWidth: getWidth,
     getHeight: getHeight
   };
@@ -6383,29 +6665,29 @@ var mobile = (function () {
   var Promise = window.Promise ? window.Promise : promise();
 
   function Blob (parts, properties) {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('Blob');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('Blob');
     return new f(parts, properties);
   }
 
   function FileReader () {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('FileReader');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('FileReader');
     return new f();
   }
 
   function Uint8Array (arr) {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('Uint8Array');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('Uint8Array');
     return new f(arr);
   }
 
   var requestAnimationFrame = function (callback) {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('requestAnimationFrame');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('requestAnimationFrame');
     f(callback);
   };
   var atob = function (base64) {
-    var f = $_dlxzecyvjkmcwtl6.getOrDie('atob');
+    var f = $_2rfe40y1jh8lz4m5.getOrDie('atob');
     return f(base64);
   };
-  var $_3e9q4v13fjkmcwuf4 = {
+  var $_1qhuzj12mjh8lz5h3 = {
     atob: atob,
     requestAnimationFrame: requestAnimationFrame
   };
@@ -6475,7 +6757,7 @@ var mobile = (function () {
     var mimetype = matches[1];
     var base64 = data[1];
     var sliceSize = 1024;
-    var byteCharacters = $_3e9q4v13fjkmcwuf4.atob(base64);
+    var byteCharacters = $_1qhuzj12mjh8lz5h3.atob(base64);
     var bytesLength = byteCharacters.length;
     var slicesCount = Math.ceil(bytesLength / sliceSize);
     var byteArrays = new Array(slicesCount);
@@ -6528,8 +6810,8 @@ var mobile = (function () {
     return blobToImage(blob).then(function (image) {
       revokeImageUrl(image);
       var context, canvas;
-      canvas = $_gg65x7139jkmcwueu.create($_coszfc13ajkmcwuew.getWidth(image), $_coszfc13ajkmcwuew.getHeight(image));
-      context = $_gg65x7139jkmcwueu.get2dContext(canvas);
+      canvas = $_5l4lqm12gjh8lz5gt.create($_9u4jnr12hjh8lz5gv.getWidth(image), $_9u4jnr12hjh8lz5gv.getHeight(image));
+      context = $_5l4lqm12gjh8lz5gt.get2dContext(canvas);
       context.drawImage(image, 0, 0);
       return canvas;
     });
@@ -6560,7 +6842,7 @@ var mobile = (function () {
   function revokeImageUrl(image) {
     URL.revokeObjectURL(image.src);
   }
-  var $_4okvgf138jkmcwuec = {
+  var $_brsb8112fjh8lz5gf = {
     blobToImage: blobToImage,
     imageToBlob: imageToBlob,
     blobToArrayBuffer: blobToArrayBuffer,
@@ -6574,24 +6856,24 @@ var mobile = (function () {
   };
 
   var blobToImage$1 = function (image) {
-    return $_4okvgf138jkmcwuec.blobToImage(image);
+    return $_brsb8112fjh8lz5gf.blobToImage(image);
   };
   var imageToBlob$1 = function (blob) {
-    return $_4okvgf138jkmcwuec.imageToBlob(blob);
+    return $_brsb8112fjh8lz5gf.imageToBlob(blob);
   };
   var blobToDataUri$1 = function (blob) {
-    return $_4okvgf138jkmcwuec.blobToDataUri(blob);
+    return $_brsb8112fjh8lz5gf.blobToDataUri(blob);
   };
   var blobToBase64$1 = function (blob) {
-    return $_4okvgf138jkmcwuec.blobToBase64(blob);
+    return $_brsb8112fjh8lz5gf.blobToBase64(blob);
   };
   var dataUriToBlobSync$1 = function (uri) {
-    return $_4okvgf138jkmcwuec.dataUriToBlobSync(uri);
+    return $_brsb8112fjh8lz5gf.dataUriToBlobSync(uri);
   };
   var uriToBlob$1 = function (uri) {
-    return Option.from($_4okvgf138jkmcwuec.uriToBlob(uri));
+    return Option.from($_brsb8112fjh8lz5gf.uriToBlob(uri));
   };
-  var $_de9t8l137jkmcwue8 = {
+  var $_4l4q8y12ejh8lz5gb = {
     blobToImage: blobToImage$1,
     imageToBlob: imageToBlob$1,
     blobToDataUri: blobToDataUri$1,
@@ -6601,10 +6883,10 @@ var mobile = (function () {
   };
 
   var addImage = function (editor, blob) {
-    $_de9t8l137jkmcwue8.blobToBase64(blob).then(function (base64) {
+    $_4l4q8y12ejh8lz5gb.blobToBase64(blob).then(function (base64) {
       editor.undoManager.transact(function () {
         var cache = editor.editorUpload.blobCache;
-        var info = cache.create(generate$1('mceu'), blob, base64);
+        var info = cache.create($_dpycsh11hjh8lz59l.generate('mceu'), blob, base64);
         cache.add(info);
         var img = editor.dom.createHTML('img', { src: info.blobUri() });
         editor.insertContent(img);
@@ -6656,7 +6938,7 @@ var mobile = (function () {
   var set$5 = function (element, value) {
     element.dom().textContent = value;
   };
-  var $_3f147y13ijkmcwufn = {
+  var $_8omugh12pjh8lz5ht = {
     get: get$8,
     set: set$5
   };
@@ -6678,10 +6960,10 @@ var mobile = (function () {
     };
   };
   var fromLink = function (link) {
-    var text = $_3f147y13ijkmcwufn.get(link);
-    var url = $_ga5avvzwjkmcwtro.get(link, 'href');
-    var title = $_ga5avvzwjkmcwtro.get(link, 'title');
-    var target = $_ga5avvzwjkmcwtro.get(link, 'target');
+    var text = $_8omugh12pjh8lz5ht.get(link);
+    var url = $_4d7m82z3jh8lz4t3.get(link, 'href');
+    var title = $_4d7m82z3jh8lz4t3.get(link, 'title');
+    var target = $_4d7m82z3jh8lz4t3.get(link, 'target');
     return {
       url: defaultToEmpty(url),
       text: text !== url ? defaultToEmpty(text) : '',
@@ -6698,8 +6980,8 @@ var mobile = (function () {
     });
   };
   var wasSimple = function (link) {
-    var prevHref = $_ga5avvzwjkmcwtro.get(link, 'href');
-    var prevText = $_3f147y13ijkmcwufn.get(link);
+    var prevHref = $_4d7m82z3jh8lz4t3.get(link, 'href');
+    var prevText = $_8omugh12pjh8lz5ht.get(link);
     return prevHref === prevText;
   };
   var getTextToApply = function (link, url, info) {
@@ -6708,7 +6990,7 @@ var mobile = (function () {
     }, Option.some);
   };
   var unlinkIfRequired = function (editor, info) {
-    var activeLink = info.link.bind(identity);
+    var activeLink = info.link.bind($_7vemb6x3jh8lz4ig.identity);
     activeLink.each(function (link) {
       editor.execCommand('unlink');
     });
@@ -6729,47 +7011,47 @@ var mobile = (function () {
       unlinkIfRequired(editor, info);
     }, function (url) {
       var attrs = getAttrs$1(url, info);
-      var activeLink = info.link.bind(identity);
+      var activeLink = info.link.bind($_7vemb6x3jh8lz4ig.identity);
       activeLink.fold(function () {
         var text = info.text.filter(isNotEmpty).getOr(url);
         editor.insertContent(editor.dom.createHTML('a', attrs, editor.dom.encode(text)));
       }, function (link) {
         var text = getTextToApply(link, url, info);
-        $_ga5avvzwjkmcwtro.setAll(link, attrs);
+        $_4d7m82z3jh8lz4t3.setAll(link, attrs);
         text.each(function (newText) {
-          $_3f147y13ijkmcwufn.set(link, newText);
+          $_8omugh12pjh8lz5ht.set(link, newText);
         });
       });
     });
   };
   var query = function (editor) {
-    var start = Element$$1.fromDom(editor.selection.getStart());
-    return $_cbcewd11bjkmcwtzq.closest(start, 'a');
+    var start = $_2ykjbpxpjh8lz4l0.fromDom(editor.selection.getStart());
+    return $_gi1kpl10ijh8lz515.closest(start, 'a');
   };
-  var $_83q2l713hjkmcwufc = {
+  var $_7jrcs512ojh8lz5hc = {
     getInfo: getInfo,
     applyInfo: applyInfo,
     query: query
   };
 
-  var platform$1 = $_b90373y3jkmcwths.detect();
+  var platform$1 = $_cjnu0pxajh8lz4j9.detect();
   var preserve$1 = function (f, editor) {
     var rng = editor.selection.getRng();
     f();
     editor.selection.setRng(rng);
   };
   var forAndroid = function (editor, f) {
-    var wrapper = platform$1.os.isAndroid() ? preserve$1 : apply;
+    var wrapper = platform$1.os.isAndroid() ? preserve$1 : $_7vemb6x3jh8lz4ig.apply;
     wrapper(f, editor);
   };
-  var $_3kl2uk13jjkmcwufo = { forAndroid: forAndroid };
+  var $_5txdfj12qjh8lz5hu = { forAndroid: forAndroid };
 
   var events$6 = function (name, eventHandlers) {
     var events = derive(eventHandlers);
     return create$1({
       fields: [strict$1('enabled')],
       name: name,
-      active: { events: constant(events) }
+      active: { events: $_7vemb6x3jh8lz4ig.constant(events) }
     });
   };
   var config = function (name, eventHandlers) {
@@ -6779,9 +7061,9 @@ var mobile = (function () {
       value: {
         config: {},
         me: me,
-        configAsRaw: constant({}),
+        configAsRaw: $_7vemb6x3jh8lz4ig.constant({}),
         initialConfig: {},
-        state: NoState
+        state: noState()
       }
     };
   };
@@ -6803,10 +7085,10 @@ var mobile = (function () {
     apis: ComposeApis
   });
 
-  var factory$1 = function (detail) {
+  var factory$1 = function (detail, spec) {
     return {
       uid: detail.uid(),
-      dom: deepMerge({
+      dom: $_b00d1jx4jh8lz4ij.deepMerge({
         tag: 'div',
         attributes: { role: 'presentation' }
       }, detail.dom()),
@@ -6829,11 +7111,11 @@ var mobile = (function () {
     ]
   });
 
-  var factory$2 = function (detail) {
+  var factory$2 = function (detail, spec) {
     return {
       uid: detail.uid(),
       dom: detail.dom(),
-      behaviours: deepMerge(derive$2([
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
         Representing.config({
           store: {
             mode: 'memory',
@@ -6869,12 +7151,12 @@ var mobile = (function () {
       throw new Error('Value.set was undefined');
     element.dom().value = value;
   };
-  var $_4w51n413tjkmcwuhq = {
+  var $_9ajf96130jh8lz5jx = {
     set: set$6,
     get: get$9
   };
 
-  var schema$8 = constant([
+  var schema$8 = $_7vemb6x3jh8lz4ig.constant([
     option('data'),
     defaulted$1('inputAttributes', {}),
     defaulted$1('inputStyles', {}),
@@ -6891,37 +7173,37 @@ var mobile = (function () {
     ]),
     defaulted$1('selectOnFocus', true)
   ]);
-  var focusBehaviours = function (detail) {
-    return derive$2([Focusing.config({
-        onFocus: detail.selectOnFocus() === false ? noop : function (component) {
-          var input = component.element();
-          var value = $_4w51n413tjkmcwuhq.get(input);
-          input.dom().setSelectionRange(0, value.length);
-        }
-      })]);
-  };
   var behaviours = function (detail) {
-    return deepMerge(derive$2([Representing.config({
+    return $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
+      Representing.config({
         store: {
           mode: 'manual',
           initialValue: detail.data().getOr(undefined),
           getValue: function (input) {
-            return $_4w51n413tjkmcwuhq.get(input.element());
+            return $_9ajf96130jh8lz5jx.get(input.element());
           },
           setValue: function (input, data) {
-            var current = $_4w51n413tjkmcwuhq.get(input.element());
+            var current = $_9ajf96130jh8lz5jx.get(input.element());
             if (current !== data) {
-              $_4w51n413tjkmcwuhq.set(input.element(), data);
+              $_9ajf96130jh8lz5jx.set(input.element(), data);
             }
           }
         },
         onSetValue: detail.onSetValue()
-      })]), focusBehaviours(detail), get$5(detail.inputBehaviours()));
+      }),
+      Focusing.config({
+        onFocus: detail.selectOnFocus() === false ? $_7vemb6x3jh8lz4ig.noop : function (component) {
+          var input = component.element();
+          var value = $_9ajf96130jh8lz5jx.get(input);
+          input.dom().setSelectionRange(0, value.length);
+        }
+      })
+    ]), get$5(detail.inputBehaviours()));
   };
   var dom$2 = function (detail) {
     return {
       tag: detail.tag(),
-      attributes: deepMerge(wrapAll$1([{
+      attributes: $_b00d1jx4jh8lz4ij.deepMerge(wrapAll$1([{
           key: 'type',
           value: detail.type()
         }].concat(detail.placeholder().map(function (pc) {
@@ -7002,7 +7284,7 @@ var mobile = (function () {
           buttonSpec.asSpec()
         ],
         containerBehaviours: derive$2([
-          Toggling.config({ toggleClass: $_dpmvs510tjkmcwtwz.resolve('input-container-empty') }),
+          Toggling.config({ toggleClass: $_9mxjlz100jh8lz4y0.resolve('input-container-empty') }),
           Composing.config({
             find: function (comp) {
               return Option.some(inputSpec.get(comp));
@@ -7044,36 +7326,36 @@ var mobile = (function () {
     }
   };
   var hasNative = function (component) {
-    return contains(nativeDisabled, $_b0ubstykjkmcwtjz.name(component.element()));
+    return $_ffek9lxijh8lz4jt.contains(nativeDisabled, $_2dp7e0xqjh8lz4l7.name(component.element()));
   };
   var nativeIsDisabled = function (component) {
-    return $_ga5avvzwjkmcwtro.has(component.element(), 'disabled');
+    return $_4d7m82z3jh8lz4t3.has(component.element(), 'disabled');
   };
   var nativeDisable = function (component) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'disabled', 'disabled');
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'disabled', 'disabled');
   };
   var nativeEnable = function (component) {
-    $_ga5avvzwjkmcwtro.remove(component.element(), 'disabled');
+    $_4d7m82z3jh8lz4t3.remove(component.element(), 'disabled');
   };
   var ariaIsDisabled = function (component) {
-    return $_ga5avvzwjkmcwtro.get(component.element(), 'aria-disabled') === 'true';
+    return $_4d7m82z3jh8lz4t3.get(component.element(), 'aria-disabled') === 'true';
   };
   var ariaDisable = function (component) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-disabled', 'true');
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-disabled', 'true');
   };
   var ariaEnable = function (component) {
-    $_ga5avvzwjkmcwtro.set(component.element(), 'aria-disabled', 'false');
+    $_4d7m82z3jh8lz4t3.set(component.element(), 'aria-disabled', 'false');
   };
   var disable = function (component, disableConfig, disableState) {
     disableConfig.disableClass().each(function (disableClass) {
-      $_4fq2lwzujkmcwtrk.add(component.element(), disableClass);
+      $_eyo6psz1jh8lz4sw.add(component.element(), disableClass);
     });
     var f = hasNative(component) ? nativeDisable : ariaDisable;
     f(component);
   };
   var enable = function (component, disableConfig, disableState) {
     disableConfig.disableClass().each(function (disableClass) {
-      $_4fq2lwzujkmcwtrk.remove(component.element(), disableClass);
+      $_eyo6psz1jh8lz4sw.remove(component.element(), disableClass);
     });
     var f = hasNative(component) ? nativeEnable : ariaEnable;
     f(component);
@@ -7091,7 +7373,7 @@ var mobile = (function () {
   });
 
   var exhibit$4 = function (base, disableConfig, disableState) {
-    return nu$6({ classes: disableConfig.disabled() ? disableConfig.disableClass().map(pure).getOr([]) : [] });
+    return nu$6({ classes: disableConfig.disabled() ? disableConfig.disableClass().map($_ffek9lxijh8lz4jt.pure).getOr([]) : [] });
   };
   var events$7 = function (disableConfig, disableState) {
     return derive([
@@ -7141,7 +7423,7 @@ var mobile = (function () {
     }();
     var spec = fSpec(parts);
     var partNames = parts.record();
-    var fieldParts = map$1(partNames, function (n) {
+    var fieldParts = $_ffek9lxijh8lz4jt.map(partNames, function (n) {
       return required({
         name: n,
         pname: getPartName(n)
@@ -7150,22 +7432,22 @@ var mobile = (function () {
     return composite(owner$1, schema$9, fieldParts, make, spec);
   };
   var make = function (detail, components$$1, spec) {
-    return deepMerge({
+    return $_b00d1jx4jh8lz4ij.deepMerge({
       'debug.sketcher': { Form: spec },
       'uid': detail.uid(),
       'dom': detail.dom(),
       'components': components$$1,
-      'behaviours': deepMerge(derive$2([Representing.config({
+      'behaviours': $_b00d1jx4jh8lz4ij.deepMerge(derive$2([Representing.config({
           store: {
             mode: 'manual',
             getValue: function (form) {
               var optPs = getAllParts(form, detail);
-              return map(optPs, function (optPThunk, pName) {
+              return $_23xamox6jh8lz4iu.map(optPs, function (optPThunk, pName) {
                 return optPThunk().bind(Composing.getCurrent).map(Representing.getValue);
               });
             },
-            setValue: function (form, values$$1) {
-              each(values$$1, function (newValue, key) {
+            setValue: function (form, values) {
+              $_23xamox6jh8lz4iu.each(values, function (newValue, key) {
                 getPart(form, detail, key).each(function (wrapper) {
                   Composing.getCurrent(wrapper).each(function (field) {
                     Representing.setValue(field, newValue);
@@ -7189,6 +7471,38 @@ var mobile = (function () {
     sketch: sketch$6
   };
 
+  var revocable = function (doRevoke) {
+    var subject = Cell(Option.none());
+    var revoke = function () {
+      subject.get().each(doRevoke);
+    };
+    var clear = function () {
+      revoke();
+      subject.set(Option.none());
+    };
+    var set = function (s) {
+      revoke();
+      subject.set(Option.some(s));
+    };
+    var isSet = function () {
+      return subject.get().isSome();
+    };
+    return {
+      clear: clear,
+      isSet: isSet,
+      set: set
+    };
+  };
+  var destroyable = function () {
+    return revocable(function (s) {
+      s.destroy();
+    });
+  };
+  var unbindable = function () {
+    return revocable(function (s) {
+      s.unbind();
+    });
+  };
   var api$2 = function () {
     var subject = Cell(Option.none());
     var revoke = function () {
@@ -7238,11 +7552,17 @@ var mobile = (function () {
       on: on
     };
   };
+  var $_vbo4a13ajh8lz5m7 = {
+    destroyable: destroyable,
+    unbindable: unbindable,
+    api: api$2,
+    value: value$3
+  };
 
   var SWIPING_LEFT = 1;
   var SWIPING_RIGHT = -1;
   var SWIPING_NONE = 0;
-  var init$2 = function (xValue) {
+  var init$3 = function (xValue) {
     return {
       xValue: xValue,
       points: []
@@ -7279,8 +7599,8 @@ var mobile = (function () {
       return firstDirection === SWIPING_RIGHT && lastDirection === SWIPING_RIGHT ? SWIPING_RIGHT : firstDirection === SWIPING_LEFT && lastDirection === SWIPING_LEFT ? SWIPING_LEFT : SWIPING_NONE;
     }
   };
-  var $_2173d7144jkmcwuk7 = {
-    init: init$2,
+  var $_41j1nk13bjh8lz5ma = {
+    init: init$3,
     move: move$1,
     complete: complete
   };
@@ -7296,7 +7616,7 @@ var mobile = (function () {
       strict$1('getInitialValue'),
       state$1('state', function () {
         return {
-          dialogSwipeState: value$3(),
+          dialogSwipeState: $_vbo4a13ajh8lz5m7.value(),
           currentScreen: Cell(0)
         };
       })
@@ -7309,31 +7629,31 @@ var mobile = (function () {
           emitWith(button, navigateEvent, { direction: direction });
         },
         buttonBehaviours: derive$2([Disabling.config({
-            disableClass: $_dpmvs510tjkmcwtwz.resolve('toolbar-navigation-disabled'),
+            disableClass: $_9mxjlz100jh8lz4y0.resolve('toolbar-navigation-disabled'),
             disabled: !enabled
           })])
       });
     };
     var reposition = function (dialog, message) {
-      $_cbcewd11bjkmcwtzq.descendant(dialog.element(), '.' + $_dpmvs510tjkmcwtwz.resolve('serialised-dialog-chain')).each(function (parent) {
-        $_ezdyn3116jkmcwtyw.set(parent, 'left', -spec$$1.state.currentScreen.get() * message.width + 'px');
+      $_gi1kpl10ijh8lz515.descendant(dialog.element(), '.' + $_9mxjlz100jh8lz4y0.resolve('serialised-dialog-chain')).each(function (parent) {
+        $_g3k65w10djh8lz50c.set(parent, 'left', -spec$$1.state.currentScreen.get() * message.width + 'px');
       });
     };
     var navigate = function (dialog, direction) {
-      var screens = $_bpsi2e119jkmcwtzh.descendants(dialog.element(), '.' + $_dpmvs510tjkmcwtwz.resolve('serialised-dialog-screen'));
-      $_cbcewd11bjkmcwtzq.descendant(dialog.element(), '.' + $_dpmvs510tjkmcwtwz.resolve('serialised-dialog-chain')).each(function (parent) {
+      var screens = $_bhctx310gjh8lz510.descendants(dialog.element(), '.' + $_9mxjlz100jh8lz4y0.resolve('serialised-dialog-screen'));
+      $_gi1kpl10ijh8lz515.descendant(dialog.element(), '.' + $_9mxjlz100jh8lz4y0.resolve('serialised-dialog-chain')).each(function (parent) {
         if (spec$$1.state.currentScreen.get() + direction >= 0 && spec$$1.state.currentScreen.get() + direction < screens.length) {
-          $_ezdyn3116jkmcwtyw.getRaw(parent, 'left').each(function (left) {
+          $_g3k65w10djh8lz50c.getRaw(parent, 'left').each(function (left) {
             var currentLeft = parseInt(left, 10);
-            var w = $_4k1oht130jkmcwucs.get(screens[0]);
-            $_ezdyn3116jkmcwtyw.set(parent, 'left', currentLeft - direction * w + 'px');
+            var w = $_cibxss126jh8lz5ej.get(screens[0]);
+            $_g3k65w10djh8lz50c.set(parent, 'left', currentLeft - direction * w + 'px');
           });
           spec$$1.state.currentScreen.set(spec$$1.state.currentScreen.get() + direction);
         }
       });
     };
     var focusInput = function (dialog) {
-      var inputs = $_bpsi2e119jkmcwtzh.descendants(dialog.element(), 'input');
+      var inputs = $_bhctx310gjh8lz510.descendants(dialog.element(), 'input');
       var optInput = Option.from(inputs[spec$$1.state.currentScreen.get()]);
       optInput.each(function (input$$1) {
         dialog.getSystem().getByDom(input$$1).each(function (inputComp) {
@@ -7352,10 +7672,10 @@ var mobile = (function () {
         dom: dom$1('<div class="${prefix}-serialised-dialog"></div>'),
         components: [Container.sketch({
             dom: dom$1('<div class="${prefix}-serialised-dialog-chain" style="left: 0px; position: absolute;"></div>'),
-            components: map$1(spec$$1.fields, function (field$$1, i) {
+            components: $_ffek9lxijh8lz4jt.map(spec$$1.fields, function (field$$1, i) {
               return i <= spec$$1.maxFieldIndex ? Container.sketch({
                 dom: dom$1('<div class="${prefix}-serialised-dialog-screen"></div>'),
-                components: flatten([
+                components: $_ffek9lxijh8lz4jt.flatten([
                   [navigationButton(-1, 'previous', i > 0)],
                   [parts.field(field$$1.name, field$$1.spec)],
                   [navigationButton(+1, 'next', i < spec$$1.maxFieldIndex)]
@@ -7364,7 +7684,7 @@ var mobile = (function () {
             })
           })],
         formBehaviours: derive$2([
-          $_46xi8a10sjkmcwtws.orientation(function (dialog, message) {
+          $_dbkfwdzzjh8lz4xv.orientation(function (dialog, message) {
             reposition(dialog, message);
           }),
           Keying.config({
@@ -7392,14 +7712,12 @@ var mobile = (function () {
             }),
             runOnExecute(spec$$1.onExecute),
             run(transitionend(), function (dialog, simulatedEvent) {
-              var event = simulatedEvent.event();
-              if (event.raw().propertyName === 'left') {
+              if (simulatedEvent.event().raw().propertyName === 'left') {
                 focusInput(dialog);
               }
             }),
             run(navigateEvent, function (dialog, simulatedEvent) {
-              var event = simulatedEvent.event();
-              var direction = event.direction();
+              var direction = simulatedEvent.event().direction();
               navigate(dialog, direction);
             })
           ])
@@ -7409,10 +7727,10 @@ var mobile = (function () {
     var memDots = record({
       dom: dom$1('<div class="${prefix}-dot-container"></div>'),
       behaviours: derive$2([Highlighting.config({
-          highlightClass: $_dpmvs510tjkmcwtwz.resolve('dot-active'),
-          itemClass: $_dpmvs510tjkmcwtwz.resolve('dot-item')
+          highlightClass: $_9mxjlz100jh8lz4y0.resolve('dot-active'),
+          itemClass: $_9mxjlz100jh8lz4y0.resolve('dot-item')
         })]),
-      components: bind(spec$$1.fields, function (_f, i) {
+      components: $_ffek9lxijh8lz4jt.bind(spec$$1.fields, function (_f, i) {
         return i <= spec$$1.maxFieldIndex ? [spec('<div class="${prefix}-dot-item ${prefix}-icon-full-dot ${prefix}-icon"></div>')] : [];
       })
     });
@@ -7432,20 +7750,18 @@ var mobile = (function () {
         }),
         config(wrapperAdhocEvents, [
           run(touchstart(), function (wrapper, simulatedEvent) {
-            var event = simulatedEvent.event();
-            spec$$1.state.dialogSwipeState.set($_2173d7144jkmcwuk7.init(event.touches[0].clientX));
+            spec$$1.state.dialogSwipeState.set($_41j1nk13bjh8lz5ma.init(simulatedEvent.event().raw().touches[0].clientX));
           }),
           run(touchmove(), function (wrapper, simulatedEvent) {
-            var event = simulatedEvent.event();
             spec$$1.state.dialogSwipeState.on(function (state) {
               simulatedEvent.event().prevent();
-              spec$$1.state.dialogSwipeState.set($_2173d7144jkmcwuk7.move(state, event.raw().touches[0].clientX));
+              spec$$1.state.dialogSwipeState.set($_41j1nk13bjh8lz5ma.move(state, simulatedEvent.event().raw().touches[0].clientX));
             });
           }),
           run(touchend(), function (wrapper) {
             spec$$1.state.dialogSwipeState.on(function (state) {
               var dialog = memForm.get(wrapper);
-              var direction = -1 * $_2173d7144jkmcwuk7.complete(state);
+              var direction = -1 * $_41j1nk13bjh8lz5ma.complete(state);
               navigate(dialog, direction);
             });
           })
@@ -7454,7 +7770,7 @@ var mobile = (function () {
     };
   };
 
-  var getGroups = cached(function (realm, editor) {
+  var getGroups = $_5hshsbxbjh8lz4jc.cached(function (realm, editor) {
     return [{
         label: 'the link group',
         items: [sketch$7({
@@ -7472,11 +7788,11 @@ var mobile = (function () {
               'target'
             ].length - 1,
             getInitialValue: function () {
-              return Option.some($_83q2l713hjkmcwufc.getInfo(editor));
+              return Option.some($_7jrcs512ojh8lz5hc.getInfo(editor));
             },
             onExecute: function (dialog) {
               var info = Representing.getValue(dialog);
-              $_83q2l713hjkmcwufc.applyInfo(editor, info);
+              $_7jrcs512ojh8lz5hc.applyInfo(editor, info);
               realm.restoreToolbar();
               editor.focus();
             }
@@ -7484,13 +7800,13 @@ var mobile = (function () {
       }];
   });
   var sketch$8 = function (realm, editor) {
-    return $_3u2u4g10ujkmcwtx2.forToolbarStateAction(editor, 'link', 'link', function () {
+    return $_7cxrim101jh8lz4y2.forToolbarStateAction(editor, 'link', 'link', function () {
       var groups = getGroups(realm, editor);
       realm.setContextToolbar(groups);
-      $_3kl2uk13jjkmcwufo.forAndroid(editor, function () {
+      $_5txdfj12qjh8lz5hu.forAndroid(editor, function () {
         realm.focusToolbar();
       });
-      $_83q2l713hjkmcwufc.query(editor).each(function (link) {
+      $_7jrcs512ojh8lz5hc.query(editor).each(function (link) {
         editor.selection.select(link.dom());
       });
     });
@@ -7615,27 +7931,24 @@ var mobile = (function () {
   ];
 
   var isRecursive = function (component, originator, target) {
-    return $_cpo6bcytjkmcwtkv.eq(originator, component.element()) && !$_cpo6bcytjkmcwtkv.eq(originator, target);
+    return $_6liejjxzjh8lz4lv.eq(originator, component.element()) && !$_6liejjxzjh8lz4lv.eq(originator, target);
   };
-  var events$8 = derive([can(focus$1(), function (component, simulatedEvent) {
-      var originator = simulatedEvent.event().originator();
-      var target = simulatedEvent.event().target();
-      if (isRecursive(component, originator, target)) {
-        console.warn(focus$1() + ' did not get interpreted by the desired target. ' + '\nOriginator: ' + element(originator) + '\nTarget: ' + element(target) + '\nCheck the ' + focus$1() + ' event handlers');
-        return false;
-      } else {
-        return true;
-      }
-    })]);
+  var $_drhwiw13gjh8lz5ok = {
+    events: derive([can(focus$1(), function (component, simulatedEvent) {
+        var originator = simulatedEvent.event().originator();
+        var target = simulatedEvent.event().target();
+        if (isRecursive(component, originator, target)) {
+          console.warn(focus$1() + ' did not get interpreted by the desired target. ' + '\nOriginator: ' + element(originator) + '\nTarget: ' + element(target) + '\nCheck the ' + focus$1() + ' event handlers');
+          return false;
+        } else {
+          return true;
+        }
+      })])
+  };
 
+  var make$1 = $_7vemb6x3jh8lz4ig.identity;
 
-  var DefaultEvents = Object.freeze({
-  	events: events$8
-  });
-
-  var make$1 = identity;
-
-  var SystemApi = exactly([
+  var SystemApi = $_9q0hgqyzjh8lz4sq.exactly([
     'debugInfo',
     'triggerFocus',
     'triggerEvent',
@@ -7659,7 +7972,7 @@ var mobile = (function () {
       };
     };
     return SystemApi({
-      debugInfo: constant('fake'),
+      debugInfo: $_7vemb6x3jh8lz4ig.constant('fake'),
       triggerEvent: fail('triggerEvent'),
       triggerFocus: fail('triggerFocus'),
       triggerEscape: fail('triggerEscape'),
@@ -7672,35 +7985,30 @@ var mobile = (function () {
       getByDom: fail('getByDom'),
       broadcast: fail('broadcast'),
       broadcastOn: fail('broadcastOn'),
-      isConnected: constant(false)
+      isConnected: $_7vemb6x3jh8lz4ig.constant(false)
     });
   };
 
   var generateFrom = function (spec, all) {
-    var schema = map$1(all, function (a) {
-      return optionObjOf(a.name(), [
+    var schema = $_ffek9lxijh8lz4jt.map(all, function (a) {
+      return field(a.name(), a.name(), asOption(), objOf([
         strict$1('config'),
         defaulted$1('state', NoState)
-      ]);
+      ]));
     });
     var validated = asStruct('component.behaviours', objOf(schema), spec.behaviours).fold(function (errInfo) {
-      throw new Error(formatError(errInfo) + '\nComplete spec:\n' + $_ccklnrzhjkmcwton.stringify(spec, null, 2));
-    }, function (v) {
-      return v;
-    });
+      throw new Error(formatError(errInfo) + '\nComplete spec:\n' + $_37gedlynjh8lz4pr.stringify(spec, null, 2));
+    }, $_7vemb6x3jh8lz4ig.identity);
     return {
       list: all,
-      data: map(validated, function (optBlobThunk) {
-        var optBlob = optBlobThunk();
-        var output = optBlob.map(function (blob) {
+      data: $_23xamox6jh8lz4iu.map(validated, function (blobOptionThunk) {
+        var blobOption = blobOptionThunk();
+        return $_7vemb6x3jh8lz4ig.constant(blobOption.map(function (blob) {
           return {
             config: blob.config(),
             state: blob.state().init(blob.config())
           };
-        });
-        return function () {
-          return output;
-        };
+        }));
       })
     };
   };
@@ -7710,11 +8018,16 @@ var mobile = (function () {
   var getData = function (bData) {
     return bData.data;
   };
+  var $_70lyg013ljh8lz5pk = {
+    generateFrom: generateFrom,
+    getBehaviours: getBehaviours,
+    getData: getData
+  };
 
   var byInnerKey = function (data, tuple) {
     var r = {};
-    each(data, function (detail, key) {
-      each(detail, function (value, indexKey) {
+    $_23xamox6jh8lz4iu.each(data, function (detail, key) {
+      $_23xamox6jh8lz4iu.each(detail, function (value, indexKey) {
         var chain = readOr$1(indexKey, [])(r);
         r[indexKey] = chain.concat([tuple(key, value)]);
       });
@@ -7722,15 +8035,21 @@ var mobile = (function () {
     return r;
   };
 
+  var behaviourDom = function (name, modification) {
+    return {
+      name: $_7vemb6x3jh8lz4ig.constant(name),
+      modification: modification
+    };
+  };
   var concat = function (chain, aspect) {
-    var values$$1 = bind(chain, function (c) {
+    var values = $_ffek9lxijh8lz4jt.bind(chain, function (c) {
       return c.modification().getOr([]);
     });
-    return Result.value(wrap$2(aspect, values$$1));
+    return Result.value(wrap$2(aspect, values));
   };
-  var onlyOne = function (chain, aspect) {
+  var onlyOne = function (chain, aspect, order) {
     if (chain.length > 1) {
-      return Result.error('Multiple behaviours have tried to change DOM "' + aspect + '". The guilty behaviours are: ' + $_ccklnrzhjkmcwton.stringify(map$1(chain, function (b) {
+      return Result.error('Multiple behaviours have tried to change DOM "' + aspect + '". The guilty behaviours are: ' + $_37gedlynjh8lz4pr.stringify($_ffek9lxijh8lz4jt.map(chain, function (b) {
         return b.name();
       })) + '. At this stage, this ' + 'is not supported. Future releases might provide strategies for resolving this.');
     } else if (chain.length === 0) {
@@ -7744,15 +8063,15 @@ var mobile = (function () {
     }
   };
   var duplicate = function (aspect, k, obj, behaviours) {
-    return Result.error('Mulitple behaviours have tried to change the _' + k + '_ "' + aspect + '"' + '. The guilty behaviours are: ' + $_ccklnrzhjkmcwton.stringify(bind(behaviours, function (b) {
+    return Result.error('Mulitple behaviours have tried to change the _' + k + '_ "' + aspect + '"' + '. The guilty behaviours are: ' + $_37gedlynjh8lz4pr.stringify($_ffek9lxijh8lz4jt.bind(behaviours, function (b) {
       return b.modification().getOr({})[k] !== undefined ? [b.name()] : [];
     }), null, 2) + '. This is not currently supported.');
   };
-  var objSafeMerge = function (chain, aspect) {
-    var y = foldl(chain, function (acc, c) {
+  var safeMerge = function (chain, aspect) {
+    var y = $_ffek9lxijh8lz4jt.foldl(chain, function (acc, c) {
       var obj = c.modification().getOr({});
       return acc.bind(function (accRest) {
-        var parts = mapToArray(obj, function (v, k) {
+        var parts = $_23xamox6jh8lz4iu.mapToArray(obj, function (v, k) {
           return accRest[k] !== undefined ? duplicate(aspect, k, obj, chain) : Result.value(wrap$2(k, v));
         });
         return consolidate(parts, accRest);
@@ -7764,29 +8083,21 @@ var mobile = (function () {
   };
   var mergeTypes = {
     classes: concat,
-    attributes: objSafeMerge,
-    styles: objSafeMerge,
+    attributes: safeMerge,
+    styles: safeMerge,
     domChildren: onlyOne,
     defChildren: onlyOne,
     innerHtml: onlyOne,
     value: onlyOne
   };
   var combine$1 = function (info, baseMod, behaviours, base) {
-    var modsByBehaviour = deepMerge({}, baseMod);
-    each$1(behaviours, function (behaviour) {
-      modsByBehaviour[behaviour.name()] = behaviour.exhibit(info, base);
+    var behaviourDoms = $_b00d1jx4jh8lz4ij.deepMerge({}, baseMod);
+    $_ffek9lxijh8lz4jt.each(behaviours, function (behaviour) {
+      behaviourDoms[behaviour.name()] = behaviour.exhibit(info, base);
     });
-    var nameAndMod = function (name, modification) {
-      return {
-        name: function () {
-          return name;
-        },
-        modification: modification
-      };
-    };
-    var byAspect = byInnerKey(modsByBehaviour, nameAndMod);
-    var usedAspect = map(byAspect, function (values$$1, aspect) {
-      return bind(values$$1, function (value) {
+    var byAspect = byInnerKey(behaviourDoms, behaviourDom);
+    var usedAspect = $_23xamox6jh8lz4iu.map(byAspect, function (values, aspect) {
+      return $_ffek9lxijh8lz4jt.bind(values, function (value) {
         return value.modification().fold(function () {
           return [];
         }, function (v) {
@@ -7794,11 +8105,11 @@ var mobile = (function () {
         });
       });
     });
-    var modifications = mapToArray(usedAspect, function (values$$1, aspect) {
+    var modifications = $_23xamox6jh8lz4iu.mapToArray(usedAspect, function (values, aspect) {
       return readOptFrom$1(mergeTypes, aspect).fold(function () {
         return Result.error('Unknown field type: ' + aspect);
       }, function (merger) {
-        return merger(values$$1, aspect);
+        return merger(values, aspect);
       });
     });
     var consolidated = consolidate(modifications, {});
@@ -7814,10 +8125,10 @@ var mobile = (function () {
         var aIndex = order.indexOf(aKey);
         var bIndex = order.indexOf(bKey);
         if (aIndex === -1) {
-          throw new Error('The ordering for ' + label + ' does not have an entry for ' + aKey + '.\nOrder specified: ' + $_ccklnrzhjkmcwton.stringify(order, null, 2));
+          throw new Error('The ordering for ' + label + ' does not have an entry for ' + aKey + '.\nOrder specified: ' + $_37gedlynjh8lz4pr.stringify(order, null, 2));
         }
         if (bIndex === -1) {
-          throw new Error('The ordering for ' + label + ' does not have an entry for ' + bKey + '.\nOrder specified: ' + $_ccklnrzhjkmcwton.stringify(order, null, 2));
+          throw new Error('The ordering for ' + label + ' does not have an entry for ' + bKey + '.\nOrder specified: ' + $_37gedlynjh8lz4pr.stringify(order, null, 2));
         }
         if (aIndex < bIndex) {
           return -1;
@@ -7832,41 +8143,39 @@ var mobile = (function () {
       return Result.error([err]);
     }
   };
+  var $_fbdwcq13pjh8lz5r5 = { sortKeys: sortKeys };
 
-  var uncurried = function (handler, purpose) {
+  var nu$7 = function (handler, purpose) {
     return {
       handler: handler,
-      purpose: constant(purpose)
-    };
-  };
-  var curried = function (handler, purpose) {
-    return {
-      cHandler: handler,
-      purpose: constant(purpose)
+      purpose: $_7vemb6x3jh8lz4ig.constant(purpose)
     };
   };
   var curryArgs = function (descHandler, extraArgs) {
-    return curried(curry.apply(undefined, [descHandler.handler].concat(extraArgs)), descHandler.purpose());
+    return {
+      handler: $_7vemb6x3jh8lz4ig.curry.apply(undefined, [descHandler.handler].concat(extraArgs)),
+      purpose: descHandler.purpose
+    };
   };
-  var getCurried = function (descHandler) {
-    return descHandler.cHandler;
+  var getHandler = function (descHandler) {
+    return descHandler.handler;
   };
 
   var behaviourTuple = function (name, handler) {
     return {
-      name: constant(name),
-      handler: constant(handler)
+      name: $_7vemb6x3jh8lz4ig.constant(name),
+      handler: $_7vemb6x3jh8lz4ig.constant(handler)
     };
   };
   var nameToHandlers = function (behaviours, info) {
     var r = {};
-    each$1(behaviours, function (behaviour) {
+    $_ffek9lxijh8lz4jt.each(behaviours, function (behaviour) {
       r[behaviour.name()] = behaviour.handlers(info);
     });
     return r;
   };
   var groupByEvents = function (info, behaviours, base) {
-    var behaviourEvents = deepMerge(base, nameToHandlers(behaviours, info));
+    var behaviourEvents = $_b00d1jx4jh8lz4ij.deepMerge(base, nameToHandlers(behaviours, info));
     return byInnerKey(behaviourEvents, behaviourTuple);
   };
   var combine$2 = function (info, eventOrder, behaviours, base) {
@@ -7876,14 +8185,7 @@ var mobile = (function () {
   var assemble = function (rawHandler) {
     var handler = read(rawHandler);
     return function (component, simulatedEvent) {
-      var rest = [];
-      for (var _i = 2; _i < arguments.length; _i++) {
-        rest[_i - 2] = arguments[_i];
-      }
-      var args = [
-        component,
-        simulatedEvent
-      ].concat(rest);
+      var args = Array.prototype.slice.call(arguments, 0);
       if (handler.abort.apply(undefined, args)) {
         simulatedEvent.stop();
       } else if (handler.can.apply(undefined, args)) {
@@ -7892,7 +8194,7 @@ var mobile = (function () {
     };
   };
   var missingOrderError = function (eventName, tuples) {
-    return Result.error(['The event (' + eventName + ') has more than one behaviour that listens to it.\nWhen this occurs, you must ' + 'specify an event ordering for the behaviours in your spec (e.g. [ "listing", "toggling" ]).\nThe behaviours that ' + 'can trigger it are: ' + $_ccklnrzhjkmcwton.stringify(map$1(tuples, function (c) {
+    return Result.error(['The event (' + eventName + ') has more than one behaviour that listens to it.\nWhen this occurs, you must ' + 'specify an event ordering for the behaviours in your spec (e.g. [ "listing", "toggling" ]).\nThe behaviours that ' + 'can trigger it are: ' + $_37gedlynjh8lz4pr.stringify($_ffek9lxijh8lz4jt.map(tuples, function (c) {
         return c.name();
       }), null, 2)]);
   };
@@ -7901,8 +8203,8 @@ var mobile = (function () {
     if (!order) {
       return missingOrderError(eventName, tuples);
     } else {
-      return sortKeys('Event: ' + eventName, 'name', tuples, order).map(function (sortedTuples) {
-        var handlers = map$1(sortedTuples, function (tuple) {
+      return $_fbdwcq13pjh8lz5r5.sortKeys('Event: ' + eventName, 'name', tuples, order).map(function (sortedTuples) {
+        var handlers = $_ffek9lxijh8lz4jt.map(sortedTuples, function (tuple) {
           return tuple.handler();
         });
         return fuse(handlers);
@@ -7910,16 +8212,16 @@ var mobile = (function () {
     }
   };
   var combineGroups = function (byEventName, eventOrder) {
-    var r = mapToArray(byEventName, function (tuples, eventName) {
+    var r = $_23xamox6jh8lz4iu.mapToArray(byEventName, function (tuples, eventName) {
       var combined = tuples.length === 1 ? Result.value(tuples[0].handler()) : fuse$1(tuples, eventOrder, eventName);
       return combined.map(function (handler) {
         var assembled = assemble(handler);
-        var purpose = tuples.length > 1 ? filter(eventOrder, function (o) {
-          return contains(tuples, function (t) {
+        var purpose = tuples.length > 1 ? $_ffek9lxijh8lz4jt.filter(eventOrder, function (o) {
+          return $_ffek9lxijh8lz4jt.contains(tuples, function (t) {
             return t.name() === o;
           });
         }).join(' > ') : tuples[0].name();
-        return wrap$2(eventName, uncurried(assembled, purpose));
+        return wrap$2(eventName, nu$7(assembled, purpose));
       });
     });
     return consolidate(r, {});
@@ -7938,7 +8240,7 @@ var mobile = (function () {
       strict$1('components'),
       strict$1('uid'),
       defaulted$1('events', {}),
-      defaulted$1('apis', constant({})),
+      defaulted$1('apis', $_7vemb6x3jh8lz4ig.constant({})),
       field('eventOrder', 'eventOrder', mergeWith({
         'alloy.execute': [
           'disabling',
@@ -7972,27 +8274,27 @@ var mobile = (function () {
       defaulted$1('debug.sketcher', 'unknown')
     ]), spec);
   };
-  var getUid = function (detail) {
-    return wrap$2(idAttr(), detail.uid());
+  var getUid = function (info) {
+    return wrap$2(idAttr(), info.uid());
   };
-  var toDefinition = function (detail) {
+  var toDefinition = function (info) {
     var base = {
-      tag: detail.dom().tag(),
-      classes: detail.dom().classes(),
-      attributes: deepMerge(getUid(detail), detail.dom().attributes()),
-      styles: detail.dom().styles(),
-      domChildren: map$1(detail.components(), function (comp) {
+      tag: info.dom().tag(),
+      classes: info.dom().classes(),
+      attributes: $_b00d1jx4jh8lz4ij.deepMerge(getUid(info), info.dom().attributes()),
+      styles: info.dom().styles(),
+      domChildren: $_ffek9lxijh8lz4jt.map(info.components(), function (comp) {
         return comp.element();
       })
     };
-    return nu$5(deepMerge(base, detail.dom().innerHtml().map(function (h) {
+    return nu$5($_b00d1jx4jh8lz4ij.deepMerge(base, info.dom().innerHtml().map(function (h) {
       return wrap$2('innerHtml', h);
-    }).getOr({}), detail.dom().value().map(function (h) {
+    }).getOr({}), info.dom().value().map(function (h) {
       return wrap$2('value', h);
     }).getOr({})));
   };
-  var toModification = function (detail) {
-    return detail.domModification().fold(function () {
+  var toModification = function (info) {
+    return info.domModification().fold(function () {
       return nu$6({});
     }, nu$6);
   };
@@ -8001,28 +8303,28 @@ var mobile = (function () {
   };
 
   var add$3 = function (element, classes) {
-    each$1(classes, function (x) {
-      $_4fq2lwzujkmcwtrk.add(element, x);
+    $_ffek9lxijh8lz4jt.each(classes, function (x) {
+      $_eyo6psz1jh8lz4sw.add(element, x);
     });
   };
   var remove$6 = function (element, classes) {
-    each$1(classes, function (x) {
-      $_4fq2lwzujkmcwtrk.remove(element, x);
+    $_ffek9lxijh8lz4jt.each(classes, function (x) {
+      $_eyo6psz1jh8lz4sw.remove(element, x);
     });
   };
   var toggle$3 = function (element, classes) {
-    each$1(classes, function (x) {
-      $_4fq2lwzujkmcwtrk.toggle(element, x);
+    $_ffek9lxijh8lz4jt.each(classes, function (x) {
+      $_eyo6psz1jh8lz4sw.toggle(element, x);
     });
   };
   var hasAll = function (element, classes) {
-    return forall(classes, function (clazz) {
-      return $_4fq2lwzujkmcwtrk.has(element, clazz);
+    return $_ffek9lxijh8lz4jt.forall(classes, function (clazz) {
+      return $_eyo6psz1jh8lz4sw.has(element, clazz);
     });
   };
   var hasAny = function (element, classes) {
-    return exists(classes, function (clazz) {
-      return $_4fq2lwzujkmcwtrk.has(element, clazz);
+    return $_ffek9lxijh8lz4jt.exists(classes, function (clazz) {
+      return $_eyo6psz1jh8lz4sw.has(element, clazz);
     });
   };
   var getNative = function (element) {
@@ -8034,9 +8336,9 @@ var mobile = (function () {
     return r;
   };
   var get$10 = function (element) {
-    return $_7te3evzxjkmcwtrx.supports(element) ? getNative(element) : $_7te3evzxjkmcwtrx.get(element);
+    return $_5hz96tz4jh8lz4tb.supports(element) ? getNative(element) : $_5hz96tz4jh8lz4tb.get(element);
   };
-  var $_c1ba8t14mjkmcwuq6 = {
+  var $_f9g46a13tjh8lz5sb = {
     add: add$3,
     remove: remove$6,
     toggle: toggle$3,
@@ -8051,22 +8353,22 @@ var mobile = (function () {
     } else {
       return definition.domChildren().fold(function () {
         var defChildren = definition.defChildren().getOr([]);
-        return map$1(defChildren, renderDef);
+        return $_ffek9lxijh8lz4jt.map(defChildren, renderDef);
       }, function (domChildren) {
         return domChildren;
       });
     }
   };
   var renderToDom = function (definition) {
-    var subject = Element$$1.fromTag(definition.tag());
-    $_ga5avvzwjkmcwtro.setAll(subject, definition.attributes().getOr({}));
-    $_c1ba8t14mjkmcwuq6.add(subject, definition.classes().getOr([]));
-    $_ezdyn3116jkmcwtyw.setAll(subject, definition.styles().getOr({}));
-    $_bu5gev10fjkmcwtu8.set(subject, definition.innerHtml().getOr(''));
+    var subject = $_2ykjbpxpjh8lz4l0.fromTag(definition.tag());
+    $_4d7m82z3jh8lz4t3.setAll(subject, definition.attributes().getOr({}));
+    $_f9g46a13tjh8lz5sb.add(subject, definition.classes().getOr([]));
+    $_g3k65w10djh8lz50c.setAll(subject, definition.styles().getOr({}));
+    $_23hn4uzmjh8lz4vc.set(subject, definition.innerHtml().getOr(''));
     var children = getChildren(definition);
-    $_4ags7uz0jkmcwtlm.append(subject, children);
+    $_vq36dy6jh8lz4mp.append(subject, children);
     definition.value().each(function (value) {
-      $_4w51n413tjkmcwuhq.set(subject, value);
+      $_9ajf96130jh8lz5jx.set(subject, value);
     });
     return subject;
   };
@@ -8077,22 +8379,22 @@ var mobile = (function () {
 
   var getBehaviours$1 = function (spec) {
     var behaviours = readOptFrom$1(spec, 'behaviours').getOr({});
-    var keys$$1 = filter(keys(behaviours), function (k) {
+    var keys = $_ffek9lxijh8lz4jt.filter($_23xamox6jh8lz4iu.keys(behaviours), function (k) {
       return behaviours[k] !== undefined;
     });
-    return map$1(keys$$1, function (k) {
-      return behaviours[k].me;
+    return $_ffek9lxijh8lz4jt.map(keys, function (k) {
+      return spec.behaviours[k].me;
     });
   };
   var generateFrom$1 = function (spec, all) {
-    return generateFrom(spec, all);
+    return $_70lyg013ljh8lz5pk.generateFrom(spec, all);
   };
   var generate$4 = function (spec) {
     var all = getBehaviours$1(spec);
     return generateFrom$1(spec, all);
   };
 
-  var ComponentApi = exactly([
+  var ComponentApi = $_9q0hgqyzjh8lz4sq.exactly([
     'getSystem',
     'config',
     'hasConfigured',
@@ -8106,28 +8408,22 @@ var mobile = (function () {
     'events'
   ]);
 
-  var getDomDefinition = function (info, bList, bData) {
-    var definition = toDefinition(info);
-    var baseModification = { 'alloy.base.modification': toModification(info) };
-    var modification = combine$1(bData, baseModification, bList, definition).getOrDie();
-    return merge$1(definition, modification);
-  };
-  var getEvents$6 = function (info, bList, bData) {
-    var baseEvents = { 'alloy.base.behaviour': toEvents(info) };
-    return combine$2(bData, info.eventOrder(), bList, baseEvents).getOrDie();
-  };
   var build = function (spec) {
     var getMe = function () {
       return me;
     };
     var systemApi = Cell(NoContextApi(getMe));
-    var info = getOrDie$1(toInfo(deepMerge(spec, { behaviours: undefined })));
+    var info = getOrDie$1(toInfo($_b00d1jx4jh8lz4ij.deepMerge(spec, { behaviours: undefined })));
     var bBlob = generate$4(spec);
-    var bList = getBehaviours(bBlob);
-    var bData = getData(bBlob);
-    var modDefinition = getDomDefinition(info, bList, bData);
+    var bList = $_70lyg013ljh8lz5pk.getBehaviours(bBlob);
+    var bData = $_70lyg013ljh8lz5pk.getData(bBlob);
+    var definition = toDefinition(info);
+    var baseModification = { 'alloy.base.modification': toModification(info) };
+    var modification = combine$1(bData, baseModification, bList, definition).getOrDie();
+    var modDefinition = merge$1(definition, modification);
     var item = renderToDom(modDefinition);
-    var events = getEvents$6(info, bList, bData);
+    var baseEvents = { 'alloy.base.behaviour': toEvents(info) };
+    var events = combine$2(bData, info.eventOrder(), bList, baseEvents).getOrDie();
     var subcomponents = Cell(info.components());
     var connect = function (newApi) {
       systemApi.set(newApi);
@@ -8136,8 +8432,8 @@ var mobile = (function () {
       systemApi.set(NoContextApi(getMe));
     };
     var syncComponents = function () {
-      var children = $_a7cj16ynjkmcwtk5.children(item);
-      var subs = bind(children, function (child) {
+      var children = $_4x0y5axtjh8lz4lc.children(item);
+      var subs = $_ffek9lxijh8lz4jt.bind(children, function (child) {
         return systemApi.get().getByDom(child).fold(function () {
           return [];
         }, function (c) {
@@ -8149,17 +8445,15 @@ var mobile = (function () {
     var config = function (behaviour) {
       if (behaviour === apiConfig()) {
         return info.apis();
-      } else if (isString(behaviour)) {
-        throw new Error('Invalid input: only API constant is allowed');
       }
       var b = bData;
-      var f = isFunction(b[behaviour.name()]) ? b[behaviour.name()] : function () {
-        throw new Error('Could not find ' + behaviour.name() + ' in ' + $_ccklnrzhjkmcwton.stringify(spec, null, 2));
+      var f = $_dx88esx5jh8lz4is.isFunction(b[behaviour.name()]) ? b[behaviour.name()] : function () {
+        throw new Error('Could not find ' + behaviour.name() + ' in ' + $_37gedlynjh8lz4pr.stringify(spec, null, 2));
       };
       return f();
     };
     var hasConfigured = function (behaviour) {
-      return isFunction(bData[behaviour.name()]);
+      return $_dx88esx5jh8lz4is.isFunction(bData[behaviour.name()]);
     };
     var readState = function (behaviourName) {
       return bData[behaviourName]().map(function (b) {
@@ -8170,30 +8464,30 @@ var mobile = (function () {
       getSystem: systemApi.get,
       config: config,
       hasConfigured: hasConfigured,
-      spec: constant(spec),
+      spec: $_7vemb6x3jh8lz4ig.constant(spec),
       readState: readState,
       connect: connect,
       disconnect: disconnect,
-      element: constant(item),
+      element: $_7vemb6x3jh8lz4ig.constant(item),
       syncComponents: syncComponents,
       components: subcomponents.get,
-      events: constant(events)
+      events: $_7vemb6x3jh8lz4ig.constant(events)
     });
     return me;
   };
 
   var buildSubcomponents = function (spec) {
     var components = readOr$1('components', [])(spec);
-    return map$1(components, build$1);
+    return $_ffek9lxijh8lz4jt.map(components, build$1);
   };
   var buildFromSpec = function (userSpec) {
     var spec = make$1(userSpec);
     var components = buildSubcomponents(spec);
-    var completeSpec = deepMerge(DefaultEvents, spec, wrap$2('components', components));
+    var completeSpec = $_b00d1jx4jh8lz4ij.deepMerge($_drhwiw13gjh8lz5ok, spec, wrap$2('components', components));
     return Result.value(build(completeSpec));
   };
   var text = function (textContent) {
-    var element = Element$$1.fromText(textContent);
+    var element = $_2ykjbpxpjh8lz4l0.fromText(textContent);
     return external$1({ element: element });
   };
   var external$1 = function (spec) {
@@ -8216,21 +8510,21 @@ var mobile = (function () {
     var me = ComponentApi({
       getSystem: systemApi.get,
       config: Option.none,
-      hasConfigured: constant(false),
+      hasConfigured: $_7vemb6x3jh8lz4ig.constant(false),
       connect: connect,
       disconnect: disconnect,
-      element: constant(extSpec.element()),
-      spec: constant(spec),
-      readState: constant('No state'),
-      syncComponents: noop,
-      components: constant([]),
-      events: constant({})
+      element: $_7vemb6x3jh8lz4ig.constant(extSpec.element()),
+      spec: $_7vemb6x3jh8lz4ig.constant(spec),
+      readState: $_7vemb6x3jh8lz4ig.constant('No state'),
+      syncComponents: $_7vemb6x3jh8lz4ig.noop,
+      components: $_7vemb6x3jh8lz4ig.constant([]),
+      events: $_7vemb6x3jh8lz4ig.constant({})
     });
     return premade(me);
   };
-  var build$1 = function (spec) {
-    return getPremade(spec).fold(function () {
-      var userSpecWithUid = deepMerge({ uid: generate$3('') }, spec);
+  var build$1 = function (rawUserSpec) {
+    return getPremade(rawUserSpec).fold(function () {
+      var userSpecWithUid = $_b00d1jx4jh8lz4ij.deepMerge({ uid: generate$3('') }, rawUserSpec);
       return buildFromSpec(userSpecWithUid).getOrDie();
     }, function (prebuilt) {
       return prebuilt;
@@ -8241,7 +8535,7 @@ var mobile = (function () {
   var hoverEvent = 'alloy.item-hover';
   var focusEvent = 'alloy.item-focus';
   var onHover = function (item) {
-    if ($_fci5qy101jkmcwtsc.search(item.element()).isNone() || Focusing.isFocused(item)) {
+    if ($_1z851az8jh8lz4tn.search(item.element()).isNone() || Focusing.isFocused(item)) {
       if (!Focusing.isFocused(item)) {
         Focusing.focus(item);
       }
@@ -8251,18 +8545,18 @@ var mobile = (function () {
   var onFocus = function (item) {
     emitWith(item, focusEvent, { item: item });
   };
-  var hover = constant(hoverEvent);
-  var focus$4 = constant(focusEvent);
+  var hover = $_7vemb6x3jh8lz4ig.constant(hoverEvent);
+  var focus$4 = $_7vemb6x3jh8lz4ig.constant(focusEvent);
 
-  var builder = function (detail) {
+  var builder = function (info) {
     return {
-      dom: deepMerge(detail.dom(), { attributes: { role: detail.toggling().isSome() ? 'menuitemcheckbox' : 'menuitem' } }),
-      behaviours: deepMerge(derive$2([
-        detail.toggling().fold(Toggling.revoke, function (tConfig) {
-          return Toggling.config(deepMerge({ aria: { mode: 'checked' } }, tConfig));
+      dom: $_b00d1jx4jh8lz4ij.deepMerge(info.dom(), { attributes: { role: info.toggling().isSome() ? 'menuitemcheckbox' : 'menuitem' } }),
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
+        info.toggling().fold(Toggling.revoke, function (tConfig) {
+          return Toggling.config($_b00d1jx4jh8lz4ij.deepMerge({ aria: { mode: 'checked' } }, tConfig));
         }),
         Focusing.config({
-          ignore: detail.ignoreFocus(),
+          ignore: info.ignoreFocus(),
           onFocus: function (component) {
             onFocus(component);
           }
@@ -8271,19 +8565,19 @@ var mobile = (function () {
         Representing.config({
           store: {
             mode: 'memory',
-            initialValue: detail.data()
+            initialValue: info.data()
           }
         })
-      ]), detail.itemBehaviours()),
+      ]), info.itemBehaviours()),
       events: derive([
         runWithTarget(tapOrClick(), emitExecute),
         cutter(mousedown()),
         run(mouseover(), onHover),
         run(focusItem(), Focusing.focus)
       ]),
-      components: detail.components(),
-      domModification: detail.domModification(),
-      eventOrder: detail.eventOrder()
+      components: info.components(),
+      domModification: info.domModification(),
+      eventOrder: info.eventOrder()
     };
   };
   var schema$10 = [
@@ -8311,10 +8605,8 @@ var mobile = (function () {
     output$1('builder', builder$1)
   ];
 
-  var owner$2 = function () {
-    return 'item-widget';
-  };
-  var parts = constant([required({
+  var owner$2 = $_7vemb6x3jh8lz4ig.constant('item-widget');
+  var parts = $_7vemb6x3jh8lz4ig.constant([required({
       name: 'widget',
       overrides: function (detail) {
         return {
@@ -8332,18 +8624,18 @@ var mobile = (function () {
       }
     })]);
 
-  var builder$2 = function (detail) {
-    var subs = substitutes(owner$2(), detail, parts());
-    var components$$1 = components(owner$2(), detail, subs.internals());
+  var builder$2 = function (info) {
+    var subs = substitutes(owner$2(), info, parts());
+    var components$$1 = components(owner$2(), info, subs.internals());
     var focusWidget = function (component) {
-      return getPart(component, detail, 'widget').map(function (widget) {
+      return getPart(component, info, 'widget').map(function (widget) {
         Keying.focusIn(widget);
         return widget;
       });
     };
     var onHorizontalArrow = function (component, simulatedEvent) {
       return inside(simulatedEvent.event().target()) ? Option.none() : function () {
-        if (detail.autofocus()) {
+        if (info.autofocus()) {
           simulatedEvent.setSource(component.element());
           return Option.none();
         } else {
@@ -8351,10 +8643,10 @@ var mobile = (function () {
         }
       }();
     };
-    return deepMerge({
-      dom: detail.dom(),
+    return $_b00d1jx4jh8lz4ij.deepMerge({
+      dom: info.dom(),
       components: components$$1,
-      domModification: detail.domModification(),
+      domModification: info.domModification(),
       events: derive([
         runOnExecute(function (component, simulatedEvent) {
           focusWidget(component).each(function (widget) {
@@ -8363,7 +8655,7 @@ var mobile = (function () {
         }),
         run(mouseover(), onHover),
         run(focusItem(), function (component, simulatedEvent) {
-          if (detail.autofocus()) {
+          if (info.autofocus()) {
             focusWidget(component);
           } else {
             Focusing.focus(component);
@@ -8374,7 +8666,7 @@ var mobile = (function () {
         Representing.config({
           store: {
             mode: 'memory',
-            initialValue: detail.data()
+            initialValue: info.data()
           }
         }),
         Focusing.config({
@@ -8384,16 +8676,16 @@ var mobile = (function () {
         }),
         Keying.config({
           mode: 'special',
-          focusIn: detail.autofocus() ? function (component) {
+          focusIn: info.autofocus() ? function (component) {
             focusWidget(component);
           } : revoke(),
           onLeft: onHorizontalArrow,
           onRight: onHorizontalArrow,
           onEscape: function (component, simulatedEvent) {
-            if (!Focusing.isFocused(component) && !detail.autofocus()) {
+            if (!Focusing.isFocused(component) && !info.autofocus()) {
               Focusing.focus(component);
               return Option.some(true);
-            } else if (detail.autofocus()) {
+            } else if (info.autofocus()) {
               simulatedEvent.setSource(component.element());
               return Option.none();
             } else {
@@ -8439,7 +8731,7 @@ var mobile = (function () {
       focusManager: detail.focusManager()
     };
   };
-  var parts$1 = constant([group({
+  var parts$1 = $_7vemb6x3jh8lz4ig.constant([group({
       factory: {
         sketch: function (spec) {
           var itemInfo = asStructOrDie('menu.spec item', itemSchema$1, spec);
@@ -8450,7 +8742,7 @@ var mobile = (function () {
       unit: 'item',
       defaults: function (detail, u) {
         var fallbackUid = generate$3('');
-        return deepMerge({ uid: fallbackUid }, u);
+        return $_b00d1jx4jh8lz4ij.deepMerge({ uid: fallbackUid }, u);
       },
       overrides: function (detail, u) {
         return {
@@ -8460,7 +8752,7 @@ var mobile = (function () {
         };
       }
     })]);
-  var schema$13 = constant([
+  var schema$13 = $_7vemb6x3jh8lz4ig.constant([
     strict$1('value'),
     strict$1('items'),
     strict$1('dom'),
@@ -8490,14 +8782,15 @@ var mobile = (function () {
     defaulted$1('focusManager', dom()),
     onHandler('onHighlight')
   ]);
+  var name$2 = $_7vemb6x3jh8lz4ig.constant('menu');
 
-  var focus$5 = constant('alloy.menu-focus');
+  var focus$5 = $_7vemb6x3jh8lz4ig.constant('alloy.menu-focus');
 
   var make$2 = function (detail, components, spec, externals) {
-    return deepMerge({
-      dom: deepMerge(detail.dom(), { attributes: { role: 'menu' } }),
+    return $_b00d1jx4jh8lz4ij.deepMerge({
+      dom: $_b00d1jx4jh8lz4ij.deepMerge(detail.dom(), { attributes: { role: 'menu' } }),
       uid: detail.uid(),
-      behaviours: deepMerge(derive$2([
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
         Highlighting.config({
           highlightClass: detail.markers().selectedItem(),
           itemClass: detail.markers().item(),
@@ -8509,7 +8802,7 @@ var mobile = (function () {
             initialValue: detail.value()
           }
         }),
-        Composing.config({ find: Option.some }),
+        Composing.config({ find: $_7vemb6x3jh8lz4ig.identity }),
         Keying.config(detail.movement().config()(detail, detail.movement()))
       ]), get$5(detail.menuBehaviours())),
       events: derive([
@@ -8542,20 +8835,20 @@ var mobile = (function () {
   });
 
   var preserve$2 = function (f, container) {
-    var ownerDoc = $_a7cj16ynjkmcwtk5.owner(container);
-    var refocus = $_fci5qy101jkmcwtsc.active(ownerDoc).bind(function (focused) {
+    var ownerDoc = $_4x0y5axtjh8lz4lc.owner(container);
+    var refocus = $_1z851az8jh8lz4tn.active(ownerDoc).bind(function (focused) {
       var hasFocus = function (elem) {
-        return $_cpo6bcytjkmcwtkv.eq(focused, elem);
+        return $_6liejjxzjh8lz4lv.eq(focused, elem);
       };
-      return hasFocus(container) ? Option.some(container) : $_exwlcm103jkmcwtsk.descendant(container, hasFocus);
+      return hasFocus(container) ? Option.some(container) : $_1pk55azajh8lz4tu.descendant(container, hasFocus);
     });
     var result = f(container);
     refocus.each(function (oldFocus) {
-      $_fci5qy101jkmcwtsc.active(ownerDoc).filter(function (newFocus) {
-        return $_cpo6bcytjkmcwtkv.eq(newFocus, oldFocus);
-      }).fold(function () {
-        $_fci5qy101jkmcwtsc.focus(oldFocus);
-      }, noop);
+      $_1z851az8jh8lz4tn.active(ownerDoc).filter(function (newFocus) {
+        return $_6liejjxzjh8lz4lv.eq(newFocus, oldFocus);
+      }).orThunk(function () {
+        $_1z851az8jh8lz4tn.focus(oldFocus);
+      });
     });
     return result;
   };
@@ -8563,8 +8856,8 @@ var mobile = (function () {
   var set$7 = function (component, replaceConfig, replaceState, data) {
     detachChildren(component);
     preserve$2(function () {
-      var children = map$1(data, component.getSystem().build);
-      each$1(children, function (l) {
+      var children = $_ffek9lxijh8lz4jt.map(data, component.getSystem().build);
+      $_ffek9lxijh8lz4jt.each(children, function (l) {
         attach(component, l);
       });
     }, component.element());
@@ -8574,15 +8867,15 @@ var mobile = (function () {
     attachWith(component, child, insertion);
   };
   var append$2 = function (component, replaceConfig, replaceState, appendee) {
-    insert(component, replaceConfig, $_1qcoujymjkmcwtk3.append, appendee);
+    insert(component, replaceConfig, $_b7kmpsxsjh8lz4la.append, appendee);
   };
   var prepend$2 = function (component, replaceConfig, replaceState, prependee) {
-    insert(component, replaceConfig, $_1qcoujymjkmcwtk3.prepend, prependee);
+    insert(component, replaceConfig, $_b7kmpsxsjh8lz4la.prepend, prependee);
   };
   var remove$7 = function (component, replaceConfig, replaceState, removee) {
     var children = contents(component, replaceConfig);
-    var foundChild = find$2(children, function (child) {
-      return $_cpo6bcytjkmcwtkv.eq(removee.element(), child.element());
+    var foundChild = $_ffek9lxijh8lz4jt.find(children, function (child) {
+      return $_6liejjxzjh8lz4lv.eq(removee.element(), child.element());
     });
     foundChild.each(detach);
   };
@@ -8606,7 +8899,7 @@ var mobile = (function () {
   });
 
   var transpose = function (obj) {
-    return tupleMap(obj, function (v, k) {
+    return $_23xamox6jh8lz4iu.tupleMap(obj, function (v, k) {
       return {
         k: v,
         v: k
@@ -8623,27 +8916,27 @@ var mobile = (function () {
   };
   var generate$5 = function (menus, expansions) {
     var items = {};
-    each(menus, function (menuItems, menu) {
-      each$1(menuItems, function (item) {
+    $_23xamox6jh8lz4iu.each(menus, function (menuItems, menu) {
+      $_ffek9lxijh8lz4jt.each(menuItems, function (item) {
         items[item] = menu;
       });
     });
     var byItem = expansions;
     var byMenu = transpose(expansions);
-    var menuPaths = map(byMenu, function (_triggerItem, submenu) {
+    var menuPaths = $_23xamox6jh8lz4iu.map(byMenu, function (triggerItem, submenu) {
       return [submenu].concat(trace(items, byItem, byMenu, submenu));
     });
-    return map(items, function (menu) {
-      return readOptFrom$1(menuPaths, menu).getOr([menu]);
+    return $_23xamox6jh8lz4iu.map(items, function (path) {
+      return readOptFrom$1(menuPaths, path).getOr([path]);
     });
   };
 
-  var init$3 = function () {
+  function LayeredState () {
     var expansions = Cell({});
     var menus = Cell({});
     var paths = Cell({});
     var primary = Cell(Option.none());
-    var directory = Cell({});
+    var toItemValues = Cell($_7vemb6x3jh8lz4ig.constant([]));
     var clear = function () {
       expansions.set({});
       menus.set({});
@@ -8653,12 +8946,13 @@ var mobile = (function () {
     var isClear = function () {
       return primary.get().isNone();
     };
-    var setContents = function (sPrimary, sMenus, sExpansions, dir) {
+    var setContents = function (sPrimary, sMenus, sExpansions, sToItemValues) {
       primary.set(Option.some(sPrimary));
       expansions.set(sExpansions);
       menus.set(sMenus);
-      directory.set(dir);
-      var sPaths = generate$5(dir, sExpansions);
+      toItemValues.set(sToItemValues);
+      var menuValues = sToItemValues(sMenus);
+      var sPaths = generate$5(menuValues, sExpansions);
       paths.set(sPaths);
     };
     var expand = function (itemValue) {
@@ -8679,8 +8973,8 @@ var mobile = (function () {
       return readOptFrom$1(menus.get(), menuValue);
     };
     var otherMenus = function (path) {
-      var menuValues = directory.get();
-      return difference(keys(menuValues), path);
+      var menuValues = toItemValues.get()(menus.get());
+      return $_ffek9lxijh8lz4jt.difference($_23xamox6jh8lz4iu.keys(menuValues), path);
     };
     var getPrimary = function () {
       return primary.get().bind(lookupMenu);
@@ -8700,13 +8994,12 @@ var mobile = (function () {
       clear: clear,
       isClear: isClear
     };
-  };
-  var LayeredState = { init: init$3 };
+  }
 
   var make$3 = function (detail, rawUiSpec) {
     var buildMenus = function (container, menus) {
-      return map(menus, function (spec, name) {
-        var data = Menu.sketch(deepMerge(spec, {
+      return $_23xamox6jh8lz4iu.map(menus, function (spec, name) {
+        var data = Menu.sketch($_b00d1jx4jh8lz4ij.deepMerge(spec, {
           value: name,
           items: spec.items,
           markers: narrow$1(rawUiSpec.markers, [
@@ -8720,19 +9013,20 @@ var mobile = (function () {
         return container.getSystem().build(data);
       });
     };
-    var layeredState = LayeredState.init();
+    var state = LayeredState();
     var setup = function (container) {
       var componentMap = buildMenus(container, detail.data().menus());
-      var directory = toDirectory(container);
-      layeredState.setContents(detail.data().primary(), componentMap, detail.data().expansions(), directory);
-      return layeredState.getPrimary();
+      state.setContents(detail.data().primary(), componentMap, detail.data().expansions(), function (sMenus) {
+        return toMenuValues(container, sMenus);
+      });
+      return state.getPrimary();
     };
     var getItemValue = function (item) {
       return Representing.getValue(item).value;
     };
-    var toDirectory = function (container) {
-      return map(detail.data().menus(), function (data, menuName) {
-        return bind(data.items, function (item) {
+    var toMenuValues = function (container, sMenus) {
+      return $_23xamox6jh8lz4iu.map(detail.data().menus(), function (data, menuName) {
+        return $_ffek9lxijh8lz4jt.bind(data.items, function (item) {
           return item.type === 'separator' ? [] : [item.data.value];
         });
       });
@@ -8746,22 +9040,22 @@ var mobile = (function () {
       });
     };
     var getMenus = function (state, menuValues) {
-      return cat(map$1(menuValues, state.lookupMenu));
+      return $_3g4qukzsjh8lz4wq.cat($_ffek9lxijh8lz4jt.map(menuValues, state.lookupMenu));
     };
     var updateMenuPath = function (container, state, path) {
       return Option.from(path[0]).bind(state.lookupMenu).map(function (activeMenu) {
         var rest = getMenus(state, path.slice(1));
-        each$1(rest, function (r) {
-          $_4fq2lwzujkmcwtrk.add(r.element(), detail.markers().backgroundMenu());
+        $_ffek9lxijh8lz4jt.each(rest, function (r) {
+          $_eyo6psz1jh8lz4sw.add(r.element(), detail.markers().backgroundMenu());
         });
-        if (!$_3wo4fwyhjkmcwtje.inBody(activeMenu.element())) {
+        if (!$_847aynxojh8lz4kx.inBody(activeMenu.element())) {
           Replacing.append(container, premade$1(activeMenu));
         }
-        $_c1ba8t14mjkmcwuq6.remove(activeMenu.element(), [detail.markers().backgroundMenu()]);
+        $_f9g46a13tjh8lz5sb.remove(activeMenu.element(), [detail.markers().backgroundMenu()]);
         setActiveMenu(container, activeMenu);
         var others = getMenus(state, state.otherMenus(path));
-        each$1(others, function (o) {
-          $_c1ba8t14mjkmcwuq6.remove(o.element(), [detail.markers().backgroundMenu()]);
+        $_ffek9lxijh8lz4jt.each(others, function (o) {
+          $_f9g46a13tjh8lz5sb.remove(o.element(), [detail.markers().backgroundMenu()]);
           if (!detail.stayInDom()) {
             Replacing.remove(container, o);
           }
@@ -8771,21 +9065,21 @@ var mobile = (function () {
     };
     var expandRight = function (container, item) {
       var value = getItemValue(item);
-      return layeredState.expand(value).bind(function (path) {
-        Option.from(path[0]).bind(layeredState.lookupMenu).each(function (activeMenu) {
-          if (!$_3wo4fwyhjkmcwtje.inBody(activeMenu.element())) {
+      return state.expand(value).bind(function (path) {
+        Option.from(path[0]).bind(state.lookupMenu).each(function (activeMenu) {
+          if (!$_847aynxojh8lz4kx.inBody(activeMenu.element())) {
             Replacing.append(container, premade$1(activeMenu));
           }
           detail.onOpenSubmenu()(container, item, activeMenu);
           Highlighting.highlightFirst(activeMenu);
         });
-        return updateMenuPath(container, layeredState, path);
+        return updateMenuPath(container, state, path);
       });
     };
     var collapseLeft = function (container, item) {
       var value = getItemValue(item);
-      return layeredState.collapse(value).bind(function (path) {
-        return updateMenuPath(container, layeredState, path).map(function (activeMenu) {
+      return state.collapse(value).bind(function (path) {
+        return updateMenuPath(container, state, path).map(function (activeMenu) {
           detail.onCollapseMenu()(container, item, activeMenu);
           return activeMenu;
         });
@@ -8793,8 +9087,8 @@ var mobile = (function () {
     };
     var updateView = function (container, item) {
       var value = getItemValue(item);
-      return layeredState.refresh(value).bind(function (path) {
-        return updateMenuPath(container, layeredState, path);
+      return state.refresh(value).bind(function (path) {
+        return updateMenuPath(container, state, path);
       });
     };
     var onRight = function (container, item) {
@@ -8805,18 +9099,14 @@ var mobile = (function () {
     };
     var onEscape = function (container, item) {
       return collapseLeft(container, item).orThunk(function () {
-        return detail.onEscape()(container, item).map(function () {
-          return container;
-        });
+        return detail.onEscape()(container, item);
       });
     };
     var keyOnItem = function (f) {
       return function (container, simulatedEvent) {
-        return $_cbcewd11bjkmcwtzq.closest(simulatedEvent.getSource(), '.' + detail.markers().item()).bind(function (target) {
-          return container.getSystem().getByDom(target).toOption().bind(function (item) {
-            return f(container, item).map(function () {
-              return true;
-            });
+        return $_gi1kpl10ijh8lz515.closest(simulatedEvent.getSource(), '.' + detail.markers().item()).bind(function (target) {
+          return container.getSystem().getByDom(target).bind(function (item) {
+            return f(container, item);
           });
         });
       };
@@ -8826,16 +9116,15 @@ var mobile = (function () {
         var menu = simulatedEvent.event().menu();
         Highlighting.highlight(sandbox, menu);
       }),
-      runOnExecute(function (component, simulatedEvent) {
+      runOnExecute(function (sandbox, simulatedEvent) {
         var target = simulatedEvent.event().target();
-        component.getSystem().getByDom(target).each(function (item) {
+        return sandbox.getSystem().getByDom(target).bind(function (item) {
           var itemValue = getItemValue(item);
           if (itemValue.indexOf('collapse-item') === 0) {
-            collapseLeft(component, item);
+            return collapseLeft(sandbox, item);
           }
-          expandRight(component, item).fold(function () {
-            detail.onExecute()(component, item);
-          }, function () {
+          return expandRight(sandbox, item).orThunk(function () {
+            return detail.onExecute()(sandbox, item);
           });
         });
       }),
@@ -8864,14 +9153,14 @@ var mobile = (function () {
     return {
       uid: detail.uid(),
       dom: detail.dom(),
-      behaviours: deepMerge(derive$2([
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2([
         Keying.config({
           mode: 'special',
           onRight: keyOnItem(onRight),
           onLeft: keyOnItem(onLeft),
           onEscape: keyOnItem(onEscape),
           focusIn: function (container, keyInfo) {
-            layeredState.getPrimary().each(function (primary) {
+            state.getPrimary().each(function (primary) {
               dispatch(container, primary.element(), focusItem());
             });
           }
@@ -8892,7 +9181,7 @@ var mobile = (function () {
       events: events
     };
   };
-  var collapseItem = constant('collapse-item');
+  var collapseItem = $_7vemb6x3jh8lz4ig.constant('collapse-item');
 
   var tieredData = function (primary, menus, expansions) {
     return {
@@ -8910,7 +9199,7 @@ var mobile = (function () {
   };
   var collapseItem$1 = function (text) {
     return {
-      value: generate$1(collapseItem()),
+      value: $_dpycsh11hjh8lz59l.generate(collapseItem()),
       text: text
     };
   };
@@ -8957,8 +9246,8 @@ var mobile = (function () {
   });
 
   var findRoute = function (component, transConfig, transState, route) {
-    return readOptFrom$1(transConfig.routes(), route.start()).map(apply).bind(function (sConfig) {
-      return readOptFrom$1(sConfig, route.destination()).map(apply);
+    return readOptFrom$1(transConfig.routes(), route.start()).map($_7vemb6x3jh8lz4ig.apply).bind(function (sConfig) {
+      return readOptFrom$1(sConfig, route.destination()).map($_7vemb6x3jh8lz4ig.apply);
     });
   };
   var getTransition = function (comp, transConfig, transState) {
@@ -8971,8 +9260,8 @@ var mobile = (function () {
     return findRoute(comp, transConfig, transState, route).bind(function (r) {
       return r.transition().map(function (t) {
         return {
-          transition: constant(t),
-          route: constant(r)
+          transition: $_7vemb6x3jh8lz4ig.constant(t),
+          route: $_7vemb6x3jh8lz4ig.constant(r)
         };
       });
     });
@@ -8980,34 +9269,34 @@ var mobile = (function () {
   var disableTransition = function (comp, transConfig, transState) {
     getTransition(comp, transConfig, transState).each(function (routeTransition) {
       var t = routeTransition.transition();
-      $_4fq2lwzujkmcwtrk.remove(comp.element(), t.transitionClass());
-      $_ga5avvzwjkmcwtro.remove(comp.element(), transConfig.destinationAttr());
+      $_eyo6psz1jh8lz4sw.remove(comp.element(), t.transitionClass());
+      $_4d7m82z3jh8lz4t3.remove(comp.element(), transConfig.destinationAttr());
     });
   };
   var getNewRoute = function (comp, transConfig, transState, destination) {
     return {
-      start: constant($_ga5avvzwjkmcwtro.get(comp.element(), transConfig.stateAttr())),
-      destination: constant(destination)
+      start: $_7vemb6x3jh8lz4ig.constant($_4d7m82z3jh8lz4t3.get(comp.element(), transConfig.stateAttr())),
+      destination: $_7vemb6x3jh8lz4ig.constant(destination)
     };
   };
   var getCurrentRoute = function (comp, transConfig, transState) {
     var el = comp.element();
-    return $_ga5avvzwjkmcwtro.has(el, transConfig.destinationAttr()) ? Option.some({
-      start: constant($_ga5avvzwjkmcwtro.get(comp.element(), transConfig.stateAttr())),
-      destination: constant($_ga5avvzwjkmcwtro.get(comp.element(), transConfig.destinationAttr()))
+    return $_4d7m82z3jh8lz4t3.has(el, transConfig.destinationAttr()) ? Option.some({
+      start: $_7vemb6x3jh8lz4ig.constant($_4d7m82z3jh8lz4t3.get(comp.element(), transConfig.stateAttr())),
+      destination: $_7vemb6x3jh8lz4ig.constant($_4d7m82z3jh8lz4t3.get(comp.element(), transConfig.destinationAttr()))
     }) : Option.none();
   };
   var jumpTo = function (comp, transConfig, transState, destination) {
     disableTransition(comp, transConfig, transState);
-    if ($_ga5avvzwjkmcwtro.has(comp.element(), transConfig.stateAttr()) && $_ga5avvzwjkmcwtro.get(comp.element(), transConfig.stateAttr()) !== destination) {
+    if ($_4d7m82z3jh8lz4t3.has(comp.element(), transConfig.stateAttr()) && $_4d7m82z3jh8lz4t3.get(comp.element(), transConfig.stateAttr()) !== destination) {
       transConfig.onFinish()(comp, destination);
     }
-    $_ga5avvzwjkmcwtro.set(comp.element(), transConfig.stateAttr(), destination);
+    $_4d7m82z3jh8lz4t3.set(comp.element(), transConfig.stateAttr(), destination);
   };
   var fasttrack = function (comp, transConfig, transState, destination) {
-    if ($_ga5avvzwjkmcwtro.has(comp.element(), transConfig.destinationAttr())) {
-      $_ga5avvzwjkmcwtro.set(comp.element(), transConfig.stateAttr(), $_ga5avvzwjkmcwtro.get(comp.element(), transConfig.destinationAttr()));
-      $_ga5avvzwjkmcwtro.remove(comp.element(), transConfig.destinationAttr());
+    if ($_4d7m82z3jh8lz4t3.has(comp.element(), transConfig.destinationAttr())) {
+      $_4d7m82z3jh8lz4t3.set(comp.element(), transConfig.stateAttr(), $_4d7m82z3jh8lz4t3.get(comp.element(), transConfig.destinationAttr()));
+      $_4d7m82z3jh8lz4t3.remove(comp.element(), transConfig.destinationAttr());
     }
   };
   var progressTo = function (comp, transConfig, transState, destination) {
@@ -9018,13 +9307,13 @@ var mobile = (function () {
     }, function (routeTransition) {
       disableTransition(comp, transConfig, transState);
       var t = routeTransition.transition();
-      $_4fq2lwzujkmcwtrk.add(comp.element(), t.transitionClass());
-      $_ga5avvzwjkmcwtro.set(comp.element(), transConfig.destinationAttr(), destination);
+      $_eyo6psz1jh8lz4sw.add(comp.element(), t.transitionClass());
+      $_4d7m82z3jh8lz4t3.set(comp.element(), transConfig.destinationAttr(), destination);
     });
   };
   var getState = function (comp, transConfig, transState) {
     var e = comp.element();
-    return $_ga5avvzwjkmcwtro.has(e, transConfig.stateAttr()) ? Option.some($_ga5avvzwjkmcwtro.get(e, transConfig.stateAttr())) : Option.none();
+    return $_4d7m82z3jh8lz4t3.has(e, transConfig.stateAttr()) ? Option.some($_4d7m82z3jh8lz4t3.get(e, transConfig.stateAttr())) : Option.none();
   };
 
 
@@ -9037,7 +9326,7 @@ var mobile = (function () {
   	getState: getState
   });
 
-  var events$9 = function (transConfig, transState) {
+  var events$8 = function (transConfig, transState) {
     return derive([
       run(transitionend(), function (component, simulatedEvent) {
         var raw = simulatedEvent.event().raw();
@@ -9060,7 +9349,7 @@ var mobile = (function () {
 
 
   var ActiveTransitioning = Object.freeze({
-  	events: events$9
+  	events: events$8
   });
 
   var TransitionSchema = [
@@ -9077,7 +9366,7 @@ var mobile = (function () {
 
   var createRoutes = function (routes) {
     var r = {};
-    each(routes, function (v, k) {
+    $_23xamox6jh8lz4iu.each(routes, function (v, k) {
       var waypoints = k.split('<->');
       r[waypoints[0]] = wrap$2(waypoints[1], v);
       r[waypoints[1]] = wrap$2(waypoints[0], v);
@@ -9151,33 +9440,33 @@ var mobile = (function () {
     }
   });
 
-  var scrollable = $_dpmvs510tjkmcwtwz.resolve('scrollable');
+  var scrollable = $_9mxjlz100jh8lz4y0.resolve('scrollable');
   var register = function (element) {
-    $_4fq2lwzujkmcwtrk.add(element, scrollable);
+    $_eyo6psz1jh8lz4sw.add(element, scrollable);
   };
   var deregister = function (element) {
-    $_4fq2lwzujkmcwtrk.remove(element, scrollable);
+    $_eyo6psz1jh8lz4sw.remove(element, scrollable);
   };
-  var $_9pks4l159jkmcwuvq = {
+  var $_ctmye314gjh8lz5xt = {
     register: register,
     deregister: deregister,
-    scrollable: constant(scrollable)
+    scrollable: $_7vemb6x3jh8lz4ig.constant(scrollable)
   };
 
   var getValue$4 = function (item) {
     return readOptFrom$1(item, 'format').getOr(item.title);
   };
   var convert$1 = function (formats, memMenuThunk) {
-    var mainMenu = makeMenu('Styles', [].concat(map$1(formats.items, function (k) {
+    var mainMenu = makeMenu('Styles', [].concat($_ffek9lxijh8lz4jt.map(formats.items, function (k) {
       return makeItem(getValue$4(k), k.title, k.isSelected(), k.getPreview(), hasKey$1(formats.expansions, getValue$4(k)));
     })), memMenuThunk, false);
-    var submenus = map(formats.menus, function (menuItems, menuName) {
-      var items = map$1(menuItems, function (item) {
+    var submenus = $_23xamox6jh8lz4iu.map(formats.menus, function (menuItems, menuName) {
+      var items = $_ffek9lxijh8lz4jt.map(menuItems, function (item) {
         return makeItem(getValue$4(item), item.title, item.isSelected !== undefined ? item.isSelected() : false, item.getPreview !== undefined ? item.getPreview() : '', hasKey$1(formats.expansions, getValue$4(item)));
       });
       return makeMenu(menuName, items, memMenuThunk, true);
     });
-    var menus = deepMerge(submenus, wrap$2('styles', mainMenu));
+    var menus = $_b00d1jx4jh8lz4ij.deepMerge(submenus, wrap$2('styles', mainMenu));
     var tmenu = tieredMenu.tieredData('styles', menus, formats.expansions);
     return { tmenu: tmenu };
   };
@@ -9190,14 +9479,14 @@ var mobile = (function () {
       type: 'item',
       dom: {
         tag: 'div',
-        classes: isMenu ? [$_dpmvs510tjkmcwtwz.resolve('styles-item-is-menu')] : []
+        classes: isMenu ? [$_9mxjlz100jh8lz4y0.resolve('styles-item-is-menu')] : []
       },
       toggling: {
         toggleOnExecute: false,
-        toggleClass: $_dpmvs510tjkmcwtwz.resolve('format-matches'),
+        toggleClass: $_9mxjlz100jh8lz4y0.resolve('format-matches'),
         selected: selected
       },
-      itemBehaviours: derive$2(isMenu ? [] : [$_46xi8a10sjkmcwtws.format(value, function (comp, status) {
+      itemBehaviours: derive$2(isMenu ? [] : [$_dbkfwdzzjh8lz4xv.format(value, function (comp, status) {
           var toggle = status ? Toggling.on : Toggling.off;
           toggle(comp);
         })]),
@@ -9218,13 +9507,13 @@ var mobile = (function () {
         Button.sketch({
           dom: {
             tag: 'div',
-            classes: [$_dpmvs510tjkmcwtwz.resolve('styles-collapser')]
+            classes: [$_9mxjlz100jh8lz4y0.resolve('styles-collapser')]
           },
           components: collapsable ? [
             {
               dom: {
                 tag: 'span',
-                classes: [$_dpmvs510tjkmcwtwz.resolve('styles-collapse-icon')]
+                classes: [$_9mxjlz100jh8lz4y0.resolve('styles-collapse-icon')]
               }
             },
             text(value)
@@ -9239,19 +9528,19 @@ var mobile = (function () {
         {
           dom: {
             tag: 'div',
-            classes: [$_dpmvs510tjkmcwtwz.resolve('styles-menu-items-container')]
+            classes: [$_9mxjlz100jh8lz4y0.resolve('styles-menu-items-container')]
           },
           components: [Menu.parts().items({})],
           behaviours: derive$2([config('adhoc-scrollable-menu', [
               runOnAttached(function (component, simulatedEvent) {
-                $_ezdyn3116jkmcwtyw.set(component.element(), 'overflow-y', 'auto');
-                $_ezdyn3116jkmcwtyw.set(component.element(), '-webkit-overflow-scrolling', 'touch');
-                $_9pks4l159jkmcwuvq.register(component.element());
+                $_g3k65w10djh8lz50c.set(component.element(), 'overflow-y', 'auto');
+                $_g3k65w10djh8lz50c.set(component.element(), '-webkit-overflow-scrolling', 'touch');
+                $_ctmye314gjh8lz5xt.register(component.element());
               }),
               runOnDetached(function (component) {
-                $_ezdyn3116jkmcwtyw.remove(component.element(), 'overflow-y');
-                $_ezdyn3116jkmcwtyw.remove(component.element(), '-webkit-overflow-scrolling');
-                $_9pks4l159jkmcwuvq.deregister(component.element());
+                $_g3k65w10djh8lz50c.remove(component.element(), 'overflow-y');
+                $_g3k65w10djh8lz50c.remove(component.element(), '-webkit-overflow-scrolling');
+                $_ctmye314gjh8lz5xt.deregister(component.element());
               })
             ])])
         }
@@ -9275,7 +9564,7 @@ var mobile = (function () {
     var memMenu = record(tieredMenu.sketch({
       dom: {
         tag: 'div',
-        classes: [$_dpmvs510tjkmcwtwz.resolve('styles-menu')]
+        classes: [$_9mxjlz100jh8lz4y0.resolve('styles-menu')]
       },
       components: [],
       fakeFocus: true,
@@ -9283,27 +9572,25 @@ var mobile = (function () {
       onExecute: function (tmenu, item) {
         var v = Representing.getValue(item);
         settings.handle(item, v.value);
-        return Option.none();
       },
       onEscape: function () {
-        return Option.none();
       },
       onOpenMenu: function (container, menu) {
-        var w = $_4k1oht130jkmcwucs.get(container.element());
-        $_4k1oht130jkmcwucs.set(menu.element(), w);
+        var w = $_cibxss126jh8lz5ej.get(container.element());
+        $_cibxss126jh8lz5ej.set(menu.element(), w);
         Transitioning.jumpTo(menu, 'current');
       },
       onOpenSubmenu: function (container, item, submenu) {
-        var w = $_4k1oht130jkmcwucs.get(container.element());
-        var menu = $_cbcewd11bjkmcwtzq.ancestor(item.element(), '[role="menu"]').getOrDie('hacky');
+        var w = $_cibxss126jh8lz5ej.get(container.element());
+        var menu = $_gi1kpl10ijh8lz515.ancestor(item.element(), '[role="menu"]').getOrDie('hacky');
         var menuComp = container.getSystem().getByDom(menu).getOrDie();
-        $_4k1oht130jkmcwucs.set(submenu.element(), w);
+        $_cibxss126jh8lz5ej.set(submenu.element(), w);
         Transitioning.progressTo(menuComp, 'before');
         Transitioning.jumpTo(submenu, 'after');
         Transitioning.progressTo(submenu, 'current');
       },
       onCollapseMenu: function (container, item, menu) {
-        var submenu = $_cbcewd11bjkmcwtzq.ancestor(item.element(), '[role="menu"]').getOrDie('hacky');
+        var submenu = $_gi1kpl10ijh8lz515.ancestor(item.element(), '[role="menu"]').getOrDie('hacky');
         var submenuComp = container.getSystem().getByDom(submenu).getOrDie();
         Transitioning.progressTo(submenuComp, 'after');
         Transitioning.progressTo(menu, 'current');
@@ -9312,22 +9599,22 @@ var mobile = (function () {
       openImmediately: true,
       data: dataset.tmenu,
       markers: {
-        backgroundMenu: $_dpmvs510tjkmcwtwz.resolve('styles-background-menu'),
-        menu: $_dpmvs510tjkmcwtwz.resolve('styles-menu'),
-        selectedMenu: $_dpmvs510tjkmcwtwz.resolve('styles-selected-menu'),
-        item: $_dpmvs510tjkmcwtwz.resolve('styles-item'),
-        selectedItem: $_dpmvs510tjkmcwtwz.resolve('styles-selected-item')
+        backgroundMenu: $_9mxjlz100jh8lz4y0.resolve('styles-background-menu'),
+        menu: $_9mxjlz100jh8lz4y0.resolve('styles-menu'),
+        selectedMenu: $_9mxjlz100jh8lz4y0.resolve('styles-selected-menu'),
+        item: $_9mxjlz100jh8lz4y0.resolve('styles-item'),
+        selectedItem: $_9mxjlz100jh8lz4y0.resolve('styles-selected-item')
       }
     }));
     return memMenu.asSpec();
   };
-  var $_g4n3ds147jkmcwukp = { sketch: sketch$9 };
+  var $_5on7up13ejh8lz5mq = { sketch: sketch$9 };
 
   var getFromExpandingItem = function (item) {
-    var newItem = deepMerge(exclude$1(item, ['items']), { menu: true });
+    var newItem = $_b00d1jx4jh8lz4ij.deepMerge(exclude$1(item, ['items']), { menu: true });
     var rest = expand(item.items);
-    var newMenus = deepMerge(rest.menus, wrap$2(item.title, rest.items));
-    var newExpansions = deepMerge(rest.expansions, wrap$2(item.title, item.title));
+    var newMenus = $_b00d1jx4jh8lz4ij.deepMerge(rest.menus, wrap$2(item.title, rest.items));
+    var newExpansions = $_b00d1jx4jh8lz4ij.deepMerge(rest.expansions, wrap$2(item.title, item.title));
     return {
       item: newItem,
       menus: newMenus,
@@ -9342,12 +9629,12 @@ var mobile = (function () {
     };
   };
   var expand = function (items) {
-    return foldr(items, function (acc, item) {
+    return $_ffek9lxijh8lz4jt.foldr(items, function (acc, item) {
       var newData = getFromItem(item);
       return {
-        menus: deepMerge(acc.menus, newData.menus),
+        menus: $_b00d1jx4jh8lz4ij.deepMerge(acc.menus, newData.menus),
         items: [newData.item].concat(acc.items),
-        expansions: deepMerge(acc.expansions, newData.expansions)
+        expansions: $_b00d1jx4jh8lz4ij.deepMerge(acc.expansions, newData.expansions)
       };
     }, {
       menus: {},
@@ -9355,7 +9642,7 @@ var mobile = (function () {
       items: []
     });
   };
-  var $_cubwat15ajkmcwuvu = { expand: expand };
+  var $_7i3thl14hjh8lz5xx = { expand: expand };
 
   var register$1 = function (editor, settings) {
     var isSelectedFor = function (format) {
@@ -9370,20 +9657,20 @@ var mobile = (function () {
       };
     };
     var enrichSupported = function (item) {
-      return deepMerge(item, {
+      return $_b00d1jx4jh8lz4ij.deepMerge(item, {
         isSelected: isSelectedFor(item.format),
         getPreview: getPreview(item.format)
       });
     };
     var enrichMenu = function (item) {
-      return deepMerge(item, {
-        isSelected: constant(false),
-        getPreview: constant('')
+      return $_b00d1jx4jh8lz4ij.deepMerge(item, {
+        isSelected: $_7vemb6x3jh8lz4ig.constant(false),
+        getPreview: $_7vemb6x3jh8lz4ig.constant('')
       });
     };
     var enrichCustom = function (item) {
-      var formatName = generate$1(item.title);
-      var newItem = deepMerge(item, {
+      var formatName = $_dpycsh11hjh8lz59l.generate(item.title);
+      var newItem = $_b00d1jx4jh8lz4ij.deepMerge(item, {
         format: formatName,
         isSelected: isSelectedFor(formatName),
         getPreview: getPreview(formatName)
@@ -9393,10 +9680,10 @@ var mobile = (function () {
     };
     var formats = readOptFrom$1(settings, 'style_formats').getOr(DefaultStyleFormats);
     var doEnrich = function (items) {
-      return map$1(items, function (item) {
+      return $_ffek9lxijh8lz4jt.map(items, function (item) {
         if (hasKey$1(item, 'items')) {
           var newItems = doEnrich(item.items);
-          return deepMerge(enrichMenu(item), { items: newItems });
+          return $_b00d1jx4jh8lz4ij.deepMerge(enrichMenu(item), { items: newItems });
         } else if (hasKey$1(item, 'format')) {
           return enrichSupported(item);
         } else {
@@ -9408,7 +9695,7 @@ var mobile = (function () {
   };
   var prune = function (editor, formats) {
     var doPrune = function (items) {
-      return bind(items, function (item) {
+      return $_ffek9lxijh8lz4jt.bind(items, function (item) {
         if (item.items !== undefined) {
           var newItems = doPrune(item.items);
           return newItems.length > 0 ? [item] : [];
@@ -9419,11 +9706,11 @@ var mobile = (function () {
       });
     };
     var prunedItems = doPrune(formats);
-    return $_cubwat15ajkmcwuvu.expand(prunedItems);
+    return $_7i3thl14hjh8lz5xx.expand(prunedItems);
   };
   var ui = function (editor, formats, onDone) {
     var pruned = prune(editor, formats);
-    return $_g4n3ds147jkmcwukp.sketch({
+    return $_5on7up13ejh8lz5mq.sketch({
       formats: pruned,
       handle: function (item, value) {
         editor.undoManager.transact(function () {
@@ -9437,7 +9724,7 @@ var mobile = (function () {
       }
     });
   };
-  var $_g500p1145jkmcwuk9 = {
+  var $_c5y4pb13cjh8lz5mc = {
     register: register$1,
     ui: ui
   };
@@ -9456,28 +9743,28 @@ var mobile = (function () {
     return toolbar.length > 0 ? toolbar.split(/\s+/) : [];
   };
   var identifyFromArray = function (toolbar) {
-    return bind(toolbar, function (item) {
-      return isArray(item) ? identifyFromArray(item) : extract$1(item);
+    return $_ffek9lxijh8lz4jt.bind(toolbar, function (item) {
+      return $_dx88esx5jh8lz4is.isArray(item) ? identifyFromArray(item) : extract$1(item);
     });
   };
   var identify = function (settings) {
     var toolbar = settings.toolbar !== undefined ? settings.toolbar : defaults;
-    return isArray(toolbar) ? identifyFromArray(toolbar) : extract$1(toolbar);
+    return $_dx88esx5jh8lz4is.isArray(toolbar) ? identifyFromArray(toolbar) : extract$1(toolbar);
   };
   var setup = function (realm, editor) {
     var commandSketch = function (name) {
       return function () {
-        return $_3u2u4g10ujkmcwtx2.forToolbarCommand(editor, name);
+        return $_7cxrim101jh8lz4y2.forToolbarCommand(editor, name);
       };
     };
     var stateCommandSketch = function (name) {
       return function () {
-        return $_3u2u4g10ujkmcwtx2.forToolbarStateCommand(editor, name);
+        return $_7cxrim101jh8lz4y2.forToolbarStateCommand(editor, name);
       };
     };
     var actionSketch = function (name, query, action) {
       return function () {
-        return $_3u2u4g10ujkmcwtx2.forToolbarStateAction(editor, name, query, action);
+        return $_7cxrim101jh8lz4y2.forToolbarStateAction(editor, name, query, action);
       };
     };
     var undo = commandSketch('undo');
@@ -9505,28 +9792,28 @@ var mobile = (function () {
       return sketch$4(realm, editor);
     };
     var forecolor = function () {
-      return $_7d2wns12kjkmcwu9s.sketch(realm, editor);
+      return $_2666zm11rjh8lz5br.sketch(realm, editor);
     };
-    var styleFormats = $_g500p1145jkmcwuk9.register(editor, editor.settings);
+    var styleFormats = $_c5y4pb13cjh8lz5mc.register(editor, editor.settings);
     var styleFormatsMenu = function () {
-      return $_g500p1145jkmcwuk9.ui(editor, styleFormats, function () {
+      return $_c5y4pb13cjh8lz5mc.ui(editor, styleFormats, function () {
         editor.fire('scrollIntoView');
       });
     };
     var styleselect = function () {
-      return $_3u2u4g10ujkmcwtx2.forToolbar('style-formats', function (button) {
+      return $_7cxrim101jh8lz4y2.forToolbar('style-formats', function (button) {
         editor.fire('toReading');
         realm.dropup().appear(styleFormatsMenu, Toggling.on, button);
       }, derive$2([
         Toggling.config({
-          toggleClass: $_dpmvs510tjkmcwtwz.resolve('toolbar-button-selected'),
+          toggleClass: $_9mxjlz100jh8lz4y0.resolve('toolbar-button-selected'),
           toggleOnExecute: false,
           aria: { mode: 'pressed' }
         }),
         Receiving.config({
           channels: wrapAll$1([
-            $_46xi8a10sjkmcwtws.receive($_5zff6b109jkmcwtt8.orientationChanged(), Toggling.off),
-            $_46xi8a10sjkmcwtws.receive($_5zff6b109jkmcwtt8.dropupDismissed(), Toggling.off)
+            $_dbkfwdzzjh8lz4xv.receive($_8dtsfgzgjh8lz4uf.orientationChanged(), Toggling.off),
+            $_dbkfwdzzjh8lz4xv.receive($_8dtsfgzgjh8lz4uf.dropupDismissed(), Toggling.off)
           ])
         })
       ]));
@@ -9561,13 +9848,13 @@ var mobile = (function () {
   var detect$4 = function (settings, features) {
     var itemNames = identify(settings);
     var present = {};
-    return bind(itemNames, function (iName) {
+    return $_ffek9lxijh8lz4jt.bind(itemNames, function (iName) {
       var r = !hasKey$1(present, iName) && hasKey$1(features, iName) && features[iName].isSupported() ? [features[iName].sketch()] : [];
       present[iName] = true;
       return r;
     });
   };
-  var $_1rc1u10ajkmcwttb = {
+  var $_cifu55zhjh8lz4ui = {
     identify: identify,
     setup: setup,
     detect: detect$4
@@ -9575,27 +9862,27 @@ var mobile = (function () {
 
   var mkEvent = function (target, x, y, stop, prevent, kill, raw) {
     return {
-      'target': constant(target),
-      'x': constant(x),
-      'y': constant(y),
+      'target': $_7vemb6x3jh8lz4ig.constant(target),
+      'x': $_7vemb6x3jh8lz4ig.constant(x),
+      'y': $_7vemb6x3jh8lz4ig.constant(y),
       'stop': stop,
       'prevent': prevent,
       'kill': kill,
-      'raw': constant(raw)
+      'raw': $_7vemb6x3jh8lz4ig.constant(raw)
     };
   };
   var handle = function (filter, handler) {
     return function (rawEvent) {
       if (!filter(rawEvent))
         return;
-      var target = Element$$1.fromDom(rawEvent.target);
+      var target = $_2ykjbpxpjh8lz4l0.fromDom(rawEvent.target);
       var stop = function () {
         rawEvent.stopPropagation();
       };
       var prevent = function () {
         rawEvent.preventDefault();
       };
-      var kill = compose(prevent, stop);
+      var kill = $_7vemb6x3jh8lz4ig.compose(prevent, stop);
       var evt = mkEvent(target, rawEvent.clientX, rawEvent.clientY, stop, prevent, kill, rawEvent);
       handler(evt);
     };
@@ -9603,7 +9890,7 @@ var mobile = (function () {
   var binder = function (element, event, filter, handler, useCapture) {
     var wrapped = handle(filter, handler);
     element.dom().addEventListener(event, wrapped, useCapture);
-    return { unbind: curry(unbind, element, event, wrapped, useCapture) };
+    return { unbind: $_7vemb6x3jh8lz4ig.curry(unbind, element, event, wrapped, useCapture) };
   };
   var bind$1 = function (element, event, filter, handler) {
     return binder(element, event, filter, handler, false);
@@ -9614,19 +9901,19 @@ var mobile = (function () {
   var unbind = function (element, event, handler, useCapture) {
     element.dom().removeEventListener(event, handler, useCapture);
   };
-  var $_7vpx6n15djkmcwuwd = {
+  var $_cjfppu14kjh8lz5yk = {
     bind: bind$1,
     capture: capture
   };
 
-  var filter$1 = constant(true);
+  var filter$1 = $_7vemb6x3jh8lz4ig.constant(true);
   var bind$2 = function (element, event, handler) {
-    return $_7vpx6n15djkmcwuwd.bind(element, event, filter$1, handler);
+    return $_cjfppu14kjh8lz5yk.bind(element, event, filter$1, handler);
   };
   var capture$1 = function (element, event, handler) {
-    return $_7vpx6n15djkmcwuwd.capture(element, event, filter$1, handler);
+    return $_cjfppu14kjh8lz5yk.capture(element, event, filter$1, handler);
   };
-  var $_csbuij15cjkmcwuwa = {
+  var $_64n4pu14jjh8lz5yh = {
     bind: bind$2,
     capture: capture$1
   };
@@ -9635,15 +9922,15 @@ var mobile = (function () {
   var INSURANCE = 1000 / INTERVAL;
   var get$11 = function (outerWindow) {
     var isPortrait = outerWindow.matchMedia('(orientation: portrait)').matches;
-    return { isPortrait: constant(isPortrait) };
+    return { isPortrait: $_7vemb6x3jh8lz4ig.constant(isPortrait) };
   };
   var getActualWidth = function (outerWindow) {
-    var isIos = $_b90373y3jkmcwths.detect().os.isiOS();
+    var isIos = $_cjnu0pxajh8lz4j9.detect().os.isiOS();
     var isPortrait = get$11(outerWindow).isPortrait();
     return isIos && !isPortrait ? outerWindow.screen.height : outerWindow.screen.width;
   };
   var onChange = function (outerWindow, listeners) {
-    var win = Element$$1.fromDom(outerWindow);
+    var win = $_2ykjbpxpjh8lz4l0.fromDom(outerWindow);
     var poller = null;
     var change = function () {
       clearInterval(poller);
@@ -9653,7 +9940,7 @@ var mobile = (function () {
         listeners.onReady(orientation);
       });
     };
-    var orientationHandle = $_csbuij15cjkmcwuwa.bind(win, 'orientationchange', change);
+    var orientationHandle = $_64n4pu14jjh8lz5yh.bind(win, 'orientationchange', change);
     var onAdjustment = function (f) {
       clearInterval(poller);
       var flag = outerWindow.innerHeight;
@@ -9677,7 +9964,7 @@ var mobile = (function () {
       destroy: destroy
     };
   };
-  var $_c3oqmx15bjkmcwuw0 = {
+  var $_40qbzh14ijh8lz5y7 = {
     get: get$11,
     onChange: onChange,
     getActualWidth: getActualWidth
@@ -9686,10 +9973,11 @@ var mobile = (function () {
   function DelayedFunction (fun, delay) {
     var ref = null;
     var schedule = function () {
-      var args = [];
+      var any = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
+        any[_i] = arguments[_i];
       }
+      var args = arguments;
       ref = setTimeout(function () {
         fun.apply(null, args);
         ref = null;
@@ -9710,11 +9998,10 @@ var mobile = (function () {
   var SIGNIFICANT_MOVE = 5;
   var LONGPRESS_DELAY = 400;
   var getTouch = function (event) {
-    var raw = event.raw();
-    if (raw.touches === undefined || raw.touches.length !== 1) {
+    if (event.raw().touches === undefined || event.raw().touches.length !== 1) {
       return Option.none();
     }
-    return Option.some(raw.touches[0]);
+    return Option.some(event.raw().touches[0]);
   };
   var isFarEnough = function (touch, data) {
     var distX = Math.abs(touch.clientX - data.x());
@@ -9731,8 +10018,8 @@ var mobile = (function () {
       getTouch(event).each(function (touch) {
         longpress$$1.cancel();
         var data = {
-          x: constant(touch.clientX),
-          y: constant(touch.clientY),
+          x: $_7vemb6x3jh8lz4ig.constant(touch.clientX),
+          y: $_7vemb6x3jh8lz4ig.constant(touch.clientY),
           target: event.target
         };
         longpress$$1.schedule(event);
@@ -9754,7 +10041,7 @@ var mobile = (function () {
     var handleTouchend = function (event) {
       longpress$$1.cancel();
       var isSame = function (data) {
-        return $_cpo6bcytjkmcwtkv.eq(data.target(), event.target());
+        return $_6liejjxzjh8lz4lv.eq(data.target(), event.target());
       };
       return startData.get().filter(isSame).map(function (data) {
         return settings.triggerEvent(tap(), event);
@@ -9789,12 +10076,12 @@ var mobile = (function () {
       }
     });
     var onTouchend = function () {
-      return $_csbuij15cjkmcwuwa.bind(editorApi.body(), 'touchend', function (evt) {
+      return $_64n4pu14jjh8lz5yh.bind(editorApi.body(), 'touchend', function (evt) {
         tapEvent.fireIfReady(evt, 'touchend');
       });
     };
     var onTouchmove = function () {
-      return $_csbuij15cjkmcwuwa.bind(editorApi.body(), 'touchmove', function (evt) {
+      return $_64n4pu14jjh8lz5yh.bind(editorApi.body(), 'touchmove', function (evt) {
         tapEvent.fireIfReady(evt, 'touchmove');
       });
     };
@@ -9807,18 +10094,18 @@ var mobile = (function () {
       onTouchmove: onTouchmove
     };
   };
-  var $_1qfxb115ijkmcwuxo = { monitor: monitor$1 };
+  var $_dxdi0514pjh8lz5zr = { monitor: monitor$1 };
 
-  var isAndroid6 = $_b90373y3jkmcwths.detect().os.version.major >= 6;
+  var isAndroid6 = $_cjnu0pxajh8lz4j9.detect().os.version.major >= 6;
   var initEvents = function (editorApi, toolstrip, alloy) {
-    var tapping = $_1qfxb115ijkmcwuxo.monitor(editorApi);
-    var outerDoc = $_a7cj16ynjkmcwtk5.owner(toolstrip);
+    var tapping = $_dxdi0514pjh8lz5zr.monitor(editorApi);
+    var outerDoc = $_4x0y5axtjh8lz4lc.owner(toolstrip);
     var isRanged = function (sel) {
-      return !$_cpo6bcytjkmcwtkv.eq(sel.start(), sel.finish()) || sel.soffset() !== sel.foffset();
+      return !$_6liejjxzjh8lz4lv.eq(sel.start(), sel.finish()) || sel.soffset() !== sel.foffset();
     };
     var hasRangeInUi = function () {
-      return $_fci5qy101jkmcwtsc.active(outerDoc).filter(function (input) {
-        return $_b0ubstykjkmcwtjz.name(input) === 'input';
+      return $_1z851az8jh8lz4tn.active(outerDoc).filter(function (input) {
+        return $_2dp7e0xqjh8lz4l7.name(input) === 'input';
       }).exists(function (input) {
         return input.dom().selectionStart !== input.dom().selectionEnd;
       });
@@ -9828,19 +10115,19 @@ var mobile = (function () {
       alloy.getByDom(toolstrip).each((rangeInContent || hasRangeInUi()) === true ? Toggling.on : Toggling.off);
     };
     var listeners = [
-      $_csbuij15cjkmcwuwa.bind(editorApi.body(), 'touchstart', function (evt) {
+      $_64n4pu14jjh8lz5yh.bind(editorApi.body(), 'touchstart', function (evt) {
         editorApi.onTouchContent();
         tapping.fireTouchstart(evt);
       }),
       tapping.onTouchmove(),
       tapping.onTouchend(),
-      $_csbuij15cjkmcwuwa.bind(toolstrip, 'touchstart', function (evt) {
+      $_64n4pu14jjh8lz5yh.bind(toolstrip, 'touchstart', function (evt) {
         editorApi.onTouchToolstrip();
       }),
       editorApi.onToReading(function () {
-        $_fci5qy101jkmcwtsc.blur(editorApi.body());
+        $_1z851az8jh8lz4tn.blur(editorApi.body());
       }),
-      editorApi.onToEditing(noop),
+      editorApi.onToEditing($_7vemb6x3jh8lz4ig.noop),
       editorApi.onScrollToCursor(function (tinyEvent) {
         tinyEvent.preventDefault();
         editorApi.getCursorBox().each(function (bounds) {
@@ -9853,26 +10140,26 @@ var mobile = (function () {
         });
       })
     ].concat(isAndroid6 === true ? [] : [
-      $_csbuij15cjkmcwuwa.bind(Element$$1.fromDom(editorApi.win()), 'blur', function () {
+      $_64n4pu14jjh8lz5yh.bind($_2ykjbpxpjh8lz4l0.fromDom(editorApi.win()), 'blur', function () {
         alloy.getByDom(toolstrip).each(Toggling.off);
       }),
-      $_csbuij15cjkmcwuwa.bind(outerDoc, 'select', updateMargin),
-      $_csbuij15cjkmcwuwa.bind(editorApi.doc(), 'selectionchange', updateMargin)
+      $_64n4pu14jjh8lz5yh.bind(outerDoc, 'select', updateMargin),
+      $_64n4pu14jjh8lz5yh.bind(editorApi.doc(), 'selectionchange', updateMargin)
     ]);
     var destroy = function () {
-      each$1(listeners, function (l) {
+      $_ffek9lxijh8lz4jt.each(listeners, function (l) {
         l.unbind();
       });
     };
     return { destroy: destroy };
   };
-  var $_4zjqxd15hjkmcwux6 = { initEvents: initEvents };
+  var $_1hdo3614ojh8lz5z8 = { initEvents: initEvents };
 
   var safeParse = function (element, attribute) {
-    var parsed = parseInt($_ga5avvzwjkmcwtro.get(element, attribute), 10);
+    var parsed = parseInt($_4d7m82z3jh8lz4t3.get(element, attribute), 10);
     return isNaN(parsed) ? 0 : parsed;
   };
-  var $_1qtglj15mjkmcwuyi = { safeParse: safeParse };
+  var $_fse4zs14tjh8lz60m = { safeParse: safeParse };
 
   function NodeValue (is, name) {
     var get = function (element) {
@@ -9890,7 +10177,7 @@ var mobile = (function () {
     var getOptionSafe = function (element) {
       return is(element) ? Option.from(element.dom().nodeValue) : Option.none();
     };
-    var browser = $_b90373y3jkmcwths.detect().browser;
+    var browser = $_cjnu0pxajh8lz4j9.detect().browser;
     var getOption = browser.isIE() && browser.version.major === 10 ? getOptionIE10 : getOptionSafe;
     var set = function (element, value) {
       if (!is(element))
@@ -9904,7 +10191,7 @@ var mobile = (function () {
     };
   }
 
-  var api$3 = NodeValue($_b0ubstykjkmcwtjz.isText, 'text');
+  var api$3 = NodeValue($_2dp7e0xqjh8lz4l7.isText, 'text');
   var get$12 = function (element) {
     return api$3.get(element);
   };
@@ -9914,15 +10201,15 @@ var mobile = (function () {
   var set$8 = function (element, value) {
     api$3.set(element, value);
   };
-  var $_br3bx415pjkmcwuz4 = {
+  var $_ej2k5o14wjh8lz614 = {
     get: get$12,
     getOption: getOption,
     set: set$8
   };
 
   var getEnd = function (element) {
-    return $_b0ubstykjkmcwtjz.name(element) === 'img' ? 1 : $_br3bx415pjkmcwuz4.getOption(element).fold(function () {
-      return $_a7cj16ynjkmcwtk5.children(element).length;
+    return $_2dp7e0xqjh8lz4l7.name(element) === 'img' ? 1 : $_ej2k5o14wjh8lz614.getOption(element).fold(function () {
+      return $_4x0y5axtjh8lz4lc.children(element).length;
     }, function (v) {
       return v.length;
     });
@@ -9935,7 +10222,7 @@ var mobile = (function () {
   };
   var NBSP = '\xA0';
   var isTextNodeWithCursorPosition = function (el) {
-    return $_br3bx415pjkmcwuz4.getOption(el).filter(function (text) {
+    return $_ej2k5o14wjh8lz614.getOption(el).filter(function (text) {
       return text.trim().length !== 0 || text.indexOf(NBSP) > -1;
     }).isSome();
   };
@@ -9945,16 +10232,16 @@ var mobile = (function () {
   ];
   var isCursorPosition = function (elem) {
     var hasCursorPosition = isTextNodeWithCursorPosition(elem);
-    return hasCursorPosition || contains(elementsWithCursorPosition, $_b0ubstykjkmcwtjz.name(elem));
+    return hasCursorPosition || $_ffek9lxijh8lz4jt.contains(elementsWithCursorPosition, $_2dp7e0xqjh8lz4l7.name(elem));
   };
-  var $_bqeu8p15ojkmcwuz1 = {
+  var $_5gjq8b14vjh8lz610 = {
     getEnd: getEnd,
     isEnd: isEnd,
     isStart: isStart,
     isCursorPosition: isCursorPosition
   };
 
-  var adt$4 = Adt.generate([
+  var adt$4 = $_aruf06ycjh8lz4o4.generate([
     { 'before': ['element'] },
     {
       'on': [
@@ -9968,9 +10255,9 @@ var mobile = (function () {
     return subject.fold(onBefore, onOn, onAfter);
   };
   var getStart = function (situ) {
-    return situ.fold(identity, identity, identity);
+    return situ.fold($_7vemb6x3jh8lz4ig.identity, $_7vemb6x3jh8lz4ig.identity, $_7vemb6x3jh8lz4ig.identity);
   };
-  var $_66srvk15sjkmcwuzg = {
+  var $_12ly7314zjh8lz61f = {
     before: adt$4.before,
     on: adt$4.on,
     after: adt$4.after,
@@ -9978,7 +10265,7 @@ var mobile = (function () {
     getStart: getStart
   };
 
-  var type$1 = Adt.generate([
+  var type$1 = $_aruf06ycjh8lz4o4.generate([
     { domRange: ['rng'] },
     {
       relative: [
@@ -9995,17 +10282,17 @@ var mobile = (function () {
       ]
     }
   ]);
-  var range$1 = Immutable('start', 'soffset', 'finish', 'foffset');
+  var range$1 = $_dti8klxujh8lz4lo.immutable('start', 'soffset', 'finish', 'foffset');
   var exactFromRange = function (simRange) {
     return type$1.exact(simRange.start(), simRange.soffset(), simRange.finish(), simRange.foffset());
   };
   var getStart$1 = function (selection) {
     return selection.match({
       domRange: function (rng) {
-        return Element$$1.fromDom(rng.startContainer);
+        return $_2ykjbpxpjh8lz4l0.fromDom(rng.startContainer);
       },
       relative: function (startSitu, finishSitu) {
-        return $_66srvk15sjkmcwuzg.getStart(startSitu);
+        return $_12ly7314zjh8lz61f.getStart(startSitu);
       },
       exact: function (start, soffset, finish, foffset) {
         return start;
@@ -10014,9 +10301,9 @@ var mobile = (function () {
   };
   var getWin = function (selection) {
     var start = getStart$1(selection);
-    return $_a7cj16ynjkmcwtk5.defaultView(start);
+    return $_4x0y5axtjh8lz4lc.defaultView(start);
   };
-  var $_9isfed15rjkmcwuzb = {
+  var $_14u69c14yjh8lz61a = {
     domRange: type$1.domRange,
     relative: type$1.relative,
     exact: type$1.exact,
@@ -10026,7 +10313,7 @@ var mobile = (function () {
   };
 
   var makeRange = function (start, soffset, finish, foffset) {
-    var doc = $_a7cj16ynjkmcwtk5.owner(start);
+    var doc = $_4x0y5axtjh8lz4lc.owner(start);
     var rng = doc.dom().createRange();
     rng.setStart(start.dom(), soffset);
     rng.setEnd(finish.dom(), foffset);
@@ -10034,14 +10321,14 @@ var mobile = (function () {
   };
   var commonAncestorContainer = function (start, soffset, finish, foffset) {
     var r = makeRange(start, soffset, finish, foffset);
-    return Element$$1.fromDom(r.commonAncestorContainer);
+    return $_2ykjbpxpjh8lz4l0.fromDom(r.commonAncestorContainer);
   };
   var after$2 = function (start, soffset, finish, foffset) {
     var r = makeRange(start, soffset, finish, foffset);
-    var same = $_cpo6bcytjkmcwtkv.eq(start, finish) && soffset === foffset;
+    var same = $_6liejjxzjh8lz4lv.eq(start, finish) && soffset === foffset;
     return r.collapsed && !same;
   };
-  var $_gdadtz15ujkmcwuzt = {
+  var $_aradfc151jh8lz61u = {
     after: after$2,
     commonAncestorContainer: commonAncestorContainer
   };
@@ -10049,12 +10336,12 @@ var mobile = (function () {
   var fromElements = function (elements, scope) {
     var doc = scope || document;
     var fragment = doc.createDocumentFragment();
-    each$1(elements, function (element) {
+    $_ffek9lxijh8lz4jt.each(elements, function (element) {
       fragment.appendChild(element.dom());
     });
-    return Element$$1.fromDom(fragment);
+    return $_2ykjbpxpjh8lz4l0.fromDom(fragment);
   };
-  var $_daatfv15vjkmcwuzu = { fromElements: fromElements };
+  var $_enrypc152jh8lz61w = { fromElements: fromElements };
 
   var selectNodeContents = function (win, element) {
     var rng = win.document.createRange();
@@ -10109,16 +10396,16 @@ var mobile = (function () {
   };
   var cloneFragment = function (rng) {
     var fragment = rng.cloneContents();
-    return Element$$1.fromDom(fragment);
+    return $_2ykjbpxpjh8lz4l0.fromDom(fragment);
   };
   var toRect = function (rect) {
     return {
-      left: constant(rect.left),
-      top: constant(rect.top),
-      right: constant(rect.right),
-      bottom: constant(rect.bottom),
-      width: constant(rect.width),
-      height: constant(rect.height)
+      left: $_7vemb6x3jh8lz4ig.constant(rect.left),
+      top: $_7vemb6x3jh8lz4ig.constant(rect.top),
+      right: $_7vemb6x3jh8lz4ig.constant(rect.right),
+      bottom: $_7vemb6x3jh8lz4ig.constant(rect.bottom),
+      width: $_7vemb6x3jh8lz4ig.constant(rect.width),
+      height: $_7vemb6x3jh8lz4ig.constant(rect.height)
     };
   };
   var getFirstRect = function (rng) {
@@ -10133,7 +10420,7 @@ var mobile = (function () {
   var toString$1 = function (rng) {
     return rng.toString();
   };
-  var $_3a70ou15wjkmcwuzy = {
+  var $_7pjd2g153jh8lz61z = {
     create: create$4,
     replaceWith: replaceWith,
     selectNodeContents: selectNodeContents,
@@ -10148,7 +10435,7 @@ var mobile = (function () {
     toString: toString$1
   };
 
-  var adt$5 = Adt.generate([
+  var adt$5 = $_aruf06ycjh8lz4o4.generate([
     {
       ltr: [
         'start',
@@ -10167,33 +10454,33 @@ var mobile = (function () {
     }
   ]);
   var fromRange = function (win, type, range) {
-    return type(Element$$1.fromDom(range.startContainer), range.startOffset, Element$$1.fromDom(range.endContainer), range.endOffset);
+    return type($_2ykjbpxpjh8lz4l0.fromDom(range.startContainer), range.startOffset, $_2ykjbpxpjh8lz4l0.fromDom(range.endContainer), range.endOffset);
   };
   var getRanges = function (win, selection) {
     return selection.match({
       domRange: function (rng) {
         return {
-          ltr: constant(rng),
+          ltr: $_7vemb6x3jh8lz4ig.constant(rng),
           rtl: Option.none
         };
       },
       relative: function (startSitu, finishSitu) {
         return {
-          ltr: cached(function () {
-            return $_3a70ou15wjkmcwuzy.relativeToNative(win, startSitu, finishSitu);
+          ltr: $_5hshsbxbjh8lz4jc.cached(function () {
+            return $_7pjd2g153jh8lz61z.relativeToNative(win, startSitu, finishSitu);
           }),
-          rtl: cached(function () {
-            return Option.some($_3a70ou15wjkmcwuzy.relativeToNative(win, finishSitu, startSitu));
+          rtl: $_5hshsbxbjh8lz4jc.cached(function () {
+            return Option.some($_7pjd2g153jh8lz61z.relativeToNative(win, finishSitu, startSitu));
           })
         };
       },
       exact: function (start, soffset, finish, foffset) {
         return {
-          ltr: cached(function () {
-            return $_3a70ou15wjkmcwuzy.exactToNative(win, start, soffset, finish, foffset);
+          ltr: $_5hshsbxbjh8lz4jc.cached(function () {
+            return $_7pjd2g153jh8lz61z.exactToNative(win, start, soffset, finish, foffset);
           }),
-          rtl: cached(function () {
-            return Option.some($_3a70ou15wjkmcwuzy.exactToNative(win, finish, foffset, start, soffset));
+          rtl: $_5hshsbxbjh8lz4jc.cached(function () {
+            return Option.some($_7pjd2g153jh8lz61z.exactToNative(win, finish, foffset, start, soffset));
           })
         };
       }
@@ -10206,7 +10493,7 @@ var mobile = (function () {
         return rev.collapsed === false;
       });
       return reversed.map(function (rev) {
-        return adt$5.rtl(Element$$1.fromDom(rev.endContainer), rev.endOffset, Element$$1.fromDom(rev.startContainer), rev.startOffset);
+        return adt$5.rtl($_2ykjbpxpjh8lz4l0.fromDom(rev.endContainer), rev.endOffset, $_2ykjbpxpjh8lz4l0.fromDom(rev.startContainer), rev.startOffset);
       }).getOrThunk(function () {
         return fromRange(win, adt$5.ltr, rng);
       });
@@ -10235,7 +10522,7 @@ var mobile = (function () {
       }
     });
   };
-  var $_adttxu15xjkmcwv07 = {
+  var $_42vh91154jh8lz626 = {
     ltr: adt$5.ltr,
     rtl: adt$5.rtl,
     diagnose: diagnose,
@@ -10251,12 +10538,11 @@ var mobile = (function () {
     for (var i = 1; i < length; i++) {
       var rect = rectForOffset(i);
       var curDeltaX = Math.abs(x - rect.left);
-      if (y <= rect.bottom) {
-        if (y < rect.top || curDeltaX > xDelta) {
-          return i - 1;
-        } else {
-          xDelta = curDeltaX;
-        }
+      if (y > rect.bottom) {
+      } else if (y < rect.top || curDeltaX > xDelta) {
+        return i - 1;
+      } else {
+        xDelta = curDeltaX;
       }
     }
     return 0;
@@ -10264,7 +10550,7 @@ var mobile = (function () {
   var inRect = function (rect, x, y) {
     return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
   };
-  var $_4zooqd160jkmcwv0w = {
+  var $_fprawl157jh8lz62q = {
     inRect: inRect,
     searchForPoint: searchForPoint
   };
@@ -10280,33 +10566,33 @@ var mobile = (function () {
       var r = rangeForOffset(offset);
       return r.getBoundingClientRect();
     };
-    var length = $_br3bx415pjkmcwuz4.get(textnode).length;
-    var offset = $_4zooqd160jkmcwv0w.searchForPoint(rectForOffset, x, y, rect.right, length);
+    var length = $_ej2k5o14wjh8lz614.get(textnode).length;
+    var offset = $_fprawl157jh8lz62q.searchForPoint(rectForOffset, x, y, rect.right, length);
     return rangeForOffset(offset);
   };
   var locate$1 = function (doc, node, x, y) {
     var r = doc.dom().createRange();
     r.selectNode(node.dom());
     var rects = r.getClientRects();
-    var foundRect = findMap(rects, function (rect) {
-      return $_4zooqd160jkmcwv0w.inRect(rect, x, y) ? Option.some(rect) : Option.none();
+    var foundRect = $_3g4qukzsjh8lz4wq.findMap(rects, function (rect) {
+      return $_fprawl157jh8lz62q.inRect(rect, x, y) ? Option.some(rect) : Option.none();
     });
     return foundRect.map(function (rect) {
       return locateOffset(doc, node, x, y, rect);
     });
   };
-  var $_2cs89p161jkmcwv0y = { locate: locate$1 };
+  var $_2lcf01158jh8lz62r = { locate: locate$1 };
 
   var searchInChildren = function (doc, node, x, y) {
     var r = doc.dom().createRange();
-    var nodes = $_a7cj16ynjkmcwtk5.children(node);
-    return findMap(nodes, function (n) {
+    var nodes = $_4x0y5axtjh8lz4lc.children(node);
+    return $_3g4qukzsjh8lz4wq.findMap(nodes, function (n) {
       r.selectNode(n.dom());
-      return $_4zooqd160jkmcwv0w.inRect(r.getBoundingClientRect(), x, y) ? locateNode(doc, n, x, y) : Option.none();
+      return $_fprawl157jh8lz62q.inRect(r.getBoundingClientRect(), x, y) ? locateNode(doc, n, x, y) : Option.none();
     });
   };
   var locateNode = function (doc, node, x, y) {
-    var locator = $_b0ubstykjkmcwtjz.isText(node) ? $_2cs89p161jkmcwv0y.locate : searchInChildren;
+    var locator = $_2dp7e0xqjh8lz4l7.isText(node) ? $_2lcf01158jh8lz62r.locate : searchInChildren;
     return locator(doc, node, x, y);
   };
   var locate$2 = function (doc, node, x, y) {
@@ -10317,17 +10603,17 @@ var mobile = (function () {
     var boundedY = Math.max(rect.top, Math.min(rect.bottom, y));
     return locateNode(doc, node, boundedX, boundedY);
   };
-  var $_ezlg4815zjkmcwv0r = { locate: locate$2 };
+  var $_3uvpz7156jh8lz62k = { locate: locate$2 };
 
   var first$3 = function (element) {
-    return $_exwlcm103jkmcwtsk.descendant(element, $_bqeu8p15ojkmcwuz1.isCursorPosition);
+    return $_1pk55azajh8lz4tu.descendant(element, $_5gjq8b14vjh8lz610.isCursorPosition);
   };
   var last$2 = function (element) {
-    return descendantRtl(element, $_bqeu8p15ojkmcwuz1.isCursorPosition);
+    return descendantRtl(element, $_5gjq8b14vjh8lz610.isCursorPosition);
   };
   var descendantRtl = function (scope, predicate) {
     var descend = function (element) {
-      var children = $_a7cj16ynjkmcwtk5.children(element);
+      var children = $_4x0y5axtjh8lz4lc.children(element);
       for (var i = children.length - 1; i >= 0; i--) {
         var child = children[i];
         if (predicate(child))
@@ -10340,7 +10626,7 @@ var mobile = (function () {
     };
     return descend(scope);
   };
-  var $_ct7f7e163jkmcwv17 = {
+  var $_gh23p15ajh8lz631 = {
     first: first$3,
     last: last$2
   };
@@ -10361,7 +10647,7 @@ var mobile = (function () {
     cursorRange.selectNode(node.dom());
     var rect = cursorRange.getBoundingClientRect();
     var collapseDirection = getCollapseDirection(rect, x);
-    var f = collapseDirection === COLLAPSE_TO_LEFT ? $_ct7f7e163jkmcwv17.first : $_ct7f7e163jkmcwv17.last;
+    var f = collapseDirection === COLLAPSE_TO_LEFT ? $_gh23p15ajh8lz631.first : $_gh23p15ajh8lz631.last;
     return f(node).map(function (target) {
       return createCollapsedNode(doc, target, collapseDirection);
     });
@@ -10372,10 +10658,10 @@ var mobile = (function () {
     return Option.some(createCollapsedNode(doc, node, collapseDirection));
   };
   var search$1 = function (doc, node, x) {
-    var f = $_a7cj16ynjkmcwtk5.children(node).length === 0 ? locateInEmpty : locateInElement;
+    var f = $_4x0y5axtjh8lz4lc.children(node).length === 0 ? locateInEmpty : locateInElement;
     return f(doc, node, x);
   };
-  var $_4j16c6162jkmcwv13 = { search: search$1 };
+  var $_d2jgfa159jh8lz62x = { search: search$1 };
 
   var caretPositionFromPoint = function (doc, x, y) {
     return Option.from(doc.dom().caretPositionFromPoint(x, y)).bind(function (pos) {
@@ -10396,75 +10682,75 @@ var mobile = (function () {
     var rect = r.getBoundingClientRect();
     var boundedX = Math.max(rect.left, Math.min(rect.right, x));
     var boundedY = Math.max(rect.top, Math.min(rect.bottom, y));
-    return $_ezlg4815zjkmcwv0r.locate(doc, node, boundedX, boundedY);
+    return $_3uvpz7156jh8lz62k.locate(doc, node, boundedX, boundedY);
   };
   var searchFromPoint = function (doc, x, y) {
-    return Element$$1.fromPoint(doc, x, y).bind(function (elem) {
+    return $_2ykjbpxpjh8lz4l0.fromPoint(doc, x, y).bind(function (elem) {
       var fallback = function () {
-        return $_4j16c6162jkmcwv13.search(doc, elem, x);
+        return $_d2jgfa159jh8lz62x.search(doc, elem, x);
       };
-      return $_a7cj16ynjkmcwtk5.children(elem).length === 0 ? fallback() : searchTextNodes(doc, elem, x, y).orThunk(fallback);
+      return $_4x0y5axtjh8lz4lc.children(elem).length === 0 ? fallback() : searchTextNodes(doc, elem, x, y).orThunk(fallback);
     });
   };
   var availableSearch = document.caretPositionFromPoint ? caretPositionFromPoint : document.caretRangeFromPoint ? caretRangeFromPoint : searchFromPoint;
   var fromPoint$1 = function (win, x, y) {
-    var doc = Element$$1.fromDom(win.document);
+    var doc = $_2ykjbpxpjh8lz4l0.fromDom(win.document);
     return availableSearch(doc, x, y).map(function (rng) {
-      return $_9isfed15rjkmcwuzb.range(Element$$1.fromDom(rng.startContainer), rng.startOffset, Element$$1.fromDom(rng.endContainer), rng.endOffset);
+      return $_14u69c14yjh8lz61a.range($_2ykjbpxpjh8lz4l0.fromDom(rng.startContainer), rng.startOffset, $_2ykjbpxpjh8lz4l0.fromDom(rng.endContainer), rng.endOffset);
     });
   };
-  var $_3yuu9y15yjkmcwv0m = { fromPoint: fromPoint$1 };
+  var $_bp1345155jh8lz62g = { fromPoint: fromPoint$1 };
 
   var withinContainer = function (win, ancestor, outerRange, selector) {
-    var innerRange = $_3a70ou15wjkmcwuzy.create(win);
-    var self = $_2lpyciyyjkmcwtlc.is(ancestor, selector) ? [ancestor] : [];
-    var elements = self.concat($_bpsi2e119jkmcwtzh.descendants(ancestor, selector));
-    return filter(elements, function (elem) {
-      $_3a70ou15wjkmcwuzy.selectNodeContentsUsing(innerRange, elem);
-      return $_3a70ou15wjkmcwuzy.isWithin(outerRange, innerRange);
+    var innerRange = $_7pjd2g153jh8lz61z.create(win);
+    var self = $_uope4y4jh8lz4ma.is(ancestor, selector) ? [ancestor] : [];
+    var elements = self.concat($_bhctx310gjh8lz510.descendants(ancestor, selector));
+    return $_ffek9lxijh8lz4jt.filter(elements, function (elem) {
+      $_7pjd2g153jh8lz61z.selectNodeContentsUsing(innerRange, elem);
+      return $_7pjd2g153jh8lz61z.isWithin(outerRange, innerRange);
     });
   };
-  var find$3 = function (win, selection, selector) {
-    var outerRange = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    var ancestor = Element$$1.fromDom(outerRange.commonAncestorContainer);
-    return $_b0ubstykjkmcwtjz.isElement(ancestor) ? withinContainer(win, ancestor, outerRange, selector) : [];
+  var find$4 = function (win, selection, selector) {
+    var outerRange = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    var ancestor = $_2ykjbpxpjh8lz4l0.fromDom(outerRange.commonAncestorContainer);
+    return $_2dp7e0xqjh8lz4l7.isElement(ancestor) ? withinContainer(win, ancestor, outerRange, selector) : [];
   };
-  var $_sbgiw164jkmcwv1b = { find: find$3 };
+  var $_2e0n1q15bjh8lz634 = { find: find$4 };
 
   var beforeSpecial = function (element, offset) {
-    var name = $_b0ubstykjkmcwtjz.name(element);
+    var name = $_2dp7e0xqjh8lz4l7.name(element);
     if ('input' === name)
-      return $_66srvk15sjkmcwuzg.after(element);
-    else if (!contains([
+      return $_12ly7314zjh8lz61f.after(element);
+    else if (!$_ffek9lxijh8lz4jt.contains([
         'br',
         'img'
       ], name))
-      return $_66srvk15sjkmcwuzg.on(element, offset);
+      return $_12ly7314zjh8lz61f.on(element, offset);
     else
-      return offset === 0 ? $_66srvk15sjkmcwuzg.before(element) : $_66srvk15sjkmcwuzg.after(element);
+      return offset === 0 ? $_12ly7314zjh8lz61f.before(element) : $_12ly7314zjh8lz61f.after(element);
   };
   var preprocessRelative = function (startSitu, finishSitu) {
-    var start = startSitu.fold($_66srvk15sjkmcwuzg.before, beforeSpecial, $_66srvk15sjkmcwuzg.after);
-    var finish = finishSitu.fold($_66srvk15sjkmcwuzg.before, beforeSpecial, $_66srvk15sjkmcwuzg.after);
-    return $_9isfed15rjkmcwuzb.relative(start, finish);
+    var start = startSitu.fold($_12ly7314zjh8lz61f.before, beforeSpecial, $_12ly7314zjh8lz61f.after);
+    var finish = finishSitu.fold($_12ly7314zjh8lz61f.before, beforeSpecial, $_12ly7314zjh8lz61f.after);
+    return $_14u69c14yjh8lz61a.relative(start, finish);
   };
   var preprocessExact = function (start, soffset, finish, foffset) {
     var startSitu = beforeSpecial(start, soffset);
     var finishSitu = beforeSpecial(finish, foffset);
-    return $_9isfed15rjkmcwuzb.relative(startSitu, finishSitu);
+    return $_14u69c14yjh8lz61a.relative(startSitu, finishSitu);
   };
   var preprocess = function (selection) {
     return selection.match({
       domRange: function (rng) {
-        var start = Element$$1.fromDom(rng.startContainer);
-        var finish = Element$$1.fromDom(rng.endContainer);
+        var start = $_2ykjbpxpjh8lz4l0.fromDom(rng.startContainer);
+        var finish = $_2ykjbpxpjh8lz4l0.fromDom(rng.endContainer);
         return preprocessExact(start, rng.startOffset, finish, rng.endOffset);
       },
       relative: preprocessRelative,
       exact: preprocessExact
     });
   };
-  var $_71tigc165jkmcwv1f = {
+  var $_comnn115cjh8lz638 = {
     beforeSpecial: beforeSpecial,
     preprocess: preprocess,
     preprocessRelative: preprocessRelative,
@@ -10478,18 +10764,14 @@ var mobile = (function () {
     });
   };
   var doSetRange = function (win, start, soffset, finish, foffset) {
-    var rng = $_3a70ou15wjkmcwuzy.exactToNative(win, start, soffset, finish, foffset);
+    var rng = $_7pjd2g153jh8lz61z.exactToNative(win, start, soffset, finish, foffset);
     doSetNativeRange(win, rng);
   };
   var findWithin = function (win, selection, selector) {
-    return $_sbgiw164jkmcwv1b.find(win, selection, selector);
-  };
-  var setLegacyRtlRange = function (win, selection, start, soffset, finish, foffset) {
-    selection.collapse(start.dom(), soffset);
-    selection.extend(finish.dom(), foffset);
+    return $_2e0n1q15bjh8lz634.find(win, selection, selector);
   };
   var setRangeFromRelative = function (win, relative) {
-    return $_adttxu15xjkmcwv07.diagnose(win, relative).match({
+    return $_42vh91154jh8lz626.diagnose(win, relative).match({
       ltr: function (start, soffset, finish, foffset) {
         doSetRange(win, start, soffset, finish, foffset);
       },
@@ -10498,11 +10780,8 @@ var mobile = (function () {
         if (selection.setBaseAndExtent) {
           selection.setBaseAndExtent(start.dom(), soffset, finish.dom(), foffset);
         } else if (selection.extend) {
-          try {
-            setLegacyRtlRange(win, selection, start, soffset, finish, foffset);
-          } catch (e) {
-            doSetRange(win, finish, foffset, start, soffset);
-          }
+          selection.collapse(start.dom(), soffset);
+          selection.extend(finish.dom(), foffset);
         } else {
           doSetRange(win, finish, foffset, start, soffset);
         }
@@ -10510,20 +10789,20 @@ var mobile = (function () {
     });
   };
   var setExact = function (win, start, soffset, finish, foffset) {
-    var relative = $_71tigc165jkmcwv1f.preprocessExact(start, soffset, finish, foffset);
+    var relative = $_comnn115cjh8lz638.preprocessExact(start, soffset, finish, foffset);
     setRangeFromRelative(win, relative);
   };
   var setRelative = function (win, startSitu, finishSitu) {
-    var relative = $_71tigc165jkmcwv1f.preprocessRelative(startSitu, finishSitu);
+    var relative = $_comnn115cjh8lz638.preprocessRelative(startSitu, finishSitu);
     setRangeFromRelative(win, relative);
   };
   var toNative = function (selection) {
-    var win = $_9isfed15rjkmcwuzb.getWin(selection).dom();
+    var win = $_14u69c14yjh8lz61a.getWin(selection).dom();
     var getDomRange = function (start, soffset, finish, foffset) {
-      return $_3a70ou15wjkmcwuzy.exactToNative(win, start, soffset, finish, foffset);
+      return $_7pjd2g153jh8lz61z.exactToNative(win, start, soffset, finish, foffset);
     };
-    var filtered = $_71tigc165jkmcwv1f.preprocess(selection);
-    return $_adttxu15xjkmcwv07.diagnose(win, filtered).match({
+    var filtered = $_comnn115cjh8lz638.preprocess(selection);
+    return $_42vh91154jh8lz626.diagnose(win, filtered).match({
       ltr: getDomRange,
       rtl: getDomRange
     });
@@ -10532,23 +10811,23 @@ var mobile = (function () {
     if (selection.rangeCount > 0) {
       var firstRng = selection.getRangeAt(0);
       var lastRng = selection.getRangeAt(selection.rangeCount - 1);
-      return Option.some($_9isfed15rjkmcwuzb.range(Element$$1.fromDom(firstRng.startContainer), firstRng.startOffset, Element$$1.fromDom(lastRng.endContainer), lastRng.endOffset));
+      return Option.some($_14u69c14yjh8lz61a.range($_2ykjbpxpjh8lz4l0.fromDom(firstRng.startContainer), firstRng.startOffset, $_2ykjbpxpjh8lz4l0.fromDom(lastRng.endContainer), lastRng.endOffset));
     } else {
       return Option.none();
     }
   };
   var doGetExact = function (selection) {
-    var anchorNode = Element$$1.fromDom(selection.anchorNode);
-    var focusNode = Element$$1.fromDom(selection.focusNode);
-    return $_gdadtz15ujkmcwuzt.after(anchorNode, selection.anchorOffset, focusNode, selection.focusOffset) ? Option.some($_9isfed15rjkmcwuzb.range(Element$$1.fromDom(selection.anchorNode), selection.anchorOffset, Element$$1.fromDom(selection.focusNode), selection.focusOffset)) : readRange(selection);
+    var anchorNode = $_2ykjbpxpjh8lz4l0.fromDom(selection.anchorNode);
+    var focusNode = $_2ykjbpxpjh8lz4l0.fromDom(selection.focusNode);
+    return $_aradfc151jh8lz61u.after(anchorNode, selection.anchorOffset, focusNode, selection.focusOffset) ? Option.some($_14u69c14yjh8lz61a.range($_2ykjbpxpjh8lz4l0.fromDom(selection.anchorNode), selection.anchorOffset, $_2ykjbpxpjh8lz4l0.fromDom(selection.focusNode), selection.focusOffset)) : readRange(selection);
   };
   var setToElement = function (win, element) {
-    var rng = $_3a70ou15wjkmcwuzy.selectNodeContents(win, element);
+    var rng = $_7pjd2g153jh8lz61z.selectNodeContents(win, element);
     doSetNativeRange(win, rng);
   };
   var forElement = function (win, element) {
-    var rng = $_3a70ou15wjkmcwuzy.selectNodeContents(win, element);
-    return $_9isfed15rjkmcwuzb.range(Element$$1.fromDom(rng.startContainer), rng.startOffset, Element$$1.fromDom(rng.endContainer), rng.endOffset);
+    var rng = $_7pjd2g153jh8lz61z.selectNodeContents(win, element);
+    return $_14u69c14yjh8lz61a.range($_2ykjbpxpjh8lz4l0.fromDom(rng.startContainer), rng.startOffset, $_2ykjbpxpjh8lz4l0.fromDom(rng.endContainer), rng.endOffset);
   };
   var getExact = function (win) {
     return Option.from(win.getSelection()).filter(function (sel) {
@@ -10557,45 +10836,45 @@ var mobile = (function () {
   };
   var get$13 = function (win) {
     return getExact(win).map(function (range) {
-      return $_9isfed15rjkmcwuzb.exact(range.start(), range.soffset(), range.finish(), range.foffset());
+      return $_14u69c14yjh8lz61a.exact(range.start(), range.soffset(), range.finish(), range.foffset());
     });
   };
   var getFirstRect$1 = function (win, selection) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    return $_3a70ou15wjkmcwuzy.getFirstRect(rng);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    return $_7pjd2g153jh8lz61z.getFirstRect(rng);
   };
   var getBounds$1 = function (win, selection) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    return $_3a70ou15wjkmcwuzy.getBounds(rng);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    return $_7pjd2g153jh8lz61z.getBounds(rng);
   };
   var getAtPoint = function (win, x, y) {
-    return $_3yuu9y15yjkmcwv0m.fromPoint(win, x, y);
+    return $_bp1345155jh8lz62g.fromPoint(win, x, y);
   };
   var getAsString = function (win, selection) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    return $_3a70ou15wjkmcwuzy.toString(rng);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    return $_7pjd2g153jh8lz61z.toString(rng);
   };
   var clear$1 = function (win) {
     var selection = win.getSelection();
     selection.removeAllRanges();
   };
   var clone$3 = function (win, selection) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    return $_3a70ou15wjkmcwuzy.cloneFragment(rng);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    return $_7pjd2g153jh8lz61z.cloneFragment(rng);
   };
   var replace = function (win, selection, elements) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    var fragment = $_daatfv15vjkmcwuzu.fromElements(elements, win.document);
-    $_3a70ou15wjkmcwuzy.replaceWith(rng, fragment);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    var fragment = $_enrypc152jh8lz61w.fromElements(elements, win.document);
+    $_7pjd2g153jh8lz61z.replaceWith(rng, fragment);
   };
   var deleteAt = function (win, selection) {
-    var rng = $_adttxu15xjkmcwv07.asLtrRange(win, selection);
-    $_3a70ou15wjkmcwuzy.deleteContents(rng);
+    var rng = $_42vh91154jh8lz626.asLtrRange(win, selection);
+    $_7pjd2g153jh8lz61z.deleteContents(rng);
   };
   var isCollapsed = function (start, soffset, finish, foffset) {
-    return $_cpo6bcytjkmcwtkv.eq(start, finish) && soffset === foffset;
+    return $_6liejjxzjh8lz4lv.eq(start, finish) && soffset === foffset;
   };
-  var $_1ii7ra15tjkmcwuzm = {
+  var $_bguetv150jh8lz61l = {
     setExact: setExact,
     getExact: getExact,
     get: get$13,
@@ -10622,29 +10901,29 @@ var mobile = (function () {
       top: rect.top,
       right: rect.right,
       bottom: rect.bottom,
-      width: constant(COLLAPSED_WIDTH),
+      width: $_7vemb6x3jh8lz4ig.constant(COLLAPSED_WIDTH),
       height: rect.height
     };
   };
   var toRect$1 = function (rawRect) {
     return {
-      left: constant(rawRect.left),
-      top: constant(rawRect.top),
-      right: constant(rawRect.right),
-      bottom: constant(rawRect.bottom),
-      width: constant(rawRect.width),
-      height: constant(rawRect.height)
+      left: $_7vemb6x3jh8lz4ig.constant(rawRect.left),
+      top: $_7vemb6x3jh8lz4ig.constant(rawRect.top),
+      right: $_7vemb6x3jh8lz4ig.constant(rawRect.right),
+      bottom: $_7vemb6x3jh8lz4ig.constant(rawRect.bottom),
+      width: $_7vemb6x3jh8lz4ig.constant(rawRect.width),
+      height: $_7vemb6x3jh8lz4ig.constant(rawRect.height)
     };
   };
-  var getRectsFromRange = function (range$$1) {
-    if (!range$$1.collapsed) {
-      return map$1(range$$1.getClientRects(), toRect$1);
+  var getRectsFromRange = function (range) {
+    if (!range.collapsed) {
+      return $_ffek9lxijh8lz4jt.map(range.getClientRects(), toRect$1);
     } else {
-      var start_1 = Element$$1.fromDom(range$$1.startContainer);
-      return $_a7cj16ynjkmcwtk5.parent(start_1).bind(function (parent) {
-        var selection = $_9isfed15rjkmcwuzb.exact(start_1, range$$1.startOffset, parent, $_bqeu8p15ojkmcwuz1.getEnd(parent));
-        var optRect = $_1ii7ra15tjkmcwuzm.getFirstRect(range$$1.startContainer.ownerDocument.defaultView, selection);
-        return optRect.map(collapsedRect).map(pure);
+      var start_1 = $_2ykjbpxpjh8lz4l0.fromDom(range.startContainer);
+      return $_4x0y5axtjh8lz4lc.parent(start_1).bind(function (parent) {
+        var selection = $_14u69c14yjh8lz61a.exact(start_1, range.startOffset, parent, $_5gjq8b14vjh8lz610.getEnd(parent));
+        var optRect = $_bguetv150jh8lz61l.getFirstRect(range.startContainer.ownerDocument.defaultView, selection);
+        return optRect.map(collapsedRect).map($_ffek9lxijh8lz4jt.pure);
       }).getOr([]);
     }
   };
@@ -10652,7 +10931,7 @@ var mobile = (function () {
     var sel = cWin.getSelection();
     return sel !== undefined && sel.rangeCount > 0 ? getRectsFromRange(sel.getRangeAt(0)) : [];
   };
-  var $_9bylyc15njkmcwuyl = { getRectangles: getRectangles };
+  var $_2t1f1514ujh8lz60p = { getRectangles: getRectangles };
 
   var autocompleteHack = function () {
     return function (f) {
@@ -10663,37 +10942,37 @@ var mobile = (function () {
   };
   var resume = function (cWin) {
     cWin.focus();
-    var iBody = Element$$1.fromDom(cWin.document.body);
-    var inInput = $_fci5qy101jkmcwtsc.active().exists(function (elem) {
-      return contains([
+    var iBody = $_2ykjbpxpjh8lz4l0.fromDom(cWin.document.body);
+    var inInput = $_1z851az8jh8lz4tn.active().exists(function (elem) {
+      return $_ffek9lxijh8lz4jt.contains([
         'input',
         'textarea'
-      ], $_b0ubstykjkmcwtjz.name(elem));
+      ], $_2dp7e0xqjh8lz4l7.name(elem));
     });
-    var transaction = inInput ? autocompleteHack() : apply;
+    var transaction = inInput ? autocompleteHack() : $_7vemb6x3jh8lz4ig.apply;
     transaction(function () {
-      $_fci5qy101jkmcwtsc.active().each($_fci5qy101jkmcwtsc.blur);
-      $_fci5qy101jkmcwtsc.focus(iBody);
+      $_1z851az8jh8lz4tn.active().each($_1z851az8jh8lz4tn.blur);
+      $_1z851az8jh8lz4tn.focus(iBody);
     });
   };
-  var $_183bt8166jkmcwv1k = { resume: resume };
+  var $_d4ti9015djh8lz63c = { resume: resume };
 
   var EXTRA_SPACING = 50;
-  var data = 'data-' + $_dpmvs510tjkmcwtwz.resolve('last-outer-height');
+  var data = 'data-' + $_9mxjlz100jh8lz4y0.resolve('last-outer-height');
   var setLastHeight = function (cBody, value) {
-    $_ga5avvzwjkmcwtro.set(cBody, data, value);
+    $_4d7m82z3jh8lz4t3.set(cBody, data, value);
   };
   var getLastHeight = function (cBody) {
-    return $_1qtglj15mjkmcwuyi.safeParse(cBody, data);
+    return $_fse4zs14tjh8lz60m.safeParse(cBody, data);
   };
   var getBoundsFrom = function (rect) {
     return {
-      top: constant(rect.top()),
-      bottom: constant(rect.top() + rect.height())
+      top: $_7vemb6x3jh8lz4ig.constant(rect.top()),
+      bottom: $_7vemb6x3jh8lz4ig.constant(rect.top() + rect.height())
     };
   };
   var getBounds$2 = function (cWin) {
-    var rects = $_9bylyc15njkmcwuyl.getRectangles(cWin);
+    var rects = $_2t1f1514ujh8lz60p.getRectangles(cWin);
     return rects.length > 0 ? Option.some(rects[0]).map(getBoundsFrom) : Option.none();
   };
   var findDelta = function (outerWindow, cBody) {
@@ -10706,11 +10985,11 @@ var mobile = (function () {
     return isOutside ? Math.min(delta, bounds.bottom() - cWin.innerHeight + EXTRA_SPACING) : 0;
   };
   var setup$1 = function (outerWindow, cWin) {
-    var cBody = Element$$1.fromDom(cWin.document.body);
+    var cBody = $_2ykjbpxpjh8lz4l0.fromDom(cWin.document.body);
     var toEditing = function () {
-      $_183bt8166jkmcwv1k.resume(cWin);
+      $_d4ti9015djh8lz63c.resume(cWin);
     };
-    var onResize = $_csbuij15cjkmcwuwa.bind(Element$$1.fromDom(outerWindow), 'resize', function () {
+    var onResize = $_64n4pu14jjh8lz5yh.bind($_2ykjbpxpjh8lz4l0.fromDom(outerWindow), 'resize', function () {
       findDelta(outerWindow, cBody).each(function (delta) {
         getBounds$2(cWin).each(function (bounds) {
           var cScrollBy = calculate(cWin, bounds, delta);
@@ -10730,20 +11009,20 @@ var mobile = (function () {
       destroy: destroy
     };
   };
-  var $_es65ig15ljkmcwuy8 = { setup: setup$1 };
+  var $_48dv9q14sjh8lz60c = { setup: setup$1 };
 
   var getBodyFromFrame = function (frame) {
-    return Option.some(Element$$1.fromDom(frame.dom().contentWindow.document.body));
+    return Option.some($_2ykjbpxpjh8lz4l0.fromDom(frame.dom().contentWindow.document.body));
   };
   var getDocFromFrame = function (frame) {
-    return Option.some(Element$$1.fromDom(frame.dom().contentWindow.document));
+    return Option.some($_2ykjbpxpjh8lz4l0.fromDom(frame.dom().contentWindow.document));
   };
   var getWinFromFrame = function (frame) {
     return Option.from(frame.dom().contentWindow);
   };
   var getSelectionFromFrame = function (frame) {
     var optWin = getWinFromFrame(frame);
-    return optWin.bind($_1ii7ra15tjkmcwuzm.getExact);
+    return optWin.bind($_bguetv150jh8lz61l.getExact);
   };
   var getFrame = function (editor) {
     return editor.getFrame();
@@ -10762,40 +11041,40 @@ var mobile = (function () {
   var getOrListen = function (editor, doc, name, type) {
     return editor[name].getOrThunk(function () {
       return function (handler) {
-        return $_csbuij15cjkmcwuwa.bind(doc, type, handler);
+        return $_64n4pu14jjh8lz5yh.bind(doc, type, handler);
       };
     });
   };
   var toRect$2 = function (rect) {
     return {
-      left: constant(rect.left),
-      top: constant(rect.top),
-      right: constant(rect.right),
-      bottom: constant(rect.bottom),
-      width: constant(rect.width),
-      height: constant(rect.height)
+      left: $_7vemb6x3jh8lz4ig.constant(rect.left),
+      top: $_7vemb6x3jh8lz4ig.constant(rect.top),
+      right: $_7vemb6x3jh8lz4ig.constant(rect.right),
+      bottom: $_7vemb6x3jh8lz4ig.constant(rect.bottom),
+      width: $_7vemb6x3jh8lz4ig.constant(rect.width),
+      height: $_7vemb6x3jh8lz4ig.constant(rect.height)
     };
   };
   var getActiveApi = function (editor) {
     var frame = getFrame(editor);
     var tryFallbackBox = function (win) {
       var isCollapsed = function (sel) {
-        return $_cpo6bcytjkmcwtkv.eq(sel.start(), sel.finish()) && sel.soffset() === sel.foffset();
+        return $_6liejjxzjh8lz4lv.eq(sel.start(), sel.finish()) && sel.soffset() === sel.foffset();
       };
       var toStartRect = function (sel) {
         var rect = sel.start().dom().getBoundingClientRect();
         return rect.width > 0 || rect.height > 0 ? Option.some(rect).map(toRect$2) : Option.none();
       };
-      return $_1ii7ra15tjkmcwuzm.getExact(win).filter(isCollapsed).bind(toStartRect);
+      return $_bguetv150jh8lz61l.getExact(win).filter(isCollapsed).bind(toStartRect);
     };
     return getBodyFromFrame(frame).bind(function (body) {
       return getDocFromFrame(frame).bind(function (doc) {
         return getWinFromFrame(frame).map(function (win) {
-          var html = Element$$1.fromDom(doc.dom().documentElement);
+          var html = $_2ykjbpxpjh8lz4l0.fromDom(doc.dom().documentElement);
           var getCursorBox = editor.getCursorBox.getOrThunk(function () {
             return function () {
-              return $_1ii7ra15tjkmcwuzm.get(win).bind(function (sel) {
-                return $_1ii7ra15tjkmcwuzm.getFirstRect(win, sel).orThunk(function () {
+              return $_bguetv150jh8lz61l.get(win).bind(function (sel) {
+                return $_bguetv150jh8lz61l.getFirstRect(win, sel).orThunk(function () {
                   return tryFallbackBox(win);
                 });
               });
@@ -10803,23 +11082,23 @@ var mobile = (function () {
           });
           var setSelection = editor.setSelection.getOrThunk(function () {
             return function (start, soffset, finish, foffset) {
-              $_1ii7ra15tjkmcwuzm.setExact(win, start, soffset, finish, foffset);
+              $_bguetv150jh8lz61l.setExact(win, start, soffset, finish, foffset);
             };
           });
           var clearSelection = editor.clearSelection.getOrThunk(function () {
             return function () {
-              $_1ii7ra15tjkmcwuzm.clear(win);
+              $_bguetv150jh8lz61l.clear(win);
             };
           });
           return {
-            body: constant(body),
-            doc: constant(doc),
-            win: constant(win),
-            html: constant(html),
-            getSelection: curry(getSelectionFromFrame, frame),
+            body: $_7vemb6x3jh8lz4ig.constant(body),
+            doc: $_7vemb6x3jh8lz4ig.constant(doc),
+            win: $_7vemb6x3jh8lz4ig.constant(win),
+            html: $_7vemb6x3jh8lz4ig.constant(html),
+            getSelection: $_7vemb6x3jh8lz4ig.curry(getSelectionFromFrame, frame),
             setSelection: setSelection,
             clearSelection: clearSelection,
-            frame: constant(frame),
+            frame: $_7vemb6x3jh8lz4ig.constant(frame),
             onKeyup: getOrListen(editor, doc, 'onKeyup', 'keyup'),
             onNodeChanged: getOrListen(editor, doc, 'onNodeChanged', 'selectionchange'),
             onDomChanged: editor.onDomChanged,
@@ -10837,7 +11116,7 @@ var mobile = (function () {
       });
     });
   };
-  var $_46e9af167jkmcwv1t = {
+  var $_2dv8sp15ejh8lz63r = {
     getBody: getOrDerive('getBody', getBodyFromFrame),
     getDoc: getOrDerive('getDoc', getDocFromFrame),
     getWin: getOrDerive('getWin', getWinFromFrame),
@@ -10851,71 +11130,71 @@ var mobile = (function () {
   var ancestorPosition = 'position:absolute!important;';
   var ancestorStyles = 'top:0!important;left:0!important;margin:0' + '!important;padding:0!important;width:100%!important;';
   var bgFallback = 'background-color:rgb(255,255,255)!important;';
-  var isAndroid = $_b90373y3jkmcwths.detect().os.isAndroid();
+  var isAndroid = $_cjnu0pxajh8lz4j9.detect().os.isAndroid();
   var matchColor = function (editorBody) {
-    var color = $_ezdyn3116jkmcwtyw.get(editorBody, 'background-color');
+    var color = $_g3k65w10djh8lz50c.get(editorBody, 'background-color');
     return color !== undefined && color !== '' ? 'background-color:' + color + '!important' : bgFallback;
   };
   var clobberStyles = function (container, editorBody) {
     var gatherSibilings = function (element) {
-      var siblings = $_bpsi2e119jkmcwtzh.siblings(element, '*');
+      var siblings = $_bhctx310gjh8lz510.siblings(element, '*');
       return siblings;
     };
     var clobber = function (clobberStyle) {
       return function (element) {
-        var styles = $_ga5avvzwjkmcwtro.get(element, 'style');
+        var styles = $_4d7m82z3jh8lz4t3.get(element, 'style');
         var backup = styles === undefined ? 'no-styles' : styles.trim();
         if (backup === clobberStyle) {
           return;
         } else {
-          $_ga5avvzwjkmcwtro.set(element, attr, backup);
-          $_ga5avvzwjkmcwtro.set(element, 'style', clobberStyle);
+          $_4d7m82z3jh8lz4t3.set(element, attr, backup);
+          $_4d7m82z3jh8lz4t3.set(element, 'style', clobberStyle);
         }
       };
     };
-    var ancestors = $_bpsi2e119jkmcwtzh.ancestors(container, '*');
-    var siblings = bind(ancestors, gatherSibilings);
+    var ancestors = $_bhctx310gjh8lz510.ancestors(container, '*');
+    var siblings = $_ffek9lxijh8lz4jt.bind(ancestors, gatherSibilings);
     var bgColor = matchColor(editorBody);
-    each$1(siblings, clobber(siblingStyles));
-    each$1(ancestors, clobber(ancestorPosition + ancestorStyles + bgColor));
+    $_ffek9lxijh8lz4jt.each(siblings, clobber(siblingStyles));
+    $_ffek9lxijh8lz4jt.each(ancestors, clobber(ancestorPosition + ancestorStyles + bgColor));
     var containerStyles = isAndroid === true ? '' : ancestorPosition;
     clobber(containerStyles + ancestorStyles + bgColor)(container);
   };
   var restoreStyles = function () {
-    var clobberedEls = $_bpsi2e119jkmcwtzh.all('[' + attr + ']');
-    each$1(clobberedEls, function (element) {
-      var restore = $_ga5avvzwjkmcwtro.get(element, attr);
+    var clobberedEls = $_bhctx310gjh8lz510.all('[' + attr + ']');
+    $_ffek9lxijh8lz4jt.each(clobberedEls, function (element) {
+      var restore = $_4d7m82z3jh8lz4t3.get(element, attr);
       if (restore !== 'no-styles') {
-        $_ga5avvzwjkmcwtro.set(element, 'style', restore);
+        $_4d7m82z3jh8lz4t3.set(element, 'style', restore);
       } else {
-        $_ga5avvzwjkmcwtro.remove(element, 'style');
+        $_4d7m82z3jh8lz4t3.remove(element, 'style');
       }
-      $_ga5avvzwjkmcwtro.remove(element, attr);
+      $_4d7m82z3jh8lz4t3.remove(element, attr);
     });
   };
-  var $_2a80we168jkmcwv26 = {
+  var $_48omr015fjh8lz645 = {
     clobberStyles: clobberStyles,
     restoreStyles: restoreStyles
   };
 
   var tag = function () {
-    var head = $_cbcewd11bjkmcwtzq.first('head').getOrDie();
+    var head = $_gi1kpl10ijh8lz515.first('head').getOrDie();
     var nu = function () {
-      var meta = Element$$1.fromTag('meta');
-      $_ga5avvzwjkmcwtro.set(meta, 'name', 'viewport');
-      $_1qcoujymjkmcwtk3.append(head, meta);
+      var meta = $_2ykjbpxpjh8lz4l0.fromTag('meta');
+      $_4d7m82z3jh8lz4t3.set(meta, 'name', 'viewport');
+      $_b7kmpsxsjh8lz4la.append(head, meta);
       return meta;
     };
-    var element = $_cbcewd11bjkmcwtzq.first('meta[name="viewport"]').getOrThunk(nu);
-    var backup = $_ga5avvzwjkmcwtro.get(element, 'content');
+    var element = $_gi1kpl10ijh8lz515.first('meta[name="viewport"]').getOrThunk(nu);
+    var backup = $_4d7m82z3jh8lz4t3.get(element, 'content');
     var maximize = function () {
-      $_ga5avvzwjkmcwtro.set(element, 'content', 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0');
+      $_4d7m82z3jh8lz4t3.set(element, 'content', 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0');
     };
     var restore = function () {
       if (backup !== undefined && backup !== null && backup.length > 0) {
-        $_ga5avvzwjkmcwtro.set(element, 'content', backup);
+        $_4d7m82z3jh8lz4t3.set(element, 'content', backup);
       } else {
-        $_ga5avvzwjkmcwtro.set(element, 'content', 'user-scalable=yes');
+        $_4d7m82z3jh8lz4t3.set(element, 'content', 'user-scalable=yes');
       }
     };
     return {
@@ -10923,31 +11202,31 @@ var mobile = (function () {
       restore: restore
     };
   };
-  var $_7jq7pt169jkmcwv2l = { tag: tag };
+  var $_mfx6e15gjh8lz64e = { tag: tag };
 
   var create$5 = function (platform, mask) {
-    var meta = $_7jq7pt169jkmcwv2l.tag();
-    var androidApi = api$2();
-    var androidEvents = api$2();
+    var meta = $_mfx6e15gjh8lz64e.tag();
+    var androidApi = $_vbo4a13ajh8lz5m7.api();
+    var androidEvents = $_vbo4a13ajh8lz5m7.api();
     var enter = function () {
       mask.hide();
-      $_4fq2lwzujkmcwtrk.add(platform.container, $_dpmvs510tjkmcwtwz.resolve('fullscreen-maximized'));
-      $_4fq2lwzujkmcwtrk.add(platform.container, $_dpmvs510tjkmcwtwz.resolve('android-maximized'));
+      $_eyo6psz1jh8lz4sw.add(platform.container, $_9mxjlz100jh8lz4y0.resolve('fullscreen-maximized'));
+      $_eyo6psz1jh8lz4sw.add(platform.container, $_9mxjlz100jh8lz4y0.resolve('android-maximized'));
       meta.maximize();
-      $_4fq2lwzujkmcwtrk.add(platform.body, $_dpmvs510tjkmcwtwz.resolve('android-scroll-reload'));
-      androidApi.set($_es65ig15ljkmcwuy8.setup(platform.win, $_46e9af167jkmcwv1t.getWin(platform.editor).getOrDie('no')));
-      $_46e9af167jkmcwv1t.getActiveApi(platform.editor).each(function (editorApi) {
-        $_2a80we168jkmcwv26.clobberStyles(platform.container, editorApi.body());
-        androidEvents.set($_4zjqxd15hjkmcwux6.initEvents(editorApi, platform.toolstrip, platform.alloy));
+      $_eyo6psz1jh8lz4sw.add(platform.body, $_9mxjlz100jh8lz4y0.resolve('android-scroll-reload'));
+      androidApi.set($_48dv9q14sjh8lz60c.setup(platform.win, $_2dv8sp15ejh8lz63r.getWin(platform.editor).getOrDie('no')));
+      $_2dv8sp15ejh8lz63r.getActiveApi(platform.editor).each(function (editorApi) {
+        $_48omr015fjh8lz645.clobberStyles(platform.container, editorApi.body());
+        androidEvents.set($_1hdo3614ojh8lz5z8.initEvents(editorApi, platform.toolstrip, platform.alloy));
       });
     };
     var exit = function () {
       meta.restore();
       mask.show();
-      $_4fq2lwzujkmcwtrk.remove(platform.container, $_dpmvs510tjkmcwtwz.resolve('fullscreen-maximized'));
-      $_4fq2lwzujkmcwtrk.remove(platform.container, $_dpmvs510tjkmcwtwz.resolve('android-maximized'));
-      $_2a80we168jkmcwv26.restoreStyles();
-      $_4fq2lwzujkmcwtrk.remove(platform.body, $_dpmvs510tjkmcwtwz.resolve('android-scroll-reload'));
+      $_eyo6psz1jh8lz4sw.remove(platform.container, $_9mxjlz100jh8lz4y0.resolve('fullscreen-maximized'));
+      $_eyo6psz1jh8lz4sw.remove(platform.container, $_9mxjlz100jh8lz4y0.resolve('android-maximized'));
+      $_48omr015fjh8lz645.restoreStyles();
+      $_eyo6psz1jh8lz4sw.remove(platform.body, $_9mxjlz100jh8lz4y0.resolve('android-scroll-reload'));
       androidEvents.clear();
       androidApi.clear();
     };
@@ -10956,8 +11235,33 @@ var mobile = (function () {
       exit: exit
     };
   };
-  var $_gef21h15gjkmcwux1 = { create: create$5 };
+  var $_ak379614njh8lz5z3 = { create: create$5 };
 
+  var adaptable = function (fn, rate) {
+    var timer = null;
+    var args = null;
+    var cancel = function () {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
+        args = null;
+      }
+    };
+    var throttle = function () {
+      args = arguments;
+      if (timer === null) {
+        timer = setTimeout(function () {
+          fn.apply(null, args);
+          timer = null;
+          args = null;
+        }, rate);
+      }
+    };
+    return {
+      cancel: cancel,
+      throttle: throttle
+    };
+  };
   var first$4 = function (fn, rate) {
     var timer = null;
     var cancel = function () {
@@ -10967,14 +11271,12 @@ var mobile = (function () {
       }
     };
     var throttle = function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
+      var args = arguments;
       if (timer === null) {
         timer = setTimeout(function () {
           fn.apply(null, args);
           timer = null;
+          args = null;
         }, rate);
       }
     };
@@ -10992,15 +11294,13 @@ var mobile = (function () {
       }
     };
     var throttle = function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
+      var args = arguments;
       if (timer !== null)
         clearTimeout(timer);
       timer = setTimeout(function () {
         fn.apply(null, args);
         timer = null;
+        args = null;
       }, rate);
     };
     return {
@@ -11008,16 +11308,21 @@ var mobile = (function () {
       throttle: throttle
     };
   };
+  var $_9m8kju15ijh8lz64y = {
+    adaptable: adaptable,
+    first: first$4,
+    last: last$3
+  };
 
   var sketch$10 = function (onView, translate) {
     var memIcon = record(Container.sketch({
       dom: dom$1('<div aria-hidden="true" class="${prefix}-mask-tap-icon"></div>'),
       containerBehaviours: derive$2([Toggling.config({
-          toggleClass: $_dpmvs510tjkmcwtwz.resolve('mask-tap-icon-selected'),
+          toggleClass: $_9mxjlz100jh8lz4y0.resolve('mask-tap-icon-selected'),
           toggleOnExecute: false
         })])
     }));
-    var onViewThrottle = first$4(onView, 200);
+    var onViewThrottle = $_9m8kju15ijh8lz64y.first(onView, 200);
     return Container.sketch({
       dom: dom$1('<div class="${prefix}-disabled-mask"></div>'),
       components: [Container.sketch({
@@ -11028,12 +11333,12 @@ var mobile = (function () {
               action: function (button) {
                 onViewThrottle.throttle();
               },
-              buttonBehaviours: derive$2([Toggling.config({ toggleClass: $_dpmvs510tjkmcwtwz.resolve('mask-tap-icon-selected') })])
+              buttonBehaviours: derive$2([Toggling.config({ toggleClass: $_9mxjlz100jh8lz4y0.resolve('mask-tap-icon-selected') })])
             })]
         })]
     });
   };
-  var $_5eqauz16ajkmcwv2t = { sketch: sketch$10 };
+  var $_c6edy415hjh8lz64m = { sketch: sketch$10 };
 
   var MobileSchema = objOf([
     strictObjOf('editor', [
@@ -11049,14 +11354,14 @@ var mobile = (function () {
       option('onNodeChanged'),
       option('getCursorBox'),
       strict$1('onDomChanged'),
-      defaulted$1('onTouchContent', noop),
-      defaulted$1('onTapContent', noop),
-      defaulted$1('onTouchToolstrip', noop),
-      defaulted$1('onScrollToCursor', constant({ unbind: noop })),
-      defaulted$1('onScrollToElement', constant({ unbind: noop })),
-      defaulted$1('onToEditing', constant({ unbind: noop })),
-      defaulted$1('onToReading', constant({ unbind: noop })),
-      defaulted$1('onToolbarScrollStart', identity)
+      defaulted$1('onTouchContent', $_7vemb6x3jh8lz4ig.noop),
+      defaulted$1('onTapContent', $_7vemb6x3jh8lz4ig.noop),
+      defaulted$1('onTouchToolstrip', $_7vemb6x3jh8lz4ig.noop),
+      defaulted$1('onScrollToCursor', $_7vemb6x3jh8lz4ig.constant({ unbind: $_7vemb6x3jh8lz4ig.noop })),
+      defaulted$1('onScrollToElement', $_7vemb6x3jh8lz4ig.constant({ unbind: $_7vemb6x3jh8lz4ig.noop })),
+      defaulted$1('onToEditing', $_7vemb6x3jh8lz4ig.constant({ unbind: $_7vemb6x3jh8lz4ig.noop })),
+      defaulted$1('onToReading', $_7vemb6x3jh8lz4ig.constant({ unbind: $_7vemb6x3jh8lz4ig.noop })),
+      defaulted$1('onToolbarScrollStart', $_7vemb6x3jh8lz4ig.identity)
     ]),
     strict$1('socket'),
     strict$1('toolstrip'),
@@ -11065,24 +11370,24 @@ var mobile = (function () {
     strict$1('container'),
     strict$1('alloy'),
     state$1('win', function (spec) {
-      return $_a7cj16ynjkmcwtk5.owner(spec.socket).dom().defaultView;
+      return $_4x0y5axtjh8lz4lc.owner(spec.socket).dom().defaultView;
     }),
     state$1('body', function (spec) {
-      return Element$$1.fromDom(spec.socket.dom().ownerDocument.body);
+      return $_2ykjbpxpjh8lz4l0.fromDom(spec.socket.dom().ownerDocument.body);
     }),
-    defaulted$1('translate', identity),
-    defaulted$1('setReadOnly', noop),
-    defaulted$1('readOnlyOnInit', constant(true))
+    defaulted$1('translate', $_7vemb6x3jh8lz4ig.identity),
+    defaulted$1('setReadOnly', $_7vemb6x3jh8lz4ig.noop),
+    defaulted$1('readOnlyOnInit', $_7vemb6x3jh8lz4ig.constant(true))
   ]);
 
   var produce = function (raw) {
     var mobile = asRawOrDie('Getting AndroidWebapp schema', MobileSchema, raw);
-    $_ezdyn3116jkmcwtyw.set(mobile.toolstrip, 'width', '100%');
+    $_g3k65w10djh8lz50c.set(mobile.toolstrip, 'width', '100%');
     var onTap = function () {
       mobile.setReadOnly(mobile.readOnlyOnInit());
       mode.enter();
     };
-    var mask = build$1($_5eqauz16ajkmcwv2t.sketch(onTap, mobile.translate));
+    var mask = build$1($_c6edy415hjh8lz64m.sketch(onTap, mobile.translate));
     mobile.alloy.add(mask);
     var maskApi = {
       show: function () {
@@ -11092,33 +11397,34 @@ var mobile = (function () {
         mobile.alloy.remove(mask);
       }
     };
-    $_1qcoujymjkmcwtk3.append(mobile.container, mask.element());
-    var mode = $_gef21h15gjkmcwux1.create(mobile, maskApi);
+    $_b7kmpsxsjh8lz4la.append(mobile.container, mask.element());
+    var mode = $_ak379614njh8lz5z3.create(mobile, maskApi);
     return {
       setReadOnly: mobile.setReadOnly,
-      refreshStructure: noop,
+      refreshStructure: $_7vemb6x3jh8lz4ig.noop,
       enter: mode.enter,
       exit: mode.exit,
-      destroy: noop
+      destroy: $_7vemb6x3jh8lz4ig.noop
     };
   };
-  var $_85ogv215fjkmcwuwn = { produce: produce };
+  var $_2qdrds14mjh8lz5yu = { produce: produce };
 
-  var schema$14 = constant([
+  var schema$14 = $_7vemb6x3jh8lz4ig.constant([
     defaulted$1('shell', true),
     field$1('toolbarBehaviours', [Replacing])
   ]);
   var enhanceGroups = function (detail) {
     return { behaviours: derive$2([Replacing.config({})]) };
   };
-  var parts$2 = constant([optional({
+  var parts$2 = $_7vemb6x3jh8lz4ig.constant([optional({
       name: 'groups',
       overrides: enhanceGroups
     })]);
+  var name$3 = $_7vemb6x3jh8lz4ig.constant('Toolbar');
 
   var factory$4 = function (detail, components$$1, spec, _externals) {
-    var setGroups = function (toolbar$$1, groups) {
-      getGroupContainer(toolbar$$1).fold(function () {
+    var setGroups = function (toolbar, groups) {
+      getGroupContainer(toolbar).fold(function () {
         console.error('Toolbar was defined to not be a shell, but no groups container was specified in components');
         throw new Error('Toolbar was defined to not be a shell, but no groups container was specified in components');
       }, function (container) {
@@ -11139,7 +11445,7 @@ var mobile = (function () {
       uid: detail.uid(),
       dom: detail.dom(),
       components: extra.components,
-      behaviours: deepMerge(derive$2(extra.behaviours), get$5(detail.toolbarBehaviours())),
+      behaviours: $_b00d1jx4jh8lz4ij.deepMerge(derive$2(extra.behaviours), get$5(detail.toolbarBehaviours())),
       apis: { setGroups: setGroups },
       domModification: { attributes: { role: 'group' } }
     };
@@ -11150,31 +11456,32 @@ var mobile = (function () {
     partFields: parts$2(),
     factory: factory$4,
     apis: {
-      setGroups: function (apis, toolbar$$1, groups) {
-        apis.setGroups(toolbar$$1, groups);
+      setGroups: function (apis, toolbar, groups) {
+        apis.setGroups(toolbar, groups);
       }
     }
   });
 
-  var schema$15 = constant([
+  var schema$15 = $_7vemb6x3jh8lz4ig.constant([
     strict$1('items'),
     markers(['itemClass']),
     field$1('tgroupBehaviours', [Keying])
   ]);
-  var parts$3 = constant([group({
+  var parts$3 = $_7vemb6x3jh8lz4ig.constant([group({
       name: 'items',
       unit: 'item',
       overrides: function (detail) {
         return { domModification: { classes: [detail.markers().itemClass()] } };
       }
     })]);
+  var name$4 = $_7vemb6x3jh8lz4ig.constant('ToolbarGroup');
 
   var factory$5 = function (detail, components, spec, _externals) {
-    return deepMerge({ dom: { attributes: { role: 'toolbar' } } }, {
+    return $_b00d1jx4jh8lz4ij.deepMerge({ dom: { attributes: { role: 'toolbar' } } }, {
       'uid': detail.uid(),
       'dom': detail.dom(),
       'components': components,
-      'behaviours': deepMerge(derive$2([Keying.config({
+      'behaviours': $_b00d1jx4jh8lz4ij.deepMerge(derive$2([Keying.config({
           mode: 'flow',
           selector: '.' + detail.markers().itemClass()
         })]), get$5(detail.tgroupBehaviours())),
@@ -11188,7 +11495,7 @@ var mobile = (function () {
     factory: factory$5
   });
 
-  var dataHorizontal = 'data-' + $_dpmvs510tjkmcwtwz.resolve('horizontal-scroll');
+  var dataHorizontal = 'data-' + $_9mxjlz100jh8lz4y0.resolve('horizontal-scroll');
   var canScrollVertically = function (container) {
     container.dom().scrollTop = 1;
     var result = container.dom().scrollTop !== 0;
@@ -11208,19 +11515,19 @@ var mobile = (function () {
     return container.dom().scrollLeft > 0 || canScrollHorizontally(container);
   };
   var markAsHorizontal = function (container) {
-    $_ga5avvzwjkmcwtro.set(container, dataHorizontal, 'true');
+    $_4d7m82z3jh8lz4t3.set(container, dataHorizontal, 'true');
   };
   var hasScroll = function (container) {
-    return $_ga5avvzwjkmcwtro.get(container, dataHorizontal) === 'true' ? hasHorizontalScroll(container) : hasVerticalScroll(container);
+    return $_4d7m82z3jh8lz4t3.get(container, dataHorizontal) === 'true' ? hasHorizontalScroll : hasVerticalScroll;
   };
   var exclusive = function (scope, selector) {
-    return $_csbuij15cjkmcwuwa.bind(scope, 'touchmove', function (event) {
-      $_cbcewd11bjkmcwtzq.closest(event.target(), selector).filter(hasScroll).fold(function () {
+    return $_64n4pu14jjh8lz5yh.bind(scope, 'touchmove', function (event) {
+      $_gi1kpl10ijh8lz515.closest(event.target(), selector).filter(hasScroll).fold(function () {
         event.raw().preventDefault();
-      }, noop);
+      }, $_7vemb6x3jh8lz4ig.noop);
     });
   };
-  var $_6uc3h316ijkmcwv51 = {
+  var $_wsyps15pjh8lz66l = {
     exclusive: exclusive,
     markAsHorizontal: markAsHorizontal
   };
@@ -11231,12 +11538,12 @@ var mobile = (function () {
       return {
         dom: dom$1('<div aria-label="' + gSpec.label + '" class="${prefix}-toolbar-group ' + scrollClass + '"></div>'),
         tgroupBehaviours: derive$2([config('adhoc-scrollable-toolbar', gSpec.scrollable === true ? [runOnInit(function (component, simulatedEvent) {
-              $_ezdyn3116jkmcwtyw.set(component.element(), 'overflow-x', 'auto');
-              $_6uc3h316ijkmcwv51.markAsHorizontal(component.element());
-              $_9pks4l159jkmcwuvq.register(component.element());
+              $_g3k65w10djh8lz50c.set(component.element(), 'overflow-x', 'auto');
+              $_wsyps15pjh8lz66l.markAsHorizontal(component.element());
+              $_ctmye314gjh8lz5xt.register(component.element());
             })] : [])]),
         components: [Container.sketch({ components: [ToolbarGroup.parts().items({})] })],
-        markers: { itemClass: $_dpmvs510tjkmcwtwz.resolve('toolbar-group-item') },
+        markers: { itemClass: $_9mxjlz100jh8lz4y0.resolve('toolbar-group-item') },
         items: gSpec.items
       };
     };
@@ -11245,7 +11552,7 @@ var mobile = (function () {
       components: [Toolbar.parts().groups({})],
       toolbarBehaviours: derive$2([
         Toggling.config({
-          toggleClass: $_dpmvs510tjkmcwtwz.resolve('context-toolbar'),
+          toggleClass: $_9mxjlz100jh8lz4y0.resolve('context-toolbar'),
           toggleOnExecute: false,
           aria: { mode: 'none' }
         }),
@@ -11254,10 +11561,10 @@ var mobile = (function () {
       shell: true
     }));
     var wrapper = build$1(Container.sketch({
-      dom: { classes: [$_dpmvs510tjkmcwtwz.resolve('toolstrip')] },
+      dom: { classes: [$_9mxjlz100jh8lz4y0.resolve('toolstrip')] },
       components: [premade$1(toolbar)],
       containerBehaviours: derive$2([Toggling.config({
-          toggleClass: $_dpmvs510tjkmcwtwz.resolve('android-selection-context-toolbar'),
+          toggleClass: $_9mxjlz100jh8lz4y0.resolve('android-selection-context-toolbar'),
           toggleOnExecute: false
         })])
     }));
@@ -11271,7 +11578,7 @@ var mobile = (function () {
       resetGroups();
     };
     var createGroups = function (gs) {
-      return map$1(gs, compose(ToolbarGroup.sketch, makeGroup));
+      return $_ffek9lxijh8lz4jt.map(gs, $_7vemb6x3jh8lz4ig.compose(ToolbarGroup.sketch, makeGroup));
     };
     var refresh = function () {
     };
@@ -11288,8 +11595,8 @@ var mobile = (function () {
       Keying.focusIn(toolbar);
     };
     return {
-      wrapper: constant(wrapper),
-      toolbar: constant(toolbar),
+      wrapper: $_7vemb6x3jh8lz4ig.constant(wrapper),
+      toolbar: $_7vemb6x3jh8lz4ig.constant(toolbar),
       createGroups: createGroups,
       setGroups: setGroups,
       setContextToolbar: setContextToolbar,
@@ -11328,7 +11635,7 @@ var mobile = (function () {
     var f = readOnly ? showEdit : hideEdit;
     f(socket, switchToEdit);
   };
-  var $_51jxa16jjkmcwv5a = {
+  var $_4lxm1z15qjh8lz66u = {
     makeEditSwitch: makeEditSwitch,
     makeSocket: makeSocket,
     updateMode: updateMode
@@ -11349,16 +11656,16 @@ var mobile = (function () {
   };
   var disableTransitions = function (component, slideConfig) {
     var root = getAnimationRoot(component, slideConfig);
-    $_c1ba8t14mjkmcwuq6.remove(root, [
+    $_f9g46a13tjh8lz5sb.remove(root, [
       slideConfig.shrinkingClass(),
       slideConfig.growingClass()
     ]);
   };
   var setShrunk = function (component, slideConfig) {
-    $_4fq2lwzujkmcwtrk.remove(component.element(), slideConfig.openClass());
-    $_4fq2lwzujkmcwtrk.add(component.element(), slideConfig.closedClass());
-    $_ezdyn3116jkmcwtyw.set(component.element(), getDimensionProperty(slideConfig), '0px');
-    $_ezdyn3116jkmcwtyw.reflow(component.element());
+    $_eyo6psz1jh8lz4sw.remove(component.element(), slideConfig.openClass());
+    $_eyo6psz1jh8lz4sw.add(component.element(), slideConfig.closedClass());
+    $_g3k65w10djh8lz50c.set(component.element(), getDimensionProperty(slideConfig), '0px');
+    $_g3k65w10djh8lz50c.reflow(component.element());
   };
   var measureTargetSize = function (component, slideConfig) {
     setGrown(component, slideConfig);
@@ -11367,14 +11674,14 @@ var mobile = (function () {
     return expanded;
   };
   var setGrown = function (component, slideConfig) {
-    $_4fq2lwzujkmcwtrk.remove(component.element(), slideConfig.closedClass());
-    $_4fq2lwzujkmcwtrk.add(component.element(), slideConfig.openClass());
-    $_ezdyn3116jkmcwtyw.remove(component.element(), getDimensionProperty(slideConfig));
+    $_eyo6psz1jh8lz4sw.remove(component.element(), slideConfig.closedClass());
+    $_eyo6psz1jh8lz4sw.add(component.element(), slideConfig.openClass());
+    $_g3k65w10djh8lz50c.remove(component.element(), getDimensionProperty(slideConfig));
   };
   var doImmediateShrink = function (component, slideConfig, slideState) {
     slideState.setCollapsed();
-    $_ezdyn3116jkmcwtyw.set(component.element(), getDimensionProperty(slideConfig), getDimension(slideConfig, component.element()));
-    $_ezdyn3116jkmcwtyw.reflow(component.element());
+    $_g3k65w10djh8lz50c.set(component.element(), getDimensionProperty(slideConfig), getDimension(slideConfig, component.element()));
+    $_g3k65w10djh8lz50c.reflow(component.element());
     disableTransitions(component, slideConfig);
     setShrunk(component, slideConfig);
     slideConfig.onStartShrink()(component);
@@ -11382,19 +11689,19 @@ var mobile = (function () {
   };
   var doStartShrink = function (component, slideConfig, slideState) {
     slideState.setCollapsed();
-    $_ezdyn3116jkmcwtyw.set(component.element(), getDimensionProperty(slideConfig), getDimension(slideConfig, component.element()));
-    $_ezdyn3116jkmcwtyw.reflow(component.element());
+    $_g3k65w10djh8lz50c.set(component.element(), getDimensionProperty(slideConfig), getDimension(slideConfig, component.element()));
+    $_g3k65w10djh8lz50c.reflow(component.element());
     var root = getAnimationRoot(component, slideConfig);
-    $_4fq2lwzujkmcwtrk.add(root, slideConfig.shrinkingClass());
+    $_eyo6psz1jh8lz4sw.add(root, slideConfig.shrinkingClass());
     setShrunk(component, slideConfig);
     slideConfig.onStartShrink()(component);
   };
   var doStartGrow = function (component, slideConfig, slideState) {
     var fullSize = measureTargetSize(component, slideConfig);
     var root = getAnimationRoot(component, slideConfig);
-    $_4fq2lwzujkmcwtrk.add(root, slideConfig.growingClass());
+    $_eyo6psz1jh8lz4sw.add(root, slideConfig.growingClass());
     setGrown(component, slideConfig);
-    $_ezdyn3116jkmcwtyw.set(component.element(), getDimensionProperty(slideConfig), fullSize);
+    $_g3k65w10djh8lz50c.set(component.element(), getDimensionProperty(slideConfig), fullSize);
     slideState.setExpanded();
     slideConfig.onStartGrow()(component);
   };
@@ -11421,11 +11728,11 @@ var mobile = (function () {
   };
   var isGrowing = function (component, slideConfig, slideState) {
     var root = getAnimationRoot(component, slideConfig);
-    return $_4fq2lwzujkmcwtrk.has(root, slideConfig.growingClass()) === true;
+    return $_eyo6psz1jh8lz4sw.has(root, slideConfig.growingClass()) === true;
   };
   var isShrinking = function (component, slideConfig, slideState) {
     var root = getAnimationRoot(component, slideConfig);
-    return $_4fq2lwzujkmcwtrk.has(root, slideConfig.shrinkingClass()) === true;
+    return $_eyo6psz1jh8lz4sw.has(root, slideConfig.shrinkingClass()) === true;
   };
   var isTransitioning = function (component, slideConfig, slideState) {
     return isGrowing(component, slideConfig, slideState) === true || isShrinking(component, slideConfig, slideState) === true;
@@ -11459,16 +11766,16 @@ var mobile = (function () {
       styles: wrap$2(slideConfig.dimension().property(), '0px')
     });
   };
-  var events$10 = function (slideConfig, slideState) {
+  var events$9 = function (slideConfig, slideState) {
     return derive([run(transitionend(), function (component, simulatedEvent) {
         var raw = simulatedEvent.event().raw();
         if (raw.propertyName === slideConfig.dimension().property()) {
           disableTransitions(component, slideConfig);
           if (slideState.isExpanded()) {
-            $_ezdyn3116jkmcwtyw.remove(component.element(), slideConfig.dimension().property());
+            $_g3k65w10djh8lz50c.remove(component.element(), slideConfig.dimension().property());
           }
           var notify = slideState.isExpanded() ? slideConfig.onGrown() : slideConfig.onShrunk();
-          notify(component);
+          notify(component, simulatedEvent);
         }
       })]);
   };
@@ -11476,7 +11783,7 @@ var mobile = (function () {
 
   var ActiveSliding = Object.freeze({
   	exhibit: exhibit$5,
-  	events: events$10
+  	events: events$9
   });
 
   var SlidingSchema = [
@@ -11494,13 +11801,13 @@ var mobile = (function () {
       width: [
         output$1('property', 'width'),
         output$1('getDimension', function (elem) {
-          return $_4k1oht130jkmcwucs.get(elem) + 'px';
+          return $_cibxss126jh8lz5ej.get(elem) + 'px';
         })
       ],
       height: [
         output$1('property', 'height'),
         output$1('getDimension', function (elem) {
-          return $_3mqbs115jkmcwtyu.get(elem) + 'px';
+          return $_1avprm10cjh8lz50a.get(elem) + 'px';
         })
       ]
     }))
@@ -11511,15 +11818,15 @@ var mobile = (function () {
     var readState = function () {
       return 'expanded: ' + state.get();
     };
-    return nu$7({
+    return BehaviourState({
       isExpanded: function () {
         return state.get() === true;
       },
       isCollapsed: function () {
         return state.get() === false;
       },
-      setCollapsed: curry(state.set, false),
-      setExpanded: curry(state.set, true),
+      setCollapsed: $_7vemb6x3jh8lz4ig.curry(state.set, false),
+      setExpanded: $_7vemb6x3jh8lz4ig.curry(state.set, true),
       readState: readState
     });
   };
@@ -11541,16 +11848,16 @@ var mobile = (function () {
     var dropup = build$1(Container.sketch({
       dom: {
         tag: 'div',
-        classes: [$_dpmvs510tjkmcwtwz.resolve('dropup')]
+        classes: $_9mxjlz100jh8lz4y0.resolve('dropup')
       },
       components: [],
       containerBehaviours: derive$2([
         Replacing.config({}),
         Sliding.config({
-          closedClass: $_dpmvs510tjkmcwtwz.resolve('dropup-closed'),
-          openClass: $_dpmvs510tjkmcwtwz.resolve('dropup-open'),
-          shrinkingClass: $_dpmvs510tjkmcwtwz.resolve('dropup-shrinking'),
-          growingClass: $_dpmvs510tjkmcwtwz.resolve('dropup-growing'),
+          closedClass: $_9mxjlz100jh8lz4y0.resolve('dropup-closed'),
+          openClass: $_9mxjlz100jh8lz4y0.resolve('dropup-open'),
+          shrinkingClass: $_9mxjlz100jh8lz4y0.resolve('dropup-shrinking'),
+          growingClass: $_9mxjlz100jh8lz4y0.resolve('dropup-growing'),
           dimension: { property: 'height' },
           onShrunk: function (component) {
             refresh();
@@ -11562,8 +11869,8 @@ var mobile = (function () {
             scrollIntoView();
           }
         }),
-        $_46xi8a10sjkmcwtws.orientation(function (component, data) {
-          disappear(noop);
+        $_dbkfwdzzjh8lz4xv.orientation(function (component, data) {
+          disappear($_7vemb6x3jh8lz4ig.noop);
         })
       ])
     }));
@@ -11585,19 +11892,18 @@ var mobile = (function () {
     return {
       appear: appear,
       disappear: disappear,
-      component: constant(dropup),
+      component: $_7vemb6x3jh8lz4ig.constant(dropup),
       element: dropup.element
     };
   };
 
-  var isDangerous = function (event$$1) {
-    var keyEv = event$$1.raw();
-    return keyEv.which === BACKSPACE()[0] && !contains([
+  var isDangerous = function (event) {
+    return event.raw().which === $_42xeh910jjh8lz517.BACKSPACE()[0] && !$_ffek9lxijh8lz4jt.contains([
       'input',
       'textarea'
-    ], $_b0ubstykjkmcwtjz.name(event$$1.target()));
+    ], $_2dp7e0xqjh8lz4l7.name(event.target()));
   };
-  var isFirefox = $_b90373y3jkmcwths.detect().browser.isFirefox();
+  var isFirefox = $_cjnu0pxajh8lz4j9.detect().browser.isFirefox();
   var settingsSchema = objOfOnly([
     strictFunction('triggerEvent'),
     strictFunction('broadcastEvent'),
@@ -11605,21 +11911,21 @@ var mobile = (function () {
   ]);
   var bindFocus = function (container, handler) {
     if (isFirefox) {
-      return $_csbuij15cjkmcwuwa.capture(container, 'focus', handler);
+      return $_64n4pu14jjh8lz5yh.capture(container, 'focus', handler);
     } else {
-      return $_csbuij15cjkmcwuwa.bind(container, 'focusin', handler);
+      return $_64n4pu14jjh8lz5yh.bind(container, 'focusin', handler);
     }
   };
   var bindBlur = function (container, handler) {
     if (isFirefox) {
-      return $_csbuij15cjkmcwuwa.capture(container, 'blur', handler);
+      return $_64n4pu14jjh8lz5yh.capture(container, 'blur', handler);
     } else {
-      return $_csbuij15cjkmcwuwa.bind(container, 'focusout', handler);
+      return $_64n4pu14jjh8lz5yh.bind(container, 'focusout', handler);
     }
   };
   var setup$2 = function (container, rawSettings) {
     var settings = asRawOrDie('Getting GUI events settings', settingsSchema, rawSettings);
-    var pointerEvents = $_b90373y3jkmcwths.detect().deviceType.isTouch() ? [
+    var pointerEvents = $_cjnu0pxajh8lz4j9.detect().deviceType.isTouch() ? [
       'touchstart',
       'touchmove',
       'touchend',
@@ -11633,64 +11939,60 @@ var mobile = (function () {
       'click'
     ];
     var tapEvent = monitor(settings);
-    var simpleEvents = map$1(pointerEvents.concat([
+    var simpleEvents = $_ffek9lxijh8lz4jt.map(pointerEvents.concat([
       'selectstart',
       'input',
       'contextmenu',
       'change',
       'transitionend',
-      'drag',
       'dragstart',
-      'dragend',
-      'dragenter',
-      'dragleave',
       'dragover',
       'drop'
     ]), function (type) {
-      return $_csbuij15cjkmcwuwa.bind(container, type, function (event$$1) {
-        tapEvent.fireIfReady(event$$1, type).each(function (tapStopped) {
+      return $_64n4pu14jjh8lz5yh.bind(container, type, function (event) {
+        tapEvent.fireIfReady(event, type).each(function (tapStopped) {
           if (tapStopped) {
-            event$$1.kill();
+            event.kill();
           }
         });
-        var stopped = settings.triggerEvent(type, event$$1);
+        var stopped = settings.triggerEvent(type, event);
         if (stopped) {
-          event$$1.kill();
+          event.kill();
         }
       });
     });
-    var onKeydown = $_csbuij15cjkmcwuwa.bind(container, 'keydown', function (event$$1) {
-      var stopped = settings.triggerEvent('keydown', event$$1);
+    var onKeydown = $_64n4pu14jjh8lz5yh.bind(container, 'keydown', function (event) {
+      var stopped = settings.triggerEvent('keydown', event);
       if (stopped) {
-        event$$1.kill();
-      } else if (settings.stopBackspace === true && isDangerous(event$$1)) {
-        event$$1.prevent();
+        event.kill();
+      } else if (settings.stopBackspace === true && isDangerous(event)) {
+        event.prevent();
       }
     });
-    var onFocusIn = bindFocus(container, function (event$$1) {
-      var stopped = settings.triggerEvent('focusin', event$$1);
+    var onFocusIn = bindFocus(container, function (event) {
+      var stopped = settings.triggerEvent('focusin', event);
       if (stopped) {
-        event$$1.kill();
+        event.kill();
       }
     });
-    var onFocusOut = bindBlur(container, function (event$$1) {
-      var stopped = settings.triggerEvent('focusout', event$$1);
+    var onFocusOut = bindBlur(container, function (event) {
+      var stopped = settings.triggerEvent('focusout', event);
       if (stopped) {
-        event$$1.kill();
+        event.kill();
       }
       setTimeout(function () {
-        settings.triggerEvent(postBlur(), event$$1);
+        settings.triggerEvent(postBlur(), event);
       }, 0);
     });
-    var defaultView = $_a7cj16ynjkmcwtk5.defaultView(container);
-    var onWindowScroll = $_csbuij15cjkmcwuwa.bind(defaultView, 'scroll', function (event$$1) {
-      var stopped = settings.broadcastEvent(windowScroll(), event$$1);
+    var defaultView = $_4x0y5axtjh8lz4lc.defaultView(container);
+    var onWindowScroll = $_64n4pu14jjh8lz5yh.bind(defaultView, 'scroll', function (event) {
+      var stopped = settings.broadcastEvent(windowScroll(), event);
       if (stopped) {
-        event$$1.kill();
+        event.kill();
       }
     });
     var unbind = function () {
-      each$1(simpleEvents, function (e) {
+      $_ffek9lxijh8lz4jt.each(simpleEvents, function (e) {
         e.unbind();
       });
       onKeydown.unbind();
@@ -11722,7 +12024,7 @@ var mobile = (function () {
       cut: cut,
       isStopped: stopper.get,
       isCut: cutter.get,
-      event: constant(event),
+      event: $_7vemb6x3jh8lz4ig.constant(event),
       setSource: source.set,
       getSource: source.get
     };
@@ -11734,16 +12036,16 @@ var mobile = (function () {
     };
     return {
       stop: stop,
-      cut: noop,
+      cut: $_7vemb6x3jh8lz4ig.noop,
       isStopped: stopper.get,
-      isCut: constant(false),
-      event: constant(event),
-      setSource: die('Cannot set source of a broadcasted event'),
-      getSource: die('Cannot get source of a broadcasted event')
+      isCut: $_7vemb6x3jh8lz4ig.constant(false),
+      event: $_7vemb6x3jh8lz4ig.constant(event),
+      setTarget: $_7vemb6x3jh8lz4ig.die('Cannot set target of a broadcasted event'),
+      getTarget: $_7vemb6x3jh8lz4ig.die('Cannot get target of a broadcasted event')
     };
   };
 
-  var adt$6 = Adt.generate([
+  var adt$6 = $_aruf06ycjh8lz4o4.generate([
     { stopped: [] },
     { resume: ['element'] },
     { complete: [] }
@@ -11756,7 +12058,7 @@ var mobile = (function () {
       return adt$6.complete();
     }, function (handlerInfo) {
       var descHandler = handlerInfo.descHandler();
-      var eventHandler = getCurried(descHandler);
+      var eventHandler = getHandler(descHandler);
       eventHandler(simulatedEvent);
       if (simulatedEvent.isStopped()) {
         logger.logEventStopped(eventType, handlerInfo.element(), descHandler.purpose());
@@ -11765,7 +12067,7 @@ var mobile = (function () {
         logger.logEventCut(eventType, handlerInfo.element(), descHandler.purpose());
         return adt$6.complete();
       } else {
-        return $_a7cj16ynjkmcwtk5.parent(handlerInfo.element()).fold(function () {
+        return $_4x0y5axtjh8lz4lc.parent(handlerInfo.element()).fold(function () {
           logger.logNoParent(eventType, handlerInfo.element(), descHandler.purpose());
           return adt$6.complete();
         }, function (parent) {
@@ -11790,9 +12092,9 @@ var mobile = (function () {
   };
   var broadcast = function (listeners, rawEvent, logger) {
     var simulatedEvent = fromExternal(rawEvent);
-    each$1(listeners, function (listener) {
+    $_ffek9lxijh8lz4jt.each(listeners, function (listener) {
       var descHandler = listener.descHandler();
-      var handler = getCurried(descHandler);
+      var handler = getHandler(descHandler);
       handler(simulatedEvent);
     });
     return simulatedEvent.isStopped();
@@ -11806,24 +12108,24 @@ var mobile = (function () {
     return doTriggerOnUntilStopped(lookup, eventType, rawEvent, rawTarget, source, logger);
   };
 
-  var closest$3 = function (target, transform, isRoot) {
-    var delegate = $_exwlcm103jkmcwtsk.closest(target, function (elem) {
+  var closest$4 = function (target, transform, isRoot) {
+    var delegate = $_1pk55azajh8lz4tu.closest(target, function (elem) {
       return transform(elem).isSome();
     }, isRoot);
     return delegate.bind(transform);
   };
 
-  var eventHandler = Immutable('element', 'descHandler');
-  var broadcastHandler = function (id, handler) {
+  var eventHandler = $_dti8klxujh8lz4lo.immutable('element', 'descHandler');
+  var messageHandler = function (id, handler) {
     return {
-      id: constant(id),
-      descHandler: constant(handler)
+      id: $_7vemb6x3jh8lz4ig.constant(id),
+      descHandler: $_7vemb6x3jh8lz4ig.constant(handler)
     };
   };
   function EventRegistry () {
     var registry = {};
     var registerId = function (extraArgs, id, events) {
-      each(events, function (v, k) {
+      $_23xamox6jh8lz4iu.each(events, function (v, k) {
         var handlers = registry[k] !== undefined ? registry[k] : {};
         handlers[id] = curryArgs(v, extraArgs);
         registry[k] = handlers;
@@ -11841,20 +12143,20 @@ var mobile = (function () {
     };
     var filterByType = function (type) {
       return readOptFrom$1(registry, type).map(function (handlers) {
-        return mapToArray(handlers, function (f, id) {
-          return broadcastHandler(id, f);
+        return $_23xamox6jh8lz4iu.mapToArray(handlers, function (f, id) {
+          return messageHandler(id, f);
         });
       }).getOr([]);
     };
-    var find$$1 = function (isAboveRoot, type, target) {
+    var find = function (isAboveRoot, type, target) {
       var readType = readOpt$1(type);
       var handlers = readType(registry);
-      return closest$3(target, function (elem) {
+      return closest$4(target, function (elem) {
         return findHandler(handlers, elem);
       }, isAboveRoot);
     };
     var unregisterId = function (id) {
-      each(registry, function (handlersById, eventName) {
+      $_23xamox6jh8lz4iu.each(registry, function (handlersById, eventName) {
         if (handlersById.hasOwnProperty(id)) {
           delete handlersById[id];
         }
@@ -11864,7 +12166,7 @@ var mobile = (function () {
       registerId: registerId,
       unregisterId: unregisterId,
       filterByType: filterByType,
-      find: find$$1
+      find: find
     };
   }
 
@@ -11884,7 +12186,7 @@ var mobile = (function () {
       if (conflict === component) {
         unregister(component);
       } else {
-        throw new Error('The tagId "' + tagId + '" is already used by: ' + element(conflict.element()) + '\nCannot use it for: ' + element(component.element()) + '\n' + 'The conflicting element is' + ($_3wo4fwyhjkmcwtje.inBody(conflict.element()) ? ' ' : ' not ') + 'already in the DOM');
+        throw new Error('The tagId "' + tagId + '" is already used by: ' + element(conflict.element()) + '\nCannot use it for: ' + element(component.element()) + '\n' + 'The conflicting element is' + ($_847aynxojh8lz4kx.inBody(conflict.element()) ? ' ' : ' not ') + 'already in the DOM');
       }
     };
     var register = function (component) {
@@ -11922,10 +12224,10 @@ var mobile = (function () {
 
   var takeover = function (root) {
     var isAboveRoot = function (el) {
-      return $_a7cj16ynjkmcwtk5.parent(root.element()).fold(function () {
+      return $_4x0y5axtjh8lz4lc.parent(root.element()).fold(function () {
         return true;
       }, function (parent) {
-        return $_cpo6bcytjkmcwtkv.eq(el, parent);
+        return $_6liejjxzjh8lz4lv.eq(el, parent);
       });
     };
     var registry = Registry();
@@ -11944,7 +12246,7 @@ var mobile = (function () {
       }
     });
     var systemApi = SystemApi({
-      debugInfo: constant('real'),
+      debugInfo: $_7vemb6x3jh8lz4ig.constant('real'),
       triggerEvent: function (eventName, target, data) {
         monitorEvent(eventName, target, function (logger) {
           triggerOnUntilStopped(lookup, eventName, data, target, logger);
@@ -11952,14 +12254,12 @@ var mobile = (function () {
       },
       triggerFocus: function (target, originator) {
         read$2(target).fold(function () {
-          $_fci5qy101jkmcwtsc.focus(target);
+          $_1z851az8jh8lz4tn.focus(target);
         }, function (_alloyId) {
           monitorEvent(focus$1(), target, function (logger) {
             triggerHandler(lookup, focus$1(), {
-              originator: constant(originator),
-              kill: noop,
-              prevent: noop,
-              target: constant(target)
+              originator: $_7vemb6x3jh8lz4ig.constant(originator),
+              target: $_7vemb6x3jh8lz4ig.constant(target)
             }, target, logger);
           });
         });
@@ -11992,19 +12292,19 @@ var mobile = (function () {
       broadcastOn: function (channels, message) {
         broadcastOn(channels, message);
       },
-      isConnected: constant(true)
+      isConnected: $_7vemb6x3jh8lz4ig.constant(true)
     });
     var addToWorld = function (component) {
       component.connect(systemApi);
-      if (!$_b0ubstykjkmcwtjz.isText(component.element())) {
+      if (!$_2dp7e0xqjh8lz4l7.isText(component.element())) {
         registry.register(component);
-        each$1(component.components(), addToWorld);
-        systemApi.triggerEvent(systemInit(), component.element(), { target: constant(component.element()) });
+        $_ffek9lxijh8lz4jt.each(component.components(), addToWorld);
+        systemApi.triggerEvent(systemInit(), component.element(), { target: $_7vemb6x3jh8lz4ig.constant(component.element()) });
       }
     };
     var removeFromWorld = function (component) {
-      if (!$_b0ubstykjkmcwtjz.isText(component.element())) {
-        each$1(component.components(), removeFromWorld);
+      if (!$_2dp7e0xqjh8lz4l7.isText(component.element())) {
+        $_ffek9lxijh8lz4jt.each(component.components(), removeFromWorld);
         registry.unregister(component);
       }
       component.disconnect();
@@ -12017,27 +12317,27 @@ var mobile = (function () {
     };
     var destroy = function () {
       domEvents.unbind();
-      $_cxmsuayzjkmcwtlj.remove(root.element());
+      $_8s1zycy5jh8lz4mm.remove(root.element());
     };
     var broadcastData = function (data) {
       var receivers = registry.filter(receive());
-      each$1(receivers, function (receiver) {
+      $_ffek9lxijh8lz4jt.each(receivers, function (receiver) {
         var descHandler = receiver.descHandler();
-        var handler = getCurried(descHandler);
+        var handler = getHandler(descHandler);
         handler(data);
       });
     };
     var broadcast$$1 = function (message) {
       broadcastData({
-        universal: constant(true),
-        data: constant(message)
+        universal: $_7vemb6x3jh8lz4ig.constant(true),
+        data: $_7vemb6x3jh8lz4ig.constant(message)
       });
     };
     var broadcastOn = function (channels, message) {
       broadcastData({
-        universal: constant(false),
-        channels: constant(channels),
-        data: constant(message)
+        universal: $_7vemb6x3jh8lz4ig.constant(false),
+        channels: $_7vemb6x3jh8lz4ig.constant(channels),
+        data: $_7vemb6x3jh8lz4ig.constant(message)
       });
     };
     var getByUid = function (uid) {
@@ -12051,7 +12351,7 @@ var mobile = (function () {
     };
     addToWorld(root);
     return {
-      root: constant(root),
+      root: $_7vemb6x3jh8lz4ig.constant(root),
       element: root.element,
       destroy: destroy,
       add: add,
@@ -12065,11 +12365,11 @@ var mobile = (function () {
     };
   };
 
-  var READ_ONLY_MODE_CLASS = constant($_dpmvs510tjkmcwtwz.resolve('readonly-mode'));
-  var EDIT_MODE_CLASS = constant($_dpmvs510tjkmcwtwz.resolve('edit-mode'));
+  var READ_ONLY_MODE_CLASS = $_7vemb6x3jh8lz4ig.constant($_9mxjlz100jh8lz4y0.resolve('readonly-mode'));
+  var EDIT_MODE_CLASS = $_7vemb6x3jh8lz4ig.constant($_9mxjlz100jh8lz4y0.resolve('edit-mode'));
   function OuterContainer (spec) {
     var root = build$1(Container.sketch({
-      dom: { classes: [$_dpmvs510tjkmcwtwz.resolve('outer-container')].concat(spec.classes) },
+      dom: { classes: [$_9mxjlz100jh8lz4y0.resolve('outer-container')].concat(spec.classes) },
       containerBehaviours: derive$2([Swapping.config({
           alpha: READ_ONLY_MODE_CLASS(),
           omega: EDIT_MODE_CLASS()
@@ -12079,12 +12379,12 @@ var mobile = (function () {
   }
 
   function AndroidRealm (scrollIntoView) {
-    var alloy = OuterContainer({ classes: [$_dpmvs510tjkmcwtwz.resolve('android-container')] });
+    var alloy = OuterContainer({ classes: [$_9mxjlz100jh8lz4y0.resolve('android-container')] });
     var toolbar = ScrollingToolbar();
-    var webapp = api$2();
-    var switchToEdit = $_51jxa16jjkmcwv5a.makeEditSwitch(webapp);
-    var socket = $_51jxa16jjkmcwv5a.makeSocket();
-    var dropup = build$2(noop, scrollIntoView);
+    var webapp = $_vbo4a13ajh8lz5m7.api();
+    var switchToEdit = $_4lxm1z15qjh8lz66u.makeEditSwitch(webapp);
+    var socket = $_4lxm1z15qjh8lz66u.makeSocket();
+    var dropup = build$2($_7vemb6x3jh8lz4ig.noop, scrollIntoView);
     alloy.add(toolbar.wrapper());
     alloy.add(socket);
     alloy.add(dropup.component());
@@ -12103,7 +12403,7 @@ var mobile = (function () {
       toolbar.restoreToolbar();
     };
     var init = function (spec) {
-      webapp.set($_85ogv215fjkmcwuwn.produce(spec));
+      webapp.set($_2qdrds14mjh8lz5yu.produce(spec));
     };
     var exit = function () {
       webapp.run(function (w) {
@@ -12112,10 +12412,10 @@ var mobile = (function () {
       });
     };
     var updateMode = function (readOnly) {
-      $_51jxa16jjkmcwv5a.updateMode(socket, switchToEdit, readOnly, alloy.root());
+      $_4lxm1z15qjh8lz66u.updateMode(socket, switchToEdit, readOnly, alloy.root());
     };
     return {
-      system: constant(alloy),
+      system: $_7vemb6x3jh8lz4ig.constant(alloy),
       element: alloy.element,
       init: init,
       exit: exit,
@@ -12124,25 +12424,25 @@ var mobile = (function () {
       focusToolbar: focusToolbar,
       restoreToolbar: restoreToolbar,
       updateMode: updateMode,
-      socket: constant(socket),
-      dropup: constant(dropup)
+      socket: $_7vemb6x3jh8lz4ig.constant(socket),
+      dropup: $_7vemb6x3jh8lz4ig.constant(dropup)
     };
   }
 
   var input$1 = function (parent, operation) {
-    var input = Element$$1.fromTag('input');
-    $_ezdyn3116jkmcwtyw.setAll(input, {
+    var input = $_2ykjbpxpjh8lz4l0.fromTag('input');
+    $_g3k65w10djh8lz50c.setAll(input, {
       opacity: '0',
       position: 'absolute',
       top: '-1000px',
       left: '-1000px'
     });
-    $_1qcoujymjkmcwtk3.append(parent, input);
-    $_fci5qy101jkmcwtsc.focus(input);
+    $_b7kmpsxsjh8lz4la.append(parent, input);
+    $_1z851az8jh8lz4tn.focus(input);
     operation(input);
-    $_cxmsuayzjkmcwtlj.remove(input);
+    $_8s1zycy5jh8lz4mm.remove(input);
   };
-  var $_7gxy0a173jkmcwvas = { input: input$1 };
+  var $_9iufvn16ajh8lz6cd = { input: input$1 };
 
   var refreshInput = function (input) {
     var start = input.dom().selectionStart;
@@ -12150,7 +12450,7 @@ var mobile = (function () {
     var dir = input.dom().selectionDirection;
     setTimeout(function () {
       input.dom().setSelectionRange(start, end, dir);
-      $_fci5qy101jkmcwtsc.focus(input);
+      $_1z851az8jh8lz4tn.focus(input);
     }, 50);
   };
   var refresh = function (winScope) {
@@ -12164,35 +12464,35 @@ var mobile = (function () {
       sel.addRange(r);
     }
   };
-  var $_as40ta175jkmcwvb6 = {
+  var $_cnnsvs16cjh8lz6cw = {
     refreshInput: refreshInput,
     refresh: refresh
   };
 
   var resume$1 = function (cWin, frame) {
-    $_fci5qy101jkmcwtsc.active().each(function (active) {
-      if (!$_cpo6bcytjkmcwtkv.eq(active, frame)) {
-        $_fci5qy101jkmcwtsc.blur(active);
+    $_1z851az8jh8lz4tn.active().each(function (active) {
+      if (!$_6liejjxzjh8lz4lv.eq(active, frame)) {
+        $_1z851az8jh8lz4tn.blur(active);
       }
     });
     cWin.focus();
-    $_fci5qy101jkmcwtsc.focus(Element$$1.fromDom(cWin.document.body));
-    $_as40ta175jkmcwvb6.refresh(cWin);
+    $_1z851az8jh8lz4tn.focus($_2ykjbpxpjh8lz4l0.fromDom(cWin.document.body));
+    $_cnnsvs16cjh8lz6cw.refresh(cWin);
   };
-  var $_a7yaxp174jkmcwvb1 = { resume: resume$1 };
+  var $_7cf35z16bjh8lz6cq = { resume: resume$1 };
 
   var stubborn = function (outerBody, cWin, page, frame) {
     var toEditing = function () {
-      $_a7yaxp174jkmcwvb1.resume(cWin, frame);
+      $_7cf35z16bjh8lz6cq.resume(cWin, frame);
     };
     var toReading = function () {
-      $_7gxy0a173jkmcwvas.input(outerBody, $_fci5qy101jkmcwtsc.blur);
+      $_9iufvn16ajh8lz6cd.input(outerBody, $_1z851az8jh8lz4tn.blur);
     };
-    var captureInput = $_csbuij15cjkmcwuwa.bind(page, 'keydown', function (evt) {
-      if (!contains([
+    var captureInput = $_64n4pu14jjh8lz5yh.bind(page, 'keydown', function (evt) {
+      if (!$_ffek9lxijh8lz4jt.contains([
           'input',
           'textarea'
-        ], $_b0ubstykjkmcwtjz.name(evt.target()))) {
+        ], $_2dp7e0xqjh8lz4l7.name(evt.target()))) {
         toEditing();
       }
     });
@@ -12210,7 +12510,7 @@ var mobile = (function () {
   };
   var timid = function (outerBody, cWin, page, frame) {
     var dismissKeyboard = function () {
-      $_fci5qy101jkmcwtsc.blur(frame);
+      $_1z851az8jh8lz4tn.blur(frame);
     };
     var onToolbarTouch = function () {
       dismissKeyboard();
@@ -12219,16 +12519,16 @@ var mobile = (function () {
       dismissKeyboard();
     };
     var toEditing = function () {
-      $_a7yaxp174jkmcwvb1.resume(cWin, frame);
+      $_7cf35z16bjh8lz6cq.resume(cWin, frame);
     };
     return {
       toReading: toReading,
       toEditing: toEditing,
       onToolbarTouch: onToolbarTouch,
-      destroy: noop
+      destroy: $_7vemb6x3jh8lz4ig.noop
     };
   };
-  var $_f7j8bs172jkmcwvaj = {
+  var $_538pb0169jh8lz6c3 = {
     stubborn: stubborn,
     timid: timid
   };
@@ -12274,7 +12574,7 @@ var mobile = (function () {
       });
     };
     var reposition = function () {
-      var toolbarHeight = $_3mqbs115jkmcwtyu.get(toolstrip);
+      var toolbarHeight = $_1avprm10cjh8lz50a.get(toolstrip);
       iosApi.run(function (api) {
         api.setViewportOffset(toolbarHeight);
       });
@@ -12296,8 +12596,8 @@ var mobile = (function () {
         api.onToolbarTouch(event);
       });
     };
-    var tapping = $_1qfxb115ijkmcwuxo.monitor(editorApi);
-    var refreshThrottle = last$3(refreshView, 300);
+    var tapping = $_dxdi0514pjh8lz5zr.monitor(editorApi);
+    var refreshThrottle = $_9m8kju15ijh8lz64y.last(refreshView, 300);
     var listeners = [
       editorApi.onKeyup(clearAndRefresh),
       editorApi.onNodeChanged(refreshIosSelection),
@@ -12312,60 +12612,60 @@ var mobile = (function () {
       }),
       editorApi.onToEditing(toEditing),
       editorApi.onToReading(toReading),
-      $_csbuij15cjkmcwuwa.bind(editorApi.doc(), 'touchend', function (touchEvent) {
-        if ($_cpo6bcytjkmcwtkv.eq(editorApi.html(), touchEvent.target()) || $_cpo6bcytjkmcwtkv.eq(editorApi.body(), touchEvent.target())) {
+      $_64n4pu14jjh8lz5yh.bind(editorApi.doc(), 'touchend', function (touchEvent) {
+        if ($_6liejjxzjh8lz4lv.eq(editorApi.html(), touchEvent.target()) || $_6liejjxzjh8lz4lv.eq(editorApi.body(), touchEvent.target())) {
         }
       }),
-      $_csbuij15cjkmcwuwa.bind(toolstrip, 'transitionend', function (transitionEvent) {
+      $_64n4pu14jjh8lz5yh.bind(toolstrip, 'transitionend', function (transitionEvent) {
         if (transitionEvent.raw().propertyName === 'height') {
           reposition();
         }
       }),
-      $_csbuij15cjkmcwuwa.capture(toolstrip, 'touchstart', function (touchEvent) {
+      $_64n4pu14jjh8lz5yh.capture(toolstrip, 'touchstart', function (touchEvent) {
         saveSelectionFirst();
         onToolbarTouch(touchEvent);
         editorApi.onTouchToolstrip();
       }),
-      $_csbuij15cjkmcwuwa.bind(editorApi.body(), 'touchstart', function (evt) {
+      $_64n4pu14jjh8lz5yh.bind(editorApi.body(), 'touchstart', function (evt) {
         clearSelection();
         editorApi.onTouchContent();
         tapping.fireTouchstart(evt);
       }),
       tapping.onTouchmove(),
       tapping.onTouchend(),
-      $_csbuij15cjkmcwuwa.bind(editorApi.body(), 'click', function (event) {
+      $_64n4pu14jjh8lz5yh.bind(editorApi.body(), 'click', function (event) {
         event.kill();
       }),
-      $_csbuij15cjkmcwuwa.bind(toolstrip, 'touchmove', function () {
+      $_64n4pu14jjh8lz5yh.bind(toolstrip, 'touchmove', function () {
         editorApi.onToolbarScrollStart();
       })
     ];
     var destroy = function () {
-      each$1(listeners, function (l) {
+      $_ffek9lxijh8lz4jt.each(listeners, function (l) {
         l.unbind();
       });
     };
     return { destroy: destroy };
   };
-  var $_8v1607176jkmcwvba = { initEvents: initEvents$1 };
+  var $_17cnf516djh8lz6cz = { initEvents: initEvents$1 };
 
   function FakeSelection (win, frame) {
     var doc = win.document;
-    var container = Element$$1.fromTag('div');
-    $_4fq2lwzujkmcwtrk.add(container, $_dpmvs510tjkmcwtwz.resolve('unfocused-selections'));
-    $_1qcoujymjkmcwtk3.append(Element$$1.fromDom(doc.documentElement), container);
-    var onTouch = $_csbuij15cjkmcwuwa.bind(container, 'touchstart', function (event) {
+    var container = $_2ykjbpxpjh8lz4l0.fromTag('div');
+    $_eyo6psz1jh8lz4sw.add(container, $_9mxjlz100jh8lz4y0.resolve('unfocused-selections'));
+    $_b7kmpsxsjh8lz4la.append($_2ykjbpxpjh8lz4l0.fromDom(doc.documentElement), container);
+    var onTouch = $_64n4pu14jjh8lz5yh.bind(container, 'touchstart', function (event) {
       event.prevent();
-      $_a7yaxp174jkmcwvb1.resume(win, frame);
+      $_7cf35z16bjh8lz6cq.resume(win, frame);
       clear();
     });
     var make = function (rectangle) {
-      var span = Element$$1.fromTag('span');
-      $_c1ba8t14mjkmcwuq6.add(span, [
-        $_dpmvs510tjkmcwtwz.resolve('layer-editor'),
-        $_dpmvs510tjkmcwtwz.resolve('unfocused-selection')
+      var span = $_2ykjbpxpjh8lz4l0.fromTag('span');
+      $_f9g46a13tjh8lz5sb.add(span, [
+        $_9mxjlz100jh8lz4y0.resolve('layer-editor'),
+        $_9mxjlz100jh8lz4y0.resolve('unfocused-selection')
       ]);
-      $_ezdyn3116jkmcwtyw.setAll(span, {
+      $_g3k65w10djh8lz50c.setAll(span, {
         left: rectangle.left() + 'px',
         top: rectangle.top() + 'px',
         width: rectangle.width() + 'px',
@@ -12375,19 +12675,19 @@ var mobile = (function () {
     };
     var update = function () {
       clear();
-      var rectangles = $_9bylyc15njkmcwuyl.getRectangles(win);
-      var spans = map$1(rectangles, make);
-      $_4ags7uz0jkmcwtlm.append(container, spans);
+      var rectangles = $_2t1f1514ujh8lz60p.getRectangles(win);
+      var spans = $_ffek9lxijh8lz4jt.map(rectangles, make);
+      $_vq36dy6jh8lz4mp.append(container, spans);
     };
     var clear = function () {
-      $_cxmsuayzjkmcwtlj.empty(container);
+      $_8s1zycy5jh8lz4mm.empty(container);
     };
     var destroy = function () {
       onTouch.unbind();
-      $_cxmsuayzjkmcwtlj.remove(container);
+      $_8s1zycy5jh8lz4mm.remove(container);
     };
     var isActive = function () {
-      return $_a7cj16ynjkmcwtk5.children(container).length > 0;
+      return $_4x0y5axtjh8lz4lc.children(container).length > 0;
     };
     return {
       update: update,
@@ -12422,7 +12722,7 @@ var mobile = (function () {
       return data.isSome();
     };
     var run = function (cbs) {
-      each$1(cbs, call);
+      $_ffek9lxijh8lz4jt.each(cbs, call);
     };
     var call = function (cb) {
       data.each(function (x) {
@@ -12450,20 +12750,18 @@ var mobile = (function () {
 
   var bounce = function (f) {
     return function () {
-      var args = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-      }
+      var args = Array.prototype.slice.call(arguments);
       var me = this;
       setTimeout(function () {
         f.apply(me, args);
       }, 0);
     };
   };
+  var $_enjvf416jjh8lz6et = { bounce: bounce };
 
   var nu$9 = function (baseFn) {
     var get = function (callback) {
-      baseFn(bounce(callback));
+      baseFn($_enjvf416jjh8lz6et.bounce(callback));
     };
     var map = function (fab) {
       return nu$9(function (callback) {
@@ -12549,7 +12847,7 @@ var mobile = (function () {
     };
     return { animate: animate };
   };
-  var $_bckufm17djkmcwvd7 = {
+  var $_4vpb4l16kjh8lz6ev = {
     create: create$7,
     adjust: adjust
   };
@@ -12605,42 +12903,42 @@ var mobile = (function () {
         }
       }
     ];
-    return findMap(devices, function (device) {
+    return $_3g4qukzsjh8lz4wq.findMap(devices, function (device) {
       return deviceWidth <= device.width && deviceHeight <= device.height ? Option.some(device.keyboard) : Option.none();
     }).getOr({
       portrait: deviceHeight / 5,
       landscape: deviceWidth / 4
     });
   };
-  var $_cvf14s17gjkmcwve3 = { findDevice: findDevice };
+  var $_6t3dhl16njh8lz6fo = { findDevice: findDevice };
 
   var softKeyboardLimits = function (outerWindow) {
-    return $_cvf14s17gjkmcwve3.findDevice(outerWindow.screen.width, outerWindow.screen.height);
+    return $_6t3dhl16njh8lz6fo.findDevice(outerWindow.screen.width, outerWindow.screen.height);
   };
   var accountableKeyboardHeight = function (outerWindow) {
-    var portrait = $_c3oqmx15bjkmcwuw0.get(outerWindow).isPortrait();
+    var portrait = $_40qbzh14ijh8lz5y7.get(outerWindow).isPortrait();
     var limits = softKeyboardLimits(outerWindow);
     var keyboard = portrait ? limits.portrait : limits.landscape;
     var visualScreenHeight = portrait ? outerWindow.screen.height : outerWindow.screen.width;
     return visualScreenHeight - outerWindow.innerHeight > keyboard ? 0 : keyboard;
   };
   var getGreenzone = function (socket, dropup) {
-    var outerWindow = $_a7cj16ynjkmcwtk5.owner(socket).dom().defaultView;
-    var viewportHeight = $_3mqbs115jkmcwtyu.get(socket) + $_3mqbs115jkmcwtyu.get(dropup);
+    var outerWindow = $_4x0y5axtjh8lz4lc.owner(socket).dom().defaultView;
+    var viewportHeight = $_1avprm10cjh8lz50a.get(socket) + $_1avprm10cjh8lz50a.get(dropup);
     var acc = accountableKeyboardHeight(outerWindow);
     return viewportHeight - acc;
   };
   var updatePadding = function (contentBody, socket, dropup) {
     var greenzoneHeight = getGreenzone(socket, dropup);
-    var deltaHeight = $_3mqbs115jkmcwtyu.get(socket) + $_3mqbs115jkmcwtyu.get(dropup) - greenzoneHeight;
-    $_ezdyn3116jkmcwtyw.set(contentBody, 'padding-bottom', deltaHeight + 'px');
+    var deltaHeight = $_1avprm10cjh8lz50a.get(socket) + $_1avprm10cjh8lz50a.get(dropup) - greenzoneHeight;
+    $_g3k65w10djh8lz50c.set(contentBody, 'padding-bottom', deltaHeight + 'px');
   };
-  var $_5n5el317fjkmcwvdx = {
+  var $_bux3t216mjh8lz6fg = {
     getGreenzone: getGreenzone,
     updatePadding: updatePadding
   };
 
-  var fixture = Adt.generate([
+  var fixture = $_aruf06ycjh8lz4o4.generate([
     {
       fixed: [
         'element',
@@ -12655,18 +12953,18 @@ var mobile = (function () {
       ]
     }
   ]);
-  var yFixedData = 'data-' + $_dpmvs510tjkmcwtwz.resolve('position-y-fixed');
-  var yFixedProperty = 'data-' + $_dpmvs510tjkmcwtwz.resolve('y-property');
-  var yScrollingData = 'data-' + $_dpmvs510tjkmcwtwz.resolve('scrolling');
-  var windowSizeData = 'data-' + $_dpmvs510tjkmcwtwz.resolve('last-window-height');
+  var yFixedData = 'data-' + $_9mxjlz100jh8lz4y0.resolve('position-y-fixed');
+  var yFixedProperty = 'data-' + $_9mxjlz100jh8lz4y0.resolve('y-property');
+  var yScrollingData = 'data-' + $_9mxjlz100jh8lz4y0.resolve('scrolling');
+  var windowSizeData = 'data-' + $_9mxjlz100jh8lz4y0.resolve('last-window-height');
   var getYFixedData = function (element) {
-    return $_1qtglj15mjkmcwuyi.safeParse(element, yFixedData);
+    return $_fse4zs14tjh8lz60m.safeParse(element, yFixedData);
   };
   var getYFixedProperty = function (element) {
-    return $_ga5avvzwjkmcwtro.get(element, yFixedProperty);
+    return $_4d7m82z3jh8lz4t3.get(element, yFixedProperty);
   };
   var getLastWindowSize = function (element) {
-    return $_1qtglj15mjkmcwuyi.safeParse(element, windowSizeData);
+    return $_fse4zs14tjh8lz60m.safeParse(element, windowSizeData);
   };
   var classifyFixed = function (element, offsetY) {
     var prop = getYFixedProperty(element);
@@ -12677,75 +12975,75 @@ var mobile = (function () {
   };
   var classify = function (element) {
     var offsetY = getYFixedData(element);
-    var classifier = $_ga5avvzwjkmcwtro.get(element, yScrollingData) === 'true' ? classifyScrolling : classifyFixed;
+    var classifier = $_4d7m82z3jh8lz4t3.get(element, yScrollingData) === 'true' ? classifyScrolling : classifyFixed;
     return classifier(element, offsetY);
   };
   var findFixtures = function (container) {
-    var candidates = $_bpsi2e119jkmcwtzh.descendants(container, '[' + yFixedData + ']');
-    return map$1(candidates, classify);
+    var candidates = $_bhctx310gjh8lz510.descendants(container, '[' + yFixedData + ']');
+    return $_ffek9lxijh8lz4jt.map(candidates, classify);
   };
   var takeoverToolbar = function (toolbar) {
-    var oldToolbarStyle = $_ga5avvzwjkmcwtro.get(toolbar, 'style');
-    $_ezdyn3116jkmcwtyw.setAll(toolbar, {
+    var oldToolbarStyle = $_4d7m82z3jh8lz4t3.get(toolbar, 'style');
+    $_g3k65w10djh8lz50c.setAll(toolbar, {
       position: 'absolute',
       top: '0px'
     });
-    $_ga5avvzwjkmcwtro.set(toolbar, yFixedData, '0px');
-    $_ga5avvzwjkmcwtro.set(toolbar, yFixedProperty, 'top');
+    $_4d7m82z3jh8lz4t3.set(toolbar, yFixedData, '0px');
+    $_4d7m82z3jh8lz4t3.set(toolbar, yFixedProperty, 'top');
     var restore = function () {
-      $_ga5avvzwjkmcwtro.set(toolbar, 'style', oldToolbarStyle || '');
-      $_ga5avvzwjkmcwtro.remove(toolbar, yFixedData);
-      $_ga5avvzwjkmcwtro.remove(toolbar, yFixedProperty);
+      $_4d7m82z3jh8lz4t3.set(toolbar, 'style', oldToolbarStyle || '');
+      $_4d7m82z3jh8lz4t3.remove(toolbar, yFixedData);
+      $_4d7m82z3jh8lz4t3.remove(toolbar, yFixedProperty);
     };
     return { restore: restore };
   };
   var takeoverViewport = function (toolbarHeight, height, viewport) {
-    var oldViewportStyle = $_ga5avvzwjkmcwtro.get(viewport, 'style');
-    $_9pks4l159jkmcwuvq.register(viewport);
-    $_ezdyn3116jkmcwtyw.setAll(viewport, {
+    var oldViewportStyle = $_4d7m82z3jh8lz4t3.get(viewport, 'style');
+    $_ctmye314gjh8lz5xt.register(viewport);
+    $_g3k65w10djh8lz50c.setAll(viewport, {
       position: 'absolute',
       height: height + 'px',
       width: '100%',
       top: toolbarHeight + 'px'
     });
-    $_ga5avvzwjkmcwtro.set(viewport, yFixedData, toolbarHeight + 'px');
-    $_ga5avvzwjkmcwtro.set(viewport, yScrollingData, 'true');
-    $_ga5avvzwjkmcwtro.set(viewport, yFixedProperty, 'top');
+    $_4d7m82z3jh8lz4t3.set(viewport, yFixedData, toolbarHeight + 'px');
+    $_4d7m82z3jh8lz4t3.set(viewport, yScrollingData, 'true');
+    $_4d7m82z3jh8lz4t3.set(viewport, yFixedProperty, 'top');
     var restore = function () {
-      $_9pks4l159jkmcwuvq.deregister(viewport);
-      $_ga5avvzwjkmcwtro.set(viewport, 'style', oldViewportStyle || '');
-      $_ga5avvzwjkmcwtro.remove(viewport, yFixedData);
-      $_ga5avvzwjkmcwtro.remove(viewport, yScrollingData);
-      $_ga5avvzwjkmcwtro.remove(viewport, yFixedProperty);
+      $_ctmye314gjh8lz5xt.deregister(viewport);
+      $_4d7m82z3jh8lz4t3.set(viewport, 'style', oldViewportStyle || '');
+      $_4d7m82z3jh8lz4t3.remove(viewport, yFixedData);
+      $_4d7m82z3jh8lz4t3.remove(viewport, yScrollingData);
+      $_4d7m82z3jh8lz4t3.remove(viewport, yFixedProperty);
     };
     return { restore: restore };
   };
   var takeoverDropup = function (dropup, toolbarHeight, viewportHeight) {
-    var oldDropupStyle = $_ga5avvzwjkmcwtro.get(dropup, 'style');
-    $_ezdyn3116jkmcwtyw.setAll(dropup, {
+    var oldDropupStyle = $_4d7m82z3jh8lz4t3.get(dropup, 'style');
+    $_g3k65w10djh8lz50c.setAll(dropup, {
       position: 'absolute',
       bottom: '0px'
     });
-    $_ga5avvzwjkmcwtro.set(dropup, yFixedData, '0px');
-    $_ga5avvzwjkmcwtro.set(dropup, yFixedProperty, 'bottom');
+    $_4d7m82z3jh8lz4t3.set(dropup, yFixedData, '0px');
+    $_4d7m82z3jh8lz4t3.set(dropup, yFixedProperty, 'bottom');
     var restore = function () {
-      $_ga5avvzwjkmcwtro.set(dropup, 'style', oldDropupStyle || '');
-      $_ga5avvzwjkmcwtro.remove(dropup, yFixedData);
-      $_ga5avvzwjkmcwtro.remove(dropup, yFixedProperty);
+      $_4d7m82z3jh8lz4t3.set(dropup, 'style', oldDropupStyle || '');
+      $_4d7m82z3jh8lz4t3.remove(dropup, yFixedData);
+      $_4d7m82z3jh8lz4t3.remove(dropup, yFixedProperty);
     };
     return { restore: restore };
   };
   var deriveViewportHeight = function (viewport, toolbarHeight, dropupHeight) {
-    var outerWindow = $_a7cj16ynjkmcwtk5.owner(viewport).dom().defaultView;
+    var outerWindow = $_4x0y5axtjh8lz4lc.owner(viewport).dom().defaultView;
     var winH = outerWindow.innerHeight;
-    $_ga5avvzwjkmcwtro.set(viewport, windowSizeData, winH + 'px');
+    $_4d7m82z3jh8lz4t3.set(viewport, windowSizeData, winH + 'px');
     return winH - toolbarHeight - dropupHeight;
   };
   var takeover$1 = function (viewport, contentBody, toolbar, dropup) {
-    var outerWindow = $_a7cj16ynjkmcwtk5.owner(viewport).dom().defaultView;
+    var outerWindow = $_4x0y5axtjh8lz4lc.owner(viewport).dom().defaultView;
     var toolbarSetup = takeoverToolbar(toolbar);
-    var toolbarHeight = $_3mqbs115jkmcwtyu.get(toolbar);
-    var dropupHeight = $_3mqbs115jkmcwtyu.get(dropup);
+    var toolbarHeight = $_1avprm10cjh8lz50a.get(toolbar);
+    var dropupHeight = $_1avprm10cjh8lz50a.get(dropup);
     var viewportHeight = deriveViewportHeight(viewport, toolbarHeight, dropupHeight);
     var viewportSetup = takeoverViewport(toolbarHeight, viewportHeight, viewport);
     var dropupSetup = takeoverDropup(dropup, toolbarHeight, viewportHeight);
@@ -12763,42 +13061,42 @@ var mobile = (function () {
     };
     var refresh = function () {
       if (isActive) {
-        var newToolbarHeight = $_3mqbs115jkmcwtyu.get(toolbar);
-        var dropupHeight_1 = $_3mqbs115jkmcwtyu.get(dropup);
+        var newToolbarHeight = $_1avprm10cjh8lz50a.get(toolbar);
+        var dropupHeight_1 = $_1avprm10cjh8lz50a.get(dropup);
         var newHeight = deriveViewportHeight(viewport, newToolbarHeight, dropupHeight_1);
-        $_ga5avvzwjkmcwtro.set(viewport, yFixedData, newToolbarHeight + 'px');
-        $_ezdyn3116jkmcwtyw.set(viewport, 'height', newHeight + 'px');
-        $_ezdyn3116jkmcwtyw.set(dropup, 'bottom', -(newToolbarHeight + newHeight + dropupHeight_1) + 'px');
-        $_5n5el317fjkmcwvdx.updatePadding(contentBody, viewport, dropup);
+        $_4d7m82z3jh8lz4t3.set(viewport, yFixedData, newToolbarHeight + 'px');
+        $_g3k65w10djh8lz50c.set(viewport, 'height', newHeight + 'px');
+        $_g3k65w10djh8lz50c.set(dropup, 'bottom', -(newToolbarHeight + newHeight + dropupHeight_1) + 'px');
+        $_bux3t216mjh8lz6fg.updatePadding(contentBody, viewport, dropup);
       }
     };
     var setViewportOffset = function (newYOffset) {
       var offsetPx = newYOffset + 'px';
-      $_ga5avvzwjkmcwtro.set(viewport, yFixedData, offsetPx);
+      $_4d7m82z3jh8lz4t3.set(viewport, yFixedData, offsetPx);
       refresh();
     };
-    $_5n5el317fjkmcwvdx.updatePadding(contentBody, viewport, dropup);
+    $_bux3t216mjh8lz6fg.updatePadding(contentBody, viewport, dropup);
     return {
       setViewportOffset: setViewportOffset,
       isExpanding: isExpanding,
-      isShrinking: not(isExpanding),
+      isShrinking: $_7vemb6x3jh8lz4ig.not(isExpanding),
       refresh: refresh,
       restore: restore
     };
   };
-  var $_exi4dz17ejkmcwvdb = {
+  var $_enfl4f16ljh8lz6ez = {
     findFixtures: findFixtures,
     takeover: takeover$1,
     getYFixedData: getYFixedData
   };
 
-  var animator = $_bckufm17djkmcwvd7.create();
+  var animator = $_4vpb4l16kjh8lz6ev.create();
   var ANIMATION_STEP = 15;
   var NUM_TOP_ANIMATION_FRAMES = 10;
   var ANIMATION_RATE = 10;
-  var lastScroll = 'data-' + $_dpmvs510tjkmcwtwz.resolve('last-scroll-top');
+  var lastScroll = 'data-' + $_9mxjlz100jh8lz4y0.resolve('last-scroll-top');
   var getTop = function (element) {
-    var raw = $_ezdyn3116jkmcwtyw.getRaw(element, 'top').getOr('0');
+    var raw = $_g3k65w10djh8lz50c.getRaw(element, 'top').getOr(0);
     return parseInt(raw, 10);
   };
   var getScrollTop = function (element) {
@@ -12806,14 +13104,14 @@ var mobile = (function () {
   };
   var moveScrollAndTop = function (element, destination, finalTop) {
     return Future.nu(function (callback) {
-      var getCurrent = curry(getScrollTop, element);
+      var getCurrent = $_7vemb6x3jh8lz4ig.curry(getScrollTop, element);
       var update = function (newScroll) {
         element.dom().scrollTop = newScroll;
-        $_ezdyn3116jkmcwtyw.set(element, 'top', getTop(element) + ANIMATION_STEP + 'px');
+        $_g3k65w10djh8lz50c.set(element, 'top', getTop(element) + ANIMATION_STEP + 'px');
       };
       var finish = function () {
         element.dom().scrollTop = destination;
-        $_ezdyn3116jkmcwtyw.set(element, 'top', finalTop + 'px');
+        $_g3k65w10djh8lz50c.set(element, 'top', finalTop + 'px');
         callback(destination);
       };
       animator.animate(getCurrent, destination, ANIMATION_STEP, update, finish, ANIMATION_RATE);
@@ -12821,20 +13119,20 @@ var mobile = (function () {
   };
   var moveOnlyScroll = function (element, destination) {
     return Future.nu(function (callback) {
-      var getCurrent = curry(getScrollTop, element);
-      $_ga5avvzwjkmcwtro.set(element, lastScroll, getCurrent());
+      var getCurrent = $_7vemb6x3jh8lz4ig.curry(getScrollTop, element);
+      $_4d7m82z3jh8lz4t3.set(element, lastScroll, getCurrent());
       var update = function (newScroll, abort) {
-        var previous = $_1qtglj15mjkmcwuyi.safeParse(element, lastScroll);
+        var previous = $_fse4zs14tjh8lz60m.safeParse(element, lastScroll);
         if (previous !== element.dom().scrollTop) {
           abort(element.dom().scrollTop);
         } else {
           element.dom().scrollTop = newScroll;
-          $_ga5avvzwjkmcwtro.set(element, lastScroll, newScroll);
+          $_4d7m82z3jh8lz4t3.set(element, lastScroll, newScroll);
         }
       };
       var finish = function () {
         element.dom().scrollTop = destination;
-        $_ga5avvzwjkmcwtro.set(element, lastScroll, destination);
+        $_4d7m82z3jh8lz4t3.set(element, lastScroll, destination);
         callback(destination);
       };
       var distance = Math.abs(destination - getCurrent());
@@ -12844,9 +13142,9 @@ var mobile = (function () {
   };
   var moveOnlyTop = function (element, destination) {
     return Future.nu(function (callback) {
-      var getCurrent = curry(getTop, element);
+      var getCurrent = $_7vemb6x3jh8lz4ig.curry(getTop, element);
       var update = function (newTop) {
-        $_ezdyn3116jkmcwtyw.set(element, 'top', newTop + 'px');
+        $_g3k65w10djh8lz50c.set(element, 'top', newTop + 'px');
       };
       var finish = function () {
         update(destination);
@@ -12858,11 +13156,11 @@ var mobile = (function () {
     });
   };
   var updateTop = function (element, amount) {
-    var newTop = amount + $_exi4dz17ejkmcwvdb.getYFixedData(element) + 'px';
-    $_ezdyn3116jkmcwtyw.set(element, 'top', newTop);
+    var newTop = amount + $_enfl4f16ljh8lz6ez.getYFixedData(element) + 'px';
+    $_g3k65w10djh8lz50c.set(element, 'top', newTop);
   };
   var moveWindowScroll = function (toolbar, viewport, destY) {
-    var outerWindow = $_a7cj16ynjkmcwtk5.owner(toolbar).dom().defaultView;
+    var outerWindow = $_4x0y5axtjh8lz4lc.owner(toolbar).dom().defaultView;
     return Future.nu(function (callback) {
       updateTop(toolbar, destY);
       updateTop(viewport, destY);
@@ -12870,7 +13168,7 @@ var mobile = (function () {
       callback(destY);
     });
   };
-  var $_dl3ja8179jkmcwvcs = {
+  var $_wkbkw16gjh8lz6ec = {
     moveScrollAndTop: moveScrollAndTop,
     moveOnlyScroll: moveOnlyScroll,
     moveOnlyTop: moveOnlyTop,
@@ -12897,16 +13195,16 @@ var mobile = (function () {
   }
 
   var scrollIntoView = function (cWin, socket, dropup, top, bottom) {
-    var greenzone = $_5n5el317fjkmcwvdx.getGreenzone(socket, dropup);
-    var refreshCursor = curry($_as40ta175jkmcwvb6.refresh, cWin);
+    var greenzone = $_bux3t216mjh8lz6fg.getGreenzone(socket, dropup);
+    var refreshCursor = $_7vemb6x3jh8lz4ig.curry($_cnnsvs16cjh8lz6cw.refresh, cWin);
     if (top > greenzone || bottom > greenzone) {
-      $_dl3ja8179jkmcwvcs.moveOnlyScroll(socket, socket.dom().scrollTop - greenzone + bottom).get(refreshCursor);
+      $_wkbkw16gjh8lz6ec.moveOnlyScroll(socket, socket.dom().scrollTop - greenzone + bottom).get(refreshCursor);
     } else if (top < 0) {
-      $_dl3ja8179jkmcwvcs.moveOnlyScroll(socket, socket.dom().scrollTop + top).get(refreshCursor);
+      $_wkbkw16gjh8lz6ec.moveOnlyScroll(socket, socket.dom().scrollTop + top).get(refreshCursor);
     } else {
     }
   };
-  var $_59bkbi17ijkmcwvec = { scrollIntoView: scrollIntoView };
+  var $_1xg6xq16pjh8lz6fx = { scrollIntoView: scrollIntoView };
 
   var par = function (asyncValues, nu) {
     return nu(function (callback) {
@@ -12924,28 +13222,43 @@ var mobile = (function () {
       if (asyncValues.length === 0) {
         callback([]);
       } else {
-        each$1(asyncValues, function (asyncValue, i) {
+        $_ffek9lxijh8lz4jt.each(asyncValues, function (asyncValue, i) {
           asyncValue.get(cb(i));
         });
       }
     });
   };
+  var $_38g42416sjh8lz6gd = { par: par };
 
   var par$1 = function (futures) {
-    return par(futures, Future.nu);
+    return $_38g42416sjh8lz6gd.par(futures, Future.nu);
+  };
+  var mapM = function (array, fn) {
+    var futures = $_ffek9lxijh8lz4jt.map(array, fn);
+    return par$1(futures);
+  };
+  var compose$1 = function (f, g) {
+    return function (a) {
+      return g(a).bind(f);
+    };
+  };
+  var $_aujlny16rjh8lz6gc = {
+    par: par$1,
+    mapM: mapM,
+    compose: compose$1
   };
 
   var updateFixed = function (element, property, winY, offsetY) {
     var destination = winY + offsetY;
-    $_ezdyn3116jkmcwtyw.set(element, property, destination + 'px');
+    $_g3k65w10djh8lz50c.set(element, property, destination + 'px');
     return Future.pure(offsetY);
   };
   var updateScrollingFixed = function (element, winY, offsetY) {
     var destTop = winY + offsetY;
-    var oldProp = $_ezdyn3116jkmcwtyw.getRaw(element, 'top').getOr(offsetY);
+    var oldProp = $_g3k65w10djh8lz50c.getRaw(element, 'top').getOr(offsetY);
     var delta = destTop - parseInt(oldProp, 10);
     var destScroll = element.dom().scrollTop + delta;
-    return $_dl3ja8179jkmcwvcs.moveScrollAndTop(element, destScroll, destTop);
+    return $_wkbkw16gjh8lz6ec.moveScrollAndTop(element, destScroll, destTop);
   };
   var updateFixture = function (fixture, winY) {
     return fixture.fold(function (element, property, offsetY) {
@@ -12955,33 +13268,33 @@ var mobile = (function () {
     });
   };
   var updatePositions = function (container, winY) {
-    var fixtures = $_exi4dz17ejkmcwvdb.findFixtures(container);
-    var updates = map$1(fixtures, function (fixture) {
+    var fixtures = $_enfl4f16ljh8lz6ez.findFixtures(container);
+    var updates = $_ffek9lxijh8lz4jt.map(fixtures, function (fixture) {
       return updateFixture(fixture, winY);
     });
-    return par$1(updates);
+    return $_aujlny16rjh8lz6gc.par(updates);
   };
-  var $_75ez8y17jjkmcwveg = { updatePositions: updatePositions };
+  var $_ejpuog16qjh8lz6g0 = { updatePositions: updatePositions };
 
   var VIEW_MARGIN = 5;
   var register$2 = function (toolstrip, socket, container, outerWindow, structure, cWin) {
     var scroller = BackgroundActivity(function (y) {
-      return $_dl3ja8179jkmcwvcs.moveWindowScroll(toolstrip, socket, y);
+      return $_wkbkw16gjh8lz6ec.moveWindowScroll(toolstrip, socket, y);
     });
     var scrollBounds = function () {
-      var rects = $_9bylyc15njkmcwuyl.getRectangles(cWin);
+      var rects = $_2t1f1514ujh8lz60p.getRectangles(cWin);
       return Option.from(rects[0]).bind(function (rect) {
         var viewTop = rect.top() - socket.dom().scrollTop;
         var outside = viewTop > outerWindow.innerHeight + VIEW_MARGIN || viewTop < -VIEW_MARGIN;
         return outside ? Option.some({
-          top: constant(viewTop),
-          bottom: constant(viewTop + rect.height())
+          top: $_7vemb6x3jh8lz4ig.constant(viewTop),
+          bottom: $_7vemb6x3jh8lz4ig.constant(viewTop + rect.height())
         }) : Option.none();
       });
     };
-    var scrollThrottle = last$3(function () {
+    var scrollThrottle = $_9m8kju15ijh8lz64y.last(function () {
       scroller.idle(function () {
-        $_75ez8y17jjkmcwveg.updatePositions(container, outerWindow.pageYOffset).get(function () {
+        $_ejpuog16qjh8lz6g0.updatePositions(container, outerWindow.pageYOffset).get(function () {
           var extraScroll = scrollBounds();
           extraScroll.each(function (extra) {
             socket.dom().scrollTop = socket.dom().scrollTop + extra.top();
@@ -12991,13 +13304,13 @@ var mobile = (function () {
         });
       });
     }, 1000);
-    var onScroll = $_csbuij15cjkmcwuwa.bind(Element$$1.fromDom(outerWindow), 'scroll', function () {
+    var onScroll = $_64n4pu14jjh8lz5yh.bind($_2ykjbpxpjh8lz4l0.fromDom(outerWindow), 'scroll', function () {
       if (outerWindow.pageYOffset < 0) {
         return;
       }
       scrollThrottle.throttle();
     });
-    $_75ez8y17jjkmcwveg.updatePositions(container, outerWindow.pageYOffset).get(identity);
+    $_ejpuog16qjh8lz6g0.updatePositions(container, outerWindow.pageYOffset).get($_7vemb6x3jh8lz4ig.identity);
     return { unbind: onScroll.unbind };
   };
   var setup$3 = function (bag) {
@@ -13010,8 +13323,8 @@ var mobile = (function () {
     var keyboardType = bag.keyboardType();
     var outerWindow = bag.outerWindow();
     var dropup = bag.dropup();
-    var structure = $_exi4dz17ejkmcwvdb.takeover(socket, ceBody, toolstrip, dropup);
-    var keyboardModel = keyboardType(bag.outerBody(), cWin, $_3wo4fwyhjkmcwtje.body(), contentElement, toolstrip, toolbar);
+    var structure = $_enfl4f16ljh8lz6ez.takeover(socket, ceBody, toolstrip, dropup);
+    var keyboardModel = keyboardType(bag.outerBody(), cWin, $_847aynxojh8lz4kx.body(), contentElement, toolstrip, toolbar);
     var toEditing = function () {
       keyboardModel.toEditing();
       clearSelection();
@@ -13022,14 +13335,14 @@ var mobile = (function () {
     var onToolbarTouch = function (event) {
       keyboardModel.onToolbarTouch(event);
     };
-    var onOrientation = $_c3oqmx15bjkmcwuw0.onChange(outerWindow, {
-      onChange: noop,
+    var onOrientation = $_40qbzh14ijh8lz5y7.onChange(outerWindow, {
+      onChange: $_7vemb6x3jh8lz4ig.noop,
       onReady: structure.refresh
     });
     onOrientation.onAdjustment(function () {
       structure.refresh();
     });
-    var onResize = $_csbuij15cjkmcwuwa.bind(Element$$1.fromDom(outerWindow), 'resize', function () {
+    var onResize = $_64n4pu14jjh8lz5yh.bind($_2ykjbpxpjh8lz4l0.fromDom(outerWindow), 'resize', function () {
       if (structure.isExpanding()) {
         structure.refresh();
       }
@@ -13048,14 +13361,14 @@ var mobile = (function () {
       unfocusedSelection.clear();
     };
     var scrollIntoView = function (top, bottom) {
-      $_59bkbi17ijkmcwvec.scrollIntoView(cWin, socket, dropup, top, bottom);
+      $_1xg6xq16pjh8lz6fx.scrollIntoView(cWin, socket, dropup, top, bottom);
     };
     var syncHeight = function () {
-      $_ezdyn3116jkmcwtyw.set(contentElement, 'height', contentElement.dom().contentWindow.document.body.scrollHeight + 'px');
+      $_g3k65w10djh8lz50c.set(contentElement, 'height', contentElement.dom().contentWindow.document.body.scrollHeight + 'px');
     };
     var setViewportOffset = function (newYOffset) {
       structure.setViewportOffset(newYOffset);
-      $_dl3ja8179jkmcwvcs.moveOnlyTop(socket, newYOffset).get(identity);
+      $_wkbkw16gjh8lz6ec.moveOnlyTop(socket, newYOffset).get($_7vemb6x3jh8lz4ig.identity);
     };
     var destroy = function () {
       structure.restore();
@@ -13064,7 +13377,7 @@ var mobile = (function () {
       onResize.unbind();
       keyboardModel.destroy();
       unfocusedSelection.destroy();
-      $_7gxy0a173jkmcwvas.input($_3wo4fwyhjkmcwtje.body(), $_fci5qy101jkmcwtsc.blur);
+      $_9iufvn16ajh8lz6cd.input($_847aynxojh8lz4kx.body(), $_1z851az8jh8lz4tn.blur);
     };
     return {
       toEditing: toEditing,
@@ -13074,38 +13387,38 @@ var mobile = (function () {
       clearSelection: clearSelection,
       highlightSelection: highlightSelection,
       scrollIntoView: scrollIntoView,
-      updateToolbarPadding: noop,
+      updateToolbarPadding: $_7vemb6x3jh8lz4ig.noop,
       setViewportOffset: setViewportOffset,
       syncHeight: syncHeight,
       refreshStructure: structure.refresh,
       destroy: destroy
     };
   };
-  var $_egwkh1177jkmcwvbp = { setup: setup$3 };
+  var $_eceh3u16ejh8lz6db = { setup: setup$3 };
 
   var create$8 = function (platform, mask) {
-    var meta = $_7jq7pt169jkmcwv2l.tag();
-    var priorState = value$3();
-    var scrollEvents = value$3();
-    var iosApi = api$2();
-    var iosEvents = api$2();
+    var meta = $_mfx6e15gjh8lz64e.tag();
+    var priorState = $_vbo4a13ajh8lz5m7.value();
+    var scrollEvents = $_vbo4a13ajh8lz5m7.value();
+    var iosApi = $_vbo4a13ajh8lz5m7.api();
+    var iosEvents = $_vbo4a13ajh8lz5m7.api();
     var enter = function () {
       mask.hide();
-      var doc = Element$$1.fromDom(document);
-      $_46e9af167jkmcwv1t.getActiveApi(platform.editor).each(function (editorApi) {
+      var doc = $_2ykjbpxpjh8lz4l0.fromDom(document);
+      $_2dv8sp15ejh8lz63r.getActiveApi(platform.editor).each(function (editorApi) {
         priorState.set({
-          socketHeight: $_ezdyn3116jkmcwtyw.getRaw(platform.socket, 'height'),
-          iframeHeight: $_ezdyn3116jkmcwtyw.getRaw(editorApi.frame(), 'height'),
+          socketHeight: $_g3k65w10djh8lz50c.getRaw(platform.socket, 'height'),
+          iframeHeight: $_g3k65w10djh8lz50c.getRaw(editorApi.frame(), 'height'),
           outerScroll: document.body.scrollTop
         });
-        scrollEvents.set({ exclusives: $_6uc3h316ijkmcwv51.exclusive(doc, '.' + $_9pks4l159jkmcwuvq.scrollable()) });
-        $_4fq2lwzujkmcwtrk.add(platform.container, $_dpmvs510tjkmcwtwz.resolve('fullscreen-maximized'));
-        $_2a80we168jkmcwv26.clobberStyles(platform.container, editorApi.body());
+        scrollEvents.set({ exclusives: $_wsyps15pjh8lz66l.exclusive(doc, '.' + $_ctmye314gjh8lz5xt.scrollable()) });
+        $_eyo6psz1jh8lz4sw.add(platform.container, $_9mxjlz100jh8lz4y0.resolve('fullscreen-maximized'));
+        $_48omr015fjh8lz645.clobberStyles(platform.container, editorApi.body());
         meta.maximize();
-        $_ezdyn3116jkmcwtyw.set(platform.socket, 'overflow', 'scroll');
-        $_ezdyn3116jkmcwtyw.set(platform.socket, '-webkit-overflow-scrolling', 'touch');
-        $_fci5qy101jkmcwtsc.focus(editorApi.body());
-        var setupBag = MixedBag([
+        $_g3k65w10djh8lz50c.set(platform.socket, 'overflow', 'scroll');
+        $_g3k65w10djh8lz50c.set(platform.socket, '-webkit-overflow-scrolling', 'touch');
+        $_1z851az8jh8lz4tn.focus(editorApi.body());
+        var setupBag = $_dti8klxujh8lz4lo.immutableBag([
           'cWin',
           'ceBody',
           'socket',
@@ -13119,7 +13432,7 @@ var mobile = (function () {
           'outerWindow',
           'outerBody'
         ], []);
-        iosApi.set($_egwkh1177jkmcwvbp.setup(setupBag({
+        iosApi.set($_eceh3u16ejh8lz6db.setup(setupBag({
           cWin: editorApi.win(),
           ceBody: editorApi.body(),
           socket: platform.socket,
@@ -13127,13 +13440,12 @@ var mobile = (function () {
           toolbar: platform.toolbar,
           dropup: platform.dropup.element(),
           contentElement: editorApi.frame(),
-          cursor: noop,
+          cursor: $_7vemb6x3jh8lz4ig.noop,
           outerBody: platform.body,
           outerWindow: platform.win,
-          keyboardType: $_f7j8bs172jkmcwvaj.stubborn,
+          keyboardType: $_538pb0169jh8lz6c3.stubborn,
           isScrolling: function () {
-            var scrollValue = scrollEvents;
-            return scrollValue.get().exists(function (s) {
+            return scrollEvents.get().exists(function (s) {
               return s.socket.isScrolling();
             });
           }
@@ -13141,7 +13453,7 @@ var mobile = (function () {
         iosApi.run(function (api) {
           api.syncHeight();
         });
-        iosEvents.set($_8v1607176jkmcwvba.initEvents(editorApi, iosApi, platform.toolstrip, platform.socket, platform.dropup));
+        iosEvents.set($_17cnf516djh8lz6cz.initEvents(editorApi, iosApi, platform.toolstrip, platform.socket, platform.dropup));
       });
     };
     var exit = function () {
@@ -13151,10 +13463,10 @@ var mobile = (function () {
       mask.show();
       priorState.on(function (s) {
         s.socketHeight.each(function (h) {
-          $_ezdyn3116jkmcwtyw.set(platform.socket, 'height', h);
+          $_g3k65w10djh8lz50c.set(platform.socket, 'height', h);
         });
         s.iframeHeight.each(function (h) {
-          $_ezdyn3116jkmcwtyw.set(platform.editor.getFrame(), 'height', h);
+          $_g3k65w10djh8lz50c.set(platform.editor.getFrame(), 'height', h);
         });
         document.body.scrollTop = s.scrollTop;
       });
@@ -13163,13 +13475,13 @@ var mobile = (function () {
         s.exclusives.unbind();
       });
       scrollEvents.clear();
-      $_4fq2lwzujkmcwtrk.remove(platform.container, $_dpmvs510tjkmcwtwz.resolve('fullscreen-maximized'));
-      $_2a80we168jkmcwv26.restoreStyles();
-      $_9pks4l159jkmcwuvq.deregister(platform.toolbar);
-      $_ezdyn3116jkmcwtyw.remove(platform.socket, 'overflow');
-      $_ezdyn3116jkmcwtyw.remove(platform.socket, '-webkit-overflow-scrolling');
-      $_fci5qy101jkmcwtsc.blur(platform.editor.getFrame());
-      $_46e9af167jkmcwv1t.getActiveApi(platform.editor).each(function (editorApi) {
+      $_eyo6psz1jh8lz4sw.remove(platform.container, $_9mxjlz100jh8lz4y0.resolve('fullscreen-maximized'));
+      $_48omr015fjh8lz645.restoreStyles();
+      $_ctmye314gjh8lz5xt.deregister(platform.toolbar);
+      $_g3k65w10djh8lz50c.remove(platform.socket, 'overflow');
+      $_g3k65w10djh8lz50c.remove(platform.socket, '-webkit-overflow-scrolling');
+      $_1z851az8jh8lz4tn.blur(platform.editor.getFrame());
+      $_2dv8sp15ejh8lz63r.getActiveApi(platform.editor).each(function (editorApi) {
         editorApi.clearSelection();
       });
     };
@@ -13184,17 +13496,17 @@ var mobile = (function () {
       exit: exit
     };
   };
-  var $_4k8lbx171jkmcwva4 = { create: create$8 };
+  var $_2c37wq168jh8lz6bp = { create: create$8 };
 
   var produce$1 = function (raw) {
     var mobile = asRawOrDie('Getting IosWebapp schema', MobileSchema, raw);
-    $_ezdyn3116jkmcwtyw.set(mobile.toolstrip, 'width', '100%');
-    $_ezdyn3116jkmcwtyw.set(mobile.container, 'position', 'relative');
+    $_g3k65w10djh8lz50c.set(mobile.toolstrip, 'width', '100%');
+    $_g3k65w10djh8lz50c.set(mobile.container, 'position', 'relative');
     var onView = function () {
       mobile.setReadOnly(mobile.readOnlyOnInit());
       mode.enter();
     };
-    var mask = build$1($_5eqauz16ajkmcwv2t.sketch(onView, mobile.translate));
+    var mask = build$1($_c6edy415hjh8lz64m.sketch(onView, mobile.translate));
     mobile.alloy.add(mask);
     var maskApi = {
       show: function () {
@@ -13204,23 +13516,23 @@ var mobile = (function () {
         mobile.alloy.remove(mask);
       }
     };
-    var mode = $_4k8lbx171jkmcwva4.create(mobile, maskApi);
+    var mode = $_2c37wq168jh8lz6bp.create(mobile, maskApi);
     return {
       setReadOnly: mobile.setReadOnly,
       refreshStructure: mode.refreshStructure,
       enter: mode.enter,
       exit: mode.exit,
-      destroy: noop
+      destroy: $_7vemb6x3jh8lz4ig.noop
     };
   };
-  var $_30t0z3170jkmcwv9w = { produce: produce$1 };
+  var $_ewahhz167jh8lz6bh = { produce: produce$1 };
 
   function IosRealm (scrollIntoView) {
-    var alloy = OuterContainer({ classes: [$_dpmvs510tjkmcwtwz.resolve('ios-container')] });
+    var alloy = OuterContainer({ classes: [$_9mxjlz100jh8lz4y0.resolve('ios-container')] });
     var toolbar = ScrollingToolbar();
-    var webapp = api$2();
-    var switchToEdit = $_51jxa16jjkmcwv5a.makeEditSwitch(webapp);
-    var socket = $_51jxa16jjkmcwv5a.makeSocket();
+    var webapp = $_vbo4a13ajh8lz5m7.api();
+    var switchToEdit = $_4lxm1z15qjh8lz66u.makeEditSwitch(webapp);
+    var socket = $_4lxm1z15qjh8lz66u.makeSocket();
     var dropup = build$2(function () {
       webapp.run(function (w) {
         w.refreshStructure();
@@ -13244,7 +13556,7 @@ var mobile = (function () {
       toolbar.restoreToolbar();
     };
     var init = function (spec) {
-      webapp.set($_30t0z3170jkmcwv9w.produce(spec));
+      webapp.set($_ewahhz167jh8lz6bh.produce(spec));
     };
     var exit = function () {
       webapp.run(function (w) {
@@ -13253,10 +13565,10 @@ var mobile = (function () {
       });
     };
     var updateMode = function (readOnly) {
-      $_51jxa16jjkmcwv5a.updateMode(socket, switchToEdit, readOnly, alloy.root());
+      $_4lxm1z15qjh8lz66u.updateMode(socket, switchToEdit, readOnly, alloy.root());
     };
     return {
-      system: constant(alloy),
+      system: $_7vemb6x3jh8lz4ig.constant(alloy),
       element: alloy.element,
       init: init,
       exit: exit,
@@ -13265,16 +13577,16 @@ var mobile = (function () {
       focusToolbar: focusToolbar,
       restoreToolbar: restoreToolbar,
       updateMode: updateMode,
-      socket: constant(socket),
-      dropup: constant(dropup)
+      socket: $_7vemb6x3jh8lz4ig.constant(socket),
+      dropup: $_7vemb6x3jh8lz4ig.constant(dropup)
     };
   }
 
-  var global$2 = tinymce.util.Tools.resolve('tinymce.EditorManager');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.EditorManager');
 
   var derive$4 = function (editor) {
     var base = readOptFrom$1(editor.settings, 'skin_url').fold(function () {
-      return global$2.baseURL + '/skins/' + 'lightgray';
+      return global$3.baseURL + '/skins/' + 'lightgray';
     }, function (url) {
       return url;
     });
@@ -13283,7 +13595,7 @@ var mobile = (function () {
       ui: base + '/skin.mobile.min.css'
     };
   };
-  var $_23iqia17mjkmcwveu = { derive: derive$4 };
+  var $_4fbmse16tjh8lz6gf = { derive: derive$4 };
 
   var fontSizes = [
     'x-small',
@@ -13293,19 +13605,19 @@ var mobile = (function () {
     'x-large'
   ];
   var fireChange$1 = function (realm, command, state) {
-    realm.system().broadcastOn([$_5zff6b109jkmcwtt8.formatChanged()], {
+    realm.system().broadcastOn([$_8dtsfgzgjh8lz4uf.formatChanged()], {
       command: command,
       state: state
     });
   };
   var init$5 = function (realm, editor) {
-    var allFormats = keys(editor.formatter.get());
-    each$1(allFormats, function (command) {
+    var allFormats = $_23xamox6jh8lz4iu.keys(editor.formatter.get());
+    $_ffek9lxijh8lz4jt.each(allFormats, function (command) {
       editor.formatter.formatChanged(command, function (state) {
         fireChange$1(realm, command, state);
       });
     });
-    each$1([
+    $_ffek9lxijh8lz4jt.each([
       'ul',
       'ol'
     ], function (command) {
@@ -13314,9 +13626,9 @@ var mobile = (function () {
       });
     });
   };
-  var $_4hemea17ojkmcwvey = {
+  var $_6plurh16vjh8lz6gi = {
     init: init$5,
-    fontSizes: constant(fontSizes)
+    fontSizes: $_7vemb6x3jh8lz4ig.constant(fontSizes)
   };
 
   var fireSkinLoaded = function (editor) {
@@ -13332,39 +13644,39 @@ var mobile = (function () {
       }
     };
   };
-  var $_7dr1z717pjkmcwvf4 = { fireSkinLoaded: fireSkinLoaded };
+  var $_efr7ho16wjh8lz6go = { fireSkinLoaded: fireSkinLoaded };
 
-  var READING = constant('toReading');
-  var EDITING = constant('toEditing');
-  global$1.add('mobile', function (editor) {
+  var READING = $_7vemb6x3jh8lz4ig.constant('toReading');
+  var EDITING = $_7vemb6x3jh8lz4ig.constant('toEditing');
+  global$2.add('mobile', function (editor) {
     var renderUI = function (args) {
-      var cssUrls = $_23iqia17mjkmcwveu.derive(editor);
+      var cssUrls = $_4fbmse16tjh8lz6gf.derive(editor);
       if (isSkinDisabled(editor) === false) {
         editor.contentCSS.push(cssUrls.content);
-        global.DOM.styleSheetLoader.load(cssUrls.ui, $_7dr1z717pjkmcwvf4.fireSkinLoaded(editor));
+        global$1.DOM.styleSheetLoader.load(cssUrls.ui, $_efr7ho16wjh8lz6go.fireSkinLoaded(editor));
       } else {
-        $_7dr1z717pjkmcwvf4.fireSkinLoaded(editor)();
+        $_efr7ho16wjh8lz6go.fireSkinLoaded(editor)();
       }
       var doScrollIntoView = function () {
         editor.fire('scrollIntoView');
       };
-      var wrapper = Element$$1.fromTag('div');
-      var realm = $_b90373y3jkmcwths.detect().os.isAndroid() ? AndroidRealm(doScrollIntoView) : IosRealm(doScrollIntoView);
-      var original = Element$$1.fromDom(args.targetNode);
-      $_1qcoujymjkmcwtk3.after(original, wrapper);
+      var wrapper = $_2ykjbpxpjh8lz4l0.fromTag('div');
+      var realm = $_cjnu0pxajh8lz4j9.detect().os.isAndroid() ? AndroidRealm(doScrollIntoView) : IosRealm(doScrollIntoView);
+      var original = $_2ykjbpxpjh8lz4l0.fromDom(args.targetNode);
+      $_b7kmpsxsjh8lz4la.after(original, wrapper);
       attachSystem(wrapper, realm.system());
       var findFocusIn = function (elem) {
-        return $_fci5qy101jkmcwtsc.search(elem).bind(function (focused) {
+        return $_1z851az8jh8lz4tn.search(elem).bind(function (focused) {
           return realm.system().getByDom(focused).toOption();
         });
       };
       var outerWindow = args.targetNode.ownerDocument.defaultView;
-      var orientation = $_c3oqmx15bjkmcwuw0.onChange(outerWindow, {
+      var orientation = $_40qbzh14ijh8lz5y7.onChange(outerWindow, {
         onChange: function () {
           var alloy = realm.system();
-          alloy.broadcastOn([$_5zff6b109jkmcwtt8.orientationChanged()], { width: $_c3oqmx15bjkmcwuw0.getActualWidth(outerWindow) });
+          alloy.broadcastOn([$_8dtsfgzgjh8lz4uf.orientationChanged()], { width: $_40qbzh14ijh8lz5y7.getActualWidth(outerWindow) });
         },
-        onReady: noop
+        onReady: $_7vemb6x3jh8lz4ig.noop
       });
       var setReadOnly = function (dynamicGroup, readOnlyGroups, mainGroups, ro) {
         if (ro === false) {
@@ -13400,10 +13712,10 @@ var mobile = (function () {
         realm.init({
           editor: {
             getFrame: function () {
-              return Element$$1.fromDom(editor.contentAreaContainer.querySelector('iframe'));
+              return $_2ykjbpxpjh8lz4l0.fromDom(editor.contentAreaContainer.querySelector('iframe'));
             },
             onDomChanged: function () {
-              return { unbind: noop };
+              return { unbind: $_7vemb6x3jh8lz4ig.noop };
             },
             onToReading: function (handler) {
               return bindHandler(READING(), handler);
@@ -13425,33 +13737,33 @@ var mobile = (function () {
               hideDropup();
             },
             onTouchContent: function () {
-              var toolbar = Element$$1.fromDom(editor.editorContainer.querySelector('.' + $_dpmvs510tjkmcwtwz.resolve('toolbar')));
+              var toolbar = $_2ykjbpxpjh8lz4l0.fromDom(editor.editorContainer.querySelector('.' + $_9mxjlz100jh8lz4y0.resolve('toolbar')));
               findFocusIn(toolbar).each(emitExecute);
               realm.restoreToolbar();
               hideDropup();
             },
             onTapContent: function (evt) {
               var target = evt.target();
-              if ($_b0ubstykjkmcwtjz.name(target) === 'img') {
+              if ($_2dp7e0xqjh8lz4l7.name(target) === 'img') {
                 editor.selection.select(target.dom());
                 evt.kill();
-              } else if ($_b0ubstykjkmcwtjz.name(target) === 'a') {
-                var component = realm.system().getByDom(Element$$1.fromDom(editor.editorContainer));
+              } else if ($_2dp7e0xqjh8lz4l7.name(target) === 'a') {
+                var component = realm.system().getByDom($_2ykjbpxpjh8lz4l0.fromDom(editor.editorContainer));
                 component.each(function (container) {
                   if (Swapping.isAlpha(container)) {
-                    $_p54dh107jkmcwtt3.openLink(target.dom());
+                    $_ex7qd9zejh8lz4u9.openLink(target.dom());
                   }
                 });
               }
             }
           },
-          container: Element$$1.fromDom(editor.editorContainer),
-          socket: Element$$1.fromDom(editor.contentAreaContainer),
-          toolstrip: Element$$1.fromDom(editor.editorContainer.querySelector('.' + $_dpmvs510tjkmcwtwz.resolve('toolstrip'))),
-          toolbar: Element$$1.fromDom(editor.editorContainer.querySelector('.' + $_dpmvs510tjkmcwtwz.resolve('toolbar'))),
+          container: $_2ykjbpxpjh8lz4l0.fromDom(editor.editorContainer),
+          socket: $_2ykjbpxpjh8lz4l0.fromDom(editor.contentAreaContainer),
+          toolstrip: $_2ykjbpxpjh8lz4l0.fromDom(editor.editorContainer.querySelector('.' + $_9mxjlz100jh8lz4y0.resolve('toolstrip'))),
+          toolbar: $_2ykjbpxpjh8lz4l0.fromDom(editor.editorContainer.querySelector('.' + $_9mxjlz100jh8lz4y0.resolve('toolbar'))),
           dropup: realm.dropup(),
           alloy: realm.system(),
-          translate: noop,
+          translate: $_7vemb6x3jh8lz4ig.noop,
           setReadOnly: function (ro) {
             setReadOnly(dynamicGroup, readOnlyGroups, mainGroups, ro);
           },
@@ -13461,13 +13773,13 @@ var mobile = (function () {
         });
         var hideDropup = function () {
           realm.dropup().disappear(function () {
-            realm.system().broadcastOn([$_5zff6b109jkmcwtt8.dropupDismissed()], {});
+            realm.system().broadcastOn([$_8dtsfgzgjh8lz4uf.dropupDismissed()], {});
           });
         };
         var backToMaskGroup = {
           label: 'The first group',
           scrollable: false,
-          items: [$_3u2u4g10ujkmcwtx2.forToolbar('back', function () {
+          items: [$_7cxrim101jh8lz4y2.forToolbar('back', function () {
               editor.selection.collapse();
               realm.exit();
             }, {})]
@@ -13475,7 +13787,7 @@ var mobile = (function () {
         var backToReadOnlyGroup = {
           label: 'Back to read only',
           scrollable: false,
-          items: [$_3u2u4g10ujkmcwtx2.forToolbar('readonly-back', function () {
+          items: [$_7cxrim101jh8lz4y2.forToolbar('readonly-back', function () {
               setReadOnly(dynamicGroup, readOnlyGroups, mainGroups, true);
             }, {})]
         };
@@ -13484,8 +13796,8 @@ var mobile = (function () {
           scrollable: true,
           items: []
         };
-        var features = $_1rc1u10ajkmcwttb.setup(realm, editor);
-        var items = $_1rc1u10ajkmcwttb.detect(editor.settings, features);
+        var features = $_cifu55zhjh8lz4ui.setup(realm, editor);
+        var items = $_cifu55zhjh8lz4ui.detect(editor.settings, features);
         var actionGroup = {
           label: 'the action group',
           scrollable: true,
@@ -13508,7 +13820,7 @@ var mobile = (function () {
           backToMask: [backToMaskGroup],
           backToReadOnly: [backToReadOnlyGroup]
         });
-        $_4hemea17ojkmcwvey.init(realm, editor);
+        $_6plurh16vjh8lz6gi.init(realm, editor);
       });
       return {
         iframeContainer: realm.socket().element().dom(),
@@ -13518,10 +13830,10 @@ var mobile = (function () {
     return {
       getNotificationManagerImpl: function () {
         return {
-          open: identity,
-          close: noop,
-          reposition: noop,
-          getArgs: identity
+          open: $_7vemb6x3jh8lz4ig.identity,
+          close: $_7vemb6x3jh8lz4ig.noop,
+          reposition: $_7vemb6x3jh8lz4ig.noop,
+          getArgs: $_7vemb6x3jh8lz4ig.identity
         };
       },
       renderUI: renderUI

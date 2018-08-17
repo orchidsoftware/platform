@@ -46,7 +46,7 @@ var image = (function () {
   var getUploadCredentials = function (editor) {
     return editor.getParam('images_upload_credentials');
   };
-  var $_gc1jdictjkmcwomd = {
+  var $_crxcnscdjh8lz07s = {
     hasDimensions: hasDimensions,
     hasAdvTab: hasAdvTab,
     getPrependUrl: getPrependUrl,
@@ -63,10 +63,10 @@ var image = (function () {
     getUploadCredentials: getUploadCredentials
   };
 
-  var Global = typeof window !== 'undefined' ? window : Function('return this;')();
+  var global$1 = typeof window !== 'undefined' ? window : Function('return this;')();
 
   var path = function (parts, scope) {
-    var o = scope !== undefined && scope !== null ? scope : Global;
+    var o = scope !== undefined && scope !== null ? scope : global$1;
     for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
       o = o[parts[i]];
     return o;
@@ -75,9 +75,30 @@ var image = (function () {
     var parts = p.split('.');
     return path(parts, scope);
   };
+  var step = function (o, part) {
+    if (o[part] === undefined || o[part] === null)
+      o[part] = {};
+    return o[part];
+  };
+  var forge = function (parts, target) {
+    var o = target !== undefined ? target : global$1;
+    for (var i = 0; i < parts.length; ++i)
+      o = step(o, parts[i]);
+    return o;
+  };
+  var namespace = function (name, target) {
+    var parts = name.split('.');
+    return forge(parts, target);
+  };
+  var $_9gheychjh8lz08c = {
+    path: path,
+    resolve: resolve,
+    forge: forge,
+    namespace: namespace
+  };
 
   var unsafe = function (name, scope) {
-    return resolve(name, scope);
+    return $_9gheychjh8lz08c.resolve(name, scope);
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -85,18 +106,18 @@ var image = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
-  var $_db9o2scwjkmcwomp = { getOrDie: getOrDie };
+  var $_8d9gbscgjh8lz089 = { getOrDie: getOrDie };
 
   function FileReader () {
-    var f = $_db9o2scwjkmcwomp.getOrDie('FileReader');
+    var f = $_8d9gbscgjh8lz089.getOrDie('FileReader');
     return new f();
   }
 
-  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Promise');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.util.Promise');
 
-  var global$2 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
-  var global$3 = tinymce.util.Tools.resolve('tinymce.util.XHR');
+  var global$4 = tinymce.util.Tools.resolve('tinymce.util.XHR');
 
   var parseIntAndGetMax = function (val1, val2) {
     return Math.max(parseInt(val1, 10), parseInt(val2, 10));
@@ -131,7 +152,7 @@ var image = (function () {
   var buildListItems = function (inputList, itemCallback, startItems) {
     function appendItems(values, output) {
       output = output || [];
-      global$2.each(values, function (item) {
+      global$3.each(values, function (item) {
         var menuItem = { text: item.text || item.title };
         if (item.menu) {
           menuItem.menu = appendItems(item.menu);
@@ -190,9 +211,9 @@ var image = (function () {
     return css;
   };
   var createImageList = function (editor, callback) {
-    var imageList = $_gc1jdictjkmcwomd.getImageList(editor);
+    var imageList = $_crxcnscdjh8lz07s.getImageList(editor);
     if (typeof imageList === 'string') {
-      global$3.send({
+      global$4.send({
         url: imageList,
         success: function (text) {
           callback(JSON.parse(text));
@@ -213,7 +234,7 @@ var image = (function () {
       }
     }
     imgElm.onload = function () {
-      if (!data.width && !data.height && $_gc1jdictjkmcwomd.hasDimensions(editor)) {
+      if (!data.width && !data.height && $_crxcnscdjh8lz07s.hasDimensions(editor)) {
         editor.dom.setAttribs(imgElm, {
           width: imgElm.clientWidth,
           height: imgElm.clientHeight
@@ -224,7 +245,7 @@ var image = (function () {
     imgElm.onerror = selectImage;
   };
   var blobToDataUri = function (blob) {
-    return new global$1(function (resolve, reject) {
+    return new global$2(function (resolve, reject) {
       var reader = new FileReader();
       reader.onload = function () {
         resolve(reader.result);
@@ -235,7 +256,7 @@ var image = (function () {
       reader.readAsDataURL(blob);
     });
   };
-  var $_9v7cmwcujkmcwomi = {
+  var $_5m5ooacejh8lz07v = {
     getImageSize: getImageSize,
     buildListItems: buildListItems,
     removePixelSuffix: removePixelSuffix,
@@ -246,11 +267,40 @@ var image = (function () {
     blobToDataUri: blobToDataUri
   };
 
-  var global$4 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$5 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var typeOf = function (x) {
+    if (x === null)
+      return 'null';
+    var t = typeof x;
+    if (t === 'object' && Array.prototype.isPrototypeOf(x))
+      return 'array';
+    if (t === 'object' && String.prototype.isPrototypeOf(x))
+      return 'string';
+    return t;
+  };
+  var isType = function (type) {
+    return function (value) {
+      return typeOf(value) === type;
+    };
+  };
+  var $_8actkxcrjh8lz08z = {
+    isString: isType('string'),
+    isObject: isType('object'),
+    isArray: isType('array'),
+    isNull: isType('null'),
+    isBoolean: isType('boolean'),
+    isUndefined: isType('undefined'),
+    isFunction: isType('function'),
+    isNumber: isType('number')
+  };
+
   var shallow = function (old, nu) {
     return nu;
+  };
+  var deep = function (old, nu) {
+    var bothObjects = $_8actkxcrjh8lz08z.isObject(old) && $_8actkxcrjh8lz08z.isObject(nu);
+    return bothObjects ? deepMerge(old, nu) : nu;
   };
   var baseMerge = function (merger) {
     return function () {
@@ -263,53 +313,57 @@ var image = (function () {
       for (var j = 0; j < objects.length; j++) {
         var curObject = objects[j];
         for (var key in curObject)
-          if (hasOwnProperty.call(curObject, key)) {
+          if (curObject.hasOwnProperty(key)) {
             ret[key] = merger(ret[key], curObject[key]);
           }
       }
       return ret;
     };
   };
-
+  var deepMerge = baseMerge(deep);
   var merge = baseMerge(shallow);
+  var $_kivhlcqjh8lz08x = {
+    deepMerge: deepMerge,
+    merge: merge
+  };
 
-  var DOM = global$4.DOM;
+  var DOM = global$5.DOM;
   var getHspace = function (image) {
     if (image.style.marginLeft && image.style.marginRight && image.style.marginLeft === image.style.marginRight) {
-      return $_9v7cmwcujkmcwomi.removePixelSuffix(image.style.marginLeft);
+      return $_5m5ooacejh8lz07v.removePixelSuffix(image.style.marginLeft);
     } else {
       return '';
     }
   };
   var getVspace = function (image) {
     if (image.style.marginTop && image.style.marginBottom && image.style.marginTop === image.style.marginBottom) {
-      return $_9v7cmwcujkmcwomi.removePixelSuffix(image.style.marginTop);
+      return $_5m5ooacejh8lz07v.removePixelSuffix(image.style.marginTop);
     } else {
       return '';
     }
   };
   var getBorder = function (image) {
     if (image.style.borderWidth) {
-      return $_9v7cmwcujkmcwomi.removePixelSuffix(image.style.borderWidth);
+      return $_5m5ooacejh8lz07v.removePixelSuffix(image.style.borderWidth);
     } else {
       return '';
     }
   };
-  var getAttrib = function (image, name$$1) {
-    if (image.hasAttribute(name$$1)) {
-      return image.getAttribute(name$$1);
+  var getAttrib = function (image, name) {
+    if (image.hasAttribute(name)) {
+      return image.getAttribute(name);
     } else {
       return '';
     }
   };
-  var getStyle = function (image, name$$1) {
-    return image.style[name$$1] ? image.style[name$$1] : '';
+  var getStyle = function (image, name) {
+    return image.style[name] ? image.style[name] : '';
   };
   var hasCaption = function (image) {
     return image.parentNode !== null && image.parentNode.nodeName === 'FIGURE';
   };
-  var setAttrib = function (image, name$$1, value) {
-    image.setAttribute(name$$1, value);
+  var setAttrib = function (image, name, value) {
+    image.setAttribute(name, value);
   };
   var wrapInFigure = function (image) {
     var figureElm = DOM.create('figure', { class: 'image' });
@@ -340,35 +394,35 @@ var image = (function () {
       image.removeAttribute('style');
     }
   };
-  var setSize = function (name$$1, normalizeCss) {
-    return function (image, name$$1, value) {
-      if (image.style[name$$1]) {
-        image.style[name$$1] = $_9v7cmwcujkmcwomi.addPixelSuffix(value);
+  var setSize = function (name, normalizeCss) {
+    return function (image, name, value) {
+      if (image.style[name]) {
+        image.style[name] = $_5m5ooacejh8lz07v.addPixelSuffix(value);
         normalizeStyle(image, normalizeCss);
       } else {
-        setAttrib(image, name$$1, value);
+        setAttrib(image, name, value);
       }
     };
   };
-  var getSize = function (image, name$$1) {
-    if (image.style[name$$1]) {
-      return $_9v7cmwcujkmcwomi.removePixelSuffix(image.style[name$$1]);
+  var getSize = function (image, name) {
+    if (image.style[name]) {
+      return $_5m5ooacejh8lz07v.removePixelSuffix(image.style[name]);
     } else {
-      return getAttrib(image, name$$1);
+      return getAttrib(image, name);
     }
   };
   var setHspace = function (image, value) {
-    var pxValue = $_9v7cmwcujkmcwomi.addPixelSuffix(value);
+    var pxValue = $_5m5ooacejh8lz07v.addPixelSuffix(value);
     image.style.marginLeft = pxValue;
     image.style.marginRight = pxValue;
   };
   var setVspace = function (image, value) {
-    var pxValue = $_9v7cmwcujkmcwomi.addPixelSuffix(value);
+    var pxValue = $_5m5ooacejh8lz07v.addPixelSuffix(value);
     image.style.marginTop = pxValue;
     image.style.marginBottom = pxValue;
   };
   var setBorder = function (image, value) {
-    var pxValue = $_9v7cmwcujkmcwomi.addPixelSuffix(value);
+    var pxValue = $_5m5ooacejh8lz07v.addPixelSuffix(value);
     image.style.borderWidth = pxValue;
   };
   var setBorderStyle = function (image, value) {
@@ -415,7 +469,7 @@ var image = (function () {
   };
   var create = function (normalizeCss, data) {
     var image = document.createElement('img');
-    write(normalizeCss, merge(data, { caption: false }), image);
+    write(normalizeCss, $_kivhlcqjh8lz08x.merge(data, { caption: false }), image);
     setAttrib(image, 'alt', data.alt);
     if (data.caption) {
       var figure = DOM.create('figure', { class: 'image' });
@@ -443,13 +497,13 @@ var image = (function () {
       borderStyle: getStyle(image, 'borderStyle')
     };
   };
-  var updateProp = function (image, oldData, newData, name$$1, set) {
-    if (newData[name$$1] !== oldData[name$$1]) {
-      set(image, name$$1, newData[name$$1]);
+  var updateProp = function (image, oldData, newData, name, set) {
+    if (newData[name] !== oldData[name]) {
+      set(image, name, newData[name]);
     }
   };
   var normalized = function (set, normalizeCss) {
-    return function (image, name$$1, value) {
+    return function (image, name, value) {
       set(image, value);
       normalizeStyle(image, normalizeCss);
     };
@@ -476,7 +530,7 @@ var image = (function () {
 
   var normalizeCss = function (editor, cssText) {
     var css = editor.dom.styles.parse(cssText);
-    var mergedCss = $_9v7cmwcujkmcwomi.mergeMargins(css);
+    var mergedCss = $_5m5ooacejh8lz07v.mergeMargins(css);
     var compressed = editor.dom.styles.parse(editor.dom.styles.serialize(mergedCss));
     return editor.dom.styles.serialize(compressed);
   };
@@ -551,7 +605,7 @@ var image = (function () {
       editor.selection.select(image.parentNode);
     } else {
       editor.selection.select(image);
-      $_9v7cmwcujkmcwomi.waitLoadImage(editor, data, image);
+      $_5m5ooacejh8lz07v.waitLoadImage(editor, data, image);
     }
   };
   var insertOrUpdateImage = function (editor, data) {
@@ -571,28 +625,28 @@ var image = (function () {
     return function (evt) {
       var dom = editor.dom;
       var rootControl = evt.control.rootControl;
-      if (!$_gc1jdictjkmcwomd.hasAdvTab(editor)) {
+      if (!$_crxcnscdjh8lz07s.hasAdvTab(editor)) {
         return;
       }
       var data = rootControl.toJSON();
       var css = dom.parseStyle(data.style);
       rootControl.find('#vspace').value('');
       rootControl.find('#hspace').value('');
-      css = $_9v7cmwcujkmcwomi.mergeMargins(css);
+      css = $_5m5ooacejh8lz07v.mergeMargins(css);
       if (css['margin-top'] && css['margin-bottom'] || css['margin-right'] && css['margin-left']) {
         if (css['margin-top'] === css['margin-bottom']) {
-          rootControl.find('#vspace').value($_9v7cmwcujkmcwomi.removePixelSuffix(css['margin-top']));
+          rootControl.find('#vspace').value($_5m5ooacejh8lz07v.removePixelSuffix(css['margin-top']));
         } else {
           rootControl.find('#vspace').value('');
         }
         if (css['margin-right'] === css['margin-left']) {
-          rootControl.find('#hspace').value($_9v7cmwcujkmcwomi.removePixelSuffix(css['margin-right']));
+          rootControl.find('#hspace').value($_5m5ooacejh8lz07v.removePixelSuffix(css['margin-right']));
         } else {
           rootControl.find('#hspace').value('');
         }
       }
       if (css['border-width']) {
-        rootControl.find('#border').value($_9v7cmwcujkmcwomi.removePixelSuffix(css['border-width']));
+        rootControl.find('#border').value($_5m5ooacejh8lz07v.removePixelSuffix(css['border-width']));
       } else {
         rootControl.find('#border').value('');
       }
@@ -608,7 +662,7 @@ var image = (function () {
     win.find('#style').each(function (ctrl) {
       var value = getStyleValue(function (css) {
         return normalizeCss(editor, css);
-      }, merge(defaultData(), win.toJSON()));
+      }, $_kivhlcqjh8lz08x.merge(defaultData(), win.toJSON()));
       ctrl.value(value);
     });
   };
@@ -711,7 +765,7 @@ var image = (function () {
       ]
     };
   };
-  var $_4qd61kd3jkmcwonl = { makeTab: makeTab };
+  var $_546vuxcmjh8lz08g = { makeTab: makeTab };
 
   var doSyncSize = function (widthCtrl, heightCtrl) {
     widthCtrl.state.set('oldVal', widthCtrl.value());
@@ -791,7 +845,7 @@ var image = (function () {
       ]
     };
   };
-  var $_14kdtjdajkmcwoo8 = {
+  var $_8agebqctjh8lz094 = {
     createUi: createUi,
     syncSize: syncSize,
     updateSize: updateSize
@@ -806,22 +860,22 @@ var image = (function () {
     if (imageListCtrl) {
       imageListCtrl.value(editor.convertURL(control.value(), 'src'));
     }
-    global$2.each(meta, function (value, key) {
+    global$3.each(meta, function (value, key) {
       rootControl.find('#' + key).value(value);
     });
     if (!meta.width && !meta.height) {
       srcURL = editor.convertURL(control.value(), 'src');
-      prependURL = $_gc1jdictjkmcwomd.getPrependUrl(editor);
+      prependURL = $_crxcnscdjh8lz07s.getPrependUrl(editor);
       absoluteURLPattern = new RegExp('^(?:[a-z]+:)?//', 'i');
       if (prependURL && !absoluteURLPattern.test(srcURL) && srcURL.substring(0, prependURL.length) !== prependURL) {
         srcURL = prependURL + srcURL;
       }
       control.value(srcURL);
-      $_9v7cmwcujkmcwomi.getImageSize(editor.documentBaseURI.toAbsolute(control.value()), function (data) {
-        if (data.width && data.height && $_gc1jdictjkmcwomd.hasDimensions(editor)) {
+      $_5m5ooacejh8lz07v.getImageSize(editor.documentBaseURI.toAbsolute(control.value()), function (data) {
+        if (data.width && data.height && $_crxcnscdjh8lz07s.hasDimensions(editor)) {
           rootControl.find('#width').value(data.width);
           rootControl.find('#height').value(data.height);
-          $_14kdtjdajkmcwoo8.syncSize(rootControl);
+          $_8agebqctjh8lz094.syncSize(rootControl);
         }
       });
     }
@@ -844,29 +898,29 @@ var image = (function () {
       },
       imageListCtrl
     ];
-    if ($_gc1jdictjkmcwomd.hasDescription(editor)) {
+    if ($_crxcnscdjh8lz07s.hasDescription(editor)) {
       generalFormItems.push({
         name: 'alt',
         type: 'textbox',
         label: 'Image description'
       });
     }
-    if ($_gc1jdictjkmcwomd.hasImageTitle(editor)) {
+    if ($_crxcnscdjh8lz07s.hasImageTitle(editor)) {
       generalFormItems.push({
         name: 'title',
         type: 'textbox',
         label: 'Image Title'
       });
     }
-    if ($_gc1jdictjkmcwomd.hasDimensions(editor)) {
-      generalFormItems.push($_14kdtjdajkmcwoo8.createUi());
+    if ($_crxcnscdjh8lz07s.hasDimensions(editor)) {
+      generalFormItems.push($_8agebqctjh8lz094.createUi());
     }
-    if ($_gc1jdictjkmcwomd.getClassList(editor)) {
+    if ($_crxcnscdjh8lz07s.getClassList(editor)) {
       generalFormItems.push({
         name: 'class',
         type: 'listbox',
         label: 'Class',
-        values: $_9v7cmwcujkmcwomi.buildListItems($_gc1jdictjkmcwomd.getClassList(editor), function (item) {
+        values: $_5m5ooacejh8lz07v.buildListItems($_crxcnscdjh8lz07s.getClassList(editor), function (item) {
           if (item.value) {
             item.textStyle = function () {
               return editor.formatter.getCssText({
@@ -878,7 +932,7 @@ var image = (function () {
         })
       });
     }
-    if ($_gc1jdictjkmcwomd.hasImageCaption(editor)) {
+    if ($_crxcnscdjh8lz07s.hasImageCaption(editor)) {
       generalFormItems.push({
         name: 'caption',
         type: 'checkbox',
@@ -894,13 +948,13 @@ var image = (function () {
       items: getGeneralItems(editor, imageListCtrl)
     };
   };
-  var $_bpqbuud9jkmcwoo5 = {
+  var $_586d0gcsjh8lz091 = {
     makeTab: makeTab$1,
     getGeneralItems: getGeneralItems
   };
 
   var url = function () {
-    return $_db9o2scwjkmcwomp.getOrDie('URL');
+    return $_8d9gbscgjh8lz089.getOrDie('URL');
   };
   var createObjectURL = function (blob) {
     return url().createObjectURL(blob);
@@ -908,15 +962,15 @@ var image = (function () {
   var revokeObjectURL = function (u) {
     url().revokeObjectURL(u);
   };
-  var $_e8tsx4dcjkmcwooe = {
+  var $_61yp4wcvjh8lz09b = {
     createObjectURL: createObjectURL,
     revokeObjectURL: revokeObjectURL
   };
 
-  var global$5 = tinymce.util.Tools.resolve('tinymce.ui.Factory');
+  var global$6 = tinymce.util.Tools.resolve('tinymce.ui.Factory');
 
   function XMLHttpRequest () {
-    var f = $_db9o2scwjkmcwomp.getOrDie('XMLHttpRequest');
+    var f = $_8d9gbscgjh8lz089.getOrDie('XMLHttpRequest');
     return new f();
   }
 
@@ -958,7 +1012,7 @@ var image = (function () {
       xhr.send(formData);
     };
     var uploadBlob = function (blobInfo, handler) {
-      return new global$1(function (resolve, reject) {
+      return new global$2(function (resolve, reject) {
         try {
           handler(blobInfo, resolve, reject, noop);
         } catch (ex) {
@@ -970,9 +1024,9 @@ var image = (function () {
       return handler === defaultHandler;
     };
     var upload = function (blobInfo) {
-      return !settings.url && isDefaultHandler(settings.handler) ? global$1.reject('Upload url missing from the settings.') : uploadBlob(blobInfo, settings.handler);
+      return !settings.url && isDefaultHandler(settings.handler) ? global$2.reject('Upload url missing from the settings.') : uploadBlob(blobInfo, settings.handler);
     };
-    settings = global$2.extend({
+    settings = global$3.extend({
       credentials: false,
       handler: defaultHandler
     }, settings);
@@ -981,23 +1035,23 @@ var image = (function () {
 
   var onFileInput = function (editor) {
     return function (evt) {
-      var Throbber = global$5.get('Throbber');
+      var Throbber = global$6.get('Throbber');
       var rootControl = evt.control.rootControl;
       var throbber = new Throbber(rootControl.getEl());
       var file = evt.control.value();
-      var blobUri = $_e8tsx4dcjkmcwooe.createObjectURL(file);
+      var blobUri = $_61yp4wcvjh8lz09b.createObjectURL(file);
       var uploader = Uploader({
-        url: $_gc1jdictjkmcwomd.getUploadUrl(editor),
-        basePath: $_gc1jdictjkmcwomd.getUploadBasePath(editor),
-        credentials: $_gc1jdictjkmcwomd.getUploadCredentials(editor),
-        handler: $_gc1jdictjkmcwomd.getUploadHandler(editor)
+        url: $_crxcnscdjh8lz07s.getUploadUrl(editor),
+        basePath: $_crxcnscdjh8lz07s.getUploadBasePath(editor),
+        credentials: $_crxcnscdjh8lz07s.getUploadCredentials(editor),
+        handler: $_crxcnscdjh8lz07s.getUploadHandler(editor)
       });
       var finalize = function () {
         throbber.hide();
-        $_e8tsx4dcjkmcwooe.revokeObjectURL(blobUri);
+        $_61yp4wcvjh8lz09b.revokeObjectURL(blobUri);
       };
       throbber.show();
-      return $_9v7cmwcujkmcwomi.blobToDataUri(file).then(function (dataUrl) {
+      return $_5m5ooacejh8lz07v.blobToDataUri(file).then(function (dataUrl) {
         var blobInfo = editor.editorUpload.blobCache.create({
           blob: file,
           blobUri: blobUri,
@@ -1057,8 +1111,43 @@ var image = (function () {
       ]
     };
   };
-  var $_26ghgddbjkmcwooa = { makeTab: makeTab$2 };
+  var $_3w774acujh8lz097 = { makeTab: makeTab$2 };
 
+  var noop$1 = function () {
+    var x = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+      x[_i] = arguments[_i];
+    }
+  };
+  var noarg = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return f();
+    };
+  };
+  var compose = function (fa, fb) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return fa(fb.apply(null, arguments));
+    };
+  };
+  var constant = function (value) {
+    return function () {
+      return value;
+    };
+  };
+  var identity = function (x) {
+    return x;
+  };
+  var tripleEquals = function (a, b) {
+    return a === b;
+  };
   var curry = function (f) {
     var x = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -1079,12 +1168,49 @@ var image = (function () {
       return f.apply(null, all);
     };
   };
+  var not = function (f) {
+    return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
+      return !f.apply(null, arguments);
+    };
+  };
+  var die = function (msg) {
+    return function () {
+      throw new Error(msg);
+    };
+  };
+  var apply = function (f) {
+    return f();
+  };
+  var call = function (f) {
+    f();
+  };
+  var never = constant(false);
+  var always = constant(true);
+  var $_8rhdleczjh8lz09i = {
+    noop: noop$1,
+    noarg: noarg,
+    compose: compose,
+    constant: constant,
+    identity: identity,
+    tripleEquals: tripleEquals,
+    curry: curry,
+    not: not,
+    die: die,
+    apply: apply,
+    call: call,
+    never: never,
+    always: always
+  };
 
   var submitForm = function (editor, evt) {
     var win = evt.control.getRoot();
-    $_14kdtjdajkmcwoo8.updateSize(win);
+    $_8agebqctjh8lz094.updateSize(win);
     editor.undoManager.transact(function () {
-      var data = merge(readImageDataFromSelection(editor), win.toJSON());
+      var data = $_kivhlcqjh8lz08x.merge(readImageDataFromSelection(editor), win.toJSON());
       insertOrUpdateImage(editor, data);
     });
     editor.editorUpload.uploadImagesAuto();
@@ -1098,7 +1224,7 @@ var image = (function () {
           type: 'listbox',
           label: 'Image list',
           name: 'image-list',
-          values: $_9v7cmwcujkmcwomi.buildListItems(imageList, function (item) {
+          values: $_5m5ooacejh8lz07v.buildListItems(imageList, function (item) {
             item.value = editor.convertURL(item.value || item.url, 'src');
           }, [{
               text: 'None',
@@ -1117,33 +1243,33 @@ var image = (function () {
           }
         };
       }
-      if ($_gc1jdictjkmcwomd.hasAdvTab(editor) || $_gc1jdictjkmcwomd.hasUploadUrl(editor) || $_gc1jdictjkmcwomd.hasUploadHandler(editor)) {
-        var body = [$_bpqbuud9jkmcwoo5.makeTab(editor, imageListCtrl)];
-        if ($_gc1jdictjkmcwomd.hasAdvTab(editor)) {
-          body.push($_4qd61kd3jkmcwonl.makeTab(editor));
+      if ($_crxcnscdjh8lz07s.hasAdvTab(editor) || $_crxcnscdjh8lz07s.hasUploadUrl(editor) || $_crxcnscdjh8lz07s.hasUploadHandler(editor)) {
+        var body = [$_586d0gcsjh8lz091.makeTab(editor, imageListCtrl)];
+        if ($_crxcnscdjh8lz07s.hasAdvTab(editor)) {
+          body.push($_546vuxcmjh8lz08g.makeTab(editor));
         }
-        if ($_gc1jdictjkmcwomd.hasUploadUrl(editor) || $_gc1jdictjkmcwomd.hasUploadHandler(editor)) {
-          body.push($_26ghgddbjkmcwooa.makeTab(editor));
+        if ($_crxcnscdjh8lz07s.hasUploadUrl(editor) || $_crxcnscdjh8lz07s.hasUploadHandler(editor)) {
+          body.push($_3w774acujh8lz097.makeTab(editor));
         }
         win = editor.windowManager.open({
           title: 'Insert/edit image',
           data: data,
           bodyType: 'tabpanel',
           body: body,
-          onSubmit: curry(submitForm, editor)
+          onSubmit: $_8rhdleczjh8lz09i.curry(submitForm, editor)
         });
       } else {
         win = editor.windowManager.open({
           title: 'Insert/edit image',
           data: data,
-          body: $_bpqbuud9jkmcwoo5.getGeneralItems(editor, imageListCtrl),
-          onSubmit: curry(submitForm, editor)
+          body: $_586d0gcsjh8lz091.getGeneralItems(editor, imageListCtrl),
+          onSubmit: $_8rhdleczjh8lz09i.curry(submitForm, editor)
         });
       }
-      $_14kdtjdajkmcwoo8.syncSize(win);
+      $_8agebqctjh8lz094.syncSize(win);
     }
     function open() {
-      $_9v7cmwcujkmcwomi.createImageList(editor, showDialog);
+      $_5m5ooacejh8lz07v.createImageList(editor, showDialog);
     }
     return { open: open };
   }
@@ -1151,7 +1277,7 @@ var image = (function () {
   var register = function (editor) {
     editor.addCommand('mceImage', Dialog(editor).open);
   };
-  var $_cwg86qcrjkmcwom6 = { register: register };
+  var $_4g83a6cbjh8lz07k = { register: register };
 
   var hasImageClass = function (node) {
     var className = node.attr('class');
@@ -1167,7 +1293,7 @@ var image = (function () {
         node = nodes[i];
         if (hasImageClass(node)) {
           node.attr('contenteditable', state ? 'false' : null);
-          global$2.each(node.getAll('figcaption'), toggleContentEditable);
+          global$3.each(node.getAll('figcaption'), toggleContentEditable);
         }
       }
     };
@@ -1178,7 +1304,7 @@ var image = (function () {
       editor.serializer.addNodeFilter('figure', toggleContentEditableState(false));
     });
   };
-  var $_8m7aavdhjkmcwooq = { setup: setup };
+  var $_1om65pd0jh8lz09k = { setup: setup };
 
   var register$1 = function (editor) {
     editor.addButton('image', {
@@ -1195,12 +1321,12 @@ var image = (function () {
       prependToContext: true
     });
   };
-  var $_2zobs0dijkmcwoos = { register: register$1 };
+  var $_df3mmtd1jh8lz09m = { register: register$1 };
 
   global.add('image', function (editor) {
-    $_8m7aavdhjkmcwooq.setup(editor);
-    $_2zobs0dijkmcwoos.register(editor);
-    $_cwg86qcrjkmcwom6.register(editor);
+    $_1om65pd0jh8lz09k.setup(editor);
+    $_df3mmtd1jh8lz09m.register(editor);
+    $_4g83a6cbjh8lz07k.register(editor);
   });
   function Plugin () {
   }
