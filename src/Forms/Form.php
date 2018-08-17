@@ -17,7 +17,7 @@ abstract class Form
     /**
      * @var string
      */
-    public  $name;
+    public $name;
 
     /**
      * @var array

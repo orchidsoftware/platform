@@ -402,7 +402,7 @@ class Field implements FieldContract
      */
     public function modifyValue($value)
     {
-        $this->attributes['value'] = $this->getOldValue()?: $value;
+        $this->attributes['value'] = $this->getOldValue() ?: $value;
 
         if ($value instanceof \Closure) {
             $this->attributes['value'] = $value($this->attributes);

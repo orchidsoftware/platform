@@ -57,7 +57,7 @@ class Taxonomy extends Model
      */
     public function __get($key)
     {
-        if (!isset($this->$key) && isset($this->term->$key)) {
+        if (! isset($this->$key) && isset($this->term->$key)) {
             return $this->term->$key;
         }
 

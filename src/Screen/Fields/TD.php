@@ -75,7 +75,7 @@ class TD
      *
      * @return TD
      */
-    public static function set(string $name, string $title): TD
+    public static function set(string $name, string $title): self
     {
         $td = new static($name);
         $td->column = $name;
@@ -91,7 +91,7 @@ class TD
      *
      * @return TD
      */
-    public static function name(string $name): TD
+    public static function name(string $name): self
     {
         return new static($name);
     }
@@ -103,7 +103,7 @@ class TD
      *
      * @return TD
      */
-    public function title(string $title): TD
+    public function title(string $title): self
     {
         $this->title = $title;
 
@@ -115,7 +115,7 @@ class TD
      *
      * @return TD
      */
-    public function width(string $width): TD
+    public function width(string $width): self
     {
         $this->width = $width;
 
@@ -127,7 +127,7 @@ class TD
      *
      * @return TD
      */
-    public function locale(): TD
+    public function locale(): self
     {
         $this->locale = true;
 
@@ -139,7 +139,7 @@ class TD
      *
      * @return TD
      */
-    public function column(string $column = null): TD
+    public function column(string $column = null): self
     {
         if (! is_null($column)) {
             $this->column = $column;
@@ -158,7 +158,7 @@ class TD
      *
      * @return TD
      */
-    public function filter(string $filter): TD
+    public function filter(string $filter): self
     {
         $this->filter = $filter;
 
@@ -170,7 +170,7 @@ class TD
      *
      * @return \Orchid\Screen\Fields\TD
      */
-    public function sort(bool $sort = true): TD
+    public function sort(bool $sort = true): self
     {
         $this->sort = $sort;
 
@@ -192,7 +192,7 @@ class TD
      *
      * @return TD
      */
-    public function linkPost(string $text = null): TD
+    public function linkPost(string $text = null): self
     {
         return $this->link('platform.posts.type.edit', ['type', 'slug'], $text);
     }

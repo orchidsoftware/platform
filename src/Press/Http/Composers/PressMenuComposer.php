@@ -47,7 +47,6 @@ class PressMenuComposer
         $active = collect();
 
         foreach ($allPost as $key => $page) {
-
             $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
 
             $active

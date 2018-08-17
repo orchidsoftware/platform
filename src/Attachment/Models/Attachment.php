@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Attachment\Models;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Platform\Models\User;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -148,7 +148,7 @@ class Attachment extends Model
      * @param Attachment   $attachment
      * @param string $storageName
      */
-    private function removePhysicalFile(Attachment $attachment, string $storageName)
+    private function removePhysicalFile(self $attachment, string $storageName)
     {
         $storage = Storage::disk($storageName);
 
