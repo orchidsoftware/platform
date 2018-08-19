@@ -85,15 +85,7 @@ class Setting extends Model
      */
     private function cacheForget($key)
     {
-        if (! $this->cache) {
-            return;
-        }
-
-        if (! is_array($key)) {
-            Cache::forget($key);
-
-            return;
-        }
+        $key = is_array($key) ? $key : [$key];
 
         foreach ($key as $value) {
             Cache::forget($value);
@@ -144,10 +136,7 @@ class Setting extends Model
      */
     public function forget($key)
     {
-        if (! is_array($key)) {
-            $key = [$key];
-        }
-
+        $key = is_array($key) ? $key : [$key];
         $result = $this->whereIn('key', $key)->delete();
         $this->cacheForget($key);
 

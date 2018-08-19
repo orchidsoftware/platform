@@ -186,6 +186,7 @@ class BootModelScreen extends Screen
 
     /**
      * @throws \ReflectionException
+     * @throws \Exception
      */
     public function buildModels()
     {

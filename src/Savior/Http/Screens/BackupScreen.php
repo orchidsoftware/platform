@@ -37,7 +37,7 @@ class BackupScreen extends Screen
     /**
      * @var array
      */
-    public $disk = [];
+    public $disk;
 
     /**
      * BackupScreen constructor.

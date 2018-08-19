@@ -168,15 +168,9 @@ class Dashboard
      */
     public function getEntities(): Collection
     {
-        $this->entities->transform(function ($value) {
-            if (! is_object($value)) {
-                $value = new $value;
-            }
-
-            return $value;
+        return $this->entities->transform(function ($value) {
+            return is_object($value) ? $value : new $value;
         });
-
-        return $this->entities;
     }
 
     /**
@@ -214,7 +208,7 @@ class Dashboard
      * @param string $key
      * @return $this
      */
-    public function removePermission(string $key): self
+    public function removePermission(string $key)
     {
         $this->permission->get('removed')->push($key);
 
@@ -227,7 +221,7 @@ class Dashboard
      * @param  array  $options
      * @return void
      */
-    public static function configure(array $options): void
+    public static function configure(array $options)
     {
         static::$options = $options;
     }
@@ -251,15 +245,9 @@ class Dashboard
      * @param  null|string  $default
      * @return string
      */
-    public static function model(string $key, string $default = null): string
+    public static function model(string $key, string $default = null)
     {
         return array_get(static::$options, 'models.'.$key, $default ?? $key);
-
-        if (class_exists($model)) {
-            return new $model;
-        }
-
-        return $model;
     }
 
     /**
@@ -271,11 +259,7 @@ class Dashboard
     {
         $model = static::model($key, $default);
 
-        if (class_exists($model)) {
-            return new $model;
-        }
-
-        return $model;
+        return class_exists($model) ? new $model : $model;
     }
 
     /**

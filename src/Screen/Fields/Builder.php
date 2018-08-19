@@ -11,28 +11,28 @@ class Builder
     /**
      * Fields to be reflected, in the form Field.
      *
-     * @var
+     * @var \Orchid\Screen\Fields\FieldContract[]
      */
     public $fields;
 
     /**
      * Transmitted values for display in a form.
      *
-     * @var
+     * @var \Illuminate\Database\Eloquent\Model|Repository
      */
     public $data;
 
     /**
      * The form language.
      *
-     * @var
+     * @var string
      */
     public $language;
 
     /**
      * The form prefix.
      *
-     * @var
+     * @var string
      */
     public $prefix;
 
@@ -41,22 +41,18 @@ class Builder
      *
      * @var
      */
-    public $form = '';
+    private $form = '';
 
     /**
      * Builder constructor.
      *
-     * @param array       $fields
-     * @param Repository  $data
-     * @param string|null $language
-     * @param string|null $prefix
+     * @param \Orchid\Screen\Fields\FieldContract[] $fields
+     * @param Repository                            $data
      */
-    public function __construct(array $fields, Repository $data, string $language = null, string $prefix = null)
+    public function __construct(array $fields, Repository $data)
     {
         $this->fields = $fields;
         $this->data = $data;
-        $this->language = $language;
-        $this->prefix = $prefix;
     }
 
     /**
@@ -64,7 +60,7 @@ class Builder
      *
      * @return $this
      */
-    public function setLanguage(string $language): self
+    public function setLanguage(string $language = null)
     {
         $this->language = $language;
 
@@ -76,7 +72,7 @@ class Builder
      *
      * @return $this
      */
-    public function setPrefix(string $prefix): self
+    public function setPrefix(string $prefix = null)
     {
         $this->prefix = $prefix;
 
@@ -90,7 +86,7 @@ class Builder
      *
      * @return string
      */
-    public function generateForm() : string
+    public function generateForm(): string
     {
         foreach ($this->fields as $field) {
             if (is_array($field)) {
@@ -219,7 +215,7 @@ class Builder
             return $value;
         }
 
-        if ($value instanceof \Closure) {
+        if (! is_null($value) && $value instanceof \Closure) {
             return $value($data, $this->data);
         }
 
