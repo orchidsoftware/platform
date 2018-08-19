@@ -208,7 +208,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
-            $options = is_array($options) ? $options  : [$options];
+            $options = is_array($options) ? $options : [$options];
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
