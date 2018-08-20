@@ -49,7 +49,7 @@ trait Environment
         $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
-            '--class' => 'OrchidDatabaseSeeder',
+            '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
         ]);
 
         $this->artisan('make:admin', [
