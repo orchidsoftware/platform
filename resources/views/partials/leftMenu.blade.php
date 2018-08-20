@@ -2,7 +2,7 @@
     @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans($groupname)}}</li>
     @endisset
-    <li class="dropdown">
+    <li class="dropdown {{$class ?? ''}}">
         <a class="dropdown-toggle" type="button" id="dropdownMenu-{{$slug}}" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
             <span class="pull-right text-muted">
@@ -25,7 +25,7 @@
     @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans($groupname)}}</li>
     @endisset
-    <li>
+    <li class="{{$class ?? ''}}">
         <a href="{{$route}}">
             @isset($badge)
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>

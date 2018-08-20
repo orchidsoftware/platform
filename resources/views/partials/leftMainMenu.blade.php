@@ -1,6 +1,6 @@
 @isset($childs)
     @if(Dashboard::menu()->container->where('location',$slug)->count())
-        <li role="presentation" class="nav-item @isset($active) {{active($active)}} @endisset">
+        <li role="presentation" class="nav-item {{$class ?? ''}} @isset($active) {{active($active)}} @endisset">
             <a href="#{{$slug}}" id="{{$slug}}-tab" class="nav-link" role="tab" data-toggle="tab">
                 <i class="{{$icon}}">
                     @isset($badge)
@@ -12,7 +12,7 @@
         </li>
     @endif
 @else
-    <li class="@isset($childs) dropdown-item @endisset @isset($active) {{active($active)}} @endisset">
+    <li class="@isset($childs) dropdown-item @endisset {{$class ?? ''}} @isset($active) {{active($active)}} @endisset">
         <a href="{{$route}}">
             <i class="{{$icon}}">
                 @isset($badge)

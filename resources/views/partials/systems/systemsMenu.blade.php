@@ -1,5 +1,5 @@
 @empty(!$children->count())
-    <div class="admin-element w-full">
+    <div class="admin-element w-full {{$class ?? ''}}">
         <h3 class="font-thin h3 text-black">
             <i class="{{$icon}}"></i>{{trans($label)}}
         </h3>
