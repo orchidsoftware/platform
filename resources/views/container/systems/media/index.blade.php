@@ -22,51 +22,6 @@
 
 @endsection
 
-@section('aside')
-
-    <div id="aside-filemanager" class="col wi-col no-padder">
-        <div class="right_none_selected" style="display: none;"><i class="icon-cursor"></i>
-            <p> Ничего не выбрано</p></div>
-
-        <div class="wrapper detail v-center text-center">
-            <a href="#">
-                <img src="https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg" class="img-responsive b">
-            </a>
-
-            <!-- <i class="icon-folder-alt"></i>-->
-        </div>
-
-        <div class="divider b-t m-t-sm b-dark"></div>
-
-
-        <div class="wrapper">
-            <div class="row">
-                <div class="col-md-6">
-                    Название :
-                </div>
-
-                <div class="col-md-6">
-                    01
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    Тип файла:
-                </div>
-
-                <div class="col-md-6">
-                    folder
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-@endsection
-
-
-
 
 @section('content')
 
@@ -98,8 +53,9 @@
     </style>
 
 
-
-    <div id="filemanager">
+    <div class="row">
+        <div class="col-md-8 b-r no-padder">
+            <div id="filemanager" class="padder">
         <div id="content">
             <div class="breadcrumb-container">
                 <ol class="breadcrumb filemanager b-t small">
@@ -259,4 +215,51 @@
         </div>
 
     </div>
+        </div>
+        <div class="col-md-4">
+
+
+
+            <div id="aside-filemanager" class="col wi-col no-padder">
+                <div class="right_none_selected" style="display: none;"><i class="icon-cursor"></i>
+                    <p> Ничего не выбрано</p></div>
+
+                <div class="wrapper detail v-center text-center">
+                    <a href="#">
+                        <img src="https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg" class="img-responsive b">
+                    </a>
+
+                    <!-- <i class="icon-folder-alt"></i>-->
+                </div>
+
+                <div class="divider b-t m-t-sm b-dark"></div>
+
+
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Название :
+                        </div>
+
+                        <div class="col-md-6">
+                            01
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            Тип файла:
+                        </div>
+
+                        <div class="col-md-6">
+                            folder
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 @stop

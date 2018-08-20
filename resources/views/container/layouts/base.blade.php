@@ -23,5 +23,5 @@
     <div id="modals-container">
         @stack('modals-container')
     </div>
-    <form id="filters"></form>
+    <form id="filters" autocomplete="off"></form>
 @stop
