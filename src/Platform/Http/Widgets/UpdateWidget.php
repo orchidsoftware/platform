@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Widgets;
 
-use Composer\Semver\Comparator;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
-use Orchid\Platform\Dashboard;
 use Orchid\Widget\Widget;
+use Orchid\Platform\Dashboard;
+use Composer\Semver\Comparator;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class UpdateWidget extends Widget
 {
@@ -74,7 +74,7 @@ class UpdateWidget extends Widget
     }
 
     /**
-     * Make a request for Packagist API
+     * Make a request for Packagist API.
      *
      * @return array
      */
@@ -84,6 +84,7 @@ class UpdateWidget extends Widget
             return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
         } catch (\Exception $exception) {
             Log::alert($exception->getMessage());
+
             return ['0.0.0'];
         }
     }

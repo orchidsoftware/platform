@@ -10,9 +10,9 @@ use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Orchid\Bulldozer\Builders\Model;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Bulldozer\Builders\Migration;
 use Orchid\Bulldozer\Layouts\BootCreateModel;
-use Illuminate\Http\RedirectResponse;
 
 /**
  * Class BootModelScreen.

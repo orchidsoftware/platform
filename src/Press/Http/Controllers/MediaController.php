@@ -223,7 +223,6 @@ class MediaController extends Controller
             '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
-
         $error = trans('platform::systems/media.error_already_exists');
         if (! file_exists($destination)) {
             $error = trans('platform::systems/media.error_moving');

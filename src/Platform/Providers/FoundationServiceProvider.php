@@ -163,7 +163,7 @@ class FoundationServiceProvider extends ServiceProvider
         }
 
         if (! defined('PLATFORM_PATH')) {
-            /**
+            /*
              * Get the path to the ORCHID Platform folder.
              */
             define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
