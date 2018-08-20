@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Orchid\Platform\Http\Screens\Maintenance;
 
 use Orchid\Screen\Link;
@@ -54,7 +53,7 @@ class MaintenanceModScreen extends Screen
                 ->method('save'),
             Link::name('Отключить режим')
                 ->icon('icon-trash')
-                ->show(!$this->maintenance)
+                ->show(! $this->maintenance)
                 ->method('remove'),
         ];
     }
