@@ -14,7 +14,7 @@ use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Traits\JsonRelations;
+use Orchid\Press\Traits\JsonRelations;
 use Orchid\Platform\Traits\MultiLanguage;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Screen\Exceptions\TypeException;

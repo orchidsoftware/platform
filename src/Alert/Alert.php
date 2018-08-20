@@ -33,7 +33,7 @@ class Alert
      */
     public function info($message): self
     {
-        $this->message($message, 'info');
+        $this->message($message);
 
         return $this;
     }

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Exceptions;
 
+use Exception;
+
 /**
  * Class FieldRequiredAttributeException.
  */
-class FieldRequiredAttributeException extends \Exception
+class FieldRequiredAttributeException extends Exception
 {
     /**
      * FieldRequiredAttributeException constructor.

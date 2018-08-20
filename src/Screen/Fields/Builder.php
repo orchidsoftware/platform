@@ -215,7 +215,7 @@ class Builder
             return $value;
         }
 
-        if (! is_null($value) && $value instanceof \Closure) {
+        if ($value instanceof \Closure) {
             return $value($data, $this->data);
         }
 

@@ -141,7 +141,7 @@ class File
             'original_name' => $this->file->getClientOriginalName(),
             'mime'          => $this->getMimeType(),
             'extension'     => $this->getClientOriginalExtension(),
-            'size'          => $this->file->getClientSize(),
+            'size'          => $this->file->getSize(),
             'path'          => $this->date.DIRECTORY_SEPARATOR,
             'hash'          => $this->hash,
             'disk'          => $this->disk,

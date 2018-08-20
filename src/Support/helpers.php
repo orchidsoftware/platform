@@ -40,10 +40,10 @@ if (! function_exists('generate_form')) {
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @param array                           $fields
-     * @param array|\Orchid\Screen\Repository $data
-     * @param string|null                     $language
-     * @param string|null                     $prefix
+     * @param array                                $fields
+     * @param array|\Orchid\Screen\Repository|null $data
+     * @param string|null                          $language
+     * @param string|null                          $prefix
      *
      * @throws \Throwable
      *

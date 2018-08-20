@@ -58,9 +58,6 @@ class BaseCommentForm extends Form
      */
     public function delete(Comment $comment)
     {
-        try {
-            $comment->delete();
-        } catch (\Exception $e) {
-        }
+        $comment->delete();
     }
 }

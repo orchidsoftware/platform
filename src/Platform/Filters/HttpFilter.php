@@ -99,7 +99,7 @@ class HttpFilter
 
         $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
-            if (false !== strpos($property, '.')) {
+            if (strpos($property, '.') !== false) {
                 $allowProperty = strstr($property, '.', true);
             }
 

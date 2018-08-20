@@ -23,16 +23,6 @@ class RouteBulldozerServiceProvider extends RouteServiceProvider
     protected $namespace = 'Orchid\Bulldozer\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @internal param Router $router
-     */
-    public function boot()
-    {
-        parent::boot();
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @return void

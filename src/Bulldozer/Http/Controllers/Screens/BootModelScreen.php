@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Orchid\Bulldozer\Builders\Model;
 use Orchid\Bulldozer\Builders\Migration;
 use Orchid\Bulldozer\Layouts\BootCreateModel;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class BootModelScreen.
@@ -130,10 +131,10 @@ class BootModelScreen extends Screen
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      * @throws \Exception
      */
-    public function createModel(Request $request): \Illuminate\Http\RedirectResponse
+    public function createModel(Request $request): RedirectResponse
     {
         $name = studly_case($request->get('name'));
 
@@ -155,10 +156,10 @@ class BootModelScreen extends Screen
     /**
      * @param string $model
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      * @throws \Exception
      */
-    public function delete(string $model): \Illuminate\Http\RedirectResponse
+    public function delete(string $model): RedirectResponse
     {
         $this->models = $this->models->except($model);
         cache()->forever(static::MODELS, $this->models);

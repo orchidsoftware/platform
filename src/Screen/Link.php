@@ -65,9 +65,7 @@ class Link
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new static;
-
-        return $new->rewriteProperty($name, $arguments[0]);
+        return (new static)->rewriteProperty($name, $arguments[0]);
     }
 
     /**
@@ -78,7 +76,7 @@ class Link
      */
     public function __call($name, $arguments)
     {
-        return call_user_func_array([$this, 'rewriteProperty'], [$name, $arguments[0]]);
+        return call_user_func([$this, 'rewriteProperty'], $name, $arguments[0]);
     }
 
     /**

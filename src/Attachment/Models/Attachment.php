@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment\Models;
 
+use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Intervention\Image\Facades\Image;
@@ -41,16 +42,6 @@ class Attachment extends Model
      * @var string
      */
     protected static $logAttributes = ['*'];
-
-    /**
-     * Attachment constructor.
-     *
-     * @param array $attributes
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -145,7 +136,7 @@ class Attachment extends Model
     /**
      * Physical removal of all copies of a file.
      *
-     * @param Attachment   $attachment
+     * @param self   $attachment
      * @param string $storageName
      */
     private function removePhysicalFile(self $attachment, string $storageName)
@@ -170,14 +161,10 @@ class Attachment extends Model
      */
     public function getMimeType() : string
     {
-        $mimes = new \Mimey\MimeTypes();
+        $mimes = new MimeTypes();
 
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 
-        if (is_null($type)) {
-            return 'unknown';
-        }
-
-        return $type;
+        return is_null($type) ? 'unknown' : $type;
     }
 }

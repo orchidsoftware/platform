@@ -11,7 +11,12 @@ trait JsonRelations
      *
      * @var string
      */
-    public $jsonRelationColumn = 'options';
+    protected $jsonRelationColumn = 'options';
+
+    /**
+     * @var string
+     */
+    protected $jsonRelationKey = 'relations';
 
     /**
      * @param $name
@@ -32,15 +37,11 @@ trait JsonRelations
     /**
      * @return array
      */
-    private function jsonRelationInit()
+    private function jsonRelationInit() : array
     {
         $options = $this->getAttribute($this->jsonRelationColumn);
 
-        if (array_key_exists('relations', $options)) {
-            return $options['relations'];
-        }
-
-        return [];
+        return array_key_exists($this->jsonRelationKey, $options) ? $options[$this->jsonRelationKey] : [];
     }
 
     /**
@@ -51,7 +52,7 @@ trait JsonRelations
     private function jsonRelationSave(array $value)
     {
         $options = $this->jsonRelationInit();
-        $options['relations'] = $value;
+        $options[$this->jsonRelationKey] = $value;
 
         $this->setAttribute($this->jsonRelationColumn, $options);
 

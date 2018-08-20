@@ -73,11 +73,7 @@ class MediaController extends Controller
     {
         $dirs = explode(DIRECTORY_SEPARATOR, $dir);
 
-        if (count($dirs) > 1) {
-            return $dirs;
-        }
-
-        return [];
+        return count($dirs) > 1 ? $dirs : [];
     }
 
     /**
@@ -227,14 +223,14 @@ class MediaController extends Controller
             '/../') !== false ? $this->directory.DIRECTORY_SEPARATOR.dirname($folderLocation).DIRECTORY_SEPARATOR.str_replace('/../',
                 '', $destination) : "{$location}/{$destination}";
 
+
+        $error = trans('platform::systems/media.error_already_exists');
         if (! file_exists($destination)) {
+            $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move($source, $destination)) {
                 $success = true;
-            } else {
-                $error = trans('platform::systems/media.error_moving');
+                $error = false;
             }
-        } else {
-            $error = trans('platform::systems/media.error_already_exists');
         }
 
         return compact('success', 'error');
@@ -259,14 +255,13 @@ class MediaController extends Controller
 
         $location = "{$this->directory}/{$folderLocation}";
 
+        $error = trans('platform::systems/media.error_may_exist');
         if (! $this->filesystem->exists("{$location}/{$newFilename}")) {
+            $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
-            } else {
-                $error = trans('platform::systems/media.error_moving');
+                $error = false;
             }
-        } else {
-            $error = trans('platform::systems/media.error_may_exist');
         }
 
         return compact('success', 'error');

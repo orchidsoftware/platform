@@ -12,6 +12,7 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Savior\Http\Layouts\BackupLayout;
+use Illuminate\Http\RedirectResponse;
 
 class BackupScreen extends Screen
 {
@@ -84,9 +85,9 @@ class BackupScreen extends Screen
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function runBackup(): \Illuminate\Http\RedirectResponse
+    public function runBackup(): RedirectResponse
     {
         $queue = config('queue.default');
 

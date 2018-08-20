@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Base64Url\Base64Url;
+use Illuminate\Support\Facades\Log;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,8 @@ class RouteServiceProvider extends ServiceProvider
             try {
                 $widget = app()->make(Base64Url::decode($value));
             } catch (\Exception $exception) {
-                return abort(404);
+                Log::alert($exception->getMessage());
+                return abort(404,$exception->getMessage());
             }
 
             abort_if(! is_a($widget, WidgetContractInterface::class), 403);

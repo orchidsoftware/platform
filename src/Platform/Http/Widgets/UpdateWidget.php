@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Widgets;
 
-use Orchid\Widget\Widget;
-use Orchid\Platform\Dashboard;
 use Composer\Semver\Comparator;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Orchid\Platform\Dashboard;
+use Orchid\Widget\Widget;
 
 class UpdateWidget extends Widget
 {
@@ -26,7 +27,7 @@ class UpdateWidget extends Widget
     public $apiURL = 'https://packagist.org/p/orchid/platform.json';
 
     /**
-     * Minutes.
+     * Specified in minutes.
      *
      * @var int
      */
@@ -55,23 +56,35 @@ class UpdateWidget extends Widget
     }
 
     /**
+     * Verify that the version of the package
+     * you are using is the latest version.
+     *
      * @return bool
      */
     public function getStatus(): bool
     {
-        try {
-            $versions = json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
-
-            foreach ($versions as $key => $version) {
-                if ($key !== 'dev-master' && Comparator::greaterThan($version['version'],
-                        $this->currentVersion)) {
-                    return true;
-                }
+        foreach ($this->requestVersion() as $key => $version) {
+            if ($key !== 'dev-master' && Comparator::greaterThan($version['version'],
+                    $this->currentVersion)) {
+                return true;
             }
+        }
 
-            return false;
+        return false;
+    }
+
+    /**
+     * Make a request for Packagist API
+     *
+     * @return array
+     */
+    public function requestVersion(): array
+    {
+        try {
+            return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
         } catch (\Exception $exception) {
-            return false;
+            Log::alert($exception->getMessage());
+            return ['0.0.0'];
         }
     }
 }
