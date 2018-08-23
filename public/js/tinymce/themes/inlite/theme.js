@@ -15,7 +15,7 @@ var inlite = (function () {
       return Array.isArray(item) ? results.concat(flatten(item)) : results.concat(item);
     }, []);
   };
-  var $_3r98o9174jh8lz7kx = { flatten: flatten };
+  var $_a54c9017xjkmcwwps = { flatten: flatten };
 
   var result = function (id, rect) {
     return {
@@ -33,7 +33,7 @@ var inlite = (function () {
     }
     return null;
   };
-  var $_fb7717176jh8lz7l0 = {
+  var $_bv44i317zjkmcwwpv = {
     match: match,
     result: result
   };
@@ -56,7 +56,7 @@ var inlite = (function () {
       bottom: geomRect.y + geomRect.h
     };
   };
-  var $_1loe4y178jh8lz7l4 = {
+  var $_cs3afq181jkmcwwpy = {
     fromClientRect: fromClientRect,
     toClientRect: toClientRect
   };
@@ -90,9 +90,9 @@ var inlite = (function () {
   };
   var getSelectionRect = function (editor) {
     var clientRect = editor.selection.getBoundingClientRect();
-    return clientRect ? toAbsolute($_1loe4y178jh8lz7l4.fromClientRect(clientRect)) : null;
+    return clientRect ? toAbsolute($_cs3afq181jkmcwwpy.fromClientRect(clientRect)) : null;
   };
-  var $_82t0yo177jh8lz7l1 = {
+  var $_2fb1t1180jkmcwwpw = {
     getElementRect: getElementRect,
     getPageAreaRect: getPageAreaRect,
     getContentAreaRect: getContentAreaRect,
@@ -103,7 +103,7 @@ var inlite = (function () {
     return function (editor) {
       for (var i = 0; i < predicateIds.length; i++) {
         if (predicateIds[i].predicate(element)) {
-          var result = $_fb7717176jh8lz7l0.result(predicateIds[i].id, $_82t0yo177jh8lz7l1.getElementRect(editor, element));
+          var result = $_bv44i317zjkmcwwpv.result(predicateIds[i].id, $_2fb1t1180jkmcwwpw.getElementRect(editor, element));
           return result;
         }
       }
@@ -115,14 +115,14 @@ var inlite = (function () {
       for (var i = 0; i < elements.length; i++) {
         for (var x = 0; x < predicateIds.length; x++) {
           if (predicateIds[x].predicate(elements[i])) {
-            return $_fb7717176jh8lz7l0.result(predicateIds[x].id, $_82t0yo177jh8lz7l1.getElementRect(editor, elements[i]));
+            return $_bv44i317zjkmcwwpv.result(predicateIds[x].id, $_2fb1t1180jkmcwwpw.getElementRect(editor, elements[i]));
           }
         }
       }
       return null;
     };
   };
-  var $_qzsc7175jh8lz7ky = {
+  var $_2eh8e117yjkmcwwpt = {
     element: element,
     parent: parent
   };
@@ -140,7 +140,7 @@ var inlite = (function () {
       return create(toolbar.id, toolbar.predicate);
     });
   };
-  var $_56g1zb179jh8lz7l5 = {
+  var $_8jjfzs182jkmcwwpz = {
     create: create,
     fromContextToolbars: fromContextToolbars
   };
@@ -148,7 +148,7 @@ var inlite = (function () {
   var textSelection = function (id) {
     return function (editor) {
       if (!editor.selection.isCollapsed()) {
-        var result = $_fb7717176jh8lz7l0.result(id, $_82t0yo177jh8lz7l1.getSelectionRect(editor));
+        var result = $_bv44i317zjkmcwwpv.result(id, $_2fb1t1180jkmcwwpw.getSelectionRect(editor));
         return result;
       }
       return null;
@@ -166,7 +166,7 @@ var inlite = (function () {
       for (i = 0; i < elements.length; i++) {
         if (elements[i].nodeName in textBlockElementsMap) {
           if (editor.dom.isEmpty(elements[i])) {
-            return $_fb7717176jh8lz7l0.result(id, $_82t0yo177jh8lz7l1.getSelectionRect(editor));
+            return $_bv44i317zjkmcwwpv.result(id, $_2fb1t1180jkmcwwpw.getSelectionRect(editor));
           }
           return null;
         }
@@ -174,7 +174,7 @@ var inlite = (function () {
       return null;
     };
   };
-  var $_fqowya17bjh8lz7l6 = {
+  var $_gio032184jkmcwwq0 = {
     textSelection: textSelection,
     emptyTextBlock: emptyTextBlock
   };
@@ -185,7 +185,7 @@ var inlite = (function () {
   var fireBeforeRenderUI = function (editor) {
     return editor.fire('BeforeRenderUI');
   };
-  var $_dincot17djh8lz7l9 = {
+  var $_4bdk9f186jkmcwwq3 = {
     fireSkinLoaded: fireSkinLoaded,
     fireBeforeRenderUI: fireBeforeRenderUI
   };
@@ -220,7 +220,7 @@ var inlite = (function () {
   var isBoolean = function (value) {
     return isType('boolean')(value);
   };
-  var $_795vzu17hjh8lz7lf = {
+  var $_3dmo3i18ajkmcwwq8 = {
     isString: isString,
     isNumber: isNumber,
     isBoolean: isBoolean,
@@ -255,11 +255,11 @@ var inlite = (function () {
     var boolToItemsArray = function (value, defaultValue) {
       return value === false ? [] : defaultValue;
     };
-    if ($_795vzu17hjh8lz7lf.isArray(value)) {
+    if ($_3dmo3i18ajkmcwwq8.isArray(value)) {
       return value;
-    } else if ($_795vzu17hjh8lz7lf.isString(value)) {
+    } else if ($_3dmo3i18ajkmcwwq8.isString(value)) {
       return stringToItemsArray(value);
-    } else if ($_795vzu17hjh8lz7lf.isBoolean(value)) {
+    } else if ($_3dmo3i18ajkmcwwq8.isBoolean(value)) {
       return boolToItemsArray(value, defaultValue);
     }
     return defaultValue;
@@ -271,12 +271,12 @@ var inlite = (function () {
       return itemsToArray(value, defaultValue);
     };
   };
-  var $_4mwpdv17gjh8lz7ld = {
-    getStringOr: getByTypeOr($_795vzu17hjh8lz7lf.isString),
-    getBoolOr: getByTypeOr($_795vzu17hjh8lz7lf.isBoolean),
-    getNumberOr: getByTypeOr($_795vzu17hjh8lz7lf.isNumber),
-    getHandlerOr: getByTypeOr($_795vzu17hjh8lz7lf.isFunction),
-    getToolbarItemsOr: getToolbarItemsOr($_795vzu17hjh8lz7lf.isArray)
+  var $_eygqjy189jkmcwwq6 = {
+    getStringOr: getByTypeOr($_3dmo3i18ajkmcwwq8.isString),
+    getBoolOr: getByTypeOr($_3dmo3i18ajkmcwwq8.isBoolean),
+    getNumberOr: getByTypeOr($_3dmo3i18ajkmcwwq8.isNumber),
+    getHandlerOr: getByTypeOr($_3dmo3i18ajkmcwwq8.isFunction),
+    getToolbarItemsOr: getToolbarItemsOr($_3dmo3i18ajkmcwwq8.isArray)
   };
 
   var global$6 = tinymce.util.Tools.resolve('tinymce.geom.Rect');
@@ -354,18 +354,18 @@ var inlite = (function () {
     var userConstrainedPanelRect;
     if (typeof handler === 'function') {
       userConstrainedPanelRect = handler({
-        elementRect: $_1loe4y178jh8lz7l4.toClientRect(targetRect),
-        contentAreaRect: $_1loe4y178jh8lz7l4.toClientRect(contentAreaRect),
-        panelRect: $_1loe4y178jh8lz7l4.toClientRect(panelRect)
+        elementRect: $_cs3afq181jkmcwwpy.toClientRect(targetRect),
+        contentAreaRect: $_cs3afq181jkmcwwpy.toClientRect(contentAreaRect),
+        panelRect: $_cs3afq181jkmcwwpy.toClientRect(panelRect)
       });
-      return $_1loe4y178jh8lz7l4.fromClientRect(userConstrainedPanelRect);
+      return $_cs3afq181jkmcwwpy.fromClientRect(userConstrainedPanelRect);
     }
     return panelRect;
   };
   var defaultHandler = function (rects) {
     return rects.panelRect;
   };
-  var $_7c1jsb17ijh8lz7lh = {
+  var $_blqb9d18bjkmcwwq9 = {
     calcInsert: calcInsert,
     calc: calc,
     userConstrain: userConstrain,
@@ -380,7 +380,7 @@ var inlite = (function () {
     return name ? prefix + name : prefix + 'lightgray';
   };
   var getTextSelectionToolbarItems = function (editor) {
-    return $_4mwpdv17gjh8lz7ld.getToolbarItemsOr(editor, 'selection_toolbar', [
+    return $_eygqjy189jkmcwwq6.getToolbarItemsOr(editor, 'selection_toolbar', [
       'bold',
       'italic',
       '|',
@@ -391,13 +391,13 @@ var inlite = (function () {
     ]);
   };
   var getInsertToolbarItems = function (editor) {
-    return $_4mwpdv17gjh8lz7ld.getToolbarItemsOr(editor, 'insert_toolbar', [
+    return $_eygqjy189jkmcwwq6.getToolbarItemsOr(editor, 'insert_toolbar', [
       'quickimage',
       'quicktable'
     ]);
   };
   var getPositionHandler = function (editor) {
-    return $_4mwpdv17gjh8lz7ld.getHandlerOr(editor, 'inline_toolbar_position_handler', $_7c1jsb17ijh8lz7lh.defaultHandler);
+    return $_eygqjy189jkmcwwq6.getHandlerOr(editor, 'inline_toolbar_position_handler', $_blqb9d18bjkmcwwq9.defaultHandler);
   };
   var getSkinUrl = function (editor) {
     var settings = editor.settings;
@@ -406,7 +406,7 @@ var inlite = (function () {
   var isSkinDisabled = function (editor) {
     return editor.settings.skin === false;
   };
-  var $_frnzmx17ejh8lz7lb = {
+  var $_3i7b7u187jkmcwwq4 = {
     getTextSelectionToolbarItems: getTextSelectionToolbarItems,
     getInsertToolbarItems: getInsertToolbarItems,
     getPositionHandler: getPositionHandler,
@@ -417,7 +417,7 @@ var inlite = (function () {
   var fireSkinLoaded$1 = function (editor, callback) {
     var done = function () {
       editor._skinLoaded = true;
-      $_dincot17djh8lz7l9.fireSkinLoaded(editor);
+      $_4bdk9f186jkmcwwq3.fireSkinLoaded(editor);
       callback();
     };
     if (editor.initialized) {
@@ -427,18 +427,18 @@ var inlite = (function () {
     }
   };
   var load = function (editor, callback) {
-    var skinUrl = $_frnzmx17ejh8lz7lb.getSkinUrl(editor);
+    var skinUrl = $_3i7b7u187jkmcwwq4.getSkinUrl(editor);
     var done = function () {
       fireSkinLoaded$1(editor, callback);
     };
-    if ($_frnzmx17ejh8lz7lb.isSkinDisabled(editor)) {
+    if ($_3i7b7u187jkmcwwq4.isSkinDisabled(editor)) {
       done();
     } else {
       global$2.DOM.styleSheetLoader.load(skinUrl + '/skin.min.css', done);
       editor.contentCSS.push(skinUrl + '/content.inline.min.css');
     }
   };
-  var $_a37m1717cjh8lz7l8 = { load: load };
+  var $_83otzm185jkmcwwq2 = { load: load };
 
   var getSelectionElements = function (editor) {
     var node = editor.selection.getNode();
@@ -457,7 +457,7 @@ var inlite = (function () {
   };
   var getToolbars = function (editor) {
     var contextToolbars = editor.contextToolbars;
-    return $_3r98o9174jh8lz7kx.flatten([
+    return $_a54c9017xjkmcwwps.flatten([
       contextToolbars ? contextToolbars : [],
       createToolbar(editor, 'img', 'image', 'alignleft aligncenter alignright')
     ]);
@@ -465,12 +465,12 @@ var inlite = (function () {
   var findMatchResult = function (editor, toolbars) {
     var result, elements, contextToolbarsPredicateIds;
     elements = getSelectionElements(editor);
-    contextToolbarsPredicateIds = $_56g1zb179jh8lz7l5.fromContextToolbars(toolbars);
-    result = $_fb7717176jh8lz7l0.match(editor, [
-      $_qzsc7175jh8lz7ky.element(elements[0], contextToolbarsPredicateIds),
-      $_fqowya17bjh8lz7l6.textSelection('text'),
-      $_fqowya17bjh8lz7l6.emptyTextBlock(elements, 'insert'),
-      $_qzsc7175jh8lz7ky.parent(elements, contextToolbarsPredicateIds)
+    contextToolbarsPredicateIds = $_8jjfzs182jkmcwwpz.fromContextToolbars(toolbars);
+    result = $_bv44i317zjkmcwwpv.match(editor, [
+      $_2eh8e117yjkmcwwpt.element(elements[0], contextToolbarsPredicateIds),
+      $_gio032184jkmcwwq0.textSelection('text'),
+      $_gio032184jkmcwwq0.emptyTextBlock(elements, 'insert'),
+      $_2eh8e117yjkmcwwpt.parent(elements, contextToolbarsPredicateIds)
     ]);
     return result && result.rect ? result : null;
   };
@@ -529,14 +529,14 @@ var inlite = (function () {
     editor.shortcuts.remove('meta+k');
     editor.shortcuts.add('meta+k', '', function () {
       var toolbars = getToolbars(editor);
-      var result = $_fb7717176jh8lz7l0.match(editor, [$_fqowya17bjh8lz7l6.textSelection('quicklink')]);
+      var result = $_bv44i317zjkmcwwpv.match(editor, [$_gio032184jkmcwwq0.textSelection('quicklink')]);
       if (result) {
         panel.show(editor, result.id, result.rect, toolbars);
       }
     });
   };
   var renderInlineUI = function (editor, panel) {
-    $_a37m1717cjh8lz7l8.load(editor, function () {
+    $_83otzm185jkmcwwq2.load(editor, function () {
       bindContextualToolbarsEvents(editor, panel);
       overrideLinkShortcut(editor, panel);
     });
@@ -548,7 +548,7 @@ var inlite = (function () {
   var renderUI = function (editor, panel) {
     return editor.inline ? renderInlineUI(editor, panel) : fail('inlite theme only supports inline mode.');
   };
-  var $_fduguf170jh8lz7ks = { renderUI: renderUI };
+  var $_drdm3b17tjkmcwwpo = { renderUI: renderUI };
 
   var noop = function () {
     var x = [];
@@ -556,15 +556,7 @@ var inlite = (function () {
       x[_i] = arguments[_i];
     }
   };
-  var noarg = function (f) {
-    return function () {
-      var x = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        x[_i] = arguments[_i];
-      }
-      return f();
-    };
-  };
+
   var compose = function (fa, fb) {
     return function () {
       var x = [];
@@ -579,12 +571,8 @@ var inlite = (function () {
       return value;
     };
   };
-  var identity = function (x) {
-    return x;
-  };
-  var tripleEquals = function (a, b) {
-    return a === b;
-  };
+
+
   var curry = function (f) {
     var x = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -605,46 +593,15 @@ var inlite = (function () {
       return f.apply(null, all);
     };
   };
-  var not = function (f) {
-    return function () {
-      var x = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        x[_i] = arguments[_i];
-      }
-      return !f.apply(null, arguments);
-    };
-  };
-  var die = function (msg) {
-    return function () {
-      throw new Error(msg);
-    };
-  };
-  var apply = function (f) {
-    return f();
-  };
-  var call = function (f) {
-    f();
-  };
+
+
+
+
   var never = constant(false);
   var always = constant(true);
-  var $_2jrs7h17njh8lz7m6 = {
-    noop: noop,
-    noarg: noarg,
-    compose: compose,
-    constant: constant,
-    identity: identity,
-    tripleEquals: tripleEquals,
-    curry: curry,
-    not: not,
-    die: die,
-    apply: apply,
-    call: call,
-    never: never,
-    always: always
-  };
 
-  var never$1 = $_2jrs7h17njh8lz7m6.never;
-  var always$1 = $_2jrs7h17njh8lz7m6.always;
+  var never$1 = never;
+  var always$1 = always;
   var none = function () {
     return NONE;
   };
@@ -652,13 +609,19 @@ var inlite = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call = function (thunk) {
+    var call$$1 = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop = function () {
+    var noop$$1 = function () {
+    };
+    var nul = function () {
+      return null;
+    };
+    var undef = function () {
+      return undefined;
     };
     var me = {
       fold: function (n, s) {
@@ -668,15 +631,17 @@ var inlite = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call,
+      getOrThunk: call$$1,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
+      getOrNull: nul,
+      getOrUndefined: undef,
       or: id,
-      orThunk: call,
+      orThunk: call$$1,
       map: none,
       ap: none,
-      each: noop,
+      each: noop$$1,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -687,7 +652,7 @@ var inlite = (function () {
       toArray: function () {
         return [];
       },
-      toString: $_2jrs7h17njh8lz7m6.constant('none()')
+      toString: constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -718,6 +683,8 @@ var inlite = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
+      getOrNull: constant_a,
+      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -777,16 +744,14 @@ var inlite = (function () {
       return typeOf(value) === type;
     };
   };
-  var $_55hqur17ojh8lz7m9 = {
-    isString: isType$1('string'),
-    isObject: isType$1('object'),
-    isArray: isType$1('array'),
-    isNull: isType$1('null'),
-    isBoolean: isType$1('boolean'),
-    isUndefined: isType$1('undefined'),
-    isFunction: isType$1('function'),
-    isNumber: isType$1('number')
-  };
+
+
+
+
+
+
+  var isFunction$1 = isType$1('function');
+  var isNumber$1 = isType$1('number');
 
   var rawIndexOf = function () {
     var pIndexOf = Array.prototype.indexOf;
@@ -802,27 +767,12 @@ var inlite = (function () {
     var r = rawIndexOf(xs, x);
     return r === -1 ? Option.none() : Option.some(r);
   };
-  var contains = function (xs, x) {
-    return rawIndexOf(xs, x) > -1;
-  };
+
   var exists = function (xs, pred) {
     return findIndex(xs, pred).isSome();
   };
-  var range = function (num, f) {
-    var r = [];
-    for (var i = 0; i < num; i++) {
-      r.push(f(i));
-    }
-    return r;
-  };
-  var chunk = function (array, size) {
-    var r = [];
-    for (var i = 0; i < array.length; i += size) {
-      var s = array.slice(i, i + size);
-      r.push(s);
-    }
-    return r;
-  };
+
+
   var map = function (xs, f) {
     var len = xs.length;
     var r = new Array(len);
@@ -838,25 +788,8 @@ var inlite = (function () {
       f(x, i, xs);
     }
   };
-  var eachr = function (xs, f) {
-    for (var i = xs.length - 1; i >= 0; i--) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var partition = function (xs, pred) {
-    var pass = [];
-    var fail = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      var arr = pred(x, i, xs) ? pass : fail;
-      arr.push(x);
-    }
-    return {
-      pass: pass,
-      fail: fail
-    };
-  };
+
+
   var filter = function (xs, pred) {
     var r = [];
     for (var i = 0, len = xs.length; i < len; i++) {
@@ -867,35 +800,8 @@ var inlite = (function () {
     }
     return r;
   };
-  var groupBy = function (xs, f) {
-    if (xs.length === 0) {
-      return [];
-    } else {
-      var wasType = f(xs[0]);
-      var r = [];
-      var group = [];
-      for (var i = 0, len = xs.length; i < len; i++) {
-        var x = xs[i];
-        var type = f(x);
-        if (type !== wasType) {
-          r.push(group);
-          group = [];
-        }
-        wasType = type;
-        group.push(x);
-      }
-      if (group.length !== 0) {
-        r.push(group);
-      }
-      return r;
-    }
-  };
-  var foldr = function (xs, f, acc) {
-    eachr(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
+
+
   var foldl = function (xs, f, acc) {
     each(xs, function (x) {
       acc = f(acc, x);
@@ -938,88 +844,23 @@ var inlite = (function () {
     }
     return r;
   };
-  var bind = function (xs, f) {
-    var output = map(xs, f);
-    return flatten$1(output);
-  };
-  var forall = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      var x = xs[i];
-      if (pred(x, i, xs) !== true) {
-        return false;
-      }
-    }
-    return true;
-  };
-  var equal = function (a1, a2) {
-    return a1.length === a2.length && forall(a1, function (x, i) {
-      return x === a2[i];
-    });
-  };
+
+
+
   var slice = Array.prototype.slice;
   var reverse = function (xs) {
     var r = slice.call(xs, 0);
     r.reverse();
     return r;
   };
-  var difference = function (a1, a2) {
-    return filter(a1, function (x) {
-      return !contains(a2, x);
-    });
-  };
-  var mapToObject = function (xs, f) {
-    var r = {};
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      r[String(x)] = f(x, i);
-    }
-    return r;
-  };
-  var pure = function (x) {
-    return [x];
-  };
-  var sort = function (xs, comparator) {
-    var copy = slice.call(xs, 0);
-    copy.sort(comparator);
-    return copy;
-  };
-  var head = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
-  };
-  var last = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
-  };
-  var from$1 = $_55hqur17ojh8lz7m9.isFunction(Array.from) ? Array.from : function (x) {
+
+
+
+
+
+
+  var from$1 = isFunction$1(Array.from) ? Array.from : function (x) {
     return slice.call(x);
-  };
-  var $_qgcal17ljh8lz7ly = {
-    map: map,
-    each: each,
-    eachr: eachr,
-    partition: partition,
-    filter: filter,
-    groupBy: groupBy,
-    indexOf: indexOf,
-    foldr: foldr,
-    foldl: foldl,
-    find: find,
-    findIndex: findIndex,
-    flatten: flatten$1,
-    bind: bind,
-    forall: forall,
-    exists: exists,
-    contains: contains,
-    equal: equal,
-    reverse: reverse,
-    chunk: chunk,
-    difference: difference,
-    mapToObject: mapToObject,
-    pure: pure,
-    sort: sort,
-    range: range,
-    head: head,
-    last: last,
-    from: from$1
   };
 
   var count = 0;
@@ -1027,8 +868,8 @@ var inlite = (function () {
     id: function () {
       return 'mceu_' + count++;
     },
-    create: function (name, attrs, children) {
-      var elm = document.createElement(name);
+    create: function (name$$1, attrs, children) {
+      var elm = document.createElement(name$$1);
       global$2.DOM.setAttribs(elm, attrs);
       if (typeof children === 'string') {
         elm.innerHTML = children;
@@ -1086,20 +927,20 @@ var inlite = (function () {
     toggleClass: function (elm, cls, state) {
       return global$2.DOM.toggleClass(elm, cls, state);
     },
-    css: function (elm, name, value) {
-      return global$2.DOM.setStyle(elm, name, value);
+    css: function (elm, name$$1, value) {
+      return global$2.DOM.setStyle(elm, name$$1, value);
     },
-    getRuntimeStyle: function (elm, name) {
-      return global$2.DOM.getStyle(elm, name, true);
+    getRuntimeStyle: function (elm, name$$1) {
+      return global$2.DOM.getStyle(elm, name$$1, true);
     },
-    on: function (target, name, callback, scope) {
-      return global$2.DOM.bind(target, name, callback, scope);
+    on: function (target, name$$1, callback, scope) {
+      return global$2.DOM.bind(target, name$$1, callback, scope);
     },
-    off: function (target, name, callback) {
-      return global$2.DOM.unbind(target, name, callback);
+    off: function (target, name$$1, callback) {
+      return global$2.DOM.unbind(target, name$$1, callback);
     },
-    fire: function (target, name, args) {
-      return global$2.DOM.fire(target, name, args);
+    fire: function (target, name$$1, args) {
+      return global$2.DOM.fire(target, name$$1, args);
     },
     innerHtml: function (elm, html) {
       global$2.DOM.setHTML(elm, html);
@@ -1112,7 +953,7 @@ var inlite = (function () {
 
   var global$9 = tinymce.util.Tools.resolve('tinymce.util.EventDispatcher');
 
-  var $_889epm17vjh8lz7n9 = {
+  var $_4qv1hp18pjkmcwws9 = {
     parseBox: function (value) {
       var len;
       var radix = 10;
@@ -1729,15 +1570,15 @@ var inlite = (function () {
 
   var dirtyCtrls = {};
   var animationFrameRequested;
-  var $_dipgfl182jh8lz7nt = {
+  var $_4k8nbw18wjkmcwwsq = {
     add: function (ctrl) {
-      var parent = ctrl.parent();
-      if (parent) {
-        if (!parent._layout || parent._layout.isNative()) {
+      var parent$$1 = ctrl.parent();
+      if (parent$$1) {
+        if (!parent$$1._layout || parent$$1._layout.isNative()) {
           return;
         }
-        if (!dirtyCtrls[parent._id]) {
-          dirtyCtrls[parent._id] = parent;
+        if (!dirtyCtrls[parent$$1._id]) {
+          dirtyCtrls[parent$$1._id] = parent$$1;
         }
         if (!animationFrameRequested) {
           animationFrameRequested = true;
@@ -1786,7 +1627,7 @@ var inlite = (function () {
   var inheritUiContainer = function (fromCtrl, toCtrl) {
     return toCtrl.uiContainer = getUiContainer(fromCtrl);
   };
-  var $_exab1j183jh8lz7nu = {
+  var $_5d7kox18xjkmcwwss = {
     getUiContainerDelta: getUiContainerDelta,
     setUiContainer: setUiContainer,
     getUiContainer: getUiContainer,
@@ -1805,64 +1646,64 @@ var inlite = (function () {
     },
     classPrefix: classPrefix,
     init: function (settings) {
-      var self = this;
+      var self$$1 = this;
       var classes, defaultClasses;
       function applyClasses(classes) {
         var i;
         classes = classes.split(' ');
         for (i = 0; i < classes.length; i++) {
-          self.classes.add(classes[i]);
+          self$$1.classes.add(classes[i]);
         }
       }
-      self.settings = settings = global$4.extend({}, self.Defaults, settings);
-      self._id = settings.id || 'mceu_' + idCounter++;
-      self._aria = { role: settings.role };
-      self._elmCache = {};
-      self.$ = global$7;
-      self.state = new ObservableObject({
+      self$$1.settings = settings = global$4.extend({}, self$$1.Defaults, settings);
+      self$$1._id = settings.id || 'mceu_' + idCounter++;
+      self$$1._aria = { role: settings.role };
+      self$$1._elmCache = {};
+      self$$1.$ = global$7;
+      self$$1.state = new ObservableObject({
         visible: true,
         active: false,
         disabled: false,
         value: ''
       });
-      self.data = new ObservableObject(settings.data);
-      self.classes = new ClassList(function () {
-        if (self.state.get('rendered')) {
-          self.getEl().className = this.toString();
+      self$$1.data = new ObservableObject(settings.data);
+      self$$1.classes = new ClassList(function () {
+        if (self$$1.state.get('rendered')) {
+          self$$1.getEl().className = this.toString();
         }
       });
-      self.classes.prefix = self.classPrefix;
+      self$$1.classes.prefix = self$$1.classPrefix;
       classes = settings.classes;
       if (classes) {
-        if (self.Defaults) {
-          defaultClasses = self.Defaults.classes;
+        if (self$$1.Defaults) {
+          defaultClasses = self$$1.Defaults.classes;
           if (defaultClasses && classes !== defaultClasses) {
             applyClasses(defaultClasses);
           }
         }
         applyClasses(classes);
       }
-      global$4.each('title text name visible disabled active value'.split(' '), function (name) {
-        if (name in settings) {
-          self[name](settings[name]);
+      global$4.each('title text name visible disabled active value'.split(' '), function (name$$1) {
+        if (name$$1 in settings) {
+          self$$1[name$$1](settings[name$$1]);
         }
       });
-      self.on('click', function () {
-        if (self.disabled()) {
+      self$$1.on('click', function () {
+        if (self$$1.disabled()) {
           return false;
         }
       });
-      self.settings = settings;
-      self.borderBox = $_889epm17vjh8lz7n9.parseBox(settings.border);
-      self.paddingBox = $_889epm17vjh8lz7n9.parseBox(settings.padding);
-      self.marginBox = $_889epm17vjh8lz7n9.parseBox(settings.margin);
+      self$$1.settings = settings;
+      self$$1.borderBox = $_4qv1hp18pjkmcwws9.parseBox(settings.border);
+      self$$1.paddingBox = $_4qv1hp18pjkmcwws9.parseBox(settings.padding);
+      self$$1.marginBox = $_4qv1hp18pjkmcwws9.parseBox(settings.margin);
       if (settings.hidden) {
-        self.hide();
+        self$$1.hide();
       }
     },
     Properties: 'parent,name',
     getContainerElm: function () {
-      var uiContainer = $_exab1j183jh8lz7nu.getUiContainer(this);
+      var uiContainer = $_5d7kox18xjkmcwwss.getUiContainer(this);
       return uiContainer ? uiContainer : funcs.getContainer();
     },
     getParentCtrl: function (elm) {
@@ -1878,15 +1719,15 @@ var inlite = (function () {
       return ctrl;
     },
     initLayoutRect: function () {
-      var self = this;
-      var settings = self.settings;
+      var self$$1 = this;
+      var settings = self$$1.settings;
       var borderBox, layoutRect;
-      var elm = self.getEl();
+      var elm = self$$1.getEl();
       var width, height, minWidth, minHeight, autoResize;
       var startMinWidth, startMinHeight, initialSize;
-      borderBox = self.borderBox = self.borderBox || $_889epm17vjh8lz7n9.measureBox(elm, 'border');
-      self.paddingBox = self.paddingBox || $_889epm17vjh8lz7n9.measureBox(elm, 'padding');
-      self.marginBox = self.marginBox || $_889epm17vjh8lz7n9.measureBox(elm, 'margin');
+      borderBox = self$$1.borderBox = self$$1.borderBox || $_4qv1hp18pjkmcwws9.measureBox(elm, 'border');
+      self$$1.paddingBox = self$$1.paddingBox || $_4qv1hp18pjkmcwws9.measureBox(elm, 'padding');
+      self$$1.marginBox = self$$1.marginBox || $_4qv1hp18pjkmcwws9.measureBox(elm, 'margin');
       initialSize = funcs.getSize(elm);
       startMinWidth = settings.minWidth;
       startMinHeight = settings.minHeight;
@@ -1902,7 +1743,7 @@ var inlite = (function () {
       var deltaH = borderBox.top + borderBox.bottom;
       var maxW = settings.maxWidth || 65535;
       var maxH = settings.maxHeight || 65535;
-      self._layoutRect = layoutRect = {
+      self$$1._layoutRect = layoutRect = {
         x: settings.x || 0,
         y: settings.y || 0,
         w: width,
@@ -1922,14 +1763,14 @@ var inlite = (function () {
         autoResize: autoResize,
         scrollW: 0
       };
-      self._lastLayoutRect = {};
+      self$$1._lastLayoutRect = {};
       return layoutRect;
     },
     layoutRect: function (newRect) {
-      var self = this;
-      var curRect = self._layoutRect, lastLayoutRect, size, deltaWidth, deltaHeight, repaintControls;
+      var self$$1 = this;
+      var curRect = self$$1._layoutRect, lastLayoutRect, size, deltaWidth, deltaHeight, repaintControls;
       if (!curRect) {
-        curRect = self.initLayoutRect();
+        curRect = self$$1.initLayoutRect();
       }
       if (newRect) {
         deltaWidth = curRect.deltaW;
@@ -1980,13 +1821,13 @@ var inlite = (function () {
         if (newRect.contentH !== undefined) {
           curRect.contentH = newRect.contentH;
         }
-        lastLayoutRect = self._lastLayoutRect;
+        lastLayoutRect = self$$1._lastLayoutRect;
         if (lastLayoutRect.x !== curRect.x || lastLayoutRect.y !== curRect.y || lastLayoutRect.w !== curRect.w || lastLayoutRect.h !== curRect.h) {
           repaintControls = Control.repaintControls;
           if (repaintControls) {
-            if (repaintControls.map && !repaintControls.map[self._id]) {
-              repaintControls.push(self);
-              repaintControls.map[self._id] = true;
+            if (repaintControls.map && !repaintControls.map[self$$1._id]) {
+              repaintControls.push(self$$1);
+              repaintControls.map[self$$1._id] = true;
             }
           }
           lastLayoutRect.x = curRect.x;
@@ -1994,21 +1835,21 @@ var inlite = (function () {
           lastLayoutRect.w = curRect.w;
           lastLayoutRect.h = curRect.h;
         }
-        return self;
+        return self$$1;
       }
       return curRect;
     },
     repaint: function () {
-      var self = this;
+      var self$$1 = this;
       var style, bodyStyle, bodyElm, rect, borderBox;
       var borderW, borderH, lastRepaintRect, round, value;
       round = !document.createRange ? Math.round : function (value) {
         return value;
       };
-      style = self.getEl().style;
-      rect = self._layoutRect;
-      lastRepaintRect = self._lastRepaintRect || {};
-      borderBox = self.borderBox;
+      style = self$$1.getEl().style;
+      rect = self$$1._layoutRect;
+      lastRepaintRect = self$$1._lastRepaintRect || {};
+      borderBox = self$$1.borderBox;
       borderW = borderBox.left + borderBox.right;
       borderH = borderBox.top + borderBox.bottom;
       if (rect.x !== lastRepaintRect.x) {
@@ -2029,92 +1870,92 @@ var inlite = (function () {
         style.height = (value >= 0 ? value : 0) + 'px';
         lastRepaintRect.h = rect.h;
       }
-      if (self._hasBody && rect.innerW !== lastRepaintRect.innerW) {
+      if (self$$1._hasBody && rect.innerW !== lastRepaintRect.innerW) {
         value = round(rect.innerW);
-        bodyElm = self.getEl('body');
+        bodyElm = self$$1.getEl('body');
         if (bodyElm) {
           bodyStyle = bodyElm.style;
           bodyStyle.width = (value >= 0 ? value : 0) + 'px';
         }
         lastRepaintRect.innerW = rect.innerW;
       }
-      if (self._hasBody && rect.innerH !== lastRepaintRect.innerH) {
+      if (self$$1._hasBody && rect.innerH !== lastRepaintRect.innerH) {
         value = round(rect.innerH);
-        bodyElm = bodyElm || self.getEl('body');
+        bodyElm = bodyElm || self$$1.getEl('body');
         if (bodyElm) {
           bodyStyle = bodyStyle || bodyElm.style;
           bodyStyle.height = (value >= 0 ? value : 0) + 'px';
         }
         lastRepaintRect.innerH = rect.innerH;
       }
-      self._lastRepaintRect = lastRepaintRect;
-      self.fire('repaint', {}, false);
+      self$$1._lastRepaintRect = lastRepaintRect;
+      self$$1.fire('repaint', {}, false);
     },
     updateLayoutRect: function () {
-      var self = this;
-      self.parent()._lastRect = null;
-      funcs.css(self.getEl(), {
+      var self$$1 = this;
+      self$$1.parent()._lastRect = null;
+      funcs.css(self$$1.getEl(), {
         width: '',
         height: ''
       });
-      self._layoutRect = self._lastRepaintRect = self._lastLayoutRect = null;
-      self.initLayoutRect();
+      self$$1._layoutRect = self$$1._lastRepaintRect = self$$1._lastLayoutRect = null;
+      self$$1.initLayoutRect();
     },
-    on: function (name, callback) {
-      var self = this;
-      function resolveCallbackName(name) {
+    on: function (name$$1, callback) {
+      var self$$1 = this;
+      function resolveCallbackName(name$$1) {
         var callback, scope;
-        if (typeof name !== 'string') {
-          return name;
+        if (typeof name$$1 !== 'string') {
+          return name$$1;
         }
         return function (e) {
           if (!callback) {
-            self.parentsAndSelf().each(function (ctrl) {
+            self$$1.parentsAndSelf().each(function (ctrl) {
               var callbacks = ctrl.settings.callbacks;
-              if (callbacks && (callback = callbacks[name])) {
+              if (callbacks && (callback = callbacks[name$$1])) {
                 scope = ctrl;
                 return false;
               }
             });
           }
           if (!callback) {
-            e.action = name;
+            e.action = name$$1;
             this.fire('execute', e);
             return;
           }
           return callback.call(scope, e);
         };
       }
-      getEventDispatcher(self).on(name, resolveCallbackName(callback));
-      return self;
+      getEventDispatcher(self$$1).on(name$$1, resolveCallbackName(callback));
+      return self$$1;
     },
-    off: function (name, callback) {
-      getEventDispatcher(this).off(name, callback);
+    off: function (name$$1, callback) {
+      getEventDispatcher(this).off(name$$1, callback);
       return this;
     },
-    fire: function (name, args, bubble) {
-      var self = this;
+    fire: function (name$$1, args, bubble) {
+      var self$$1 = this;
       args = args || {};
       if (!args.control) {
-        args.control = self;
+        args.control = self$$1;
       }
-      args = getEventDispatcher(self).fire(name, args);
-      if (bubble !== false && self.parent) {
-        var parent_1 = self.parent();
-        while (parent_1 && !args.isPropagationStopped()) {
-          parent_1.fire(name, args, false);
-          parent_1 = parent_1.parent();
+      args = getEventDispatcher(self$$1).fire(name$$1, args);
+      if (bubble !== false && self$$1.parent) {
+        var parent$$1 = self$$1.parent();
+        while (parent$$1 && !args.isPropagationStopped()) {
+          parent$$1.fire(name$$1, args, false);
+          parent$$1 = parent$$1.parent();
         }
       }
       return args;
     },
-    hasEventListeners: function (name) {
-      return getEventDispatcher(this).has(name);
+    hasEventListeners: function (name$$1) {
+      return getEventDispatcher(this).has(name$$1);
     },
     parents: function (selector) {
-      var self = this;
+      var self$$1 = this;
       var ctrl, parents = new Collection$2();
-      for (ctrl = self.parent(); ctrl; ctrl = ctrl.parent()) {
+      for (ctrl = self$$1.parent(); ctrl; ctrl = ctrl.parent()) {
         parents.add(ctrl);
       }
       if (selector) {
@@ -2161,16 +2002,16 @@ var inlite = (function () {
       this.getEl().blur();
       return this;
     },
-    aria: function (name, value) {
-      var self = this, elm = self.getEl(self.ariaTarget);
+    aria: function (name$$1, value) {
+      var self$$1 = this, elm = self$$1.getEl(self$$1.ariaTarget);
       if (typeof value === 'undefined') {
-        return self._aria[name];
+        return self$$1._aria[name$$1];
       }
-      self._aria[name] = value;
-      if (self.state.get('rendered')) {
-        elm.setAttribute(name === 'role' ? name : 'aria-' + name, value);
+      self$$1._aria[name$$1] = value;
+      if (self$$1.state.get('rendered')) {
+        elm.setAttribute(name$$1 === 'role' ? name$$1 : 'aria-' + name$$1, value);
       }
-      return self;
+      return self$$1;
     },
     encode: function (text, translate) {
       if (translate !== false) {
@@ -2184,55 +2025,55 @@ var inlite = (function () {
       return Control.translate ? Control.translate(text) : text;
     },
     before: function (items) {
-      var self = this, parent = self.parent();
-      if (parent) {
-        parent.insert(items, parent.items().indexOf(self), true);
+      var self$$1 = this, parent$$1 = self$$1.parent();
+      if (parent$$1) {
+        parent$$1.insert(items, parent$$1.items().indexOf(self$$1), true);
       }
-      return self;
+      return self$$1;
     },
     after: function (items) {
-      var self = this, parent = self.parent();
-      if (parent) {
-        parent.insert(items, parent.items().indexOf(self));
+      var self$$1 = this, parent$$1 = self$$1.parent();
+      if (parent$$1) {
+        parent$$1.insert(items, parent$$1.items().indexOf(self$$1));
       }
-      return self;
+      return self$$1;
     },
     remove: function () {
-      var self = this;
-      var elm = self.getEl();
-      var parent = self.parent();
+      var self$$1 = this;
+      var elm = self$$1.getEl();
+      var parent$$1 = self$$1.parent();
       var newItems, i;
-      if (self.items) {
-        var controls = self.items().toArray();
+      if (self$$1.items) {
+        var controls = self$$1.items().toArray();
         i = controls.length;
         while (i--) {
           controls[i].remove();
         }
       }
-      if (parent && parent.items) {
+      if (parent$$1 && parent$$1.items) {
         newItems = [];
-        parent.items().each(function (item) {
-          if (item !== self) {
+        parent$$1.items().each(function (item) {
+          if (item !== self$$1) {
             newItems.push(item);
           }
         });
-        parent.items().set(newItems);
-        parent._lastRect = null;
+        parent$$1.items().set(newItems);
+        parent$$1._lastRect = null;
       }
-      if (self._eventsRoot && self._eventsRoot === self) {
+      if (self$$1._eventsRoot && self$$1._eventsRoot === self$$1) {
         global$7(elm).off();
       }
-      var lookup = self.getRoot().controlIdLookup;
+      var lookup = self$$1.getRoot().controlIdLookup;
       if (lookup) {
-        delete lookup[self._id];
+        delete lookup[self$$1._id];
       }
       if (elm && elm.parentNode) {
         elm.parentNode.removeChild(elm);
       }
-      self.state.set('rendered', false);
-      self.state.destroy();
-      self.fire('remove');
-      return self;
+      self$$1.state.set('rendered', false);
+      self$$1.state.destroy();
+      self$$1.fire('remove');
+      return self$$1;
     },
     renderBefore: function (elm) {
       global$7(elm).before(this.renderHtml());
@@ -2252,81 +2093,81 @@ var inlite = (function () {
       return '<div id="' + this._id + '" class="' + this.classes + '"></div>';
     },
     postRender: function () {
-      var self = this;
-      var settings = self.settings;
-      var elm, box, parent, name, parentEventsRoot;
-      self.$el = global$7(self.getEl());
-      self.state.set('rendered', true);
-      for (name in settings) {
-        if (name.indexOf('on') === 0) {
-          self.on(name.substr(2), settings[name]);
+      var self$$1 = this;
+      var settings = self$$1.settings;
+      var elm, box, parent$$1, name$$1, parentEventsRoot;
+      self$$1.$el = global$7(self$$1.getEl());
+      self$$1.state.set('rendered', true);
+      for (name$$1 in settings) {
+        if (name$$1.indexOf('on') === 0) {
+          self$$1.on(name$$1.substr(2), settings[name$$1]);
         }
       }
-      if (self._eventsRoot) {
-        for (parent = self.parent(); !parentEventsRoot && parent; parent = parent.parent()) {
-          parentEventsRoot = parent._eventsRoot;
+      if (self$$1._eventsRoot) {
+        for (parent$$1 = self$$1.parent(); !parentEventsRoot && parent$$1; parent$$1 = parent$$1.parent()) {
+          parentEventsRoot = parent$$1._eventsRoot;
         }
         if (parentEventsRoot) {
-          for (name in parentEventsRoot._nativeEvents) {
-            self._nativeEvents[name] = true;
+          for (name$$1 in parentEventsRoot._nativeEvents) {
+            self$$1._nativeEvents[name$$1] = true;
           }
         }
       }
-      bindPendingEvents(self);
+      bindPendingEvents(self$$1);
       if (settings.style) {
-        elm = self.getEl();
+        elm = self$$1.getEl();
         if (elm) {
           elm.setAttribute('style', settings.style);
           elm.style.cssText = settings.style;
         }
       }
-      if (self.settings.border) {
-        box = self.borderBox;
-        self.$el.css({
+      if (self$$1.settings.border) {
+        box = self$$1.borderBox;
+        self$$1.$el.css({
           'border-top-width': box.top,
           'border-right-width': box.right,
           'border-bottom-width': box.bottom,
           'border-left-width': box.left
         });
       }
-      var root = self.getRoot();
+      var root = self$$1.getRoot();
       if (!root.controlIdLookup) {
         root.controlIdLookup = {};
       }
-      root.controlIdLookup[self._id] = self;
-      for (var key in self._aria) {
-        self.aria(key, self._aria[key]);
+      root.controlIdLookup[self$$1._id] = self$$1;
+      for (var key in self$$1._aria) {
+        self$$1.aria(key, self$$1._aria[key]);
       }
-      if (self.state.get('visible') === false) {
-        self.getEl().style.display = 'none';
+      if (self$$1.state.get('visible') === false) {
+        self$$1.getEl().style.display = 'none';
       }
-      self.bindStates();
-      self.state.on('change:visible', function (e) {
+      self$$1.bindStates();
+      self$$1.state.on('change:visible', function (e) {
         var state = e.value;
         var parentCtrl;
-        if (self.state.get('rendered')) {
-          self.getEl().style.display = state === false ? 'none' : '';
-          self.getEl().getBoundingClientRect();
+        if (self$$1.state.get('rendered')) {
+          self$$1.getEl().style.display = state === false ? 'none' : '';
+          self$$1.getEl().getBoundingClientRect();
         }
-        parentCtrl = self.parent();
+        parentCtrl = self$$1.parent();
         if (parentCtrl) {
           parentCtrl._lastRect = null;
         }
-        self.fire(state ? 'show' : 'hide');
-        $_dipgfl182jh8lz7nt.add(self);
+        self$$1.fire(state ? 'show' : 'hide');
+        $_4k8nbw18wjkmcwwsq.add(self$$1);
       });
-      self.fire('postrender', {}, false);
+      self$$1.fire('postrender', {}, false);
     },
     bindStates: function () {
     },
     scrollIntoView: function (align) {
       function getOffset(elm, rootElm) {
-        var x, y, parent = elm;
+        var x, y, parent$$1 = elm;
         x = y = 0;
-        while (parent && parent !== rootElm && parent.nodeType) {
-          x += parent.offsetLeft || 0;
-          y += parent.offsetTop || 0;
-          parent = parent.offsetParent;
+        while (parent$$1 && parent$$1 !== rootElm && parent$$1.nodeType) {
+          x += parent$$1.offsetLeft || 0;
+          y += parent$$1.offsetTop || 0;
+          parent$$1 = parent$$1.offsetParent;
         }
         return {
           x: x,
@@ -2375,21 +2216,21 @@ var inlite = (function () {
       return rootControl;
     },
     reflow: function () {
-      $_dipgfl182jh8lz7nt.remove(this);
-      var parent = this.parent();
-      if (parent && parent._layout && !parent._layout.isNative()) {
-        parent.reflow();
+      $_4k8nbw18wjkmcwwsq.remove(this);
+      var parent$$1 = this.parent();
+      if (parent$$1 && parent$$1._layout && !parent$$1._layout.isNative()) {
+        parent$$1.reflow();
       }
       return this;
     }
   };
-  global$4.each('text title visible disabled active value'.split(' '), function (name) {
-    proto$1[name] = function (value) {
+  global$4.each('text title visible disabled active value'.split(' '), function (name$$1) {
+    proto$1[name$$1] = function (value) {
       if (arguments.length === 0) {
-        return this.state.get(name);
+        return this.state.get(name$$1);
       }
       if (typeof value !== 'undefined') {
-        this.state.set(name, value);
+        this.state.set(name$$1, value);
       }
       return this;
     };
@@ -2399,12 +2240,12 @@ var inlite = (function () {
     if (!obj._eventDispatcher) {
       obj._eventDispatcher = new global$9({
         scope: obj,
-        toggleEvent: function (name, state) {
-          if (state && global$9.isNative(name)) {
+        toggleEvent: function (name$$1, state) {
+          if (state && global$9.isNative(name$$1)) {
             if (!obj._nativeEvents) {
               obj._nativeEvents = {};
             }
-            obj._nativeEvents[name] = true;
+            obj._nativeEvents[name$$1] = true;
             if (obj.state.get('rendered')) {
               bindPendingEvents(obj);
             }
@@ -2415,7 +2256,7 @@ var inlite = (function () {
     return obj._eventDispatcher;
   }
   function bindPendingEvents(eventCtrl) {
-    var i, l, parents, eventRootCtrl, nativeEvents, name;
+    var i, l, parents, eventRootCtrl, nativeEvents, name$$1;
     function delegate(e) {
       var control = eventCtrl.getParentCtrl(e.target);
       if (control) {
@@ -2488,11 +2329,11 @@ var inlite = (function () {
       if (!eventRootDelegates) {
         eventRootDelegates = eventRootCtrl._delegates = {};
       }
-      for (name in nativeEvents) {
+      for (name$$1 in nativeEvents) {
         if (!nativeEvents) {
           return false;
         }
-        if (name === 'wheel' && !hasWheelEventSupport) {
+        if (name$$1 === 'wheel' && !hasWheelEventSupport) {
           if (hasMouseWheelEventSupport) {
             global$7(eventCtrl.getEl()).on('mousewheel', fixWheelEvent);
           } else {
@@ -2500,16 +2341,16 @@ var inlite = (function () {
           }
           continue;
         }
-        if (name === 'mouseenter' || name === 'mouseleave') {
+        if (name$$1 === 'mouseenter' || name$$1 === 'mouseleave') {
           if (!eventRootCtrl._hasMouseEnter) {
             global$7(eventRootCtrl.getEl()).on('mouseleave', mouseLeaveHandler).on('mouseover', mouseEnterHandler);
             eventRootCtrl._hasMouseEnter = 1;
           }
-        } else if (!eventRootDelegates[name]) {
-          global$7(eventRootCtrl.getEl()).on(name, delegate);
-          eventRootDelegates[name] = true;
+        } else if (!eventRootDelegates[name$$1]) {
+          global$7(eventRootCtrl.getEl()).on(name$$1, delegate);
+          eventRootDelegates[name$$1] = true;
         }
-        nativeEvents[name] = false;
+        nativeEvents[name$$1] = false;
       }
     }
   }
@@ -2524,7 +2365,7 @@ var inlite = (function () {
   function calculateRelativePosition(ctrl, targetElm, rel) {
     var ctrlElm, pos, x, y, selfW, selfH, targetW, targetH, viewport, size;
     viewport = getWindowViewPort();
-    pos = funcs.getPos(targetElm, $_exab1j183jh8lz7nu.getUiContainer(ctrl));
+    pos = funcs.getPos(targetElm, $_5d7kox18xjkmcwwss.getUiContainer(ctrl));
     x = pos.x;
     y = pos.y;
     if (isFixed(ctrl) && isStatic(document.body)) {
@@ -2592,10 +2433,10 @@ var inlite = (function () {
     };
   };
   var getViewPortRect = function (ctrl) {
-    var customUiContainer = $_exab1j183jh8lz7nu.getUiContainer(ctrl);
+    var customUiContainer = $_5d7kox18xjkmcwwss.getUiContainer(ctrl);
     return customUiContainer && !isFixed(ctrl) ? getUiContainerViewPort(customUiContainer) : getWindowViewPort();
   };
-  var $_ben1dh184jh8lz7ny = {
+  var $_928of518yjkmcwwsw = {
     testMoveRel: function (elm, rels) {
       var viewPortRect = getViewPortRect(this);
       for (var i = 0; i < rels.length; i++) {
@@ -2620,12 +2461,12 @@ var inlite = (function () {
       return this.moveTo(pos.x, pos.y);
     },
     moveBy: function (dx, dy) {
-      var self = this, rect = self.layoutRect();
-      self.moveTo(rect.x + dx, rect.y + dy);
-      return self;
+      var self$$1 = this, rect = self$$1.layoutRect();
+      self$$1.moveTo(rect.x + dx, rect.y + dy);
+      return self$$1;
     },
     moveTo: function (x, y) {
-      var self = this;
+      var self$$1 = this;
       function constrain(value, max, size) {
         if (value < 0) {
           return 0;
@@ -2636,14 +2477,14 @@ var inlite = (function () {
         }
         return value;
       }
-      if (self.settings.constrainToViewport) {
+      if (self$$1.settings.constrainToViewport) {
         var viewPortRect = getViewPortRect(this);
-        var layoutRect = self.layoutRect();
+        var layoutRect = self$$1.layoutRect();
         x = constrain(x, viewPortRect.w, layoutRect.w);
         y = constrain(y, viewPortRect.h, layoutRect.h);
       }
-      var uiContainer = $_exab1j183jh8lz7nu.getUiContainer(self);
-      if (uiContainer && isStatic(uiContainer) && !isFixed(self)) {
+      var uiContainer = $_5d7kox18xjkmcwwss.getUiContainer(self$$1);
+      if (uiContainer && isStatic(uiContainer) && !isFixed(self$$1)) {
         x -= uiContainer.scrollLeft;
         y -= uiContainer.scrollTop;
       }
@@ -2651,25 +2492,25 @@ var inlite = (function () {
         x += 1;
         y += 1;
       }
-      if (self.state.get('rendered')) {
-        self.layoutRect({
+      if (self$$1.state.get('rendered')) {
+        self$$1.layoutRect({
           x: x,
           y: y
         }).repaint();
       } else {
-        self.settings.x = x;
-        self.settings.y = y;
+        self$$1.settings.x = x;
+        self$$1.settings.y = y;
       }
-      self.fire('move', {
+      self$$1.fire('move', {
         x: x,
         y: y
       });
-      return self;
+      return self$$1;
     }
   };
 
   var Tooltip = Control$1.extend({
-    Mixins: [$_ben1dh184jh8lz7ny],
+    Mixins: [$_928of518yjkmcwwsw],
     Defaults: { classes: 'widget tooltip tooltip-n' },
     renderHtml: function () {
       var self = this, prefix = self.classPrefix;
@@ -2726,7 +2567,7 @@ var inlite = (function () {
     tooltip: function () {
       if (!this._tooltip) {
         this._tooltip = new Tooltip({ type: 'tooltip' });
-        $_exab1j183jh8lz7nu.inheritUiContainer(this, this._tooltip);
+        $_5d7kox18xjkmcwwss.inheritUiContainer(this, this._tooltip);
         this._tooltip.renderTo();
       }
       return this._tooltip;
@@ -2816,7 +2657,7 @@ var inlite = (function () {
     ctx.getEl().lastChild.textContent = text + (ctx.progressBar ? ' ' + ctx.progressBar.value() + '%' : '');
   };
   var Notification = Control$1.extend({
-    Mixins: [$_ben1dh184jh8lz7ny],
+    Mixins: [$_928of518yjkmcwwsw],
     Defaults: { classes: 'widget notification' },
     init: function (settings) {
       var self = this;
@@ -2914,7 +2755,7 @@ var inlite = (function () {
       return funcs.getSize(container).width;
     };
     var prePositionNotifications = function (notifications) {
-      $_qgcal17ljh8lz7ly.each(notifications, function (notification) {
+      each(notifications, function (notification) {
         notification.moveTo(0, 0);
       });
     };
@@ -2923,7 +2764,7 @@ var inlite = (function () {
         var firstItem = notifications.slice(0, 1)[0];
         var container = getEditorContainer(editor);
         firstItem.moveRel(container, 'tc-tc');
-        $_qgcal17ljh8lz7ly.each(notifications, function (notification, index) {
+        each(notifications, function (notification, index) {
           if (index > 0) {
             notification.moveRel(notifications[index - 1].getEl(), 'bc-tc');
           }
@@ -2994,7 +2835,7 @@ var inlite = (function () {
     var $eventOverlay;
     var doc = settings.document || document;
     var downButton;
-    var start, stop, drag, startX, startY;
+    var start, stop$$1, drag, startX, startY;
     settings = settings || {};
     var handleElement = doc.getElementById(settings.handle || id);
     start = function (e) {
@@ -3021,22 +2862,22 @@ var inlite = (function () {
         opacity: 0.0001,
         cursor: cursor
       }).appendTo(doc.body);
-      global$7(doc).on('mousemove touchmove', drag).on('mouseup touchend', stop);
+      global$7(doc).on('mousemove touchmove', drag).on('mouseup touchend', stop$$1);
       settings.start(e);
     };
     drag = function (e) {
       updateWithTouchData(e);
       if (e.button !== downButton) {
-        return stop(e);
+        return stop$$1(e);
       }
       e.deltaX = e.screenX - startX;
       e.deltaY = e.screenY - startY;
       e.preventDefault();
       settings.drag(e);
     };
-    stop = function (e) {
+    stop$$1 = function (e) {
       updateWithTouchData(e);
-      global$7(doc).off('mousemove touchmove', drag).off('mouseup touchend', stop);
+      global$7(doc).off('mousemove touchmove', drag).off('mouseup touchend', stop$$1);
       $eventOverlay.remove();
       if (settings.stop) {
         settings.stop(e);
@@ -3073,17 +2914,17 @@ var inlite = (function () {
       return null;
     }
     function getParentRole(elm) {
-      var role, parent = elm || focusedElement;
-      while (parent = parent.parentNode) {
-        if (role = getRole(parent)) {
+      var role, parent$$1 = elm || focusedElement;
+      while (parent$$1 = parent$$1.parentNode) {
+        if (role = getRole(parent$$1)) {
           return role;
         }
       }
     }
-    function getAriaProp(name) {
+    function getAriaProp(name$$1) {
       var elm = focusedElement;
       if (isElement(elm)) {
-        return elm.getAttribute('aria-' + name);
+        return elm.getAttribute('aria-' + name$$1);
       }
     }
     function isTextInputElement(elm) {
@@ -3395,7 +3236,7 @@ var inlite = (function () {
             global$7(containerElm).append(ctrl.renderHtml());
           }
           ctrl.postRender();
-          $_dipgfl182jh8lz7nt.add(ctrl);
+          $_4k8nbw18wjkmcwwsq.add(ctrl);
         }
       });
       self._layout.applyClasses(self.items().filter(':visible'));
@@ -3427,8 +3268,8 @@ var inlite = (function () {
     },
     fromJSON: function (data) {
       var self = this;
-      for (var name_1 in data) {
-        self.find('#' + name_1).value(data[name_1]);
+      for (var name in data) {
+        self.find('#' + name).value(data[name]);
       }
       return self;
     },
@@ -3495,7 +3336,7 @@ var inlite = (function () {
     },
     reflow: function () {
       var i;
-      $_dipgfl182jh8lz7nt.remove(this);
+      $_4k8nbw18wjkmcwwsq.remove(this);
       if (this.visible()) {
         Control$1.repaintControls = [];
         Control$1.repaintControls.map = {};
@@ -3513,7 +3354,7 @@ var inlite = (function () {
     }
   });
 
-  var $_1ecd7e18gjh8lz7pl = {
+  var $_cgleui19ajkmcwwul = {
     init: function () {
       var self = this;
       self.on('repaint', self.renderScroll);
@@ -3609,7 +3450,7 @@ var inlite = (function () {
       layout: 'fit',
       containerCls: 'panel'
     },
-    Mixins: [$_1ecd7e18gjh8lz7pl],
+    Mixins: [$_cgleui19ajkmcwwul],
     renderHtml: function () {
       var self = this;
       var layout = self._layout;
@@ -3628,7 +3469,7 @@ var inlite = (function () {
     }
   });
 
-  var $_1a5lul18hjh8lz7pp = {
+  var $_29brjy19bjkmcwwuo = {
     resizeToContent: function () {
       this._layoutRect.autoResize = true;
       this._lastRect = null;
@@ -3660,9 +3501,9 @@ var inlite = (function () {
   var visiblePanels = [];
   var zOrder = [];
   var hasModal;
-  function isChildOf(ctrl, parent) {
+  function isChildOf(ctrl, parent$$1) {
     while (ctrl) {
-      if (ctrl === parent) {
+      if (ctrl === parent$$1) {
         return true;
       }
       ctrl = ctrl.parent();
@@ -3723,14 +3564,14 @@ var inlite = (function () {
     }
   }
   function repositionPanel$1(panel) {
-    var scrollY = funcs.getViewPort().y;
+    var scrollY$$1 = funcs.getViewPort().y;
     function toggleFixedChildPanels(fixed, deltaY) {
-      var parent;
+      var parent$$1;
       for (var i = 0; i < visiblePanels.length; i++) {
         if (visiblePanels[i] !== panel) {
-          parent = visiblePanels[i].parent();
-          while (parent && (parent = parent.parent())) {
-            if (parent === panel) {
+          parent$$1 = visiblePanels[i].parent();
+          while (parent$$1 && (parent$$1 = parent$$1.parent())) {
+            if (parent$$1 === panel) {
               visiblePanels[i].fixed(fixed).moveBy(0, deltaY).repaint();
             }
           }
@@ -3740,14 +3581,14 @@ var inlite = (function () {
     if (panel.settings.autofix) {
       if (!panel.state.get('fixed')) {
         panel._autoFixY = panel.layoutRect().y;
-        if (panel._autoFixY < scrollY) {
+        if (panel._autoFixY < scrollY$$1) {
           panel.fixed(true).layoutRect({ y: 0 }).repaint();
-          toggleFixedChildPanels(true, scrollY - panel._autoFixY);
+          toggleFixedChildPanels(true, scrollY$$1 - panel._autoFixY);
         }
       } else {
-        if (panel._autoFixY > scrollY) {
+        if (panel._autoFixY > scrollY$$1) {
           panel.fixed(false).layoutRect({ y: panel._autoFixY }).repaint();
-          toggleFixedChildPanels(false, panel._autoFixY - scrollY);
+          toggleFixedChildPanels(false, panel._autoFixY - scrollY$$1);
         }
       }
     }
@@ -3786,87 +3627,87 @@ var inlite = (function () {
   }
   var FloatPanel = Panel.extend({
     Mixins: [
-      $_ben1dh184jh8lz7ny,
-      $_1a5lul18hjh8lz7pp
+      $_928of518yjkmcwwsw,
+      $_29brjy19bjkmcwwuo
     ],
     init: function (settings) {
-      var self = this;
-      self._super(settings);
-      self._eventsRoot = self;
-      self.classes.add('floatpanel');
+      var self$$1 = this;
+      self$$1._super(settings);
+      self$$1._eventsRoot = self$$1;
+      self$$1.classes.add('floatpanel');
       if (settings.autohide) {
         bindDocumentClickHandler();
         bindWindowResizeHandler();
-        visiblePanels.push(self);
+        visiblePanels.push(self$$1);
       }
       if (settings.autofix) {
         bindDocumentScrollHandler();
-        self.on('move', function () {
+        self$$1.on('move', function () {
           repositionPanel$1(this);
         });
       }
-      self.on('postrender show', function (e) {
-        if (e.control === self) {
+      self$$1.on('postrender show', function (e) {
+        if (e.control === self$$1) {
           var $modalBlockEl_1;
-          var prefix_1 = self.classPrefix;
-          if (self.modal && !hasModal) {
-            $modalBlockEl_1 = global$7('#' + prefix_1 + 'modal-block', self.getContainerElm());
+          var prefix_1 = self$$1.classPrefix;
+          if (self$$1.modal && !hasModal) {
+            $modalBlockEl_1 = global$7('#' + prefix_1 + 'modal-block', self$$1.getContainerElm());
             if (!$modalBlockEl_1[0]) {
-              $modalBlockEl_1 = global$7('<div id="' + prefix_1 + 'modal-block" class="' + prefix_1 + 'reset ' + prefix_1 + 'fade"></div>').appendTo(self.getContainerElm());
+              $modalBlockEl_1 = global$7('<div id="' + prefix_1 + 'modal-block" class="' + prefix_1 + 'reset ' + prefix_1 + 'fade"></div>').appendTo(self$$1.getContainerElm());
             }
             global$3.setTimeout(function () {
               $modalBlockEl_1.addClass(prefix_1 + 'in');
-              global$7(self.getEl()).addClass(prefix_1 + 'in');
+              global$7(self$$1.getEl()).addClass(prefix_1 + 'in');
             });
             hasModal = true;
           }
-          addRemove(true, self);
+          addRemove(true, self$$1);
         }
       });
-      self.on('show', function () {
-        self.parents().each(function (ctrl) {
+      self$$1.on('show', function () {
+        self$$1.parents().each(function (ctrl) {
           if (ctrl.state.get('fixed')) {
-            self.fixed(true);
+            self$$1.fixed(true);
             return false;
           }
         });
       });
       if (settings.popover) {
-        self._preBodyHtml = '<div class="' + self.classPrefix + 'arrow"></div>';
-        self.classes.add('popover').add('bottom').add(self.isRtl() ? 'end' : 'start');
+        self$$1._preBodyHtml = '<div class="' + self$$1.classPrefix + 'arrow"></div>';
+        self$$1.classes.add('popover').add('bottom').add(self$$1.isRtl() ? 'end' : 'start');
       }
-      self.aria('label', settings.ariaLabel);
-      self.aria('labelledby', self._id);
-      self.aria('describedby', self.describedBy || self._id + '-none');
+      self$$1.aria('label', settings.ariaLabel);
+      self$$1.aria('labelledby', self$$1._id);
+      self$$1.aria('describedby', self$$1.describedBy || self$$1._id + '-none');
     },
     fixed: function (state) {
-      var self = this;
-      if (self.state.get('fixed') !== state) {
-        if (self.state.get('rendered')) {
+      var self$$1 = this;
+      if (self$$1.state.get('fixed') !== state) {
+        if (self$$1.state.get('rendered')) {
           var viewport = funcs.getViewPort();
           if (state) {
-            self.layoutRect().y -= viewport.y;
+            self$$1.layoutRect().y -= viewport.y;
           } else {
-            self.layoutRect().y += viewport.y;
+            self$$1.layoutRect().y += viewport.y;
           }
         }
-        self.classes.toggle('fixed', state);
-        self.state.set('fixed', state);
+        self$$1.classes.toggle('fixed', state);
+        self$$1.state.set('fixed', state);
       }
-      return self;
+      return self$$1;
     },
     show: function () {
-      var self = this;
+      var self$$1 = this;
       var i;
-      var state = self._super();
+      var state = self$$1._super();
       i = visiblePanels.length;
       while (i--) {
-        if (visiblePanels[i] === self) {
+        if (visiblePanels[i] === self$$1) {
           break;
         }
       }
       if (i === -1) {
-        visiblePanels.push(self);
+        visiblePanels.push(self$$1);
       }
       return state;
     },
@@ -3879,23 +3720,23 @@ var inlite = (function () {
       FloatPanel.hideAll();
     },
     close: function () {
-      var self = this;
-      if (!self.fire('close').isDefaultPrevented()) {
-        self.remove();
-        addRemove(false, self);
+      var self$$1 = this;
+      if (!self$$1.fire('close').isDefaultPrevented()) {
+        self$$1.remove();
+        addRemove(false, self$$1);
       }
-      return self;
+      return self$$1;
     },
     remove: function () {
       removeVisiblePanel(this);
       this._super();
     },
     postRender: function () {
-      var self = this;
-      if (self.settings.bodyRole) {
-        this.getEl('body').setAttribute('role', self.settings.bodyRole);
+      var self$$1 = this;
+      if (self$$1.settings.bodyRole) {
+        this.getEl('body').setAttribute('role', self$$1.settings.bodyRole);
       }
-      return self._super();
+      return self$$1._super();
     }
   });
   FloatPanel.hideAll = function () {
@@ -3987,7 +3828,7 @@ var inlite = (function () {
     }
     global$7(window).on('resize', reposition);
   }
-  var Window = FloatPanel.extend({
+  var Window$$1 = FloatPanel.extend({
     modal: true,
     Defaults: {
       border: 1,
@@ -4004,73 +3845,73 @@ var inlite = (function () {
       }
     },
     init: function (settings) {
-      var self = this;
-      self._super(settings);
-      if (self.isRtl()) {
-        self.classes.add('rtl');
+      var self$$1 = this;
+      self$$1._super(settings);
+      if (self$$1.isRtl()) {
+        self$$1.classes.add('rtl');
       }
-      self.classes.add('window');
-      self.bodyClasses.add('window-body');
-      self.state.set('fixed', true);
+      self$$1.classes.add('window');
+      self$$1.bodyClasses.add('window-body');
+      self$$1.state.set('fixed', true);
       if (settings.buttons) {
-        self.statusbar = new Panel({
+        self$$1.statusbar = new Panel({
           layout: 'flex',
           border: '1 0 0 0',
           spacing: 3,
           padding: 10,
           align: 'center',
-          pack: self.isRtl() ? 'start' : 'end',
+          pack: self$$1.isRtl() ? 'start' : 'end',
           defaults: { type: 'button' },
           items: settings.buttons
         });
-        self.statusbar.classes.add('foot');
-        self.statusbar.parent(self);
+        self$$1.statusbar.classes.add('foot');
+        self$$1.statusbar.parent(self$$1);
       }
-      self.on('click', function (e) {
-        var closeClass = self.classPrefix + 'close';
+      self$$1.on('click', function (e) {
+        var closeClass = self$$1.classPrefix + 'close';
         if (funcs.hasClass(e.target, closeClass) || funcs.hasClass(e.target.parentNode, closeClass)) {
-          self.close();
+          self$$1.close();
         }
       });
-      self.on('cancel', function () {
-        self.close();
+      self$$1.on('cancel', function () {
+        self$$1.close();
       });
-      self.on('move', function (e) {
-        if (e.control === self) {
+      self$$1.on('move', function (e) {
+        if (e.control === self$$1) {
           FloatPanel.hideAll();
         }
       });
-      self.aria('describedby', self.describedBy || self._id + '-none');
-      self.aria('label', settings.title);
-      self._fullscreen = false;
+      self$$1.aria('describedby', self$$1.describedBy || self$$1._id + '-none');
+      self$$1.aria('label', settings.title);
+      self$$1._fullscreen = false;
     },
     recalc: function () {
-      var self = this;
-      var statusbar = self.statusbar;
+      var self$$1 = this;
+      var statusbar$$1 = self$$1.statusbar;
       var layoutRect, width, x, needsRecalc;
-      if (self._fullscreen) {
-        self.layoutRect(funcs.getWindowSize());
-        self.layoutRect().contentH = self.layoutRect().innerH;
+      if (self$$1._fullscreen) {
+        self$$1.layoutRect(funcs.getWindowSize());
+        self$$1.layoutRect().contentH = self$$1.layoutRect().innerH;
       }
-      self._super();
-      layoutRect = self.layoutRect();
-      if (self.settings.title && !self._fullscreen) {
+      self$$1._super();
+      layoutRect = self$$1.layoutRect();
+      if (self$$1.settings.title && !self$$1._fullscreen) {
         width = layoutRect.headerW;
         if (width > layoutRect.w) {
           x = layoutRect.x - Math.max(0, width / 2);
-          self.layoutRect({
+          self$$1.layoutRect({
             w: width,
             x: x
           });
           needsRecalc = true;
         }
       }
-      if (statusbar) {
-        statusbar.layoutRect({ w: self.layoutRect().innerW }).recalc();
-        width = statusbar.layoutRect().minW + layoutRect.deltaW;
+      if (statusbar$$1) {
+        statusbar$$1.layoutRect({ w: self$$1.layoutRect().innerW }).recalc();
+        width = statusbar$$1.layoutRect().minW + layoutRect.deltaW;
         if (width > layoutRect.w) {
           x = layoutRect.x - Math.max(0, width - layoutRect.w);
-          self.layoutRect({
+          self$$1.layoutRect({
             w: width,
             x: x
           });
@@ -4078,158 +3919,158 @@ var inlite = (function () {
         }
       }
       if (needsRecalc) {
-        self.recalc();
+        self$$1.recalc();
       }
     },
     initLayoutRect: function () {
-      var self = this;
-      var layoutRect = self._super();
+      var self$$1 = this;
+      var layoutRect = self$$1._super();
       var deltaH = 0, headEl;
-      if (self.settings.title && !self._fullscreen) {
-        headEl = self.getEl('head');
+      if (self$$1.settings.title && !self$$1._fullscreen) {
+        headEl = self$$1.getEl('head');
         var size = funcs.getSize(headEl);
         layoutRect.headerW = size.width;
         layoutRect.headerH = size.height;
         deltaH += layoutRect.headerH;
       }
-      if (self.statusbar) {
-        deltaH += self.statusbar.layoutRect().h;
+      if (self$$1.statusbar) {
+        deltaH += self$$1.statusbar.layoutRect().h;
       }
       layoutRect.deltaH += deltaH;
       layoutRect.minH += deltaH;
       layoutRect.h += deltaH;
       var rect = funcs.getWindowSize();
-      layoutRect.x = self.settings.x || Math.max(0, rect.w / 2 - layoutRect.w / 2);
-      layoutRect.y = self.settings.y || Math.max(0, rect.h / 2 - layoutRect.h / 2);
+      layoutRect.x = self$$1.settings.x || Math.max(0, rect.w / 2 - layoutRect.w / 2);
+      layoutRect.y = self$$1.settings.y || Math.max(0, rect.h / 2 - layoutRect.h / 2);
       return layoutRect;
     },
     renderHtml: function () {
-      var self = this, layout = self._layout, id = self._id, prefix = self.classPrefix;
-      var settings = self.settings;
+      var self$$1 = this, layout = self$$1._layout, id = self$$1._id, prefix = self$$1.classPrefix;
+      var settings = self$$1.settings;
       var headerHtml = '', footerHtml = '', html = settings.html;
-      self.preRender();
-      layout.preRender(self);
+      self$$1.preRender();
+      layout.preRender(self$$1);
       if (settings.title) {
-        headerHtml = '<div id="' + id + '-head" class="' + prefix + 'window-head">' + '<div id="' + id + '-title" class="' + prefix + 'title">' + self.encode(settings.title) + '</div>' + '<div id="' + id + '-dragh" class="' + prefix + 'dragh"></div>' + '<button type="button" class="' + prefix + 'close" aria-hidden="true">' + '<i class="mce-ico mce-i-remove"></i>' + '</button>' + '</div>';
+        headerHtml = '<div id="' + id + '-head" class="' + prefix + 'window-head">' + '<div id="' + id + '-title" class="' + prefix + 'title">' + self$$1.encode(settings.title) + '</div>' + '<div id="' + id + '-dragh" class="' + prefix + 'dragh"></div>' + '<button type="button" class="' + prefix + 'close" aria-hidden="true">' + '<i class="mce-ico mce-i-remove"></i>' + '</button>' + '</div>';
       }
       if (settings.url) {
         html = '<iframe src="' + settings.url + '" tabindex="-1"></iframe>';
       }
       if (typeof html === 'undefined') {
-        html = layout.renderHtml(self);
+        html = layout.renderHtml(self$$1);
       }
-      if (self.statusbar) {
-        footerHtml = self.statusbar.renderHtml();
+      if (self$$1.statusbar) {
+        footerHtml = self$$1.statusbar.renderHtml();
       }
-      return '<div id="' + id + '" class="' + self.classes + '" hidefocus="1">' + '<div class="' + self.classPrefix + 'reset" role="application">' + headerHtml + '<div id="' + id + '-body" class="' + self.bodyClasses + '">' + html + '</div>' + footerHtml + '</div>' + '</div>';
+      return '<div id="' + id + '" class="' + self$$1.classes + '" hidefocus="1">' + '<div class="' + self$$1.classPrefix + 'reset" role="application">' + headerHtml + '<div id="' + id + '-body" class="' + self$$1.bodyClasses + '">' + html + '</div>' + footerHtml + '</div>' + '</div>';
     },
     fullscreen: function (state) {
-      var self = this;
+      var self$$1 = this;
       var documentElement = document.documentElement;
       var slowRendering;
-      var prefix = self.classPrefix;
+      var prefix = self$$1.classPrefix;
       var layoutRect;
-      if (state !== self._fullscreen) {
+      if (state !== self$$1._fullscreen) {
         global$7(window).on('resize', function () {
           var time;
-          if (self._fullscreen) {
+          if (self$$1._fullscreen) {
             if (!slowRendering) {
               time = new Date().getTime();
               var rect = funcs.getWindowSize();
-              self.moveTo(0, 0).resizeTo(rect.w, rect.h);
+              self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
               if (new Date().getTime() - time > 50) {
                 slowRendering = true;
               }
             } else {
-              if (!self._timer) {
-                self._timer = global$3.setTimeout(function () {
+              if (!self$$1._timer) {
+                self$$1._timer = global$3.setTimeout(function () {
                   var rect = funcs.getWindowSize();
-                  self.moveTo(0, 0).resizeTo(rect.w, rect.h);
-                  self._timer = 0;
+                  self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
+                  self$$1._timer = 0;
                 }, 50);
               }
             }
           }
         });
-        layoutRect = self.layoutRect();
-        self._fullscreen = state;
+        layoutRect = self$$1.layoutRect();
+        self$$1._fullscreen = state;
         if (!state) {
-          self.borderBox = $_889epm17vjh8lz7n9.parseBox(self.settings.border);
-          self.getEl('head').style.display = '';
+          self$$1.borderBox = $_4qv1hp18pjkmcwws9.parseBox(self$$1.settings.border);
+          self$$1.getEl('head').style.display = '';
           layoutRect.deltaH += layoutRect.headerH;
           global$7([
             documentElement,
             document.body
           ]).removeClass(prefix + 'fullscreen');
-          self.classes.remove('fullscreen');
-          self.moveTo(self._initial.x, self._initial.y).resizeTo(self._initial.w, self._initial.h);
+          self$$1.classes.remove('fullscreen');
+          self$$1.moveTo(self$$1._initial.x, self$$1._initial.y).resizeTo(self$$1._initial.w, self$$1._initial.h);
         } else {
-          self._initial = {
+          self$$1._initial = {
             x: layoutRect.x,
             y: layoutRect.y,
             w: layoutRect.w,
             h: layoutRect.h
           };
-          self.borderBox = $_889epm17vjh8lz7n9.parseBox('0');
-          self.getEl('head').style.display = 'none';
+          self$$1.borderBox = $_4qv1hp18pjkmcwws9.parseBox('0');
+          self$$1.getEl('head').style.display = 'none';
           layoutRect.deltaH -= layoutRect.headerH + 2;
           global$7([
             documentElement,
             document.body
           ]).addClass(prefix + 'fullscreen');
-          self.classes.add('fullscreen');
+          self$$1.classes.add('fullscreen');
           var rect = funcs.getWindowSize();
-          self.moveTo(0, 0).resizeTo(rect.w, rect.h);
+          self$$1.moveTo(0, 0).resizeTo(rect.w, rect.h);
         }
       }
-      return self.reflow();
+      return self$$1.reflow();
     },
     postRender: function () {
-      var self = this;
+      var self$$1 = this;
       var startPos;
       setTimeout(function () {
-        self.classes.add('in');
-        self.fire('open');
+        self$$1.classes.add('in');
+        self$$1.fire('open');
       }, 0);
-      self._super();
-      if (self.statusbar) {
-        self.statusbar.postRender();
+      self$$1._super();
+      if (self$$1.statusbar) {
+        self$$1.statusbar.postRender();
       }
-      self.focus();
-      this.dragHelper = new DragHelper(self._id + '-dragh', {
+      self$$1.focus();
+      this.dragHelper = new DragHelper(self$$1._id + '-dragh', {
         start: function () {
           startPos = {
-            x: self.layoutRect().x,
-            y: self.layoutRect().y
+            x: self$$1.layoutRect().x,
+            y: self$$1.layoutRect().y
           };
         },
         drag: function (e) {
-          self.moveTo(startPos.x + e.deltaX, startPos.y + e.deltaY);
+          self$$1.moveTo(startPos.x + e.deltaX, startPos.y + e.deltaY);
         }
       });
-      self.on('submit', function (e) {
+      self$$1.on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
-          self.close();
+          self$$1.close();
         }
       });
-      windows.push(self);
+      windows.push(self$$1);
       toggleFullScreenState(true);
     },
     submit: function () {
       return this.fire('submit', { data: this.toJSON() });
     },
     remove: function () {
-      var self = this;
+      var self$$1 = this;
       var i;
-      self.dragHelper.destroy();
-      self._super();
-      if (self.statusbar) {
+      self$$1.dragHelper.destroy();
+      self$$1._super();
+      if (self$$1.statusbar) {
         this.statusbar.remove();
       }
-      toggleBodyFullScreenClasses(self.classPrefix, false);
+      toggleBodyFullScreenClasses(self$$1.classPrefix, false);
       i = windows.length;
       while (i--) {
-        if (windows[i] === self) {
+        if (windows[i] === self$$1) {
           windows.splice(i, 1);
         }
       }
@@ -4242,7 +4083,7 @@ var inlite = (function () {
   });
   handleWindowResize();
 
-  var MessageBox = Window.extend({
+  var MessageBox = Window$$1.extend({
     init: function (settings) {
       settings = {
         border: 1,
@@ -4275,14 +4116,14 @@ var inlite = (function () {
         var buttons;
         var callback = settings.callback || function () {
         };
-        function createButton(text, status, primary) {
+        function createButton(text, status$$1, primary) {
           return {
             type: 'button',
             text: text,
             subtype: primary ? 'primary' : '',
             onClick: function (e) {
               e.control.parents()[1].close();
-              callback(status);
+              callback(status$$1);
             }
           };
         }
@@ -4307,7 +4148,7 @@ var inlite = (function () {
           buttons = [createButton('Ok', true, true)];
           break;
         }
-        return new Window({
+        return new Window$$1({
           padding: 20,
           x: settings.x,
           y: settings.y,
@@ -4354,7 +4195,7 @@ var inlite = (function () {
   });
 
   function WindowManagerImpl (editor) {
-    var open = function (args, params, closeCallback) {
+    var open$$1 = function (args, params, closeCallback) {
       var win;
       args.title = args.title || ' ';
       args.url = args.url || args.file;
@@ -4388,16 +4229,16 @@ var inlite = (function () {
           }
         ];
       }
-      win = new Window(args);
+      win = new Window$$1(args);
       win.on('close', function () {
         closeCallback(win);
       });
       if (args.data) {
         win.on('postRender', function () {
           this.find('*').each(function (ctrl) {
-            var name = ctrl.name();
-            if (name in args.data) {
-              ctrl.value(args.data[name]);
+            var name$$1 = ctrl.name();
+            if (name$$1 in args.data) {
+              ctrl.value(args.data[name$$1]);
             }
           });
         });
@@ -4407,7 +4248,7 @@ var inlite = (function () {
       win = win.renderTo(document.body).reflow();
       return win;
     };
-    var alert = function (message, choiceCallback, closeCallback) {
+    var alert$$1 = function (message, choiceCallback, closeCallback) {
       var win;
       win = MessageBox.alert(message, function () {
         choiceCallback();
@@ -4417,7 +4258,7 @@ var inlite = (function () {
       });
       return win;
     };
-    var confirm = function (message, choiceCallback, closeCallback) {
+    var confirm$$1 = function (message, choiceCallback, closeCallback) {
       var win;
       win = MessageBox.confirm(message, function (state) {
         choiceCallback(state);
@@ -4427,20 +4268,20 @@ var inlite = (function () {
       });
       return win;
     };
-    var close = function (window) {
-      window.close();
+    var close$$1 = function (window$$1) {
+      window$$1.close();
     };
-    var getParams = function (window) {
-      return window.params;
+    var getParams = function (window$$1) {
+      return window$$1.params;
     };
-    var setParams = function (window, params) {
-      window.params = params;
+    var setParams = function (window$$1, params) {
+      window$$1.params = params;
     };
     return {
-      open: open,
-      alert: alert,
-      confirm: confirm,
-      close: close,
+      open: open$$1,
+      alert: alert$$1,
+      confirm: confirm$$1,
+      close: close$$1,
       getParams: getParams,
       setParams: setParams
     };
@@ -4448,7 +4289,7 @@ var inlite = (function () {
 
   var get = function (editor, panel) {
     var renderUI = function () {
-      return $_fduguf170jh8lz7ks.renderUI(editor, panel);
+      return $_drdm3b17tjkmcwwpo.renderUI(editor, panel);
     };
     return {
       renderUI: renderUI,
@@ -4460,12 +4301,12 @@ var inlite = (function () {
       }
     };
   };
-  var $_952h616zjh8lz7kr = { get: get };
+  var $_bte64717sjkmcwwpk = { get: get };
 
-  var global$12 = typeof window !== 'undefined' ? window : Function('return this;')();
+  var Global = typeof window !== 'undefined' ? window : Function('return this;')();
 
   var path = function (parts, scope) {
-    var o = scope !== undefined && scope !== null ? scope : global$12;
+    var o = scope !== undefined && scope !== null ? scope : Global;
     for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
       o = o[parts[i]];
     return o;
@@ -4474,30 +4315,9 @@ var inlite = (function () {
     var parts = p.split('.');
     return path(parts, scope);
   };
-  var step = function (o, part) {
-    if (o[part] === undefined || o[part] === null)
-      o[part] = {};
-    return o[part];
-  };
-  var forge = function (parts, target) {
-    var o = target !== undefined ? target : global$12;
-    for (var i = 0; i < parts.length; ++i)
-      o = step(o, parts[i]);
-    return o;
-  };
-  var namespace = function (name, target) {
-    var parts = name.split('.');
-    return forge(parts, target);
-  };
-  var $_3zfq6518njh8lz7q1 = {
-    path: path,
-    resolve: resolve,
-    forge: forge,
-    namespace: namespace
-  };
 
   var unsafe = function (name, scope) {
-    return $_3zfq6518njh8lz7q1.resolve(name, scope);
+    return resolve(name, scope);
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -4505,17 +4325,17 @@ var inlite = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
-  var $_791eis18mjh8lz7py = { getOrDie: getOrDie };
+  var $_fp6ac719gjkmcwwvc = { getOrDie: getOrDie };
 
   function FileReader () {
-    var f = $_791eis18mjh8lz7py.getOrDie('FileReader');
+    var f = $_fp6ac719gjkmcwwvc.getOrDie('FileReader');
     return new f();
   }
 
-  var global$13 = tinymce.util.Tools.resolve('tinymce.util.Promise');
+  var global$12 = tinymce.util.Tools.resolve('tinymce.util.Promise');
 
   var blobToBase64 = function (blob) {
-    return new global$13(function (resolve) {
+    return new global$12(function (resolve) {
       var reader = new FileReader();
       reader.onloadend = function () {
         resolve(reader.result.split(',')[1]);
@@ -4523,10 +4343,10 @@ var inlite = (function () {
       reader.readAsDataURL(blob);
     });
   };
-  var $_cxmuw818kjh8lz7pu = { blobToBase64: blobToBase64 };
+  var $_9cxoap19ejkmcwwv7 = { blobToBase64: blobToBase64 };
 
   var pickFile = function () {
-    return new global$13(function (resolve) {
+    return new global$12(function (resolve) {
       var fileInput;
       fileInput = document.createElement('input');
       fileInput.type = 'file';
@@ -4542,7 +4362,7 @@ var inlite = (function () {
       fileInput.parentNode.removeChild(fileInput);
     });
   };
-  var $_8djtgr18qjh8lz7q4 = { pickFile: pickFile };
+  var $_9j6gwh19kjkmcwwvi = { pickFile: pickFile };
 
   var count$1 = 0;
   var seed = function () {
@@ -4554,7 +4374,7 @@ var inlite = (function () {
   var uuid = function (prefix) {
     return prefix + count$1++ + seed();
   };
-  var $_bp4qdf18sjh8lz7q8 = { uuid: uuid };
+  var $_49t1qm19mjkmcwwvn = { uuid: uuid };
 
   var create$1 = function (dom, rng) {
     var bookmark = {};
@@ -4624,19 +4444,19 @@ var inlite = (function () {
     }
     return rng;
   };
-  var $_8zzspk18ujh8lz7qb = {
+  var $_4y5mvv19ojkmcwwvq = {
     create: create$1,
     resolve: resolve$1
   };
 
-  var global$14 = tinymce.util.Tools.resolve('tinymce.dom.TreeWalker');
+  var global$13 = tinymce.util.Tools.resolve('tinymce.dom.TreeWalker');
 
-  var global$15 = tinymce.util.Tools.resolve('tinymce.dom.RangeUtils');
+  var global$14 = tinymce.util.Tools.resolve('tinymce.dom.RangeUtils');
 
   var getSelectedElements = function (rootElm, startNode, endNode) {
     var walker, node;
     var elms = [];
-    walker = new global$14(startNode, rootElm);
+    walker = new global$13(startNode, rootElm);
     for (node = startNode; node; node = walker.next()) {
       if (node.nodeType === 1) {
         elms.push(node);
@@ -4651,11 +4471,11 @@ var inlite = (function () {
     var bookmark, dom, selection;
     dom = editor.dom;
     selection = editor.selection;
-    bookmark = $_8zzspk18ujh8lz7qb.create(dom, selection.getRng());
+    bookmark = $_4y5mvv19ojkmcwwvq.create(dom, selection.getRng());
     global$4.each(elms, function (elm) {
       editor.dom.remove(elm, true);
     });
-    selection.setRng($_8zzspk18ujh8lz7qb.resolve(dom, bookmark));
+    selection.setRng($_4y5mvv19ojkmcwwvq.resolve(dom, bookmark));
   };
   var isLink = function (elm) {
     return elm.nodeName === 'A' && elm.hasAttribute('href');
@@ -4669,8 +4489,8 @@ var inlite = (function () {
     selection = editor.selection;
     dom = editor.dom;
     rng = selection.getRng();
-    startElm = getParentAnchorOrSelf(dom, global$15.getNode(rng.startContainer, rng.startOffset));
-    endElm = global$15.getNode(rng.endContainer, rng.endOffset);
+    startElm = getParentAnchorOrSelf(dom, global$14.getNode(rng.startContainer, rng.startOffset));
+    endElm = global$14.getNode(rng.endContainer, rng.endOffset);
     rootElm = editor.getBody();
     anchorElms = global$4.grep(getSelectedElements(rootElm, startElm, endElm), isLink);
     return anchorElms;
@@ -4678,7 +4498,7 @@ var inlite = (function () {
   var unlinkSelection = function (editor) {
     unwrapElements(editor, getSelectedAnchors(editor));
   };
-  var $_5urhtf18tjh8lz7q9 = { unlinkSelection: unlinkSelection };
+  var $_1cu60419njkmcwwvo = { unlinkSelection: unlinkSelection };
 
   var createTableHtml = function (cols, rows) {
     var x, y, html;
@@ -4718,7 +4538,7 @@ var inlite = (function () {
   var insertBlob = function (editor, base64, blob) {
     var blobCache, blobInfo;
     blobCache = editor.editorUpload.blobCache;
-    blobInfo = blobCache.create($_bp4qdf18sjh8lz7q8.uuid('mceu'), blob, base64);
+    blobInfo = blobCache.create($_49t1qm19mjkmcwwvn.uuid('mceu'), blob, base64);
     blobCache.add(blobInfo);
     editor.insertContent(editor.dom.createHTML('img', { src: blobInfo.blobUri() }));
   };
@@ -4727,7 +4547,7 @@ var inlite = (function () {
   };
   var unlink = function (editor) {
     editor.focus();
-    $_5urhtf18tjh8lz7q9.unlinkSelection(editor);
+    $_1cu60419njkmcwwvo.unlinkSelection(editor);
     collapseSelectionToEnd(editor);
   };
   var changeHref = function (editor, elm, url) {
@@ -4746,7 +4566,7 @@ var inlite = (function () {
   var createLink = function (editor, url) {
     url.trim().length === 0 ? unlink(editor) : updateOrInsertLink(editor, url);
   };
-  var $_3usbxv18rjh8lz7q5 = {
+  var $_7bw62r19ljkmcwwvk = {
     insertTable: insertTable,
     formatBlock: formatBlock,
     insertBlob: insertBlob,
@@ -4757,16 +4577,16 @@ var inlite = (function () {
   var addHeaderButtons = function (editor) {
     var formatBlock = function (name) {
       return function () {
-        $_3usbxv18rjh8lz7q5.formatBlock(editor, name);
+        $_7bw62r19ljkmcwwvk.formatBlock(editor, name);
       };
     };
     for (var i = 1; i < 6; i++) {
-      var name_1 = 'h' + i;
-      editor.addButton(name_1, {
-        text: name_1.toUpperCase(),
+      var name = 'h' + i;
+      editor.addButton(name, {
+        text: name.toUpperCase(),
         tooltip: 'Heading ' + i,
-        stateSelector: name_1,
-        onclick: formatBlock(name_1),
+        stateSelector: name,
+        onclick: formatBlock(name),
         onPostRender: function () {
           var span = this.getEl().firstChild.firstChild;
           span.style.fontWeight = 'bold';
@@ -4787,10 +4607,10 @@ var inlite = (function () {
       icon: 'image',
       tooltip: 'Insert image',
       onclick: function () {
-        $_8djtgr18qjh8lz7q4.pickFile().then(function (files) {
+        $_9j6gwh19kjkmcwwvi.pickFile().then(function (files) {
           var blob = files[0];
-          $_cxmuw818kjh8lz7pu.blobToBase64(blob).then(function (base64) {
-            $_3usbxv18rjh8lz7q5.insertBlob(editor, base64, blob);
+          $_9cxoap19ejkmcwwv7.blobToBase64(blob).then(function (base64) {
+            $_7bw62r19ljkmcwwvk.insertBlob(editor, base64, blob);
           });
         });
       }
@@ -4800,12 +4620,12 @@ var inlite = (function () {
       tooltip: 'Insert table',
       onclick: function () {
         panel.hide();
-        $_3usbxv18rjh8lz7q5.insertTable(editor, 2, 2);
+        $_7bw62r19ljkmcwwvk.insertTable(editor, 2, 2);
       }
     });
     addHeaderButtons(editor);
   };
-  var $_67na6j18jjh8lz7pt = { addToEditor: addToEditor };
+  var $_7ktwi219djkmcwwuu = { addToEditor: addToEditor };
 
   var getUiContainerDelta$1 = function () {
     var uiContainer = global$1.container;
@@ -4821,7 +4641,7 @@ var inlite = (function () {
       return Option.none();
     }
   };
-  var $_4oiq8718yjh8lz7qi = { getUiContainerDelta: getUiContainerDelta$1 };
+  var $_9c835o19sjkmcwwvz = { getUiContainerDelta: getUiContainerDelta$1 };
 
   var isDomainLike = function (href) {
     return /^www\.|\.(com|org|edu|gov|uk|net|ca|de|jp|fr|au|us|ru|ch|it|nl|se|no|es|mil)$/i.test(href.trim());
@@ -4829,7 +4649,7 @@ var inlite = (function () {
   var isAbsolute = function (href) {
     return /^https?:\/\//.test(href.trim());
   };
-  var $_g5hvgx190jh8lz7r0 = {
+  var $_bo936019ujkmcwww5 = {
     isDomainLike: isDomainLike,
     isAbsolute: isAbsolute
   };
@@ -4857,7 +4677,7 @@ var inlite = (function () {
     return state ? ctrl.show() : ctrl.hide();
   };
   var askAboutPrefix = function (editor, href) {
-    return new global$13(function (resolve) {
+    return new global$12(function (resolve) {
       editor.windowManager.confirm('The URL you entered seems to be an external link. Do you want to add the required http:// prefix?', function (result) {
         var output = result === true ? 'http://' + href : href;
         resolve(output);
@@ -4865,13 +4685,13 @@ var inlite = (function () {
     });
   };
   var convertLinkToAbsolute = function (editor, href) {
-    return !$_g5hvgx190jh8lz7r0.isAbsolute(href) && $_g5hvgx190jh8lz7r0.isDomainLike(href) ? askAboutPrefix(editor, href) : global$13.resolve(href);
+    return !$_bo936019ujkmcwww5.isAbsolute(href) && $_bo936019ujkmcwww5.isDomainLike(href) ? askAboutPrefix(editor, href) : global$12.resolve(href);
   };
   var createQuickLinkForm = function (editor, hide) {
     var attachState = {};
     var unlink = function () {
       editor.focus();
-      $_3usbxv18rjh8lz7q5.unlink(editor);
+      $_7bw62r19ljkmcwwvk.unlink(editor);
       hide();
     };
     var onChangeHandler = function (e) {
@@ -4927,14 +4747,14 @@ var inlite = (function () {
               attachState.attach();
               attachState = {};
             }
-            $_3usbxv18rjh8lz7q5.createLink(editor, url);
+            $_7bw62r19ljkmcwwvk.createLink(editor, url);
           });
           hide();
         });
       }
     });
   };
-  var $_fopz0018zjh8lz7qx = { createQuickLinkForm: createQuickLinkForm };
+  var $_gevdhc19tjkmcwww2 = { createQuickLinkForm: createQuickLinkForm };
 
   var getSelectorStateResult = function (itemName, item) {
     var result = function (selector, handler) {
@@ -4966,9 +4786,9 @@ var inlite = (function () {
     };
   };
   var itemsToArray$1 = function (items) {
-    if ($_795vzu17hjh8lz7lf.isArray(items)) {
+    if ($_3dmo3i18ajkmcwwq8.isArray(items)) {
       return items;
-    } else if ($_795vzu17hjh8lz7lf.isString(items)) {
+    } else if ($_3dmo3i18ajkmcwwq8.isString(items)) {
       return items.split(/[ ,]/);
     }
     return [];
@@ -4992,7 +4812,7 @@ var inlite = (function () {
             toolbarItems.push(buttonGroup);
           }
           var button = editor.buttons[item];
-          if ($_795vzu17hjh8lz7lf.isFunction(button)) {
+          if ($_3dmo3i18ajkmcwwq8.isFunction(button)) {
             button = button();
           }
           button.type = button.type || 'button';
@@ -5009,13 +4829,13 @@ var inlite = (function () {
       items: toolbarItems
     });
   };
-  var $_5zu088191jh8lz7r1 = { create: create$2 };
+  var $_9njq9c19vjkmcwww6 = { create: create$2 };
 
   var create$3 = function () {
     var panel, currentRect;
     var createToolbars = function (editor, toolbars) {
       return global$4.map(toolbars, function (toolbar) {
-        return $_5zu088191jh8lz7r1.create(editor, toolbar.id, toolbar.items);
+        return $_9njq9c19vjkmcwww6.create(editor, toolbar.id, toolbar.items);
       });
     };
     var hasToolbarItems = function (toolbar) {
@@ -5023,9 +4843,9 @@ var inlite = (function () {
     };
     var create = function (editor, toolbars) {
       var items = createToolbars(editor, toolbars).concat([
-        $_5zu088191jh8lz7r1.create(editor, 'text', $_frnzmx17ejh8lz7lb.getTextSelectionToolbarItems(editor)),
-        $_5zu088191jh8lz7r1.create(editor, 'insert', $_frnzmx17ejh8lz7lb.getInsertToolbarItems(editor)),
-        $_fopz0018zjh8lz7qx.createQuickLinkForm(editor, hide)
+        $_9njq9c19vjkmcwww6.create(editor, 'text', $_3i7b7u187jkmcwwq4.getTextSelectionToolbarItems(editor)),
+        $_9njq9c19vjkmcwww6.create(editor, 'insert', $_3i7b7u187jkmcwwq4.getInsertToolbarItems(editor)),
+        $_gevdhc19tjkmcwww2.createQuickLinkForm(editor, hide)
       ]);
       return global$11.create({
         type: 'floatpanel',
@@ -5066,7 +4886,7 @@ var inlite = (function () {
         panel.classes.toggle('arrow-left', true);
         panel.classes.toggle('arrow-right', false);
       } else if (relPos === 'cl') {
-        panel.classes.toggle('arrow-left', true);
+        panel.classes.toggle('arrow-left', false);
         panel.classes.toggle('arrow-right', true);
       } else {
         global$4.each({
@@ -5088,16 +4908,16 @@ var inlite = (function () {
     };
     var repositionPanelAt = function (panel, id, editor, targetRect) {
       var contentAreaRect, panelRect, result, userConstainHandler;
-      userConstainHandler = $_frnzmx17ejh8lz7lb.getPositionHandler(editor);
-      contentAreaRect = $_82t0yo177jh8lz7l1.getContentAreaRect(editor);
+      userConstainHandler = $_3i7b7u187jkmcwwq4.getPositionHandler(editor);
+      contentAreaRect = $_2fb1t1180jkmcwwpw.getContentAreaRect(editor);
       panelRect = global$2.DOM.getRect(panel.getEl());
       if (id === 'insert') {
-        result = $_7c1jsb17ijh8lz7lh.calcInsert(targetRect, contentAreaRect, panelRect);
+        result = $_blqb9d18bjkmcwwq9.calcInsert(targetRect, contentAreaRect, panelRect);
       } else {
-        result = $_7c1jsb17ijh8lz7lh.calc(targetRect, contentAreaRect, panelRect);
+        result = $_blqb9d18bjkmcwwq9.calc(targetRect, contentAreaRect, panelRect);
       }
       if (result) {
-        var delta = $_4oiq8718yjh8lz7qi.getUiContainerDelta().getOr({
+        var delta = $_9c835o19sjkmcwwvz.getUiContainerDelta().getOr({
           x: 0,
           y: 0
         });
@@ -5108,7 +4928,7 @@ var inlite = (function () {
           h: result.rect.h
         };
         currentRect = targetRect;
-        movePanelTo(panel, $_7c1jsb17ijh8lz7lh.userConstrain(userConstainHandler, targetRect, contentAreaRect, transposedPanelRect));
+        movePanelTo(panel, $_blqb9d18bjkmcwwq9.userConstrain(userConstainHandler, targetRect, contentAreaRect, transposedPanelRect));
         togglePositionClass(panel, result.position);
         return true;
       } else {
@@ -5140,20 +4960,20 @@ var inlite = (function () {
         showPanel(panel);
         panel.items().hide();
         showToolbar(panel, id);
-        userConstainHandler = $_frnzmx17ejh8lz7lb.getPositionHandler(editor);
-        contentAreaRect = $_82t0yo177jh8lz7l1.getContentAreaRect(editor);
+        userConstainHandler = $_3i7b7u187jkmcwwq4.getPositionHandler(editor);
+        contentAreaRect = $_2fb1t1180jkmcwwpw.getContentAreaRect(editor);
         panelRect = global$2.DOM.getRect(panel.getEl());
-        result = $_7c1jsb17ijh8lz7lh.calc(currentRect, contentAreaRect, panelRect);
+        result = $_blqb9d18bjkmcwwq9.calc(currentRect, contentAreaRect, panelRect);
         if (result) {
           panelRect = result.rect;
-          movePanelTo(panel, $_7c1jsb17ijh8lz7lh.userConstrain(userConstainHandler, currentRect, contentAreaRect, panelRect));
+          movePanelTo(panel, $_blqb9d18bjkmcwwq9.userConstrain(userConstainHandler, currentRect, contentAreaRect, panelRect));
           togglePositionClass(panel, result.position);
         }
       }
     };
     var show = function (editor, id, targetRect, toolbars) {
       if (!panel) {
-        $_dincot17djh8lz7l9.fireBeforeRenderUI(editor);
+        $_4bdk9f186jkmcwwq3.fireBeforeRenderUI(editor);
         panel = create(editor, toolbars);
         panel.renderTo().reflow().moveTo(targetRect.x, targetRect.y);
         editor.nodeChanged();
@@ -5278,26 +5098,26 @@ var inlite = (function () {
       role: 'button'
     },
     init: function (settings) {
-      var self = this;
+      var self$$1 = this;
       var size;
-      self._super(settings);
-      settings = self.settings;
-      size = self.settings.size;
-      self.on('click mousedown', function (e) {
+      self$$1._super(settings);
+      settings = self$$1.settings;
+      size = self$$1.settings.size;
+      self$$1.on('click mousedown', function (e) {
         e.preventDefault();
       });
-      self.on('touchstart', function (e) {
-        self.fire('click', e);
+      self$$1.on('touchstart', function (e) {
+        self$$1.fire('click', e);
         e.preventDefault();
       });
       if (settings.subtype) {
-        self.classes.add(settings.subtype);
+        self$$1.classes.add(settings.subtype);
       }
       if (size) {
-        self.classes.add('btn-' + size);
+        self$$1.classes.add('btn-' + size);
       }
       if (settings.icon) {
-        self.icon(settings.icon);
+        self$$1.icon(settings.icon);
       }
     },
     icon: function (icon) {
@@ -5317,12 +5137,12 @@ var inlite = (function () {
       this._super();
     },
     renderHtml: function () {
-      var self = this, id = self._id, prefix = self.classPrefix;
-      var icon = self.state.get('icon'), image;
-      var text = self.state.get('text');
+      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
+      var icon = self$$1.state.get('icon'), image;
+      var text = self$$1.state.get('text');
       var textHtml = '';
       var ariaPressed;
-      var settings = self.settings;
+      var settings = self$$1.settings;
       image = settings.image;
       if (image) {
         icon = 'none';
@@ -5334,37 +5154,37 @@ var inlite = (function () {
         image = '';
       }
       if (text) {
-        self.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
+        self$$1.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
       }
       icon = icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
       ariaPressed = typeof settings.active === 'boolean' ? ' aria-pressed="' + settings.active + '"' : '';
-      return '<div id="' + id + '" class="' + self.classes + '" tabindex="-1"' + ariaPressed + '>' + '<button id="' + id + '-button" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '</div>';
+      return '<div id="' + id + '" class="' + self$$1.classes + '" tabindex="-1"' + ariaPressed + '>' + '<button id="' + id + '-button" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '</div>';
     },
     bindStates: function () {
-      var self = this, $ = self.$, textCls = self.classPrefix + 'txt';
+      var self$$1 = this, $ = self$$1.$, textCls = self$$1.classPrefix + 'txt';
       function setButtonText(text) {
-        var $span = $('span.' + textCls, self.getEl());
+        var $span = $('span.' + textCls, self$$1.getEl());
         if (text) {
           if (!$span[0]) {
-            $('button:first', self.getEl()).append('<span class="' + textCls + '"></span>');
-            $span = $('span.' + textCls, self.getEl());
+            $('button:first', self$$1.getEl()).append('<span class="' + textCls + '"></span>');
+            $span = $('span.' + textCls, self$$1.getEl());
           }
-          $span.html(self.encode(text));
+          $span.html(self$$1.encode(text));
         } else {
           $span.remove();
         }
-        self.classes.toggle('btn-has-text', !!text);
+        self$$1.classes.toggle('btn-has-text', !!text);
       }
-      self.state.on('change:text', function (e) {
+      self$$1.state.on('change:text', function (e) {
         setButtonText(e.value);
       });
-      self.state.on('change:icon', function (e) {
+      self$$1.state.on('change:icon', function (e) {
         var icon = e.value;
-        var prefix = self.classPrefix;
-        self.settings.icon = icon;
-        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
-        var btnElm = self.getEl().firstChild;
+        var prefix = self$$1.classPrefix;
+        self$$1.settings.icon = icon;
+        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self$$1.settings.icon : '';
+        var btnElm = self$$1.getEl().firstChild;
         var iconElm = btnElm.getElementsByTagName('i')[0];
         if (icon) {
           if (!iconElm || iconElm !== btnElm.firstChild) {
@@ -5375,9 +5195,9 @@ var inlite = (function () {
         } else if (iconElm) {
           btnElm.removeChild(iconElm);
         }
-        setButtonText(self.state.get('text'));
+        setButtonText(self$$1.state.get('text'));
       });
-      return self._super();
+      return self$$1._super();
     }
   });
 
@@ -5456,18 +5276,18 @@ var inlite = (function () {
       checked: false
     },
     init: function (settings) {
-      var self = this;
-      self._super(settings);
-      self.on('click mousedown', function (e) {
+      var self$$1 = this;
+      self$$1._super(settings);
+      self$$1.on('click mousedown', function (e) {
         e.preventDefault();
       });
-      self.on('click', function (e) {
+      self$$1.on('click', function (e) {
         e.preventDefault();
-        if (!self.disabled()) {
-          self.checked(!self.checked());
+        if (!self$$1.disabled()) {
+          self$$1.checked(!self$$1.checked());
         }
       });
-      self.checked(self.settings.checked);
+      self$$1.checked(self$$1.settings.checked);
     },
     checked: function (state) {
       if (!arguments.length) {
@@ -5483,31 +5303,31 @@ var inlite = (function () {
       return this.checked(state);
     },
     renderHtml: function () {
-      var self = this, id = self._id, prefix = self.classPrefix;
-      return '<div id="' + id + '" class="' + self.classes + '" unselectable="on" aria-labelledby="' + id + '-al" tabindex="-1">' + '<i class="' + prefix + 'ico ' + prefix + 'i-checkbox"></i>' + '<span id="' + id + '-al" class="' + prefix + 'label">' + self.encode(self.state.get('text')) + '</span>' + '</div>';
+      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
+      return '<div id="' + id + '" class="' + self$$1.classes + '" unselectable="on" aria-labelledby="' + id + '-al" tabindex="-1">' + '<i class="' + prefix + 'ico ' + prefix + 'i-checkbox"></i>' + '<span id="' + id + '-al" class="' + prefix + 'label">' + self$$1.encode(self$$1.state.get('text')) + '</span>' + '</div>';
     },
     bindStates: function () {
-      var self = this;
+      var self$$1 = this;
       function checked(state) {
-        self.classes.toggle('checked', state);
-        self.aria('checked', state);
+        self$$1.classes.toggle('checked', state);
+        self$$1.aria('checked', state);
       }
-      self.state.on('change:text', function (e) {
-        self.getEl('al').firstChild.data = self.translate(e.value);
+      self$$1.state.on('change:text', function (e) {
+        self$$1.getEl('al').firstChild.data = self$$1.translate(e.value);
       });
-      self.state.on('change:checked change:value', function (e) {
-        self.fire('change');
+      self$$1.state.on('change:checked change:value', function (e) {
+        self$$1.fire('change');
         checked(e.value);
       });
-      self.state.on('change:icon', function (e) {
+      self$$1.state.on('change:icon', function (e) {
         var icon = e.value;
-        var prefix = self.classPrefix;
+        var prefix = self$$1.classPrefix;
         if (typeof icon === 'undefined') {
-          return self.settings.icon;
+          return self$$1.settings.icon;
         }
-        self.settings.icon = icon;
-        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self.settings.icon : '';
-        var btnElm = self.getEl().firstChild;
+        self$$1.settings.icon = icon;
+        icon = icon ? prefix + 'ico ' + prefix + 'i-' + self$$1.settings.icon : '';
+        var btnElm = self$$1.getEl().firstChild;
         var iconElm = btnElm.getElementsByTagName('i')[0];
         if (icon) {
           if (!iconElm || iconElm !== btnElm.firstChild) {
@@ -5519,73 +5339,73 @@ var inlite = (function () {
           btnElm.removeChild(iconElm);
         }
       });
-      if (self.state.get('checked')) {
+      if (self$$1.state.get('checked')) {
         checked(true);
       }
-      return self._super();
+      return self$$1._super();
     }
   });
 
-  var global$16 = tinymce.util.Tools.resolve('tinymce.util.VK');
+  var global$15 = tinymce.util.Tools.resolve('tinymce.util.VK');
 
   var ComboBox = Widget.extend({
     init: function (settings) {
-      var self = this;
-      self._super(settings);
-      settings = self.settings;
-      self.classes.add('combobox');
-      self.subinput = true;
-      self.ariaTarget = 'inp';
+      var self$$1 = this;
+      self$$1._super(settings);
+      settings = self$$1.settings;
+      self$$1.classes.add('combobox');
+      self$$1.subinput = true;
+      self$$1.ariaTarget = 'inp';
       settings.menu = settings.menu || settings.values;
       if (settings.menu) {
         settings.icon = 'caret';
       }
-      self.on('click', function (e) {
+      self$$1.on('click', function (e) {
         var elm = e.target;
-        var root = self.getEl();
+        var root = self$$1.getEl();
         if (!global$7.contains(root, elm) && elm !== root) {
           return;
         }
         while (elm && elm !== root) {
           if (elm.id && elm.id.indexOf('-open') !== -1) {
-            self.fire('action');
+            self$$1.fire('action');
             if (settings.menu) {
-              self.showMenu();
+              self$$1.showMenu();
               if (e.aria) {
-                self.menu.items()[0].focus();
+                self$$1.menu.items()[0].focus();
               }
             }
           }
           elm = elm.parentNode;
         }
       });
-      self.on('keydown', function (e) {
+      self$$1.on('keydown', function (e) {
         var rootControl;
         if (e.keyCode === 13 && e.target.nodeName === 'INPUT') {
           e.preventDefault();
-          self.parents().reverse().each(function (ctrl) {
+          self$$1.parents().reverse().each(function (ctrl) {
             if (ctrl.toJSON) {
               rootControl = ctrl;
               return false;
             }
           });
-          self.fire('submit', { data: rootControl.toJSON() });
+          self$$1.fire('submit', { data: rootControl.toJSON() });
         }
       });
-      self.on('keyup', function (e) {
+      self$$1.on('keyup', function (e) {
         if (e.target.nodeName === 'INPUT') {
-          var oldValue = self.state.get('value');
+          var oldValue = self$$1.state.get('value');
           var newValue = e.target.value;
           if (newValue !== oldValue) {
-            self.state.set('value', newValue);
-            self.fire('autocomplete', e);
+            self$$1.state.set('value', newValue);
+            self$$1.fire('autocomplete', e);
           }
         }
       });
-      self.on('mouseover', function (e) {
-        var tooltip = self.tooltip().moveTo(-65535);
-        if (self.statusLevel() && e.target.className.indexOf(self.classPrefix + 'status') !== -1) {
-          var statusMessage = self.statusMessage() || 'Ok';
+      self$$1.on('mouseover', function (e) {
+        var tooltip = self$$1.tooltip().moveTo(-65535);
+        if (self$$1.statusLevel() && e.target.className.indexOf(self$$1.classPrefix + 'status') !== -1) {
+          var statusMessage = self$$1.statusMessage() || 'Ok';
           var rel = tooltip.text(statusMessage).show().testMoveRel(e.target, [
             'bc-tc',
             'bc-tl',
@@ -5611,10 +5431,10 @@ var inlite = (function () {
       return this.state.get('statusMessage');
     },
     showMenu: function () {
-      var self = this;
-      var settings = self.settings;
+      var self$$1 = this;
+      var settings = self$$1.settings;
       var menu;
-      if (!self.menu) {
+      if (!self$$1.menu) {
         menu = settings.menu || [];
         if (menu.length) {
           menu = {
@@ -5624,32 +5444,32 @@ var inlite = (function () {
         } else {
           menu.type = menu.type || 'menu';
         }
-        self.menu = global$11.create(menu).parent(self).renderTo(self.getContainerElm());
-        self.fire('createmenu');
-        self.menu.reflow();
-        self.menu.on('cancel', function (e) {
-          if (e.control === self.menu) {
-            self.focus();
+        self$$1.menu = global$11.create(menu).parent(self$$1).renderTo(self$$1.getContainerElm());
+        self$$1.fire('createmenu');
+        self$$1.menu.reflow();
+        self$$1.menu.on('cancel', function (e) {
+          if (e.control === self$$1.menu) {
+            self$$1.focus();
           }
         });
-        self.menu.on('show hide', function (e) {
+        self$$1.menu.on('show hide', function (e) {
           e.control.items().each(function (ctrl) {
-            ctrl.active(ctrl.value() === self.value());
+            ctrl.active(ctrl.value() === self$$1.value());
           });
         }).fire('show');
-        self.menu.on('select', function (e) {
-          self.value(e.control.value());
+        self$$1.menu.on('select', function (e) {
+          self$$1.value(e.control.value());
         });
-        self.on('focusin', function (e) {
+        self$$1.on('focusin', function (e) {
           if (e.target.tagName.toUpperCase() === 'INPUT') {
-            self.menu.hide();
+            self$$1.menu.hide();
           }
         });
-        self.aria('expanded', true);
+        self$$1.aria('expanded', true);
       }
-      self.menu.show();
-      self.menu.layoutRect({ w: self.layoutRect().w });
-      self.menu.moveRel(self.getEl(), self.isRtl() ? [
+      self$$1.menu.show();
+      self$$1.menu.layoutRect({ w: self$$1.layoutRect().w });
+      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
@@ -5661,10 +5481,10 @@ var inlite = (function () {
       this.getEl('inp').focus();
     },
     repaint: function () {
-      var self = this, elm = self.getEl(), openElm = self.getEl('open'), rect = self.layoutRect();
+      var self$$1 = this, elm = self$$1.getEl(), openElm = self$$1.getEl('open'), rect = self$$1.layoutRect();
       var width, lineHeight, innerPadding = 0;
       var inputElm = elm.firstChild;
-      if (self.statusLevel() && self.statusLevel() !== 'none') {
+      if (self$$1.statusLevel() && self$$1.statusLevel() !== 'none') {
         innerPadding = parseInt(funcs.getRuntimeStyle(inputElm, 'padding-right'), 10) - parseInt(funcs.getRuntimeStyle(inputElm, 'padding-left'), 10);
       }
       if (openElm) {
@@ -5674,26 +5494,26 @@ var inlite = (function () {
       }
       var doc = document;
       if (doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
-        lineHeight = self.layoutRect().h - 2 + 'px';
+        lineHeight = self$$1.layoutRect().h - 2 + 'px';
       }
       global$7(inputElm).css({
         width: width - innerPadding,
         lineHeight: lineHeight
       });
-      self._super();
-      return self;
+      self$$1._super();
+      return self$$1;
     },
     postRender: function () {
-      var self = this;
+      var self$$1 = this;
       global$7(this.getEl('inp')).on('change', function (e) {
-        self.state.set('value', e.target.value);
-        self.fire('change', e);
+        self$$1.state.set('value', e.target.value);
+        self$$1.fire('change', e);
       });
-      return self._super();
+      return self$$1._super();
     },
     renderHtml: function () {
-      var self = this, id = self._id, settings = self.settings, prefix = self.classPrefix;
-      var value = self.state.get('value') || '';
+      var self$$1 = this, id = self$$1._id, settings = self$$1.settings, prefix = self$$1.classPrefix;
+      var value = self$$1.state.get('value') || '';
       var icon, text, openBtnHtml = '', extraAttrs = '', statusHtml = '';
       if ('spellcheck' in settings) {
         extraAttrs += ' spellcheck="' + settings.spellcheck + '"';
@@ -5708,19 +5528,19 @@ var inlite = (function () {
         extraAttrs += ' type="' + settings.subtype + '"';
       }
       statusHtml = '<i id="' + id + '-status" class="mce-status mce-ico" style="display: none"></i>';
-      if (self.disabled()) {
+      if (self$$1.disabled()) {
         extraAttrs += ' disabled="disabled"';
       }
       icon = settings.icon;
       if (icon && icon !== 'caret') {
         icon = prefix + 'ico ' + prefix + 'i-' + settings.icon;
       }
-      text = self.state.get('text');
+      text = self$$1.state.get('text');
       if (icon || text) {
         openBtnHtml = '<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1" role="button">' + '<button id="' + id + '-action" type="button" hidefocus="1" tabindex="-1">' + (icon !== 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') + (text ? (icon ? ' ' : '') + text : '') + '</button>' + '</div>';
-        self.classes.add('has-open');
+        self$$1.classes.add('has-open');
       }
-      return '<div id="' + id + '" class="' + self.classes + '">' + '<input id="' + id + '-inp" class="' + prefix + 'textbox" value="' + self.encode(value, false) + '" hidefocus="1"' + extraAttrs + ' placeholder="' + self.encode(settings.placeholder) + '" />' + statusHtml + openBtnHtml + '</div>';
+      return '<div id="' + id + '" class="' + self$$1.classes + '">' + '<input id="' + id + '-inp" class="' + prefix + 'textbox" value="' + self$$1.encode(value, false) + '" hidefocus="1"' + extraAttrs + ' placeholder="' + self$$1.encode(settings.placeholder) + '" />' + statusHtml + openBtnHtml + '</div>';
     },
     value: function (value) {
       if (arguments.length) {
@@ -5733,30 +5553,30 @@ var inlite = (function () {
       return this.state.get('value');
     },
     showAutoComplete: function (items, term) {
-      var self = this;
+      var self$$1 = this;
       if (items.length === 0) {
-        self.hideMenu();
+        self$$1.hideMenu();
         return;
       }
       var insert = function (value, title) {
         return function () {
-          self.fire('selectitem', {
+          self$$1.fire('selectitem', {
             title: title,
             value: value
           });
         };
       };
-      if (self.menu) {
-        self.menu.items().remove();
+      if (self$$1.menu) {
+        self$$1.menu.items().remove();
       } else {
-        self.menu = global$11.create({
+        self$$1.menu = global$11.create({
           type: 'menu',
           classes: 'combobox-menu',
           layout: 'flow'
-        }).parent(self).renderTo();
+        }).parent(self$$1).renderTo();
       }
       global$4.each(items, function (item) {
-        self.menu.add({
+        self$$1.menu.add({
           text: item.title,
           url: item.previewUrl,
           match: term,
@@ -5764,28 +5584,28 @@ var inlite = (function () {
           onclick: insert(item.value, item.title)
         });
       });
-      self.menu.renderNew();
-      self.hideMenu();
-      self.menu.on('cancel', function (e) {
-        if (e.control.parent() === self.menu) {
+      self$$1.menu.renderNew();
+      self$$1.hideMenu();
+      self$$1.menu.on('cancel', function (e) {
+        if (e.control.parent() === self$$1.menu) {
           e.stopPropagation();
-          self.focus();
-          self.hideMenu();
+          self$$1.focus();
+          self$$1.hideMenu();
         }
       });
-      self.menu.on('select', function () {
-        self.focus();
+      self$$1.menu.on('select', function () {
+        self$$1.focus();
       });
-      var maxW = self.layoutRect().w;
-      self.menu.layoutRect({
+      var maxW = self$$1.layoutRect().w;
+      self$$1.menu.layoutRect({
         w: maxW,
         minW: 0,
         maxW: maxW
       });
-      self.menu.repaint();
-      self.menu.reflow();
-      self.menu.show();
-      self.menu.moveRel(self.getEl(), self.isRtl() ? [
+      self$$1.menu.repaint();
+      self$$1.menu.reflow();
+      self$$1.menu.show();
+      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
@@ -5799,32 +5619,32 @@ var inlite = (function () {
       }
     },
     bindStates: function () {
-      var self = this;
-      self.state.on('change:value', function (e) {
-        if (self.getEl('inp').value !== e.value) {
-          self.getEl('inp').value = e.value;
+      var self$$1 = this;
+      self$$1.state.on('change:value', function (e) {
+        if (self$$1.getEl('inp').value !== e.value) {
+          self$$1.getEl('inp').value = e.value;
         }
       });
-      self.state.on('change:disabled', function (e) {
-        self.getEl('inp').disabled = e.value;
+      self$$1.state.on('change:disabled', function (e) {
+        self$$1.getEl('inp').disabled = e.value;
       });
-      self.state.on('change:statusLevel', function (e) {
-        var statusIconElm = self.getEl('status');
-        var prefix = self.classPrefix, value = e.value;
+      self$$1.state.on('change:statusLevel', function (e) {
+        var statusIconElm = self$$1.getEl('status');
+        var prefix = self$$1.classPrefix, value = e.value;
         funcs.css(statusIconElm, 'display', value === 'none' ? 'none' : '');
         funcs.toggleClass(statusIconElm, prefix + 'i-checkmark', value === 'ok');
         funcs.toggleClass(statusIconElm, prefix + 'i-warning', value === 'warn');
         funcs.toggleClass(statusIconElm, prefix + 'i-error', value === 'error');
-        self.classes.toggle('has-status', value !== 'none');
-        self.repaint();
+        self$$1.classes.toggle('has-status', value !== 'none');
+        self$$1.repaint();
       });
-      funcs.on(self.getEl('status'), 'mouseleave', function () {
-        self.tooltip().hide();
+      funcs.on(self$$1.getEl('status'), 'mouseleave', function () {
+        self$$1.tooltip().hide();
       });
-      self.on('cancel', function (e) {
-        if (self.menu && self.menu.visible()) {
+      self$$1.on('cancel', function (e) {
+        if (self$$1.menu && self$$1.menu.visible()) {
           e.stopPropagation();
-          self.hideMenu();
+          self$$1.hideMenu();
         }
       });
       var focusIdx = function (idx, menu) {
@@ -5832,20 +5652,20 @@ var inlite = (function () {
           menu.items().eq(idx)[0].focus();
         }
       };
-      self.on('keydown', function (e) {
+      self$$1.on('keydown', function (e) {
         var keyCode = e.keyCode;
         if (e.target.nodeName === 'INPUT') {
-          if (keyCode === global$16.DOWN) {
+          if (keyCode === global$15.DOWN) {
             e.preventDefault();
-            self.fire('autocomplete');
-            focusIdx(0, self.menu);
-          } else if (keyCode === global$16.UP) {
+            self$$1.fire('autocomplete');
+            focusIdx(0, self$$1.menu);
+          } else if (keyCode === global$15.UP) {
             e.preventDefault();
-            focusIdx(-1, self.menu);
+            focusIdx(-1, self$$1.menu);
           }
         }
       });
-      return self._super();
+      return self$$1._super();
     },
     remove: function () {
       global$7(this.getEl('inp')).off();
@@ -6016,7 +5836,7 @@ var inlite = (function () {
     }
   });
 
-  var global$17 = tinymce.util.Tools.resolve('tinymce.util.Color');
+  var global$16 = tinymce.util.Tools.resolve('tinymce.util.Color');
 
   var ColorPicker = Widget.extend({
     Defaults: { classes: 'widget colorpicker' },
@@ -6052,7 +5872,7 @@ var inlite = (function () {
             top: 100 - hsv.v + '%'
           });
         }
-        svRootElm.style.background = global$17({
+        svRootElm.style.background = global$16({
           s: 100,
           v: 100,
           h: hsv.h
@@ -6110,7 +5930,7 @@ var inlite = (function () {
     },
     color: function () {
       if (!this._color) {
-        this._color = global$17();
+        this._color = global$16();
       }
       return this._color;
     },
@@ -6454,7 +6274,6 @@ var inlite = (function () {
     unique$1++;
     return prefix + '_' + random + unique$1 + String(time);
   };
-  var $_9budsn19ojh8lz7t7 = { generate: generate };
 
   var fromHtml = function (html, scope) {
     var doc = scope || document;
@@ -6479,12 +6298,13 @@ var inlite = (function () {
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
-    return { dom: $_2jrs7h17njh8lz7m6.constant(node) };
+    return { dom: constant(node) };
   };
-  var fromPoint = function (doc, x, y) {
-    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
+  var fromPoint = function (docElm, x, y) {
+    var doc = docElm.dom();
+    return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
   };
-  var $_b0tm8x19pjh8lz7t9 = {
+  var Element$$1 = {
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -6496,28 +6316,31 @@ var inlite = (function () {
     var called = false;
     var r;
     return function () {
+      var args = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+      }
       if (!called) {
         called = true;
-        r = f.apply(null, arguments);
+        r = f.apply(null, args);
       }
       return r;
     };
   };
-  var $_1wqnm519tjh8lz7tm = { cached: cached };
 
-  var $_e8p44419vjh8lz7to = {
-    ATTRIBUTE: 2,
-    CDATA_SECTION: 4,
-    COMMENT: 8,
-    DOCUMENT: 9,
-    DOCUMENT_TYPE: 10,
-    DOCUMENT_FRAGMENT: 11,
-    ELEMENT: 1,
-    TEXT: 3,
-    PROCESSING_INSTRUCTION: 7,
-    ENTITY_REFERENCE: 5,
-    ENTITY: 6,
-    NOTATION: 12
+  var $_110sa81apjkmcwwze = {
+    ATTRIBUTE: Node.ATTRIBUTE_NODE,
+    CDATA_SECTION: Node.CDATA_SECTION_NODE,
+    COMMENT: Node.COMMENT_NODE,
+    DOCUMENT: Node.DOCUMENT_NODE,
+    DOCUMENT_TYPE: Node.DOCUMENT_TYPE_NODE,
+    DOCUMENT_FRAGMENT: Node.DOCUMENT_FRAGMENT_NODE,
+    ELEMENT: Node.ELEMENT_NODE,
+    TEXT: Node.TEXT_NODE,
+    PROCESSING_INSTRUCTION: Node.PROCESSING_INSTRUCTION_NODE,
+    ENTITY_REFERENCE: Node.ENTITY_REFERENCE_NODE,
+    ENTITY: Node.ENTITY_NODE,
+    NOTATION: Node.NOTATION_NODE
   };
 
   var name = function (element) {
@@ -6536,12 +6359,12 @@ var inlite = (function () {
     };
   };
   var isComment = function (element) {
-    return type(element) === $_e8p44419vjh8lz7to.COMMENT || name(element) === '#comment';
+    return type(element) === $_110sa81apjkmcwwze.COMMENT || name(element) === '#comment';
   };
-  var isElement = isType$2($_e8p44419vjh8lz7to.ELEMENT);
-  var isText = isType$2($_e8p44419vjh8lz7to.TEXT);
-  var isDocument = isType$2($_e8p44419vjh8lz7to.DOCUMENT);
-  var $_eoy6dw19ujh8lz7tn = {
+  var isElement = isType$2($_110sa81apjkmcwwze.ELEMENT);
+  var isText = isType$2($_110sa81apjkmcwwze.TEXT);
+  var isDocument = isType$2($_110sa81apjkmcwwze.DOCUMENT);
+  var $_alzn281aojkmcwwzc = {
     name: name,
     type: type,
     value: value,
@@ -6552,25 +6375,25 @@ var inlite = (function () {
   };
 
   var inBody = function (element) {
-    var dom = $_eoy6dw19ujh8lz7tn.isText(element) ? element.dom().parentNode : element.dom();
+    var dom = $_alzn281aojkmcwwzc.isText(element) ? element.dom().parentNode : element.dom();
     return dom !== undefined && dom !== null && dom.ownerDocument.body.contains(dom);
   };
-  var body = $_1wqnm519tjh8lz7tm.cached(function () {
-    return getBody($_b0tm8x19pjh8lz7t9.fromDom(document));
+  var body = cached(function () {
+    return getBody(Element$$1.fromDom(document));
   });
   var getBody = function (doc) {
     var body = doc.dom().body;
     if (body === null || body === undefined)
       throw 'Body is not available yet';
-    return $_b0tm8x19pjh8lz7t9.fromDom(body);
+    return Element$$1.fromDom(body);
   };
-  var $_17whhl19sjh8lz7tj = {
+  var $_8wjfuk1amjkmcwwz8 = {
     body: body,
     getBody: getBody,
     inBody: inBody
   };
 
-  function Immutable () {
+  var Immutable = function () {
     var fields = [];
     for (var _i = 0; _i < arguments.length; _i++) {
       fields[_i] = arguments[_i];
@@ -6584,171 +6407,11 @@ var inlite = (function () {
         throw new Error('Wrong number of arguments to struct. Expected "[' + fields.length + ']", got ' + values.length + ' arguments');
       }
       var struct = {};
-      $_qgcal17ljh8lz7ly.each(fields, function (name, i) {
-        struct[name] = $_2jrs7h17njh8lz7m6.constant(values[i]);
+      each(fields, function (name, i) {
+        struct[name] = constant(values[i]);
       });
       return struct;
     };
-  }
-
-  var keys = function () {
-    var fastKeys = Object.keys;
-    var slowKeys = function (o) {
-      var r = [];
-      for (var i in o) {
-        if (o.hasOwnProperty(i)) {
-          r.push(i);
-        }
-      }
-      return r;
-    };
-    return fastKeys === undefined ? slowKeys : fastKeys;
-  }();
-  var each$1 = function (obj, f) {
-    var props = keys(obj);
-    for (var k = 0, len = props.length; k < len; k++) {
-      var i = props[k];
-      var x = obj[i];
-      f(x, i, obj);
-    }
-  };
-  var objectMap = function (obj, f) {
-    return tupleMap(obj, function (x, i, obj) {
-      return {
-        k: i,
-        v: f(x, i, obj)
-      };
-    });
-  };
-  var tupleMap = function (obj, f) {
-    var r = {};
-    each$1(obj, function (x, i) {
-      var tuple = f(x, i, obj);
-      r[tuple.k] = tuple.v;
-    });
-    return r;
-  };
-  var bifilter = function (obj, pred) {
-    var t = {};
-    var f = {};
-    each$1(obj, function (x, i) {
-      var branch = pred(x, i) ? t : f;
-      branch[i] = x;
-    });
-    return {
-      t: t,
-      f: f
-    };
-  };
-  var mapToArray = function (obj, f) {
-    var r = [];
-    each$1(obj, function (value, name) {
-      r.push(f(value, name));
-    });
-    return r;
-  };
-  var find$1 = function (obj, pred) {
-    var props = keys(obj);
-    for (var k = 0, len = props.length; k < len; k++) {
-      var i = props[k];
-      var x = obj[i];
-      if (pred(x, i, obj)) {
-        return Option.some(x);
-      }
-    }
-    return Option.none();
-  };
-  var values = function (obj) {
-    return mapToArray(obj, function (v) {
-      return v;
-    });
-  };
-  var size = function (obj) {
-    return values(obj).length;
-  };
-  var $_3d51zb1a0jh8lz7ug = {
-    bifilter: bifilter,
-    each: each$1,
-    map: objectMap,
-    mapToArray: mapToArray,
-    tupleMap: tupleMap,
-    find: find$1,
-    keys: keys,
-    values: values,
-    size: size
-  };
-
-  var sort$1 = function (arr) {
-    return arr.slice(0).sort();
-  };
-  var reqMessage = function (required, keys) {
-    throw new Error('All required keys (' + sort$1(required).join(', ') + ') were not specified. Specified keys were: ' + sort$1(keys).join(', ') + '.');
-  };
-  var unsuppMessage = function (unsupported) {
-    throw new Error('Unsupported keys for object: ' + sort$1(unsupported).join(', '));
-  };
-  var validateStrArr = function (label, array) {
-    if (!$_55hqur17ojh8lz7m9.isArray(array))
-      throw new Error('The ' + label + ' fields must be an array. Was: ' + array + '.');
-    $_qgcal17ljh8lz7ly.each(array, function (a) {
-      if (!$_55hqur17ojh8lz7m9.isString(a))
-        throw new Error('The value ' + a + ' in the ' + label + ' fields was not a string.');
-    });
-  };
-  var invalidTypeMessage = function (incorrect, type) {
-    throw new Error('All values need to be of type: ' + type + '. Keys (' + sort$1(incorrect).join(', ') + ') were not.');
-  };
-  var checkDupes = function (everything) {
-    var sorted = sort$1(everything);
-    var dupe = $_qgcal17ljh8lz7ly.find(sorted, function (s, i) {
-      return i < sorted.length - 1 && s === sorted[i + 1];
-    });
-    dupe.each(function (d) {
-      throw new Error('The field: ' + d + ' occurs more than once in the combined fields: [' + sorted.join(', ') + '].');
-    });
-  };
-  var $_6f9omp1a1jh8lz7ui = {
-    sort: sort$1,
-    reqMessage: reqMessage,
-    unsuppMessage: unsuppMessage,
-    validateStrArr: validateStrArr,
-    invalidTypeMessage: invalidTypeMessage,
-    checkDupes: checkDupes
-  };
-
-  function MixedBag (required, optional) {
-    var everything = required.concat(optional);
-    if (everything.length === 0)
-      throw new Error('You must specify at least one required or optional field.');
-    $_6f9omp1a1jh8lz7ui.validateStrArr('required', required);
-    $_6f9omp1a1jh8lz7ui.validateStrArr('optional', optional);
-    $_6f9omp1a1jh8lz7ui.checkDupes(everything);
-    return function (obj) {
-      var keys = $_3d51zb1a0jh8lz7ug.keys(obj);
-      var allReqd = $_qgcal17ljh8lz7ly.forall(required, function (req) {
-        return $_qgcal17ljh8lz7ly.contains(keys, req);
-      });
-      if (!allReqd)
-        $_6f9omp1a1jh8lz7ui.reqMessage(required, keys);
-      var unsupported = $_qgcal17ljh8lz7ly.filter(keys, function (key) {
-        return !$_qgcal17ljh8lz7ly.contains(everything, key);
-      });
-      if (unsupported.length > 0)
-        $_6f9omp1a1jh8lz7ui.unsuppMessage(unsupported);
-      var r = {};
-      $_qgcal17ljh8lz7ly.each(required, function (req) {
-        r[req] = $_2jrs7h17njh8lz7m6.constant(obj[req]);
-      });
-      $_qgcal17ljh8lz7ly.each(optional, function (opt) {
-        r[opt] = $_2jrs7h17njh8lz7m6.constant(Object.prototype.hasOwnProperty.call(obj, opt) ? Option.some(obj[opt]) : Option.none());
-      });
-      return r;
-    };
-  }
-
-  var $_5b3y8019xjh8lz7u2 = {
-    immutable: Immutable,
-    immutableBag: MixedBag
   };
 
   var toArray = function (target, f) {
@@ -6763,10 +6426,10 @@ var inlite = (function () {
     } while (cur.isSome());
     return r;
   };
-  var $_8wc96i1a2jh8lz7uk = { toArray: toArray };
+  var $_e409951awjkmcwx0c = { toArray: toArray };
 
   var node = function () {
-    var f = $_791eis18mjh8lz7py.getOrDie('Node');
+    var f = $_fp6ac719gjkmcwwvc.getOrDie('Node');
     return f;
   };
   var compareDocumentPosition = function (a, b, match) {
@@ -6778,7 +6441,7 @@ var inlite = (function () {
   var documentPositionContainedBy = function (a, b) {
     return compareDocumentPosition(a, b, node().DOCUMENT_POSITION_CONTAINED_BY);
   };
-  var $_ect2cb1a4jh8lz7ux = {
+  var $_ay9tgw1ayjkmcwx0p = {
     documentPositionPreceding: documentPositionPreceding,
     documentPositionContainedBy: documentPositionContainedBy
   };
@@ -6818,7 +6481,7 @@ var inlite = (function () {
       minor: minor
     };
   };
-  var $_e2rcnb1a8jh8lz7v7 = {
+  var $_g9yxa11b2jkmcwx0y = {
     nu: nu,
     detect: detect,
     unknown: unknown
@@ -6838,7 +6501,7 @@ var inlite = (function () {
   var unknown$1 = function () {
     return nu$1({
       current: undefined,
-      version: $_e2rcnb1a8jh8lz7v7.unknown()
+      version: $_g9yxa11b2jkmcwx0y.unknown()
     });
   };
   var nu$1 = function (info) {
@@ -6855,15 +6518,15 @@ var inlite = (function () {
       isSafari: isBrowser(safari, current)
     };
   };
-  var $_2yklpp1a7jh8lz7v3 = {
+  var $_bgnekf1b1jkmcwx0u = {
     unknown: unknown$1,
     nu: nu$1,
-    edge: $_2jrs7h17njh8lz7m6.constant(edge),
-    chrome: $_2jrs7h17njh8lz7m6.constant(chrome),
-    ie: $_2jrs7h17njh8lz7m6.constant(ie),
-    opera: $_2jrs7h17njh8lz7m6.constant(opera),
-    firefox: $_2jrs7h17njh8lz7m6.constant(firefox),
-    safari: $_2jrs7h17njh8lz7m6.constant(safari)
+    edge: constant(edge),
+    chrome: constant(chrome),
+    ie: constant(ie),
+    opera: constant(opera),
+    firefox: constant(firefox),
+    safari: constant(safari)
   };
 
   var windows$1 = 'Windows';
@@ -6881,7 +6544,7 @@ var inlite = (function () {
   var unknown$2 = function () {
     return nu$2({
       current: undefined,
-      version: $_e2rcnb1a8jh8lz7v7.unknown()
+      version: $_g9yxa11b2jkmcwx0y.unknown()
     });
   };
   var nu$2 = function (info) {
@@ -6899,16 +6562,16 @@ var inlite = (function () {
       isFreeBSD: isOS(freebsd, current)
     };
   };
-  var $_dm2ktf1a9jh8lz7v8 = {
+  var $_gq0pn1b3jkmcwx10 = {
     unknown: unknown$2,
     nu: nu$2,
-    windows: $_2jrs7h17njh8lz7m6.constant(windows$1),
-    ios: $_2jrs7h17njh8lz7m6.constant(ios),
-    android: $_2jrs7h17njh8lz7m6.constant(android),
-    linux: $_2jrs7h17njh8lz7m6.constant(linux),
-    osx: $_2jrs7h17njh8lz7m6.constant(osx),
-    solaris: $_2jrs7h17njh8lz7m6.constant(solaris),
-    freebsd: $_2jrs7h17njh8lz7m6.constant(freebsd)
+    windows: constant(windows$1),
+    ios: constant(ios),
+    android: constant(android),
+    linux: constant(linux),
+    osx: constant(osx),
+    solaris: constant(solaris),
+    freebsd: constant(freebsd)
   };
 
   function DeviceType (os, browser, userAgent) {
@@ -6921,26 +6584,26 @@ var inlite = (function () {
     var isPhone = isTouch && !isTablet;
     var iOSwebview = browser.isSafari() && os.isiOS() && /safari/i.test(userAgent) === false;
     return {
-      isiPad: $_2jrs7h17njh8lz7m6.constant(isiPad),
-      isiPhone: $_2jrs7h17njh8lz7m6.constant(isiPhone),
-      isTablet: $_2jrs7h17njh8lz7m6.constant(isTablet),
-      isPhone: $_2jrs7h17njh8lz7m6.constant(isPhone),
-      isTouch: $_2jrs7h17njh8lz7m6.constant(isTouch),
+      isiPad: constant(isiPad),
+      isiPhone: constant(isiPhone),
+      isTablet: constant(isTablet),
+      isPhone: constant(isPhone),
+      isTouch: constant(isTouch),
       isAndroid: os.isAndroid,
       isiOS: os.isiOS,
-      isWebView: $_2jrs7h17njh8lz7m6.constant(iOSwebview)
+      isWebView: constant(iOSwebview)
     };
   }
 
   var detect$1 = function (candidates, userAgent) {
     var agent = String(userAgent).toLowerCase();
-    return $_qgcal17ljh8lz7ly.find(candidates, function (candidate) {
+    return find(candidates, function (candidate) {
       return candidate.search(agent);
     });
   };
   var detectBrowser = function (browsers, userAgent) {
     return detect$1(browsers, userAgent).map(function (browser) {
-      var version = $_e2rcnb1a8jh8lz7v7.detect(browser.versionRegexes, userAgent);
+      var version = $_g9yxa11b2jkmcwx0y.detect(browser.versionRegexes, userAgent);
       return {
         current: browser.name,
         version: version
@@ -6949,130 +6612,26 @@ var inlite = (function () {
   };
   var detectOs = function (oses, userAgent) {
     return detect$1(oses, userAgent).map(function (os) {
-      var version = $_e2rcnb1a8jh8lz7v7.detect(os.versionRegexes, userAgent);
+      var version = $_g9yxa11b2jkmcwx0y.detect(os.versionRegexes, userAgent);
       return {
         current: os.name,
         version: version
       };
     });
   };
-  var $_5wiael1abjh8lz7vg = {
+  var $_5xz6bk1b5jkmcwx1f = {
     detectBrowser: detectBrowser,
     detectOs: detectOs
   };
 
-  var addToStart = function (str, prefix) {
-    return prefix + str;
-  };
-  var addToEnd = function (str, suffix) {
-    return str + suffix;
-  };
-  var removeFromStart = function (str, numChars) {
-    return str.substring(numChars);
-  };
-  var removeFromEnd = function (str, numChars) {
-    return str.substring(0, str.length - numChars);
-  };
-  var $_8xrn431aejh8lz7vt = {
-    addToStart: addToStart,
-    addToEnd: addToEnd,
-    removeFromStart: removeFromStart,
-    removeFromEnd: removeFromEnd
-  };
-
-  var first = function (str, count) {
-    return str.substr(0, count);
-  };
-  var last$1 = function (str, count) {
-    return str.substr(str.length - count, str.length);
-  };
-  var head$1 = function (str) {
-    return str === '' ? Option.none() : Option.some(str.substr(0, 1));
-  };
-  var tail = function (str) {
-    return str === '' ? Option.none() : Option.some(str.substring(1));
-  };
-  var $_4s9mv21afjh8lz7vu = {
-    first: first,
-    last: last$1,
-    head: head$1,
-    tail: tail
-  };
-
-  var checkRange = function (str, substr, start) {
-    if (substr === '')
-      return true;
-    if (str.length < substr.length)
-      return false;
-    var x = str.substr(start, start + substr.length);
-    return x === substr;
-  };
-  var supplant = function (str, obj) {
-    var isStringOrNumber = function (a) {
-      var t = typeof a;
-      return t === 'string' || t === 'number';
-    };
-    return str.replace(/\${([^{}]*)}/g, function (a, b) {
-      var value = obj[b];
-      return isStringOrNumber(value) ? value : a;
-    });
-  };
-  var removeLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? $_8xrn431aejh8lz7vt.removeFromStart(str, prefix.length) : str;
-  };
-  var removeTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? $_8xrn431aejh8lz7vt.removeFromEnd(str, prefix.length) : str;
-  };
-  var ensureLeading = function (str, prefix) {
-    return startsWith(str, prefix) ? str : $_8xrn431aejh8lz7vt.addToStart(str, prefix);
-  };
-  var ensureTrailing = function (str, prefix) {
-    return endsWith(str, prefix) ? str : $_8xrn431aejh8lz7vt.addToEnd(str, prefix);
-  };
   var contains$1 = function (str, substr) {
     return str.indexOf(substr) !== -1;
-  };
-  var capitalize = function (str) {
-    return $_4s9mv21afjh8lz7vu.head(str).bind(function (head) {
-      return $_4s9mv21afjh8lz7vu.tail(str).map(function (tail) {
-        return head.toUpperCase() + tail;
-      });
-    }).getOr(str);
-  };
-  var startsWith = function (str, prefix) {
-    return checkRange(str, prefix, 0);
-  };
-  var endsWith = function (str, suffix) {
-    return checkRange(str, suffix, str.length - suffix.length);
-  };
-  var trim = function (str) {
-    return str.replace(/^\s+|\s+$/g, '');
-  };
-  var lTrim = function (str) {
-    return str.replace(/^\s+/g, '');
-  };
-  var rTrim = function (str) {
-    return str.replace(/\s+$/g, '');
-  };
-  var $_7m3qef1adjh8lz7vq = {
-    supplant: supplant,
-    startsWith: startsWith,
-    removeLeading: removeLeading,
-    removeTrailing: removeTrailing,
-    ensureLeading: ensureLeading,
-    ensureTrailing: ensureTrailing,
-    endsWith: endsWith,
-    contains: contains$1,
-    trim: trim,
-    lTrim: lTrim,
-    rTrim: rTrim,
-    capitalize: capitalize
   };
 
   var normalVersionRegex = /.*?version\/\ ?([0-9]+)\.([0-9]+).*/;
   var checkContains = function (target) {
     return function (uastring) {
-      return $_7m3qef1adjh8lz7vq.contains(uastring, target);
+      return contains$1(uastring, target);
     };
   };
   var browsers = [
@@ -7080,7 +6639,7 @@ var inlite = (function () {
       name: 'Edge',
       versionRegexes: [/.*?edge\/ ?([0-9]+)\.([0-9]+)$/],
       search: function (uastring) {
-        var monstrosity = $_7m3qef1adjh8lz7vq.contains(uastring, 'edge/') && $_7m3qef1adjh8lz7vq.contains(uastring, 'chrome') && $_7m3qef1adjh8lz7vq.contains(uastring, 'safari') && $_7m3qef1adjh8lz7vq.contains(uastring, 'applewebkit');
+        var monstrosity = contains$1(uastring, 'edge/') && contains$1(uastring, 'chrome') && contains$1(uastring, 'safari') && contains$1(uastring, 'applewebkit');
         return monstrosity;
       }
     },
@@ -7091,7 +6650,7 @@ var inlite = (function () {
         normalVersionRegex
       ],
       search: function (uastring) {
-        return $_7m3qef1adjh8lz7vq.contains(uastring, 'chrome') && !$_7m3qef1adjh8lz7vq.contains(uastring, 'chromeframe');
+        return contains$1(uastring, 'chrome') && !contains$1(uastring, 'chromeframe');
       }
     },
     {
@@ -7101,7 +6660,7 @@ var inlite = (function () {
         /.*?rv:([0-9]+)\.([0-9]+).*/
       ],
       search: function (uastring) {
-        return $_7m3qef1adjh8lz7vq.contains(uastring, 'msie') || $_7m3qef1adjh8lz7vq.contains(uastring, 'trident');
+        return contains$1(uastring, 'msie') || contains$1(uastring, 'trident');
       }
     },
     {
@@ -7124,7 +6683,7 @@ var inlite = (function () {
         /.*?cpu os ([0-9]+)_([0-9]+).*/
       ],
       search: function (uastring) {
-        return ($_7m3qef1adjh8lz7vq.contains(uastring, 'safari') || $_7m3qef1adjh8lz7vq.contains(uastring, 'mobile/')) && $_7m3qef1adjh8lz7vq.contains(uastring, 'applewebkit');
+        return (contains$1(uastring, 'safari') || contains$1(uastring, 'mobile/')) && contains$1(uastring, 'applewebkit');
       }
     }
   ];
@@ -7137,7 +6696,7 @@ var inlite = (function () {
     {
       name: 'iOS',
       search: function (uastring) {
-        return $_7m3qef1adjh8lz7vq.contains(uastring, 'iphone') || $_7m3qef1adjh8lz7vq.contains(uastring, 'ipad');
+        return contains$1(uastring, 'iphone') || contains$1(uastring, 'ipad');
       },
       versionRegexes: [
         /.*?version\/\ ?([0-9]+)\.([0-9]+).*/,
@@ -7171,16 +6730,16 @@ var inlite = (function () {
       versionRegexes: []
     }
   ];
-  var $_cf2rxn1acjh8lz7vk = {
-    browsers: $_2jrs7h17njh8lz7m6.constant(browsers),
-    oses: $_2jrs7h17njh8lz7m6.constant(oses)
+  var $_dc2hq01b6jkmcwx1j = {
+    browsers: constant(browsers),
+    oses: constant(oses)
   };
 
   var detect$2 = function (userAgent) {
-    var browsers = $_cf2rxn1acjh8lz7vk.browsers();
-    var oses = $_cf2rxn1acjh8lz7vk.oses();
-    var browser = $_5wiael1abjh8lz7vg.detectBrowser(browsers, userAgent).fold($_2yklpp1a7jh8lz7v3.unknown, $_2yklpp1a7jh8lz7v3.nu);
-    var os = $_5wiael1abjh8lz7vg.detectOs(oses, userAgent).fold($_dm2ktf1a9jh8lz7v8.unknown, $_dm2ktf1a9jh8lz7v8.nu);
+    var browsers = $_dc2hq01b6jkmcwx1j.browsers();
+    var oses = $_dc2hq01b6jkmcwx1j.oses();
+    var browser = $_5xz6bk1b5jkmcwx1f.detectBrowser(browsers, userAgent).fold($_bgnekf1b1jkmcwx0u.unknown, $_bgnekf1b1jkmcwx0u.nu);
+    var os = $_5xz6bk1b5jkmcwx1f.detectOs(oses, userAgent).fold($_gq0pn1b3jkmcwx10.unknown, $_gq0pn1b3jkmcwx10.nu);
     var deviceType = DeviceType(os, browser, userAgent);
     return {
       browser: browser,
@@ -7188,16 +6747,16 @@ var inlite = (function () {
       deviceType: deviceType
     };
   };
-  var $_bh9rhh1a6jh8lz7v2 = { detect: detect$2 };
+  var $_eojhqn1b0jkmcwx0t = { detect: detect$2 };
 
-  var detect$3 = $_1wqnm519tjh8lz7tm.cached(function () {
+  var detect$3 = cached(function () {
     var userAgent = navigator.userAgent;
-    return $_bh9rhh1a6jh8lz7v2.detect(userAgent);
+    return $_eojhqn1b0jkmcwx0t.detect(userAgent);
   });
-  var $_27unow1a5jh8lz7uy = { detect: detect$3 };
+  var $_es73cs1azjkmcwx0q = { detect: detect$3 };
 
-  var ELEMENT = $_e8p44419vjh8lz7to.ELEMENT;
-  var DOCUMENT = $_e8p44419vjh8lz7to.DOCUMENT;
+  var ELEMENT = $_110sa81apjkmcwwze.ELEMENT;
+  var DOCUMENT = $_110sa81apjkmcwwze.DOCUMENT;
   var is = function (element, selector) {
     var elem = element.dom();
     if (elem.nodeType !== ELEMENT)
@@ -7218,13 +6777,13 @@ var inlite = (function () {
   };
   var all = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? [] : $_qgcal17ljh8lz7ly.map(base.querySelectorAll(selector), $_b0tm8x19pjh8lz7t9.fromDom);
+    return bypassSelector(base) ? [] : map(base.querySelectorAll(selector), Element$$1.fromDom);
   };
   var one = function (selector, scope) {
     var base = scope === undefined ? document : scope.dom();
-    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return bypassSelector(base) ? Option.none() : Option.from(base.querySelector(selector)).map(Element$$1.fromDom);
   };
-  var $_98pv661agjh8lz7vv = {
+  var $_6woo5p1bajkmcwx1u = {
     all: all,
     is: is,
     one: one
@@ -7237,56 +6796,55 @@ var inlite = (function () {
     return e1.dom().isEqualNode(e2.dom());
   };
   var member = function (element, elements) {
-    return $_qgcal17ljh8lz7ly.exists(elements, $_2jrs7h17njh8lz7m6.curry(eq, element));
+    return exists(elements, curry(eq, element));
   };
   var regularContains = function (e1, e2) {
     var d1 = e1.dom(), d2 = e2.dom();
     return d1 === d2 ? false : d1.contains(d2);
   };
   var ieContains = function (e1, e2) {
-    return $_ect2cb1a4jh8lz7ux.documentPositionContainedBy(e1.dom(), e2.dom());
+    return $_ay9tgw1ayjkmcwx0p.documentPositionContainedBy(e1.dom(), e2.dom());
   };
-  var browser = $_27unow1a5jh8lz7uy.detect().browser;
+  var browser = $_es73cs1azjkmcwx0q.detect().browser;
   var contains$2 = browser.isIE() ? ieContains : regularContains;
-  var $_5p2qqs1a3jh8lz7um = {
+  var $_aiwfp51axjkmcwx0e = {
     eq: eq,
     isEqualNode: isEqualNode,
     member: member,
     contains: contains$2,
-    is: $_98pv661agjh8lz7vv.is
+    is: $_6woo5p1bajkmcwx1u.is
   };
 
   var owner = function (element) {
-    return $_b0tm8x19pjh8lz7t9.fromDom(element.dom().ownerDocument);
+    return Element$$1.fromDom(element.dom().ownerDocument);
   };
   var documentElement = function (element) {
-    var doc = owner(element);
-    return $_b0tm8x19pjh8lz7t9.fromDom(doc.dom().documentElement);
+    return Element$$1.fromDom(element.dom().ownerDocument.documentElement);
   };
   var defaultView = function (element) {
     var el = element.dom();
     var defaultView = el.ownerDocument.defaultView;
-    return $_b0tm8x19pjh8lz7t9.fromDom(defaultView);
+    return Element$$1.fromDom(defaultView);
   };
   var parent$1 = function (element) {
     var dom = element.dom();
-    return Option.from(dom.parentNode).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return Option.from(dom.parentNode).map(Element$$1.fromDom);
   };
   var findIndex$1 = function (element) {
     return parent$1(element).bind(function (p) {
       var kin = children(p);
-      return $_qgcal17ljh8lz7ly.findIndex(kin, function (elem) {
-        return $_5p2qqs1a3jh8lz7um.eq(element, elem);
+      return findIndex(kin, function (elem) {
+        return $_aiwfp51axjkmcwx0e.eq(element, elem);
       });
     });
   };
   var parents = function (element, isRoot) {
-    var stop = $_55hqur17ojh8lz7m9.isFunction(isRoot) ? isRoot : $_2jrs7h17njh8lz7m6.constant(false);
+    var stop = isFunction$1(isRoot) ? isRoot : constant(false);
     var dom = element.dom();
     var ret = [];
     while (dom.parentNode !== null && dom.parentNode !== undefined) {
       var rawParent = dom.parentNode;
-      var parent = $_b0tm8x19pjh8lz7t9.fromDom(rawParent);
+      var parent = Element$$1.fromDom(rawParent);
       ret.push(parent);
       if (stop(parent) === true)
         break;
@@ -7297,37 +6855,37 @@ var inlite = (function () {
   };
   var siblings = function (element) {
     var filterSelf = function (elements) {
-      return $_qgcal17ljh8lz7ly.filter(elements, function (x) {
-        return !$_5p2qqs1a3jh8lz7um.eq(element, x);
+      return filter(elements, function (x) {
+        return !$_aiwfp51axjkmcwx0e.eq(element, x);
       });
     };
     return parent$1(element).map(children).map(filterSelf).getOr([]);
   };
   var offsetParent = function (element) {
     var dom = element.dom();
-    return Option.from(dom.offsetParent).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return Option.from(dom.offsetParent).map(Element$$1.fromDom);
   };
   var prevSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.previousSibling).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return Option.from(dom.previousSibling).map(Element$$1.fromDom);
   };
   var nextSibling = function (element) {
     var dom = element.dom();
-    return Option.from(dom.nextSibling).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return Option.from(dom.nextSibling).map(Element$$1.fromDom);
   };
   var prevSiblings = function (element) {
-    return $_qgcal17ljh8lz7ly.reverse($_8wc96i1a2jh8lz7uk.toArray(element, prevSibling));
+    return reverse($_e409951awjkmcwx0c.toArray(element, prevSibling));
   };
   var nextSiblings = function (element) {
-    return $_8wc96i1a2jh8lz7uk.toArray(element, nextSibling);
+    return $_e409951awjkmcwx0c.toArray(element, nextSibling);
   };
   var children = function (element) {
     var dom = element.dom();
-    return $_qgcal17ljh8lz7ly.map(dom.childNodes, $_b0tm8x19pjh8lz7t9.fromDom);
+    return map(dom.childNodes, Element$$1.fromDom);
   };
   var child = function (element, index) {
     var children = element.dom().childNodes;
-    return Option.from(children[index]).map($_b0tm8x19pjh8lz7t9.fromDom);
+    return Option.from(children[index]).map(Element$$1.fromDom);
   };
   var firstChild = function (element) {
     return child(element, 0);
@@ -7341,12 +6899,12 @@ var inlite = (function () {
   var hasChildNodes = function (element) {
     return element.dom().hasChildNodes();
   };
-  var spot = $_5b3y8019xjh8lz7u2.immutable('element', 'offset');
+  var spot = Immutable('element', 'offset');
   var leaf = function (element, offset) {
     var cs = children(element);
     return cs.length > 0 && offset < cs.length ? spot(cs[offset], 0) : spot(element, offset);
   };
-  var $_afjmme19wjh8lz7tp = {
+  var $_dw6n5t1aqjkmcwwzh = {
     owner: owner,
     defaultView: defaultView,
     documentElement: documentElement,
@@ -7369,20 +6927,20 @@ var inlite = (function () {
   };
 
   var all$1 = function (predicate) {
-    return descendants($_17whhl19sjh8lz7tj.body(), predicate);
+    return descendants($_8wjfuk1amjkmcwwz8.body(), predicate);
   };
   var ancestors = function (scope, predicate, isRoot) {
-    return $_qgcal17ljh8lz7ly.filter($_afjmme19wjh8lz7tp.parents(scope, isRoot), predicate);
+    return filter($_dw6n5t1aqjkmcwwzh.parents(scope, isRoot), predicate);
   };
   var siblings$1 = function (scope, predicate) {
-    return $_qgcal17ljh8lz7ly.filter($_afjmme19wjh8lz7tp.siblings(scope), predicate);
+    return filter($_dw6n5t1aqjkmcwwzh.siblings(scope), predicate);
   };
   var children$1 = function (scope, predicate) {
-    return $_qgcal17ljh8lz7ly.filter($_afjmme19wjh8lz7tp.children(scope), predicate);
+    return filter($_dw6n5t1aqjkmcwwzh.children(scope), predicate);
   };
   var descendants = function (scope, predicate) {
     var result = [];
-    $_qgcal17ljh8lz7ly.each($_afjmme19wjh8lz7tp.children(scope), function (x) {
+    each($_dw6n5t1aqjkmcwwzh.children(scope), function (x) {
       if (predicate(x)) {
         result = result.concat([x]);
       }
@@ -7390,7 +6948,7 @@ var inlite = (function () {
     });
     return result;
   };
-  var $_f3odoh19rjh8lz7tf = {
+  var $_aet82i1aljkmcwwz4 = {
     all: all$1,
     ancestors: ancestors,
     siblings: siblings$1,
@@ -7399,27 +6957,27 @@ var inlite = (function () {
   };
 
   var all$2 = function (selector) {
-    return $_98pv661agjh8lz7vv.all(selector);
+    return $_6woo5p1bajkmcwx1u.all(selector);
   };
   var ancestors$1 = function (scope, selector, isRoot) {
-    return $_f3odoh19rjh8lz7tf.ancestors(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_aet82i1aljkmcwwz4.ancestors(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     }, isRoot);
   };
   var siblings$2 = function (scope, selector) {
-    return $_f3odoh19rjh8lz7tf.siblings(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_aet82i1aljkmcwwz4.siblings(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     });
   };
   var children$2 = function (scope, selector) {
-    return $_f3odoh19rjh8lz7tf.children(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_aet82i1aljkmcwwz4.children(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     });
   };
   var descendants$1 = function (scope, selector) {
-    return $_98pv661agjh8lz7vv.all(selector, scope);
+    return $_6woo5p1bajkmcwx1u.all(selector, scope);
   };
-  var $_au86hf19qjh8lz7te = {
+  var $_3g4jt21akjkmcwwz3 = {
     all: all$2,
     ancestors: ancestors$1,
     siblings: siblings$2,
@@ -7462,7 +7020,7 @@ var inlite = (function () {
     return false;
   };
   var select = function (selector, root) {
-    return $_qgcal17ljh8lz7ly.map($_au86hf19qjh8lz7te.descendants($_b0tm8x19pjh8lz7t9.fromDom(root), selector), function (element) {
+    return map($_3g4jt21akjkmcwwz3.descendants(Element$$1.fromDom(root), selector), function (element) {
       return element.dom();
     });
   };
@@ -7470,7 +7028,7 @@ var inlite = (function () {
     return elm.innerText || elm.textContent;
   };
   var getOrGenerateId = function (elm) {
-    return elm.id ? elm.id : $_9budsn19ojh8lz7t7.generate('h');
+    return elm.id ? elm.id : generate('h');
   };
   var isAnchor = function (elm) {
     return elm && elm.nodeName === 'A' && (elm.id || elm.name);
@@ -7500,13 +7058,13 @@ var inlite = (function () {
   var anchorTarget = function (elm) {
     var anchorId = elm.id || elm.name;
     var anchorText = getElementText(elm);
-    return create$4('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, $_2jrs7h17njh8lz7m6.noop);
+    return create$4('anchor', anchorText ? anchorText : '#' + anchorId, '#' + anchorId, 0, noop);
   };
   var getHeaderTargets = function (elms) {
-    return $_qgcal17ljh8lz7ly.map($_qgcal17ljh8lz7ly.filter(elms, isValidHeader), headerTarget);
+    return map(filter(elms, isValidHeader), headerTarget);
   };
   var getAnchorTargets = function (elms) {
-    return $_qgcal17ljh8lz7ly.map($_qgcal17ljh8lz7ly.filter(elms, isValidAnchor), anchorTarget);
+    return map(filter(elms, isValidAnchor), anchorTarget);
   };
   var getTargetElements = function (elm) {
     var elms = select('h1,h2,h3,h4,h5,h6,a:not([href])', elm);
@@ -7517,9 +7075,9 @@ var inlite = (function () {
   };
   var find$3 = function (elm) {
     var elms = getTargetElements(elm);
-    return $_qgcal17ljh8lz7ly.filter(getHeaderTargets(elms).concat(getAnchorTargets(elms)), hasTitle);
+    return filter(getHeaderTargets(elms).concat(getAnchorTargets(elms)), hasTitle);
   };
-  var $_9hzj4219njh8lz7sx = { find: find$3 };
+  var $_72bwpv1ahjkmcwwy8 = { find: find$3 };
 
   var getActiveEditor = function () {
     return window.tinymce ? window.tinymce.activeEditor : global$5.activeEditor;
@@ -7548,12 +7106,12 @@ var inlite = (function () {
       value: {
         title: title,
         url: url,
-        attach: $_2jrs7h17njh8lz7m6.noop
+        attach: noop
       }
     };
   };
   var isUniqueUrl = function (url, targets) {
-    var foundTarget = $_qgcal17ljh8lz7ly.exists(targets, function (target) {
+    var foundTarget = exists(targets, function (target) {
       return target.url === url;
     });
     return !foundTarget;
@@ -7566,7 +7124,7 @@ var inlite = (function () {
     var separator = { title: '-' };
     var fromHistoryMenuItems = function (history) {
       var historyItems = history.hasOwnProperty(fileType) ? history[fileType] : [];
-      var uniqueHistory = $_qgcal17ljh8lz7ly.filter(historyItems, function (url) {
+      var uniqueHistory = filter(historyItems, function (url) {
         return isUniqueUrl(url, targets);
       });
       return global$4.map(uniqueHistory, function (url) {
@@ -7575,13 +7133,13 @@ var inlite = (function () {
           value: {
             title: url,
             url: url,
-            attach: $_2jrs7h17njh8lz7m6.noop
+            attach: noop
           }
         };
       });
     };
     var fromMenuItems = function (type) {
-      var filteredTargets = $_qgcal17ljh8lz7ly.filter(targets, function (target) {
+      var filteredTargets = filter(targets, function (target) {
         return target.type === type;
       });
       return toMenuItems(filteredTargets);
@@ -7599,7 +7157,7 @@ var inlite = (function () {
       return anchorMenuItems;
     };
     var join = function (items) {
-      return $_qgcal17ljh8lz7ly.foldl(items, function (a, b) {
+      return foldl(items, function (a, b) {
         var bothEmpty = a.length === 0 || b.length === 0;
         return bothEmpty ? a.concat(b) : a.concat(separator, b);
       }, []);
@@ -7619,7 +7177,7 @@ var inlite = (function () {
       return;
     }
     if (items) {
-      if ($_qgcal17ljh8lz7ly.indexOf(items, url).isNone()) {
+      if (indexOf(items, url).isNone()) {
         history[fileType] = items.slice(0, HISTORY_LENGTH).concat(url);
       }
     } else {
@@ -7639,7 +7197,7 @@ var inlite = (function () {
   };
   var setupAutoCompleteHandler = function (ctrl, editorSettings, bodyElm, fileType) {
     var autocomplete = function (term) {
-      var linkTargets = $_9hzj4219njh8lz7sx.find(bodyElm);
+      var linkTargets = $_72bwpv1ahjkmcwwy8.find(bodyElm);
       var menuItems = createMenuItems(term, linkTargets, fileType, editorSettings);
       ctrl.showAutoComplete(menuItems, term);
     };
@@ -7966,18 +7524,18 @@ var inlite = (function () {
   });
 
   function ClosestOrAncestor (is, ancestor, scope, a, isRoot) {
-    return is(scope, a) ? Option.some(scope) : $_55hqur17ojh8lz7m9.isFunction(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
+    return is(scope, a) ? Option.some(scope) : isFunction$1(isRoot) && isRoot(scope) ? Option.none() : ancestor(scope, a, isRoot);
   }
 
   var first$1 = function (predicate) {
-    return descendant($_17whhl19sjh8lz7tj.body(), predicate);
+    return descendant($_8wjfuk1amjkmcwwz8.body(), predicate);
   };
   var ancestor = function (scope, predicate, isRoot) {
     var element = scope.dom();
-    var stop = $_55hqur17ojh8lz7m9.isFunction(isRoot) ? isRoot : $_2jrs7h17njh8lz7m6.constant(false);
+    var stop = isFunction$1(isRoot) ? isRoot : constant(false);
     while (element.parentNode) {
       element = element.parentNode;
-      var el = $_b0tm8x19pjh8lz7t9.fromDom(element);
+      var el = Element$$1.fromDom(element);
       if (predicate(el))
         return Option.some(el);
       else if (stop(el))
@@ -7995,20 +7553,20 @@ var inlite = (function () {
     var element = scope.dom();
     if (!element.parentNode)
       return Option.none();
-    return child$1($_b0tm8x19pjh8lz7t9.fromDom(element.parentNode), function (x) {
-      return !$_5p2qqs1a3jh8lz7um.eq(scope, x) && predicate(x);
+    return child$1(Element$$1.fromDom(element.parentNode), function (x) {
+      return !$_aiwfp51axjkmcwx0e.eq(scope, x) && predicate(x);
     });
   };
   var child$1 = function (scope, predicate) {
-    var result = $_qgcal17ljh8lz7ly.find(scope.dom().childNodes, $_2jrs7h17njh8lz7m6.compose(predicate, $_b0tm8x19pjh8lz7t9.fromDom));
-    return result.map($_b0tm8x19pjh8lz7t9.fromDom);
+    var result = find(scope.dom().childNodes, compose(predicate, Element$$1.fromDom));
+    return result.map(Element$$1.fromDom);
   };
   var descendant = function (scope, predicate) {
-    var descend = function (element) {
-      for (var i = 0; i < element.childNodes.length; i++) {
-        if (predicate($_b0tm8x19pjh8lz7t9.fromDom(element.childNodes[i])))
-          return Option.some($_b0tm8x19pjh8lz7t9.fromDom(element.childNodes[i]));
-        var res = descend(element.childNodes[i]);
+    var descend = function (node) {
+      for (var i = 0; i < node.childNodes.length; i++) {
+        if (predicate(Element$$1.fromDom(node.childNodes[i])))
+          return Option.some(Element$$1.fromDom(node.childNodes[i]));
+        var res = descend(node.childNodes[i]);
         if (res.isSome())
           return res;
       }
@@ -8016,7 +7574,7 @@ var inlite = (function () {
     };
     return descend(scope.dom());
   };
-  var $_14ffds1amjh8lz7wr = {
+  var $_5x60le1bgjkmcwx2f = {
     first: first$1,
     ancestor: ancestor,
     closest: closest,
@@ -8026,30 +7584,30 @@ var inlite = (function () {
   };
 
   var first$2 = function (selector) {
-    return $_98pv661agjh8lz7vv.one(selector);
+    return $_6woo5p1bajkmcwx1u.one(selector);
   };
   var ancestor$1 = function (scope, selector, isRoot) {
-    return $_14ffds1amjh8lz7wr.ancestor(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_5x60le1bgjkmcwx2f.ancestor(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     }, isRoot);
   };
   var sibling$1 = function (scope, selector) {
-    return $_14ffds1amjh8lz7wr.sibling(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_5x60le1bgjkmcwx2f.sibling(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     });
   };
   var child$2 = function (scope, selector) {
-    return $_14ffds1amjh8lz7wr.child(scope, function (e) {
-      return $_98pv661agjh8lz7vv.is(e, selector);
+    return $_5x60le1bgjkmcwx2f.child(scope, function (e) {
+      return $_6woo5p1bajkmcwx1u.is(e, selector);
     });
   };
   var descendant$1 = function (scope, selector) {
-    return $_98pv661agjh8lz7vv.one(selector, scope);
+    return $_6woo5p1bajkmcwx1u.one(selector, scope);
   };
   var closest$1 = function (scope, selector, isRoot) {
-    return ClosestOrAncestor($_98pv661agjh8lz7vv.is, ancestor$1, scope, selector, isRoot);
+    return ClosestOrAncestor($_6woo5p1bajkmcwx1u.is, ancestor$1, scope, selector, isRoot);
   };
-  var $_72mqss1aljh8lz7wp = {
+  var $_1srzk21bfjkmcwx2d = {
     first: first$2,
     ancestor: ancestor$1,
     sibling: sibling$1,
@@ -8171,7 +7729,7 @@ var inlite = (function () {
       });
     });
   };
-  var $_9eh8yg1aojh8lz7xc = { register: register };
+  var $_dgroug1bijkmcwx2u = { register: register };
 
   var getFirstFont = function (fontFamily) {
     return fontFamily ? fontFamily.split(',')[0] : '';
@@ -8194,6 +7752,7 @@ var inlite = (function () {
   var createFontNameListBoxChangeHandler = function (editor, items) {
     return function () {
       var self = this;
+      self.state.set('value', null);
       editor.on('init nodeChange', function (e) {
         var fontFamily = editor.queryCommandValue('FontName');
         var match = findMatchingValue(items, fontFamily);
@@ -8244,7 +7803,7 @@ var inlite = (function () {
   var register$1 = function (editor) {
     registerButtons(editor);
   };
-  var $_3gzdqt1aqjh8lz7xh = { register: register$1 };
+  var $_c93jwu1bkjkmcwx2y = { register: register$1 };
 
   var round = function (number, precision) {
     var factor = Math.pow(10, precision);
@@ -8323,7 +7882,7 @@ var inlite = (function () {
   var register$2 = function (editor) {
     registerButtons$1(editor);
   };
-  var $_nl711arjh8lz7xk = { register: register$2 };
+  var $_7ojkbu1bljkmcwx38 = { register: register$2 };
 
   var hideMenuObjects = function (editor, menu) {
     var count = menu.length;
@@ -8585,7 +8144,7 @@ var inlite = (function () {
     registerMenuItems(editor, formatMenu);
     registerButtons$2(editor, formatMenu);
   };
-  var $_5p34i51asjh8lz7xo = { register: register$3 };
+  var $_anahmb1bmjkmcwx3a = { register: register$3 };
 
   var defaultBlocks = 'Paragraph=p;' + 'Heading 1=h1;' + 'Heading 2=h2;' + 'Heading 3=h3;' + 'Heading 4=h4;' + 'Heading 5=h5;' + 'Heading 6=h6;' + 'Preformatted=pre';
   var createFormats$1 = function (formats) {
@@ -8671,14 +8230,14 @@ var inlite = (function () {
     });
     editor.addButton('formatselect', lazyFormatSelectBoxItems(editor, blocks));
   };
-  var $_ei68w91atjh8lz7xt = { register: register$4 };
+  var $_400s7y1bnjkmcwx3f = { register: register$4 };
 
   var createCustomMenuItems = function (editor, names) {
     var items, nameList;
     if (typeof names === 'string') {
       nameList = names.split(' ');
     } else if (global$4.isArray(names)) {
-      return $_qgcal17ljh8lz7ly.flatten(global$4.map(names, function (names) {
+      return flatten$1(global$4.map(names, function (names) {
         return createCustomMenuItems(editor, names);
       }));
     }
@@ -8693,10 +8252,10 @@ var inlite = (function () {
     return menuItem && menuItem.text === '-';
   };
   var trimMenuItems = function (menuItems) {
-    var menuItems2 = $_qgcal17ljh8lz7ly.filter(menuItems, function (menuItem, i, menuItems) {
+    var menuItems2 = filter(menuItems, function (menuItem, i, menuItems) {
       return !isSeparator(menuItem) || !isSeparator(menuItems[i - 1]);
     });
-    return $_qgcal17ljh8lz7ly.filter(menuItems2, function (menuItem, i, menuItems) {
+    return filter(menuItems2, function (menuItem, i, menuItems) {
       return !isSeparator(menuItem) || i > 0 && i < menuItems.length - 1;
     });
   };
@@ -8742,7 +8301,7 @@ var inlite = (function () {
   var register$5 = function (editor) {
     registerButtons$3(editor);
   };
-  var $_2kqzcs1aujh8lz7xw = { register: register$5 };
+  var $_3egfpj1bojkmcwx3h = { register: register$5 };
 
   var registerFormatButtons = function (editor) {
     global$4.each({
@@ -8917,7 +8476,7 @@ var inlite = (function () {
     registerButtons$4(editor);
     registerMenuItems$1(editor);
   };
-  var $_b1l3y31avjh8lz7y1 = { register: register$6 };
+  var $_6a4fu91bpjkmcwx3l = { register: register$6 };
 
   var toggleUndoRedoState = function (editor, type) {
     return function () {
@@ -8964,7 +8523,7 @@ var inlite = (function () {
     registerMenuItems$2(editor);
     registerButtons$5(editor);
   };
-  var $_altety1awjh8lz7y3 = { register: register$7 };
+  var $_crjotz1bqjkmcwx3n = { register: register$7 };
 
   var toggleVisualAidState = function (editor) {
     return function () {
@@ -8986,7 +8545,7 @@ var inlite = (function () {
   var register$8 = function (editor) {
     registerMenuItems$3(editor);
   };
-  var $_8qrp151axjh8lz7y4 = { register: register$8 };
+  var $_epzta01brjkmcwx3p = { register: register$8 };
 
   var setupEnvironment = function () {
     Widget.tooltips = !global$1.iOS;
@@ -8996,7 +8555,7 @@ var inlite = (function () {
   };
   var setupUiContainer = function (editor) {
     if (editor.settings.ui_container) {
-      global$1.container = $_72mqss1aljh8lz7wp.descendant($_b0tm8x19pjh8lz7t9.fromDom(document.body), editor.settings.ui_container).fold($_2jrs7h17njh8lz7m6.constant(null), function (elm) {
+      global$1.container = $_1srzk21bfjkmcwx2d.descendant(Element$$1.fromDom(document.body), editor.settings.ui_container).fold(constant(null), function (elm) {
         return elm.dom();
       });
     }
@@ -9016,17 +8575,17 @@ var inlite = (function () {
     setupHideFloatPanels(editor);
     setupUiContainer(editor);
     setupEnvironment();
-    $_ei68w91atjh8lz7xt.register(editor);
-    $_9eh8yg1aojh8lz7xc.register(editor);
-    $_b1l3y31avjh8lz7y1.register(editor);
-    $_altety1awjh8lz7y3.register(editor);
-    $_nl711arjh8lz7xk.register(editor);
-    $_3gzdqt1aqjh8lz7xh.register(editor);
-    $_5p34i51asjh8lz7xo.register(editor);
-    $_8qrp151axjh8lz7y4.register(editor);
-    $_2kqzcs1aujh8lz7xw.register(editor);
+    $_400s7y1bnjkmcwx3f.register(editor);
+    $_dgroug1bijkmcwx2u.register(editor);
+    $_6a4fu91bpjkmcwx3l.register(editor);
+    $_crjotz1bqjkmcwx3n.register(editor);
+    $_7ojkbu1bljkmcwx38.register(editor);
+    $_c93jwu1bkjkmcwx2y.register(editor);
+    $_anahmb1bmjkmcwx3a.register(editor);
+    $_epzta01brjkmcwx3p.register(editor);
+    $_3egfpj1bojkmcwx3h.register(editor);
   };
-  var $_e9ct9h1akjh8lz7wa = { setup: setup };
+  var $_bgg1561bejkmcwx28 = { setup: setup };
 
   var GridLayout = AbsoluteLayout.extend({
     recalc: function (container) {
@@ -9333,9 +8892,9 @@ var inlite = (function () {
     }
   });
 
-  function isChildOf$1(node, parent) {
+  function isChildOf$1(node, parent$$1) {
     while (node) {
-      if (parent === node) {
+      if (parent$$1 === node) {
         return true;
       }
       node = node.parentNode;
@@ -9344,26 +8903,26 @@ var inlite = (function () {
   }
   var MenuButton = Button.extend({
     init: function (settings) {
-      var self = this;
-      self._renderOpen = true;
-      self._super(settings);
-      settings = self.settings;
-      self.classes.add('menubtn');
+      var self$$1 = this;
+      self$$1._renderOpen = true;
+      self$$1._super(settings);
+      settings = self$$1.settings;
+      self$$1.classes.add('menubtn');
       if (settings.fixedWidth) {
-        self.classes.add('fixed-width');
+        self$$1.classes.add('fixed-width');
       }
-      self.aria('haspopup', true);
-      self.state.set('menu', settings.menu || self.render());
+      self$$1.aria('haspopup', true);
+      self$$1.state.set('menu', settings.menu || self$$1.render());
     },
     showMenu: function (toggle) {
-      var self = this;
+      var self$$1 = this;
       var menu;
-      if (self.menu && self.menu.visible() && toggle !== false) {
-        return self.hideMenu();
+      if (self$$1.menu && self$$1.menu.visible() && toggle !== false) {
+        return self$$1.hideMenu();
       }
-      if (!self.menu) {
-        menu = self.state.get('menu') || [];
-        self.classes.add('opened');
+      if (!self$$1.menu) {
+        menu = self$$1.state.get('menu') || [];
+        self$$1.classes.add('opened');
         if (menu.length) {
           menu = {
             type: 'menu',
@@ -9375,62 +8934,62 @@ var inlite = (function () {
           menu.animate = true;
         }
         if (!menu.renderTo) {
-          self.menu = global$11.create(menu).parent(self).renderTo();
+          self$$1.menu = global$11.create(menu).parent(self$$1).renderTo();
         } else {
-          self.menu = menu.parent(self).show().renderTo();
+          self$$1.menu = menu.parent(self$$1).show().renderTo();
         }
-        self.fire('createmenu');
-        self.menu.reflow();
-        self.menu.on('cancel', function (e) {
-          if (e.control.parent() === self.menu) {
+        self$$1.fire('createmenu');
+        self$$1.menu.reflow();
+        self$$1.menu.on('cancel', function (e) {
+          if (e.control.parent() === self$$1.menu) {
             e.stopPropagation();
-            self.focus();
-            self.hideMenu();
+            self$$1.focus();
+            self$$1.hideMenu();
           }
         });
-        self.menu.on('select', function () {
-          self.focus();
+        self$$1.menu.on('select', function () {
+          self$$1.focus();
         });
-        self.menu.on('show hide', function (e) {
-          if (e.control === self.menu) {
-            self.activeMenu(e.type === 'show');
-            self.classes.toggle('opened', e.type === 'show');
+        self$$1.menu.on('show hide', function (e) {
+          if (e.control === self$$1.menu) {
+            self$$1.activeMenu(e.type === 'show');
+            self$$1.classes.toggle('opened', e.type === 'show');
           }
-          self.aria('expanded', e.type === 'show');
+          self$$1.aria('expanded', e.type === 'show');
         }).fire('show');
       }
-      self.menu.show();
-      self.menu.layoutRect({ w: self.layoutRect().w });
-      self.menu.repaint();
-      self.menu.moveRel(self.getEl(), self.isRtl() ? [
+      self$$1.menu.show();
+      self$$1.menu.layoutRect({ w: self$$1.layoutRect().w });
+      self$$1.menu.repaint();
+      self$$1.menu.moveRel(self$$1.getEl(), self$$1.isRtl() ? [
         'br-tr',
         'tr-br'
       ] : [
         'bl-tl',
         'tl-bl'
       ]);
-      self.fire('showmenu');
+      self$$1.fire('showmenu');
     },
     hideMenu: function () {
-      var self = this;
-      if (self.menu) {
-        self.menu.items().each(function (item) {
+      var self$$1 = this;
+      if (self$$1.menu) {
+        self$$1.menu.items().each(function (item) {
           if (item.hideMenu) {
             item.hideMenu();
           }
         });
-        self.menu.hide();
+        self$$1.menu.hide();
       }
     },
     activeMenu: function (state) {
       this.classes.toggle('active', state);
     },
     renderHtml: function () {
-      var self = this, id = self._id, prefix = self.classPrefix;
-      var icon = self.settings.icon, image;
-      var text = self.state.get('text');
+      var self$$1 = this, id = self$$1._id, prefix = self$$1.classPrefix;
+      var icon = self$$1.settings.icon, image;
+      var text = self$$1.state.get('text');
       var textHtml = '';
-      image = self.settings.image;
+      image = self$$1.settings.image;
       if (image) {
         icon = 'none';
         if (typeof image !== 'string') {
@@ -9441,30 +9000,30 @@ var inlite = (function () {
         image = '';
       }
       if (text) {
-        self.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
+        self$$1.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
       }
-      icon = self.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
-      self.aria('role', self.parent() instanceof MenuBar ? 'menuitem' : 'button');
-      return '<div id="' + id + '" class="' + self.classes + '" tabindex="-1" aria-labelledby="' + id + '">' + '<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
+      icon = self$$1.settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
+      self$$1.aria('role', self$$1.parent() instanceof MenuBar ? 'menuitem' : 'button');
+      return '<div id="' + id + '" class="' + self$$1.classes + '" tabindex="-1" aria-labelledby="' + id + '">' + '<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
     },
     postRender: function () {
-      var self = this;
-      self.on('click', function (e) {
-        if (e.control === self && isChildOf$1(e.target, self.getEl())) {
-          self.focus();
-          self.showMenu(!e.aria);
+      var self$$1 = this;
+      self$$1.on('click', function (e) {
+        if (e.control === self$$1 && isChildOf$1(e.target, self$$1.getEl())) {
+          self$$1.focus();
+          self$$1.showMenu(!e.aria);
           if (e.aria) {
-            self.menu.items().filter(':visible')[0].focus();
+            self$$1.menu.items().filter(':visible')[0].focus();
           }
         }
       });
-      self.on('mouseenter', function (e) {
+      self$$1.on('mouseenter', function (e) {
         var overCtrl = e.control;
-        var parent = self.parent();
+        var parent$$1 = self$$1.parent();
         var hasVisibleSiblingMenu;
-        if (overCtrl && parent && overCtrl instanceof MenuButton && overCtrl.parent() === parent) {
-          parent.items().filter('MenuButton').each(function (ctrl) {
+        if (overCtrl && parent$$1 && overCtrl instanceof MenuButton && overCtrl.parent() === parent$$1) {
+          parent$$1.items().filter('MenuButton').each(function (ctrl) {
             if (ctrl.hideMenu && ctrl !== overCtrl) {
               if (ctrl.menu && ctrl.menu.visible()) {
                 hasVisibleSiblingMenu = true;
@@ -9478,17 +9037,17 @@ var inlite = (function () {
           }
         }
       });
-      return self._super();
+      return self$$1._super();
     },
     bindStates: function () {
-      var self = this;
-      self.state.on('change:menu', function () {
-        if (self.menu) {
-          self.menu.remove();
+      var self$$1 = this;
+      self$$1.state.on('change:menu', function () {
+        if (self$$1.menu) {
+          self$$1.menu.remove();
         }
-        self.menu = null;
+        self$$1.menu = null;
       });
-      return self._super();
+      return self$$1._super();
     },
     remove: function () {
       this._super();
@@ -10163,8 +9722,8 @@ var inlite = (function () {
       if (settings.orientation === 'v') {
         self.classes.add('vertical');
       }
-      self._minValue = $_55hqur17ojh8lz7m9.isNumber(settings.minValue) ? settings.minValue : 0;
-      self._maxValue = $_55hqur17ojh8lz7m9.isNumber(settings.maxValue) ? settings.maxValue : 100;
+      self._minValue = isNumber$1(settings.minValue) ? settings.minValue : 0;
+      self._maxValue = isNumber$1(settings.maxValue) ? settings.maxValue : 100;
       self._initValue = self.state.get('value');
     },
     renderHtml: function () {
@@ -10277,11 +9836,11 @@ var inlite = (function () {
       role: 'button'
     },
     repaint: function () {
-      var self = this;
-      var elm = self.getEl();
-      var rect = self.layoutRect();
+      var self$$1 = this;
+      var elm = self$$1.getEl();
+      var rect = self$$1.layoutRect();
       var mainButtonElm, menuButtonElm;
-      self._super();
+      self$$1._super();
       mainButtonElm = elm.firstChild;
       menuButtonElm = elm.lastChild;
       global$7(mainButtonElm).css({
@@ -10289,20 +9848,20 @@ var inlite = (function () {
         height: rect.h - 2
       });
       global$7(menuButtonElm).css({ height: rect.h - 2 });
-      return self;
+      return self$$1;
     },
     activeMenu: function (state) {
-      var self = this;
-      global$7(self.getEl().lastChild).toggleClass(self.classPrefix + 'active', state);
+      var self$$1 = this;
+      global$7(self$$1.getEl().lastChild).toggleClass(self$$1.classPrefix + 'active', state);
     },
     renderHtml: function () {
-      var self = this;
-      var id = self._id;
-      var prefix = self.classPrefix;
+      var self$$1 = this;
+      var id = self$$1._id;
+      var prefix = self$$1.classPrefix;
       var image;
-      var icon = self.state.get('icon');
-      var text = self.state.get('text');
-      var settings = self.settings;
+      var icon = self$$1.state.get('icon');
+      var text = self$$1.state.get('text');
+      var settings = self$$1.settings;
       var textHtml = '', ariaPressed;
       image = settings.image;
       if (image) {
@@ -10316,15 +9875,15 @@ var inlite = (function () {
       }
       icon = settings.icon ? prefix + 'ico ' + prefix + 'i-' + icon : '';
       if (text) {
-        self.classes.add('btn-has-text');
-        textHtml = '<span class="' + prefix + 'txt">' + self.encode(text) + '</span>';
+        self$$1.classes.add('btn-has-text');
+        textHtml = '<span class="' + prefix + 'txt">' + self$$1.encode(text) + '</span>';
       }
       ariaPressed = typeof settings.active === 'boolean' ? ' aria-pressed="' + settings.active + '"' : '';
-      return '<div id="' + id + '" class="' + self.classes + '" role="button"' + ariaPressed + ' tabindex="-1">' + '<button type="button" hidefocus="1" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' + (self._menuBtnText ? (icon ? '\xA0' : '') + self._menuBtnText : '') + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
+      return '<div id="' + id + '" class="' + self$$1.classes + '" role="button"' + ariaPressed + ' tabindex="-1">' + '<button type="button" hidefocus="1" tabindex="-1">' + (icon ? '<i class="' + icon + '"' + image + '></i>' : '') + textHtml + '</button>' + '<button type="button" class="' + prefix + 'open" hidefocus="1" tabindex="-1">' + (self$$1._menuBtnText ? (icon ? '\xA0' : '') + self$$1._menuBtnText : '') + ' <i class="' + prefix + 'caret"></i>' + '</button>' + '</div>';
     },
     postRender: function () {
-      var self = this, onClickHandler = self.settings.onclick;
-      self.on('click', function (e) {
+      var self$$1 = this, onClickHandler = self$$1.settings.onclick;
+      self$$1.on('click', function (e) {
         var node = e.target;
         if (e.control === this) {
           while (node) {
@@ -10339,8 +9898,8 @@ var inlite = (function () {
           }
         }
       });
-      delete self.settings.onclick;
-      return self._super();
+      delete self$$1.settings.onclick;
+      return self$$1._super();
     }
   });
 
@@ -10445,43 +10004,43 @@ var inlite = (function () {
 
   var TextBox = Widget.extend({
     init: function (settings) {
-      var self = this;
-      self._super(settings);
-      self.classes.add('textbox');
+      var self$$1 = this;
+      self$$1._super(settings);
+      self$$1.classes.add('textbox');
       if (settings.multiline) {
-        self.classes.add('multiline');
+        self$$1.classes.add('multiline');
       } else {
-        self.on('keydown', function (e) {
+        self$$1.on('keydown', function (e) {
           var rootControl;
           if (e.keyCode === 13) {
             e.preventDefault();
-            self.parents().reverse().each(function (ctrl) {
+            self$$1.parents().reverse().each(function (ctrl) {
               if (ctrl.toJSON) {
                 rootControl = ctrl;
                 return false;
               }
             });
-            self.fire('submit', { data: rootControl.toJSON() });
+            self$$1.fire('submit', { data: rootControl.toJSON() });
           }
         });
-        self.on('keyup', function (e) {
-          self.state.set('value', e.target.value);
+        self$$1.on('keyup', function (e) {
+          self$$1.state.set('value', e.target.value);
         });
       }
     },
     repaint: function () {
-      var self = this;
+      var self$$1 = this;
       var style, rect, borderBox, borderW, borderH = 0, lastRepaintRect;
-      style = self.getEl().style;
-      rect = self._layoutRect;
-      lastRepaintRect = self._lastRepaintRect || {};
+      style = self$$1.getEl().style;
+      rect = self$$1._layoutRect;
+      lastRepaintRect = self$$1._lastRepaintRect || {};
       var doc = document;
-      if (!self.settings.multiline && doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
+      if (!self$$1.settings.multiline && doc.all && (!doc.documentMode || doc.documentMode <= 8)) {
         style.lineHeight = rect.h - borderH + 'px';
       }
-      borderBox = self.borderBox;
+      borderBox = self$$1.borderBox;
       borderW = borderBox.left + borderBox.right + 8;
-      borderH = borderBox.top + borderBox.bottom + (self.settings.multiline ? 8 : 0);
+      borderH = borderBox.top + borderBox.bottom + (self$$1.settings.multiline ? 8 : 0);
       if (rect.x !== lastRepaintRect.x) {
         style.left = rect.x + 'px';
         lastRepaintRect.x = rect.x;
@@ -10498,16 +10057,16 @@ var inlite = (function () {
         style.height = rect.h - borderH + 'px';
         lastRepaintRect.h = rect.h;
       }
-      self._lastRepaintRect = lastRepaintRect;
-      self.fire('repaint', {}, false);
-      return self;
+      self$$1._lastRepaintRect = lastRepaintRect;
+      self$$1.fire('repaint', {}, false);
+      return self$$1;
     },
     renderHtml: function () {
-      var self = this;
-      var settings = self.settings;
+      var self$$1 = this;
+      var settings = self$$1.settings;
       var attrs, elm;
       attrs = {
-        id: self._id,
+        id: self$$1._id,
         hidefocus: '1'
       };
       global$4.each([
@@ -10524,18 +10083,18 @@ var inlite = (function () {
         'placeholder',
         'required',
         'multiple'
-      ], function (name) {
-        attrs[name] = settings[name];
+      ], function (name$$1) {
+        attrs[name$$1] = settings[name$$1];
       });
-      if (self.disabled()) {
+      if (self$$1.disabled()) {
         attrs.disabled = 'disabled';
       }
       if (settings.subtype) {
         attrs.type = settings.subtype;
       }
       elm = funcs.create(settings.multiline ? 'textarea' : 'input', attrs);
-      elm.value = self.state.get('value');
-      elm.className = self.classes.toString();
+      elm.value = self$$1.state.get('value');
+      elm.className = self$$1.classes.toString();
       return elm.outerHTML;
     },
     value: function (value) {
@@ -10549,25 +10108,25 @@ var inlite = (function () {
       return this.state.get('value');
     },
     postRender: function () {
-      var self = this;
-      self.getEl().value = self.state.get('value');
-      self._super();
-      self.$el.on('change', function (e) {
-        self.state.set('value', e.target.value);
-        self.fire('change', e);
+      var self$$1 = this;
+      self$$1.getEl().value = self$$1.state.get('value');
+      self$$1._super();
+      self$$1.$el.on('change', function (e) {
+        self$$1.state.set('value', e.target.value);
+        self$$1.fire('change', e);
       });
     },
     bindStates: function () {
-      var self = this;
-      self.state.on('change:value', function (e) {
-        if (self.getEl().value !== e.value) {
-          self.getEl().value = e.value;
+      var self$$1 = this;
+      self$$1.state.on('change:value', function (e) {
+        if (self$$1.getEl().value !== e.value) {
+          self$$1.getEl().value = e.value;
         }
       });
-      self.state.on('change:disabled', function (e) {
-        self.getEl().disabled = e.value;
+      self$$1.state.on('change:disabled', function (e) {
+        self$$1.getEl().disabled = e.value;
       });
-      return self._super();
+      return self$$1._super();
     },
     remove: function () {
       this.$el.off();
@@ -10579,18 +10138,18 @@ var inlite = (function () {
     return {
       Selector: Selector,
       Collection: Collection$2,
-      ReflowQueue: $_dipgfl182jh8lz7nt,
+      ReflowQueue: $_4k8nbw18wjkmcwwsq,
       Control: Control$1,
       Factory: global$11,
       KeyboardNavigation: KeyboardNavigation,
       Container: Container,
       DragHelper: DragHelper,
-      Scrollable: $_1ecd7e18gjh8lz7pl,
+      Scrollable: $_cgleui19ajkmcwwul,
       Panel: Panel,
-      Movable: $_ben1dh184jh8lz7ny,
-      Resizable: $_1a5lul18hjh8lz7pp,
+      Movable: $_928of518yjkmcwwsw,
+      Resizable: $_29brjy19bjkmcwwuo,
       FloatPanel: FloatPanel,
-      Window: Window,
+      Window: Window$$1,
       MessageBox: MessageBox,
       Tooltip: Tooltip,
       Widget: Widget,
@@ -10615,7 +10174,7 @@ var inlite = (function () {
       FitLayout: FitLayout,
       FlexLayout: FlexLayout,
       FlowLayout: FlowLayout,
-      FormatControls: $_e9ct9h1akjh8lz7wa,
+      FormatControls: $_bgg1561bejkmcwx28,
       GridLayout: GridLayout,
       Iframe: Iframe,
       InfoBox: InfoBox,
@@ -10663,9 +10222,9 @@ var inlite = (function () {
   Api.appendTo(window.tinymce ? window.tinymce : {});
   global.add('inlite', function (editor) {
     var panel = create$3();
-    $_e9ct9h1akjh8lz7wa.setup(editor);
-    $_67na6j18jjh8lz7pt.addToEditor(editor, panel);
-    return $_952h616zjh8lz7kr.get(editor, panel);
+    $_bgg1561bejkmcwx28.setup(editor);
+    $_7ktwi219djkmcwwuu.addToEditor(editor, panel);
+    return $_bte64717sjkmcwwpk.get(editor, panel);
   });
   function Theme () {
   }

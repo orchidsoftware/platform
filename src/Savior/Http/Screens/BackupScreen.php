@@ -68,7 +68,8 @@ class BackupScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Сделать резервную копию')->method('runBackup'),
+            Link::name('Сделать резервную копию')
+                ->method('runBackup'),
         ];
     }
 
@@ -147,6 +148,6 @@ class BackupScreen extends Screen
         $base = log($size) / log(1024);
         $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
-        return round(1024 ** ($base - floor($base)), $precision).$suffixes[floor($base)];
+        return round(1024 ** ($base - floor($base)), $precision).$suffixes[(int)floor($base)];
     }
 }

@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Press\Entities;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 trait Structure
 {
+    use ValidatesRequests;
+
     /**
      * Visible name of entity.
      *
@@ -78,13 +81,11 @@ trait Structure
     /**
      * Request Validation.
      *
-     * @return bool
+     * @return array
      */
-    public function isValid() : bool
+    public function isValid() : array
     {
-        Validator::make(request()->all(), $this->rules())->validate();
-
-        return true;
+        return $this->validate(request(),$this->rules());
     }
 
     /**

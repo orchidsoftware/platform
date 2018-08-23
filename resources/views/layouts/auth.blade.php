@@ -27,8 +27,8 @@
 
     <link rel="stylesheet" href="{{mix('/css/orchid.css','orchid')}}" type="text/css"/>
     <script src="{{mix('/js/manifest.js','orchid')}}" type="text/javascript"></script>
-    <script async="async" src="{{mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>
-    <script async="async" src="{{mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
+    <script src="{{mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>
+    <script src="{{mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
 
     <div class="bg-pic">
 
-        <img src="{{config('platform.auth.image','/orchid/img/background.jpg')}}" alt="" class="lazy">
+        <img src="{{config('platform.auth.image','/orchid/img/background.jpg')}}" alt="ORCHID">
 
 
         <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">
@@ -46,7 +46,7 @@
             </h2>
             <p class="small">
                 {{trans('platform::auth/account.image-license')}}<br>
-                © 2013 - {{date('Y')}} ORCHID.
+                © 2016 - {{date('Y')}} ORCHID.
             </p>
         </div>
 
@@ -67,7 +67,7 @@
             <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
                     <div class="col-sm-3 col-md-2">
-                        <a href="https://orchid.software/">
+                        <a href="https://orchid.software/" target="_blank" rel="noopener noreferrer">
                             <img alt="ORCHID"
                                                                 class="m-t-xs"
                                                                 src="/orchid/img/logo.svg"

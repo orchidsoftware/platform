@@ -28,13 +28,6 @@ class EventServiceProvider extends ServiceProvider
         Login::class         => [
             LogSuccessfulLogin::class,
         ],
-        CategoryEvent::class => [
-            CategoryBaseLister::class,
-            CategoryDescLister::class,
-        ],
-        CommentEvent::class  => [
-            CommentBaseListener::class,
-        ],
         UploadFileEvent::class => [
                 UploadFileLister::class,
         ],

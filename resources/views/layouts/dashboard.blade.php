@@ -14,6 +14,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
     <link rel="manifest" href="/orchid/favicon/manifest.json">
     <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic">
     <meta name="apple-mobile-web-app-title" content="ORCHID">
     <meta name="application-name" content="ORCHID">
     <meta name="theme-color" content="#ffffff">
@@ -23,7 +24,6 @@
 
     <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
     <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
     <script src="{{ mix('/js/manifest.js','orchid')}}" type="text/javascript"></script>
     <script src="{{ mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>

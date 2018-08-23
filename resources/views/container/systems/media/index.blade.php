@@ -54,6 +54,7 @@
 
 
     <div class="row">
+    <div class="container-fluid">
         <div class="col-md-8 b-r no-padder">
             <div id="filemanager" class="padder">
         <div id="content">
@@ -260,6 +261,7 @@
             </div>
 
         </div>
+    </div>
     </div>
 
 @stop

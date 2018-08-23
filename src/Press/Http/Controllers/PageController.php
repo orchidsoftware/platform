@@ -30,7 +30,6 @@ class PageController extends Controller
     public function show(Page $page = null)
     {
         $this->checkPermission('platform.posts.type.'.$page->slug);
-
         $type = $page->getEntityObject($page->slug);
 
         return view('platform::container.posts.page', [
@@ -52,6 +51,7 @@ class PageController extends Controller
     {
         $this->checkPermission('platform.posts.type.'.$page->slug);
         $type = $page->getEntityObject($page->slug);
+        $type->isValid();
 
         $page
             ->fill($request->all())

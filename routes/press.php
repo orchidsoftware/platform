@@ -58,20 +58,6 @@ $this->resource('category', 'CategoryController', [
     ],
 ]);
 
-$this->resource('comment', 'CommentController', [
-    'only'  => [
-        'index', 'create', 'edit', 'update', 'store', 'destroy',
-    ],
-    'names' => [
-        'index'   => 'platform.systems.comment',
-        'create'  => 'platform.systems.comment.create',
-        'edit'    => 'platform.systems.comment.edit',
-        'update'  => 'platform.systems.comment.update',
-        'store'   => 'platform.systems.comment.store',
-        'destroy' => 'platform.systems.comment.destroy',
-    ],
-]);
-
 $this->resource('menu', 'MenuController', [
     'only'  => [
         'index', 'show', 'update', 'create', 'destroy',

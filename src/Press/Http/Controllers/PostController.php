@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
@@ -12,7 +11,6 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Platform\Http\Controllers\Controller;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostController extends Controller
 {
@@ -62,23 +60,12 @@ class PostController extends Controller
     public function store(Request $request, Many $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
-        $this->validate($request, $type->rules());
+        $type->isValid();
 
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => $request->user()->id,
-            'publish_at' => is_null($request->get('publish')) ? null : Carbon::parse($request->get('publish')),
-            'options'    => $post->getOptions(),
         ]);
-
-        $slug = $request->get('slug');
-
-        if (! $request->filled('slug')) {
-            $content = $request->get('content');
-            $slug = $type->slugFields ? head($content)[$type->slugFields] : '';
-        }
-
-        $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
 
         $type->save($post);
 
@@ -120,26 +107,12 @@ class PostController extends Controller
     public function update(Request $request, Many $type, Post $post) : RedirectResponse
     {
         $this->checkPermission('platform.posts.type.'.$type->slug);
+        $type->isValid();
 
-        $post->fill($request->except('slug'));
-        $post->user_id = $request->user()->id;
-
-        $post->publish_at = is_null($request->get('publish')) ? null : Carbon::parse($request->get('publish'));
-        $post->options = $post->getOptions();
-
-        if ($request->filled('slug')) {
-            $slug = $request->get('slug');
-        } else {
-            $content = $request->get('content');
-            $entityObject = $post->getEntityObject();
-            if (property_exists($entityObject, 'slugFields')) {
-                $slug = head($content)[$entityObject->slugFields] ?? '';
-            }
-        }
-
-        if (! empty($slug) && $slug !== $post->slug) {
-            $post->slug = SlugService::createSlug(Post::class, 'slug', $slug);
-        }
+        $post->fill($request->all())->fill([
+            'type'       => $type->slug,
+            'user_id'    => $request->user()->id,
+        ]);
 
         $type->save($post);
 

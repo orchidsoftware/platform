@@ -112,20 +112,14 @@ export default class extends Controller {
                     value: 'img-fluid'
                 },
             ],
-            setup: this.setup,
+            setup: (element) => {
+                element.on('change', () => {
+                    $(input).val(element.getContent());
+                });
+            },
             images_upload_handler: this.upload
         });
     };
-
-    /**
-     *
-     * @param element
-     */
-    setup(element) {
-        element.on('change', () => {
-            $(input).val(element.getContent());
-        });
-    }
 
     /**
      *

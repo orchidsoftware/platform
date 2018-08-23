@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
@@ -135,6 +136,18 @@ class Post extends Model
                 'source' => 'slug',
             ],
         ];
+    }
+
+    /**
+     *
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function($model){
+            $model->createSlug($model->slug);
+        });
     }
 
     /**
@@ -454,5 +467,30 @@ class Post extends Model
         }
 
         return $this->filter($query, true);
+    }
+
+
+    /**
+     * @param string|null $slug
+     *
+     * @throws \Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable
+     */
+    public function createSlug($slug = null)
+    {
+        if(!is_null($slug) && $this->getOriginal('slug') === $slug){
+            $this->setAttribute('slug',$slug);
+            return;
+        }
+
+        if(is_null($slug)) {
+            $entityObject = $this->getEntityObject();
+            if (property_exists($entityObject, 'slugFields')) {
+                $content = $this->getAttribute('content');
+                $slug = head($content)[$entityObject->slugFields] ?? '';
+            }
+        }
+
+        $this->setAttribute('slug', SlugService::createSlug($this, 'slug', $slug));
     }
 }

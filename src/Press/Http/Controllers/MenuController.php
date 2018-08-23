@@ -94,12 +94,12 @@ class MenuController extends Controller
     }
 
     /**
-     * @param         $menu
+     * @param string $menu
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($menu, Request $request)
+    public function update(string $menu, Request $request)
     {
         $this->lang = $request->get('lang');
         $this->menu = $menu;

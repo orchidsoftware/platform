@@ -6,6 +6,7 @@ namespace Orchid\Press\Http\Filters;
 
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Screen\Fields\Field;
 
 class StatusFilter extends Filter
 {
@@ -32,13 +33,16 @@ class StatusFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function display()
     {
-        return view('platform::container.posts.filters.status', [
-            'request'  => $this->request,
-            'entity' => $this->entity,
-        ]);
+        return Field::tag('select')
+            ->name('status')
+            ->value($this->request->get('status'))
+            ->options($this->entity->status())
+            ->title(trans('platform::common.filters.status'))
+            ->autocomplete('off')
+            ->hr(false);
     }
 }

@@ -119,7 +119,6 @@ abstract class Many
                 ->type('text')
                 ->name('slug')
                 ->max(255)
-                ->required()
                 ->title(trans('platform::post/base.semantic_url'))
                 ->placeholder(trans('platform::post/base.semantic_url_unique_name')),
 

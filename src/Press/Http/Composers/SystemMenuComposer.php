@@ -59,6 +59,7 @@ class SystemMenuComposer
                 'groupname'  => trans('platform::systems/category.groupname'),
                 'sort'       => 2,
             ])
+            /*
             ->add('CMS', [
                 'slug'       => 'comment',
                 'icon'       => 'icon-bubbles',
@@ -76,6 +77,7 @@ class SystemMenuComposer
                     },
                 ],
             ])
+            */
             ->add('CMS', [
                 'slug'       => 'media',
                 'icon'       => 'icon-folder-alt',
