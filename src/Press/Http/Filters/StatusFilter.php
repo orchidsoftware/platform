@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
+use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Screen\Fields\Field;
 
 class StatusFilter extends Filter
 {

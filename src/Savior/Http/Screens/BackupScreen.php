@@ -148,6 +148,6 @@ class BackupScreen extends Screen
         $base = log($size) / log(1024);
         $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
-        return round(1024 ** ($base - floor($base)), $precision).$suffixes[(int)floor($base)];
+        return round(1024 ** ($base - floor($base)), $precision).$suffixes[(int) floor($base)];
     }
 }

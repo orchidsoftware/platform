@@ -81,7 +81,7 @@ class UpdateWidget extends Widget
     public function requestVersion(): array
     {
         try {
-          return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
+            return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
         } catch (\Exception $exception) {
             Log::alert($exception->getMessage());
 

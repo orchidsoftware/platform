@@ -9,8 +9,6 @@
 |
 */
 
-
-
 $this->get('/', [
     'as'   => 'platform.systems.index',
     'uses' => 'SystemController@index',

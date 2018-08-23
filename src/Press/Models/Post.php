@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
@@ -22,6 +21,7 @@ use Orchid\Screen\Exceptions\TypeException;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -138,14 +138,11 @@ class Post extends Model
         ];
     }
 
-    /**
-     *
-     */
     public static function boot()
     {
         parent::boot();
 
-        self::saving(function($model){
+        self::saving(function ($model) {
             $model->createSlug($model->slug);
         });
     }
@@ -469,7 +466,6 @@ class Post extends Model
         return $this->filter($query, true);
     }
 
-
     /**
      * @param string|null $slug
      *
@@ -478,12 +474,13 @@ class Post extends Model
      */
     public function createSlug($slug = null)
     {
-        if(!is_null($slug) && $this->getOriginal('slug') === $slug){
-            $this->setAttribute('slug',$slug);
+        if (! is_null($slug) && $this->getOriginal('slug') === $slug) {
+            $this->setAttribute('slug', $slug);
+
             return;
         }
 
-        if(is_null($slug)) {
+        if (is_null($slug)) {
             $entityObject = $this->getEntityObject();
             if (property_exists($entityObject, 'slugFields')) {
                 $content = $this->getAttribute('content');

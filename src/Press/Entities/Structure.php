@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 trait Structure
@@ -85,7 +84,7 @@ trait Structure
      */
     public function isValid() : array
     {
-        return $this->validate(request(),$this->rules());
+        return $this->validate(request(), $this->rules());
     }
 
     /**
