@@ -163,9 +163,7 @@ class FoundationServiceProvider extends ServiceProvider
             return new Dashboard();
         });
 
-
-
-            $this->registerEloquentFactoriesFrom()
+        $this->registerEloquentFactoriesFrom()
             ->registerRoute()
             ->registerDatabase()
             ->registerConfig()
