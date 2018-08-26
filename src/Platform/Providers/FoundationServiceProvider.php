@@ -26,17 +26,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Dashboard::class, function () {
-            return new Dashboard();
-        });
-
-        $this->registerEloquentFactoriesFrom()
-            ->registerRoute()
-            ->registerDatabase()
-            ->registerTranslations()
-            ->registerConfig()
-            ->registerViews()
-            ->registerProviders();
+        $this->registerTranslations();
     }
 
     /**
@@ -168,5 +158,18 @@ class FoundationServiceProvider extends ServiceProvider
              */
             define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
+
+        $this->app->singleton(Dashboard::class, function () {
+            return new Dashboard();
+        });
+
+
+
+            $this->registerEloquentFactoriesFrom()
+            ->registerRoute()
+            ->registerDatabase()
+            ->registerConfig()
+            ->registerViews()
+            ->registerProviders();
     }
 }

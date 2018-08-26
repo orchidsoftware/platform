@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Savior\Providers;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Dashboard;
 use Orchid\Savior\Http\Composers\SystemMenuComposer;
 
 class SaviorServiceProvider extends ServiceProvider
@@ -27,8 +27,14 @@ class SaviorServiceProvider extends ServiceProvider
             ->registerPermissions($this->registerPermissions());
 
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
-        //$this->registerConfig();
-        //$this->registerDatabase();
+
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
         $this->registerProviders();
     }
 
@@ -39,7 +45,7 @@ class SaviorServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/savior'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH . '/database/migrations/savior'));
 
         return $this;
     }
@@ -52,7 +58,7 @@ class SaviorServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/config/savior.php') => config_path('savior.php'),
+            realpath(PLATFORM_PATH . '/config/savior.php') => config_path('savior.php'),
         ]);
 
         return $this;

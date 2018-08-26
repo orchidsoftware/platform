@@ -32,9 +32,15 @@ class BulldozerServiceProvider extends ServiceProvider
             ->registerEntities(config('press.entities', []))
             ->registerPermissions($this->registerPermissions());
 
-        $this->registerProviders();
-
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        $this->registerProviders();
     }
 
     /**
