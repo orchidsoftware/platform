@@ -16,10 +16,10 @@ Sigue este procedimento para criar comportamentos:
 
 ```php
 //Cria comportamentos para uma única entrada
-php artisan make:singleBehavior
+php artisan orchid:singleBehavior
 
 //Cria comportamentos para muitas entradas
-php artisan make:manyBehavior
+php artisan orchid:manyBehavior
 ```
 
 O comportamento privado deve ser registrado na seção `config/platform.php` na seção de tipos:

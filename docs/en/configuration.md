@@ -82,7 +82,7 @@ Authorization page has several settings like background image and your project m
 Also there is an ability to completely disable the embedded authorization form and implement your own with the following command:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 

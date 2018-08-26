@@ -13,7 +13,7 @@ Let's perform the changes in ou database scheme to make it contain `Surname`, `N
 
 To do so perform the following:
 ```php
-php artisan make:migration create_table_users_history
+php artisan orchid:migration create_table_users_history
 ```
 
 This command will create a new file in the `database/migrations` folder, and we will then make it look like:
@@ -60,7 +60,7 @@ class CreateTableUsersHistory extends Migration
 Also let's create the second migration file that is related directly to our user:
 
 ```php
-php artisan make:migration create_fields_for_users
+php artisan orchid:migration create_fields_for_users
 ```
 
 With content:
@@ -119,7 +119,7 @@ Right after we created and applied all the required migrations we need to create
 To do so we create a new model using with the following:
 
 ```php 
-php artisan make:model History
+php artisan orchid:model History
 ```
 
 In thw `app` directory a file called `History.php` will be created let's put the following code into it:
@@ -338,7 +338,7 @@ Now during every successfull authorization all the required information will be 
 ORCHID in standard complection does not include the user profile, so we will create it by ourselves using the `Screen`, to do so we perform the following:
 
 ```php
-php artisan make:screen ProfileScreen
+php artisan orchid:screen ProfileScreen
 ```
 
 Artisan will create a new file in `app/Http/Controllers/Screens` directiory, and if you are a skillful user it's recomended to change this folder name to `app/Http/Screens`,
@@ -465,7 +465,7 @@ return [
 Let's create the widget to further be able to pass them on demand:
 
 ```php
-php artisan make:widget CityWidget
+php artisan orchid:widget CityWidget
 ```
 
 A new file will be created in `app/Http/Widgets/CityWidget.php` and we don't need to register it like the template widgets.
@@ -522,7 +522,7 @@ it's not necessary to use the configuration parameters as storage, it may also b
 To be able to change the profile data it's nesessary to generate a form with input fields, let's create a new string template:
 
 ```php
-php artisan make:row ProfileLayout
+php artisan orchid:row ProfileLayout
 ```
 
 Add the fields we want to change for user in the `app/Layouts/ProfileLayout.php` file:
@@ -715,7 +715,7 @@ Our profile screen will not be complete without an ability to change the passwor
 To do so we create a new template:
 
 ```php
-php artisan make:row ProfilePasswordLayout
+php artisan orchid:row ProfilePasswordLayout
 ```
 
 It will only contain the fields `password` and `repeat the password`:
@@ -827,7 +827,7 @@ Great, our profile screen is almost ready.
 Let's add a table that will contain data about devices that were used to authorize, to do it we create a table layout:
 
 ```php
-php artisan make:table HistoryLayout
+php artisan orchid:table HistoryLayout
 ```
 
 ```php
@@ -925,7 +925,7 @@ It's necessary to register the layout for the screen and pass on our data:
 Now as we have our table displayed at the screen let's add an ability to filter it, to do it we create two filters:
 
 ```php
-php artisan make:filter BrowserFilter
+php artisan orchid:filter BrowserFilter
 ```
 
 ```php
@@ -1089,7 +1089,7 @@ Now we may select entries by browser and OS.
 Let's add charts that will display user statistics:
 
 ```php 
-php artisan make:chart BrowserLayout
+php artisan orchid:chart BrowserLayout
 ``` 
 
 With content:

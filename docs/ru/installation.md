@@ -78,7 +78,7 @@ class User extends BaseUser
 Для создания пользователя с максимальными правами на текущий момент, необходимо выполнить команду передав
 имя пользователя, электронный адрес и пароль:
 ```php
-php artisan make:admin admin admin@admin.com password
+php artisan orchid:admin admin admin@admin.com password
 ```
 
 ## Запуск проекта

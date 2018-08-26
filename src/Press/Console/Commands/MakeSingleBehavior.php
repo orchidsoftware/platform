@@ -13,7 +13,7 @@ class MakeSingleBehavior extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:singleBehavior';
+    protected $name = 'orchid:singleBehavior';
 
     /**
      * The console command description.

@@ -20,7 +20,7 @@
 Макет таблицы используется для вывода минимальной информации для просмотра и выборки.
 
 ```php
-php artisan make:table PatientListLayout
+php artisan orchid:table PatientListLayout
 ```
 
 Пример:
@@ -140,7 +140,7 @@ class PatientListLayout extends Table
 
 Для создания исполните команду:
 ```php
-php artisan make:rows PatientFirstRows
+php artisan orchid:rows PatientFirstRows
 ```
 
 Пример:

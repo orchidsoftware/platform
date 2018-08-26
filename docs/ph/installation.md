@@ -77,7 +77,7 @@ class User extends BaseUser
 Upang makalikha ng isang tagagamit na may pinakamataas na karapatan sa kasalukuyang pagkakataon, kailangan mong paganahin ang utos sa pamamagitan ng pagpasa ng
 username, email address at password:
 ```php
-php artisan make: admin admin admin@admin.com password
+php artisan orchid: admin admin admin@admin.com password
 ```
 
 ## Ilunsad ang proyekto

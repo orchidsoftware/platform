@@ -30,7 +30,7 @@ With ORCHID it's easier to do it, and you may create a set of screens in a few m
 To create a new screen you must perform the following comand:
 
 ```php
-php artisan make:screen Users
+php artisan orchid:screen Users
 ```
 
 In the `app/Http/Controllers/Screens` directory will be created the `Users` file with the following content:

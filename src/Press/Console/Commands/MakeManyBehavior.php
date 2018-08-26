@@ -13,7 +13,7 @@ class MakeManyBehavior extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:manyBehavior';
+    protected $name = 'orchid:manyBehavior';
 
     /**
      * The console command description.

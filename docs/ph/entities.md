@@ -17,10 +17,10 @@ Makakalikha ka ng mga paggalaw gamit ang mga sumusunod na mga utos:
 
 ```php
 //Lumilikha ng mga galaw sa isang tala
-php artisan make: singleBehavior
+php artisan orchid: singleBehavior
 
 //Lumilikha ng mga galaw sa maraming mga tala
-php artisan make: manyBehavior
+php artisan orchid: manyBehavior
 ```
 
 Ang sariling paggalaw ay dapat nakarehistro sa `config/platform.php` sa uring seksyon

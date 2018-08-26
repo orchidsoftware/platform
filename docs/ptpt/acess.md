@@ -52,7 +52,7 @@ Executa o seguinte comando para criares um utilizador com direitos supremos (no 
 
 
 ```php
-php artisan make:admin nickname email@email.com secretpassword
+php artisan orchid:admin nickname email@email.com secretpassword
 ```
 
 

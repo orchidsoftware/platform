@@ -35,7 +35,7 @@
 Для создания нового экрана требуется выполнить команду:
 
 ```php
-php artisan make:screen Users
+php artisan orchid:screen Users
 ```
 
 В директории `app/Http/Controllers/Screens` будет создан файл `Users` со следующим содержанием:

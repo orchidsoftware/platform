@@ -129,7 +129,7 @@ Now let's create our one-level menu widget that we will be able to control from 
 To do so execute the following command:
 
 ```php
-php artisan make:widget MenuWidget
+php artisan orchid:widget MenuWidget
 ```
 
 
@@ -202,7 +202,7 @@ Great, let's display our blog posts, to do it we will use or platform's `many po
 
 
 ```php
-php artisan make:manyBehavior Blog
+php artisan orchid:manyBehavior Blog
 ```
 
 At the address `/app/Entities/Many` the empty `Blog.php` will be created, now let's fill it:
@@ -349,7 +349,7 @@ After you save, the new post section will occur in the main menu. Now we may fil
 Our posts need to be displayed, so we create the controller with the following contents:
 
 ```php
-php artisan make:controller BlogController
+php artisan orchid:controller BlogController
 ```
 
 ```php

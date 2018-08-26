@@ -82,7 +82,7 @@ A página de autorização possui várias configurações como a imagem de fundo
 Além disto, existe a capacidade de desativar completamente o formulário de autorização incorporado e implementar o teu próprio com o seguinte comando:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 

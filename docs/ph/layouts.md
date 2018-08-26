@@ -20,7 +20,7 @@ Isa sa mga elemento ng presentasyon ay ang mga "Layout", ito ang mga layout na m
 Ang talahanayang layout ay ginagamit sa paglalahad ng pinakamaliit na impormasyon para sa pagpapakita at pagkukuha ng sample.
 
 ```php
-php artisan make: table PatientListLayout
+php artisan orchid: table PatientListLayout
 ```
 
 Example:
@@ -83,7 +83,7 @@ Ang layunin nito ay pag-isahin ang lahat ng mahahalagang mga field.
 
 Upang maglikha, paganahin ang sumusunod na utos:
 ```php
-php artisan make: rows PatientFirstRows
+php artisan orchid: rows PatientFirstRows
 ```
 
 Halimbawa:

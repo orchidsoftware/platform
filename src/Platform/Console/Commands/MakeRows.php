@@ -13,7 +13,7 @@ class MakeRows extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:rows';
+    protected $name = 'orchid:rows';
 
     /**
      * The console command description.

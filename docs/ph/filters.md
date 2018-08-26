@@ -14,7 +14,7 @@ kailangan mong palawakin ang istraktura para sa iyong mga partikular na aplikasy
 Upang makalikha ng bagong filter, may isang utos:
 
 ```php
-php artisan make: filter QueryFilter
+php artisan orchid: filter QueryFilter
 ```
 
 Maglilikha ito ng isang klaseng filter sa folder na `app/Http/Filters`

@@ -65,7 +65,7 @@ Upang makalikha ng isang tagagamit na may pinakamataas na karapatan (sa oras ng 
 
 
 ```php
-php artisan make: admin nickname email@email.com secretpassword
+php artisan orchid: admin nickname email@email.com secretpassword
 ```
 
 

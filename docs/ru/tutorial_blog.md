@@ -129,7 +129,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
 Для этого выполним команду:
 
 ```php
-php artisan make:widget MenuWidget
+php artisan orchid:widget MenuWidget
 ```
 
 
@@ -202,7 +202,7 @@ class MenuWidget extends Widget {
 
 
 ```php
-php artisan make:manyBehavior Blog
+php artisan orchid:manyBehavior Blog
 ```
 
 По адресу `/app/Entities/Many`, будет создан пустой файл `Blog.php`, давайте наполним его :
@@ -349,7 +349,7 @@ class Blog extends Many
 Но наши записи требуют отображения, для этого создадим контроллер c содержанием:
 
 ```php
-php artisan make:controller BlogController
+php artisan orchid:controller BlogController
 ```
 
 ```php

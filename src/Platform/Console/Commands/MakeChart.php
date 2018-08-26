@@ -13,7 +13,7 @@ class MakeChart extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:chart';
+    protected $name = 'orchid:chart';
 
     /**
      * The console command description.

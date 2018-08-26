@@ -17,10 +17,10 @@
 
 ```php
 //Создать поведения для одной записи  
-php artisan make:singleBehavior      
+php artisan orchid:singleBehavior      
 
 //Создать поведения для многих записей
-php artisan make:manyBehavior
+php artisan orchid:manyBehavior
 ```
 
 Собственное поведение должно быть зарегистрировано в `config/platform.php` в разделе типов:

@@ -19,7 +19,7 @@ One of the elements of presentation is "Layouts", these are layouts displayable 
 Table layout is used to output minimal information for review and sampling.
 
 ```php
-php artisan make:table PatientListLayout
+php artisan orchid:table PatientListLayout
 ```
 
 Example:
@@ -93,7 +93,7 @@ Its objective to complex all the essential fields.
 
 Use the following command for creation:
 ```php
-php artisan make:rows PatientFirstRows
+php artisan orchid:rows PatientFirstRows
 ```
 
 Example:

@@ -14,7 +14,7 @@
 Для создания нового фильтра существует команда:
 
 ```php
-php artisan make:filter QueryFilter
+php artisan orchid:filter QueryFilter
 ```
 
 Это создаст класс фильтр в папке `app/Http/Filters`

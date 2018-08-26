@@ -16,7 +16,7 @@
 
 Для этого выполним команду:
 ```php
-php artisan make:migration create_table_users_history
+php artisan orchid:migration create_table_users_history
 ```
 
 Это команда создаст новый файл в директории `database/migrations`, приведем его к виду:
@@ -63,7 +63,7 @@ class CreateTableUsersHistory extends Migration
 Также создадим второй файл миграции относящийся непосредственно к пользователю:
 
 ```php
-php artisan make:migration create_fields_for_users
+php artisan orchid:migration create_fields_for_users
 ```
 
 С содержанием:
@@ -122,7 +122,7 @@ php artisan migrate
 Для этого создадим новую модель с помощью:
 
 ```php 
-php artisan make:model History
+php artisan orchid:model History
 ```
 
 В директории `app`, будет создан файл `History.php`, опишем его следующим образом:
@@ -341,7 +341,7 @@ class EventServiceProvider extends ServiceProvider
 ORCHID в стандартной поставки не имеет профиля пользователя, поэтому сделаем его самостоятельно с помощью `Экрана`, для этого выполним:
 
 ```php
-php artisan make:screen ProfileScreen
+php artisan orchid:screen ProfileScreen
 ```
 
 Artisan создаст файл в директории `app/Http/Controllers/Screens`, если вы опытный пользователь, то рекомендуется изменить данный каталог на  `app/Http/Screens`,
@@ -468,7 +468,7 @@ return [
 Создадим виджет, для того, чтобы в будущем передавать их по запросу, для этого создадим новый виджет:
 
 ```php
-php artisan make:widget CityWidget
+php artisan orchid:widget CityWidget
 ```
 
 Новый файл будет создан в `app/Http/Widgets/CityWidget.php`, в отличии от виджетов для шаблонов, нам нет нужды регистрировать его.
@@ -525,7 +525,7 @@ class CityWidget extends Widget {
 Чтобы дать возможность менять данные своего профиля необходимо генерировать форму с полями для ввода, для этого создадим новый макет строки:
 
 ```php
-php artisan make:row ProfileLayout
+php artisan orchid:row ProfileLayout
 ```
 
 Добавим поля которые мы хотим менять у пользователя в новом файле `app/Layouts/ProfileLayout.php`:
@@ -718,7 +718,7 @@ class ProfileScreen extends Screen
 Для этого, потребуется создать новый макет:
 
 ```php
-php artisan make:row ProfilePasswordLayout
+php artisan orchid:row ProfilePasswordLayout
 ```
 
 Содержащий только поля `пароль` и `повторите пароль`:
@@ -830,7 +830,7 @@ class ProfilePasswordLayout extends Rows
 Добавим таблицу в которой будут данные о том, с каких устройств происходила авторизация, для этого создадим макет таблицы:
 
 ```php
-php artisan make:table HistoryLayout
+php artisan orchid:table HistoryLayout
 ```
 
 ```php
@@ -928,7 +928,7 @@ class HistoryLayout extends Table
 Теперь наша таблица отображается на экране, добавим возможность фильтрации для этого создадим два фильтра:
 
 ```php
-php artisan make:filter BrowserFilter
+php artisan orchid:filter BrowserFilter
 ```
 
 ```php
@@ -1092,7 +1092,7 @@ class PlatformFilter extends Filter
 Добавим графики которые бы отображали статистику использования:
 
 ```php 
-php artisan make:chart BrowserLayout
+php artisan orchid:chart BrowserLayout
 ``` 
 
 С содержанием:

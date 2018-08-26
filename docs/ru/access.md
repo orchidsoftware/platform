@@ -65,7 +65,7 @@ $role->getUsers();
 
 
 ```php
-php artisan make:admin nickname email@email.com secretpassword
+php artisan orchid:admin nickname email@email.com secretpassword
 ```
 
 

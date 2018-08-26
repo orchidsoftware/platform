@@ -35,7 +35,7 @@ Gamitin ang naka-built-in na Laravel na utos upang lumikha ng mga blanko ng laha
  gamit ang utos na:
 
 ```php
-php artisan make: auth
+php artisan orchid: auth
 ```
 
 Magdagdag tayo ng `auth` na middleware sa konpigurasyon ng plataporma ` config/platform.php`, para sa mga tamang pagredirekta.

@@ -11,7 +11,7 @@
 Чтобы создать новый виджет, необходимо выполнить:
 
 ```php
-php artisan make:widget MySuperWidget
+php artisan orchid:widget MySuperWidget
 ```
 
 В папке `app/Http/Widgets` создаться класс шаблон виджета, как и у контроллера, у виджета может быть собственное представление.

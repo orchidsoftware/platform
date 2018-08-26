@@ -13,7 +13,7 @@ class MakeTable extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:table';
+    protected $name = 'orchid:table';
 
     /**
      * The console command description.

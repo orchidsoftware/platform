@@ -77,7 +77,7 @@ class User extends BaseUser
 
 Run the following command to create a user with supreme (at the moment of creation) rights passing the username, e-mail and password:
 ```php
-php artisan make:admin admin admin@admin.com password
+php artisan orchid:admin admin admin@admin.com password
 ```
 
 ## Run project

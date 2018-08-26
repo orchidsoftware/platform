@@ -16,7 +16,7 @@ class MakeWidget extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:widget';
+    protected $name = 'orchid:widget';
 
     /**
      * The console command description.

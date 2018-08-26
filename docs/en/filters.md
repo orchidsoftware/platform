@@ -13,7 +13,7 @@ This is neither box solution nor universal tool, so you should extend structure 
 There is a command to create a new filter:
 
 ```php
-php artisan make:filter QueryFilter
+php artisan orchid:filter QueryFilter
 ```
 
 It will create filter class at the folder `app/Http/Filters`

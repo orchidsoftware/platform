@@ -13,7 +13,7 @@ Esta não é solução da caixa nem da ferramenta universal, então deves estend
 Existe um comando para criar um novo filtro:
 
 ```php
-php artisan make:filter QueryFilter
+php artisan orchid:filter QueryFilter
 ```
 
 Ele vai criar a classe de filtro na pasta `app/Http/Filters`

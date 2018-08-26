@@ -16,10 +16,10 @@ Follow this procedure to create entities:
 
 ```php
 //Create entities for a single entry
-php artisan make:singleBehavior
+php artisan orchid:singleBehavior
 
 //Create entities for many entries 
-php artisan make:manyBehavior
+php artisan orchid:manyBehavior
 ```
 
 Private entity must be registered at `config/platform.php` in types section:

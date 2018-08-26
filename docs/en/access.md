@@ -54,7 +54,7 @@ Run the following command to create a user with supreme (at the moment of creati
 
 
 ```php
-php artisan make:admin nickname email@email.com secretpassword
+php artisan orchid:admin nickname email@email.com secretpassword
 ```
 
 

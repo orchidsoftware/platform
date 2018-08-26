@@ -13,7 +13,7 @@ class MakeFilter extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:filter';
+    protected $name = 'orchid:filter';
 
     /**
      * The console command description.

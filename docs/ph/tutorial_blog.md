@@ -128,7 +128,7 @@ Ngayon, lumikha tayo ng ating widget ng isahang antas na menu, upang mapamahalaa
 Upang gawin ito, paganahin ang sumusunod na utos:
 
 ```php
-php artisan make:widget MenuWidget
+php artisan orchid:widget MenuWidget
 ```
 
 Ang artisan ay gagawa ng isang bakanteng widget na file sa `/app/Http/Widgets`.
@@ -199,7 +199,7 @@ Pagkatapos, ang display ay magmumukhang ganito:
 Magaling, ngayon ipapakita natin ang mga tala ng ating mga blog, dito gagamit tayo ng maraming mga tala ng plataporma:
 
 ```php
-php artisan make:manyBehavior Blog
+php artisan orchid:manyBehavior Blog
 ```
 
 Sa address na `/app/Core/Entities/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
@@ -306,7 +306,7 @@ Pagkatapos i-seyb, ang pangunahing menu ay magiging ang pagtatalang seksyon. Nga
 Ang ating mga tala ay nangangailangan ng pagma-map, dahil dito lilikha tayo ng tagakontrol na may nilalamang:
 
 ```php
-php artisan make:controller BlogController
+php artisan orchid:controller BlogController
 ```
 
 ```php

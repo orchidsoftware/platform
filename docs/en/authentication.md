@@ -27,7 +27,7 @@ First, to turn our embedded authentication page off, we change the `display` val
 Then, we use the built-in Laravel command to create all the required routes and templates:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 We add `auth` middleware to our platform configuration `config/platform.php` to allow correct redirections.

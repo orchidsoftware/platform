@@ -13,7 +13,7 @@ class MakeScreen extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:screen';
+    protected $name = 'orchid:screen';
 
     /**
      * The console command description.

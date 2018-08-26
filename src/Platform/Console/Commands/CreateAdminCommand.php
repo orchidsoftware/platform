@@ -16,7 +16,7 @@ class CreateAdminCommand extends Command
      *
      * @var string
      */
-    protected $name = 'make:admin';
+    protected $name = 'orchid:admin';
 
     /**
      * @var string
