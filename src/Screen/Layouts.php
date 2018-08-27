@@ -27,6 +27,7 @@ class Layouts
         'columns' => 'platform::container.layouts.columns',
         'modals'  => 'platform::container.layouts.modals',
         'div'     => 'platform::container.layouts.div',
+        'blank'   => 'platform::container.layouts.blank',
     ];
 
     /**
@@ -122,10 +123,10 @@ class Layouts
     public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = ! is_array($layouts) ? [$layouts] : $layouts;
+            $layouts = !is_array($layouts) ? [$layouts] : $layouts;
 
             foreach ($layouts as $layout) {
-                $layout = ! is_object($layout) ? new $layout : $layout;
+                $layout = !is_object($layout) ? new $layout : $layout;
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
                     $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());
@@ -136,7 +137,7 @@ class Layouts
             }
         }
 
-        return view($async ? 'platform::container.layouts.async' : $this->templates[$this->active], [
+        return view($async ? 'platform::container.layouts.black' : $this->templates[$this->active], [
             'manyForms'           => $build ?? [],
             'compose'             => $this->compose,
             'templateSlug'        => $this->slug,
@@ -152,7 +153,7 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function async(string $method, $async = true) : self
+    public function async(string $method, $async = true): self
     {
         $this->async = $async;
         $this->asyncMethod = $method;
@@ -165,7 +166,7 @@ class Layouts
      *
      * @return \Orchid\Screen\Layouts
      */
-    public function route(string $route) : self
+    public function route(string $route): self
     {
         $this->asyncRoute = $route;
 

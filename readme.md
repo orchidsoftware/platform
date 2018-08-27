@@ -47,24 +47,6 @@ Install package
 php artisan orchid:install
 ```
 
-Create your admin user
-```php
-php artisan orchid:admin admin admin@admin.com password
-```
-
-Run server
-```php
-php artisan serve
-```
-
-#### Usage
-
-To view ORCHID's dashboard go to:
-```php
-http://localhost:8000/dashboard
-```
-
-
 ## Change log
 
 See [CHANGELOG](CHANGELOG.md).
@@ -72,14 +54,6 @@ See [CHANGELOG](CHANGELOG.md).
 ## Security
 
 If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
 
 
 ## Test

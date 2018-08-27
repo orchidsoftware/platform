@@ -36,10 +36,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Deleting a dashboard store [623](https://github.com/orchidsoftware/platform/issues/623)
 
 ### Removed
-- Font Awesome
 - Bootstrap 3 appendix
 - "Delete" button by default in the image field
 - String record of parameters for building a form [391](https://github.com/orchidsoftware/platform/issues/391)
+
+
+## [2.2.4] - 2018-08-28
+
+### Fixed
+- Save menu dublicate
+- Laravel RouteServiceProvider default namespace override [680](https://github.com/orchidsoftware/platform/issues/680)
+
+### Removed
+- Font Awesome
 
 ## [2.2.3] - 2018-03-01
 ### Added
