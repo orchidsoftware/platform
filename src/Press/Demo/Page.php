@@ -91,6 +91,7 @@ class Page extends Single
                             'index'   => 'Index',
                             'noindex' => 'No index',
                         ])
+                        ->multiple()
                         ->name('robot')
                         ->title('Indexing')
                         ->help('Allow search bots to index page'),
@@ -170,6 +171,8 @@ class Page extends Single
      */
     public function options(): array
     {
+        return [];
+        /*
         return [
             Field::tag('upload')
                 //default
@@ -193,15 +196,6 @@ class Page extends Single
                 ->resizeWidth(200)
                 ->resizeHeight(200),
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public function modules() : array
-    {
-        return [
-            UploadPostForm::class,
-        ];
+        */
     }
 }

@@ -47,7 +47,6 @@ class CategoryEditLayout extends Rows
 
                     return  [$parent_id => $this->query->getContent('catselect')[$parent_id]];
                 })
-                ->class('select2')
                 ->name('category.parent_id')
                 ->title(trans('platform::systems/category.parent'))
                 ->placeholder(trans('platform::systems/category.parent')),

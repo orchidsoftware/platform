@@ -30,7 +30,6 @@ class UserRoleLayout extends Rows
                     ->pluck('name', 'slug')
                     ->toArray();
             })
-            ->class('select2')
             ->multiple()
             ->name('roles[]')
             ->title(trans('platform::systems/users.roles'))
