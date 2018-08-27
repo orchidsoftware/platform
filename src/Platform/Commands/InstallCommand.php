@@ -54,7 +54,7 @@ class InstallCommand extends Command
         sleep(1);
 
         $this
-            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true,'--tag' => 'config,migrations'])
+            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true, '--tag' => 'config,migrations'])
             ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')

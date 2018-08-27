@@ -50,7 +50,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
 
-
         return $this;
     }
 
@@ -77,7 +76,7 @@ class FoundationServiceProvider extends ServiceProvider
             realpath(PLATFORM_PATH.'/config/scout.php')    => config_path('scout.php'),
             realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
             realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
-        ],'config');
+        ], 'config');
 
         return $this;
     }
@@ -106,7 +105,7 @@ class FoundationServiceProvider extends ServiceProvider
         $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
         $this->publishes([
-            PLATFORM_PATH . '/resources/views' => resource_path('views/vendor/orchid/platform'),
+            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/orchid/platform'),
         ], 'views');
 
         return $this;

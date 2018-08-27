@@ -38,7 +38,7 @@ trait Environment
 
         $this->artisan('vendor:publish', [
             '--all' => true,
-            '--tag' => 'config,migrations'
+            '--tag' => 'config,migrations',
         ]);
 
         $this->artisan('migrate:fresh', [
