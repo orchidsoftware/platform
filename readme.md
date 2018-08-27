@@ -49,7 +49,7 @@ php artisan orchid:install
 
 Create your admin user
 ```php
-php artisan make:admin admin admin@admin.com password
+php artisan orchid:admin admin admin@admin.com password
 ```
 
 Run server

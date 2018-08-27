@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 

@@ -13,10 +13,7 @@
     <li><a href="/en/docs/configuration">Configuration</a></li>
     <li><a href="/en/docs/authentication">Authentication</a></li>
     <li><a href="/en/docs/tutorial_blog">Blog creation</a></li>
-    <li><a href="/en/docs/tutorial_phpinfo">Form expansion</a></li>
     <li><a href="/en/docs/tutorial_profile">Profile creation</a></li>
-     <!--<li><a href="/en/docs/tutorial_clinic">Application creation</a></li> -->
-     <!--<li><a href="/en/docs/tutorial_monitor">Packet development</a></li> -->
 </ul>
 
 <h4 class="text-orchid font-thin">Platform</h4>

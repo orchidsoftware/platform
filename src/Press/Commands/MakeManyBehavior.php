@@ -2,41 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Press\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeWidget extends GeneratorCommand
+class MakeManyBehavior extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:widget';
+    protected $name = 'orchid:manyBehavior';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new widget class';
+    protected $description = 'Create a new entity class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Widget';
+    protected $type = 'Behavior';
 
     /**
      * Get the stub file for the generator.
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/widget.stub';
+        return PLATFORM_PATH.'/resources/stubs/many.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class MakeWidget extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Http\Widgets';
+        return $rootNamespace.'\Entities\Many';
     }
 }

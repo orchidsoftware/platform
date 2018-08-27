@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Console\Commands\MakeRows;
-use Orchid\Platform\Console\Commands\MakeChart;
-use Orchid\Platform\Console\Commands\MakeTable;
-use Orchid\Platform\Console\Commands\MakeFilter;
-use Orchid\Platform\Console\Commands\MakeScreen;
-use Orchid\Platform\Console\Commands\MakeWidget;
-use Orchid\Platform\Console\Commands\InstallCommand;
-use Orchid\Platform\Console\Commands\PublicLinkCommand;
-use Orchid\Platform\Console\Commands\CreateAdminCommand;
+use Orchid\Platform\Commands\MakeRows;
+use Orchid\Platform\Commands\MakeChart;
+use Orchid\Platform\Commands\MakeTable;
+use Orchid\Platform\Commands\MakeFilter;
+use Orchid\Platform\Commands\MakeScreen;
+use Orchid\Platform\Commands\MakeWidget;
+use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\PublicLinkCommand;
+use Orchid\Platform\Commands\CreateAdminCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

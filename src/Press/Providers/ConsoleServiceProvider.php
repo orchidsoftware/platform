@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Press\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Press\Console\Commands\MakeManyBehavior;
-use Orchid\Press\Console\Commands\MakeSingleBehavior;
+use Orchid\Press\Commands\MakeManyBehavior;
+use Orchid\Press\Commands\MakeSingleBehavior;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

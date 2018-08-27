@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\Command;
 use Orchid\Platform\Providers\FoundationServiceProvider;
@@ -54,7 +54,7 @@ class InstallCommand extends Command
         sleep(1);
 
         $this
-            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true])
+            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true,'--tag' => 'config,migrations'])
             ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
@@ -158,7 +158,7 @@ class InstallCommand extends Command
             return $this;
         }
 
-        $this->line("To create a user, run 'artisan make:admin'");
+        $this->line("To create a user, run 'artisan orchid:admin'");
 
         return $this;
     }

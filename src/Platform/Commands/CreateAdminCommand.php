@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
@@ -21,7 +21,7 @@ class CreateAdminCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'make:admin {name} {email} {password}';
+    protected $signature = 'orchid:admin {name} {email} {password}';
 
     /**
      * The console command description.

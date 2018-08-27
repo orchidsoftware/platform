@@ -19,7 +19,7 @@
                         <h4 class="modal-title" data-target="screen--modal.title"></h4>
                     </div>
                     <div class="modal-body">
-                        <div class="async-content">
+                        <div data-async>
                             @foreach($modal as $item)
                                 {!! $item or '' !!}
                             @endforeach

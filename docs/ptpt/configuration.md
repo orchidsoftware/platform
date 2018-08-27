@@ -4,19 +4,6 @@
 O ORCHID usa o sistema de configuração padrão Laravel.
 Todos os parâmetros podem ser encontrados no diretório `config`, e o arquivo `platform.php` é o principal para a plataforma. Cada configuração é sugerida com comentários que somam a sua essência.
 
-
-## Modo sem cabeça
-
-```php
-'headless' => false,
-```
-
-É óbvio que a plataforma não é capaz de cobrir todo o trabalho do desenvolvedor, portanto, oferece a capacidade de desligar completamente a interface gráfica.
-Pode ser útil criares o aplicativo com o conteúdo gerado por utilizadores que não precisará de administração externa.
-É uma ótima solução também no caso de quereres usar a tua própria interface gráfica (Por exemplo, se quiseres incorporar um painel na tua interface).
-
-Quando este modo está ativo, o ORCHID não irá registrar as tuas rotas de aplicação e terás que implementar tu própio toda a funcionalidade necessária.
-
 ## Endereço da plataforma
 
 ```php

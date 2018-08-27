@@ -74,7 +74,6 @@ class FieldTest extends TestUnitCase
             [\Orchid\Screen\Fields\Types\LabelField::class,
                 [
                     'name'  => 'example',
-                    'value' => 'example',
                 ], ],
             [\Orchid\Screen\Fields\Types\UploadField::class,
                 [

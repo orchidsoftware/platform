@@ -38,6 +38,7 @@ trait Environment
 
         $this->artisan('vendor:publish', [
             '--all' => true,
+            '--tag' => 'config,migrations'
         ]);
 
         $this->artisan('migrate:fresh', [
@@ -52,7 +53,7 @@ trait Environment
             '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
         ]);
 
-        $this->artisan('make:admin', [
+        $this->artisan('orchid:admin', [
             'name'     => 'admin',
             'email'    => 'admin@admin.com',
             'password' => 'password',
@@ -74,6 +75,7 @@ trait Environment
             'prefix'   => '',
         ]);
         $app['config']->set('database.default', 'orchid');
+        $app['config']->set('activitylog.enabled', false);
     }
 
     /**

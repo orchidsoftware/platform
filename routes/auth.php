@@ -15,8 +15,7 @@ if (config('platform.auth.display', true)) {
     $this->post('login', 'LoginController@login')->name('platform.login.auth');
 
     // Password Reset Routes...
-    $this->get('password/reset',
-        'ForgotPasswordController@showLinkRequestForm')->name('platform.password.request');
+    $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('platform.password.request');
     $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('platform.password.email');
     $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('platform.password.reset');
     $this->post('password/reset', 'ResetPasswordController@reset');

@@ -1,233 +1,189 @@
-<!DOCTYPE html>
-<html lang="{{app()->getLocale()}}" data-controller="layouts--html-load">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') - ORCHID</title>
-    <meta name="csrf_token" content="{{csrf_token()}}">
-    <meta name="auth" content="{{Auth::check()}}">
-    <link rel="stylesheet" type="text/css" href="{{mix('/css/orchid.css','orchid')}}">
+@extends('platform::layouts.app')
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/orchid/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/orchid/favicon/manifest.json">
-    <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic">
-    <meta name="apple-mobile-web-app-title" content="ORCHID">
-    <meta name="application-name" content="ORCHID">
-    <meta name="theme-color" content="#ffffff">
 
-    <meta name="turbolinks-root" content="{{Dashboard::prefix()}}">
-    <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
+@section('body')
 
-    <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
-    <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
+<div id="app" class="app" data-controller="@yield('controller')">
 
-    <script src="{{ mix('/js/manifest.js','orchid')}}" type="text/javascript"></script>
-    <script src="{{ mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>
-    <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
+    <!-- header  -->
+    <header id="header" class="app-header navbar" role="menu">
+        <!-- navbar header  -->
+        <div class="navbar-header bg-black dk v-center">
 
-    @foreach(Dashboard::getResource('stylesheets') as $stylesheet)
-        <link rel="stylesheet" href="{{$stylesheet}}">
-    @endforeach
+            <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
+                <i class="icon-menu"></i>
+            </button>
 
-    @stack('stylesheets')
-    
-    @foreach(Dashboard::getResource('scripts') as $scripts)
-        <script src="{{$scripts}}" type="text/javascript"></script>
-    @endforeach
+            <!-- brand  -->
+            <a href="{{route('platform.index')}}" class="navbar-brand text-lt center">
+                <i class="{{config('platform.logo')}}"></i>
+            </a>
+            <!-- /brand  -->
 
-</head>
+            <button class="pull-right"
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <i class="icon-logout"></i>
+            </button>
 
-<body>
-    <div id="app" class="app" data-controller="@yield('controller')">
+        </div>
+        <!-- /navbar header  -->
 
-        <!-- header  -->
-        <header id="header" class="app-header navbar" role="menu">
-            <!-- navbar header  -->
-            <div class="navbar-header bg-black dk v-center">
+        <!-- navbar collapse  -->
+        <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
 
-                <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
-                    <i class="icon-menu"></i>
-                </button>
-
-                <!-- brand  -->
-                <a href="{{route('platform.index')}}" class="navbar-brand text-lt center">
-                    <i class="{{config('platform.logo')}}"></i>
-                </a>
-                <!-- /brand  -->
-
-                <button class="pull-right"
-                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="icon-logout"></i>
-                </button>
-
+            <div class="col-xs-12 col-md-4">
+                <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                <small class="text-muted text-ellipsis">@yield('description')</small>
             </div>
-            <!-- /navbar header  -->
 
-            <!-- navbar collapse  -->
-            <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
-
-                <div class="col-xs-12 col-md-4">
-                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                    <small class="text-muted text-ellipsis">@yield('description')</small>
-                </div>
-
-                <div class="col-xs-12 col-md-8">
-                    @yield('navbar')
-                </div>
-
-
+            <div class="col-xs-12 col-md-8">
+                @yield('navbar')
             </div>
-            <!-- / navbar collapse  -->
-        </header>
-        <!-- / header  -->
 
 
-        <!-- aside  -->
-        <aside id="aside" class="app-aside d-none d-md-block" data-controller="layouts--left-menu">
-            <div class="aside-wrap-main">
+        </div>
+        <!-- / navbar collapse  -->
+    </header>
+    <!-- / header  -->
 
-                <div class="navi-wrap">
+    <!-- aside  -->
+    <aside id="aside" class="app-aside d-none d-md-block" data-controller="layouts--left-menu">
+        <div class="aside-wrap-main">
 
-                    <!-- nav  -->
-                    <nav class="navi clearfix">
-                        <ul class="nav flex-column" role="tablist">
+            <div class="navi-wrap">
 
-                            {{--
-                            <li class="nav-item">
-                                <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
-                                    <i class="icon-menu" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            --}}
+                <!-- nav  -->
+                <nav class="navi clearfix">
+                    <ul class="nav flex-column" role="tablist">
 
-                            <li class="nav-item">
-                                <a href="{{route('platform.index')}}" class="navbar-brand nav-link text-lt w-full">
-                                    <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
-                                </a>
-                            </li>
+                        {{--
+                        <li class="nav-item">
+                            <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
+                                <i class="icon-menu" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        --}}
 
-
-                            <li role="presentation" class="nav-item">
-                                <a href="#globalSearch" id="globalSearch-tab" class="nav-link" role="tab" data-toggle="tab">
-                                    <i class="icon-magnifier"></i>
-                                    <span>Поиск</span>
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a href="{{route('platform.index')}}" class="navbar-brand nav-link text-lt w-full">
+                                <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
+                            </a>
+                        </li>
 
 
-                            {!! Dashboard::menu()->render('Main') !!}
+                        <li role="presentation" class="nav-item">
+                            <a href="#globalSearch" id="globalSearch-tab" class="nav-link" role="tab" data-toggle="tab">
+                                <i class="icon-magnifier"></i>
+                                <span>Поиск</span>
+                            </a>
+                        </li>
 
-                        </ul>
 
-                        <ul class="nav nav-footer-fix">
-                            @if(Auth::user()->hasAccess('platform.systems.index'))
-                                <li>
-                                    <a href="{{ route('platform.systems.index') }}">
-                                        <i class="icon-settings" aria-hidden="true"></i>
-                                        <span>{{trans('platform::menu.systems')}}</span>
-                                    </a>
-                                </li>
-                            @endif
+                        {!! Dashboard::menu()->render('Main') !!}
 
+                    </ul>
+
+                    <ul class="nav nav-footer-fix">
+                        @if(Auth::user()->hasAccess('platform.systems.index'))
                             <li>
-                                <a href="{{ route('platform.logout') }}"
-                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                                   dusk="logout-button">
-                                    <i class="icon-logout" aria-hidden="true"></i>
-                                    <span>{{trans('platform::auth/account.sign_out')}}</span>
+                                <a href="{{ route('platform.systems.index') }}">
+                                    <i class="icon-settings" aria-hidden="true"></i>
+                                    <span>{{trans('platform::menu.systems')}}</span>
                                 </a>
-
-                                <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                                      method="POST">
-                                    @csrf
-                                </form>
                             </li>
-                        </ul>
+                        @endif
 
-                    </nav>
-                    <!-- nav  -->
-                </div>
+                        <li>
+                            <a href="{{ route('platform.logout') }}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                               dusk="logout-button">
+                                <i class="icon-logout" aria-hidden="true"></i>
+                                <span>{{trans('platform::auth/account.sign_out')}}</span>
+                            </a>
 
+                            <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
+                                  method="POST">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
 
+                </nav>
+                <!-- nav  -->
             </div>
 
-            <div class="aside-wrap">
-                <div class="navi-wrap">
 
-                    <!-- nav  -->
-                    <nav class="navi clearfix">
+        </div>
 
-                        <div class="nav tab-content flex-column" id="aside-wrap-list">
+        <div class="aside-wrap">
+            <div class="navi-wrap">
 
-                            <div class="w-full tab-pane fade in nav show"
-                                 role="tabpanel"
-                                 id="menu-default"
-                                 aria-labelledby="notise-tab">
-                                @yield('aside', View::make('platform::partials.notifications'))
-                            </div>
+                <!-- nav  -->
+                <nav class="navi clearfix">
 
-                            <div class="w-full tab-pane fade in nav show"
-                                 role="tabpanel"
-                                 id="globalSearch"
-                                 aria-labelledby="globalSearch-tab">
+                    <div class="nav tab-content flex-column" id="aside-wrap-list">
 
-                                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Глобальный поиск</li>
-                                <form role="search">
-                                    <div class="form-group b-b b-dark">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control input-sm bg-black text-white no-border rounded padder" placeholder="Search projects..."
-                                            style="background: #222c3c!important">
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-
-                            {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
+                        <div class="w-full tab-pane fade in nav show"
+                             role="tabpanel"
+                             id="menu-default"
+                             aria-labelledby="notise-tab">
+                            @yield('aside', View::make('platform::partials.notifications'))
                         </div>
-                    </nav>
-                    <!-- nav  -->
 
+                        <div class="w-full tab-pane fade in nav show"
+                             role="tabpanel"
+                             id="globalSearch"
+                             aria-labelledby="globalSearch-tab">
 
-                </div>
-            </div>
+                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Глобальный поиск</li>
+                            <form role="search">
+                                <div class="form-group b-b b-dark">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm bg-black text-white no-border rounded padder" placeholder="Search projects..."
+                                        style="background: #222c3c!important">
+                                    </div>
+                                </div>
+                            </form>
 
+                        </div>
 
-        </aside>
-        <!-- / aside  -->
-
-
-        <!-- content  -->
-        <div id="content" class="app-content" role="main">
-            <div class="app-content-body" id="app-content-body">
-
-                @include('platform::partials.alert')
-
-                @empty(!$errors->count())
-                    <div class="alert alert-danger m-b-none" role="alert">
-                        <strong>Oh snap!</strong>
-                        Change a few things up and try submitting again.
-                        <ul class="m-t-xs">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
                     </div>
-                @endif
+                </nav>
+                <!-- nav  -->
 
-
-                @yield('content')
             </div>
         </div>
-        <!-- /content  -->
 
+
+    </aside>
+    <!-- / aside  -->
+
+
+    <!-- content  -->
+    <div id="content" class="app-content" role="main">
+        <div class="app-content-body" id="app-content-body">
+
+            @include('platform::partials.alert')
+
+            @empty(!$errors->count())
+                <div class="alert alert-danger m-b-none" role="alert">
+                    <strong>Oh snap!</strong>
+                    Change a few things up and try submitting again.
+                    <ul class="m-t-xs">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
+            @yield('content')
+        </div>
     </div>
+    <!-- /content  -->
 
-@stack('scripts')
+</div>
 
-</body>
-</html>
+@endsection

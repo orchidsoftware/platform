@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeManyBehavior extends GeneratorCommand
+class MakeScreen extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:manyBehavior';
+    protected $name = 'orchid:screen';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new entity class';
+    protected $description = 'Create a new screen class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Behavior';
+    protected $type = 'Screen';
 
     /**
      * Get the stub file for the generator.
@@ -36,7 +36,7 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/many.stub';
+        return PLATFORM_PATH.'/resources/stubs/screen.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Entities\Many';
+        return $rootNamespace.'\Http\Controllers\Screens';
     }
 }

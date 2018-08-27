@@ -32,7 +32,7 @@ export default class extends Controller {
     asyncLoadData(params) {
         let modal = this;
         axios.post( this.data.get('url') +'/'+ this.data.get('method') + '/' + this.data.get('slug'),params).then((response) => {
-            modal.element.querySelector('[class="async-content"]').innerHTML = response.data;
+            modal.element.querySelector('[data-async]').innerHTML = response.data;
         });
     }
     

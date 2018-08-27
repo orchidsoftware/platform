@@ -2,41 +2,41 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeChart extends GeneratorCommand
+class MakeWidget extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:chart';
+    protected $name = 'orchid:widget';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new chart layout class';
+    protected $description = 'Create a new widget class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Chart';
+    protected $type = 'Widget';
 
     /**
      * Get the stub file for the generator.
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub()
     {
-        return PLATFORM_PATH.'/resources/stubs/chart.stub';
+        return PLATFORM_PATH.'/resources/stubs/widget.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class MakeChart extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Layouts';
+        return $rootNamespace.'\Http\Widgets';
     }
 }

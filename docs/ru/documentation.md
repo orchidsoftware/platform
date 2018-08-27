@@ -16,10 +16,7 @@
     <li><a href="/ru/docs/configuration">Обзор параметров</a></li>
     <li><a href="/ru/docs/authentication">Авторизация</a></li>
     <li><a href="/ru/docs/tutorial_blog">Создание блога</a></li>
-    <li><a href="/ru/docs/tutorial_phpinfo">Расширение формы</a></li>
     <li><a href="/ru/docs/tutorial_profile">Создание экрана</a></li>
-     <!--<li><a href="/ru/docs/tutorial_clinic">Разработка приложения</a></li> -->
-     <!--<li><a href="/ru/docs/tutorial_monitor">Разработка пакета</a></li> -->
 </ul>
 
 <h4 class="text-orchid font-thin">Платформа</h4>

@@ -7,7 +7,6 @@ namespace Orchid\Screen;
 /**
  * Class Layouts.
  *
- * @method static Layouts blank(array $name)
  * @method static Layouts tabs(array $name)
  * @method static Layouts columns(array $name)
  * @method static Layouts modals(array $name)
@@ -24,7 +23,6 @@ class Layouts
      * @var array
      */
     public $templates = [
-        'blank'   => 'platform::container.layouts.blank',
         'tabs'    => 'platform::container.layouts.tabs',
         'columns' => 'platform::container.layouts.columns',
         'modals'  => 'platform::container.layouts.modals',
@@ -124,14 +122,10 @@ class Layouts
     public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
-            if (! is_array($layouts)) {
-                $layouts = [$layouts];
-            }
+            $layouts = ! is_array($layouts) ? [$layouts]: $layouts;
 
             foreach ($layouts as $layout) {
-                if (! is_object($layout)) {
-                    $layout = new $layout;
-                }
+                $layout = ! is_object($layout) ? new $layout : $layout;
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
                     $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());

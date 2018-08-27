@@ -4,19 +4,6 @@
 ORCHID uses the standard Laravel configuration system.
 All parameters can be found in `config` directory, and the `platform.php` file is main for platform. Every setting is prompted with commentary summing it's essence.
 
-
-## Headless mode
-
-```php
-'headless' => false,
-```
-
-It's obvious that platform is not able to cover all the developer work so it provides an ability to completely turn the graphical interface off.
-It may be useful if you create the application with user-generated content that will not need external administration. 
-It's a great solution also in case you want to use your own graphical interface (For example, if you want to embed a dashboard into your interface).
-
-When this mode is active, ORCHID will not register your application routes and you will have to to implement all the required functionality by yourself.
-
 ## Platform address
 
 ```php

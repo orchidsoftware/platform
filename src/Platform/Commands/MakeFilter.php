@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeTable extends GeneratorCommand
+class MakeFilter extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:table';
+    protected $name = 'orchid:filter';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new table layout class';
+    protected $description = 'Create a new filter class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Table';
+    protected $type = 'Filter';
 
     /**
      * Get the stub file for the generator.
@@ -36,7 +36,7 @@ class MakeTable extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/table.stub';
+        return PLATFORM_PATH.'/resources/stubs/filters.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeTable extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Layouts';
+        return $rootNamespace.'\Http\Filters';
     }
 }

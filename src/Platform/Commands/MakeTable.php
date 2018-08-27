@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Console\Commands;
+namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeScreen extends GeneratorCommand
+class MakeTable extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:screen';
+    protected $name = 'orchid:table';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new screen class';
+    protected $description = 'Create a new table layout class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Screen';
+    protected $type = 'Table';
 
     /**
      * Get the stub file for the generator.
@@ -36,7 +36,7 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/screen.stub';
+        return PLATFORM_PATH.'/resources/stubs/table.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Http\Controllers\Screens';
+        return $rootNamespace.'\Layouts';
     }
 }
