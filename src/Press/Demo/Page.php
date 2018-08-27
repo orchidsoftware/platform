@@ -6,7 +6,6 @@ namespace Orchid\Press\Demo;
 
 use Orchid\Screen\Fields\Field;
 use Orchid\Press\Entities\Single;
-use Orchid\Press\Http\Forms\Posts\UploadPostForm;
 
 class Page extends Single
 {
