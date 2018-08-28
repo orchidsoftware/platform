@@ -51,10 +51,6 @@ php artisan orchid:install
 
 See [CHANGELOG](CHANGELOG.md).
 
-## Security
-
-If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
-
 
 ## Test
 
@@ -62,6 +58,6 @@ If you discover security related issues, please email  [Alexandr Chernyaev](mail
 php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
 ```
 
-## License
+## Donate & Support
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+If you would like to support development by making a donation you can do so [here](https://www.paypal.me/tabuna/10usd). &#x1F60A;
