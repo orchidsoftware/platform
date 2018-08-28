@@ -61,3 +61,14 @@ php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
 ## Donate & Support
 
 If you would like to support development by making a donation you can do so [here](https://www.paypal.me/tabuna/10usd). &#x1F60A;
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+---
+
+> [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
+> GitHub [@tabuna](https://github.com/tabuna) &nbsp;&middot;&nbsp;
+> Twitter [@orchid_platform](https://twitter.com/orchid_platform)
