@@ -31,7 +31,7 @@
     "moment": "^2.20",
     "nestable": "^0.2",
     "open-color": "^1.5",
-    "orchid-icons": "^1.0.4",
+    "orchid-icons": "^1.0",
     "popper.js": "^1.13",
     "select2": "^4.0",
     "select2-bootstrap-theme": "0.1.0-beta.10",

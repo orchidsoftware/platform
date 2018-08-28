@@ -2,14 +2,14 @@
 var hr = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var register = function (editor) {
     editor.addCommand('InsertHorizontalRule', function () {
       editor.execCommand('mceInsertContent', false, '<hr />');
     });
   };
-  var $_ej2ugebsje5o2tmx = { register: register };
+  var $_6gbesvcnjkmcwoly = { register: register };
 
   var register$1 = function (editor) {
     editor.addButton('hr', {
@@ -24,11 +24,11 @@ var hr = (function () {
       context: 'insert'
     });
   };
-  var $_9ot34mbtje5o2tmy = { register: register$1 };
+  var $_cy4wl6cojkmcwolz = { register: register$1 };
 
-  PluginManager.add('hr', function (editor) {
-    $_ej2ugebsje5o2tmx.register(editor);
-    $_9ot34mbtje5o2tmy.register(editor);
+  global.add('hr', function (editor) {
+    $_6gbesvcnjkmcwoly.register(editor);
+    $_cy4wl6cojkmcwolz.register(editor);
   });
   function Plugin () {
   }

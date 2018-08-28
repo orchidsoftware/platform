@@ -20,7 +20,7 @@ var visualchars = (function () {
     };
   };
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var get = function (toggleState) {
     var isEnabled = function () {
@@ -28,12 +28,12 @@ var visualchars = (function () {
     };
     return { isEnabled: isEnabled };
   };
-  var $_ayigxzrgje5o2wk3 = { get: get };
+  var $_9mm6m1stjkmcwsag = { get: get };
 
   var fireVisualChars = function (editor, state) {
     return editor.fire('VisualChars', { state: state });
   };
-  var $_bibjz4rjje5o2wk6 = { fireVisualChars: fireVisualChars };
+  var $_1amvi1swjkmcwsak = { fireVisualChars: fireVisualChars };
 
   var charMap = {
     '\xA0': 'nbsp',
@@ -56,7 +56,7 @@ var visualchars = (function () {
     }
     return selector;
   };
-  var $_4injbarlje5o2wkc = {
+  var $_dey8tosyjkmcwsas = {
     charMap: charMap,
     regExp: charMapToRegExp(charMap),
     regExpGlobal: charMapToRegExp(charMap, true),
@@ -65,77 +65,23 @@ var visualchars = (function () {
     charMapToSelector: charMapToSelector
   };
 
-  var noop = function () {
-  };
-  var noarg = function (f) {
-    return function () {
-      return f();
-    };
-  };
-  var compose = function (fa, fb) {
-    return function () {
-      return fa(fb.apply(null, arguments));
-    };
-  };
   var constant = function (value) {
     return function () {
       return value;
     };
   };
-  var identity = function (x) {
-    return x;
-  };
-  var tripleEquals = function (a, b) {
-    return a === b;
-  };
-  var curry = function (f) {
-    var args = new Array(arguments.length - 1);
-    for (var i = 1; i < arguments.length; i++)
-      args[i - 1] = arguments[i];
-    return function () {
-      var newArgs = new Array(arguments.length);
-      for (var j = 0; j < newArgs.length; j++)
-        newArgs[j] = arguments[j];
-      var all = args.concat(newArgs);
-      return f.apply(null, all);
-    };
-  };
-  var not = function (f) {
-    return function () {
-      return !f.apply(null, arguments);
-    };
-  };
-  var die = function (msg) {
-    return function () {
-      throw new Error(msg);
-    };
-  };
-  var apply = function (f) {
-    return f();
-  };
-  var call = function (f) {
-    f();
-  };
+
+
+
+
+
+
+
   var never = constant(false);
   var always = constant(true);
-  var $_51f9b2rpje5o2wkp = {
-    noop: noop,
-    noarg: noarg,
-    compose: compose,
-    constant: constant,
-    identity: identity,
-    tripleEquals: tripleEquals,
-    curry: curry,
-    not: not,
-    die: die,
-    apply: apply,
-    call: call,
-    never: never,
-    always: always
-  };
 
-  var never$1 = $_51f9b2rpje5o2wkp.never;
-  var always$1 = $_51f9b2rpje5o2wkp.always;
+  var never$1 = never;
+  var always$1 = always;
   var none = function () {
     return NONE;
   };
@@ -143,13 +89,19 @@ var visualchars = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call = function (thunk) {
+    var call$$1 = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop = function () {
+    var noop$$1 = function () {
+    };
+    var nul = function () {
+      return null;
+    };
+    var undef = function () {
+      return undefined;
     };
     var me = {
       fold: function (n, s) {
@@ -159,15 +111,17 @@ var visualchars = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call,
+      getOrThunk: call$$1,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
+      getOrNull: nul,
+      getOrUndefined: undef,
       or: id,
-      orThunk: call,
+      orThunk: call$$1,
       map: none,
       ap: none,
-      each: noop,
+      each: noop$$1,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -178,7 +132,7 @@ var visualchars = (function () {
       toArray: function () {
         return [];
       },
-      toString: $_51f9b2rpje5o2wkp.constant('none()')
+      toString: constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -209,6 +163,8 @@ var visualchars = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
+      getOrNull: constant_a,
+      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -253,41 +209,29 @@ var visualchars = (function () {
     from: from
   };
 
-  var rawIndexOf = function () {
-    var pIndexOf = Array.prototype.indexOf;
-    var fastIndex = function (xs, x) {
-      return pIndexOf.call(xs, x);
+  var typeOf = function (x) {
+    if (x === null)
+      return 'null';
+    var t = typeof x;
+    if (t === 'object' && Array.prototype.isPrototypeOf(x))
+      return 'array';
+    if (t === 'object' && String.prototype.isPrototypeOf(x))
+      return 'string';
+    return t;
+  };
+  var isType = function (type) {
+    return function (value) {
+      return typeOf(value) === type;
     };
-    var slowIndex = function (xs, x) {
-      return slowIndexOf(xs, x);
-    };
-    return pIndexOf === undefined ? slowIndex : fastIndex;
-  }();
-  var indexOf = function (xs, x) {
-    var r = rawIndexOf(xs, x);
-    return r === -1 ? Option.none() : Option.some(r);
   };
-  var contains = function (xs, x) {
-    return rawIndexOf(xs, x) > -1;
-  };
-  var exists = function (xs, pred) {
-    return findIndex(xs, pred).isSome();
-  };
-  var range = function (num, f) {
-    var r = [];
-    for (var i = 0; i < num; i++) {
-      r.push(f(i));
-    }
-    return r;
-  };
-  var chunk = function (array, size) {
-    var r = [];
-    for (var i = 0; i < array.length; i += size) {
-      var s = array.slice(i, i + size);
-      r.push(s);
-    }
-    return r;
-  };
+
+
+
+
+
+
+  var isFunction = isType('function');
+
   var map = function (xs, f) {
     var len = xs.length;
     var r = new Array(len);
@@ -303,184 +247,28 @@ var visualchars = (function () {
       f(x, i, xs);
     }
   };
-  var eachr = function (xs, f) {
-    for (var i = xs.length - 1; i >= 0; i--) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var partition = function (xs, pred) {
-    var pass = [];
-    var fail = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      var arr = pred(x, i, xs) ? pass : fail;
-      arr.push(x);
-    }
-    return {
-      pass: pass,
-      fail: fail
-    };
-  };
-  var filter = function (xs, pred) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        r.push(x);
-      }
-    }
-    return r;
-  };
-  var groupBy = function (xs, f) {
-    if (xs.length === 0) {
-      return [];
-    } else {
-      var wasType = f(xs[0]);
-      var r = [];
-      var group = [];
-      for (var i = 0, len = xs.length; i < len; i++) {
-        var x = xs[i];
-        var type = f(x);
-        if (type !== wasType) {
-          r.push(group);
-          group = [];
-        }
-        wasType = type;
-        group.push(x);
-      }
-      if (group.length !== 0) {
-        r.push(group);
-      }
-      return r;
-    }
-  };
-  var foldr = function (xs, f, acc) {
-    eachr(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
-  var foldl = function (xs, f, acc) {
-    each(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
-  var find = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        return Option.some(x);
-      }
-    }
-    return Option.none();
-  };
-  var findIndex = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        return Option.some(i);
-      }
-    }
-    return Option.none();
-  };
-  var slowIndexOf = function (xs, x) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (xs[i] === x) {
-        return i;
-      }
-    }
-    return -1;
-  };
-  var push = Array.prototype.push;
-  var flatten = function (xs) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (!Array.prototype.isPrototypeOf(xs[i]))
-        throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
-      push.apply(r, xs[i]);
-    }
-    return r;
-  };
-  var bind = function (xs, f) {
-    var output = map(xs, f);
-    return flatten(output);
-  };
-  var forall = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      var x = xs[i];
-      if (pred(x, i, xs) !== true) {
-        return false;
-      }
-    }
-    return true;
-  };
-  var equal = function (a1, a2) {
-    return a1.length === a2.length && forall(a1, function (x, i) {
-      return x === a2[i];
-    });
-  };
+
+
+
+
+
+
+
+
+
+
+
+
   var slice = Array.prototype.slice;
-  var reverse = function (xs) {
-    var r = slice.call(xs, 0);
-    r.reverse();
-    return r;
-  };
-  var difference = function (a1, a2) {
-    return filter(a1, function (x) {
-      return !contains(a2, x);
-    });
-  };
-  var mapToObject = function (xs, f) {
-    var r = {};
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      r[String(x)] = f(x, i);
-    }
-    return r;
-  };
-  var pure = function (x) {
-    return [x];
-  };
-  var sort = function (xs, comparator) {
-    var copy = slice.call(xs, 0);
-    copy.sort(comparator);
-    return copy;
-  };
-  var head = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
-  };
-  var last = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
-  };
-  var $_7or0gdrnje5o2wki = {
-    map: map,
-    each: each,
-    eachr: eachr,
-    partition: partition,
-    filter: filter,
-    groupBy: groupBy,
-    indexOf: indexOf,
-    foldr: foldr,
-    foldl: foldl,
-    find: find,
-    findIndex: findIndex,
-    flatten: flatten,
-    bind: bind,
-    forall: forall,
-    exists: exists,
-    contains: contains,
-    equal: equal,
-    reverse: reverse,
-    chunk: chunk,
-    difference: difference,
-    mapToObject: mapToObject,
-    pure: pure,
-    sort: sort,
-    range: range,
-    head: head,
-    last: last
+
+
+
+
+
+
+
+  var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+    return slice.call(x);
   };
 
   var fromHtml = function (html, scope) {
@@ -506,12 +294,13 @@ var visualchars = (function () {
   var fromDom = function (node) {
     if (node === null || node === undefined)
       throw new Error('Node cannot be null or undefined');
-    return { dom: $_51f9b2rpje5o2wkp.constant(node) };
+    return { dom: constant(node) };
   };
-  var fromPoint = function (doc, x, y) {
-    return Option.from(doc.dom().elementFromPoint(x, y)).map(fromDom);
+  var fromPoint = function (docElm, x, y) {
+    var doc = docElm.dom();
+    return Option.from(doc.elementFromPoint(x, y)).map(fromDom);
   };
-  var $_drqpldrqje5o2wl0 = {
+  var Element$$1 = {
     fromHtml: fromHtml,
     fromTag: fromTag,
     fromText: fromText,
@@ -519,19 +308,19 @@ var visualchars = (function () {
     fromPoint: fromPoint
   };
 
-  var $_6mb0vtrsje5o2wla = {
-    ATTRIBUTE: 2,
-    CDATA_SECTION: 4,
-    COMMENT: 8,
-    DOCUMENT: 9,
-    DOCUMENT_TYPE: 10,
-    DOCUMENT_FRAGMENT: 11,
-    ELEMENT: 1,
-    TEXT: 3,
-    PROCESSING_INSTRUCTION: 7,
-    ENTITY_REFERENCE: 5,
-    ENTITY: 6,
-    NOTATION: 12
+  var $_488suct7jkmcwsbz = {
+    ATTRIBUTE: Node.ATTRIBUTE_NODE,
+    CDATA_SECTION: Node.CDATA_SECTION_NODE,
+    COMMENT: Node.COMMENT_NODE,
+    DOCUMENT: Node.DOCUMENT_NODE,
+    DOCUMENT_TYPE: Node.DOCUMENT_TYPE_NODE,
+    DOCUMENT_FRAGMENT: Node.DOCUMENT_FRAGMENT_NODE,
+    ELEMENT: Node.ELEMENT_NODE,
+    TEXT: Node.TEXT_NODE,
+    PROCESSING_INSTRUCTION: Node.PROCESSING_INSTRUCTION_NODE,
+    ENTITY_REFERENCE: Node.ENTITY_REFERENCE_NODE,
+    ENTITY: Node.ENTITY_NODE,
+    NOTATION: Node.NOTATION_NODE
   };
 
   var name = function (element) {
@@ -544,18 +333,18 @@ var visualchars = (function () {
   var value = function (element) {
     return element.dom().nodeValue;
   };
-  var isType = function (t) {
+  var isType$1 = function (t) {
     return function (element) {
       return type(element) === t;
     };
   };
   var isComment = function (element) {
-    return type(element) === $_6mb0vtrsje5o2wla.COMMENT || name(element) === '#comment';
+    return type(element) === $_488suct7jkmcwsbz.COMMENT || name(element) === '#comment';
   };
-  var isElement = isType($_6mb0vtrsje5o2wla.ELEMENT);
-  var isText = isType($_6mb0vtrsje5o2wla.TEXT);
-  var isDocument = isType($_6mb0vtrsje5o2wla.DOCUMENT);
-  var $_7bq970rrje5o2wl9 = {
+  var isElement = isType$1($_488suct7jkmcwsbz.ELEMENT);
+  var isText = isType$1($_488suct7jkmcwsbz.TEXT);
+  var isDocument = isType$1($_488suct7jkmcwsbz.DOCUMENT);
+  var $_fswyn1t6jkmcwsby = {
     name: name,
     type: type,
     value: value,
@@ -566,18 +355,18 @@ var visualchars = (function () {
   };
 
   var wrapCharWithSpan = function (value) {
-    return '<span data-mce-bogus="1" class="mce-' + $_4injbarlje5o2wkc.charMap[value] + '">' + value + '</span>';
+    return '<span data-mce-bogus="1" class="mce-' + $_dey8tosyjkmcwsas.charMap[value] + '">' + value + '</span>';
   };
-  var $_8rglksrtje5o2wlb = { wrapCharWithSpan: wrapCharWithSpan };
+  var $_2nl12ut8jkmcwsc8 = { wrapCharWithSpan: wrapCharWithSpan };
 
   var isMatch = function (n) {
-    return $_7bq970rrje5o2wl9.isText(n) && $_7bq970rrje5o2wl9.value(n) !== undefined && $_4injbarlje5o2wkc.regExp.test($_7bq970rrje5o2wl9.value(n));
+    return $_fswyn1t6jkmcwsby.isText(n) && $_fswyn1t6jkmcwsby.value(n) !== undefined && $_dey8tosyjkmcwsas.regExp.test($_fswyn1t6jkmcwsby.value(n));
   };
   var filterDescendants = function (scope, predicate) {
     var result = [];
     var dom = scope.dom();
-    var children = $_7or0gdrnje5o2wki.map(dom.childNodes, $_drqpldrqje5o2wl0.fromDom);
-    $_7or0gdrnje5o2wki.each(children, function (x) {
+    var children = map(dom.childNodes, Element$$1.fromDom);
+    each(children, function (x) {
       if (predicate(x)) {
         result = result.concat([x]);
       }
@@ -594,9 +383,9 @@ var visualchars = (function () {
     }
   };
   var replaceWithSpans = function (html) {
-    return html.replace($_4injbarlje5o2wkc.regExpGlobal, $_8rglksrtje5o2wlb.wrapCharWithSpan);
+    return html.replace($_dey8tosyjkmcwsas.regExpGlobal, $_2nl12ut8jkmcwsc8.wrapCharWithSpan);
   };
-  var $_g8g26vrmje5o2wkd = {
+  var $_cwpoydszjkmcwsau = {
     isMatch: isMatch,
     filterDescendants: filterDescendants,
     findParentElm: findParentElm,
@@ -605,9 +394,9 @@ var visualchars = (function () {
 
   var show = function (editor, rootElm) {
     var node, div;
-    var nodeList = $_g8g26vrmje5o2wkd.filterDescendants($_drqpldrqje5o2wl0.fromDom(rootElm), $_g8g26vrmje5o2wkd.isMatch);
-    $_7or0gdrnje5o2wki.each(nodeList, function (n) {
-      var withSpans = $_g8g26vrmje5o2wkd.replaceWithSpans($_7bq970rrje5o2wl9.value(n));
+    var nodeList = $_cwpoydszjkmcwsau.filterDescendants(Element$$1.fromDom(rootElm), $_cwpoydszjkmcwsau.isMatch);
+    each(nodeList, function (n) {
+      var withSpans = $_cwpoydszjkmcwsau.replaceWithSpans($_fswyn1t6jkmcwsby.value(n));
       div = editor.dom.create('div', null, withSpans);
       while (node = div.lastChild) {
         editor.dom.insertAfter(node, n.dom());
@@ -616,21 +405,21 @@ var visualchars = (function () {
     });
   };
   var hide = function (editor, body) {
-    var nodeList = editor.dom.select($_4injbarlje5o2wkc.selector, body);
-    $_7or0gdrnje5o2wki.each(nodeList, function (node) {
+    var nodeList = editor.dom.select($_dey8tosyjkmcwsas.selector, body);
+    each(nodeList, function (node) {
       editor.dom.remove(node, 1);
     });
   };
   var toggle = function (editor) {
     var body = editor.getBody();
     var bookmark = editor.selection.getBookmark();
-    var parentNode = $_g8g26vrmje5o2wkd.findParentElm(editor.selection.getNode(), body);
+    var parentNode = $_cwpoydszjkmcwsau.findParentElm(editor.selection.getNode(), body);
     parentNode = parentNode !== undefined ? parentNode : body;
     hide(editor, parentNode);
     show(editor, parentNode);
     editor.selection.moveToBookmark(bookmark);
   };
-  var $_9xpwqmrkje5o2wk7 = {
+  var $_cqqknmsxjkmcwsal = {
     show: show,
     hide: hide,
     toggle: toggle
@@ -641,39 +430,39 @@ var visualchars = (function () {
     var selection = editor.selection;
     var bookmark;
     toggleState.set(!toggleState.get());
-    $_bibjz4rjje5o2wk6.fireVisualChars(editor, toggleState.get());
+    $_1amvi1swjkmcwsak.fireVisualChars(editor, toggleState.get());
     bookmark = selection.getBookmark();
     if (toggleState.get() === true) {
-      $_9xpwqmrkje5o2wk7.show(editor, body);
+      $_cqqknmsxjkmcwsal.show(editor, body);
     } else {
-      $_9xpwqmrkje5o2wk7.hide(editor, body);
+      $_cqqknmsxjkmcwsal.hide(editor, body);
     }
     selection.moveToBookmark(bookmark);
   };
-  var $_46q31zrije5o2wk5 = { toggleVisualChars: toggleVisualChars };
+  var $_6jbw14svjkmcwsaj = { toggleVisualChars: toggleVisualChars };
 
   var register = function (editor, toggleState) {
     editor.addCommand('mceVisualChars', function () {
-      $_46q31zrije5o2wk5.toggleVisualChars(editor, toggleState);
+      $_6jbw14svjkmcwsaj.toggleVisualChars(editor, toggleState);
     });
   };
-  var $_9hnzd1rhje5o2wk4 = { register: register };
+  var $_d384o2sujkmcwsai = { register: register };
 
-  var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
   var setup = function (editor, toggleState) {
-    var debouncedToggle = Delay.debounce(function () {
-      $_9xpwqmrkje5o2wk7.toggle(editor);
+    var debouncedToggle = global$1.debounce(function () {
+      $_cqqknmsxjkmcwsal.toggle(editor);
     }, 300);
     if (editor.settings.forced_root_block !== false) {
       editor.on('keydown', function (e) {
         if (toggleState.get() === true) {
-          e.keyCode === 13 ? $_9xpwqmrkje5o2wk7.toggle(editor) : debouncedToggle();
+          e.keyCode === 13 ? $_cqqknmsxjkmcwsal.toggle(editor) : debouncedToggle();
         }
       });
     }
   };
-  var $_9oavairuje5o2wld = { setup: setup };
+  var $_9nthojt9jkmcwsca = { setup: setup };
 
   var toggleActiveState = function (editor) {
     return function (e) {
@@ -700,12 +489,12 @@ var visualchars = (function () {
     });
   };
 
-  PluginManager.add('visualchars', function (editor) {
+  global.add('visualchars', function (editor) {
     var toggleState = Cell(false);
-    $_9hnzd1rhje5o2wk4.register(editor, toggleState);
+    $_d384o2sujkmcwsai.register(editor, toggleState);
     register$1(editor);
-    $_9oavairuje5o2wld.setup(editor, toggleState);
-    return $_ayigxzrgje5o2wk3.get(toggleState);
+    $_9nthojt9jkmcwsca.setup(editor, toggleState);
+    return $_9mm6m1stjkmcwsag.get(toggleState);
   });
   function Plugin () {
   }

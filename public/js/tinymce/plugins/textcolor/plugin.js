@@ -2,7 +2,7 @@
 var textcolor = (function () {
   'use strict';
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var getCurrentColor = function (editor, format) {
     var color;
@@ -39,7 +39,7 @@ var textcolor = (function () {
       editor.nodeChanged();
     });
   };
-  var $_j0mayq6je5o2wfy = {
+  var $_fyfrxgrijkmcws5a = {
     getCurrentColor: getCurrentColor,
     mapColors: mapColors,
     applyFormat: applyFormat,
@@ -48,17 +48,17 @@ var textcolor = (function () {
 
   var register = function (editor) {
     editor.addCommand('mceApplyTextcolor', function (format, value) {
-      $_j0mayq6je5o2wfy.applyFormat(editor, format, value);
+      $_fyfrxgrijkmcws5a.applyFormat(editor, format, value);
     });
     editor.addCommand('mceRemoveTextcolor', function (format) {
-      $_j0mayq6je5o2wfy.removeFormat(editor, format);
+      $_fyfrxgrijkmcws5a.removeFormat(editor, format);
     });
   };
-  var $_2vdnnhq5je5o2wfx = { register: register };
+  var $_fr9cbdrhjkmcws58 = { register: register };
 
-  var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-  var Tools = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
   var defaultColorMap = [
     '000000',
@@ -173,7 +173,7 @@ var textcolor = (function () {
   var hasColorPicker = function (editor) {
     return typeof getColorPickerCallback(editor) === 'function';
   };
-  var $_3o6235qaje5o2wg7 = {
+  var $_9xkreprmjkmcws5h = {
     getForeColorMap: getForeColorMap,
     getBackColorMap: getBackColorMap,
     getForeColorRows: getForeColorRows,
@@ -184,18 +184,18 @@ var textcolor = (function () {
     hasColorPicker: hasColorPicker
   };
 
-  var I18n = tinymce.util.Tools.resolve('tinymce.util.I18n');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.util.I18n');
 
   var getHtml = function (cols, rows, colorMap, hasColorPicker) {
     var colors, color, html, last, x, y, i, count = 0;
-    var id = DOMUtils.DOM.uniqueId('mcearia');
+    var id = global$1.DOM.uniqueId('mcearia');
     var getColorCellHtml = function (color, title) {
       var isNoColor = color === 'transparent';
-      return '<td class="mce-grid-cell' + (isNoColor ? ' mce-colorbtn-trans' : '') + '">' + '<div id="' + id + '-' + count++ + '"' + ' data-mce-color="' + (color ? color : '') + '"' + ' role="option"' + ' tabIndex="-1"' + ' style="' + (color ? 'background-color: ' + color : '') + '"' + ' title="' + I18n.translate(title) + '">' + (isNoColor ? '&#215;' : '') + '</div>' + '</td>';
+      return '<td class="mce-grid-cell' + (isNoColor ? ' mce-colorbtn-trans' : '') + '">' + '<div id="' + id + '-' + count++ + '"' + ' data-mce-color="' + (color ? color : '') + '"' + ' role="option"' + ' tabIndex="-1"' + ' style="' + (color ? 'background-color: ' + color : '') + '"' + ' title="' + global$3.translate(title) + '">' + (isNoColor ? '&#215;' : '') + '</div>' + '</td>';
     };
-    colors = $_j0mayq6je5o2wfy.mapColors(colorMap);
+    colors = $_fyfrxgrijkmcws5a.mapColors(colorMap);
     colors.push({
-      text: I18n.translate('No color'),
+      text: global$3.translate('No color'),
       color: 'transparent'
     });
     html = '<table class="mce-grid mce-grid-border mce-colorbutton-grid" role="list" cellspacing="0"><tbody>';
@@ -214,7 +214,7 @@ var textcolor = (function () {
       html += '</tr>';
     }
     if (hasColorPicker) {
-      html += '<tr>' + '<td colspan="' + cols + '" class="mce-custom-color-btn">' + '<div id="' + id + '-c" class="mce-widget mce-btn mce-btn-small mce-btn-flat" ' + 'role="button" tabindex="-1" aria-labelledby="' + id + '-c" style="width: 100%">' + '<button type="button" role="presentation" tabindex="-1">' + I18n.translate('Custom...') + '</button>' + '</div>' + '</td>' + '</tr>';
+      html += '<tr>' + '<td colspan="' + cols + '" class="mce-custom-color-btn">' + '<div id="' + id + '-c" class="mce-widget mce-btn mce-btn-small mce-btn-flat" ' + 'role="button" tabindex="-1" aria-labelledby="' + id + '-c" style="width: 100%">' + '<button type="button" role="presentation" tabindex="-1">' + global$3.translate('Custom...') + '</button>' + '</div>' + '</td>' + '</tr>';
       html += '<tr>';
       for (x = 0; x < cols; x++) {
         html += getColorCellHtml('', 'Custom color');
@@ -224,7 +224,7 @@ var textcolor = (function () {
     html += '</tbody></table>';
     return html;
   };
-  var $_6lhxakqbje5o2wg9 = { getHtml: getHtml };
+  var $_4vmnmvrnjkmcws5o = { getHtml: getHtml };
 
   var setDivColor = function setDivColor(div, value) {
     div.style.background = value;
@@ -244,24 +244,24 @@ var textcolor = (function () {
     return function (e) {
       var buttonCtrl = this.parent();
       var value;
-      var currentColor = $_j0mayq6je5o2wfy.getCurrentColor(editor, buttonCtrl.settings.format);
+      var currentColor = $_fyfrxgrijkmcws5a.getCurrentColor(editor, buttonCtrl.settings.format);
       var selectColor = function (value) {
+        editor.execCommand('mceApplyTextcolor', buttonCtrl.settings.format, value);
         buttonCtrl.hidePanel();
         buttonCtrl.color(value);
-        editor.execCommand('mceApplyTextcolor', buttonCtrl.settings.format, value);
       };
       var resetColor = function () {
+        editor.execCommand('mceRemoveTextcolor', buttonCtrl.settings.format);
         buttonCtrl.hidePanel();
         buttonCtrl.resetColor();
-        editor.execCommand('mceRemoveTextcolor', buttonCtrl.settings.format);
       };
-      if (DOMUtils.DOM.getParent(e.target, '.mce-custom-color-btn')) {
+      if (global$1.DOM.getParent(e.target, '.mce-custom-color-btn')) {
         buttonCtrl.hidePanel();
-        var colorPickerCallback = $_3o6235qaje5o2wg7.getColorPickerCallback(editor);
+        var colorPickerCallback = $_9xkreprmjkmcws5h.getColorPickerCallback(editor);
         colorPickerCallback.call(editor, function (value) {
           var tableElm = buttonCtrl.panel.getEl().getElementsByTagName('table')[0];
           var customColorCells, div, i;
-          customColorCells = Tools.map(tableElm.rows[tableElm.rows.length - 1].childNodes, function (elm) {
+          customColorCells = global$2.map(tableElm.rows[tableElm.rows.length - 1].childNodes, function (elm) {
             return elm.firstChild;
           });
           for (i = 0; i < customColorCells.length; i++) {
@@ -282,7 +282,7 @@ var textcolor = (function () {
       value = e.target.getAttribute('data-mce-color');
       if (value) {
         if (this.lastId) {
-          DOMUtils.DOM.get(this.lastId).setAttribute('aria-selected', false);
+          global$1.DOM.get(this.lastId).setAttribute('aria-selected', 'false');
         }
         e.target.setAttribute('aria-selected', true);
         this.lastId = e.target.id;
@@ -298,11 +298,11 @@ var textcolor = (function () {
   };
   var renderColorPicker = function (editor, foreColor) {
     return function () {
-      var cols = foreColor ? $_3o6235qaje5o2wg7.getForeColorCols(editor) : $_3o6235qaje5o2wg7.getBackColorCols(editor);
-      var rows = foreColor ? $_3o6235qaje5o2wg7.getForeColorRows(editor) : $_3o6235qaje5o2wg7.getBackColorRows(editor);
-      var colorMap = foreColor ? $_3o6235qaje5o2wg7.getForeColorMap(editor) : $_3o6235qaje5o2wg7.getBackColorMap(editor);
-      var hasColorPicker = $_3o6235qaje5o2wg7.hasColorPicker(editor);
-      return $_6lhxakqbje5o2wg9.getHtml(cols, rows, colorMap, hasColorPicker);
+      var cols = foreColor ? $_9xkreprmjkmcws5h.getForeColorCols(editor) : $_9xkreprmjkmcws5h.getBackColorCols(editor);
+      var rows = foreColor ? $_9xkreprmjkmcws5h.getForeColorRows(editor) : $_9xkreprmjkmcws5h.getBackColorRows(editor);
+      var colorMap = foreColor ? $_9xkreprmjkmcws5h.getForeColorMap(editor) : $_9xkreprmjkmcws5h.getBackColorMap(editor);
+      var hasColorPicker = $_9xkreprmjkmcws5h.hasColorPicker(editor);
+      return $_4vmnmvrnjkmcws5o.getHtml(cols, rows, colorMap, hasColorPicker);
     };
   };
   var register$1 = function (editor) {
@@ -314,7 +314,7 @@ var textcolor = (function () {
         role: 'application',
         ariaRemember: true,
         html: renderColorPicker(editor, true),
-        onclick: onPanelClick(editor, $_3o6235qaje5o2wg7.getForeColorCols(editor))
+        onclick: onPanelClick(editor, $_9xkreprmjkmcws5h.getForeColorCols(editor))
       },
       onclick: onButtonClick(editor)
     });
@@ -326,16 +326,16 @@ var textcolor = (function () {
         role: 'application',
         ariaRemember: true,
         html: renderColorPicker(editor, false),
-        onclick: onPanelClick(editor, $_3o6235qaje5o2wg7.getBackColorCols(editor))
+        onclick: onPanelClick(editor, $_9xkreprmjkmcws5h.getBackColorCols(editor))
       },
       onclick: onButtonClick(editor)
     });
   };
-  var $_g4sompq7je5o2wg1 = { register: register$1 };
+  var $_38ipxvrjjkmcws5c = { register: register$1 };
 
-  PluginManager.add('textcolor', function (editor) {
-    $_2vdnnhq5je5o2wfx.register(editor);
-    $_g4sompq7je5o2wg1.register(editor);
+  global.add('textcolor', function (editor) {
+    $_fr9cbdrhjkmcws58.register(editor);
+    $_38ipxvrjjkmcws5c.register(editor);
   });
   function Plugin () {
   }

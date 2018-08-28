@@ -20,9 +20,9 @@ var imagetools = (function () {
     };
   };
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var Tools = tinymce.util.Tools.resolve('tinymce.util.Tools');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
   function create(width, height) {
     return resize(document.createElement('canvas'), width, height);
@@ -53,7 +53,7 @@ var imagetools = (function () {
     canvas.height = height;
     return canvas;
   }
-  var $_g9f5o5cpje5o2tr9 = {
+  var $_2bu9lddrjkmcwot1 = {
     create: create,
     clone: clone,
     resize: resize,
@@ -67,7 +67,7 @@ var imagetools = (function () {
   function getHeight(image) {
     return image.naturalHeight || image.height;
   }
-  var $_ci0sqqcqje5o2tra = {
+  var $_ff7zkmdsjkmcwot2 = {
     getWidth: getWidth,
     getHeight: getHeight
   };
@@ -235,34 +235,26 @@ var imagetools = (function () {
   };
   var Promise = window.Promise ? window.Promise : promise();
 
-  var noop = function () {
-  };
-  var noarg = function (f) {
-    return function () {
-      return f();
-    };
-  };
-  var compose = function (fa, fb) {
-    return function () {
-      return fa(fb.apply(null, arguments));
-    };
-  };
   var constant = function (value) {
     return function () {
       return value;
     };
   };
-  var identity = function (x) {
-    return x;
-  };
-  var tripleEquals = function (a, b) {
-    return a === b;
-  };
+
+
   var curry = function (f) {
+    var x = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+      x[_i - 1] = arguments[_i];
+    }
     var args = new Array(arguments.length - 1);
     for (var i = 1; i < arguments.length; i++)
       args[i - 1] = arguments[i];
     return function () {
+      var x = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        x[_i] = arguments[_i];
+      }
       var newArgs = new Array(arguments.length);
       for (var j = 0; j < newArgs.length; j++)
         newArgs[j] = arguments[j];
@@ -270,42 +262,15 @@ var imagetools = (function () {
       return f.apply(null, all);
     };
   };
-  var not = function (f) {
-    return function () {
-      return !f.apply(null, arguments);
-    };
-  };
-  var die = function (msg) {
-    return function () {
-      throw new Error(msg);
-    };
-  };
-  var apply = function (f) {
-    return f();
-  };
-  var call = function (f) {
-    f();
-  };
+
+
+
+
   var never = constant(false);
   var always = constant(true);
-  var $_8nwcy9ctje5o2trl = {
-    noop: noop,
-    noarg: noarg,
-    compose: compose,
-    constant: constant,
-    identity: identity,
-    tripleEquals: tripleEquals,
-    curry: curry,
-    not: not,
-    die: die,
-    apply: apply,
-    call: call,
-    never: never,
-    always: always
-  };
 
-  var never$1 = $_8nwcy9ctje5o2trl.never;
-  var always$1 = $_8nwcy9ctje5o2trl.always;
+  var never$1 = never;
+  var always$1 = always;
   var none = function () {
     return NONE;
   };
@@ -313,13 +278,19 @@ var imagetools = (function () {
     var eq = function (o) {
       return o.isNone();
     };
-    var call = function (thunk) {
+    var call$$1 = function (thunk) {
       return thunk();
     };
     var id = function (n) {
       return n;
     };
-    var noop = function () {
+    var noop$$1 = function () {
+    };
+    var nul = function () {
+      return null;
+    };
+    var undef = function () {
+      return undefined;
     };
     var me = {
       fold: function (n, s) {
@@ -329,15 +300,17 @@ var imagetools = (function () {
       isSome: never$1,
       isNone: always$1,
       getOr: id,
-      getOrThunk: call,
+      getOrThunk: call$$1,
       getOrDie: function (msg) {
         throw new Error(msg || 'error: getOrDie called on none.');
       },
+      getOrNull: nul,
+      getOrUndefined: undef,
       or: id,
-      orThunk: call,
+      orThunk: call$$1,
       map: none,
       ap: none,
-      each: noop,
+      each: noop$$1,
       bind: none,
       flatten: none,
       exists: never$1,
@@ -348,7 +321,7 @@ var imagetools = (function () {
       toArray: function () {
         return [];
       },
-      toString: $_8nwcy9ctje5o2trl.constant('none()')
+      toString: constant('none()')
     };
     if (Object.freeze)
       Object.freeze(me);
@@ -379,6 +352,8 @@ var imagetools = (function () {
       getOr: constant_a,
       getOrThunk: constant_a,
       getOrDie: constant_a,
+      getOrNull: constant_a,
+      getOrUndefined: constant_a,
       or: self,
       orThunk: self,
       map: map,
@@ -423,10 +398,10 @@ var imagetools = (function () {
     from: from
   };
 
-  var global = typeof window !== 'undefined' ? window : Function('return this;')();
+  var Global = typeof window !== 'undefined' ? window : Function('return this;')();
 
   var path = function (parts, scope) {
-    var o = scope !== undefined && scope !== null ? scope : global;
+    var o = scope !== undefined && scope !== null ? scope : Global;
     for (var i = 0; i < parts.length && o !== undefined && o !== null; ++i)
       o = o[parts[i]];
     return o;
@@ -435,30 +410,9 @@ var imagetools = (function () {
     var parts = p.split('.');
     return path(parts, scope);
   };
-  var step = function (o, part) {
-    if (o[part] === undefined || o[part] === null)
-      o[part] = {};
-    return o[part];
-  };
-  var forge = function (parts, target) {
-    var o = target !== undefined ? target : global;
-    for (var i = 0; i < parts.length; ++i)
-      o = step(o, parts[i]);
-    return o;
-  };
-  var namespace = function (name, target) {
-    var parts = name.split('.');
-    return forge(parts, target);
-  };
-  var $_2rnnowcwje5o2trq = {
-    path: path,
-    resolve: resolve,
-    forge: forge,
-    namespace: namespace
-  };
 
   var unsafe = function (name, scope) {
-    return $_2rnnowcwje5o2trq.resolve(name, scope);
+    return resolve(name, scope);
   };
   var getOrDie = function (name, scope) {
     var actual = unsafe(name, scope);
@@ -466,60 +420,42 @@ var imagetools = (function () {
       throw name + ' not available on this browser';
     return actual;
   };
-  var $_4n7gnacvje5o2tro = { getOrDie: getOrDie };
+  var $_901qfodxjkmcwotj = { getOrDie: getOrDie };
 
   function Blob (parts, properties) {
-    var f = $_4n7gnacvje5o2tro.getOrDie('Blob');
+    var f = $_901qfodxjkmcwotj.getOrDie('Blob');
     return new f(parts, properties);
   }
 
   function FileReader () {
-    var f = $_4n7gnacvje5o2tro.getOrDie('FileReader');
+    var f = $_901qfodxjkmcwotj.getOrDie('FileReader');
     return new f();
   }
 
   function Uint8Array (arr) {
-    var f = $_4n7gnacvje5o2tro.getOrDie('Uint8Array');
+    var f = $_901qfodxjkmcwotj.getOrDie('Uint8Array');
     return new f(arr);
   }
 
   var requestAnimationFrame = function (callback) {
-    var f = $_4n7gnacvje5o2tro.getOrDie('requestAnimationFrame');
+    var f = $_901qfodxjkmcwotj.getOrDie('requestAnimationFrame');
     f(callback);
   };
   var atob = function (base64) {
-    var f = $_4n7gnacvje5o2tro.getOrDie('atob');
+    var f = $_901qfodxjkmcwotj.getOrDie('atob');
     return f(base64);
   };
-  var $_62usx0d0je5o2tru = {
+  var $_cygb2he2jkmcwotp = {
     atob: atob,
     requestAnimationFrame: requestAnimationFrame
   };
 
-  function loadImage(image) {
-    return new Promise(function (resolve) {
-      function loaded() {
-        image.removeEventListener('load', loaded);
-        resolve(image);
-      }
-      if (image.complete) {
-        resolve(image);
-      } else {
-        image.addEventListener('load', loaded);
-      }
-    });
-  }
   function imageToBlob(image) {
-    return loadImage(image).then(function (image) {
-      var src = image.src;
-      if (src.indexOf('blob:') === 0) {
-        return anyUriToBlob(src);
-      }
-      if (src.indexOf('data:') === 0) {
-        return dataUriToBlob(src);
-      }
-      return anyUriToBlob(src);
-    });
+    var src = image.src;
+    if (src.indexOf('data:') === 0) {
+      return dataUriToBlob(src);
+    }
+    return anyUriToBlob(src);
   }
   function blobToImage(blob) {
     return new Promise(function (resolve, reject) {
@@ -579,7 +515,7 @@ var imagetools = (function () {
     var mimetype = matches[1];
     var base64 = data[1];
     var sliceSize = 1024;
-    var byteCharacters = $_62usx0d0je5o2tru.atob(base64);
+    var byteCharacters = $_cygb2he2jkmcwotp.atob(base64);
     var bytesLength = byteCharacters.length;
     var slicesCount = Math.ceil(bytesLength / sliceSize);
     var byteArrays = new Array(slicesCount);
@@ -632,8 +568,8 @@ var imagetools = (function () {
     return blobToImage(blob).then(function (image) {
       revokeImageUrl(image);
       var context, canvas;
-      canvas = $_g9f5o5cpje5o2tr9.create($_ci0sqqcqje5o2tra.getWidth(image), $_ci0sqqcqje5o2tra.getHeight(image));
-      context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+      canvas = $_2bu9lddrjkmcwot1.create($_ff7zkmdsjkmcwot2.getWidth(image), $_ff7zkmdsjkmcwot2.getHeight(image));
+      context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
       context.drawImage(image, 0, 0);
       return canvas;
     });
@@ -664,7 +600,7 @@ var imagetools = (function () {
   function revokeImageUrl(image) {
     URL.revokeObjectURL(image.src);
   }
-  var $_g2amg1coje5o2tqy = {
+  var $_818cu1dqjkmcwosl = {
     blobToImage: blobToImage,
     imageToBlob: imageToBlob,
     blobToArrayBuffer: blobToArrayBuffer,
@@ -678,24 +614,24 @@ var imagetools = (function () {
   };
 
   var blobToImage$1 = function (image) {
-    return $_g2amg1coje5o2tqy.blobToImage(image);
+    return $_818cu1dqjkmcwosl.blobToImage(image);
   };
   var imageToBlob$1 = function (blob) {
-    return $_g2amg1coje5o2tqy.imageToBlob(blob);
+    return $_818cu1dqjkmcwosl.imageToBlob(blob);
   };
   var blobToDataUri$1 = function (blob) {
-    return $_g2amg1coje5o2tqy.blobToDataUri(blob);
+    return $_818cu1dqjkmcwosl.blobToDataUri(blob);
   };
   var blobToBase64$1 = function (blob) {
-    return $_g2amg1coje5o2tqy.blobToBase64(blob);
+    return $_818cu1dqjkmcwosl.blobToBase64(blob);
   };
   var dataUriToBlobSync$1 = function (uri) {
-    return $_g2amg1coje5o2tqy.dataUriToBlobSync(uri);
+    return $_818cu1dqjkmcwosl.dataUriToBlobSync(uri);
   };
   var uriToBlob$1 = function (uri) {
-    return Option.from($_g2amg1coje5o2tqy.uriToBlob(uri));
+    return Option.from($_818cu1dqjkmcwosl.uriToBlob(uri));
   };
-  var $_d31t89cnje5o2tqq = {
+  var $_l0c0gdpjkmcwosd = {
     blobToImage: blobToImage$1,
     imageToBlob: imageToBlob$1,
     blobToDataUri: blobToDataUri$1,
@@ -706,7 +642,7 @@ var imagetools = (function () {
 
   function create$1(getCanvas, blob, uri) {
     var initialType = blob.type;
-    var getType = $_8nwcy9ctje5o2trl.constant(initialType);
+    var getType = constant(initialType);
     function toBlob() {
       return Promise.resolve(blob);
     }
@@ -718,12 +654,12 @@ var imagetools = (function () {
     }
     function toAdjustedBlob(type, quality) {
       return getCanvas.then(function (canvas) {
-        return $_g2amg1coje5o2tqy.canvasToBlob(canvas, type, quality);
+        return $_818cu1dqjkmcwosl.canvasToBlob(canvas, type, quality);
       });
     }
     function toAdjustedDataURL(type, quality) {
       return getCanvas.then(function (canvas) {
-        return $_g2amg1coje5o2tqy.canvasToDataURL(canvas, type, quality);
+        return $_818cu1dqjkmcwosl.canvasToDataURL(canvas, type, quality);
       });
     }
     function toAdjustedBase64(type, quality) {
@@ -732,7 +668,7 @@ var imagetools = (function () {
       });
     }
     function toCanvas() {
-      return getCanvas.then($_g9f5o5cpje5o2tr9.clone);
+      return getCanvas.then($_2bu9lddrjkmcwot1.clone);
     }
     return {
       getType: getType,
@@ -746,24 +682,24 @@ var imagetools = (function () {
     };
   }
   function fromBlob(blob) {
-    return $_g2amg1coje5o2tqy.blobToDataUri(blob).then(function (uri) {
-      return create$1($_g2amg1coje5o2tqy.blobToCanvas(blob), blob, uri);
+    return $_818cu1dqjkmcwosl.blobToDataUri(blob).then(function (uri) {
+      return create$1($_818cu1dqjkmcwosl.blobToCanvas(blob), blob, uri);
     });
   }
   function fromCanvas(canvas, type) {
-    return $_g2amg1coje5o2tqy.canvasToBlob(canvas, type).then(function (blob) {
+    return $_818cu1dqjkmcwosl.canvasToBlob(canvas, type).then(function (blob) {
       return create$1(Promise.resolve(canvas), blob, canvas.toDataURL());
     });
   }
   function fromImage(image) {
-    return $_g2amg1coje5o2tqy.imageToBlob(image).then(function (blob) {
+    return $_818cu1dqjkmcwosl.imageToBlob(image).then(function (blob) {
       return fromBlob(blob);
     });
   }
   var fromBlobAndUrlSync = function (blob, url) {
-    return create$1($_g2amg1coje5o2tqy.blobToCanvas(blob), blob, url);
+    return create$1($_818cu1dqjkmcwosl.blobToCanvas(blob), blob, url);
   };
-  var $_fz1xfxd3je5o2ts4 = {
+  var $_1fnn2re5jkmcwou0 = {
     fromBlob: fromBlob,
     fromCanvas: fromCanvas,
     fromImage: fromImage,
@@ -1174,7 +1110,7 @@ var imagetools = (function () {
       1
     ], value));
   }
-  var $_7pc6twd4je5o2ts8 = {
+  var $_5zsstde6jkmcwou6 = {
     identity: identity$1,
     adjust: adjust,
     multiply: multiply,
@@ -1193,7 +1129,7 @@ var imagetools = (function () {
     });
   }
   function applyColorFilter(canvas, type, matrix) {
-    var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+    var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
     var pixels;
     function applyMatrix(pixels, m) {
       var d = pixels.data, r, g, b, a, i, m0 = m[0], m1 = m[1], m2 = m[2], m3 = m[3], m4 = m[4], m5 = m[5], m6 = m[6], m7 = m[7], m8 = m[8], m9 = m[9], m10 = m[10], m11 = m[11], m12 = m[12], m13 = m[13], m14 = m[14], m15 = m[15], m16 = m[16], m17 = m[17], m18 = m[18], m19 = m[19];
@@ -1211,7 +1147,7 @@ var imagetools = (function () {
     }
     pixels = applyMatrix(context.getImageData(0, 0, canvas.width, canvas.height), matrix);
     context.putImageData(pixels, 0, 0);
-    return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+    return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
   }
   function convoluteFilter(ir, matrix) {
     return ir.toCanvas().then(function (canvas) {
@@ -1219,7 +1155,7 @@ var imagetools = (function () {
     });
   }
   function applyConvoluteFilter(canvas, type, matrix) {
-    var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+    var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
     var pixelsIn, pixelsOut;
     function applyMatrix(pixelsIn, pixelsOut, matrix) {
       var rgba, drgba, side, halfSide, x, y, r, g, b, cx, cy, scx, scy, offset, wt, w, h;
@@ -1263,11 +1199,11 @@ var imagetools = (function () {
     pixelsOut = context.getImageData(0, 0, canvas.width, canvas.height);
     pixelsOut = applyMatrix(pixelsIn, pixelsOut, matrix);
     context.putImageData(pixelsOut, 0, 0);
-    return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+    return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
   }
   function functionColorFilter(colorFn) {
     var filterImpl = function (canvas, type, value) {
-      var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+      var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
       var pixels, i, lookup = new Array(256);
       function applyLookup(pixels, lookup) {
         var d = pixels.data, i;
@@ -1283,7 +1219,7 @@ var imagetools = (function () {
       }
       pixels = applyLookup(context.getImageData(0, 0, canvas.width, canvas.height), lookup);
       context.putImageData(pixels, 0, 0);
-      return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+      return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
     };
     return function (ir, value) {
       return ir.toCanvas().then(function (canvas) {
@@ -1293,7 +1229,7 @@ var imagetools = (function () {
   }
   function complexAdjustableColorFilter(matrixAdjustFn) {
     return function (ir, adjust) {
-      return colorFilter(ir, matrixAdjustFn($_7pc6twd4je5o2ts8.identity(), adjust));
+      return colorFilter(ir, matrixAdjustFn($_5zsstde6jkmcwou6.identity(), adjust));
     };
   }
   function basicColorFilter(matrix) {
@@ -1306,7 +1242,7 @@ var imagetools = (function () {
       return convoluteFilter(ir, kernel);
     };
   }
-  var $_ceqxf0d2je5o2try = {
+  var $_3lo5mbe4jkmcwotv = {
     invert: basicColorFilter([
       -1,
       0,
@@ -1329,14 +1265,14 @@ var imagetools = (function () {
       1,
       0
     ]),
-    brightness: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustBrightness),
-    hue: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustHue),
-    saturate: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustSaturation),
-    contrast: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustContrast),
-    grayscale: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustGrayscale),
-    sepia: complexAdjustableColorFilter($_7pc6twd4je5o2ts8.adjustSepia),
+    brightness: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustBrightness),
+    hue: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustHue),
+    saturate: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustSaturation),
+    contrast: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustContrast),
+    grayscale: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustGrayscale),
+    sepia: complexAdjustableColorFilter($_5zsstde6jkmcwou6.adjustSepia),
     colorize: function (ir, adjustR, adjustG, adjustB) {
-      return colorFilter(ir, $_7pc6twd4je5o2ts8.adjustColors($_7pc6twd4je5o2ts8.identity(), adjustR, adjustG, adjustB));
+      return colorFilter(ir, $_5zsstde6jkmcwou6.adjustColors($_5zsstde6jkmcwou6.identity(), adjustR, adjustG, adjustB));
     },
     sharpen: basicConvolutionFilter([
       0,
@@ -1371,8 +1307,8 @@ var imagetools = (function () {
   };
 
   function scale(image, dW, dH) {
-    var sW = $_ci0sqqcqje5o2tra.getWidth(image);
-    var sH = $_ci0sqqcqje5o2tra.getHeight(image);
+    var sW = $_ff7zkmdsjkmcwot2.getWidth(image);
+    var sH = $_ff7zkmdsjkmcwot2.getHeight(image);
     var wRatio = dW / sW;
     var hRatio = dH / sH;
     var scaleCapped = false;
@@ -1391,17 +1327,17 @@ var imagetools = (function () {
   }
   function _scale(image, wRatio, hRatio) {
     return new Promise(function (resolve) {
-      var sW = $_ci0sqqcqje5o2tra.getWidth(image);
-      var sH = $_ci0sqqcqje5o2tra.getHeight(image);
+      var sW = $_ff7zkmdsjkmcwot2.getWidth(image);
+      var sH = $_ff7zkmdsjkmcwot2.getHeight(image);
       var dW = Math.floor(sW * wRatio);
       var dH = Math.floor(sH * hRatio);
-      var canvas = $_g9f5o5cpje5o2tr9.create(dW, dH);
-      var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+      var canvas = $_2bu9lddrjkmcwot1.create(dW, dH);
+      var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
       context.drawImage(image, 0, 0, sW, sH, 0, 0, dW, dH);
       resolve(canvas);
     });
   }
-  var $_9r18cwd6je5o2tsi = { scale: scale };
+  var $_4zfeepe8jkmcwoud = { scale: scale };
 
   function rotate(ir, angle) {
     return ir.toCanvas().then(function (canvas) {
@@ -1409,12 +1345,12 @@ var imagetools = (function () {
     });
   }
   function applyRotate(image, type, angle) {
-    var canvas = $_g9f5o5cpje5o2tr9.create(image.width, image.height);
-    var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+    var canvas = $_2bu9lddrjkmcwot1.create(image.width, image.height);
+    var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
     var translateX = 0, translateY = 0;
     angle = angle < 0 ? 360 + angle : angle;
     if (angle == 90 || angle == 270) {
-      $_g9f5o5cpje5o2tr9.resize(canvas, canvas.height, canvas.width);
+      $_2bu9lddrjkmcwot1.resize(canvas, canvas.height, canvas.width);
     }
     if (angle == 90 || angle == 180) {
       translateX = canvas.width;
@@ -1425,7 +1361,7 @@ var imagetools = (function () {
     context.translate(translateX, translateY);
     context.rotate(angle * Math.PI / 180);
     context.drawImage(image, 0, 0);
-    return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+    return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
   }
   function flip(ir, axis) {
     return ir.toCanvas().then(function (canvas) {
@@ -1433,8 +1369,8 @@ var imagetools = (function () {
     });
   }
   function applyFlip(image, type, axis) {
-    var canvas = $_g9f5o5cpje5o2tr9.create(image.width, image.height);
-    var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+    var canvas = $_2bu9lddrjkmcwot1.create(image.width, image.height);
+    var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
     if (axis == 'v') {
       context.scale(1, -1);
       context.drawImage(image, 0, -canvas.height);
@@ -1442,7 +1378,7 @@ var imagetools = (function () {
       context.scale(-1, 1);
       context.drawImage(image, -canvas.width, 0);
     }
-    return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+    return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
   }
   function crop(ir, x, y, w, h) {
     return ir.toCanvas().then(function (canvas) {
@@ -1450,74 +1386,550 @@ var imagetools = (function () {
     });
   }
   function applyCrop(image, type, x, y, w, h) {
-    var canvas = $_g9f5o5cpje5o2tr9.create(w, h);
-    var context = $_g9f5o5cpje5o2tr9.get2dContext(canvas);
+    var canvas = $_2bu9lddrjkmcwot1.create(w, h);
+    var context = $_2bu9lddrjkmcwot1.get2dContext(canvas);
     context.drawImage(image, -x, -y);
-    return $_fz1xfxd3je5o2ts4.fromCanvas(canvas, type);
+    return $_1fnn2re5jkmcwou0.fromCanvas(canvas, type);
   }
   function resize$1(ir, w, h) {
     return ir.toCanvas().then(function (canvas) {
-      return $_9r18cwd6je5o2tsi.scale(canvas, w, h).then(function (newCanvas) {
-        return $_fz1xfxd3je5o2ts4.fromCanvas(newCanvas, ir.getType());
+      return $_4zfeepe8jkmcwoud.scale(canvas, w, h).then(function (newCanvas) {
+        return $_1fnn2re5jkmcwou0.fromCanvas(newCanvas, ir.getType());
       });
     });
   }
-  var $_ccbp28d5je5o2tsf = {
+  var $_dd55mbe7jkmcwoub = {
     rotate: rotate,
     flip: flip,
     crop: crop,
     resize: resize$1
   };
 
+  var BinaryReader = function () {
+    function BinaryReader(ar) {
+      this.littleEndian = false;
+      this._dv = new DataView(ar);
+    }
+    BinaryReader.prototype.readByteAt = function (idx) {
+      return this._dv.getUint8(idx);
+    };
+    BinaryReader.prototype.read = function (idx, size) {
+      if (idx + size > this.length()) {
+        return null;
+      }
+      var mv = this.littleEndian ? 0 : -8 * (size - 1);
+      for (var i = 0, sum = 0; i < size; i++) {
+        sum |= this.readByteAt(idx + i) << Math.abs(mv + i * 8);
+      }
+      return sum;
+    };
+    BinaryReader.prototype.BYTE = function (idx) {
+      return this.read(idx, 1);
+    };
+    BinaryReader.prototype.SHORT = function (idx) {
+      return this.read(idx, 2);
+    };
+    BinaryReader.prototype.LONG = function (idx) {
+      return this.read(idx, 4);
+    };
+    BinaryReader.prototype.SLONG = function (idx) {
+      var num = this.read(idx, 4);
+      return num > 2147483647 ? num - 4294967296 : num;
+    };
+    BinaryReader.prototype.CHAR = function (idx) {
+      return String.fromCharCode(this.read(idx, 1));
+    };
+    BinaryReader.prototype.STRING = function (idx, count) {
+      return this.asArray('CHAR', idx, count).join('');
+    };
+    BinaryReader.prototype.SEGMENT = function (idx, size) {
+      var ar = this._dv.buffer;
+      switch (arguments.length) {
+      case 2:
+        return ar.slice(idx, idx + size);
+      case 1:
+        return ar.slice(idx);
+      default:
+        return ar;
+      }
+    };
+    BinaryReader.prototype.asArray = function (type, idx, count) {
+      var values = [];
+      for (var i = 0; i < count; i++) {
+        values[i] = this[type](idx + i);
+      }
+      return values;
+    };
+    BinaryReader.prototype.length = function () {
+      return this._dv ? this._dv.byteLength : 0;
+    };
+    return BinaryReader;
+  }();
+
+  var tags = {
+    tiff: {
+      274: 'Orientation',
+      270: 'ImageDescription',
+      271: 'Make',
+      272: 'Model',
+      305: 'Software',
+      34665: 'ExifIFDPointer',
+      34853: 'GPSInfoIFDPointer'
+    },
+    exif: {
+      36864: 'ExifVersion',
+      40961: 'ColorSpace',
+      40962: 'PixelXDimension',
+      40963: 'PixelYDimension',
+      36867: 'DateTimeOriginal',
+      33434: 'ExposureTime',
+      33437: 'FNumber',
+      34855: 'ISOSpeedRatings',
+      37377: 'ShutterSpeedValue',
+      37378: 'ApertureValue',
+      37383: 'MeteringMode',
+      37384: 'LightSource',
+      37385: 'Flash',
+      37386: 'FocalLength',
+      41986: 'ExposureMode',
+      41987: 'WhiteBalance',
+      41990: 'SceneCaptureType',
+      41988: 'DigitalZoomRatio',
+      41992: 'Contrast',
+      41993: 'Saturation',
+      41994: 'Sharpness'
+    },
+    gps: {
+      0: 'GPSVersionID',
+      1: 'GPSLatitudeRef',
+      2: 'GPSLatitude',
+      3: 'GPSLongitudeRef',
+      4: 'GPSLongitude'
+    },
+    thumb: {
+      513: 'JPEGInterchangeFormat',
+      514: 'JPEGInterchangeFormatLength'
+    }
+  };
+  var tagDescs = {
+    'ColorSpace': {
+      1: 'sRGB',
+      0: 'Uncalibrated'
+    },
+    'MeteringMode': {
+      0: 'Unknown',
+      1: 'Average',
+      2: 'CenterWeightedAverage',
+      3: 'Spot',
+      4: 'MultiSpot',
+      5: 'Pattern',
+      6: 'Partial',
+      255: 'Other'
+    },
+    'LightSource': {
+      1: 'Daylight',
+      2: 'Fliorescent',
+      3: 'Tungsten',
+      4: 'Flash',
+      9: 'Fine weather',
+      10: 'Cloudy weather',
+      11: 'Shade',
+      12: 'Daylight fluorescent (D 5700 - 7100K)',
+      13: 'Day white fluorescent (N 4600 -5400K)',
+      14: 'Cool white fluorescent (W 3900 - 4500K)',
+      15: 'White fluorescent (WW 3200 - 3700K)',
+      17: 'Standard light A',
+      18: 'Standard light B',
+      19: 'Standard light C',
+      20: 'D55',
+      21: 'D65',
+      22: 'D75',
+      23: 'D50',
+      24: 'ISO studio tungsten',
+      255: 'Other'
+    },
+    'Flash': {
+      0: 'Flash did not fire',
+      1: 'Flash fired',
+      5: 'Strobe return light not detected',
+      7: 'Strobe return light detected',
+      9: 'Flash fired, compulsory flash mode',
+      13: 'Flash fired, compulsory flash mode, return light not detected',
+      15: 'Flash fired, compulsory flash mode, return light detected',
+      16: 'Flash did not fire, compulsory flash mode',
+      24: 'Flash did not fire, auto mode',
+      25: 'Flash fired, auto mode',
+      29: 'Flash fired, auto mode, return light not detected',
+      31: 'Flash fired, auto mode, return light detected',
+      32: 'No flash function',
+      65: 'Flash fired, red-eye reduction mode',
+      69: 'Flash fired, red-eye reduction mode, return light not detected',
+      71: 'Flash fired, red-eye reduction mode, return light detected',
+      73: 'Flash fired, compulsory flash mode, red-eye reduction mode',
+      77: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected',
+      79: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected',
+      89: 'Flash fired, auto mode, red-eye reduction mode',
+      93: 'Flash fired, auto mode, return light not detected, red-eye reduction mode',
+      95: 'Flash fired, auto mode, return light detected, red-eye reduction mode'
+    },
+    'ExposureMode': {
+      0: 'Auto exposure',
+      1: 'Manual exposure',
+      2: 'Auto bracket'
+    },
+    'WhiteBalance': {
+      0: 'Auto white balance',
+      1: 'Manual white balance'
+    },
+    'SceneCaptureType': {
+      0: 'Standard',
+      1: 'Landscape',
+      2: 'Portrait',
+      3: 'Night scene'
+    },
+    'Contrast': {
+      0: 'Normal',
+      1: 'Soft',
+      2: 'Hard'
+    },
+    'Saturation': {
+      0: 'Normal',
+      1: 'Low saturation',
+      2: 'High saturation'
+    },
+    'Sharpness': {
+      0: 'Normal',
+      1: 'Soft',
+      2: 'Hard'
+    },
+    'GPSLatitudeRef': {
+      N: 'North latitude',
+      S: 'South latitude'
+    },
+    'GPSLongitudeRef': {
+      E: 'East longitude',
+      W: 'West longitude'
+    }
+  };
+  var ExifReader = function () {
+    function ExifReader(ar) {
+      this._offsets = {
+        tiffHeader: 10,
+        IFD0: null,
+        IFD1: null,
+        exifIFD: null,
+        gpsIFD: null
+      };
+      this._tiffTags = {};
+      var self = this;
+      self._reader = new BinaryReader(ar);
+      self._idx = self._offsets.tiffHeader;
+      if (self.SHORT(0) !== 65505 || self.STRING(4, 5).toUpperCase() !== 'EXIF\0') {
+        throw new Error('Exif data cannot be read or not available.');
+      }
+      self._reader.littleEndian = self.SHORT(self._idx) == 18761;
+      if (self.SHORT(self._idx += 2) !== 42) {
+        throw new Error('Invalid Exif data.');
+      }
+      self._offsets.IFD0 = self._offsets.tiffHeader + self.LONG(self._idx += 2);
+      self._tiffTags = self.extractTags(self._offsets.IFD0, tags.tiff);
+      if ('ExifIFDPointer' in self._tiffTags) {
+        self._offsets.exifIFD = self._offsets.tiffHeader + self._tiffTags.ExifIFDPointer;
+        delete self._tiffTags.ExifIFDPointer;
+      }
+      if ('GPSInfoIFDPointer' in self._tiffTags) {
+        self._offsets.gpsIFD = self._offsets.tiffHeader + self._tiffTags.GPSInfoIFDPointer;
+        delete self._tiffTags.GPSInfoIFDPointer;
+      }
+      var IFD1Offset = self.LONG(self._offsets.IFD0 + self.SHORT(self._offsets.IFD0) * 12 + 2);
+      if (IFD1Offset) {
+        self._offsets.IFD1 = self._offsets.tiffHeader + IFD1Offset;
+      }
+    }
+    ExifReader.prototype.BYTE = function (idx) {
+      return this._reader.BYTE(idx);
+    };
+    ExifReader.prototype.SHORT = function (idx) {
+      return this._reader.SHORT(idx);
+    };
+    ExifReader.prototype.LONG = function (idx) {
+      return this._reader.LONG(idx);
+    };
+    ExifReader.prototype.SLONG = function (idx) {
+      return this._reader.SLONG(idx);
+    };
+    ExifReader.prototype.CHAR = function (idx) {
+      return this._reader.CHAR(idx);
+    };
+    ExifReader.prototype.STRING = function (idx, count) {
+      return this._reader.STRING(idx, count);
+    };
+    ExifReader.prototype.SEGMENT = function (idx, size) {
+      return this._reader.SEGMENT(idx, size);
+    };
+    ExifReader.prototype.asArray = function (type, idx, count) {
+      var values = [];
+      for (var i = 0; i < count; i++) {
+        values[i] = this[type](idx + i);
+      }
+      return values;
+    };
+    ExifReader.prototype.length = function () {
+      return this._reader.length();
+    };
+    ExifReader.prototype.UNDEFINED = function () {
+      return this.BYTE.apply(this, arguments);
+    };
+    ExifReader.prototype.RATIONAL = function (idx) {
+      return this.LONG(idx) / this.LONG(idx + 4);
+    };
+    ExifReader.prototype.SRATIONAL = function (idx) {
+      return this.SLONG(idx) / this.SLONG(idx + 4);
+    };
+    ExifReader.prototype.ASCII = function (idx) {
+      return this.CHAR(idx);
+    };
+    ExifReader.prototype.TIFF = function () {
+      return this._tiffTags;
+    };
+    ExifReader.prototype.EXIF = function () {
+      var self = this;
+      var Exif = null;
+      if (self._offsets.exifIFD) {
+        try {
+          Exif = self.extractTags(self._offsets.exifIFD, tags.exif);
+        } catch (ex) {
+          return null;
+        }
+        if (Exif.ExifVersion && Array.isArray(Exif.ExifVersion)) {
+          for (var i = 0, exifVersion = ''; i < Exif.ExifVersion.length; i++) {
+            exifVersion += String.fromCharCode(Exif.ExifVersion[i]);
+          }
+          Exif.ExifVersion = exifVersion;
+        }
+      }
+      return Exif;
+    };
+    ExifReader.prototype.GPS = function () {
+      var self = this;
+      var GPS = null;
+      if (self._offsets.gpsIFD) {
+        try {
+          GPS = self.extractTags(self._offsets.gpsIFD, tags.gps);
+        } catch (ex) {
+          return null;
+        }
+        if (GPS.GPSVersionID && Array.isArray(GPS.GPSVersionID)) {
+          GPS.GPSVersionID = GPS.GPSVersionID.join('.');
+        }
+      }
+      return GPS;
+    };
+    ExifReader.prototype.thumb = function () {
+      var self = this;
+      if (self._offsets.IFD1) {
+        try {
+          var IFD1Tags = self.extractTags(self._offsets.IFD1, tags.thumb);
+          if ('JPEGInterchangeFormat' in IFD1Tags) {
+            return self.SEGMENT(self._offsets.tiffHeader + IFD1Tags.JPEGInterchangeFormat, IFD1Tags.JPEGInterchangeFormatLength);
+          }
+        } catch (ex) {
+        }
+      }
+      return null;
+    };
+    ExifReader.prototype.extractTags = function (IFD_offset, tags2extract) {
+      var self = this;
+      var length, i, tag, type, count, size, offset, value, values = [], hash = {};
+      var types = {
+        1: 'BYTE',
+        7: 'UNDEFINED',
+        2: 'ASCII',
+        3: 'SHORT',
+        4: 'LONG',
+        5: 'RATIONAL',
+        9: 'SLONG',
+        10: 'SRATIONAL'
+      };
+      var sizes = {
+        'BYTE': 1,
+        'UNDEFINED': 1,
+        'ASCII': 1,
+        'SHORT': 2,
+        'LONG': 4,
+        'RATIONAL': 8,
+        'SLONG': 4,
+        'SRATIONAL': 8
+      };
+      length = self.SHORT(IFD_offset);
+      for (i = 0; i < length; i++) {
+        values = [];
+        offset = IFD_offset + 2 + i * 12;
+        tag = tags2extract[self.SHORT(offset)];
+        if (tag === undefined) {
+          continue;
+        }
+        type = types[self.SHORT(offset += 2)];
+        count = self.LONG(offset += 2);
+        size = sizes[type];
+        if (!size) {
+          throw new Error('Invalid Exif data.');
+        }
+        offset += 4;
+        if (size * count > 4) {
+          offset = self.LONG(offset) + self._offsets.tiffHeader;
+        }
+        if (offset + size * count >= self.length()) {
+          throw new Error('Invalid Exif data.');
+        }
+        if (type === 'ASCII') {
+          hash[tag] = self.STRING(offset, count).replace(/\0$/, '').trim();
+          continue;
+        } else {
+          values = self.asArray(type, offset, count);
+          value = count == 1 ? values[0] : values;
+          if (tagDescs.hasOwnProperty(tag) && typeof value != 'object') {
+            hash[tag] = tagDescs[tag][value];
+          } else {
+            hash[tag] = value;
+          }
+        }
+      }
+      return hash;
+    };
+    return ExifReader;
+  }();
+
+  var extractFrom = function (blob) {
+    return $_818cu1dqjkmcwosl.blobToArrayBuffer(blob).then(function (ar) {
+      try {
+        var br = new BinaryReader(ar);
+        if (br.SHORT(0) === 65496) {
+          var headers = extractHeaders(br);
+          var app1 = headers.filter(function (header) {
+            return header.name === 'APP1';
+          });
+          var meta = {};
+          if (app1.length) {
+            var exifReader = new ExifReader(app1[0].segment);
+            meta = {
+              tiff: exifReader.TIFF(),
+              exif: exifReader.EXIF(),
+              gps: exifReader.GPS(),
+              thumb: exifReader.thumb()
+            };
+          } else {
+            return Promise.reject('Headers did not include required information');
+          }
+          meta.rawHeaders = headers;
+          return meta;
+        }
+        return Promise.reject('Image was not a jpeg');
+      } catch (ex) {
+        return Promise.reject('Unsupported format or not an image: ' + blob.type + ' (Exception: ' + ex.message + ')');
+      }
+    });
+  };
+  var extractHeaders = function (br) {
+    var headers = [], idx, marker, length = 0;
+    idx = 2;
+    while (idx <= br.length()) {
+      marker = br.SHORT(idx);
+      if (marker >= 65488 && marker <= 65495) {
+        idx += 2;
+        continue;
+      }
+      if (marker === 65498 || marker === 65497) {
+        break;
+      }
+      length = br.SHORT(idx + 2) + 2;
+      if (marker >= 65505 && marker <= 65519) {
+        headers.push({
+          hex: marker,
+          name: 'APP' + (marker & 15),
+          start: idx,
+          length: length,
+          segment: br.SEGMENT(idx, length)
+        });
+      }
+      idx += length;
+    }
+    return headers;
+  };
+  var $_61aovte9jkmcwoug = { extractFrom: extractFrom };
+
   var invert = function (ir) {
-    return $_ceqxf0d2je5o2try.invert(ir);
+    return $_3lo5mbe4jkmcwotv.invert(ir);
   };
   var sharpen = function (ir) {
-    return $_ceqxf0d2je5o2try.sharpen(ir);
+    return $_3lo5mbe4jkmcwotv.sharpen(ir);
   };
   var emboss = function (ir) {
-    return $_ceqxf0d2je5o2try.emboss(ir);
+    return $_3lo5mbe4jkmcwotv.emboss(ir);
   };
   var gamma = function (ir, value) {
-    return $_ceqxf0d2je5o2try.gamma(ir, value);
+    return $_3lo5mbe4jkmcwotv.gamma(ir, value);
   };
   var exposure = function (ir, value) {
-    return $_ceqxf0d2je5o2try.exposure(ir, value);
+    return $_3lo5mbe4jkmcwotv.exposure(ir, value);
   };
   var colorize = function (ir, adjustR, adjustG, adjustB) {
-    return $_ceqxf0d2je5o2try.colorize(ir, adjustR, adjustG, adjustB);
+    return $_3lo5mbe4jkmcwotv.colorize(ir, adjustR, adjustG, adjustB);
   };
   var brightness = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.brightness(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.brightness(ir, adjust);
   };
   var hue = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.hue(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.hue(ir, adjust);
   };
   var saturate = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.saturate(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.saturate(ir, adjust);
   };
   var contrast = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.contrast(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.contrast(ir, adjust);
   };
   var grayscale = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.grayscale(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.grayscale(ir, adjust);
   };
   var sepia = function (ir, adjust) {
-    return $_ceqxf0d2je5o2try.sepia(ir, adjust);
+    return $_3lo5mbe4jkmcwotv.sepia(ir, adjust);
   };
   var flip$1 = function (ir, axis) {
-    return $_ccbp28d5je5o2tsf.flip(ir, axis);
+    return $_dd55mbe7jkmcwoub.flip(ir, axis);
   };
   var crop$1 = function (ir, x, y, w, h) {
-    return $_ccbp28d5je5o2tsf.crop(ir, x, y, w, h);
+    return $_dd55mbe7jkmcwoub.crop(ir, x, y, w, h);
   };
   var resize$2 = function (ir, w, h) {
-    return $_ccbp28d5je5o2tsf.resize(ir, w, h);
+    return $_dd55mbe7jkmcwoub.resize(ir, w, h);
   };
   var rotate$1 = function (ir, angle) {
-    return $_ccbp28d5je5o2tsf.rotate(ir, angle);
+    return $_dd55mbe7jkmcwoub.rotate(ir, angle);
   };
-  var $_9hfydbd1je5o2trv = {
+  var exifRotate = function (ir) {
+    var ROTATE_90 = 6;
+    var ROTATE_180 = 3;
+    var ROTATE_270 = 8;
+    var checkRotation = function (data) {
+      var orientation = data.tiff.Orientation;
+      switch (orientation) {
+      case ROTATE_90:
+        return rotate$1(ir, 90);
+      case ROTATE_180:
+        return rotate$1(ir, 180);
+      case ROTATE_270:
+        return rotate$1(ir, 270);
+      default:
+        return ir;
+      }
+      
+    };
+    var notJpeg = function () {
+      return ir;
+    };
+    return ir.toBlob().then($_61aovte9jkmcwoug.extractFrom).then(checkRotation, notJpeg);
+  };
+  var $_5tl1cxe3jkmcwotr = {
     invert: invert,
     sharpen: sharpen,
     emboss: emboss,
@@ -1533,17 +1945,18 @@ var imagetools = (function () {
     flip: flip$1,
     crop: crop$1,
     resize: resize$2,
-    rotate: rotate$1
+    rotate: rotate$1,
+    exifRotate: exifRotate
   };
 
   var blobToImageResult = function (blob) {
-    return $_fz1xfxd3je5o2ts4.fromBlob(blob);
+    return $_1fnn2re5jkmcwou0.fromBlob(blob);
   };
   var fromBlobAndUrlSync$1 = function (blob, uri) {
-    return $_fz1xfxd3je5o2ts4.fromBlobAndUrlSync(blob, uri);
+    return $_1fnn2re5jkmcwou0.fromBlobAndUrlSync(blob, uri);
   };
   var imageToImageResult = function (image) {
-    return $_fz1xfxd3je5o2ts4.fromImage(image);
+    return $_1fnn2re5jkmcwou0.fromImage(image);
   };
   var imageResultToBlob = function (ir, type, quality) {
     if (type === undefined && quality === undefined) {
@@ -1558,7 +1971,7 @@ var imagetools = (function () {
   var imageResultToDataURL = function (ir) {
     return ir.toDataURL();
   };
-  var $_e6yipjd7je5o2tsk = {
+  var $_5w2bq6ecjkmcwov0 = {
     blobToImageResult: blobToImageResult,
     fromBlobAndUrlSync: fromBlobAndUrlSync$1,
     imageToImageResult: imageToImageResult,
@@ -1568,7 +1981,7 @@ var imagetools = (function () {
   };
 
   var url = function () {
-    return $_4n7gnacvje5o2tro.getOrDie('URL');
+    return $_901qfodxjkmcwotj.getOrDie('URL');
   };
   var createObjectURL = function (blob) {
     return url().createObjectURL(blob);
@@ -1576,16 +1989,16 @@ var imagetools = (function () {
   var revokeObjectURL = function (u) {
     url().revokeObjectURL(u);
   };
-  var $_dht8dvd8je5o2tsn = {
+  var $_51cs3oedjkmcwov1 = {
     createObjectURL: createObjectURL,
     revokeObjectURL: revokeObjectURL
   };
 
-  var Delay = tinymce.util.Tools.resolve('tinymce.util.Delay');
+  var global$2 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
-  var Promise$1 = tinymce.util.Tools.resolve('tinymce.util.Promise');
+  var global$3 = tinymce.util.Tools.resolve('tinymce.util.Promise');
 
-  var URI = tinymce.util.Tools.resolve('tinymce.util.URI');
+  var global$4 = tinymce.util.Tools.resolve('tinymce.util.URI');
 
   var getToolbarItems = function (editor) {
     return editor.getParam('imagetools_toolbar', 'rotateleft rotateright | flipv fliph | crop editimage imageoptions');
@@ -1593,14 +2006,25 @@ var imagetools = (function () {
   var getProxyUrl = function (editor) {
     return editor.getParam('imagetools_proxy');
   };
-  var $_3x7zgpdcje5o2tsp = {
-    getToolbarItems: getToolbarItems,
-    getProxyUrl: getProxyUrl
+  var getCorsHosts = function (editor) {
+    return editor.getParam('imagetools_cors_hosts', [], 'string[]');
+  };
+  var getCredentialsHosts = function (editor) {
+    return editor.getParam('imagetools_credentials_hosts', [], 'string[]');
+  };
+  var getApiKey = function (editor) {
+    return editor.getParam('api_key', editor.getParam('imagetools_api_key', '', 'string'), 'string');
+  };
+  var getUploadTimeout = function (editor) {
+    return editor.getParam('images_upload_timeout', 30000, 'number');
+  };
+  var shouldReuseFilename = function (editor) {
+    return editor.getParam('images_reuse_filename', false, 'boolean');
   };
 
-  var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$5 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
-  var Factory = tinymce.util.Tools.resolve('tinymce.ui.Factory');
+  var global$6 = tinymce.util.Tools.resolve('tinymce.ui.Factory');
 
   function UndoStack () {
     var data = [];
@@ -1640,10 +2064,10 @@ var imagetools = (function () {
     };
   }
 
-  var Rect = tinymce.util.Tools.resolve('tinymce.geom.Rect');
+  var global$7 = tinymce.util.Tools.resolve('tinymce.geom.Rect');
 
   var loadImage$1 = function (image) {
-    return new Promise$1(function (resolve) {
+    return new global$3(function (resolve) {
       var loaded = function () {
         image.removeEventListener('load', loaded);
         resolve(image);
@@ -1655,13 +2079,13 @@ var imagetools = (function () {
       }
     });
   };
-  var $_3d2sfqdjje5o2ttt = { loadImage: loadImage$1 };
+  var $_4u6vvleojkmcwow0 = { loadImage: loadImage$1 };
 
-  var DomQuery = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
+  var global$8 = tinymce.util.Tools.resolve('tinymce.dom.DomQuery');
 
-  var Observable = tinymce.util.Tools.resolve('tinymce.util.Observable');
+  var global$9 = tinymce.util.Tools.resolve('tinymce.util.Observable');
 
-  var VK = tinymce.util.Tools.resolve('tinymce.util.VK');
+  var global$10 = tinymce.util.Tools.resolve('tinymce.util.VK');
 
   var count = 0;
   function CropRect (currentRect, viewPortRect, clampRect, containerElm, action) {
@@ -1764,7 +2188,7 @@ var imagetools = (function () {
       if (h < 20) {
         h = 20;
       }
-      rect = currentRect = Rect.clamp({
+      rect = currentRect = global$7.clamp({
         x: x,
         y: y,
         w: w,
@@ -1777,7 +2201,7 @@ var imagetools = (function () {
     function render() {
       function createDragHelper(handle) {
         var startRect;
-        var DragHelper = Factory.get('DragHelper');
+        var DragHelper = global$6.get('DragHelper');
         return new DragHelper(id, {
           document: containerElm.ownerDocument,
           handle: id + '-' + handle.name,
@@ -1789,21 +2213,21 @@ var imagetools = (function () {
           }
         });
       }
-      DomQuery('<div id="' + id + '" class="' + prefix + 'croprect-container"' + ' role="grid" aria-dropeffect="execute">').appendTo(containerElm);
-      Tools.each(blockers, function (blocker) {
-        DomQuery('#' + id, containerElm).append('<div id="' + id + '-' + blocker + '"class="' + prefix + 'croprect-block" style="display: none" data-mce-bogus="all">');
+      global$8('<div id="' + id + '" class="' + prefix + 'croprect-container"' + ' role="grid" aria-dropeffect="execute">').appendTo(containerElm);
+      global$1.each(blockers, function (blocker) {
+        global$8('#' + id, containerElm).append('<div id="' + id + '-' + blocker + '"class="' + prefix + 'croprect-block" style="display: none" data-mce-bogus="all">');
       });
-      Tools.each(handles, function (handle) {
-        DomQuery('#' + id, containerElm).append('<div id="' + id + '-' + handle.name + '" class="' + prefix + 'croprect-handle ' + prefix + 'croprect-handle-' + handle.name + '"' + 'style="display: none" data-mce-bogus="all" role="gridcell" tabindex="-1"' + ' aria-label="' + handle.label + '" aria-grabbed="false">');
+      global$1.each(handles, function (handle) {
+        global$8('#' + id, containerElm).append('<div id="' + id + '-' + handle.name + '" class="' + prefix + 'croprect-handle ' + prefix + 'croprect-handle-' + handle.name + '"' + 'style="display: none" data-mce-bogus="all" role="gridcell" tabindex="-1"' + ' aria-label="' + handle.label + '" aria-grabbed="false">');
       });
-      dragHelpers = Tools.map(handles, createDragHelper);
+      dragHelpers = global$1.map(handles, createDragHelper);
       repaint(currentRect);
-      DomQuery(containerElm).on('focusin focusout', function (e) {
-        DomQuery(e.target).attr('aria-grabbed', e.type === 'focus');
+      global$8(containerElm).on('focusin focusout', function (e) {
+        global$8(e.target).attr('aria-grabbed', e.type === 'focus');
       });
-      DomQuery(containerElm).on('keydown', function (e) {
+      global$8(containerElm).on('keydown', function (e) {
         var activeHandle;
-        Tools.each(handles, function (handle) {
+        global$1.each(handles, function (handle) {
           if (e.target.id === id + '-' + handle.name) {
             activeHandle = handle;
             return false;
@@ -1815,20 +2239,20 @@ var imagetools = (function () {
           moveRect(activeHandle, startRect, deltaX, deltaY);
         }
         switch (e.keyCode) {
-        case VK.LEFT:
+        case global$10.LEFT:
           moveAndBlock(e, activeHandle, currentRect, -10, 0);
           break;
-        case VK.RIGHT:
+        case global$10.RIGHT:
           moveAndBlock(e, activeHandle, currentRect, 10, 0);
           break;
-        case VK.UP:
+        case global$10.UP:
           moveAndBlock(e, activeHandle, currentRect, 0, -10);
           break;
-        case VK.DOWN:
+        case global$10.DOWN:
           moveAndBlock(e, activeHandle, currentRect, 0, 10);
           break;
-        case VK.ENTER:
-        case VK.SPACEBAR:
+        case global$10.ENTER:
+        case global$10.SPACEBAR:
           e.preventDefault();
           action();
           break;
@@ -1837,15 +2261,15 @@ var imagetools = (function () {
     }
     function toggleVisibility(state) {
       var selectors;
-      selectors = Tools.map(handles, function (handle) {
+      selectors = global$1.map(handles, function (handle) {
         return '#' + id + '-' + handle.name;
-      }).concat(Tools.map(blockers, function (blocker) {
+      }).concat(global$1.map(blockers, function (blocker) {
         return '#' + id + '-' + blocker;
       })).join(',');
       if (state) {
-        DomQuery(selectors, containerElm).show();
+        global$8(selectors, containerElm).show();
       } else {
-        DomQuery(selectors, containerElm).hide();
+        global$8(selectors, containerElm).hide();
       }
     }
     function repaint(rect) {
@@ -1856,15 +2280,15 @@ var imagetools = (function () {
         if (rect.w < 0) {
           rect.w = 0;
         }
-        DomQuery('#' + id + '-' + name, containerElm).css({
+        global$8('#' + id + '-' + name, containerElm).css({
           left: rect.x,
           top: rect.y,
           width: rect.w,
           height: rect.h
         });
       }
-      Tools.each(handles, function (handle) {
-        DomQuery('#' + id + '-' + handle.name, containerElm).css({
+      global$1.each(handles, function (handle) {
+        global$8('#' + id + '-' + handle.name, containerElm).css({
           left: rect.w * handle.xMul + rect.x,
           top: rect.h * handle.yMul + rect.y
         });
@@ -1911,13 +2335,13 @@ var imagetools = (function () {
       repaint(currentRect);
     }
     function destroy() {
-      Tools.each(dragHelpers, function (helper) {
+      global$1.each(dragHelpers, function (helper) {
         helper.destroy();
       });
       dragHelpers = [];
     }
     render();
-    instance = Tools.extend({
+    instance = global$1.extend({
       toggleVisibility: toggleVisibility,
       setClampRect: setClampRect,
       setRect: setRect,
@@ -1925,12 +2349,12 @@ var imagetools = (function () {
       setInnerRect: setInnerRect,
       setViewPortRect: setViewPortRect,
       destroy: destroy
-    }, Observable);
+    }, global$9);
     return instance;
   }
 
   var create$2 = function (settings) {
-    var Control = Factory.get('Control');
+    var Control = global$6.get('Control');
     var ImagePanel = Control.extend({
       Defaults: { classes: 'imagepanel' },
       selection: function (rect) {
@@ -1951,19 +2375,19 @@ var imagetools = (function () {
         this.state.set('cropEnabled', state);
       },
       imageSrc: function (url) {
-        var self = this, img = new Image();
+        var self$$1 = this, img = new Image();
         img.src = url;
-        $_3d2sfqdjje5o2ttt.loadImage(img).then(function () {
+        $_4u6vvleojkmcwow0.loadImage(img).then(function () {
           var rect, $img;
-          var lastRect = self.state.get('viewRect');
-          $img = self.$el.find('img');
+          var lastRect = self$$1.state.get('viewRect');
+          $img = self$$1.$el.find('img');
           if ($img[0]) {
             $img.replaceWith(img);
           } else {
             var bg = document.createElement('div');
             bg.className = 'mce-imagepanel-bg';
-            self.getEl().appendChild(bg);
-            self.getEl().appendChild(img);
+            self$$1.getEl().appendChild(bg);
+            self$$1.getEl().appendChild(img);
           }
           rect = {
             x: 0,
@@ -1971,13 +2395,13 @@ var imagetools = (function () {
             w: img.naturalWidth,
             h: img.naturalHeight
           };
-          self.state.set('viewRect', rect);
-          self.state.set('rect', Rect.inflate(rect, -20, -20));
+          self$$1.state.set('viewRect', rect);
+          self$$1.state.set('rect', global$7.inflate(rect, -20, -20));
           if (!lastRect || lastRect.w !== rect.w || lastRect.h !== rect.h) {
-            self.zoomFit();
+            self$$1.zoomFit();
           }
-          self.repaintImage();
-          self.fire('load');
+          self$$1.repaintImage();
+          self$$1.fire('load');
         });
       },
       zoom: function (value) {
@@ -1992,19 +2416,19 @@ var imagetools = (function () {
         return this._super();
       },
       zoomFit: function () {
-        var self = this;
+        var self$$1 = this;
         var $img, pw, ph, w, h, zoom, padding;
         padding = 10;
-        $img = self.$el.find('img');
-        pw = self.getEl().clientWidth;
-        ph = self.getEl().clientHeight;
+        $img = self$$1.$el.find('img');
+        pw = self$$1.getEl().clientWidth;
+        ph = self$$1.getEl().clientHeight;
         w = $img[0].naturalWidth;
         h = $img[0].naturalHeight;
         zoom = Math.min((pw - padding) / w, (ph - padding) / h);
         if (zoom >= 1) {
           zoom = 1;
         }
-        self.zoom(zoom);
+        self$$1.zoom(zoom);
       },
       repaintImage: function () {
         var x, y, w, h, pw, ph, $img, $bg, zoom, rect, elm;
@@ -2053,57 +2477,57 @@ var imagetools = (function () {
         }
       },
       bindStates: function () {
-        var self = this;
+        var self$$1 = this;
         function setupCropRect(rect) {
-          self.cropRect = CropRect(rect, self.state.get('viewRect'), self.state.get('viewRect'), self.getEl(), function () {
-            self.fire('crop');
+          self$$1.cropRect = CropRect(rect, self$$1.state.get('viewRect'), self$$1.state.get('viewRect'), self$$1.getEl(), function () {
+            self$$1.fire('crop');
           });
-          self.cropRect.on('updateRect', function (e) {
+          self$$1.cropRect.on('updateRect', function (e) {
             var rect = e.rect;
-            var zoom = self.zoom();
+            var zoom = self$$1.zoom();
             rect = {
               x: Math.round(rect.x / zoom),
               y: Math.round(rect.y / zoom),
               w: Math.round(rect.w / zoom),
               h: Math.round(rect.h / zoom)
             };
-            self.state.set('rect', rect);
+            self$$1.state.set('rect', rect);
           });
-          self.on('remove', self.cropRect.destroy);
+          self$$1.on('remove', self$$1.cropRect.destroy);
         }
-        self.state.on('change:cropEnabled', function (e) {
-          self.cropRect.toggleVisibility(e.value);
-          self.repaintImage();
+        self$$1.state.on('change:cropEnabled', function (e) {
+          self$$1.cropRect.toggleVisibility(e.value);
+          self$$1.repaintImage();
         });
-        self.state.on('change:zoom', function () {
-          self.repaintImage();
+        self$$1.state.on('change:zoom', function () {
+          self$$1.repaintImage();
         });
-        self.state.on('change:rect', function (e) {
+        self$$1.state.on('change:rect', function (e) {
           var rect = e.value;
-          if (!self.cropRect) {
+          if (!self$$1.cropRect) {
             setupCropRect(rect);
           }
-          self.cropRect.setRect(rect);
+          self$$1.cropRect.setRect(rect);
         });
       }
     });
     return new ImagePanel(settings);
   };
-  var $_co9uacdhje5o2ttp = { create: create$2 };
+  var $_ddvcp3emjkmcwovv = { create: create$2 };
 
   function createState(blob) {
     return {
       blob: blob,
-      url: $_dht8dvd8je5o2tsn.createObjectURL(blob)
+      url: $_51cs3oedjkmcwov1.createObjectURL(blob)
     };
   }
   function destroyState(state) {
     if (state) {
-      $_dht8dvd8je5o2tsn.revokeObjectURL(state.url);
+      $_51cs3oedjkmcwov1.revokeObjectURL(state.url);
     }
   }
   function destroyStates(states) {
-    Tools.each(states, destroyState);
+    global$1.each(states, destroyState);
   }
   function open(editor, currentState, resolve, reject) {
     var win, undoStack = UndoStack(), mainPanel, filtersPanel, tempState, cropPanel, resizePanel, flipRotatePanel, imagePanel, sidePanel, mainViewContainer, invertPanel, brightnessPanel, huePanel, saturatePanel, contrastPanel, grayscalePanel, sepiaPanel, colorizePanel, sharpenPanel, embossPanel, gammaPanel, exposurePanel, panels, width, height, ratioW, ratioH;
@@ -2147,10 +2571,10 @@ var imagetools = (function () {
     }
     function switchPanel(targetPanel) {
       return function () {
-        var hidePanels = Tools.grep(panels, function (panel) {
+        var hidePanels = global$1.grep(panels, function (panel) {
           return panel.settings.name !== targetPanel;
         });
-        Tools.each(hidePanels, function (panel) {
+        global$1.each(hidePanels, function (panel) {
           panel.hide();
         });
         targetPanel.show();
@@ -2169,8 +2593,8 @@ var imagetools = (function () {
     }
     function crop() {
       var rect = imagePanel.selection();
-      $_e6yipjd7je5o2tsk.blobToImageResult(currentState.blob).then(function (ir) {
-        $_9hfydbd1je5o2trv.crop(ir, rect.x, rect.y, rect.w, rect.h).then(imageResultToBlob).then(function (blob) {
+      $_5w2bq6ecjkmcwov0.blobToImageResult(currentState.blob).then(function (ir) {
+        $_5tl1cxe3jkmcwotr.crop(ir, rect.x, rect.y, rect.w, rect.h).then(imageResultToBlob).then(function (blob) {
           addBlobState(blob);
           cancel();
         });
@@ -2180,7 +2604,7 @@ var imagetools = (function () {
       var args = [].slice.call(arguments, 1);
       return function () {
         var state = tempState || currentState;
-        $_e6yipjd7je5o2tsk.blobToImageResult(state.blob).then(function (ir) {
+        $_5w2bq6ecjkmcwov0.blobToImageResult(state.blob).then(function (ir) {
           fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addTempState);
         });
       };
@@ -2192,7 +2616,7 @@ var imagetools = (function () {
       }
       var args = [].slice.call(arguments, 1);
       return function () {
-        $_e6yipjd7je5o2tsk.blobToImageResult(currentState.blob).then(function (ir) {
+        $_5w2bq6ecjkmcwov0.blobToImageResult(currentState.blob).then(function (ir) {
           fn.apply(this, [ir].concat(args)).then(imageResultToBlob).then(addBlobState);
         });
       };
@@ -2253,7 +2677,7 @@ var imagetools = (function () {
       win.close();
     }
     function createPanel(items) {
-      return Factory.create('Form', {
+      return global$6.create('Form', {
         layout: 'flex',
         direction: 'row',
         labelGap: 5,
@@ -2291,7 +2715,7 @@ var imagetools = (function () {
         }
       ])).hide().on('show', function () {
         disableUndoRedo();
-        $_e6yipjd7je5o2tsk.blobToImageResult(currentState.blob).then(function (ir) {
+        $_5w2bq6ecjkmcwov0.blobToImageResult(currentState.blob).then(function (ir) {
           return filter(ir);
         }).then(imageResultToBlob).then(function (blob) {
           var newTempState = createState(blob);
@@ -2303,7 +2727,7 @@ var imagetools = (function () {
     }
     function createVariableFilterPanel(title, filter, value, min, max) {
       function update(value) {
-        $_e6yipjd7je5o2tsk.blobToImageResult(currentState.blob).then(function (ir) {
+        $_5w2bq6ecjkmcwov0.blobToImageResult(currentState.blob).then(function (ir) {
           return filter(ir, value);
         }).then(imageResultToBlob).then(function (blob) {
           var newTempState = createState(blob);
@@ -2352,7 +2776,7 @@ var imagetools = (function () {
         r = win.find('#r')[0].value();
         g = win.find('#g')[0].value();
         b = win.find('#b')[0].value();
-        $_e6yipjd7je5o2tsk.blobToImageResult(currentState.blob).then(function (ir) {
+        $_5w2bq6ecjkmcwov0.blobToImageResult(currentState.blob).then(function (ir) {
           return filter(ir, r, g, b);
         }).then(imageResultToBlob).then(function (blob) {
           var newTempState = createState(blob);
@@ -2481,7 +2905,7 @@ var imagetools = (function () {
     ])).hide().on('submit', function (e) {
       var width = parseInt(win.find('#w').value(), 10), height = parseInt(win.find('#h').value(), 10);
       e.preventDefault();
-      action($_9hfydbd1je5o2trv.resize, width, height)();
+      action($_5tl1cxe3jkmcwotr.resize, width, height)();
       cancel();
     }).on('show', disableUndoRedo);
     flipRotatePanel = createPanel(reverseIfRtl([
@@ -2496,22 +2920,22 @@ var imagetools = (function () {
       {
         icon: 'fliph',
         tooltip: 'Flip horizontally',
-        onclick: tempAction($_9hfydbd1je5o2trv.flip, 'h')
+        onclick: tempAction($_5tl1cxe3jkmcwotr.flip, 'h')
       },
       {
         icon: 'flipv',
         tooltip: 'Flip vertically',
-        onclick: tempAction($_9hfydbd1je5o2trv.flip, 'v')
+        onclick: tempAction($_5tl1cxe3jkmcwotr.flip, 'v')
       },
       {
         icon: 'rotateleft',
         tooltip: 'Rotate counterclockwise',
-        onclick: tempAction($_9hfydbd1je5o2trv.rotate, -90)
+        onclick: tempAction($_5tl1cxe3jkmcwotr.rotate, -90)
       },
       {
         icon: 'rotateright',
         tooltip: 'Rotate clockwise',
-        onclick: tempAction($_9hfydbd1je5o2trv.rotate, 90)
+        onclick: tempAction($_5tl1cxe3jkmcwotr.rotate, 90)
       },
       {
         type: 'spacer',
@@ -2523,18 +2947,18 @@ var imagetools = (function () {
         onclick: applyTempState
       }
     ])).hide().on('show', disableUndoRedo);
-    invertPanel = createFilterPanel('Invert', $_9hfydbd1je5o2trv.invert);
-    sharpenPanel = createFilterPanel('Sharpen', $_9hfydbd1je5o2trv.sharpen);
-    embossPanel = createFilterPanel('Emboss', $_9hfydbd1je5o2trv.emboss);
-    brightnessPanel = createVariableFilterPanel('Brightness', $_9hfydbd1je5o2trv.brightness, 0, -1, 1);
-    huePanel = createVariableFilterPanel('Hue', $_9hfydbd1je5o2trv.hue, 180, 0, 360);
-    saturatePanel = createVariableFilterPanel('Saturate', $_9hfydbd1je5o2trv.saturate, 0, -1, 1);
-    contrastPanel = createVariableFilterPanel('Contrast', $_9hfydbd1je5o2trv.contrast, 0, -1, 1);
-    grayscalePanel = createVariableFilterPanel('Grayscale', $_9hfydbd1je5o2trv.grayscale, 0, 0, 1);
-    sepiaPanel = createVariableFilterPanel('Sepia', $_9hfydbd1je5o2trv.sepia, 0, 0, 1);
-    colorizePanel = createRgbFilterPanel('Colorize', $_9hfydbd1je5o2trv.colorize);
-    gammaPanel = createVariableFilterPanel('Gamma', $_9hfydbd1je5o2trv.gamma, 0, -1, 1);
-    exposurePanel = createVariableFilterPanel('Exposure', $_9hfydbd1je5o2trv.exposure, 1, 0, 2);
+    invertPanel = createFilterPanel('Invert', $_5tl1cxe3jkmcwotr.invert);
+    sharpenPanel = createFilterPanel('Sharpen', $_5tl1cxe3jkmcwotr.sharpen);
+    embossPanel = createFilterPanel('Emboss', $_5tl1cxe3jkmcwotr.emboss);
+    brightnessPanel = createVariableFilterPanel('Brightness', $_5tl1cxe3jkmcwotr.brightness, 0, -1, 1);
+    huePanel = createVariableFilterPanel('Hue', $_5tl1cxe3jkmcwotr.hue, 180, 0, 360);
+    saturatePanel = createVariableFilterPanel('Saturate', $_5tl1cxe3jkmcwotr.saturate, 0, -1, 1);
+    contrastPanel = createVariableFilterPanel('Contrast', $_5tl1cxe3jkmcwotr.contrast, 0, -1, 1);
+    grayscalePanel = createVariableFilterPanel('Grayscale', $_5tl1cxe3jkmcwotr.grayscale, 0, 0, 1);
+    sepiaPanel = createVariableFilterPanel('Sepia', $_5tl1cxe3jkmcwotr.sepia, 0, 0, 1);
+    colorizePanel = createRgbFilterPanel('Colorize', $_5tl1cxe3jkmcwotr.colorize);
+    gammaPanel = createVariableFilterPanel('Gamma', $_5tl1cxe3jkmcwotr.gamma, 0, -1, 1);
+    exposurePanel = createVariableFilterPanel('Exposure', $_5tl1cxe3jkmcwotr.exposure, 1, 0, 2);
     filtersPanel = createPanel(reverseIfRtl([
       {
         text: 'Back',
@@ -2621,11 +3045,11 @@ var imagetools = (function () {
         onclick: switchPanel(invertPanel)
       }
     ]));
-    imagePanel = $_co9uacdhje5o2ttp.create({
+    imagePanel = $_ddvcp3emjkmcwovv.create({
       flex: 1,
       imageSrc: currentState.url
     });
-    sidePanel = Factory.create('Container', {
+    sidePanel = global$6.create('Container', {
       layout: 'flex',
       direction: 'column',
       pack: 'start',
@@ -2661,7 +3085,7 @@ var imagetools = (function () {
         }
       ]
     });
-    mainViewContainer = Factory.create('Container', {
+    mainViewContainer = global$6.create('Container', {
       type: 'container',
       layout: 'flex',
       direction: 'row',
@@ -2695,8 +3119,8 @@ var imagetools = (function () {
       layout: 'flex',
       direction: 'column',
       align: 'stretch',
-      minWidth: Math.min(DOMUtils.DOM.getViewPort().w, 800),
-      minHeight: Math.min(DOMUtils.DOM.getViewPort().h, 650),
+      minWidth: Math.min(global$5.DOM.getViewPort().w, 800),
+      minHeight: Math.min(global$5.DOM.getViewPort().h, 650),
       title: 'Edit image',
       items: panels.concat([mainViewContainer]),
       buttons: reverseIfRtl([
@@ -2731,13 +3155,13 @@ var imagetools = (function () {
     imagePanel.on('crop', crop);
   }
   function edit(editor, imageResult) {
-    return new Promise$1(function (resolve, reject) {
+    return new global$3(function (resolve, reject) {
       return imageResult.toBlob().then(function (blob) {
         open(editor, createState(blob), resolve, reject);
       });
     });
   }
-  var $_67p1fjddje5o2tsy = { edit: edit };
+  var $_9hzraheijkmcwovc = { edit: edit };
 
   function getImageSize(img) {
     var width, height;
@@ -2789,126 +3213,35 @@ var imagetools = (function () {
       h: img.naturalHeight
     };
   }
-  var $_aly06vdoje5o2tu2 = {
+  var $_9virabeujkmcwowu = {
     getImageSize: getImageSize,
     setImageSize: setImageSize,
     getNaturalImageSize: getNaturalImageSize
   };
 
-  var rawIndexOf = function () {
-    var pIndexOf = Array.prototype.indexOf;
-    var fastIndex = function (xs, x) {
-      return pIndexOf.call(xs, x);
-    };
-    var slowIndex = function (xs, x) {
-      return slowIndexOf(xs, x);
-    };
-    return pIndexOf === undefined ? slowIndex : fastIndex;
-  }();
-  var indexOf = function (xs, x) {
-    var r = rawIndexOf(xs, x);
-    return r === -1 ? Option.none() : Option.some(r);
+  var typeOf = function (x) {
+    if (x === null)
+      return 'null';
+    var t = typeof x;
+    if (t === 'object' && Array.prototype.isPrototypeOf(x))
+      return 'array';
+    if (t === 'object' && String.prototype.isPrototypeOf(x))
+      return 'string';
+    return t;
   };
-  var contains = function (xs, x) {
-    return rawIndexOf(xs, x) > -1;
-  };
-  var exists = function (xs, pred) {
-    return findIndex(xs, pred).isSome();
-  };
-  var range = function (num, f) {
-    var r = [];
-    for (var i = 0; i < num; i++) {
-      r.push(f(i));
-    }
-    return r;
-  };
-  var chunk = function (array, size) {
-    var r = [];
-    for (var i = 0; i < array.length; i += size) {
-      var s = array.slice(i, i + size);
-      r.push(s);
-    }
-    return r;
-  };
-  var map = function (xs, f) {
-    var len = xs.length;
-    var r = new Array(len);
-    for (var i = 0; i < len; i++) {
-      var x = xs[i];
-      r[i] = f(x, i, xs);
-    }
-    return r;
-  };
-  var each = function (xs, f) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var eachr = function (xs, f) {
-    for (var i = xs.length - 1; i >= 0; i--) {
-      var x = xs[i];
-      f(x, i, xs);
-    }
-  };
-  var partition = function (xs, pred) {
-    var pass = [];
-    var fail = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      var arr = pred(x, i, xs) ? pass : fail;
-      arr.push(x);
-    }
-    return {
-      pass: pass,
-      fail: fail
+  var isType = function (type) {
+    return function (value) {
+      return typeOf(value) === type;
     };
   };
-  var filter = function (xs, pred) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        r.push(x);
-      }
-    }
-    return r;
-  };
-  var groupBy = function (xs, f) {
-    if (xs.length === 0) {
-      return [];
-    } else {
-      var wasType = f(xs[0]);
-      var r = [];
-      var group = [];
-      for (var i = 0, len = xs.length; i < len; i++) {
-        var x = xs[i];
-        var type = f(x);
-        if (type !== wasType) {
-          r.push(group);
-          group = [];
-        }
-        wasType = type;
-        group.push(x);
-      }
-      if (group.length !== 0) {
-        r.push(group);
-      }
-      return r;
-    }
-  };
-  var foldr = function (xs, f, acc) {
-    eachr(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
-  var foldl = function (xs, f, acc) {
-    each(xs, function (x) {
-      acc = f(acc, x);
-    });
-    return acc;
-  };
+
+
+
+
+
+
+  var isFunction = isType('function');
+
   var find = function (xs, pred) {
     for (var i = 0, len = xs.length; i < len; i++) {
       var x = xs[i];
@@ -2918,115 +3251,25 @@ var imagetools = (function () {
     }
     return Option.none();
   };
-  var findIndex = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      if (pred(x, i, xs)) {
-        return Option.some(i);
-      }
-    }
-    return Option.none();
-  };
-  var slowIndexOf = function (xs, x) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (xs[i] === x) {
-        return i;
-      }
-    }
-    return -1;
-  };
-  var push = Array.prototype.push;
-  var flatten = function (xs) {
-    var r = [];
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      if (!Array.prototype.isPrototypeOf(xs[i]))
-        throw new Error('Arr.flatten item ' + i + ' was not an array, input: ' + xs);
-      push.apply(r, xs[i]);
-    }
-    return r;
-  };
-  var bind = function (xs, f) {
-    var output = map(xs, f);
-    return flatten(output);
-  };
-  var forall = function (xs, pred) {
-    for (var i = 0, len = xs.length; i < len; ++i) {
-      var x = xs[i];
-      if (pred(x, i, xs) !== true) {
-        return false;
-      }
-    }
-    return true;
-  };
-  var equal = function (a1, a2) {
-    return a1.length === a2.length && forall(a1, function (x, i) {
-      return x === a2[i];
-    });
-  };
+
+
+
+
+
   var slice = Array.prototype.slice;
-  var reverse = function (xs) {
-    var r = slice.call(xs, 0);
-    r.reverse();
-    return r;
-  };
-  var difference = function (a1, a2) {
-    return filter(a1, function (x) {
-      return !contains(a2, x);
-    });
-  };
-  var mapToObject = function (xs, f) {
-    var r = {};
-    for (var i = 0, len = xs.length; i < len; i++) {
-      var x = xs[i];
-      r[String(x)] = f(x, i);
-    }
-    return r;
-  };
-  var pure = function (x) {
-    return [x];
-  };
-  var sort = function (xs, comparator) {
-    var copy = slice.call(xs, 0);
-    copy.sort(comparator);
-    return copy;
-  };
-  var head = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[0]);
-  };
-  var last = function (xs) {
-    return xs.length === 0 ? Option.none() : Option.some(xs[xs.length - 1]);
-  };
-  var $_9eqeexdrje5o2tua = {
-    map: map,
-    each: each,
-    eachr: eachr,
-    partition: partition,
-    filter: filter,
-    groupBy: groupBy,
-    indexOf: indexOf,
-    foldr: foldr,
-    foldl: foldl,
-    find: find,
-    findIndex: findIndex,
-    flatten: flatten,
-    bind: bind,
-    forall: forall,
-    exists: exists,
-    contains: contains,
-    equal: equal,
-    reverse: reverse,
-    chunk: chunk,
-    difference: difference,
-    mapToObject: mapToObject,
-    pure: pure,
-    sort: sort,
-    range: range,
-    head: head,
-    last: last
+
+
+
+
+
+
+
+  var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+    return slice.call(x);
   };
 
   function XMLHttpRequest$1 () {
-    var f = $_4n7gnacvje5o2tro.getOrDie('XMLHttpRequest');
+    var f = $_901qfodxjkmcwotj.getOrDie('XMLHttpRequest');
     return new f();
   }
 
@@ -3040,8 +3283,8 @@ var imagetools = (function () {
     }, json);
     return isValue(value) ? value : null;
   };
-  var requestUrlAsBlob = function (url, headers) {
-    return new Promise$1(function (resolve) {
+  var requestUrlAsBlob = function (url, headers, withCredentials) {
+    return new global$3(function (resolve) {
       var xhr;
       xhr = new XMLHttpRequest$1();
       xhr.onreadystatechange = function () {
@@ -3053,7 +3296,8 @@ var imagetools = (function () {
         }
       };
       xhr.open('GET', url, true);
-      Tools.each(headers, function (value, key) {
+      xhr.withCredentials = withCredentials;
+      global$1.each(headers, function (value, key) {
         xhr.setRequestHeader(key, value);
       });
       xhr.responseType = 'blob';
@@ -3061,7 +3305,7 @@ var imagetools = (function () {
     });
   };
   var readBlob = function (blob) {
-    return new Promise$1(function (resolve) {
+    return new global$3(function (resolve) {
       var fr = new FileReader();
       fr.onload = function (e) {
         var data = e.target;
@@ -3078,7 +3322,7 @@ var imagetools = (function () {
     }
     return json;
   };
-  var $_304xiedsje5o2tui = {
+  var $_5nd4noezjkmcwoxi = {
     traverse: traverse,
     readBlob: readBlob,
     requestUrlAsBlob: requestUrlAsBlob,
@@ -3117,27 +3361,27 @@ var imagetools = (function () {
     return code === 400 || code === 403 || code === 500;
   };
   var getHttpErrorMsg = function (status) {
-    var message = $_9eqeexdrje5o2tua.find(friendlyHttpErrors, function (error) {
+    var message = find(friendlyHttpErrors, function (error) {
       return status === error.code;
-    }).fold($_8nwcy9ctje5o2trl.constant('Unknown ImageProxy error'), function (error) {
+    }).fold(constant('Unknown ImageProxy error'), function (error) {
       return error.message;
     });
     return 'ImageProxy HTTP error: ' + message;
   };
   var handleHttpError = function (status) {
     var message = getHttpErrorMsg(status);
-    return Promise$1.reject(message);
+    return global$3.reject(message);
   };
   var getServiceErrorMsg = function (type) {
-    return $_9eqeexdrje5o2tua.find(friendlyServiceErrors, function (error) {
+    return find(friendlyServiceErrors, function (error) {
       return error.type === type;
-    }).fold($_8nwcy9ctje5o2trl.constant('Unknown service error'), function (error) {
+    }).fold(constant('Unknown service error'), function (error) {
       return error.message;
     });
   };
   var getServiceError = function (text) {
-    var serviceError = $_304xiedsje5o2tui.parseJson(text);
-    var errorType = $_304xiedsje5o2tui.traverse(serviceError, [
+    var serviceError = $_5nd4noezjkmcwoxi.parseJson(text);
+    var errorType = $_5nd4noezjkmcwoxi.traverse(serviceError, [
       'error',
       'type'
     ]);
@@ -3145,15 +3389,15 @@ var imagetools = (function () {
     return 'ImageProxy Service error: ' + errorMsg;
   };
   var handleServiceError = function (status, blob) {
-    return $_304xiedsje5o2tui.readBlob(blob).then(function (text) {
+    return $_5nd4noezjkmcwoxi.readBlob(blob).then(function (text) {
       var serviceError = getServiceError(text);
-      return Promise$1.reject(serviceError);
+      return global$3.reject(serviceError);
     });
   };
   var handleServiceErrorResponse = function (status, blob) {
     return isServiceErrorCode(status) ? handleServiceError(status, blob) : handleHttpError(status);
   };
-  var $_4rh8yldqje5o2tu6 = {
+  var $_5v7jv3ewjkmcwox0 = {
     handleServiceErrorResponse: handleServiceErrorResponse,
     handleHttpError: handleHttpError,
     getHttpErrorMsg: getHttpErrorMsg,
@@ -3169,22 +3413,23 @@ var imagetools = (function () {
     }
   };
   var requestServiceBlob = function (url, apiKey) {
-    return $_304xiedsje5o2tui.requestUrlAsBlob(appendApiKey(url, apiKey), {
+    var headers = {
       'Content-Type': 'application/json;charset=UTF-8',
       'tiny-api-key': apiKey
-    }).then(function (result) {
-      return result.status < 200 || result.status >= 300 ? $_4rh8yldqje5o2tu6.handleServiceErrorResponse(result.status, result.blob) : Promise$1.resolve(result.blob);
+    };
+    return $_5nd4noezjkmcwoxi.requestUrlAsBlob(appendApiKey(url, apiKey), headers, false).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_5v7jv3ewjkmcwox0.handleServiceErrorResponse(result.status, result.blob) : global$3.resolve(result.blob);
     });
   };
-  function requestBlob(url) {
-    return $_304xiedsje5o2tui.requestUrlAsBlob(url, {}).then(function (result) {
-      return result.status < 200 || result.status >= 300 ? $_4rh8yldqje5o2tu6.handleHttpError(result.status) : Promise$1.resolve(result.blob);
+  function requestBlob(url, withCredentials) {
+    return $_5nd4noezjkmcwoxi.requestUrlAsBlob(url, {}, withCredentials).then(function (result) {
+      return result.status < 200 || result.status >= 300 ? $_5v7jv3ewjkmcwox0.handleHttpError(result.status) : global$3.resolve(result.blob);
     });
   }
-  var getUrl = function (url, apiKey) {
-    return apiKey ? requestServiceBlob(url, apiKey) : requestBlob(url);
+  var getUrl = function (url, apiKey, withCredentials) {
+    return apiKey ? requestServiceBlob(url, apiKey) : requestBlob(url, withCredentials);
   };
-  var $_9ezkvpdpje5o2tu4 = { getUrl: getUrl };
+  var $_5vq7sbevjkmcwowx = { getUrl: getUrl };
 
   var count$1 = 0;
   var isEditableImage = function (editor, img) {
@@ -3212,39 +3457,39 @@ var imagetools = (function () {
   };
   var isLocalImage = function (editor, img) {
     var url = img.src;
-    return url.indexOf('data:') === 0 || url.indexOf('blob:') === 0 || new URI(url).host === editor.documentBaseURI.host;
+    return url.indexOf('data:') === 0 || url.indexOf('blob:') === 0 || new global$4(url).host === editor.documentBaseURI.host;
   };
   var isCorsImage = function (editor, img) {
-    return Tools.inArray(editor.settings.imagetools_cors_hosts, new URI(img.src).host) !== -1;
+    return global$1.inArray(getCorsHosts(editor), new global$4(img.src).host) !== -1;
   };
-  var getApiKey = function (editor) {
-    return editor.settings.api_key || editor.settings.imagetools_api_key;
+  var isCorsWithCredentialsImage = function (editor, img) {
+    return global$1.inArray(getCredentialsHosts(editor), new global$4(img.src).host) !== -1;
   };
   var imageToBlob$2 = function (editor, img) {
     var src = img.src, apiKey;
     if (isCorsImage(editor, img)) {
-      return $_9ezkvpdpje5o2tu4.getUrl(img.src, null);
+      return $_5vq7sbevjkmcwowx.getUrl(img.src, null, isCorsWithCredentialsImage(editor, img));
     }
     if (!isLocalImage(editor, img)) {
-      src = $_3x7zgpdcje5o2tsp.getProxyUrl(editor);
+      src = getProxyUrl(editor);
       src += (src.indexOf('?') === -1 ? '?' : '&') + 'url=' + encodeURIComponent(img.src);
       apiKey = getApiKey(editor);
-      return $_9ezkvpdpje5o2tu4.getUrl(src, apiKey);
+      return $_5vq7sbevjkmcwowx.getUrl(src, apiKey, false);
     }
-    return $_d31t89cnje5o2tqq.imageToBlob(img);
+    return $_l0c0gdpjkmcwosd.imageToBlob(img);
   };
   var findSelectedBlob = function (editor) {
     var blobInfo;
     blobInfo = editor.editorUpload.blobCache.getByUri(getSelectedImage(editor).src);
     if (blobInfo) {
-      return Promise$1.resolve(blobInfo.blob());
+      return global$3.resolve(blobInfo.blob());
     }
     return imageToBlob$2(editor, getSelectedImage(editor));
   };
   var startTimedUpload = function (editor, imageUploadTimerState) {
-    var imageUploadTimer = Delay.setEditorTimeout(editor, function () {
+    var imageUploadTimer = global$2.setEditorTimeout(editor, function () {
       editor.editorUpload.uploadImagesAuto();
-    }, editor.settings.images_upload_timeout || 30000);
+    }, getUploadTimeout(editor));
     imageUploadTimerState.set(imageUploadTimer);
   };
   var cancelTimedUpload = function (imageUploadTimerState) {
@@ -3256,7 +3501,7 @@ var imagetools = (function () {
       blobCache = editor.editorUpload.blobCache;
       selectedImage = getSelectedImage(editor);
       uri = selectedImage.src;
-      if (editor.settings.images_reuse_filename) {
+      if (shouldReuseFilename(editor)) {
         blobInfo = blobCache.getByUri(uri);
         if (blobInfo) {
           uri = blobInfo.uri();
@@ -3298,7 +3543,7 @@ var imagetools = (function () {
   };
   var selectedImageOperation = function (editor, imageUploadTimerState, fn, size) {
     return function () {
-      return editor._scanForImages().then($_8nwcy9ctje5o2trl.curry(findSelectedBlob, editor)).then($_e6yipjd7je5o2tsk.blobToImageResult).then(fn).then(function (imageResult) {
+      return editor._scanForImages().then(curry(findSelectedBlob, editor)).then($_5w2bq6ecjkmcwov0.blobToImageResult).then(fn).then(function (imageResult) {
         return updateSelectedImage(editor, imageResult, false, imageUploadTimerState, size);
       }, function (error) {
         displayError(editor, error);
@@ -3307,52 +3552,52 @@ var imagetools = (function () {
   };
   var rotate$2 = function (editor, imageUploadTimerState, angle) {
     return function () {
-      var size = $_aly06vdoje5o2tu2.getImageSize(getSelectedImage(editor));
+      var size = $_9virabeujkmcwowu.getImageSize(getSelectedImage(editor));
       var flippedSize = size ? {
         w: size.h,
         h: size.w
       } : null;
       return selectedImageOperation(editor, imageUploadTimerState, function (imageResult) {
-        return $_9hfydbd1je5o2trv.rotate(imageResult, angle);
+        return $_5tl1cxe3jkmcwotr.rotate(imageResult, angle);
       }, flippedSize)();
     };
   };
   var flip$2 = function (editor, imageUploadTimerState, axis) {
     return function () {
       return selectedImageOperation(editor, imageUploadTimerState, function (imageResult) {
-        return $_9hfydbd1je5o2trv.flip(imageResult, axis);
+        return $_5tl1cxe3jkmcwotr.flip(imageResult, axis);
       })();
     };
   };
   var editImageDialog = function (editor, imageUploadTimerState) {
     return function () {
-      var img = getSelectedImage(editor), originalSize = $_aly06vdoje5o2tu2.getNaturalImageSize(img);
+      var img = getSelectedImage(editor), originalSize = $_9virabeujkmcwowu.getNaturalImageSize(img);
       var handleDialogBlob = function (blob) {
-        return new Promise$1(function (resolve) {
-          $_d31t89cnje5o2tqq.blobToImage(blob).then(function (newImage) {
-            var newSize = $_aly06vdoje5o2tu2.getNaturalImageSize(newImage);
+        return new global$3(function (resolve) {
+          $_l0c0gdpjkmcwosd.blobToImage(blob).then(function (newImage) {
+            var newSize = $_9virabeujkmcwowu.getNaturalImageSize(newImage);
             if (originalSize.w !== newSize.w || originalSize.h !== newSize.h) {
-              if ($_aly06vdoje5o2tu2.getImageSize(img)) {
-                $_aly06vdoje5o2tu2.setImageSize(img, newSize);
+              if ($_9virabeujkmcwowu.getImageSize(img)) {
+                $_9virabeujkmcwowu.setImageSize(img, newSize);
               }
             }
-            $_dht8dvd8je5o2tsn.revokeObjectURL(newImage.src);
+            $_51cs3oedjkmcwov1.revokeObjectURL(newImage.src);
             resolve(blob);
           });
         });
       };
       var openDialog = function (editor, imageResult) {
-        return $_67p1fjddje5o2tsy.edit(editor, imageResult).then(handleDialogBlob).then($_e6yipjd7je5o2tsk.blobToImageResult).then(function (imageResult) {
+        return $_9hzraheijkmcwovc.edit(editor, imageResult).then(handleDialogBlob).then($_5w2bq6ecjkmcwov0.blobToImageResult).then(function (imageResult) {
           return updateSelectedImage(editor, imageResult, true, imageUploadTimerState);
         }, function () {
         });
       };
-      findSelectedBlob(editor).then($_e6yipjd7je5o2tsk.blobToImageResult).then($_8nwcy9ctje5o2trl.curry(openDialog, editor), function (error) {
+      findSelectedBlob(editor).then($_5w2bq6ecjkmcwov0.blobToImageResult).then(curry(openDialog, editor), function (error) {
         displayError(editor, error);
       });
     };
   };
-  var $_6x6r70cmje5o2tqe = {
+  var $_adcl7edojkmcwory = {
     rotate: rotate$2,
     flip: flip$2,
     editImageDialog: editImageDialog,
@@ -3361,32 +3606,32 @@ var imagetools = (function () {
   };
 
   var register = function (editor, imageUploadTimerState) {
-    Tools.each({
-      mceImageRotateLeft: $_6x6r70cmje5o2tqe.rotate(editor, imageUploadTimerState, -90),
-      mceImageRotateRight: $_6x6r70cmje5o2tqe.rotate(editor, imageUploadTimerState, 90),
-      mceImageFlipVertical: $_6x6r70cmje5o2tqe.flip(editor, imageUploadTimerState, 'v'),
-      mceImageFlipHorizontal: $_6x6r70cmje5o2tqe.flip(editor, imageUploadTimerState, 'h'),
-      mceEditImage: $_6x6r70cmje5o2tqe.editImageDialog(editor, imageUploadTimerState)
+    global$1.each({
+      mceImageRotateLeft: $_adcl7edojkmcwory.rotate(editor, imageUploadTimerState, -90),
+      mceImageRotateRight: $_adcl7edojkmcwory.rotate(editor, imageUploadTimerState, 90),
+      mceImageFlipVertical: $_adcl7edojkmcwory.flip(editor, imageUploadTimerState, 'v'),
+      mceImageFlipHorizontal: $_adcl7edojkmcwory.flip(editor, imageUploadTimerState, 'h'),
+      mceEditImage: $_adcl7edojkmcwory.editImageDialog(editor, imageUploadTimerState)
     }, function (fn, cmd) {
       editor.addCommand(cmd, fn);
     });
   };
-  var $_3mtw0hckje5o2tqc = { register: register };
+  var $_7980p6dmjkmcworv = { register: register };
 
   var setup = function (editor, imageUploadTimerState, lastSelectedImageState) {
     editor.on('NodeChange', function (e) {
       var lastSelectedImage = lastSelectedImageState.get();
       if (lastSelectedImage && lastSelectedImage.src !== e.element.src) {
-        $_6x6r70cmje5o2tqe.cancelTimedUpload(imageUploadTimerState);
+        $_adcl7edojkmcwory.cancelTimedUpload(imageUploadTimerState);
         editor.editorUpload.uploadImagesAuto();
         lastSelectedImageState.set(null);
       }
-      if ($_6x6r70cmje5o2tqe.isEditableImage(editor, e.element)) {
+      if ($_adcl7edojkmcwory.isEditableImage(editor, e.element)) {
         lastSelectedImageState.set(e.element);
       }
     });
   };
-  var $_ef3qwmduje5o2tun = { setup: setup };
+  var $_8wbpbqf1jkmcwoxo = { setup: setup };
 
   var register$1 = function (editor) {
     editor.addButton('rotateleft', {
@@ -3415,20 +3660,20 @@ var imagetools = (function () {
       cmd: 'mceImage'
     });
   };
-  var $_722hztdvje5o2tuo = { register: register$1 };
+  var $_4fpq1yf2jkmcwoxp = { register: register$1 };
 
   var register$2 = function (editor) {
-    editor.addContextToolbar($_8nwcy9ctje5o2trl.curry($_6x6r70cmje5o2tqe.isEditableImage, editor), $_3x7zgpdcje5o2tsp.getToolbarItems(editor));
+    editor.addContextToolbar(curry($_adcl7edojkmcwory.isEditableImage, editor), getToolbarItems(editor));
   };
-  var $_3nbiyadwje5o2tup = { register: register$2 };
+  var $_fw0hg1f3jkmcwoxq = { register: register$2 };
 
-  PluginManager.add('imagetools', function (editor) {
+  global.add('imagetools', function (editor) {
     var imageUploadTimerState = Cell(0);
     var lastSelectedImageState = Cell(null);
-    $_3mtw0hckje5o2tqc.register(editor, imageUploadTimerState);
-    $_722hztdvje5o2tuo.register(editor);
-    $_3nbiyadwje5o2tup.register(editor);
-    $_ef3qwmduje5o2tun.setup(editor, imageUploadTimerState, lastSelectedImageState);
+    $_7980p6dmjkmcworv.register(editor, imageUploadTimerState);
+    $_4fpq1yf2jkmcwoxp.register(editor);
+    $_fw0hg1f3jkmcwoxq.register(editor);
+    $_8wbpbqf1jkmcwoxo.setup(editor, imageUploadTimerState, lastSelectedImageState);
   });
   function Plugin () {
   }

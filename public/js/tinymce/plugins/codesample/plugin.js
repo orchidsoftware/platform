@@ -20,9 +20,9 @@ var codesample = (function () {
     };
   };
 
-  var PluginManager = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-  var DOMUtils = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
+  var global$1 = tinymce.util.Tools.resolve('tinymce.dom.DOMUtils');
 
   var getContentCss = function (editor) {
     return editor.settings.codesample_content_css;
@@ -31,20 +31,21 @@ var codesample = (function () {
     return editor.settings.codesample_languages;
   };
   var getDialogMinWidth = function (editor) {
-    return Math.min(DOMUtils.DOM.getViewPort().w, editor.getParam('codesample_dialog_width', 800));
+    return Math.min(global$1.DOM.getViewPort().w, editor.getParam('codesample_dialog_width', 800));
   };
   var getDialogMinHeight = function (editor) {
-    return Math.min(DOMUtils.DOM.getViewPort().w, editor.getParam('codesample_dialog_height', 650));
+    return Math.min(global$1.DOM.getViewPort().w, editor.getParam('codesample_dialog_height', 650));
   };
-  var $_1q1j8l9jje5o2tbl = {
+  var $_fwpmvkabjkmcwo95 = {
     getContentCss: getContentCss,
     getLanguages: getLanguages,
     getDialogMinWidth: getDialogMinWidth,
     getDialogMinHeight: getDialogMinHeight
   };
 
-  var window = {};
-  var _self = typeof window !== 'undefined' ? window : typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope ? self : {};
+  var window$$1 = {};
+  var global$2 = window$$1;
+  var _self = typeof window$$1 !== 'undefined' ? window$$1 : typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope ? self : {};
   var Prism = function () {
     var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
     var _ = _self.Prism = {
@@ -141,21 +142,21 @@ var codesample = (function () {
         }
       },
       highlightElement: function (element, async, callback) {
-        var language, grammar, parent = element;
-        while (parent && !lang.test(parent.className)) {
-          parent = parent.parentNode;
+        var language, grammar, parent$$1 = element;
+        while (parent$$1 && !lang.test(parent$$1.className)) {
+          parent$$1 = parent$$1.parentNode;
         }
-        if (parent) {
-          language = (parent.className.match(lang) || [
+        if (parent$$1) {
+          language = (parent$$1.className.match(lang) || [
             ,
             ''
           ])[1];
           grammar = _.languages[language];
         }
         element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-        parent = element.parentNode;
-        if (/pre/i.test(parent.nodeName)) {
-          parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+        parent$$1 = element.parentNode;
+        if (/pre/i.test(parent$$1.nodeName)) {
+          parent$$1.className = parent$$1.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
         }
         var code = element.textContent;
         var env = {
@@ -263,13 +264,13 @@ var codesample = (function () {
       },
       hooks: {
         all: {},
-        add: function (name, callback) {
+        add: function (name$$1, callback) {
           var hooks = _.hooks.all;
-          hooks[name] = hooks[name] || [];
-          hooks[name].push(callback);
+          hooks[name$$1] = hooks[name$$1] || [];
+          hooks[name$$1].push(callback);
         },
-        run: function (name, env) {
-          var callbacks = _.hooks.all[name];
+        run: function (name$$1, env) {
+          var callbacks = _.hooks.all[name$$1];
           if (!callbacks || !callbacks.length) {
             return;
           }
@@ -284,7 +285,7 @@ var codesample = (function () {
       this.content = content;
       this.alias = alias;
     };
-    Token.stringify = function (o, language, parent) {
+    Token.stringify = function (o, language, parent$$1) {
       if (typeof o === 'string') {
         return o;
       }
@@ -295,7 +296,7 @@ var codesample = (function () {
       }
       var env = {
         type: o.type,
-        content: Token.stringify(o.content, language, parent),
+        content: Token.stringify(o.content, language, parent$$1),
         tag: 'span',
         classes: [
           'token',
@@ -303,7 +304,7 @@ var codesample = (function () {
         ],
         attributes: {},
         language: language,
-        parent: parent
+        parent: parent$$1
       };
       if (env.type === 'comment') {
         env.attributes.spellcheck = 'true';
@@ -314,8 +315,8 @@ var codesample = (function () {
       }
       _.hooks.run('wrap', env);
       var attributes = '';
-      for (var name_1 in env.attributes) {
-        attributes += (attributes ? ' ' : '') + name_1 + '="' + (env.attributes[name_1] || '') + '"';
+      for (var name$$1 in env.attributes) {
+        attributes += (attributes ? ' ' : '') + name$$1 + '="' + (env.attributes[name$$1] || '') + '"';
       }
       return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
     };
@@ -333,11 +334,8 @@ var codesample = (function () {
       return _self.Prism;
     }
   }();
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Prism;
-  }
-  if (typeof global !== 'undefined') {
-    global.Prism = Prism;
+  if (typeof global$2 !== 'undefined') {
+    global$2.Prism = Prism;
   }
   Prism.languages.markup = {
     comment: /<!--[\w\W]*?-->/,
@@ -720,14 +718,14 @@ var codesample = (function () {
       return predicateFn(arg2);
     };
   }
-  var $_6d9xlf9nje5o2tcp = {
+  var $_45zyxsagjkmcwoas = {
     isCodeSample: isCodeSample,
     trimArg: trimArg
   };
 
   var getSelectedCodeSample = function (editor) {
     var node = editor.selection.getNode();
-    if ($_6d9xlf9nje5o2tcp.isCodeSample(node)) {
+    if ($_45zyxsagjkmcwoas.isCodeSample(node)) {
       return node;
     }
     return null;
@@ -735,7 +733,7 @@ var codesample = (function () {
   var insertCodeSample = function (editor, language, code) {
     editor.undoManager.transact(function () {
       var node = getSelectedCodeSample(editor);
-      code = DOMUtils.DOM.encode(code);
+      code = global$1.DOM.encode(code);
       if (node) {
         editor.dom.setAttrib(node, 'class', 'language-' + language);
         node.innerHTML = code;
@@ -754,7 +752,7 @@ var codesample = (function () {
     }
     return '';
   };
-  var $_dmaabp9lje5o2tbn = {
+  var $_7llv6ladjkmcwo9b = {
     getSelectedCodeSample: getSelectedCodeSample,
     insertCodeSample: insertCodeSample,
     getCurrentCode: getCurrentCode
@@ -803,30 +801,30 @@ var codesample = (function () {
         value: 'cpp'
       }
     ];
-    var customLanguages = $_1q1j8l9jje5o2tbl.getLanguages(editor);
+    var customLanguages = $_fwpmvkabjkmcwo95.getLanguages(editor);
     return customLanguages ? customLanguages : defaultLanguages;
   };
   var getCurrentLanguage = function (editor) {
     var matches;
-    var node = $_dmaabp9lje5o2tbn.getSelectedCodeSample(editor);
+    var node = $_7llv6ladjkmcwo9b.getSelectedCodeSample(editor);
     if (node) {
       matches = node.className.match(/language-(\w+)/);
       return matches ? matches[1] : '';
     }
     return '';
   };
-  var $_6efhd69oje5o2tcq = {
+  var $_ehme9lahjkmcwoat = {
     getLanguages: getLanguages$1,
     getCurrentLanguage: getCurrentLanguage
   };
 
-  var $_6sxnrz9ije5o2tbj = {
+  var $_7apbbvaajkmcwo93 = {
     open: function (editor) {
-      var minWidth = $_1q1j8l9jje5o2tbl.getDialogMinWidth(editor);
-      var minHeight = $_1q1j8l9jje5o2tbl.getDialogMinHeight(editor);
-      var currentLanguage = $_6efhd69oje5o2tcq.getCurrentLanguage(editor);
-      var currentLanguages = $_6efhd69oje5o2tcq.getLanguages(editor);
-      var currentCode = $_dmaabp9lje5o2tbn.getCurrentCode(editor);
+      var minWidth = $_fwpmvkabjkmcwo95.getDialogMinWidth(editor);
+      var minHeight = $_fwpmvkabjkmcwo95.getDialogMinHeight(editor);
+      var currentLanguage = $_ehme9lahjkmcwoat.getCurrentLanguage(editor);
+      var currentLanguages = $_ehme9lahjkmcwoat.getLanguages(editor);
+      var currentCode = $_7llv6ladjkmcwo9b.getCurrentCode(editor);
       editor.windowManager.open({
         title: 'Insert/Edit code sample',
         minWidth: minWidth,
@@ -857,7 +855,7 @@ var codesample = (function () {
           }
         ],
         onSubmit: function (e) {
-          $_dmaabp9lje5o2tbn.insertCodeSample(editor, e.data.language, e.data.code);
+          $_7llv6ladjkmcwo9b.insertCodeSample(editor, e.data.language, e.data.code);
         }
       });
     }
@@ -866,19 +864,19 @@ var codesample = (function () {
   var register = function (editor) {
     editor.addCommand('codesample', function () {
       var node = editor.selection.getNode();
-      if (editor.selection.isCollapsed() || $_6d9xlf9nje5o2tcp.isCodeSample(node)) {
-        $_6sxnrz9ije5o2tbj.open(editor);
+      if (editor.selection.isCollapsed() || $_45zyxsagjkmcwoas.isCodeSample(node)) {
+        $_7apbbvaajkmcwo93.open(editor);
       } else {
         editor.formatter.toggle('code');
       }
     });
   };
-  var $_72u5wn9hje5o2tbi = { register: register };
+  var $_3nzffua9jkmcwo92 = { register: register };
 
   var setup = function (editor) {
     var $ = editor.$;
     editor.on('PreProcess', function (e) {
-      $('pre[contenteditable=false]', e.node).filter($_6d9xlf9nje5o2tcp.trimArg($_6d9xlf9nje5o2tcp.isCodeSample)).each(function (idx, elm) {
+      $('pre[contenteditable=false]', e.node).filter($_45zyxsagjkmcwoas.trimArg($_45zyxsagjkmcwoas.isCodeSample)).each(function (idx, elm) {
         var $elm = $(elm), code = elm.textContent;
         $elm.attr('class', $.trim($elm.attr('class')));
         $elm.removeAttr('contentEditable');
@@ -888,7 +886,7 @@ var codesample = (function () {
       });
     });
     editor.on('SetContent', function () {
-      var unprocessedCodeSamples = $('pre').filter($_6d9xlf9nje5o2tcp.trimArg($_6d9xlf9nje5o2tcp.isCodeSample)).filter(function (idx, elm) {
+      var unprocessedCodeSamples = $('pre').filter($_45zyxsagjkmcwoas.trimArg($_45zyxsagjkmcwoas.isCodeSample)).filter(function (idx, elm) {
         return elm.contentEditable !== 'false';
       });
       if (unprocessedCodeSamples.length) {
@@ -906,11 +904,11 @@ var codesample = (function () {
       }
     });
   };
-  var $_3ocy2y9pje5o2tcs = { setup: setup };
+  var $_cywqvhaijkmcwoav = { setup: setup };
 
   var loadCss = function (editor, pluginUrl, addedInlineCss, addedCss) {
     var linkElm;
-    var contentCss = $_1q1j8l9jje5o2tbl.getContentCss(editor);
+    var contentCss = $_fwpmvkabjkmcwo95.getContentCss(editor);
     if (editor.inline && addedInlineCss.get()) {
       return;
     }
@@ -930,7 +928,7 @@ var codesample = (function () {
       editor.getDoc().getElementsByTagName('head')[0].appendChild(linkElm);
     }
   };
-  var $_27rvm39qje5o2tcu = { loadCss: loadCss };
+  var $_8uv0xyajjkmcwoax = { loadCss: loadCss };
 
   var register$1 = function (editor) {
     editor.addButton('codesample', {
@@ -943,20 +941,20 @@ var codesample = (function () {
       icon: 'codesample'
     });
   };
-  var $_bueap49rje5o2tcw = { register: register$1 };
+  var $_91sx9bakjkmcwoaz = { register: register$1 };
 
   var addedInlineCss = Cell(false);
-  PluginManager.add('codesample', function (editor, pluginUrl) {
+  global.add('codesample', function (editor, pluginUrl) {
     var addedCss = Cell(false);
-    $_3ocy2y9pje5o2tcs.setup(editor);
-    $_bueap49rje5o2tcw.register(editor);
-    $_72u5wn9hje5o2tbi.register(editor);
+    $_cywqvhaijkmcwoav.setup(editor);
+    $_91sx9bakjkmcwoaz.register(editor);
+    $_3nzffua9jkmcwo92.register(editor);
     editor.on('init', function () {
-      $_27rvm39qje5o2tcu.loadCss(editor, pluginUrl, addedInlineCss, addedCss);
+      $_8uv0xyajjkmcwoax.loadCss(editor, pluginUrl, addedInlineCss, addedCss);
     });
     editor.on('dblclick', function (ev) {
-      if ($_6d9xlf9nje5o2tcp.isCodeSample(ev.target)) {
-        $_6sxnrz9ije5o2tbj.open(editor);
+      if ($_45zyxsagjkmcwoas.isCodeSample(ev.target)) {
+        $_7apbbvaajkmcwo93.open(editor);
       }
     });
   });
