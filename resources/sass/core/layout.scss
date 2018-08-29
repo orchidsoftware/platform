@@ -7,10 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-h3, .h3 {
-    font-size: 1.714286rem;
-}
-
 .app {
   height: auto;
   min-height: 100%;
@@ -41,6 +37,7 @@ h3, .h3 {
   border-radius: 0;
 }
 
+/*
 // menu
 .app-aside {
   float: left;
@@ -55,6 +52,7 @@ h3, .h3 {
     border: inherit;
   }
 }
+*/
 
 
 // content
@@ -213,14 +211,16 @@ h3, .h3 {
 }
 
 .aside-wrap-main {
+  /*
   position: fixed;
   overflow: hidden;
   top: 0;
   bottom: 0;
   left: 0;
-  width: $aside-wrap-main-width;
+  */
+  //width: $aside-wrap-main-width;
   z-index: 1050;
-  background-color: #1d2531;
+  //background-color: #1d2531;
   li {
     a {
       .icon, i {
@@ -243,23 +243,33 @@ h3, .h3 {
   }
 
   .app-aside {
-    width: $app-aside-width;
+    //width: $app-aside-width;
     .aside-wrap {
+      /*
       position: fixed;
       overflow: hidden;
       top: 0;
       bottom: 0;
-      left: $aside-wrap-main-width;
+      */
+      //left: $aside-wrap-main-width;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+
       width: $app-aside-width - $aside-wrap-main-width;
       z-index: 1050;
       background-color: #222c3c;
       .navi-wrap {
-        width: $app-aside-width + $scroll-bar-width;
+        //width: $app-aside-width + $scroll-bar-width;
         position: relative;
         height: 100%;
+        /*
         overflow-x: hidden;
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
+
         &::-webkit-scrollbar {
           -webkit-appearance: none;
           -moz-appearance: none;
@@ -268,13 +278,14 @@ h3, .h3 {
           width: $scroll-bar-width;
         }
         > * {
-          width: $app-aside-width - 100;
+          //width: $app-aside-width - 100;
         }
+        */
       }
     }
   }
 
-  .navbar-collapse,
+  //.navbar-collapse,
   .app-content{
     margin-left: $app-aside-width;
   }

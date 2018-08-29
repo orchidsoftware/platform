@@ -16336,11 +16336,6 @@ body {
   overflow-x: hidden;
 }
 
-h3,
-.h3 {
-  font-size: 1.714286rem;
-}
-
 .app {
   height: auto;
   min-height: 100%;
@@ -16370,20 +16365,22 @@ h3,
   border-radius: 0;
 }
 
+/*
+// menu
 .app-aside {
   float: left;
+  &:before {
+    content: "";
+    position: absolute;
+    width: inherit;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: inherit;
+    border: inherit;
+  }
 }
-
-.app-aside:before {
-  content: "";
-  position: absolute;
-  width: inherit;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  background-color: inherit;
-  border: inherit;
-}
+*/
 
 .app-content {
   height: 100%;
@@ -16565,14 +16562,14 @@ h3,
 }
 
 .aside-wrap-main {
+  /*
   position: fixed;
   overflow: hidden;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 100px;
+  */
   z-index: 1050;
-  background-color: #1d2531;
 }
 
 .aside-wrap-main li a .icon,
@@ -16588,46 +16585,45 @@ h3,
     display: none !important;
   }
 
-  .app-aside {
-    width: 350px;
-  }
-
   .app-aside .aside-wrap {
-    position: fixed;
-    overflow: hidden;
+    /*
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      bottom: 0;
+      */
+    position: absolute;
+    left: 0;
     top: 0;
     bottom: 0;
-    left: 100px;
     width: 250px;
     z-index: 1050;
     background-color: #222c3c;
   }
 
   .app-aside .aside-wrap .navi-wrap {
-    width: 367px;
     position: relative;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    /*
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+        }
+        &::-webkit-scrollbar:vertical {
+          width: $scroll-bar-width;
+        }
+        > * {
+          //width: $app-aside-width - 100;
+        }
+        */
   }
 
-  .app-aside .aside-wrap .navi-wrap::-webkit-scrollbar {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-
-  .app-aside .aside-wrap .navi-wrap::-webkit-scrollbar:vertical {
-    width: 17px;
-  }
-
-  .app-aside .aside-wrap .navi-wrap > * {
-    width: 250px;
-  }
-
-  .navbar-collapse,
   .app-content {
-    margin-left: 350px;
+    margin-left: 250px;
   }
 
   .bg-auto:before {
@@ -16734,10 +16730,10 @@ h3,
     z-index: 10000;
     background: #1d2839;
     min-height: 100vh;
-    left: 100px;
+    left: 0px;
     top: 0;
     bottom: 0;
-    width: calc(100vw - 100px);
+    width: calc(100vw - 0px);
     overflow: auto;
   }
 }
@@ -16844,6 +16840,7 @@ h3,
 .navi ul.nav li {
   display: block;
   position: relative;
+  width: 100%;
 }
 
 .navi div.nav li li a,
@@ -16861,15 +16858,8 @@ h3,
   display: block;
 }
 
-.navi div.nav li.active a,
-.navi ul.nav li.active a {
-  color: #ffffff;
-  background-color: #e9ecef;
-}
-
 .navi div.nav li a,
 .navi ul.nav li a {
-  color: #e9ecef;
   font-weight: normal;
   text-transform: none;
   display: block;
@@ -17015,7 +17005,7 @@ h3,
     left: 100%;
     top: 0 !important;
     z-index: 1050;
-    width: 350px;
+    width: 250px;
     -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
@@ -17031,7 +17021,7 @@ h3,
     overflow: visible;
     overflow-y: auto;
     display: block;
-    width: 410px;
+    width: 310px;
     left: 80px;
     position: fixed;
     -webkit-overflow-scrolling: touch;

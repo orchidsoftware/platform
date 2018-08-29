@@ -36,9 +36,11 @@
 
 @empty
 
-    <div class="v-center" style="height: 80vh;">
-        <h5 class="text-center w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</h5>
-    </div>
+    {{--
+        <div class="v-center" style="height: 80vh;">
+            <h5 class="text-center w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</h5>
+        </div>
+    --}}
 
 @endforelse
 

@@ -76,6 +76,7 @@
   }
 }
 
+
 .aside-wrap-main {
 
   .navi ul.nav li {
@@ -123,6 +124,7 @@
     li {
       display: block;
       position: relative;
+      width: 100%;
       li {
         a {
           padding-left: $app-aside-nav-height + 15px;
@@ -134,14 +136,7 @@
           display: block;
         }
       }
-      &.active {
-        a {
-          color: $brand-white;
-          background-color: $brand-light;
-        }
-      }
       a {
-        color: $brand-light;
         font-weight: normal;
         text-transform: none;
         display: block;
