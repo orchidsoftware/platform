@@ -1,12 +1,10 @@
-{{--
-@if(Dashboard::menu()->container->where('location',$slug)->count())
---}}
+@if(!empty($childs) && Dashboard::menu()->container->where('location',$slug)->count())
     @isset($groupname)
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans($groupname)}}</li>
     @endisset
 
     <li class="@isset($active) {{active($active)}} @endisset">
-        <a href="#">
+        <a href="{{$route ?? '#'}}">
             @isset($badge)
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
             @endisset
@@ -26,12 +24,9 @@
         @endif
     </li>
 
-
-
     @isset($divider)
         <li class="divider b-t b-dark"></li>
     @endisset
 
-{{--
 @endif
---}}
+
