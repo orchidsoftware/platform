@@ -3,229 +3,116 @@
 
 @section('body')
 
-<div id="app" class="app" data-controller="@yield('controller')">
 
 
-
-    {{--
-    <!-- aside  -->
-    <aside id="aside" class="app-aside d-none d-md-block" data-controller="layouts--left-menu">
-        <div class="aside-wrap-main">
-
-            <div class="navi-wrap">
-
-                <!-- nav  -->
-                <nav class="navi clearfix">
-                    <ul class="nav flex-column" role="tablist">
-
-
-                        <li class="nav-item">
-                            <a href="{{route('platform.index')}}" class="navbar-brand nav-link text-lt w-full">
-                                <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
+    <div class="app" id="app" data-controller="@yield('controller')">
+        <div class="header py-4 bg-white b-b">
+            <div class="container">
+                <div class="d-flex v-center">
+                    <a class="header-brand" href="{{route('platform.index')}}">
+                        <img src="{{url('/orchid/img/orchid.svg')}}" class="header-brand-img" alt="logo" height="32px"
+                             width="150px">
+                    </a>
+                    <div class="d-flex order-lg-2 ml-auto">
+                        <div class="dropdown d-none d-md-flex">
+                            <a class="nav-link icon" data-toggle="dropdown">
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-sm up bg-danger pull-right-xs">2</span>
                             </a>
-                        </li>
-
-
-                        <li role="presentation" class="nav-item">
-                            <a href="#globalSearch" id="globalSearch-tab" class="nav-link" role="tab" data-toggle="tab">
-                                <i class="icon-magnifier"></i>
-                                <span>Поиск</span>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                @include('platform::partials.notifications')
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#" class="nav-link p-0 leading-none" data-toggle="dropdown">
+                            <span class="avatar"
+                                  style="background-image: url(https://tabler.github.io/tabler/demo/faces/female/25.jpg)"></span>
+                                <span class="ml-2 d-none d-lg-block" style="font-size: 0.82857rem;">
+                              <span class="text-default">Jane Pearson</span>
+                              <span class="text-muted d-block mt-1">Administrator</span>
+                            </span>
                             </a>
-                        </li>
-
-
-                        {!! Dashboard::menu()->render('Main') !!}
-
-                    </ul>
-
-                    <ul class="nav nav-footer-fix">
-                        @if(Auth::user()->hasAccess('platform.systems.index'))
-                            <li>
-                                <a href="{{ route('platform.systems.index') }}">
-                                    <i class="icon-settings" aria-hidden="true"></i>
-                                    <span>{{trans('platform::menu.systems')}}</span>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                <a class="dropdown-item" href="#">
+                                    <i class="m-r-xs icon-user"></i> Profile
                                 </a>
-                            </li>
-                        @endif
+                                <a class="dropdown-item" href="#">
+                                    <i class="m-r-xs icon-settings"></i> Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <span class="float-right"><span class="badge bg-info">6</span></span>
+                                    <i class="m-r-xs icon-paper-plane"></i> Inbox
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="m-r-xs icon-server"></i> Message
+                                </a>
+                                <div class="dropdown-divider"></div>
 
-                        <li>
-                            <a href="{{ route('platform.logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                               dusk="logout-button">
-                                <i class="icon-logout" aria-hidden="true"></i>
-                                <span>{{trans('platform::auth/account.sign_out')}}</span>
-                            </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="m-r-xs icon-help"></i> Need help?
+                                </a>
 
-                            <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                                  method="POST">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-
-                </nav>
-                <!-- nav  -->
-            </div>
+                                @if(Auth::user()->hasAccess('platform.systems.index'))
+                                        <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
+                                            <i class="icon-settings m-r-xs" aria-hidden="true"></i>
+                                            <span>{{trans('platform::menu.systems')}}</span>
+                                        </a>
+                                @endif
 
 
-        </div>
+                                <a href="{{ route('platform.logout') }}"
+                                   class="dropdown-item"
+                                   onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                   dusk="logout-button">
+                                    <i class="icon-logout m-r-xs" aria-hidden="true"></i>
+                                    <span>{{trans('platform::auth/account.sign_out')}}</span>
+                                </a>
 
-        <div class="aside-wrap">
-            <div class="navi-wrap">
-
-                <!-- nav  -->
-                <nav class="navi clearfix">
-
-                    <div class="nav tab-content flex-column" id="aside-wrap-list">
-
-                        <div class="w-full tab-pane fade in nav show"
-                             role="tabpanel"
-                             id="menu-default"
-                             aria-labelledby="notise-tab">
-                            @yield('aside', View::make('platform::partials.notifications'))
+                                <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
+                                      method="POST">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
-
-                        <div class="w-full tab-pane fade in nav show"
-                             role="tabpanel"
-                             id="globalSearch"
-                             aria-labelledby="globalSearch-tab">
-
-                            <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">Глобальный поиск</li>
-                            <form role="search">
-                                <div class="form-group b-b b-dark">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-sm bg-black text-white no-border rounded padder" placeholder="Search projects..."
-                                        style="background: #222c3c!important">
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-
-                        {!! Dashboard::menu()->render('Main','platform::partials.leftSubMenu') !!}
                     </div>
-                </nav>
-                <!-- nav  -->
-
-            </div>
-        </div>
-
-
-    </aside>
-    <!-- / aside  -->
-    --}}
-
-
-    <aside id="aside" class="app-aside hidden-xs bg-dark">
-        <div class="aside-wrap">
-            <div class="navi-wrap">
-
-                <!-- user -->
-                <div class="clearfix hidden-xs text-center hide">
-
-                    <div class="nav-item">
-                        <a href="{{route('platform.index')}}" class="navbar-brand nav-link no-padder m-0 text-lt w-full">
-                            <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
-                        </a>
-                    </div>
-
-                    <div class="line dk hidden-folded"></div>
+                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+                       data-target="#headerMenuCollapse">
+                        <span class="header-toggler-icon icon-menu"></span>
+                    </a>
                 </div>
-                <!-- / user -->
-
-                @php
-
-                    $user = Auth::user();
-
-    $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
-        'title' => 'Hello Word',
-        'message' => 'New post!',
-        'action' => 'https://google.com',
-        'type' => 'error',
-    ]));
-
-                @endphp
-
-                <!-- nav -->
-                <nav class="navi clearfix">
-                    <ul class="nav">
-
-                        @include('platform::partials.notifications')
-
-
-                        {!! Dashboard::menu()->render('Main') !!}
-
-
-
-                        <li class="line dk hidden-folded"></li>
-
-                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                            <span>Персональное</span>
-                        </li>
-
-
-                        @if(Auth::user()->hasAccess('platform.systems.index'))
-                            <li>
-                                <a href="{{ route('platform.systems.index') }}">
-                                    <i class="icon-settings" aria-hidden="true"></i>
-                                    <span>{{trans('platform::menu.systems')}}</span>
-                                </a>
-                            </li>
-                        @endif
-
-                        <li>
-                            <a href="{{ route('platform.logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                               dusk="logout-button">
-                                <i class="icon-logout" aria-hidden="true"></i>
-                                <span>{{trans('platform::auth/account.sign_out')}}</span>
-                            </a>
-
-                            <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                                  method="POST">
-                                @csrf
-                            </form>
-                        </li>
-
-
-                    </ul>
-                </nav>
-                <!-- nav -->
             </div>
         </div>
-    </aside>
+        <div class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg" id="headerMenuCollapse">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 ml-auto">
+                        <form class="input-icon my-3 my-lg-0">
+                            <input type="search" class="form-control header-search" placeholder="Search…" tabindex="1">
+                            <div class="input-icon-addon">
+                                <i class="icon-magnifier"></i>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg order-lg-first">
+                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
 
-
-
-    <!-- content  -->
-    <div id="content" class="app-content" role="main">
-
-        <!-- header  -->
-        <header id="header" class="app-header navbar" role="menu">
-            <!-- navbar header  -->
-            <div class="navbar-header bg-black dk v-center">
-
-                <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
-                    <i class="icon-menu"></i>
-                </button>
-
-                <!-- brand  -->
-                <a href="{{route('platform.index')}}" class="navbar-brand text-lt center">
-                    <i class="{{config('platform.logo')}}"></i>
-                </a>
-                <!-- /brand  -->
-
-                <button class="pull-right"
-                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="icon-logout"></i>
-                </button>
-
+                            {!! Dashboard::menu()->render('Main') !!}
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active padder-v" style="
+      border-left: none;
+    border-right: none;
+    border-top: none;
+    border-color: #40ae4a;
+    background: inherit;"><i class="icon-chemistry"></i> Documentation</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!-- /navbar header  -->
+        </div>
+        <div class="container m-b-lg">
 
-            <!-- navbar collapse  -->
-            <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
-
+            <div class="v-center m-t-md m-b-md">
                 <div class="col-xs-12 col-md-4">
                     <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                     <small class="text-muted text-ellipsis">@yield('description')</small>
@@ -234,37 +121,92 @@
                 <div class="col-xs-12 col-md-8">
                     @yield('navbar')
                 </div>
-
-
             </div>
-            <!-- / navbar collapse  -->
-        </header>
-        <!-- / header  -->
 
 
+            <div class="d-flex">
+                <div class="app-content-body" id="app-content-body">
 
-        <div class="app-content-body" id="app-content-body">
+                    @include('platform::partials.alert')
 
-            @include('platform::partials.alert')
+                    @empty(!$errors->count())
+                        <div class="alert alert-danger m-b-none" role="alert">
+                            <strong>Oh snap!</strong>
+                            Change a few things up and try submitting again.
+                            <ul class="m-t-xs">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-            @empty(!$errors->count())
-                <div class="alert alert-danger m-b-none" role="alert">
-                    <strong>Oh snap!</strong>
-                    Change a few things up and try submitting again.
-                    <ul class="m-t-xs">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+
+                    @yield('content')
                 </div>
-            @endif
-
-
-            @yield('content')
+            </div>
         </div>
     </div>
-    <!-- /content  -->
 
-</div>
+    <div class="footer bg-white b-b b-t small">
+        <div class="container">
+            <div class="row padder-v">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#">First link</a></li>
+                                <li><a href="#">Second link</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#">Third link</a></li>
+                                <li><a href="#">Fourth link</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#">Fifth link</a></li>
+                                <li><a href="#">Sixth link</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#">Other link</a></li>
+                                <li><a href="#">Last link</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <span class="text-muted">Premium and Open Source dashboard template with responsive and high quality UI. For Free!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer bg-white">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse padder-v">
+                <div class="col-auto ml-lg-auto">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item"><a href="../docs/index.html">Documentation</a></li>
+                                <li class="list-inline-item"><a href="../faq.html">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <a href="" class="btn btn-outline-primary btn-sm">Source code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center small">
+                    Copyright © 2018 All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
 @endsection

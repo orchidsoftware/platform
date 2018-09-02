@@ -63,7 +63,7 @@
          data-components--menu-id=""
     >
 
-        <div class="hbox-col w-xxl bg-white-only b-r bg-auto no-border-xs">
+        <div class="hbox-col w-xxl bg-white-only b-r b-l bg-auto no-border-xs">
 
             <div class="wrapper-md">
 

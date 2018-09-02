@@ -69,4 +69,4 @@ $this->post('widget/{widget}/{key?}', [
     'uses' => 'WidgetController@index',
 ]);
 
-$this->screen('maintenance-mode', 'Screens/Maintenance/MaintenanceModScreen', 'platform.systems.roles');
+//$this->screen('maintenance-mode', 'Screens/Maintenance/MaintenanceModScreen', 'platform.systems.roles');

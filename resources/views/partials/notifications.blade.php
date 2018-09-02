@@ -5,23 +5,13 @@
 @endphp
 
 @if(count($notifications) > 0)
-    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('platform::common.notifications')}}
-        <form action="{{route('platform.notification.read')}}"
-              method="post"
-              id="clear-notications-form"
-              class="pull-right">
-            <button type="submit" class="btn btn-sm btn-link inline">
-                <i class="icon-trash"></i>
-            </button>
-            @csrf
-        </form>
-    </li>
+    <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('platform::common.notifications')}}
+    </div>
 @endif
 
 @forelse ($notifications as $notification)
 
-    <li>
-        <a href="{{$notification->data['action'] or '#'}}">
+    <a href="{{$notification->data['action'] or '#'}}" class="dropdown-item d-flex">
             <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
             <span class="clear m-l-md">
                 @if($notification->read())
@@ -31,19 +21,27 @@
                 @endif
                 <small class="text-muted clear text-ellipsis">{{$notification->data['message']   or ''}}</small>
           </span>
-        </a>
-    </li>
+    </a>
 
 @empty
 
-    {{--
-        <div class="v-center" style="height: 80vh;">
-            <h5 class="text-center w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</h5>
-        </div>
-    --}}
+
+<div class="d-flex">
+    <p class="text-center m-0 w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</p>
+</div>
+
 
 @endforelse
 
 @if(count($notifications) > 0)
-    <li class="divider b-t b-dark"></li>
+    <div class="dropdown-divider"></div>
+
+    <form action="{{route('platform.notification.read')}}"
+          method="post"
+          id="clear-notications-form">
+        <button type="submit" class="btn btn-sm btn-link inline dropdown-item text-center text-muted-dark">
+            <i class="icon-trash"></i> Mark all as read
+        </button>
+        @csrf
+    </form>
 @endif

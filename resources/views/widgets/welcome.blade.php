@@ -1,13 +1,12 @@
-<div class="admin-wrapper container wrapper-md">
-
-    <div class="wrapper-lg">
-        <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
-        <p class="lead m-b-n">Make it short and sweet, but not too short so folks don't simply skip over it
-                              entirely.</p>
-    </div>
-
-
+<div class="admin-wrapper">
     <div class="bg-white b box-shadow m-b-lg wrapper-lg">
+        <div class="row m-b">
+            <div class="wrapper-lg">
+                <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
+                <p class="lead m-b-n">Make it short and sweet, but not too short so folks don't simply skip over it
+                                      entirely.</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-4 no-padder admin-element-item">
 

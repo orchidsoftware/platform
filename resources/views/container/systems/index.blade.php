@@ -35,7 +35,7 @@
 @section('content')
     <div class="bg-white">
 
-        <div class="admin-wrapper container wrapper-md">
+        <div class="admin-wrapper wrapper-md">
             <div class="row">
 
                 @php

@@ -15,7 +15,7 @@
 @endsection
 
 @isset($model)
-    <div class="app-content-body app-content-full" data-controller="components--boot">
+    <div data-controller="components--boot">
         <div class="hbox hbox-auto-xs hbox-auto-sm" style="min-height: calc(100vh - 80px);">
 
             <div class="hbox-col bg-white b-r">

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -23,19 +23,10 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
-
-    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
-        $this->redirectTo = config('platform.prefix');
-
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -45,5 +36,20 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('platform::auth.login');
+    }
+
+    /**
+     * Where to redirect users after login / registration.
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function redirectTo()
+    {
+        dd(123);
+       return config('platform.prefix');
+    }
+
+    public function redirectPath(){
+        dd(123);
     }
 }

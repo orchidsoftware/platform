@@ -1,7 +1,4 @@
 // Core variables and mixins
-
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic");
-
 @import "~open-color/open-color";
 @import "theme/variables";
 
@@ -10,7 +7,7 @@
 @import "~select2-bootstrap-theme/src/select2-bootstrap";
 @import "~dropzone/dist/min/basic.min";
 @import "~dropzone/dist/min/dropzone.min";
-@import "~croppie/croppie.css";
+@import "~cropperjs/dist/cropper.css";
 @import "~simplemde/dist/simplemde.min";
 @import "~flatpickr/dist/flatpickr.min";
 @import "~orchid-icons/src/scss/orchid-icons";
@@ -18,13 +15,11 @@
 @import "core/mixins";
 @import "core/reset";
 @import "core/layout";
-@import "core/nav";
 @import "core/arrow";
 @import "core/buttons";
 @import "core/modals";
 @import "core/components";
 @import "plugins/plugin";
-@import "core/item";
 @import "theme/colors";
 @import "core/utilities";
 @import "core/login";

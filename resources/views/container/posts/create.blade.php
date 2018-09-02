@@ -43,7 +43,7 @@
     </ul>
 @stop
 @section('content')
-    <div class="app-content-body app-content-full" id="post">
+    <div id="post">
         <!-- hbox layout  -->
         <form class="hbox hbox-auto-xs no-gutters" id="post-form" method="post"
               action="{{route('platform.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
@@ -51,14 +51,12 @@
             <!-- column  -->
                 <div class="hbox-col lter b-r">
                     <div class="vbox">
-                        <div class="bg-white">
+                        <div class="bg-white wrapper-lg">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if($loop->first) active @endif" id="local-{{$code}}"
                                          role="tabpanel">
-                                        <div class="wrapper-lg bg-white">
                                             {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
-                                        </div>
                                     </div>
                                 @endforeach
                             </div>

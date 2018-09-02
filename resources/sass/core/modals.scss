@@ -3,7 +3,7 @@
     outline: 0;
   }
   .modal-dialog {
-    transition: all .2s !important;
+    transition: all 340ms !important;
   }
   .modal-content {
     border: 1px solid #f2f6f7;
@@ -172,9 +172,9 @@
 
 .modal-backdrop {
   opacity: 0;
-  @include transition(opacity 0.2s linear);
+  @include transition(opacity 340ms linear);
   &.in, &.show {
-    opacity: 0.30;
+    opacity: 0.75;
   }
 }
 

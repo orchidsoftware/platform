@@ -575,10 +575,10 @@ blockquote {
 
 .dropdown-menu {
   display: none;
+  min-width: 12rem;
   border-radius: $border-radius-base;
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
   border: 1px solid $border-color;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   &.pull-left {
     left: 100%;
   }
@@ -601,6 +601,40 @@ blockquote {
     color: $link-hover-color;
   }
 }
+
+.dropdown-menu-arrow {
+  &:before {
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    display: inline-block;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid $border-color;
+    border-left: 5px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+  }
+
+  &:after {
+    position: absolute;
+    top: -5px;
+    left: 12px;
+    display: inline-block;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+    border-left: 5px solid transparent;
+    content: '';
+  }
+
+  &.dropdown-menu-right {
+    &:before,
+    &:after {
+      left: auto;
+      right: 12px;
+    }
+  }
+}
+
 
 .dropdown-header {
   padding: 5px 15px;
@@ -694,8 +728,4 @@ blockquote {
   position: absolute;
   left: 50%;
   top: 50%;
-}
-
-h4, .h4 {
-    font-size: 1.285714rem;
 }

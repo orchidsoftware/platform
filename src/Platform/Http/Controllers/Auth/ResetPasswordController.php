@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
@@ -24,17 +24,10 @@ class ResetPasswordController extends Controller
     use ResetsPasswords;
 
     /**
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
-
-    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
-        $this->redirectTo = config('platform.prefix');
-
         $this->middleware('guest');
     }
 
@@ -51,5 +44,15 @@ class ResetPasswordController extends Controller
     public function showResetForm(Request $request, $token = null)
     {
         return view('platform::auth.passwords.reset')->with(['token' => $token, 'email' => $request->email]);
+    }
+
+    /**
+     * Where to redirect users after login / registration.
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function redirectTo()
+    {
+        return config('platform.prefix');
     }
 }
