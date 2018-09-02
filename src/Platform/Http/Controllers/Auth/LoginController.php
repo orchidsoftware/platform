@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Orchid\Platform\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -46,10 +46,12 @@ class LoginController extends Controller
     public function redirectTo()
     {
         dd(123);
-       return config('platform.prefix');
+
+        return config('platform.prefix');
     }
 
-    public function redirectPath(){
+    public function redirectPath()
+    {
         dd(123);
     }
 }
