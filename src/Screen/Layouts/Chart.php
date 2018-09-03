@@ -23,8 +23,8 @@ abstract class Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
-     * 'pie', 'percentage'.
+     * 'bar', 'line', 'pie',
+     * 'percentage', 'axis-mixed'
      *
      * @var string
      */
@@ -45,6 +45,20 @@ abstract class Chart
      */
     public $data = '';
 
+  /**
+   * @var array
+   */
+    public $colors = [
+      '#d0dff9',
+      '#a3c3f9',
+      '#7da1dd',
+      '#5580c7',
+      '#2860bd',
+      '#0a3f98',
+      '#062457',
+      '#0c182c',
+    ];
+
     /**
      * @param \Orchid\Screen\Repository $query
      *
@@ -59,6 +73,7 @@ abstract class Chart
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
             'data'   => json_encode($query->getContent($this->data)),
+            'colors' => json_encode($this->colors),
         ]);
     }
 }

@@ -1,4 +1,4 @@
-<div class="bg-white-only  bg-auto no-border-xs">
+<div class="bg-white b m-b">
 
     {!! $filters or '' !!}
 

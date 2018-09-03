@@ -61,5 +61,9 @@ mix
   .js('resources/js/app.js', 'js/orchid.js')
   .extract(vendor)
   .autoload({
-      jquery: ['$', 'window.jQuery', 'jQuery', 'jquery'],
+      jquery: [
+        '$', 'window.jQuery', 'jQuery', 'jquery',
+        'bootstrap','jquery-ui-bundle','nestable',
+        'select2'
+      ],
   });

@@ -15,23 +15,6 @@
     </div>
 @stop
 
-@section('aside')
-
-    @foreach($settings as $key => $value)
-        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-            <span>{{trans('platform::systems/settings.app.'.$key)}}</span>
-        </li>
-
-        <li class="padder text-ellipsis text-white">
-            <span class="m-l"> - {{$settings->get($key) }}</span>
-        </li>
-    @endforeach
-
-    <li class="divider b-t m-t-sm b-dark"></li>
-
-@endsection
-
-
 @section('content')
     <div class="bg-white">
 
@@ -57,6 +40,21 @@
 
                     </div>
                 @endforeach
+
+
+                <div class="col-md-2">
+                    @foreach($settings as $key => $value)
+                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                            <span>{{trans('platform::systems/settings.app.'.$key)}}</span>
+                        </li>
+
+                        <li class="padder text-ellipsis">
+                            <span class="m-l"> - {{$settings->get($key) }}</span>
+                        </li>
+                    @endforeach
+                </div>
+
+
             </div>
         </div>
 

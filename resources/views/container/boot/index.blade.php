@@ -150,9 +150,6 @@
 @endisset
 
 
-
-
-
 @push('scripts')
     <script type="text/x-tmpl" id="boot-template-column">
         @include('platform::partials.boot.column', [

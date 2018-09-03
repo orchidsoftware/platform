@@ -13,12 +13,10 @@
 @stop
 @section('content')
     <section>
-        <div class="bg-white b-b">
-            <form id="post-form" method="post" enctype="multipart/form-data">
-                {!! $screen->build() !!}
-                @csrf
-            </form>
-        </div>
+        <form id="post-form" method="post" enctype="multipart/form-data">
+            {!! $screen->build() !!}
+            @csrf
+        </form>
     </section>
     <div id="modals-container">
         @stack('modals-container')

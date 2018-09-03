@@ -11,26 +11,6 @@
   @extend .form-control;
 }
 
-.bootstrap-tagsinput {
-  padding : 5px 12px !important;
-  width   : 100%;
-  .label {
-    display        : inline;
-    padding        : .2rem .6rem .3rem;
-    font-size      : 75%;
-    font-weight    : 700;
-    line-height    : 1;
-    color          : #ffffff;
-    text-align     : center;
-    white-space    : nowrap;
-    vertical-align : baseline;
-    border-radius  : .25rem;
-    &.label-info {
-      background-color : #1c7cd6;
-    }
-  }
-}
-
 .select2-search__field {
   width : 100% !important;
 }
@@ -60,12 +40,6 @@
 
 .mce-content-body:focus {
   background-color : $brand-grey-light;
-}
-
-#menu-notifications {
-  .btn-link:focus, .btn-link:hover {
-    color : $brand-white;
-  }
 }
 
 // Tiny MCE Editor

@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens\User;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
-use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Alert;
+use App\Layouts\Test;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Platform\Http\Layouts\User\UserEditLayout;
 use Orchid\Platform\Http\Layouts\User\UserListLayout;
+use Orchid\Platform\Models\User;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class UserList extends Screen
 {
@@ -37,9 +38,19 @@ class UserList extends Screen
     public function query() : array
     {
         return  [
-            'users' => User::filters()
+          'users'  => User::filters()
                 ->defaultSort('id', 'desc')
                 ->paginate(),
+          'charts' => [
+            [
+              'name'   => "Some Data",
+              'values' => [25, 40, 30, 35, 8, 52, 17, -4],
+            ],
+            [
+              'name'   => "Some Data2",
+              'values' => [33, 9, 23, 6, 1, 78, 56, -40],
+            ],
+          ],
         ];
     }
 
@@ -65,6 +76,8 @@ class UserList extends Screen
     public function layout() : array
     {
         return [
+          Test::class,
+
             UserListLayout::class,
 
             Layouts::modals([
