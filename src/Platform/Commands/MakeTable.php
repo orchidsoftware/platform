@@ -48,6 +48,6 @@ class MakeTable extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Layouts';
+        return $rootNamespace.'\Orchid\Layouts';
     }
 }

@@ -2,45 +2,48 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Screens\Role;
+namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
+use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Http\Layouts\Role\RoleEditLayout;
-use Orchid\Platform\Http\Layouts\Role\RolePermissionLayout;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserRoleLayout;
 
-class RoleEdit extends Screen
+class UserEdit extends Screen
 {
     /**
      * Display header name.
      *
      * @var string
      */
-    public $name = 'platform::systems/roles.title';
+    public $name = 'platform::systems/users.title';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/roles.description';
+    public $description = 'platform::systems/users.description';
 
     /**
      * Query data.
      *
-     * @param null $role
+     * @param int $id
+     *
      * @return array
      */
-    public function query($role = null): array
+    public function query(int $id = null): array
     {
-        $role = is_null($role) ? new Role : $role;
+        $user = is_null($id) ? new User : User::with('roles')->findOrFail($id);
 
-        $rolePermission = $role->permissions ?? [];
+        $rolePermission = $user->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->sort()
             ->transform(function ($group) use ($rolePermission) {
@@ -53,9 +56,21 @@ class RoleEdit extends Screen
                 return $group;
             });
 
+        $roles = Role::all();
+        $userRoles = $user->roles ?? collect();
+
+        $userRoles->transform(function ($role) {
+            $role->active = true;
+
+            return $role;
+        });
+
+        $roles = $userRoles->union($roles);
+
         return [
             'permission' => $permission,
-            'role'       => $role,
+            'user'       => $user,
+            'roles'      => $roles,
         ];
     }
 
@@ -86,48 +101,64 @@ class RoleEdit extends Screen
         return [
             Layouts::columns([
                 'Left column'  => [
-                    RoleEditLayout::class,
+                    UserEditLayout::class,
                 ],
                 'Right column' => [
-                        RolePermissionLayout::class,
+                        UserRoleLayout::class,
                 ],
             ]),
         ];
     }
 
     /**
-     * @param Role    $role
+     * @param         $id
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Role $role, Request $request)
+    public function save($id, Request $request)
     {
-        $role->fill($request->get('role'));
+        $user = User::findOrNew($id);
+
+        $attributes = $request->get('user');
+
+        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
+            unset($attributes['password']);
+        }
+
+        if ($request->filled('user.password', null)) {
+            $user->password = Hash::make($request->get('user.password'));
+        }
 
         foreach ($request->get('permissions', []) as $key => $value) {
             $permissions[base64_decode($key)] = 1;
         }
 
-        $role->permissions = $permissions ?? [];
-        $role->save();
+        $user->permissions = $permissions ?? [];
 
-        Alert::info(trans('platform::systems/roles.Role was saved'));
+        $user->fill($attributes)->save();
 
-        return redirect()->route('platform.systems.roles');
+        $roles = Role::whereIn('slug', $request->get('roles', []))->get();
+        $user->replaceRoles($roles);
+
+        Alert::info(trans('platform::systems/users.User was saved'));
+
+        return redirect()->route('platform.systems.users');
     }
 
     /**
-     * @param Role $role
+     * @param $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function remove(Role $role)
+    public function remove($id)
     {
-        $role->delete();
+        $user = User::findOrNew($id);
 
-        Alert::info(trans('platform::systems/roles.Role was removed'));
+        $user->delete();
 
-        return redirect()->route('platform.systems.roles');
+        Alert::info(trans('platform::systems/users.User was removed'));
+
+        return redirect()->route('platform.systems.users');
     }
 }

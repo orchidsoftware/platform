@@ -21,27 +21,6 @@
         <div class="admin-wrapper wrapper-md">
             <div class="row">
 
-                @php
-                    $menu = Dashboard::menu()->build('Systems');
-                    $chunk = ceil($menu->count() / 2);
-                    $menu =  $menu->chunk($chunk);
-                @endphp
-
-                @foreach($menu as $items)
-                    <div class="col-md-5 col-md-4 admin-element-item">
-
-                        @foreach($items as $item)
-                            @include('platform::partials.systems.systemsMenu', [
-                                'icon' => $item['icon'],
-                                'label' => $item['label'],
-                                'children' => $item['children'],
-                            ])
-                        @endforeach
-
-                    </div>
-                @endforeach
-
-
                 <div class="col-md-2">
                     @foreach($settings as $key => $value)
                         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
@@ -53,6 +32,26 @@
                         </li>
                     @endforeach
                 </div>
+
+                @php
+                    $menu = Dashboard::menu()->build('Systems');
+                    $chunk = ceil($menu->count() / 2);
+                    $menu =  $menu->chunk($chunk);
+                @endphp
+
+                @foreach($menu as $items)
+                    <div class="col-md-5 admin-element-item">
+
+                        @foreach($items as $item)
+                            @include('platform::partials.systems.systemsMenu', [
+                                'icon' => $item['icon'],
+                                'label' => $item['label'],
+                                'children' => $item['children'],
+                            ])
+                        @endforeach
+
+                    </div>
+                @endforeach
 
 
             </div>

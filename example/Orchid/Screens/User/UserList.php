@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Screens\User;
+namespace App\Orchid\Screens\User;
 
 use App\Layouts\Test;
 use Illuminate\Support\Facades\Hash;
-use Orchid\Platform\Http\Layouts\User\UserEditLayout;
-use Orchid\Platform\Http\Layouts\User\UserListLayout;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserListLayout;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;

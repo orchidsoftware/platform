@@ -48,6 +48,6 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Http\Controllers\Screens';
+        return $rootNamespace.'\Orchid\Screens';
     }
 }

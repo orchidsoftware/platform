@@ -9,9 +9,8 @@ class DummyClass extends Rows
 {
     /**
      * Views
-
+     *
      * @return array
-     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {

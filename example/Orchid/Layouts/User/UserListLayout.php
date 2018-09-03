@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Layouts\User;
+namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\Fields\TD;
 use Orchid\Screen\Layouts\Table;
-use Orchid\Platform\Http\Filters\RoleFilter;
+use App\Orchid\Filters\RoleFilter;
 
 class UserListLayout extends Table
 {

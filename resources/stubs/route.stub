@@ -11,5 +11,15 @@
 |
 */
 
+// Users...
+Route::screen('users/{users}/edit', 'User\UserEdit', 'platform.systems.users.edit');
+Route::screen('users/create', 'User\UserEdit', 'platform.systems.users.create');
+Route::screen('users', 'User\UserList', 'platform.systems.users');
+
+// Roles...
+Route::screen('roles/{roles}/edit', 'Role\RoleEdit', 'platform.systems.roles.edit');
+Route::screen('roles/create', 'Role\RoleEdit', 'platform.systems.roles.create');
+Route::screen('roles', 'Role\RoleEdit', 'platform.systems.roles');
+
 
 //Route::screen('/dashboard/screen/idea', 'App\Http\Controller\Screens\Idea','platform.screens.idea');

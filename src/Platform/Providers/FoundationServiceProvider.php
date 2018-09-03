@@ -82,14 +82,15 @@ class FoundationServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register route.
+     * Register orchid.
      *
      * @return $this
      */
-    protected function registerRoute()
+    protected function registerOrchid()
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/resources/stubs/route.stub') => base_path('routes/platform.php'),
+            realpath(PLATFORM_PATH.'/example/routes') => base_path('routes'),
+            realpath(PLATFORM_PATH.'/example/Orchid') => app_path('Orchid'),
         ]);
 
         return $this;
@@ -134,12 +135,12 @@ class FoundationServiceProvider extends ServiceProvider
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
             ImageServiceProvider::class,
+            RouteServiceProvider::class,
             AlertServiceProvider::class,
             WidgetServiceProvider::class,
-            DashboardProvider::class,
-            RouteServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
+            DashboardProvider::class,
         ];
     }
 
@@ -168,7 +169,7 @@ class FoundationServiceProvider extends ServiceProvider
         });
 
         $this->registerEloquentFactoriesFrom()
-            ->registerRoute()
+            ->registerOrchid()
             ->registerDatabase()
             ->registerConfig()
             ->registerViews()

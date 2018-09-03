@@ -2,7 +2,6 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
 
 class DummyClass extends Screen
@@ -45,7 +44,6 @@ class DummyClass extends Screen
      * Views
      *
      * @return array
-     * @throws \Orchid\Press\TypeException
      */
     public function layout() : array
     {

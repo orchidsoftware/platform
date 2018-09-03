@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Screens\Role;
+namespace App\Orchid\Screens\Role;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Platform\Models\Role;
-use Orchid\Platform\Http\Layouts\Role\RoleListLayout;
+use App\Orchid\Layouts\Role\RoleListLayout;
 
 class RoleList extends Screen
 {

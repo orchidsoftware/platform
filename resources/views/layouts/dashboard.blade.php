@@ -24,13 +24,14 @@
                             </div>
                         </div>
                         <div class="dropdown">
-                            <a href="#" class="nav-link p-0 leading-none" data-toggle="dropdown">
-                            <span class="avatar"
-                                  style="background-image: url(https://tabler.github.io/tabler/demo/faces/female/25.jpg)"></span>
+                            <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
+                                <span class="thumb-xs avatar pull-right m-t-n-sm m-b-n-sm m-r-xs">
+                                    <img src="/orchid/img/avatars/users-1.svg" class="b bg-light" alt="test">
+                                </span>
                                 <span class="ml-2 d-none d-lg-block" style="font-size: 0.82857rem;">
-                              <span class="text-default">Jane Pearson</span>
-                              <span class="text-muted d-block mt-1">Administrator</span>
-                            </span>
+                                    <span class="text-default">Jane Pearson</span>
+                                    <span class="text-muted d-block mt-1">Administrator</span>
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 <a class="dropdown-item" href="#">
@@ -117,12 +118,18 @@
                     <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                     <small class="text-muted text-ellipsis">@yield('description')</small>
                 </div>
-
                 <div class="col-xs-12 col-md-8">
                     @yield('navbar')
                 </div>
             </div>
 
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white b">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
 
             <div class="d-flex">
                 <div class="app-content-body" id="app-content-body">

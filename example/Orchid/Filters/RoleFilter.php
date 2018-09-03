@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Filters;
+namespace App\Orchid\Filters;
 
 use Orchid\Screen\Fields\Field;
 use Orchid\Platform\Models\Role;

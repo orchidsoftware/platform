@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Http\Layouts\User;
+namespace App\Orchid\Layouts\User;
 
 use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Layouts\Rows;
