@@ -24,7 +24,7 @@ abstract class Chart
     /**
      * Available options:
      * 'bar', 'line', 'pie',
-     * 'percentage', 'axis-mixed'
+     * 'percentage', 'axis-mixed'.
      *
      * @var string
      */
@@ -45,9 +45,9 @@ abstract class Chart
      */
     public $data = '';
 
-  /**
-   * @var array
-   */
+    /**
+     * @var array
+     */
     public $colors = [
       '#d0dff9',
       '#a3c3f9',

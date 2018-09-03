@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
 
 class DashboardProvider extends ServiceProvider
 {
@@ -33,9 +33,6 @@ class DashboardProvider extends ServiceProvider
             ->registerPermissions($this->registerPermissionsSystems());
     }
 
-    /**
-     *
-     */
     protected function registerMenu()
     {
         $this->dashboard->menu
@@ -157,8 +154,9 @@ class DashboardProvider extends ServiceProvider
     /**
      * Register provider.
      */
-    public function register(){
-        if( class_exists(\App\Orchid\PlatformProvider::class)) {
+    public function register()
+    {
+        if (class_exists(\App\Orchid\PlatformProvider::class)) {
             $this->app->register(\App\Orchid\PlatformProvider::class);
         }
     }

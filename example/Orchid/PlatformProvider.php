@@ -17,8 +17,7 @@ class PlatformProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        View::composer('platform::layouts.dashboard', function (){
-
+        View::composer('platform::layouts.dashboard', function () {
         });
 
         View::composer('platform::container.systems.index', $this->registerMenu($dashboard));
@@ -85,7 +84,8 @@ class PlatformProvider extends ServiceProvider
     /**
      * @param \Orchid\Platform\Dashboard $dashboard
      */
-    protected function registerMenu(Dashboard $dashboard){
+    protected function registerMenu(Dashboard $dashboard)
+    {
         $dashboard->menu
             ->add('Systems', [
                 'slug'       => 'Auth',
