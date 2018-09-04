@@ -54,6 +54,32 @@ class SystemMenuComposer
                 'groupname'  => trans('platform::systems/roles.groupname'),
                 'permission' => 'platform.systems.roles',
                 'sort'       => 10,
+            ])
+            ->add('CMS', [
+                'slug'       => 'category',
+                'icon'       => 'icon-briefcase',
+                'route'      => route('platform.systems.category'),
+                'label'      => trans('platform::menu.sections'),
+                'permission' => 'platform.systems.category',
+                'groupname'  => trans('platform::systems/category.groupname'),
+                'sort'       => 10,
+            ])
+            ->add('CMS', [
+                'slug'       => 'comment',
+                'icon'       => 'icon-bubbles',
+                'route'      => route('platform.systems.comments'),
+                'groupname'  => trans('platform::systems/comment.groupname'),
+                'label'      => trans('platform::menu.comments'),
+                'permission' => 'platform.systems.comments',
+                'sort'       => 11,
+                'badge'      => [
+                    'class' => 'bg-primary',
+                    'data'  => function () {
+                        $count = Dashboard::model(\Orchid\Press\Models\Comment::class)::where('approved', 0)->count();
+
+                        return $count ?: null;
+                    },
+                ],
             ]);
     }
 }

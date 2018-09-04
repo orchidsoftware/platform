@@ -66,6 +66,14 @@ class PlatformProvider extends ServiceProvider
                     'description' => trans('platform::permission.systems.users'),
                 ],
                 [
+                    'slug'        => 'platform.systems.comments',
+                    'description' => trans('platform::permission.systems.comment'),
+                ],
+                [
+                    'slug'        => 'platform.systems.category',
+                    'description' => trans('platform::permission.systems.category'),
+                ],
+                [
                     'slug'        => 'platform.systems.attachment',
                     'description' => trans('platform::permission.systems.attachment'),
                 ],
