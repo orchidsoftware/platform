@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Demo;
+namespace App\Orchid\Entities;
 
 use Orchid\Screen\Fields\Field;
 use Orchid\Press\Entities\Single;

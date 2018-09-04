@@ -13,7 +13,7 @@ class MakeSingleBehavior extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'orchid:singleBehavior';
+    protected $name = 'orchid:entity-single';
 
     /**
      * The console command description.
@@ -48,6 +48,6 @@ class MakeSingleBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Entities\Single';
+        return $rootNamespace.'\Orchid\Entities';
     }
 }

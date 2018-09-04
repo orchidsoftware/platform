@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Press\Demo;
+namespace App\Orchid\Entities;
 
 use Orchid\Screen\Fields\TD;
 use Orchid\Press\Entities\Many;
@@ -10,8 +10,6 @@ use Orchid\Screen\Fields\Field;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
 use Orchid\Press\Http\Filters\CreatedFilter;
-use Orchid\Press\Http\Forms\Posts\BasePostForm;
-use Orchid\Press\Http\Forms\Posts\UploadPostForm;
 
 class Post extends Many
 {
@@ -183,19 +181,6 @@ class Post extends Many
                 ->title('Place')
                 ->help('place for google maps'),
             */
-        ];
-    }
-
-    /**
-     * @deprecated
-     *
-     * @return array
-     */
-    public function modules() : array
-    {
-        return [
-            BasePostForm::class,
-            UploadPostForm::class,
         ];
     }
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
+use App\Orchid\Composers\MainMenuComposer;
+use App\Orchid\Composers\SystemMenuComposer;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -17,10 +19,8 @@ class PlatformProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        View::composer('platform::layouts.dashboard', function () {
-        });
-
-        View::composer('platform::container.systems.index', $this->registerMenu($dashboard));
+        View::composer('platform::layouts.dashboard', MainMenuComposer::class);
+        View::composer('platform::container.systems.index', SystemMenuComposer::class);
 
         $dashboard
             ->registerPermissions($this->registerPermissionsMain())
@@ -81,37 +81,5 @@ class PlatformProvider extends ServiceProvider
         ];
     }
 
-    /**
-     * @param \Orchid\Platform\Dashboard $dashboard
-     */
-    protected function registerMenu(Dashboard $dashboard)
-    {
-        $dashboard->menu
-            ->add('Systems', [
-                'slug'       => 'Auth',
-                'icon'       => 'icon-lock',
-                'label'      => trans('platform::systems/settings.system_menu.Sharing access rights'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
-                'sort'       => 1000,
-            ])
-            ->add('Auth', [
-                'slug'       => 'users',
-                'icon'       => 'icon-user',
-                'route'      => route('platform.systems.users'),
-                'label'      => trans('platform::menu.users'),
-                'groupname'  => trans('platform::systems/users.groupname'),
-                'permission' => 'platform.systems.users',
-                'sort'       => 9,
-            ])
-            ->add('Auth', [
-                'slug'       => 'roles',
-                'icon'       => 'icon-lock',
-                'route'      => route('platform.systems.roles'),
-                'label'      => trans('platform::menu.roles'),
-                'groupname'  => trans('platform::systems/roles.groupname'),
-                'permission' => 'platform.systems.roles',
-                'sort'       => 10,
-            ]);
-    }
+
 }

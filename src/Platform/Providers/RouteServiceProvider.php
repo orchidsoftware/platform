@@ -111,7 +111,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::domain((string) config('platform.domain'))
                 ->prefix(Dashboard::prefix('/'))
                 ->middleware(config('platform.middleware.private'))
-                ->namespace('App\Orchid\Screen')
+                ->namespace('App\Orchid\Screens')
                 ->group(base_path('routes/platform.php'));
         }
     }

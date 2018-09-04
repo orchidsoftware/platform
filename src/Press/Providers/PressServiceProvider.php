@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
+use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Entities\Single;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
+use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -27,12 +31,42 @@ class PressServiceProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         $this->dashboard
-            ->registerEntities(config('press.entities', []))
+            ->registerEntities($this->findEntities())
             ->registerPermissions($this->registerPermissionsEntities())
             ->registerPermissions($this->registerPermissions());
 
         View::composer('platform::layouts.dashboard', PressMenuComposer::class);
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function findEntities() : array {
+        $namespace = app()->getNamespace();
+        $directory = app_path('Orchid/Entities');
+        $resources = [];
+
+
+        if(!is_dir($directory)){
+            return [];
+        }
+
+        foreach ((new Finder)->in($directory)->files() as $resource) {
+            $resource = $namespace.str_replace(
+                    ['/', '.php'],
+                    ['\\', ''],
+                    Str::after($resource->getPathname(), app_path().DIRECTORY_SEPARATOR)
+                );
+
+            if (is_subclass_of($resource, Many::class) ||
+                is_subclass_of($resource, Single::class)) {
+                $resources[] = $resource;
+            }
+        }
+
+
+         return collect($resources)->sort()->all();
     }
 
     /**

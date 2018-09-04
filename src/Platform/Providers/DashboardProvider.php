@@ -27,7 +27,6 @@ class DashboardProvider extends ServiceProvider
         View::composer('platform::container.systems.index', $this->registerMenu());
 
         $this->dashboard
-            ->registerFields(config('platform.fields', []))
             ->registerResource(config('platform.resource', []))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsSystems());

@@ -13,7 +13,7 @@ class MakeManyBehavior extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'orchid:manyBehavior';
+    protected $name = 'orchid:entity-many';
 
     /**
      * The console command description.
@@ -48,6 +48,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Entities\Many';
+        return $rootNamespace.'\Orchid\Entities';
     }
 }

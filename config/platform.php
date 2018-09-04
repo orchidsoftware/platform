@@ -126,28 +126,4 @@ return [
         'scripts'     => [],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard .....
-    |--------------------------------------------------------------------------
-    |
-    | ....
-    |
-    */
-
-    'screens' => [
-        'users'   => [
-            'edit' => Orchid\Platform\Http\Screens\User\UserEdit::class,
-            'list' => Orchid\Platform\Http\Screens\User\UserList::class,
-        ],
-        'roles'   => [
-            'edit' => Orchid\Platform\Http\Screens\Role\RoleEdit::class,
-            'list' => Orchid\Platform\Http\Screens\Role\RoleList::class,
-        ],
-        'comment' => [
-            'edit' => Orchid\Press\Http\Screens\Comment\CommentEdit::class,
-            'list' => Orchid\Press\Http\Screens\Comment\CommentList::class,
-        ],
-    ],
-
 ];
