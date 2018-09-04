@@ -6,13 +6,13 @@ namespace Orchid\Press\Providers;
 
 use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Entities\Single;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\Finder\Finder;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
-use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -42,13 +42,13 @@ class PressServiceProvider extends ServiceProvider
     /**
      * @return array
      */
-    public function findEntities() : array {
+    public function findEntities() : array
+    {
         $namespace = app()->getNamespace();
         $directory = app_path('Orchid/Entities');
         $resources = [];
 
-
-        if(!is_dir($directory)){
+        if (! is_dir($directory)) {
             return [];
         }
 
@@ -65,8 +65,7 @@ class PressServiceProvider extends ServiceProvider
             }
         }
 
-
-         return collect($resources)->sort()->all();
+        return collect($resources)->sort()->all();
     }
 
     /**
