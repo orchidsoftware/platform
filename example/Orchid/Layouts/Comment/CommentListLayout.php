@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Comment;
+
 use Orchid\Screen\Fields\TD;
 use Orchid\Screen\Layouts\Table;
 
@@ -10,6 +13,7 @@ class CommentListLayout extends Table
      * @var string
      */
     public $data = 'comment';
+
     /**
      * HTTP data filters.
      *
@@ -20,6 +24,7 @@ class CommentListLayout extends Table
         return [
         ];
     }
+
     /**
      * @return array
      */
@@ -29,7 +34,7 @@ class CommentListLayout extends Table
             TD::name('approved')
                 ->title(trans('platform::systems/comment.status'))
                 ->setRender(function ($comment) {
-                    if($comment->approved) {
+                    if ($comment->approved) {
                         return '<i class="icon-check mx-3"></i>';
                     } else {
                         return '<i class="icon-close mx-3"></i>';
@@ -46,10 +51,10 @@ class CommentListLayout extends Table
            TD::name('post_id')
                ->title(trans('platform::systems/comment.recording'))
                ->setRender(function ($comment) {
-                   if(!is_null($comment->post)) {
-                       return '<a href="'.route('platform.posts.type.edit',[
+                   if (! is_null($comment->post)) {
+                       return '<a href="'.route('platform.posts.type.edit', [
                                $comment->post->type,
-                               $comment->post->id
+                               $comment->post->id,
                            ]).'"><i class="icon-text-center mx-3"></i></a>';
                    } else {
                        return '<i class="icon-close mx-3"></i>';

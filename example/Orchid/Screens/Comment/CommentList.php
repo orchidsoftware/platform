@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Orchid\Screens\Comment;
 
-use Orchid\Press\Models\Comment;
 use Orchid\Screen\Screen;
+use Orchid\Press\Models\Comment;
 use App\Orchid\Layouts\Comment\CommentListLayout;
 
 class CommentList extends Screen
@@ -21,6 +22,7 @@ class CommentList extends Screen
      * @var string
      */
     public $description = 'platform::systems/comment.description';
+
     /**
      * Query data.
      *

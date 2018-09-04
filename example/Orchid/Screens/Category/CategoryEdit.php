@@ -1,30 +1,35 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Orchid\Screens\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Orchid\Press\Models\Category;
-use Orchid\Support\Facades\Alert;
-use App\Orchid\Layouts\Category\CategoryEditLayout;
-use Orchid\Screen\Layouts;
+
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Category;
+use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\App;
+use App\Orchid\Layouts\Category\CategoryEditLayout;
+
 class CategoryEdit extends Screen
 {
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name = 'platform::systems/category.title';
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
     public $description = 'platform::systems/category.description';
+
     /**
-     * Query data
+     * Query data.
      *
      * @param int $categoryId
      *
@@ -36,16 +41,16 @@ class CategoryEdit extends Screen
         $category = Category::findOrNew($id);
         $catselect[0] = trans('platform::systems/category.not_parrent');
         if ($category->exists) {
-            $anycategory= Category::whereNotIn('id', [$category->id])->get();
+            $anycategory = Category::whereNotIn('id', [$category->id])->get();
             foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
         } else {
-            $anycategory= Category::get();
+            $anycategory = Category::get();
             //if ($anycategory->count()) {
-                foreach (Category::get() as $cat) {
-                    $catselect[$cat->id] = $cat->term->GetContent('name');
-                }
+            foreach (Category::get() as $cat) {
+                $catselect[$cat->id] = $cat->term->GetContent('name');
+            }
             //}
         }
         //dd($category->exists);
@@ -56,8 +61,9 @@ class CategoryEdit extends Screen
             'catselect'=> $catselect,
         ];
     }
+
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -68,8 +74,9 @@ class CategoryEdit extends Screen
             Link::name(trans('platform::common.commands.remove'))->icon('icon-trash')->method('remove'),
         ];
     }
+
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
@@ -78,11 +85,12 @@ class CategoryEdit extends Screen
         return [
             Layouts::columns([
                 'CategoryEdit' => [
-                    CategoryEditLayout::class
+                    CategoryEditLayout::class,
                 ],
             ]),
         ];
     }
+
     /**
      * @param Category $category
      * @param Request  $request
@@ -90,10 +98,9 @@ class CategoryEdit extends Screen
      */
     public function save(Category $category, Request $request)
     {
-
         $attributes = $request->get('category');
-        $locale =App::getLocale();
-        $attributes['term']['content'][$locale]=$attributes['content'];
+        $locale = App::getLocale();
+        $attributes['term']['content'][$locale] = $attributes['content'];
 
         $category->parent_id = $attributes['parent_id'];
 
@@ -101,8 +108,10 @@ class CategoryEdit extends Screen
         $category->save();
         $category->term->save();
         Alert::info(trans('platform::systems/category.Category was saved'));
+
         return redirect()->route('platform.systems.category');
     }
+
     /**
      * @param Category $category
      * @return \Illuminate\Http\RedirectResponse
@@ -112,6 +121,7 @@ class CategoryEdit extends Screen
     {
         $category->delete();
         Alert::info(trans('platform::systems/category.Category was removed'));
+
         return redirect()->route('platform.systems.category');
     }
 }

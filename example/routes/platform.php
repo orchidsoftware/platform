@@ -31,6 +31,5 @@ $this->screen('category/{category}/edit', 'Category\CategoryEdit', 'platform.sys
 $this->screen('category/create', 'Category\CategoryEdit', 'platform.systems.category.create');
 $this->screen('category', 'Category\CategoryList', 'platform.systems.category');
 
-
 // Example...
 //Route::screen('/dashboard/screen/idea', 'Idea','platform.screens.idea');

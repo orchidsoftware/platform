@@ -1,14 +1,19 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Category;
+
 use Orchid\Screen\Fields\TD;
 use Orchid\Screen\Layouts\Table;
+
 class CategoryListLayout extends Table
 {
     /**
      * @var string
      */
     public $data = 'category';
+
     /**
      * HTTP data filters.
      *
@@ -19,6 +24,7 @@ class CategoryListLayout extends Table
         return [
         ];
     }
+
     /**
      * @return array
      */

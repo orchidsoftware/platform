@@ -1,11 +1,15 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Orchid\Screens\Category;
+
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Category;
 use App\Orchid\Layouts\Category\CategoryListLayout;
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
+
 class CategoryList extends Screen
 {
     /**
@@ -20,6 +24,7 @@ class CategoryList extends Screen
      * @var string
      */
     public $description = 'platform::systems/category.description';
+
     /**
      * Query data.
      *
@@ -27,11 +32,11 @@ class CategoryList extends Screen
      */
     public function query() : array
     {
-
         return [
             'category' => Category::paginate(),
         ];
     }
+
     /**
      * Button commands.
      *
@@ -43,6 +48,7 @@ class CategoryList extends Screen
             Link::name(trans('platform::common.commands.add'))->icon('icon-plus')->method('create'),
         ];
     }
+
     /**
      * Views.
      *
@@ -54,6 +60,7 @@ class CategoryList extends Screen
             CategoryListLayout::class,
         ];
     }
+
     /**
      * @param Request $request
      *

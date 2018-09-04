@@ -1,19 +1,23 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Orchid\Layouts\Comment;
+
 use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Layouts\Rows;
+
 class CommentEditLayout extends Rows
 {
     /**
-     * Views
+     * Views.
      *
      * @return array
      * @throws \Orchid\Platform\Exceptions\TypeException
      */
     public function fields(): array
     {
-        $fields[] =  Field::tag('textarea')
+        $fields[] = Field::tag('textarea')
             ->name('comment.content')
             ->max(255)
             ->rows(10)
