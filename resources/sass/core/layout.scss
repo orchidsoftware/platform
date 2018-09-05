@@ -31,28 +31,21 @@ body {
 
 }
 
-.app-header {
-  min-height : $app-header-height;
-  z-index: 1025;
-  border-radius: 0;
-}
 
-/*
-// menu
-.app-aside {
-  float: left;
-  &:before {
-    content: "";
-    position: absolute;
-    width: inherit;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    background-color: inherit;
-    border: inherit;
+// переписать!
+.app-header {
+  .nav-item{
+    &.active{
+      .nav-link{
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom-color: $brand-primary!important;
+        background: inherit;
+      }
+    }
   }
 }
-*/
 
 
 // content
@@ -60,21 +53,6 @@ body {
   height: 100%;
   @include clearfix();
 }
-
-/*
-.app-content-full {
-  position: absolute;
-  height: auto;
-  width: auto !important;
-  padding: 0 !important;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  &.h-full {
-    bottom: 0;
-    height: auto;
-  }
-}
-*/
 
 .app-content-body {
   float: left;
@@ -149,91 +127,6 @@ body {
   }
 }
 
-// navbar
-
-.navbar {
-  .navbar-form-sm {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  border-width: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-md {
-  min-height: $app-header-md-height;
-  .navbar-btn {
-    margin-top: 13px;
-  }
-  .navbar-form {
-    margin-top: 15px;
-  }
-  .navbar-nav > li > a {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  .navbar-brand {
-    line-height: 60px;
-  }
-}
-
-.navbar-header {
-	width: 100%;
-  > button {
-    text-decoration: none;
-    line-height: 30px;
-    font-size: 16px;
-    padding: 10px 17px;
-    border: none;
-	color: inherit;
-    background-color: transparent;
-  }
-}
-
-.navbar-brand {
-  float: none;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-  height: auto;
-  line-height: 45px;
-  display: inline-block;
-  padding: 0 20px;
-  &:hover {
-    text-decoration: none;
-  }
-  img {
-    max-height: 20px;
-    margin-top: -4px;
-    vertical-align: middle;
-    display: inline;
-  }
-}
-
-.aside-wrap-main {
-  /*
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  */
-  //width: $aside-wrap-main-width;
-  z-index: 1050;
-  //background-color: #1d2531;
-  li {
-    a {
-      .icon, i {
-        font-size: $font-size-md;
-        display: block;
-        margin: 0 auto !important;
-        float: none !important;
-      }
-    }
-  }
-}
 
 
 @media (min-width: 768px) {
@@ -241,49 +134,6 @@ body {
   .app-header {
     .navbar-header {
       display: none!important;
-    }
-  }
-
-  .app-aside {
-    //width: $app-aside-width;
-    .aside-wrap {
-      /*
-      position: fixed;
-      overflow: hidden;
-      top: 0;
-      bottom: 0;
-      */
-      //left: $aside-wrap-main-width;
-
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-
-      width: $app-aside-width - $aside-wrap-main-width;
-      z-index: 1050;
-      background-color: #222c3c;
-      .navi-wrap {
-        //width: $app-aside-width + $scroll-bar-width;
-        position: relative;
-        height: 100%;
-        /*
-        overflow-x: hidden;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-
-        &::-webkit-scrollbar {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-        }
-        &::-webkit-scrollbar:vertical {
-          width: $scroll-bar-width;
-        }
-        > * {
-          //width: $app-aside-width - 100;
-        }
-        */
-      }
     }
   }
 
@@ -334,9 +184,6 @@ body {
 
 // xs
 @media (max-width: 767px) {
-  .app-aside {
-    float: none;
-  }
 
   .app-content-full {
     width: 100% !important;
@@ -350,50 +197,6 @@ body {
       display: block;
     }
   }
-
-  .navbar-nav {
-    margin-top: 0;
-    margin-bottom: 0;
-    > li > a {
-      box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-      .up {
-        top: 0;
-      }
-      .avatar {
-        width: 30px;
-        margin-top: -5px;
-      }
-    }
-    .open .dropdown-menu {
-      background-color: #fff;
-    }
-  }
-
-  .navbar-form {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    .form-group {
-      margin-bottom: 0;
-    }
-  }
-
-
-  .app-aside.open {
-    display : block !important;
-    .aside-wrap {
-      position   : fixed;
-      z-index    : 10000;
-      background : #1d2839;
-      min-height : 100vh;
-      left       : $aside-wrap-main-width;
-      top        : 0;
-      bottom     : 0;
-      width: calc(100vw - #{$aside-wrap-main-width});
-      overflow: auto;
-    }
-  }
-
 }
 
 .full-height {

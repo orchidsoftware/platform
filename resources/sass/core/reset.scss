@@ -729,3 +729,25 @@ blockquote {
   left: 50%;
   top: 50%;
 }
+
+
+
+
+
+.dropdown-item {
+  @include hover-focus {
+    color: $dropdown-link-hover-color;
+    @include gradient-bg($dropdown-link-hover-bg);
+  }
+
+  &.active,
+  &:active {
+    color: $dropdown-link-hover-color;
+    @include gradient-bg($dropdown-link-hover-bg);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $dropdown-link-disabled-color;
+  }
+}

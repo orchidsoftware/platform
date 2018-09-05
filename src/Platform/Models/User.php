@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguage;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -104,6 +104,26 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
+     * Display name
+     *
+     * @return mixed
+     */
+    public function getNameTitle()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Display sub
+     *
+     * @return string
+     */
+    public function getSubTitle()
+    {
+        return "Administrator";
+    }
+
+    /**
      * @param $name
      * @param $email
      * @param $password
@@ -113,7 +133,7 @@ class User extends Authenticatable implements UserInterface
     public static function createAdmin($name, $email, $password)
     {
         if (static::where('email', $email)->exists()) {
-            echo  'User exist', PHP_EOL;
+            echo 'User exist', PHP_EOL;
             die();
         }
 
@@ -126,10 +146,10 @@ class User extends Authenticatable implements UserInterface
             });
 
         $user = static::create([
-                'name'        => $name,
-                'email'       => $email,
-                'password'    => bcrypt($password),
-                'permissions' => $permissions,
+            'name'        => $name,
+            'email'       => $email,
+            'password'    => bcrypt($password),
+            'permissions' => $permissions,
         ]);
 
         $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
