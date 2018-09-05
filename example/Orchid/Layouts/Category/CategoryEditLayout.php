@@ -33,7 +33,7 @@ class CategoryEditLayout extends Rows
             ->placeholder(trans('platform::systems/category.fields.name_title'))
             ->help(trans('platform::systems/category.fields.name_help'));
 
-        $fields[] =  Field::tag('input')
+        $fields[] = Field::tag('input')
             ->type('text')
             ->name('category.slug')
             ->max(255)
@@ -50,6 +50,7 @@ class CategoryEditLayout extends Rows
             ->modifyValue(function () {
                 if ($this->query->getContent('category')->exists) {
                     $parent_id = $this->query->getContent('category')->parent_id;
+
                     return [$parent_id => $this->query->getContent('catselect')[$parent_id]];
                 } else {
                     return 0;
@@ -59,7 +60,6 @@ class CategoryEditLayout extends Rows
             ->name('category.parent_id')
             ->title(trans('platform::systems/category.parent'))
             ->placeholder(trans('platform::systems/category.parent'));
-
 
         $fields[] = Field::tag('wysiwyg')
             ->name('category.content.body')

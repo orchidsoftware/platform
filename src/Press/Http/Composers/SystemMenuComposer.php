@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Composers;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Press\Models\Comment;
 
 class SystemMenuComposer
 {

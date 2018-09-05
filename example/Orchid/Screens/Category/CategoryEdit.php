@@ -8,8 +8,8 @@ use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
-use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Term;
+use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\App;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
@@ -46,13 +46,12 @@ class CategoryEdit extends Screen
             foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
-            $category['slug']=$category->term->slug;
+            $category['slug'] = $category->term->slug;
         } else {
             //$anycategory = Category::get();
             foreach (Category::get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
-
         }
 
         return [
@@ -95,7 +94,7 @@ class CategoryEdit extends Screen
      * @param Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($id = null, Request $request)
+    public function save($id, Request $request)
     {
         $category = Category::findOrNew($id);
         $attributes = $request->get('category');
@@ -107,14 +106,14 @@ class CategoryEdit extends Screen
 
         //if ((int)$attributes['parent_id']>0) {
         //}
-        $category->parent_id = (int)$attributes['parent_id'];
-        $category->taxonomy='category';
+        $category->parent_id = (int) $attributes['parent_id'];
+        $category->taxonomy = 'category';
 
         if (is_null($id)) {
             $term = Term::firstOrCreate(['slug' => $attributes['term']['slug']]);
             $term->fill($attributes['term']);
             $term->save();
-            $category->term_id=$term->id;
+            $category->term_id = $term->id;
         } else {
             $category->term->fill($attributes['term']);
             $category->term->save();
