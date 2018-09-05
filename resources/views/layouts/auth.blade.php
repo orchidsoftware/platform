@@ -9,7 +9,6 @@
 
         <img src="{{config('platform.auth.image','/orchid/img/background.jpg')}}" alt="ORCHID">
 
-
         <div class="bg-caption pull-bottom text-white wrapper-md m-b-md">
             <h2 class="text-white">
                 {{trans(config('platform.auth.slogan','platform::auth/account.slogan'))}}
@@ -40,7 +39,7 @@
                         <a href="https://orchid.software/" target="_blank" rel="noopener noreferrer">
                             <img alt="ORCHID"
                                                                 class="m-t-xs"
-                                                                src="/orchid/img/logo.svg"
+                                                                src="{{url('/orchid/img/logo.svg')}}"
                                                                 width="78"
                                                                 height="22"></a>
                     </div>

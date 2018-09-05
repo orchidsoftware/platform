@@ -4,7 +4,7 @@
             <i class="{{$icon}}"></i>{{trans($label)}}
         </h3>
         <div class="line line-dashed b-b line-lg"></div>
-        <ul class="list-group no-bg no-borders pull-in auto m-l-lg">
+        <ul class="list-group no-bg no-borders pull-in auto">
 
             @foreach ($children as $item)
                 @include('platform::partials.systems.systemsSubMenu', $item)

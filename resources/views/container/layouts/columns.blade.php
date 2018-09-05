@@ -1,6 +1,6 @@
-<div class="hbox hbox-auto-xs ">
+<div class="hbox hbox-auto-xs">
     @foreach($manyForms as $key => $column)
-        <div class="hbox-col lter b-l">
+        <div class="hbox-col lter">
             <div class="vbox">
                 @foreach($column as $item)
                     {!! $item or '' !!}

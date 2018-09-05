@@ -3,8 +3,6 @@
 
 @section('body')
 
-
-
     <div class="app" id="app" data-controller="@yield('controller')">
         <div class="header py-4 bg-white b-b">
             <div class="container">

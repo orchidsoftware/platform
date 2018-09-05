@@ -1,21 +1,21 @@
-@section('aside')
-
-    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-        <span>Выберите модель:</span>
-    </li>
-
-    @foreach($models as $name => $value)
-        <li>
-            <a href="{{route('platform.bulldozer.index',$name)}}">
-                <i class="icon-folder"></i>
-                <span class="text-ellipsis"> {{ $name }}</span>
-            </a>
-        </li>
-    @endforeach
-@endsection
-
 @isset($model)
     <div data-controller="components--boot">
+
+
+        <div class="nav-tabs-alt bg-white-only">
+            <ul class="nav nav-tabs" role="tablist">
+                @foreach($models as $name => $value)
+                    <li class="nav-item">
+                        <a href="{{route('platform.bulldozer.index',$name)}}" class="nav-link {{active(route('platform.bulldozer.index',$name))}}">
+                            <i class="icon-folder m-r-xs"></i> {{ $name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+
+
         <div class="hbox hbox-auto-xs hbox-auto-sm" style="min-height: calc(100vh - 80px);">
 
             <div class="hbox-col bg-white b-r">

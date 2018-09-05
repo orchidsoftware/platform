@@ -52,9 +52,9 @@ class CheckBoxField extends Field
      * @var array
      */
     public $attributes = [
-        'type'  => 'checkbox',
-        'value' => false,
-        'novalue' => 0,
+        'type'     => 'checkbox',
+        'value'    => false,
+        'novalue'  => 0,
         'yesvalue' => 1,
     ];
 
