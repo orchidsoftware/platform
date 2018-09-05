@@ -35,9 +35,9 @@ class CommentListLayout extends Table
                 ->title(trans('platform::systems/comment.status'))
                 ->setRender(function ($comment) {
                     if ($comment->approved) {
-                        return '<i class="icon-check mx-3"></i>';
+                        return '<i class="icon-check text-success mx-3"></i>';
                     } else {
-                        return '<i class="icon-close mx-3"></i>';
+                        return '<i class="icon-close text-danger  mx-3"></i>';
                     }
                 }),
 

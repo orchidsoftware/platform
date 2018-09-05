@@ -28,7 +28,8 @@ class CommentEditLayout extends Rows
         $fields[] = Field::tag('checkbox')
             ->name('comment.approved')
             ->title(trans('platform::systems/comment.checking'))
-            ->help(trans('platform::systems/comment.show_comment'));
+            ->help(trans('platform::systems/comment.show_comment'))
+            ->sendTrueOrFalse();
 
         return $fields;
     }

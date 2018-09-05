@@ -82,8 +82,16 @@ class CommentEdit extends Screen
      */
     public function save($id, Request $request)
     {
+        $newcomment = $request->get('comment');
+        /*
+        if (array_key_exists('approved',$newcomment) ) {
+            $newcomment['approved'] = 1;
+        } else {
+            $newcomment['approved'] = 0;
+        }*/
+        //dd($newcomment);
         $comment = Comment::findOrFail($id);
-        $comment->fill($request->get('comment'))->save();
+        $comment->fill($newcomment)->save();
         Alert::info(trans('platform::systems/comment.Comment was saved'));
 
         return redirect()->route('platform.systems.comments');

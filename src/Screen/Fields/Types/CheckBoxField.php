@@ -54,6 +54,8 @@ class CheckBoxField extends Field
     public $attributes = [
         'type'  => 'checkbox',
         'value' => false,
+        'novalue' => 0,
+        'yesvalue' => 1,
     ];
 
     /**
@@ -90,5 +92,7 @@ class CheckBoxField extends Field
         'tabindex',
         'value',
         'type',
+        'novalue',
+        'yesvalue',
     ];
 }

@@ -51,34 +51,6 @@ class SystemMenuComposer
                 'show'       => count(config('press.menu', [])) > 0,
             ])
             ->add('CMS', [
-                'slug'       => 'section',
-                'icon'       => 'icon-briefcase',
-                'route'      => route('platform.systems.category'),
-                'label'      => trans('platform::menu.sections'),
-                'permission' => 'platform.systems.category',
-                'groupname'  => trans('platform::systems/category.groupname'),
-                'sort'       => 2,
-            ])
-            /*
-            ->add('CMS', [
-                'slug'       => 'comment',
-                'icon'       => 'icon-bubbles',
-                'route'      => route('platform.systems.comment'),
-                'groupname'  => trans('platform::systems/comment.groupname'),
-                'label'      => trans('platform::menu.comments'),
-                'permission' => 'platform.systems.comment',
-                'sort'       => 4,
-                'badge'      => [
-                    'class' => 'bg-primary',
-                    'data'  => function () {
-                        $count = Dashboard::model(Comment::class)::where('approved', 0)->count();
-
-                        return $count ?: null;
-                    },
-                ],
-            ])
-            */
-            ->add('CMS', [
                 'slug'       => 'media',
                 'icon'       => 'icon-folder-alt',
                 'route'      => route('platform.systems.media.index'),

@@ -32,31 +32,34 @@ class CategoryEditLayout extends Rows
             ->title(trans('platform::systems/category.fields.name_title'))
             ->placeholder(trans('platform::systems/category.fields.name_title'))
             ->help(trans('platform::systems/category.fields.name_help'));
-        /*
-                $fields[] =  Field::tag('input')
-                    ->type('text')
-                    ->name('category.term.slug')
-                    ->max(255)
-                    ->require()
-                    ->title(trans('platform::systems/category.slug'));
-        */
-        /*
-                $fields[] = Field::tag('select')
-                    ->options(function () {
-                        return $this->query
-                            ->getContent('catselect');
-                    })
-        
-                    ->modifyValue(function () {
-                        $parent_id=$this->query->getContent('category')->parent_id;
-                        return  [$parent_id => $this->query->getContent('catselect')[$parent_id]];
-        
-                    })
-                    ->class('select2')
-                    ->name('category.parent_id')
-                    ->title(trans('platform::systems/category.parent'))
-                    ->placeholder(trans('platform::systems/category.parent'));
-        */
+
+        $fields[] =  Field::tag('input')
+            ->type('text')
+            ->name('category.slug')
+            ->max(255)
+            ->require()
+            ->title(trans('platform::systems/category.slug'));
+
+//        dd($this->query->getContent('category')->exists);
+
+        $fields[] = Field::tag('select')
+            ->options(function () {
+                return $this->query
+                    ->getContent('catselect');
+            })
+            ->modifyValue(function () {
+                if ($this->query->getContent('category')->exists) {
+                    $parent_id = $this->query->getContent('category')->parent_id;
+                    return [$parent_id => $this->query->getContent('catselect')[$parent_id]];
+                } else {
+                    return 0;
+                }
+            })
+            ->class('select2')
+            ->name('category.parent_id')
+            ->title(trans('platform::systems/category.parent'))
+            ->placeholder(trans('platform::systems/category.parent'));
+
 
         $fields[] = Field::tag('wysiwyg')
             ->name('category.content.body')

@@ -9,6 +9,7 @@ use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Category;
+use Orchid\Press\Models\Term;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\App;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
@@ -41,21 +42,19 @@ class CategoryEdit extends Screen
         $category = Category::findOrNew($id);
         $catselect[0] = trans('platform::systems/category.not_parrent');
         if ($category->exists) {
-            $anycategory = Category::whereNotIn('id', [$category->id])->get();
+            //$anycategory = Category::whereNotIn('id', [$category->id])->get();
             foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
+            $category['slug']=$category->term->slug;
         } else {
-            $anycategory = Category::get();
-            //if ($anycategory->count()) {
+            //$anycategory = Category::get();
             foreach (Category::get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
-            //}
+
         }
-        //dd($category->exists);
-        //dd(Category::whereNotIn('id', [$category->id]));
-        //dd($category);
+
         return [
             'category' => $category,
             'catselect'=> $catselect,
@@ -96,17 +95,33 @@ class CategoryEdit extends Screen
      * @param Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Category $category, Request $request)
+    public function save($id = null, Request $request)
     {
+        $category = Category::findOrNew($id);
         $attributes = $request->get('category');
+
         $locale = App::getLocale();
         $attributes['term']['content'][$locale] = $attributes['content'];
+        $attributes['term']['slug'] = $attributes['slug'];
+        unset($attributes['slug']);
 
-        $category->parent_id = $attributes['parent_id'];
+        //if ((int)$attributes['parent_id']>0) {
+        //}
+        $category->parent_id = (int)$attributes['parent_id'];
+        $category->taxonomy='category';
 
-        $category->term->fill($attributes['term']);
+        if (is_null($id)) {
+            $term = Term::firstOrCreate(['slug' => $attributes['term']['slug']]);
+            $term->fill($attributes['term']);
+            $term->save();
+            $category->term_id=$term->id;
+        } else {
+            $category->term->fill($attributes['term']);
+            $category->term->save();
+        }
+
+        $category->term($term);
         $category->save();
-        $category->term->save();
         Alert::info(trans('platform::systems/category.Category was saved'));
 
         return redirect()->route('platform.systems.category');
