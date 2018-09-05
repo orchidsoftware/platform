@@ -47,6 +47,8 @@ Install package
 php artisan orchid:install
 ```
 
+Once these commands have completed, you are ready to enjoy platform!
+
 ## Change log
 
 See [CHANGELOG](CHANGELOG.md).
