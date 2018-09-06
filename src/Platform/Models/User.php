@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Collection;
-use Orchid\Access\UserAccess;
-use Orchid\Access\UserInterface;
-use Orchid\Platform\Notifications\ResetPassword;
-use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguage;
-use Orchid\Screen\Fields\Field;
 use Orchid\Screen\Fields\TD;
+use Orchid\Access\UserAccess;
+use Orchid\Screen\Fields\Field;
+use Orchid\Access\UserInterface;
+use Illuminate\Support\Collection;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Platform\Traits\FilterTrait;
+use Illuminate\Notifications\Notifiable;
+use Orchid\Platform\Traits\MultiLanguage;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -176,7 +176,6 @@ class User extends Authenticatable implements UserInterface
                 ->sort(),
         ]);
     }
-
 
     /**
      * @param $name

@@ -15,9 +15,6 @@ use Zend\Code\Generator\PropertyGenerator;
  */
 class Model extends Builder
 {
-    /**
-     *
-     */
     const RELATIONS = [
         'hasOne'         => 'One to One (hasOne)',
         'hasMany'        => 'One to Many (hasMany)',
