@@ -236,15 +236,13 @@ class Field implements FieldContract
         $attributes = $this->getModifyAttributes();
         $this->attributes['id'] = $this->getId();
 
-
-        if($this->hasError()){
-            if(is_null($attributes['class'])){
+        if ($this->hasError()) {
+            if (is_null($attributes['class'])) {
                 $attributes['class'] = ' is-invalid';
-            }else{
+            } else {
                 $attributes['class'] .= ' is-invalid';
             }
         }
-
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
@@ -351,8 +349,8 @@ class Field implements FieldContract
      */
     public function getOldName()
     {
-        $name = str_ireplace(['][','['], '.', $this->get('name'));
-        $name = str_ireplace([']'],'',$name);
+        $name = str_ireplace(['][', '['], '.', $this->get('name'));
+        $name = str_ireplace([']'], '', $name);
 
         return $name;
     }

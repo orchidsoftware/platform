@@ -59,13 +59,13 @@ Breadcrumbs::for('platform.posts.type', function ($trail, $type) {
 // Platform > Posts > Create
 
 Breadcrumbs::for('platform.posts.type.create', function ($trail, $type) {
-    $trail->parent('platform.posts.type',$type);
+    $trail->parent('platform.posts.type', $type);
     $trail->push('Create', route('platform.posts.type.create', $type->slug));
 });
 
 // Platform > Posts > Edit
 Breadcrumbs::for('platform.posts.type.edit', function ($trail, $type, $post) {
-    $trail->parent('platform.posts.type',$type);
+    $trail->parent('platform.posts.type', $type);
     $trail->push($post->getContent($type->slugFields), route('platform.posts.type.edit', [$type->slug, $post->slug]));
 });
 
