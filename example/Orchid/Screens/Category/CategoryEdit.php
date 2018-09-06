@@ -65,8 +65,12 @@ class CategoryEdit extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('platform::common.commands.save'))->icon('icon-check')->method('save'),
-            Link::name(trans('platform::common.commands.remove'))->icon('icon-trash')->method('remove'),
+            Link::name(trans('platform::common.commands.save'))
+                ->icon('icon-check')
+                ->method('save'),
+            Link::name(trans('platform::common.commands.remove'))
+                ->icon('icon-trash')
+                ->method('remove'),
         ];
     }
 

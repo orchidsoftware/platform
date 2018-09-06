@@ -1,7 +1,7 @@
 @extends('platform::layouts.auth')
 @section('content')
     <p class="m-t-lg">{{trans('platform::auth/account.title')}}</p>
-    <form class="m-t-md" role="form" method="POST" action="{{  route('platform.login.auth') }}">
+    <form class="m-t-md" role="form" method="POST" action="{{ route('platform.login.auth') }}">
         @csrf
         <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
             <label>Email</label>

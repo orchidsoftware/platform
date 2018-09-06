@@ -46,8 +46,7 @@ class CommentList extends Screen
      */
     public function commandBar() : array
     {
-        return [
-         ];
+        return [];
     }
 
     /**

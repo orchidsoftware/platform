@@ -52,14 +52,14 @@
 @stop
 @section('content')
     <div id="post" data-post-id="{{$post->id}}">
-        <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs  no-gutters" id="post-form" method="post" action="{{route('platform.posts.type.update',[
+        <!-- hbox layout -->
+        <form class="hbox hbox-auto-xs no-gutters" id="post-form" method="post" action="{{route('platform.posts.type.update',[
         'type' => $type->slug,
         'slug' => $post->id,
         ])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
-            <!-- column  -->
-                <div class="hbox-col  lter b-r">
+            <!-- column -->
+                <div class="hbox-col lter">
                     <div class="vbox">
                         <div class="bg-white wrapper-lg">
                             <div class="tab-content">
@@ -73,9 +73,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /column  -->
+                <!-- /column -->
         @endif
-        <!-- column  -->
+        <!-- column -->
             <div class="hbox-col wi-col lter">
                 <div class="vbox">
                     <div class="row-row">
@@ -88,11 +88,11 @@
                     </div>
                 </div>
             </div>
-        <!-- /column  -->
+        <!-- /column -->
             @csrf
             @method('PUT')
         </form>
-        <!-- /hbox layout  -->
+        <!-- /hbox layout -->
         <form id="form-post-remove" action="{{route('platform.posts.type.destroy',[
         'type' => $type->slug,
         'slug' => $post->id,

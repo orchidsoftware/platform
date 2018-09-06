@@ -7,7 +7,7 @@
     @endisset
     -->
 
-    <li class="nav-item @isset($active) {{active($active)}} @endisset  @if (!empty($childs))  dropdown @endif">
+    <li class="nav-item @isset($active) {{active($active)}} @endisset @if (!empty($childs)) dropdown @endif">
         <a href="{{$route ?? '#'}}" class="nav-link padder-v"    @if (!empty($childs)) data-toggle="dropdown" @endif>
             @isset($badge)
                 <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>

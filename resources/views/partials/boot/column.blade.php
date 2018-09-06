@@ -3,7 +3,7 @@
         <button type="button" class="btn btn-sm btn-link" data-action="components--boot#removeColumn">
             <i class="icon-trash m-r-xs"></i> {{$column['name'] ?? '{%=o.field%}'}}
         </button>
-        <input type="hidden"  value="{{$column['name'] ?? '{%=o.field%}'}}" name="columns[{{$column['name'] ?? '{%=o.field%}'}}][name]">
+        <input type="hidden" value="{{$column['name'] ?? '{%=o.field%}'}}" name="columns[{{$column['name'] ?? '{%=o.field%}'}}][name]">
     </td>
     <td class="text-center">
         <select name="columns[{{$column['name'] ?? '{%=o.field%}'}}][type]" class="form-control" required>

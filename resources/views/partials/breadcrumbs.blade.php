@@ -1,4 +1,4 @@
-@if (count($breadcrumbs))
+@if (count($breadcrumbs) > 1)
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white b">
             @foreach ($breadcrumbs as $breadcrumb)

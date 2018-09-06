@@ -24,7 +24,6 @@ export default class extends Flatpickr {
      */
     connect() {
         super.connect();
-
     }
 
     /**

@@ -210,9 +210,8 @@ class Field implements FieldContract
     }
 
     /**
-     * @return mixed|void
-     *
-     * @throws \Throwable FieldRequiredAttributeException
+     * @return $this|mixed
+     * @throws \Throwable
      */
     public function checkRequired()
     {
@@ -220,6 +219,8 @@ class Field implements FieldContract
             throw_if(! collect($this->attributes)->offsetExists($attribute),
                 FieldRequiredAttributeException::class, $attribute);
         }
+
+        return $this;
     }
 
     /**
@@ -235,11 +236,20 @@ class Field implements FieldContract
         $attributes = $this->getModifyAttributes();
         $this->attributes['id'] = $this->getId();
 
+
+        if($this->hasError()){
+            if(is_null($attributes['class'])){
+                $attributes['class'] = ' is-invalid';
+            }else{
+                $attributes['class'] .= ' is-invalid';
+            }
+        }
+
+
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
             'id'         => $this->getId(),
             'old'        => $this->getOldValue(),
-            'error'      => $this->hasError(),
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
         ]));
@@ -247,11 +257,13 @@ class Field implements FieldContract
 
     /**
      * Localization of fields.
+     *
+     * @return $this
      */
     private function translate()
     {
         if (empty($this->translations)) {
-            return;
+            return $this;
         }
 
         $lang = $this->get('lang');
@@ -261,6 +273,8 @@ class Field implements FieldContract
                 $this->set($key, trans($attribute, [], $lang));
             }
         }
+
+        return $this;
     }
 
     /**
@@ -337,21 +351,16 @@ class Field implements FieldContract
      */
     public function getOldName()
     {
-        $prefix = $this->get('prefix');
-        $lang = $this->get('lang');
-        $name = str_ireplace(['[', ']'], '', $this->get('name'));
+        $name = str_ireplace(['][','['], '.', $this->get('name'));
+        $name = str_ireplace([']'],'',$name);
 
-        if (is_null($prefix)) {
-            return $lang.'.'.$name;
-        }
-
-        return $prefix.'.'.$lang.'.'.$name;
+        return $name;
     }
 
     /**
      * @return bool
      */
-    public function hasError()
+    private function hasError()
     {
         return optional(session('errors'))->has($this->getOldName()) ?? false;
     }

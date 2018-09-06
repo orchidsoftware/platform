@@ -24,14 +24,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Source')}} - <span class="font-bold">utm_source</span></label>
-                                    <input type="text" data-target="fields--utm.source"  placeholder="google"
+                                    <input type="text" data-target="fields--utm.source" placeholder="google"
                                            class="form-control">
                                     <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Source desc')}}</small>
                                 </div>
 
                                 <div class="form-group">
                                     <label>{{trans('platform::field.utm.Campaign Medium')}} - <span class="font-bold">utm_medium</span></label>
-                                    <input type="text" data-target="fields--utm.medium"  placeholder="cpc" class="form-control">
+                                    <input type="text" data-target="fields--utm.medium" placeholder="cpc" class="form-control">
                                     <small class="help-block w-b-k">{{trans('platform::field.utm.Campaign Medium desc')}}</small>
                                 </div>
 

@@ -45,7 +45,9 @@ class CategoryList extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('platform::common.commands.add'))->icon('icon-plus')->method('create'),
+            Link::name(trans('platform::common.commands.add'))
+                ->icon('icon-plus')
+                ->method('create'),
         ];
     }
 

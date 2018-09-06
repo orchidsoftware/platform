@@ -10,7 +10,7 @@
                             @if(!is_null($post))
                                 <label class="i-switch bg-info m-t-xs m-r">
                                     <input type="checkbox" name="options[locale][{{$key}}]"
-                                           value="true" {{$post->checkLanguage($key)  ? 'checked' : ''}}>
+                                           value="true" {{$post->checkLanguage($key) ? 'checked' : ''}}>
                                     <i></i>
                                 </label>
                             @else

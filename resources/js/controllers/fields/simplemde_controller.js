@@ -145,7 +145,6 @@ export default class extends Controller {
 
     /**
      *
-     * @param editor
      * @param event
      */
     upload(event) {

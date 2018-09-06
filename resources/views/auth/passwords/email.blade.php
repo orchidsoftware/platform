@@ -1,5 +1,5 @@
 @extends('platform::layouts.auth')
-<!-- Main Content  -->
+<!-- Main Content -->
 @section('content')
     <p class="m-t-lg">{{trans('platform::auth/account.password_reset')}}</p>
     @if (session('status'))

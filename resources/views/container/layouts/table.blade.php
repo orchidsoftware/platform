@@ -18,8 +18,8 @@
 
     @else
 
-        <div class="table-responsive">
-            <table class="table table-striped">
+
+        <table class="table">
                 <thead>
                 <tr>
                     @foreach($form['fields'] as $th)
@@ -69,9 +69,9 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
+
         @if(is_object($form['data']) && ($form['data'] instanceof \Illuminate\Contracts\Pagination\Paginator))
-            <footer class="card-footer col">
+            <footer class="wrapper">
                 <div class="row">
                     <div class="col-sm-5">
                         <small class="text-muted inline m-t-sm m-b-sm">{{trans('platform::common.show')}}

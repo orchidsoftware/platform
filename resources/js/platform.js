@@ -30,7 +30,7 @@ export function platform() {
         alert(message, type = 'danger', target = '#dashboard-alerts') {
             $(target).append(
                 $('<div/>', {
-                    class: `alert m-b-none alert-${type}`,
+                    class: `alert alert-${type}`,
                     text: message,
                 }).append(
                     $('<button/>', {
@@ -52,7 +52,7 @@ export function platform() {
          */
         validateForm(idForm, message) {
             if (!document.getElementById(idForm).checkValidity()) {
-                window.platform.alert(message, 'warning b-b');
+                window.platform.alert(message, 'warning');
                 return false;
             }
             return true;

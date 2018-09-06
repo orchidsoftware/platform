@@ -6,7 +6,7 @@
 
 @section('navbar')
     <div class="pull-right">
-        <div class="input-group  w-xxl">
+        <div class="input-group w-xxl">
             <input
                     data-action="keyup->layouts--systems#filter"
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
@@ -36,7 +36,7 @@
                 @php
                     $menu = Dashboard::menu()->build('Systems');
                     $chunk = ceil($menu->count() / 2);
-                    $menu =  $menu->chunk($chunk);
+                    $menu = $menu->chunk($chunk);
                 @endphp
 
                 @foreach($menu as $items)

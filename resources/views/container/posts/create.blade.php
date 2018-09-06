@@ -2,7 +2,7 @@
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
-    <ul class="nav justify-content-end  v-center" role="tablist">
+    <ul class="nav justify-content-end v-center" role="tablist">
 
         @if($locales->count() > 1)
             <li class="nav-item dropdown">
@@ -44,11 +44,11 @@
 @stop
 @section('content')
     <div id="post">
-        <!-- hbox layout  -->
+        <!-- hbox layout -->
         <form class="hbox hbox-auto-xs no-gutters" id="post-form" method="post"
               action="{{route('platform.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
-            <!-- column  -->
+            <!-- column -->
                 <div class="hbox-col lter b-r">
                     <div class="vbox">
                         <div class="bg-white wrapper-lg">
@@ -63,9 +63,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /column  -->
+                <!-- /column -->
         @endif
-        <!-- column  -->
+        <!-- column -->
             <div class="hbox-col wi-col lter">
                 <div class="vbox">
                     <div class="row-row">
@@ -78,10 +78,10 @@
                     </div>
                 </div>
             </div>
-            <!-- /column  -->
+            <!-- /column -->
             @csrf
         </form>
-        <!-- /hbox layout  -->
+        <!-- /hbox layout -->
     </div>
 
 

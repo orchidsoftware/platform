@@ -1,4 +1,4 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
+<div class="form-group">
     @isset($title)
         <label for="{{$id}}">{{$title}}
             @if(isset($attributes['required']) && $attributes['required'])<span class="text-danger">*</span>@endif
@@ -7,8 +7,12 @@
 
     {{$slot}}
 
-    @isset($help)
-        <p class="form-text text-muted">{{$help}}</p>
+    @if($errors->has($oldName))
+        <div class="invalid-feedback d-block">
+                <small>{{$errors->first($oldName)}}</small>
+        </div>
+    @elseif(isset($help))
+       <small class="form-text text-muted">{{$help}}</small>
     @endif
 </div>
 @if($hr ?? true)

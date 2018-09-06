@@ -5,7 +5,7 @@
 
 @section('navbar')
 
-    <ul class="nav justify-content-end  v-center">
+    <ul class="nav justify-content-end v-center">
         <li class="nav-item">
             <button type="button" class="btn btn-link dz-clickable" id="upload"><i class="icon-cloud-upload"></i>
                 Загрузка
@@ -40,7 +40,7 @@
         #aside-filemanager .detail {
             width:      100%;
             min-height: 200px;
-            font-size:  80px;
+            font-size: 80px;
         }
 
         #aside-filemanager .detail * {
@@ -92,8 +92,7 @@
             </div>
 
 
-            <div class="table-responsive">
-                <table class="table table-striped">
+            <table class="table">
                     <thead>
                     <tr>
                         <th width="80px" class="text-center"></th>
@@ -196,9 +195,8 @@
                     {{-- Files--}}
                     </tbody>
                 </table>
-            </div>
 
-            <footer class="card-footer col">
+            <footer class="wrapper">
                 <div class="row">
                     <div class="col-sm-5">
                         <small class="text-muted inline m-t-sm m-b-sm">{{$directories->count()}} folders

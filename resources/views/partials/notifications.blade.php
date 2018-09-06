@@ -15,7 +15,7 @@
             <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
             <span class="clear m-l-md">
                 @if($notification->read())
-                    <span>{{$notification->data['title']  or ''}}</span>
+                    <span>{{$notification->data['title'] or ''}}</span>
                 @else
                     {{$notification->data['title']   or ''}}
                 @endif

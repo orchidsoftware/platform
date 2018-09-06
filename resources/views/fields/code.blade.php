@@ -32,6 +32,6 @@
         position: relative;
         width: 100%;
         min-height: 300px;"></div>
-        <input @if ($language=='json') value="{{json_encode($value)}}" @else value="{{$value}}" @endif type="hidden"  @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+        <input @if ($language=='json') value="{{json_encode($value)}}" @else value="{{$value}}" @endif type="hidden" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
     </div>
 @endcomponent

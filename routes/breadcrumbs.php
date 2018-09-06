@@ -53,21 +53,20 @@ Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
 
 Breadcrumbs::for('platform.posts.type', function ($trail, $type) {
     $trail->parent('platform.index');
-    $trail->push('Posts', route('platform.posts.type', $type));
+    $trail->push('Posts', route('platform.posts.type', $type->slug));
 });
 
 // Platform > Posts > Create
 
 Breadcrumbs::for('platform.posts.type.create', function ($trail, $type) {
-    $trail->parent('platform.posts.type');
-    $trail->push('Create', route('platform.posts.type.create', $type));
+    $trail->parent('platform.posts.type',$type);
+    $trail->push('Create', route('platform.posts.type.create', $type->slug));
 });
 
-// Platform > Posts > Create
-
+// Platform > Posts > Edit
 Breadcrumbs::for('platform.posts.type.edit', function ($trail, $type, $post) {
-    $trail->parent('platform.posts.type');
-    $trail->push('Create', route('platform.posts.type.edit', [$type, $post]));
+    $trail->parent('platform.posts.type',$type);
+    $trail->push($post->getContent($type->slugFields), route('platform.posts.type.edit', [$type->slug, $post->slug]));
 });
 
 // Platform > Pages

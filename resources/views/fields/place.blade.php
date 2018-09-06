@@ -30,7 +30,7 @@
 </div>
 
 
-<!-- Modal  -->
+<!-- Modal -->
 <div class="modal fade" id="map-place-{{$slug}}-{{$lang}}" tabindex="-1" role="dialog"
      aria-labelledby="map-place-{{$slug}}-{{$lang}}">
     <div class="modal-dialog" role="document">

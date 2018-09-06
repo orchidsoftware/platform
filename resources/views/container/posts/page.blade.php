@@ -2,7 +2,7 @@
 @section('title',$type->name)
 @section('description',$type->description)
 @section('navbar')
-    <ul class="nav justify-content-end  v-center">
+    <ul class="nav justify-content-end v-center">
 
         @if($locales->count() > 1)
             <li class="nav-item dropdown">
@@ -43,18 +43,18 @@
 
 @section('content')
     <div id="post" data-post-id="{{$post->id}}">
-        <!-- hbox layout  -->
-        <form class="hbox hbox-auto-xs  no-gutters" id="post-form" method="post" action="{{route('platform.pages.update',[
+        <!-- hbox layout -->
+        <form class="hbox hbox-auto-xs no-gutters" id="post-form" method="post" action="{{route('platform.pages.update',[
         'type' => $type->slug,
         ])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
-            <!-- column  -->
-                <div class="hbox-col  lter b-r">
+            <!-- column -->
+                <div class="hbox-col lter">
                     <div class="vbox">
                         <div class="bg-white wrapper-lg">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
-                                    <div class="tab-pane @if ($loop->first) active  @endif" id="local-{{$code}}">
+                                    <div class="tab-pane @if ($loop->first) active @endif" id="local-{{$code}}">
                                         {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
                                     </div>
                                 @endforeach
@@ -62,9 +62,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /column  -->
+                <!-- /column -->
         @endif
-        <!-- column  -->
+        <!-- column -->
             <div class="hbox-col wi-col lter">
                 <div class="vbox">
                     <div class="row-row">
@@ -77,10 +77,10 @@
                     </div>
                 </div>
             </div>
-            <!-- /column  -->
+            <!-- /column -->
             @csrf
             @method('PUT')
         </form>
-        <!-- /hbox layout  -->
+        <!-- /hbox layout -->
     </div>
 @stop

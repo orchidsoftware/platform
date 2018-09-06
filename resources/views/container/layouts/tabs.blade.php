@@ -3,7 +3,7 @@
         data-screen--tabs-slug="{{$templateSlug}}"
 >
     <div class="nav-tabs-alt bg-white-only">
-        <ul class="nav nav-tabs padder bg-light" role="tablist">
+        <ul class="nav nav-tabs padder bg-white" role="tablist">
             @foreach($manyForms as $name => $tab)
                 <li class="nav-item">
                     <a class="nav-link @if ($loop->first) active @endif"
@@ -20,7 +20,7 @@
     </div>
 
 
-    <!-- main content  -->
+    <!-- main content -->
     <section>
         <div class="bg-white-only bg-auto no-border-xs">
             <div class="tab-content">
@@ -37,5 +37,5 @@
             </div>
         </div>
     </section>
-    <!-- / main content  -->
+    <!-- / main content -->
 </div>

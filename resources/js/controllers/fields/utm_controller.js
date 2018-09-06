@@ -35,11 +35,11 @@ export default class extends Controller {
         let url = new URL(this.urlTarget.value);
         this.urlTarget.value = url.protocol + '//' + url.host + url.pathname;
 
-        this.addParms('source', this.sourceTarget.value);
-        this.addParms('medium', this.mediumTarget.value);
-        this.addParms('campaign', this.campaignTarget.value);
-        this.addParms('term', this.termTarget.value);
-        this.addParms('content', this.contentTarget.value);
+        this.addParams('source', this.sourceTarget.value);
+        this.addParams('medium', this.mediumTarget.value);
+        this.addParams('campaign', this.campaignTarget.value);
+        this.addParams('term', this.termTarget.value);
+        this.addParams('content', this.contentTarget.value);
     }
 
     /**
@@ -79,7 +79,7 @@ export default class extends Controller {
      * @param name
      * @param value
      */
-    addParms(name, value) {
+    addParams(name, value) {
         name = `utm_${name}`;
         value = this.slugify(value);
 

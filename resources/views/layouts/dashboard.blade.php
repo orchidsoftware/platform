@@ -48,7 +48,7 @@
                                     </a>
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#support">
                                         <i class="m-r-xs icon-help"></i> Need help?
                                     </a>
 
@@ -58,7 +58,6 @@
                                                 <span>{{trans('platform::menu.systems')}}</span>
                                             </a>
                                     @endif
-
 
                                     <a href="{{ route('platform.logout') }}"
                                        class="dropdown-item"
@@ -114,26 +113,13 @@
                 </div>
 
                 @if (Breadcrumbs::exists())
-                    {{  Breadcrumbs::view('platform::partials.breadcrumbs') }}
+                    {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
                 @endif
 
                 <div class="d-flex">
                     <div class="app-content-body" id="app-content-body">
 
                         @include('platform::partials.alert')
-
-                        @empty(!$errors->count())
-                            <div class="alert alert-danger m-b-none" role="alert">
-                                <strong>Oh snap!</strong>
-                                Change a few things up and try submitting again.
-                                <ul class="m-t-xs">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
 
                         @yield('content')
                     </div>
@@ -203,4 +189,5 @@
     </footer>
 
 
+    @include('platform::partials.support')
 @endsection

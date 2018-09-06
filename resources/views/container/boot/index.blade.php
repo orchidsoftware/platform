@@ -1,21 +1,19 @@
+@if(count($models))
+<div class="nav-tabs-alt bg-white-only">
+    <ul class="nav nav-tabs" role="tablist">
+        @foreach($models as $name => $value)
+            <li class="nav-item">
+                <a href="{{route('platform.bulldozer.index',$name)}}" class="nav-link {{active(route('platform.bulldozer.index',$name))}}">
+                    <i class="icon-folder m-r-xs"></i> {{ $name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 @isset($model)
     <div data-controller="components--boot">
-
-
-        <div class="nav-tabs-alt bg-white-only">
-            <ul class="nav nav-tabs" role="tablist">
-                @foreach($models as $name => $value)
-                    <li class="nav-item">
-                        <a href="{{route('platform.bulldozer.index',$name)}}" class="nav-link {{active(route('platform.bulldozer.index',$name))}}">
-                            <i class="icon-folder m-r-xs"></i> {{ $name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-
-
-
         <div class="hbox hbox-auto-xs hbox-auto-sm" style="min-height: calc(100vh - 80px);">
 
             <div class="hbox-col bg-white b-r">
@@ -49,30 +47,30 @@
                                 </div>
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table m-b-none">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-left" width="35%">Name</th>
-                                        <th class="text-center" width="50%">Type</th>
-                                        <th class="text-center" width="5%">Fillable</th>
-                                        <th class="text-center" width="5%">Guarded</th>
-                                        <th class="text-center" width="5%">Nullable</th>
-                                        <th class="text-center" width="5%">Unique</th>
-                                        <th class="text-center" width="5%">Hidden</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="boot-container-column">
-                                    @foreach($model->get('columns',[]) as $column)
-                                        @include('platform::partials.boot.column', [
-                                            'column' => $column,
-                                            'relationTypes' => $relationTypes,
-                                           ])
-                                    @endforeach
 
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table m-b-none">
+                                <thead>
+                                <tr>
+                                    <th class="text-left" width="35%">Name</th>
+                                    <th class="text-center" width="50%">Type</th>
+                                    <th class="text-center" width="5%">Fillable</th>
+                                    <th class="text-center" width="5%">Guarded</th>
+                                    <th class="text-center" width="5%">Nullable</th>
+                                    <th class="text-center" width="5%">Unique</th>
+                                    <th class="text-center" width="5%">Hidden</th>
+                                </tr>
+                                </thead>
+                                <tbody id="boot-container-column">
+                                @foreach($model->get('columns',[]) as $column)
+                                    @include('platform::partials.boot.column', [
+                                        'column' => $column,
+                                        'relationTypes' => $relationTypes,
+                                       ])
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
 
                         </div>
                 </div>
@@ -113,8 +111,8 @@
                             </div>
                         </div>
 
-                        <div class="table-responsive">
-                            <table class="table m-b-none">
+
+                        <table class="table m-b-none">
                                 <thead>
                                 <tr>
                                     <th class="text-center">Model</th>
@@ -128,13 +126,12 @@
                                         @include('platform::partials.boot.relationship', [
                                             'model' => $model,
                                             'relation' => $relation,
-                                            'columns' =>  $model ? $model->get('columns',[]) : [],
+                                            'columns' => $model ? $model->get('columns',[]) : [],
                                             'relationTypes' => $relationTypes
                                         ])
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
                     </div>
                 </div>
 
@@ -144,7 +141,7 @@
 
     </div>
 @else
-    <div class="app-content-center">
+    <div class="app-content-center b bg-white">
         <p>Выберите или создайте модель</p>
     </div>
 @endisset
@@ -162,7 +159,7 @@
     <script type="text/x-tmpl" id="boot-template-relationship">
         @include('platform::partials.boot.relationship', [
             'relations' => [],
-            'columns' =>  $model ? $model->get('columns',[]) : [],
+            'columns' => $model ? $model->get('columns',[]) : [],
             'relationTypes' => $relationTypes
         ])
     </script>
