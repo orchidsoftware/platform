@@ -64,14 +64,6 @@ class DashboardProvider extends ServiceProvider
         return [
             trans('platform::permission.main.systems') => [
                 [
-                    'slug'        => 'platform.systems.roles',
-                    'description' => trans('platform::permission.systems.roles'),
-                ],
-                [
-                    'slug'        => 'platform.systems.users',
-                    'description' => trans('platform::permission.systems.users'),
-                ],
-                [
                     'slug'        => 'platform.systems.attachment',
                     'description' => trans('platform::permission.systems.attachment'),
                 ],

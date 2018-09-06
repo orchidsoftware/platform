@@ -167,14 +167,6 @@ class PressServiceProvider extends ServiceProvider
                     'description' => trans('platform::permission.systems.menu'),
                 ],
                 [
-                    'slug'        => 'platform.systems.category',
-                    'description' => trans('platform::permission.systems.category'),
-                ],
-                [
-                    'slug'        => 'platform.systems.comment',
-                    'description' => trans('platform::permission.systems.comment'),
-                ],
-                [
                     'slug'        => 'platform.systems.media',
                     'description' => trans('platform::permission.systems.media'),
                 ],

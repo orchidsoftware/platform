@@ -23,7 +23,7 @@ class PlatformProvider extends ServiceProvider
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
 
         $dashboard
-            ->registerPermissions($this->registerPermissionsMain())
+            //->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsSystems());
     }
 
@@ -72,18 +72,6 @@ class PlatformProvider extends ServiceProvider
                 [
                     'slug'        => 'platform.systems.category',
                     'description' => trans('platform::permission.systems.category'),
-                ],
-                [
-                    'slug'        => 'platform.systems.attachment',
-                    'description' => trans('platform::permission.systems.attachment'),
-                ],
-                [
-                    'slug'        => 'platform.systems.media',
-                    'description' => trans('platform::permission.systems.media'),
-                ],
-                [
-                    'slug'        => 'platform.systems.cache',
-                    'description' => trans('platform::permission.systems.cache'),
                 ],
             ],
         ];

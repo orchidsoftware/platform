@@ -55,7 +55,6 @@ class UserEdit extends Screen
 
                 return $group;
             });
-
         $roles = Role::all();
         $userRoles = $user->roles ?? collect();
 
