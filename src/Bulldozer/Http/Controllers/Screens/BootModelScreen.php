@@ -22,7 +22,7 @@ class BootModelScreen extends Screen
     /**
      * Key for cache.
      */
-    public const MODELS = 'platform::boot.models';
+    const MODELS = 'platform::boot.models';
 
     /**
      * Display header name.

@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguage;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
+use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Fields\TD;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -122,6 +125,58 @@ class User extends Authenticatable implements UserInterface
     {
         return 'Administrator';
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     * @throws \Throwable
+     */
+    public static function getFieldsEdit(): Collection
+    {
+        return collect([
+            'name' => Field::tag('input')
+                ->type('text')
+                ->name('user.name')
+                ->max(255)
+                ->required()
+                ->title(trans('platform::systems/users.name'))
+                ->placeholder(trans('platform::systems/users.name')),
+
+            'email' => Field::tag('input')
+                ->type('email')
+                ->name('user.email')
+                ->required()
+                ->title(trans('platform::systems/users.email'))
+                ->placeholder(trans('platform::systems/users.email')),
+
+            'password' => Field::tag('password')
+                ->name('user.password')
+                ->title(trans('platform::systems/users.password'))
+                ->placeholder('********'),
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getFieldsTable(): Collection
+    {
+        return collect([
+            'id'         => TD::set('id', 'ID')
+                ->align('center')
+                ->width('100px')
+                ->sort()
+                ->link('platform.systems.users.edit', 'id'),
+            'name'       => TD::set('name', trans('platform::systems/users.name'))
+                ->sort()
+                ->link('platform.systems.users.edit', 'id', 'name'),
+            'email'      => TD::set('email', trans('platform::systems/users.email'))
+                ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email')
+                ->sort(),
+            'updated_at' => TD::set('updated_at', trans('platform::common.Last edit'))
+                ->sort(),
+        ]);
+    }
+
 
     /**
      * @param $name

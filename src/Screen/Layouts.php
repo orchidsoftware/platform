@@ -26,7 +26,6 @@ class Layouts
         'tabs'    => 'platform::container.layouts.tabs',
         'columns' => 'platform::container.layouts.columns',
         'modals'  => 'platform::container.layouts.modals',
-        'div'     => 'platform::container.layouts.div',
         'blank'   => 'platform::container.layouts.blank',
     ];
 

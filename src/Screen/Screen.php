@@ -110,8 +110,7 @@ abstract class Screen
     public function view()
     {
         $query = call_user_func_array([$this, 'query'], $this->arguments);
-        $post = new Repository($query);
-        $this->post = $post;
+        $this->post = new Repository($query);
 
         return view('platform::container.layouts.base', [
             'arguments' => $this->arguments,
@@ -203,11 +202,9 @@ abstract class Screen
             $this->permission = [$this->permission];
         }
 
-        if (is_array($this->permission)) {
-            foreach ($this->permission as $item) {
-                if (! Auth::user()->hasAccess($item)) {
-                    return false;
-                }
+        foreach ($this->permission as $item) {
+            if (! Auth::user()->hasAccess($item)) {
+                return false;
             }
         }
 

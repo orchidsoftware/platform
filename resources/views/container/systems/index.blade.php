@@ -6,11 +6,14 @@
 
 @section('navbar')
     <div class="pull-right">
-        <div class="input-group w-xxl">
+        <div class="input-icon w-xxl">
             <input
                     data-action="keyup->layouts--systems#filter"
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
                     placeholder="{{trans('platform::systems/settings.search')}}">
+            <div class="input-icon-addon">
+                <i class="icon-magnifier"></i>
+            </div>
         </div>
     </div>
 @stop
@@ -21,26 +24,14 @@
         <div class="admin-wrapper wrapper-md">
             <div class="row">
 
-                <div class="col-md-2">
-                    @foreach($settings as $key => $value)
-                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                            <span>{{trans('platform::systems/settings.app.'.$key)}}</span>
-                        </li>
-
-                        <li class="padder text-ellipsis">
-                            <span class="m-l"> - {{$settings->get($key) }}</span>
-                        </li>
-                    @endforeach
-                </div>
-
                 @php
                     $menu = Dashboard::menu()->build('Systems');
-                    $chunk = ceil($menu->count() / 2);
+                    $chunk = ceil($menu->count() / 3);
                     $menu = $menu->chunk($chunk);
                 @endphp
 
                 @foreach($menu as $items)
-                    <div class="col-md-5 admin-element-item">
+                    <div class="col-md-4 admin-element-item">
 
                         @foreach($items as $item)
                             @include('platform::partials.systems.systemsMenu', [
