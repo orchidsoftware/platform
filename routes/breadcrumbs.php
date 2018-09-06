@@ -35,7 +35,6 @@ Breadcrumbs::for('platform.systems.media.index', function ($trail) {
     $trail->push('Media', route('platform.systems.media.index'));
 });
 
-
 // Platform > Backup
 Breadcrumbs::for('platform.savior.backups', function ($trail) {
     $trail->parent('platform.index');
@@ -47,8 +46,6 @@ Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->parent('platform.index');
     $trail->push('Bulldozer', route('platform.bulldozer.index'));
 });
-
-
 
 //Posts
 
