@@ -59,7 +59,7 @@ Breadcrumbs::for('platform.systems.category.edit', function ($trail, $category) 
 // Platform > Comments
 Breadcrumbs::for('platform.systems.comments', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push('Categoryes', route('platform.systems.category'));
+    $trail->push('Comments', route('platform.systems.comments'));
 });
 
 // Platform > Comments > Create

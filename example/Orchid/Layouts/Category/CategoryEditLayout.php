@@ -17,16 +17,15 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
-        //dd($this->query->getContent('category'));
         $fields[] = Field::tag('input')
             ->type('text')
             ->name('category.content.name')
-            /*
             ->modifyValue(function () {
-                if (isset( $this->query->getContent('category')->term )) {
+                //dd($this->query->getContent('category')->term->GetContent('name'));
+                if ($this->query->getContent('category')->exists) {
                     return $this->query->getContent('category')->term->GetContent('name');
                 }
-            })*/
+            })
             ->max(255)
             ->require()
             ->title(trans('platform::systems/category.fields.name_title'))
@@ -40,21 +39,10 @@ class CategoryEditLayout extends Rows
             ->require()
             ->title(trans('platform::systems/category.slug'));
 
-//        dd($this->query->getContent('category')->exists);
-
         $fields[] = Field::tag('select')
             ->options(function () {
                 return $this->query
                     ->getContent('catselect');
-            })
-            ->modifyValue(function () {
-                if ($this->query->getContent('category')->exists) {
-                    $parent_id = $this->query->getContent('category')->parent_id;
-
-                    return [$parent_id => $this->query->getContent('catselect')[$parent_id]];
-                } else {
-                    return 0;
-                }
             })
             ->class('select2')
             ->name('category.parent_id')
@@ -63,10 +51,11 @@ class CategoryEditLayout extends Rows
 
         $fields[] = Field::tag('wysiwyg')
             ->name('category.content.body')
-            /*
             ->modifyValue(function () {
-                return $this->query->getContent('category')->term->GetContent('body');
-            })*/
+                if ($this->query->getContent('category')->exists) {
+                    return $this->query->getContent('category')->term->GetContent('body');
+                }
+            })
           ->title(trans('platform::systems/category.descriptions'));
 
         return $fields;

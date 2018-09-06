@@ -15,7 +15,7 @@ class CreateOrchidTaxonomyTable extends Migration
             $table->increments('id');
             $table->integer('term_id')->unsigned();
             $table->string('taxonomy');
-            $table->integer('parent_id')->unsigned()->default(0);
+            $table->integer('parent_id')->unsigned()->nullable()->default(NULL);
 
             $table->index(['id', 'taxonomy']);
 

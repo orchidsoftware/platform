@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Category;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+
+use Orchid\Press\Models\Term;
+use Orchid\Press\Models\Category;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Term;
-use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Support\Facades\App;
+
 use App\Orchid\Layouts\Category\CategoryEditLayout;
 
 class CategoryEdit extends Screen
@@ -32,23 +35,20 @@ class CategoryEdit extends Screen
     /**
      * Query data.
      *
-     * @param int $categoryId
+     * @param Category $category
      *
      * @return array
      */
-    public function query($id = null): array
+    public function query(Category $category = null): array
     {
-        //$category = is_null($category) ? new Category() : $category;
-        $category = Category::findOrNew($id);
+        $category = is_null($category) ? new Category() : $category;
         $catselect[0] = trans('platform::systems/category.not_parrent');
         if ($category->exists) {
-            //$anycategory = Category::whereNotIn('id', [$category->id])->get();
             foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
             $category['slug'] = $category->term->slug;
         } else {
-            //$anycategory = Category::get();
             foreach (Category::get() as $cat) {
                 $catselect[$cat->id] = $cat->term->GetContent('name');
             }
@@ -94,9 +94,8 @@ class CategoryEdit extends Screen
      * @param Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($id, Request $request)
+    public function save(Category $category, Request $request)
     {
-        $category = Category::findOrNew($id);
         $attributes = $request->get('category');
 
         $locale = App::getLocale();
@@ -104,22 +103,22 @@ class CategoryEdit extends Screen
         $attributes['term']['slug'] = $attributes['slug'];
         unset($attributes['slug']);
 
-        //if ((int)$attributes['parent_id']>0) {
-        //}
-        $category->parent_id = (int) $attributes['parent_id'];
-        $category->taxonomy = 'category';
-
-        if (is_null($id)) {
-            $term = Term::firstOrCreate(['slug' => $attributes['term']['slug']]);
-            $term->fill($attributes['term']);
-            $term->save();
+        if (!$category->exists) {
+            $term = Term::firstOrCreate($attributes['term']);
             $category->term_id = $term->id;
-        } else {
-            $category->term->fill($attributes['term']);
-            $category->term->save();
+            $category->term()->associate($term);
         }
 
-        $category->term($term);
+        $category->taxonomy = 'category';
+        if ((int)$attributes['parent_id']>0) {
+            $category->parent_id = (int) $attributes['parent_id'];
+        } else {
+            $category->parent_id = null;
+        }
+        $category->term->fill($attributes['term']);
+
+
+        $category->term->save();
         $category->save();
 
         Alert::info(trans('platform::systems/category.Category was saved'));
