@@ -32,6 +32,7 @@
     "cartalyst/tags": "^6.0",
     "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.4",
+    "davejamesmiller/laravel-breadcrumbs":"^5.1",
     "intervention/image": "^2.4",
     "intervention/imagecache": "^2.3",
     "laracasts/generators": "^1.1",

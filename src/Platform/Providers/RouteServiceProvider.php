@@ -37,6 +37,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->binding();
 
+        if (class_exists('Breadcrumbs')) {
+            require PLATFORM_PATH.'/routes/breadcrumbs.php';
+        }
+
         parent::boot();
     }
 

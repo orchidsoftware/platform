@@ -113,13 +113,9 @@
                     </div>
                 </div>
 
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-white b">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Library</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
-                    </ol>
-                </nav>
+                @if (Breadcrumbs::exists())
+                    {{  Breadcrumbs::view('platform::partials.breadcrumbs') }}
+                @endif
 
                 <div class="d-flex">
                     <div class="app-content-body" id="app-content-body">

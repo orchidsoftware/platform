@@ -121,6 +121,7 @@ class CategoryEdit extends Screen
 
         $category->term($term);
         $category->save();
+
         Alert::info(trans('platform::systems/category.Category was saved'));
 
         return redirect()->route('platform.systems.category');
