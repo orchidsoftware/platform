@@ -32,7 +32,7 @@ Using application templates, saves the time and effort of building from scratch,
 Documentation can be found at [ORCHID website](http://orchid.software).
 
 ###### Simple screenshot:
-![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
+![screenshot](https://user-images.githubusercontent.com/5102591/45155417-9c228280-b1e3-11e8-9b20-caa59f3fe773.png)
 
 ## Installation
 
