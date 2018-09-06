@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Category;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
-
-use Orchid\Press\Models\Term;
-use Orchid\Press\Models\Category;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Term;
+use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
-
+use Illuminate\Support\Facades\App;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
 
 class CategoryEdit extends Screen
@@ -103,20 +100,19 @@ class CategoryEdit extends Screen
         $attributes['term']['slug'] = $attributes['slug'];
         unset($attributes['slug']);
 
-        if (!$category->exists) {
+        if (! $category->exists) {
             $term = Term::firstOrCreate($attributes['term']);
             $category->term_id = $term->id;
             $category->term()->associate($term);
         }
 
         $category->taxonomy = 'category';
-        if ((int)$attributes['parent_id']>0) {
+        if ((int) $attributes['parent_id'] > 0) {
             $category->parent_id = (int) $attributes['parent_id'];
         } else {
             $category->parent_id = null;
         }
         $category->term->fill($attributes['term']);
-
 
         $category->term->save();
         $category->save();
