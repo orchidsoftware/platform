@@ -16,12 +16,10 @@ use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
 
-
 /**
  * Class FoundationServiceProvider.
- * After update run:  php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
+ * After update run:  php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
  */
-
 class FoundationServiceProvider extends ServiceProvider
 {
     /**

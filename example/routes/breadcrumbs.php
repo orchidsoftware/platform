@@ -1,4 +1,5 @@
 <?php
+
 //Screens
 
 // Platform > Users
@@ -19,7 +20,6 @@ Breadcrumbs::for('platform.systems.users.edit', function ($trail, $user) {
     $trail->push('Edit', route('platform.systems.users.edit', $user));
 });
 
-
 // Platform > Roles
 Breadcrumbs::for('platform.systems.roles', function ($trail) {
     $trail->parent('platform.index');
@@ -32,13 +32,11 @@ Breadcrumbs::for('platform.systems.roles.create', function ($trail) {
     $trail->push('Create', route('platform.systems.roles.create'));
 });
 
-
 // Platform > Roles > Role
 Breadcrumbs::for('platform.systems.roles.edit', function ($trail, $role) {
     $trail->parent('platform.systems.roles');
     $trail->push('Role', route('platform.systems.roles.edit', $role));
 });
-
 
 // Platform > Category
 Breadcrumbs::for('platform.systems.category', function ($trail) {
@@ -52,13 +50,11 @@ Breadcrumbs::for('platform.systems.category.create', function ($trail) {
     $trail->push('Create', route('platform.systems.category.create'));
 });
 
-
 // Platform > Categoryes > Category
 Breadcrumbs::for('platform.systems.category.edit', function ($trail, $category) {
     $trail->parent('platform.systems.category');
     $trail->push('Category', route('platform.systems.category.edit', $category));
 });
-
 
 // Platform > Comments
 Breadcrumbs::for('platform.systems.comments', function ($trail) {
@@ -72,10 +68,8 @@ Breadcrumbs::for('platform.systems.comments.create', function ($trail) {
     $trail->push('Create', route('platform.systems.comments.create'));
 });
 
-
 // Platform > Comments > Comment
 Breadcrumbs::for('platform.systems.comments.edit', function ($trail, $comment) {
     $trail->parent('platform.systems.comments');
     $trail->push('Comment', route('platform.systems.comments.edit', $comment));
 });
-
