@@ -44,20 +44,6 @@ $this->delete('posts/{type}/{post?}', [
     'uses' => 'PostController@destroy',
 ]);
 
-$this->resource('category', 'CategoryController', [
-    'only'  => [
-        'index', 'create', 'edit', 'update', 'store', 'destroy',
-    ],
-    'names' => [
-        'index'   => 'platform.systems.category',
-        'create'  => 'platform.systems.category.create',
-        'edit'    => 'platform.systems.category.edit',
-        'update'  => 'platform.systems.category.update',
-        'store'   => 'platform.systems.category.store',
-        'destroy' => 'platform.systems.category.destroy',
-    ],
-]);
-
 $this->resource('menu', 'MenuController', [
     'only'  => [
         'index', 'show', 'update', 'create', 'destroy',
