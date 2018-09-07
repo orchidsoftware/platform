@@ -26,12 +26,12 @@
 
                 @php
                     $menu = Dashboard::menu()->build('Systems');
-                    $chunk = ceil($menu->count() / 3);
+                    $chunk = ceil($menu->count() / 2);
                     $menu = $menu->chunk($chunk);
                 @endphp
 
                 @foreach($menu as $items)
-                    <div class="col-md-4 admin-element-item">
+                    <div class="col-md-6 admin-element-item">
 
                         @foreach($items as $item)
                             @include('platform::partials.systems.systemsMenu', [

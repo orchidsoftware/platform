@@ -14,12 +14,23 @@
                         </a>
                         <div class="d-flex order-lg-2 ml-auto">
                             <div class="dropdown d-none d-md-flex">
+
+                                @php
+                                    $notifications = Auth::user()
+                                                        ->unreadNotifications
+                                                        ->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
+                                @endphp
+
                                 <a class="nav-link icon" data-toggle="dropdown">
                                     <i class="icon-bell"></i>
-                                    <span class="badge badge-sm up bg-danger pull-right-xs">2</span>
+                                    @if(count($notifications) > 0)
+                                        <span class="badge badge-sm up bg-danger pull-right-xs text-white">
+                                            {{ count($notifications) > 9 ? count($notifications) : "+"}}
+                                        </span>
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    @include('platform::partials.notifications')
+                                    @include('platform::partials.notifications',['notifications' => $notifications])
                                 </div>
                             </div>
                             <div class="dropdown">
