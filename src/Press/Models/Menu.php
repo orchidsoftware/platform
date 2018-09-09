@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Support\Collection;
-use Orchid\Press\Traits\Attachment;
+use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasOne;

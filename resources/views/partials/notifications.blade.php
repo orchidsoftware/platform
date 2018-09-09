@@ -1,9 +1,3 @@
-@php
-    $notifications = Auth::user()
-                        ->unreadNotifications
-                        ->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
-@endphp
-
 @if(count($notifications) > 0)
     <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('platform::common.notifications')}}
     </div>

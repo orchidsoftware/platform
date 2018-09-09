@@ -76,6 +76,19 @@ trait Environment
         ]);
         $app['config']->set('database.default', 'orchid');
         $app['config']->set('activitylog.enabled', false);
+
+        $app['config']->set('sluggable', [
+                'source'             => null,
+                'maxLength'          => null,
+                'maxLengthKeepWords' => true,
+                'method'             => null,
+                'separator'          => '-',
+                'unique'             => true,
+                'uniqueSuffix'       => null,
+                'includeTrashed'     => false,
+                'reserved'           => null,
+                'onUpdate'           => false,
+        ]);
     }
 
     /**
