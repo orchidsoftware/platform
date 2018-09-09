@@ -2,12 +2,12 @@
 
 namespace Orchid\Tests\Unit\Press;
 
+use Orchid\Press\Models\Tag;
+use Orchid\Press\Models\Post;
+use Orchid\Tests\TestUnitCase;
+use Orchid\Press\Models\Tagged;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Orchid\Press\Models\Post;
-use Orchid\Press\Models\Tag;
-use Orchid\Press\Models\Tagged;
-use Orchid\Tests\TestUnitCase;
 
 class TagTest extends TestUnitCase
 {
