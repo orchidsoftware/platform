@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
+use Orchid\Tests\Entities\DemoTestPage;
+use Orchid\Tests\Entities\DemoTestPost;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
@@ -74,6 +76,7 @@ trait Environment
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+        $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
         $app['config']->set('activitylog.enabled', false);
 
@@ -89,6 +92,12 @@ trait Environment
                 'reserved'           => null,
                 'onUpdate'           => false,
         ]);
+
+        $app->make(\Orchid\Platform\Dashboard::class)->registerEntities([
+            //DemoTestPost::class,
+            //DemoTestPage::class,
+        ]);
+
     }
 
     /**

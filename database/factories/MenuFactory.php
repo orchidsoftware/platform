@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Orchid\Press\Models\Menu;
 
@@ -23,12 +22,12 @@ $factory->define(Menu::class, function (Faker $faker) {
         'details', 'edit', 'friend', 'question', 'archives', 'author',
         'bookmark', 'first', 'help', 'index', 'last', 'license', 'me',
         'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search',
-        'sidebar', 'tag', 'up', ];
+        'sidebar', 'tag', 'up',];
 
     return [
-        'label'  => Str::slug($MenuTitle),
-        'title'  => $MenuTitle.' '.Str::slug($faker->word),
-        'slug'   => '/'.Str::slug($MenuTitle),
+        'label'  => str_slug($MenuTitle),
+        'title'  => $MenuTitle . ' ' . str_slug($faker->word),
+        'slug'   => '/' . str_slug($MenuTitle),
         'robot'  => $faker->randomElement($RobotArr),
         'style'  => $faker->safeColorName,
         'target' => $faker->randomElement(['_self', '_blank']),

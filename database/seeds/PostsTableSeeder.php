@@ -2,10 +2,10 @@
 
 namespace Orchid\Database\Seeds;
 
-use Orchid\Press\Models\Post;
 use Illuminate\Database\Seeder;
-use Orchid\Press\Models\Comment;
 use Orchid\Attachment\Models\Attachmentable;
+use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
 
 class PostsTableSeeder extends Seeder
 {
@@ -16,6 +16,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        /*
+
         factory(Post::class, 20)->create()->each(function ($p) {
             $p->comments()->saveMany(factory(Comment::class, 2)->create(['post_id' => $p->id])
                 ->each(function ($c) {
@@ -23,5 +25,6 @@ class PostsTableSeeder extends Seeder
                 }));
             factory(Attachmentable::class, 4)->create(['attachmentable_id' => $p->id]);
         });
+        */
     }
 }

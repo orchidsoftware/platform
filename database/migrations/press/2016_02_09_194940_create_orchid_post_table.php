@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidPostTable extends Migration
 {
@@ -13,13 +13,13 @@ class CreateOrchidPostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->nullable()->unsigned();
             $table->string('type');
             $table->string('status')->nullable();
             $table->jsonb('content');
             $table->jsonb('options');
             $table->string('slug', '255')->unique();
-            $table->timestamp('publish_at');
+            $table->timestamp('publish_at')->useCurrent();
             $table->timestamps();
             $table->softDeletes();
             $table->index(['status', 'type']);

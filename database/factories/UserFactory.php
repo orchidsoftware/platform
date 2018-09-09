@@ -50,7 +50,7 @@ $factory->define(User::class, function (Faker $faker) {
             'platform.posts'                => 0,
             'platform.posts.type.demo'      => 0,
         ],
-        'autor' => [
+        'author' => [
             'platform.index'                => 1,
             'platform.systems'              => 1,
             'platform.systems.roles'        => 0,
@@ -74,6 +74,6 @@ $factory->define(User::class, function (Faker $faker) {
         'password'       => $password ?: bcrypt('secret'),
         'remember_token' => str_random(10),
         'last_login'     => $faker->dateTimeBetween('-6 days', 'this week'),
-        'permissions'    => $roles['autor'],
+        'permissions'    => $roles['author'],
     ];
 });

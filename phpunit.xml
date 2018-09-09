@@ -12,9 +12,6 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
@@ -40,6 +37,7 @@
         <env name="CACHE_DRIVER" value="file"/>
         <env name="SESSION_DRIVER" value="file"/>
         <env name="SESSION_LIFETIME" value="120"/>
+        <env name="SCOUT_DRIVER" value="null"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
 </phpunit>

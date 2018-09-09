@@ -1,7 +1,7 @@
 <?php
 
-use Orchid\Setting\Setting;
 use Faker\Generator as Faker;
+use Orchid\Setting\Setting;
 
 /*
 |--------------------------------------------------------------------------

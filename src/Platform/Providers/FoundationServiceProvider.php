@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -28,6 +29,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerTranslations();
+
     }
 
     /**
@@ -131,6 +133,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            ScoutServiceProvider::class,
             ActivitylogServiceProvider::class,
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,

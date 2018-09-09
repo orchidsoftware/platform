@@ -20,11 +20,11 @@ class OrchidDatabaseSeeder extends Seeder
     {
         $this->call([
             //AttachmentsTableSeeder::class,
-            UsersTableSeeder::class,
-            RolesTableSeeder::class,
-            SettingsTableSeeder::class,
-            TermsTableSeeder::class,
-            MenusTableSeeder::class,
+            //UsersTableSeeder::class,
+            //RolesTableSeeder::class,
+            //SettingsTableSeeder::class,
+            //TermsTableSeeder::class,
+            //MenusTableSeeder::class,
             //PagesTableSeeder::class,
             //PostsTableSeeder::class,
         ]);
