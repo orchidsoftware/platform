@@ -2,8 +2,8 @@
 
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Press\Models\Post;
 use Orchid\Press\Models\Tag;
+use Orchid\Press\Models\Post;
 use Orchid\Tests\TestUnitCase;
 
 class TaggableTraitTest extends TestUnitCase
@@ -110,7 +110,6 @@ class TaggableTraitTest extends TestUnitCase
         $post1->tag('foo, bar, baz');
         $post2->tag('foo, bat');
 
-
         $this->assertcount(1, Post::whereTag('foo, bar')->get());
 
         $this->assertcount(2, Post::withTag('foo')->get());
@@ -164,11 +163,9 @@ class TaggableTraitTest extends TestUnitCase
         $this->assertSame('Illuminate\Support\Str::slug', $post->getSlugGenerator());
     }
 
-    /**
-     *
-     */
     private function getPostAlternativeClass()
     {
-        return new class extends Post{};
+        return new class extends Post {
+        };
     }
 }
