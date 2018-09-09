@@ -16,9 +16,6 @@ class SettingsTest extends TestUnitCase
      */
     public $setting;
 
-    /**
-     *
-     */
     protected function setUp()
     {
         parent::setUp();
@@ -31,8 +28,8 @@ class SettingsTest extends TestUnitCase
     public function test_for_one_value()
     {
         //Запишем значение
-        $key = 'test-' . str_random(40);
-        $value = 'value-' . str_random(40);
+        $key = 'test-'.str_random(40);
+        $value = 'value-'.str_random(40);
 
         $this->setting->set($key, $value);
 
@@ -53,9 +50,9 @@ class SettingsTest extends TestUnitCase
     public function test_for_many_value()
     {
         $valueArray = [
-            'test-1' => 'value-' . str_random(40),
-            'test-2' => 'value-' . str_random(40),
-            'test-3' => 'value-' . str_random(40),
+            'test-1' => 'value-'.str_random(40),
+            'test-2' => 'value-'.str_random(40),
+            'test-3' => 'value-'.str_random(40),
         ];
 
         //Добавим несколько значений
