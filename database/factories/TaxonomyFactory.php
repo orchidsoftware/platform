@@ -17,10 +17,10 @@ use Orchid\Press\Models\Taxonomy;
 $factory->define(Taxonomy::class, function (Faker $faker) {
     $taxonomy = $faker->randomElement($array = ['category', 'goods']);
     $parent = Taxonomy::where('taxonomy', $taxonomy)->get()->count();
-    $parent_id = ($parent > 0) ? Taxonomy::where('taxonomy', $taxonomy)->inRandomOrder()->first()->id : 0;
+    $parent_id = ($parent > 0) ? Taxonomy::where('taxonomy', $taxonomy)->inRandomOrder()->first()->id : null;
 
     return [
         'taxonomy'  => $taxonomy,
-        'parent_id' => $faker->randomElement($array = [0, $parent_id]),
+        'parent_id' => $faker->randomElement($array = [null, $parent_id]),
     ];
 });
