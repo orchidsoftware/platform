@@ -15,7 +15,6 @@ use Orchid\Press\Models\Post;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
-
     $type = $faker->randomElement(['demo']);
 
     $status = ['publish'];
@@ -48,6 +47,4 @@ $factory->define(Post::class, function (Faker $faker) {
         ],
         'slug'       => ($type == 'page') ? 'demo-page' : str_slug($name), //'slug' => "demo-page"
     ];
-
-
 });

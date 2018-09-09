@@ -232,7 +232,7 @@ trait TaggableTrait
         }
 
         if (! $this->tags()->get()->contains($tag->id)) {
-            $tag->update([ 'count' => $tag->count + 1 ]);
+            $tag->update(['count' => $tag->count + 1]);
 
             $this->tags()->attach($tag);
         }
@@ -255,14 +255,12 @@ trait TaggableTrait
             ->where(function ($query) use ($name, $slug) {
                 $query
                     ->orWhere('name', '=', $name)
-                    ->orWhere('slug', '=', $slug)
-                ;
+                    ->orWhere('slug', '=', $slug);
             })
-            ->first()
-        ;
+            ->first();
 
         if ($tag && $this->tags()->get()->contains($tag->id)) {
-            $tag->update([ 'count' => $tag->count - 1 ]);
+            $tag->update(['count' => $tag->count - 1]);
 
             $this->tags()->detach($tag);
         }

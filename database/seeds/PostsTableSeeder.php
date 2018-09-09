@@ -2,10 +2,10 @@
 
 namespace Orchid\Database\Seeds;
 
-use Illuminate\Database\Seeder;
-use Orchid\Attachment\Models\Attachmentable;
-use Orchid\Press\Models\Comment;
 use Orchid\Press\Models\Post;
+use Illuminate\Database\Seeder;
+use Orchid\Press\Models\Comment;
+use Orchid\Attachment\Models\Attachmentable;
 
 class PostsTableSeeder extends Seeder
 {

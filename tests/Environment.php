@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Orchid\Tests\Entities\DemoTestPage;
-use Orchid\Tests\Entities\DemoTestPost;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
+use Orchid\Tests\Entities\DemoTestPage;
+use Orchid\Tests\Entities\DemoTestPost;
 use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
@@ -97,7 +97,6 @@ trait Environment
             //DemoTestPost::class,
             //DemoTestPage::class,
         ]);
-
     }
 
     /**
