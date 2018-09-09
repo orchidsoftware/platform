@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Press\Models\Tag;
 
 trait TaggableTrait
 {
@@ -20,7 +21,7 @@ trait TaggableTrait
      *
      * @var string
      */
-    protected static $tagsModel = Orchid\Press\Models\Tag::class;
+    protected static $tagsModel = Tag::class;
 
     /**
      * The Slug generator method.
@@ -284,7 +285,7 @@ trait TaggableTrait
             $delimiter = preg_quote($this->getTagsDelimiter(), '#');
 
             $tags = array_map('trim',
-                preg_split("#[{$delimiter}]#", $tags, null, PREG_SPLIT_NO_EMPTY)
+                preg_split("#[{$delimiter}]#", $tags)
             );
         }
 
