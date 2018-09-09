@@ -22,12 +22,12 @@ $factory->define(Menu::class, function (Faker $faker) {
         'details', 'edit', 'friend', 'question', 'archives', 'author',
         'bookmark', 'first', 'help', 'index', 'last', 'license', 'me',
         'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search',
-        'sidebar', 'tag', 'up',];
+        'sidebar', 'tag', 'up', ];
 
     return [
         'label'  => str_slug($MenuTitle),
-        'title'  => $MenuTitle . ' ' . str_slug($faker->word),
-        'slug'   => '/' . str_slug($MenuTitle),
+        'title'  => $MenuTitle.' '.str_slug($faker->word),
+        'slug'   => '/'.str_slug($MenuTitle),
         'robot'  => $faker->randomElement($RobotArr),
         'style'  => $faker->safeColorName,
         'target' => $faker->randomElement(['_self', '_blank']),

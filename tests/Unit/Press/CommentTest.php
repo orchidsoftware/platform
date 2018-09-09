@@ -34,7 +34,7 @@ class CommentTest extends TestUnitCase
     public function it_is_approved()
     {
         $comment = factory(Comment::class)->create([
-            'approved' => true
+            'approved' => true,
         ]);
         $this->assertInternalType('boolean', $comment->isApproved());
         $this->assertTrue($comment->isApproved());
@@ -63,6 +63,7 @@ class CommentTest extends TestUnitCase
         $this->assertInternalType('boolean', $comment->replies->first()->isReply());
         $this->assertTrue($comment->replies->first()->isReply());
     }
+
     /**
      * @test
      */
@@ -99,6 +100,7 @@ class CommentTest extends TestUnitCase
             factory(Comment::class)->make(),
             factory(Comment::class)->make(),
         ]);
+
         return $comment;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOrchidTagsTable extends Migration
 {
@@ -17,7 +17,7 @@ class CreateOrchidTagsTable extends Migration
             $table->integer('taggable_id')->unsigned();
             $table->integer('tag_id')->unsigned();
             $table->engine = 'InnoDB';
-            $table->index([ 'taggable_type', 'taggable_id' ]);
+            $table->index(['taggable_type', 'taggable_id']);
         });
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
@@ -34,7 +34,7 @@ class CreateOrchidTagsTable extends Migration
      */
     public function down()
     {
-        $tables = [ 'tagged', 'tags' ];
+        $tables = ['tagged', 'tags'];
         foreach ($tables as $table) {
             Schema::dropIfExists($table);
         }

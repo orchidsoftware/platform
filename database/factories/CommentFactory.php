@@ -15,9 +15,8 @@ use Orchid\Press\Models\Comment;
 */
 
 $factory->define(Comment::class, function (Faker $faker) {
-
     return [
-        'content'   => $faker->paragraph(2,true),
+        'content'   => $faker->paragraph(2, true),
         'approved'  => $faker->randomElement([0, 1]),
     ];
 });
