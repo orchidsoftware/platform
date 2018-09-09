@@ -88,9 +88,7 @@ trait Environment
                 'includeTrashed'     => false,
                 'reserved'           => null,
                 'onUpdate'           => false,
-        ]);   
-  
-
+        ]);
     }
 
     /**

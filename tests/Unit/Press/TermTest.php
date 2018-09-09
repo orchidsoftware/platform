@@ -1,9 +1,10 @@
 <?php
+
 namespace Orchid\Tests\Unit\Press;
 
 use Orchid\Press\Models\Term;
-use Orchid\Press\Models\Taxonomy;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Press\Models\Taxonomy;
 
 class TermTest extends TestUnitCase
 {
@@ -13,15 +14,15 @@ class TermTest extends TestUnitCase
     public function its_meta_can_be_queried_by_its_relation()
     {
         $term = $this->createTermWithTaxonomy();
-       
-        $this->assertInstanceOf(Term::class, $term);
-        
-        $taxonomy = Taxonomy::where('term_id',$term->id)->first();
-        $this->assertInstanceOf(Taxonomy::class, $taxonomy);
-        
-        $this->assertInstanceOf(Term::class, $taxonomy->term);
 
+        $this->assertInstanceOf(Term::class, $term);
+
+        $taxonomy = Taxonomy::where('term_id', $term->id)->first();
+        $this->assertInstanceOf(Taxonomy::class, $taxonomy);
+
+        $this->assertInstanceOf(Term::class, $taxonomy->term);
     }
+
     /**
      * @return Term
      */
@@ -29,6 +30,7 @@ class TermTest extends TestUnitCase
     {
         $term = factory(Term::class)->create();
         $term->taxonomy()->save(factory(Taxonomy::class)->make());
+
         return $term;
     }
 }

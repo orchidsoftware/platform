@@ -1,10 +1,10 @@
 <?php
+
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Press\Models\Comment;
 use Orchid\Press\Models\Post;
-
 use Orchid\Tests\TestUnitCase;
+use Orchid\Press\Models\Comment;
 
 class CommentTest extends TestUnitCase
 {
@@ -19,8 +19,7 @@ class CommentTest extends TestUnitCase
         $this->assertInstanceOf(Comment::class, $comments->first());
         $this->assertEquals($post->ID, $comments->first()->post->ID);
     }
-      
-      
+
     /**
      * @return Post
      */
@@ -31,8 +30,7 @@ class CommentTest extends TestUnitCase
             factory(Comment::class)->make(),
             factory(Comment::class)->make(),
         ]);
+
         return $post;
     }
-    
-
 }
