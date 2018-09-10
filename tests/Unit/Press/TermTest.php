@@ -11,16 +11,23 @@ class TermTest extends TestUnitCase
     /**
      * @test
      */
-    public function its_meta_can_be_queried_by_its_relation()
+    public function it_has_the_correct_instance()
     {
         $term = $this->createTermWithTaxonomy();
+        $taxonomy = Taxonomy::where('term_id', $term->id)->first();
 
         $this->assertInstanceOf(Term::class, $term);
-
-        $taxonomy = Taxonomy::where('term_id', $term->id)->first();
         $this->assertInstanceOf(Taxonomy::class, $taxonomy);
-
         $this->assertInstanceOf(Term::class, $taxonomy->term);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_is_correct_routekeyname()
+    {
+        $term = $this->createTermWithTaxonomy();
+        $this->assertEquals('slug', $term->getRouteKeyName());
     }
 
     /**

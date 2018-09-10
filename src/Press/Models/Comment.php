@@ -8,6 +8,7 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -135,8 +136,8 @@ class Comment extends Model
      *
      * @return Comment
      */
-    public function scopeApproved() : self
+    public function scopeApproved(Builder $query) : Builder
     {
-        return $this->where('approved', 1);
+        return $query->where('approved', 1);
     }
 }

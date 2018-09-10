@@ -216,7 +216,7 @@ class Post extends Model
     {
         $option = $this->getAttribute('options');
 
-        if (is_null($option)) {
+        if (!is_array($option)) {
             $option = [];
         }
 
@@ -307,7 +307,7 @@ class Post extends Model
      */
     public function hasTerm($taxonomy, $term) : bool
     {
-        return isset($this->terms[$taxonomy][$term]);
+        return isset($this->getTermsAttribute()[$taxonomy][$term]);
     }
 
     /**
@@ -320,7 +320,7 @@ class Post extends Model
         $taxonomies = $this->taxonomies;
         foreach ($taxonomies as $taxonomy) {
             $taxonomyName = $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
-            $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term['name'];
+            $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term->content;
         }
 
         return $terms ?? [];
@@ -331,7 +331,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function scopeTaxonomies() : BelongsToMany
+    public function taxonomies() : BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model(Taxonomy::class), 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
@@ -342,9 +342,9 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function taxonomy($taxonomy, $term)
+    public function scopeTaxonomy(Builder $query, $taxonomy, $term) : Builder
     {
-        return $this->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
+        return $query->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
             $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
                 $query->where('slug', $term);
             });
