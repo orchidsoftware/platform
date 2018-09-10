@@ -4,8 +4,8 @@ namespace Orchid\Tests\Unit\Press;
 
 use Orchid\Press\Models\Post;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Press\Models\Comment;
 use Orchid\Platform\Models\User;
+use Orchid\Press\Models\Comment;
 
 class CommentTest extends TestUnitCase
 {
@@ -41,7 +41,6 @@ class CommentTest extends TestUnitCase
         $this->assertTrue($comment->isApproved());
     }
 
-
     /**
      * @test
      */
@@ -53,20 +52,19 @@ class CommentTest extends TestUnitCase
         $this->assertInstanceOf(Comment::class, $comments->first());
         $this->assertEquals($post->id, $comments->first()->post->id);
     }
-    
+
     /**
      * @test
      */
     public function it_is_all_approved()
     {
         $post = $this->createPostWithComments();
-        $comments=Comment::Approved()->get();
+        $comments = Comment::Approved()->get();
         $post_comments = Post::get()->first()->comments()->Approved()->get();
 
         $this->assertCount(2, $comments);
-        $this->assertCount(2, $post_comments);        
-
-    }    
+        $this->assertCount(2, $post_comments);
+    }
 
     /**
      * @test
@@ -89,7 +87,7 @@ class CommentTest extends TestUnitCase
         $this->assertTrue($comment->hasReplies());
         $this->assertInternalType('boolean', $comment->hasReplies());
     }
-    
+
     /**
      * @test
      */
@@ -102,9 +100,8 @@ class CommentTest extends TestUnitCase
         $this->assertInstanceOf(Comment::class, $parent_comment);
         $this->assertNotEquals($comment->id, $child_comment->id);
         $this->assertEquals($comment->id, $parent_comment->id);
-
     }
-    
+
     /**
      * @test
      */
@@ -113,7 +110,7 @@ class CommentTest extends TestUnitCase
         $user = User::get()->first();
         $comment = factory(Comment::class)->create();
         $comment->author()->associate($user)->save();
-       
+
         $this->assertInstanceOf(User::class, $comment->author);
         $this->assertEquals($user->id, $comment->author->id);
         $this->assertEquals($user->id, $comment->user_id);
@@ -130,7 +127,7 @@ class CommentTest extends TestUnitCase
             factory(Comment::class)->make(['approved' => true]),
             factory(Comment::class)->make(['approved' => true]),
             factory(Comment::class)->make(['approved' => false]),
-            factory(Comment::class)->make(['approved' => false]),            
+            factory(Comment::class)->make(['approved' => false]),
         ]);
 
         return $post;

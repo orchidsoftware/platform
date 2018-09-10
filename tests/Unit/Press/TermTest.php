@@ -20,7 +20,7 @@ class TermTest extends TestUnitCase
         $this->assertInstanceOf(Taxonomy::class, $taxonomy);
         $this->assertInstanceOf(Term::class, $taxonomy->term);
     }
-    
+
     /**
      * @test
      */

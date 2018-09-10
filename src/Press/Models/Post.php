@@ -216,7 +216,7 @@ class Post extends Model
     {
         $option = $this->getAttribute('options');
 
-        if (!is_array($option)) {
+        if (! is_array($option)) {
             $option = [];
         }
 

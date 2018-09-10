@@ -1,19 +1,16 @@
 <?php
+
 namespace Orchid\Tests\Unit\Press;
 
-use Carbon\Carbon;
-use Corcel\Model\Collection\MetaCollection;
-
-use Orchid\Press\Models\Post;
-use Orchid\Press\Models\Page;
-use Orchid\Press\Models\Taxonomy;
-use Orchid\Press\Models\Term;
-use Orchid\Platform\Models\User;
-
 use Illuminate\Support\Arr;
+use Orchid\Press\Models\Page;
+use Orchid\Press\Models\Post;
+use Orchid\Press\Models\Term;
+use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\User;
 //use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
-use Orchid\Tests\TestUnitCase;
+use Orchid\Press\Models\Taxonomy;
 
 class PostTest extends TestUnitCase
 {
@@ -49,6 +46,7 @@ class PostTest extends TestUnitCase
         $this->assertNotNull($posts);
         $this->assertGreaterThan(0, $posts->count());
     }
+
     /**
      * @test
      */
@@ -59,6 +57,7 @@ class PostTest extends TestUnitCase
         $this->assertNotNull($posts);
         $this->assertCount(1, $posts);
     }
+
     /**
      * @test
      */
@@ -87,7 +86,6 @@ class PostTest extends TestUnitCase
         $this->assertGreaterThan(0, $posts->count());
         */
     }
-  
 
     /**
      * @test
@@ -111,12 +109,11 @@ class PostTest extends TestUnitCase
                     'ru' => [
                         'title'       => 'Русские символы',
                     ],
-                ]
+                ],
         ]);
         $this->assertEquals('English characters', $post->content['en']['title']);
         $this->assertEquals('Русские символы', $post->content['ru']['title']);
     }
-
 
     /**
      * @test
@@ -130,6 +127,7 @@ class PostTest extends TestUnitCase
         $this->assertTrue($first->publish_at->lessThanOrEqualTo($last->publish_at));
         $this->assertTrue($last->publish_at->greaterThanOrEqualTo($first->publish_at));
     }
+
     /**
      * @test
      */
@@ -142,8 +140,7 @@ class PostTest extends TestUnitCase
         $this->assertTrue($first->publish_at->lessThanOrEqualTo($last->publish_at));
         $this->assertTrue($last->publish_at->greaterThanOrEqualTo($first->publish_at));
     }
-    
-    
+
     /**
      * @test
      */
@@ -161,9 +158,8 @@ class PostTest extends TestUnitCase
         $this->assertInstanceOf(Post::class, $firstPost);
         $this->assertEquals($post->slug, $firstPost->slug);
         $this->assertStringStartsWith('<ul class="pagination"', $paginator->toHtml());
-    }    
-    
-        
+    }
+
     /**
      * @test
      */
@@ -173,7 +169,6 @@ class PostTest extends TestUnitCase
         $this->assertCount(1, $post->taxonomies);
         $this->assertEquals('foo', $post->taxonomies->first()->taxonomy);
     }
-  
 
     /**
      * @test
@@ -183,64 +178,64 @@ class PostTest extends TestUnitCase
         $createdPost = $this->createPostWithTaxonomiesAndTerms();
         $post = Post::orderBy('id', 'desc')
             ->taxonomy('foo', 'test')->first();
-            
+
         $this->assertNotNull($post);
         $this->assertEquals($createdPost->id, $post->id);
     }
-    
+
     /**
      * @test
      */
     public function it_can_have_getTermsAttribute()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
-        
+
         $this->assertInternalType('array', $post->getTermsAttribute());
         $this->assertTrue(isset($post->getTermsAttribute()['foo']));
         $this->assertFalse(isset($post->getTermsAttribute()['fee']));
         $this->assertTrue(isset($post->getTermsAttribute()['foo']['test']));
         $this->assertFalse(isset($post->getTermsAttribute()['fee']['baz']));
-    } 
-    
+    }
+
     /**
      * @test
      */
     public function it_can_have_term()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
-        
+
         $this->assertTrue($post->hasTerm('foo', 'test'));
         $this->assertFalse($post->hasTerm('foo', 'baz'));
         $this->assertFalse($post->hasTerm('fee', 'test'));
         $this->assertFalse($post->hasTerm('fee', 'baz'));
-    } 
-    
- 
+    }
+
     /**
      * @test
      */
     public function it_can_have_options()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
-        
+
         $this->assertInternalType('array', $post->getOptions()->first());
         $this->assertTrue(isset($post->getOptions()['locale']));
-    } 
+    }
+
     /**
      * @test
      */
     public function it_can_have_option()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
-        
+
         $this->assertInternalType('array', $post->getOption('locale'));
         $this->assertEquals('true', $post->getOption('locale')['en']);
-        $this->assertEquals('test', $post->getOption('default','test'));
-        
+        $this->assertEquals('test', $post->getOption('default', 'test'));
+
         $post = factory(Post::class)->create(['options' => 'locale']);
-        
-        $this->assertEquals('test', $post->getOption('locale','test'));
-    } 
+
+        $this->assertEquals('test', $post->getOption('locale', 'test'));
+    }
 
     /**
      * @test
@@ -248,10 +243,10 @@ class PostTest extends TestUnitCase
     public function it_can_have_checkLanguage()
     {
         $post = $this->createPostWithTaxonomiesAndTerms();
-        
+
         $this->assertTrue($post->checkLanguage('en'));
         $this->assertFalse($post->checkLanguage('ru'));
-    } 
+    }
 
     /**
      * @test
@@ -260,10 +255,11 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithAuthor();
         $user = User::get()->first();
-        
+
         $this->assertEquals($user->name, $post->author->name);
         $this->assertEquals($user->email, $post->author->email);
-    }  
+    }
+
     /**
      * @test
      */
@@ -271,19 +267,12 @@ class PostTest extends TestUnitCase
     {
         $post = $this->createPostWithAuthor();
         $user = User::get()->first();
-        
+
         $this->assertEquals($user->name, $post->getUser()->name);
         $this->assertEquals($user->email, $post->getUser()->email);
-    }  
+    }
 
-
-
-
-
- 
-    
     /**
-     *
      * @return Post
      */
     private function createPostWithTaxonomiesAndTerms()
@@ -294,13 +283,15 @@ class PostTest extends TestUnitCase
                 'taxonomy' => 'foo',
                 'term_id' => function () {
                     return factory(Term::class)->create([
-                            'slug' => 'test'
+                            'slug' => 'test',
                         ])->id;
-                }
+                },
             ])
         );
+
         return $post;
     }
+
     /**
      * @return Post
      */
@@ -308,9 +299,7 @@ class PostTest extends TestUnitCase
     {
         $post = factory(Post::class)->create();
         $post->author()->associate(User::get()->first());
-        return $post;
-    }   
-       
-  
 
+        return $post;
+    }
 }
