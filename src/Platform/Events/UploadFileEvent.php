@@ -35,12 +35,4 @@ class UploadFileEvent
         $this->attachment = $attachment;
         $this->time = $time;
     }
-
-    /**
-     * @return int|\Orchid\Platform\Events\UploadFileEvent
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
 }

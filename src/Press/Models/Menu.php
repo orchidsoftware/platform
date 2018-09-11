@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Illuminate\Support\Collection;
-use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Traits\Attachment;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Menu extends Model
 {
@@ -65,25 +64,5 @@ class Menu extends Model
     public function parent() : HasOne
     {
         return $this->hasOne(static::class, 'id', 'parent');
-    }
-
-    /**
-     * @param $id
-     *
-     * @return Collection
-     */
-    public function getSons($id) : Collection
-    {
-        return $this->where('parent', $id)->get();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return Collection
-     */
-    public function getAll($id) : Collection
-    {
-        return $this->where('type', $id)->oldest('id')->get();
     }
 }

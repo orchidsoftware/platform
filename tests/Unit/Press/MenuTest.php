@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Unit\Press;
 
 use Orchid\Press\Models\Menu;
@@ -44,17 +46,6 @@ class MenuTest extends TestUnitCase
         $this->assertInstanceOf(Menu::class, $menu_child->parent()->first());
         $this->assertEquals($menu->id, $menu_child->parent()->first()->id);
     }
-
-    /**
-     * @test
-     */
-    /*
-    public function it_can_query_menu_getSons()
-    {
-       $this->createMenuWithChildren();
-       $menu = Menu::getSons(1);
-       dd($menu);
-    }  */
 
     /**
      * @return \Illuminate\Support\Collection

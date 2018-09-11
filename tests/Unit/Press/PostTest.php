@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Unit\Press;
 
 use Illuminate\Support\Arr;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchid\Tests\Unit\Press;
 
 use Orchid\Tests\TestUnitCase;
@@ -21,7 +23,7 @@ class UserTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_getNameTitle()
+    public function it_can_get_name_title()
     {
         $user = $this->createUser();
 
@@ -31,7 +33,7 @@ class UserTest extends TestUnitCase
     /**
      * @test
      */
-    public function it_can_getSubTitle()
+    public function it_can_get_sub_title()
     {
         $user = $this->createUser();
 

@@ -26,10 +26,6 @@ class FieldTest extends TestUnitCase
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\TagsField::class,
-                [
-                    'name' => 'example',
-                ], ],
             [\Orchid\Screen\Fields\Types\SelectField::class,
                 [
                     'name'    => 'example',
@@ -70,10 +66,6 @@ class FieldTest extends TestUnitCase
             [\Orchid\Screen\Fields\Types\SimpleMDEField::class,
                 [
                     'name' => 'example',
-                ], ],
-            [\Orchid\Screen\Fields\Types\LabelField::class,
-                [
-                    'name'  => 'example',
                 ], ],
             [\Orchid\Screen\Fields\Types\UploadField::class,
                 [
