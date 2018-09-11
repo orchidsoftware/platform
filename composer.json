@@ -9,7 +9,8 @@
     "admin",
     "cmf",
     "cms",
-    "rad"
+    "rad",
+    "extranet"
   ],
   "type": "library",
   "license": "MIT",
