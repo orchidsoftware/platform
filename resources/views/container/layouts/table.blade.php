@@ -1,6 +1,6 @@
 <div class="bg-white b m-b">
 
-    {!! $filters or '' !!}
+    {!! $filters ?? '' !!}
 
 
     @empty($form['data'])

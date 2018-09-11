@@ -17,7 +17,7 @@
                     dataType: 'json'
                 },
                 selectOnClose: true,
-                placeholder: '{{$placeholder or ''}}'
+                placeholder: '{{$placeholder ?? ''}}'
             });
 
             @if(!is_null($value))

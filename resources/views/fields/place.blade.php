@@ -12,13 +12,13 @@
         @endphp
 
         <div class="input-group">
-            <input class="form-control {{$class or ''}}" id="place-{{$slug}}-{{$lang}}"
-                   name="{{$inputname}}[name]" value="{{$valuename or ''}}"
-                   placeholder="{{$placeholder or ''}}">
+            <input class="form-control {{$class ?? ''}}" id="place-{{$slug}}-{{$lang}}"
+                   name="{{$inputname}}[name]" value="{{$valuename ?? ''}}"
+                   placeholder="{{$placeholder ?? ''}}">
             <input type="hidden" id="lat-{{$slug}}-{{$lang}}" name="{{$inputname}}[lat]"
-                   value="{{$value['lat'] or ''}}">
+                   value="{{$value['lat'] ?? ''}}">
             <input type="hidden" id="lng-{{$slug}}-{{$lang}}" name="{{$inputname}}[lng]"
-                   value="{{$value['lng'] or ''}}">
+                   value="{{$value['lng'] ?? ''}}">
             <span class="input-group-btn">
             <button class="btn btn-default" type="button" data-toggle="modal"
                     data-target="#map-place-{{$slug}}-{{$lang}}"><i

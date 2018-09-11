@@ -5,15 +5,15 @@
 
 @forelse ($notifications as $notification)
 
-    <a href="{{$notification->data['action'] or '#'}}" class="dropdown-item d-flex">
+    <a href="{{$notification->data['action'] ?? '#'}}" class="dropdown-item d-flex">
             <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
             <span class="clear m-l-md">
                 @if($notification->read())
-                    <span>{{$notification->data['title'] or ''}}</span>
+                    <span>{{$notification->data['title'] ?? ''}}</span>
                 @else
-                    {{$notification->data['title']   or ''}}
+                    {{$notification->data['title'] ?? ''}}
                 @endif
-                <small class="text-muted clear text-ellipsis">{{$notification->data['message']   or ''}}</small>
+                <small class="text-muted clear text-ellipsis">{{$notification->data['message'] ?? ''}}</small>
           </span>
     </a>
 

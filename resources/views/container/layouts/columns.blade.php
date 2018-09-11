@@ -3,7 +3,7 @@
         <div class="hbox-col lter">
             <div class="vbox">
                 @foreach($column as $item)
-                    {!! $item or '' !!}
+                    {!! $item ?? '' !!}
                 @endforeach
             </div>
         </div>

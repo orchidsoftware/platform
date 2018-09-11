@@ -21,7 +21,7 @@
                     <div class="modal-body">
                         <div data-async>
                             @foreach($modal as $item)
-                                {!! $item or '' !!}
+                                {!! $item ?? '' !!}
                             @endforeach
                         </div>
 
