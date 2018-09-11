@@ -92,19 +92,19 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 
-/*
-    public function test_it_replase_permission()
-    {
-        $user = $this->createUser();
-
-        $user->replaceRoles([]);
-        //
-    }
-
-    public function test_it_delete_user()
-    {
-        $user = $this->createUser();
-        $user->delete();
-    }
-*/
+    /*
+        public function test_it_replase_permission()
+        {
+            $user = $this->createUser();
+    
+            $user->replaceRoles([]);
+            //
+        }
+    
+        public function test_it_delete_user()
+        {
+            $user = $this->createUser();
+            $user->delete();
+        }
+    */
 }
