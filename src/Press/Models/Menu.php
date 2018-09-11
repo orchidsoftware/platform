@@ -7,7 +7,6 @@ namespace Orchid\Press\Models;
 use Illuminate\Support\Collection;
 use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
