@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -127,7 +127,7 @@ abstract class Screen
      */
     public function handle(...$paramentrs)
     {
-        abort_if(!$this->checkAccess(), 403);
+        abort_if(! $this->checkAccess(), 403);
 
         $this->arguments = $paramentrs;
         foreach ($paramentrs as $value) {
@@ -154,7 +154,7 @@ abstract class Screen
     {
         $class = new \ReflectionClass($this);
 
-        if (!$class->hasMethod($method)) {
+        if (! $class->hasMethod($method)) {
             return;
         }
 
@@ -199,7 +199,7 @@ abstract class Screen
         }
 
         foreach ($this->permission as $item) {
-            if (!Auth::user()->hasAccess($item)) {
+            if (! Auth::user()->hasAccess($item)) {
                 return false;
             }
         }
