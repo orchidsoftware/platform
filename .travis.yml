@@ -25,4 +25,9 @@ script:
   - vendor/bin/phpunit
 
 notifications:
-  email: false
+  email:
+    recipients:
+      - bliz48rus@gmail.com
+      - salador2005@yandex.ru
+    on_success: never
+    on_failure: always
