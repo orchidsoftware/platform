@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -109,6 +110,7 @@ abstract class Screen
      */
     public function view()
     {
+        $this->reflectionParams('query');
         $query = call_user_func_array([$this, 'query'], $this->arguments);
         $this->post = new Repository($query);
 
@@ -130,17 +132,17 @@ abstract class Screen
         abort_if(! $this->checkAccess(), 403);
 
         $this->arguments = $paramentrs;
-        foreach ($paramentrs as $value) {
-            $this->reflectionParams($value);
-        }
 
         if ($this->request->method() === 'GET') {
             return $this->view();
         }
 
-        //if (starts_with($method, 'async')) {
-        //    return $this->asyncBuild($method, $parameters);
-        //}
+        $method =  end($paramentrs);
+        $this->reflectionParams($method);
+
+        if (starts_with($method, 'async')) {
+            return $this->asyncBuild($method, $this->arguments);
+        }
 
         return call_user_func_array([$this, end($paramentrs)], $this->arguments);
     }
@@ -165,7 +167,14 @@ abstract class Screen
                 continue;
             }
 
-            $this->arguments[$key] = app()->make($parameter->getClass()->name);
+            $object = app()->make($parameter->getClass()->name);
+
+            if (is_subclass_of($object, Model::class)) {
+                $this->arguments[$key] = $object->find($this->arguments[$key]);
+            } else {
+                $this->arguments[$key] = $object;
+            }
+
         }
     }
 
