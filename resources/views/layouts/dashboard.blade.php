@@ -12,6 +12,21 @@
                             <img src="{{url('/orchid/img/orchid.svg')}}" class="header-brand-img" alt="logo" height="32px"
                                  width="150px">
                         </a>
+
+
+                        <ul class="m-n b-r">
+                            <li class="inline">
+                                <a href="#" class="nav-link"><i class="icon-globe"></i></a>
+                            </li>
+                            <li class="inline">
+                                <a href="#" class="nav-link"><i class="icon-crome"></i></a>
+                            </li>
+                        </ul>
+
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#globalSearch">
+                            <i class="icon-magnifier m-r-xs"></i>Type anywhere to <span class="font-bold">search</span>
+                        </a>
+
                         <div class="d-flex order-lg-2 ml-auto">
                             <div class="dropdown d-none d-md-flex">
 
@@ -25,7 +40,7 @@
                                     <i class="icon-bell"></i>
                                     @if(count($notifications) > 0)
                                         <span class="badge badge-sm up bg-danger pull-right-xs text-white">
-                                            {{ count($notifications) > 9 ? count($notifications) : "+"}}
+                                            {{ count($notifications) > 9 ? count($notifications) : '+'}}
                                         </span>
                                     @endif
                                 </a>
@@ -95,14 +110,6 @@
             <div class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 ml-auto">
-                            <form class="input-icon my-3 my-lg-0">
-                                <input type="search" class="form-control header-search" placeholder="Search…" tabindex="1">
-                                <div class="input-icon-addon">
-                                    <i class="icon-magnifier"></i>
-                                </div>
-                            </form>
-                        </div>
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                                 {!! Dashboard::menu()->render('Main') !!}
@@ -111,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container m-b-lg">
+            <div class="container">
 
                 <div class="v-center m-t-md m-b-md">
                     <div class="col-xs-12 col-md-4">
@@ -139,65 +146,61 @@
         </div>
     </div>
 
-    <div class="footer bg-white b-b b-t small">
-        <div class="container">
-            <div class="row padder-v">
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-6 col-md-3">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#">First link</a></li>
-                                <li><a href="#">Second link</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#">Third link</a></li>
-                                <li><a href="#">Fourth link</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#">Fifth link</a></li>
-                                <li><a href="#">Sixth link</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#">Other link</a></li>
-                                <li><a href="#">Last link</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mt-4 mt-lg-0">
-                    <span class="text-muted">Premium and Open Source dashboard template with responsive and high quality UI. For Free!</span>
-                </div>
+    <footer class="container footer">
+        <div class="row padder-v m-b m-t">
+            <div class="col-md-6 text-left">
+                <p class="small m-n">
+                <span class="sm-block">
+                    Premium and Open Source dashboard.
+                    <a href="#" class="m-l-10 m-r-10">Terms of use</a>
+                    <span class="muted">|</span>
+                    <a href="#" class="m-l-10">Privacy Policy</a>
+                </span>
+                </p>
             </div>
-        </div>
-    </div>
-    <footer class="footer bg-white">
-        <div class="container">
-            <div class="row align-items-center flex-row-reverse padder-v">
-                <div class="col-auto ml-lg-auto">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item"><a href="../docs/index.html">Documentation</a></li>
-                                <li class="list-inline-item"><a href="../faq.html">FAQ</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-auto">
-                            <a href="" class="btn btn-outline-primary btn-sm">Source code</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center small">
-                    © 2016 - {{date('Y')}} The application code is published under the MIT license.
-                </div>
+            <div class="col-md-6 text-right">
+                <p class="small m-n">© 2016 - 2018 The application code is published under the MIT license.</p>
             </div>
         </div>
     </footer>
+
+
+    <div class="modal fade fill-in" id="globalSearch" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="icon-close"></i>
+        </button>
+
+        <div class="container-fluid">
+
+            <img class="overlay-brand" src="{{url('/orchid/img/orchid.svg')}}" height="32px"
+                 width="150px" alt="logo">
+
+
+            <a href="#" class="close-icon-light overlay-close text-black fs-16">
+                <i class="icon-close"></i>
+            </a>
+
+        </div>
+
+        <div class="container-fluid">
+
+            <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">
+            <br>
+            <div class="inline-block">
+                <div class="checkbox right">
+                    <input id="checkboxn" type="checkbox" value="1" checked="checked">
+                    <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
+                </div>
+            </div>
+            <div class="inline-block m-l-10">
+                <p class="fs-13">Press enter to search</p>
+            </div>
+
+        </div>
+
+    </div>
+
 
 
     @include('platform::partials.support')

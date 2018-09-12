@@ -41,16 +41,16 @@ Breadcrumbs::for('platform.systems.roles.edit', function ($trail, $role) {
 // Platform > Category
 Breadcrumbs::for('platform.systems.category', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push('Categoryes', route('platform.systems.category'));
+    $trail->push('Categories', route('platform.systems.category'));
 });
 
-// Platform > Categoryes > Create
+// Platform > Categories > Create
 Breadcrumbs::for('platform.systems.category.create', function ($trail) {
     $trail->parent('platform.systems.category');
     $trail->push('Create', route('platform.systems.category.create'));
 });
 
-// Platform > Categoryes > Category
+// Platform > Categories > Category
 Breadcrumbs::for('platform.systems.category.edit', function ($trail, $category) {
     $trail->parent('platform.systems.category');
     $trail->push('Category', route('platform.systems.category.edit', $category));

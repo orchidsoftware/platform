@@ -1,5 +1,5 @@
 <div class="admin-wrapper">
-    <div class="bg-white b box-shadow m-b-lg wrapper-lg">
+    <div class="bg-white b box-shadow wrapper-lg">
         <div class="row m-b">
             <div class="wrapper-lg">
                 <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>

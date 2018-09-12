@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -62,20 +62,20 @@ abstract class Screen
      *
      * @return array
      */
-    abstract public function commandBar() : array;
+    abstract public function commandBar(): array;
 
     /**
      * Views.
      *
      * @return array
      */
-    abstract public function layout() : array;
+    abstract public function layout(): array;
 
     /**
      * @return \Illuminate\Contracts\View\View
      * @throws \Throwable
      */
-    public function build() : View
+    public function build(): View
     {
         $layout = Layouts::blank([
             $this->layout(),
@@ -119,39 +119,30 @@ abstract class Screen
     }
 
     /**
-     * @param null $method
-     * @param null $parameters
+     * @param mixed ...$paramentrs
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function handle($method = null, $parameters = null)
+    public function handle(...$paramentrs)
     {
-        abort_if(! $this->checkAccess(), 403);
+        abort_if(!$this->checkAccess(), 403);
 
-        if ($this->request->method() === 'GET' || (is_null($method) && is_null($parameters))) {
-            $this->arguments = is_array($method) ? $method : [$method];
+        $this->arguments = $paramentrs;
+        foreach ($paramentrs as $value) {
+            $this->reflectionParams($value);
+        }
 
+        if ($this->request->method() === 'GET') {
             return $this->view();
         }
 
-        if (starts_with($method, 'async')) {
-            return $this->asyncBuild($method, $parameters);
-        }
+        //if (starts_with($method, 'async')) {
+        //    return $this->asyncBuild($method, $parameters);
+        //}
 
-        if (! is_null($parameters)) {
-            $this->arguments = is_array($method) ? $method : [$method];
-
-            $this->reflectionParams($parameters);
-
-            return call_user_func_array([$this, $parameters], $this->arguments);
-        }
-
-        $this->arguments = is_array($parameters) ? $parameters : [$parameters];
-        $this->reflectionParams($method);
-
-        return call_user_func_array([$this, $method], $this->arguments);
+        return call_user_func_array([$this, end($paramentrs)], $this->arguments);
     }
 
     /**
@@ -162,6 +153,11 @@ abstract class Screen
     public function reflectionParams($method)
     {
         $class = new \ReflectionClass($this);
+
+        if (!$class->hasMethod($method)) {
+            return;
+        }
+
         $parameters = $class->getMethod($method)->getParameters();
 
         foreach ($parameters as $key => $parameter) {
@@ -203,7 +199,7 @@ abstract class Screen
         }
 
         foreach ($this->permission as $item) {
-            if (! Auth::user()->hasAccess($item)) {
+            if (!Auth::user()->hasAccess($item)) {
                 return false;
             }
         }

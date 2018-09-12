@@ -45,8 +45,6 @@ class UserTest extends TestUnitCase
      */
     private function createUser()
     {
-        $user = factory(User::class)->create();
-
-        return $user;
+        return factory(User::class)->create();
     }
 }

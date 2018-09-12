@@ -45,13 +45,6 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        dd(123);
-
         return config('platform.prefix');
-    }
-
-    public function redirectPath()
-    {
-        dd(123);
     }
 }
