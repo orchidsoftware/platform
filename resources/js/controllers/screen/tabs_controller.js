@@ -1,58 +1,55 @@
-import {Controller} from "stimulus";
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
-
-    /**
+  /**
      *
      */
-    connect() {
-        let tabs = this.tabs();
+  connect() {
+    const tabs = this.tabs();
 
-        let activeId = tabs[window.location.href][this.data.get('slug')];
+    const activeId = tabs[window.location.href][this.data.get('slug')];
 
-        console.log(activeId);
+    console.log(activeId);
 
-        if (activeId !== null) {
-            $('#' + activeId).tab('show');
-        }
+    if (activeId !== null) {
+      $(`#${activeId}`).tab('show');
     }
+  }
 
-    /**
+  /**
      *
      * @param event
      */
-    setActiveTab(event) {
+  setActiveTab(event) {
+    const activeId = event.target.id;
+    const tabs = this.tabs();
 
-        let activeId = event.target.id;
-        let tabs = this.tabs();
+    tabs[window.location.href][this.data.get('slug')] = activeId;
+    localStorage.setItem('tabs', JSON.stringify(tabs));
+    $(`#${activeId}`).tab('show');
 
-        tabs[window.location.href][this.data.get('slug')] = activeId;
-        localStorage.setItem('tabs', JSON.stringify(tabs));
-        $('#' + activeId).tab('show');
+    return event.preventDefault();
+  }
 
-        return event.preventDefault();
-    }
-
-    /**
+  /**
      *
      * @returns {any}
      */
-    tabs() {
-        let tabs = JSON.parse(localStorage.getItem('tabs'));
+  tabs() {
+    let tabs = JSON.parse(localStorage.getItem('tabs'));
 
-        if (tabs === null) {
-            tabs = {};
-        }
-
-        if (tabs[window.location.href] === undefined) {
-            tabs[window.location.href] = {};
-        }
-
-        if (tabs[window.location.href][this.data.get('slug')] === undefined) {
-            tabs[window.location.href][this.data.get('slug')] = null;
-        }
-
-        return tabs;
+    if (tabs === null) {
+      tabs = {};
     }
 
+    if (tabs[window.location.href] === undefined) {
+      tabs[window.location.href] = {};
+    }
+
+    if (tabs[window.location.href][this.data.get('slug')] === undefined) {
+      tabs[window.location.href][this.data.get('slug')] = null;
+    }
+
+    return tabs;
+  }
 }
