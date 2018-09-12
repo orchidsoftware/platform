@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Screen.
@@ -137,7 +137,7 @@ abstract class Screen
             return $this->view();
         }
 
-        $method =  end($paramentrs);
+        $method = end($paramentrs);
         $this->reflectionParams($method);
 
         if (starts_with($method, 'async')) {
@@ -174,7 +174,6 @@ abstract class Screen
             } else {
                 $this->arguments[$key] = $object;
             }
-
         }
     }
 
