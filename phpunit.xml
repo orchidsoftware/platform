@@ -40,4 +40,7 @@
         <env name="SCOUT_DRIVER" value="null"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
+    <logging>
+         <log type="coverage-clover" target="clover.xml"/>
+    </logging>
 </phpunit>
