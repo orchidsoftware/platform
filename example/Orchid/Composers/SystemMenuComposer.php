@@ -75,9 +75,7 @@ class SystemMenuComposer
                 'badge'      => [
                     'class' => 'bg-primary',
                     'data'  => function () {
-                        return Dashboard::model(\Orchid\Press\Models\Comment::class)
-                            ->where('approved', 0)
-                            ->count() ?: null;
+                        return \Orchid\Press\Models\Comment::where('approved', 0)->count() ?: null;
                     },
                 ],
             ]);

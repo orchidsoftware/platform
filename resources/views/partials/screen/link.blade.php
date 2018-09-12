@@ -20,7 +20,7 @@
     </button>
 @else
 
-    <a href="{{$link or ''}}" class="btn btn-link">
+    <a href="{{$link ?? ''}}" class="btn btn-link">
         <i class="{{$icon ?? ''}} m-r-xs"></i>{{$name ?? ''}}
     </a>
 @endif
