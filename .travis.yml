@@ -21,8 +21,12 @@ before_script:
    - sudo apt-get -y install imagemagick x11-apps
    - export DISPLAY=:0.0
    - Xvfb :0 -screen 0 1920x1080x24 &
+   
 script:
-  - vendor/bin/phpunit
+   - vendor/bin/phpunit --coverage-clover=coverage.xml
+  
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:
