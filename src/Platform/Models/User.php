@@ -220,7 +220,7 @@ class User extends Authenticatable implements UserInterface
      */
     public function getAvatar()
     {
-        $rand = random_int(1,16);
+        $rand = random_int(1, 16);
 
         return "/orchid/img/avatars/users-$rand.svg";
     }
