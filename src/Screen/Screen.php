@@ -131,15 +131,14 @@ abstract class Screen
     {
         abort_if(! $this->checkAccess(), 403);
 
-
-        if ($this->request->method() === 'GET' || (!count($parameters))) {
+        if ($this->request->method() === 'GET' || (! count($parameters))) {
             $this->arguments = $parameters;
+
             return $this->view();
         }
 
         $method = array_pop($parameters);
         $this->arguments = $parameters;
-
 
         $this->reflectionParams($method);
 
@@ -159,7 +158,7 @@ abstract class Screen
     {
         $class = new \ReflectionClass($this);
 
-        if (!is_string($method)) {
+        if (! is_string($method)) {
             return;
         } elseif (! $class->hasMethod($method)) {
             return;
@@ -168,7 +167,6 @@ abstract class Screen
         $parameters = $class->getMethod($method)->getParameters();
 
         foreach ($parameters as $key => $parameter) {
-
             if ($this->checkClassInArray($key) || is_null($parameter->getClass())) {
                 continue;
             }
