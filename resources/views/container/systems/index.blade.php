@@ -19,9 +19,9 @@
 @stop
 
 @section('content')
-    <div class="bg-white">
 
-        <div class="admin-wrapper wrapper-md">
+
+    <div class="card admin-wrapper wrapper-md">
             <div class="row">
 
                 @php
@@ -48,6 +48,5 @@
             </div>
         </div>
 
-    </div>
 
 @stop

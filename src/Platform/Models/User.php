@@ -213,4 +213,15 @@ class User extends Authenticatable implements UserInterface
             'type'    => 'info',
         ]));
     }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getAvatar()
+    {
+        $rand = random_int(1,16);
+
+        return "/orchid/img/avatars/users-$rand.svg";
+    }
 }

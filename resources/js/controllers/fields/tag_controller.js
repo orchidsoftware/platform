@@ -36,6 +36,6 @@ export default class extends Controller {
           },
         },
       });
-    }, 500);
+    }, 100);
   }
 }

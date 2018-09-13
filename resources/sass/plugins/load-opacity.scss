@@ -1,12 +1,21 @@
 .turbolinks-progress-bar {
   height           : 1px;
-  background-color : $brand-info;
+  background-color : $brand-primary;
 }
+
+
+.dropdown-menu{
+  &.show{
+    animation : smooth-appearance 340ms ease-in;
+  }
+}
+
 
 /*
 #app-content-body {
   animation : blurin 140ms ease-in;
 }
+*/
 
 @keyframes blurin {
   0% {
@@ -19,12 +28,26 @@
   }
   50% {
     opacity : 0.8;
-    filter  : blur(4px);
+   filter  : blur(4px);
   }
   100% {
     opacity : 1;
     filter  : blur(0px);
   }
 }
-*/
 
+
+@keyframes smooth-appearance{
+  0% {
+    opacity : 0.1;
+  }
+  25% {
+    opacity : 0.5;
+  }
+  50% {
+    opacity : 0.8;
+  }
+  100% {
+    opacity : 1;
+  }
+}

@@ -3,20 +3,22 @@
         data-screen--tabs-slug="{{$templateSlug}}"
 >
     <div class="nav-tabs-alt bg-white-only">
-        <ul class="nav nav-tabs padder bg-white" role="tablist">
-            @foreach($manyForms as $name => $tab)
-                <li class="nav-item">
-                    <a class="nav-link @if ($loop->first) active @endif"
-                       data-action="screen--tabs#setActiveTab"
-                       data-target="#tab-{{str_slug($name)}}"
-                       id="button-tab-{{str_slug($name)}}"
-                       role="tab"
-                       data-toggle="tab">
-                        {!! $name !!}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+        <div class="card">
+            <ul class="nav nav-tabs" role="tablist">
+                @foreach($manyForms as $name => $tab)
+                    <li class="nav-item">
+                        <a class="nav-link @if ($loop->first) active @endif"
+                           data-action="screen--tabs#setActiveTab"
+                           data-target="#tab-{{str_slug($name)}}"
+                           id="button-tab-{{str_slug($name)}}"
+                           role="tab"
+                           data-toggle="tab">
+                            {!! $name !!}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 
 

@@ -31,23 +31,6 @@ body {
 
 }
 
-
-// переписать!
-.app-header {
-  .nav-item{
-    &.active{
-      .nav-link{
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom-color: $brand-primary!important;
-        background: inherit;
-      }
-    }
-  }
-}
-
-
 // content
 .app-content {
   height: 100%;
@@ -178,7 +161,6 @@ body {
         display: block !important;
       }
     }
-
   }
 }
 

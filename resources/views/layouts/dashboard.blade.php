@@ -16,10 +16,24 @@
 
                         <ul class="m-n b-r">
                             <li class="inline">
-                                <a href="#" class="nav-link"><i class="icon-globe"></i></a>
+                                <a href="#" class="nav-link"><i class="icon-options"></i></a>
                             </li>
-                            <li class="inline">
-                                <a href="#" class="nav-link"><i class="icon-crome"></i></a>
+                            <li class="inline dropdown dropdown-toggle">
+                                <a href="#" class="nav-link text-uppercase" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon-globe m-r-xs"></i> <span id="code-local">en</span>
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" data-target="#local-en" role="tab" data-toggle="tab"
+                                       onclick="document.getElementById('code-local').innerHTML = 'en'"
+                                       aria-controls="local-en" aria-expanded="true ">English
+                                    </a>
+                                    <a class="dropdown-item" data-target="#local-ru" role="tab" data-toggle="tab"
+                                       onclick="document.getElementById('code-local').innerHTML = 'ru'"
+                                       aria-controls="local-ru" aria-expanded=" false ">Россия
+                                    </a>
+                                </div>
                             </li>
                         </ul>
 
@@ -51,7 +65,7 @@
                             <div class="dropdown">
                                 <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                                     <span class="thumb-xs avatar pull-right m-t-n-sm m-b-n-sm m-r-xs">
-                                        <img src="/orchid/img/avatars/users-1.svg" class="b bg-light" alt="test">
+                                        <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
                                     </span>
                                     <span class="ml-2 d-none d-lg-block" style="max-width:150px;font-size: 0.82857rem;">
                                         <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>

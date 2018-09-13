@@ -326,6 +326,7 @@ blockquote {
       &:hover,
       &:focus {
         background-color: $nav-bg;
+        border-radius: unset;
       }
     }
   }
@@ -372,19 +373,14 @@ blockquote {
 
 
 .nav-tabs {
-  border-color: $border-color;
   .nav-item {
-    .nav-link {
-      border-radius: $panel-border-radius $panel-border-radius 0 0;
-      border-bottom-color: $border-color;
-    }
     &:hover .nav-link,
     &.active .nav-link,
     &.active .nav-link:hover {
-      border-color: $border-color;
+      border-bottom-color: $brand-primary;
     }
     &.active .nav-link {
-      border-bottom-color: #fff !important;
+      border-bottom-color: $brand-primary;
     }
   }
   .nav-tabs-alt & {
@@ -399,14 +395,13 @@ blockquote {
         border-radius: 0;
         border-color: transparent !important;
         background: transparent !important;
-        border-bottom-color: $border-color !important;
 		&.active {
-			border-bottom-color: $brand-info !important;
+			border-bottom-color: $brand-primary !important;
 		}
       }
       &.active {
         .nav-link {
-          border-bottom-color: $brand-info !important;
+          border-bottom-color: $brand-primary !important;
         }
       }
     }
@@ -730,10 +725,6 @@ blockquote {
   top: 50%;
 }
 
-
-
-
-
 .dropdown-item {
   @include hover-focus {
     color: $dropdown-link-hover-color;
@@ -750,4 +741,9 @@ blockquote {
   &:disabled {
     color: $dropdown-link-disabled-color;
   }
+}
+
+
+.breadcrumb {
+  border-radius: unset;
 }
