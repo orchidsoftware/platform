@@ -127,24 +127,27 @@ abstract class Screen
      * @throws \ReflectionException
      * @throws \Throwable
      */
-    public function handle(...$paramentrs)
+    public function handle(...$parameters)
     {
         abort_if(! $this->checkAccess(), 403);
 
-        $this->arguments = $paramentrs;
 
-        if ($this->request->method() === 'GET') {
+        if ($this->request->method() === 'GET' || (!count($parameters))) {
+            $this->arguments = $parameters;
             return $this->view();
         }
 
-        $method = end($paramentrs);
+        $method = array_pop($parameters);
+        $this->arguments = $parameters;
+
+
         $this->reflectionParams($method);
 
         if (starts_with($method, 'async')) {
             return $this->asyncBuild($method, $this->arguments);
         }
 
-        return call_user_func_array([$this, end($paramentrs)], $this->arguments);
+        return call_user_func_array([$this, $method], $this->arguments);
     }
 
     /**
@@ -156,13 +159,16 @@ abstract class Screen
     {
         $class = new \ReflectionClass($this);
 
-        if (! $class->hasMethod($method)) {
+        if (!is_string($method)) {
+            return;
+        } elseif (! $class->hasMethod($method)) {
             return;
         }
 
         $parameters = $class->getMethod($method)->getParameters();
 
         foreach ($parameters as $key => $parameter) {
+
             if ($this->checkClassInArray($key) || is_null($parameter->getClass())) {
                 continue;
             }
