@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Tests\Unit\Press;
+namespace Orchid\Tests\Unit\Platform;
 
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
