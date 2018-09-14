@@ -24,8 +24,7 @@ trait Environment
     /**
      * Setup the test environment.
      * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
-     * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug
-     *
+     * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug.
      */
     protected function setUp()
     {
