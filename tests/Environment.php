@@ -11,9 +11,9 @@ use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
+use Orchid\Savior\Providers\SaviorServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
-use Orchid\Savior\Providers\SaviorServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**

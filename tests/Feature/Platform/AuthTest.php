@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 class AuthTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug
+     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug.
      * @var
      */
     private $user;
@@ -34,17 +34,15 @@ class AuthTest extends TestFeatureCase
         $this->assertContains('input type="password"', $response->baseResponse->content());
     }
 
-    
     public function test_route_DashboardLogin_auth()
     {
         $response = $this->actingAs($this->getUser())
                     ->get(route('platform.login'));
-                    
+
         $response->assertStatus(302);
         $response->assertRedirect('/home');
     }
 
- 
     public function test_route_DashboardPasswordRequest()
     {
         $response = $this->get(route('platform.password.request'));
@@ -53,22 +51,22 @@ class AuthTest extends TestFeatureCase
         $this->assertContains('input type="email"', $response->baseResponse->content());
         $this->assertNotContains('input type="password"', $response->baseResponse->content());
     }
-    
+
     public function test_route_DashboardPasswordReset()
     {
-        $response = $this->get(route('platform.password.reset','11111'));
+        $response = $this->get(route('platform.password.reset', '11111'));
 
         $response->assertStatus(200);
         $this->assertContains('input type="email"', $response->baseResponse->content());
         $this->assertContains('input type="password"', $response->baseResponse->content());
         $this->assertContains('"password_confirmation"', $response->baseResponse->content());
     }
- 
+
     public function test_route_DashboardPasswordReset_auth()
     {
         $response = $this->actingAs($this->getUser())
-                    ->get(route('platform.password.reset','11111'));
-  
+                    ->get(route('platform.password.reset', '11111'));
+
         $response->assertStatus(302);
         $response->assertRedirect('/home');
     }

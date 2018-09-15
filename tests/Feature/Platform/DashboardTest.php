@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 class DashboardTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= DashboardTest tests\\Feature\\Platform\\DashboardTest --debug
+     * debug: php vendor/bin/phpunit  --filter= DashboardTest tests\\Feature\\Platform\\DashboardTest --debug.
      * @var
      */
     private $user;
@@ -24,7 +24,7 @@ class DashboardTest extends TestFeatureCase
 
         return $this->user;
     }
-    
+
     public function test_route_DashboardIndex()
     {
         $response = $this->actingAs($this->getUser())
@@ -33,6 +33,7 @@ class DashboardTest extends TestFeatureCase
         $response->assertStatus(200);
         $this->assertContains('Dashboard Panel', $response->baseResponse->content());
     }
+
     public function test_route_DashboardIndex_not_user()
     {
         $response = $this->get(route('platform.index'));
@@ -41,5 +42,4 @@ class DashboardTest extends TestFeatureCase
         $response->assertRedirect('/dashboard/login');
         //$this->assertContains('dashboard/login', $response->baseResponse->content());
     }
-
 }

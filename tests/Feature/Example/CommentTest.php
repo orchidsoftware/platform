@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace Tests\Feature\Example;
 
 use Orchid\Press\Models\Post;
-use Orchid\Press\Models\Comment;
 use Orchid\Platform\Models\User;
+use Orchid\Press\Models\Comment;
 use Orchid\Tests\TestFeatureCase;
 
 class CommentTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= CommentTest tests\\Feature\\Example\\CommentTest --debug
+     * debug: php vendor/bin/phpunit  --filter= CommentTest tests\\Feature\\Example\\CommentTest --debug.
      * @var
      */
     private $user;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -25,9 +25,8 @@ class CommentTest extends TestFeatureCase
             return $this->user;
         }
         $this->user = factory(User::class)->create();
-        
     }
-    
+
     /**
      * @return Post
      */
@@ -36,7 +35,7 @@ class CommentTest extends TestFeatureCase
         $post = factory(Post::class)->create();
 
         $post->comments()->saveMany([
-            factory(Comment::class)->make(['approved' => true,]),
+            factory(Comment::class)->make(['approved' => true]),
             factory(Comment::class)->make(['approved' => true]),
             factory(Comment::class)->make(['approved' => false]),
             factory(Comment::class)->make(['approved' => false]),
@@ -47,31 +46,26 @@ class CommentTest extends TestFeatureCase
 
         return $post;
     }
-    
-    
-    
 
     public function test_route_SystemsComments()
     {
         $post = $this->createPostWithComments();
-        
+
         $response = $this->actingAs($this->user)
                     ->get(route('platform.systems.comments'));
-                    
-        $response->assertStatus(200);
-       
-        $this->assertContains('icon-check', $response->baseResponse->content());
 
+        $response->assertStatus(200);
+
+        $this->assertContains('icon-check', $response->baseResponse->content());
     }
 
-        
     public function test_route_SystemsCommentsEdit()
     {
         $post = $this->createPostWithComments();
         $comments = Comment::findByPostId($post->id);
-        
+
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.comments.edit',$comments->first()->id));
+                    ->get(route('platform.systems.comments.edit', $comments->first()->id));
         $response->assertStatus(200);
         $this->assertContains($comments->first()->content, $response->baseResponse->content());
     }

@@ -10,11 +10,11 @@ use Orchid\Tests\TestFeatureCase;
 class SaviorTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= SaviorTest tests\\Feature\\SaviorTest --debug
+     * debug: php vendor/bin/phpunit  --filter= SaviorTest tests\\Feature\\SaviorTest --debug.
      * @var
      */
     private $user;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -30,10 +30,11 @@ class SaviorTest extends TestFeatureCase
                     ->get(route('platform.savior.backups'));
         $response->assertStatus(200);
     }
+
     public function test_route_SaviorBackups_method_runBackup()
     {
         $response = $this->actingAs($this->user)
-                    ->post(route('platform.savior.backups','runBackup'));
+                    ->post(route('platform.savior.backups', 'runBackup'));
         //dump($response);
         $response->assertStatus(302);
     }

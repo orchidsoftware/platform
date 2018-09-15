@@ -12,5 +12,4 @@ use Orchestra\Testbench\TestCase;
 abstract class TestFeatureCase extends TestCase
 {
     use Environment;
-
 }
