@@ -19,7 +19,7 @@ class SystemTest extends TestFeatureCase
         if ($this->user) {
             return $this->user;
         }
-        $this->user = User::where('id',1)->first();
+        $this->user = User::where('id', 1)->first();
         //$this->user = factory(User::class)->create();
 
         return $this->user;
@@ -29,8 +29,8 @@ class SystemTest extends TestFeatureCase
     {
         $response = $this->actingAs($this->getUser())
                     ->get(route('platform.systems.index'));
-                    //->get('dashboard/systems');
-                    //->call('GET', 'dashboard/systems');
+        //->get('dashboard/systems');
+        //->call('GET', 'dashboard/systems');
         $response->assertStatus(200);
         $this->assertContains('Settings', $response->baseResponse->content());
     }

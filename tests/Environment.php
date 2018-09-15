@@ -11,9 +11,9 @@ use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 /**
  * Trait Environment.
@@ -110,7 +110,7 @@ trait Environment
             'http_only' => true,
             'same_site' => null,
         ]);
-        
+
         $app['config']->set('breadcrumbs', [
             'view' => 'breadcrumbs::bootstrap4',
             'files' => base_path('routes/breadcrumbs.php'),
@@ -120,7 +120,6 @@ trait Environment
             'manager-class'                            => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
             'generator-class'                          => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
         ]);
-        
     }
 
     /**
