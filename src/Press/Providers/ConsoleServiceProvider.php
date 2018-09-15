@@ -25,6 +25,10 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (!$this->app->runningInConsole()) {
+            return;
+        }
+
         foreach ($this->commands as $command) {
             $this->commands($command);
         }

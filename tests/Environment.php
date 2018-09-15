@@ -94,11 +94,6 @@ trait Environment
                 'reserved'           => null,
                 'onUpdate'           => false,
         ]);
-
-        $app->make(\Orchid\Platform\Dashboard::class)->registerEntities([
-            //DemoTestPost::class,
-            //DemoTestPage::class,
-        ]);
     }
 
     /**

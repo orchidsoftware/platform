@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Commands\MakeRows;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Commands\MakeChart;
-use Orchid\Platform\Commands\MakeTable;
-use Orchid\Platform\Commands\MakeFilter;
-use Orchid\Platform\Commands\MakeScreen;
-use Orchid\Platform\Commands\MakeWidget;
-use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\PublicLinkCommand;
 use Orchid\Platform\Commands\CreateAdminCommand;
+use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\MakeChart;
+use Orchid\Platform\Commands\MakeFilter;
+use Orchid\Platform\Commands\MakeRows;
+use Orchid\Platform\Commands\MakeScreen;
+use Orchid\Platform\Commands\MakeTable;
+use Orchid\Platform\Commands\MakeWidget;
+use Orchid\Platform\Commands\PublicLinkCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -39,6 +39,10 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (!$this->app->runningInConsole()) {
+            return;
+        }
+
         foreach ($this->commands as $command) {
             $this->commands($command);
         }
