@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 /**
  * Trait Environment.
@@ -92,6 +93,34 @@ trait Environment
                 'reserved'           => null,
                 'onUpdate'           => false,
         ]);
+        $app['config']->set('session', [
+            'driver' => 'file',
+            'lifetime' => 10,
+            'expire_on_close' => false,
+            'encrypt' => false,
+            'files' => storage_path('framework/sessions'),
+            'connection' => null,
+            'table' => 'sessions',
+            'store' => null,
+            'lottery' => [2, 100],
+            'cookie' => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
+            'path' => '/',
+            'domain' => null,
+            'secure' => false,
+            'http_only' => true,
+            'same_site' => null,
+        ]);
+        
+        $app['config']->set('breadcrumbs', [
+            'view' => 'breadcrumbs::bootstrap4',
+            'files' => base_path('routes/breadcrumbs.php'),
+            'unnamed-route-exception'                  => false,
+            'missing-route-bound-breadcrumb-exception' => false,
+            'invalid-named-breadcrumb-exception'       => false,
+            'manager-class'                            => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
+            'generator-class'                          => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
+        ]);
+        
     }
 
     /**
@@ -118,6 +147,7 @@ trait Environment
         return [
             'Alert'     => Alert::class,
             'Active'    => Active::class,
+            'Breadcrumbs' => Breadcrumbs::class,
             'Dashboard' => Dashboard::class,
             'Image'     => Image::class,
         ];
