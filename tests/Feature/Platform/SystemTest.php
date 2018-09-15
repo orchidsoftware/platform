@@ -14,33 +14,23 @@ class SystemTest extends TestFeatureCase
      */
     private $user;
 
-    /**
-     *
-     */
     private function getUser()
     {
-        if ($this->user){
+        if ($this->user) {
             return $this->user;
-        };
+        }
 
         $this->user = factory(User::class)->create();
 
         return $this->user;
     }
 
-
-    /**
-     *
-     */
     public function testSystemPage()
     {
-        $response =  $this->actingAs($this->getUser())
+        $response = $this->actingAs($this->getUser())
             ->call('GET', 'dashboard/systems');
-
-
 
         //check
         //$response->assertOk();
     }
-
 }
