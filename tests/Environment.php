@@ -10,8 +10,6 @@ use Orchid\Support\Facades\Alert;
 use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
-use Orchid\Tests\Entities\DemoTestPage;
-use Orchid\Tests\Entities\DemoTestPost;
 use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
