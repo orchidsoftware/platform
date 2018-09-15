@@ -34,6 +34,7 @@
         <env name="APP_DEBUG" value="true"/>
         <env name="APP_URL" value="http://127.0.0.1:8000"/>
         <env name="DASHBOARD_DOMAIN" value="localhost"/>
+        <env name="DASHBOARD_PREFIX" value="/dashboard"/>
         <env name="CACHE_DRIVER" value="file"/>
         <env name="SESSION_DRIVER" value="file"/>
         <env name="SESSION_LIFETIME" value="120"/>

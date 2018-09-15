@@ -21,6 +21,7 @@ $factory->define(User::class, function (Faker $faker) {
         'admin' => [
             'platform.index'                => 1,
             'platform.systems'              => 1,
+            'platform.systems.index'        => 1,
             'platform.systems.roles'        => 1,
             'platform.systems.settings'     => 1,
             'platform.systems.users'        => 1,
@@ -29,10 +30,14 @@ $factory->define(User::class, function (Faker $faker) {
             'platform.systems.comment'      => 1,
             'platform.systems.attachment'   => 1,
             'platform.systems.media'        => 1,
+            'platform.systems.cache'        => 1,
             'platform.pages'                => 1,
             'platform.pages.type.demo-page' => 1,
             'platform.posts'                => 1,
             'platform.posts.type.demo'      => 1,
+            'platform.posts.type.demo-page' => 1,
+            'platform.bulldozer'            => 1,
+            'platform.savior.backups'       => 1,
         ],
         'user'  => [
             'platform.index'                => 1,
@@ -74,6 +79,6 @@ $factory->define(User::class, function (Faker $faker) {
         'password'       => $password ?: bcrypt('secret'),
         'remember_token' => str_random(10),
         'last_login'     => $faker->dateTimeBetween('-6 days', 'this week'),
-        'permissions'    => $roles['author'],
+        'permissions'    => $roles['admin'],
     ];
 });

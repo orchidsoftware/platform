@@ -80,7 +80,8 @@
       "database/factories"
     ],
     "psr-4": {
-      "Orchid\\Tests\\": "tests/"
+      "Orchid\\Tests\\": "tests/",
+      "App\\": "example/"
     }
   },
   "extra": {

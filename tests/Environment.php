@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
+use Orchid\Savior\Providers\SaviorServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
@@ -133,6 +134,7 @@ trait Environment
             FoundationServiceProvider::class,
             PressServiceProvider::class,
             BulldozerServiceProvider::class,
+            SaviorServiceProvider::class,
         ];
     }
 
@@ -144,11 +146,11 @@ trait Environment
     protected function getPackageAliases($app)
     {
         return [
-            'Alert'     => Alert::class,
-            'Active'    => Active::class,
-            'Breadcrumbs' => Breadcrumbs::class,
-            'Dashboard' => Dashboard::class,
-            'Image'     => Image::class,
+            'Alert'         => Alert::class,
+            'Active'        => Active::class,
+            'Breadcrumbs'   => Breadcrumbs::class,
+            'Dashboard'     => Dashboard::class,
+            'Image'         => Image::class,
         ];
     }
 }
