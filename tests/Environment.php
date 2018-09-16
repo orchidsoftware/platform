@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use Watson\Active\Active;
-use Orchid\Platform\Models\User;
-use Orchid\Support\Facades\Alert;
-use Intervention\Image\Facades\Image;
-use Orchid\Support\Facades\Dashboard;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Support\Facades\Schema;
+use Intervention\Image\Facades\Image;
+use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
+use Orchid\Platform\Models\User;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Savior\Providers\SaviorServiceProvider;
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Dashboard;
+use Watson\Active\Active;
 
 /**
  * Trait Environment.
@@ -51,7 +51,7 @@ trait Environment
 
         $this->artisan('orchid:link');
 
-        $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
+        $this->withFactories(realpath(PLATFORM_PATH . '/database/factories'));
 
         $this->artisan('db:seed', [
             '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
@@ -83,38 +83,38 @@ trait Environment
         $app['config']->set('activitylog.enabled', false);
 
         $app['config']->set('sluggable', [
-                'source'             => null,
-                'maxLength'          => null,
-                'maxLengthKeepWords' => true,
-                'method'             => null,
-                'separator'          => '-',
-                'unique'             => true,
-                'uniqueSuffix'       => null,
-                'includeTrashed'     => false,
-                'reserved'           => null,
-                'onUpdate'           => false,
+            'source'             => null,
+            'maxLength'          => null,
+            'maxLengthKeepWords' => true,
+            'method'             => null,
+            'separator'          => '-',
+            'unique'             => true,
+            'uniqueSuffix'       => null,
+            'includeTrashed'     => false,
+            'reserved'           => null,
+            'onUpdate'           => false,
         ]);
         $app['config']->set('session', [
-            'driver' => 'file',
-            'lifetime' => 10,
+            'driver'          => 'file',
+            'lifetime'        => 10,
             'expire_on_close' => false,
-            'encrypt' => false,
-            'files' => storage_path('framework/sessions'),
-            'connection' => null,
-            'table' => 'sessions',
-            'store' => null,
-            'lottery' => [2, 100],
-            'cookie' => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
-            'path' => '/',
-            'domain' => null,
-            'secure' => false,
-            'http_only' => true,
-            'same_site' => null,
+            'encrypt'         => false,
+            'files'           => storage_path('framework/sessions'),
+            'connection'      => null,
+            'table'           => 'sessions',
+            'store'           => null,
+            'lottery'         => [2, 100],
+            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_') . '_session',
+            'path'            => '/',
+            'domain'          => null,
+            'secure'          => false,
+            'http_only'       => true,
+            'same_site'       => null,
         ]);
 
         $app['config']->set('breadcrumbs', [
-            'view' => 'breadcrumbs::bootstrap4',
-            'files' => base_path('routes/breadcrumbs.php'),
+            'view'                                     => 'breadcrumbs::bootstrap4',
+            'files'                                    => base_path('routes/breadcrumbs.php'),
             'unnamed-route-exception'                  => false,
             'missing-route-bound-breadcrumb-exception' => false,
             'invalid-named-breadcrumb-exception'       => false,
@@ -146,11 +146,11 @@ trait Environment
     protected function getPackageAliases($app)
     {
         return [
-            'Alert'         => Alert::class,
-            'Active'        => Active::class,
-            'Breadcrumbs'   => Breadcrumbs::class,
-            'Dashboard'     => Dashboard::class,
-            'Image'         => Image::class,
+            'Alert'       => Alert::class,
+            'Active'      => Active::class,
+            'Breadcrumbs' => Breadcrumbs::class,
+            'Dashboard'   => Dashboard::class,
+            'Image'       => Image::class,
         ];
     }
 }

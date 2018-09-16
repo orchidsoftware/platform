@@ -43,7 +43,7 @@ class SystemTest extends TestFeatureCase
     public function test_route_PlatformSystemsIndex()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.index'));
+            ->get(route('platform.systems.index'));
         //->get('dashboard/systems');
         //->call('GET', 'dashboard/systems');
 
@@ -54,7 +54,7 @@ class SystemTest extends TestFeatureCase
     public function test_route_PlatformSystemsMenuIndex()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.menu.index'));
+            ->get(route('platform.systems.menu.index'));
         //dump($response->baseResponse->content());
         $response->assertStatus(302);
         $response->assertRedirect('/dashboard/press/menu/header');
@@ -64,7 +64,7 @@ class SystemTest extends TestFeatureCase
     public function test_route_PlatformSystemsMenuShow()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.menu.show', 'header'));
+            ->get(route('platform.systems.menu.show', 'header'));
         $response->assertStatus(200);
         $this->assertContains('data-controller="components--menu"', $response->baseResponse->content());
     }
@@ -72,7 +72,7 @@ class SystemTest extends TestFeatureCase
     public function test_route_PlatformSystemsMediaIndex()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.media.index'));
+            ->get(route('platform.systems.media.index'));
         $response->assertStatus(200);
         $this->assertContains('id="filemanager"', $response->baseResponse->content());
     }

@@ -15,6 +15,15 @@ class DashboardTest extends TestFeatureCase
      */
     private $user;
 
+    public function test_route_DashboardIndex()
+    {
+        $response = $this->actingAs($this->getUser())
+            ->get(route('platform.index'));
+
+        $response->assertStatus(200);
+        $this->assertContains('Dashboard Panel', $response->baseResponse->content());
+    }
+
     private function getUser()
     {
         if ($this->user) {
@@ -23,15 +32,6 @@ class DashboardTest extends TestFeatureCase
         $this->user = factory(User::class)->create();
 
         return $this->user;
-    }
-
-    public function test_route_DashboardIndex()
-    {
-        $response = $this->actingAs($this->getUser())
-                    ->get(route('platform.index'));
-
-        $response->assertStatus(200);
-        $this->assertContains('Dashboard Panel', $response->baseResponse->content());
     }
 
     public function test_route_DashboardIndex_not_user()

@@ -32,7 +32,7 @@ class RoleTest extends TestFeatureCase
     public function test_route_SystemsRoles()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.roles'));
+            ->get(route('platform.systems.roles'));
         $response->assertStatus(200);
         $this->assertContains($this->role->name, $response->baseResponse->content());
         $this->assertContains($this->role->slug, $response->baseResponse->content());
@@ -41,7 +41,7 @@ class RoleTest extends TestFeatureCase
     public function test_route_SystemsRolesCreate()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.roles.create'));
+            ->get(route('platform.systems.roles.create'));
         $response->assertStatus(200);
         $this->assertContains('field--roleslug', $response->baseResponse->content());
     }
@@ -49,7 +49,7 @@ class RoleTest extends TestFeatureCase
     public function test_route_SystemsRolesEdit()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.roles.edit', $this->role->slug));
+            ->get(route('platform.systems.roles.edit', $this->role->slug));
         $response->assertStatus(200);
         $this->assertContains('field--roleslug', $response->baseResponse->content());
         $this->assertContains($this->role->name, $response->baseResponse->content());

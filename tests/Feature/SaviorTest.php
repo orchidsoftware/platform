@@ -27,14 +27,14 @@ class SaviorTest extends TestFeatureCase
     public function test_route_SaviorBackups()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.savior.backups'));
+            ->get(route('platform.savior.backups'));
         $response->assertStatus(200);
     }
 
     public function test_route_SaviorBackups_method_runBackup()
     {
         $response = $this->actingAs($this->user)
-                    ->post(route('platform.savior.backups', 'runBackup'));
+            ->post(route('platform.savior.backups', 'runBackup'));
         //dump($response);
         $response->assertStatus(302);
     }

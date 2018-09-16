@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Press;
 
 use Illuminate\Support\Arr;
-use Orchid\Press\Models\Page;
+use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Post;
+use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Models\Term;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Platform\Models\User;
-//use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
-use Orchid\Press\Models\Taxonomy;
+//use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 class PostTest extends TestUnitCase
 {
@@ -90,6 +89,26 @@ class PostTest extends TestUnitCase
     }
 
     /**
+     * @return Post
+     */
+    private function createPostWithTaxonomiesAndTerms()
+    {
+        $post = factory(Post::class)->create();
+        $post->taxonomies()->attach(
+            factory(Taxonomy::class)->create([
+                'taxonomy' => 'foo',
+                'term_id'  => function () {
+                    return factory(Term::class)->create([
+                        'slug' => 'test',
+                    ])->id;
+                },
+            ])
+        );
+
+        return $post;
+    }
+
+    /**
      * @test
      */
     public function it_can_have_different_post_type()
@@ -104,14 +123,14 @@ class PostTest extends TestUnitCase
     public function it_can_accept_unicode_chars()
     {
         $post = factory(Post::class)->create([
-            'content' =>  [
-                    'en' => [
-                        'title'       => 'English characters',
-                    ],
-                    'ru' => [
-                        'title'       => 'Русские символы',
-                    ],
+            'content' => [
+                'en' => [
+                    'title' => 'English characters',
                 ],
+                'ru' => [
+                    'title' => 'Русские символы',
+                ],
+            ],
         ]);
         $this->assertEquals('English characters', $post->content['en']['title']);
         $this->assertEquals('Русские символы', $post->content['ru']['title']);
@@ -263,6 +282,17 @@ class PostTest extends TestUnitCase
     }
 
     /**
+     * @return Post
+     */
+    private function createPostWithAuthor()
+    {
+        $post = factory(Post::class)->create();
+        $post->author()->associate(User::get()->first());
+
+        return $post;
+    }
+
+    /**
      * @test
      */
     public function it_can_have_author_getUser()
@@ -272,36 +302,5 @@ class PostTest extends TestUnitCase
 
         $this->assertEquals($user->name, $post->getUser()->name);
         $this->assertEquals($user->email, $post->getUser()->email);
-    }
-
-    /**
-     * @return Post
-     */
-    private function createPostWithTaxonomiesAndTerms()
-    {
-        $post = factory(Post::class)->create();
-        $post->taxonomies()->attach(
-            factory(Taxonomy::class)->create([
-                'taxonomy' => 'foo',
-                'term_id' => function () {
-                    return factory(Term::class)->create([
-                            'slug' => 'test',
-                        ])->id;
-                },
-            ])
-        );
-
-        return $post;
-    }
-
-    /**
-     * @return Post
-     */
-    private function createPostWithAuthor()
-    {
-        $post = factory(Post::class)->create();
-        $post->author()->associate(User::get()->first());
-
-        return $post;
     }
 }

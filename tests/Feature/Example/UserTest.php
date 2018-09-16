@@ -28,7 +28,7 @@ class UserTest extends TestFeatureCase
     public function test_route_SystemsUsers()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.users'));
+            ->get(route('platform.systems.users'));
         $response->assertStatus(200);
         $this->assertContains($this->user->name, $response->baseResponse->content());
         $this->assertContains($this->user->email, $response->baseResponse->content());
@@ -37,7 +37,7 @@ class UserTest extends TestFeatureCase
     public function test_route_SystemsUsersCreate()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.users.create'));
+            ->get(route('platform.systems.users.create'));
         $response->assertStatus(200);
         $this->assertContains('field--username', $response->baseResponse->content());
     }
@@ -45,7 +45,7 @@ class UserTest extends TestFeatureCase
     public function test_route_SystemsUsersEdit()
     {
         $response = $this->actingAs($this->user)
-                    ->get(route('platform.systems.users.edit', $this->user->id));
+            ->get(route('platform.systems.users.edit', $this->user->id));
         $response->assertStatus(200);
         $this->assertContains($this->user->name, $response->baseResponse->content());
         $this->assertContains($this->user->email, $response->baseResponse->content());
@@ -54,7 +54,7 @@ class UserTest extends TestFeatureCase
     public function test_route_SystemsUsersEdit_remove()
     {
         $response = $this->actingAs($this->user)
-                    ->post(route('platform.systems.users.edit', [$this->user->id, 'remove']));
+            ->post(route('platform.systems.users.edit', [$this->user->id, 'remove']));
 
         $response->assertStatus(302);
         $response->assertRedirect('/dashboard/users');

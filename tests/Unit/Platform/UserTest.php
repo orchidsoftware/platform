@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Platform;
 
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 class UserTest extends TestUnitCase
 {
@@ -31,6 +31,14 @@ class UserTest extends TestUnitCase
     }
 
     /**
+     * @return \Illuminate\Support\Collection
+     */
+    private function createUser()
+    {
+        return factory(User::class)->create();
+    }
+
+    /**
      * @test
      */
     public function it_can_get_sub_title()
@@ -38,13 +46,5 @@ class UserTest extends TestUnitCase
         $user = $this->createUser();
 
         $this->assertEquals('Administrator', $user->getSubTitle());
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    private function createUser()
-    {
-        return factory(User::class)->create();
     }
 }

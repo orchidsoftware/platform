@@ -35,19 +35,6 @@ class MenuTest extends TestUnitCase
     }
 
     /**
-     * @test
-     */
-    public function it_can_query_menu_parent()
-    {
-        $this->createMenuWithChildren();
-        $menu = Menu::where('parent', 0)->get()->first();
-        $menu_child = $menu->children()->first();
-
-        $this->assertInstanceOf(Menu::class, $menu_child->parent()->first());
-        $this->assertEquals($menu->id, $menu_child->parent()->first()->id);
-    }
-
-    /**
      * @return \Illuminate\Support\Collection
      */
     private function createMenuWithChildren()
@@ -58,12 +45,25 @@ class MenuTest extends TestUnitCase
 
         for ($i = 1; $i <= 3; $i++) {
             $menus[] = factory(Menu::class)->create([
-                    'type' => 'header',
-                    'parent' => $menu->id,
-                    'sort'   => 3 - $i,
-                ]);
+                'type'   => 'header',
+                'parent' => $menu->id,
+                'sort'   => 3 - $i,
+            ]);
         }
 
         return $menus;
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_query_menu_parent()
+    {
+        $this->createMenuWithChildren();
+        $menu = Menu::where('parent', 0)->get()->first();
+        $menu_child = $menu->children()->first();
+
+        $this->assertInstanceOf(Menu::class, $menu_child->parent()->first());
+        $this->assertEquals($menu->id, $menu_child->parent()->first()->id);
     }
 }

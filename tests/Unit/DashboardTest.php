@@ -5,26 +5,14 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class DashboardTest.
  */
 class DashboardTest extends TestUnitCase
 {
-    protected function setUp()
-    {
-        parent::setUp();
-        Dashboard::configure([]);
-    }
-
-    protected function tearDown()
-    {
-        parent::tearDown();
-        Dashboard::configure([]);
-    }
-
     public function testIsModelDefault()
     {
         $class = Dashboard::modelClass('UnknownClass', User::class);
@@ -54,5 +42,17 @@ class DashboardTest extends TestUnitCase
         $class = Dashboard::model(User::class);
 
         $this->assertEquals($class, 'MyCustomClass');
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        Dashboard::configure([]);
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        Dashboard::configure([]);
     }
 }

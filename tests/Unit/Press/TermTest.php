@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Press;
 
+use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Models\Term;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Press\Models\Taxonomy;
 
 class TermTest extends TestUnitCase
 {
@@ -24,15 +24,6 @@ class TermTest extends TestUnitCase
     }
 
     /**
-     * @test
-     */
-    public function it_is_correct_routekeyname()
-    {
-        $term = $this->createTermWithTaxonomy();
-        $this->assertEquals('slug', $term->getRouteKeyName());
-    }
-
-    /**
      * @return Term
      */
     private function createTermWithTaxonomy()
@@ -41,5 +32,14 @@ class TermTest extends TestUnitCase
         $term->taxonomy()->save(factory(Taxonomy::class)->make());
 
         return $term;
+    }
+
+    /**
+     * @test
+     */
+    public function it_is_correct_routekeyname()
+    {
+        $term = $this->createTermWithTaxonomy();
+        $this->assertEquals('slug', $term->getRouteKeyName());
     }
 }

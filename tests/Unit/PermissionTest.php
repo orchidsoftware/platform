@@ -5,15 +5,39 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class PermissionTest.
  */
 class PermissionTest extends TestUnitCase
 {
+    /**
+     * Verify permissions.
+     */
+    public function testIsPermission()
+    {
+        $user = $this->createUser();
+
+        // User permissions
+        $this->assertEquals($user->hasAccess('access.to.public.data'), true);
+        $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
+        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
+
+        $role = $this->createRole();
+        $user->addRole($role);
+
+        // User of role
+        $this->assertEquals($user->getRoles()->count(), 1);
+        $this->assertEquals($role->getUsers()->count(), 1);
+        $this->assertEquals($user->inRole('admin'), true);
+
+        // Role permissions
+        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
+    }
+
     /**
      * @return $this|\Illuminate\Database\Eloquent\Model
      */
@@ -47,30 +71,6 @@ class PermissionTest extends TestUnitCase
                 'access.roles.to.secret.data' => 0,
             ],
         ]);
-    }
-
-    /**
-     * Verify permissions.
-     */
-    public function testIsPermission()
-    {
-        $user = $this->createUser();
-
-        // User permissions
-        $this->assertEquals($user->hasAccess('access.to.public.data'), true);
-        $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
-
-        $role = $this->createRole();
-        $user->addRole($role);
-
-        // User of role
-        $this->assertEquals($user->getRoles()->count(), 1);
-        $this->assertEquals($role->getUsers()->count(), 1);
-        $this->assertEquals($user->inRole('admin'), true);
-
-        // Role permissions
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
     }
 
     /**

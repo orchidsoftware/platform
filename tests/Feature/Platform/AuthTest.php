@@ -15,16 +15,6 @@ class AuthTest extends TestFeatureCase
      */
     private $user;
 
-    private function getUser()
-    {
-        if ($this->user) {
-            return $this->user;
-        }
-        $this->user = factory(User::class)->create();
-
-        return $this->user;
-    }
-
     public function test_route_DashboardLogin()
     {
         $response = $this->get(route('platform.login'));
@@ -37,10 +27,20 @@ class AuthTest extends TestFeatureCase
     public function test_route_DashboardLogin_auth()
     {
         $response = $this->actingAs($this->getUser())
-                    ->get(route('platform.login'));
+            ->get(route('platform.login'));
 
         $response->assertStatus(302);
         $response->assertRedirect('/home');
+    }
+
+    private function getUser()
+    {
+        if ($this->user) {
+            return $this->user;
+        }
+        $this->user = factory(User::class)->create();
+
+        return $this->user;
     }
 
     public function test_route_DashboardPasswordRequest()
@@ -65,7 +65,7 @@ class AuthTest extends TestFeatureCase
     public function test_route_DashboardPasswordReset_auth()
     {
         $response = $this->actingAs($this->getUser())
-                    ->get(route('platform.password.reset', '11111'));
+            ->get(route('platform.password.reset', '11111'));
 
         $response->assertStatus(302);
         $response->assertRedirect('/home');

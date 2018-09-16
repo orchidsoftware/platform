@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Alert\Alert;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Alert\SessionStoreInterface;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class AlertTest.
@@ -26,9 +26,9 @@ class AlertTest extends TestUnitCase
     public function it_should_flash_an_info_alert_to_the_session()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-                $this->equalTo('flash_notification.message'),
-                $this->equalTo('test'),
-            ], [$this->equalTo('flash_notification.level'), $this->equalTo('info')]);
+            $this->equalTo('flash_notification.message'),
+            $this->equalTo('test'),
+        ], [$this->equalTo('flash_notification.level'), $this->equalTo('info')]);
 
         $this->alert->info('test');
     }
@@ -37,9 +37,9 @@ class AlertTest extends TestUnitCase
     public function it_should_flash_a_success_alert_to_the_session()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-                $this->equalTo('flash_notification.message'),
-                $this->equalTo('test'),
-            ], [$this->equalTo('flash_notification.level'), $this->equalTo('success')]);
+            $this->equalTo('flash_notification.message'),
+            $this->equalTo('test'),
+        ], [$this->equalTo('flash_notification.level'), $this->equalTo('success')]);
 
         $this->alert->success('test');
     }
@@ -48,9 +48,9 @@ class AlertTest extends TestUnitCase
     public function it_should_flash_a_error_alert_to_the_session()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-                $this->equalTo('flash_notification.message'),
-                $this->equalTo('test'),
-            ], [$this->equalTo('flash_notification.level'), $this->equalTo('danger')]);
+            $this->equalTo('flash_notification.message'),
+            $this->equalTo('test'),
+        ], [$this->equalTo('flash_notification.level'), $this->equalTo('danger')]);
 
         $this->alert->error('test');
     }
@@ -59,9 +59,9 @@ class AlertTest extends TestUnitCase
     public function it_should_flash_a_warning_alert_to_the_session()
     {
         $this->store->expects($this->exactly(2))->method('flash')->withConsecutive([
-                $this->equalTo('flash_notification.message'),
-                $this->equalTo('test'),
-            ], [$this->equalTo('flash_notification.level'), $this->equalTo('warning')]);
+            $this->equalTo('flash_notification.message'),
+            $this->equalTo('test'),
+        ], [$this->equalTo('flash_notification.level'), $this->equalTo('warning')]);
 
         $this->alert->warning('test');
     }

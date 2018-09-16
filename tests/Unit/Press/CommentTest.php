@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Press\Models\Post;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
+use Orchid\Tests\TestUnitCase;
 
 class CommentTest extends TestUnitCase
 {
@@ -56,6 +56,23 @@ class CommentTest extends TestUnitCase
     }
 
     /**
+     * @return Post
+     */
+    private function createPostWithComments()
+    {
+        $post = factory(Post::class)->create();
+
+        $post->comments()->saveMany([
+            factory(Comment::class)->make(['approved' => true]),
+            factory(Comment::class)->make(['approved' => true]),
+            factory(Comment::class)->make(['approved' => false]),
+            factory(Comment::class)->make(['approved' => false]),
+        ]);
+
+        return $post;
+    }
+
+    /**
      * @test
      */
     public function it_is_all_approved()
@@ -78,6 +95,21 @@ class CommentTest extends TestUnitCase
         $this->assertInstanceOf(Comment::class, $comment->replies->first());
         $this->assertInternalType('boolean', $comment->replies->first()->isReply());
         $this->assertTrue($comment->replies->first()->isReply());
+    }
+
+    /**
+     * @return Comment
+     */
+    private function createCommentWithReplies()
+    {
+        $comment = factory(Comment::class)->create();
+        $comment->replies()->saveMany([
+            factory(Comment::class)->make(),
+            factory(Comment::class)->make(),
+            factory(Comment::class)->make(),
+        ]);
+
+        return $comment;
     }
 
     /**
@@ -116,37 +148,5 @@ class CommentTest extends TestUnitCase
         $this->assertInstanceOf(User::class, $comment->author);
         $this->assertEquals($user->id, $comment->author->id);
         $this->assertEquals($user->id, $comment->user_id);
-    }
-
-    /**
-     * @return Post
-     */
-    private function createPostWithComments()
-    {
-        $post = factory(Post::class)->create();
-
-        $post->comments()->saveMany([
-            factory(Comment::class)->make(['approved' => true]),
-            factory(Comment::class)->make(['approved' => true]),
-            factory(Comment::class)->make(['approved' => false]),
-            factory(Comment::class)->make(['approved' => false]),
-        ]);
-
-        return $post;
-    }
-
-    /**
-     * @return Comment
-     */
-    private function createCommentWithReplies()
-    {
-        $comment = factory(Comment::class)->create();
-        $comment->replies()->saveMany([
-            factory(Comment::class)->make(),
-            factory(Comment::class)->make(),
-            factory(Comment::class)->make(),
-        ]);
-
-        return $comment;
     }
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Press;
 
 use Orchid\Press\Models\Post;
+use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Models\Term;
 use Orchid\Tests\TestUnitCase;
-use Orchid\Press\Models\Taxonomy;
 
 class TaxonomyTest extends TestUnitCase
 {
@@ -41,6 +41,26 @@ class TaxonomyTest extends TestUnitCase
             $this->assertNotNull($taxonomy->term_id);
             $this->assertEquals($taxonomy->term_id, $taxonomy->term->id);
         }
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    private function createTaxonomyWithTerms()
+    {
+        $taxonomy = factory(Taxonomy::class)->create([
+            'taxonomy' => 'foo',
+            'term_id'  => function () {
+                return factory(Term::class)->create([
+                    'slug' => 'test',
+                ])->id;
+            },
+        ]);
+        /*
+        $post = factory(Post::class)->create();
+        $post->taxonomies()->attach($taxonomy->id);
+        */
+        return $taxonomy;
     }
 
     /**
@@ -97,6 +117,33 @@ class TaxonomyTest extends TestUnitCase
     }
 
     /**
+     * @return \Illuminate\Support\Collection
+     */
+    private function createTaxonomyWithChildren()
+    {
+        $taxonomy = factory(Taxonomy::class)->create([
+            'taxonomy' => 'foo',
+            'term_id'  => function () {
+                return factory(Term::class)->create()->id;
+            },
+        ]);
+
+        $taxonomys[] = $taxonomy;
+
+        for ($i = 1; $i <= 3; $i++) {
+            $taxonomys[] = factory(Taxonomy::class)->create([
+                'taxonomy'  => 'foo',
+                'parent_id' => $taxonomy->id,
+                'term_id'   => function () {
+                    return factory(Term::class)->create()->id;
+                },
+            ]);
+        }
+
+        return $taxonomys;
+    }
+
+    /**
      * @test
      */
     public function it_can_query_taxonomy_parent()
@@ -107,52 +154,5 @@ class TaxonomyTest extends TestUnitCase
 
         $this->assertInstanceOf(Taxonomy::class, $taxonomy_children->parentTerm()->first());
         $this->assertEquals($taxonomy->id, $taxonomy_children->parentTerm()->first()->id);
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    private function createTaxonomyWithTerms()
-    {
-        $taxonomy = factory(Taxonomy::class)->create([
-            'taxonomy' => 'foo',
-            'term_id' => function () {
-                return factory(Term::class)->create([
-                    'slug' => 'test',
-                ])->id;
-            },
-        ]);
-        /*
-        $post = factory(Post::class)->create();
-        $post->taxonomies()->attach($taxonomy->id);
-        */
-        return $taxonomy;
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    private function createTaxonomyWithChildren()
-    {
-        $taxonomy = factory(Taxonomy::class)->create([
-            'taxonomy' => 'foo',
-            'term_id' => function () {
-                return factory(Term::class)->create()->id;
-            },
-        ]);
-
-        $taxonomys[] = $taxonomy;
-
-        for ($i = 1; $i <= 3; $i++) {
-            $taxonomys[] = factory(Taxonomy::class)->create([
-                'taxonomy' => 'foo',
-                'parent_id' => $taxonomy->id,
-                'term_id' => function () {
-                    return factory(Term::class)->create()->id;
-                },
-            ]);
-        }
-
-        return $taxonomys;
     }
 }
