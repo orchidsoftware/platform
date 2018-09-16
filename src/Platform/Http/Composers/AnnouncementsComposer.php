@@ -18,7 +18,6 @@ class AnnouncementsComposer
         $announcement = Dashboard::modelClass(Announcement::class)
             ->first();
 
-
         $view->with('announcement', $announcement);
     }
 }
