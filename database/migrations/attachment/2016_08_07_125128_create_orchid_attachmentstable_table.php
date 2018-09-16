@@ -24,7 +24,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->text('alt')->nullable();
             $table->text('hash')->nullable();
             $table->string('disk')->default('public');
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('group')->nullable();
             $table->timestamps();
         });
@@ -32,8 +32,8 @@ class CreateOrchidAttachmentstableTable extends Migration
         Schema::create('attachmentable', function (Blueprint $table) {
             $table->increments('id');
             $table->string('attachmentable_type');
-            $table->integer('attachmentable_id')->unsigned();
-            $table->integer('attachment_id')->unsigned();
+            $table->unsignedInteger('attachmentable_id');
+            $table->unsignedInteger('attachment_id');
 
             $table->index(['attachmentable_type', 'attachmentable_id']);
 

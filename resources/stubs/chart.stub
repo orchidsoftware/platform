@@ -10,7 +10,7 @@ class DummyClass extends Chart
     /**
      * @var string
      */
-    public $title = 'DummyClass';
+    public $title = 'Super Chart';
 
     /**
      * @var int

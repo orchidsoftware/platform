@@ -14,8 +14,8 @@ class CreateOrchidTagsTable extends Migration
         Schema::create('tagged', function (Blueprint $table) {
             $table->increments('id');
             $table->string('taggable_type');
-            $table->integer('taggable_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
+            $table->unsignedInteger('taggable_id');
+            $table->unsignedInteger('tag_id');
             $table->engine = 'InnoDB';
             $table->index(['taggable_type', 'taggable_id']);
         });
@@ -24,7 +24,7 @@ class CreateOrchidTagsTable extends Migration
             $table->string('namespace');
             $table->string('slug');
             $table->string('name');
-            $table->integer('count')->default(0)->unsigned();
+            $table->unsignedInteger('count')->default(0);
             $table->engine = 'InnoDB';
         });
     }

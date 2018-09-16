@@ -5,6 +5,9 @@
 
     <div class="app" id="app" data-controller="@yield('controller')">
         <div class="app-header">
+
+            @include('platform::partials.announcement')
+
             <div class="header py-4 bg-white b-b">
                 <div class="container">
                     <div class="d-flex v-center">
@@ -42,26 +45,10 @@
                         </a>
 
                         <div class="d-flex order-lg-2 ml-auto">
-                            <div class="dropdown d-none d-md-flex">
 
-                                @php
-                                    $notifications = Auth::user()
-                                                        ->unreadNotifications
-                                                        ->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
-                                @endphp
 
-                                <a class="nav-link icon" data-toggle="dropdown">
-                                    <i class="icon-bell"></i>
-                                    @if(count($notifications) > 0)
-                                        <span class="badge badge-sm up bg-danger pull-right-xs text-white">
-                                            {{ count($notifications) > 9 ? count($notifications) : '+'}}
-                                        </span>
-                                    @endif
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    @include('platform::partials.notifications',['notifications' => $notifications])
-                                </div>
-                            </div>
+                            @include('platform::partials.notifications')
+
                             <div class="dropdown">
                                 <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                                     <span class="thumb-xs avatar pull-right m-t-n-sm m-b-n-sm m-r-xs">

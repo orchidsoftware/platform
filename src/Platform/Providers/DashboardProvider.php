@@ -7,6 +7,8 @@ namespace Orchid\Platform\Providers;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Http\Composers\AnnouncementsComposer;
+use Orchid\Platform\Http\Composers\NotificationsComposer;
 use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class DashboardProvider extends ServiceProvider
@@ -26,6 +28,8 @@ class DashboardProvider extends ServiceProvider
         $this->dashboard = $dashboard;
 
         View::composer('platform::container.systems.index', SystemMenuComposer::class);
+        View::composer('platform::partials.notifications', NotificationsComposer::class);
+        View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
         $this->dashboard
             ->registerResource(config('platform.resource', []))

@@ -49,7 +49,7 @@
               action="{{route('platform.posts.type.store',['type' => $type->slug])}}" enctype="multipart/form-data">
         @if(count($type->fields()) > 0)
             <!-- column -->
-                <div class="hbox-col lter b-r">
+                <div class="hbox-col lter">
                     <div class="vbox">
                         <div class="card wrapper-lg">
                             <div class="tab-content">

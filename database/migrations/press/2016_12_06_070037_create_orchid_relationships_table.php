@@ -12,8 +12,8 @@ class CreateOrchidRelationshipsTable extends Migration
     public function up()
     {
         Schema::create('term_relationships', function (Blueprint $table) {
-            $table->integer('post_id')->unsigned();
-            $table->integer('term_taxonomy_id')->unsigned();
+            $table->unsignedInteger('post_id');
+            $table->unsignedInteger('term_taxonomy_id');
             $table->integer('term_order')->default(0);
             $table->index(['post_id', 'term_taxonomy_id']);
             $table->foreign('post_id')

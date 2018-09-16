@@ -13,7 +13,7 @@ class CreateOrchidPostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('type');
             $table->string('status')->nullable();
             $table->jsonb('content');

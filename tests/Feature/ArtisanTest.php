@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Example;
 
 use Orchid\Tests\TestFeatureCase;
-use Illuminate\Support\Facades\Artisan;
 
 class ArtisanTest extends TestFeatureCase
 {
@@ -15,65 +14,51 @@ class ArtisanTest extends TestFeatureCase
      */
     public function test_artisan_orchid_entity_many()
     {
-        $response = $this->artisan('orchid:entity-many', ['name' => 'DefaultName']);
-
-        //$response = Artisan::call('orchid:entity-many', ['name' => 'DefaultName']);
-        //$resultAsText = Artisan::output();
-
-        //dump($response);
-        $this->assertTrue(true);
+        $this->artisan('orchid:entity-many', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Behavior created successfully.');
     }
 
     public function test_artisan_orchid_entity_single()
     {
-        $response = $this->artisan('orchid:entity-single', ['name' => 'DefaultName']);
-
-        $this->assertTrue(true);
+        $this->artisan('orchid:entity-single', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Behavior created successfully.');
     }
 
-    /*
-       public function test_artisan_orchid_chart()
-       {
-           $response = $this->artisan('orchid:chart',['name' => 'DefaultName']);
 
-           $this->assertTrue(true);
-       }
-     */
+    public function test_artisan_orchid_chart()
+    {
+        $this->artisan('orchid:chart', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Chart created successfully.');
+    }
+
 
     public function test_artisan_orchid_table()
     {
-        $response = $this->artisan('orchid:table', ['name' => 'DefaultName']);
-        //$response = Artisan::call('orchid:chart', ['name' => 'DefaultName']);
-        //$resultAsText = Artisan::output();
-        //dump($resultAsText);
-        $this->assertTrue(true);
+        $this->artisan('orchid:table', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Table created successfully.');
     }
 
     public function test_artisan_orchid_widget()
     {
-        $response = $this->artisan('orchid:widget', ['name' => 'DefaultName']);
-
-        $this->assertTrue(true);
+        $this->artisan('orchid:widget', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Widget created successfully.');
     }
 
     public function test_artisan_orchid_screen()
     {
-        $response = $this->artisan('orchid:screen', ['name' => 'DefaultName']);
-
-        $this->assertTrue(true);
+        $this->artisan('orchid:screen', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Screen created successfully.');
     }
 
     public function test_artisan_orchid_rows()
     {
-        $response = $this->artisan('orchid:rows', ['name' => 'DefaultName']);
-
-        $this->assertTrue(true);
+        $this->artisan('orchid:rows', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Rows created successfully.');
     }
 
     public function test_artisan_orchid_filter()
     {
-        $response = $this->artisan('orchid:filter', ['name' => 'DefaultName']);
-
-        $this->assertTrue(true);
+        $this->artisan('orchid:filter', ['name' => studly_case(__FUNCTION__)])
+            ->expectsOutput('Filter created successfully.');
     }
 }
