@@ -24,13 +24,11 @@ class ArtisanTest extends TestFeatureCase
             ->expectsOutput('Behavior created successfully.');
     }
 
-
     public function test_artisan_orchid_chart()
     {
         $this->artisan('orchid:chart', ['name' => studly_case(__FUNCTION__)])
             ->expectsOutput('Chart created successfully.');
     }
-
 
     public function test_artisan_orchid_table()
     {
