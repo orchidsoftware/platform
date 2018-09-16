@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Models\Term;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Press\Models\Taxonomy;
 
 class TermTest extends TestUnitCase
 {

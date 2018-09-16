@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Alert\Alert;
-use Orchid\Alert\SessionStoreInterface;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Alert\SessionStoreInterface;
 
 /**
  * Class AlertTest.

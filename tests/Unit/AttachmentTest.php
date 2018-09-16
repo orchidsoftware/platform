@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Tests\TestUnitCase;
+use Illuminate\Http\UploadedFile;
 
 /**
  * Class AttachmentTest.
@@ -35,7 +35,7 @@ class AttachmentTest extends TestUnitCase
             'name' => $upload->original_name,
         ]);
 
-        $this->assertContains($upload->name . '.xml', $upload->url());
+        $this->assertContains($upload->name.'.xml', $upload->url());
     }
 
     /**

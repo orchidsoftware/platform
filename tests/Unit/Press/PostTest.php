@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit\Press;
 
 use Illuminate\Support\Arr;
-use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Post;
-use Orchid\Press\Models\Taxonomy;
 use Orchid\Press\Models\Term;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\User;
+use Orchid\Press\Models\Taxonomy;
 
 //use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Tests\TestUnitCase;
 use Orchid\Widget\Widget;
+use Orchid\Tests\TestUnitCase;
 
 class WidgetTest extends TestUnitCase
 {

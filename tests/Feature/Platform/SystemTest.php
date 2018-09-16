@@ -32,10 +32,10 @@ class SystemTest extends TestFeatureCase
             if ($this->user) {
                 return $this->user;
             }
-    
+
             $this->user = User::where('id', 1)->first();
             //$this->user = factory(User::class)->create();
-    
+
             return $this->user;
         }
     */

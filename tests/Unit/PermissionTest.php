@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
-use Orchid\Tests\TestUnitCase;
 
 /**
  * Class PermissionTest.
@@ -96,11 +96,11 @@ class PermissionTest extends TestUnitCase
         public function test_it_replase_permission()
         {
             $user = $this->createUser();
-    
+
             $user->replaceRoles([]);
             //
         }
-    
+
         public function test_it_delete_user()
         {
             $user = $this->createUser();

@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Tests;
 
-use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Illuminate\Support\Facades\Schema;
-use Intervention\Image\Facades\Image;
-use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
+use Watson\Active\Active;
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Support\Facades\Alert;
+use Intervention\Image\Facades\Image;
+use Orchid\Support\Facades\Dashboard;
+use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Savior\Providers\SaviorServiceProvider;
-use Orchid\Support\Facades\Alert;
-use Orchid\Support\Facades\Dashboard;
-use Watson\Active\Active;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
  * Trait Environment.
@@ -51,7 +51,7 @@ trait Environment
 
         $this->artisan('orchid:link');
 
-        $this->withFactories(realpath(PLATFORM_PATH . '/database/factories'));
+        $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
             '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
@@ -104,7 +104,7 @@ trait Environment
             'table'           => 'sessions',
             'store'           => null,
             'lottery'         => [2, 100],
-            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_') . '_session',
+            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
             'path'            => '/',
             'domain'          => null,
             'secure'          => false,

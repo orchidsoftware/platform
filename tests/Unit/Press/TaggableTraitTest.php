@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Press\Models\Post;
 use Orchid\Press\Models\Tag;
+use Orchid\Press\Models\Post;
 use Orchid\Tests\TestUnitCase;
 
 class TaggableTraitTest extends TestUnitCase
@@ -105,8 +105,7 @@ class TaggableTraitTest extends TestUnitCase
 
     private function getPostAlternativeClass()
     {
-        return new class extends Post
-        {
+        return new class extends Post {
         };
     }
 

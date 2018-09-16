@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Press;
 
-use Orchid\Platform\Models\User;
-use Orchid\Press\Models\Comment;
 use Orchid\Press\Models\Post;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\User;
+use Orchid\Press\Models\Comment;
 
 class CommentTest extends TestUnitCase
 {
