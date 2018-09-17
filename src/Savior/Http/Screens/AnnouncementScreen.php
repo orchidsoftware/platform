@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Savior\Http\Screens;
 
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Models\Announcement;
 use Orchid\Savior\Http\Layouts\AnnouncementLayout;
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
 
 class AnnouncementScreen extends Screen
 {
@@ -61,7 +61,7 @@ class AnnouncementScreen extends Screen
             Link::name('Создать')
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
-                ->show(!$this->active),
+                ->show(! $this->active),
 
             Link::name('Обновить')
                 ->icon('icon-check')
@@ -102,8 +102,8 @@ class AnnouncementScreen extends Screen
                 'active'  => 1,
             ])->save();
 
-
         Alert::info('Анонс был создан или обновлён');
+
         return back();
     }
 
@@ -114,6 +114,7 @@ class AnnouncementScreen extends Screen
     {
         Announcement::disableAll();
         Alert::info('Анонс был выключен');
+
         return back();
     }
 }
