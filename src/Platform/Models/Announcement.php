@@ -8,9 +8,12 @@ use Parsedown;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Announcement extends Model
 {
+    use LogsActivity;
+
     /**
      * The database table used by the model.
      *
@@ -24,9 +27,14 @@ class Announcement extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'body',
+        'content',
         'active',
     ];
+
+    /**
+     * @var string
+     */
+    protected static $logAttributes = ['*'];
 
     /**
      * The accessors to append to the model's array form.
@@ -48,9 +56,9 @@ class Announcement extends Model
      *
      * @return string
      */
-    public function getParsedBodyAttribute()
+    public function getParsedContentAttribute()
     {
-        return (new Parsedown)->text(htmlspecialchars($this->attributes['body']));
+        return (new Parsedown)->text(htmlspecialchars($this->attributes['content']));
     }
 
     /**
@@ -72,5 +80,13 @@ class Announcement extends Model
     public static function disableAll()
     {
         return DB::table('announcements')->update(['active' => 0]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getActive()
+    {
+        return self::active()->first();
     }
 }

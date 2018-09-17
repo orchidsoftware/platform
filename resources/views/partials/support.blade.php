@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-offset-8 col-md-4 m-t-xs">
+                            <div class="col-md-8 m-t-xs">
                                 <button type="submit" class="btn btn-primary btn-block m-t-5 btn-submit">{{trans('support.Send')}}
                                     <i class="m-l-sm icon-paper-plane"></i>
                                 </button>

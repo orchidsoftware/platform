@@ -31,9 +31,6 @@
     margin-top: 0;
     padding: 15px 25px;
   }
-  .drop-shadow {
-    box-shadow: 0 0 9px rgba(191, 191, 191, .36) !important;
-  }
   &.fade {
     opacity: 1 !important;
     &.stick-up {
@@ -64,6 +61,7 @@
         display: table;
         height: 100%;
         @include translate3d(0, 75%, 0);
+        width: calc(100% - 20px)
       }
       .modal-content-wrapper {
         display: table-cell;

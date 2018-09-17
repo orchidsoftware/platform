@@ -16,7 +16,7 @@ class AnnouncementsComposer
     public function compose(View $view)
     {
         $announcement = Dashboard::modelClass(Announcement::class)
-            ->first();
+            ->getActive();
 
         $view->with('announcement', $announcement);
     }

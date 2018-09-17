@@ -10,16 +10,15 @@ use Orchid\Screen\Layouts\Rows;
 class AnnouncementLayout extends Rows
 {
     /**
-     * Views.
-     *
      * @return array
+     * @throws \Throwable
      */
     public function fields(): array
     {
         return [
             Field::tag('markdown')
                 ->type('text')
-                ->name('category.content.name'),
+                ->name('announcement.content'),
         ];
     }
 }

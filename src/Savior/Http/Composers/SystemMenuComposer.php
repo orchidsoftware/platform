@@ -58,6 +58,17 @@ class SystemMenuComposer
                 'divider'    => false,
                 'permission' => 'platform.savior.backups',
                 'sort'       => 1,
+            ])
+            ->add('Savior', [
+                'slug'       => 'announcement',
+                'icon'       => 'icon-bulb',
+                'route'      => route('platform.savior.announcement'),
+                'label'      => 'Публичное оповещение',
+                'groupname'  => 'Предварительное оповещение о каком-либо событии.',
+                'childs'     => false,
+                'divider'    => false,
+                'permission' => 'platform.savior.announcement',
+                'sort'       => 1,
             ]);
     }
 }

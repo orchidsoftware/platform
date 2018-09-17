@@ -202,7 +202,5 @@
 
     </div>
 
-
-
     @include('platform::partials.support')
 @endsection

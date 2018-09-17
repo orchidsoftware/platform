@@ -56,14 +56,14 @@
 @section('content')
 
 
-    <div class="hbox hbox-auto-xs hbox-auto-sm"
+    <div class="hbox hbox-auto-xs hbox-auto-sm pos-rlt"
          data-controller="components--menu"
          data-content-loader-url="{{$name}}"
          data-components--menu-count="0"
          data-components--menu-id=""
     >
 
-        <div class="hbox-col w-xxl bg-white-only b-r b-l bg-auto no-border-xs">
+        <div class="hbox-col w-xxl card">
 
             <div class="wrapper-md">
 
@@ -189,7 +189,7 @@
 
 
         <div class="hbox-col">
-            <div class="wrapper-md">
+            <div class="m-l-md">
 
                 <div class="row">
                     <div class="col-sm-12">

@@ -97,6 +97,10 @@ class SaviorServiceProvider extends ServiceProvider
                     'slug'        => 'platform.savior.backups',
                     'description' => trans('platform.savior.backups'),
                 ],
+                [
+                    'slug'        => 'platform.savior.announcement',
+                    'description' => trans('platform.savior.announcement'),
+                ],
             ],
         ];
     }

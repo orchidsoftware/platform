@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Savior\Http\Screens;
 
+use Illuminate\Http\Request;
+use Orchid\Support\Facades\Alert;
+use Orchid\Platform\Models\Announcement;
+use Orchid\Savior\Http\Layouts\AnnouncementLayout;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 
@@ -26,7 +30,12 @@ class AnnouncementScreen extends Screen
     /**
      * @var string
      */
-    //public $permission = 'platform.savior.backups';
+    public $permission = 'platform.savior.announcement';
+
+    /**
+     * @var bool
+     */
+    private $active = false;
 
     /**
      * Query data.
@@ -35,8 +44,11 @@ class AnnouncementScreen extends Screen
      */
     public function query(): array
     {
+        $announcement = Announcement::getActive();
+        $this->active = is_null($announcement) ? false : true;
+
         return [
-            'backups' => $this->getBackups(),
+            'announcement' => $announcement,
         ];
     }
 
@@ -46,8 +58,20 @@ class AnnouncementScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Сделать резервную копию')
-                ->method('runBackup'),
+            Link::name('Создать')
+                ->icon('icon-check')
+                ->method('saveOrUpdate')
+                ->show(!$this->active),
+
+            Link::name('Обновить')
+                ->icon('icon-check')
+                ->method('saveOrUpdate')
+                ->show($this->active),
+
+            Link::name('Удалить')
+                ->icon('icon-trash')
+                ->method('disabled')
+                ->show($this->active),
         ];
     }
 
@@ -58,6 +82,38 @@ class AnnouncementScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+        return [
+            AnnouncementLayout::class,
+        ];
+    }
+
+    /**
+     * @param \Orchid\Platform\Models\Announcement $announcement
+     * @param \Illuminate\Http\Request             $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveOrUpdate(Announcement $announcement, Request $request)
+    {
+        $announcement
+            ->fill($request->get('announcement'))
+            ->fill([
+                'user_id' => $request->user()->id,
+                'active'  => 1,
+            ])->save();
+
+
+        Alert::info('Анонс был создан или обновлён');
+        return back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function disabled()
+    {
+        Announcement::disableAll();
+        Alert::info('Анонс был выключен');
+        return back();
     }
 }
