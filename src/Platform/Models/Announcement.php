@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Parsedown;
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Orchid\Platform\Dashboard;
+use Parsedown;
 
 class Announcement extends Model
 {
@@ -50,5 +51,26 @@ class Announcement extends Model
     public function getParsedBodyAttribute()
     {
         return (new Parsedown)->text(htmlspecialchars($this->attributes['body']));
+    }
+
+    /**
+     * Scope a query to only include active announcements.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    /**
+     * Turns off all announcements.
+     *
+     * @return int
+     */
+    public static function disableAll()
+    {
+        return DB::table('announcements')->update(['active' => 0]);
     }
 }
