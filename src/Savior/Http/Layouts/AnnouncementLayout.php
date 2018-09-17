@@ -10,7 +10,7 @@ use Orchid\Screen\Layouts\Rows;
 class AnnouncementLayout extends Rows
 {
     /**
-     * Views
+     * Views.
      *
      * @return array
      */
@@ -19,7 +19,7 @@ class AnnouncementLayout extends Rows
         return [
             Field::tag('markdown')
                 ->type('text')
-                ->name('category.content.name')
+                ->name('category.content.name'),
         ];
     }
 }

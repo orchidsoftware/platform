@@ -8,10 +8,6 @@ use Orchid\Platform\Models\Announcement;
 
 class AnnouncementObserver
 {
-
-    /**
-     *
-     */
     public function saving()
     {
         Announcement::disableAll();

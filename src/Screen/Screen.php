@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -174,10 +174,8 @@ abstract class Screen extends Controller
 
             $object = app()->make($parameter->getClass()->name);
 
-
             $this->arguments[$key] = is_subclass_of($object, Model::class)
             && isset($this->arguments[$key]) ? $object->find($this->arguments[$key]) : $object;
-
         }
     }
 

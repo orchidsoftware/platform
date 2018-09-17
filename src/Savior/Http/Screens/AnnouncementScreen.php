@@ -6,7 +6,6 @@ namespace Orchid\Savior\Http\Screens;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Savior\Http\Layouts\BackupLayout;
 
 class AnnouncementScreen extends Screen
 {
@@ -28,7 +27,6 @@ class AnnouncementScreen extends Screen
      * @var string
      */
     //public $permission = 'platform.savior.backups';
-
 
     /**
      * Query data.
@@ -62,5 +60,4 @@ class AnnouncementScreen extends Screen
     {
         return [];
     }
-
 }
