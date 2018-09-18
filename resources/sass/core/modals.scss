@@ -23,6 +23,12 @@
     box-shadow: none;
     padding: 0 25px 25px;
     white-space: normal;
+
+    .card{
+      background: none;
+      border: none;
+    }
+
   }
   .modal-footer {
     @extend .b-t;

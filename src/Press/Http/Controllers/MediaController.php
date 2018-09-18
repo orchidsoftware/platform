@@ -327,11 +327,12 @@ class MediaController extends Controller
      *
      * @return array
      */
-    private function getBreadcrumb(string $path, string $delimetr = DIRECTORY_SEPARATOR): array
+    public static function getBreadcrumb(string $path, string $delimetr = DIRECTORY_SEPARATOR): array
     {
         $breadcrumbs = array_filter(explode($delimetr, $path));
 
         return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimetr) {
+
             foreach ($breadcrumbs as $bkey => $breadcrumb) {
                 if ($bkey === $key) {
                     break;
@@ -341,8 +342,7 @@ class MediaController extends Controller
 
             return [
                 'name'   => $item,
-                'active' => end($breadcrumbs) === $item,
-                'path'   => empty($path) ? $delimetr : $path,
+                'path'   => empty($path) ? $item : $path .$delimetr. $item,
             ];
         }, $breadcrumbs, array_keys($breadcrumbs));
     }
