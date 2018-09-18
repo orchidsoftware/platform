@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Database\QueryException;
 use Orchid\Platform\Dashboard;
+use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
+use Illuminate\Database\QueryException;
 
 class CreateAdminCommand extends Command
 {
