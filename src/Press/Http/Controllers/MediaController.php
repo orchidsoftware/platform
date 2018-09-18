@@ -332,7 +332,6 @@ class MediaController extends Controller
         $breadcrumbs = array_filter(explode($delimetr, $path));
 
         return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimetr) {
-
             foreach ($breadcrumbs as $bkey => $breadcrumb) {
                 if ($bkey === $key) {
                     break;
@@ -342,7 +341,7 @@ class MediaController extends Controller
 
             return [
                 'name'   => $item,
-                'path'   => empty($path) ? $item : $path .$delimetr. $item,
+                'path'   => empty($path) ? $item : $path.$delimetr.$item,
             ];
         }, $breadcrumbs, array_keys($breadcrumbs));
     }

@@ -31,14 +31,13 @@ Breadcrumbs::for('platform.systems.menu.show', function ($trail, $menu) {
 
 // Platform > System > Media
 Breadcrumbs::for('platform.systems.media.index', function ($trail, $params) {
-
     $breadcrumbs = \Orchid\Press\Http\Controllers\MediaController::getBreadcrumb($params);
 
     $trail->parent('platform.systems.index');
     $trail->push('Media', route('platform.systems.media.index'));
 
-    foreach ($breadcrumbs as $breadcrumb){
-        $trail->push($breadcrumb['name'], route('platform.systems.media.index',[$breadcrumb['path']]));
+    foreach ($breadcrumbs as $breadcrumb) {
+        $trail->push($breadcrumb['name'], route('platform.systems.media.index', [$breadcrumb['path']]));
     }
 });
 
