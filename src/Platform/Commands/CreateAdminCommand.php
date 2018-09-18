@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
-use Orchid\Platform\Models\User;
 use Illuminate\Database\QueryException;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\User;
 
 class CreateAdminCommand extends Command
 {
@@ -21,7 +21,7 @@ class CreateAdminCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'orchid:admin';
+    protected $signature = 'orchid:admin {name?} {email?} {password?}';
 
     /**
      * The console command description.
@@ -59,10 +59,10 @@ class CreateAdminCommand extends Command
         try {
             Dashboard::modelClass(User::class)
                 ->createAdmin(
-                    $this->ask('What is your name?', 'admin'),
-                    $this->ask('What is your email?', 'admin@admin.com'),
-                    $this->secret('What is the password?', 'password')
-            );
+                    $this->argument('name', $this->ask('What is your name?', 'admin')),
+                    $this->argument('email', $this->ask('What is your email?', 'admin@admin.com')),
+                    $this->argument('password', $this->secret('What is the password?', 'password'))
+                );
 
             $this->info('User created successfully.');
         } catch (QueryException $e) {
