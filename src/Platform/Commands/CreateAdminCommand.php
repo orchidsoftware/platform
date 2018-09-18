@@ -59,9 +59,9 @@ class CreateAdminCommand extends Command
         try {
             Dashboard::modelClass(User::class)
                 ->createAdmin(
-                    $this->argument('name', $this->ask('What is your name?', 'admin')),
-                    $this->argument('email', $this->ask('What is your email?', 'admin@admin.com')),
-                    $this->argument('password', $this->secret('What is the password?', 'password'))
+                    $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
+                    $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
+                    $this->argument('password') ?? $this->secret('What is the password?', 'password')
                 );
 
             $this->info('User created successfully.');
