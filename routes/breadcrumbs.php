@@ -30,7 +30,7 @@ Breadcrumbs::for('platform.systems.menu.show', function ($trail, $menu) {
 });
 
 // Platform > System > Media
-Breadcrumbs::for('platform.systems.media.index', function ($trail, $params) {
+Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '') {
     $breadcrumbs = \Orchid\Press\Http\Controllers\MediaController::getBreadcrumb($params);
 
     $trail->parent('platform.systems.index');

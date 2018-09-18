@@ -122,11 +122,11 @@
             <div class="container">
 
                 <div class="v-center m-t-md m-b-md">
-                    <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 col-md-4 no-padder">
                         <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
                         <small class="text-muted text-ellipsis">@yield('description')</small>
                     </div>
-                    <div class="col-xs-12 col-md-8">
+                    <div class="col-xs-12 col-md-8 no-padder">
                         @yield('navbar')
                     </div>
                 </div>

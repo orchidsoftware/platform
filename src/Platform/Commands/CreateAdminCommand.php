@@ -21,7 +21,7 @@ class CreateAdminCommand extends Command
     /**
      * @var string
      */
-    protected $signature = 'orchid:admin {name} {email} {password}';
+    protected $signature = 'orchid:admin';
 
     /**
      * The console command description.
@@ -59,9 +59,9 @@ class CreateAdminCommand extends Command
         try {
             Dashboard::modelClass(User::class)
                 ->createAdmin(
-                $this->argument('name'),
-                $this->argument('email'),
-                $this->argument('password')
+                    $this->ask('What is your name?', 'admin'),
+                    $this->ask('What is your email?', 'admin@admin.com'),
+                    $this->secret('What is the password?', 'password')
             );
 
             $this->info('User created successfully.');

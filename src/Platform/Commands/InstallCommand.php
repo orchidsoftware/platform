@@ -148,17 +148,7 @@ class InstallCommand extends Command
      */
     private function createAdmin()
     {
-        if ($this->confirm('Create an administrator user?', true)) {
-            $this->call('orchid:admin', [
-                'name'     => $this->ask('What is your name?', 'admin'),
-                'email'    => $this->ask('What is your email?', 'admin@admin.com'),
-                'password' => $this->secret('What is the password?', 'password'),
-            ]);
-
-            return $this;
-        }
-
-        $this->line("To create a user, run 'artisan orchid:admin'");
+        $this->info("To create a user, run 'artisan orchid:admin'");
 
         return $this;
     }

@@ -16,7 +16,7 @@
             {{trans($label)}}
         </a>
         @if (!empty($childs))
-            <div class="dropdown-menu dropdown-menu-arrow">
+            <div class="dropdown-menu dropdown-menu-arrow bg-white">
                 {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
             </div>
         @endif
