@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Comment;
 
-use Orchid\Screen\Fields\TD;
+use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
 
 class CommentListLayout extends Table
