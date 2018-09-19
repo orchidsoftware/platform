@@ -62,6 +62,10 @@ trait Environment
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
+
+        $this->artisan('cache:clear');
+        $this->artisan('view:clear');
+        $this->artisan('route:clear');
     }
 
     /**
