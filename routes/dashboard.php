@@ -10,7 +10,7 @@
 */
 
 // Index and default...
-$this->get('/', function (){
+$this->get('/', function () {
     return redirect()->route(config('platform.index'));
 })->name('platform.index');
 
