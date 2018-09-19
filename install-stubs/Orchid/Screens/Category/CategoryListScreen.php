@@ -32,31 +32,31 @@ class CategoryListScreen extends Screen
      */
     public function query() : array
     {
-        function getCategory(Category $category, $delimiter = '')
-        {
-            $result = collect();
-            $category->delimiter = $delimiter;
-            $result->push($category);
-
-            if ($category->allChildrenTerm()->count()) {
-                foreach ($category->allChildrenTerm()->get() as $item) {
-                    $result = $result->merge(getCategory($item, $delimiter.'-'));
-                }
-            }
-
-            return $result;
-        }
-
         $categories = Category::where('parent_id', null)->with('allChildrenTerm')->get();
         $allCategories = collect();
 
         foreach ($categories as $category) {
-            $allCategories = $allCategories->merge(getCategory($category));
+            $allCategories = $allCategories->merge($this->getCategory($category));
         }
 
         return [
             'category' => $allCategories, //Category::paginate(),
         ];
+    }
+
+    private function getCategory(Category $category, $delimiter = '')
+    {
+        $result = collect();
+        $category->delimiter = $delimiter;
+        $result->push($category);
+
+        if ($category->allChildrenTerm()->count()) {
+            foreach ($category->allChildrenTerm()->get() as $item) {
+                $result = $result->merge($this->getCategory($item, $delimiter.'-'));
+            }
+        }
+
+        return $result;
     }
 
     /**
