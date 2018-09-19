@@ -63,6 +63,7 @@ trait Environment
             'password' => 'password',
         ]);
 
+        $this->artisan('config:clear');
         $this->artisan('cache:clear');
         $this->artisan('view:clear');
         $this->artisan('route:clear');
