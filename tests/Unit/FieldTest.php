@@ -18,60 +18,60 @@ class FieldTest extends TestUnitCase
     public function exampleFields()
     {
         return [
-            [\Orchid\Screen\Fields\Types\TextAreaField::class,
+            [\Orchid\Screen\Fields\TextAreaField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\InputField::class,
+            [\Orchid\Screen\Fields\InputField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\SelectField::class,
+            [\Orchid\Screen\Fields\SelectField::class,
                 [
                     'name'    => 'example',
                     'options' => [],
                 ], ],
-            [\Orchid\Screen\Fields\Types\RelationshipField::class,
+            [\Orchid\Screen\Fields\RelationshipField::class,
                 [
                     'name'    => 'example',
                     'handler' => 'handler',
                 ], ],
-            [\Orchid\Screen\Fields\Types\PlaceField::class,
+            [\Orchid\Screen\Fields\PlaceField::class,
                 [
                     'name' => 'example',
                     'lang' => 'en',
                 ], ],
-            [\Orchid\Screen\Fields\Types\PictureField::class,
+            [\Orchid\Screen\Fields\PictureField::class,
                 [
                     'name'   => 'example',
                     'width'  => '100',
                     'height' => '100',
                 ], ],
-            [\Orchid\Screen\Fields\Types\DateTimerField::class,
+            [\Orchid\Screen\Fields\DateTimerField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\CheckBoxField::class,
+            [\Orchid\Screen\Fields\CheckBoxField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\TinyMCEField::class,
+            [\Orchid\Screen\Fields\TinyMCEField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\PasswordField::class,
+            [\Orchid\Screen\Fields\PasswordField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\SimpleMDEField::class,
+            [\Orchid\Screen\Fields\SimpleMDEField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\UploadField::class,
+            [\Orchid\Screen\Fields\UploadField::class,
                 [
                     'name' => 'example',
                 ], ],
-            [\Orchid\Screen\Fields\Types\UTMField::class,
+            [\Orchid\Screen\Fields\UTMField::class,
                 [
                     'name' => 'example',
                 ], ],
@@ -87,7 +87,7 @@ class FieldTest extends TestUnitCase
      */
     public function testFields(string $field, $options)
     {
-        /** @var \Orchid\Screen\Fields\Field $field */
+        /** @var \Orchid\Screen\Field $field */
         $field = new $field();
 
         foreach ($options as $key => $option) {

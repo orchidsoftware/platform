@@ -211,7 +211,7 @@ php artisan orchid:manyBehavior Blog
 namespace App\Entities\Many;
 
 use Orchid\Press\Entities\Many;
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 use Orchid\Platform\Platform\Fields\TD;

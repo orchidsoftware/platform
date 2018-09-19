@@ -20441,6 +20441,18 @@ a.text-black:hover {
   word-break: keep-all;
 }
 
+.hidden-empty:empty {
+  display: none;
+}
+
+.hidden-empty *:empty {
+  display: none;
+}
+
+.hidden-empty *:empty:before {
+  display: none;
+}
+
 .login-wrapper {
   height: 100%;
   background-color: #212529;

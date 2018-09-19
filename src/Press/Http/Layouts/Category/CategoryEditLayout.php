@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Layouts\Category;
 
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
 
 class CategoryEditLayout extends Rows

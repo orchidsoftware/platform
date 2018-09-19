@@ -41,7 +41,7 @@ abstract class Chart
     public $labels = [];
 
     /**
-     * @var array
+     * @var string
      */
     public $data = '';
 

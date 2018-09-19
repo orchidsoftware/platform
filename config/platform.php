@@ -79,37 +79,23 @@ return [
     */
 
     'fields' => [
-        'textarea'     => Orchid\Screen\Fields\Types\TextAreaField::class,
-        'input'        => Orchid\Screen\Fields\Types\InputField::class,
-        'tags'         => Orchid\Screen\Fields\Types\TagsField::class,
-        'select'       => Orchid\Screen\Fields\Types\SelectField::class,
-        'relationship' => Orchid\Screen\Fields\Types\RelationshipField::class,
-        'place'        => Orchid\Screen\Fields\Types\PlaceField::class,
-        'picture'      => Orchid\Screen\Fields\Types\PictureField::class,
-        'datetime'     => Orchid\Screen\Fields\Types\DateTimerField::class,
-        'checkbox'     => Orchid\Screen\Fields\Types\CheckBoxField::class,
-        'wysiwyg'      => Orchid\Screen\Fields\Types\TinyMCEField::class,
-        'password'     => Orchid\Screen\Fields\Types\PasswordField::class,
-        'markdown'     => Orchid\Screen\Fields\Types\SimpleMDEField::class,
-        'label'        => Orchid\Screen\Fields\Types\LabelField::class,
-        'upload'       => Orchid\Screen\Fields\Types\UploadField::class,
-        'utm'          => Orchid\Screen\Fields\Types\UTMField::class,
-        'view'         => Orchid\Screen\Fields\Types\ViewField::class,
-        'code'         => Orchid\Screen\Fields\Types\CodeField::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Dashboard Widgets
-    |--------------------------------------------------------------------------
-    |
-    | Widgets that will be displayed on the main screen
-    |
-    */
-
-    'main_widgets' => [
-        Orchid\Platform\Http\Widgets\UpdateWidget::class,
-        Orchid\Platform\Http\Widgets\WelcomeWidget::class,
+        'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
+        'input'        => Orchid\Screen\Fields\InputField::class,
+        'tags'         => Orchid\Screen\Fields\TagsField::class,
+        'select'       => Orchid\Screen\Fields\SelectField::class,
+        'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+        'place'        => Orchid\Screen\Fields\PlaceField::class,
+        'picture'      => Orchid\Screen\Fields\PictureField::class,
+        'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
+        'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
+        'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
+        'password'     => Orchid\Screen\Fields\PasswordField::class,
+        'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
+        'label'        => Orchid\Screen\Fields\LabelField::class,
+        'upload'       => Orchid\Screen\Fields\UploadField::class,
+        'utm'          => Orchid\Screen\Fields\UTMField::class,
+        'view'         => Orchid\Screen\Fields\ViewField::class,
+        'code'         => Orchid\Screen\Fields\CodeField::class,
     ],
 
     /*

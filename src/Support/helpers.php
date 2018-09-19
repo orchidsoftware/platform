@@ -55,7 +55,7 @@ if (! function_exists('generate_form')) {
             $data = new \Orchid\Screen\Repository($data);
         }
 
-        return (new \Orchid\Screen\Fields\Builder($fields, $data))
+        return (new \Orchid\Screen\Builder($fields, $data))
             ->setLanguage($language)
             ->setPrefix($prefix)
             ->generateForm();

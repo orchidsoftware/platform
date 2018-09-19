@@ -532,7 +532,7 @@ Add the fields we want to change for user in the `app/Layouts/ProfileLayout.php`
 namespace App\Layouts;
 
 use App\Http\Widgets\CityWidget;
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfileLayout extends Rows
@@ -723,7 +723,7 @@ It will only contain the fields `password` and `repeat the password`:
 ```php
 namespace App\Layouts;
 
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfilePasswordLayout extends Rows
@@ -933,7 +933,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
 
 class BrowserFilter extends Filter
@@ -993,7 +993,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
 
 class PlatformFilter extends Filter

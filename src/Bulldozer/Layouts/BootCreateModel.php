@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Layouts;
 
-use Orchid\Screen\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
 
 /**

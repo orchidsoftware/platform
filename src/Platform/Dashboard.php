@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Illuminate\Support\Collection;
+use Orchid\Platform\Http\Widgets\Update;
 
 class Dashboard
 {
@@ -269,5 +270,15 @@ class Dashboard
     public static function useModel($key, $custom)
     {
         static::$options['models'][$key] = $custom;
+    }
+
+    /**
+     * Checks if a new and stable version exists
+     *
+     * @return bool
+     */
+    public static function checkUpdate() : bool
+    {
+        return (new Updates())->check();
     }
 }

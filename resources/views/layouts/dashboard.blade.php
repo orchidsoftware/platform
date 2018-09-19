@@ -108,6 +108,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
@@ -119,6 +120,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="container">
 
                 <div class="v-center m-t-md m-b-md">

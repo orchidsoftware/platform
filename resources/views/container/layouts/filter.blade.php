@@ -23,7 +23,7 @@
                             $filter= $filter->display();
                         @endphp
 
-                        @if(is_a($filter,\Orchid\Screen\Fields\FieldContract::class))
+                        @if(is_a($filter,\Orchid\Screen\Contracts\FieldContract::class))
                             {!! $filter->form('filters')->render() !!}
                         @else
                             {!! $filter !!}
