@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Example;
 
-use Orchid\Press\Models\Post;
+use Orchid\Press\Models\Term;
 use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Taxonomy;
-use Orchid\Press\Models\Term;
 use Orchid\Tests\TestFeatureCase;
 
 class CategoryTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= CategoryTest tests\\Feature\\Example\\CategoryTest --debug
+     * debug: php vendor/bin/phpunit  --filter= CategoryTest tests\\Feature\\Example\\CategoryTest --debug.
      * @var
      */
     private $user;
@@ -27,8 +26,8 @@ class CategoryTest extends TestFeatureCase
         }
         $this->user = factory(User::class)->create();
     }
-    
-     /**
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     private function createTaxonomyWithChildren()
@@ -55,7 +54,6 @@ class CategoryTest extends TestFeatureCase
         return $taxonomys;
     }
 
-    
     public function test_route_SystemsCategory()
     {
         $this->createTaxonomyWithChildren();
@@ -66,7 +64,6 @@ class CategoryTest extends TestFeatureCase
         $response->assertStatus(200);
         $this->assertContains($taxonomy->term->getContent('name'), $response->baseResponse->content());
     }
-
 
     public function test_route_SystemsCategoryEdit()
     {

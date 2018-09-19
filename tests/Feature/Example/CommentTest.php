@@ -12,7 +12,7 @@ use Orchid\Tests\TestFeatureCase;
 class CommentTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= CommentTest tests\\Feature\\Example\\CommentTest --debug
+     * debug: php vendor/bin/phpunit  --filter= CommentTest tests\\Feature\\Example\\CommentTest --debug.
      * @var
      */
     private $user;
