@@ -59,7 +59,6 @@ class MediaController extends Controller
             'dir'         => $this->getDirPath($path),
             'files'       => $this->getFiles($path),
             'directories' => $this->getDirectories($path),
-            'breadcrumbs' => $this->getBreadcrumb($path),
             'route'       => $path,
         ]);
     }

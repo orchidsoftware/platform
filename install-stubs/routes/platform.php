@@ -11,6 +11,9 @@
 |
 */
 
+// Main
+$this->screen('/main', 'PlatformScreen', 'platform.main');
+
 // Users...
 $this->screen('users/{users}/edit', 'User\UserEditScreen', 'platform.systems.users.edit');
 $this->screen('users/create', 'User\UserEditScreen', 'platform.systems.users.create');
@@ -33,6 +36,3 @@ $this->screen('category', 'Category\CategoryListScreen', 'platform.systems.categ
 
 // Example...
 //Route::screen('/dashboard/screen/idea', 'Idea','platform.screens.idea');
-
-// Index and default...
-$this->screen('/', 'PlatformScreen', 'platform.index');

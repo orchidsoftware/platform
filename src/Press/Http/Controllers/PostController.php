@@ -65,6 +65,7 @@ class PostController extends Controller
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => $request->user()->id,
+            'options'    => $post->getOptions(),
         ]);
 
         $type->save($post);
@@ -112,6 +113,7 @@ class PostController extends Controller
         $post->fill($request->all())->fill([
             'type'       => $type->slug,
             'user_id'    => $request->user()->id,
+            'options'    => $post->getOptions(),
         ]);
 
         $type->save($post);

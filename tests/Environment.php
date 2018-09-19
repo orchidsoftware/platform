@@ -118,8 +118,8 @@ trait Environment
             'unnamed-route-exception'                  => false,
             'missing-route-bound-breadcrumb-exception' => false,
             'invalid-named-breadcrumb-exception'       => false,
-            'manager-class'                            => DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
-            'generator-class'                          => DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
+            'manager-class'                            => \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
+            'generator-class'                          => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
         ]);
     }
 

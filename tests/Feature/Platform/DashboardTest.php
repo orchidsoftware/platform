@@ -17,8 +17,10 @@ class DashboardTest extends TestFeatureCase
 
     public function test_route_DashboardIndex()
     {
-        $response = $this->actingAs($this->getUser())
-            ->get(route('platform.index'));
+        $response = $this
+            ->actingAs($this->getUser())
+            ->get(route('platform.index'))
+            ->assertStatus(200);
 
         $response->assertStatus(200);
         $this->assertContains('Dashboard Panel', $response->baseResponse->content());

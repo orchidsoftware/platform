@@ -81,7 +81,7 @@
     ],
     "psr-4": {
       "Orchid\\Tests\\": "tests/",
-      "App\\": "example/"
+      "App\\": "install-stubs/"
     }
   },
   "extra": {

@@ -14,49 +14,49 @@ class ArtisanTest extends TestFeatureCase
      */
     public function test_artisan_orchid_entity_many()
     {
-        $this->artisan('orchid:entity-many', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:entity-many', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Behavior created successfully.');
     }
 
     public function test_artisan_orchid_entity_single()
     {
-        $this->artisan('orchid:entity-single', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:entity-single', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Behavior created successfully.');
     }
 
     public function test_artisan_orchid_chart()
     {
-        $this->artisan('orchid:chart', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:chart', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Chart created successfully.');
     }
 
     public function test_artisan_orchid_table()
     {
-        $this->artisan('orchid:table', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:table', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Table created successfully.');
     }
 
     public function test_artisan_orchid_widget()
     {
-        $this->artisan('orchid:widget', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:widget', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Widget created successfully.');
     }
 
     public function test_artisan_orchid_screen()
     {
-        $this->artisan('orchid:screen', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:screen', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Screen created successfully.');
     }
 
     public function test_artisan_orchid_rows()
     {
-        $this->artisan('orchid:rows', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:rows', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Rows created successfully.');
     }
 
     public function test_artisan_orchid_filter()
     {
-        $this->artisan('orchid:filter', ['name' => studly_case(__FUNCTION__)])
+        $this->artisan('orchid:filter', ['name' => studly_case(__FUNCTION__.str_random())])
             ->expectsOutput('Filter created successfully.');
     }
 }

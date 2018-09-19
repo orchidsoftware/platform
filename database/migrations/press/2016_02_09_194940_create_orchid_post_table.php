@@ -16,8 +16,8 @@ class CreateOrchidPostTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->string('type');
             $table->string('status')->nullable();
-            $table->jsonb('content');
-            $table->jsonb('options');
+            $table->jsonb('content')->nullable();
+            $table->jsonb('options')->nullable();
             $table->string('slug', '255')->unique();
             $table->timestamp('publish_at')->useCurrent();
             $table->timestamps();
