@@ -34,5 +34,4 @@ abstract class Metric
 
         return view($this->template);
     }
-
 }
