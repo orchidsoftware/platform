@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Fields;
+namespace Orchid\Screen;
 
 use Closure;
 

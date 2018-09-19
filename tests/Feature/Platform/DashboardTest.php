@@ -17,10 +17,12 @@ class DashboardTest extends TestFeatureCase
 
     public function test_route_DashboardIndex()
     {
-        $this
+        $response = $this
             ->actingAs($this->getUser())
-            ->get(route('platform.index'))
-            ->assertStatus(302);
+            ->get(route('platform.index'));
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/main');
     }
 
     private function getUser()
@@ -39,6 +41,5 @@ class DashboardTest extends TestFeatureCase
 
         $response->assertStatus(302);
         $response->assertRedirect('/dashboard/login');
-        //$this->assertContains('dashboard/login', $response->baseResponse->content());
     }
 }
