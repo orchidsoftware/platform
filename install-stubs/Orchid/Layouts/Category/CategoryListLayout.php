@@ -32,8 +32,8 @@ class CategoryListLayout extends Table
         return [
             TD::set('name', trans('platform::systems/category.name'))
                 ->setRender(function ($category) {
-                    return '<a href="' . route('platform.systems.category.edit',
-                            $category->id) . '">' . $category->delimiter . ' ' . $category->term->GetContent('name') . '</a>';
+                    return '<a href="'.route('platform.systems.category.edit',
+                            $category->id).'">'.$category->delimiter.' '.$category->term->GetContent('name').'</a>';
                 }),
             TD::set('slug', trans('platform::systems/category.slug'))
                 ->setRender(function ($category) {

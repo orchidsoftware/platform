@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use App\Orchid\Layouts\Role\RoleListLayout;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Platform\Models\Role;
+use App\Orchid\Layouts\Role\RoleListLayout;
 
 class RoleListScreen extends Screen
 {

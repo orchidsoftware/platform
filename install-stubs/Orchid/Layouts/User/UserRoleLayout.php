@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
+use Illuminate\Support\Collection;
 
 class UserRoleLayout extends Rows
 {

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Http\Filters\CreatedFilter;
-use Orchid\Press\Http\Filters\SearchFilter;
-use Orchid\Press\Http\Filters\StatusFilter;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\TD;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Http\Filters\SearchFilter;
+use Orchid\Press\Http\Filters\StatusFilter;
+use Orchid\Press\Http\Filters\CreatedFilter;
 
 class Post extends Many
 {

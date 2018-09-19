@@ -34,6 +34,5 @@ $this->screen('category', 'Category\CategoryListScreen', 'platform.systems.categ
 // Example...
 //Route::screen('/dashboard/screen/idea', 'Idea','platform.screens.idea');
 
-
 // Index and default...
 $this->screen('/', 'PlatformScreen', 'platform.index');

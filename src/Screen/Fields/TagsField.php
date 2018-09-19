@@ -100,7 +100,7 @@ class TagsField extends Field
     public function modifyName($name)
     {
         if (substr($name, -1) !== '.') {
-            $this->attributes['name'] = $name . '[]';
+            $this->attributes['name'] = $name.'[]';
         }
 
         parent::modifyName($this->attributes['name']);

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use App\Orchid\Composers\MainMenuComposer;
-use App\Orchid\Composers\SystemMenuComposer;
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
+use App\Orchid\Composers\MainMenuComposer;
+use App\Orchid\Composers\SystemMenuComposer;
 
 class PlatformProvider extends ServiceProvider
 {

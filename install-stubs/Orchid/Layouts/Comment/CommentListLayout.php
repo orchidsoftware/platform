@@ -41,25 +41,26 @@ class CommentListLayout extends Table
 
             TD::set('content', trans('platform::systems/comment.content'))
                 ->setRender(function ($comment) {
-                    return '<a href="' . route('platform.systems.comments.edit',
-                            $comment->id) . '">' . str_limit($comment->content, 70) . '</a>';
+                    return '<a href="'.route('platform.systems.comments.edit',
+                            $comment->id).'">'.str_limit($comment->content, 70).'</a>';
                 }),
 
             TD::set('post_id', trans('platform::systems/comment.recording'))
                 ->setRender(function ($comment) {
-                    if (!is_null($comment->post)) {
-                        return '<a href="' . route('platform.posts.type.edit', [
+                    if (! is_null($comment->post)) {
+                        return '<a href="'.route('platform.posts.type.edit', [
                                 $comment->post->type,
                                 $comment->post->id,
-                            ]) . '"><i class="icon-text-center mx-3"></i></a>';
+                            ]).'"><i class="icon-text-center mx-3"></i></a>';
                     }
+
                     return '<i class="icon-close mx-3"></i>';
                 })
                 ->align('center'),
             TD::set('user_id', trans('platform::systems/comment.user'))
                 ->setRender(function ($comment) {
-                    return '<a href="' . route('platform.systems.users.edit',
-                            $comment->user_id) . '"><i class="icon-user mx-3"></i></a>';
+                    return '<a href="'.route('platform.systems.users.edit',
+                            $comment->user_id).'"><i class="icon-user mx-3"></i></a>';
                 })
                 ->align('center'),
             TD::set('updated_at', trans('platform::common.Last edit'))

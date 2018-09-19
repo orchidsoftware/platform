@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use App\Orchid\Filters\RoleFilter;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Layouts\Table;
+use App\Orchid\Filters\RoleFilter;
 
 class UserListLayout extends Table
 {

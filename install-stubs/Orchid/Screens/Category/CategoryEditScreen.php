@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Category;
 
-use App\Orchid\Layouts\Category\CategoryEditLayout;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Orchid\Press\Models\Category;
-use Orchid\Press\Models\Term;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Term;
+use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\App;
+use App\Orchid\Layouts\Category\CategoryEditLayout;
 
 class CategoryEditScreen extends Screen
 {

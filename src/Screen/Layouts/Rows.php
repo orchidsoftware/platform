@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
-use Orchid\Screen\Repository;
 use Orchid\Screen\Builder;
+use Orchid\Screen\Repository;
 
 /**
  * Class Rows.

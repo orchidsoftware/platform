@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\TD;
 use Orchid\Access\UserAccess;
-use Orchid\Screen\Field;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Collection;
 use Orchid\Support\Facades\Dashboard;

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Role;
 
-use App\Orchid\Layouts\Role\RoleEditLayout;
-use App\Orchid\Layouts\Role\RolePermissionLayout;
-use Illuminate\Http\Request;
-use Orchid\Platform\Models\Role;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Platform\Models\Role;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Dashboard;
+use App\Orchid\Layouts\Role\RoleEditLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 
 class RoleEditScreen extends Screen
 {
