@@ -34,17 +34,19 @@
                                       rows="8"></textarea>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-8 m-t-xs">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5 btn-submit">{{trans('support.Send')}}
-                                    <i class="m-l-sm icon-paper-plane"></i>
-                                </button>
-                            </div>
-                        </div>
-
 
                     </form>
 
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <button type="submit" class="btn btn-primary">{{trans('support.Send')}}
+                                <i class="m-l-sm icon-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
