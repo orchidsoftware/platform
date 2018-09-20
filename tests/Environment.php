@@ -45,10 +45,9 @@ trait Environment
             '--tag' => 'config,migrations',
         ]);
 
-        $this->artisan('migrate:fresh', [
-            '--database' => 'orchid',
-        ]);
-
+        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(realpath('./database/migrations'));
+        $this->artisan('migrate', ['--database' => 'orchid']);
         $this->artisan('orchid:link');
 
         $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
