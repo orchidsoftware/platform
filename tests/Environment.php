@@ -21,6 +21,12 @@ trait Environment
 
         Schema::defaultStringLength(191);
 
+        $this->artisan('migrate', [
+            '--database' => 'orchid',
+            '--path' => 'migrations',
+        ]);
+
+
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
@@ -29,10 +35,10 @@ trait Environment
             '--all' => true,
         ]);
 
-        $this->artisan('migrate:fresh', [
+        $this->artisan('migrate', [
             '--database' => 'orchid',
+            '--path' => realpath(DASHBOARD_PATH.'/database/migrations'),
         ]);
-
         $this->artisan('orchid:link');
 
         $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
@@ -46,6 +52,11 @@ trait Environment
             'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
+
+        $this->artisan('config:clear');
+        $this->artisan('cache:clear');
+        $this->artisan('view:clear');
+        $this->artisan('route:clear');
     }
 
     /**
@@ -58,16 +69,9 @@ trait Environment
 
         // set up database configuration
         $app['config']->set('database.connections.orchid', [
-            'driver'   => 'pgsql',
-            'host'     => '127.0.0.1',
-            'port'     => '5432',
-            'database' => 'platform',
-            'username' => 'orchid',
-            'password' => 'orchid',
-            'charset'  => 'utf8',
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
             'prefix'   => '',
-            'schema'   => 'public',
-            'sslmode'  => 'prefer',
         ]);
         $app['config']->set('database.default', 'orchid');
     }
