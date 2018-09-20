@@ -26,7 +26,6 @@ trait Environment
             '--path' => 'migrations',
         ]);
 
-
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
