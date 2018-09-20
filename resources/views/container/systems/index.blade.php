@@ -6,7 +6,7 @@
 
 @section('navbar')
     <div class="pull-right">
-        <div class="input-icon w-xxl">
+        <div class="input-icon w-md">
             <input
                     data-action="keyup->layouts--systems#filter"
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
