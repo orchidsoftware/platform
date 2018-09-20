@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use App\Orchid\Layouts\User\UserEditLayout;
@@ -172,10 +172,10 @@ class UserEditScreen extends Screen
      */
     public function switchUserStart(User $user, Request $request)
     {
-        if(!session()->has('original_user')) {
+        if (! session()->has('original_user')) {
             session()->put('original_user', $request->user()->id);
         }
-        Auth::login( $user );
+        Auth::login($user);
 
         return back();
     }
@@ -186,9 +186,8 @@ class UserEditScreen extends Screen
     public function switchUserStop()
     {
         $id = session()->pull('original_user');
-        Auth::loginUsingId( $id );
+        Auth::loginUsingId($id);
 
         return back();
     }
-
 }
