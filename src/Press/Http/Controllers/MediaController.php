@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Exception;
+use Orchid\Support\Formats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Support\Formats;
 
 /**
  * Class MediaController.

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Commands\RowsCommand;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\RowsCommand;
+use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\WidgetCommand;
 use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\LinkCommand;
-use Orchid\Platform\Commands\AdminCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

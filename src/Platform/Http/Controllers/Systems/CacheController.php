@@ -27,6 +27,7 @@ class CacheController
         }
 
         Alert::success(trans('platform::common.alert.success'));
+
         return response()->redirectToRoute('platform.systems.index');
     }
 

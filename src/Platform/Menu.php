@@ -224,7 +224,7 @@ class Menu
     }
 
     /**
-     * Checks whether there are child elements
+     * Checks whether there are child elements.
      *
      * @param string $slug
      *
