@@ -62,11 +62,7 @@ return [
     |
     */
 
-    'auth' => [
-        'display' => true,
-        'image'   => '/orchid/img/background.jpg',
-        'slogan'  => 'platform::auth/account.slogan',
-    ],
+    'auth'  => true,
 
     /*
     |--------------------------------------------------------------------------
