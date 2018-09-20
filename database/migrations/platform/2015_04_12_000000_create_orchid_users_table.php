@@ -12,6 +12,7 @@ class CreateOrchidUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('locale')->default(config_path('app.locale'));
             $table->timestamp('last_login')->nullable();
             $table->jsonb('permissions')->nullable();
         });
@@ -23,6 +24,7 @@ class CreateOrchidUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users', function (Blueprint $table) {
+            $table->dropColumn('locale');
             $table->dropColumn('last_login');
             $table->dropColumn('permissions');
         });

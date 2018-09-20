@@ -1,6 +1,8 @@
 <a href="{{$route ?? '#'}}" class="dropdown-item">
     @isset($badge)
-        <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+        <span class="float-right">
+            <b class="badge {{$badge['class']}}">{{$badge['data']()}}</b>
+        </span>
     @endisset
     <i class="{{$icon}} m-r-xs"></i>
     {{trans($label)}}

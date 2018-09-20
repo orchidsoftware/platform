@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Exception;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Support\Formats;
 
 /**
  * Class MediaController.
@@ -104,26 +104,16 @@ class MediaController extends Controller
     {
         return $files->map(function ($file) {
             $modified = $this->filesystem->lastModified($file);
+            $name = strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file;
 
             return [
-                'name'              => strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file,
+                'name'              => $name,
                 'type'              => $this->filesystem->mimeType($file),
                 'path'              => $this->filesystem->url($file),
                 'size'              => $this->filesystem->size($file),
-                'lastModified'      => $modified,
-                'humanLastModified' => $this->getHumanDate($modified),
+                'lastModified'      => Formats::toDateTimeString($modified),
             ];
         })->sortBy('name');
-    }
-
-    /**
-     * @param int $time
-     *
-     * @return string
-     */
-    private function getHumanDate(int $time): string
-    {
-        return Carbon::createFromTimestamp($time)->diffForHumans();
     }
 
     /**
@@ -210,7 +200,6 @@ class MediaController extends Controller
         $destination = $request->destination;
         $folderLocation = $request->folder_location;
         $success = false;
-        $error = '';
 
         if (is_array($folderLocation)) {
             $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
@@ -245,7 +234,6 @@ class MediaController extends Controller
         $filename = $request->filename;
         $newFilename = $request->new_filename;
         $success = false;
-        $error = false;
 
         if (is_array($folderLocation)) {
             $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
@@ -322,25 +310,25 @@ class MediaController extends Controller
 
     /**
      * @param string $path
-     * @param string $delimetr
+     * @param string $delimiter
      *
      * @return array
      */
-    public static function getBreadcrumb(string $path, string $delimetr = DIRECTORY_SEPARATOR): array
+    public static function getBreadcrumb(string $path, string $delimiter = DIRECTORY_SEPARATOR): array
     {
-        $breadcrumbs = array_filter(explode($delimetr, $path));
+        $breadcrumbs = array_filter(explode($delimiter, $path));
 
-        return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimetr) {
+        return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimiter) {
             foreach ($breadcrumbs as $bkey => $breadcrumb) {
                 if ($bkey === $key) {
                     break;
                 }
-                $path = $path.$delimetr.$breadcrumb;
+                $path = $path.$delimiter.$breadcrumb;
             }
 
             return [
                 'name'   => $item,
-                'path'   => empty($path) ? $item : $path.$delimetr.$item,
+                'path'   => empty($path) ? $item : $path.$delimiter.$item,
             ];
         }, $breadcrumbs, array_keys($breadcrumbs));
     }

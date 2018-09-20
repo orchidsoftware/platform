@@ -26,8 +26,10 @@
         <div class="padder-lg m-t-lg">
 
             <a href="{{Dashboard::prefix()}}">
-                <img src="/orchid/img/orchid.svg" alt="logo" data-src="assets/img/logo.png"
-                     data-src-retina="assets/img/logo_2x.png" height="22">
+                <p class="h2 n-m font-thin v-center">
+                    <i class="icon-orchid text-primary"></i>
+                    <span class="m-l d-none d-sm-block"> {{config('app.name')}} </span>
+                </p>
             </a>
 
 
@@ -35,15 +37,12 @@
 
             <div class="pull-bottom">
                 <div class="m-b-lg clearfix v-center">
-                    <div class="col-sm-3 col-md-2">
-                        <a href="https://orchid.software/" target="_blank" rel="noopener noreferrer">
-                            <img alt="ORCHID"
-                                                                class="m-t-xs"
-                                                                src="{{url('/orchid/img/logo.svg')}}"
-                                                                width="78"
-                                                                height="22"></a>
+                    <div class="col-sm-3 col-md-2 text-center">
+                        <a href="https://orchid.software/" target="_blank" class="h1 m-t-xs" title="ORCHID" rel="noopener noreferrer">
+                            <i class="icon-orchid text-primary m-t-xs"></i>
+                        </a>
                     </div>
-                    <div class="col-sm-9 no-padding">
+                    <div class="col-sm-9 no-padder">
                         <p class="m-l-md">
                             <small>
 

@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use Orchid\Screen\Layouts\Table;
-use Orchid\Screen\Fields\TD;
+use Orchid\Screen\TD;
 
 class DummyClass extends Table
 {

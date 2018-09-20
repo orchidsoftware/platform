@@ -168,7 +168,7 @@ class TD
     /**
      * @param bool $sort
      *
-     * @return \Orchid\Screen\Fields\TD
+     * @return \Orchid\Screen\TD
      */
     public function sort(bool $sort = true): self
     {
@@ -251,7 +251,7 @@ class TD
      * @param             string $options
      * @param string|null $text
      *
-     * @return \Orchid\Screen\Fields\TD
+     * @return \Orchid\Screen\TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {

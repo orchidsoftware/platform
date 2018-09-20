@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
 use Illuminate\Database\QueryException;
 
-class CreateAdminCommand extends Command
+class AdminCommand extends Command
 {
     /**
      * The console command name.

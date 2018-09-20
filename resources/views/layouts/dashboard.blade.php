@@ -12,37 +12,31 @@
                 <div class="container">
                     <div class="d-flex v-center">
                         <a class="header-brand" href="{{route('platform.index')}}">
-                            <img src="{{url('/orchid/img/orchid.svg')}}" class="header-brand-img" alt="logo" height="32px"
-                                 width="150px">
+                            <p class="h2 n-m font-thin v-center">
+                                <i class="icon-orchid text-primary"></i>
+                                <span class="m-l d-none d-sm-block"> {{config('app.name')}} </span>
+                            </p>
                         </a>
 
-
-                        <ul class="m-n b-r">
-                            <li class="inline">
-                                <a href="#" class="nav-link"><i class="icon-options"></i></a>
-                            </li>
-                            <li class="inline dropdown dropdown-toggle">
-                                <a href="#" class="nav-link text-uppercase" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-globe m-r-xs"></i> <span id="code-local">en</span>
-
+                        <ul class="m-n">
+                            @if(Dashboard::menu()->showCountElement('Quick'))
+                                <li class="inline">
+                                    <div class="dropdown">
+                                        <a href="#" class="nav-link" data-toggle="dropdown"><i class="icon-options"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            {!! Dashboard::menu()->render('Quick','platform::partials.dropdownMenu') !!}
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
+                            <li class="inline b-l">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#globalSearch">
+                                    <i class="icon-magnifier m-r-xs"></i>Type anywhere to <span
+                                            class="font-bold">search</span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" data-target="#local-en" role="tab" data-toggle="tab"
-                                       onclick="document.getElementById('code-local').innerHTML = 'en'"
-                                       aria-controls="local-en" aria-expanded="true ">English
-                                    </a>
-                                    <a class="dropdown-item" data-target="#local-ru" role="tab" data-toggle="tab"
-                                       onclick="document.getElementById('code-local').innerHTML = 'ru'"
-                                       aria-controls="local-ru" aria-expanded=" false ">Россия
-                                    </a>
-                                </div>
                             </li>
                         </ul>
 
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#globalSearch">
-                            <i class="icon-magnifier m-r-xs"></i>Type anywhere to <span class="font-bold">search</span>
-                        </a>
 
                         <div class="d-flex order-lg-2 ml-auto">
 
@@ -51,7 +45,7 @@
 
                             <div class="dropdown">
                                 <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
-                                    <span class="thumb-xs avatar pull-right m-t-n-sm m-b-n-sm m-r-xs">
+                                    <span class="thumb-xs avatar">
                                         <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
                                     </span>
                                     <span class="ml-2 d-none d-lg-block" style="max-width:150px;font-size: 0.82857rem;">
@@ -60,19 +54,8 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="m-r-xs icon-user"></i> Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="m-r-xs icon-settings"></i> Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="float-right"><span class="badge bg-info">6</span></span>
-                                        <i class="m-r-xs icon-paper-plane"></i> Inbox
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="m-r-xs icon-server"></i> Message
-                                    </a>
+                                    {!! Dashboard::menu()->render('Profile','platform::partials.dropdownMenu') !!}
+
                                     <div class="dropdown-divider"></div>
 
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#support">
@@ -80,10 +63,10 @@
                                     </a>
 
                                     @if(Auth::user()->hasAccess('platform.systems.index'))
-                                            <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                                                <i class="icon-settings m-r-xs" aria-hidden="true"></i>
-                                                <span>{{trans('platform::menu.systems')}}</span>
-                                            </a>
+                                        <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
+                                            <i class="icon-settings m-r-xs" aria-hidden="true"></i>
+                                            <span>{{trans('platform::menu.systems')}}</span>
+                                        </a>
                                     @endif
 
                                     <a href="{{ route('platform.logout') }}"
@@ -121,29 +104,29 @@
                 </div>
             </div>
 
-            <div class="container">
+        </div>
 
-                <div class="v-center m-t-md m-b-md">
-                    <div class="col-xs-12 col-md-4 no-padder">
-                        <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                        <small class="text-muted text-ellipsis">@yield('description')</small>
-                    </div>
-                    <div class="col-xs-12 col-md-8 no-padder">
-                        @yield('navbar')
-                    </div>
+
+        <div class="container">
+
+            <div class="v-center m-t-md m-b-md">
+                <div class="col-xs-12 col-md-4 no-padder">
+                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                    <small class="text-muted text-ellipsis">@yield('description')</small>
                 </div>
+                <div class="col-xs-12 col-md-8 no-padder">
+                    @yield('navbar')
+                </div>
+            </div>
 
-                @if (Breadcrumbs::exists())
-                    {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-                @endif
+            @if (Breadcrumbs::exists())
+                {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
+            @endif
 
-                <div class="d-flex">
-                    <div class="app-content-body" id="app-content-body">
-
-                        @include('platform::partials.alert')
-
-                        @yield('content')
-                    </div>
+            <div class="d-flex">
+                <div class="app-content-body" id="app-content-body">
+                    @include('platform::partials.alert')
+                    @yield('content')
                 </div>
             </div>
         </div>
@@ -188,7 +171,8 @@
 
         <div class="container-fluid">
 
-            <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..." autocomplete="off" spellcheck="false">
+            <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..."
+                   autocomplete="off" spellcheck="false">
             <br>
             <div class="inline-block">
                 <div class="checkbox right">

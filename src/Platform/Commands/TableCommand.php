@@ -6,28 +6,28 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeChart extends GeneratorCommand
+class TableCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:chart';
+    protected $name = 'orchid:table';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new chart layout class';
+    protected $description = 'Create a new table layout class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Chart';
+    protected $type = 'Table';
 
     /**
      * Get the stub file for the generator.
@@ -36,7 +36,7 @@ class MakeChart extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/chart.stub';
+        return PLATFORM_PATH.'/resources/stubs/table.stub';
     }
 
     /**

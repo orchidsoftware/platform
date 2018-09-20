@@ -222,4 +222,16 @@ class Menu
                 return $item;
             });
     }
+
+    /**
+     * Checks whether there are child elements
+     *
+     * @param string $slug
+     *
+     * @return bool
+     */
+    public function showCountElement(string $slug): bool
+    {
+        return $this->container->where('location', $slug)->count() > 0;
+    }
 }

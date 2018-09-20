@@ -6,28 +6,28 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeScreen extends GeneratorCommand
+class RowsCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:screen';
+    protected $name = 'orchid:rows';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new screen class';
+    protected $description = 'Create a new rows layout class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Screen';
+    protected $type = 'Rows';
 
     /**
      * Get the stub file for the generator.
@@ -36,7 +36,7 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getStub() : string
     {
-        return PLATFORM_PATH.'/resources/stubs/screen.stub';
+        return PLATFORM_PATH.'/resources/stubs/rows.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeScreen extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace) : string
     {
-        return $rootNamespace.'\Orchid\Screens';
+        return $rootNamespace.'\Orchid\Layouts';
     }
 }

@@ -1,4 +1,4 @@
-@if(!empty($childs) && Dashboard::menu()->container->where('location',$slug)->count())
+@if(!empty($childs) && Dashboard::menu()->showCountElement($slug))
     <li class="nav-item @isset($active) {{active($active)}} @endisset @if (!empty($childs)) dropdown @endif">
         <a href="{{$route ?? '#'}}" class="nav-link padder-v"    @if (!empty($childs)) data-toggle="dropdown" @endif>
             @isset($badge)

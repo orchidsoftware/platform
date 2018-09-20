@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Commands\MakeRows;
+use Orchid\Platform\Commands\RowsCommand;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Commands\MakeChart;
-use Orchid\Platform\Commands\MakeTable;
-use Orchid\Platform\Commands\MakeFilter;
-use Orchid\Platform\Commands\MakeScreen;
-use Orchid\Platform\Commands\MakeWidget;
+use Orchid\Platform\Commands\ChartCommand;
+use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\FilterCommand;
+use Orchid\Platform\Commands\ScreenCommand;
+use Orchid\Platform\Commands\WidgetCommand;
 use Orchid\Platform\Commands\InstallCommand;
-use Orchid\Platform\Commands\PublicLinkCommand;
-use Orchid\Platform\Commands\CreateAdminCommand;
+use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\AdminCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -24,14 +24,14 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
-        CreateAdminCommand::class,
-        MakeFilter::class,
-        PublicLinkCommand::class,
-        MakeWidget::class,
-        MakeRows::class,
-        MakeScreen::class,
-        MakeTable::class,
-        MakeChart::class,
+        AdminCommand::class,
+        FilterCommand::class,
+        LinkCommand::class,
+        WidgetCommand::class,
+        RowsCommand::class,
+        ScreenCommand::class,
+        TableCommand::class,
+        ChartCommand::class,
     ];
 
     /**

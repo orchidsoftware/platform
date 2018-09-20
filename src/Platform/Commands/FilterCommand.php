@@ -6,7 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeFilter extends GeneratorCommand
+class FilterCommand extends GeneratorCommand
 {
     /**
      * The console command name.

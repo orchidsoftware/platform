@@ -1,5 +1,6 @@
 @extends('platform::layouts.dashboard')
 
+@section('controller','screen--base')
 @section('title',$name)
 @section('description',$description)
 
@@ -11,8 +12,7 @@
             </button>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-link" id="new_folder"
-                    onclick="jQuery('#new_folder_modal').modal('show');"><i class="icon-folder-alt"></i>
+            <button type="button" class="btn btn-link"><i class="icon-folder-alt"></i>
                 Создать новую папку
             </button>
         </li>
@@ -112,7 +112,7 @@
                                         - KB
                                     </td>
                                     <td class="text-left">
-                                        {{$directory['humanLastModified']}}
+                                        {{$directory['lastModified']}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -158,7 +158,7 @@
                                         {{$file['size']}} KB
                                     </td>
                                     <td class="text-left">
-                                        {{$file['humanLastModified']}}
+                                        {{$file['lastModified']}}
                                     </td>
                                 </tr>
                             @endforeach

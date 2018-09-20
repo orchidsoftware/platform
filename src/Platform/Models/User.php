@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguage;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
+use Orchid\Screen\Field;
+use Orchid\Screen\TD;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -38,6 +39,13 @@ class User extends Authenticatable implements UserInterface
         'last_login',
         'avatar',
         'permissions',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'locale' => 'en',
     ];
 
     /**
@@ -204,6 +212,7 @@ class User extends Authenticatable implements UserInterface
             'email'       => $email,
             'password'    => bcrypt($password),
             'permissions' => $permissions,
+            'locale'      => App::getLocale(),
         ]);
 
         $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([

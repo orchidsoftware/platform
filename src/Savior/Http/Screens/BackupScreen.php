@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Savior\Http\Layouts\BackupLayout;
+use Orchid\Support\Formats;
 
 class BackupScreen extends Screen
 {
@@ -119,7 +120,7 @@ class BackupScreen extends Screen
                     // make an array of backup files, with their filesize and creation date
                     $backups[] = new Repository([
                         'path'          => $file,
-                        'size'          => self::formatBytes($disk->size($file)),
+                        'size'          => Formats::formatBytes($disk->size($file)),
                         'last_modified' => Carbon::createFromTimestamp($disk->lastModified($file))->diffForHumans(),
                         'disk'          => $diskName,
                         'url'           => $disk->url($file),
@@ -129,25 +130,5 @@ class BackupScreen extends Screen
 
         // reverse the backups, so the newest one would be on top
         return array_reverse($backups ?? []);
-    }
-
-    /**
-     * Format bytes to kb, mb, gb, tb.
-     *
-     * @param int $size
-     * @param int $precision
-     *
-     * @return int|string
-     */
-    public static function formatBytes(int $size, int $precision = 2): string
-    {
-        if ($size <= 0) {
-            return (string) $size;
-        }
-
-        $base = log($size) / log(1024);
-        $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
-
-        return round(1024 ** ($base - floor($base)), $precision).$suffixes[(int) floor($base)];
     }
 }

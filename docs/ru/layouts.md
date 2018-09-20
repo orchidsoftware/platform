@@ -27,7 +27,7 @@ php artisan orchid:table PatientListLayout
 ```php
 namespace App\Layouts\Clinic\Patient;
 
-use Orchid\Screen\Fields\TD;
+use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
 
 use Orchid\Platform\Http\Filters\SearchFilter;

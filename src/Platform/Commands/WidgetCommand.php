@@ -6,37 +6,37 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeTable extends GeneratorCommand
+class WidgetCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'orchid:table';
+    protected $name = 'orchid:widget';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new table layout class';
+    protected $description = 'Create a new widget class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Table';
+    protected $type = 'Widget';
 
     /**
      * Get the stub file for the generator.
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub()
     {
-        return PLATFORM_PATH.'/resources/stubs/table.stub';
+        return PLATFORM_PATH.'/resources/stubs/widget.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class MakeTable extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace.'\Orchid\Layouts';
+        return $rootNamespace.'\Orchid\Widgets';
     }
 }

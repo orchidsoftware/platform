@@ -6,7 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\Command;
 
-class PublicLinkCommand extends Command
+class LinkCommand extends Command
 {
     /**
      * The console command signature.
