@@ -69,6 +69,19 @@
                                         </a>
                                     @endif
 
+                                    @if(session()->has('original_user'))
+                                        <a href="{{route('platform.systems.users')}}"
+                                           class="dropdown-item"
+                                           onclick="event.preventDefault();document.getElementById('return-original-user').submit();"
+                                        >
+                                            <i class="icon-logout m-r-xs" aria-hidden="true"></i>
+                                            <span>Вернуться в свой аккаунт</span>
+                                        </a>
+                                        <form id="return-original-user" class="hidden" action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
+                                              method="POST">
+                                            @csrf
+                                        </form>
+                                    @else
                                     <a href="{{ route('platform.logout') }}"
                                        class="dropdown-item"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"
@@ -76,11 +89,12 @@
                                         <i class="icon-logout m-r-xs" aria-hidden="true"></i>
                                         <span>{{trans('platform::auth/account.sign_out')}}</span>
                                     </a>
+                                        <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
+                                              method="POST">
+                                            @csrf
+                                        </form>
+                                    @endif
 
-                                    <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                                          method="POST">
-                                        @csrf
-                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -81,6 +82,9 @@ class UserEditScreen extends Screen
     public function commandBar(): array
     {
         return [
+            Link::name('Войти от имени пользователя')
+                ->icon('icon-login')
+                ->method('switchUserStart'),
             Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
@@ -160,4 +164,31 @@ class UserEditScreen extends Screen
 
         return redirect()->route('platform.systems.users');
     }
+
+    /**
+     * @param \Orchid\Platform\Models\User $user
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function switchUserStart(User $user, Request $request)
+    {
+        if(!session()->has('original_user')) {
+            session()->put('original_user', $request->user()->id);
+        }
+        Auth::login( $user );
+
+        return back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function switchUserStop()
+    {
+        $id = session()->pull('original_user');
+        Auth::loginUsingId( $id );
+
+        return back();
+    }
+
 }
