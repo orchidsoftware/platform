@@ -35,7 +35,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->progressBar = $this->output->createProgressBar(8);
+        $this->progressBar = $this->output->createProgressBar(9);
 
         $text = "
         ________________________________________________________________
@@ -54,6 +54,7 @@ class InstallCommand extends Command
         sleep(1);
 
         $this
+            ->executeCommand('migrate')
             ->executeCommand('vendor:publish', ['--all' => true, '--force' => true, '--tag' => 'config,migrations'])
             ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true])
             ->executeCommand('migrate')
