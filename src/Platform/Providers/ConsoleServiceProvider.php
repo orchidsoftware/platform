@@ -6,6 +6,7 @@ namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
@@ -32,6 +33,7 @@ class ConsoleServiceProvider extends ServiceProvider
         ScreenCommand::class,
         TableCommand::class,
         ChartCommand::class,
+        MetricsCommand::class,
     ];
 
     /**

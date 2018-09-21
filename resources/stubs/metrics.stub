@@ -1,0 +1,23 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Screen\Layouts\Metric;
+
+class DummyClass extends Metric
+{
+    /**
+     * @var string
+     */
+    public $title = 'Example Metric';
+
+    /**
+     * @var array
+     */
+    public $labels = [];
+
+    /**
+     * @var array
+     */
+    public $data = '';
+}

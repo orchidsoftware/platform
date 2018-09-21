@@ -25,7 +25,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function query() : array
+    public function query(): array
     {
         return [];
     }
@@ -35,7 +35,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function commandBar() : array
+    public function commandBar(): array
     {
         return [];
     }
@@ -45,7 +45,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function layout() : array
+    public function layout(): array
     {
         return [];
     }

@@ -2,9 +2,8 @@
 
 namespace DummyNamespace;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
 
 class DummyClass extends Filter
 {
