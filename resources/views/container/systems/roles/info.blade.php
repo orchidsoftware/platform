@@ -39,7 +39,7 @@
                             <label class="i-checks m-b-none">
                                 <input type="checkbox" name="permissions[{{$value['slug']}}]" value="1"
                                        @if(array_key_exists('active',$value) && $value['active']) checked="checked" @endif>
-                                <i></i> {{$value['description']}}
+                                <i></i> {{ trans($value['description']) }}
 
                             </label>
                         </div>

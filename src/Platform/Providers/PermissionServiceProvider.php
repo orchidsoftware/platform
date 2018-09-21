@@ -43,19 +43,19 @@ class PermissionServiceProvider extends ServiceProvider
             'Main' => [
                 [
                     'slug'        => 'dashboard.index',
-                    'description' => trans('dashboard::permission.main.main'),
+                    'description' => 'dashboard::permission.main.main',
                 ],
                 [
                     'slug'        => 'dashboard.systems',
-                    'description' => trans('dashboard::permission.main.systems'),
+                    'description' => 'dashboard::permission.main.systems',
                 ],
                 [
                     'slug'        => 'dashboard.pages',
-                    'description' => trans('dashboard::permission.main.pages'),
+                    'description' => 'dashboard::permission.main.pages',
                 ],
                 [
                     'slug'        => 'dashboard.posts',
-                    'description' => trans('dashboard::permission.main.posts'),
+                    'description' => 'dashboard::permission.main.posts',
                 ],
             ],
 
@@ -107,35 +107,35 @@ class PermissionServiceProvider extends ServiceProvider
             'Systems' => [
                 [
                     'slug'        => 'dashboard.systems.roles',
-                    'description' => trans('dashboard::permission.systems.roles'),
+                    'description' => 'dashboard::permission.systems.roles',
                 ],
                 [
                     'slug'        => 'dashboard.systems.settings',
-                    'description' => trans('dashboard::permission.systems.settings'),
+                    'description' => 'dashboard::permission.systems.settings',
                 ],
                 [
                     'slug'        => 'dashboard.systems.users',
-                    'description' => trans('dashboard::permission.systems.users'),
+                    'description' => 'dashboard::permission.systems.users',
                 ],
                 [
                     'slug'        => 'dashboard.systems.menu',
-                    'description' => trans('dashboard::permission.systems.menu'),
+                    'description' => 'dashboard::permission.systems.menu',
                 ],
                 [
                     'slug'        => 'dashboard.systems.category',
-                    'description' => trans('dashboard::permission.systems.category'),
+                    'description' => 'dashboard::permission.systems.category',
                 ],
                 [
                     'slug'        => 'dashboard.systems.comment',
-                    'description' => trans('dashboard::permission.systems.comment'),
+                    'description' => 'dashboard::permission.systems.comment',
                 ],
                 [
                     'slug'        => 'dashboard.systems.attachment',
-                    'description' => trans('dashboard::permission.systems.attachment'),
+                    'description' => 'dashboard::permission.systems.attachment',
                 ],
                 [
                     'slug'        => 'dashboard.systems.media',
-                    'description' => trans('dashboard::permission.systems.media'),
+                    'description' => 'dashboard::permission.systems.media',
                 ],
 
             ],

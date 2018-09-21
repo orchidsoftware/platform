@@ -189,6 +189,11 @@ class Builder
 
         $data = $this->data->getContent($key);
 
+        // default value
+        if (is_null($data)) {
+            return $value;
+        }
+
         if (! is_null($value) && $value instanceof \Closure) {
             return $value($data, $this->data);
         }
