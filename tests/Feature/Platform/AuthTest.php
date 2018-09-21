@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 class AuthTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug
+     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug.
      * @var
      */
     private $user;
