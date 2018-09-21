@@ -14,6 +14,11 @@ abstract class Metric
     private $template = 'platform::container.layouts.metric';
 
     /**
+     * @var string
+     */
+    public $title = 'Example Metric';
+
+    /**
      * @var array
      */
     public $labels = [];
@@ -24,14 +29,30 @@ abstract class Metric
     public $data = [];
 
     /**
+     * @var string
+     */
+    protected $keyValue = 'value';
+
+    /**
+     * @var string
+     */
+    protected $keyDiff = 'diff';
+
+    /**
      * @param \Orchid\Screen\Repository $query
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function build(Repository $query)
     {
-        $query->getContent($this->data);
+        $data = $query->getContent($this->data, []);
+        $metrics = array_combine($this->labels, $data);
 
-        return view($this->template);
+        return view($this->template, [
+            'title'    => trans($this->title),
+            'metrics'  => $metrics,
+            'keyValue' => $this->keyValue,
+            'keyDiff'  => $this->keyDiff,
+        ]);
     }
 }

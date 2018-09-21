@@ -1,7 +1,3 @@
-@include('platform::test')
-
-
-
 <div class="admin-wrapper">
     <div class="card wrapper-lg">
         <div class="row m-b">

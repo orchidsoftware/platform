@@ -70,7 +70,7 @@ class Builder
      *
      * @return $this
      */
-    public function setPrefix(string $prefix = null)
+    public function setPrefix(string $prefix = null) : self
     {
         $this->prefix = $prefix;
 
