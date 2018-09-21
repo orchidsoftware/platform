@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
@@ -10,7 +10,7 @@ use Orchid\Tests\TestFeatureCase;
 class AuthTest extends TestFeatureCase
 {
     /**
-     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug.
+     * debug: php vendor/bin/phpunit  --filter= AuthTest tests\\Feature\\Platform\\AuthTest --debug
      * @var
      */
     private $user;
@@ -20,8 +20,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.login'));
 
         $response->assertStatus(200);
-        $this->assertContains('input type="email"', $response->baseResponse->content());
-        $this->assertContains('input type="password"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->baseResponse->content());
+        $this->assertContains('type="password"', $response->baseResponse->content());
     }
 
     public function test_route_DashboardLogin_auth()
@@ -48,8 +48,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.request'));
 
         $response->assertStatus(200);
-        $this->assertContains('input type="email"', $response->baseResponse->content());
-        $this->assertNotContains('input type="password"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->baseResponse->content());
+        $this->assertNotContains('type="password"', $response->baseResponse->content());
     }
 
     public function test_route_DashboardPasswordReset()
@@ -57,8 +57,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.reset', '11111'));
 
         $response->assertStatus(200);
-        $this->assertContains('input type="email"', $response->baseResponse->content());
-        $this->assertContains('input type="password"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->baseResponse->content());
+        $this->assertContains('type="password"', $response->baseResponse->content());
         $this->assertContains('"password_confirmation"', $response->baseResponse->content());
     }
 

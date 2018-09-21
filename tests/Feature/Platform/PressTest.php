@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature;
+namespace Tests\Feature\Platform;
 
 use Orchid\Press\Models\Post;
 use Orchid\Platform\Models\User;
