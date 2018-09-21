@@ -6,36 +6,9 @@
 
 .dropdown-menu{
   &.show{
-    animation : smooth-appearance 340ms ease-in;
+    animation : smooth-appearance 240ms ease-in;
   }
 }
-
-
-/*
-#app-content-body {
-  animation : blurin 140ms ease-in;
-}
-*/
-
-@keyframes blurin {
-  0% {
-    opacity : 0.1;
-    filter  : blur(16px);
-  }
-  25% {
-    opacity : 0.5;
-    filter  : blur(8px);
-  }
-  50% {
-    opacity : 0.8;
-   filter  : blur(4px);
-  }
-  100% {
-    opacity : 1;
-    filter  : blur(0px);
-  }
-}
-
 
 @keyframes smooth-appearance{
   0% {

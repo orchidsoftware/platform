@@ -51,15 +51,50 @@
 }
 
 div.mce-fullscreen {
-  z-index: 1500;
+  z-index: 1050;
 }
 
 // SimpleMDE Markdown Editor
-.CodeMirror-fullscreen,
-.editor-toolbar.fullscreen,
-.editor-preview-side {
-  z-index : 1300;
+.CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
+  z-index : 1050;
 }
+.CodeMirror-fullscreen{
+  background-color: $body-bg;
+  @extend .wrapper;
+
+  .CodeMirror-code,
+  .editor-preview-active,
+  .CodeMirror-sizer,
+  .CodeMirror-scroll{
+    max-width: 60em!important;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .CodeMirror-scroll{
+    @extend .card;
+    @extend .wrapper;
+  }
+
+  .CodeMirror-sizer {
+    max-width: 100%;
+  }
+
+  .CodeMirror-vscrollbar{
+    overflow: hidden;
+  }
+
+  .CodeMirror-scroll{
+    overflow: auto!important;
+  }
+
+}
+
+.editor-toolbar.fullscreen{
+  text-align: center;
+}
+
+
 
 // Datetimepicker
 .bootstrap-datetimepicker-widget {
@@ -81,15 +116,6 @@ div.mce-fullscreen {
 
 }
 
-.table-condensed > tbody > tr > td,
-.table-condensed > tbody > tr > th,
-.table-condensed > tfoot > tr > td,
-.table-condensed > tfoot > tr > th,
-.table-condensed > thead > tr > td,
-.table-condensed > thead > tr > th {
-  padding: 5px;
-}
-
 // Flatpickr
 .flatpickr-input {
     &.form-control[readonly] {
@@ -99,13 +125,10 @@ div.mce-fullscreen {
 }
 
 
-
-
 .form-group,.CodeMirror-wrap pre{
   word-wrap: break-word;
   word-break: break-all;
 }
-
 
 
 .admin-wrapper {

@@ -1,30 +1,34 @@
 @if($locales->count() > 1)
     @foreach($locales->chunk(2) as $groups)
-        <div class="row">
-            @foreach($groups as $key => $locale)
-                <div class="col-md-6">
-                    <div class="line line-dashed b-b line-lg"></div>
-                    <div class="form-group row align-items-center m-b-xs">
-                        <label class="col-6 control-label mb-0">{{$locale['native']}}</label>
-                        <div class="col-6">
-                            @if(!is_null($post))
-                                <label class="i-switch bg-info m-t-xs m-r">
-                                    <input type="checkbox" name="options[locale][{{$key}}]"
-                                           value="true" {{$post->checkLanguage($key) ? 'checked' : ''}}>
-                                    <i></i>
-                                </label>
-                            @else
-                                <label class="i-switch bg-info m-t-xs m-r">
-                                    <input type="checkbox" name="options[locale][{{$key}}]"
-                                           value="true" @if ($loop->first) checked @endif>
-                                    <i></i>
-                                </label>
-                            @endif
-                        </div>
+        @foreach($groups as $key => $locale)
+            <div class="form-group align-items-center m-b-xs">
+                @if(!is_null($post))
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="options-locale-{{$key}}"
+                               name="options[locale][{{$key}}]"
+                                {{$post->checkLanguage($key) ? 'checked' : ''}}
+                        >
+                        <label class="custom-control-label" for="options-locale-{{$key}}">
+                            {{$locale['native']}}
+                        </label>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @else
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="options-locale-{{$key}}"
+                               name="options[locale][{{$key}}]"
+                               value="true" @if ($loop->first) checked @endif
+                        >
+                        <label class="custom-control-label" for="options-locale-{{$key}}">
+                            {{$locale['native']}}
+                        </label>
+                    </div>
+                @endif
+            </div>
+        @endforeach
     @endforeach
 @else
     @foreach($locales as $key => $locale)

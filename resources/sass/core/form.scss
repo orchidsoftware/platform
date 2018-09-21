@@ -91,3 +91,11 @@ Icon input
     right: 0;
   }
 }
+
+.custom-checkbox{
+  height: 35px;
+  @extend .v-center;
+  .custom-control-label{
+    padding-top: 0.1em;
+  }
+}

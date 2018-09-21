@@ -12,11 +12,11 @@ export default class extends Controller {
       return;
     }
 
-    //setTimeout(() => {
-      $(select).select2({
-        width: '100%',
-        theme: 'bootstrap',
-      });
-    //}, 500);
+    // setTimeout(() => {
+    $(select).select2({
+      width: '100%',
+      theme: 'bootstrap',
+    });
+    // }, 500);
   }
 }

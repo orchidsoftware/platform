@@ -9,16 +9,11 @@ export default function platform() {
     prefix(path) {
       let prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
-      if (prefix) {
         if (prefix.content.charAt(0) !== '/') {
-          prefix = `/${prefix.content}`;
-        } else if (prefix) {
-          prefix = prefix.content;
-        } else {
-          return path;
+            prefix = '/' + prefix.content;
         }
-      }
-      return prefix + path;
+
+        return location.protocol+'//' + location.hostname + (location.port ? ':' + location.port: '') + prefix.content + path;
     },
 
     /**
