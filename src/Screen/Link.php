@@ -58,6 +58,11 @@ class Link
     public $show = true;
 
     /**
+     * @var array
+     */
+    public $group = [];
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -90,7 +95,7 @@ class Link
             return '';
         }
 
-        return view('platform::partials.screen.link', [
+        return view('platform::container.layouts.link', [
             'slug'      => $this->slug,
             'name'      => $this->name,
             'method'    => $this->method,
@@ -98,6 +103,7 @@ class Link
             'modal'     => $this->modal,
             'title'     => $this->title,
             'link'      => $this->link,
+            'group'     => $this->group,
             'arguments' => $arguments,
         ]);
     }
@@ -111,6 +117,18 @@ class Link
     protected function rewriteProperty($name, $property)
     {
         $this->$name = $property;
+
+        return $this;
+    }
+
+    /**
+     * @param array $links
+     *
+     * @return $this
+     */
+    public function dropdown(array $links)
+    {
+        $this->group = $links;
 
         return $this;
     }
