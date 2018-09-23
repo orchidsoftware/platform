@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class NotificationController extends Controller
 {
