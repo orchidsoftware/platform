@@ -32,19 +32,20 @@
   "require": {
     "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.6",
-    "davejamesmiller/laravel-breadcrumbs":"^5.1",
+    "davejamesmiller/laravel-breadcrumbs": "^5.1",
     "intervention/image": "^2.4",
     "intervention/imagecache": "^2.3",
+    "jenssegers/agent": "^2.6",
     "laracasts/generators": "^1.1",
     "laravel/framework": "5.7.*",
     "laravel/scout": "^5.0",
+    "laravolt/avatar": "^2.0",
     "ralouphie/mimey": "^1.0",
+    "spatie/laravel-activitylog": "^2.8",
     "spatie/laravel-backup": "^5.10",
     "spomky-labs/base64url": "^1.0",
     "watson/active": "^3.0",
-    "zendframework/zend-code": "^3.3",
-    "jenssegers/agent": "^2.6",
-    "spatie/laravel-activitylog": "^2.8"
+    "zendframework/zend-code": "^3.3"
   },
   "require-dev": {
     "fzaninotto/faker": "^1.4",

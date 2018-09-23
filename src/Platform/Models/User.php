@@ -17,6 +17,7 @@ use Orchid\Platform\Traits\MultiLanguage;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravolt\Avatar\Facade as AvatarGenerator;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -229,8 +230,6 @@ class User extends Authenticatable implements UserInterface
      */
     public function getAvatar()
     {
-        $rand = random_int(1, 16);
-
-        return "/orchid/img/avatars/users-$rand.svg";
+        return AvatarGenerator::create($this->getNameTitle())->toBase64();
     }
 }
