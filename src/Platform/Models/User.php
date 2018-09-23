@@ -15,9 +15,9 @@ use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Traits\MultiLanguage;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 
 class User extends Authenticatable implements UserInterface
 {
