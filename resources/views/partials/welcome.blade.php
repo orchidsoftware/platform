@@ -1,7 +1,7 @@
 <div class="admin-wrapper">
     <div class="card wrapper-lg">
         <div class="row m-b">
-            <div class="wrapper-lg">
+            <div class="wrapper">
                 <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
                 <p class="lead m-b-n">Make it short and sweet, but not too short so folks don't simply skip over it
                                       entirely.</p>

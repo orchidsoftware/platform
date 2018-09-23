@@ -7,8 +7,9 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Artisan;
+use Orchid\Platform\Http\Controllers\Controller;
 
-class CacheController
+class CacheController extends Controller
 {
     /**
      * @param Request $request

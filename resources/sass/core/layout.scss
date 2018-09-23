@@ -43,7 +43,7 @@ body {
 }
 
 .app-content-center {
-  height          : calc(100vh - #{$app-header-height});
+  height          : calc(100vh - 300px);
   min-height      : 200px;
   display         : flex;
   align-items     : center;

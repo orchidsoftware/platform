@@ -41,7 +41,7 @@ class Announcement extends Model
      *
      * @var array
      */
-    protected $appends = ['parsed_body'];
+    protected $appends = ['parsed_content'];
 
     /**
      * Get the user that created the announcement.

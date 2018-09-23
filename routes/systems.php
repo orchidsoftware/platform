@@ -68,3 +68,8 @@ $this->post('widget/{widget}/{key?}', [
     'as'   => 'platform.systems.widget',
     'uses' => 'WidgetController@index',
 ]);
+
+$this->post('support', [
+    'as'   => 'platform.systems.support',
+    'uses' => 'SupportController@send',
+]);
