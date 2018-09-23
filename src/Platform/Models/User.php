@@ -230,12 +230,12 @@ class User extends Authenticatable implements UserInterface
      */
     public function getAvatar()
     {
-        $name = title_case(str_slug($this->getNameTitle(),' '));
+        $name = title_case(str_slug($this->getNameTitle(), ' '));
 
         return AvatarGenerator::create($name)
             ->setBackground('#fff')
             ->setForeground('#363f44')
-            ->setBorder(0,'#fff')
+            ->setBorder(0, '#fff')
             ->toBase64();
     }
 }
