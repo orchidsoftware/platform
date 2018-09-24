@@ -43,7 +43,6 @@ class DashboardTest extends TestFeatureCase
         $response->assertRedirect('/dashboard/login');
     }
 
-
     public function test_route_SaviorBackups()
     {
         $response = $this->actingAs($this->user)

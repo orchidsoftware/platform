@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Traits;
 
 use Base64Url\Base64Url;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Orchid\Platform\Models\Activity;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Activitylog\Traits\LogsActivity as SpatieLogsActivity;
 
 trait LogsActivity
@@ -14,7 +14,7 @@ trait LogsActivity
     use SpatieLogsActivity;
 
     /**
-     * Actually changed
+     * Actually changed.
      *
      * @var bool
      */
@@ -53,7 +53,6 @@ trait LogsActivity
      */
     public function activity(): MorphMany
     {
-        return $this->morphMany( Activity::class, 'subject');
+        return $this->morphMany(Activity::class, 'subject');
     }
-
 }

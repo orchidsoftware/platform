@@ -14,12 +14,8 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-    /**
-     * 
-     */
     public const POST_PERMISSION_PREFIX = self::POST_PERMISSION_PREFIX;
-    
-    
+
     /**
      * PostController constructor.
      */

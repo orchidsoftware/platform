@@ -8,8 +8,8 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
 use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

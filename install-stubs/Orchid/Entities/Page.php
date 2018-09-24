@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Press\Entities\Single;
 use Orchid\Screen\Field;
+use Orchid\Press\Entities\Single;
 
 class Page extends Single
 {

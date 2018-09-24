@@ -45,7 +45,7 @@ class AnnouncementScreen extends Screen
     public function query(): array
     {
         $announcement = Announcement::getActive();
-        $this->active = !is_null($announcement);
+        $this->active = ! is_null($announcement);
 
         return [
             'announcement' => $announcement,

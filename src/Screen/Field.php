@@ -426,7 +426,7 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        if(!is_array($group)){
+        if (! is_array($group)) {
             return call_user_func($group);
         }
 

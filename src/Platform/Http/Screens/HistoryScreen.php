@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Base64Url\Base64Url;
-use Orchid\Platform\Models\Activity;
-use Orchid\Platform\Http\Layouts\HistoryLayout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
+use Orchid\Platform\Models\Activity;
+use Orchid\Platform\Http\Layouts\HistoryLayout;
 
 class HistoryScreen extends Screen
 {
