@@ -15,20 +15,20 @@
                     <i class="icon-globe m-r-xs"></i> <span id="code-local">{{key(reset($locales))}}</span>
 
                 </a>
-                <ul class="nav dropdown-menu" role="tablist">
+
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     @foreach($locales as $code => $lang)
-                        <li class="nav-item">
-                            <a class="dropdown-item"
-                               href="#local-{{$code}}"
-                               role="tab"
-                               data-toggle="tab"
-                               onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
-                               aria-controls="local-{{$code}}"
-                               aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
-                            </a>
-                        </li>
+                        <a class="dropdown-item"
+                           href="#local-{{$code}}"
+                           role="tab"
+                           data-toggle="tab"
+                           onclick="document.getElementById('code-local').innerHTML = '{{$code}}'"
+                           aria-controls="local-{{$code}}"
+                           aria-expanded="@if ($loop->first)true @else false @endif">{{$lang['native']}}
+                        </a>
                     @endforeach
-                </ul>
+                </div>
+
             </li>
         @endif
 

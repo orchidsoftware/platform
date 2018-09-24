@@ -175,3 +175,23 @@ div.mce-fullscreen {
 
 }
 
+
+//codeflask
+.codeflask{
+  pre,code {
+    background: none!important;
+  }
+}
+
+.codeflask__flatten {
+  padding:     10px !important;
+  line-height: 20px !important;
+  white-space: pre !important;
+  overflow:    auto !important;
+  margin:      0 !important;
+  text-align:  left !important;
+}
+
+.codeflask.codeflask--has-line-numbers:before {
+  background: #f8f9fa;
+}

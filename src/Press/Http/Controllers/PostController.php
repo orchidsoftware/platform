@@ -14,7 +14,11 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-    public const POST_PERMISSION_PREFIX = self::POST_PERMISSION_PREFIX;
+
+    /**
+     *
+     */
+    public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
      * PostController constructor.
@@ -31,7 +35,7 @@ class PostController extends Controller
      */
     public function index(Many $type) : View
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.main', $type->generateGrid());
     }
@@ -43,7 +47,7 @@ class PostController extends Controller
      */
     public function create(Many $type) : View
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.create', [
             'type'    => $type,
@@ -61,7 +65,7 @@ class PostController extends Controller
      */
     public function store(Request $request, Many $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
@@ -90,7 +94,7 @@ class PostController extends Controller
      */
     public function edit(Many $type, Post $post) : View
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.edit', [
             'type'    => $type,
@@ -109,7 +113,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Many $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
@@ -141,7 +145,7 @@ class PostController extends Controller
      */
     public function destroy(Many $type, Post $post) : RedirectResponse
     {
-        $this->checkPermission(self::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         $type->delete($post);
 

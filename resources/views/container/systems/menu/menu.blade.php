@@ -12,49 +12,42 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
-                       aria-expanded="false">{{$locales[$currentLocale]['native']}} </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-
+                       aria-expanded="false">
+                        <i class="icon-globe m-r-xs"></i>
+                        {{$locales[$currentLocale]['native']}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         @foreach($locales as $code => $locale)
-                            @if($currentLocale == $code)
-                                <li class="disabled">
-                                    <a class="dropdown-item">{{$locale['native']}}</a>
-                                </li>
-                            @else
-                                <li>
-                                    <a class="dropdown-item" href="?lang={{$code}}"
-                                       data-turbolinks-action="replace">{{$locale['native']}}</a>
-                                </li>
-                            @endif
+                            <a class="dropdown-item" href="?lang={{$code}}"
+                               data-turbolinks-action="replace">
+                                {{$locale['native']}}</a>
+                        @endforeach
+                    </div>
+                </li>
+            @endif
+
+            @if(count($availableMenus) > 1)
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="icon-menu m-r-xs"></i> {{$availableMenus[$name]}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        @foreach($availableMenus as $key => $value)
+                                <a href="{{ route('platform.systems.menu.show',$key) }}"
+                                   class="dropdown-item">{{ $value }}
+                                </a>
                         @endforeach
                     </ul>
                 </li>
             @endif
+
         </ul>
     </div>
 @stop
 
-
-
-@section('aside')
-
-    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-        <span>{{trans('platform::systems/menu.description')}}</span>
-    </li>
-
-    @foreach($availableMenus as $key => $value)
-        <li class="text-ellipsis text-white">
-            <a href="{{ route('platform.systems.menu.show',$key) }}">{{$value}}</a>
-        </li>
-    @endforeach
-
-    <li class="divider b-t m-t-sm b-dark"></li>
-
-@endsection
-
-
 @section('content')
-
 
     <div class="hbox hbox-auto-xs hbox-auto-sm pos-rlt"
          data-controller="components--menu"
@@ -63,7 +56,9 @@
          data-components--menu-id=""
     >
 
+
         <div class="hbox-col w-xxl card">
+
 
             <div class="wrapper-md">
 
@@ -77,7 +72,8 @@
                                required
                                placeholder="{{trans('platform::systems/menu.form.title_description')}}">
 
-                        <small class="form-text text-danger none" id="errors.label">{{trans('platform::common.validation.required')}}</small>
+                        <small class="form-text text-danger none"
+                               id="errors.label">{{trans('platform::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('platform::systems/menu.form.alt')}} <span class="text-danger">*</span></label>
@@ -85,7 +81,8 @@
                                data-target="components--menu.title"
                                required
                                placeholder="{{trans('platform::systems/menu.form.alt_description')}}">
-                        <small class="form-text text-danger none" id="errors.title">{{trans('platform::common.validation.required')}}</small>
+                        <small class="form-text text-danger none"
+                               id="errors.title">{{trans('platform::common.validation.required')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('platform::systems/menu.form.url')}} <span class="text-danger">*</span></label>
@@ -94,7 +91,8 @@
                                data-target="components--menu.slug"
                                required
                                placeholder="{{trans('platform::systems/menu.form.url_description')}}">
-                        <small class="form-text text-danger none" id="errors.slug">{{trans('platform::common.validation.required')}}</small>
+                        <small class="form-text text-danger none"
+                               id="errors.slug">{{trans('platform::common.validation.required')}}</small>
                     </div>
 
                     <div class="form-group">
