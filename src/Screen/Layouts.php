@@ -15,7 +15,7 @@ namespace Orchid\Screen;
 class Layouts
 {
     /**
-     * @var null
+     * @var string
      */
     public $active;
 
@@ -35,7 +35,7 @@ class Layouts
     public $layouts = [];
 
     /**
-     * @var array
+     * @var string
      */
     public $asyncMethod;
 

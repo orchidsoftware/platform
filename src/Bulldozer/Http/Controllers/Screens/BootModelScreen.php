@@ -44,12 +44,12 @@ class BootModelScreen extends Screen
     public $permission = 'platform.bulldozer';
 
     /**
-     * @var Collection|Collection[]
+     * @var Collection
      */
     public $models;
 
     /**
-     * @var
+     * @var bool
      */
     public $exist = false;
 

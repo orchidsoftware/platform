@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Traits\MultiLanguage;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Orchid\Screen\Exceptions\TypeException;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Orchid\Platform\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;

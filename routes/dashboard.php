@@ -17,3 +17,7 @@ $this->get('/', function () {
 $this->fallback(function () {
     return view('platform::errors.404');
 });
+
+$this->screen('/backups', 'Screens\BackupScreen', 'platform.systems.backups');
+$this->screen('/announcement', 'Screens\AnnouncementScreen', 'platform.systems.announcement');
+$this->screen('/history', 'Screens\HistoryScreen', 'platform.systems.history');

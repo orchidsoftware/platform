@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
+use Orchid\Press\Http\Filters\CreatedFilter;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
-use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Screen\Field;
+use Orchid\Screen\TD;
 
 class Post extends Many
 {
@@ -47,7 +47,7 @@ class Post extends Many
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'id'             => 'sometimes|integer|unique:posts',
@@ -61,7 +61,7 @@ class Post extends Many
      *
      * @return array
      */
-    public function filters() : array
+    public function filters(): array
     {
         return [
             SearchFilter::class,
@@ -74,60 +74,55 @@ class Post extends Many
      * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [
 
-            Field::group(function () {
-                return [
+            Field::group([
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('name')
-                        ->max(255)
-                        ->required()
-                        ->title('Name Articles')
-                        ->help('Article title'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('name')
+                    ->max(255)
+                    ->required()
+                    ->title('Name Articles')
+                    ->help('Article title'),
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('title')
-                        ->max(255)
-                        ->required()
-                        ->title('Article Title')
-                        ->help('SEO title'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('title')
+                    ->max(255)
+                    ->required()
+                    ->title('Article Title')
+                    ->help('SEO title'),
 
-                ];
-            }),
+            ]),
 
-            Field::group(function () {
-                return [
+            Field::group([
+                Field::tag('select')
+                    ->options([
+                        'index'   => 'Index',
+                        'noindex' => 'No index',
+                    ])
+                    ->name('robot')
+                    ->title('Indexing')
+                    ->help('Allow search bots to index page'),
 
-                    Field::tag('select')
-                        ->options([
-                            'index'   => 'Index',
-                            'noindex' => 'No index',
-                        ])
-                        ->name('robot')
-                        ->title('Indexing')
-                        ->help('Allow search bots to index page'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('phone')
+                    ->mask('(999) 999-9999')
+                    ->title('Phone')
+                    ->help('Number Phone'),
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('phone')
-                        ->mask('(999) 999-9999')
-                        ->title('Phone')
-                        ->help('Number Phone'),
+                Field::tag('checkbox')
+                    ->name('free')
+                    ->value('230')
+                    ->title('Free')
+                    ->placeholder('Event for free')
+                    ->help('Event for free'),
 
-                    Field::tag('checkbox')
-                        ->name('free')
-                        ->value('230')
-                        ->title('Free')
-                        ->placeholder('Event for free')
-                        ->help('Event for free'),
-
-                ];
-            }),
+            ]),
 
             Field::tag('textarea')
                 ->name('description')
@@ -197,7 +192,7 @@ class Post extends Many
     /**
      * Grid View for post type.
      */
-    public function grid() : array
+    public function grid(): array
     {
         return [
             TD::set('id', 'ID')

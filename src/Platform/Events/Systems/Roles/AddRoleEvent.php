@@ -38,11 +38,6 @@ class AddRoleEvent
     public function __construct($user, $role)
     {
         $this->user = $user;
-
-        if (is_array($role) || $role instanceof Collection) {
-            $this->roles = collect($role);
-        } else {
-            $this->roles = collect($role);
-        }
+        $this->roles = collect($role);
     }
 }

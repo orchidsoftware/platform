@@ -420,12 +420,16 @@ class Field implements FieldContract
     }
 
     /**
-     * @param \Closure $group
+     * @param \Closure|array $group
      *
      * @return mixed
      */
     public static function group($group)
     {
-        return call_user_func($group);
+        if(!is_array($group)){
+            return call_user_func($group);
+        }
+
+        return $group;
     }
 }

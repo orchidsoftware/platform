@@ -23,6 +23,10 @@ trait MultiLanguage
     {
         $attributes = array_keys($this->toArray());
 
+        if(method_exists($this,$field)){
+            return $this->$field($locale);
+        }
+
         if (in_array($field, $attributes, true)) {
             return $this->getAttribute($field);
         }

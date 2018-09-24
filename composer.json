@@ -65,7 +65,6 @@
       "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Press\\": "src/Press/",
-      "Orchid\\Savior\\": "src/Savior/",
       "Orchid\\Screen\\": "src/Screen/",
       "Orchid\\Setting\\": "src/Setting/",
       "Orchid\\Support\\": "src/Support/",
@@ -89,7 +88,6 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Savior\\Providers\\SaviorServiceProvider",
         "Orchid\\Press\\Providers\\PressServiceProvider",
         "Orchid\\Bulldozer\\Providers\\BulldozerServiceProvider"
       ],

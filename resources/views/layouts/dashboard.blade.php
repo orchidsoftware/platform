@@ -147,6 +147,15 @@
     </div>
 
     <footer class="container footer">
+        <div class="row d-none">
+            <div class="col-md-12 text-center padder-v">
+                <button class="btn btn-link">
+                    <i class="icon icon-arrow-up-circle m-r-xs"></i>
+                    <span>Наверх</span>
+                </button>
+            </div>
+        </div>
+
         <div class="row padder-v m-b m-t">
             <div class="col-md-6 text-left">
                 <p class="small m-n">

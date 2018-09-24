@@ -7,7 +7,7 @@ namespace Orchid\Press\Models;
 use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\MultiLanguage;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Orchid\Platform\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model

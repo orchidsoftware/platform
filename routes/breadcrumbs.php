@@ -42,9 +42,9 @@ Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '')
 });
 
 // Platform > Backup
-Breadcrumbs::for('platform.savior.backups', function ($trail) {
+Breadcrumbs::for('platform.systems.backups', function ($trail) {
     $trail->parent('platform.systems.index');
-    $trail->push('Backup', route('platform.savior.backups'));
+    $trail->push('Backup', route('platform.systems.backups'));
 });
 
 // Platform > Bulldozer

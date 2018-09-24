@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Savior\Http\Screens;
+namespace Orchid\Platform\Http\Screens;
 
 use Carbon\Carbon;
 use Orchid\Screen\Link;
@@ -13,7 +13,7 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
-use Orchid\Savior\Http\Layouts\BackupLayout;
+use Orchid\Platform\Http\Layouts\BackupLayout;
 
 class BackupScreen extends Screen
 {
@@ -34,7 +34,7 @@ class BackupScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.savior.backups';
+    public $permission = 'platform.systems.backups';
 
     /**
      * @var array

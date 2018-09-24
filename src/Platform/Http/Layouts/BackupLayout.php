@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Savior\Http\Layouts;
+namespace Orchid\Platform\Http\Layouts;
 
 use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;

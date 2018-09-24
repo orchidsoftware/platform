@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\SystemMenuComposer;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
+use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class DashboardProvider extends ServiceProvider
 {
@@ -78,6 +78,20 @@ class DashboardProvider extends ServiceProvider
                 [
                     'slug'        => 'platform.systems.cache',
                     'description' => trans('platform::permission.systems.cache'),
+                ],
+            ],
+            trans('platform::permission.main.systems') => [
+                [
+                    'slug'        => 'platform.systems.backups',
+                    'description' => trans('platform.systems.backups'),
+                ],
+                [
+                    'slug'        => 'platform.systems.announcement',
+                    'description' => trans('platform.systems.announcement'),
+                ],
+                [
+                    'slug'        => 'platform.systems.history',
+                    'description' => 'История изменений',
                 ],
             ],
         ];

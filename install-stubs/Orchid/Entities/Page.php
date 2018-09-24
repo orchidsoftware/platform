@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\Field;
 use Orchid\Press\Entities\Single;
+use Orchid\Screen\Field;
 
 class Page extends Single
 {
@@ -43,7 +43,7 @@ class Page extends Single
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'id'             => 'sometimes|integer|unique:posts',
@@ -56,61 +56,57 @@ class Page extends Single
      * @return array
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [
 
-            Field::group(function () {
-                return [
+            Field::group([
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('name')
-                        ->max(255)
-                        ->required()
-                        ->title('Name Articles')
-                        ->help('Article title'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('name')
+                    ->max(255)
+                    ->required()
+                    ->title('Name Articles')
+                    ->help('Article title'),
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('title')
-                        ->max(255)
-                        ->required()
-                        ->title('Article Title')
-                        ->help('SEO title'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('title')
+                    ->max(255)
+                    ->required()
+                    ->title('Article Title')
+                    ->help('SEO title'),
 
-                ];
-            }),
+            ]),
 
-            Field::group(function () {
-                return [
+            Field::group([
 
-                    Field::tag('select')
-                        ->options([
-                            'index'   => 'Index',
-                            'noindex' => 'No index',
-                        ])
-                        ->multiple()
-                        ->name('robot')
-                        ->title('Indexing')
-                        ->help('Allow search bots to index page'),
+                Field::tag('select')
+                    ->options([
+                        'index'   => 'Index',
+                        'noindex' => 'No index',
+                    ])
+                    ->multiple()
+                    ->name('robot')
+                    ->title('Indexing')
+                    ->help('Allow search bots to index page'),
 
-                    Field::tag('input')
-                        ->type('text')
-                        ->name('phone')
-                        ->mask('(999) 999-9999')
-                        ->title('Phone')
-                        ->help('Number Phone'),
+                Field::tag('input')
+                    ->type('text')
+                    ->name('phone')
+                    ->mask('(999) 999-9999')
+                    ->title('Phone')
+                    ->help('Number Phone'),
 
-                    Field::tag('checkbox')
-                        ->name('free')
-                        ->value('230')
-                        ->title('Free')
-                        ->placeholder('Event for free')
-                        ->help('Event for free'),
+                Field::tag('checkbox')
+                    ->name('free')
+                    ->value('230')
+                    ->title('Free')
+                    ->placeholder('Event for free')
+                    ->help('Event for free'),
 
-                ];
-            }),
+            ]),
 
             Field::tag('textarea')
                 ->name('description')

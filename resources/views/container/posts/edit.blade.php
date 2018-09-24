@@ -34,6 +34,15 @@
         @endif
 
         <li>
+            <a href="{{route('platform.systems.history',[
+                $post->classEncodeBase64Url(),
+                $post->id
+            ])}}" class="btn btn-link">
+                <i class="icon-action-undo"></i> История
+            </a>
+        </li>
+
+        <li>
             <button type="submit"
                     onclick="window.platform.validateForm('post-form','{{trans('platform::common.alert.validate')}}')"
                     form="post-form"

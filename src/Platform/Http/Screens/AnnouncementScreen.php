@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Savior\Http\Screens;
+namespace Orchid\Platform\Http\Screens;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
 use Orchid\Platform\Models\Announcement;
-use Orchid\Savior\Http\Layouts\AnnouncementLayout;
+use Orchid\Platform\Http\Layouts\AnnouncementLayout;
 
 class AnnouncementScreen extends Screen
 {
@@ -30,7 +30,7 @@ class AnnouncementScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.savior.announcement';
+    public $permission = 'platform.systems.announcement';
 
     /**
      * @var bool
@@ -45,7 +45,7 @@ class AnnouncementScreen extends Screen
     public function query(): array
     {
         $announcement = Announcement::getActive();
-        $this->active = is_null($announcement) ? false : true;
+        $this->active = !is_null($announcement);
 
         return [
             'announcement' => $announcement,

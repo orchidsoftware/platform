@@ -87,6 +87,47 @@ class SystemMenuComposer
                 'permission' => 'platform.systems.cache',
                 'sort'       => 1000,
                 'show'       => function_exists('opcache_reset'),
+            ])
+            ->add('Systems', [
+                'slug'       => 'Savior',
+                'icon'       => 'icon-umbrella',
+                'label'      => 'Журналирование',
+                'active'     => 'platform.systems.*',
+                'permission' => 'platform.systems',
+                'sort'       => 9000,
+            ])
+            ->add('Savior', [
+                'slug'       => 'backups',
+                'icon'       => 'icon-clock',
+                'route'      => route('platform.systems.backups'),
+                'label'      => 'Резервные копии',
+                'groupname'  => 'Необходимо для возможности быстрого восстановления информации в случае утери рабочей копии.',
+                'childs'     => false,
+                'divider'    => false,
+                'permission' => 'platform.systems.backups',
+                'sort'       => 1,
+            ])
+            ->add('Savior', [
+                'slug'       => 'activity-log',
+                'icon'       => 'icon-action-undo',
+                'route'      => route('platform.systems.backups'),
+                'label'      => 'Журнал активности',
+                'groupname'  => 'Наглядное представление о том, над чем работали вы и другие участники проекта – в хронологическом порядке.',
+                'childs'     => false,
+                'divider'    => false,
+                'permission' => 'platform.systems.backups',
+                'sort'       => 1,
+            ])
+            ->add('Savior', [
+                'slug'       => 'announcement',
+                'icon'       => 'icon-bulb',
+                'route'      => route('platform.systems.announcement'),
+                'label'      => 'Публичное оповещение',
+                'groupname'  => 'Предварительное оповещение о каком-либо событии.',
+                'childs'     => false,
+                'divider'    => false,
+                'permission' => 'platform.systems.announcement',
+                'sort'       => 1,
             ]);
     }
 }
