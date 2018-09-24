@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
-use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
  * Class Field.
@@ -81,7 +81,7 @@ class Field implements FieldContract
 
     /**
      * Vertical or Horizontal
-     * bootstrap forms
+     * bootstrap forms.
      *
      * @var string
      */

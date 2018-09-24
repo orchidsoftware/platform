@@ -14,10 +14,6 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-
-    /**
-     *
-     */
     public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
