@@ -45,14 +45,14 @@ class DashboardTest extends TestFeatureCase
 
     public function test_route_SaviorBackups()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->getUser())
             ->get(route('platform.systems.backups'));
         $response->assertStatus(200);
     }
 
     public function test_route_SaviorBackups_method_runBackup()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->getUser())
             ->post(route('platform.systems.backups', 'runBackup'));
         //dump($response);
         $response->assertStatus(302);
