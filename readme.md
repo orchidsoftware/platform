@@ -47,6 +47,11 @@ Install package
 php artisan orchid:install
 ```
 
+Create your admin user
+```php
+php artisan orchid:admin admin admin@admin.com password
+```
+
 Once these commands have completed, you are ready to enjoy platform!
 
 ## Change log
