@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
-use Orchid\Screen\Exceptions\TypeException;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Exceptions\TypeException;
 
 /**
  * Class Field.
@@ -78,6 +78,14 @@ class Field implements FieldContract
      * @var
      */
     public $slug;
+
+    /**
+     * Vertical or Horizontal
+     * bootstrap forms
+     *
+     * @var string
+     */
+    public $typeForm;
 
     /**
      * A set of attributes for the assignment
@@ -251,6 +259,7 @@ class Field implements FieldContract
             'old'        => $this->getOldValue(),
             'slug'       => $this->getSlug(),
             'oldName'    => $this->getOldName(),
+            'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
         ]));
     }
 
@@ -431,5 +440,25 @@ class Field implements FieldContract
         }
 
         return $group;
+    }
+
+    /**
+     * @return $this
+     */
+    public function vertical()
+    {
+        $this->typeForm = 'platform::partials.fields.vertical';
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function horizontal()
+    {
+        $this->typeForm = 'platform::partials.fields.horizontal';
+
+        return $this;
     }
 }

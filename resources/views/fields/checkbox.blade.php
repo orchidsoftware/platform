@@ -1,4 +1,4 @@
-@component('platform::partials.fields.group',get_defined_vars())
+@component($typeForm,get_defined_vars())
     @isset($sendTrueOrFalse)
         <input hidden name="{{$attributes['name']}}" value="{{$attributes['novalue']}}">
         <div class="custom-control custom-checkbox">

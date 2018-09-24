@@ -9,10 +9,10 @@
 
     @if($errors->has($oldName))
         <div class="invalid-feedback d-block">
-                <small>{{$errors->first($oldName)}}</small>
+            <small>{{$errors->first($oldName)}}</small>
         </div>
     @elseif(isset($help))
-       <small class="form-text text-muted">{{$help}}</small>
+        <small class="form-text text-muted">{{$help}}</small>
     @endif
 </div>
 @if($hr ?? true)

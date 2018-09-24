@@ -1,4 +1,4 @@
-@component('platform::partials.fields.group',get_defined_vars())
+@component($typeForm,get_defined_vars())
     <div data-controller="fields--picture"
          data-fields--picture-image="{{$attributes['value']}}"
          data-fields--picture-width="{{$width}}"

@@ -1,6 +1,6 @@
 <div class="map-place-{{$name}}-{{$lang}}">
 
-    @component('platform::partials.fields.group',get_defined_vars())
+    @component($typeForm,get_defined_vars())
         @php
             if(isset($prefix))
                 $inputname=$prefix.'['.$lang.']'.$name;
