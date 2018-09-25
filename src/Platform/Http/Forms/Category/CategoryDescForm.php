@@ -48,9 +48,16 @@ class CategoryDescForm extends Form
      */
     public function rules() : array
     {
-        return array_merge([
-            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
-        ], $this->behavior->rules());
+        return $this->behavior->rules();
+    }
+
+    public function validationCustomAttributes() : array
+    {
+        return [
+            'content.*.name' => trans('dashboard::systems/category.fields.name_title'),
+            'content.*.body' => trans('dashboard::systems/category.fields.body_title'),
+            'slug' => trans('dashboard::systems/category.slug'),
+        ];
     }
 
     /**
@@ -84,7 +91,10 @@ class CategoryDescForm extends Form
             $termTaxonomy = new $this->model();
         }
 
-        $termTaxonomy->term->fill($request->all());
+        $data = $request->all();
+        $data['slug'] = str_slug($data['slug']);
+
+        $termTaxonomy->term->fill($data);
         $termTaxonomy->term->save();
     }
 }
