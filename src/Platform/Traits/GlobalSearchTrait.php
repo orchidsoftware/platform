@@ -31,7 +31,6 @@ trait GlobalSearchTrait
      */
     public function searchSubTitle(): string
     {
-
         return $this->attribute('subTitle');
     }
 
@@ -51,9 +50,6 @@ trait GlobalSearchTrait
         return $this->attribute('avatar');
     }
 
-    /**
-     *
-     */
     public function searchQuery($test)
     {
         return $test;

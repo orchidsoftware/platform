@@ -84,7 +84,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return str_start($prefix . $path, '/');
+        return str_start($prefix.$path, '/');
     }
 
     /**
@@ -135,7 +135,7 @@ class Dashboard
      */
     public static function model(string $key, string $default = null)
     {
-        return array_get(static::$options, 'models.' . $key, $default ?? $key);
+        return array_get(static::$options, 'models.'.$key, $default ?? $key);
     }
 
     /**
@@ -280,7 +280,7 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (!$removed->count()) {
+        if (! $removed->count()) {
             return $all;
         }
 
