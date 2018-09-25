@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Forms\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Orchid\Platform\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Orchid\Platform\Core\Models\Term;
@@ -41,8 +42,23 @@ class CategoryMainForm extends Form
      */
     public function rules() : array
     {
+        $category = config('platform.common.category');
+
+        return array_merge([
+            'slug' => [
+                'required',
+                'max:255',
+                Rule::unique('terms', 'slug')->ignore($this->request->get('term_id'), 'id'),
+            ]
+        ], (new $category())->rules());
+    }
+
+    public function validationCustomAttributes() : array
+    {
         return [
-            'slug' => 'required|max:255|unique:terms,slug,'.$this->request->get('slug').',slug',
+            'content.*.name' => trans('dashboard::systems/category.fields.name_title'),
+            'content.*.body' => trans('dashboard::systems/category.fields.body_title'),
+            'slug' => trans('dashboard::systems/category.slug'),
         ];
     }
 
@@ -76,7 +92,10 @@ class CategoryMainForm extends Form
             $termTaxonomy = new $this->model();
         }
 
-        $term = ($request->get('term_id') == 0) ? Term::create($request->all()) : Term::find($request->get('term_id'));
+        $data = $request->all();
+        $data['slug'] = str_slug($data['slug']);
+
+        $term = ($request->get('term_id') == 0) ? Term::create($data) : Term::find($request->get('term_id'));
         $termTaxonomy->fill($this->request->all());
         $termTaxonomy->term_id = $term->id;
 
