@@ -59,7 +59,7 @@ class CategoryController extends Controller
 
         Alert::success(trans('dashboard::common.alert.success'));
 
-        return back();
+        return redirect()->route('dashboard.systems.category.edit', ['id' => $termTaxonomy->term_id]);
     }
 
     /**
