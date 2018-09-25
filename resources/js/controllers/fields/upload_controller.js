@@ -30,7 +30,7 @@ export default class extends Controller {
      * @returns {string}
      */
     get dropname() {
-        return '#dropzone-' + this.data.get('name') + ' ';
+        return '#dropzone-' + this.data.get('name').replace(/\[/g , "_").replace(/\]/g , "_") + ' ';
     }
 
     /**
