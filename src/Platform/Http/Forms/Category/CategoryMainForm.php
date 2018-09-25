@@ -49,7 +49,7 @@ class CategoryMainForm extends Form
                 'required',
                 'max:255',
                 Rule::unique('terms', 'slug')->ignore($this->request->get('term_id'), 'id'),
-            ]
+            ],
         ], (new $category())->rules());
     }
 
