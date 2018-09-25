@@ -12,42 +12,40 @@ class Dashboard
      * ORCHID Version.
      */
     const VERSION = '3.0';
-
-    /**
-     * @var Menu
-     */
-    public $menu;
-
-    /**
-     * Permission for applications.
-     *
-     * @var Collection
-     */
-    private $permission;
-
-    /**
-     * @var Collection
-     */
-    public $fields;
-
-    /**
-     * @var Collection
-     */
-    private $entities;
-
-    /**
-     * JS and CSS resources for implementation in the panel.
-     *
-     * @var Collection
-     */
-    public $resources;
-
     /**
      * The Dashboard configuration options.
      *
      * @var array
      */
     protected static $options = [];
+    /**
+     * @var Menu
+     */
+    public $menu;
+    /**
+     * @var Collection
+     */
+    public $fields;
+    /**
+     * JS and CSS resources for implementation in the panel.
+     *
+     * @var Collection
+     */
+    public $resources;
+    /**
+     * Permission for applications.
+     *
+     * @var Collection
+     */
+    private $permission;
+    /**
+     * @var Collection
+     */
+    private $entities;
+    /**
+     * @var Collection
+     */
+    private $globalSearch;
 
     /**
      * Dashboard constructor.
@@ -62,6 +60,7 @@ class Dashboard
         $this->resources = collect();
         $this->entities = collect();
         $this->fields = collect();
+        $this->globalSearch = collect();
     }
 
     /**
@@ -85,7 +84,77 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return str_start($prefix.$path, '/');
+        return str_start($prefix . $path, '/');
+    }
+
+    /**
+     * Configure the Dashboard application.
+     *
+     * @param  array $options
+     *
+     * @return void
+     */
+    public static function configure(array $options)
+    {
+        static::$options = $options;
+    }
+
+    /**
+     * Get a Dashboard configuration option.
+     *
+     * @param  string $key
+     * @param  mixed  $default
+     *
+     * @return mixed
+     */
+    public static function option(string $key, $default)
+    {
+        return array_get(static::$options, $key, $default);
+    }
+
+    /**
+     * @param string      $key
+     * @param string|null $default
+     *
+     * @return mixed
+     */
+    public static function modelClass(string $key, string $default = null)
+    {
+        $model = static::model($key, $default);
+
+        return class_exists($model) ? new $model : $model;
+    }
+
+    /**
+     * Get the class name for a given Dashboard model.
+     *
+     * @param  string      $key
+     * @param  null|string $default
+     *
+     * @return string
+     */
+    public static function model(string $key, string $default = null)
+    {
+        return array_get(static::$options, 'models.' . $key, $default ?? $key);
+    }
+
+    /**
+     * @param $key
+     * @param $custom
+     */
+    public static function useModel($key, $custom)
+    {
+        static::$options['models'][$key] = $custom;
+    }
+
+    /**
+     * Checks if a new and stable version exists.
+     *
+     * @return bool
+     */
+    public static function checkUpdate(): bool
+    {
+        return (new Updates())->check();
     }
 
     /**
@@ -111,6 +180,18 @@ class Dashboard
     public function registerEntities(array $value): self
     {
         $this->entities = $this->entities->merge($value);
+
+        return $this;
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model[] $value
+     *
+     * @return $this
+     */
+    public function registerGlobalSearch(array $value): self
+    {
+        $this->globalSearch = $this->globalSearch->merge($value);
 
         return $this;
     }
@@ -174,6 +255,16 @@ class Dashboard
     }
 
     /**
+     * @return Collection
+     */
+    public function getGlobalSearch(): Collection
+    {
+        return $this->globalSearch->transform(function ($value) {
+            return is_object($value) ? $value : new $value;
+        });
+    }
+
+    /**
      * @return null|Menu
      */
     public function menu(): Menu
@@ -189,7 +280,7 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (! $removed->count()) {
+        if (!$removed->count()) {
             return $all;
         }
 
@@ -206,6 +297,7 @@ class Dashboard
 
     /**
      * @param string $key
+     *
      * @return $this
      */
     public function removePermission(string $key)
@@ -213,71 +305,5 @@ class Dashboard
         $this->permission->get('removed')->push($key);
 
         return $this;
-    }
-
-    /**
-     * Configure the Dashboard application.
-     *
-     * @param  array  $options
-     * @return void
-     */
-    public static function configure(array $options)
-    {
-        static::$options = $options;
-    }
-
-    /**
-     * Get a Dashboard configuration option.
-     *
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
-     */
-    public static function option(string $key, $default)
-    {
-        return array_get(static::$options, $key, $default);
-    }
-
-    /**
-     * Get the class name for a given Dashboard model.
-     *
-     * @param  string  $key
-     * @param  null|string  $default
-     * @return string
-     */
-    public static function model(string $key, string $default = null)
-    {
-        return array_get(static::$options, 'models.'.$key, $default ?? $key);
-    }
-
-    /**
-     * @param string      $key
-     * @param string|null $default
-     * @return mixed
-     */
-    public static function modelClass(string $key, string $default = null)
-    {
-        $model = static::model($key, $default);
-
-        return class_exists($model) ? new $model : $model;
-    }
-
-    /**
-     * @param $key
-     * @param $custom
-     */
-    public static function useModel($key, $custom)
-    {
-        static::$options['models'][$key] = $custom;
-    }
-
-    /**
-     * Checks if a new and stable version exists.
-     *
-     * @return bool
-     */
-    public static function checkUpdate() : bool
-    {
-        return (new Updates())->check();
     }
 }

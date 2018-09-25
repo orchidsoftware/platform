@@ -2,7 +2,6 @@
 
 
 @section('body')
-
     <div class="app" id="app" data-controller="@yield('controller')">
         <div class="app-header">
 
@@ -14,11 +13,11 @@
                         <a class="header-brand" href="{{route('platform.index')}}">
                             <p class="h2 n-m font-thin v-center">
                                 <i class="icon-orchid text-primary"></i>
-                                <span class="m-l d-none d-sm-block"> {{config('app.name')}} </span>
+                                <span class="m-l d-none d-sm-block"> {{config('platform.name')}} </span>
                             </p>
                         </a>
 
-                        <ul class="m-n">
+                        <ul class="m-n padder">
                             @if(Dashboard::menu()->showCountElement('Quick'))
                                 <li class="inline">
                                     <div class="dropdown">
@@ -29,17 +28,115 @@
                                     </div>
                                 </li>
                             @endif
+                            {{--
                             <li class="inline b-l">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#globalSearch">
-                                    <i class="icon-magnifier m-r-xs"></i>Type anywhere to <span
-                                            class="font-bold">search</span>
-                                </a>
+                                <div class="dropdown position-relative">
+                                    <div class="input-icon w-xxl m-l-sm">
+                                        <input onchange="$('.test').dropdown('toggle');$().dropdown('update')"
+                                               type="text" class="form-control input-sm  no-border rounded padder"
+                                               placeholder="Type anywhere to search..."
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        >
+                                        <div class="input-icon-addon">
+                                            <i class="icon-magnifier"></i>
+                                        </div>
+                                    </div>
+                                    <div class="test dropdown-menu dropdown-menu-right dropdown-menu-arrow w-xxl"
+                                         x-placement="start-left">
+
+                                        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Управление контентом</div>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+
+                                        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Управление контентом</div>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                        <a href="#" class="block wrapper-sm dropdown-item">
+                                    <span class="pull-left thumb-xs avatar m-r-sm">
+                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
+                                      <i class="on b-white bottom"></i>
+                                    </span>
+                                            <span class="clear">
+                                      <span class="text-ellipsis">Chris Fox</span>
+                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
+                                    </span>
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
+                            --}}
                         </ul>
 
 
                         <div class="d-flex order-lg-2 ml-auto">
 
+                            @include('platform::partials.search')
 
                             @include('platform::partials.notifications')
 
@@ -50,7 +147,7 @@
                                     </span>
                                     <span class="ml-2 d-none d-lg-block" style="max-width:150px;font-size: 0.82857rem;">
                                         <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
-                                        <span class="text-muted d-block mt-1 text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
+                                        <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -77,18 +174,19 @@
                                             <i class="icon-logout m-r-xs" aria-hidden="true"></i>
                                             <span>Вернуться в свой аккаунт</span>
                                         </a>
-                                        <form id="return-original-user" class="hidden" action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
+                                        <form id="return-original-user" class="hidden"
+                                              action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
                                               method="POST">
                                             @csrf
                                         </form>
                                     @else
-                                    <a href="{{ route('platform.logout') }}"
-                                       class="dropdown-item"
-                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                                       dusk="logout-button">
-                                        <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                                        <span>{{trans('platform::auth/account.sign_out')}}</span>
-                                    </a>
+                                        <a href="{{ route('platform.logout') }}"
+                                           class="dropdown-item"
+                                           onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                           dusk="logout-button">
+                                            <i class="icon-logout m-r-xs" aria-hidden="true"></i>
+                                            <span>{{trans('platform::auth/account.sign_out')}}</span>
+                                        </a>
                                         <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
                                               method="POST">
                                             @csrf

@@ -4,15 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Brand
+    | Orchid App Name
     |--------------------------------------------------------------------------
     |
-    | Image on the main page of the panel as an icon
-    | All available icons can be viewed at https://orchid.software/en/icons
+    | This value is the name of your application. This value is used when the
+    | framework needs to display the name of the application within the UI
+    | or in other locations. Of course, you're free to change the value.
     |
     */
 
-    'logo' => 'icon-orchid text-info',
+    'name' => 'Orchid',
 
     /*
     |--------------------------------------------------------------------------
