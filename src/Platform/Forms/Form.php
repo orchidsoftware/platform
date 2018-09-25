@@ -85,7 +85,7 @@ abstract class Form implements FormInterface
     {
         $rules = $this->rules() ?: $this->rules;
 
-        $this->validate($this->request, $rules);
+        $this->validate($this->request, $rules, $this->validationMessages(), $this->validationCustomAttributes());
 
         return true;
     }
@@ -96,6 +96,16 @@ abstract class Form implements FormInterface
      * @return array
      */
     public function rules() : array
+    {
+        return [];
+    }
+
+    public function validationMessages() : array
+    {
+        return [];
+    }
+
+    public function validationCustomAttributes() : array
     {
         return [];
     }
