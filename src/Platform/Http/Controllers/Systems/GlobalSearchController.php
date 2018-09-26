@@ -24,8 +24,8 @@ class GlobalSearchController
             ];
         });
 
-        return view('platform::partials.result',[
-            'result' => $result
+        return view('platform::partials.result', [
+            'result' => $result,
         ]);
     }
 }
