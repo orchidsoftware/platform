@@ -204,17 +204,17 @@
                 </div>
             </div>
 
-            <div class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg" id="headerMenuCollapse">
+            <nav class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg navbar" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg order-lg-first">
-                            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                            <ul class="nav nav-tabs  border-0 flex-column flex-lg-row">
                                 {!! Dashboard::menu()->render('Main') !!}
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
+            </nav>
 
         </div>
 
@@ -258,15 +258,13 @@
             <div class="col-md-6 text-left">
                 <p class="small m-n">
                 <span class="sm-block">
-                    Premium and Open Source dashboard.
-                    <a href="#" class="m-l-10 m-r-10">Terms of use</a>
-                    <span class="muted">|</span>
-                    <a href="#" class="m-l-10">Privacy Policy</a>
+                   Designed and built with all the love in the world.
+                   Currently v{{\Orchid\Platform\Dashboard::VERSION}}.
                 </span>
                 </p>
             </div>
             <div class="col-md-6 text-right">
-                <p class="small m-n">© 2016 - 2018 The application code is published under the MIT license.</p>
+                <p class="small m-n">© 2016 - {{date('Y')}} The application code is published under the MIT license.</p>
             </div>
         </div>
     </footer>

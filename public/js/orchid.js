@@ -50,6 +50,12 @@ var _class = function (_Controller) {
          *
          */
 
+
+        /**
+         *
+         * @type {string[]}
+         */
+
     }, {
         key: "generate",
         value: function generate() {
@@ -193,8 +199,8 @@ var _class = function (_Controller) {
     key: 'initialize',
 
     /**
-       *
-       */
+     *
+     */
     value: function initialize() {
       __WEBPACK_IMPORTED_MODULE_1_turbolinks___default.a.start();
       __WEBPACK_IMPORTED_MODULE_1_turbolinks___default.a.setProgressBarDelay(100);
@@ -202,8 +208,8 @@ var _class = function (_Controller) {
     }
 
     /**
-       *
-       */
+     *
+     */
 
   }, {
     key: 'connect',
@@ -212,10 +218,10 @@ var _class = function (_Controller) {
     }
 
     /**
-       * We'll load the axios HTTP library which allows us to easily issue requests
-       * to our Laravel back-end. This library automatically handles sending the
-       * CSRF token as a header based on the value of the "XSRF" token cookie.
-       */
+     * We'll load the axios HTTP library which allows us to easily issue requests
+     * to our Laravel back-end. This library automatically handles sending the
+     * CSRF token as a header based on the value of the "XSRF" token cookie.
+     */
 
   }, {
     key: 'csrf',
@@ -224,10 +230,10 @@ var _class = function (_Controller) {
       window.axios = __WEBPACK_IMPORTED_MODULE_2_axios___default.a;
 
       /**
-           * Next we will register the CSRF Token as a common header with Axios so that
-           * all outgoing HTTP requests automatically have it attached. This is just
-           * a simple convenience so we don't have to attach every token manually.
-           */
+       * Next we will register the CSRF Token as a common header with Axios so that
+       * all outgoing HTTP requests automatically have it attached. This is just
+       * a simple convenience so we don't have to attach every token manually.
+       */
       window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
       window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     }
@@ -246,63 +252,63 @@ var _class = function (_Controller) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {/* harmony export (immutable) */ __webpack_exports__["a"] = platform;
 function platform() {
-  return {
+    return {
 
-    /**
+        /**
          *
          * @param path
          * @returns {*}
          */
-    prefix: function prefix(path) {
-      var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
+        prefix: function prefix(path) {
+            var prefix = document.head.querySelector('meta[name="dashboard-prefix"]');
 
-      if (prefix.content.charAt(0) !== '/') {
-        prefix = '/' + prefix.content;
-      }
+            if (prefix.content.charAt(0) !== '/') {
+                prefix = '/' + prefix.content;
+            }
 
-      return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + prefix.content + path;
-    },
+            return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + prefix.content + path;
+        },
 
 
-    /**
+        /**
          *
          * @param message
          * @param type
          * @param target
          */
-    alert: function alert(message) {
-      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'danger';
-      var target = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '#dashboard-alerts';
+        alert: function alert(message) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'danger';
+            var target = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '#dashboard-alerts';
 
-      $(target).append($('<div/>', {
-        class: 'alert alert-' + type,
-        text: message
-      }).append($('<button/>', {
-        class: 'close',
-        'data-dismiss': 'alert',
-        'aria-label': 'Close',
-        'aria-hidden': 'true'
-      }).append($('<span/>', {
-        'aria-hidden': 'true',
-        html: '&times;'
-      }))), $('<div/>', { class: 'clearfix' }));
-    },
+            $(target).append($('<div/>', {
+                class: 'alert alert-' + type,
+                text: message
+            }).append($('<button/>', {
+                class: 'close',
+                'data-dismiss': 'alert',
+                'aria-label': 'Close',
+                'aria-hidden': 'true'
+            }).append($('<span/>', {
+                'aria-hidden': 'true',
+                html: '&times;'
+            }))), $('<div/>', { class: 'clearfix' }));
+        },
 
 
-    /**
+        /**
          *
          * @param idForm
          * @param message
          * @returns {boolean}
          */
-    validateForm: function validateForm(idForm, message) {
-      if (!document.getElementById(idForm).checkValidity()) {
-        window.platform.alert(message, 'warning');
-        return false;
-      }
-      return true;
-    }
-  };
+        validateForm: function validateForm(idForm, message) {
+            if (!document.getElementById(idForm).checkValidity()) {
+                window.platform.alert(message, 'warning');
+                return false;
+            }
+            return true;
+        }
+    };
 }
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
@@ -325,34 +331,34 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'filter',
-
-    /**
-       * Stimulus gives the possibility of a change event when the field loses focus
-       */
-    value: function filter(event) {
-      var search = event.target.value.trim().toLowerCase();
-
-      $('.admin-element-item').hide().filter(function () {
-        return $(this).html().trim().toLowerCase().indexOf(search) !== -1;
-      }).show();
-
-      $('.admin-element').show().filter(function () {
-        return $(this).children('.list-group').children(':visible').length === 0;
-      }).hide();
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'filter',
+
+        /**
+         * Stimulus gives the possibility of a change event when the field loses focus
+         */
+        value: function filter(event) {
+            var search = event.target.value.trim().toLowerCase();
+
+            $('.admin-element-item').hide().filter(function () {
+                return $(this).html().trim().toLowerCase().indexOf(search) !== -1;
+            }).show();
+
+            $('.admin-element').show().filter(function () {
+                return $(this).children('.list-group').children(':visible').length === 0;
+            }).hide();
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -377,38 +383,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'targetModal',
-
-    /**
-       *
-       * @param event
-       * @returns {*}
-       */
-    value: function targetModal(event) {
-      var key = event.target.dataset.modalKey;
-
-      this.application.getControllerForElementAndIdentifier(document.getElementById('screen-modal-' + key), 'screen--modal').open({
-        title: event.target.dataset.modalTitle,
-        submit: event.target.dataset.modalAction,
-        params: event.target.dataset.modalParams
-      });
-
-      return event.preventDefault();
-
-      // TODO: $('#screen-modal-type-'+key).addClass($('#show-button-modal-'+key).data('modalType'));
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'targetModal',
+
+        /**
+         *
+         * @param event
+         * @returns {*}
+         */
+        value: function targetModal(event) {
+            var key = event.target.dataset.modalKey;
+
+            this.application.getControllerForElementAndIdentifier(document.getElementById('screen-modal-' + key), 'screen--modal').open({
+                title: event.target.dataset.modalTitle,
+                submit: event.target.dataset.modalAction,
+                params: event.target.dataset.modalParams
+            });
+
+            return event.preventDefault();
+
+            // TODO: $('#screen-modal-type-'+key).addClass($('#show-button-modal-'+key).data('modalType'));
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -434,36 +440,36 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-     *
-     */
-    value: function connect() {
-      new __WEBPACK_IMPORTED_MODULE_1_frappe_charts_dist_frappe_charts_esm__["a" /* Chart */](this.data.get('parent'), {
-        title: this.data.get('title'),
-        data: {
-          labels: JSON.parse(this.data.get('labels')),
-          datasets: JSON.parse(this.data.get('datasets'))
-        },
-        type: this.data.get('type'),
-        height: this.data.get('height'),
-
-        colors: JSON.parse(this.data.get('colors'))
-      });
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'connect',
+
+        /**
+        *
+        */
+        value: function connect() {
+            new __WEBPACK_IMPORTED_MODULE_1_frappe_charts_dist_frappe_charts_esm__["a" /* Chart */](this.data.get('parent'), {
+                title: this.data.get('title'),
+                data: {
+                    labels: JSON.parse(this.data.get('labels')),
+                    datasets: JSON.parse(this.data.get('datasets'))
+                },
+                type: this.data.get('type'),
+                height: this.data.get('height'),
+
+                colors: JSON.parse(this.data.get('colors'))
+            });
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -4279,77 +4285,77 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-       *
-       */
-    value: function connect() {
-      var tabs = this.tabs();
-
-      var activeId = tabs[window.location.href][this.data.get('slug')];
-
-      console.log(activeId);
-
-      if (activeId !== null) {
-        $('#' + activeId).tab('show');
-      }
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
 
-    /**
-       *
-       * @param event
-       */
+    _createClass(_class, [{
+        key: 'connect',
 
-  }, {
-    key: 'setActiveTab',
-    value: function setActiveTab(event) {
-      var activeId = event.target.id;
-      var tabs = this.tabs();
+        /**
+         *
+         */
+        value: function connect() {
+            var tabs = this.tabs();
 
-      tabs[window.location.href][this.data.get('slug')] = activeId;
-      localStorage.setItem('tabs', JSON.stringify(tabs));
-      $('#' + activeId).tab('show');
+            var activeId = tabs[window.location.href][this.data.get('slug')];
 
-      return event.preventDefault();
-    }
+            console.log(activeId);
 
-    /**
-       *
-       * @returns {any}
-       */
+            if (activeId !== null) {
+                $('#' + activeId).tab('show');
+            }
+        }
 
-  }, {
-    key: 'tabs',
-    value: function tabs() {
-      var tabs = JSON.parse(localStorage.getItem('tabs'));
+        /**
+         *
+         * @param event
+         */
 
-      if (tabs === null) {
-        tabs = {};
-      }
+    }, {
+        key: 'setActiveTab',
+        value: function setActiveTab(event) {
+            var activeId = event.target.id;
+            var tabs = this.tabs();
 
-      if (tabs[window.location.href] === undefined) {
-        tabs[window.location.href] = {};
-      }
+            tabs[window.location.href][this.data.get('slug')] = activeId;
+            localStorage.setItem('tabs', JSON.stringify(tabs));
+            $('#' + activeId).tab('show');
 
-      if (tabs[window.location.href][this.data.get('slug')] === undefined) {
-        tabs[window.location.href][this.data.get('slug')] = null;
-      }
+            return event.preventDefault();
+        }
 
-      return tabs;
-    }
-  }]);
+        /**
+         *
+         * @returns {any}
+         */
 
-  return _class;
+    }, {
+        key: 'tabs',
+        value: function tabs() {
+            var tabs = JSON.parse(localStorage.getItem('tabs'));
+
+            if (tabs === null) {
+                tabs = {};
+            }
+
+            if (tabs[window.location.href] === undefined) {
+                tabs[window.location.href] = {};
+            }
+
+            if (tabs[window.location.href][this.data.get('slug')] === undefined) {
+                tabs[window.location.href][this.data.get('slug')] = null;
+            }
+
+            return tabs;
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -5109,38 +5115,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-       *
-       */
-    value: function connect() {
-      var input = this.element.querySelector('input');
-
-      var flask = new __WEBPACK_IMPORTED_MODULE_1_codeflask__["a" /* default */](this.element.querySelector('.code'), {
-        language: this.data.get('language'),
-        lineNumbers: this.data.get('lineNumbers'),
-        defaultTheme: this.data.get('defaultTheme')
-      });
-
-      flask.updateCode(input.value);
-
-      flask.onUpdate(function (code) {
-        input.value = code;
-      });
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'connect',
+
+        /**
+         *
+         */
+        value: function connect() {
+            var input = this.element.querySelector('input');
+
+            var flask = new __WEBPACK_IMPORTED_MODULE_1_codeflask__["a" /* default */](this.element.querySelector('.code'), {
+                language: this.data.get('language'),
+                lineNumbers: this.data.get('lineNumbers'),
+                defaultTheme: this.data.get('defaultTheme')
+            });
+
+            flask.updateCode(input.value);
+
+            flask.onUpdate(function (code) {
+                input.value = code;
+            });
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -5183,58 +5189,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Flatpickr) {
-  _inherits(_class, _Flatpickr);
+    _inherits(_class, _Flatpickr);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'initialize',
-
-    /**
-       *
-       */
-    value: function initialize() {
-      var plugins = [];
-      if (this.data.get('range')) {
-        plugins.push(new __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js___default.a({ input: this.data.get('range') }));
-      }
-
-      this.config = {
-        locale: document.documentElement.lang,
-        plugins: plugins
-      };
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
 
-    /**
-       *
-       */
+    _createClass(_class, [{
+        key: 'initialize',
 
-  }, {
-    key: 'connect',
-    value: function connect() {
-      _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'connect', this).call(this);
-    }
+        /**
+         *
+         */
+        value: function initialize() {
+            var plugins = [];
+            if (this.data.get('range')) {
+                plugins.push(new __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_rangePlugin_js___default.a({ input: this.data.get('range') }));
+            }
 
-    /**
-       *
-       * @param selectedDates
-       * @param dateStr
-       * @param instance
-       * @returns {*}
-       */
+            this.config = {
+                locale: document.documentElement.lang,
+                plugins: plugins
+            };
+        }
 
-  }, {
-    key: 'change',
-    value: function change(selectedDates, dateStr, instance) {
-      return dateStr;
-    }
-  }]);
+        /**
+         *
+         */
 
-  return _class;
+    }, {
+        key: 'connect',
+        value: function connect() {
+            _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), 'connect', this).call(this);
+        }
+
+        /**
+         *
+         * @param selectedDates
+         * @param dateStr
+         * @param instance
+         * @returns {*}
+         */
+
+    }, {
+        key: 'change',
+        value: function change(selectedDates, dateStr, instance) {
+            return dateStr;
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus_flatpickr___default.a);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -8793,27 +8799,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-       *
-       */
-    value: function connect() {
-      var element = this.element.querySelector('input');
-      __WEBPACK_IMPORTED_MODULE_1_inputmask___default()(element.dataset.mask).mask(element);
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'connect',
+
+        /**
+         *
+         */
+        value: function connect() {
+            var element = this.element.querySelector('input');
+            __WEBPACK_IMPORTED_MODULE_1_inputmask___default()(element.dataset.mask).mask(element);
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -9081,37 +9087,37 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-       *
-       */
-    value: function connect() {
-      var select = this.element.querySelector('select');
-
-      if (select.getAttribute('multiple') === null) {
-        return;
-      }
-
-      // setTimeout(() => {
-      $(select).select2({
-        width: '100%',
-        theme: 'bootstrap'
-      });
-      // }, 500);
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'connect',
+
+        /**
+         *
+         */
+        value: function connect() {
+            var select = this.element.querySelector('select');
+
+            if (select.getAttribute('multiple') === null) {
+                return;
+            }
+
+            // setTimeout(() => {
+            $(select).select2({
+                width: '100%',
+                theme: 'bootstrap'
+            });
+            // }, 500);
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -9139,188 +9145,188 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-
-    /**
-       *
-       */
-    value: function connect() {
-      var _this2 = this;
-
-      this.editor = new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
-        autoDownloadFontAwesome: false,
-        forceSync: true,
-        element: this.textarea,
-        toolbar: [{
-          name: 'bold',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBold,
-          className: 'icon-bold',
-          title: 'Bold'
-        }, {
-          name: 'italic',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleItalic,
-          className: 'icon-italic',
-          title: 'Italic'
-        }, {
-          name: 'heading',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleHeadingSmaller,
-          className: 'icon-font',
-          title: 'Heading'
-        }, '|', {
-          name: 'quote',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBlockquote,
-          className: 'icon-quote',
-          title: 'Quote'
-        }, {
-          name: 'code',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleCodeBlock,
-          className: 'icon-code',
-          title: 'Code'
-        }, {
-          name: 'unordered-list',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleUnorderedList,
-          className: 'icon-list',
-          title: 'Generic List'
-        }, {
-          name: 'ordered-list',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleOrderedList,
-          className: 'icon-number-list',
-          title: 'Numbered List'
-        }, '|', {
-          name: 'link',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawLink,
-          className: 'icon-link',
-          title: 'Link'
-        }, {
-          name: 'image',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawImage,
-          className: 'icon-picture',
-          title: 'Insert Image'
-        }, {
-          name: 'upload',
-          action: function action() {
-            return _this2.showDialogUpload();
-          },
-          className: 'icon-cloud-upload',
-          title: 'Upload File'
-        }, {
-          name: 'table',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawTable,
-          className: 'icon-table',
-          title: 'Insert Table'
-        }, '|', {
-          name: 'preview',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.togglePreview,
-          className: 'icon-eye no-disable',
-          title: 'Toggle Preview'
-        }, {
-          name: 'side-by-side',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleSideBySide,
-          className: 'icon-browser no-disable no-mobile',
-          title: 'Toggle Side by Side'
-        }, {
-          name: 'fullscreen',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleFullScreen,
-          className: 'icon-full-screen no-disable no-mobile',
-          title: 'Toggle Fullscreen'
-        }, '|', {
-          name: 'horizontal-rule',
-          action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawHorizontalRule,
-          className: 'icon-options',
-          title: 'Insert Horizontal Line'
-        }, {
-          name: 'guide',
-          action: function action() {
-            return _this2.showModal();
-          },
-          className: 'icon-help',
-          title: 'Markdown Guide'
-        }],
-        placeholder: this.textarea.placeholder,
-        spellChecker: false
-      });
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
 
-    /**
-       *
-       * @returns {Element}
-       */
+    _createClass(_class, [{
+        key: 'connect',
 
-  }, {
-    key: 'showModal',
-    value: function showModal() {
-      $(this.element.querySelector('.modal')).modal('show');
-    }
 
-    /**
-       *
-       */
+        /**
+         *
+         */
+        value: function connect() {
+            var _this2 = this;
 
-  }, {
-    key: 'showDialogUpload',
-    value: function showDialogUpload() {
-      this.uploadInput.click();
-    }
+            this.editor = new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
+                autoDownloadFontAwesome: false,
+                forceSync: true,
+                element: this.textarea,
+                toolbar: [{
+                    name: 'bold',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBold,
+                    className: 'icon-bold',
+                    title: 'Bold'
+                }, {
+                    name: 'italic',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleItalic,
+                    className: 'icon-italic',
+                    title: 'Italic'
+                }, {
+                    name: 'heading',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleHeadingSmaller,
+                    className: 'icon-font',
+                    title: 'Heading'
+                }, '|', {
+                    name: 'quote',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleBlockquote,
+                    className: 'icon-quote',
+                    title: 'Quote'
+                }, {
+                    name: 'code',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleCodeBlock,
+                    className: 'icon-code',
+                    title: 'Code'
+                }, {
+                    name: 'unordered-list',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleUnorderedList,
+                    className: 'icon-list',
+                    title: 'Generic List'
+                }, {
+                    name: 'ordered-list',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleOrderedList,
+                    className: 'icon-number-list',
+                    title: 'Numbered List'
+                }, '|', {
+                    name: 'link',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawLink,
+                    className: 'icon-link',
+                    title: 'Link'
+                }, {
+                    name: 'image',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawImage,
+                    className: 'icon-picture',
+                    title: 'Insert Image'
+                }, {
+                    name: 'upload',
+                    action: function action() {
+                        return _this2.showDialogUpload();
+                    },
+                    className: 'icon-cloud-upload',
+                    title: 'Upload File'
+                }, {
+                    name: 'table',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawTable,
+                    className: 'icon-table',
+                    title: 'Insert Table'
+                }, '|', {
+                    name: 'preview',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.togglePreview,
+                    className: 'icon-eye no-disable',
+                    title: 'Toggle Preview'
+                }, {
+                    name: 'side-by-side',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleSideBySide,
+                    className: 'icon-browser no-disable no-mobile',
+                    title: 'Toggle Side by Side'
+                }, {
+                    name: 'fullscreen',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.toggleFullScreen,
+                    className: 'icon-full-screen no-disable no-mobile',
+                    title: 'Toggle Fullscreen'
+                }, '|', {
+                    name: 'horizontal-rule',
+                    action: __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a.drawHorizontalRule,
+                    className: 'icon-options',
+                    title: 'Insert Horizontal Line'
+                }, {
+                    name: 'guide',
+                    action: function action() {
+                        return _this2.showModal();
+                    },
+                    className: 'icon-help',
+                    title: 'Markdown Guide'
+                }],
+                placeholder: this.textarea.placeholder,
+                spellChecker: false
+            });
+        }
 
-    /**
-       *
-       * @param event
-       */
+        /**
+         *
+         * @returns {Element}
+         */
 
-  }, {
-    key: 'upload',
-    value: function upload(event) {
-      var file = event.target.files[0];
+    }, {
+        key: 'showModal',
+        value: function showModal() {
+            $(this.element.querySelector('.modal')).modal('show');
+        }
 
-      if (file === undefined || file === null) {
-        return;
-      }
+        /**
+         *
+         */
 
-      var cm = this.editor.codemirror;
-      var formData = new FormData();
-      formData.append('file', file);
+    }, {
+        key: 'showDialogUpload',
+        value: function showDialogUpload() {
+            this.uploadInput.click();
+        }
 
-      axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
-        cm.replaceSelection(response.data.url);
-        event.target.value = null;
-      }).catch(function (error) {
-        console.warn(error);
-        event.target.value = null;
-      });
-    }
-  }, {
-    key: 'textarea',
+        /**
+         *
+         * @param event
+         */
 
-    /**
-       *
-       * @returns {Element}
-       */
-    get: function get() {
-      return this.element.querySelector('textarea');
-    }
+    }, {
+        key: 'upload',
+        value: function upload(event) {
+            var file = event.target.files[0];
 
-    /**
-       *
-       */
+            if (file === undefined || file === null) {
+                return;
+            }
 
-  }, {
-    key: 'uploadInput',
-    get: function get() {
-      return this.element.querySelector('.upload');
-    }
-  }]);
+            var cm = this.editor.codemirror;
+            var formData = new FormData();
+            formData.append('file', file);
 
-  return _class;
+            axios.post(platform.prefix('/systems/files'), formData).then(function (response) {
+                cm.replaceSelection(response.data.url);
+                event.target.value = null;
+            }).catch(function (error) {
+                console.warn(error);
+                event.target.value = null;
+            });
+        }
+    }, {
+        key: 'textarea',
+
+        /**
+         *
+         * @returns {Element}
+         */
+        get: function get() {
+            return this.element.querySelector('textarea');
+        }
+
+        /**
+         *
+         */
+
+    }, {
+        key: 'uploadInput',
+        get: function get() {
+            return this.element.querySelector('.upload');
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -9345,58 +9351,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-    value: function connect() {
-      var select = this.element.querySelector('select');
-
-      setTimeout(function () {
-        $(select).select2({
-          templateResult: function templateResult(state) {
-            if (!state.id || !state.count) {
-              return state.text;
-            }
-            return $('<span>' + state.text + '</span><span class="pull-right badge bg-info">' + state.count + '</span>');
-          },
-          createTag: function createTag(tag) {
-            return {
-              id: tag.term,
-              text: tag.term
-            };
-          },
-          escapeMarkup: function escapeMarkup(m) {
-            return m;
-          },
-
-          width: '100%',
-          tags: true,
-          cache: true,
-          ajax: {
-            url: function url(params) {
-              return platform.prefix('/systems/tags/' + params.term);
-            },
-
-            delay: 340,
-            processResults: function processResults(data) {
-              return {
-                results: data
-              };
-            }
-          }
-        });
-      }, 100);
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
-  }]);
 
-  return _class;
+    _createClass(_class, [{
+        key: 'connect',
+        value: function connect() {
+            var select = this.element.querySelector('select');
+
+            setTimeout(function () {
+                $(select).select2({
+                    templateResult: function templateResult(state) {
+                        if (!state.id || !state.count) {
+                            return state.text;
+                        }
+                        return $('<span>' + state.text + '</span><span class="pull-right badge bg-info">' + state.count + '</span>');
+                    },
+                    createTag: function createTag(tag) {
+                        return {
+                            id: tag.term,
+                            text: tag.term
+                        };
+                    },
+                    escapeMarkup: function escapeMarkup(m) {
+                        return m;
+                    },
+
+                    width: '100%',
+                    tags: true,
+                    cache: true,
+                    ajax: {
+                        url: function url(params) {
+                            return platform.prefix('/systems/tags/' + params.term);
+                        },
+
+                        delay: 340,
+                        processResults: function processResults(data) {
+                            return {
+                                results: data
+                            };
+                        }
+                    }
+                });
+            }, 100);
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -9478,100 +9484,100 @@ import 'tinymce/plugins/wordcount'
 */
 
 var _class = function (_Controller) {
-  _inherits(_class, _Controller);
+    _inherits(_class, _Controller);
 
-  function _class() {
-    _classCallCheck(this, _class);
+    function _class() {
+        _classCallCheck(this, _class);
 
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'connect',
-
-    /**
-       *
-       */
-    value: function connect() {
-      // require.context(
-      //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
-      //    true,
-      //    /.*/
-      // );
-
-
-      __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.baseURL = '/orchid/js/tinymce';
-
-      var selector = this.element.querySelector('.tinymce').id;
-      var input = this.element.querySelector('input');
-
-      var plugins = 'image media table link paste contextmenu textpattern autolink codesample';
-      var toolbar1 = '';
-      var inline = true;
-
-      if (this.element.dataset.theme === 'modern') {
-        plugins = 'print autosave autoresize preview paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern';
-        toolbar1 = 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat';
-        inline = false;
-      }
-
-      __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.init({
-        branding: false,
-        selector: '#' + selector,
-        theme: this.element.dataset.theme,
-        min_height: 300,
-        height: 300,
-        max_height: 600,
-        plugins: plugins,
-        toolbar1: toolbar1,
-        insert_toolbar: 'quickimage quicktable media codesample fullscreen',
-        selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
-        inline: inline,
-        convert_urls: false,
-        image_caption: true,
-        image_title: true,
-        image_class_list: [{
-          title: 'None',
-          value: ''
-        }, {
-          title: 'Responsive',
-          value: 'img-fluid'
-        }],
-        setup: function setup(element) {
-          element.on('change', function () {
-            $(input).val(element.getContent());
-          });
-        },
-        images_upload_handler: this.upload
-      });
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
 
-    /**
-       *
-       * @param blobInfo
-       * @param success
-       */
+    _createClass(_class, [{
+        key: 'connect',
 
-  }, {
-    key: 'upload',
-    value: function upload(blobInfo, success) {
-      var data = new FormData();
-      data.append('file', blobInfo.blob());
+        /**
+         *
+         */
+        value: function connect() {
+            // require.context(
+            //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+            //    true,
+            //    /.*/
+            // );
 
-      axios.post(platform.prefix('/systems/files'), data).then(function (response) {
-        success(response.data.url);
-      }).catch(function (error) {
-        console.warn(error);
-      });
-    }
-  }, {
-    key: 'disconnect',
-    value: function disconnect() {
-      __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove('#' + this.element.querySelector('.tinymce').id);
-    }
-  }]);
 
-  return _class;
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.baseURL = '/orchid/js/tinymce';
+
+            var selector = this.element.querySelector('.tinymce').id;
+            var input = this.element.querySelector('input');
+
+            var plugins = 'image media table link paste contextmenu textpattern autolink codesample';
+            var toolbar1 = '';
+            var inline = true;
+
+            if (this.element.dataset.theme === 'modern') {
+                plugins = 'print autosave autoresize preview paste code searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern';
+                toolbar1 = 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat';
+                inline = false;
+            }
+
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.init({
+                branding: false,
+                selector: '#' + selector,
+                theme: this.element.dataset.theme,
+                min_height: 300,
+                height: 300,
+                max_height: 600,
+                plugins: plugins,
+                toolbar1: toolbar1,
+                insert_toolbar: 'quickimage quicktable media codesample fullscreen',
+                selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | alignleft aligncenter alignright alignjustify | outdent indent | removeformat ',
+                inline: inline,
+                convert_urls: false,
+                image_caption: true,
+                image_title: true,
+                image_class_list: [{
+                    title: 'None',
+                    value: ''
+                }, {
+                    title: 'Responsive',
+                    value: 'img-fluid'
+                }],
+                setup: function setup(element) {
+                    element.on('change', function () {
+                        $(input).val(element.getContent());
+                    });
+                },
+                images_upload_handler: this.upload
+            });
+        }
+
+        /**
+         *
+         * @param blobInfo
+         * @param success
+         */
+
+    }, {
+        key: 'upload',
+        value: function upload(blobInfo, success) {
+            var data = new FormData();
+            data.append('file', blobInfo.blob());
+
+            axios.post(platform.prefix('/systems/files'), data).then(function (response) {
+                success(response.data.url);
+            }).catch(function (error) {
+                console.warn(error);
+            });
+        }
+    }, {
+        key: 'disconnect',
+        value: function disconnect() {
+            __WEBPACK_IMPORTED_MODULE_1_tinymce_tinymce___default.a.remove('#' + this.element.querySelector('.tinymce').id);
+        }
+    }]);
+
+    return _class;
 }(__WEBPACK_IMPORTED_MODULE_0_stimulus__["Controller"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (_class);
@@ -9805,7 +9811,7 @@ var _class = function (_Controller) {
     }, {
         key: "dropname",
         get: function get() {
-            return '#dropzone-' + this.data.get('name') + ' ';
+            return '#dropzone-' + this.data.get('name').replace(/\[/g, "_").replace(/\]/g, "_") + ' ';
         }
 
         /**

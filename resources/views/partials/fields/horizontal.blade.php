@@ -1,11 +1,13 @@
 <div class="form-group row">
     @isset($title)
-        <label for="{{$id}}" class="col-sm-2 col-form-label">{{$title}}
-            @if(isset($attributes['required']) && $attributes['required'])<span class="text-danger">*</span>@endif
+        <label for="{{$id}}" class="col-sm-2 v-center">{{$title}}
+            @if(isset($attributes['required']) && $attributes['required'])
+                <span class="text-danger m-l-xs">*</span>
+            @endif
         </label>
     @endisset
 
-    <div class="col-sm-10">
+    <div class="col">
         {{$slot}}
 
         @if($errors->has($oldName))

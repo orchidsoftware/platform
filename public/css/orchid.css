@@ -16048,6 +16048,9 @@ a:hover .caret-white {
 .nav .nav-item .nav-link:focus {
   background-color: #f2f4f5;
   border-radius: unset;
+  border-left: 1px solid rgba(0, 0, 0, 0);
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav.nav-lg .nav-item .nav-link {
@@ -16084,10 +16087,16 @@ a:hover .caret-white {
 .nav-tabs .nav-item.active .nav-link,
 .nav-tabs .nav-item.active .nav-link:hover {
   border-bottom-color: #ac5ca0;
+  border-left: 1px solid rgba(0, 0, 0, 0);
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav-tabs .nav-item.active .nav-link {
   border-bottom-color: #ac5ca0;
+  border-left: 1px solid rgba(0, 0, 0, 0);
+  border-right: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav-tabs-alt .nav-tabs.nav-justified .nav-item {
