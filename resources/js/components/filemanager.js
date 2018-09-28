@@ -223,6 +223,7 @@ document.addEventListener('turbolinks:load', () => {
                 );
             });
 
+
             /** ******** END TOOLBAR BUTTONS ********* */
 
             manager.$watch('files', ({ items }, oldVal) => {

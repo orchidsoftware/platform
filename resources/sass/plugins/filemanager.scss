@@ -12,6 +12,34 @@
     background: $brand-white;
   }
 
+  table {
+    tbody tr td {
+      padding: 10px;
+    }
+    img {
+      width:      40px;
+      height:     40px;
+      object-fit: cover;
+    }
+    .main-icon {
+      font-size: 30px;
+    }
+    .media-name {
+      min-width: 200px;
+    }
+    .media-modified {
+      min-width: 100px;
+      word-break: break-word;
+    }
+    .media-size {
+      min-width: 80px;
+    }
+  }
+
+  .media-view {
+    cursor: pointer;
+  }
+
   .progress {
     border-radius: 0;
     margin-bottom: 0;
@@ -451,4 +479,17 @@
 
   
   
+}
+#aside-filemanager {
+  .detail {
+    width: 100%;
+    min-height: 200px;
+    font-size: 80px;
+  }
+  .detail * {
+    margin:     0 auto;
+    object-fit: cover;
+    width:      100%;
+    height:     auto;
+  }
 }

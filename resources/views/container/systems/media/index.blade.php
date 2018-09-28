@@ -12,7 +12,7 @@
             </button>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-link"><i class="icon-folder-alt"></i>
+            <button type="button" class="btn btn-link" id="new_folder" data-action="components--media#new_folder"><i class="icon-folder-alt"></i>
                 Создать новую папку
             </button>
         </li>
@@ -24,57 +24,34 @@
 
     <style>
 
-        #filemanager table img {
-            width:      40px;
-            height:     40px;
-            object-fit: cover;
-        }
-
-        #filemanager table .main-icon {
-            font-size: 30px;
-        }
-
-        #aside-filemanager .detail {
-            width:      100%;
-            min-height: 200px;
-            font-size:  80px;
-        }
-
-        #aside-filemanager .detail * {
-            margin:     0 auto;
-            object-fit: cover;
-            width:      100%;
-            height:     auto;
-        }
-
     </style>
-
-
-    <div class="card">
+    <div class="card"
+        data-controller="components--media"
+        data-components--media-baseurl="{{ route('platform.systems.media.index')}}"
+        data-components--media-path="{{$path}}">
 
         <div class="hbox hbox-auto-xs hbox-auto-sm pos-rlt">
             <div class="hbox-col">
                 <div id="filemanager">
                     <div id="content">
-
                         <table class="table">
                             <thead>
                             <tr>
-                                <th width="80px" class="text-left">
+                                <th width="80px" class="text-center">
                                     <a href="?sort=content.ru.name" class=" text-muted ">
                                         Name
                                     </a>
                                 </th>
-                                <th class="text-left"></th>
-                                <th class="text-left">
+                                <th class="text-center"></th>
+                                <th class="text-center">
 
                                 </th>
-                                <th class="text-left">
+                                <th class="text-center">
                                     <a href="?sort=publish_at" class=" text-muted ">
                                         Size
                                     </a>
                                 </th>
-                                <th class="text-left">
+                                <th class="text-center">
                                     <a href="?sort=created_at" class=" text-muted ">
                                         Modified
                                     </a>
@@ -84,34 +61,41 @@
                             <tbody>
                             {{-- Directories--}}
                             @foreach($directories as $directory)
-                                <tr>
+                                <tr class="media-file"
+                                    data-type="{{$directory['type']}}"
+                                    data-img="{{$directory['path']}}"
+                                    data-name="{{$directory['name']}}"
+                                    data-size="{{$directory['size']}}"
+                                    data-modified="{{$directory['lastModified']}}"
+                                >
                                     <td class="text-center no-padder">
                                         <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
                                             <i class="icon icon-folder-alt main-icon"></i> </a>
 
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-left media-name">
                                         <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
                                             {{$directory['name']}}
                                         </a>
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-center">
                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false">
                                             <i class="icon-options"></i>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#"><i class="icon-cursor-move"></i>
-                                                Переместить</a>
-                                            <a class="dropdown-item" href="#"><i class="icon-font"></i>
-                                                Переименовать</a>
-                                            <a class="dropdown-item" href="#"><i class="icon-trash"></i> Удалить</a>
+                                            <a class="dropdown-item media-move">
+                                                <i class="icon-cursor-move"></i>Переместить</a>
+                                            <a class="dropdown-item media-rename">
+                                                <i class="icon-font"></i>Переименовать</a>
+                                            <a class="dropdown-item media-delete">
+                                                <i class="icon-trash"></i> Удалить</a>
                                         </div>
                                     </td>
-                                    <td class="text-left">
-                                        - KB
+                                    <td class="text-center media-size media-view">
+                                        -
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-center media-modified media-view">
                                         {{$directory['lastModified']}}
                                     </td>
                                 </tr>
@@ -119,9 +103,14 @@
                             {{-- Directories--}}
                             {{-- Files--}}
                             @foreach($files as $file)
-                                <tr>
-                                    <td class="text-center no-padder">
-                                        <a href="http://localhost:8000/dashboard/press/posts/demo/wefewfwe/edit">
+                                <tr class="media-file"
+                                    data-type="{{$file['type']}}"
+                                    data-img="{{$file['path']}}"
+                                    data-name="{{$file['name']}}"
+                                    data-size="{{$file['size']}}"
+                                    data-modified="{{$file['lastModified']}}"
+                                >
+                                    <td class="text-center no-padder media-view">
                                             @if (str_is('image*',$file['type']))
                                                 <img src="{{$file['path']}}" class="img-responsive b">
                                             @elseif(str_is('video*',$file['type']))
@@ -131,33 +120,30 @@
                                             @else
                                                 <i class="main-icon icon icon-doc"></i>
                                             @endif
-                                        </a>
-
                                     </td>
-                                    <td class="text-left">
-                                        <a href="http://localhost:8000/dashboard/press/posts/demo/wefewfwe/edit">
+                                    <td class="text-left media-name media-view">
                                             {{$file['name']}}
-                                        </a>
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-center">
                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false">
                                             <i class="icon-options"></i>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#"><i class="icon-link"></i> Скопировать
-                                                                                                        ссылку</a>
-                                            <a class="dropdown-item" href="#"><i class="icon-cursor-move"></i>
-                                                Переместить</a>
-                                            <a class="dropdown-item" href="#"><i class="icon-font"></i>
-                                                Переименовать</a>
-                                            <a class="dropdown-item" href="#"><i class="icon-trash"></i> Удалить</a>
+                                            <a class="dropdown-item media-getlink">
+                                                <i class="icon-link"></i> Скопировать ссылку</a>
+                                            <a class="dropdown-item media-move">
+                                                <i class="icon-cursor-move"></i>Переместить</a>
+                                            <a class="dropdown-item media-rename">
+                                                <i class="icon-font"></i>Переименовать</a>
+                                            <a class="dropdown-item media-delete">
+                                                <i class="icon-trash"></i> Удалить</a>
                                         </div>
                                     </td>
-                                    <td class="text-left">
-                                        {{$file['size']}} KB
+                                    <td class="text-right media-size media-view">
+                                        {{$file['size']}}
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-center media-modified media-view">
                                         {{$file['lastModified']}}
                                     </td>
                                 </tr>
@@ -189,12 +175,15 @@
 
 
                 <div id="aside-filemanager" class="col wi-col no-padder">
-                    <div class="right_none_selected" style="display: none;"><i class="icon-cursor"></i>
-                        <p> Ничего не выбрано</p></div>
+
+                    <div class="right_none_selected" style="display: none;">
+                        <i class="icon-cursor"></i>
+                        <p> Ничего не выбрано</p>
+                    </div>
 
                     <div class="wrapper detail v-center text-center">
                         <a href="#">
-                            <img src="https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg"
+                            <img data-target="components--media.img" src="https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg"
                                  class="img-responsive b">
                         </a>
 
@@ -206,22 +195,35 @@
 
                     <div class="wrapper">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 Название :
                             </div>
-
-                            <div class="col-md-6">
-                                01
+                            <div class="col-md-7" data-target="components--media.name">
+                                -
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 Тип файла:
                             </div>
-
-                            <div class="col-md-6">
-                                folder
+                            <div class="col-md-7" data-target="components--media.type">
+                                -
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                Размер:
+                            </div>
+                            <div class="col-md-7" data-target="components--media.size">
+                                -
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                Модификация:
+                            </div>
+                            <div class="col-md-7" data-target="components--media.modified">
+                                -
                             </div>
                         </div>
                     </div>
@@ -230,7 +232,130 @@
 
             </div>
         </div>
+        <!-- Delete File Modal  -->
+        <div class="modal fade modal-danger" id="confirm_delete_modal" >
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title"><i class="icon-exclamation"></i>Удалить?</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4 class="text-center">
+                            Вы действительно хотите удалить '<span class="confirm_delete_name"></span>'
+                        </h4>
+                        <h5 class="folder_warning"><i class="icon-exclamation"></i>
+                            Удаление папки приведет к удалению всего ее содержимого.</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                        <button type="button" class="btn btn-danger" data-action="components--media#confirm_delete">Да, удалить!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Delete File Modal  -->
+        <!-- Rename File Modal  -->
+        <div class="modal fade modal-warning" id="rename_file_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title"><i class="icon-font"></i> {{trans('platform::systems/media.rename_file_folder')}}</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4>{{trans('platform::systems/media.new_file_folder')}}</h4>
+                        <input class="form-control new_filename" type="text">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('platform::systems/media.cancel')}}</button>
+                        <button type="button" class="btn btn-warning" data-action="components--media#confirm_rename">{{trans('platform::systems/media.rename')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Move File Modal  -->
+        <!-- Move File Modal  -->
+        <div class="modal fade modal-warning" id="move_file_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title"><i class="icon-cursor-move"></i>{{trans('platform::systems/media.move_file_folder')}}</h4>
+                        <span class="move_file_name"></span>
+                    </div>
+
+                    <div class="modal-body">
+                        <h4>{{trans('platform::systems/media.destination_folder')}}</h4>
+                        <input class="form-control move_folder" type="text">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('platform::systems/media.cancel')}}</button>
+                        <button type="button" class="btn btn-warning" data-action="components--media#confirm_move">{{trans('platform::systems/media.move')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Move File Modal  -->
+        <!-- New Folder Modal  -->
+        <div class="modal fade modal-info" id="new_folder_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title  padder-v">
+                            <i class="icon-folder-alt"></i>
+                            {{trans('platform::systems/media.add_new_folder')}}
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <input name="new_folder_name" placeholder="New Folder Name"
+                               class="form-control new_folder_name" value=""/>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('platform::systems/media.cancel')}}</button>
+                        <button type="button" class="btn btn-info" data-action="components--media#confirm_new_folder">
+                            {{trans('platform::systems/media.add_new_folder')}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End New Folder Modal  -->
+
+        <!-- previewTemplate -->
+        <div id="previewTemplate" style="display:none;">
+            <tr>
+                <td class="text-center no-padder media-view">
+                    <img class="img-responsive b" data-dz-thumbnail>
+                </td>
+                <td class="text-left media-view" data-dz-name>
+                </td>
+                <td class="text-center dz-progress" colspan="3">
+                    <span class="dz-upload" data-dz-uploadprogress></span>
+                </td>
+            </tr>
+        </div>
+        <!-- END previewTemplate -->
     </div>
 
 @stop
