@@ -6,8 +6,8 @@ namespace Orchid\Press\Http\Controllers;
 
 use Exception;
 use Orchid\Support\Formats;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Http\Request;
+use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
@@ -97,12 +97,15 @@ class MediaController extends Controller
         return $this->filesToFormat(collect($this->filesystem->directories($dir)));
     }
 
-
-    private function getSize($bytes) {
+    private function getSize($bytes)
+    {
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-        if ($bytes == 0) return '0 B';
-        $i = (intval(floor(log($bytes/100) / log(1000)))>=0)?:0;
-        return round(100*(($bytes/100)/ (1024 ** $i)), 0).' '.$sizes[$i];
+        if ($bytes == 0) {
+            return '0 B';
+        }
+        $i = (intval(floor(log($bytes / 100) / log(1000))) >= 0) ?: 0;
+
+        return round(100 * (($bytes / 100) / (1024 ** $i)), 0).' '.$sizes[$i];
     }
 
     /**
@@ -149,6 +152,7 @@ class MediaController extends Controller
         } else {
             Alert::error($error);
         }
+
         return compact('success', 'error');
     }
 
@@ -246,6 +250,7 @@ class MediaController extends Controller
         } else {
             Alert::error($error);
         }
+
         return compact('success', 'error');
     }
 
@@ -307,6 +312,7 @@ class MediaController extends Controller
         } else {
             Alert::error($message);
         }
+
         return response()->json(compact('success', 'message', 'path'));
     }
 
