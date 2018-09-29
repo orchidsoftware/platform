@@ -7,7 +7,7 @@ export default class extends Controller {
      * @type {string[]}
      */
     static targets = [
-        "img",
+        "src",
         "type",
         "name",
         "size",
@@ -52,25 +52,10 @@ export default class extends Controller {
         });
 
         const DropzoneOptions = media.dropzone_options();
-        //console.log(DropzoneOptions);
         Dropzone.autoDiscover = false;
 
         const filemanagerDropzone = new Dropzone('#filemanager', DropzoneOptions);
         const fileuploadDropzone = new Dropzone('#upload', DropzoneOptions);
-
-/*
-        $('#confirm_delete').click(() => {
-            media.confirm_delete();
-        });
-
-        $('#confirm_rename').click(() => {
-            media.confirm_rename();
-        });
-
-        $('#confirm_move').click(() => {
-            media.confirm_move();
-        });
-*/
 
     }
 
@@ -85,9 +70,8 @@ export default class extends Controller {
             .data();
 
         if (data.type == 'directory') {
-            data.img = "https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg";
+            data.src = "https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg";
         }
-
         this.load_view(data);
     }
 
@@ -96,11 +80,42 @@ export default class extends Controller {
      * @param object
      */
     load_view(object) {
-        this.imgTarget.src = object.img;
         this.typeTarget.textContent  = object.type;
         this.nameTarget.textContent  = object.name;
         this.sizeTarget.textContent  = object.size;
         this.modifiedTarget.textContent  = object.modified;
+
+        var elems = this.srcTarget.querySelectorAll("[src]");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].src = object.src;
+        }
+
+        elems = this.srcTarget.querySelectorAll("[href]");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].href = object.src;
+        }
+
+        this.srcTarget.querySelector('audio').load();
+        this.srcTarget.querySelector('video').load();
+
+        elems = this.srcTarget.querySelectorAll(".media-preview");
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].style.display = `none`;
+        }
+
+        var types = ["video", "audio", "directory", "image" ];
+        var yesType = false;
+        var type = object.type;
+        for (var i = 0; i < types.length; i++) {
+            if (type.includes(types[i])) {
+                elems = this.srcTarget.querySelector('.media-' + types[i]);
+                yesType = true;
+            }
+        }
+        if (!yesType) {
+            elems = this.srcTarget.querySelector('.media-doc');
+        }
+        elems.style.display = `initial`;
     }
 
     /**
@@ -113,11 +128,10 @@ export default class extends Controller {
 
         var tempInput = document.createElement("input");
         tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-        tempInput.value = data.img;
+        tempInput.value = data.src;
         document.body.appendChild(tempInput);
         tempInput.select();
         document.execCommand("copy");
-        //console.log(tempInput.value);
         document.body.removeChild(tempInput);
 
     }
@@ -153,17 +167,8 @@ export default class extends Controller {
              },
              ({ success }) => {
                  window.location.reload();
-                 /*
-                 if (success == true) {
-                    // alert('successfully deleted ' + manager.selected_file.name, "Sweet Success!");
-                    //getFiles(manager.folders);
-                 } else {
-                    alert('Whoops!');
-                 }
-                 */
              },
         );
-        //console.log($('#confirm_delete_modal').data());
     }
 
     /**
@@ -197,15 +202,6 @@ export default class extends Controller {
             },
             ({ success, error }) => {
                 window.location.reload();
-                /*
-                if (success == true) {
-                    //alert('Successfully renamed file/folder', "Sweet Success!");
-                    //getFiles(manager.folders);
-
-                } else {
-                    alert(error, 'Whoops!');
-                }
-                */
             },
         );
     }
@@ -271,14 +267,6 @@ export default class extends Controller {
                 _token: this.CSRF_TOKEN,
             },
             ({ success }) => {
-                /*
-                if (success == true) {
-                    // alert('successfully created ' + $('#new_folder_name').val(), "Sweet Success!");
-                    getFiles(manager.folders);
-                } else {
-                    alert('Whoops!');
-                }
-                 */
                 window.location.reload();
                 $('#new_folder_modal .new_folder_name').val('');
             },
@@ -327,30 +315,14 @@ export default class extends Controller {
                     formData.append('_token', CSRF_TOKEN);
                     formData.append('upload_path', path);
                 });
-                /*
-                this.on('processing', function (e) {
-                    $('#uploadPreview').fadeIn();
-                    $('#uploadProgress').fadeIn();
-                });
-                */
             },
             success(e, {success, message}) {
                 window.location.reload();
-
                 $('.media-preview').fadeOut();
-                /*
-                if (success) {
-                    alert("Sweet Success!");
-                } else {
-                    alert(message);
-                }
-                */
+
             },
             error(e, {message}, xhr) {
-                /*
-                alert(message);
-                $('.media-preview').fadeOut();
-                 */
+                window.location.reload();
             },
         }
     }

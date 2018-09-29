@@ -63,7 +63,7 @@
                             @foreach($directories as $directory)
                                 <tr class="media-file"
                                     data-type="{{$directory['type']}}"
-                                    data-img="{{$directory['path']}}"
+                                    data-src="{{$directory['path']}}"
                                     data-name="{{$directory['name']}}"
                                     data-size="{{$directory['size']}}"
                                     data-modified="{{$directory['lastModified']}}"
@@ -105,7 +105,7 @@
                             @foreach($files as $file)
                                 <tr class="media-file"
                                     data-type="{{$file['type']}}"
-                                    data-img="{{$file['path']}}"
+                                    data-src="{{$file['path']}}"
                                     data-name="{{$file['name']}}"
                                     data-size="{{$file['size']}}"
                                     data-modified="{{$file['lastModified']}}"
@@ -181,13 +181,38 @@
                         <p> Ничего не выбрано</p>
                     </div>
 
-                    <div class="wrapper detail v-center text-center">
-                        <a href="#">
-                            <img data-target="components--media.img" src="https://sun1-1.userapi.com/c830400/v830400092/caa37/Oavd1uZzq4Q.jpg"
-                                 class="img-responsive b">
+                    <div class="wrapper detail v-center text-center" data-target="components--media.src">
+
+                        <a href="" target="_blank" class="media-preview media-image" style="display: none;">
+                            <img src="" class="img-responsive b">
                         </a>
 
-                        <!-- <i class="icon-folder-alt"></i>-->
+                        <video width="100%" height="auto" controls class="media-preview media-video" style="display: none;">
+                            <source src="selected_file.path" type="video/mp4">
+                            <source src="selected_file.path" type="video/ogg">
+                            <source src="selected_file.path" type="video/webm">
+
+                            {{trans('platform::systems/media.video_support')}}
+                        </video>
+
+
+                        <div class="media-preview media-audio" style="display: none;">
+                            <i class="icon-music-tone"></i>
+                            <audio controls class="w-full">
+                                <source src="selected_file.path" type="audio/ogg">
+                                <source src="selected_file.path" type="audio/mpeg">
+                                {{trans('platform::systems/media.audio_support')}}
+                            </audio>
+                        </div>
+
+
+                        <i class="icon-folder-alt media-preview media-directory" style="display: none;"></i>
+
+                        <a href="" target="_blank" class="media-preview media-doc" style="display: none;">
+                            <i class="icon-doc" ></i>
+                            <p>open</p>
+                        </a>
+
                     </div>
 
                     <div class="divider b-t m-t-sm"></div>
@@ -341,21 +366,6 @@
             </div>
         </div>
         <!-- End New Folder Modal  -->
-
-        <!-- previewTemplate -->
-        <div id="previewTemplate" style="display:none;">
-            <tr>
-                <td class="text-center no-padder media-view">
-                    <img class="img-responsive b" data-dz-thumbnail>
-                </td>
-                <td class="text-left media-view" data-dz-name>
-                </td>
-                <td class="text-center dz-progress" colspan="3">
-                    <span class="dz-upload" data-dz-uploadprogress></span>
-                </td>
-            </tr>
-        </div>
-        <!-- END previewTemplate -->
     </div>
 
 @stop
