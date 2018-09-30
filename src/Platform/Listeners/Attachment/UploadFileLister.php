@@ -40,7 +40,7 @@ class UploadFileLister implements ShouldQueue
             return;
         }
 
-        foreach (config('attachment.images', []) as $key => $template) {
+        foreach (config('platform.attachment', []) as $key => $template) {
             try {
                 $template = new $template($event->attachment);
                 $this->saveImageProcessing($event->attachment, $key, $template);

@@ -30,12 +30,17 @@ class CommentListScreen extends Screen
      */
     public function query(): array
     {
+        $comments = Comment::with([
+            'post' => function ($query) {
+                $query->select('id', 'type', 'slug');
+            },
+        ])->latest()
+          ->paginate();
+
+
+
         return [
-            'comment' => Comment::with([
-                'post' => function ($query) {
-                    $query->select('id', 'type', 'slug');
-                },
-            ])->latest()->paginate(),
+            'comments' => $comments
         ];
     }
 

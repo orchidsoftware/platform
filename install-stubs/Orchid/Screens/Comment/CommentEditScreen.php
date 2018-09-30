@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Comment;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use App\Orchid\Layouts\Comment\CommentEditLayout;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Comment;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
-use App\Orchid\Layouts\Comment\CommentEditLayout;
 
 class CommentEditScreen extends Screen
 {
@@ -30,14 +30,14 @@ class CommentEditScreen extends Screen
     /**
      * Query data.
      *
-     * @param int $id
+     * @param \Orchid\Press\Models\Comment $comment
      *
      * @return array
      */
-    public function query($id = null): array
+    public function query(Comment $comment): array
     {
         return [
-            'comment' => Comment::findOrFail($id),
+            'comment' => $comment,
         ];
     }
 
@@ -80,32 +80,27 @@ class CommentEditScreen extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($id, Request $request)
+    public function save(Comment $comment, Request $request)
     {
-        $newcomment = $request->get('comment');
-        /*
-        if (array_key_exists('approved',$newcomment) ) {
-            $newcomment['approved'] = 1;
-        } else {
-            $newcomment['approved'] = 0;
-        }*/
-        //dd($newcomment);
-        $comment = Comment::findOrFail($id);
-        $comment->fill($newcomment)->save();
+        $comment
+            ->fill($request->get('comment'))
+            ->save();
+
         Alert::info(trans('platform::systems/comment.Comment was saved'));
 
         return redirect()->route('platform.systems.comments');
     }
 
     /**
-     * @param $comment
+     * @param Comment $comment
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function remove($id)
+    public function remove(Comment $comment)
     {
-        Comment::findOrFail($id)->delete();
+        $comment->delete();
+
         Alert::info(trans('platform::systems/comment.Comment was removed'));
 
         return redirect()->route('platform.systems.comments');

@@ -34,15 +34,11 @@
         </section>
 
     @else
-
         @include('platform::container.layouts.table',[
-            'form' => [
-                'fields'    => $fields,
-                'data'      => $data,
-            ],
+            'fields'    => $fields,
+            'data'      => $data,
             'filters'   => $type->showFilterDashboard()
         ])
-
     @endempty
 
 

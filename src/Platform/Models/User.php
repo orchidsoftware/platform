@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Models;
 
 use Orchid\Screen\TD;
-use Orchid\Screen\Field;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Collection;
@@ -103,19 +102,6 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * Set permission as boolean.
-     *
-     * @param mixed $permissions
-     */
-    public function setPermissionsAttribute($permissions)
-    {
-        foreach ($permissions as $key => $value) {
-            $permissions[$key] = boolval($value);
-        }
-        $this->attributes['permissions'] = json_encode($permissions ?? []);
-    }
-
-    /**
      * Display name.
      *
      * @return mixed
@@ -133,35 +119,6 @@ class User extends Authenticatable implements UserInterface
     public function getSubTitle()
     {
         return 'Administrator';
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     * @throws \Throwable
-     */
-    public static function getFieldsEdit(): Collection
-    {
-        return collect([
-            'name' => Field::tag('input')
-                ->type('text')
-                ->name('user.name')
-                ->max(255)
-                ->required()
-                ->title(trans('platform::systems/users.name'))
-                ->placeholder(trans('platform::systems/users.name')),
-
-            'email' => Field::tag('input')
-                ->type('email')
-                ->name('user.email')
-                ->required()
-                ->title(trans('platform::systems/users.email'))
-                ->placeholder(trans('platform::systems/users.email')),
-
-            'password' => Field::tag('password')
-                ->name('user.password')
-                ->title(trans('platform::systems/users.password'))
-                ->placeholder('********'),
-        ]);
     }
 
     /**
@@ -237,5 +194,36 @@ class User extends Authenticatable implements UserInterface
             ->setForeground('#363f44')
             ->setBorder(0, '#fff')
             ->toBase64();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusPermission()
+    {
+
+        return Dashboard::getPermission()
+            ->sort()
+            ->transform(function ($group) {
+                $group = collect($group)->sortBy('description')->toArray();
+
+                foreach ($group as $key => $value) {
+                    $group[$key]['active'] = array_key_exists($value['slug'], $this->permissions ?? []);
+                }
+
+                return $group;
+            });
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getStatusRoles()
+    {
+        return collect($this->roles)
+            ->transform(function ($role) {
+            $role->active = true;
+            return $role;
+        })->union(Role::all());
     }
 }

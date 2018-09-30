@@ -155,12 +155,6 @@ class PressServiceProvider extends ServiceProvider
     protected function registerPermissions(): array
     {
         return [
-            trans('platform::permission.main.main')    => [
-                [
-                    'slug'        => 'platform.posts',
-                    'description' => trans('platform::permission.main.posts'),
-                ],
-            ],
             trans('platform::permission.main.systems') => [
                 [
                     'slug'        => 'platform.systems.menu',

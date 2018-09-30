@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Orchid\Layouts\User\UserChangePasswordLayout;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -36,41 +37,16 @@ class UserEditScreen extends Screen
     /**
      * Query data.
      *
-     * @param int $id
+     * @param \Orchid\Platform\Models\User $user
      *
      * @return array
      */
-    public function query(int $id = null): array
+    public function query(User $user): array
     {
-        $user = is_null($id) ? new User : User::with('roles')->findOrFail($id);
-
-        $rolePermission = $user->permissions ?? [];
-        $permission = Dashboard::getPermission()
-            ->sort()
-            ->transform(function ($group) use ($rolePermission) {
-                $group = collect($group)->sortBy('description')->toArray();
-
-                foreach ($group as $key => $value) {
-                    $group[$key]['active'] = array_key_exists($value['slug'], $rolePermission);
-                }
-
-                return $group;
-            });
-        $roles = Role::all();
-        $userRoles = $user->roles ?? collect();
-
-        $userRoles->transform(function ($role) {
-            $role->active = true;
-
-            return $role;
-        });
-
-        $roles = $userRoles->union($roles);
-
         return [
-            'permission' => $permission,
             'user'       => $user,
-            'roles'      => $roles,
+            'permission' => $user->getStatusPermission(),
+            'roles'      => $user->getStatusRoles(),
         ];
     }
 
@@ -85,9 +61,16 @@ class UserEditScreen extends Screen
             Link::name('Войти от имени пользователя')
                 ->icon('icon-login')
                 ->method('switchUserStart'),
+
+            Link::name('Change Password')
+                ->icon('icon-lock-open')
+                ->title('Change Password')
+                ->modal('password'),
+
             Link::name(trans('platform::common.commands.save'))
                 ->icon('icon-check')
                 ->method('save'),
+
             Link::name(trans('platform::common.commands.remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
@@ -102,47 +85,39 @@ class UserEditScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::columns([
-                'Left column'  => [
-                    UserEditLayout::class,
-                ],
-                'Right column' => [
-                    UserRoleLayout::class,
-                ],
+            UserEditLayout::class,
+            UserRoleLayout::class,
+
+            Layouts::modals([
+               'password' => UserChangePasswordLayout::class
             ]),
         ];
     }
 
     /**
-     * @param         $id
-     * @param Request $request
+     * @param \Orchid\Platform\Models\User $user
+     * @param \Illuminate\Http\Request     $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($id, Request $request)
+    public function save(User $user, Request $request)
     {
-        $user = User::findOrNew($id);
-
-        $attributes = $request->get('user');
-
-        if (array_key_exists('password', $attributes) && empty($attributes['password'])) {
-            unset($attributes['password']);
-        }
-
-        if ($request->filled('user.password', null)) {
-            $user->password = Hash::make($request->get('user.password'));
-        }
-
-        foreach ($request->get('permissions', []) as $key => $value) {
-            $permissions[base64_decode($key)] = 1;
-        }
-
-        $user->permissions = $permissions ?? [];
-
-        $user->fill($attributes)->save();
-
+        $permissions = $request->get('permissions',[]);
         $roles = Role::whereIn('slug', $request->get('roles', []))->get();
-        $user->replaceRoles($roles);
+
+        foreach ($permissions as $key => $value){
+            unset($permissions[$key]);
+            $permissions[base64_decode($key)] = $value;
+        }
+
+
+        $user
+            ->fill($request->all())
+            ->fill([
+                'permissions' => $permissions
+            ])
+            ->replaceRoles($roles)
+            ->save();
 
         Alert::info(trans('platform::systems/users.User was saved'));
 

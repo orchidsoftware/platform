@@ -28,26 +28,11 @@ abstract class Table
      */
     public function build(Repository $query)
     {
-        $form = $this->generatedTable($query);
-        $filters = $this->showFilterDashboard();
-
         return view($this->template, [
-            'form'    => $form,
-            'filters' => $filters,
+            'data'    => $query->getContent($this->data),
+            'fields'  => $this->fields(),
+            'filters' => $this->showFilterDashboard(),
         ]);
-    }
-
-    /**
-     * @param $post
-     *
-     * @return array
-     */
-    private function generatedTable(Repository $post): array
-    {
-        return [
-            'data'   => $post->getContent($this->data),
-            'fields' => $this->fields(),
-        ];
     }
 
     /**

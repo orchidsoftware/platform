@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
-use Orchid\Platform\Models\User;
 
 class UserEditLayout extends Rows
 {
@@ -18,6 +18,24 @@ class UserEditLayout extends Rows
      */
     public function fields(): array
     {
-        return User::getFieldsEdit()->all();
+        return [
+            'name' => Field::tag('input')
+                ->type('text')
+                ->name('user.name')
+                ->max(255)
+                ->required()
+                ->horizontal()
+                ->title(trans('platform::systems/users.name'))
+                ->placeholder(trans('platform::systems/users.name')),
+
+            'email' => Field::tag('input')
+                ->type('email')
+                ->name('user.email')
+                ->required()
+                ->horizontal()
+                ->hr(false)
+                ->title(trans('platform::systems/users.email'))
+                ->placeholder(trans('platform::systems/users.email')),
+        ];
     }
 }

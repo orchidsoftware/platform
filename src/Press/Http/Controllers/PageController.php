@@ -13,14 +13,6 @@ use Orchid\Platform\Http\Controllers\Controller;
 class PageController extends Controller
 {
     /**
-     * PostController constructor.
-     */
-    public function __construct()
-    {
-        $this->checkPermission('platform.posts');
-    }
-
-    /**
      * @param Page $page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

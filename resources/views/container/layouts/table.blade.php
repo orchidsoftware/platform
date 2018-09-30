@@ -2,17 +2,14 @@
 
     {!! $filters ?? '' !!}
 
-
-    @empty($form['data'])
+    @if(optional($data)->total() === 0 || count($data) === 0)
 
         <div class="text-center bg-white app-content-center">
             <div>
-                <h3 class="font-thin">{{trans('platform::common.screen.Records not found')}}</h3>
-                {{--
-                Нужно как-то плучить роут
-                <a href="{{ route('platform.systems.roles.create')}}"
-                   class="btn btn-link">{{trans('platform::systems/roles.create')}}</a>
-                --}}
+                <h3 class="font-thin">
+                    <i class="icon-table block m-b"></i>
+                    {{trans('platform::common.screen.Records not found')}}
+                </h3>
             </div>
         </div>
 
@@ -22,7 +19,7 @@
         <table class="table">
                 <thead>
                 <tr>
-                    @foreach($form['fields'] as $th)
+                    @foreach($fields as $th)
                         <th width="{{$th->width}}" class="text-{{$th->align}}">
                             @if($th->sort)
                                 <a href="?sort={{revert_sort($th->column)}}"
@@ -53,9 +50,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($form['data'] as $key => $datum)
+                @foreach($data as $key => $datum)
                     <tr>
-                        @foreach($form['fields'] as $td)
+                        @foreach($fields as $td)
                             <td class="text-{{$td->align}}">
 
                                 @isset($td->render)
@@ -70,24 +67,24 @@
                 </tbody>
             </table>
 
-        @if(is_object($form['data']) && ($form['data'] instanceof \Illuminate\Contracts\Pagination\Paginator))
+        @if(is_object($data) && ($data instanceof \Illuminate\Contracts\Pagination\Paginator))
             <footer class="wrapper">
                 <div class="row">
                     <div class="col-sm-5">
                         <small class="text-muted inline m-t-sm m-b-sm">{{trans('platform::common.show')}}
-                            {{($form['data']->currentPage()-1)*$form['data']->perPage()+1}}
-                            -{{($form['data']->currentPage()-1)*$form['data']->perPage()+count($form['data']->items())}}
-                            {{trans('platform::common.of')}} {{$form['data']->total()}} {{trans('platform::common.elements')}}</small>
+                            {{($data->currentPage()-1)*$data->perPage()+1}}
+                            -{{($data->currentPage()-1)*$data->perPage()+count($data->items())}}
+                            {{trans('platform::common.of')}} {{$data->total()}} {{trans('platform::common.elements')}}</small>
                     </div>
                     <div class="col-sm-7 text-right text-center-xs">
-                        {!! $form['data']->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
+                        {!! $data->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}
                     </div>
                 </div>
             </footer>
         @endif
 
 
-    @endempty
+    @endif
 
 
 </div>

@@ -21,7 +21,6 @@ class CategoryEditLayout extends Rows
             ->type('text')
             ->name('category.content.name')
             ->modifyValue(function () {
-                //dd($this->query->getContent('category')->term->GetContent('name'));
                 if ($this->query->getContent('category')->exists) {
                     return $this->query->getContent('category')->term->GetContent('name');
                 }

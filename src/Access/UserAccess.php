@@ -121,7 +121,9 @@ trait UserAccess
     }
 
     /**
-     * @param array
+     * @param array $roles
+     *
+     * @return $this
      */
     public function replaceRoles($roles)
     {
@@ -132,6 +134,8 @@ trait UserAccess
         $this->roles()->attach($roles);
 
         event(new AddRoleEvent($this, $roles));
+
+        return $this;
     }
 
     /**

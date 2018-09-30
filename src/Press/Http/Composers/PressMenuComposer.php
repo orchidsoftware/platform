@@ -74,8 +74,7 @@ class PressMenuComposer
             'childs'     => true,
             'main'       => true,
             'active'     => $active,
-            'permission' => 'platform.posts',
-            'groupname'  => 'Управление контентом',
+            'groupname'  => 'Управление записями',
             'sort'       => 100,
             'show'       => count($allPost) > 0,
         ]);

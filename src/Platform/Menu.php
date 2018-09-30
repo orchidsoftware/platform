@@ -168,7 +168,7 @@ class Menu
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
             if (! array_key_exists('template', $value)) {
-                $value['template'] = 'platform::partials.leftMainMenu';
+                $value['template'] = 'platform::partials.mainMenu';
             }
 
             if (! is_null($template)) {

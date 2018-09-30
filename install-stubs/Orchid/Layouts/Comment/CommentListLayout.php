@@ -12,17 +12,7 @@ class CommentListLayout extends Table
     /**
      * @var string
      */
-    public $data = 'comment';
-
-    /**
-     * HTTP data filters.
-     *
-     * @return array
-     */
-    public function filters(): array
-    {
-        return [];
-    }
+    public $data = 'comments';
 
     /**
      * @return array

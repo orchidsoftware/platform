@@ -14,15 +14,10 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-    public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
-
     /**
-     * PostController constructor.
+     *
      */
-    public function __construct()
-    {
-        $this->checkPermission('platform.posts');
-    }
+    public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
      * @param Many $type

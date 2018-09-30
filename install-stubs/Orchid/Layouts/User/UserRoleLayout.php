@@ -32,6 +32,7 @@ class UserRoleLayout extends Rows
             })
             ->multiple()
             ->name('roles[]')
+            ->horizontal()
             ->title(trans('platform::systems/users.roles'))
             ->placeholder(trans('platform::systems/users.select_roles'));
 
@@ -52,24 +53,23 @@ class UserRoleLayout extends Rows
             $fields[] = Field::tag('label')
                 ->name($group)
                 ->title($group)
+                ->horizontal()
                 ->hr(false);
 
-            foreach (collect($items)->chunk(3) as $chunks) {
+            foreach (collect($items)->chunk(4) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
                         $permissions[] = Field::tag('checkbox')
                             ->placeholder($permission['description'])
                             ->name('permissions.'.base64_encode($permission['slug']))
-                            ->value((int) $permission['active'])
+                            ->value($permission['active'])
+                            ->sendTrueOrFalse()
                             ->hr(false);
                     }
 
                     return $permissions ?? [];
                 });
             }
-
-            $fields[] = Field::tag('label')
-                ->name('close');
         }
 
         return $fields ?? [];
