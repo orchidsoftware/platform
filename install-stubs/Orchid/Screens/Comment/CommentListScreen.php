@@ -37,10 +37,8 @@ class CommentListScreen extends Screen
         ])->latest()
           ->paginate();
 
-
-
         return [
-            'comments' => $comments
+            'comments' => $comments,
         ];
     }
 

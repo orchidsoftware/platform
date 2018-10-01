@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use App\Orchid\Layouts\User\UserChangePasswordLayout;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -13,10 +12,9 @@ use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Support\Facades\Dashboard;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
+use App\Orchid\Layouts\User\UserChangePasswordLayout;
 
 class UserEditScreen extends Screen
 {
@@ -89,7 +87,7 @@ class UserEditScreen extends Screen
             UserRoleLayout::class,
 
             Layouts::modals([
-               'password' => UserChangePasswordLayout::class
+               'password' => UserChangePasswordLayout::class,
             ]),
         ];
     }
@@ -102,19 +100,18 @@ class UserEditScreen extends Screen
      */
     public function save(User $user, Request $request)
     {
-        $permissions = $request->get('permissions',[]);
+        $permissions = $request->get('permissions', []);
         $roles = Role::whereIn('slug', $request->get('roles', []))->get();
 
-        foreach ($permissions as $key => $value){
+        foreach ($permissions as $key => $value) {
             unset($permissions[$key]);
             $permissions[base64_decode($key)] = $value;
         }
 
-
         $user
             ->fill($request->all())
             ->fill([
-                'permissions' => $permissions
+                'permissions' => $permissions,
             ])
             ->replaceRoles($roles)
             ->save();

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Dashboard;
+use Orchid\Platform\Http\Composers\SystemMenuComposer;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
-use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class DashboardProvider extends ServiceProvider
 {
