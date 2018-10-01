@@ -201,7 +201,6 @@ class User extends Authenticatable implements UserInterface
      */
     public function getStatusPermission()
     {
-
         return Dashboard::getPermission()
             ->sort()
             ->transform(function ($group) {
@@ -222,8 +221,9 @@ class User extends Authenticatable implements UserInterface
     {
         return collect($this->roles)
             ->transform(function ($role) {
-            $role->active = true;
-            return $role;
-        })->union(Role::all());
+                $role->active = true;
+
+                return $role;
+            })->union(Role::all());
     }
 }

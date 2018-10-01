@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\Comment;
 
-use App\Orchid\Layouts\Comment\CommentEditLayout;
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Comment;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Comment;
 use Orchid\Support\Facades\Alert;
+use App\Orchid\Layouts\Comment\CommentEditLayout;
 
 class CommentEditScreen extends Screen
 {
