@@ -54,11 +54,11 @@ class AttachmentController extends Controller
     public function sort(Request $request)
     {
         collect($request->get('files'))
-            ->each(function ($sort,$id){
+            ->each(function ($sort, $id) {
                 $attachment = Attachment::find($id);
                 $attachment->sort = $sort;
                 $attachment->save();
-        });
+            });
     }
 
     /**

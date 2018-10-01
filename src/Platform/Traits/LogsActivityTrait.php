@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Traits;
 
 use Base64Url\Base64Url;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Orchid\Platform\Models\Activity;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Activitylog\Traits\LogsActivity as SpatieLogsActivity;
 
 trait LogsActivityTrait

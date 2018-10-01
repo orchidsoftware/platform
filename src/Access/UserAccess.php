@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\Role;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
-use Orchid\Platform\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait UserAccess
 {

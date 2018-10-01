@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\LogsActivityTrait;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {

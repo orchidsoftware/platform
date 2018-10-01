@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Support\Collection;
+use Orchid\Screen\Field;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Orchid\Screen\Field;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
 
 abstract class Many
 {
