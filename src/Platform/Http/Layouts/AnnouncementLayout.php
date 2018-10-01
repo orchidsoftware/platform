@@ -17,6 +17,7 @@ class AnnouncementLayout extends Rows
     {
         return [
             Field::tag('markdown')
+                ->title('Предварительное оповещение о каком-либо событии.')
                 ->type('text')
                 ->name('announcement.content'),
         ];

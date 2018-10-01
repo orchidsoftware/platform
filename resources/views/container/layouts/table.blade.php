@@ -2,7 +2,7 @@
 
     {!! $filters ?? '' !!}
 
-    @if(optional($data)->total() === 0 || count($data) === 0)
+    @if(optional($data)->total() === 0 || optional($data)->total() === 0 || count($data) === 0)
 
         <div class="text-center bg-white app-content-center">
             <div>

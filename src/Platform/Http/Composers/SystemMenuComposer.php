@@ -108,17 +108,6 @@ class SystemMenuComposer
                 'sort'       => 1,
             ])
             ->add('Savior', [
-                'slug'       => 'activity-log',
-                'icon'       => 'icon-action-undo',
-                'route'      => route('platform.systems.backups'),
-                'label'      => 'Журнал активности',
-                'groupname'  => 'Наглядное представление о том, над чем работали вы и другие участники проекта – в хронологическом порядке.',
-                'childs'     => false,
-                'divider'    => false,
-                'permission' => 'platform.systems.backups',
-                'sort'       => 1,
-            ])
-            ->add('Savior', [
                 'slug'       => 'announcement',
                 'icon'       => 'icon-bulb',
                 'route'      => route('platform.systems.announcement'),

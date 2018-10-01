@@ -32,14 +32,14 @@ class MainMenuComposer
         $this->dashboard->menu
             ->add('Profile', [
                 'slug'  => 'example1',
-                'icon'  => 'icon-text-center',
-                'label' => 'Example 1',
+                'icon'  => 'icon-compass',
+                'label' => 'Example',
                 'sort'  => 1000,
             ])
             ->add('Profile', [
                 'slug'  => 'example2',
-                'icon'  => 'icon-text-center',
-                'label' => 'Example 2',
+                'icon'  => 'icon-heart',
+                'label' => 'Example',
                 'sort'  => 1000,
                 'badge' => [
                     'class' => 'bg-primary',
@@ -50,8 +50,8 @@ class MainMenuComposer
             ])
             ->add('Profile', [
                 'slug'  => 'example3',
-                'icon'  => 'icon-text-center',
-                'label' => 'Example 3',
+                'icon'  => 'icon-microphone',
+                'label' => 'Example',
                 'sort'  => 1000,
             ]);
 
@@ -60,19 +60,19 @@ class MainMenuComposer
             ->add('Quick', [
                 'slug'  => 'example4',
                 'icon'  => 'icon-text-center',
-                'label' => 'Example 4',
+                'label' => 'Example Quick',
                 'sort'  => 1000,
             ])
             ->add('Quick', [
                 'slug'  => 'example5',
                 'icon'  => 'icon-text-center',
-                'label' => 'Example 5',
+                'label' => 'Example Quick',
                 'sort'  => 1000,
             ])
             ->add('Quick', [
                 'slug'  => 'example6',
                 'icon'  => 'icon-text-center',
-                'label' => 'Example 6',
+                'label' => 'Example Quick',
                 'sort'  => 1000,
             ]);
     }

@@ -7,7 +7,7 @@
                     <p class="text-muted">{{ trans($key) }}</p>
                     <p class="h3 m-b-xs text-black font-thin">{{ $metric['keyValue'] }}</p>
 
-                    @if((float)$metric['keyDiff']) < 0)
+                    @if((float)$metric['keyDiff'] < 0)
                         <p class="text-danger">{{ $metric['keyDiff'] }} % <i class="icon-arrow-down"></i></p>
                     @else
                         <p class="text-success">{{ $metric['keyDiff'] }} % <i class="icon-arrow-up"></i></p>
