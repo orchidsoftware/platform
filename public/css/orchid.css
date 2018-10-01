@@ -7320,23 +7320,18 @@ button.bg-danger:focus {
 
 .bg-light,
 .modal .modal-footer,
-.dropzone img:before,
-#filemanager .breadcrumb.filemanager {
+.dropzone img:before {
   background-color: #f8f9fa !important;
 }
 
 a.bg-light:hover,
 .modal a.modal-footer:hover,
-#filemanager a.breadcrumb.filemanager:hover,
 a.bg-light:focus,
 .modal a.modal-footer:focus,
-#filemanager a.breadcrumb.filemanager:focus,
 button.bg-light:hover,
 .modal button.modal-footer:hover,
-#filemanager button.breadcrumb.filemanager:hover,
 button.bg-light:focus,
-.modal button.modal-footer:focus,
-#filemanager button.breadcrumb.filemanager:focus {
+.modal button.modal-footer:focus {
   background-color: #dae0e5 !important;
 }
 
@@ -7351,8 +7346,7 @@ button.bg-dark:focus {
   background-color: #1d2124 !important;
 }
 
-.bg-white,
-#filemanager .flex {
+.bg-white {
   background-color: #ffffff !important;
 }
 
@@ -15754,11 +15748,9 @@ small,
 .badge.bg-light,
 .modal .badge.modal-footer,
 .dropzone img.badge:before,
-#filemanager .badge.breadcrumb.filemanager,
 .label.bg-light,
 .modal .label.modal-footer,
-.dropzone img.label:before,
-#filemanager .label.breadcrumb.filemanager {
+.dropzone img.label:before {
   text-shadow: none;
 }
 
@@ -16048,9 +16040,6 @@ a:hover .caret-white {
 .nav .nav-item .nav-link:focus {
   background-color: #f2f4f5;
   border-radius: unset;
-  border-left: 1px solid rgba(0, 0, 0, 0);
-  border-right: 1px solid rgba(0, 0, 0, 0);
-  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav.nav-lg .nav-item .nav-link {
@@ -16087,16 +16076,10 @@ a:hover .caret-white {
 .nav-tabs .nav-item.active .nav-link,
 .nav-tabs .nav-item.active .nav-link:hover {
   border-bottom-color: #ac5ca0;
-  border-left: 1px solid rgba(0, 0, 0, 0);
-  border-right: 1px solid rgba(0, 0, 0, 0);
-  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav-tabs .nav-item.active .nav-link {
   border-bottom-color: #ac5ca0;
-  border-left: 1px solid rgba(0, 0, 0, 0);
-  border-right: 1px solid rgba(0, 0, 0, 0);
-  border-top: 1px solid rgba(0, 0, 0, 0);
 }
 
 .nav-tabs-alt .nav-tabs.nav-justified .nav-item {
@@ -16629,13 +16612,11 @@ body {
     border: inherit;
   }
 
-  .bg-auto.b-l:before,
-  #filemanager .flex .bg-auto#right:before {
+  .bg-auto.b-l:before {
     margin-left: -1px;
   }
 
-  .bg-auto.b-r:before,
-  #filemanager .breadcrumb li .bg-auto.arrow:before {
+  .bg-auto.b-r:before {
     margin-right: -1px;
   }
 
@@ -18096,8 +18077,7 @@ div.mce-fullscreen {
 
 .bg-light,
 .modal .modal-footer,
-.dropzone img:before,
-#filemanager .breadcrumb.filemanager {
+.dropzone img:before {
   background-color: #e9ecef !important;
   color: #58666e;
 }
@@ -18105,55 +18085,45 @@ div.mce-fullscreen {
 .bg-light.lt,
 .modal .lt.modal-footer,
 .dropzone img.lt:before,
-#filemanager .lt.breadcrumb.filemanager,
 .bg-light .lt,
 .modal .modal-footer .lt,
-.dropzone img:before .lt,
-#filemanager .breadcrumb.filemanager .lt {
+.dropzone img:before .lt {
   background-color: #eff1f3;
 }
 
 .bg-light.lter,
 .modal .lter.modal-footer,
 .dropzone img.lter:before,
-#filemanager .lter.breadcrumb.filemanager,
 .bg-light .lter,
 .modal .modal-footer .lter,
-.dropzone img:before .lter,
-#filemanager .breadcrumb.filemanager .lter {
+.dropzone img:before .lter {
   background-color: #f2f4f5;
 }
 
 .bg-light.dk,
 .modal .dk.modal-footer,
 .dropzone img.dk:before,
-#filemanager .dk.breadcrumb.filemanager,
 .bg-light .dk,
 .modal .modal-footer .dk,
-.dropzone img:before .dk,
-#filemanager .breadcrumb.filemanager .dk {
+.dropzone img:before .dk {
   background-color: #dfe4e9;
 }
 
 .bg-light.dker,
 .modal .dker.modal-footer,
 .dropzone img.dker:before,
-#filemanager .dker.breadcrumb.filemanager,
 .bg-light .dker,
 .modal .modal-footer .dker,
-.dropzone img:before .dker,
-#filemanager .breadcrumb.filemanager .dker {
+.dropzone img:before .dker {
   background-color: #d9dfe6;
 }
 
 .bg-light.bg,
 .modal .bg.modal-footer,
 .dropzone img.bg:before,
-#filemanager .bg.breadcrumb.filemanager,
 .bg-light .bg,
 .modal .modal-footer .bg,
-.dropzone img:before .bg,
-#filemanager .breadcrumb.filemanager .bg {
+.dropzone img:before .bg {
   background-color: #e9ecef;
 }
 
@@ -18885,35 +18855,27 @@ div.mce-fullscreen {
   background-color: saturate(#d72020);
 }
 
-.bg-white,
-#filemanager .flex {
+.bg-white {
   background-color: #fff;
   color: #58666e;
 }
 
-.bg-white a,
-#filemanager .flex a {
+.bg-white a {
   color: #363f44 !important;
 }
 
-.bg-white a:hover,
-#filemanager .flex a:hover {
+.bg-white a:hover {
   color: #1f2427 !important;
 }
 
-.bg-white .text-muted,
-#filemanager .flex .text-muted {
+.bg-white .text-muted {
   color: #99a6ad !important;
 }
 
 .bg-white .lt,
-#filemanager .flex .lt,
 .bg-white .lter,
-#filemanager .flex .lter,
 .bg-white .dk,
-#filemanager .flex .dk,
-.bg-white .dker,
-#filemanager .flex .dker {
+.bg-white .dker {
   background-color: #fff;
 }
 
@@ -18930,8 +18892,7 @@ div.mce-fullscreen {
 }
 
 a.bg-light:hover,
-.modal a.modal-footer:hover,
-#filemanager a.breadcrumb.filemanager:hover {
+.modal a.modal-footer:hover {
   color: #363f44;
 }
 
@@ -19456,18 +19417,15 @@ a.text-black:hover {
   border-top: 1px solid #dadfe4;
 }
 
-.b-r,
-#filemanager .breadcrumb li .arrow {
+.b-r {
   border-right: 1px solid #dadfe4;
 }
 
-.b-b,
-#filemanager .breadcrumb li .arrow {
+.b-b {
   border-bottom: 1px solid #dadfe4;
 }
 
-.b-l,
-#filemanager .flex #right {
+.b-l {
   border-left: 1px solid #dadfe4;
 }
 
@@ -21085,9 +21043,6 @@ Icon input
 #filemanager {
   position: relative;
   min-height: 200px;
-  /**************************************************/
-  /***				BREADCRUMB CSS				***/
-  /**************************************************/
 }
 
 #filemanager.dz-drag-hover {
@@ -21097,6 +21052,38 @@ Icon input
 #filemanager #content {
   display: block;
   background: #ffffff;
+}
+
+#filemanager table tbody tr td {
+  padding: 10px;
+}
+
+#filemanager table img {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#filemanager table .main-icon {
+  font-size: 30px;
+}
+
+#filemanager table .media-name {
+  min-width: 200px;
+}
+
+#filemanager table .media-modified {
+  min-width: 100px;
+  word-break: break-word;
+}
+
+#filemanager table .media-size {
+  min-width: 80px;
+}
+
+#filemanager .media-view {
+  cursor: pointer;
 }
 
 #filemanager .progress {
@@ -21139,142 +21126,6 @@ Icon input
 #filemanager #move_btn {
   background: #fcc419;
   border: 1px solid #fcc419;
-}
-
-#filemanager .breadcrumb-container {
-  position: relative;
-}
-
-#filemanager .breadcrumb.filemanager {
-  top: 0;
-  border-bottom: 0;
-  border-radius: 0;
-  padding-left: 30px;
-  width: 100%;
-  margin-top: 0;
-  left: 0;
-  margin-bottom: 0;
-}
-
-#filemanager .breadcrumb.filemanager li {
-  cursor: pointer;
-  -webkit-transition: color 340ms linear;
-  transition: color 340ms linear;
-  position: relative;
-}
-
-#filemanager .breadcrumb.filemanager li:hover {
-  color: #555;
-}
-
-#filemanager .breadcrumb li .arrow {
-  display: none;
-  position: absolute;
-  bottom: -14px;
-  width: 12px;
-  height: 12px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #f0f0f0;
-  left: 50%;
-}
-
-#filemanager .select2-display-none {
-  z-index: 999999 !important;
-}
-
-#filemanager .breadcrumb li:last-child .arrow {
-  display: block;
-}
-
-#filemanager .breadcrumb li:first-child .arrow {
-  margin-left: -5px;
-}
-
-#filemanager .breadcrumb li {
-  color: #868e96;
-  cursor: pointer;
-}
-
-#filemanager .breadcrumb > li + li:before {
-  content: "/\A0";
-  padding: 0 5px;
-  color: #ccc;
-}
-
-#filemanager .breadcrumb li:last-child {
-  color: #949494;
-  cursor: pointer;
-}
-
-#filemanager .nothingfound {
-  display: none;
-}
-
-#filemanager .flex {
-  -webkit-transition: 340ms;
-  transition: 340ms;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  border-top: 0;
-  min-height: calc(100vh - 120px);
-}
-
-#filemanager .flex #left {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
-  position: relative;
-  min-height: 230px;
-}
-
-#filemanager .flex #left #no_files {
-  display: none;
-}
-
-#filemanager .flex #left #no_files h3 {
-  text-align: center;
-  margin-top: 55px;
-  margin-bottom: 75px;
-  color: #949494;
-}
-
-#filemanager .flex #right {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-all;
-}
-
-#filemanager #right .right_details {
-  display: block;
-}
-
-#filemanager #right .right_none_selected {
-  display: none;
-  text-align: center;
-}
-
-#filemanager #right .right_none_selected i {
-  width: 100%;
-  text-align: center;
-  font-size: 30px;
-  margin-left: 0;
-  padding: 50px;
-  display: block;
-  background: #f9f9f9;
-}
-
-#filemanager #right .right_none_selected p {
-  text-align: center;
-  color: #bbb;
-  padding: 10px;
-  border-bottom: 1px solid #f1f1f1;
 }
 
 #filemanager #files {
@@ -21552,6 +21403,20 @@ Icon input
 #filemanager tr {
   word-wrap: break-word;
   word-break: keep-all;
+}
+
+#aside-filemanager .detail {
+  width: 100%;
+  min-height: 200px;
+  font-size: 80px;
+}
+
+#aside-filemanager .detail * {
+  margin: 0 auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
 /*

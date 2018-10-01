@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\App;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguage;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Laravolt\Avatar\Facade as AvatarGenerator;
+use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, MultiLanguage, FilterTrait, LogsActivity;
+    use Notifiable, UserAccess, MultiLanguageTrait, FilterTrait, LogsActivity;
 
     /**
      * The database table used by the model.

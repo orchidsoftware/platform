@@ -7,9 +7,9 @@ namespace Orchid\Access;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Events\Systems\Roles\AddRoleEvent;
+use Orchid\Platform\Events\AddRoleEvent;
+use Orchid\Platform\Events\RemoveRoleEvent;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Orchid\Platform\Events\Systems\Roles\RemoveRoleEvent;
 
 trait UserAccess
 {
@@ -64,7 +64,9 @@ trait UserAccess
     public function hasAccess($checkPermissions, $cache = true) : bool
     {
         if (! $cache || is_null($this->cachePermissions)) {
-            $this->cachePermissions = $this->roles()->pluck('permissions')->prepend($this->permissions);
+            $this->cachePermissions = $this->roles()
+                ->pluck('permissions')
+                ->prepend($this->permissions);
         }
 
         $permissions = $this->cachePermissions;

@@ -15,7 +15,7 @@ abstract class Filter
     public $request;
 
     /**
-     * @var null
+     * @var
      */
     public $parameters;
 

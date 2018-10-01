@@ -96,6 +96,7 @@ class BackupScreen extends Screen
         if ($queue === 'sync' || $queue === 'null') {
             Alert::warning('Влючите очередь задач, что бы сделать резервную копию');
         } else {
+            Alert::info('Зачада была добавлена в очередь');
             Artisan::queue('backup:run');
         }
 

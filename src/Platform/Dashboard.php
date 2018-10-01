@@ -11,37 +11,44 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    const VERSION = '3.0';
+    public const VERSION = '3.0-alpha';
+
     /**
      * The Dashboard configuration options.
      *
      * @var array
      */
     protected static $options = [];
+
     /**
      * @var Menu
      */
     public $menu;
+
     /**
      * @var Collection
      */
     public $fields;
+
     /**
      * JS and CSS resources for implementation in the panel.
      *
      * @var Collection
      */
     public $resources;
+
     /**
      * Permission for applications.
      *
      * @var Collection
      */
     private $permission;
+
     /**
      * @var Collection
      */
     private $entities;
+
     /**
      * @var Collection
      */

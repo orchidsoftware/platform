@@ -8,12 +8,12 @@ use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguage;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, FilterTrait, MultiLanguage, LogsActivity;
+    use RoleAccess, FilterTrait, MultiLanguageTrait, LogsActivity;
 
     /**
      * @var string

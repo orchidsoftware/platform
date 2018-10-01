@@ -9,7 +9,7 @@ use Orchid\Platform\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Activitylog\Traits\LogsActivity as SpatieLogsActivity;
 
-trait LogsActivity
+trait LogsActivityTrait
 {
     use SpatieLogsActivity;
 

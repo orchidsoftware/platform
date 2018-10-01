@@ -6,15 +6,15 @@ namespace Orchid\Press\Models;
 
 use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivity;
 use Orchid\Press\Builders\TaxonomyBuilder;
+use Orchid\Platform\Traits\LogsActivityTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Taxonomy extends Model
 {
-    use LogsActivity;
+    use LogsActivityTrait;
 
     /**
      * @var bool

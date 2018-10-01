@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Listeners\Attachment;
+namespace Orchid\Platform\Listeners;
 
 use Illuminate\Support\Facades\Log;
 use Orchid\Attachment\BaseTemplate;

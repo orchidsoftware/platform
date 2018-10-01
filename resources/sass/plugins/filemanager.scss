@@ -6,7 +6,7 @@
   &.dz-drag-hover {
     border: 5px dashed #868E96;
   }
-  
+
   #content {
     display:    block;
     background: $brand-white;
@@ -28,7 +28,7 @@
       min-width: 200px;
     }
     .media-modified {
-      min-width: 100px;
+      min-width:  100px;
       word-break: break-word;
     }
     .media-size {
@@ -82,143 +82,6 @@
     border:     1px solid $brand-warning;
   }
 
-  /**************************************************/
-  /***				BREADCRUMB CSS				***/
-  /**************************************************/
-
-  .breadcrumb-container {
-    position: relative;
-  }
-
-  .breadcrumb.filemanager {
-    top:           0;
-    border-bottom: 0;
-    border-radius: 0;
-    padding-left:  30px;
-    width:         100%;
-    margin-top:    0;
-    left:          0;
-    margin-bottom: 0;
-    @extend .bg-light;
-  }
-
-  .breadcrumb.filemanager li {
-    cursor:     pointer;
-    transition: color 340ms linear;
-    position:   relative;
-  }
-
-  .breadcrumb.filemanager li:hover {
-    color: #555;
-  }
-
-  .breadcrumb li .arrow {
-    display:           none;
-    position:          absolute;
-    bottom:            -14px;
-    width:             12px;
-    height:            12px;
-    -ms-transform:     rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform:         rotate(45deg);
-    background:        #f0f0f0;
-    left:              50%;
-    @extend .b-r;
-    @extend .b-b;
-  }
-
-  .select2-display-none {
-    z-index: 999999 !important;
-  }
-
-  .breadcrumb li:last-child .arrow {
-    display: block;
-  }
-
-  .breadcrumb li:first-child .arrow {
-    margin-left: -5px;
-  }
-
-  .breadcrumb li {
-    color:  $oc-gray-6;
-    cursor: pointer;
-  }
-
-  .breadcrumb > li + li:before {
-    content: "/\A0";
-    padding: 0 5px;
-    color:   #ccc;
-  }
-
-  .breadcrumb li:last-child {
-    color:  #949494;
-    cursor: pointer;
-  }
-
-  .nothingfound {
-    display: none;
-  }
-
-  .flex {
-    transition: 340ms;
-    display:    flex;
-    flex-wrap:  wrap;
-    @extend .bg-white;
-    border-top: 0;
-    min-height: calc(100vh - 120px);
-  }
-
-  .flex #left {
-    flex:       4;
-    position:   relative;
-    min-height: 230px;
-  }
-
-  .flex #left #no_files {
-    display: none;
-  }
-
-  .flex #left #no_files h3 {
-    text-align:    center;
-    margin-top:    55px;
-    margin-bottom: 75px;
-    color:         #949494;
-  }
-
-  .flex #right {
-    flex:       1;
-    overflow:   hidden;
-    word-wrap:  break-word;
-    word-break: break-all;
-    @extend .b-l;
-  }
-
-  #right .right_details {
-    display: block;
-  }
-
-  #right .right_none_selected {
-    display:    none;
-    text-align: center;
-  }
-
-  #right .right_none_selected i {
-    width:       100%;
-    text-align:  center;
-    font-size:   30px;
-    margin-left: 0;
-    padding:     50px;
-    display:     block;
-    background:  #f9f9f9;
-  }
-
-  #right .right_none_selected p {
-    text-align:    center;
-    color:         #bbb;
-    padding:       10px;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
   #files {
     display:               flex;
     list-style:            none;
@@ -265,7 +128,7 @@
         }
 
         .link_icon {
-          flex: 1;
+          flex:   1;
           height: 100%;
         }
 
@@ -383,7 +246,6 @@
   .detail_info {
     padding: 10px;
 
-
   }
 
   .detail_info .selected_file_count, .detail_info.folder .selected_file_size {
@@ -462,29 +324,28 @@
     font-size:   12px;
   }
 
-  #filemanager .progress{
-    border-radius:0;
-    margin-bottom:0;
+  #filemanager .progress {
+    border-radius: 0;
+    margin-bottom: 0;
   }
 
-  #uploadProgress{
-    display:none;
-    background:#eee;
+  #uploadProgress {
+    display:    none;
+    background: #eee;
   }
 
-  tr{
-    word-wrap: break-word;
+  tr {
+    word-wrap:  break-word;
     word-break: keep-all;
   }
 
-  
-  
 }
+
 #aside-filemanager {
   .detail {
-    width: 100%;
+    width:      100%;
     min-height: 200px;
-    font-size: 80px;
+    font-size:  80px;
   }
   .detail * {
     margin:     0 auto;

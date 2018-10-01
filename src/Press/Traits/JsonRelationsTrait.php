@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
-trait JsonRelations
+trait JsonRelationsTrait
 {
     /**
      * Column for relations.

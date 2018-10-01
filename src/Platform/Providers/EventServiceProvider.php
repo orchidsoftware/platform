@@ -8,10 +8,10 @@ use Illuminate\Auth\Events\Login;
 use Spatie\Activitylog\Models\Activity;
 use Orchid\Platform\Models\Announcement;
 use Orchid\Platform\Events\UploadFileEvent;
+use Orchid\Platform\Listeners\UploadFileLister;
+use Orchid\Platform\Listeners\LogSuccessfulLogin;
 use Orchid\Platform\Observers\ActivityLogObserver;
 use Orchid\Platform\Observers\AnnouncementObserver;
-use Orchid\Platform\Listeners\Attachment\UploadFileLister;
-use Orchid\Platform\Listeners\Systems\Users\LogSuccessfulLogin;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider

@@ -53,12 +53,12 @@ class AttachmentController extends Controller
      */
     public function sort(Request $request)
     {
-        $files = $request->get('files', []);
-        foreach ($files as $id => $sort) {
-            $attachment = Attachment::find($id);
-            $attachment->sort = $sort;
-            $attachment->save();
-        }
+        collect($request->get('files'))
+            ->each(function ($sort, $id) {
+                $attachment = Attachment::find($id);
+                $attachment->sort = $sort;
+                $attachment->save();
+            });
     }
 
     /**

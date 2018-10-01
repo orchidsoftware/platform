@@ -14,8 +14,6 @@ export default class extends Controller {
         "modified",
     ];
 
-
-
     /**
      *
      */
