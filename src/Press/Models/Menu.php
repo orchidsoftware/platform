@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Traits\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Traits\AttachTrait;
+use Orchid\Platform\Traits\LogsActivityTrait;
 
 class Menu extends Model
 {
-    use Attachment, LogsActivity;
+    use AttachTrait, LogsActivityTrait;
 
     /**
      * @var string

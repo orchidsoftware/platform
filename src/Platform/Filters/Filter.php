@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 abstract class Filter
 {
@@ -15,7 +15,7 @@ abstract class Filter
     public $request;
 
     /**
-     * @var null
+     * @var
      */
     public $parameters;
 

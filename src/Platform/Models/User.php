@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
-use Orchid\Access\UserAccess;
-use Orchid\Access\UserInterface;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Orchid\Platform\Traits\MultiLanguage;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Laravolt\Avatar\Facade as AvatarGenerator;
+use Orchid\Access\UserAccess;
+use Orchid\Access\UserInterface;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Screen\Field;
+use Orchid\Screen\TD;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, MultiLanguage, FilterTrait, LogsActivity;
+    use Notifiable, UserAccess, MultiLanguageTrait, FilterTrait, LogsActivity;
 
     /**
      * The database table used by the model.

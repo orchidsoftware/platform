@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Traits\Attachment;
-use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Platform\Traits\AttachTrait;
+use Orchid\Platform\Traits\LogsActivityTrait;
 
 class Comment extends Model
 {
-    use Attachment, LogsActivity;
+    use AttachTrait, LogsActivityTrait;
+
     /**
      * @var string
      */

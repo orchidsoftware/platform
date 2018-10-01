@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\Attachment;
-use Orchid\Press\Traits\JsonRelations;
-use Orchid\Press\Traits\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
+use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Traits\MultiLanguage;
-use Cviebrock\EloquentSluggable\Sluggable;
+use Orchid\Platform\Traits\LogsActivityTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Press\Traits\JsonRelationsTrait;
+use Orchid\Press\Traits\TaggableTrait;
 use Orchid\Screen\Exceptions\TypeException;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * @property mixed options
@@ -33,12 +33,12 @@ class Post extends Model
     use TaggableTrait,
         SoftDeletes,
         Sluggable,
-        MultiLanguage,
+        MultiLanguageTrait,
         Searchable,
-        Attachment,
-        JsonRelations,
+        AttachTrait,
+        JsonRelationsTrait,
         FilterTrait,
-        LogsActivity;
+        LogsActivityTrait;
 
     /**
      * @var string

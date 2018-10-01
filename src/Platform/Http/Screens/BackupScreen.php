@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Carbon\Carbon;
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Support\Formats;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Layouts\BackupLayout;
+use Orchid\Screen\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Formats;
 
 class BackupScreen extends Screen
 {
@@ -96,6 +96,7 @@ class BackupScreen extends Screen
         if ($queue === 'sync' || $queue === 'null') {
             Alert::warning('Влючите очередь задач, что бы сделать резервную копию');
         } else {
+            Alert::info('Зачада была добавлена в очередь');
             Artisan::queue('backup:run');
         }
 

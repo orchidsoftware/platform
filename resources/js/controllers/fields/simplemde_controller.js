@@ -151,14 +151,13 @@ export default class extends Controller {
             return;
         }
 
-        const cm = this.editor.codemirror;
         const formData = new FormData();
         formData.append('file', file);
 
         axios
             .post(platform.prefix('/systems/files'), formData)
             .then((response) => {
-                cm.replaceSelection(response.data.url);
+                this.editor.codemirror.replaceSelection(response.data.url);
                 event.target.value = null;
             })
             .catch((error) => {

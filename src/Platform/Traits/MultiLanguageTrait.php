@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-trait MultiLanguage
+trait MultiLanguageTrait
 {
     /**
      * Name row localization.

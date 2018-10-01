@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Exception;
-use Orchid\Support\Formats;
 use Illuminate\Http\Request;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Formats;
 
 /**
  * Class MediaController.
@@ -54,7 +54,7 @@ class MediaController extends Controller
         $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path.DIRECTORY_SEPARATOR : $path;
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
-        return view('platform::container.systems.media.index', [
+        return view('platform::container.systems.media', [
             'name'        => trans('platform::systems/media.title'),
             'description' => trans('platform::systems/media.description'),
             'path'        => $path,

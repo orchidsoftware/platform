@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 /**
  * Trait Attachment.
  */
-trait Attachment
+trait AttachTrait
 {
     /**
      * The Eloquent tags model name.

@@ -20,13 +20,6 @@ export default class extends Flatpickr {
 
     /**
      *
-     */
-    connect() {
-        super.connect();
-    }
-
-    /**
-     *
      * @param selectedDates
      * @param dateStr
      * @param instance

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Platform\Events\Systems\Roles;
+namespace Orchid\Platform\Events;
 
-use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Orchid\Platform\Models\User;
 
 class RemoveRoleEvent
 {
@@ -35,11 +35,6 @@ class RemoveRoleEvent
     public function __construct($user, $role)
     {
         $this->user = $user;
-
-        if (is_array($role) || $role instanceof Collection) {
-            $this->roles = collect($role);
-        } else {
-            $this->roles = collect($role);
-        }
+        $this->roles = collect($role);
     }
 }

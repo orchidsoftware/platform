@@ -6,10 +6,7 @@ export default class extends Controller {
      */
     connect() {
         const tabs = this.tabs();
-
         const activeId = tabs[window.location.href][this.data.get('slug')];
-
-        console.log(activeId);
 
         if (activeId !== null) {
             $(`#${activeId}`).tab('show');

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivity;
-use Orchid\Platform\Traits\MultiLanguage;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\LogsActivityTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Term extends Model
 {
-    use MultiLanguage,LogsActivity;
+    use MultiLanguageTrait, LogsActivityTrait;
 
     /**
      * @var string

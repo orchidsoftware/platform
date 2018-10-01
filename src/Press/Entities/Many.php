@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Orchid\Screen\Field;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Pagination\Paginator;
+use Orchid\Screen\Field;
 
 abstract class Many
 {
@@ -98,7 +98,7 @@ abstract class Many
         $filters = collect();
         foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
-            if ($filter->dashboard == $dashboard) {
+            if ($filter->dashboard === $dashboard) {
                 $filters->push($filter);
             }
         }

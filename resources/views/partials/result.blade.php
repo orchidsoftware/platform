@@ -1,21 +1,26 @@
-<div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Управление контентом</div>
-<a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-    <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-</a>
-<a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-    <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-</a>
+@foreach($results as $group)
+
+    @empty(!$group['label'])
+        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
+    @endempty
+
+    @foreach($group['result'] as $item)
+        <a href="{{$item->url}}" class="block wrapper-sm dropdown-item">
+
+        @empty(!$item->avatar)
+            <span class="pull-left thumb-xs avatar m-r-sm">
+              <img src="{{$item->avatar}}" alt="{{$item->title}}">
+              {{-- <i class="on b-white bottom"></i> --}}
+            </span>
+        @endempty
+
+        <span class="clear">
+            <span class="text-ellipsis">{{$item->title}}</span>
+            <small class="text-muted clear text-ellipsis">
+                {{$item->subTitle}}
+            </small>
+        </span>
+        </a>
+    @endforeach
+
+@endforeach

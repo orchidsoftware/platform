@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Menu;
-use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -62,7 +62,7 @@ class MenuController extends Controller
             ->with('children')
             ->get();
 
-        return view('platform::container.systems.menu.menu', [
+        return view('platform::container.systems.menu', [
             'name'           => $name,
             'locales'        => config('press.locales'),
             'currentLocale'  => $currentLocale,
