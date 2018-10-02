@@ -1,4 +1,4 @@
-<div data-controller="components--boot" class="card m-b">
+<div data-controller="components--boot" class=" m-b">
     @if(count($models))
         <div class="nav-tabs-alt">
             <ul class="nav nav-tabs" role="tablist">
@@ -83,7 +83,7 @@
 </div>
 
 @isset($model)
-<div class="card">
+<div class="">
     <div class="row padder-v">
         <div class="col-sm-12">
             <div class="wrapper">

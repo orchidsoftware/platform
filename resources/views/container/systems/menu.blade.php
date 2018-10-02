@@ -57,7 +57,7 @@
     >
 
 
-        <div class="hbox-col w-xxl card">
+        <div class="hbox-col w-xxl ">
 
 
             <div class="wrapper-md">

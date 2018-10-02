@@ -19,10 +19,10 @@
     max-width: 30rem;
 ">
 
-                    <div class="card">
-                        <div class="card-body p-5">
+                    <div class="">
+                        <div class=" p-5">
 
-                            <div class="card-title">
+                            <div class="-title">
                                 <div class="text-center mb-4">
                                     <a href="{{Dashboard::prefix()}}">
                                         <p class="h2 n-m font-thin v-center">

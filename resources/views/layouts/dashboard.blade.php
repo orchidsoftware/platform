@@ -2,238 +2,178 @@
 
 
 @section('body')
-    <div class="app" id="app" data-controller="@yield('controller')">
-        <div class="app-header">
-
-            @include('platform::partials.announcement')
-
-            <div class="header py-4 bg-white b-b">
-                <div class="container">
-                    <div class="d-flex v-center">
-                        <a class="header-brand" href="{{route('platform.index')}}">
-                            <p class="h2 n-m font-thin v-center">
-                                <i class="icon-orchid text-primary"></i>
-                                <span class="m-l d-none d-sm-block"> {{config('platform.name')}} </span>
-                            </p>
-                        </a>
-
-                        <ul class="m-n padder">
-                            @if(Dashboard::menu()->showCountElement('Quick'))
-                                <li class="inline">
-                                    <div class="dropdown">
-                                        <a href="#" class="nav-link" data-toggle="dropdown"><i class="icon-options"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            {!! Dashboard::menu()->render('Quick','platform::partials.dropdownMenu') !!}
-                                        </div>
-                                    </div>
-                                </li>
-                            @endif
-                            {{--
-                            <li class="inline b-l">
-                                <div class="dropdown position-relative">
-                                    <div class="input-icon w-xxl m-l-sm">
-                                        <input onchange="$('.test').dropdown('toggle');$().dropdown('update')"
-                                               type="text" class="form-control input-sm  no-border rounded padder"
-                                               placeholder="Type anywhere to search..."
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        >
-                                        <div class="input-icon-addon">
-                                            <i class="icon-magnifier"></i>
-                                        </div>
-                                    </div>
-                                    <div class="test dropdown-menu dropdown-menu-right dropdown-menu-arrow w-xxl"
-                                         x-placement="start-left">
-
-                                        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Управление контентом</div>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-
-                                        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Управление контентом</div>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                        <a href="#" class="block wrapper-sm dropdown-item">
-                                    <span class="pull-left thumb-xs avatar m-r-sm">
-                                      <img src="http://flatfull.com/themes/angulr/html/img/a4.jpg" alt="...">
-                                      <i class="on b-white bottom"></i>
-                                    </span>
-                                            <span class="clear">
-                                      <span class="text-ellipsis">Chris Fox</span>
-                                      <small class="text-muted clear text-ellipsis">What's up, buddy What's up, buddy What's up, buddy What's up, buddy</small>
-                                    </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            --}}
-                        </ul>
 
 
-                        <div class="d-flex order-lg-2 ml-auto">
+    <style>
 
-                            @include('platform::partials.search')
+        .app:before {
+            background-color: #efeff0;
+        }
 
-                            @include('platform::partials.notifications')
+    </style>
 
-                            <div class="dropdown">
-                                <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
-                                    <span class="thumb-xs avatar">
-                                        <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
-                                    </span>
-                                    <span class="ml-2 d-none d-lg-block" style="max-width:150px;font-size: 0.82857rem;">
-                                        <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
-                                        <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    {!! Dashboard::menu()->render('Profile','platform::partials.dropdownMenu') !!}
+    <div class="app row m-n" id="app" data-controller="@yield('controller')">
 
-                                    <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#support">
-                                        <i class="m-r-xs icon-help"></i> Need help?
-                                    </a>
+        <div class="col-md-2 offset-md-2 no-padder bg-grey" style="
+    max-width: 250px;
+">
 
-                                    @if(Auth::user()->hasAccess('platform.systems.index'))
-                                        <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
-                                            <i class="icon-settings m-r-xs" aria-hidden="true"></i>
-                                            <span>{{trans('platform::menu.systems')}}</span>
-                                        </a>
-                                    @endif
+            <div style="
+">
 
-                                    @if(session()->has('original_user'))
-                                        <a href="{{route('platform.systems.users')}}"
-                                           class="dropdown-item"
-                                           onclick="event.preventDefault();document.getElementById('return-original-user').submit();"
-                                        >
-                                            <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                                            <span>Вернуться в свой аккаунт</span>
-                                        </a>
-                                        <form id="return-original-user" class="hidden"
-                                              action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
-                                              method="POST">
-                                            @csrf
-                                        </form>
-                                    @else
-                                        <a href="{{ route('platform.logout') }}"
-                                           class="dropdown-item"
-                                           onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                                           dusk="logout-button">
-                                            <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                                            <span>{{trans('platform::auth/account.sign_out')}}</span>
-                                        </a>
-                                        <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                                              method="POST">
-                                            @csrf
-                                        </form>
-                                    @endif
+                <div style="
+">
+                    <div>
 
-                                </div>
+                        <div class="d-flex v-center wrapper mt-4">
+                            <a class="header-brand" href="http://localhost:8000/dashboard">
+                                <p class="h2 n-m font-thin v-center">
+                                    <img ng-src="//www.gstatic.com/analytics-suite/header/legacy/v2/ic_analytics.svg"
+                                         alt="Google&nbsp;Аналитика" class="ng-scope"
+                                         src="//www.gstatic.com/analytics-suite/header/legacy/v2/ic_analytics.svg"
+                                         style="
+    max-width: 33px;
+">
+                                    <span class="m-l d-none d-sm-block">
+    Google
+<small style="
+    vertical-align: top;
+    opacity: .75;
+">Аналитика</small>
+</span>
+                                </p>
+                            </a>
+
+
+                            <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+                               data-target="#headerMenuCollapse">
+                                <span class="header-toggler-icon icon-menu"></span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="wrapper">
+                        <div class="input-icon">
+                            <input data-action="keyup->layouts--systems#filter" type="text"
+                                   class="form-control input-sm  no-border rounded padder" placeholder="Search ...">
+                            <div class="input-icon-addon">
+                                <i class="icon-magnifier"></i>
                             </div>
                         </div>
-                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
-                           data-target="#headerMenuCollapse">
-                            <span class="header-toggler-icon icon-menu"></span>
-                        </a>
+                    </div>
+
+
+                    <div class="sidebar-sticky">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                            <span class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Optimized for UI like</span>
+
+                        </h6>
+                        <ul class="nav flex-column">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <i class="icon-home m-r-xs text-lg"></i>
+                                                                        Dashboard <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-notebook m-r-xs text-lg"></i>
+                                    Orders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-bar-chart m-r-xs text-lg"></i>
+                                    <span>Products</span>
+                                    <span class="float-right">
+            <b class="badge bg-primary">6</b>
+        </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-people text-lg" style="
+    width: 20px;
+    overflow: hidden;
+"> </i>
+                                    Customers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-bag  m-r-xs text-lg"></i>
+                                    Reports
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-folder m-r-xs text-lg"></i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">Saved reports</span>
+                            <a class="d-flex align-items-center text-muted" href="#">
+                                <i class="icon-plus text-black text-md"></i>
+                            </a>
+                        </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-paste  m-r-xs text-lg"></i>
+                                    Current month
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-paste  m-r-xs text-lg"></i>
+
+                                    Last quarter
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-paste  m-r-xs text-lg"></i>
+                                    Social engagement
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="icon-paste  m-r-xs text-lg"></i>
+                                    Year-end sale
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
-            <nav class="header collapse d-lg-flex p-0 bg-white b-b box-shadow-lg navbar" id="headerMenuCollapse">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg order-lg-first">
-                            <ul class="nav nav-tabs  border-0 flex-column flex-lg-row">
-                                {!! Dashboard::menu()->render('Main') !!}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
 
         </div>
+        <div class="col-md-6 bg-white b-l b-r no-padder">
 
 
-        <div class="container">
+            <div class="wrapper-lg">
 
-            <div class="v-center m-t-md m-b-md">
-                <div class="col-xs-12 col-md-4 no-padder">
-                    <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                    <small class="text-muted text-ellipsis">@yield('description')</small>
+                <div class="v-center">
+                    <div class="col-xs-12 col-md-4 no-padder">
+                        <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                        <small class="text-muted text-ellipsis">@yield('description')</small>
+                    </div>
+                    <div class="col-xs-12 col-md-8 no-padder">
+                        @yield('navbar')
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-8 no-padder">
-                    @yield('navbar')
-                </div>
+
+                @if (Breadcrumbs::exists())
+                    {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
+                @endif
             </div>
 
-            @if (Breadcrumbs::exists())
-                {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-            @endif
 
             <div class="d-flex">
                 <div class="app-content-body" id="app-content-body">
@@ -241,71 +181,13 @@
                     @yield('content')
                 </div>
             </div>
+
         </div>
     </div>
 
-    <footer class="container footer">
-        <div class="row d-none">
-            <div class="col-md-12 text-center padder-v">
-                <button class="btn btn-link">
-                    <i class="icon icon-arrow-up-circle m-r-xs"></i>
-                    <span>Наверх</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="row padder-v m-b m-t">
-            <div class="col-md-6 text-left">
-                <p class="small m-n">
-                <span class="sm-block">
-                   Designed and built with all the love in the world.
-                   Currently v{{\Orchid\Platform\Dashboard::VERSION}}.
-                </span>
-                </p>
-            </div>
-            <div class="col-md-6 text-right">
-                <p class="small m-n">© 2016 - {{date('Y')}} The application code is published under the MIT license.</p>
-            </div>
-        </div>
-    </footer>
 
 
-    <div class="modal fade fill-in" id="globalSearch" tabindex="-1" role="dialog" aria-hidden="true">
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="icon-close"></i>
-        </button>
-
-        <div class="container-fluid">
-
-            <img class="overlay-brand" src="{{url('/orchid/img/orchid.svg')}}" height="32px"
-                 width="150px" alt="logo">
 
 
-            <a href="#" class="close-icon-light overlay-close text-black fs-16">
-                <i class="icon-close"></i>
-            </a>
 
-        </div>
-
-        <div class="container-fluid">
-
-            <input id="overlay-search" class="no-border overlay-search bg-transparent" placeholder="Search..."
-                   autocomplete="off" spellcheck="false">
-            <br>
-            <div class="inline-block">
-                <div class="checkbox right">
-                    <input id="checkboxn" type="checkbox" value="1" checked="checked">
-                    <label for="checkboxn"><i class="fa fa-search"></i> Search within page</label>
-                </div>
-            </div>
-            <div class="inline-block m-l-10">
-                <p class="fs-13">Press enter to search</p>
-            </div>
-
-        </div>
-
-    </div>
-
-    @include('platform::partials.support')
 @endsection

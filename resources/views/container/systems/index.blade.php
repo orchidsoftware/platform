@@ -21,7 +21,7 @@
 @section('content')
 
 
-    <div class="card admin-wrapper wrapper-md">
+    <div class=" admin-wrapper wrapper-md">
             <div class="row">
 
                 @php

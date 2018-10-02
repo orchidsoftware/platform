@@ -1,4 +1,4 @@
-<div class="card m-b">
+<div class=" m-b">
 
     {!! $filters ?? '' !!}
 

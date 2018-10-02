@@ -70,7 +70,7 @@
             <!-- column -->
                 <div class="hbox-col lter">
                     <div class="vbox">
-                        <div class="card wrapper">
+                        <div class=" wrapper">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if($loop->first) active @endif" id="local-{{$code}}"

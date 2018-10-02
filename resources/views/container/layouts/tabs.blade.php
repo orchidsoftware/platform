@@ -3,7 +3,7 @@
         data-screen--tabs-slug="{{$templateSlug}}"
 >
     <div class="nav-tabs-alt bg-white-only">
-        <div class="card">
+        <div class="">
             <ul class="nav nav-tabs" role="tablist">
                 @foreach($manyForms as $name => $tab)
                     <li class="nav-item">
