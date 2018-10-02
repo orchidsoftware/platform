@@ -7346,7 +7346,8 @@ button.bg-dark:focus {
   background-color: #1d2124 !important;
 }
 
-.bg-white {
+.bg-white,
+.editor-preview-side {
   background-color: #ffffff !important;
 }
 
@@ -17944,7 +17945,7 @@ div.mce-fullscreen {
 .CodeMirror-fullscreen,
 .editor-toolbar.fullscreen,
 .editor-preview-side {
-  z-index: 1050;
+  z-index: 1040;
 }
 
 .CodeMirror-fullscreen {
@@ -17972,8 +17973,25 @@ div.mce-fullscreen {
   overflow: auto !important;
 }
 
+.editor-preview-side {
+  border-left: none !important;
+}
+
 .editor-toolbar.fullscreen {
   text-align: center;
+}
+
+.CodeMirror.CodeMirror-fullscreen.CodeMirror-sided {
+  padding: 0;
+  margin: 0;
+  left: 0;
+}
+
+.CodeMirror.CodeMirror-fullscreen.CodeMirror-sided .CodeMirror-scroll {
+  width: 100%;
+  margin: 0;
+  max-width: 100% !important;
+  border: none;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu {
@@ -18855,27 +18873,35 @@ div.mce-fullscreen {
   background-color: saturate(#d72020);
 }
 
-.bg-white {
+.bg-white,
+.editor-preview-side {
   background-color: #fff;
   color: #58666e;
 }
 
-.bg-white a {
+.bg-white a,
+.editor-preview-side a {
   color: #363f44 !important;
 }
 
-.bg-white a:hover {
+.bg-white a:hover,
+.editor-preview-side a:hover {
   color: #1f2427 !important;
 }
 
-.bg-white .text-muted {
+.bg-white .text-muted,
+.editor-preview-side .text-muted {
   color: #99a6ad !important;
 }
 
 .bg-white .lt,
+.editor-preview-side .lt,
 .bg-white .lter,
+.editor-preview-side .lter,
 .bg-white .dk,
-.bg-white .dker {
+.editor-preview-side .dk,
+.bg-white .dker,
+.editor-preview-side .dker {
   background-color: #fff;
 }
 
@@ -19350,6 +19376,7 @@ a.text-black:hover {
 .wrapper,
 .CodeMirror-fullscreen,
 .CodeMirror-fullscreen .CodeMirror-scroll,
+.editor-preview-side,
 .admin-wrapper .admin-element {
   padding: 15px;
 }
@@ -19413,7 +19440,8 @@ a.text-black:hover {
 }
 
 .b-t,
-.modal .modal-footer {
+.modal .modal-footer,
+.editor-preview-side {
   border-top: 1px solid #dadfe4;
 }
 

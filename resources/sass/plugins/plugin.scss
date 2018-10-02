@@ -56,7 +56,7 @@ div.mce-fullscreen {
 
 // SimpleMDE Markdown Editor
 .CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
-  z-index : 1050;
+  z-index : 1040;
 }
 .CodeMirror-fullscreen{
   background-color: $body-bg;
@@ -90,8 +90,27 @@ div.mce-fullscreen {
 
 }
 
+.editor-preview-side{
+  border-left: none!important;
+  @extend .b-t;
+  @extend .bg-white;
+  @extend .wrapper;
+}
+
 .editor-toolbar.fullscreen{
   text-align: center;
+}
+
+.CodeMirror.CodeMirror-fullscreen.CodeMirror-sided {
+  padding: 0;
+  margin: 0;
+  left: 0;
+  .CodeMirror-scroll{
+    width: 100%;
+    margin: 0;
+    max-width: 100%!important;
+    border: none;
+  }
 }
 
 
