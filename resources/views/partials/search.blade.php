@@ -4,7 +4,7 @@
             <div class="input-icon">
                 <input
                        data-action="keyup->layouts--search#query blur->layouts--search#blur focus->layouts--search#focus"
-                       type="text" class="form-control input-sm  no-border rounded padder"
+                       type="text" class="form-control input-sm  padder bg-dark text-white"
                        placeholder="What to search..."
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 >

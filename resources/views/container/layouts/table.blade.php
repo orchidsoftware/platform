@@ -2,7 +2,11 @@
 
     {!! $filters ?? '' !!}
 
-    @if(optional($data)->total() === 0 || optional($data)->total() === 0 || count($data) === 0)
+    @if(
+        (method_exists($data,'total') && optional($data)->total() === 0) ||
+        (method_exists($data,'count') && optional($data)->count() === 0) ||
+        (is_array($data) && count($data) === 0)
+    )
 
         <div class="text-center bg-white app-content-center">
             <div>

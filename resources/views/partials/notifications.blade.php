@@ -1,5 +1,5 @@
 <div class="dropdown d-none d-md-flex">
-    <a class="nav-link icon" data-toggle="dropdown">
+    <a class="nav-link icon no-padder" data-toggle="dropdown">
         <i class="icon-bell"></i>
         @if(count($notifications) > 0)
             <span class="badge badge-sm up bg-danger pull-right-xs text-white">
@@ -7,7 +7,7 @@
             </span>
         @endif
     </a>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white">
 
 
         @if(count($notifications) > 0)

@@ -4,11 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
+
 /**
  * Class Repository.
  */
-class Repository extends \Illuminate\Config\Repository
+class Repository extends \Illuminate\Config\Repository implements ArrayAccess, Iterator, Countable
 {
+    /**
+     * @var int
+     */
+    protected $position = 0;
+
     /**
      * @param      $key
      * @param null $default
@@ -26,5 +35,53 @@ class Repository extends \Illuminate\Config\Repository
     public function toArray(): array
     {
         return $this->items;
+    }
+
+    /**
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->items);
+    }
+
+    /**
+     *
+     */
+    public function rewind()
+    {
+        $this->position = 0;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function current()
+    {
+        return $this->items[$this->position];
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function key()
+    {
+        return $this->position;
+    }
+
+    /**
+     *
+     */
+    public function next()
+    {
+        ++$this->position;
+    }
+
+    /**
+     * @return bool
+     */
+    public function valid()
+    {
+        return isset($this->items[$this->position]);
     }
 }

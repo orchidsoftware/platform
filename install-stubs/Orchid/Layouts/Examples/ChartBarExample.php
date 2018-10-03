@@ -1,21 +1,21 @@
 <?php
 
-namespace DummyNamespace;
+namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Layouts\Chart;
 
-class DummyClass extends Chart
+class ChartBarExample extends Chart
 {
 
     /**
      * @var string
      */
-    public $title = 'Super Chart';
+    public $title = 'Bar Chart';
 
     /**
      * @var int
      */
-    public $height = 150;
+    public $height = 250;
 
     /**
      * Available options:
@@ -29,7 +29,15 @@ class DummyClass extends Chart
     /**
      * @var array
      */
-    public $labels = [];
+    public $labels = [
+        "12am-3am",
+        "3am-6am",
+        "6am-9am",
+        "9am-12pm",
+        "12pm-3pm",
+        "3pm-6pm",
+        "6pm-9pm",
+    ];
 
     /**
      * @var string

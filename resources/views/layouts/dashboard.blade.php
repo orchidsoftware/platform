@@ -34,18 +34,13 @@
             <div class="d-flex v-center wrapper mt-4">
                     <a class="header-brand" href="{{route('platform.index')}}">
                         <p class="h2 n-m font-thin v-center">
-                            <img ng-src="//www.gstatic.com/analytics-suite/header/legacy/v2/ic_analytics.svg"
-                                 alt="Google&nbsp;Аналитика" class="ng-scope"
-                                 src="//www.gstatic.com/analytics-suite/header/legacy/v2/ic_analytics.svg"
-                                 style="
-max-width: 33px;
-">
+                            <i class="icon-orchid text-primary"></i>
                             <span class="m-l d-none d-sm-block">
-Google
+Orchid
 <small style="
 vertical-align: top;
 opacity: .75;
-">Аналитика</small>
+">Platform</small>
 </span>
                         </p>
                     </a>
@@ -59,22 +54,21 @@ opacity: .75;
 
             @include('platform::partials.search')
 
-            {{--
-                @include('platform::partials.notifications')
-            --}}
 
-            <div class="wrapper">
+
+
+            <div class="wrapper v-center">
                 <div class="dropdown">
                 <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                     <span class="thumb-sm avatar m-r-xs">
                         <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
                     </span>
-                    <span class="ml-2 d-none d-lg-block" style="max-width:150px;font-size: 0.82857rem;">
+                    <span class="ml-2 d-none d-lg-block" style="width:140px;font-size: 0.82857rem;">
                         <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
                         <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
                     </span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow">
+                <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow bg-white">
                     {!! Dashboard::menu()->render('Profile','platform::partials.dropdownMenu') !!}
 
                     <div class="dropdown-divider"></div>
@@ -119,6 +113,7 @@ opacity: .75;
 
                 </div>
             </div>
+                @include('platform::partials.notifications')
             </div>
 
             <div class="sidebar-sticky">
@@ -219,10 +214,10 @@ overflow: hidden;
             </div>
 
         </div>
-        <div class="col-md-6 bg-white b-l b-r box-shadow-lg no-padder">
+        <div class="col-md-6 bg-white b-r box-shadow-lg no-padder">
 
 
-            <div class="wrapper-lg">
+            <div class="wrapper mt-4">
 
                 <div class="v-center">
                     <div class="col-xs-12 col-md-4 no-padder">
@@ -243,6 +238,7 @@ overflow: hidden;
             <div class="d-flex">
                 <div class="app-content-body" id="app-content-body">
                     @include('platform::partials.alert')
+                    @include('platform::partials.announcement')
                     @yield('content')
                 </div>
             </div>

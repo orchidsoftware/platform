@@ -1117,7 +1117,7 @@ class BrowserLayout extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string
@@ -1160,7 +1160,7 @@ class PlatformLayout extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string

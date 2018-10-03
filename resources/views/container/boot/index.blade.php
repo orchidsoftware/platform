@@ -1,7 +1,7 @@
 <div data-controller="components--boot" class=" m-b">
     @if(count($models))
         <div class="nav-tabs-alt">
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs padder" role="tablist">
                 @foreach($models as $name => $value)
                     <li class="nav-item">
                         <a href="{{route('platform.bulldozer.index',$name)}}"
