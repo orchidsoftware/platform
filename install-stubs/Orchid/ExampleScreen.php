@@ -2,37 +2,36 @@
 
 namespace App\Orchid\Screens;
 
-use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
-use App\Orchid\Layouts\Examples\ChartScatterExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Alert;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
-use Orchid\Screen\Layouts;
-use Orchid\Screen\Link;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use App\Orchid\Layouts\Examples\MetricsExample;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 
 class ExampleScreen extends Screen
 {
     /**
-     * Display header name
+     * Display header name.
      *
      * @var string
      */
     public $name = 'Example Screen';
 
     /**
-     * Display header description
+     * Display header description.
      *
      * @var string
      */
     public $description = 'Sample Screen Components';
 
     /**
-     * Query data
+     * Query data.
      *
      * @return array
      */
@@ -41,20 +40,20 @@ class ExampleScreen extends Screen
         return [
             'charts'  => [
                 [
-                    "name"   => "Some Data",
-                    "values" => [25, 40, 30, 35, 8, 52, 17],
+                    'name'   => 'Some Data',
+                    'values' => [25, 40, 30, 35, 8, 52, 17],
                 ],
                 [
-                    "name"   => "Another Set",
-                    "values" => [25, 50, -10, 15, 18, 32, 27],
+                    'name'   => 'Another Set',
+                    'values' => [25, 50, -10, 15, 18, 32, 27],
                 ],
                 [
-                    "name"   => "Yet Another",
-                    "values" => [15, 20, -3, -15, 58, 12, -17],
+                    'name'   => 'Yet Another',
+                    'values' => [15, 20, -3, -15, 58, 12, -17],
                 ],
                 [
-                    "name"   => "And Last",
-                    "values" => [10, 33, -8, -3, 70, 20, -34],
+                    'name'   => 'And Last',
+                    'values' => [10, 33, -8, -3, 70, 20, -34],
                 ],
             ],
             'table'   => [
@@ -76,7 +75,7 @@ class ExampleScreen extends Screen
     }
 
     /**
-     * Button commands
+     * Button commands.
      *
      * @return array
      */
@@ -112,12 +111,11 @@ class ExampleScreen extends Screen
                         ->icon('icon-bag'),
                 ]),
 
-
         ];
     }
 
     /**
-     * Views
+     * Views.
      *
      * @return array
      */

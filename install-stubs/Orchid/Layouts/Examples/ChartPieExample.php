@@ -6,7 +6,6 @@ use Orchid\Screen\Layouts\Chart;
 
 class ChartPieExample extends Chart
 {
-
     /**
      * @var string
      */
@@ -20,7 +19,7 @@ class ChartPieExample extends Chart
     /**
      * Available options:
      * 'bar', 'line',
-     * 'pie', 'percentage'
+     * 'pie', 'percentage'.
      *
      * @var string
      */
@@ -30,13 +29,13 @@ class ChartPieExample extends Chart
      * @var array
      */
     public $labels = [
-        "12am-3am",
-        "3am-6am",
-        "6am-9am",
-        "9am-12pm",
-        "12pm-3pm",
-        "3pm-6pm",
-        "6pm-9pm",
+        '12am-3am',
+        '3am-6am',
+        '6am-9am',
+        '9am-12pm',
+        '12pm-3pm',
+        '3pm-6pm',
+        '6pm-9pm',
     ];
 
     /**

@@ -45,17 +45,15 @@ abstract class Chart
      */
     public $data = '';
 
-
     /**
      * @var array
      */
-
     public $colors = [
         '#2274A5',
         '#F75C03',
         '#F1C40F',
         '#D90368',
-        '#00CC66'
+        '#00CC66',
         /*
       '#d0dff9',
       '#a3c3f9',

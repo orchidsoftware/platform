@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use ArrayAccess;
-use Countable;
 use Iterator;
+use Countable;
+use ArrayAccess;
 
 /**
  * Class Repository.
@@ -45,9 +45,6 @@ class Repository extends \Illuminate\Config\Repository implements ArrayAccess, I
         return count($this->items);
     }
 
-    /**
-     *
-     */
     public function rewind()
     {
         $this->position = 0;
@@ -69,12 +66,9 @@ class Repository extends \Illuminate\Config\Repository implements ArrayAccess, I
         return $this->position;
     }
 
-    /**
-     *
-     */
     public function next()
     {
-        ++$this->position;
+        $this->position++;
     }
 
     /**
