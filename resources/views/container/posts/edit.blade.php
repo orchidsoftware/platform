@@ -33,14 +33,16 @@
             </li>
         @endif
 
-        <li>
-            <a href="{{route('platform.systems.history',[
-                $post->classEncodeBase64Url(),
-                $post->id
-            ])}}" class="btn btn-link">
-                <i class="icon-action-undo"></i> История
-            </a>
-        </li>
+        {{--
+            <li>
+                <a href="{{route('platform.systems.history',[
+                    $post->classEncodeBase64Url(),
+                    $post->id
+                ])}}" class="btn btn-link">
+                    <i class="icon-action-undo"></i> История
+                </a>
+            </li>
+        --}}
 
         <li>
             <button type="submit"

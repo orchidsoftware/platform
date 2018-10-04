@@ -38,7 +38,7 @@
         </label>
     </div>
     <div class="form-footer">
-        <button type="submit" class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-dark btn-block">
             <i class="icon-login text-xs m-r-xs"></i> {{trans('platform::auth/account.login')}}
         </button>
     </div>
