@@ -25,7 +25,7 @@
     <style>
 
     </style>
-    <div class="card"
+    <div class=""
         data-controller="components--media"
         data-components--media-baseurl="{{ route('platform.systems.media.index')}}"
         data-components--media-path="{{$path}}">

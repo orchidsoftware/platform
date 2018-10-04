@@ -49,6 +49,12 @@ abstract class Chart
      * @var array
      */
     public $colors = [
+        '#2274A5',
+        '#F75C03',
+        '#F1C40F',
+        '#D90368',
+        '#00CC66',
+        /*
       '#d0dff9',
       '#a3c3f9',
       '#7da1dd',
@@ -57,6 +63,7 @@ abstract class Chart
       '#0a3f98',
       '#062457',
       '#0c182c',
+        */
     ];
 
     /**

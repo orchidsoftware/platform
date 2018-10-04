@@ -57,7 +57,7 @@
     >
 
 
-        <div class="hbox-col w-xxl card">
+        <div class="hbox-col w-xxl ">
 
 
             <div class="wrapper-md">
@@ -187,18 +187,13 @@
 
 
         <div class="hbox-col">
-            <div class="m-l-md">
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
-                            <ol class="dd-list">
-                                @include('platform::partials.menu.item',[
-                                    'menu'=>$menu
-                                ])
-                            </ol>
-                        </div>
-                    </div>
+            <div class="wrapper-md">
+                <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
+                    <ol class="dd-list">
+                        @include('platform::partials.menu.item',[
+                            'menu'=>$menu
+                        ])
+                    </ol>
                 </div>
             </div>
         </div>

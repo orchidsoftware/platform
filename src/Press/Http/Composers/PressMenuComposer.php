@@ -53,7 +53,7 @@ class PressMenuComposer
                 ->push($route)
                 ->push($route.'*');
 
-            $kernel->menu->add('Posts', [
+            $kernel->menu->add('Main', [
                 'slug'       => $page->slug,
                 'icon'       => $page->icon,
                 'route'      => route($route, [$page->slug]),
@@ -65,19 +65,6 @@ class PressMenuComposer
                 'show'       => $page->display,
             ]);
         }
-
-        $kernel->menu->add('Main', [
-            'slug'       => 'Posts',
-            'icon'       => 'icon-notebook',
-            'route'      => '#',
-            'label'      => trans('platform::menu.posts'),
-            'childs'     => true,
-            'main'       => true,
-            'active'     => $active,
-            'groupname'  => 'Управление записями',
-            'sort'       => 100,
-            'show'       => count($allPost) > 0,
-        ]);
 
         return $this;
     }

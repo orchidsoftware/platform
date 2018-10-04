@@ -188,7 +188,7 @@ class ChartsLayout extends Chart
 
     / **
      * Magagamit na mga opsyon:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string

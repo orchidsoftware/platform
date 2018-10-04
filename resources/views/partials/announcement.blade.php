@@ -1,7 +1,5 @@
 @empty(!$announcement)
-    <div class="alert alert-info b-b m-n" role="alert">
-        <div class="container">
-            {!! $announcement->getParsedContentAttribute() !!}
-        </div>
+    <div class="alert alert-warning border-0" role="alert">
+        {!! $announcement->getParsedContentAttribute() !!}
     </div>
 @endempty

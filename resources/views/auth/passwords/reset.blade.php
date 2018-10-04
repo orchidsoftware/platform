@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="form-footer">
-            <button class="btn btn-primary btn-block" type="submit">
+            <button class="btn btn-dark btn-block" type="submit">
                 <i class="icon-refresh text-xs m-r-xs"></i> {{trans('platform::auth/account.password_reset')}}
             </button>
         </div>

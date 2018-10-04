@@ -190,8 +190,8 @@ class User extends Authenticatable implements UserInterface
         $name = title_case(str_slug($this->getNameTitle(), ' '));
 
         return AvatarGenerator::create($name)
-            ->setBackground('#fff')
-            ->setForeground('#363f44')
+            //->setBackground('#fff')
+            //->setForeground('#363f44')
             ->setBorder(0, '#fff')
             ->toBase64();
     }

@@ -33,14 +33,16 @@
             </li>
         @endif
 
-        <li>
-            <a href="{{route('platform.systems.history',[
-                $post->classEncodeBase64Url(),
-                $post->id
-            ])}}" class="btn btn-link">
-                <i class="icon-action-undo"></i> История
-            </a>
-        </li>
+        {{--
+            <li>
+                <a href="{{route('platform.systems.history',[
+                    $post->classEncodeBase64Url(),
+                    $post->id
+                ])}}" class="btn btn-link">
+                    <i class="icon-action-undo"></i> История
+                </a>
+            </li>
+        --}}
 
         <li>
             <button type="submit"
@@ -70,7 +72,7 @@
             <!-- column -->
                 <div class="hbox-col lter">
                     <div class="vbox">
-                        <div class="card wrapper">
+                        <div class=" wrapper">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if($loop->first) active @endif" id="local-{{$code}}"

@@ -151,9 +151,6 @@ div.mce-fullscreen {
 
 
 .admin-wrapper {
-
-  min-height: calc(100vh - #{$app-header-height});
-
   .admin-element {
     box-sizing: border-box;
     @extend .wrapper;

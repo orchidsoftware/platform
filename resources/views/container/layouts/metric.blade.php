@@ -1,5 +1,5 @@
-<div class="card m-b">
-    <div class="card-body p-3">
+<div class="m-b">
+    <div class="wrapper">
         <h4 class="font-thin text-black">{{ trans($title) }}</h4>
         <div class="row padder-v">
             @foreach($metrics as $key => $metric)
