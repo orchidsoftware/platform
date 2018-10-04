@@ -833,10 +833,10 @@ var _class = function (_Controller) {
         key: 'connect',
 
         /**
-        *
-        */
+         *
+         */
         value: function connect() {
-            new __WEBPACK_IMPORTED_MODULE_1_frappe_charts_dist_frappe_charts_esm__["a" /* Chart */](this.data.get('parent'), {
+            var chart = new __WEBPACK_IMPORTED_MODULE_1_frappe_charts_dist_frappe_charts_esm__["a" /* Chart */](this.data.get('parent'), {
                 title: this.data.get('title'),
                 data: {
                     labels: JSON.parse(this.data.get('labels')),
@@ -846,6 +846,26 @@ var _class = function (_Controller) {
                 height: this.data.get('height'),
 
                 colors: JSON.parse(this.data.get('colors'))
+            });
+
+            var resize = function resize() {
+                return setTimeout(function () {
+                    console.log('test');
+                    chart.draw(!0);
+                }, 1);
+            };
+
+            window.addEventListener('resize', function () {
+                return setTimeout(function () {
+                    console.log('test');
+                    chart.draw(!0);
+                }, 1);
+            });
+            window.removeEventListener('resize', function () {
+                return setTimeout(function () {
+                    console.log('test');
+                    chart.draw(!0);
+                }, 1);
             });
         }
     }]);

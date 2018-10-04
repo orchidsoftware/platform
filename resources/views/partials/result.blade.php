@@ -7,19 +7,19 @@
     @foreach($group['result'] as $item)
         <a href="{{$item->url}}" class="block wrapper-sm dropdown-item">
 
-        @empty(!$item->avatar)
-            <span class="pull-left thumb-xs avatar m-r-sm">
-              <img src="{{$item->avatar}}" alt="{{$item->title}}">
-              {{-- <i class="on b-white bottom"></i> --}}
-            </span>
-        @endempty
+            @empty(!$item->avatar)
+                <span class="pull-left thumb-xs avatar m-r-sm">
+                  <img src="{{$item->avatar}}" alt="{{$item->title}}">
+                  {{-- <i class="on b-white bottom"></i> --}}
+                </span>
+            @endempty
 
-        <span class="clear">
-            <span class="text-ellipsis">{{$item->title}}</span>
-            <small class="text-muted clear text-ellipsis">
-                {{$item->subTitle}}
-            </small>
-        </span>
+            <span class="clear">
+                <span class="text-ellipsis">{{$item->title}}</span>
+                <small class="text-muted clear text-ellipsis">
+                    {{$item->subTitle}}
+                </small>
+            </span>
         </a>
     @endforeach
 
