@@ -23,10 +23,6 @@
 Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
 Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications.
 
-
-![screenshot](https://user-images.githubusercontent.com/5102591/38919428-37f6191a-42f9-11e8-892a-6f9b27e8d599.png)
-
-
 ## Official Documentation
 
 Documentation can be found at [ORCHID website](http://orchid.software).
