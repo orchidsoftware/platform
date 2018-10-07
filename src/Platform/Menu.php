@@ -118,8 +118,7 @@ class Menu
      */
     public function add(string $place, $arg)
     {
-
-        if($arg instanceof ItemMenu){
+        if ($arg instanceof ItemMenu) {
             $arg = get_object_vars($arg);
         }
 

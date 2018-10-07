@@ -32,12 +32,12 @@ class ItemMenu
     public $groupname;
 
     /**
-     * @var boolean
+     * @var bool
      */
     public $divider;
 
     /**
-     * @var boolean
+     * @var bool
      */
     public $childs;
 
@@ -71,7 +71,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setPermission(string $permission): ItemMenu
+    public function setPermission(string $permission): self
     {
         $this->permission = $permission;
 
@@ -83,7 +83,7 @@ class ItemMenu
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    public function setActive(string $active): ItemMenu
+    public function setActive(string $active): self
     {
         $this->active = $active;
 
@@ -95,7 +95,7 @@ class ItemMenu
      *
      * @return \Orchid\Platform\ItemMenu
      */
-    static function setLabel(string $label): ItemMenu
+    public static function setLabel(string $label): self
     {
         $item = new self();
 
@@ -110,7 +110,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setIcon(string $icon): ItemMenu
+    public function setIcon(string $icon): self
     {
         $this->icon = $icon;
 
@@ -122,7 +122,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setShow(bool $show): ItemMenu
+    public function setShow(bool $show): self
     {
         $this->show = $show;
 
@@ -134,7 +134,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setSlug(string $slug): ItemMenu
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -146,7 +146,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setRoute(string $route): ItemMenu
+    public function setRoute(string $route): self
     {
         $this->route = $route;
 
@@ -158,7 +158,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setGroupname(string $groupname): ItemMenu
+    public function setGroupname(string $groupname): self
     {
         $this->groupname = $groupname;
 
@@ -170,7 +170,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setDivider(bool $divider): ItemMenu
+    public function setDivider(bool $divider): self
     {
         $this->divider = $divider;
 
@@ -182,7 +182,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setChilds(bool $childs): ItemMenu
+    public function setChilds(bool $childs): self
     {
         $this->childs = $childs;
 
@@ -194,7 +194,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setSort(int $sort): ItemMenu
+    public function setSort(int $sort): self
     {
         $this->sort = $sort;
 
@@ -206,7 +206,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setBadge(array $badge): ItemMenu
+    public function setBadge(array $badge): self
     {
         $this->badge = $badge;
 
