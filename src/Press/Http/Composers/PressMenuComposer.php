@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Composers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
@@ -44,26 +45,21 @@ class PressMenuComposer
             ->where('display', true)
             ->all();
 
-        $active = collect();
-
         foreach ($allPost as $key => $page) {
             $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
 
-            $active
-                ->push($route)
-                ->push($route.'*');
-
-            $kernel->menu->add('Main', [
-                'slug'       => $page->slug,
-                'icon'       => $page->icon,
-                'route'      => route($route, [$page->slug]),
-                'label'      => $page->name,
-                'permission' => 'platform.posts.type.'.$page->slug,
-                'sort'       => $key,
-                'groupname'  => $page->groupname,
-                'divider'    => $page->divider,
-                'show'       => $page->display,
-            ]);
+            $kernel->menu->add('Main',
+                ItemMenu::setLabel($page->name)
+                    ->setSlug($page->slug)
+                    ->setIcon($page->icon)
+                    ->setGroupname($page->groupname)
+                    ->setRoute(route($route, [$page->slug]))
+                    ->setPermission('platform.posts.type.' . $page->slug)
+                    ->setDivider($page->divider)
+                    ->setActive(route($route, [$page->slug]).'*')
+                    ->setSort($key)
+                    ->setShow($page->display)
+            );
         }
 
         return $this;

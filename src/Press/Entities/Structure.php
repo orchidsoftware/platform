@@ -55,7 +55,7 @@ trait Structure
      *
      * @var null
      */
-    public $divider;
+    public $divider = false;
 
     /**
      * Show the data to the user.

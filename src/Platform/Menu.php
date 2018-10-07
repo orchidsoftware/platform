@@ -112,12 +112,17 @@ class Menu
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param array  $arg
+     * @param array|ItemMenu  $arg
      *
      * @return $this
      */
-    public function add(string $place, array $arg)
+    public function add(string $place, $arg)
     {
+
+        if($arg instanceof ItemMenu){
+            $arg = get_object_vars($arg);
+        }
+
         if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }

@@ -55,23 +55,27 @@ class MainMenuComposer
                 'sort'  => 1000,
             ]);
 
-        // Quick
+        // Main
         $this->dashboard->menu
-            ->add('Quick', [
+            ->add('Main', [
                 'slug'  => 'example4',
-                'icon'  => 'icon-text-center',
+                'groupname'  => 'Example boilerplate',
+                'icon'  => 'icon-folder',
+                'route' => route('platform.example'),
                 'label' => 'Example Quick',
                 'sort'  => 1000,
             ])
-            ->add('Quick', [
+            ->add('Main', [
                 'slug'  => 'example5',
-                'icon'  => 'icon-text-center',
+                'icon'  => 'icon-heart',
+                'route' => route('platform.example'),
                 'label' => 'Example Quick',
                 'sort'  => 1000,
             ])
-            ->add('Quick', [
+            ->add('Main', [
                 'slug'  => 'example6',
-                'icon'  => 'icon-text-center',
+                'icon'  => 'icon-code',
+                'route' => route('platform.example'),
                 'label' => 'Example Quick',
                 'sort'  => 1000,
             ]);

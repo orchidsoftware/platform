@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Composers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 
 class SystemMenuComposer
 {
@@ -29,94 +30,59 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems', [
-                'slug'       => 'Cache',
-                'icon'       => 'icon-refresh',
-                'label'      => trans('platform::systems/settings.system_menu.Cache configuration'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 2000,
-            ])
-            ->add('Cache', [
-                'slug'       => 'cache:clear',
-                'icon'       => 'icon-refresh',
-                'route'      => route('platform.systems.cache', ['action' => 'cache']),
-                'label'      => trans('platform::systems/cache.cache'),
-                'groupname'  => trans('platform::systems/cache.cache.description'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 1000,
-            ])
-            ->add('Cache', [
-                'slug'       => 'config:cache',
-                'icon'       => 'icon-wrench',
-                'route'      => route('platform.systems.cache', ['action' => 'config']),
-                'label'      => trans('platform::systems/cache.config'),
-                'groupname'  => trans('platform::systems/cache.config.description'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 1000,
-            ])
-            ->add('Cache', [
-                'slug'       => 'route:cache',
-                'icon'       => 'icon-directions',
-                'route'      => route('platform.systems.cache', ['action' => 'route']),
-                'label'      => trans('platform::systems/cache.route'),
-                'groupname'  => trans('platform::systems/cache.route.description'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 1000,
-            ])
-            ->add('Cache', [
-                'slug'       => 'view:clear',
-                'icon'       => 'icon-monitor',
-                'route'      => route('platform.systems.cache', ['action' => 'view']),
-                'label'      => trans('platform::systems/cache.view'),
-                'groupname'  => trans('platform::systems/cache.view.description'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 1000,
-            ])
-            ->add('Cache', [
-                'slug'       => 'opcache:clear',
-                'icon'       => 'icon-settings',
-                'route'      => route('platform.systems.cache', ['action' => 'opcache']),
-                'label'      => trans('platform::systems/cache.opcache'),
-                'groupname'  => trans('platform::systems/cache.opcache.description'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems.cache',
-                'sort'       => 1000,
-                'show'       => function_exists('opcache_reset'),
-            ])
-            ->add('Systems', [
-                'slug'       => 'Savior',
-                'icon'       => 'icon-umbrella',
-                'label'      => 'Журналирование',
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
-                'sort'       => 9000,
-            ])
-            ->add('Savior', [
-                'slug'       => 'backups',
-                'icon'       => 'icon-clock',
-                'route'      => route('platform.systems.backups'),
-                'label'      => 'Резервные копии',
-                'groupname'  => 'Необходимо для возможности быстрого восстановления информации в случае утери рабочей копии.',
-                'childs'     => false,
-                'divider'    => false,
-                'permission' => 'platform.systems.backups',
-                'sort'       => 1,
-            ])
-            ->add('Savior', [
-                'slug'       => 'announcement',
-                'icon'       => 'icon-bulb',
-                'route'      => route('platform.systems.announcement'),
-                'label'      => 'Публичное оповещение',
-                'groupname'  => 'Предварительное оповещение о каком-либо событии.',
-                'childs'     => false,
-                'divider'    => false,
-                'permission' => 'platform.systems.announcement',
-                'sort'       => 1,
-            ]);
+            ->add('Systems', ItemMenu::setLabel(trans('platform::systems/settings.system_menu.Cache configuration'))
+                ->setSlug('Cache')
+                ->setIcon('icon-refresh')
+                ->setPermission('platform.systems.cache')
+                ->setSort(2000))
+            ->add('Cache', ItemMenu::setLabel(trans('platform::systems/cache.cache'))
+                ->setIcon('icon-refresh')
+                ->setRoute(route('platform.systems.cache', ['action' => 'cache']))
+                ->setGroupname(trans('platform::systems/cache.cache.description'))
+            )
+            ->add('Cache', ItemMenu::setLabel(trans('platform::systems/cache.config'))
+                ->setIcon('icon-wrench')
+                ->setRoute(route('platform.systems.cache', ['action' => 'config']))
+                ->setGroupname(trans('platform::systems/cache.config.description'))
+            )
+            ->add('Cache', ItemMenu::setLabel(trans('platform::systems/cache.route'))
+                ->setIcon('icon-directions')
+                ->setRoute(route('platform.systems.cache', ['action' => 'route']))
+                ->setGroupname(trans('platform::systems/cache.route.description'))
+            )
+            ->add('Cache',
+                ItemMenu::setLabel(trans('platform::systems/cache.view'))
+                    ->setIcon('icon-monitor')
+                    ->setRoute(route('platform.systems.cache', ['action' => 'view']))
+                    ->setGroupname(trans('platform::systems/cache.view.description'))
+            )
+            ->add('Cache',
+                ItemMenu::setLabel(trans('platform::systems/cache.opcache'))
+                    ->setIcon('icon-settings')
+                    ->setRoute(route('platform.systems.cache', ['action' => 'opcache']))
+                    ->setGroupname(trans('platform::systems/cache.opcache.description'))
+                    ->setShow(function_exists('opcache_reset'))
+            )
+            ->add('Systems',
+                ItemMenu::setLabel('Журналирование')
+                    ->setSlug('Savior')
+                    ->setIcon('icon-umbrella')
+                    ->setRoute(route('platform.systems.cache', ['action' => 'opcache']))
+                    ->setSort(9000)
+            )
+            ->add('Savior',
+                ItemMenu::setLabel('Резервные копии')
+                    ->setIcon('icon-clock')
+                    ->setGroupname('Необходимо для возможности быстрого восстановления информации в случае утери рабочей копии.')
+                    ->setRoute(route('platform.systems.backups'))
+                    ->setPermission('platform.systems.backups')
+            )
+            ->add('Savior',
+                ItemMenu::setLabel('Публичное оповещение')
+                    ->setIcon('icon-bulb')
+                    ->setGroupname('Предварительное оповещение о каком-либо событии.')
+                    ->setRoute(route('platform.systems.announcement'))
+                    ->setPermission('platform.systems.announcement')
+            );
     }
 }
