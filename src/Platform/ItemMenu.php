@@ -158,7 +158,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setGroupName(string $groupname): self
+    public function setGroupName(string $groupname = null): self
     {
         $this->groupname = $groupname;
 
