@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
-    use AttachTrait, LogsActivityTrait;
+    use AttachTrait,
+        LogsActivityTrait;
 
     /**
      * @var string

@@ -10,7 +10,9 @@ use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Category extends Taxonomy
 {
-    use AttachTrait, MultiLanguageTrait, FilterTrait;
+    use AttachTrait,
+        MultiLanguageTrait,
+        FilterTrait;
 
     /**
      * Used to set the post's type.

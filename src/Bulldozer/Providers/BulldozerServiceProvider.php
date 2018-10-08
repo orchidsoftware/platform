@@ -15,20 +15,13 @@ use Orchid\Bulldozer\Http\Composers\SystemMenuComposer;
 class BulldozerServiceProvider extends ServiceProvider
 {
     /**
-     * @var Dashboard
-     */
-    protected $dashboard;
-
-    /**
      * Boot the application events.
      *
      * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard)
     {
-        $this->dashboard = $dashboard;
-
-        $this->dashboard
+        $dashboard
             ->registerEntities(config('press.entities', []))
             ->registerPermissions($this->registerPermissions());
 

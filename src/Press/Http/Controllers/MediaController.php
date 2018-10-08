@@ -97,13 +97,18 @@ class MediaController extends Controller
         return $this->filesToFormat(collect($this->filesystem->directories($dir)));
     }
 
+    /**
+     * @param $bytes
+     *
+     * @return string
+     */
     private function getSize($bytes)
     {
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
         if ($bytes == 0) {
             return '0 B';
         }
-        $i = (intval(floor(log($bytes / 100) / log(1000))) >= 0) ?: 0;
+        $i = ((int) floor(log($bytes / 100) / log(1000)) >= 0) ?: 0;
 
         return round(100 * (($bytes / 100) / (1024 ** $i)), 0).' '.$sizes[$i];
     }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Menu;
-use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -73,28 +73,27 @@ class MenuController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function create(Request $request)
     {
-        $this->lang = $request->get('lang');
-        $this->menu = $request->get('menu');
         $data = json_decode($request->get('data'), true);
 
         $menu = Dashboard::model(Menu::class)::create(array_merge($data, [
-            'lang'   => $this->lang,
-            'type'   => $this->menu,
+            'lang'   => $request->get('lang'),
+            'type'   => $request->get('menu'),
             'parent' => 0,
         ]));
 
         return response()->json([
             'type' => 'success',
-            'id' => $menu->id,
+            'id'   => $menu->id,
         ]);
     }
 
     /**
-     * @param string $menu
+     * @param string  $menu
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -107,7 +106,7 @@ class MenuController extends Controller
         $this->createMenuElement($request->get('data'));
 
         return response()->json([
-            'type'    => 'success',
+            'type' => 'success',
         ]);
     }
 
@@ -145,7 +144,7 @@ class MenuController extends Controller
         $menu->delete();
 
         return response()->json([
-            'type'    => 'success',
+            'type' => 'success',
         ]);
     }
 }

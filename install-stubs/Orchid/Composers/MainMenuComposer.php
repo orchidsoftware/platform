@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Composers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 
 class MainMenuComposer
 {
@@ -30,54 +31,49 @@ class MainMenuComposer
     {
         // Profile
         $this->dashboard->menu
-            ->add('Profile', [
-                'slug'  => 'example1',
-                'icon'  => 'icon-compass',
-                'label' => 'Example',
-                'sort'  => 1000,
-            ])
-            ->add('Profile', [
-                'slug'  => 'example2',
-                'icon'  => 'icon-heart',
-                'label' => 'Example',
-                'sort'  => 1000,
-                'badge' => [
-                    'class' => 'bg-primary',
-                    'data'  => function () {
+            ->add('Profile',
+                ItemMenu::setLabel('Example 1')
+                    ->setIcon('icon-compass')
+            )
+            ->add('Profile',
+                ItemMenu::setLabel('Example 2')
+                    ->setIcon('icon-heart')
+                    ->setBadge(function () {
                         return 6;
-                    },
-                ],
-            ])
-            ->add('Profile', [
-                'slug'  => 'example3',
-                'icon'  => 'icon-microphone',
-                'label' => 'Example',
-                'sort'  => 1000,
-            ]);
+                    })
+            )
+            ->add('Profile',
+                ItemMenu::setLabel('Example 3')
+                    ->setIcon('icon-microphone')
+            );
 
         // Main
         $this->dashboard->menu
-            ->add('Main', [
-                'slug'  => 'example4',
-                'groupname'  => 'Example boilerplate',
-                'icon'  => 'icon-folder',
-                'route' => route('platform.example'),
-                'label' => 'Example Quick',
-                'sort'  => 1000,
-            ])
-            ->add('Main', [
-                'slug'  => 'example5',
-                'icon'  => 'icon-heart',
-                'route' => route('platform.example'),
-                'label' => 'Example Quick',
-                'sort'  => 1000,
-            ])
-            ->add('Main', [
-                'slug'  => 'example6',
-                'icon'  => 'icon-code',
-                'route' => route('platform.example'),
-                'label' => 'Example Quick',
-                'sort'  => 1000,
-            ]);
+            ->add('Main',
+                ItemMenu::setLabel('Example 4')
+                    ->setIcon('icon-folder')
+                    ->setRoute(route('platform.example'))
+                    ->setGroupName('Example boilerplate')
+            )
+            ->add('Main',
+                ItemMenu::setLabel('Example 5')
+                    ->setIcon('icon-heart')
+                    ->setRoute(route('platform.example'))
+            )
+            ->add('Main',
+                ItemMenu::setLabel('Example 6')
+                    ->setIcon('icon-code')
+                    ->setRoute(route('platform.example'))
+            )
+            ->add('Main',
+                ItemMenu::setLabel('Example 7')
+                    ->setIcon('icon-bag')
+                    ->setRoute(route('platform.example'))
+            )
+            ->add('Main',
+                ItemMenu::setLabel('Example 8')
+                    ->setIcon('icon-folder')
+                    ->setRoute(route('platform.example'))
+            );
     }
 }

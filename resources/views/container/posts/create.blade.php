@@ -71,7 +71,7 @@
                     <div class="row-row">
                         <div class="wrapper-md">
                             {!! generate_form($type->main(), $post->toArray()) !!}
-                            {!! generate_form($type->options(), $post->getOptions()->toArray(), null, 'options') !!}
+                            {!! generate_form($type->options(), $post->toArray(), null, 'options') !!}
 
                             @include('platform::container.posts.locale')
                         </div>

@@ -27,16 +27,12 @@
     <li><a href="/ru/docs/filters">Фильтры</a></li>
     <li><a href="/ru/docs/field">Поля</a></li>
     <li><a href="/ru/docs/widget">Виджеты</a></li>
-    <li><a href="/ru/docs/form">Формы</a></li>
-    <li><a href="/ru/docs/extension">Расширение</a></li>
-</ul>
-
-<h4 class="text-orchid font-thin">Панель управления</h4>
-<ul class="toc-links">
+    <li><a href="/ru/docs/global_search">Поиск</a></li>
     <li><a href="/ru/docs/access">Права доступа</a></li>
     <li><a href="/ru/docs/settings">Настройки</a></li>
     <li><a href="/ru/docs/active">Активные ссылки</a></li>
     <li><a href="/ru/docs/alert">Уведомления</a></li>
+    <li><a href="/ru/docs/extension">Расширение</a></li>
 </ul>
 
 <h4 class="text-orchid font-thin">Управление содержимым</h4>

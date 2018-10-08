@@ -6,6 +6,7 @@
   border:     none;
   overflow-x: hidden;
   background: inherit;
+  padding:    10px 0 0;
 
   .dz-preview {
     margin: 0.5rem;
@@ -32,6 +33,7 @@
       z-index:       50;
       right:         -10px;
       border-radius: 50px;
+      padding:       2px 7px;
     }
 
     .btn-edit {

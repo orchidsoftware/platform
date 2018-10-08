@@ -18,7 +18,6 @@
     'tags'         => Orchid\Screen\Fields\TagsField::class,
     'select'       => Orchid\Screen\Fields\SelectField::class,
     'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'place'        => Orchid\Screen\Fields\PlaceField::class,
     'picture'      => Orchid\Screen\Fields\PictureField::class,
     'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
     'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
@@ -57,7 +56,7 @@ return [
 ``` 
  
 
-> Заметьте многие параметры такие как max, required,title, help и многие другие, доступны почти каждым `полям` системы и являются не обязательными
+> Заметьте многие параметры такие как max,required,title,help,vertical,horizontal; и многие другие, доступны почти каждым `полям` системы и являются не обязательными
  
  
  

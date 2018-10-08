@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Orchid\Composers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 
 class SystemMenuComposer
 {
@@ -29,55 +30,48 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems', [
-                'slug'       => 'Auth',
-                'icon'       => 'icon-lock',
-                'label'      => trans('platform::systems/settings.system_menu.Sharing access rights'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
-                'sort'       => 1000,
-            ])
-            ->add('Auth', [
-                'slug'       => 'users',
-                'icon'       => 'icon-user',
-                'route'      => route('platform.systems.users'),
-                'label'      => trans('platform::menu.users'),
-                'groupname'  => trans('platform::systems/users.groupname'),
-                'permission' => 'platform.systems.users',
-                'sort'       => 9,
-            ])
-            ->add('Auth', [
-                'slug'       => 'roles',
-                'icon'       => 'icon-lock',
-                'route'      => route('platform.systems.roles'),
-                'label'      => trans('platform::menu.roles'),
-                'groupname'  => trans('platform::systems/roles.groupname'),
-                'permission' => 'platform.systems.roles',
-                'sort'       => 10,
-            ])
-            ->add('CMS', [
-                'slug'       => 'category',
-                'icon'       => 'icon-briefcase',
-                'route'      => route('platform.systems.category'),
-                'label'      => trans('platform::menu.sections'),
-                'permission' => 'platform.systems.category',
-                'groupname'  => trans('platform::systems/category.groupname'),
-                'sort'       => 10,
-            ])
-            ->add('CMS', [
-                'slug'       => 'comment',
-                'icon'       => 'icon-bubbles',
-                'route'      => route('platform.systems.comments'),
-                'groupname'  => trans('platform::systems/comment.groupname'),
-                'label'      => trans('platform::menu.comments'),
-                'permission' => 'platform.systems.comments',
-                'sort'       => 11,
-                'badge'      => [
-                    'class' => 'bg-primary',
-                    'data'  => function () {
+            ->add('Systems',
+                ItemMenu::setLabel(trans('platform::systems/settings.system_menu.Sharing access rights'))
+                    ->setIcon('icon-lock')
+                    ->setSlug('Auth')
+                    ->setActive('platform.systems.*')
+                    ->setPermission('platform.systems')
+                    ->setSort(1000)
+            )
+            ->add('Auth',
+                ItemMenu::setLabel(trans('platform::menu.users'))
+                    ->setIcon('icon-user')
+                    ->setRoute(route('platform.systems.users'))
+                    ->setPermission('platform.systems.users')
+                    ->setSort(1000)
+                    ->setGroupName(trans('platform::systems/users.groupname'))
+            )
+            ->add('Auth',
+                ItemMenu::setLabel(trans('platform::menu.roles'))
+                    ->setIcon('icon-lock')
+                    ->setRoute(route('platform.systems.roles'))
+                    ->setPermission('platform.systems.roles')
+                    ->setSort(1000)
+                    ->setGroupName(trans('platform::systems/roles.groupname'))
+            )
+            ->add('CMS',
+                ItemMenu::setLabel(trans('platform::menu.sections'))
+                    ->setIcon('icon-briefcase')
+                    ->setRoute(route('platform.systems.category'))
+                    ->setPermission('platform.systems.category')
+                    ->setSort(1000)
+                    ->setGroupName(trans('platform::systems/category.groupname'))
+            )
+            ->add('CMS',
+                ItemMenu::setLabel(trans('platform::menu.comments'))
+                    ->setIcon('icon-bubbles')
+                    ->setRoute(route('platform.systems.comments'))
+                    ->setPermission('platform.systems.comments')
+                    ->setSort(1000)
+                    ->setGroupName(trans('platform::systems/comment.groupname'))
+                    ->setBadge(function () {
                         return \Orchid\Press\Models\Comment::where('approved', 0)->count() ?: null;
-                    },
-                ],
-            ]);
+                    })
+            );
     }
 }

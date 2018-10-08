@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Bulldozer\Http\Controllers\Screens;
+namespace Orchid\Bulldozer\Http\Screens;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;

@@ -12,6 +12,8 @@ ORCHID имеет удобный вызов и отображение уведо
 
 
 ```php
+use Orchid\Support\Facades\Alert;
+
 public function store()
 {
     Alert::message('Welcome Aboard!');

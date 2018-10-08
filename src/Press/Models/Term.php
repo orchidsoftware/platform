@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model
 {
-    use MultiLanguageTrait, LogsActivityTrait;
+    use MultiLanguageTrait,
+        LogsActivityTrait;
 
     /**
      * @var string

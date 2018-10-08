@@ -47,7 +47,7 @@ class Builder
      * @param \Orchid\Screen\Contracts\FieldContract[] $fields
      * @param Repository                            $data
      */
-    public function __construct(array $fields, Repository $data)
+    public function __construct(array $fields, $data)
     {
         $this->fields = $fields;
         $this->data = $data;

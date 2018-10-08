@@ -20,10 +20,10 @@ class HistoryLayout extends Table
     public function fields(): array
     {
         return [
-            TD::set('log_name', 'log_name'),
-            TD::set('description', 'description'),
-            TD::set('countChanges', 'properties'),
-            TD::set('created_at', 'created_at'),
+            TD::set('log_name'),
+            TD::set('description'),
+            TD::set('countChanges'),
+            TD::set('created_at'),
         ];
     }
 }

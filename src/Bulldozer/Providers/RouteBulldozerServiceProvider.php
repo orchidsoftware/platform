@@ -20,7 +20,7 @@ class RouteBulldozerServiceProvider extends RouteServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Orchid\Bulldozer\Http\Controllers';
+    protected $namespace = 'Orchid\Bulldozer\Http';
 
     /**
      * Define the routes for the application.

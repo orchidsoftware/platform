@@ -52,7 +52,7 @@ class PressMenuComposer
                 ItemMenu::setLabel($page->name)
                     ->setSlug($page->slug)
                     ->setIcon($page->icon)
-                    ->setGroupname($page->groupname)
+                    ->setGroupName($page->groupname)
                     ->setRoute(route($route, [$page->slug]))
                     ->setPermission('platform.posts.type.'.$page->slug)
                     ->setDivider($page->divider)

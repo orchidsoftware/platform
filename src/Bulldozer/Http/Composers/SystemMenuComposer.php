@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Bulldozer\Http\Composers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 
 /**
  * Class SystemMenuComposer.
@@ -32,14 +33,11 @@ class SystemMenuComposer
     public function compose()
     {
         $this->dashboard->menu
-            ->add('Systems', [
-                'slug'       => 'Bulldozer',
-                'icon'       => 'icon-code',
-                'label'      => trans('platform::systems/settings.system_menu.Fast start'),
-                'active'     => 'platform.systems.*',
-                'permission' => 'platform.systems',
-                'sort'       => 9000,
-            ])
+            ->add('Systems',
+                ItemMenu::setLabel(trans('platform::systems/settings.system_menu.Fast start'))
+                    ->setSlug('Bulldozer')
+                    ->setIcon('icon-code')
+            )
             /*
              * TODO: Added generator for Entities
             ->add('Bulldozer', [
@@ -53,15 +51,13 @@ class SystemMenuComposer
                 'sort'       => 9000,
             ])
             */
-            ->add('Bulldozer', [
-                'slug'       => 'Models',
-                'icon'       => 'icon-database',
-                'route'      => route('platform.bulldozer.index'),
-                'label'      => trans('platform::bulldozer.title'),
-                'groupname'  => trans('platform::bulldozer.groupname'),
-                'active'     => 'platform.bulldozer.*',
-                'permission' => 'platform.bulldozer',
-                'sort'       => 9000,
-            ]);
+            ->add('Bulldozer',
+                ItemMenu::setLabel(trans('platform::bulldozer.title'))
+                    ->setIcon('icon-database')
+                    ->setRoute(route('platform.bulldozer.index'))
+                    ->setPermission('platform.bulldozer')
+                    ->setActive('platform.bulldozer.*')
+                    ->setGroupName(trans('platform::bulldozer.groupname'))
+            );
     }
 }

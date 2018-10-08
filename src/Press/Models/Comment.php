@@ -15,7 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
-    use AttachTrait, LogsActivityTrait;
+    use AttachTrait,
+        LogsActivityTrait;
 
     /**
      * @var string

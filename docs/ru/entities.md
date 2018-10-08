@@ -1,8 +1,8 @@
-# Поведения 
+# Сущности системы управления содержимым
 ----------
 
-Поведение является основной частью системы управления содержимым ORCHID, вместо того, чтобы генерировать CRUD для каждой модели
-можно выбрать любой объект в отдельном типе, и легко управлять им. Поведения применяются только к
+Сущность является основной частью системы управления содержимым ORCHID, вместо того, чтобы генерировать CRUD для каждой модели
+можно выбрать любой объект в отдельном типе, и легко управлять им. Сущность применяются только к
 моделям на основе 'Post', так как она является базовой для типичных данных.
 
 Вам необходимо описать поля которые хотите получить и в каком виде, а её CRUD построиться сам.
@@ -10,35 +10,19 @@
 
 ![Entities](https://orchid.software/img/scheme/entities.jpg)
 
-## Создание и регистрация поведений
+## Создание сущности
 
-
-Вы можете создать поведения с помощью команд:
-
-```php
-//Создать поведения для одной записи  
-php artisan orchid:singleBehavior      
-
-//Создать поведения для многих записей
-php artisan orchid:manyBehavior
-```
-
-Собственное поведение должно быть зарегистрировано в `config/platform.php` в разделе типов:
-
+Вы можете создать сущность с помощью команд:
 
 ```php
-//
-'single' => [
-    //App\Entities\Single\DemoPage::class,
-],
+//Создать сущность для одной записи  
+php artisan orchid:entity-single   
 
-//
-'many' => [
-    //App\Entities\Many\DemoPost::class,
-],
+//Создать сущность для многих записей
+php artisan orchid:entity-many
 ```
 
-> Для отображения поведения пользователя, необходимо наделить его
+> Для отображения сущности пользователю, необходимо наделить его
 или группу (роли) необходимыми правами с помощью графического интерфейса.
 
 Тип выглядит следующим образом:
@@ -100,7 +84,7 @@ class DummyClass extends Many
     /**
      * @return array
      */
-    public function modules()
+    public function options()
     {
         return [];
     }
@@ -126,11 +110,10 @@ class DummyClass extends Many
  public function grid()
  {
      return [
-         TD::name('name')->title('Name'),
-         TD::name('publish_at')->title('Date of publication'),
-         TD::name('created_at')->title('Date of creation'),
-         TD::name('full_name')->title('Full name')
-         ->setRender(function($post){
+         TD::set('name','Name'),
+         TD::set('publish_at','Date of publication'),
+         TD::set('created_at','Date of creation'),
+         TD::name('full_name','Full name')->setRender(function($post){
              return  "{$post->getContent('fist_name')} {$post->getContent('last_name')}";
          })
      ];

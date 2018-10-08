@@ -17,12 +17,12 @@
 Эта концепция очень проста. Как правило, вы управляете несколькими дюжинами разрешений в типичном бизнесе
 процессе. 
 Вы также можете иметь, скажем, от 10 до 100 пользователей.
- Хотя эти пользователи не полностью отличные друг от друга,
-  вы можете разделить их на логические группы в соответствии с тем, что они делают с программой.
-   Эти группы называются ролями.
+Хотя эти пользователи не полностью отличные друг от друга,
+вы можете разделить их на логические группы в соответствии с тем, что они делают с программой.
+Эти группы называются ролями.
 
 Если вам нужно было управлять пользователями напрямую, назначив им разрешения,
- это было бы утомительным и ошибочным,
+это было бы утомительным и ошибочным,
 из-за большого количества пользователей и разрешений. 
 
 
@@ -84,32 +84,19 @@ use Orchid\Platform\Dashboard;
 class PermissionServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * @param Dashboard $dashboard
      */
     public function boot(Dashboard $dashboard)
     {
-        $permission = $this->registerPermissions();
-        $dashboard->permission->registerPermissions($permission);
-    }
-
-    protected function registerPermissions()
-    {
-        return [
-            'Modules' => [
-                [
-                    'slug'        => 'Analytics',
-                    'description' => 'Description',
+        $dashboard->registerPermissions(
+            [
+                'modules' => [
+                    [
+                        'slug'        => 'Analytics',
+                        'description' => 'Description',
+                    ],
                 ],
-            ],
-
-        ];
+            ]);
     }
 }
 ```

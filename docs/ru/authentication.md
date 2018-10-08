@@ -35,7 +35,7 @@
  с помощью команды:
 
 ```php
-php artisan orchid:auth
+php artisan make:auth
 ```
 
 Добавим `auth` middleware в конфигурацию платформы `config/platform.php`, для правильных редиректов.

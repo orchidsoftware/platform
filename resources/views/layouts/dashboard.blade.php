@@ -142,4 +142,5 @@ opacity: .75;
         </div>
     </div>
 
+    @include('platform::partials.support')
 @endsection

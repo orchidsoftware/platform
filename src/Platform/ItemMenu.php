@@ -158,7 +158,7 @@ class ItemMenu
      *
      * @return ItemMenu
      */
-    public function setGroupname(string $groupname): self
+    public function setGroupName(string $groupname): self
     {
         $this->groupname = $groupname;
 
@@ -202,13 +202,17 @@ class ItemMenu
     }
 
     /**
-     * @param array $badge
+     * @param \Closure $badge
+     * @param string   $class
      *
-     * @return ItemMenu
+     * @return \Orchid\Platform\ItemMenu
      */
-    public function setBadge(array $badge): self
+    public function setBadge(\Closure $badge, string $class = 'bg-primary'): self
     {
-        $this->badge = $badge;
+        $this->badge = [
+            'class' => $class,
+            'data'  => $badge,
+        ];
 
         return $this;
     }

@@ -75,11 +75,15 @@ class TD
      *
      * @return TD
      */
-    public static function set(string $name, string $title): self
+    public static function set(string $name, string $title = null): self
     {
         $td = new static($name);
         $td->column = $name;
         $td->title = $title;
+
+        if(is_null($td->title)){
+            $td->title = $name;
+        }
 
         return $td;
     }
