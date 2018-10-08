@@ -25,10 +25,7 @@
                                 <div class="card-title">
                                     <div class="text-center mb-4">
                                         <a href="{{Dashboard::prefix()}}">
-                                            <p class="h2 n-m font-thin v-center">
-                                                <i class="icon-orchid text-primary"></i>
-                                                <span class="m-l d-none d-sm-block"> {{config('platform.name')}} </span>
-                                            </p>
+                                            @includeIf(config('platform.template.header','platform::layouts.header'))
                                         </a>
                                     </div>
                                 </div>
