@@ -81,7 +81,7 @@ class TD
         $td->column = $name;
         $td->title = $title;
 
-        if(is_null($td->title)){
+        if (is_null($td->title)) {
             $td->title = $name;
         }
 
