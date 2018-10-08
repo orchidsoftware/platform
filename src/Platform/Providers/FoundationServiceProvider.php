@@ -29,10 +29,6 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Dashboard::class, function () {
-            return new Dashboard();
-        });
-
         $this->registerEloquentFactoriesFrom()
             ->registerOrchid()
             ->registerDatabase()
@@ -143,6 +139,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            DashboardServiceProvider::class,
             ScoutServiceProvider::class,
             ActivitylogServiceProvider::class,
             AttachmentServiceProvider::class,
@@ -155,7 +152,7 @@ class FoundationServiceProvider extends ServiceProvider
             WidgetServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
-            DashboardProvider::class,
+            PlatformServiceProvider::class,
         ];
     }
 

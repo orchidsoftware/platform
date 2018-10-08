@@ -11,7 +11,7 @@ use Orchid\Platform\Http\Composers\SystemMenuComposer;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
 
-class DashboardProvider extends ServiceProvider
+class PlatformServiceProvider extends ServiceProvider
 {
     /**
      * @var Dashboard
