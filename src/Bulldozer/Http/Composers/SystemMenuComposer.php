@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Composers;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
+use Orchid\Platform\Dashboard;
 
 /**
  * Class SystemMenuComposer.

@@ -165,6 +165,6 @@ class Attachment extends Model
 
         $type = $mimes->getMimeType($this->getAttribute('extension'));
 
-        return $type ?? 'unknown' ;
+        return $type ?? 'unknown';
     }
 }
