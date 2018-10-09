@@ -42,7 +42,8 @@ class RoleFilter extends Filter
     public function display()
     {
         $roles = Role::select('slug', 'name')->pluck('name', 'slug');
-        $selectRole=$this->request->get('role');
+        $selectRole = $this->request->get('role');
+
         return Field::tag('select')
             ->options($roles)
             ->value($selectRole)

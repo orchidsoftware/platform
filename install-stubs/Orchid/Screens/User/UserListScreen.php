@@ -9,10 +9,10 @@ use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
+use App\Orchid\Filters\RoleFilter;
 use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserListLayout;
-use App\Orchid\Filters\RoleFilter;
 
 class UserListScreen extends Screen
 {
