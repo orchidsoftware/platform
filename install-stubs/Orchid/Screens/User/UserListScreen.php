@@ -12,6 +12,7 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserListLayout;
+use App\Orchid\Filters\RoleFilter;
 
 class UserListScreen extends Screen
 {
@@ -37,7 +38,8 @@ class UserListScreen extends Screen
     public function query() : array
     {
         return  [
-          'users'  => User::filters()
+          'users'  => User::with('roles')
+                ->FiltersApply([RoleFilter::class])
                 ->defaultSort('id', 'desc')
                 ->paginate(),
         ];
