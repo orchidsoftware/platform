@@ -122,28 +122,6 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getFieldsTable(): Collection
-    {
-        return collect([
-            'id'         => TD::set('id', 'ID')
-                ->align('center')
-                ->width('100px')
-                ->sort()
-                ->link('platform.systems.users.edit', 'id'),
-            'name'       => TD::set('name', trans('platform::systems/users.name'))
-                ->sort()
-                ->link('platform.systems.users.edit', 'id', 'name'),
-            'email'      => TD::set('email', trans('platform::systems/users.email'))
-                ->loadModalAsync('oneAsyncModal', 'saveUser', 'id', 'email')
-                ->sort(),
-            'updated_at' => TD::set('updated_at', trans('platform::common.Last edit'))
-                ->sort(),
-        ]);
-    }
-
-    /**
      * @param $name
      * @param $email
      * @param $password

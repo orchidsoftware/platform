@@ -19,7 +19,7 @@ class UserChangePasswordLayout extends Rows
     public function fields(): array
     {
         return [
-            'password' => Field::tag('password')
+            Field::tag('password')
                 ->name('user.password')
                 ->title(trans('platform::systems/users.password'))
                 ->placeholder('********'),

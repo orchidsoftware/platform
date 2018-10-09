@@ -19,7 +19,7 @@ class UserEditLayout extends Rows
     public function fields(): array
     {
         return [
-            'name' => Field::tag('input')
+            Field::tag('input')
                 ->type('text')
                 ->name('user.name')
                 ->max(255)
@@ -28,7 +28,7 @@ class UserEditLayout extends Rows
                 ->title(trans('platform::systems/users.name'))
                 ->placeholder(trans('platform::systems/users.name')),
 
-            'email' => Field::tag('input')
+            Field::tag('input')
                 ->type('email')
                 ->name('user.email')
                 ->required()
