@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
@@ -41,6 +42,26 @@ class Post extends Many
      * @var null
      */
     public $groupname = 'platform::menu.common posts';
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function create(Model $model) : Model
+    {
+        return $model->load('attachment');
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     */
+    public function save(Model $model)
+    {
+        $model->attachment()->syncWithoutDetaching(request('attachment',[]));
+
+        $model->save();
+    }
 
     /**
      * Rules Validation.
@@ -124,13 +145,6 @@ class Post extends Many
 
             ]),
 
-            Field::tag('textarea')
-                ->name('description')
-                ->max(255)
-                ->rows(5)
-                ->required()
-                ->title('Short description'),
-
             Field::tag('wysiwyg')
                 ->name('body')
                 ->required()
@@ -146,16 +160,6 @@ class Post extends Many
                 ->name('link')
                 ->title('UTM link')
                 ->help('Generated link'),
-
-            Field::tag('datetime')
-                ->name('open')
-                ->title('Opening date')
-                ->help('The opening event will take place'),
-
-            Field::tag('tags')
-                ->name('keywords')
-                ->title('Keywords')
-                ->help('SEO keywords'),
 
             Field::tag('markdown')
                 ->name('body2')
@@ -179,13 +183,45 @@ class Post extends Many
         ];
     }
 
+
     /**
      * @return array
+     * @throws \Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable
+     */
+    public function main(): array
+    {
+        $main =  parent::main();
+        $main[] = Field::tag('upload')
+            ->name('attachment')
+            ->title('Upload DropBox');
+
+        return $main;
+    }
+
+    /**
+     * @return array
+     * @throws \Throwable
      */
     public function options(): array
     {
         return [
+            Field::tag('textarea')
+                ->name('description')
+                ->max(255)
+                ->rows(5)
+                ->required()
+                ->title('Short description'),
 
+            Field::tag('datetime')
+                ->name('open')
+                ->title('Opening date')
+                ->help('The opening event will take place'),
+
+            Field::tag('tags')
+                ->name('keywords')
+                ->title('Keywords')
+                ->help('SEO keywords'),
         ];
     }
 

@@ -2,7 +2,8 @@
   border-radius: 6px;
 }
 
-.dropzone {
+.dropzone, .dropzone-wrapper {
+  @extend .dropzone;
   border:     none;
   overflow-x: hidden;
   background: inherit;
@@ -12,7 +13,8 @@
     margin: 0.5rem;
 
     .dz-image {
-
+      width: 8em;
+      height: 8em;
       @extend .img-rounded;
 
       img {
@@ -52,6 +54,10 @@
       > i {
         cursor: pointer;
       }
+      &:focus{
+      box-shadow: none;
+    }
+
     }
 
     &:hover {

@@ -27,7 +27,7 @@ class PageController extends Controller
         return view('platform::container.posts.page', [
             'type'    => $type,
             'locales' => collect($type->locale()),
-            'post'    => $page,
+            'post'    => $type->create($page),
         ]);
     }
 

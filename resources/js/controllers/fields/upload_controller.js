@@ -9,11 +9,10 @@ export default class extends Controller {
      */
     static targets = [
         "name",
-        "original_name",
+        "original",
         "alt",
         "description",
         "url",
-        "active"
     ];
 
     /**
@@ -30,7 +29,7 @@ export default class extends Controller {
      * @returns {string}
      */
     get dropname() {
-        return '#dropzone-' + this.data.get('name').replace(/\[/g , "_").replace(/\]/g , "_") + ' ';
+        return '#' + this.data.get('id');
     }
 
     /**
@@ -38,27 +37,12 @@ export default class extends Controller {
      * @returns {string|{id: *}}
      */
     get activeAttachment() {
-        const id = this.activeAchivmentId
-        return ([
-            'name',
-            'original_name',
-            'alt',
-            'url',
-            'description'
-        ]).reduce((res, key) => {
-            const targetKey = this.getAttachmentTargetKey(key);
-            const target = this[targetKey];
-            if (key === 'url') {
-                return {
-                    ...res,
-                    [key]: target.href
-                }
-            }
-            return {
-                ...res,
-                [key]: target.value
-            }
-        }, {id})
+        return {
+            'id': this.activeAchivmentId,
+            'name': this[this.getAttachmentTargetKey('name')].value,
+            'alt':this[this.getAttachmentTargetKey('alt')].value,
+            'description': this[this.getAttachmentTargetKey('description')].value,
+        };
     }
 
     /**
@@ -67,21 +51,24 @@ export default class extends Controller {
      */
     set activeAttachment(data) {
         this.activeAchivmentId = data.id;
-        Object.keys(data).map((key) => {
-            const value = data[key];
-            const targetKey = this.getAttachmentTargetKey(key);
-            const target = this[targetKey];
 
-            if (!target) {
-                return
-            }
+        this[this.getAttachmentTargetKey('name')].value = data.name;
+        this[this.getAttachmentTargetKey('original')].value = data.original_name;
+        this[this.getAttachmentTargetKey('alt')].value = data.alt;
+        this[this.getAttachmentTargetKey('description')].value = data.description;
 
-            if (key === 'url') {
-                target.href = value;
-                return
-            }
-            target.value = value
-        })
+
+        //this[this.getAttachmentTargetKey('url')].value = data.url;
+        this.data.set('url',data.url);
+
+    }
+
+    /**
+     *
+     */
+    openLink() {
+        event.preventDefault();
+        window.open(this.data.get('url'));
     }
 
     /**
@@ -96,11 +83,21 @@ export default class extends Controller {
      *
      */
     save() {
-        const data = this.activeAttachment;
+        const attach = this.activeAttachment;
+        $(`${this.dropname} .modal`).modal('toggle');
 
-        $('#modalUploadAttachment').modal('toggle');
+        const name = attach.name + attach.id;
+
+        console.log(name,this.attachments);
+
+        if (this.attachments.hasOwnProperty(name)) {
+            this.attachments[name].name = attach.name;
+            this.attachments[name].alt = attach.alt;
+            this.attachments[name].description = attach.description;
+        }
+
         axios
-            .put(platform.prefix(`/systems/files/post/${data.id}`), data)
+            .put(platform.prefix(`/systems/files/post/${attach.id}`), attach)
             .then();
     }
 
@@ -119,6 +116,7 @@ export default class extends Controller {
      */
     loadInfo(data) {
         const name = data.name + data.id;
+
         data.url = '/storage/' + data.path + data.name + '.' + data.extension;
         if (!this.attachments.hasOwnProperty(name)) {
             this.attachments[name] = data;
@@ -130,7 +128,7 @@ export default class extends Controller {
      *
      */
     initSortable() {
-        $(this.dropname + '.sortable-dropzone').sortable({
+        $(this.dropname + ' .sortable-dropzone').sortable({
             scroll: false,
             containment: "parent",
             update: function () {
@@ -154,116 +152,112 @@ export default class extends Controller {
      *
      */
     initDropZone() {
-        const data = this.data.get('data') && JSON.parse(this.data.get('data'))
-        const storage = this.data.get('storage')
-        const name = this.data.get('name')
-        const loadInfo = this.loadInfo.bind(this)
-        const dropname = this.dropname
+        const data = this.data.get('data') && JSON.parse(this.data.get('data'));
+        const storage = this.data.get('storage');
+        const name = this.data.get('name');
+        const loadInfo = this.loadInfo.bind(this);
+        const dropname = this.dropname;
 
-        Dropzone.autoDiscover = false;
         new Dropzone(dropname, {
-            url: platform.prefix('/systems/files'),
-            method: 'post',
-            uploadMultiple: false,
-            parallelUploads: 100,
-            maxFilesize: 9999,
-            paramName: 'files',
-            maxThumbnailFilesize: 99999,
-            previewsContainer: dropname + '.visual-dropzone',
-            addRemoveLinks: false,
-            dictFileTooBig: 'File is big',
+                url: platform.prefix('/systems/files'),
+                method: 'post',
+                uploadMultiple: false,
+                parallelUploads: 100,
+                maxFilesize: 9999,
+                paramName: 'files',
+                maxThumbnailFilesize: 99999,
+                previewsContainer: `${dropname} .visual-dropzone`,
+                addRemoveLinks: false,
+                dictFileTooBig: 'File is big',
+                autoDiscover: false,
 
-            init: function () {
-                this.on('addedfile', function (e) {
-                    var n = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>'),
-                        t = this;
-                    n.addEventListener('click', function (n) {
-                        n.preventDefault(), n.stopPropagation(), t.removeFile(e);
-                    }),
-                        e.previewElement.appendChild(n);
+                init() {
+                    this.on('addedfile', (e) => {
 
-                    var n = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon - note" aria-hidden="true"></i></a>'),
-                        t = this;
-                    n.addEventListener('click', function (n) {
-                        loadInfo(e.data);
-                        $('#modalUploadAttachment').modal('show');
-                    }),
-                        e.previewElement.appendChild(n);
-                });
+                        let removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
+                        let editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
 
-                this.on('completemultiple', function (file, json) {
-                    $(dropname + '.sortable-dropzone').sortable('enable');
-                });
 
-                const instanceDropZone = this;
-                const images = data
-                if (images) {
-                    images.forEach(function (item, i, arr) {
-                        const mockFile = {
-                            id: item.id,
-                            name: item.original_name,
-                            size: item.size,
-                            type: item.mime,
-                            status: Dropzone.ADDED,
-                            url: '/storage/' + item.path + item.name + '.' + item.extension,
-                            data: item,
-                        };
+                        removeButton.addEventListener('click', (event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            this.removeFile(e);
+                        });
 
-                        instanceDropZone.emit('addedfile', mockFile);
-                        instanceDropZone.emit('thumbnail', mockFile, mockFile.url);
-                        instanceDropZone.files.push(mockFile);
-                        $(dropname + '.dz-preview:last-child')
-                            .attr('data-file-id', item.id)
-                            .addClass('file-sort');
-                        $(
-                            "<input type='hidden' class='files-" +
-                            item.id +
-                            "' name='" + name + "[]' value='" +
-                            item.id +
-                            "'  />"
-                        ).appendTo(dropname);
+                        editButton.addEventListener('click', () => {
+                            loadInfo(e.data);
+                            $(`${dropname} .modal`).modal('show');
+                        });
 
+                        e.previewElement.appendChild(removeButton);
+                        e.previewElement.appendChild(editButton);
                     });
-                }
 
-                $(dropname + '.dz-progress').remove();
+                    this.on('completemultiple', () => {
+                        $(`${dropname}.sortable-dropzone`).sortable('enable');
+                    });
 
-                this.on('sending', function (file, xhr, formData) {
-                    formData.append('_token', $("meta[name='csrf_token']").attr('content'));
-                    formData.append(
-                        'storage',
-                        storage
-                    );
-                });
+                    const images = data;
 
-                this.on('removedfile', function (file) {
-                    $(dropname + '.files-' + file.data.id).remove();
-                    axios
-                        .delete(platform.prefix(`/systems/files/${file.data.id}`), {
-                            storage: $('#post-attachment-dropzone').data('storage'),
-                        })
-                        .then();
-                });
-            },
-            error: function (file, response) {
-                if ($.type(response) === 'string') {
-                    return response; //dropzone sends it's own error messages in string
-                }
-                return response.message;
-            },
-            success: function (file, response) {
-                file.data = response;
-                $(dropname + '.dz-preview:last-child')
-                    .attr('data-file-id', response.id)
-                    .addClass('file-sort');
-                $(
-                    "<input type='hidden' class='files-" +
-                    response.id +
-                    "' name='" + name + "[]' value='" +
-                    response.id +
-                    "'  />"
-                ).appendTo(dropname);
-            },
-        });
+                    if (images) {
+                        images.forEach((item) => {
+                            const mockFile = {
+                                id: item.id,
+                                name: item.original_name,
+                                size: item.size,
+                                type: item.mime,
+                                status: Dropzone.ADDED,
+                                url: `/storage/${item.path}${item.name}.${item.extension}`,
+                                data: item,
+                            };
+
+                            this.emit('addedfile', mockFile);
+                            this.emit('thumbnail', mockFile, mockFile.url);
+                            this.files.push(mockFile);
+                            $(`${dropname}.dz-preview:last-child`)
+                                .attr('data-file-id', item.id)
+                                .addClass('file-sort');
+                            $(
+                                `<input type='hidden' class='files-${item.id}' name='${name}[]' value='${item.id}'  />`
+                            ).appendTo(dropname);
+                        });
+                    }
+
+                    $(`${dropname} .dz-progress`).remove();
+
+                    this.on('sending', (file, xhr, formData) => {
+                        formData.append('_token', $("meta[name='csrf_token']").attr('content'));
+                        formData.append(
+                            'storage',
+                            storage
+                        );
+                    });
+
+                    this.on('removedfile', file => {
+                        $(`${dropname}.files-${file.data.id}`).remove();
+                        axios
+                            .delete(platform.prefix(`/systems/files/${file.data.id}`), {
+                                storage: $('#post-attachment-dropzone').data('storage'),
+                            })
+                            .then();
+                    });
+                },
+                error(file, response) {
+                    if ($.type(response) === 'string') {
+                        return response; //dropzone sends it's own error messages in string
+                    }
+                    return response.message;
+                },
+
+                success(file, response) {
+                    file.data = response;
+                    $(`${dropname} .dz-preview:last-child`)
+                        .attr('data-file-id', response.id)
+                        .addClass('file-sort');
+                    $(
+                        `<input type='hidden' class='files-${response.id}' name='${name}[]' value='${response.id}'  />`
+                    ).appendTo(dropname);
+                },
+            });
     }
 }

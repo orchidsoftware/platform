@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
-use Orchid\Press\Entities\Many;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Models\Post;
+use Orchid\Support\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -21,9 +21,9 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function index(Many $type) : View
+    public function index(Many $type): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
 
         return view('platform::container.posts.main', $type->generateGrid());
     }
@@ -33,9 +33,9 @@ class PostController extends Controller
      *
      * @return View
      */
-    public function create(Many $type) : View
+    public function create(Many $type): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
 
         return view('platform::container.posts.create', [
             'type'    => $type,
@@ -45,21 +45,21 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request      $request
-     * @param Post         $post
-     * @param Many $type
+     * @param Request $request
+     * @param Post    $post
+     * @param Many    $type
      *
      * @return RedirectResponse
      */
-    public function store(Request $request, Many $type, Post $post) : RedirectResponse
+    public function store(Request $request, Many $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
-            'type'       => $type->slug,
-            'user_id'    => $request->user()->id,
-            'options'    => $post->getOptions(),
+            'type'    => $type->slug,
+            'user_id' => $request->user()->id,
+            'options' => $post->getOptions(),
         ]);
 
         $type->save($post);
@@ -74,40 +74,40 @@ class PostController extends Controller
 
     /**
      * @param Many $type
-     * @param Post         $post
+     * @param Post $post
      *
      * @return View
      *
      * @internal param Request $request
      */
-    public function edit(Many $type, Post $post) : View
+    public function edit(Many $type, Post $post): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
 
         return view('platform::container.posts.edit', [
             'type'    => $type,
             'locales' => collect($type->locale()),
-            'post'    => $post,
+            'post'    => $type->create($post),
         ]);
     }
 
     /**
-     * @param Request      $request
-     * @param Many $type
-     * @param Post         $post
+     * @param Request $request
+     * @param Many    $type
+     * @param Post    $post
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function update(Request $request, Many $type, Post $post) : RedirectResponse
+    public function update(Request $request, Many $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
-            'type'       => $type->slug,
-            'user_id'    => $request->user()->id,
-            'options'    => $post->getOptions(),
+            'type'    => $type->slug,
+            'user_id' => $request->user()->id,
+            'options' => $post->getOptions(),
         ]);
 
         $type->save($post);
@@ -122,7 +122,7 @@ class PostController extends Controller
 
     /**
      * @param Many $type
-     * @param Post         $post
+     * @param Post $post
      *
      * @throws \Exception
      *
@@ -131,16 +131,16 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Many $type, Post $post) : RedirectResponse
+    public function destroy(Many $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
 
         $type->delete($post);
 
         Alert::success(trans('platform::common.alert.success'));
 
         return redirect()->route('platform.posts.type', [
-            'type'    => $type->slug,
+            'type' => $type->slug,
         ])->with([
             'restore' => route('platform.posts.restore', $post->id),
         ]);
@@ -151,7 +151,7 @@ class PostController extends Controller
      *
      * @return RedirectResponse
      */
-    public function restore($id) : RedirectResponse
+    public function restore($id): RedirectResponse
     {
         $post = Post::onlyTrashed()->find($id);
         $post->restore();
