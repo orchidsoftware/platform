@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
 use Orchid\Press\Http\Filters\CreatedFilter;
@@ -58,7 +58,7 @@ class Post extends Many
      */
     public function save(Model $model)
     {
-        $model->attachment()->syncWithoutDetaching(request('attachment',[]));
+        $model->attachment()->syncWithoutDetaching(request('attachment', []));
 
         $model->save();
     }
@@ -183,7 +183,6 @@ class Post extends Many
         ];
     }
 
-
     /**
      * @return array
      * @throws \Orchid\Screen\Exceptions\TypeException
@@ -191,7 +190,7 @@ class Post extends Many
      */
     public function main(): array
     {
-        $main =  parent::main();
+        $main = parent::main();
         $main[] = Field::tag('upload')
             ->name('attachment')
             ->title('Upload DropBox');
