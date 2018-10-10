@@ -19,7 +19,7 @@
     max-width: 30rem;
 ">
 
-                        <div class="card">
+                        <div class="card load-animation">
                             <div class="card-body p-5">
 
                                 <div class="card-title">

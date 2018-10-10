@@ -25,7 +25,10 @@
 
                 <div class="text-center bg-white app-content-center">
                     <div>
-                        <h3 class="font-thin">{{trans('platform::post/base.not_found')}}</h3>
+                        <h3 class="font-thin">
+                            <i class="icon-table block m-b"></i>
+                            {{trans('platform::post/base.not_found')}}
+                        </h3>
                         <a href="{{ route('platform.posts.type.create',$type->slug)}}"
                            class="btn btn-link">{{trans('platform::post/base.create')}}</a>
                     </div>

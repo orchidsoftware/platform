@@ -19,6 +19,7 @@ export default class extends Controller {
             colors: JSON.parse(this.data.get('colors')),
         });
 
+        /*
         let resize = () => setTimeout(() => {
             console.log('test');
             chart.draw(!0)
@@ -33,5 +34,6 @@ export default class extends Controller {
             console.log('test');
             chart.draw(!0)
         }, 1))
+        */
     }
 }

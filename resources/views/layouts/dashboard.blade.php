@@ -52,11 +52,11 @@
                         @yield('navbar')
                     </div>
                 </div>
-
-                @if (Breadcrumbs::exists())
-                    {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
-                @endif
             </div>
+
+            @if (Breadcrumbs::exists())
+                {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
+            @endif
 
             <div class="d-flex">
                 <div class="app-content-body" id="app-content-body">

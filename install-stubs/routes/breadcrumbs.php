@@ -73,3 +73,9 @@ Breadcrumbs::for('platform.systems.comments.edit', function ($trail, $comment) {
     $trail->parent('platform.systems.comments');
     $trail->push('Comment', route('platform.systems.comments.edit', $comment));
 });
+
+// Platform -> Example
+Breadcrumbs::for('platform.example', function ($trail) {
+    $trail->parent('platform.index');
+    $trail->push('Example');
+});

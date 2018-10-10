@@ -124,7 +124,7 @@ export default class extends Controller {
      */
     upload(blobInfo, success) {
         const data = new FormData();
-        data.append('file', blobInfo.blob());
+            data.append('file', blobInfo.blob());
 
         axios
             .post(platform.prefix('/systems/files'), data)

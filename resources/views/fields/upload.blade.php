@@ -18,7 +18,7 @@
         <span class="text-2x icon-cloud-upload"></span>
       </p>
       <p class="font-bold">{{trans('platform::post/uploads.title')}}</p>
-      <small>{{trans('platform::post/uploads.description')}}</small>
+      <small class="w-b-k">{{trans('platform::post/uploads.description')}}</small>
     </div>
 
 
