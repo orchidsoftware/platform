@@ -114,7 +114,7 @@ class FoundationServiceProvider extends ServiceProvider
         $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
         $this->publishes([
-            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/orchid/platform'),
+            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/platform'),
         ], 'views');
 
         return $this;

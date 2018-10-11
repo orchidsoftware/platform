@@ -37,7 +37,7 @@ class InstallCommand extends Command
     {
         $this->progressBar = $this->output->createProgressBar(9);
 
-        $text = "
+        $this->info("
         ________________________________________________________________
                ____    _____     _____   _    _   _____   _____
               / __ \  |  __ \   / ____| | |  | | |_   _| |  __ \
@@ -48,21 +48,20 @@ class InstallCommand extends Command
                              
                              Installation started. Please wait...
         ________________________________________________________________
-        ";
+        ");
 
-        $this->info($text);
         sleep(1);
 
         $this
             ->executeCommand('migrate')
-            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true, '--tag' => 'config,migrations'])
-            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true])
+            ->executeCommand('vendor:publish', ['--force' => true, '--tag' => 'migrations'])
+            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => 'config,migrations'])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->executeCommand('orchid:link');
 
         $this->addLinkGitIgnore();
-        $this->changingUserModel();
+        $this->changeUserModel();
         $this->progressBar->finish();
         $this->info(' Completed!');
 
@@ -80,9 +79,9 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function executeCommand(string $command, array $parameters = [])
+    private function executeCommand(string $command, array $parameters = []) : self
     {
-        if (! $this->progressBar->getProgress()) {
+        if (!$this->progressBar->getProgress()) {
             $this->progressBar->start();
             echo ' ';
         }
@@ -103,13 +102,13 @@ class InstallCommand extends Command
         return $this;
     }
 
-    private function changingUserModel()
+    private function changeUserModel()
     {
         $this->progressBar->advance();
 
         $this->info(' Attempting to set ORCHID User model as parent to App\User');
 
-        if (! file_exists(app_path('User.php'))) {
+        if (!file_exists(app_path('User.php'))) {
             $this->warn('Unable to locate "app/User.php".  Did you move this file?');
             $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
 
@@ -119,18 +118,19 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('User.php'));
 
         if ($str !== false) {
-            $str = str_replace('Illuminate\Foundation\Auth\User', "Orchid\Platform\Models\User", $str);
+            $str = str_replace('Illuminate\Foundation\Auth\User', 'Orchid\Platform\Models\User', $str);
             file_put_contents(app_path('User.php'), $str);
         }
     }
 
-    private function addLinkGitIgnore()
+
+    private function addLinkGitIgnore() : void
     {
         $this->progressBar->advance();
 
         $this->info(' Add semantic links to public files to ignore VCS');
 
-        if (! file_exists(app_path('../.gitignore'))) {
+        if (!file_exists(app_path('../.gitignore'))) {
             $this->warn('Unable to locate ".gitignore".  Did you move this file?');
             $this->warn('A semantic link to public files was not added to the ignore list');
 
@@ -140,14 +140,14 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('../.gitignore'));
 
         if ($str !== false && strpos($str, '/public/orchid') === false) {
-            file_put_contents(app_path('../.gitignore'), $str.PHP_EOL.'/public/orchid'.PHP_EOL);
+            file_put_contents(app_path('../.gitignore'), $str . PHP_EOL . '/public/orchid' . PHP_EOL);
         }
     }
 
     /**
      * @return $this
      */
-    private function createAdmin()
+    private function createAdmin() : self
     {
         $this->info("To create a user, run 'artisan orchid:admin'");
 
@@ -161,14 +161,14 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function askEnv(string $question, $constant, $default = null)
+    private function askEnv(string $question, $constant, $default = null) : self
     {
         $value = $this->ask($question, $default);
 
         $str = file_get_contents(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
-            file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
+            file_put_contents(app_path('../.env'), $str . PHP_EOL . $constant . '=' . $value . PHP_EOL);
         }
 
         return $this;
