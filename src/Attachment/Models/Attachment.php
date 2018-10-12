@@ -36,6 +36,7 @@ class Attachment extends Model
         'alt',
         'hash',
         'disk',
+        'group',
     ];
 
     /**

@@ -80,5 +80,6 @@ class UploadField extends Field
         'tabindex',
         'type',
         'value',
+        'groups'
     ];
 }

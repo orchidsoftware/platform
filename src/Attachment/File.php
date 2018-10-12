@@ -58,12 +58,18 @@ class File
     public $disk;
 
     /**
+     * @var
+     */
+    public $group;
+
+    /**
      * File constructor.
      *
      * @param UploadedFile $file
      * @param string       $disk
+     * @param string       $group
      */
-    public function __construct(UploadedFile $file, string $disk)
+    public function __construct(UploadedFile $file, string $disk, string $group = null)
     {
         $this->time = time();
         $this->date = date('Y/m/d', $this->time);
@@ -72,6 +78,7 @@ class File
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
         $this->disk = $disk;
+        $this->group = $group;
         $this->storage = Storage::disk($disk);
     }
 
@@ -109,6 +116,7 @@ class File
         $file = $file->replicate()->fill([
             'sort'    => 0,
             'user_id' => Auth::id(),
+            'group'   => $this->group,
         ]);
 
         $file->save();
@@ -145,6 +153,7 @@ class File
             'path'          => $this->date.DIRECTORY_SEPARATOR,
             'hash'          => $this->hash,
             'disk'          => $this->disk,
+            'group'         => $this->group,
             'user_id'       => Auth::id(),
         ]);
 

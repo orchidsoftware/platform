@@ -1,10 +1,12 @@
 @component($typeForm,get_defined_vars())
+
 <div
         data-controller="fields--upload"
         data-fields--upload-storage="{{$storage ?? 'public'}}"
         data-fields--upload-name="{{$name}}"
         data-fields--upload-id="dropzone-{{$id}}"
         data-fields--upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}"
+        data-fields--upload-groups="{{$attributes['groups'] ?? ''}}"
 >
  <div id="dropzone-{{$id}}" class="dropzone-wrapper">
     <div class="fallback">
