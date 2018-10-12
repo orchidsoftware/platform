@@ -27,9 +27,6 @@ Using application templates, saves the time and effort of building from scratch,
 
 Documentation can be found at [ORCHID website](http://orchid.software).
 
-###### Simple screenshot:
-![screenshot](https://user-images.githubusercontent.com/5102591/46505838-08bc8b80-c83b-11e8-965a-0c215cb75952.png)
-
 ## Installation
 
 Firstly, download the Laravel installer using Composer:
