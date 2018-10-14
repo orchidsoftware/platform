@@ -37,7 +37,7 @@ class InstallCommand extends Command
     {
         $this->progressBar = $this->output->createProgressBar(9);
 
-        $text = "
+        $this->info("
         ________________________________________________________________
                ____    _____     _____   _    _   _____   _____
               / __ \  |  __ \   / ____| | |  | | |_   _| |  __ \
@@ -48,21 +48,20 @@ class InstallCommand extends Command
                              
                              Installation started. Please wait...
         ________________________________________________________________
-        ";
+        ");
 
-        $this->info($text);
         sleep(1);
 
         $this
             ->executeCommand('migrate')
-            ->executeCommand('vendor:publish', ['--all' => true, '--force' => true, '--tag' => 'config,migrations'])
-            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true])
+            ->executeCommand('vendor:publish', ['--force' => true, '--tag' => 'migrations'])
+            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => 'config,migrations'])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->executeCommand('orchid:link');
 
         $this->addLinkGitIgnore();
-        $this->changingUserModel();
+        $this->changeUserModel();
         $this->progressBar->finish();
         $this->info(' Completed!');
 
@@ -80,7 +79,7 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function executeCommand(string $command, array $parameters = [])
+    private function executeCommand(string $command, array $parameters = []) : self
     {
         if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();
@@ -103,7 +102,7 @@ class InstallCommand extends Command
         return $this;
     }
 
-    private function changingUserModel()
+    private function changeUserModel()
     {
         $this->progressBar->advance();
 
@@ -119,12 +118,12 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('User.php'));
 
         if ($str !== false) {
-            $str = str_replace('Illuminate\Foundation\Auth\User', "Orchid\Platform\Models\User", $str);
+            $str = str_replace('Illuminate\Foundation\Auth\User', 'Orchid\Platform\Models\User', $str);
             file_put_contents(app_path('User.php'), $str);
         }
     }
 
-    private function addLinkGitIgnore()
+    private function addLinkGitIgnore() : void
     {
         $this->progressBar->advance();
 
@@ -147,7 +146,7 @@ class InstallCommand extends Command
     /**
      * @return $this
      */
-    private function createAdmin()
+    private function createAdmin() : self
     {
         $this->info("To create a user, run 'artisan orchid:admin'");
 
@@ -161,7 +160,7 @@ class InstallCommand extends Command
      *
      * @return $this
      */
-    private function askEnv(string $question, $constant, $default = null)
+    private function askEnv(string $question, $constant, $default = null) : self
     {
         $value = $this->ask($question, $default);
 

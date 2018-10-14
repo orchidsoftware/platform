@@ -31,16 +31,19 @@
             </span>
         @endif
     </div>
-    <div class="form-group">
-        <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input">
-            <span class="custom-control-label"> {{trans('platform::auth/account.remember_me')}}</span>
-        </label>
-    </div>
-    <div class="form-footer">
-        <button type="submit" class="btn btn-dark btn-block">
-            <i class="icon-login text-xs m-r-xs"></i> {{trans('platform::auth/account.login')}}
-        </button>
+
+    <div class="row">
+        <div class="form-group col-md-6 col-xs-12">
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
+                <span class="custom-control-label"> {{trans('platform::auth/account.remember_me')}}</span>
+            </label>
+        </div>
+        <div class="form-group col-md-6 col-xs-12">
+            <button type="submit" class="btn btn-default btn-block">
+                <i class="icon-login text-xs m-r-xs"></i> {{trans('platform::auth/account.login')}}
+            </button>
+        </div>
     </div>
     </form>
 @endsection

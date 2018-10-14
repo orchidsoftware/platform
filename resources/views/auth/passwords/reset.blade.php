@@ -43,10 +43,12 @@
                 @endif
             </div>
         </div>
-        <div class="form-footer">
-            <button class="btn btn-dark btn-block" type="submit">
-                <i class="icon-refresh text-xs m-r-xs"></i> {{trans('platform::auth/account.password_reset')}}
-            </button>
+        <div class="row">
+            <div class="form-group col-md-6 col-xs-12 offset-md-6">
+                <button class="btn btn-default btn-block" type="submit">
+                    <i class="icon-refresh text-xs m-r-xs"></i> {{trans('platform::auth/account.password_reset')}}
+                </button>
+            </div>
         </div>
     </form>
 @endsection

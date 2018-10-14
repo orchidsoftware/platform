@@ -157,6 +157,7 @@ export default class extends Controller {
         const name = this.data.get('name');
         const loadInfo = this.loadInfo.bind(this);
         const dropname = this.dropname;
+        const groups = this.data.get('groups');
 
         new Dropzone(dropname, {
                 url: platform.prefix('/systems/files'),
@@ -200,7 +201,7 @@ export default class extends Controller {
                     const images = data;
 
                     if (images) {
-                        images.forEach((item) => {
+                        Object.values(images).forEach((item) => {
                             const mockFile = {
                                 id: item.id,
                                 name: item.original_name,
@@ -227,10 +228,8 @@ export default class extends Controller {
 
                     this.on('sending', (file, xhr, formData) => {
                         formData.append('_token', $("meta[name='csrf_token']").attr('content'));
-                        formData.append(
-                            'storage',
-                            storage
-                        );
+                        formData.append('storage', storage);
+                        formData.append('group', groups);
                     });
 
                     this.on('removedfile', file => {
