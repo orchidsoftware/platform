@@ -58,9 +58,9 @@ class Post extends Many
      */
     public function save(Model $model)
     {
-        $model->attachment()->syncWithoutDetaching(request('attachment', []));
-
         $model->save();
+
+        $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
 
     /**
