@@ -1,6 +1,10 @@
-<div class="map-place-{{$name}}-{{$lang}}">
-
+<div class="map-place-{{$name}}-{{$lang}}"
+     data-controller="fields--place"
+     data-fields--place-slug="{{$slug}}-{{$lang}}"
+     data-fields--place-key="{{config('services.google.maps.key')}}"
+>
     @component($typeForm,get_defined_vars())
+
         @php
             if(isset($prefix))
                 $inputname=$prefix.'['.$lang.']'.$name;
@@ -27,90 +31,23 @@
         </div>
 
     @endcomponent
-</div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="map-place-{{$slug}}-{{$lang}}" tabindex="-1" role="dialog"
-     aria-labelledby="map-place-{{$slug}}-{{$lang}}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Google Maps</h4>
-            </div>
-            <div class="modal-body">
-                <div id="map-place-{{$slug}}-{{$lang}}-canvas" class="google-maps-canvas"
-                     style="width: 100%; height: 300px"></div>
+    <!-- Modal -->
+    <div class="modal fade" id="map-place-{{$slug}}-{{$lang}}" tabindex="-1" role="dialog"
+         aria-labelledby="map-place-{{$slug}}-{{$lang}}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Google Maps</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="map-place-{{$slug}}-{{$lang}}-canvas" class="google-maps-canvas"
+                         style="width: 100%; height: 600px"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-@push('scripts')
-
-
-    <script>
-        document.documentElement.addEventListener("googleMapsLoad", function (e) {
-
-            var input = document.getElementById("place-{{$slug}}-{{$lang}}");
-            var autocomplete{{$slug}}{{$lang}} = new google.maps.places.Autocomplete(input);
-
-
-            autocomplete{{$slug}}{{$lang}}.addListener('place_changed', function () {
-                var cors = autocomplete{{$slug}}{{$lang}}.getPlace().geometry.location;
-                $('#lat-{{$slug}}-{{$lang}}').val(cors.lat());
-                $('#lng-{{$slug}}-{{$lang}}').val(cors.lng());
-            });
-
-
-            $('#map-place-{{$slug}}-{{$lang}}').on('show.bs.modal', function () {
-
-
-                setTimeout(function () {
-                    var myLatLng = {
-                        lat: parseFloat($('#lat-{{$slug}}-{{$lang}}').val()),
-                        lng: parseFloat($('#lng-{{$slug}}-{{$lang}}').val())
-                    };
-
-                    var map = new google.maps.Map(document.getElementById('map-place-{{$slug}}-{{$lang}}-canvas'), {
-                        center: myLatLng,
-                        zoom: 12
-                    });
-
-                    new google.maps.Marker({
-                        map: map,
-                        position: myLatLng,
-                        title: $('#place-{{$slug}}-{{$lang}}').val()
-                    });
-
-                }, 300);
-
-
-            });
-        });
-
-        window.loadGoogleMaps = {
-            "load": function () {
-                if (window.google === undefined || window.google.maps === undefined) {
-                    window.loadGoogleMaps.status = true;
-                    $.getScript("https://maps.googleapis.com/maps/api/js?libraries=places&key={{config('services.google.maps.key')}}", function () {
-                        document.documentElement.dispatchEvent(new Event("googleMapsLoad"));
-                    });
-
-                }
-            },
-            "status": false
-        };
-
-        document.addEventListener('turbolinks:load', function () {
-            if (!window.loadGoogleMaps.status) {
-                window.loadGoogleMaps.load();
-            }
-        });
-
-    </script>
-@endpush
