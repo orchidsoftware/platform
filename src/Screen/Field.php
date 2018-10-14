@@ -246,7 +246,7 @@ class Field implements FieldContract
         $this->attributes['id'] = $this->getId();
 
         if ($this->hasError()) {
-            if (!isset($attributes['class']) || is_null($attributes['class'])) {
+            if (! isset($attributes['class']) || is_null($attributes['class'])) {
                 $attributes['class'] = ' is-invalid';
             } else {
                 $attributes['class'] .= ' is-invalid';
