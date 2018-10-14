@@ -23,7 +23,7 @@ Setting::set($key,$value);
 * @param string|null $default
 */
 Setting::get($key, $default);
-//or helper
+//или используя функцию помошника
 setting($key,$default);
 ```
 
@@ -37,7 +37,6 @@ setting($key,$default);
 */
 Setting::forget($key);
 ```
-
 
 
 Обратите внимание, что вы можете получить или удалить сразу несколько значений из хранилища, для этого необходимо передать первым аргументом массив с именами ключей.

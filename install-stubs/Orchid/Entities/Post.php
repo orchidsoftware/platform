@@ -171,9 +171,6 @@ class Post extends Many
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            //Field::tag('upload')
-            //    ->name('body2'),
-
             /* need api key 'place'
             Field::tag('place')
                 ->name('place')
