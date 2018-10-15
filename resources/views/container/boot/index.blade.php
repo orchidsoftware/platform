@@ -75,8 +75,11 @@
         </div>
 
     @else
-        <div class="app-content-center">
-            <p>Выберите или создайте модель</p>
+        <div class="app-content-center text-center">
+            <h3 class="font-thin">
+                <i class="icon-table block m-b"></i>
+                Выберите или создайте модель
+            </h3>
         </div>
     @endisset
 

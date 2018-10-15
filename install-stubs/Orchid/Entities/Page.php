@@ -101,7 +101,7 @@ class Page extends Single
 
                 Field::tag('checkbox')
                     ->name('free')
-                    ->value('230')
+                    ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),

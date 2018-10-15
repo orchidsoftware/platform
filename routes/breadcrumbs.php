@@ -53,6 +53,12 @@ Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->push('Bulldozer', route('platform.bulldozer.index'));
 });
 
+// Platform > Announcement
+Breadcrumbs::for('platform.systems.announcement', function ($trail) {
+    $trail->parent('platform.systems.index');
+    $trail->push('Announcement', route('platform.systems.announcement'));
+});
+
 //Posts
 
 // Platform > Posts

@@ -9,12 +9,10 @@
     )
 
         <div class="text-center bg-white app-content-center">
-            <div>
-                <h3 class="font-thin">
-                    <i class="icon-table block m-b"></i>
-                    {{trans('platform::common.screen.Records not found')}}
-                </h3>
-            </div>
+            <h3 class="font-thin">
+                <i class="icon-table block m-b"></i>
+                {{trans('platform::common.screen.Records not found')}}
+            </h3>
         </div>
 
     @else
