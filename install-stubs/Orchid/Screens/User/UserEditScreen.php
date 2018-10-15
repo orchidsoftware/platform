@@ -23,14 +23,14 @@ class UserEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/users.title';
+    public $name = 'User';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/users.description';
+    public $description = 'All registered users';
 
     /**
      * Query data.
@@ -60,16 +60,16 @@ class UserEditScreen extends Screen
                 ->icon('icon-login')
                 ->method('switchUserStart'),
 
-            Link::name('Change Password')
+            Link::name(__('Change Password'))
                 ->icon('icon-lock-open')
-                ->title('Change Password')
+                ->title(__('Change Password'))
                 ->modal('password'),
 
-            Link::name(trans('platform::common.commands.save'))
+            Link::name(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
 
-            Link::name(trans('platform::common.commands.remove'))
+            Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -116,7 +116,7 @@ class UserEditScreen extends Screen
             ->replaceRoles($roles)
             ->save();
 
-        Alert::info(trans('platform::systems/users.User was saved'));
+        Alert::info(__('User was saved'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -132,7 +132,7 @@ class UserEditScreen extends Screen
 
         $user->delete();
 
-        Alert::info(trans('platform::systems/users.User was removed'));
+        Alert::info(__('User was removed'));
 
         return redirect()->route('platform.systems.users');
     }

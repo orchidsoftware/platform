@@ -206,7 +206,7 @@ return [
                 ])
                 ->name('select')
                 ->title('Select tags')
-                ->help('Allow search bots to index page'),
+                ->help('Allow search bots to index'),
 ];
 ```
 

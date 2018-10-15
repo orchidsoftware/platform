@@ -1,7 +1,7 @@
 @extends('platform::layouts.dashboard')
 
-@section('title',trans('platform::systems/settings.title'))
-@section('description', trans('platform::systems/settings.description'))
+@section('title',__('Systems'))
+@section('description', __('Global system settings'))
 @section('controller','layouts--systems')
 
 @section('navbar')
@@ -10,7 +10,7 @@
             <input
                     data-action="keyup->layouts--systems#filter"
                     type="text" class="form-control input-sm bg-light no-border rounded padder"
-                    placeholder="{{trans('platform::systems/settings.search')}}">
+                    placeholder="{{__('Search...')}}">
             <div class="input-icon-addon">
                 <i class="icon-magnifier"></i>
             </div>

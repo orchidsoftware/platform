@@ -34,9 +34,10 @@
 
         <li class="nav-item">
             <button type="submit"
-                    onclick="window.platform.validateForm('post-form','{{trans('platform::common.alert.validate')}}')"
+                    onclick="window.platform.validateForm('post-form',
+                            '{{__('Please check the entered data, it may be necessary to specify in other languages.')}}')"
                     form="post-form"
-                    class="btn btn-link"><i class="icon-check"></i> {{trans('platform::common.commands.save')}}
+                    class="btn btn-link"><i class="icon-check"></i> {{__('Save')}}
             </button>
         </li>
 
@@ -56,7 +57,7 @@
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if($loop->first) active @endif" id="local-{{$code}}"
                                          role="tabpanel">
-                                            {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
+                                        {!! generate_form($type->fields(), $post->toArray(), $code, 'content') !!}
                                     </div>
                                 @endforeach
                             </div>
@@ -78,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /column -->
+                <!-- /column -->
             @csrf
         </form>
         <!-- /hbox layout -->

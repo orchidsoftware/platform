@@ -19,8 +19,8 @@
       <p class="m-t-md">
         <span class="text-2x icon-cloud-upload"></span>
       </p>
-      <p class="font-bold">{{trans('platform::post/uploads.title')}}</p>
-      <small class="w-b-k">{{trans('platform::post/uploads.description')}}</small>
+      <p class="font-bold">{{__('Drag files here or click to download.')}}</p>
+      <small class="w-b-k">{{__('(Files are processed automatically, you just need to specify their order)')}}</small>
     </div>
 
 
@@ -32,8 +32,8 @@
                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                              <span aria-hidden="true">&times;</span>
                          </button>
-                         <h5>{{trans('platform::post/uploads.information.title')}}</h5>
-                         <p class="m-b-md">{{trans('platform::post/uploads.information.sub_title')}}</p>
+                         <h5>{{__('File Information')}}</h5>
+                         <p class="m-b-md">{{__('Information to display')}}</p>
                      </div>
                      <div class="modal-body">
                          <div class="row justify-content-center">
@@ -41,22 +41,22 @@
                                  <div class="wrapper">
 
                                      <div class="form-group">
-                                         <label>{{trans('platform::post/uploads.information.system_name')}}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.name" readonly maxlength="255" placeholder="{{trans('platform::post/uploads.information.system_name')}}">
+                                         <label>{{__('System Name')}}</label>
+                                         <input type="text" class="form-control" data-target="fields--upload.name" readonly maxlength="255">
                                      </div>
                                      <div class="form-group">
-                                         <label>{{trans('platform::post/uploads.information.name')}}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.original" maxlength="255" placeholder="{{trans('platform::post/uploads.information.name')}}">
+                                         <label>{{ __('Display Name') }}</label>
+                                         <input type="text" class="form-control" data-target="fields--upload.original" maxlength="255" placeholder="{{ __('Display Name') }}">
                                      </div>
                                      <div class="form-group">
-                                         <label>{{trans('platform::post/uploads.information.alt')}}</label>
-                                         <input type="text" class="form-control" data-target="fields--upload.alt" maxlength="255" placeholder="{{trans('platform::post/uploads.information.alt')}}">
+                                         <label>{{ __('Alternative Text') }}</label>
+                                         <input type="text" class="form-control" data-target="fields--upload.alt" maxlength="255" placeholder="{{  __('Alternative Text')  }}">
                                      </div>
                                      <div class="form-group">
-                                         <label>{{trans('platform::post/uploads.information.description')}}</label>
+                                         <label>{{ __('Description') }}</label>
                                          <textarea class="form-control no-resize"
                                                    data-target="fields--upload.description"
-                                                   placeholder="{{trans('platform::post/uploads.information.description')}}"
+                                                   placeholder="{{ __('Description') }}"
                                                    maxlength="255"
                                                    rows="3">
 
@@ -69,10 +69,10 @@
                      <div class="modal-footer">
                          <button type="button" data-action="click->fields--upload#openLink" class="btn btn-link ">
                              <i class="icon-link"></i>
-                             {{trans('platform::post/uploads.information.link')}}
+                             {{__('Link')}}
                          </button>
                          <button type="button" data-action="click->fields--upload#save" class="btn btn-default">
-                             {{trans('platform::common.apply')}}
+                             {{__('Apply')}}
                          </button>
                      </div>
                  </div>

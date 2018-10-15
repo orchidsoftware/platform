@@ -5,5 +5,5 @@
         </span>
     @endisset
     <i class="{{$icon}} m-r-xs"></i>
-    {{trans($label)}}
+    {{ __($label) }}
 </a>

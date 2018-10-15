@@ -15,13 +15,13 @@ class CommentListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/comment.title';
+    public $name = 'Comments';
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/comment.description';
+    public $description = 'User Comments';
 
     /**
      * Query data.

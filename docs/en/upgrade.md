@@ -104,7 +104,7 @@ Field::tag('select')
     ])
     ->name('robot')
     ->title('Indexing')
-    ->help('Allow search bots to index page'),
+    ->help('Allow search bots to index'),
 ```
 
 

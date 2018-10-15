@@ -64,7 +64,7 @@ class PostController extends Controller
 
         $type->save($post);
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return redirect()->route('platform.posts.type', [
             'type' => $post->type,
@@ -112,7 +112,7 @@ class PostController extends Controller
 
         $type->save($post);
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return redirect()->route('platform.posts.type', [
             'type' => $post->type,
@@ -137,7 +137,7 @@ class PostController extends Controller
 
         $type->delete($post);
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return redirect()->route('platform.posts.type', [
             'type' => $type->slug,
@@ -156,7 +156,7 @@ class PostController extends Controller
         $post = Post::onlyTrashed()->find($id);
         $post->restore();
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return redirect()->route('platform.posts.type', [
             'type' => $post->type,

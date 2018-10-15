@@ -72,7 +72,7 @@ alert(example);
                                                 target="_blank">SimpleMDE</a></footer>
                                 </div>
                                 <div class="padder-v">
-                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel
+                                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">{{__('Cancel')}}
                                     </button>
                                 </div>
                             </div>

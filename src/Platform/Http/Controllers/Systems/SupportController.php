@@ -21,7 +21,7 @@ class SupportController extends Controller
     {
         Mail::send(new SupportMail($request));
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return back();
     }

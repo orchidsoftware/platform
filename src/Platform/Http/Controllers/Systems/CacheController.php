@@ -22,12 +22,12 @@ class CacheController extends Controller
 
         try {
             $this->$action();
-            Alert::success(trans('platform::common.alert.success'));
+            Alert::success(__('Operation completed successfully.'));
         } catch (\Exception $exception) {
             Alert::warning($exception->getMessage());
         }
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return response()->redirectToRoute('platform.systems.index');
     }

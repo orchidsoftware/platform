@@ -17,13 +17,13 @@ class CategoryListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/category.title';
+    public $name = 'Category';
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/category.description';
+    public $description = 'Category of the website';
 
     /**
      * Query data.
@@ -44,6 +44,12 @@ class CategoryListScreen extends Screen
         ];
     }
 
+    /**
+     * @param \Orchid\Press\Models\Category $category
+     * @param string                        $delimiter
+     *
+     * @return \Illuminate\Support\Collection
+     */
     private function getCategory(Category $category, $delimiter = '')
     {
         $result = collect();
@@ -67,7 +73,7 @@ class CategoryListScreen extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('platform::common.commands.add'))
+            Link::name(__('Add'))
                 ->icon('icon-plus')
                 ->method('create'),
         ];

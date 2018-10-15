@@ -10,7 +10,7 @@
             </div>
 
             <label class="btn btn-link">
-                <i class="icon-cloud-upload"></i> {{trans('platform::field.picture.Browse')}}
+                <i class="icon-cloud-upload"></i> {{ __('Browse') }}
                 <input type="file"
                        accept="image/*"
                        data-target="fields--picture.upload"
@@ -19,7 +19,7 @@
             </label>
 
             <button type="button" class="btn btn-danger picture-remove"
-                    data-action="fields--picture#clear">{{trans('platform::field.picture.Remove')}}</button>
+                    data-action="fields--picture#clear">{{ __('Remove') }}</button>
 
             <input type="file" class="d-none">
         </div>
@@ -37,7 +37,7 @@
                         <div class="modal-header clearfix">
                             <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span
                                         aria-hidden="true">×</span></button>
-                            <h5>{{trans('platform::field.picture.Crop image')}}</h5>
+                            <h5>{{ __('Crop image') }}</h5>
                         </div>
                         <div class="row">
                             <div class="col-8">
@@ -179,9 +179,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary"
-                                    data-action="fields--picture#crop">{{trans('platform::field.picture.Crop')}}</button>
+                                    data-action="fields--picture#crop">{{ __('Crop') }}</button>
                             <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">{{trans('platform::field.Close')}}</button>
+                                    data-dismiss="modal">{{ __('Close') }}</button>
                         </div>
                     </div>
                 </div>

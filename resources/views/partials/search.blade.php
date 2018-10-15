@@ -5,7 +5,7 @@
                 <input
                        data-action="keyup->layouts--search#query blur->layouts--search#blur focus->layouts--search#focus"
                        type="text" class="form-control input-sm  padder bg-dark text-white"
-                       placeholder="What to search..."
+                       placeholder="{{ __('What to search...') }}"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 >
                 <div class="input-icon-addon">

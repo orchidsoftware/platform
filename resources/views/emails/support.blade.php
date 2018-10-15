@@ -1,5 +1,5 @@
 @component('mail::message')
-# Support Message from  [{{$name}}]({{$email}})
+# {{ __('Support Message from') }} [{{$name}}]({{$email}})
 
 {{$message}}
 @endcomponent

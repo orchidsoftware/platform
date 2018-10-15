@@ -15,14 +15,14 @@ class PlatformScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::common.title';
+    public $name = 'Dashboard Panel';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::common.description';
+    public $description = 'Welcome to ORCHID';
 
     /**
      * Query data.

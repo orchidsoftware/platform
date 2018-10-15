@@ -48,7 +48,7 @@ class RoleFilter extends Filter
             ->options($roles)
             ->value($selectRole)
             ->name('role')
-            ->title(trans('platform::systems/roles.title'))
+            ->title(__('Roles'))
             ->hr(false);
     }
 }

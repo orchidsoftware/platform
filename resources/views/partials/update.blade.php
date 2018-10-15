@@ -3,7 +3,7 @@
     <div class="alert alert-warning b" role="alert">
         <p class="text-center">
             <a href="https://orchid.software">
-                {{trans('platform::common.widgets.update.new_version')}}
+                {{__('A new stable version of ORCHID is available. Please update to the latest version.')}}
             </a>
         </p>
     </div>

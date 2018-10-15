@@ -8,12 +8,12 @@
     <ul class="nav justify-content-end v-center">
         <li class="nav-item">
             <button type="button" class="btn btn-link dz-clickable" id="upload"><i class="icon-cloud-upload"></i>
-                Загрузка
+                {{__('Upload')}}
             </button>
         </li>
         <li class="nav-item">
             <button type="button" class="btn btn-link" id="new_folder" data-action="components--media#new_folder"><i class="icon-folder-alt"></i>
-                Создать новую папку
+                {{__('Create directory')}}
             </button>
         </li>
     </ul>
@@ -27,7 +27,7 @@
     </style>
     <div class=""
         data-controller="components--media"
-        data-components--media-baseurl="{{ route('platform.systems.media.index')}}"
+        data-components--media-baseurl="{{ route('platform.systems.media.index') }}"
         data-components--media-path="{{$path}}">
 
         <div class="hbox hbox-auto-xs hbox-auto-sm pos-rlt">

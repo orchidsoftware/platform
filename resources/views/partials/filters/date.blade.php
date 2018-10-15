@@ -9,7 +9,7 @@
             <input id="datetimepicker-filter" class="d-none" data-controller="fields--datetime" data-fields--datetime-inline="true">
 
             <div class="line line-dashed b-b line-lg"></div>
-            <button type="submit" class="btn btn-default btn-sm w-full">{{trans('platform::common.filters.apply')}}</button>
+            <button type="submit" class="btn btn-default btn-sm w-full">{{__('Apply')}}</button>
         </div>
     </div>
 </div>

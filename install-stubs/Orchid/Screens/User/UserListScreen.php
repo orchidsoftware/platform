@@ -21,14 +21,14 @@ class UserListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/users.title';
+    public $name = 'User';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/users.description';
+    public $description = 'All registered users';
 
     /**
      * Query data.
@@ -53,7 +53,7 @@ class UserListScreen extends Screen
     public function commandBar() : array
     {
         return [
-            Link::name(trans('platform::common.commands.add'))
+            Link::name(__('Add'))
                 ->icon('icon-plus')
                 ->method('create'),
         ];
