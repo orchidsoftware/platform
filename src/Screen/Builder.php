@@ -163,9 +163,8 @@ class Builder
         $name = array_filter(explode(' ', $attributes['name']));
         $name = array_shift($name);
 
-
         $bindValueName = $name;
-        if(substr($name, -1) === '.'){
+        if (substr($name, -1) === '.') {
             $bindValueName = substr($bindValueName, 0, -1);
         }
 
