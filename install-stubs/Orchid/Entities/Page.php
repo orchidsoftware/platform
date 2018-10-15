@@ -88,7 +88,7 @@ class Page extends Single
                         'noindex' => 'No index',
                     ])
                     ->multiple()
-                    ->name('robot')
+                    ->name('robot.')
                     ->title('Indexing')
                     ->help('Allow search bots to index page'),
 

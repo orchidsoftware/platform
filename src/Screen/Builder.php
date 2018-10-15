@@ -163,7 +163,13 @@ class Builder
         $name = array_filter(explode(' ', $attributes['name']));
         $name = array_shift($name);
 
-        $attributes['value'] = $this->getValue($name, $attributes['value'] ?? null);
+
+        $bindValueName = $name;
+        if(substr($name, -1) === '.'){
+            $bindValueName = substr($bindValueName, 0, -1);
+        }
+
+        $attributes['value'] = $this->getValue($bindValueName, $attributes['value'] ?? null);
 
         $binding = explode('.', $name);
         if (! is_array($binding)) {

@@ -13,7 +13,6 @@ use Orchid\Screen\Field;
  * @method $this autofocus($value = true)
  * @method $this disabled($value = true)
  * @method $this form($value = true)
- * @method $this multiple($value = true)
  * @method $this name($value = true)
  * @method $this required($value = true)
  * @method $this size($value = true)
@@ -52,4 +51,14 @@ class SelectField extends Field
         'size',
         'tabindex',
     ];
+
+    /**
+     * @return $this
+     */
+    public function multiple() : self
+    {
+        $this->attributes['multiple'] = 'multiple';
+
+        return $this;
+    }
 }
