@@ -51,7 +51,7 @@
             <!-- column -->
                 <div class="hbox-col lter">
                     <div class="vbox">
-                        <div class="wrapper-md">
+                        <div class="wrapper">
                             <div class="tab-content">
                                 @foreach($locales as $code => $lang)
                                     <div class="tab-pane @if ($loop->first) active @endif" id="local-{{$code}}">
@@ -68,7 +68,7 @@
             <div class="hbox-col wi-col lter">
                 <div class="vbox">
                     <div class="row-row">
-                        <div class="wrapper-md">
+                        <div class="wrapper">
                             {!! generate_form($type->main(), $post->toArray()) !!}
                             {!! generate_form($type->options(), $post->toArray(), null, 'options') !!}
 
