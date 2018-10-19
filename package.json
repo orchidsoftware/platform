@@ -30,6 +30,7 @@
     "jquery-ui": "^1.12",
     "jquery-ui-bundle": "^1.11",
     "laravel-mix": "^2.1.14",
+    "leaflet": "^1.3.4",
     "nestable": "^0.2.0",
     "open-color": "^1.6.3",
     "orchid-icons": "^1.0.7",

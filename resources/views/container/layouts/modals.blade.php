@@ -36,5 +36,4 @@
         </div>
     @endforeach
 
-
 @endpush
