@@ -1,4 +1,4 @@
-<option value="">Don't Use</option>
+<option value="">{{ __("Don't Use") }}</option>
 @empty(!$name)
     @foreach($models[$name]->get('columns',[]) as $column)
         <option

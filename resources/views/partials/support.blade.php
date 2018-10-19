@@ -16,19 +16,19 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group mb-3">
-                            <label for="name" class="control-label">{{trans('support.Name')}}</label>
+                            <label for="name" class="control-label">{{ __('Name') }}</label>
                             <input type="text" name="name" class="form-control" placeholder="Username"
                                    value="{{Auth::user()->getNameTitle()}}" required>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="email" class="control-label">{{trans('support.Name')}}</label>
+                            <label for="email" class="control-label">{{ __('Name') }}</label>
                             <input type="email" name="email" class="form-control" placeholder="Email"
                                    value="{{Auth::user()->email}}" required>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="username" class="control-label">{{trans('support.Name')}}</label>
+                            <label for="username" class="control-label">{{ __('Name') }}</label>
 
                             <textarea class="form-control no-resize" name="message"
                                       required
@@ -41,7 +41,7 @@
                     <div class="modal-footer">
                         <div class="row">
                             <div class="col-md-8">
-                                <button type="submit" class="btn btn-primary">{{trans('support.Send')}}
+                                <button type="submit" class="btn btn-primary">{{ __('Send') }}
                                     <i class="m-l-sm icon-paper-plane"></i>
                                 </button>
                             </div>

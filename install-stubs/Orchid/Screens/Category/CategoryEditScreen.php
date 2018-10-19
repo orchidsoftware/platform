@@ -21,13 +21,13 @@ class CategoryEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/category.title';
+    public $name = 'Category';
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/category.description';
+    public $description = 'Category of the website';
 
     /**
      * Query data.
@@ -65,10 +65,10 @@ class CategoryEditScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('platform::common.commands.save'))
+            Link::name(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('platform::common.commands.remove'))
+            Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];

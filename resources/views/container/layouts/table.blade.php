@@ -11,7 +11,7 @@
         <div class="text-center bg-white app-content-center">
             <h3 class="font-thin">
                 <i class="icon-table block m-b"></i>
-                {{trans('platform::common.screen.Records not found')}}
+                {{__('Records not found')}}
             </h3>
         </div>
 
@@ -73,10 +73,10 @@
             <footer class="wrapper">
                 <div class="row">
                     <div class="col-sm-5">
-                        <small class="text-muted inline m-t-sm m-b-sm">{{trans('platform::common.show')}}
+                        <small class="text-muted inline m-t-sm m-b-sm">{{__('show')}}
                             {{($data->currentPage()-1)*$data->perPage()+1}}
                             -{{($data->currentPage()-1)*$data->perPage()+count($data->items())}}
-                            {{trans('platform::common.of')}} {{$data->total()}} {{trans('platform::common.elements')}}</small>
+                            {{__('of')}} {{$data->total()}} {{__('elements')}}</small>
                     </div>
                     <div class="col-sm-7 text-right text-center-xs">
                         {!! $data->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}

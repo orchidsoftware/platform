@@ -15,13 +15,13 @@
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#support">
-                <i class="m-r-xs icon-help"></i> Need help?
+                <i class="m-r-xs icon-help"></i> {{ __('Need help?') }}
             </a>
 
             @if(Auth::user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
                     <i class="icon-settings m-r-xs" aria-hidden="true"></i>
-                    <span>{{trans('platform::menu.systems')}}</span>
+                    <span>{{ __('Systems') }}</span>
                 </a>
             @endif
 
@@ -31,7 +31,7 @@
                    onclick="event.preventDefault();document.getElementById('return-original-user').submit();"
                 >
                     <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                    <span>Вернуться в свой аккаунт</span>
+                    <span>{{ __('Return to your account') }}</span>
                 </a>
                 <form id="return-original-user" class="hidden"
                       action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
@@ -44,7 +44,7 @@
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                    dusk="logout-button">
                     <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                    <span>{{trans('platform::auth/account.sign_out')}}</span>
+                    <span>{{ __('Sign out') }}</span>
                 </a>
                 <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
                       method="POST">

@@ -5,7 +5,7 @@
     <div class="text-right">
         <div class="btn-group" role="group">
             <a href="{{ route('platform.posts.type.create',$type->slug)}}" class="btn btn-link"><i
-                        class="icon-plus"></i> {{trans('platform::common.commands.add')}}
+                        class="icon-plus"></i> {{__('Add')}}
             </a>
         </div>
     </div>
@@ -27,10 +27,10 @@
                     <div>
                         <h3 class="font-thin">
                             <i class="icon-table block m-b"></i>
-                            {{trans('platform::post/base.not_found')}}
+                            {{ __('Not Found') }}
                         </h3>
                         <a href="{{ route('platform.posts.type.create',$type->slug)}}"
-                           class="btn btn-link">{{trans('platform::post/base.create')}}</a>
+                           class="btn btn-link">{{__('Create')}}</a>
                     </div>
                 </div>
             </div>

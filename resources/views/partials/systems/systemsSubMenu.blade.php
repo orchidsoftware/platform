@@ -5,8 +5,8 @@
         @endisset
         <span class="text-muted"><i class="{{$icon}} pull-right m-t-sm text-lg"></i></span>
         <div class="clear">
-            <div>{{trans($label)}}</div>
-            <small class="text-muted">{{trans($groupname ?? '')}}</small>
+            <div>{{ __($label) }}</div>
+            <small class="text-muted">{{ __($groupname ?? '') }}</small>
         </div>
     </a>
 </li>

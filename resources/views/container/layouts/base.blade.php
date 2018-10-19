@@ -1,6 +1,6 @@
 @extends('platform::layouts.dashboard')
-@section('title',trans($screen->name))
-@section('description',trans($screen->description))
+@section('title',__($screen->name))
+@section('description',__($screen->description))
 @section('controller','screen--base')
 @section('navbar')
     <ul class="nav justify-content-end v-center">

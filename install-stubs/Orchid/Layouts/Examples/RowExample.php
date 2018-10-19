@@ -42,7 +42,7 @@ class RowExample extends Rows
                     ->multiple()
                     ->name('robot.')
                     ->title('Indexing')
-                    ->help('Allow search bots to index page'),
+                    ->help('Allow search bots to index'),
 
                 Field::tag('input')
                     ->type('text')

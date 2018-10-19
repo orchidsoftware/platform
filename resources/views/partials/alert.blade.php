@@ -14,8 +14,8 @@
 
 @empty(!$errors->count())
     <div class="alert alert-danger" role="alert">
-        <strong>Oh snap!</strong>
-        Change a few things up and try submitting again.
+        <strong>{{  __('Oh snap!') }}</strong>
+        {{ __('Change a few things up and try submitting again.') }}
         <ul class="m-t-xs">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

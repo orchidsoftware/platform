@@ -19,13 +19,13 @@ class CommentEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/comment.title';
+    public $name = 'Comments';
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/comment.description';
+    public $description = 'User Comments';
 
     /**
      * Query data.
@@ -49,10 +49,10 @@ class CommentEditScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('platform::common.commands.save'))
+            Link::name(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('platform::common.commands.remove'))
+            Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -86,7 +86,7 @@ class CommentEditScreen extends Screen
             ->fill($request->get('comment'))
             ->save();
 
-        Alert::info(trans('platform::systems/comment.Comment was saved'));
+        Alert::info(__('Comment was saved'));
 
         return redirect()->route('platform.systems.comments');
     }
@@ -101,7 +101,7 @@ class CommentEditScreen extends Screen
     {
         $comment->delete();
 
-        Alert::info(trans('platform::systems/comment.Comment was removed'));
+        Alert::info(__('Comment was removed'));
 
         return redirect()->route('platform.systems.comments');
     }

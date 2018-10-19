@@ -129,24 +129,6 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
-     * @param $arguments
-     *
-     * @return FieldContract
-     *
-     * @throws \Throwable|TypeException
-     */
-    public static function make($arguments)
-    {
-        $field = static::tag($arguments['tag']);
-
-        foreach ($arguments as $key => $value) {
-            $field->set($key, $value);
-        }
-
-        return $field;
-    }
-
-    /**
      * @param string $type
      *
      * @return FieldContract
@@ -309,7 +291,8 @@ class Field implements FieldContract
                 }
             });
 
-        return  collect($this->getAttributes())->only(array_merge($this->universalAttributes, $this->inlineAttributes));
+        return  collect($this->getAttributes())
+            ->only(array_merge($this->universalAttributes, $this->inlineAttributes));
     }
 
     /**

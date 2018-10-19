@@ -41,7 +41,7 @@ class StatusFilter extends Filter
             ->name('status')
             ->value($this->request->get('status'))
             ->options($this->entity->status())
-            ->title(trans('platform::common.filters.status'))
+            ->title(__('Status'))
             ->autocomplete('off')
             ->hr(false);
     }

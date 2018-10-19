@@ -3,7 +3,7 @@
 
 @isset($groupname)
     <li class="nav-item m-t">
-        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{trans($groupname)}}</div>
+        <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs m-l">{{ __($groupname) }}</div>
     </li>
 @endisset
 
@@ -13,12 +13,12 @@
             <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
         @endisset
         <i class="{{$icon}} m-r-xs"></i>
-        {{trans($label)}}
+        {{ __($label) }}
     </a>
     @if (!empty($childs))
         <div class="dropdown-menu dropdown-menu-arrow bg-white">
             @isset($groupname)
-                <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{trans($groupname)}}</div>
+                <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{ __($groupname) }}</div>
             @endisset
             {!! Dashboard::menu()->render($slug,'platform::partials.dropdownMenu') !!}
         </div>

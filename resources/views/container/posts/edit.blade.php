@@ -33,29 +33,18 @@
             </li>
         @endif
 
-        {{--
-            <li>
-                <a href="{{route('platform.systems.history',[
-                    $post->classEncodeBase64Url(),
-                    $post->id
-                ])}}" class="btn btn-link">
-                    <i class="icon-action-undo"></i> История
-                </a>
-            </li>
-        --}}
-
         <li>
             <button type="submit"
-                    onclick="window.platform.validateForm('post-form','{{trans('platform::common.alert.validate')}}')"
+                    onclick="window.platform.validateForm('post-form','{{__('Please check the entered data, it may be necessary to specify in other languages.')}}')"
                     form="post-form"
-                    class="btn btn-link"><i class="icon-check"></i> {{trans('platform::common.commands.save')}}
+                    class="btn btn-link"><i class="icon-check"></i> {{__('Save')}}
             </button>
         </li>
 
         <li>
             <button type="submit"
                     form="form-post-remove"
-                    class="btn btn-link"><i class="icon-trash"></i> {{trans('platform::common.commands.remove')}}
+                    class="btn btn-link"><i class="icon-trash"></i> {{__('Remove')}}
             </button>
         </li>
 

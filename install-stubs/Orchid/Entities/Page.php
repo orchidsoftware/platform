@@ -90,7 +90,7 @@ class Page extends Single
                     ->multiple()
                     ->name('robot.')
                     ->title('Indexing')
-                    ->help('Allow search bots to index page'),
+                    ->help('Allow search bots to index'),
 
                 Field::tag('input')
                     ->type('text')

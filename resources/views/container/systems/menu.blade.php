@@ -1,7 +1,7 @@
 @extends('platform::layouts.dashboard')
 
 
-@section('title',trans('platform::systems/menu.title'))
+@section('title',__('Menu'))
 @section('description',$name)
 
 
@@ -64,16 +64,16 @@
 
                 <div class="form">
                     <div class="form-group">
-                        <label>{{trans('platform::systems/menu.form.title')}} <span
+                        <label>{{__('Name')}} <span
                                     class="text-danger">*</span></label>
                         <input type="text"
                                class="form-control"
                                data-target="components--menu.label"
                                required
-                               placeholder="{{trans('platform::systems/menu.form.title_description')}}">
+                               placeholder="{{__('About us')}}">
 
                         <small class="form-text text-danger none"
-                               id="errors.label">{{trans('platform::common.validation.required')}}</small>
+                               id="errors.label">{{__('Please fill in the field.')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('platform::systems/menu.form.alt')}} <span class="text-danger">*</span></label>
@@ -82,7 +82,7 @@
                                required
                                placeholder="{{trans('platform::systems/menu.form.alt_description')}}">
                         <small class="form-text text-danger none"
-                               id="errors.title">{{trans('platform::common.validation.required')}}</small>
+                               id="errors.title">{{__('Please fill in the field.')}}</small>
                     </div>
                     <div class="form-group">
                         <label>{{trans('platform::systems/menu.form.url')}} <span class="text-danger">*</span></label>
@@ -92,7 +92,7 @@
                                required
                                placeholder="{{trans('platform::systems/menu.form.url_description')}}">
                         <small class="form-text text-danger none"
-                               id="errors.slug">{{trans('platform::common.validation.required')}}</small>
+                               id="errors.slug">{{__('Please fill in the field.')}}</small>
                     </div>
 
                     <div class="form-group">

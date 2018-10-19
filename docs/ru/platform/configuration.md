@@ -51,7 +51,7 @@ ORCHID использует стандартную систему настрое
 
 Можете добавлять/изменять промежуточные слои (middleware) для графического интерфейса. 
 На данный момент предусмотрены две группы `public`, которую может видеть не авторизованный пользователь, 
-например, страницу "Входа" или "Востановление пароля" и `private` которую наоборот видят только авторизованные пользователи.
+например, страницу "Входа" или "Восстановление пароля" и `private` которую наоборот видят только авторизованные пользователи.
 
 
 Вы можете добавить сколько угодно новых промежуточных слоёв, 
@@ -99,7 +99,6 @@ php artisan orchid:auth
 'fields' => [
     'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
     'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
     'tags'         => Orchid\Screen\Fields\TagsField::class,
     'robot'        => Orchid\Screen\Fields\RobotField::class,
     'relationship' => Orchid\Screen\Fields\RelationshipField::class,

@@ -21,14 +21,14 @@ class RoleEditScreen extends Screen
      *
      * @var string
      */
-    public $name = 'platform::systems/roles.title';
+    public $name = 'Roles';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'platform::systems/roles.description';
+    public $description = 'Sharing access rights';
 
     /**
      * Query data.
@@ -67,10 +67,10 @@ class RoleEditScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name(trans('platform::common.commands.save'))
+            Link::name(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
-            Link::name(trans('platform::common.commands.remove'))
+            Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),
         ];
@@ -89,7 +89,7 @@ class RoleEditScreen extends Screen
                     RoleEditLayout::class,
                 ],
                 'Right column' => [
-                        RolePermissionLayout::class,
+                    RolePermissionLayout::class,
                 ],
             ]),
         ];
@@ -112,7 +112,7 @@ class RoleEditScreen extends Screen
         $role->permissions = $permissions ?? [];
         $role->save();
 
-        Alert::info(trans('platform::systems/roles.Role was saved'));
+        Alert::info(__('Role was saved'));
 
         return redirect()->route('platform.systems.roles');
     }
@@ -126,7 +126,7 @@ class RoleEditScreen extends Screen
     {
         $role->delete();
 
-        Alert::info(trans('platform::systems/roles.Role was removed'));
+        Alert::info(__('Role was removed'));
 
         return redirect()->route('platform.systems.roles');
     }

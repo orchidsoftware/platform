@@ -58,7 +58,7 @@ class PageController extends Controller
 
         $type->save($page);
 
-        Alert::success(trans('platform::common.alert.success'));
+        Alert::success(__('Operation completed successfully.'));
 
         return back();
     }

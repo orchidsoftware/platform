@@ -17,46 +17,45 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
-        $fields[] = Field::tag('input')
-            ->type('text')
-            ->name('category.content.name')
-            ->modifyValue(function () {
-                if ($this->query->getContent('category')->exists) {
-                    return $this->query->getContent('category')->term->GetContent('name');
-                }
-            })
-            ->max(255)
-            ->require()
-            ->title(trans('platform::systems/category.fields.name_title'))
-            ->placeholder(trans('platform::systems/category.fields.name_title'))
-            ->help(trans('platform::systems/category.fields.name_help'));
+        return [
+            Field::tag('input')
+                ->type('text')
+                ->name('category.content.name')
+                ->modifyValue(function () {
+                    if ($this->query->getContent('category')->exists) {
+                        return $this->query->getContent('category')->term->GetContent('name');
+                    }
+                })
+                ->max(255)
+                ->require()
+                ->title(__('Category name'))
+                ->placeholder(trans('platform::systems/category.fields.name_title'))
+                ->help(__('Category title')),
 
-        $fields[] = Field::tag('input')
-            ->type('text')
-            ->name('category.slug')
-            ->max(255)
-            ->require()
-            ->title(trans('platform::systems/category.slug'));
+            Field::tag('input')
+                ->type('text')
+                ->name('category.slug')
+                ->max(255)
+                ->require()
+                ->title(__('Slug')),
 
-        $fields[] = Field::tag('select')
-            ->options(function () {
-                return $this->query
-                    ->getContent('catselect');
-            })
-            ->class('select2')
-            ->name('category.parent_id')
-            ->title(trans('platform::systems/category.parent'))
-            ->placeholder(trans('platform::systems/category.parent'));
+            Field::tag('select')
+                ->options(function () {
+                    return $this->query
+                        ->getContent('catselect');
+                })
+                ->name('category.parent_id')
+                ->title(__('Parent Category')),
 
-        $fields[] = Field::tag('wysiwyg')
-            ->name('category.content.body')
-            ->modifyValue(function () {
-                if ($this->query->getContent('category')->exists) {
-                    return $this->query->getContent('category')->term->GetContent('body');
-                }
-            })
-          ->title(trans('platform::systems/category.descriptions'));
+            Field::tag('wysiwyg')
+                ->name('category.content.body')
+                ->modifyValue(function () {
+                    if ($this->query->getContent('category')->exists) {
+                        return $this->query->getContent('category')->term->GetContent('body');
+                    }
+                })
+                ->title(__('Description')),
 
-        return $fields;
+        ];
     }
 }

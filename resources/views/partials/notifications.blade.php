@@ -12,7 +12,7 @@
 
         @if(count($notifications) > 0)
             <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                {{trans('platform::common.notifications')}}
+                {{ __('Notifications') }}
             </div>
         @endif
 
@@ -33,7 +33,7 @@
         @empty
 
         <div class="d-flex">
-            <p class="text-center m-0 w-full text-muted font-thin">{{trans('platform::common.no_notifications')}}</p>
+            <p class="text-center m-0 w-full text-muted font-thin">{{ __('No notifications') }}</p>
         </div>
 
         @endforelse
@@ -45,7 +45,7 @@
                   method="post"
                   id="clear-notications-form">
                 <button type="submit" class="btn btn-sm btn-link inline dropdown-item text-center text-muted-dark">
-                    <i class="icon-trash"></i> Mark all as read
+                    <i class="icon-trash"></i> {{ __('Mark all as read') }}
                 </button>
                 @csrf
             </form>
