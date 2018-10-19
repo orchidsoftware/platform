@@ -6,7 +6,6 @@ namespace App\Orchid\Screens\Category;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Term;
 use Orchid\Press\Models\Category;
@@ -42,7 +41,7 @@ class CategoryEditScreen extends Screen
             $catselect[$cat->id] = $cat->term->GetContent('name');
         }
 
-        $category->setAttribute('slug',$category->term->slug);
+        $category->setAttribute('slug', $category->term->slug);
 
         return [
             'category' => $category,
