@@ -113,7 +113,7 @@ class Layouts
     {
         $this->layouts = $property;
 
-        if((new \ReflectionClass($this))->isAnonymous()){
+        if ((new \ReflectionClass($this))->isAnonymous()) {
             $this->slug = sha1(serialize($this));
         }
 
@@ -200,8 +200,7 @@ class Layouts
      */
     public static function rows(array $fields) : Rows
     {
-        return new class($fields) extends Rows
-        {
+        return new class($fields) extends Rows {
             /**
              * @var array
              */

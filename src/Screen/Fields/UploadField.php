@@ -82,6 +82,6 @@ class UploadField extends Field
         'type',
         'value',
         'groups',
-        'storage'
+        'storage',
     ];
 }

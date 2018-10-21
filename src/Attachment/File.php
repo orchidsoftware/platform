@@ -107,7 +107,7 @@ class File
     {
         $file = $this->getMatchesHash();
 
-        if(!$this->storage->has($this->date)) {
+        if (! $this->storage->has($this->date)) {
             $this->storage->makeDirectory($this->date);
         }
 
@@ -131,7 +131,7 @@ class File
      */
     private function getMatchesHash()
     {
-        return Dashboard::model(Attachment::class)::where('hash', $this->hash)->where('disk',$this->disk)->first();
+        return Dashboard::model(Attachment::class)::where('hash', $this->hash)->where('disk', $this->disk)->first();
     }
 
     /**

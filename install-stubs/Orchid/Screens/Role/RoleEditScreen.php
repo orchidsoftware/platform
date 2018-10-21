@@ -6,7 +6,6 @@ namespace App\Orchid\Screens\Role;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\Role;
 use Orchid\Support\Facades\Alert;

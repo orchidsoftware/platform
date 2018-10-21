@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use Orchid\Screen\Field;
 use Orchid\Screen\Link;
+use Orchid\Screen\Field;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
@@ -15,7 +15,6 @@ use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
-use App\Orchid\Layouts\User\UserChangePasswordLayout;
 
 class UserEditScreen extends Screen
 {
