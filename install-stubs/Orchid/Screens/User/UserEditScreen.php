@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -56,14 +57,19 @@ class UserEditScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Войти от имени пользователя')
-                ->icon('icon-login')
-                ->method('switchUserStart'),
 
-            Link::name(__('Change Password'))
-                ->icon('icon-lock-open')
-                ->title(__('Change Password'))
-                ->modal('password'),
+            Link::name(__('Settings'))
+                ->icon('icon-open')
+                ->group([
+                    Link::name(__('Login as user'))
+                        ->icon('icon-login')
+                        ->method('switchUserStart'),
+
+                    Link::name(__('Change Password'))
+                        ->icon('icon-lock-open')
+                        ->title(__('Change Password'))
+                        ->modal('password'),
+                ]),
 
             Link::name(__('Save'))
                 ->icon('icon-check')
@@ -76,9 +82,8 @@ class UserEditScreen extends Screen
     }
 
     /**
-     * Views.
-     *
      * @return array
+     * @throws \Throwable
      */
     public function layout(): array
     {
@@ -87,7 +92,12 @@ class UserEditScreen extends Screen
             UserRoleLayout::class,
 
             Layouts::modals([
-               'password' => UserChangePasswordLayout::class,
+               'password' => Layouts::rows([
+                   Field::tag('password')
+                       ->name('user.password')
+                       ->title(trans('platform::systems/users.password'))
+                       ->placeholder('********'),
+               ]),
             ]),
         ];
     }

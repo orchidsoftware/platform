@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this storage($value = true)
  */
 class UploadField extends Field
 {
@@ -81,5 +82,6 @@ class UploadField extends Field
         'type',
         'value',
         'groups',
+        'storage'
     ];
 }

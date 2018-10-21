@@ -1,148 +1,78 @@
-import {Controller} from "stimulus";
-import L            from 'leaflet';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
-
-    /**
-     *
-     * @type {string[]}
-     */
-    static targets = [
-        "address"
-    ];
-
-
     /**
      *
      */
     connect() {
 
-        const default_lat = document.getElementById(`marker__latitude`).value;
-        const default_lng = document.getElementById(`marker__longitude`).value;
-        const copyright = '<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>';
-        const default_zoom = '4';
-        const max_zoom = '18';
-        const updateCoords = this.updateCoords.bind(this);
+        const slug = this.data.get('slug');
+        const key = this.data.get('key');
 
-        let leafletMap = L.map('osmap', {
-            center: [default_lat, default_lng],
-            zoom: default_zoom
-        });
+        window.loadGoogleMaps = {
+            "load": () => {
+                if (window.google === undefined || window.google.maps === undefined) {
+                    window.loadGoogleMaps.status = true;
+                    $.getScript(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${key}`, () => {
+                        document.documentElement.dispatchEvent(new Event("googleMapsLoad"));
+                    });
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: copyright,
-            maxZoom: max_zoom
-        }).addTo(leafletMap);
-
-        let base64icon = 'data:image/png;base64,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';
-        let base64shadow = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAApCAYAAACoYAD2AAAC5ElEQVRYw+2YW4/TMBCF45S0S1luXZCABy5CgLQgwf//S4BYBLTdJLax0fFqmB07nnQfEGqkIydpVH85M+NLjPe++dcPc4Q8Qh4hj5D/AaQJx6H/4TMwB0PeBNwU7EGQAmAtsNfAzoZkgIa0ZgLMa4Aj6CxIAsjhjOCoL5z7Glg1JAOkaicgvQBXuncwJAWjksLtBTWZe04CnYRktUGdilALppZBOgHGZcBzL6OClABvMSVIzyBjazOgrvACf1ydC5mguqAVg6RhdkSWQFj2uxfaq/BrIZOLEWgZdALIDvcMcZLD8ZbLC9de4yR1sYMi4G20S4Q/PWeJYxTOZn5zJXANZHIxAd4JWhPIloTJZhzMQduM89WQ3MUVAE/RnhAXpTycqys3NZALOBbB7kFrgLesQl2h45Fcj8L1tTSohUwuxhy8H/Qg6K7gIs+3kkaigQCOcyEXCHN07wyQazhrmIulvKMQAwMcmLNqyCVyMAI+BuxSMeTk3OPikLY2J1uE+VHQk6ANrhds+tNARqBeaGc72cK550FP4WhXmFmcMGhTwAR1ifOe3EvPqIegFmF+C8gVy0OfAaWQPMR7gF1OQKqGoBjq90HPMP01BUjPOqGFksC4emE48tWQAH0YmvOgF3DST6xieJgHAWxPAHMuNhrImIdvoNOKNWIOcE+UXE0pYAnkX6uhWsgVXDxHdTfCmrEEmMB2zMFimLVOtiiajxiGWrbU52EeCdyOwPEQD8LqyPH9Ti2kgYMf4OhSKB7qYILbBv3CuVTJ11Y80oaseiMWOONc/Y7kJYe0xL2f0BaiFTxknHO5HaMGMublKwxFGzYdWsBF174H/QDknhTHmHHN39iWFnkZx8lPyM8WHfYELmlLKtgWNmFNzQcC1b47gJ4hL19i7o65dhH0Negbca8vONZoP7doIeOC9zXm8RjuL0Gf4d4OYaU5ljo3GYiqzrWQHfJxA6ALhDpVKv9qYeZA8eM3EhfPSCmpuD0AAAAASUVORK5CYII=';
-        let markerIcon = L.icon({
-            iconUrl: base64icon,
-            iconAnchor: [12, 41],
-            iconSize: [25, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41],
-            shadowUrl: base64shadow
-        });
-
-        let leafletMarker = L.marker([default_lat, default_lng], {
-            icon: markerIcon,
-            draggable: true,
-        }).addTo(leafletMap);
-
-        leafletMarker.on('dragend', (e) => {
-            updateCoords();
-        });
-
-        leafletMap.on('click', (e) => {
-            leafletMarker.setLatLng(e.latlng);
-            updateCoords();
-            leafletMap.panTo(e.latlng);
-        });
-
-    }
-
-
-    /**
-     *
-     */
-    updateCoords() {
-        document.getElementById('marker__latitude').value = leafletMarker.getLatLng().lat;
-        document.getElementById('marker__longitude').value = leafletMarker.getLatLng().lng;
-    }
-
-
-    /**
-     *
-     */
-    search() {
-
-        const results = document.getElementById('marker__results');
-
-        if (this.addressTarget.value.length >= 3) {
-
-            $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + this.addressTarget.value, function (data) {
-
-                let items = [];
-
-                $.each(data, function (key, val) {
-                    let bb = val.boundingbox;
-                    let lat = val.lat;
-                    let lng = val.lon;
-                    let name = val.display_name;
-                    items.push("<li style='cursor:pointer' data-name='"+name+"' data-lat='"+lat+"' data-lng='"+lng+"' data-lat1='"+bb[0]+"' data-lat2='"+bb[1]+"' data-lng1='"+bb[2]+"' data-lng2='"+bb[3]+"' data-type='"+ val.osm_type +"' data-action='click->fields--place#chooseAddr'>" + val.display_name + "</li>");
-                });
-
-                results.innerHTML = null;
-
-                if (items.length !== 0) {
-                    $('<ul/>', {
-                        'class': 'osm-list',
-                        html: items.join('')
-                    }).appendTo(results);
-                } else {
-                    $('<p>', {html: "No results found"}).appendTo(results);
                 }
+            },
+            "status": false
+        };
+
+
+        if (!window.loadGoogleMaps.status) {
+            window.loadGoogleMaps.load();
+        }
+
+        document.addEventListener('turbolinks:load', () => {
+            if (!window.loadGoogleMaps.status) {
+                window.loadGoogleMaps.load();
+            }
+        });
+
+
+        document.documentElement.addEventListener('googleMapsLoad', () => {
+            const input = document.getElementById(`place-${slug}`);
+            const autocomplete = new google.maps.places.Autocomplete(input);
+
+
+            autocomplete.addListener('place_changed', () => {
+                const cors = autocomplete.getPlace().geometry.location;
+                $(`#lat-${slug}`).val(cors.lat());
+                $(`#lng-${slug}`).val(cors.lng());
             });
-        }
+
+
+            $(`#map-place-${slug}`).on('show.bs.modal', () => {
+
+
+                setTimeout(() => {
+                    const myLatLng = {
+                        lat: parseFloat($(`#lat-${slug}`).val()),
+                        lng: parseFloat($(`#lng-${slug}`).val())
+                    };
+
+                    const map = new google.maps.Map(document.getElementById(`map-place-${slug}-canvas`), {
+                        center: myLatLng,
+                        zoom: 12
+                    });
+
+                    new google.maps.Marker({
+                        map,
+                        position: myLatLng,
+                        title: $(`#place-${slug}`).val()
+                    });
+
+                }, 300);
+
+
+            });
+
+        });
+
+
     }
-
-    chooseAddr(e) {
-
-        const name = e.target.getAttribute("data-name");
-        const lat = e.target.getAttribute("data-lat"); //for centering marker
-        const lng = e.target.getAttribute("data-lng"); //for centering marker
-        const lat1 = e.target.getAttribute("data-lat1");
-        const lat2 = e.target.getAttribute("data-lat2");
-        const lng1 = e.target.getAttribute("data-lng1");
-        const lng2 = e.target.getAttribute("data-lng2");
-        const loc1 = new L.LatLng(lat1, lng1);
-        const loc2 = new L.LatLng(lat2, lng2);
-        const bounds = new L.LatLngBounds(loc1, loc2);
-        const updateCoords = this.updateCoords.bind(this);
-
-        leafletMap.fitBounds(bounds);
-        leafletMarker.setLatLng([lat, lng]);
-        updateCoords();
-        this.addressTarget.value = name;
-    }
-
-
-    get getCurrentLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                return {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                };
-            })
-        }
-
-        return {
-            latitude: 0,
-            longitude: 0
-        }
-    }
-
-
 }

@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens;
 
+use Orchid\Screen\Field;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -88,7 +89,8 @@ class ExampleScreen extends Screen
                 ->icon('icon-bag'),
 
             Link::name('Example Modals')
-                ->method('example')
+                ->modal('exampleModal')
+                ->title('Example Modals')
                 ->icon('icon-full-screen'),
 
             Link::name('Example Group Button')
@@ -118,6 +120,7 @@ class ExampleScreen extends Screen
      * Views.
      *
      * @return array
+     * @throws \Throwable
      */
     public function layout(): array
     {
@@ -135,6 +138,17 @@ class ExampleScreen extends Screen
                 'Example Tab Table' => TableExample::class,
                 'Example Tab Rows'  => RowExample::class,
             ]),
+
+            Layouts::modals([
+                'exampleModal' => Layouts::rows([
+                    Field::tag('input')
+                        ->type('test')
+                        ->name('user.password')
+                        ->title(__('Example'))
+                        ->placeholder(__('Example')),
+                ]),
+            ]),
+
         ];
     }
 

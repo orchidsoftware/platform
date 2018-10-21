@@ -47,8 +47,8 @@ class SearchFilter extends Filter
             ->type('text')
             ->name('search')
             ->value($this->request->get('search'))
-            ->placeholder(trans('platform::common.search_posts'))
-            ->title(trans('platform::common.filters.search'))
+            ->placeholder(__('Search...'))
+            ->title(__('Search'))
             ->maxlength(200)
             ->autocomplete('off')
             ->hr(false);

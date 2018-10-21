@@ -84,14 +84,8 @@ class RoleEditScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::columns([
-                'Left column'  => [
-                    RoleEditLayout::class,
-                ],
-                'Right column' => [
-                    RolePermissionLayout::class,
-                ],
-            ]),
+            RoleEditLayout::class,
+            RolePermissionLayout::class,
         ];
     }
 

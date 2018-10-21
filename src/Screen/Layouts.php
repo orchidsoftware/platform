@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Layouts\Rows;
+
 /**
  * Class Layouts.
  *
@@ -103,12 +105,17 @@ class Layouts
     /**
      * @param $property
      *
-     * @return Layouts
+     * @return $this
+     *
+     * @throws \ReflectionException
      */
     protected function setLayouts($property)
     {
         $this->layouts = $property;
-        $this->slug = sha1(serialize($this));
+
+        if((new \ReflectionClass($this))->isAnonymous()){
+            $this->slug = sha1(serialize($this));
+        }
 
         return $this;
     }
@@ -136,7 +143,7 @@ class Layouts
             }
         }
 
-        return view($async ? 'platform::container.layouts.black' : $this->templates[$this->active], [
+        return view($async ? 'platform::container.layouts.blank' : $this->templates[$this->active], [
             'manyForms'           => $build ?? [],
             'compose'             => $this->compose,
             'templateSlug'        => $this->slug,
@@ -185,5 +192,37 @@ class Layouts
         $new->slug = sha1(serialize($new));
 
         return $new;
+    }
+
+    /**
+     * @param array $fields
+     * @return Rows
+     */
+    public static function rows(array $fields) : Rows
+    {
+        return new class($fields) extends Rows
+        {
+            /**
+             * @var array
+             */
+            private $fields;
+
+            /**
+             *  constructor.
+             * @param array $fields
+             */
+            public function __construct(array $fields)
+            {
+                $this->fields = $fields;
+            }
+
+            /**
+             * @return array
+             */
+            public function fields(): array
+            {
+                return $this->fields;
+            }
+        };
     }
 }

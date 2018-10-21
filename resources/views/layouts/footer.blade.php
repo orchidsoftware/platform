@@ -1,6 +1,7 @@
 <div class="text-center">
     <p class="small m-n">
-        «&#596;» 2016 - {{date('Y')}} The application code is published under the MIT license.<br>
-        Currently v{{\Orchid\Platform\Dashboard::VERSION}}.
+      The application code is published under the MIT license. 2016 - {{date('Y')}}<br>
+        <a href="http://orchid.software" target="_blank">Currently v{{\Orchid\Platform\Dashboard::VERSION}}</a>
+
     </p>
 </div>

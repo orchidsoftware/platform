@@ -72,10 +72,6 @@ class PlatformServiceProvider extends ServiceProvider
                     'description' => trans('platform::permission.systems.attachment'),
                 ],
                 [
-                    'slug'        => 'platform.systems.media',
-                    'description' => trans('platform::permission.systems.media'),
-                ],
-                [
                     'slug'        => 'platform.systems.cache',
                     'description' => trans('platform::permission.systems.cache'),
                 ],

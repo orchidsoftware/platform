@@ -260,7 +260,7 @@ class Field implements FieldContract
 
         foreach ($this->attributes as $key => $attribute) {
             if (in_array($key, $this->translations, true)) {
-                $this->set($key, trans($attribute, [], $lang));
+                $this->set($key, __($attribute, [], $lang));
             }
         }
 

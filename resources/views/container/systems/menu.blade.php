@@ -3,7 +3,12 @@
 
 @section('title',__('Menu'))
 @section('description',$name)
-@section('controller','layouts--systems')
+@section('controller','components--menu')
+@section('controller-data',"
+         data-content-loader-url='$name'
+         data-components--menu-count='0'
+         data-components--menu-id=''
+")
 
 @section('navbar')
     <div class="text-right">
@@ -44,7 +49,10 @@
             @endif
 
                 <li class="dropdown nav-item">
-                    <button class="btn btn-link dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal">
+                    <button class="btn btn-link dropdown-item" type="button"
+                            data-action="components--menu#clear"
+                            data-toggle="modal"
+                            data-target="#exampleModal">
                         <i class="icon-plus m-r-xs"></i> Add Element
                     </button>
 
@@ -55,12 +63,7 @@
 
 @section('content')
 
-    <div class=""
-         data-controller="components--menu"
-         data-content-loader-url="{{$name}}"
-         data-components--menu-count="0"
-         data-components--menu-id=""
-    >
+
 
 
         <div class="wrapper">
@@ -76,7 +79,7 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -209,7 +212,7 @@
         </div>
 
 
-    </div>
+
 
 
 
