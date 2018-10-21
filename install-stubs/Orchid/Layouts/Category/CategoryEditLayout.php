@@ -41,8 +41,10 @@ class CategoryEditLayout extends Rows
 
             Field::tag('select')
                 ->options(function () {
-                    return $this->query
-                        ->getContent('catselect');
+                    $options = $this->query->getContent('catselect');
+                    array_unshift($options, trans('platform::systems/category.not_parrent'));
+
+                    return $options;
                 })
                 ->name('category.parent_id')
                 ->title(__('Parent Category')),

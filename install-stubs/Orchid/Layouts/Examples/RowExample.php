@@ -40,7 +40,7 @@ class RowExample extends Rows
                         'noindex' => 'No index',
                     ])
                     ->multiple()
-                    ->name('robot')
+                    ->name('robot.')
                     ->title('Indexing')
                     ->help('Allow search bots to index'),
 
@@ -53,7 +53,7 @@ class RowExample extends Rows
 
                 Field::tag('checkbox')
                     ->name('free')
-                    ->value('230')
+                    ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),

@@ -88,8 +88,6 @@ export default class extends Controller {
 
         const name = attach.name + attach.id;
 
-        console.log(name,this.attachments);
-
         if (this.attachments.hasOwnProperty(name)) {
             this.attachments[name].name = attach.name;
             this.attachments[name].alt = attach.alt;

@@ -49,7 +49,7 @@ abstract class Metric
         $metrics = array_combine($this->labels, $data);
 
         return view($this->template, [
-            'title'    => trans($this->title),
+            'title'    => __($this->title),
             'metrics'  => $metrics,
             'keyValue' => $this->keyValue,
             'keyDiff'  => $this->keyDiff,

@@ -80,6 +80,8 @@ export default class extends Controller {
             .prev()
             .text();
         this.load(data);
+
+        $('#menuModal').modal('toggle');
     }
 
     /**
@@ -186,7 +188,9 @@ export default class extends Controller {
 
 
         this.checkExist();
-        window.Turbolinks.visit(window.location, {action: 'replace'});
+        //window.Turbolinks.visit(window.location, {action: 'replace'});
+
+        $('#menuModal').modal('toggle');
     }
 
     /**
