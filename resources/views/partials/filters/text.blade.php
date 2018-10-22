@@ -6,10 +6,15 @@
     <div class="dropdown-menu">
         <div class="wrapper-sm">
             <div class="form-group m-b">
-                <input type="text" maxlength="255" required class="form-control form-control-sm" placeholder="{{ __('Filter') }}">
+                <input type="text"
+                       name="filter[{{$th->column}}]"
+                       maxlength="255"
+                       class="form-control form-control-sm"
+                       form="filters"
+                       placeholder="{{ __('Filter') }}">
             </div>
             <div class="line line-dashed b-b line-lg"></div>
-            <button type="submit" class="btn btn-default btn-sm w-full">{{__('Apply')}}</button>
+            <button type="submit" form="filters" class="btn btn-default btn-sm w-full">{{__('Apply')}}</button>
         </div>
     </div>
 </div>

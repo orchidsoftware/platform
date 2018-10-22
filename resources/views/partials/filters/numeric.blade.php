@@ -11,10 +11,14 @@
                   <option>></option>
                   <option><</option>
                 </select>
-                <input type="number" name="?filter[{{$th->column}}]" class="form-control form-control-sm col-9" required placeholder="{{ __('Filter') }}">
+                <input type="number" name="filter[{{$th->column}}]"
+                       class="form-control form-control-sm col-9"
+                       form="filters"
+                       placeholder="{{ __('Filter') }}"
+                >
             </div>
             <div class="line line-dashed b-b line-lg"></div>
-            <button type="submit" class="btn btn-default btn-sm w-full">{{__('Apply')}}</button>
+            <button type="submit" form="filters" class="btn btn-default btn-sm w-full">{{__('Apply')}}</button>
         </form>
     </div>
 </div>
