@@ -40,6 +40,6 @@ export default class extends Controller {
 
       document.addEventListener("turbolinks:before-cache", function() {
           $(select).select2('destroy');
-      });
+      }, {once: true});
     }
 }
