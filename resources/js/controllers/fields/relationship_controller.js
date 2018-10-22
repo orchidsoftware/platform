@@ -38,7 +38,7 @@ export default class extends Controller {
                 .trigger('change');
         });
 
-        document.addEventListener('turbolinks:before-cache', function () {
+        document.addEventListener('turbolinks:before-cache', () => {
             $(select).select2('destroy');
         }, { once: true });
     }

@@ -116,7 +116,7 @@ export default class extends Controller {
             images_upload_handler: this.upload,
         });
 
-        document.addEventListener('turbolinks:before-cache', function () {
+        document.addEventListener('turbolinks:before-cache', () => {
             tinymce.remove(`#${selector}`);
         }, { once: true });
     }
