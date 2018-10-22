@@ -118,7 +118,7 @@ export default class extends Controller {
 
         document.addEventListener('turbolinks:before-cache', function () {
             tinymce.remove(`#${selector}`);
-        }, {once: true});
+        }, { once: true });
     }
 
     /**
