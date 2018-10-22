@@ -38,8 +38,8 @@ export default class extends Controller {
                 .trigger('change');
         });
 
-      document.addEventListener("turbolinks:before-cache", function() {
-          $(select).select2('destroy');
-      }, {once: true});
+        document.addEventListener('turbolinks:before-cache', function () {
+            $(select).select2('destroy');
+        }, {once: true});
     }
 }
