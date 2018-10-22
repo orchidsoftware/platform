@@ -9,6 +9,7 @@
             <input class="d-none" name="filter[{{$th->column}}]"
                    data-controller="fields--datetime"
                    data-fields--datetime-inline="true"
+                   value="{{get_filter_string($th->column)}}"
                    form="filters"
                    placeholder="{{ __('Filter') }}"
             >

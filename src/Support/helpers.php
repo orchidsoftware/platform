@@ -114,13 +114,32 @@ if (! function_exists('get_filter')) {
     /**
      * @param null $property
      *
-     * @return string
+     * @return string|array
      */
     function get_filter($property)
     {
         $filter = new \Orchid\Platform\Filters\HttpFilter;
 
         return $filter->getFilter($property);
+    }
+}
+
+if (!function_exists('get_filter_string')) {
+
+    /**
+     * @param null $property
+     *
+     * @return string
+     */
+    function get_filter_string($property)
+    {
+        $filter = get_filter($property);
+
+        if (is_array($filter)) {
+            return implode(', ', $filter);
+        }
+
+        return $filter;
     }
 }
 

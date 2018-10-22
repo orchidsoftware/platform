@@ -1,11 +1,12 @@
 @if($filters->count() > 0)
-    <div class="wrapper-md b-b">
+    <div class="wrapper-md b-b" data-controller="screen--filter">
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group pull-right" role="group">
-                    <a      href="{{url()->current()}}"
+                    <button
+                            data-action="screen--filter#clear"
                             class="btn btn-default"><i class="icon-refresh"></i>
-                    </a>
+                    </button>
                     <button type="submit"
                             id="button-filter"
                             form="filters"

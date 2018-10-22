@@ -8,6 +8,7 @@
             <div class="form-group m-b">
                 <input type="text"
                        name="filter[{{$th->column}}]"
+                       value="{{get_filter_string($th->column)}}"
                        maxlength="255"
                        class="form-control form-control-sm"
                        form="filters"

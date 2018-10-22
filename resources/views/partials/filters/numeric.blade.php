@@ -5,15 +5,11 @@
     </button>
     <div class="dropdown-menu">
         <form class="wrapper-sm" accept-charset="utf-8" method="get" enctype="multipart/form-data">
-            <div class="form-group m-b row no-gutters">
-                <select class="form-control col-3">
-                  <option>=</option>
-                  <option>></option>
-                  <option><</option>
-                </select>
+            <div class="form-group m-b no-gutters">
                 <input type="number" name="filter[{{$th->column}}]"
-                       class="form-control form-control-sm col-9"
+                       class="form-control form-control-sm"
                        form="filters"
+                       value="{{get_filter_string($th->column)}}"
                        placeholder="{{ __('Filter') }}"
                 >
             </div>

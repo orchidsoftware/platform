@@ -35,15 +35,13 @@
                     </div>
 
 
-                    @if($filter = get_filter($th->column))
-                        <div>
-                            <a href="#" class="badge badge-pill badge-light">
-                                @if(is_array($filter))
-                                    {{ implode(', ',$filter) }}
-                                @else
-                                    {{ $filter }}
-                                @endif
-
+                    @if($filter = get_filter_string($th->column))
+                        <div data-controller="screen--filter">
+                            <a href="#"
+                               data-action="screen--filter#clearFilter"
+                               data-filter="{{$th->column}}"
+                               class="badge badge-pill badge-light">
+                                {{ $filter }}
                             </a>
                         </div>
                     @endif

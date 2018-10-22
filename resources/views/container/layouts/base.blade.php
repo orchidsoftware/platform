@@ -21,5 +21,7 @@
     <div id="modals-container">
         @stack('modals-container')
     </div>
-    <form id="filters" autocomplete="off"></form>
+    <div data-controller="screen--filter">
+        <form id="filters" autocomplete="off" data-action="screen--filter#submit"></form>
+    </div>
 @stop
