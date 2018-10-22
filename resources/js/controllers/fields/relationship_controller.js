@@ -37,5 +37,9 @@ export default class extends Controller {
                 .append(new Option(response.data.text, response.data.id, true, true))
                 .trigger('change');
         });
+
+        document.addEventListener('turbolinks:before-cache', () => {
+            $(select).select2('destroy');
+        }, { once: true });
     }
 }
