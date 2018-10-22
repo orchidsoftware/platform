@@ -84,7 +84,8 @@ class Attachment extends Model
     /**
      * @return string
      */
-    public function getUrlAttribute(){
+    public function getUrlAttribute()
+    {
         return $this->url();
     }
 
