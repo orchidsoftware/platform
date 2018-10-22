@@ -206,7 +206,7 @@ export default class extends Controller {
                                 size: item.size,
                                 type: item.mime,
                                 status: Dropzone.ADDED,
-                                url: `/storage/${item.path}${item.name}.${item.extension}`,
+                                url: `${item.url}`,
                                 data: item,
                             };
 

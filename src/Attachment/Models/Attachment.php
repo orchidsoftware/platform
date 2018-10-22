@@ -45,6 +45,13 @@ class Attachment extends Model
     protected static $logAttributes = ['*'];
 
     /**
+     * @var array
+     */
+    protected $appends = [
+        'url',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
@@ -72,6 +79,13 @@ class Attachment extends Model
         }
 
         return Storage::disk($disk)->url($this->path.$this->name.$size.'.'.$this->extension);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlAttribute(){
+        return $this->url();
     }
 
     /**
@@ -117,7 +131,7 @@ class Attachment extends Model
     public function delete()
     {
         if ($this->exists) {
-            if (self::where('hash', $this->hash)->where('dist', $this->disk)->count() <= 1) {
+            if (self::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
                 $this->removePhysicalFile($this, $this->getAttribute('disk'));
             }
             $this->relationships()->delete();
