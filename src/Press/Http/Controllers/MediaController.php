@@ -55,8 +55,8 @@ class MediaController extends Controller
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media', [
-            'name'        => trans('platform::systems/media.title'),
-            'description' => trans('platform::systems/media.description'),
+            'name'        => __('Media'),
+            'description' => __('Filemanager'),
             'path'        => $path,
             'dir'         => $this->getDirPath($path),
             'files'       => $this->getFiles($path),

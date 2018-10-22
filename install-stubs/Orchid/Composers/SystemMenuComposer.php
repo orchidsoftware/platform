@@ -31,7 +31,7 @@ class SystemMenuComposer
     {
         $this->dashboard->menu
             ->add('Systems',
-                ItemMenu::setLabel(trans('platform::systems/settings.system_menu.Sharing access rights'))
+                ItemMenu::setLabel(__('Sharing access rights'))
                     ->setIcon('icon-lock')
                     ->setSlug('Auth')
                     ->setActive('platform.systems.*')
@@ -39,7 +39,7 @@ class SystemMenuComposer
                     ->setSort(1000)
             )
             ->add('Auth',
-                ItemMenu::setLabel(trans('platform::menu.users'))
+                ItemMenu::setLabel(__('Users'))
                     ->setIcon('icon-user')
                     ->setRoute(route('platform.systems.users'))
                     ->setPermission('platform.systems.users')
@@ -47,20 +47,20 @@ class SystemMenuComposer
                     ->setGroupName(trans('platform::systems/users.groupname'))
             )
             ->add('Auth',
-                ItemMenu::setLabel(trans('platform::menu.roles'))
+                ItemMenu::setLabel(__('Roles'))
                     ->setIcon('icon-lock')
                     ->setRoute(route('platform.systems.roles'))
                     ->setPermission('platform.systems.roles')
                     ->setSort(1000)
-                    ->setGroupName(trans('platform::systems/roles.groupname'))
+                    ->setGroupName(__('A Role defines a set of tasks a user assigned the role is allowed to perform. '))
             )
             ->add('CMS',
-                ItemMenu::setLabel(trans('platform::menu.sections'))
+                ItemMenu::setLabel(__('Category'))
                     ->setIcon('icon-briefcase')
                     ->setRoute(route('platform.systems.category'))
                     ->setPermission('platform.systems.category')
                     ->setSort(1000)
-                    ->setGroupName(trans('platform::systems/category.groupname'))
+                    ->setGroupName(__('Sort entries into groups of posts on a given topic. This helps the user to find the necessary information on the site.'))
             )
             ->add('CMS',
                 ItemMenu::setLabel(trans('platform::menu.comments'))
@@ -68,7 +68,7 @@ class SystemMenuComposer
                     ->setRoute(route('platform.systems.comments'))
                     ->setPermission('platform.systems.comments')
                     ->setSort(1000)
-                    ->setGroupName(trans('platform::systems/comment.groupname'))
+                    ->setGroupName(__("Comments allow your website's visitors to have a discussion with you and each other."))
                     ->setBadge(function () {
                         return \Orchid\Press\Models\Comment::where('approved', 0)->count() ?: null;
                     })

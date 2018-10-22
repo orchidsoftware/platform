@@ -4,7 +4,7 @@
 @section('body')
 
 
-    <div class="app row m-n" id="app" data-controller="@yield('controller')">
+    <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
 
 
         <div class="aside col-xs-12 col-md-2 offset-md-2 no-padder bg-dark">

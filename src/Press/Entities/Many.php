@@ -119,17 +119,17 @@ abstract class Many
                 ->type('text')
                 ->name('slug')
                 ->max(255)
-                ->title(trans('platform::post/base.semantic_url'))
-                ->placeholder(trans('platform::post/base.semantic_url_unique_name')),
+                ->title(__('Semantic URL'))
+                ->placeholder(__('Unique name')),
 
             Field::tag('datetime')
                 ->name('publish_at')
-                ->title(trans('platform::post/base.time_of_publication')),
+                ->title(__('Time of publication')),
 
             Field::tag('select')
                 ->options($this->status())
                 ->name('status')
-                ->title(trans('platform::post/base.status')),
+                ->title(__('Status')),
         ];
     }
 }

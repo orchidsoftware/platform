@@ -21,12 +21,12 @@ abstract class Single
         return [
             Field::tag('datetime')
                 ->name('publish_at')
-                ->title(trans('platform::post/base.time_of_publication')),
+                ->title(__('Time of Publication')),
 
             Field::tag('select')
                 ->options($this->status())
                 ->name('status')
-                ->title(trans('platform::post/base.status')),
+                ->title(__('Status')),
         ];
     }
 }

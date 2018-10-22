@@ -31,27 +31,26 @@ class SystemMenuComposer
     {
         $this->dashboard->menu
             ->add('Systems',
-                ItemMenu::setLabel(trans('platform::systems/settings.system_menu.Content management'))
+                ItemMenu::setLabel(__('Content management'))
                     ->setSlug('CMS')
                     ->setIcon('icon-layers')
                     ->setPermission('platform.systems')
                     ->setSort(1000)
             )
             ->add('CMS',
-                ItemMenu::setLabel(trans('platform::menu.menu'))
+                ItemMenu::setLabel(__('Menu'))
                     ->setIcon('icon-menu')
                     ->setRoute(route('platform.systems.menu.index'))
                     ->setPermission('platform.systems.menu')
                     ->setShow(count(config('press.menu', [])) > 0)
-                    ->setGroupName(trans('platform::systems/menu.groupname'))
+                    ->setGroupName(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
             )
             ->add('CMS',
-                ItemMenu::setLabel(trans('platform::menu.media'))
+                ItemMenu::setLabel(__('Media'))
                     ->setIcon('icon-folder-alt')
                     ->setRoute(route('platform.systems.media.index'))
                     ->setPermission('platform.systems.media')
-                    ->setShow(count(config('press.menu', [])) > 0)
-                    ->setGroupName(trans('platform::systems/media.groupname'))
+                    ->setGroupName(__('File Manager allows you to perform the most frequent operations on files - create, open, move, rename, delete'))
             );
     }
 }

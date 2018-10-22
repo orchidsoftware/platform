@@ -6,7 +6,6 @@ namespace App\Orchid\Screens\Category;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Orchid\Press\Models\Term;
 use Orchid\Press\Models\Category;
@@ -38,18 +37,11 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        $category = is_null($category) ? new Category() : $category;
-        $catselect[0] = trans('platform::systems/category.not_parrent');
-        if ($category->exists) {
-            foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
-                $catselect[$cat->id] = $cat->term->GetContent('name');
-            }
-            $category['slug'] = $category->term->slug;
-        } else {
-            foreach (Category::get() as $cat) {
-                $catselect[$cat->id] = $cat->term->GetContent('name');
-            }
+        foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
+            $catselect[$cat->id] = $cat->term->GetContent('name');
         }
+
+        $category->setAttribute('slug', $category->term->slug);
 
         return [
             'category' => $category,
@@ -82,11 +74,7 @@ class CategoryEditScreen extends Screen
     public function layout(): array
     {
         return [
-            Layouts::columns([
-                'CategoryEdit' => [
-                    CategoryEditLayout::class,
-                ],
-            ]),
+            CategoryEditLayout::class,
         ];
     }
 
@@ -121,7 +109,7 @@ class CategoryEditScreen extends Screen
         $category->term->save();
         $category->save();
 
-        Alert::info(trans('platform::systems/category.Category was saved'));
+        Alert::info(__('Category was saved'));
 
         return redirect()->route('platform.systems.category');
     }
@@ -134,7 +122,8 @@ class CategoryEditScreen extends Screen
     public function remove(Category $category)
     {
         $category->delete();
-        Alert::info(trans('platform::systems/category.Category was removed'));
+
+        Alert::info(__('Category was removed'));
 
         return redirect()->route('platform.systems.category');
     }

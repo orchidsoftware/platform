@@ -82,15 +82,10 @@ class Page extends Single
 
             Field::group([
 
-                Field::tag('select')
-                    ->options([
-                        'index'   => 'Index',
-                        'noindex' => 'No index',
-                    ])
-                    ->multiple()
-                    ->name('robot.')
-                    ->title('Indexing')
-                    ->help('Allow search bots to index'),
+                Field::tag('datetime')
+                    ->name('open')
+                    ->title('Opening date')
+                    ->help('The opening event will take place'),
 
                 Field::tag('input')
                     ->type('text')
@@ -131,10 +126,15 @@ class Page extends Single
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            Field::tag('datetime')
-                ->name('open')
-                ->title('Opening date')
-                ->help('The opening event will take place'),
+            Field::tag('select')
+                ->options([
+                    'index'   => 'Index',
+                    'noindex' => 'No index',
+                ])
+                ->multiple()
+                ->name('robot.')
+                ->title('Indexing')
+                ->help('Allow search bots to index'),
 
             Field::tag('tags')
                 ->name('keywords')

@@ -25,8 +25,8 @@ class UserEditLayout extends Rows
                 ->max(255)
                 ->required()
                 ->horizontal()
-                ->title(trans('platform::systems/users.name'))
-                ->placeholder(trans('platform::systems/users.name')),
+                ->title(__('Name'))
+                ->placeholder(__('Name')),
 
             Field::tag('input')
                 ->type('email')
@@ -34,8 +34,8 @@ class UserEditLayout extends Rows
                 ->required()
                 ->horizontal()
                 ->hr(false)
-                ->title(trans('platform::systems/users.email'))
-                ->placeholder(trans('platform::systems/users.email')),
+                ->title(__('Email'))
+                ->placeholder(__('Email')),
         ];
     }
 }
