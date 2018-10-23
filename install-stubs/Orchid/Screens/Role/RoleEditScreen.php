@@ -32,13 +32,11 @@ class RoleEditScreen extends Screen
     /**
      * Query data.
      *
-     * @param null $role
+     * @param Role $role
      * @return array
      */
-    public function query($role = null): array
+    public function query(Role $role): array
     {
-        $role = is_null($role) ? new Role : $role;
-
         $rolePermission = $role->permissions ?? [];
         $permission = Dashboard::getPermission()
             ->sort()

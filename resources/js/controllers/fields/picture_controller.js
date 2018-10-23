@@ -110,12 +110,12 @@ export default class extends Controller {
             const formData = new FormData();
 
             formData.append('file', blob);
-            formData.append('storage', 'public');
+            formData.append('storage', this.data.get('storage'));
 
             let element = this.element;
             axios.post(platform.prefix('/systems/files'), formData)
                 .then((response) => {
-                    let image = `/storage/${response.data.path}${response.data.name}.${response.data.extension}`;
+                    let image = response.data.url;
 
                     element.querySelector('.picture-preview').src = image;
                     element.querySelector('.picture-preview').classList.remove('none');

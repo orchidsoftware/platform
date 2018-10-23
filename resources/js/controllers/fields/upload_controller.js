@@ -115,7 +115,6 @@ export default class extends Controller {
     loadInfo(data) {
         const name = data.name + data.id;
 
-        data.url = '/storage/' + data.path + data.name + '.' + data.extension;
         if (!this.attachments.hasOwnProperty(name)) {
             this.attachments[name] = data;
         }

@@ -55,7 +55,11 @@ class InstallCommand extends Command
         $this
             ->executeCommand('migrate')
             ->executeCommand('vendor:publish', ['--force' => true, '--tag' => 'migrations'])
-            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => 'config,migrations'])
+            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => [
+                'config',
+                'migrations',
+                'orchid-stubs'
+            ]])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->executeCommand('orchid:link');
