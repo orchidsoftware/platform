@@ -59,7 +59,7 @@ class InstallCommand extends Command
             ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => [
                 'config',
                 'migrations',
-                'orchid-stubs'
+                'orchid-stubs',
             ]])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
@@ -183,13 +183,13 @@ class InstallCommand extends Command
      */
     private function checkInstall() : self
     {
-        if(!file_exists(app_path('Orchid'))){
-           return $this;
+        if (! file_exists(app_path('Orchid'))) {
+            return $this;
         }
 
         $confim = $this->confirm('The platform has already been installed, do you really want to repeat?');
 
-        if(!$confim){
+        if (! $confim) {
             die();
         }
 

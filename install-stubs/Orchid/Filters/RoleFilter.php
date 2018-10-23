@@ -52,7 +52,8 @@ class RoleFilter extends Filter
     /**
      * @return mixed
      */
-    public function getRoles(){
+    public function getRoles()
+    {
         return Role::select('slug', 'name')->pluck('name', 'slug');
     }
 }

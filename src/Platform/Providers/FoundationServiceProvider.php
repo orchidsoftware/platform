@@ -96,10 +96,10 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerOrchid()
     {
-       $this->publishes([
+        $this->publishes([
             realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
             realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
-        ],'orchid-stubs');
+        ], 'orchid-stubs');
 
         return $this;
     }
