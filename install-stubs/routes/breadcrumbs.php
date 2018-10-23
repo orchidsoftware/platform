@@ -2,50 +2,58 @@
 
 //Screens
 
-// Platform > Users
+// Platform > System > Users
 Breadcrumbs::for('platform.systems.users', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.index');
     $trail->push(__('Users'), route('platform.systems.users'));
 });
 
-// Platform > Users > Ceate
+// Platform > System > Users > Ceate
 Breadcrumbs::for('platform.systems.users.create', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.users');
     $trail->push(__('Create'), route('platform.systems.users.create'));
 });
 
-// Platform > Users > User
+// Platform > System > Users > User
 Breadcrumbs::for('platform.systems.users.edit', function ($trail, $user) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.users');
     $trail->push(__('Edit'), route('platform.systems.users.edit', $user));
 });
 
-// Platform > Roles
+// Platform > System > Roles
 Breadcrumbs::for('platform.systems.roles', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.index');
     $trail->push(__('Roles'), route('platform.systems.roles'));
 });
 
-// Platform > Roles > Create
+// Platform > System > Roles > Create
 Breadcrumbs::for('platform.systems.roles.create', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.roles');
     $trail->push(__('Create'), route('platform.systems.roles.create'));
 });
 
-// Platform > Roles > Role
+// Platform > System > Roles > Role
 Breadcrumbs::for('platform.systems.roles.edit', function ($trail, $role) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.roles');
     $trail->push(__('Role'), route('platform.systems.roles.edit', $role));
 });
 
-// Platform > Category
+// Platform > System > Category
 Breadcrumbs::for('platform.systems.category', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.index');
     $trail->push(__('Categories'), route('platform.systems.category'));
 });
 
-// Platform > Categories > Create
+// Platform > System > Categories > Create
 Breadcrumbs::for('platform.systems.category.create', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.category');
     $trail->push(__('Create'), route('platform.systems.category.create'));
 });
@@ -56,20 +64,23 @@ Breadcrumbs::for('platform.systems.category.edit', function ($trail, $category) 
     $trail->push(__('Category'), route('platform.systems.category.edit', $category));
 });
 
-// Platform > Comments
+// Platform > System > Comments
 Breadcrumbs::for('platform.systems.comments', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.index');
     $trail->push(__('Comments'), route('platform.systems.comments'));
 });
 
-// Platform > Comments > Create
+// Platform > System > Comments > Create
 Breadcrumbs::for('platform.systems.comments.create', function ($trail) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.comments');
     $trail->push(__('Create'), route('platform.systems.comments.create'));
 });
 
-// Platform > Comments > Comment
+// Platform > System > Comments > Comment
 Breadcrumbs::for('platform.systems.comments.edit', function ($trail, $comment) {
+    $trail->parent('platform.systems.index');
     $trail->parent('platform.systems.comments');
     $trail->push(__('Comment'), route('platform.systems.comments.edit', $comment));
 });

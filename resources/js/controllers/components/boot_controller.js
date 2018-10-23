@@ -16,7 +16,7 @@ export default class extends Controller {
      *
      */
     connect() {
-        document.querySelector(`#post-form`).addEventListener('change', this.saveModel)
+        document.querySelector(`#post-form`).addEventListener('change', this.saveModel);
     }
 
     /**

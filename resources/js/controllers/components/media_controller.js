@@ -164,7 +164,7 @@ export default class extends Controller {
                  _token: this.CSRF_TOKEN,
              },
              ({ success }) => {
-                 window.location.reload();
+                 window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
              },
         );
     }
@@ -199,7 +199,7 @@ export default class extends Controller {
                 _token: this.CSRF_TOKEN,
             },
             ({ success, error }) => {
-                window.location.reload();
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
             },
         );
     }
@@ -237,7 +237,7 @@ export default class extends Controller {
                 _token: this.CSRF_TOKEN,
             },
             ({ success, error }) => {
-                window.location.reload();
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
             },
         );
 
@@ -265,7 +265,7 @@ export default class extends Controller {
                 _token: this.CSRF_TOKEN,
             },
             ({ success }) => {
-                window.location.reload();
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
                 $('#new_folder_modal .new_folder_name').val('');
             },
         );
@@ -315,12 +315,12 @@ export default class extends Controller {
                 });
             },
             success(e, {success, message}) {
-                window.location.reload();
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
                 $('.media-preview').fadeOut();
 
             },
             error(e, {message}, xhr) {
-                window.location.reload();
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
             },
         }
     }

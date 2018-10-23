@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // Platform
 Breadcrumbs::for('platform.index', function ($trail) {
     $trail->push(__('Platform'), route('platform.index'));
@@ -41,19 +43,19 @@ Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '')
     }
 });
 
-// Platform > Backup
+// Platform > System > Backup
 Breadcrumbs::for('platform.systems.backups', function ($trail) {
     $trail->parent('platform.systems.index');
     $trail->push(__('Backup'), route('platform.systems.backups'));
 });
 
-// Platform > Bulldozer
+// Platform > System > Bulldozer
 Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->parent('platform.systems.index');
     $trail->push(__('Bulldozer'), route('platform.bulldozer.index'));
 });
 
-// Platform > Announcement
+// Platform > System > Announcement
 Breadcrumbs::for('platform.systems.announcement', function ($trail) {
     $trail->parent('platform.systems.index');
     $trail->push(__('Announcement'), route('platform.systems.announcement'));
