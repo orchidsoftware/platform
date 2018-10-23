@@ -25,7 +25,6 @@ class SystemTest extends TestFeatureCase
         $this->user = factory(User::class)->create();
     }
 
-
     public function test_route_PlatformSystemsIndex()
     {
         $response = $this->actingAs($this->user)
