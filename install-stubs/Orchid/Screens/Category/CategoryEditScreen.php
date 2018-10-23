@@ -37,11 +37,16 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
-            $catselect[$cat->id] = $cat->term->GetContent('name');
+        if ($category->exists) {
+            foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
+                $catselect[$cat->id] = $cat->term->GetContent('name');
+            }
+            $category['slug'] = $category->term->slug;
+        } else {
+            foreach (Category::get() as $cat) {
+                $catselect[$cat->id] = $cat->term->GetContent('name');
+            }
         }
-
-        $category->setAttribute('slug', $category->term->slug);
 
         return [
             'category' => $category,
