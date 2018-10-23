@@ -29,7 +29,7 @@ class CategoryEditLayout extends Rows
                 ->max(255)
                 ->require()
                 ->title(__('Category name'))
-                ->placeholder(trans('platform::systems/category.fields.name_title'))
+                ->placeholder(__('Category name'))
                 ->help(__('Category title')),
 
             Field::tag('input')
@@ -42,7 +42,7 @@ class CategoryEditLayout extends Rows
             Field::tag('select')
                 ->options(function () {
                     $options = $this->query->getContent('catselect');
-                    array_unshift($options, trans('platform::systems/category.not_parrent'));
+                    array_unshift($options, __('Without parent'));
 
                     return $options;
                 })

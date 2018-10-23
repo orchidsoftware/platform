@@ -95,16 +95,18 @@ class BootModelScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Построить все модели')
+            Link::name(__('Build all models'))
                 ->icon('icon-magic-wand')
                 ->show($this->exist)
                 ->method('buildModels'),
-            Link::name('Добавить новую модель')
+
+            Link::name(__('Add new model'))
                 ->icon('icon-plus')
                 ->modal('CreateModelModal')
-                ->title('Добавить новую модель')
+                ->title(__('Add new model'))
                 ->method('createModel'),
-            Link::name('Удалить')
+
+            Link::name(__('Delete'))
                 ->icon('icon-trash')
                 ->show($this->exist)
                 ->method('delete'),
@@ -139,7 +141,7 @@ class BootModelScreen extends Screen
         $name = studly_case($request->get('name'));
 
         if ($this->models->offsetExists($name)) {
-            alert('Модель с таким именем уже существует');
+            alert(__('A model with the same name already exists.'));
 
             return back();
         }
@@ -148,7 +150,7 @@ class BootModelScreen extends Screen
 
         cache()->forever(static::MODELS, $this->models);
 
-        alert('Модель успешно создана');
+        alert(__('Model successfully created.'));
 
         return redirect()->route('platform.bulldozer.index', $name);
     }
@@ -164,7 +166,7 @@ class BootModelScreen extends Screen
         $this->models = $this->models->except($model);
         cache()->forever(static::MODELS, $this->models);
 
-        alert('Модель была удалена');
+        alert(__('Model has been deleted'));
 
         return redirect()->route('platform.bulldozer.index');
     }
@@ -243,7 +245,7 @@ class BootModelScreen extends Screen
 
         cache()->forget(static::MODELS);
 
-        alert('Все модели были успешно сгенерированы');
+        alert(__('All models have been successfully generated.'));
 
         return redirect()->route('platform.bulldozer.index');
     }

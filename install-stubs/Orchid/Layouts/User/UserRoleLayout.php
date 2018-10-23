@@ -33,8 +33,7 @@ class UserRoleLayout extends Rows
             ->multiple()
             ->name('roles[]')
             ->horizontal()
-            ->title(trans('platform::systems/users.roles'))
-            ->placeholder(trans('platform::systems/users.select_roles'));
+            ->title(__('Name role'));
 
         $permissionFields = $this->generatedPermissionFields($this->query->getContent('permission'));
 

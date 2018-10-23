@@ -143,7 +143,7 @@ class PressServiceProvider extends ServiceProvider
             });
 
         if ($posts->count() > 0) {
-            $permissions[trans('platform::permission.main.posts')] = $posts->toArray();
+            $permissions[__('Posts')] = $posts->toArray();
         }
 
         return $permissions ?? [];
@@ -155,14 +155,14 @@ class PressServiceProvider extends ServiceProvider
     protected function registerPermissions(): array
     {
         return [
-            trans('platform::permission.main.systems') => [
+            __('Systems') => [
                 [
                     'slug'        => 'platform.systems.menu',
-                    'description' => trans('platform::permission.systems.menu'),
+                    'description' => __('Menu'),
                 ],
                 [
                     'slug'        => 'platform.systems.media',
-                    'description' => trans('platform::permission.systems.media'),
+                    'description' => __('Media'),
                 ],
             ],
         ];

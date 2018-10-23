@@ -43,18 +43,18 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): array
     {
         return [
-            trans('platform::permission.main.main') => [
+            __('Main') => [
                 [
                     'slug'        => 'platform.index',
-                    'description' => trans('platform::permission.main.main'),
+                    'description' => __('Main'),
                 ],
                 [
                     'slug'        => 'platform.systems',
-                    'description' => trans('platform::permission.main.systems'),
+                    'description' => __('Systems'),
                 ],
                 [
                     'slug'        => 'platform.systems.index',
-                    'description' => trans('platform::permission.systems.settings'),
+                    'description' => __('Settings'),
                 ],
             ],
         ];
@@ -66,26 +66,26 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsSystems(): array
     {
         return [
-            trans('platform::permission.main.systems') => [
+            __('Systems') => [
                 [
                     'slug'        => 'platform.systems.attachment',
-                    'description' => trans('platform::permission.systems.attachment'),
+                    'description' => __('Attachment'),
                 ],
                 [
                     'slug'        => 'platform.systems.cache',
-                    'description' => trans('platform::permission.systems.cache'),
+                    'description' => __('Cache'),
                 ],
                 [
                     'slug'        => 'platform.systems.backups',
-                    'description' => trans('platform.systems.backups'),
+                    'description' => __('Backups'),
                 ],
                 [
                     'slug'        => 'platform.systems.announcement',
-                    'description' => trans('platform.systems.announcement'),
+                    'description' => __('Announcement'),
                 ],
                 [
                     'slug'        => 'platform.systems.history',
-                    'description' => 'История изменений',
+                    'description' => __('Change history'),
                 ],
             ],
         ];

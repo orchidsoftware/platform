@@ -64,10 +64,10 @@ class BulldozerServiceProvider extends ServiceProvider
     protected function registerPermissions(): array
     {
         return [
-            trans('platform::permission.main.systems') => [
+            __('Systems') => [
                 [
                     'slug'        => 'platform.bulldozer',
-                    'description' => 'Быстрый старт',
+                    'description' => __('Model Generator'),
                 ],
             ],
         ];

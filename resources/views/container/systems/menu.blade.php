@@ -40,23 +40,23 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         @foreach($availableMenus as $key => $value)
-                                <a href="{{ route('platform.systems.menu.show',$key) }}"
-                                   class="dropdown-item">{{ $value }}
-                                </a>
+                            <a href="{{ route('platform.systems.menu.show',$key) }}"
+                               class="dropdown-item">{{ $value }}
+                            </a>
                         @endforeach
                     </ul>
                 </li>
             @endif
 
-                <li class="dropdown nav-item">
-                    <button class="btn btn-link dropdown-item" type="button"
-                            data-action="components--menu#clear"
-                            data-toggle="modal"
-                            data-target="#exampleModal">
-                        <i class="icon-plus m-r-xs"></i> Add Element
-                    </button>
+            <li class="dropdown nav-item">
+                <button class="btn btn-link dropdown-item" type="button"
+                        data-action="components--menu#clear"
+                        data-toggle="modal"
+                        data-target="#exampleModal">
+                    <i class="icon-plus m-r-xs"></i> {{ __('Add Element') }}
+                </button>
 
-                </li>
+            </li>
         </ul>
     </div>
 @stop
@@ -66,156 +66,149 @@
 
 
 
-        <div class="wrapper">
-                <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
-                    <ol class="dd-list">
-                        @include('platform::partials.menu.item',[
-                            'menu'=>$menu
-                        ])
-                    </ol>
-                </div>
+    <div class="wrapper">
+        <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
+            <ol class="dd-list">
+                @include('platform::partials.menu.item',[
+                    'menu'=>$menu
+                ])
+            </ol>
         </div>
+    </div>
 
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Element Menu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="wrapper-md">
+    <!-- Modal -->
+    <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Element Menu') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="wrapper-md">
 
-                            <div class="form">
-                                <div class="form-group">
-                                    <label>{{__('Name')}} <span
-                                                class="text-danger">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           data-target="components--menu.label"
-                                           required
-                                           placeholder="{{__('About us')}}">
+                        <div class="form">
+                            <div class="form-group">
+                                <label>{{ __('Name') }} <span
+                                            class="text-danger">*</span></label>
+                                <input type="text"
+                                       class="form-control"
+                                       data-target="components--menu.label"
+                                       required
+                                       placeholder="{{ __('About us') }}">
 
-                                    <small class="form-text text-danger none"
-                                           id="errors.label">{{__('Please fill in the field.')}}</small>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.alt')}} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control"
-                                           data-target="components--menu.title"
-                                           required
-                                           placeholder="{{trans('platform::systems/menu.form.alt_description')}}">
-                                    <small class="form-text text-danger none"
-                                           id="errors.title">{{__('Please fill in the field.')}}</small>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.url')}} <span class="text-danger">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           data-target="components--menu.slug"
-                                           required
-                                           placeholder="{{trans('platform::systems/menu.form.url_description')}}">
-                                    <small class="form-text text-danger none"
-                                           id="errors.slug">{{__('Please fill in the field.')}}</small>
-                                </div>
+                                <small class="form-text text-danger none"
+                                       id="errors.label">{{ __('Please fill in the field.') }}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Alternative name') }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control"
+                                       data-target="components--menu.title"
+                                       required
+                                       placeholder="{{ __('History of the company') }}">
+                                <small class="form-text text-danger none"
+                                       id="errors.title">{{ __('Please fill in the field.') }}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('URL') }} <span class="text-danger">*</span></label>
+                                <input type="text"
+                                       class="form-control"
+                                       data-target="components--menu.slug"
+                                       required
+                                       placeholder="{{ __('/about') }}">
+                                <small class="form-text text-danger none"
+                                       id="errors.slug">{{ __('Please fill in the field.') }}</small>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.display.name')}}</label>
-                                    <select class="form-control" data-target="components--menu.auth">
-                                        <option value="0"
-                                                selected>{{trans('platform::systems/menu.form.display.variables.no_auth')}}</option>
-                                        <option value="1">{{trans('platform::systems/menu.form.display.variables.auth')}}</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label>{{ __('Display Name') }}</label>
+                                <select class="form-control" data-target="components--menu.auth">
+                                    <option value="0"
+                                            selected>{{ __('Visible to everyone') }}</option>
+                                    <option value="1">{{ __('Only authorized users') }}</option>
+                                </select>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.relations.name')}}</label>
+                            <div class="form-group">
+                                <label>{{ __('Relations') }}</label>
 
-                                    <select class="form-control" data-target="components--menu.robot">
-                                        <option value=""></option>
-                                        <option value="answer">{{trans('platform::systems/menu.form.relations.variables.answer')}}</option>
-                                        <option value="chapter">{{trans('platform::systems/menu.form.relations.variables.chapter')}}</option>
-                                        <option value="co-worker">{{trans('platform::systems/menu.form.relations.variables.co-worker')}}</option>
-                                        <option value="colleague">{{trans('platform::systems/menu.form.relations.variables.colleague')}}</option>
-                                        <option value="contact">{{trans('platform::systems/menu.form.relations.variables.contact')}}</option>
-                                        <option value="details">{{trans('platform::systems/menu.form.relations.variables.details')}}</option>
-                                        <option value="edit">{{trans('platform::systems/menu.form.relations.variables.edit')}}</option>
-                                        <option value="friend">{{trans('platform::systems/menu.form.relations.variables.friend')}}</option>
-                                        <option value="question">{{trans('platform::systems/menu.form.relations.variables.question')}}</option>
-                                        <option value="archives">{{trans('platform::systems/menu.form.relations.variables.archives')}}</option>
-                                        <option value="author">{{trans('platform::systems/menu.form.relations.variables.author')}}</option>
-                                        <option value="bookmark">{{trans('platform::systems/menu.form.relations.variables.bookmark')}}</option>
-                                        <option value="first">{{trans('platform::systems/menu.form.relations.variables.first')}}</option>
-                                        <option value="help">{{trans('platform::systems/menu.form.relations.variables.help')}}</option>
-                                        <option value="index">{{trans('platform::systems/menu.form.relations.variables.index')}}</option>
-                                        <option value="last">{{trans('platform::systems/menu.form.relations.variables.last')}}</option>
-                                        <option value="license">{{trans('platform::systems/menu.form.relations.variables.license')}}</option>
-                                        <option value="me">{{trans('platform::systems/menu.form.relations.variables.me')}}</option>
-                                        <option value="next">{{trans('platform::systems/menu.form.relations.variables.next')}}</option>
-                                        <option value="nofollow">{{trans('platform::systems/menu.form.relations.variables.nofollow')}}</option>
-                                        <option value="noreferrer">{{trans('platform::systems/menu.form.relations.variables.noreferrer')}}</option>
-                                        <option value="prefetch">{{trans('platform::systems/menu.form.relations.variables.prefetch')}}</option>
-                                        <option value="prev">{{trans('platform::systems/menu.form.relations.variables.prev')}}</option>
-                                        <option value="search">{{trans('platform::systems/menu.form.relations.variables.search')}}</option>
-                                        <option value="sidebar">{{trans('platform::systems/menu.form.relations.variables.sidebar')}}</option>
-                                        <option value="tag">{{trans('platform::systems/menu.form.relations.variables.tag')}}</option>
-                                        <option value="up">{{trans('platform::systems/menu.form.relations.variables.up')}}</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.class')}}</label>
-                                    <input type="text" class="form-control" data-target="components--menu.style" placeholder="red">
-                                </div>
-                                <div class="form-group">
-                                    <label>{{trans('platform::systems/menu.form.target.name')}}</label>
-                                    <select class="form-control" data-target="components--menu.target">
-                                        <option value="_self"
-                                                selected>{{trans('platform::systems/menu.form.target.variables.self')}}</option>
-                                        <option value="_blank">{{trans('platform::systems/menu.form.target.variables.blank')}}</option>
-                                    </select>
-                                </div>
+                                <select class="form-control" data-target="components--menu.robot">
+                                    <option value=""></option>
+                                    <option value="answer">{{ __('Answer to the question') }}</option>
+                                    <option value="chapter">{{ __('Section or chapter of the current document') }}</option>
+                                    <option value="co-worker">{{ __("Link to a colleague's page") }}</option>
+                                    <option value="colleague">{{ __("Link to a colleague's page (not at work)") }}</option>
+                                    <option value="contact">{{ __('Link to the page with contact information') }}</option>
+                                    <option value="details">{{ __('Link to page with details') }}</option>
+                                    <option value="edit">{{ __('Editable version of the current document') }}</option>
+                                    <option value="friend">{{ __('Link to friend page') }}</option>
+                                    <option value="question">{{ __('Question') }}</option>
+                                    <option value="archives">{{ __('Link to the site archive') }}</option>
+                                    <option value="author">{{ __('Link to the page about the author on the same domain') }}</option>
+                                    <option value="bookmark">{{ __('Permanent link to a section or entry') }}</option>
+                                    <option value="first">{{ __('Link to the first page') }}</option>
+                                    <option value="help">{{ __('Link to a document with help') }}</option>
+                                    <option value="index">{{ __('Link to content') }}</option>
+                                    <option value="last">{{ __('Link to the last page') }}</option>
+                                    <option value="license">{{ __('Link to a page with a license agreement or copyrights') }}</option>
+                                    <option value="me">{{ __('Link to author page on another domain') }}</option>
+                                    <option value="next">{{ __('Link to next page or section') }}</option>
+                                    <option value="nofollow">{{ __('Do not pass on the link TIC and PR.') }}</option>
+                                    <option value="noreferrer">{{ __('Do not pass HTTP headers over the link') }}</option>
+                                    <option value="prefetch">{{ __('Indicates that you must cache the specified resource in advance') }}</option>
+                                    <option value="prev">{{ __('Link to the previous page or section') }}</option>
+                                    <option value="search">{{ __('Link to search') }}</option>
+                                    <option value="sidebar">{{ __('Add link to browser favorites') }}</option>
+                                    <option value="tag">{{ __('Indicates that the tag (tag) is relevant to the current document') }}</option>
+                                    <option value="up">{{ __('Link to the parent page') }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Class') }}</label>
+                                <input type="text" class="form-control" data-target="components--menu.style"
+                                       placeholder="red">
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Link Target') }}</label>
+                                <select class="form-control" data-target="components--menu.target">
+                                    <option value="_self" selected>{{ __('In the current window') }}</option>
+                                    <option value="_blank">{{ __('In a new window') }}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                            {{__('Close')}}
-                        </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        {{ __('Close') }}
+                    </button>
 
-                        <button type="button" data-action="components--menu#remove"
-                                class="btn btn-danger" id="menu.remove">
-                            {{trans('platform::systems/menu.form.control.remove')}}
-                        </button>
+                    <button type="button" data-action="components--menu#remove"
+                            class="btn btn-danger" id="menu.remove">
+                        {{ __('Remove') }}
+                    </button>
 
-                        <button type="button" data-action="components--menu#clear"
-                                class="btn btn-default" id="menu.reset">
-                            {{trans('platform::systems/menu.form.control.reset')}}
-                        </button>
+                    <button type="button" data-action="components--menu#clear"
+                            class="btn btn-default" id="menu.reset">
+                        {{ __('Reset') }}
+                    </button>
 
-                        <button type="button" data-action="components--menu#add"
-                                class="btn btn-primary" id="menu.create">
-                            {{trans('platform::systems/menu.form.control.create')}}
-                        </button>
+                    <button type="button" data-action="components--menu#add"
+                            class="btn btn-primary" id="menu.create">
+                        {{ __('Create') }}
+                    </button>
 
-                        <button type="button" data-action="components--menu#save"
-                                class="btn btn-primary" id="menu.save">
-                            {{trans('platform::systems/menu.form.control.save')}}
-                        </button>
-                    </div>
+                    <button type="button" data-action="components--menu#save"
+                            class="btn btn-primary" id="menu.save">
+                        {{ __('Save') }}
+                    </button>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
+    </div>
 
 @stop

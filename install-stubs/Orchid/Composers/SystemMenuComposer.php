@@ -44,7 +44,7 @@ class SystemMenuComposer
                     ->setRoute(route('platform.systems.users'))
                     ->setPermission('platform.systems.users')
                     ->setSort(1000)
-                    ->setGroupName(trans('platform::systems/users.groupname'))
+                    ->setGroupName(__('All registered users'))
             )
             ->add('Auth',
                 ItemMenu::setLabel(__('Roles'))
@@ -63,7 +63,7 @@ class SystemMenuComposer
                     ->setGroupName(__('Sort entries into groups of posts on a given topic. This helps the user to find the necessary information on the site.'))
             )
             ->add('CMS',
-                ItemMenu::setLabel(trans('platform::menu.comments'))
+                ItemMenu::setLabel(__('Comments'))
                     ->setIcon('icon-bubbles')
                     ->setRoute(route('platform.systems.comments'))
                     ->setPermission('platform.systems.comments')

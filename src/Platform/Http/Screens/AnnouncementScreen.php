@@ -18,14 +18,14 @@ class AnnouncementScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Анонсы';
+    public $name = 'Announcements';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Обявления ресурса';
+    public $description = 'Resource announcements';
 
     /**
      * @var string
@@ -58,17 +58,17 @@ class AnnouncementScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Создать')
+            Link::name(__('Create'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
                 ->show(! $this->active),
 
-            Link::name('Обновить')
+            Link::name(__('Refresh'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
                 ->show($this->active),
 
-            Link::name('Удалить')
+            Link::name(__('Delete'))
                 ->icon('icon-trash')
                 ->method('disabled')
                 ->show($this->active),
@@ -102,7 +102,7 @@ class AnnouncementScreen extends Screen
                 'active'  => 1,
             ])->save();
 
-        Alert::info('Анонс был создан или обновлён');
+        Alert::info(__('Announcement has been created or updated.'));
 
         return back();
     }
@@ -113,7 +113,7 @@ class AnnouncementScreen extends Screen
     public function disabled()
     {
         Announcement::disableAll();
-        Alert::info('Анонс был выключен');
+        Alert::info(__('Announcement has been turned off.'));
 
         return back();
     }

@@ -34,12 +34,12 @@ class SystemMenuComposer
     {
         $this->dashboard->menu
             ->add('Tools',
-                ItemMenu::setLabel(trans('platform::bulldozer.title'))
+                ItemMenu::setLabel(__('Model builder'))
                     ->setIcon('icon-database')
                     ->setRoute(route('platform.bulldozer.index'))
                     ->setPermission('platform.bulldozer')
                     ->setActive('platform.bulldozer.*')
-                    ->setGroupName(trans('platform::bulldozer.groupname'))
+                    ->setGroupName(__('Allows you to quickly develop an application'))
             );
     }
 }

@@ -22,8 +22,8 @@ class BootCreateModel extends Rows
     {
         return [
             Field::tag('input')
-                ->title('Model Name:')
-                ->help('Create a new model for your application')
+                ->title(__('Model Name:'))
+                ->help(__('Create a new model for your application'))
                 ->name('name')
                 ->pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
                 ->required(),

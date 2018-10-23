@@ -94,7 +94,7 @@ class UserEditScreen extends Screen
                'password' => Layouts::rows([
                    Field::tag('password')
                        ->name('user.password')
-                       ->title(trans('platform::systems/users.password'))
+                       ->title(__('Password'))
                        ->placeholder('********'),
                ]),
             ]),

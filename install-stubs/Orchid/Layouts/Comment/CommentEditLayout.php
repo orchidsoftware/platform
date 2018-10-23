@@ -13,7 +13,7 @@ class CommentEditLayout extends Rows
      * Views.
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Throwable
      */
     public function fields(): array
     {
@@ -22,13 +22,13 @@ class CommentEditLayout extends Rows
             ->max(255)
             ->rows(10)
             ->required()
-            ->title(trans('platform::systems/comment.content'))
-            ->help(trans('platform::systems/comment.user_comment'));
+            ->title(__('Content'))
+            ->help(__('User comment'));
 
         $fields[] = Field::tag('checkbox')
             ->name('comment.approved')
-            ->title(trans('platform::systems/comment.checking'))
-            ->help(trans('platform::systems/comment.show_comment'))
+            ->title(__('Checking'))
+            ->help(__('Show comment'))
             ->sendTrueOrFalse();
 
         return $fields;

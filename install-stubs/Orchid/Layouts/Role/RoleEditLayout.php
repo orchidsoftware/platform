@@ -23,18 +23,18 @@ class RoleEditLayout extends Rows
                 ->name('role.name')
                 ->max(255)
                 ->required()
-                ->title(trans('platform::systems/roles.name'))
-                ->placeholder(trans('platform::systems/roles.name'))
-                ->help(trans('platform::systems/roles.name_help')),
+                ->title(__('Name'))
+                ->placeholder(__('Name'))
+                ->help(__('User role display name')),
 
             Field::tag('input')
                 ->type('text')
                 ->name('role.slug')
                 ->max(255)
                 ->required()
-                ->title(trans('platform::systems/roles.slug'))
-                ->placeholder(trans('platform::systems/roles.slug'))
-                ->help(trans('platform::systems/roles.slug_help')),
+                ->title(__('Slug'))
+                ->placeholder(__('Slug'))
+                ->help(__('Actual name in the system')),
         ];
     }
 }

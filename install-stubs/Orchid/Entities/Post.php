@@ -235,19 +235,35 @@ class Post extends Many
                 ->linkPost(),
 
             TD::set('name', 'Name')
+                ->width('250px')
                 ->locale()
                 ->column('content.name')
                 ->filter('text')
                 ->sort()
                 ->linkPost('name'),
 
+            TD::set('status')
+                ->sort(),
+
+            TD::set('phone', 'Phone')
+                ->locale()
+                ->column('content.phone')
+                ->filter('text')
+                ->linkPost('phone'),
+
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
-                ->sort(),
+                ->sort()
+                ->setRender(function ($item){
+                    return $item->publish_at->toDateString();
+                }),
 
             TD::set('created_at', 'Date of creation')
                 ->filter('date')
-                ->sort(),
+                ->sort()
+                ->setRender(function ($item){
+                    return $item->created_at->toDateString();
+                }),
         ];
     }
 }

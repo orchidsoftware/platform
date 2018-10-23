@@ -122,7 +122,7 @@ class UserListScreen extends Screen
 
         $user->fill($attributes)->save();
 
-        Alert::info(trans('platform::systems/users.User was saved'));
+        Alert::info(__('User was saved.'));
 
         return back();
     }

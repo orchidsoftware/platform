@@ -123,7 +123,11 @@ class HttpFilter
             return $query->whereIn($property, $value);
         }
 
-        return $query->where($property, $value);
+        if (is_int($value)) {
+            return $query->where($property, $value);
+        }
+
+        return $query->where($property, 'like', "%$value%");
     }
 
     /**

@@ -37,18 +37,18 @@ class PlatformProvider extends ServiceProvider
     protected function registerPermissionsMain(): array
     {
         return [
-            trans('platform::permission.main.main') => [
+            __('Main') => [
                 [
                     'slug'        => 'platform.index',
-                    'description' => trans('platform::permission.main.main'),
+                    'description' => __('Main'),
                 ],
                 [
                     'slug'        => 'platform.systems',
-                    'description' => trans('platform::permission.main.systems'),
+                    'description' => __('Systems'),
                 ],
                 [
                     'slug'        => 'platform.systems.index',
-                    'description' => trans('platform::permission.systems.settings'),
+                    'description' => __('Settings'),
                 ],
             ],
         ];
@@ -60,22 +60,22 @@ class PlatformProvider extends ServiceProvider
     protected function registerPermissionsSystems(): array
     {
         return [
-            trans('platform::permission.main.systems') => [
+            __('Systems') => [
                 [
                     'slug'        => 'platform.systems.roles',
-                    'description' => trans('platform::permission.systems.roles'),
+                    'description' => __('Roles'),
                 ],
                 [
                     'slug'        => 'platform.systems.users',
-                    'description' => trans('platform::permission.systems.users'),
+                    'description' => __('Users'),
                 ],
                 [
                     'slug'        => 'platform.systems.comments',
-                    'description' => trans('platform::permission.systems.comment'),
+                    'description' => __('Comments'),
                 ],
                 [
                     'slug'        => 'platform.systems.category',
-                    'description' => trans('platform::permission.systems.category'),
+                    'description' => __('Category'),
                 ],
             ],
         ];

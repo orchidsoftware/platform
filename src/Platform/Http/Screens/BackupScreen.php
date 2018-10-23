@@ -22,14 +22,14 @@ class BackupScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Резервные копии';
+    public $name = 'Backups';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Резервные копии';
+    public $description = 'Backup copies allow you to store copies for unforeseen circumstances';
 
     /**
      * @var string
@@ -69,7 +69,7 @@ class BackupScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::name('Сделать резервную копию')
+            Link::name(__('Create'))
                 ->method('runBackup'),
         ];
     }
@@ -94,9 +94,9 @@ class BackupScreen extends Screen
         $queue = config('queue.default');
 
         if ($queue === 'sync' || $queue === 'null') {
-            Alert::warning('Влючите очередь задач, что бы сделать резервную копию');
+            Alert::warning(__('Enable task queue to backup.'));
         } else {
-            Alert::info('Зачада была добавлена в очередь');
+            Alert::info(__('The task has been added to the queue.'));
             Artisan::queue('backup:run');
         }
 
