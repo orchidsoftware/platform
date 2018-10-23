@@ -53,6 +53,7 @@ class InstallCommand extends Command
         sleep(1);
 
         $this
+            ->checkInstall()
             ->executeCommand('migrate')
             ->executeCommand('vendor:publish', ['--force' => true, '--tag' => 'migrations'])
             ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => [
@@ -172,6 +173,24 @@ class InstallCommand extends Command
 
         if ($str !== false && strpos($str, $constant) === false) {
             file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return \Orchid\Platform\Commands\InstallCommand
+     */
+    private function checkInstall() : self
+    {
+        if(!file_exists(app_path('Orchid'))){
+           return $this;
+        }
+
+        $confim = $this->confirm('The platform has already been installed, do you really want to repeat?');
+
+        if(!$confim){
+            die();
         }
 
         return $this;
