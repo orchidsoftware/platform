@@ -124,7 +124,7 @@ if (! function_exists('get_filter')) {
     }
 }
 
-if (!function_exists('get_filter_string')) {
+if (! function_exists('get_filter_string')) {
 
     /**
      * @param null $property
