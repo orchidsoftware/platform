@@ -52,7 +52,7 @@ Executa o seguinte comando para criares um utilizador com direitos supremos (no 
 
 
 ```php
-php artisan make:admin nickname email@email.com secretpassword
+php artisan orchid:admin nickname email@email.com secretpassword
 ```
 
 
@@ -65,7 +65,7 @@ O exemplo de adicionar as permissões personalizadas com o uso do provedor:
 
 ```php
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

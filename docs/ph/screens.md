@@ -23,7 +23,7 @@ Ang mga screens (o anyo) ay ginagamit sa ORCHID upang ilahad ang mga datos. Ang 
 Upang makalikha ng bagong screen, kailangan mong paganahin ang sumusunod na utos:
 
 ```php
-php artisan make:screen Users
+php artisan orchid:screen Users
 ```
 
 Sa `app/Http/Screens` direktoryo, ang `Users` na file ay malilikha sa sumusunod na nilalaman:
@@ -191,9 +191,9 @@ public function layout() : array
 
 Makakarehistro ka ng bawat screen gamit ang pamamaraang `screen` mula sa ruta
 ```php
-Route::screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+Route::screen ('/ news', 'NewsList', 'platform.screens.news.list');
 //or
-$route->screen ('/ news', 'NewsList', 'dashboard.screens.news.list');
+$route->screen ('/ news', 'NewsList', 'platform.screens.news.list');
 ```
 
 

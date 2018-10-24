@@ -11,8 +11,8 @@ Through them users may express their thoughts about some posts, approve or disap
 Commentaries are appended to ORCHID posts.
 
 ```php
-use Orchid\Platform\Core\Models\Comment;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
 
 // Specific post
 $post = Post::find(42);

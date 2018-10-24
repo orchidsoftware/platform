@@ -1,7 +1,9 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
+use Orchid\Press\Models\Menu;
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Menu;
 
 class MenusTableSeeder extends Seeder
 {

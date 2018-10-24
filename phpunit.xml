@@ -12,9 +12,6 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
@@ -22,6 +19,14 @@
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory suffix=".blade.php">./src/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
     <php>
         <env name="APP_NAME" value="ORCHID"/>
         <env name="APP_ENV" value="testing"/>
@@ -36,4 +41,7 @@
         <env name="SCOUT_DRIVER" value="null"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
+    <logging>
+         <log type="coverage-clover" target="clover.xml"/>
+    </logging>
 </phpunit>

@@ -23,19 +23,10 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
-
-    /**
      * Create a new controller instance.
      */
     public function __construct()
     {
-        $this->redirectTo = config('platform.prefix');
-
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -44,6 +35,16 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('dashboard::auth.login');
+        return view('platform::auth.login');
+    }
+
+    /**
+     * Where to redirect users after login / registration.
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function redirectTo()
+    {
+        return config('platform.prefix');
     }
 }

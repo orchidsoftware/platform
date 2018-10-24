@@ -1,8 +1,10 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Faker\Factory as Faker;
+use Orchid\Setting\Setting;
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Setting;
 
 class SettingsTableSeeder extends Seeder
 {

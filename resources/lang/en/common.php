@@ -25,6 +25,10 @@ return [
     'of'           => 'of',
     'search_posts' => 'Search post...',
 
+    'screen' => [
+        'Records not found' => 'Records not found',
+    ],
+
     'access_denied' => [
         'label' => 'Access denied',
         'help'  => "You don't have the required permissions to view this page.",
@@ -40,6 +44,7 @@ return [
         'date_created' => 'Date of creation',
         'search'       => 'Search by content',
         'status'       => 'Status',
+        'apply'        => 'Apply',
     ],
 
     'widgets' => [

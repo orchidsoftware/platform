@@ -11,7 +11,7 @@ For example, a calendar wiidget may be used in rendering a complex interface. Wi
 To create a new widget you need to do the following:
 
 ```php
-php artisan make:widget MySuperWidget
+php artisan orchid:widget MySuperWidget
 ```
 
 In the `app/Http/Widgets` folder a widget template class will be created. Widget may have it's own view like a controller.
@@ -88,7 +88,7 @@ Then the `$query` property will take a search value and the `$key` key will get 
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

@@ -41,7 +41,7 @@ After that there will be several keys installed in a session:
 For displaying at a particular place the following may be used:
 ```html
 <div class="container">
-    @include('dashboard::partials.alert')
+    @include('platform::partials.alert')
     <p>Welcome to my website...</p>
 </div>
 ```

@@ -26,9 +26,9 @@ halimbawa, maglalabas lamang ito ng pinagmulang menu na mga aytem kasama ang mga
 at ang lokasyon ay mahalaga:
 
 ```php
-namespace Orchid\Platform\Core\Models\Menu;
+namespace Orchid\Press\Models\Menu;
 
-$menu = Menu::where ('lang', App::getLocale ())
+$menu = Menu::where ('lang', app()->getLocale() ())
     ->whereNull ('parent')
     ->where ('type', 'footer')
     ->with ('children')

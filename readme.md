@@ -6,16 +6,16 @@
   <br>
 </h1>
 
-<h4 align="center">Powerful platform for building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
+<h4 align="center">Building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
-<a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
+<a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=develop"></a>
 <a href="https://styleci.io/repos/73781385"><img src="https://styleci.io/repos/73781385/shield?branch=master"/></a>
+<a href="https://codecov.io/gh/orchidsoftware/platform"><img src="https://codecov.io/gh/orchidsoftware/platform/branch/develop/graph/badge.svg" /></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/v/stable"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/downloads"/></a>
 <a href="https://packagist.org/packages/orchid/platform"><img src="https://poser.pugx.org/orchid/platform/license"/></a>
 <a href="https://t.me/orchid_community"><img src="https://img.shields.io/badge/chat-telegram-blue.svg"/></a>
-  
 </p>
 
 ## Introduction
@@ -27,19 +27,6 @@ Using application templates, saves the time and effort of building from scratch,
 
 Documentation can be found at [ORCHID website](http://orchid.software).
 
-###### Simple screenshot:
-![screenshot](https://user-images.githubusercontent.com/5102591/32980416-22ad653e-cc77-11e7-9fb9-4747b241270f.png)
-
-
-## System requirements
-
-Make sure your server meets the following requirements.
-
-- Apache 2.2+ or nginx
-- MySQL Server 5.7.8+ , Mariadb 10.3.2+ or PostgreSQL
-- PHP Version 7.1.3+
-
-
 ## Installation
 
 Firstly, download the Laravel installer using Composer:
@@ -47,73 +34,41 @@ Firstly, download the Laravel installer using Composer:
 $ composer require orchid/platform
 ```
 
-Extend your user model using the `Orchid\Core\Models\User as BaseUser` alias:
+Install package
 
 ```php
-namespace App;
-
-use Orchid\Platform\Core\Models\User as BaseUser;
-
-class User extends BaseUser
-{
-
-}
-
-```
-
-Publish ORCHID's vendor files
-
-```php
-php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
-php artisan vendor:publish --all
-```
-
-Run your database migration
-```php
-php artisan migrate
-```
-
-Make available css/js/etc files
-```php
-php artisan storage:link
-php artisan orchid:link
+php artisan orchid:install
 ```
 
 Create your admin user
 ```php
-php artisan make:admin admin admin@admin.com password
+php artisan orchid:admin admin admin@admin.com password
 ```
 
-Run server
-```php
-php artisan serve
-```
-
-#### Usage
-
-To view ORCHID's dashboard go to:
-```php
-http://localhost:8000/dashboard
-```
-
-
+Once these commands have completed, you are ready to enjoy platform!
 
 ## Change log
 
 See [CHANGELOG](CHANGELOG.md).
 
-## Security
 
-If you discover security related issues, please email  [Alexandr Chernyaev](mailto:bliz48rus@gmail.com) instead of using the issue tracker.
+## Test
 
-## Contributing
+```bash
+php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
+```
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+## Donate & Support
+
+If you would like to support development by making a donation you can do so [here](https://www.paypal.me/tabuna/10usd). &#x1F60A;
+
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+---
+
+> [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
+> GitHub [@tabuna](https://github.com/tabuna) &nbsp;&middot;&nbsp;
+> Twitter [@orchid_platform](https://twitter.com/orchid_platform)

@@ -51,9 +51,9 @@ TD::name('appointment_time')
 ```
 
 
-### Behaviors
+### Entities
 
-Many behaviors now don't have a default property:
+Many entities now don't have a default property:
 
 ```php
 /**
@@ -104,7 +104,7 @@ Field::tag('select')
     ])
     ->name('robot')
     ->title('Indexing')
-    ->help('Allow search bots to index page'),
+    ->help('Allow search bots to index'),
 ```
 
 
@@ -112,19 +112,19 @@ Field section in configuration now must look like that:
 
 ```php
 'fields' => [
-    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
-    'input'        => Orchid\Platform\Fields\Types\InputField::class,
-    'list'         => Orchid\Platform\Fields\Types\ListField::class,
-    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-    'select'       => Orchid\Platform\Fields\Types\SelectField::class,
-    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
-    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
-    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
-    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
-    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
-    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
-    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
-    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
+    'input'        => Orchid\Screen\Fields\InputField::class,
+    'list'         => Orchid\Screen\Fields\ListField::class,
+    'tags'         => Orchid\Screen\Fields\TagsField::class,
+    'select'       => Orchid\Screen\Fields\SelectField::class,
+    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+    'place'        => Orchid\Screen\Fields\PlaceField::class,
+    'picture'      => Orchid\Screen\Fields\PictureField::class,
+    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
+    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
+    'code'         => Orchid\Screen\Fields\CodeField::class,
+    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
+    'password'     => Orchid\Screen\Fields\PasswordField::class,
+    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
 ],
 ```

@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Press\Models\Menu;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +15,7 @@ use Orchid\Platform\Core\Models\Menu;
 */
 
 $factory->define(Menu::class, function (Faker $faker) {
-    $lang = App::getLocale();
+    $lang = app()->getLocale();
     $MenuTitle = $faker->unique()->word;
 
     $RobotArr = ['answer', 'chapter', 'co-worker', 'colleague', 'contact',
@@ -27,9 +25,9 @@ $factory->define(Menu::class, function (Faker $faker) {
         'sidebar', 'tag', 'up', ];
 
     return [
-        'label'  => Str::slug($MenuTitle),
-        'title'  => $MenuTitle.' '.Str::slug($faker->word),
-        'slug'   => '/'.Str::slug($MenuTitle),
+        'label'  => str_slug($MenuTitle),
+        'title'  => $MenuTitle.' '.str_slug($faker->word),
+        'slug'   => '/'.str_slug($MenuTitle),
         'robot'  => $faker->randomElement($RobotArr),
         'style'  => $faker->safeColorName,
         'target' => $faker->randomElement(['_self', '_blank']),

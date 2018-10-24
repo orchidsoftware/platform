@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
 
-abstract class Filter implements FilterInterface
+abstract class Filter
 {
     /**
      * @var Request
@@ -16,9 +15,9 @@ abstract class Filter implements FilterInterface
     public $request;
 
     /**
-     * @var null
+     * @var
      */
-    public $parameters = null;
+    public $parameters;
 
     /**
      * @var bool
@@ -42,18 +41,18 @@ abstract class Filter implements FilterInterface
     /**
      * @var null
      */
-    public $behavior = null;
+    public $entity;
 
     /**
      * Filter constructor.
      *
-     * @param $behavior
+     * @param $entity
      */
-    public function __construct($behavior = null)
+    public function __construct($entity = null)
     {
-        $this->behavior = $behavior;
+        $this->entity = $entity;
         $this->request = request();
-        $this->lang = App::getLocale();
+        $this->lang = app()->getLocale();
     }
 
     /**
@@ -73,7 +72,7 @@ abstract class Filter implements FilterInterface
     /**
      * @param Builder $builder
      *
-     * @return mixed
+     * @return Builder
      */
     abstract public function run(Builder $builder) : Builder;
 

@@ -1,12 +1,4 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="field-{{$slug}}">{{$title}}</label>
-    @endif
-    <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
-           @if(isset($required) && $required) required @endif
-    >
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@component($typeForm,get_defined_vars())
+    <input @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+           @isset($required) required @endisset>
+@endcomponent

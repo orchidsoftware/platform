@@ -13,7 +13,7 @@ Esta não é solução da caixa nem da ferramenta universal, então deves estend
 Existe um comando para criar um novo filtro:
 
 ```php
-php artisan make:filter QueryFilter
+php artisan orchid:filter QueryFilter
 ```
 
 Ele vai criar a classe de filtro na pasta `app/Http/Filters`
@@ -70,7 +70,7 @@ Um filtro irá funcionar sujeito à disponibilidade de pelo menos um dos parâme
 
 Para usar um filtro, precisas especificá-lo numa classe de comportamento.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {
@@ -93,13 +93,13 @@ class MyBehaviorPost extends Many
 
 A filtração pode ser iniciada pelo método `filtersApply`:
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 Post::type('news')->filtersApply()->simplePaginate();
 ```
 
 
-Para usares os filtros nos teus próprios modelos, é necessário aplicar `Orchid\Platform\Core\Traits\FilterTrait` trocar e passar para funcionar `filtersApply` variedade de classes:
+Para usares os filtros nos teus próprios modelos, é necessário aplicar `Orchid\Platform\Traits\FilterTrait` trocar e passar para funcionar `filtersApply` variedade de classes:
 
 ```php
 use App\MyModel;

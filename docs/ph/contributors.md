@@ -67,7 +67,7 @@ Magdagdag ng isang lokal na repositori sa composer.json na aplikasyon:
 "repositories": [
     {
         "type": "path",
-        "url": "/ home/tabuna/orchid/platform"
+        "url": "./platform"
     }
 ]
 ```

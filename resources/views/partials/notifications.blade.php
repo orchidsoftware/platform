@@ -1,52 +1,59 @@
-@php
-    $notifications = Auth::user()->unreadNotifications->where('type',\Orchid\Platform\Notifications\DashboardNotification::class);
-@endphp
-
-<div class="w-full tab-pane fade in nav show"
-  role="tabpanel"
-  id="menu-notifications"
-  aria-labelledby="notise-tab">
-
-@if(count($notifications) > 0)
-     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">{{trans('dashboard::common.notifications')}}
-        <form action="{{route('dashboard.notification.read')}}"
-              method="post"
-              id="clear-notications-form"
-              class="pull-right">
-            <button type="submit" class="btn btn-sm btn-link inline">
-                <i class="icon-trash"></i>
-            </button>
-            @csrf
-        </form>
-    </li>
- @endif
-
-@forelse ($notifications as $notification)
-
-<li>
-    <a href="{{$notification->data['action'] or '#'}}">
-          <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
-            <span class="clear m-l-md">
-                @if($notification->read())
-                    <span>{{$notification->data['title']  or ''}}</span>
-                @else
-                    {{$notification->data['title']   or ''}}
-                @endif
-                <small class="text-muted clear text-ellipsis">{{$notification->data['message']   or ''}}</small>
-          </span>
+<div class="dropdown d-none d-md-flex">
+    <a class="nav-link icon no-padder" data-toggle="dropdown">
+        <i class="icon-bell"></i>
+        @if(count($notifications) > 0)
+            <span class="badge badge-sm up bg-danger pull-right-xs text-white">
+                {{ count($notifications) < 10 ? count($notifications) : '+'}}
+            </span>
+        @endif
     </a>
-</li>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white">
 
-@empty
 
-<div class="v-center" style="height: 80vh;">
-    <h5 class="text-center w-full text-muted font-thin">{{trans('dashboard::common.no_notifications')}}</h5>
+        @if(count($notifications) > 0)
+            <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                {{ __('Notifications') }}
+            </div>
+        @endif
+
+        @forelse ($notifications as $notification)
+
+            <a href="{{$notification->data['action'] ?? '#'}}" class="dropdown-item d-flex">
+                <i class="icon-circle {{ $notification->data['type'] }} pull-left m-t-sm text-xs"></i>
+                <span class="clear m-l-md">
+                    @if($notification->read())
+                            <span>{{$notification->data['title'] ?? ''}}</span>
+                        @else
+                            {{$notification->data['title'] ?? ''}}
+                    @endif
+                    <small class="text-muted clear text-ellipsis">{{$notification->data['message'] ?? ''}}</small>
+                </span>
+            </a>
+
+        @empty
+
+        <div class="d-flex">
+            <p class="text-center m-0 w-full text-muted font-thin">{{ __('No notifications') }}</p>
+        </div>
+
+        @endforelse
+
+        @if(count($notifications) > 0)
+            <div class="dropdown-divider"></div>
+
+            <form action="{{route('platform.notification.read')}}"
+                  method="post"
+                  id="clear-notications-form">
+                <button type="submit" class="btn btn-sm btn-link inline dropdown-item text-center text-muted-dark">
+                    <i class="icon-trash"></i> {{ __('Mark all as read') }}
+                </button>
+                @csrf
+            </form>
+        @endif
+
+    </div>
 </div>
 
-@endforelse
 
-@if(count($notifications) > 0)
- <li class="divider b-t b-dark"></li>
-@endif
 
-</div>
+

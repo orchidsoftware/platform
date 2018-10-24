@@ -1,14 +1,6 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
-        <div class="form-group">
-        <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
-               data-date-format="{{$format or "YYYY-MM-DD HH:mm:ss"}}"
-        >
+@component($typeForm,get_defined_vars())
+    <div>
+        <input data-controller="fields--datetime" @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+                   data-fields--datetime-date-format="{{$format ?? "Y-m-d H:i:S"}}">
     </div>
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@endcomponent

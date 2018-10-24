@@ -1,33 +1,24 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+declare(strict_types=1);
 
-use Orchid\Platform\Tests\TestUnitCase;
-use Orchid\Platform\Core\Models\Setting;
+namespace Orchid\Tests\Unit;
+
+use Orchid\Setting\Setting;
+use Orchid\Tests\TestUnitCase;
 
 class SettingsTest extends TestUnitCase
 {
     /**
-     * Database connect.
-     *
-     * @var
-     */
-    public $capsule;
-
-    /**
      * Setting Model.
      *
-     * @var
+     * @var Setting
      */
     public $setting;
 
     /** @test */
-    public function testOneValue()
+    public function test_for_one_value()
     {
-        $setting = new Setting();
-        $setting->cache = false;
-        $this->setting = $setting;
-
         //Запишем значение
         $key = 'test-'.str_random(40);
         $value = 'value-'.str_random(40);
@@ -48,12 +39,8 @@ class SettingsTest extends TestUnitCase
     }
 
     /** @test */
-    public function testManyValue()
+    public function test_for_many_value()
     {
-        $setting = new Setting();
-        $setting->cache = false;
-        $this->setting = $setting;
-
         $valueArray = [
             'test-1' => 'value-'.str_random(40),
             'test-2' => 'value-'.str_random(40),
@@ -81,5 +68,22 @@ class SettingsTest extends TestUnitCase
         ]);
 
         $this->assertEquals(3, $result);
+    }
+
+    public function test_use_helper()
+    {
+        $this->setting->set('helper', 'run');
+
+        $this->assertEquals('run', setting('helper'));
+
+        $this->assertEquals('default', setting('not-found', 'default'));
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $setting = new Setting();
+        $setting->cache = false;
+        $this->setting = $setting;
     }
 }

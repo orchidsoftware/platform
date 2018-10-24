@@ -1,211 +1,73 @@
-<!DOCTYPE html>
-<html lang="{{App::getLocale()}}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') - ORCHID</title>
-    <meta name="csrf_token" content="{{csrf_token()}}">
-    <meta name="auth" content="{{Auth::check()}}">
-    <link rel="stylesheet" type="text/css" href="{{mix('/css/orchid.css','orchid')}}">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/orchid/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/orchid/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/orchid/favicon/manifest.json">
-    <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
-    <meta name="apple-mobile-web-app-title" content="ORCHID">
-    <meta name="application-name" content="ORCHID">
-    <meta name="theme-color" content="#ffffff">
-
-    <meta name="turbolinks-root" content="/{{Dashboard::prefix()}}">
-    <meta name="dashboard-prefix" content="{{Dashboard::prefix()}}">
-
-    <meta http-equiv="X-DNS-Prefetch-Control" content="on"/>
-    <link rel="dns-prefetch" href="{{ config('app.url') }}"/>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+@extends('platform::layouts.app')
 
 
-    @foreach(Dashboard::getProperty('resources')['stylesheets'] as $stylesheet)
-        <link rel="stylesheet" href="{{$stylesheet}}">
-    @endforeach
-
-    @stack('stylesheets')
-
-    <script src="{{ mix('/js/manifest.js','orchid')}}" type="text/javascript"></script>
-    <script src="{{ mix('/js/vendor.js','orchid')}}" type="text/javascript"></script>
-    <script src="{{ mix('/js/orchid.js','orchid')}}" type="text/javascript"></script>
-</head>
+@section('body')
 
 
-<body>
-<div id="app" class="app app-aside-fixed">
+    <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
 
-    <!-- header  -->
-    <header id="header" class="app-header navbar" role="menu">
-        <!-- navbar header  -->
-        <div class="navbar-header bg-black dk v-center">
 
-            <button class="pull-left click" data-toggle="open" title="Menu" data-target="#aside">
-                <i class="icon-menu"></i>
-            </button>
+        <div class="aside col-xs-12 col-md-2 offset-md-2 no-padder bg-dark">
 
-            <!-- brand  -->
-            <a href="{{route('dashboard.index')}}" class="navbar-brand text-lt center">
-                <i class="icon-orchid"></i>
-                <!-- <img src="{{asset('/orchid/img/logo.svg')}}" width="50px">-->
-            </a>
-            <!-- / brand  -->
+            <div class="d-flex v-center wrapper mt-md-4">
 
-            <button class="pull-right"
-                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <i class="icon-logout"></i>
-            </button>
+                <a class="header-brand" href="{{route('platform.index')}}">
+                    @includeIf(config('platform.template.header','platform::layouts.header'))
+                </a>
 
-        </div>
-        <!-- / navbar header  -->
+                <a href="#" class="header-toggler d-lg-none ml-auto" data-toggle="collapse"
+                   data-target="#headerMenuCollapse">
+                    <span class="header-toggler-icon icon-menu"></span>
+                </a>
 
-        <!-- navbar collapse  -->
-        <div class="app-header wrapper navbar-collapse box-shadow bg-white-only v-center">
-
-            <div class="col-xs-12 col-md-4">
-                <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
-                <small class="text-muted text-ellipsis">@yield('description')</small>
-            </div>
-
-            <div class="col-xs-12 col-md-8">
-                @yield('navbar')
             </div>
 
 
-        </div>
-        <!-- / navbar collapse  -->
-    </header>
-    <!-- / header  -->
+            <nav class="collapse d-lg-block" id="headerMenuCollapse">
 
+                @include('platform::partials.search')
 
-    <!-- aside  -->
-    <aside id="aside" class="app-aside d-none d-md-block">
-        <div class="aside-wrap-main">
+                @includeWhen(Auth::check(), 'platform::partials.profile')
 
-            <div class="navi-wrap">
+                <ul class="nav flex-column m-b">
+                    {!! Dashboard::menu()->render('Main') !!}
+                </ul>
 
-                <!-- nav  -->
-                <nav class="navi clearfix">
-                    <ul class="nav flex-column" role="tablist">
+            </nav>
 
-                        {{--
-                        <li class="nav-item">
-                            <a href="#" class="nav-link click" data-toggle="open" title="Menu" data-target="#aside">
-                                <i class="icon-menu" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        --}}
-
-                        <li class="nav-item">
-                            <a href="/{{Dashboard::prefix()}}" class="navbar-brand nav-link text-lt w-full">
-
-                                <i class="icon-orchid text-primary" style="font-size: 2rem"></i>
-                            </a>
-                        </li>
-
-                        {!! Dashboard::menu()->render('Main') !!}
-
-                    </ul>
-
-                    <ul class="nav nav-footer-fix">
-                        <li>
-                            <a href="{{ route('dashboard.logout') }}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                               dusk="logout-button">
-                              <i class="icon-logout" aria-hidden="true"></i>
-                                <span>{{trans('dashboard::auth/account.sign_out')}}</span>
-                            </a>
-
-                            <form id="logout-form" class="hidden" action="{{ route('dashboard.logout') }}" method="POST">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-
-                </nav>
-                <!-- nav  -->
+            <div class="wrapper m-b m-t d-none d-lg-block">
+                @includeIf(config('platform.template.footer','platform::layouts.footer'))
             </div>
 
-
         </div>
+        <div class="col-md-6 bg-white b-r box-shadow-lg no-padder">
 
-        <div class="aside-wrap">
-            <div class="navi-wrap">
-
-                <!-- nav  -->
-                <nav class="navi clearfix">
-
-                    <div class="nav tab-content flex-column" id="aside-wrap-list">
-                        @include('dashboard::partials.notifications')
-                        {!! Dashboard::menu()->render('Main','dashboard::partials.leftSubMenu') !!}
+            <div class="wrapper mt-4">
+                <div class="v-center">
+                    <div class="col-xs-12 col-md-4 no-padder">
+                        <h1 class="m-n font-thin h3 text-black">@yield('title')</h1>
+                        <small class="text-muted text-ellipsis">@yield('description')</small>
                     </div>
-                </nav>
-                <!-- nav  -->
-
-
-            </div>
-        </div>
-
-
-    </aside>
-    <!-- / aside  -->
-
-
-    <!-- content  -->
-    <div id="content" class="app-content" role="main">
-        <div class="app-content-body" id="app-content-body">
-
-            @include('dashboard::partials.alert')
-
-            @if (count($errors) > 0)
-                <div class="alert alert-danger m-b-none" role="alert">
-                    <strong>Oh snap!</strong>
-                    Change a few things up and try submitting again.
-                    <ul class="m-t-xs">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                    <div class="col-xs-12 col-md-8 no-padder">
+                        @yield('navbar')
+                    </div>
                 </div>
+            </div>
+
+            @if (Breadcrumbs::exists())
+                {{ Breadcrumbs::view('platform::partials.breadcrumbs') }}
             @endif
 
+            <div class="d-flex">
+                <div class="app-content-body" id="app-content-body">
+                    @include('platform::partials.alert')
+                    @include('platform::partials.announcement')
+                    @yield('content')
+                </div>
+            </div>
 
-            @yield('content')
         </div>
     </div>
-    <!-- /content  -->
 
-</div>
-
-
-
-@foreach(Dashboard::getProperty('resources')['scripts'] as $scripts)
-    <script src="{{$scripts}}" type="text/javascript"></script>
-@endforeach
-
-@stack('scripts')
-
-<script>
-    var activeMenu = false;
-    $('#aside-wrap-list').children('.tab-pane').each(function () {
-        if($(this).hasClass('active')){
-           activeMenu = true;
-        }
-    });
-
-    if(!activeMenu){
-        $('#menu-notifications').addClass('active')
-    }
-
-</script>
-
-
-
-</body>
-</html>
+    @include('platform::partials.support')
+@endsection

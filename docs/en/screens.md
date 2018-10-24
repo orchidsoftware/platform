@@ -2,7 +2,7 @@
 ----------
 
 
-Screens are the main components of user interface that are discribed by a composition hierarcy, accoording to it every element has several properties that affect it's own apparel and behavior.  By changing
+Screens are the main components of user interface that are discribed by a composition hierarcy, accoording to it every element has several properties that affect it's own apparel and entity.  By changing
 the layout structure and element properties you may create completeley new layouts almost in a few minutes.
 
 A screen doesn't know where the data is from, it may be from database, API or other external sources. A screen has standard functionality of modern user interface. You may configure the screen layout and also add or delete commands. 
@@ -30,7 +30,7 @@ With ORCHID it's easier to do it, and you may create a set of screens in a few m
 To create a new screen you must perform the following comand:
 
 ```php
-php artisan make:screen Users
+php artisan orchid:screen Users
 ```
 
 In the `app/Http/Controllers/Screens` directory will be created the `Users` file with the following content:
@@ -96,9 +96,9 @@ class Users extends Screen
 
 You may register every screen with the Route's `screen` method
 ```php
-Route::screen('/news', 'Users','dashboard.screens.users.list');
+Route::screen('/news', 'Users','platform.screens.users.list');
 //or
-$route->screen('/news', 'Users','dashboard.screens.users.list');
+$route->screen('/news', 'Users','platform.screens.users.list');
 ```
 
 

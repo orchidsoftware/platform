@@ -1,17 +1,21 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
-    <div class="checkbox {{$class or ''}}">
-        <label class="i-checks">
-            <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
-                   @if(isset($attributes['value'])) checked @endif
+@component($typeForm,get_defined_vars())
+    @isset($sendTrueOrFalse)
+        <input hidden name="{{$attributes['name']}}" value="{{$attributes['novalue']}}">
+        <div class="custom-control custom-checkbox">
+            <input value="{{$attributes['yesvalue']}}"
+                   @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+                   @if(isset($attributes['value']) && $attributes['value']) checked @endif
+                   id="{{$id}}"
             >
-            <i></i> {{$placeholder or ''}}
-        </label>
-    </div>
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+            <label class="custom-control-label" for="{{$id}}">{{$placeholder ?? ''}}</label>
+        </div>
+    @else
+        <div class="custom-control custom-checkbox">
+            <input @include('platform::partials.fields.attributes', ['attributes' => $attributes])
+                   @if(isset($attributes['value']) && $attributes['value']) checked @endif
+            id="{{$id}}"
+            >
+            <label class="custom-control-label" for="{{$id}}">{{$placeholder ?? ''}}</label>
+        </div>
+    @endisset
+@endcomponent

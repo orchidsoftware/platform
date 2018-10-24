@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,40 +18,40 @@ $factory->define(Role::class, function (Faker $faker) {
     $role = ['Admin', 'User', 'Autor'];
     $roles = [
         $role[0] => [
-            'dashboard.index'                => 1,
-            'dashboard.systems'              => 1,
-            'dashboard.systems.roles'        => 1,
-            'dashboard.systems.settings'     => 1,
-            'dashboard.systems.users'        => 1,
-            'dashboard.systems.menu'         => 1,
-            'dashboard.systems.category'     => 1,
-            'dashboard.systems.comment'      => 1,
-            'dashboard.systems.attachment'   => 1,
-            'dashboard.systems.media'        => 1,
-            'dashboard.pages'                => 1,
-            'dashboard.pages.type.demo-page' => 1,
-            'dashboard.posts'                => 1,
-            'dashboard.posts.type.demo'      => 1,
+            'platform.index'                => 1,
+            'platform.systems'              => 1,
+            'platform.systems.roles'        => 1,
+            'platform.systems.settings'     => 1,
+            'platform.systems.users'        => 1,
+            'platform.systems.menu'         => 1,
+            'platform.systems.category'     => 1,
+            'platform.systems.comment'      => 1,
+            'platform.systems.attachment'   => 1,
+            'platform.systems.media'        => 1,
+            'platform.pages'                => 1,
+            'platform.pages.type.demo-page' => 1,
+            'platform.posts'                => 1,
+            'platform.posts.type.demo'      => 1,
         ],
         $role[1] => [
-            'dashboard.index'              => 1,
-            'dashboard.systems'            => 1,
-            'dashboard.systems.settings'   => 1,
-            'dashboard.systems.comment'    => 1,
-            'dashboard.systems.attachment' => 1,
-            'dashboard.systems.media'      => 1,
+            'platform.index'              => 1,
+            'platform.systems'            => 1,
+            'platform.systems.settings'   => 1,
+            'platform.systems.comment'    => 1,
+            'platform.systems.attachment' => 1,
+            'platform.systems.media'      => 1,
         ],
         $role[2] => [
-            'dashboard.index'                => 1,
-            'dashboard.systems'              => 1,
-            'dashboard.systems.settings'     => 1,
-            'dashboard.systems.comment'      => 1,
-            'dashboard.systems.attachment'   => 1,
-            'dashboard.systems.media'        => 1,
-            'dashboard.pages'                => 1,
-            'dashboard.pages.type.demo-page' => 1,
-            'dashboard.posts'                => 1,
-            'dashboard.posts.type.demo'      => 1,
+            'platform.index'                => 1,
+            'platform.systems'              => 1,
+            'platform.systems.settings'     => 1,
+            'platform.systems.comment'      => 1,
+            'platform.systems.attachment'   => 1,
+            'platform.systems.media'        => 1,
+            'platform.pages'                => 1,
+            'platform.pages.type.demo-page' => 1,
+            'platform.posts'                => 1,
+            'platform.posts.type.demo'      => 1,
         ],
     ];
     $selRole = $faker->randomElement($role);

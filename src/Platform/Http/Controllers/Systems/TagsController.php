@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
 
+/**
+ * Class TagsController.
+ */
 class TagsController extends Controller
 {
     /**
@@ -16,7 +20,7 @@ class TagsController extends Controller
      */
     public function show($tag = null)
     {
-        $tags = Post::allTags()->latest('count')->limit(10);
+        $tags = Dashboard::model(Post::class)::allTags()->latest('count')->limit(10);
 
         if (! is_null($tag)) {
             $tags = $tags->where('name', 'like', '%'.$tag.'%');

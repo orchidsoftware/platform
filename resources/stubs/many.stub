@@ -2,12 +2,7 @@
 
 namespace DummyNamespace;
 
-use Orchid\Platform\Fields\Field;
-use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Platform\Fields\TD;
-use Orchid\Platform\Http\Forms\Posts\BasePostForm;
-use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
-
+use Orchid\Press\Entities\Many;
 
 class DummyClass extends Many
 {
@@ -34,7 +29,7 @@ class DummyClass extends Many
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [];
     }
@@ -44,7 +39,7 @@ class DummyClass extends Many
      *
      * @return array
      */
-    public function filters() : array
+    public function filters(): array
     {
         return [];
     }
@@ -52,7 +47,7 @@ class DummyClass extends Many
     /**
      * @return array
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [];
     }
@@ -60,20 +55,16 @@ class DummyClass extends Many
     /**
      * Grid View for post type.
      */
-    public function grid() : array
+    public function grid(): array
     {
         return [];
     }
 
     /**
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
-    public function modules() : array
+    public function options(): array
     {
-        return [
-            BasePostForm::class,
-            UploadPostForm::class,
-        ];
+        return [];
     }
 }

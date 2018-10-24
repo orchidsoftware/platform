@@ -4,19 +4,6 @@
 ORCHID uses the standard Laravel configuration system.
 All parameters can be found in `config` directory, and the `platform.php` file is main for platform. Every setting is prompted with commentary summing it's essence.
 
-
-## Headless mode
-
-```php
-'headless' => false,
-```
-
-It's obvious that platform is not able to cover all the developer work so it provides an ability to completely turn the graphical interface off.
-It may be useful if you create the application with user-generated content that will not need external administration. 
-It's a great solution also in case you want to use your own graphical interface (For example, if you want to embed a dashboard into your interface).
-
-When this mode is active, ORCHID will not register your application routes and you will have to to implement all the required functionality by yourself.
-
 ## Platform address
 
 ```php
@@ -82,7 +69,7 @@ Authorization page has several settings like background image and your project m
 Also there is an ability to completely disable the embedded authorization form and implement your own with the following command:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 
@@ -101,7 +88,7 @@ php artisan make:auth
 ],
 ```
 
-Generic entries created with `behavior` system may be localized, it means you may create the same entries in different languages; to add new language you only need to add new element to array.
+Generic entries created with `entity` system may be localized, it means you may create the same entries in different languages; to add new language you only need to add new element to array.
 
 
 
@@ -109,20 +96,20 @@ Generic entries created with `behavior` system may be localized, it means you ma
 
 ```php
 'fields' => [
-    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
-    'input'        => Orchid\Platform\Fields\Types\InputField::class,
-    'list'         => Orchid\Platform\Fields\Types\ListField::class,
-    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
-    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
-    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
-    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
-    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
-    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
-    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
-    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
-    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
+    'input'        => Orchid\Screen\Fields\InputField::class,
+    'list'         => Orchid\Screen\Fields\ListField::class,
+    'tags'         => Orchid\Screen\Fields\TagsField::class,
+    'robot'        => Orchid\Screen\Fields\RobotField::class,
+    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+    'place'        => Orchid\Screen\Fields\PlaceField::class,
+    'picture'      => Orchid\Screen\Fields\PictureField::class,
+    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
+    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
+    'code'         => Orchid\Screen\Fields\CodeField::class,
+    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
+    'password'     => Orchid\Screen\Fields\PasswordField::class,
+    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
 ],
 ```
 
@@ -135,33 +122,33 @@ In field configuration field aliases are used to abstract away from elements use
 
 ```php
 'single' => [
-    App\Core\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Entities\Single\DemoPage::class,
 ],
 ```
 
-Single behaviors is the many behavior type that exists only in one exemplary. 
+Single entities is the many entity type that exists only in one exemplary. 
 It's a great solution for creation of unique (Non-generic!) website pages.
 
 
-## `Many` behaviors
+## `Many` entities
 
 
 ```php
 'many' => [
-    App\Core\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Entities\Many\DemoPage::class,
 ],
 ```
 
-Many behaviors are used to reduce the time spent on creation of generic data with multiple entries.
+Many entities are used to reduce the time spent on creation of generic data with multiple entries.
 For example if you need to create some kind of catalogs or reference books which have the similar data in them.
 
 
-## Standard behaviors
+## Standard entities
 
 ```php
 'common' => [
-    'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
+    'user'     => Orchid\Platform\Entities\Base\UserBase::class,
+    'category' => Orchid\Press\CategoryBase::class,
 ],
 ```
 

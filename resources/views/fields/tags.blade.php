@@ -1,11 +1,9 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-    @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
-    <input @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])
-           data-role="tagsinput">
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
+@component($typeForm,get_defined_vars())
+    <div data-controller="fields--tag">
+        <select @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
+            @foreach($value as $tag)
+                <option value="{{$tag}}" selected="selected">{{$tag}}</option>
+            @endforeach
+        </select>
+    </div>
+@endcomponent

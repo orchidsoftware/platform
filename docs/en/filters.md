@@ -13,7 +13,7 @@ This is neither box solution nor universal tool, so you should extend structure 
 There is a command to create a new filter:
 
 ```php
-php artisan make:filter QueryFilter
+php artisan orchid:filter QueryFilter
 ```
 
 It will create filter class at the folder `app/Http/Filters`
@@ -68,9 +68,9 @@ A filter will work subject to availability of at least one of the parameters spe
 
 ## Use
 
-To use a filter you need to specify it at a behavior class.
+To use a filter you need to specify it at a entity class.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {
@@ -88,18 +88,18 @@ class MyBehaviorPost extends Many
 }
 ```
 
-> **Note** that you can use same filters for different behaviors.
+> **Note** that you can use same filters for different entities.
 
 
 Filtration can be started by the method `filtersApply`:
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 Post::type('news')->filtersApply()->simplePaginate();
 ```
 
 
-To use the filters at your own models, it is necessary to apply `Orchid\Platform\Core\Traits\FilterTrait` trade and pass to function `filtersApply` array of classes:
+To use the filters at your own models, it is necessary to apply `Orchid\Platform\Traits\FilterTrait` trade and pass to function `filtersApply` array of classes:
 
 ```php
 use App\MyModel;

@@ -39,7 +39,7 @@ Depois disso, haverá várias chaves instaladas numa sessão:
 Para exibir num local particular, pode ser usado o seguinte:
 ```html
 <div class="container">
-    @include('dashboard::partials.alert')
+    @include('platform::partials.alert')
     <p>Welcome to my website...</p>
 </div>
 ```

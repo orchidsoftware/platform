@@ -36,13 +36,12 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        $message['time'] = Carbon::now();
-
         if (! array_key_exists('type', $message)) {
             $message['type'] = 'info';
         }
 
         $message['type'] = $this->type[$message['type']];
+        $message['time'] = Carbon::now();
 
         $this->message = $message;
     }
@@ -50,11 +49,9 @@ class DashboardNotification extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
-     *
      * @return string[]
      */
-    public function via($notifiable)
+    public function via()
     {
         return ['database'];
     }
@@ -62,11 +59,9 @@ class DashboardNotification extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
-     *
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray()
     {
         return $this->message;
     }

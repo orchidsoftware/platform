@@ -54,7 +54,7 @@ Run the following command to create a user with supreme (at the moment of creati
 
 
 ```php
-php artisan make:admin nickname email@email.com secretpassword
+php artisan orchid:admin nickname email@email.com secretpassword
 ```
 
 
@@ -68,7 +68,7 @@ Example of adding the custom permissions with the use of provider:
 
 ```php
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
 {

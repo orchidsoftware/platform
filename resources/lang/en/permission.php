@@ -19,6 +19,7 @@ return [
         'category'   => 'Category',
         'attachment' => 'File upload',
         'comment'    => 'Comments',
+        'cache'      => 'Cache management',
     ],
 
 ];

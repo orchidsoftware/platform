@@ -1,41 +1,8 @@
-<div class="form-group{{ $errors->has($oldName) ? ' has-error' : '' }}">
-
-     @if(isset($title))
-        <label for="{{$id}}">{{$title}}</label>
-    @endif
-
-    <div class="tinymce-{{$id}} b wrapper" style="min-height: 300px">
-      {!! $value !!}
+@component($typeForm,get_defined_vars())
+    <div data-controller="fields--tinymce" data-theme="{{$theme ?? 'inlite'}}">
+        <div class="tinymce b wrapper" id="tinymce-wrapper-{{$id}}" style="min-height: 300px;">
+            {!! $value !!}
+        </div>
+        <input type="hidden" @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
     </div>
-
-     <input type="hidden" @include('dashboard::partials.fields.attributes', ['attributes' => $attributes])>
-
-    @if(isset($help))
-        <p class="form-text text-muted">{{$help}}</p>
-    @endif
-</div>
-@include('dashboard::partials.fields.hr', ['show' => $hr ?? true])
-
-@push('scripts')
-    <script>
-document.addEventListener('turbolinks:load', function() {
-    dashboard.fields.tinymce.init("{{$id}}","{{$theme or 'inlite'}}");
-});
-</script>
-@endpush
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@endcomponent

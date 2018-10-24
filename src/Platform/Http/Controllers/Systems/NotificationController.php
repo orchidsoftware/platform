@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Support\Facades\Auth;
+use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Platform\Notifications\DashboardNotification;
 
-class NotificationController
+class NotificationController extends Controller
 {
     /**
      * @return \Illuminate\Http\RedirectResponse

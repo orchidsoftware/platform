@@ -4,19 +4,6 @@
 O ORCHID usa o sistema de configuração padrão Laravel.
 Todos os parâmetros podem ser encontrados no diretório `config`, e o arquivo `platform.php` é o principal para a plataforma. Cada configuração é sugerida com comentários que somam a sua essência.
 
-
-## Modo sem cabeça
-
-```php
-'headless' => false,
-```
-
-É óbvio que a plataforma não é capaz de cobrir todo o trabalho do desenvolvedor, portanto, oferece a capacidade de desligar completamente a interface gráfica.
-Pode ser útil criares o aplicativo com o conteúdo gerado por utilizadores que não precisará de administração externa.
-É uma ótima solução também no caso de quereres usar a tua própria interface gráfica (Por exemplo, se quiseres incorporar um painel na tua interface).
-
-Quando este modo está ativo, o ORCHID não irá registrar as tuas rotas de aplicação e terás que implementar tu própio toda a funcionalidade necessária.
-
 ## Endereço da plataforma
 
 ```php
@@ -82,7 +69,7 @@ A página de autorização possui várias configurações como a imagem de fundo
 Além disto, existe a capacidade de desativar completamente o formulário de autorização incorporado e implementar o teu próprio com o seguinte comando:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 
@@ -109,20 +96,20 @@ As entradas genéricas criadas com o sistema de `comportamento` podem ser locali
 
 ```php
 'fields' => [
-    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
-    'input'        => Orchid\Platform\Fields\Types\InputField::class,
-    'list'         => Orchid\Platform\Fields\Types\ListField::class,
-    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-    'robot'        => Orchid\Platform\Fields\Types\RobotField::class,
-    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
-    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
-    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
-    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
-    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
-    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
-    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
-    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
+    'input'        => Orchid\Screen\Fields\InputField::class,
+    'list'         => Orchid\Screen\Fields\ListField::class,
+    'tags'         => Orchid\Screen\Fields\TagsField::class,
+    'robot'        => Orchid\Screen\Fields\RobotField::class,
+    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+    'place'        => Orchid\Screen\Fields\PlaceField::class,
+    'picture'      => Orchid\Screen\Fields\PictureField::class,
+    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
+    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
+    'code'         => Orchid\Screen\Fields\CodeField::class,
+    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
+    'password'     => Orchid\Screen\Fields\PasswordField::class,
+    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
 ],
 ```
 
@@ -135,7 +122,7 @@ Nos aliases de campo de configuração de campo são usados para abstrair de ele
 
 ```php
 'single' => [
-    App\Core\Behaviors\Single\DemoPage::class,
+    Orchid\Press\Entities\Single\DemoPage::class,
 ],
 ```
 
@@ -148,7 +135,7 @@ Os comportamentos individuais são o tipo de comportamento que existe apenas num
 
 ```php
 'many' => [
-    App\Core\Behaviors\Many\DemoPage::class,
+    Orchid\Press\Entities\Many\DemoPage::class,
 ],
 ```
 
@@ -160,8 +147,8 @@ Por exemplo, se precisas de criar algum tipo de catálogos ou livros de referên
 
 ```php
 'common' => [
-    'user'     => Orchid\Platform\Behaviors\Base\UserBase::class,
-    'category' => Orchid\Platform\Behaviors\Base\CategoryBase::class,
+    'user'     => Orchid\Platform\Entities\Base\UserBase::class,
+    'category' => Orchid\Press\CategoryBase::class,
 ],
 ```
 

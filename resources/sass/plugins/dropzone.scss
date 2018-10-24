@@ -1,0 +1,100 @@
+.img-rounded {
+  border-radius: 6px;
+}
+
+.dropzone, .dropzone-wrapper {
+  @extend .dropzone;
+  border:     none;
+  overflow-x: hidden;
+  background: inherit;
+  padding:    10px 0 0;
+
+  .dz-preview {
+    margin: 0.5rem;
+
+    .dz-image {
+      width: 8em;
+      height: 8em;
+      @extend .img-rounded;
+
+      img {
+        object-fit: cover;
+        width:      100%;
+        height:     100%;
+        @extend .b;
+        @extend .box-shadow;
+      }
+    }
+
+    .btn-remove {
+      @extend .btn;
+      @extend .btn-default;
+      @extend .btn-sm;
+      position:      absolute;
+      top:           -10px;
+      z-index:       50;
+      right:         -10px;
+      border-radius: 50px;
+      padding:       2px 7px;
+    }
+
+    .btn-edit {
+      @extend .btn;
+      position:         absolute;
+      bottom:           0;
+      z-index:          50;
+      left:             0;
+      width:            100%;
+      display:          none;
+      background-color: rgba(255, 255, 255, .4);
+      padding:          0 .6rem;
+      align-items:      center;
+      justify-content:  center;
+      text-align:       center;
+      > i {
+        cursor: pointer;
+      }
+      &:focus{
+      box-shadow: none;
+    }
+
+    }
+
+    &:hover {
+      .btn-edit {
+        display: block;
+      }
+    }
+
+  }
+
+  img {
+
+    &:before {
+      content:  " ";
+      display:  block;
+      position: absolute;
+      left:     0;
+      height:   100%;
+      width:    100%;
+      @extend .bg-light;
+    }
+
+    &:after {
+      content:         "🔗";
+      position:        absolute;
+      top:             0;
+      left:            0;
+      right:           0;
+      bottom:          0;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      width:           100%;
+      text-align:      center;
+      @extend .text-2x;
+    }
+
+  }
+
+}

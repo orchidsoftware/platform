@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Orchid\Platform\Layouts\Chart;
+use Orchid\Screen\Layouts\Chart;
 
 class DummyClass extends Chart
 {
@@ -10,7 +10,7 @@ class DummyClass extends Chart
     /**
      * @var string
      */
-    public $title = 'DummyClass';
+    public $title = 'Super Chart';
 
     /**
      * @var int
@@ -19,7 +19,7 @@ class DummyClass extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line',
      * 'pie', 'percentage'
      *
      * @var string

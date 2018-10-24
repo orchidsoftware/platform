@@ -1,10 +1,7 @@
 <?php
 
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\App;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Press\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,43 +15,36 @@ use Orchid\Platform\Core\Models\User;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
-    $lang = App::getLocale();
-
-    $user = User::inRandomOrder()->first()->id;
-
-    //$type		= 	 $faker->randomElement(["page","demo"]);
     $type = $faker->randomElement(['demo']);
 
     $status = ['publish'];
 
-    $name = $faker->sentence($nbWords = 6, $variableNbWords = true);
+    $name = $faker->sentence(6);
 
-    $post = [
-        'user_id' => $user,
-        'type'    => $type,
-        'status'  => $faker->randomElement($status),
-        'content' => [
-            $lang => [
+    return [
+        'type'       => $type,
+        'status'     => $faker->randomElement($status),
+        'content'    => [
+            'en' => [
                 'name'        => $name,
-                'title'       => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                'description' => $faker->paragraph($nbSentences = 2, $variableNbSentences = true),
+                'title'       => $faker->sentence(6),
+                'description' => $faker->paragraph(2),
                 'body'        => $faker->text,
                 'body2'       => $faker->text,
-                'picture'     => $faker->imageUrl($width = 640, $height = 480),
-                'open'        => $faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null)->format('Y-m-d H:i:s'),
+                'picture'     => $faker->imageUrl(640, 480),
+                'open'        => $faker->dateTimeBetween('-30 years', 'now')->format('Y-m-d H:i:s'),
                 'robot'       => $faker->randomElement(['noindex']),
                 'block'       => $faker->text,
-                'keywords'    => implode(',', $faker->words($nb = 5, $asText = false)),
-                'list'        => $faker->words($nb = 5, $asText = false),
+                'keywords'    => implode(',', $faker->words(5)),
+                'list'        => $faker->words(5),
             ],
         ],
-        'options' => [
+        'publish_at' => $faker->date('Y-m-d H:i:s'),
+        'options'    => [
             'locale' => [
                 'en' => 'true',
             ],
         ],
-        'slug'    => ($type == 'page') ? 'demo-page' : Str::slug($name),  //'slug' => "demo-page"
+        'slug'       => ($type == 'page') ? 'demo-page' : str_slug($name), //'slug' => "demo-page"
     ];
-
-    return $post;
 });

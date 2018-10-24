@@ -14,7 +14,7 @@ kailangan mong palawakin ang istraktura para sa iyong mga partikular na aplikasy
 Upang makalikha ng bagong filter, may isang utos:
 
 ```php
-php artisan make: filter QueryFilter
+php artisan orchid: filter QueryFilter
 ```
 
 Maglilikha ito ng isang klaseng filter sa folder na `app/Http/Filters`
@@ -72,7 +72,7 @@ Kapag ang hanay ay bakante, gagana ang filter sa bawat kahilingan.
 
 Upang magamit ang filter, kailangan mong itakda ito sa iyong paggalaw na klase.
 ```php
-use Orchid\Behaviors\Many;
+use Orchid\Entities\Many;
 
 class MyBehaviorPost extends Many
 {
@@ -93,14 +93,14 @@ class MyBehaviorPost extends Many
 
 Ang pagpi-filter ay maaaring simulan gamit ang `filtersApply` na pamamaraan:
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 Post::type ('news')->filtersApply()->simplePaginate ();
 ```
 
 
 Upang magamit ang mga filter sa iyong mga modelo,
-kailangan mong ikonekta ang trade na `Orchid\Platform\Core\Traits\FilterTrait` at magpasa ng hanay ng mga klase sa function na ` filtersApply`:
+kailangan mong ikonekta ang trade na `Orchid\Platform\Traits\FilterTrait` at magpasa ng hanay ng mga klase sa function na ` filtersApply`:
 
 ```php
 use App\MyModel;

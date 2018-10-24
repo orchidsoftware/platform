@@ -10,6 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+/**
+ * Class Controller.
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -26,8 +29,6 @@ class Controller extends BaseController
             abort(404);
         });
 
-        if (! is_null(Auth::user()) && ! Auth::user()->hasAccess($permission)) {
-            abort(404);
-        }
+        abort_if(! is_null(Auth::user()) && ! Auth::user()->hasAccess($permission), 404);
     }
 }

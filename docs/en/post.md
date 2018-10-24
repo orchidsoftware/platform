@@ -15,7 +15,7 @@ Some of the approaches we reproduced intentionally using Laravel WordPress wchic
 You can get an information from database with the following commands:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 $posts = Post::all();
 ```
@@ -61,7 +61,7 @@ echo $post->getOption('countPlace',10);
 
 If you decided to create a new class for your custom message type you may return this class for all instatnes of this message type.
 
-Definition of post behavior is based on the defined `type`.
+Definition of post entity is based on the defined `type`.
 ```php
 //All the objects in $videos collection will be Post instances
 $videos = Post::type('video')->status('publish')->get();
@@ -148,7 +148,7 @@ The platform is shipped with the Scout package which acts as the abstraction for
 Scout does not include the search "driver" itself, you must install the required solution by yourself, it may be, for example elasticsearch, algolia, sphinx or others.
 
 
-To use the full text search you need to add a new method to your behavior class:
+To use the full text search you need to add a new method to your entity class:
 
 ```php
 /**
@@ -203,6 +203,6 @@ php artisan scout:import Orchid\\Platform\\Core\\Models\\Post
 Now we may use the search in our project:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 $articles = Post::search('как пропатчить kde2 под freebsd')->get();
 ```

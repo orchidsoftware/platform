@@ -26,7 +26,7 @@ Sa modelong `Post`, pumapasok ito nang naka-default, dahil dito ang mga halimbaw
 Sa seksyong ito, ipapakita namin kung paano mo pamahalaan ang iyong mga pampaksang tag.
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 //Kunin ang entidad na bagay
 $post = Post::find (1);

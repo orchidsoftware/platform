@@ -1,14 +1,43 @@
 <?php
 
-namespace Orchid\Platform\Tests\Unit;
+declare(strict_types=1);
 
-use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Kernel\Dashboard;
-use Orchid\Platform\Tests\TestUnitCase;
+namespace Orchid\Tests\Unit;
 
+use Orchid\Platform\Dashboard;
+use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\Role;
+use Orchid\Platform\Models\User;
+
+/**
+ * Class PermissionTest.
+ */
 class PermissionTest extends TestUnitCase
 {
+    /**
+     * Verify permissions.
+     */
+    public function testIsPermission()
+    {
+        $user = $this->createUser();
+
+        // User permissions
+        $this->assertEquals($user->hasAccess('access.to.public.data'), true);
+        $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
+        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
+
+        $role = $this->createRole();
+        $user->addRole($role);
+
+        // User of role
+        $this->assertEquals($user->getRoles()->count(), 1);
+        $this->assertEquals($role->getUsers()->count(), 1);
+        $this->assertEquals($user->inRole('admin'), true);
+
+        // Role permissions
+        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
+    }
+
     /**
      * @return $this|\Illuminate\Database\Eloquent\Model
      */
@@ -45,37 +74,13 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * Verify permissions.
-     */
-    public function testIsPermission()
-    {
-        $user = $this->createUser();
-
-        // User permissions
-        $this->assertEquals($user->hasAccess('access.to.public.data'), true);
-        $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
-
-        $role = $this->createRole();
-        $user->addRole($role);
-
-        // User of role
-        $this->assertEquals($user->getRoles()->count(), 1);
-        $this->assertEquals($role->getUsers()->count(), 1);
-        $this->assertEquals($user->inRole('admin'), true);
-
-        // Role permissions
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
-    }
-
-    /**
      * Dashboard registered permission.
      */
     public function testIsRegisteredPermission()
     {
         $dashboard = new Dashboard();
 
-        $dashboard->permission->registerPermissions([
+        $dashboard->registerPermissions([
             'Test' => [
                 [
                     'slug'        => 'test',
@@ -84,6 +89,22 @@ class PermissionTest extends TestUnitCase
             ],
         ]);
 
-        $this->assertEquals($dashboard->permission->get()->count(), 1);
+        $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
+
+    /*
+        public function test_it_replase_permission()
+        {
+            $user = $this->createUser();
+
+            $user->replaceRoles([]);
+            //
+        }
+
+        public function test_it_delete_user()
+        {
+            $user = $this->createUser();
+            $user->delete();
+        }
+    */
 }

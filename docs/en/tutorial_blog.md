@@ -129,7 +129,7 @@ Now let's create our one-level menu widget that we will be able to control from 
 To do so execute the following command:
 
 ```php
-php artisan make:widget MenuWidget
+php artisan orchid:widget MenuWidget
 ```
 
 
@@ -148,8 +148,8 @@ Let's change it so it will gather all the menu elements and pass them to the vie
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Widget\Widget;
+use Orchid\Press\Models\Menu;
 
 class MenuWidget extends Widget {
 
@@ -202,16 +202,16 @@ Great, let's display our blog posts, to do it we will use or platform's `many po
 
 
 ```php
-php artisan make:manyBehavior Blog
+php artisan orchid:manyBehavior Blog
 ```
 
-At the address `/app/Behaviors/Many` the empty `Blog.php` will be created, now let's fill it:
+At the address `/app/Entities/Many` the empty `Blog.php` will be created, now let's fill it:
 
 ```php
-namespace App\Behaviors\Many;
+namespace App\Entities\Many;
 
-use Orchid\Platform\Behaviors\Many;
-use Orchid\Platform\Fields\Field;
+use Orchid\Press\Entities\Many;
+use Orchid\Screen\Field;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 use Orchid\Platform\Platform\Fields\TD;
@@ -256,7 +256,7 @@ class Blog extends Many
 
     /**
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields() : array
     {
@@ -325,13 +325,13 @@ After that we may register it on the platform `config/platform`
 ```php
 /*
 |--------------------------------------------------------------------------
-| Many Behaviors
+| Many Entities
 |--------------------------------------------------------------------------
 |
 */
 
 'many' => [
-    App\Behaviors\Many\Blog::class,
+    App\Entities\Many\Blog::class,
 ],
 ```
 
@@ -349,13 +349,13 @@ After you save, the new post section will occur in the main menu. Now we may fil
 Our posts need to be displayed, so we create the controller with the following contents:
 
 ```php
-php artisan make:controller BlogController
+php artisan orchid:controller BlogController
 ```
 
 ```php
 namespace App\Http\Controllers;
 
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 class BlogController extends Controller
 {
@@ -515,7 +515,7 @@ Well, there's a little left to do: create views for all the data to do so we cre
 @endsection
 ```
 
-The new function (not present in Laravel) is provided here, the `getContent`, it returns the values we set as inputs in our dashboard.
+The new function (not present in Laravel) is provided here, the `getContent`, it returns the values we set as inputs in our platform.
 
 
 

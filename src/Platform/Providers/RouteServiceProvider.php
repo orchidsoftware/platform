@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Base64Url\Base64Url;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\Role;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Core\Models\Page;
-use Orchid\Platform\Core\Models\Post;
-use Orchid\Platform\Core\Models\Role;
-use Orchid\Platform\Core\Models\Category;
-use Orchid\Platform\Widget\WidgetContractInterface;
+use Orchid\Widget\WidgetContractInterface;
 use Orchid\Platform\Http\Middleware\AccessMiddleware;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Orchid\Platform\Http\Controllers';
+    protected $namespace = 'Orchid\Platform\Http';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -32,11 +31,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::middlewareGroup('dashboard', [
+        Route::middlewareGroup('platform', [
             AccessMiddleware::class,
         ]);
 
         $this->binding();
+
+        if (class_exists('Breadcrumbs')) {
+            require PLATFORM_PATH.'/routes/breadcrumbs.php';
+        }
 
         parent::boot();
     }
@@ -46,64 +49,28 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('role', function ($value) {
+        Route::bind('roles', function ($value) {
+            $role = Dashboard::modelClass(Role::class);
+
             if (is_numeric($value)) {
-                return Role::where('id', $value)->firstOrFail();
+                return $role->where('id', $value)->firstOrFail();
             }
 
-            return Role::where('slug', $value)->firstOrFail();
-        });
-
-        Route::bind('category', function ($value) {
-            if (is_numeric($value)) {
-                return Category::where('id', $value)->firstOrFail();
-            }
-
-            return Category::findOrFail($value);
-        });
-
-        Route::bind('type', function ($value) {
-            $post = new Post();
-            $type = $post->getBehavior($value)->getBehaviorObject();
-
-            return $type;
+            return $role->where('slug', $value)->firstOrFail();
         });
 
         Route::bind('widget', function ($value) {
             try {
                 $widget = app()->make(Base64Url::decode($value));
             } catch (\Exception $exception) {
-                return abort(404);
+                Log::alert($exception->getMessage());
+
+                return abort(404, $exception->getMessage());
             }
 
-            if (! is_a($widget, WidgetContractInterface::class)) {
-                return abort(404);
-            }
+            abort_if(! is_a($widget, WidgetContractInterface::class), 403);
 
             return $widget;
-        });
-
-        Route::bind('page', function ($value) {
-            if (is_numeric($value)) {
-                $page = Page::where('id', $value)->first();
-            } else {
-                $page = Page::where('slug', $value)->first();
-            }
-            if (is_null($page)) {
-                return new Page([
-                    'slug' => $value,
-                ]);
-            }
-
-            return $page;
-        });
-
-        Route::bind('post', function ($value) {
-            if (is_numeric($value)) {
-                return Post::where('id', $value)->firstOrFail();
-            }
-
-            return Post::where('slug', $value)->firstOrFail();
         });
     }
 
@@ -114,12 +81,42 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        if (config('platform.headless')) {
-            return;
-        }
+        /*
+         * Dashboard
+         */
+        Route::domain((string) config('platform.domain'))
+            ->prefix(Dashboard::prefix('/'))
+            ->middleware(config('platform.middleware.private'))
+            ->namespace($this->namespace)
+            ->group(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
 
-        foreach (glob(DASHBOARD_PATH.'/routes/*/*.php') as $file) {
-            $this->loadRoutesFrom($file);
+        /*
+         * Auth
+         */
+        Route::domain((string) config('platform.domain'))
+            ->prefix(Dashboard::prefix('/'))
+            ->middleware(config('platform.middleware.public'))
+            ->namespace('Orchid\Platform\Http\Controllers\Auth')
+            ->group(realpath(PLATFORM_PATH.'/routes/auth.php'));
+
+        /*
+         * Systems
+         */
+        Route::domain((string) config('platform.domain'))
+            ->prefix(Dashboard::prefix('/systems'))
+            ->middleware(config('platform.middleware.private'))
+            ->namespace('Orchid\Platform\Http\Controllers\Systems')
+            ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
+
+        /*
+         * Application
+         */
+        if (file_exists(base_path('routes/platform.php'))) {
+            Route::domain((string) config('platform.domain'))
+                ->prefix(Dashboard::prefix('/'))
+                ->middleware(config('platform.middleware.private'))
+                ->namespace('App\Orchid\Screens')
+                ->group(base_path('routes/platform.php'));
         }
     }
 }

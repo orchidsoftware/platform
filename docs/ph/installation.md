@@ -65,7 +65,7 @@ Kailang i-inherit ang basehang modelo sa `App\Users`:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {
@@ -77,7 +77,7 @@ class User extends BaseUser
 Upang makalikha ng isang tagagamit na may pinakamataas na karapatan sa kasalukuyang pagkakataon, kailangan mong paganahin ang utos sa pamamagitan ng pagpasa ng
 username, email address at password:
 ```php
-php artisan make: admin admin admin@admin.com password
+php artisan orchid: admin admin admin@admin.com password
 ```
 
 ## Ilunsad ang proyekto
@@ -91,7 +91,7 @@ Buksan ang browser at pumunta sa `http: //localhost: 8000/dashboard`. Kapag ang 
 
 > ** Tandaan: ** Kapag ang iyong runtime ay na-configure sa ibang domain (halimbawa, orchid.loc),
  ang admin na panel ay hindi magagamit, kailangan mong tukuyin ito sa konpigurasyong file na `config/platform.php`
- o sa `.env`. Ginawa nitong magagamit ang admin na panel sa ibang domain o subdomain, bilang halimbawa `dashboard.example.com`.
+ o sa `.env`. Ginawa nitong magagamit ang admin na panel sa ibang domain o subdomain, bilang halimbawa `platform.example.com`.
  
  
 May problema sa instalasyon? Posibleng may isang taong may ganito nang problema https://github.com/orchidsoftware/platform/issues. Kung hindi, makakapagpadala ka ng mensahe o humingi ng [tulong](https://github.com/orchidsoftware/platform/issues).

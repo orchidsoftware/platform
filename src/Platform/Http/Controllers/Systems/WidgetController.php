@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Platform\Widget\WidgetContractInterface;
+use Orchid\Widget\WidgetContractInterface;
 
+/**
+ * Class WidgetController.
+ */
 class WidgetController
 {
     /**
      * @param WidgetContractInterface $widget
      * @param null                    $key
      *
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(WidgetContractInterface $widget, $key = null)
     {

@@ -1,43 +1,77 @@
 {
   "name": "orchid/platform",
   "description": "Powerful platform for building a business application using the Laravel framework.",
-  "keywords": ["framework", "laravel", "orchid", "platform", "admin", "panel"],
+  "keywords": [
+    "framework",
+    "laravel",
+    "orchid",
+    "platform",
+    "admin",
+    "cmf",
+    "cms",
+    "rad",
+    "extranet"
+  ],
   "type": "library",
   "license": "MIT",
   "homepage": "https://orchid.software",
   "support": {
-    "issues": "https://github.com/theOrchid/Platform/issues",
-    "source": "https://github.com/theOrchid/Platform"
+    "issues": "https://github.com/orchidsoftware/platform/issues",
+    "source": "https://github.com/orchidsoftware/platform",
+    "docs": "https://github.com/orchidsoftware/platform/tree/master/docs",
+    "email": "bliz48rus@gmail.com"
   },
   "authors": [
     {
       "name": "Alexandr Chernyaev",
-      "email": "bliz48rus@gmail.com"
+      "email": "bliz48rus@gmail.com",
+      "homepage": "https://tabuna.github.io",
+      "role": "Developer"
     }
   ],
   "require": {
-    "cartalyst/tags": "^6.0",
     "composer/semver": "^1.4",
-    "cviebrock/eloquent-sluggable": "^4.4",
+    "cviebrock/eloquent-sluggable": "^4.6",
+    "davejamesmiller/laravel-breadcrumbs": "^5.1",
     "intervention/image": "^2.4",
-    "laravel/framework": "5.6.*",
-    "laravel/scout": "^4.0",
+    "intervention/imagecache": "^2.3",
+    "jenssegers/agent": "^2.6",
+    "laracasts/generators": "^1.1",
+    "laravel/framework": "5.7.*",
+    "laravel/scout": "^5.0",
+    "laravolt/avatar": "^2.0",
     "ralouphie/mimey": "^1.0",
+    "spatie/laravel-activitylog": "^2.8",
+    "spatie/laravel-backup": "^5.10",
     "spomky-labs/base64url": "^1.0",
-    "watson/active": "^2.0"
+    "watson/active": "^3.0",
+    "zendframework/zend-code": "^3.3"
   },
   "require-dev": {
+    "fzaninotto/faker": "^1.4",
     "mockery/mockery": "~1.0",
-    "phpunit/phpunit": "~7.0",
-    "orchestra/testbench": "~3.6",
-    "orchestra/testbench-dusk": "3.6.x@dev"
+    "orchestra/testbench": "~3.7.0",
+    "phpunit/php-code-coverage": "^6.0",
+    "phpunit/phpunit": "~7.0"
   },
   "autoload": {
     "psr-4": {
-      "Orchid\\Platform\\": "src/Platform/"
+      "Orchid\\Database\\Seeds\\": "database/seeds/",
+      "Orchid\\Access\\": "src/Access/",
+      "Orchid\\Alert\\": "src/Alert/",
+      "Orchid\\Attachment\\": "src/Attachment/",
+      "Orchid\\Auth\\": "src/Auth/",
+      "Orchid\\Bulldozer\\": "src/Bulldozer/",
+      "Orchid\\Forms\\": "src/Forms/",
+      "Orchid\\Platform\\": "src/Platform/",
+      "Orchid\\Press\\": "src/Press/",
+      "Orchid\\Screen\\": "src/Screen/",
+      "Orchid\\Setting\\": "src/Setting/",
+      "Orchid\\Support\\": "src/Support/",
+      "Orchid\\Widget\\": "src/Widget/"
     },
     "files": [
-      "src/Platform/Support/helpers.php"
+      "src/Support/helpers.php"
     ]
   },
   "autoload-dev": {
@@ -46,16 +80,21 @@
       "database/factories"
     ],
     "psr-4": {
-      "Orchid\\Platform\\Tests\\": "tests/"
+      "Orchid\\Tests\\": "tests/",
+      "App\\": "install-stubs/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
+        "Orchid\\Platform\\Providers\\FoundationServiceProvider",
+        "Orchid\\Press\\Providers\\PressServiceProvider",
+        "Orchid\\Bulldozer\\Providers\\BulldozerServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "Orchid\\Platform\\Facades\\Dashboard"
+        "Alert": "Orchid\\Support\\Facades\\Alert",
+        "Dashboard": "Orchid\\Support\\Facades\\Dashboard",
+        "Setting": "Orchid\\Support\\Facades\\Setting"
       }
     }
   },

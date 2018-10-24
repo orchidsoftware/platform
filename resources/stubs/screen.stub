@@ -2,8 +2,7 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Http\Request;
-use Orchid\Platform\Screen\Screen;
+use Orchid\Screen\Screen;
 
 class DummyClass extends Screen
 {
@@ -26,7 +25,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function query() : array
+    public function query(): array
     {
         return [];
     }
@@ -36,7 +35,7 @@ class DummyClass extends Screen
      *
      * @return array
      */
-    public function commandBar() : array
+    public function commandBar(): array
     {
         return [];
     }
@@ -45,9 +44,8 @@ class DummyClass extends Screen
      * Views
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
      */
-    public function layout() : array
+    public function layout(): array
     {
         return [];
     }

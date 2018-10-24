@@ -128,7 +128,7 @@ Ngayon, lumikha tayo ng ating widget ng isahang antas na menu, upang mapamahalaa
 Upang gawin ito, paganahin ang sumusunod na utos:
 
 ```php
-php artisan make:widget MenuWidget
+php artisan orchid:widget MenuWidget
 ```
 
 Ang artisan ay gagawa ng isang bakanteng widget na file sa `/app/Http/Widgets`.
@@ -146,8 +146,8 @@ Baguhin mo ito upang kokolektahin nito ang lahat ng mga aytem ng menu at ipadala
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
-use Orchid\Platform\Core\Models\Menu;
+use Orchid\Widget\Widget;
+use Orchid\Press\Models\Menu;
 
 class MenuWidget extends Widget {
 
@@ -199,15 +199,15 @@ Pagkatapos, ang display ay magmumukhang ganito:
 Magaling, ngayon ipapakita natin ang mga tala ng ating mga blog, dito gagamit tayo ng maraming mga tala ng plataporma:
 
 ```php
-php artisan make:manyBehavior Blog
+php artisan orchid:manyBehavior Blog
 ```
 
-Sa address na `/app/Core/Behaviors/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
+Sa address na `/app/Core/Entities/Many`, ang bakanteng file na `Blog.php` ay malilikha, punaan natin ito:
 
 ```php
-namespace App\Core\Behaviors\Many;
+namespace Orchid\Press\Entities\Many;
 
-use Orchid\Platform\Behaviors\Many;
+use Orchid\Press\Entities\Many;
 use Orchid\Platform\Http\Forms\Posts\BasePostForm;
 use Orchid\Platform\Http\Forms\Posts\UploadPostForm;
 
@@ -292,7 +292,7 @@ Pagkatapos ng deskripsyon, makakarehistro ka sa plataporma na `config/platform`
 */
 
 'many' => [
-    App\Core\Behaviors\Many\Blog::class,
+    Orchid\Press\Entities\Many\Blog::class,
 ],
 ```
 
@@ -306,13 +306,13 @@ Pagkatapos i-seyb, ang pangunahing menu ay magiging ang pagtatalang seksyon. Nga
 Ang ating mga tala ay nangangailangan ng pagma-map, dahil dito lilikha tayo ng tagakontrol na may nilalamang:
 
 ```php
-php artisan make:controller BlogController
+php artisan orchid:controller BlogController
 ```
 
 ```php
 namespace App\Http\Controllers;
 
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 class BlogController extends Controller
 {

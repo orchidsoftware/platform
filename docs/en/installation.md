@@ -66,7 +66,7 @@ it's necessary to extend the base user model in `App\Users`:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {
@@ -77,7 +77,7 @@ class User extends BaseUser
 
 Run the following command to create a user with supreme (at the moment of creation) rights passing the username, e-mail and password:
 ```php
-php artisan make:admin admin admin@admin.com password
+php artisan orchid:admin admin admin@admin.com password
 ```
 
 ## Run project
@@ -91,7 +91,7 @@ Open the browser and go to `http://localhost:8000/dashboard`. If everything work
 
 > **Notice.** If the used runtime environment is set to work on other domain, (eg: orchid.loc),
  the dashboard will not be acessible and you will have to set it in config file `config/platform.php`
- or in `.env`. This allows to make a dashboard accessible from other domains or subdomains, for example, `dashboard.example.com`.
+ or in `.env`. This allows to make a dashboard accessible from other domains or subdomains, for example, `platform.example.com`.
  
  
 Had an issue during installation? Perhaps someone has already met the same problem https://github.com/orchidsoftware/platform/issues . If not, you may send a message or request [assistance](https://github.com/orchidsoftware/platform/issues).

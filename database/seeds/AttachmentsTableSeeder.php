@@ -1,5 +1,7 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;

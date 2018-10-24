@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Illuminate\Http\Request;
-use Orchid\Platform\Facades\Alert;
+use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Facades\Artisan;
+use Orchid\Platform\Http\Controllers\Controller;
 
-class CacheController
+class CacheController extends Controller
 {
     /**
      * @param Request $request
@@ -21,12 +22,14 @@ class CacheController
 
         try {
             $this->$action();
-            Alert::success(trans('dashboard::common.alert.success'));
+            Alert::success(__('Operation completed successfully.'));
         } catch (\Exception $exception) {
             Alert::warning($exception->getMessage());
         }
 
-        return back();
+        Alert::success(__('Operation completed successfully.'));
+
+        return response()->redirectToRoute('platform.systems.index');
     }
 
     /**

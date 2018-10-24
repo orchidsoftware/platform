@@ -8,18 +8,10 @@ php:
 
 addons:
    chrome: stable
-   postgresql: "9.4"
 
 cache:
   directories:
     - $HOME/.composer/cache
-
-services:
-  - postgresql
-
-before_install:
-  - psql -c 'create database platform;' -U postgres
-  - psql -c "CREATE USER orchid WITH PASSWORD 'orchid';" -U postgres  
 
 before_script:
    - travis_retry composer self-update
@@ -29,9 +21,17 @@ before_script:
    - sudo apt-get -y install imagemagick x11-apps
    - export DISPLAY=:0.0
    - Xvfb :0 -screen 0 1920x1080x24 &
-
+   
 script:
-  - vendor/bin/phpunit
+   - vendor/bin/phpunit --coverage-clover=coverage.xml
+  
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
 
 notifications:
-  email: false
+  email:
+    recipients:
+      - bliz48rus@gmail.com
+      - salador2005@yandex.ru
+    on_success: never
+    on_failure: always

@@ -27,7 +27,7 @@ Primeiro, para desligar a nossa página de autenticação integrada, alteramos o
 Então, usamos o comando incorporado Laravel para criar todas as rotas e modelos necessários:
 
 ```php
-php artisan make:auth
+php artisan orchid:auth
 ```
 
 Nós adicionamos o middleware `auth` à nossa configuração da plataforma `config/platform.php` para permitir redirecionamentos corretos.

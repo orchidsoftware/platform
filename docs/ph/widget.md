@@ -11,7 +11,7 @@ Halimbawa, ang isang kalendaryong widget ay magagamit sa pag-render ng isang kom
 Upang makalikha ng bagong widget, kailangan mong gawin ito:
 
 ```php
-php artisan make: widget MySuperWidget
+php artisan orchid: widget MySuperWidget
 ```
 
 Sa `app/Http/Widgets` na folder, ang klase ng widget ay nilikha, katulad lang sa tagakontrol, ang widget ay maaaring magkaroon ng sarili nitong view.
@@ -75,7 +75,7 @@ Pagkatapos, ang katangiang `$query` ay kukuha ng isang halaga para sa paghahanap
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

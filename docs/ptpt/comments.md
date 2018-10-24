@@ -11,8 +11,8 @@ Através deles, os utilizadores podem expressar os seus pensamentos sobre alguma
 Os comentários são anexados às postagens do ORCHID.
 
 ```php
-use Orchid\Platform\Core\Models\Comment;
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Comment;
+use Orchid\Press\Models\Post;
 
 // postagem específica
 $post = Post::find(42);

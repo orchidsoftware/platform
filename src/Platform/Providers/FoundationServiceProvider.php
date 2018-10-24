@@ -5,10 +5,22 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\Facades\Route;
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Laravel\Scout\ScoutServiceProvider;
+use Orchid\Widget\WidgetServiceProvider;
+use Watson\Active\ActiveServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
+use Intervention\Image\ImageServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
+use Laracasts\Generators\GeneratorsServiceProvider;
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
 
+/**
+ * Class FoundationServiceProvider.
+ * After update run:  php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider".
+ */
 class FoundationServiceProvider extends ServiceProvider
 {
     /**
@@ -16,70 +28,101 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerEloquentFactoriesFrom(realpath(DASHBOARD_PATH.'/database/factories'));
-
-        $this->registerDatabase();
-        $this->registerTranslations();
-        $this->registerConfig();
-        $this->registerViews();
+        $this->registerEloquentFactoriesFrom()
+            ->registerOrchid()
+            ->registerDatabase()
+            ->registerConfig()
+            ->registerTranslations()
+            ->registerViews()
+            ->registerProviders();
     }
 
     /**
      * Register factories.
      *
-     * @param $path
+     * @return $this
      */
-    protected function registerEloquentFactoriesFrom($path)
+    protected function registerEloquentFactoriesFrom()
     {
-        $this->app->make(EloquentFactory::class)->load($path);
+        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
+
+        return $this;
     }
 
     /**
      * Register migrate.
+     *
+     * @return $this
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(DASHBOARD_PATH.'/database/migrations'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
+
+        return $this;
     }
 
     /**
      * Register translations.
+     *
+     * @return $this
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(realpath(DASHBOARD_PATH.'/resources/lang'), 'dashboard');
+        $this->loadTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang'), 'platform');
+
+        return $this;
     }
 
     /**
      * Register config.
+     *
+     * @return $this
      */
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(DASHBOARD_PATH.'/config/scout.php')    => config_path('scout.php'),
-            realpath(DASHBOARD_PATH.'/config/platform.php') => config_path('platform.php'),
-            realpath(DASHBOARD_PATH.'/config/widget.php')   => config_path('widget.php'),
-        ]);
+            realpath(PLATFORM_PATH.'/config/scout.php')    => config_path('scout.php'),
+            realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
+            realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
+        ], 'config');
 
-        $this->mergeConfigFrom(realpath(DASHBOARD_PATH.'/config/platform.php'), 'platform');
+        return $this;
     }
 
     /**
-     * Register views.
+     * Register orchid.
+     *
+     * @return $this
+     */
+    protected function registerOrchid()
+    {
+        $this->publishes([
+            realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
+            realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
+        ], 'orchid-stubs');
+
+        return $this;
+    }
+
+    /**
+     * Register views & Publish views.
+     *
+     * @return $this
      */
     public function registerViews()
     {
-        if (config('platform.headless')) {
-            return;
-        }
+        $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/vendor/orchid/dashboard';
-        }, config('view.paths')), [
-            DASHBOARD_PATH.'/resources/views',
-        ]), 'dashboard');
+        $this->publishes([
+            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/platform'),
+        ], 'views');
+
+        return $this;
     }
 
+    /**
+     * Register provider.
+     */
     public function registerProviders()
     {
         foreach ($this->provides() as $provide) {
@@ -95,14 +138,20 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
+            DashboardServiceProvider::class,
+            ScoutServiceProvider::class,
+            ActivitylogServiceProvider::class,
+            AttachmentServiceProvider::class,
+            GeneratorsServiceProvider::class,
+            ActiveServiceProvider::class,
+            AvatarServiceProvider::class,
+            ImageServiceProvider::class,
+            RouteServiceProvider::class,
             AlertServiceProvider::class,
             WidgetServiceProvider::class,
-            DashboardProvider::class,
-            RouteServiceProvider::class,
             ConsoleServiceProvider::class,
-            PermissionServiceProvider::class,
             EventServiceProvider::class,
-            MenuServiceProvider::class,
+            PlatformServiceProvider::class,
         ];
     }
 
@@ -113,18 +162,17 @@ class FoundationServiceProvider extends ServiceProvider
     {
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {
-                return Route::any($url.'/{method?}/{argument?}', "$screen@handle")->name($name);
+                return Route::any($url.'/{method?}/{argument?}')
+                    ->uses($screen.'@handle')
+                    ->name($name);
             });
         }
 
-        if (! defined('DASHBOARD_PATH')) {
-            define('DASHBOARD_PATH', realpath(__DIR__.'/../../../'));
+        if (! defined('PLATFORM_PATH')) {
+            /*
+             * Get the path to the ORCHID Platform folder.
+             */
+            define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
-
-        $this->app->singleton(Dashboard::class, function () {
-            return new Dashboard();
-        });
-
-        $this->registerProviders();
     }
 }

@@ -4,7 +4,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
 ## [Unreleased]
+### Added
+- Grouping items using Field::group 
+- TD::link and TD::linkPost
+- Sorting capability for TD [437](https://github.com/orchidsoftware/platform/issues/437)
+- Property display for page
+- Added ability to change the logo [354](https://github.com/orchidsoftware/platform/issues/354)
+- New command for easy installation `orchid:install` [622](https://github.com/orchidsoftware/platform/issues/622)
+- User routes for dashboard
+- Custom templates for the sidebar [631](https://github.com/orchidsoftware/platform/issues/631)
+- Saved the state of the tabs [666](https://github.com/orchidsoftware/platform/issues/666)
+- Added permission for cache
+
+### Deprecated
+- TD::name and TD::title use TD::set
+
+### Changed
+- Test migration pgsql to sqlite
+- User routes for dashboard
+- The package was divided into several internal structures (Platform & Press) [634](https://github.com/orchidsoftware/platform/issues/634)
+- Rename 'dashboard' to 'platform'
+- Order of calling functions in the screen, now the query is executed earlier
+
+### Fixed
+- Require to required
+- Hide the menu without children
+- Deletes a file only if there are no more links [570](https://github.com/orchidsoftware/platform/issues/570)
+- Users and roles use screens [579](https://github.com/orchidsoftware/platform/issues/579)
+- Deleting a dashboard store [623](https://github.com/orchidsoftware/platform/issues/623)
+
+### Removed
+- Bootstrap 3 appendix
+- "Delete" button by default in the image field
+- String record of parameters for building a form [391](https://github.com/orchidsoftware/platform/issues/391)
+
+
+## [2.2.4] - 2018-08-28
+
+### Fixed
+- Save menu dublicate
+- Laravel RouteServiceProvider default namespace override [680](https://github.com/orchidsoftware/platform/issues/680)
 
 
 ## [2.2.4] - 2018-08-28
@@ -91,9 +132,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Upgrade to Bootstrap 4.0
-- Behaviors and Layouts has a separate folder
+- Entities and Layouts has a separate folder
 - Record fields as objects #391
-- Demo "behaviors" are no longer published
+- Demo "entities" are no longer published
 - Access validation does not create multiple database queries
 - Hide forms switching with their small number
 - Changing the menu, no longer changing the recording number
@@ -150,7 +191,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Error 403 to 404
 
 ### Fixed
-- Bug permission for behaviors
+- Bug permission for entities
 - Style for select2
 - Calling relation for new object in template #382
 
@@ -180,8 +221,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Left menu notification
 - New button logout
 - Added markdown fiends
-- Fields picture added stub behaviors
-- Fields SimpleMDE added stub behaviors
+- Fields picture added stub entities
+- Fields SimpleMDE added stub entities
 
 ### Deprecated
 - Deprecated widget Google analytics

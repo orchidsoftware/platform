@@ -1,10 +1,8 @@
-@extends('dashboard::layouts.dashboard')
-@section('title',$name)
-@section('description',$description)
-
-
+@extends('platform::layouts.dashboard')
+@section('title',__($screen->name))
+@section('description',__($screen->description))
+@section('controller','screen--base')
 @section('navbar')
-
     <ul class="nav justify-content-end v-center">
         @foreach($screen->commandBar() as $command)
             <li>
@@ -12,27 +10,18 @@
             </li>
         @endforeach
     </ul>
-
 @stop
-
 @section('content')
-
     <section>
-        <div class="bg-white b-b box-shadow">
-            <form id="post-form" method="post" enctype="multipart/form-data">
-                @foreach($screen->build() as $views)
-                    {!! $views or '' !!}
-                @endforeach
-
-                @csrf
-            </form>
-        </div>
+        <form id="post-form" method="post" enctype="multipart/form-data">
+            {!! $screen->build() !!}
+            @csrf
+        </form>
     </section>
-
     <div id="modals-container">
-         @yield('modals-container')
+        @stack('modals-container')
     </div>
-
-
-    <form id="filters"></form>
+    <div data-controller="screen--filter">
+        <form id="filters" autocomplete="off" data-action="screen--filter#submit"></form>
+    </div>
 @stop

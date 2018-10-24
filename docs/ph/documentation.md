@@ -13,9 +13,6 @@
     <!--<li> <a href="/en/docs/configuration"> Pangkalahatang tingin sa mga setting </a> </li> -->
     <li> <a href="/en/docs/authentication"> Awtorisasyon </a> </li>
     <li> <a href="/en/docs/tutorial_blog"> Paglilikha ng isang blog </a> </li>
-    <li> <a href="/en/docs/tutorial_phpinfo"> Pagpapalawak ng anyo </a> </li>
-     <!-- <li> <a href="/en/docs/tutorial_clinic"> Pagbubuo ng Aplikasyon </a> </li> -->
-     <!-- <li> <a href="/en/docs/tutorial_monitor"> Pagbubuo ng isang pakete </a> </li> -->
 </ul>
 
 <h4 class="text-orchid font-thin"> Plataporma </h4>
@@ -40,7 +37,7 @@
 
 <h4 class="text-orchid font-thin"> Pamamahala sa Nilalaman </h4>
 <ul class="toc-links">
-    <li> <a href="/en/docs/behaviors"> Mga Paggalaw </a> </li>
+    <li> <a href="/en/docs/entities"> Mga Paggalaw </a> </li>
     <li> <a href="/en/docs/post"> Mga Tala </a> </li>
     <li> <a href="/en/docs/tags"> Mga Tag </a> </li>
     <li> <a href="/en/docs/comments" title="Pagtatrabaho sa mga komento sa ORCHID"> Mga Komento </a> </li>

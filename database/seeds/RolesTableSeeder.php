@@ -1,7 +1,9 @@
 <?php
 
+namespace Orchid\Database\Seeds;
+
 use Illuminate\Database\Seeder;
-use Orchid\Platform\Core\Models\Role;
+use Orchid\Platform\Models\Role;
 
 class RolesTableSeeder extends Seeder
 {

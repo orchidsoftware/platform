@@ -13,7 +13,7 @@ Let's perform the changes in ou database scheme to make it contain `Surname`, `N
 
 To do so perform the following:
 ```php
-php artisan make:migration create_table_users_history
+php artisan orchid:migration create_table_users_history
 ```
 
 This command will create a new file in the `database/migrations` folder, and we will then make it look like:
@@ -60,7 +60,7 @@ class CreateTableUsersHistory extends Migration
 Also let's create the second migration file that is related directly to our user:
 
 ```php
-php artisan make:migration create_fields_for_users
+php artisan orchid:migration create_fields_for_users
 ```
 
 With content:
@@ -119,7 +119,7 @@ Right after we created and applied all the required migrations we need to create
 To do so we create a new model using with the following:
 
 ```php 
-php artisan make:model History
+php artisan orchid:model History
 ```
 
 In thw `app` directory a file called `History.php` will be created let's put the following code into it:
@@ -128,8 +128,8 @@ In thw `app` directory a file called `History.php` will be created let's put the
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Core\Traits\FilterTrait;
-use Orchid\Platform\Core\Traits\MultiLanguage;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguage;
 
 class History extends Model
 {
@@ -197,7 +197,7 @@ We will also need to change the User model:
 ```php
 namespace App;
 
-use Orchid\Platform\Core\Models\User as BaseUser;
+use Orchid\Platform\Models\User as BaseUser;
 
 class User extends BaseUser
 {
@@ -338,7 +338,7 @@ Now during every successfull authorization all the required information will be 
 ORCHID in standard complection does not include the user profile, so we will create it by ourselves using the `Screen`, to do so we perform the following:
 
 ```php
-php artisan make:screen ProfileScreen
+php artisan orchid:screen ProfileScreen
 ```
 
 Artisan will create a new file in `app/Http/Controllers/Screens` directiory, and if you are a skillful user it's recomended to change this folder name to `app/Http/Screens`,
@@ -346,7 +346,7 @@ Artisan will create a new file in `app/Http/Controllers/Screens` directiory, and
 Let's add our new screen to the routing file `routes/web.php`:
 
 ```php
-Route::screen('/dashboard/profile', 'Screens\ProfileScreen','dashboard.screens.profile');
+Route::screen('/dashboard/profile', 'Screens\ProfileScreen','platform.screens.profile');
 ```
 
 
@@ -359,7 +359,7 @@ Let's create the registration class `app/Http/Composers/MenuComposer.php`:
 ```php
 namespace App\Http\Composer;
 
-use Orchid\Platform\Kernel\Dashboard;
+use Orchid\Platform\Dashboard;
 
 class MenuComposer
 {
@@ -381,7 +381,7 @@ class MenuComposer
         $this->dashboard->menu->add('Main', [
             'slug'   => 'profile',
             'icon'   => 'icon-user',
-            'route'  => route('dashboard.screens.profile'),
+            'route'  => route('platform.screens.profile'),
             'label'  => 'Profile',
             'childs' => false,
             'main'   => true,
@@ -409,7 +409,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('dashboard::layouts.dashboard', MenuComposer::class);
+        View::composer('platform::layouts.dashboard', MenuComposer::class);
     }
 
     /**
@@ -465,7 +465,7 @@ return [
 Let's create the widget to further be able to pass them on demand:
 
 ```php
-php artisan make:widget CityWidget
+php artisan orchid:widget CityWidget
 ```
 
 A new file will be created in `app/Http/Widgets/CityWidget.php` and we don't need to register it like the template widgets.
@@ -475,7 +475,7 @@ We change it to always return the array of parameters:
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class CityWidget extends Widget {
 
@@ -522,7 +522,7 @@ it's not necessary to use the configuration parameters as storage, it may also b
 To be able to change the profile data it's nesessary to generate a form with input fields, let's create a new string template:
 
 ```php
-php artisan make:row ProfileLayout
+php artisan orchid:row ProfileLayout
 ```
 
 Add the fields we want to change for user in the `app/Layouts/ProfileLayout.php` file:
@@ -532,7 +532,7 @@ Add the fields we want to change for user in the `app/Layouts/ProfileLayout.php`
 namespace App\Layouts;
 
 use App\Http\Widgets\CityWidget;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfileLayout extends Rows
@@ -541,7 +541,7 @@ class ProfileLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {
@@ -715,7 +715,7 @@ Our profile screen will not be complete without an ability to change the passwor
 To do so we create a new template:
 
 ```php
-php artisan make:row ProfilePasswordLayout
+php artisan orchid:row ProfilePasswordLayout
 ```
 
 It will only contain the fields `password` and `repeat the password`:
@@ -723,7 +723,7 @@ It will only contain the fields `password` and `repeat the password`:
 ```php
 namespace App\Layouts;
 
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class ProfilePasswordLayout extends Rows
@@ -732,7 +732,7 @@ class ProfilePasswordLayout extends Rows
      * Views
      *
      * @return array
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {
@@ -827,7 +827,7 @@ Great, our profile screen is almost ready.
 Let's add a table that will contain data about devices that were used to authorize, to do it we create a table layout:
 
 ```php
-php artisan make:table HistoryLayout
+php artisan orchid:table HistoryLayout
 ```
 
 ```php
@@ -925,7 +925,7 @@ It's necessary to register the layout for the screen and pass on our data:
 Now as we have our table displayed at the screen let's add an ability to filter it, to do it we create two filters:
 
 ```php
-php artisan make:filter BrowserFilter
+php artisan orchid:filter BrowserFilter
 ```
 
 ```php
@@ -933,7 +933,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
 
 class BrowserFilter extends Filter
@@ -968,7 +968,7 @@ class BrowserFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function display() : Field
     {
@@ -993,7 +993,7 @@ namespace App\Http\Filters;
 
 use App\History;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Filters\Filter;
 
 class PlatformFilter extends Filter
@@ -1028,7 +1028,7 @@ class PlatformFilter extends Filter
 
     /**
      * @return mixed|void
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function display() : Field
     {
@@ -1089,7 +1089,7 @@ Now we may select entries by browser and OS.
 Let's add charts that will display user statistics:
 
 ```php 
-php artisan make:chart BrowserLayout
+php artisan orchid:chart BrowserLayout
 ``` 
 
 With content:
@@ -1114,7 +1114,7 @@ class BrowserLayout extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string
@@ -1157,7 +1157,7 @@ class PlatformLayout extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string

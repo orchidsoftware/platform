@@ -5,42 +5,35 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Console\Commands\MakeRows;
-use Orchid\Platform\Console\Commands\MakeChart;
-use Orchid\Platform\Console\Commands\MakeTable;
-use Orchid\Platform\Console\Commands\MakeFilter;
-use Orchid\Platform\Console\Commands\MakeScreen;
-use Orchid\Platform\Console\Commands\MakeWidget;
-use Orchid\Platform\Console\Commands\MakeManyBehavior;
-use Orchid\Platform\Console\Commands\PublicLinkCommand;
-use Orchid\Platform\Console\Commands\CreateAdminCommand;
-use Orchid\Platform\Console\Commands\MakeSingleBehavior;
+use Orchid\Platform\Commands\LinkCommand;
+use Orchid\Platform\Commands\RowsCommand;
+use Orchid\Platform\Commands\AdminCommand;
+use Orchid\Platform\Commands\ChartCommand;
+use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\FilterCommand;
+use Orchid\Platform\Commands\ScreenCommand;
+use Orchid\Platform\Commands\WidgetCommand;
+use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\MetricsCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
     /**
      * The available command shortname.
      *
      * @var array
      */
     protected $commands = [
-        CreateAdminCommand::class,
-        MakeManyBehavior::class,
-        MakeSingleBehavior::class,
-        MakeFilter::class,
-        PublicLinkCommand::class,
-        MakeWidget::class,
-        MakeRows::class,
-        MakeScreen::class,
-        MakeTable::class,
-        MakeChart::class,
+        InstallCommand::class,
+        AdminCommand::class,
+        FilterCommand::class,
+        LinkCommand::class,
+        WidgetCommand::class,
+        RowsCommand::class,
+        ScreenCommand::class,
+        TableCommand::class,
+        ChartCommand::class,
+        MetricsCommand::class,
     ];
 
     /**
@@ -48,6 +41,10 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
         foreach ($this->commands as $command) {
             $this->commands($command);
         }

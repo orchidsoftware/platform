@@ -1,52 +1,61 @@
 <?php
 
-namespace Orchid\Platform\Tests;
+declare(strict_types=1);
+
+namespace Orchid\Tests;
 
 use Watson\Active\Active;
-use Orchid\Platform\Facades\Alert;
-use Orchid\Platform\Core\Models\User;
+use Orchid\Platform\Models\User;
+use Orchid\Support\Facades\Alert;
+use Intervention\Image\Facades\Image;
+use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
-use Orchid\Platform\Facades\Dashboard;
-use Watson\Active\ActiveServiceProvider;
+use Orchid\Press\Providers\PressServiceProvider;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
+/**
+ * Trait Environment.
+ */
 trait Environment
 {
     /**
      * Setup the test environment.
+     * Run test: php vendor/bin/phpunit --coverage-html ./logs/coverage ./tests
+     * Run 1 test:  php vendor/bin/phpunit  --filter= UserTest tests\\Unit\\Platform\\UserTest --debug.
      */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
         Schema::defaultStringLength(191);
-
-        $this->artisan('migrate', [
-            '--database' => 'orchid',
-            '--path' => 'migrations',
-        ]);
 
         $this->artisan('vendor:publish', [
             '--provider' => 'Orchid\Platform\Providers\FoundationServiceProvider',
         ]);
 
         $this->artisan('vendor:publish', [
-            '--all' => true,
+            '--provider' => 'Orchid\Press\Providers\PressServiceProvider',
         ]);
 
-        $this->artisan('migrate', [
-            '--database' => 'orchid',
-            '--path' => realpath(DASHBOARD_PATH.'/database/migrations'),
+        $this->artisan('vendor:publish', [
+            '--all' => true,
+            '--tag' => 'config,migrations',
         ]);
+
+        $this->loadLaravelMigrations();
+        $this->loadMigrationsFrom(realpath('./database/migrations'));
+        $this->artisan('migrate', ['--database' => 'orchid']);
         $this->artisan('orchid:link');
 
-        $this->withFactories(realpath(DASHBOARD_PATH.'/database/factories'));
+        $this->withFactories(realpath(PLATFORM_PATH.'/database/factories'));
 
         $this->artisan('db:seed', [
-            '--class' => 'OrchidDatabaseSeeder',
+            '--class' => 'Orchid\Database\Seeds\OrchidDatabaseSeeder',
         ]);
 
-        $this->artisan('make:admin', [
+        $this->artisan('orchid:admin', [
             'name'     => 'admin',
             'email'    => 'admin@admin.com',
             'password' => 'password',
@@ -72,7 +81,49 @@ trait Environment
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+        $app['config']->set('scout.driver', null);
         $app['config']->set('database.default', 'orchid');
+        $app['config']->set('activitylog.enabled', false);
+
+        $app['config']->set('sluggable', [
+            'source'             => null,
+            'maxLength'          => null,
+            'maxLengthKeepWords' => true,
+            'method'             => null,
+            'separator'          => '-',
+            'unique'             => true,
+            'uniqueSuffix'       => null,
+            'includeTrashed'     => false,
+            'reserved'           => null,
+            'onUpdate'           => false,
+        ]);
+        $app['config']->set('session', [
+            'driver'          => 'file',
+            'lifetime'        => 10,
+            'expire_on_close' => false,
+            'encrypt'         => false,
+            'files'           => storage_path('framework/sessions'),
+            'connection'      => null,
+            'table'           => 'sessions',
+            'store'           => null,
+            'lottery'         => [2, 100],
+            'cookie'          => str_slug(env('APP_NAME', 'laravel'), '_').'_session',
+            'path'            => '/',
+            'domain'          => null,
+            'secure'          => false,
+            'http_only'       => true,
+            'same_site'       => null,
+        ]);
+
+        $app['config']->set('breadcrumbs', [
+            'view'                                     => 'breadcrumbs::bootstrap4',
+            'files'                                    => base_path('routes/breadcrumbs.php'),
+            'unnamed-route-exception'                  => false,
+            'missing-route-bound-breadcrumb-exception' => false,
+            'invalid-named-breadcrumb-exception'       => false,
+            'manager-class'                            => \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::class,
+            'generator-class'                          => \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator::class,
+        ]);
     }
 
     /**
@@ -83,8 +134,9 @@ trait Environment
     protected function getPackageProviders($app)
     {
         return [
-            ActiveServiceProvider::class,
             FoundationServiceProvider::class,
+            PressServiceProvider::class,
+            BulldozerServiceProvider::class,
         ];
     }
 
@@ -96,9 +148,11 @@ trait Environment
     protected function getPackageAliases($app)
     {
         return [
-            'Alert'     => Alert::class,
-            'Active'    => Active::class,
-            'Dashboard' => Dashboard::class,
+            'Alert'       => Alert::class,
+            'Active'      => Active::class,
+            'Breadcrumbs' => Breadcrumbs::class,
+            'Dashboard'   => Dashboard::class,
+            'Image'       => Image::class,
         ];
     }
 }

@@ -1,0 +1,101 @@
+.form-control {
+  background: $brand-white none;
+  border: 1px solid $form-control-border-color;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: $brand-black;
+  outline: 0;
+  height: $form-height;
+  line-height: normal;
+  font-weight: normal;
+  vertical-align: middle;
+  @include transition(all 0.12s ease);
+  @include box-shadow(none);
+  border-radius: 2px;
+  @include placeholder($text-muted);
+
+  @include transition(background 0.2s linear 0s);
+  &:focus {
+    border-color: fade-out($brand-black, 0.9);
+    background-color: $brand-grey-light;
+    outline: 0 !important;
+    color: $brand-black;
+    @include box-shadow(none);
+    @include placeholder($brand-dark);
+  }
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+    background: mix($brand-grey-light, #fff, 50%);
+    color: fade-out($brand-grey, .77);
+  }
+  select {
+    -moz-appearance : none;
+    text-indent     : 0.01px;
+    text-overflow   : '';
+  }
+}
+
+.input-group {
+	.input-group-btn {
+		.btn-default{
+			height: $form-height;
+		}
+	}
+}
+
+textarea {
+	&.form-control {
+		height: auto;
+	}
+}
+
+select {
+	&.form-control {
+		height: $form-height !important;
+	}	
+}
+
+
+
+
+/**
+Icon input
+ */
+.input-icon {
+  position: relative;
+
+  .form-control:not(:last-child) {
+    padding-right: 2.5rem;
+  }
+
+  .form-control:not(:first-child) {
+    padding-left: 2.5rem;
+  }
+}
+
+.input-icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  pointer-events: none;
+
+  &:last-child {
+    left: auto;
+    right: 0;
+  }
+}
+
+.custom-checkbox{
+  height: 35px;
+  @extend .v-center;
+  .custom-control-label{
+    padding-top: 0.1em;
+  }
+}

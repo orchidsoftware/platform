@@ -20,7 +20,7 @@ Isa sa mga elemento ng presentasyon ay ang mga "Layout", ito ang mga layout na m
 Ang talahanayang layout ay ginagamit sa paglalahad ng pinakamaliit na impormasyon para sa pagpapakita at pagkukuha ng sample.
 
 ```php
-php artisan make: table PatientListLayout
+php artisan orchid: table PatientListLayout
 ```
 
 Example:
@@ -63,7 +63,7 @@ class PatientListLayout extends Table
             'last_name' => [
                 'name' => 'Last name',
                 'action' => function ($patient) {
-                    return '<a href = "'. route ('dashboard.clinic.patient.edit',
+                    return '<a href = "'. route ('platform.clinic.patient.edit',
                             $patient->id). '">'. $patient->last_name. '</a>';
                 },
             ],
@@ -83,7 +83,7 @@ Ang layunin nito ay pag-isahin ang lahat ng mahahalagang mga field.
 
 Upang maglikha, paganahin ang sumusunod na utos:
 ```php
-php artisan make: rows PatientFirstRows
+php artisan orchid: rows PatientFirstRows
 ```
 
 Halimbawa:
@@ -91,7 +91,7 @@ Halimbawa:
 namespace App\Layouts\Clinic\Patient;
 
 use App\Http\Widgets\AppointmentTypes;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class Appointment extends Rows
@@ -100,7 +100,7 @@ class Appointment extends Rows
     / **
      * @return array
      *
-     * @throws\Orchid\Platform\Exceptions\TypeException
+     * @throws\Orchid\Press\TypeException
      * /
     public function fields (): array
     {
@@ -188,7 +188,7 @@ class ChartsLayout extends Chart
 
     / **
      * Magagamit na mga opsyon:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string

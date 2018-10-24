@@ -1,0 +1,213 @@
+// sortable
+.sortable-placeholder {
+  list-style    : none;
+  border        : 1px dashed #cccccc;
+  min-height    : 50px;
+  margin-bottom : 5px
+}
+
+// input
+.chosen-choices, .chosen-single, .bootstrap-tagsinput {
+  @extend .form-control;
+}
+
+.select2-search__field {
+  width : 100% !important;
+}
+
+.select2-container--bootstrap {
+
+  .select2-selection {
+    @include box-shadow(none);
+    border : 1px solid $form-control-border-color;
+  }
+
+  .select2-dropdown {
+    border-color : fade-out($brand-black, 0.9);
+    outline      : 0 !important;
+    @include box-shadow(none);
+    @include placeholder($text-muted);
+  }
+
+  &.select2-container--focus .select2-selection, &.select2-container--open .select2-selection {
+    border-color     : fade-out($brand-black, 0.9);
+    background-color : $brand-grey-light;
+    outline          : 0 !important;
+    @include box-shadow(none);
+    @include placeholder($text-muted);
+  }
+}
+
+.mce-content-body:focus {
+  background-color : $brand-grey-light;
+}
+
+// Tiny MCE Editor
+.mce-content-body {
+  img {
+    max-width  : 100%;
+    object-fit : cover;
+  }
+}
+
+div.mce-fullscreen {
+  z-index: 1050;
+}
+
+// SimpleMDE Markdown Editor
+.CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
+  z-index : 1040;
+}
+.CodeMirror-fullscreen{
+  background-color: $body-bg;
+  @extend .wrapper;
+
+  .CodeMirror-code,
+  .editor-preview-active,
+  .CodeMirror-sizer,
+  .CodeMirror-scroll{
+    max-width: 60em!important;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .CodeMirror-scroll{
+    @extend .card;
+    @extend .wrapper;
+  }
+
+  .CodeMirror-sizer {
+    max-width: 100%;
+  }
+
+  .CodeMirror-vscrollbar{
+    overflow: hidden;
+  }
+
+  .CodeMirror-scroll{
+    overflow: auto!important;
+  }
+
+}
+
+.editor-preview-side{
+  border-left: none!important;
+  @extend .b-t;
+  @extend .bg-white;
+  @extend .wrapper;
+}
+
+.editor-toolbar.fullscreen{
+  text-align: center;
+}
+
+.CodeMirror.CodeMirror-fullscreen.CodeMirror-sided {
+  padding: 0;
+  margin: 0;
+  left: 0;
+  .CodeMirror-scroll{
+    width: 100%;
+    margin: 0;
+    max-width: 100%!important;
+    border: none;
+  }
+}
+
+
+
+// Datetimepicker
+.bootstrap-datetimepicker-widget {
+  &.dropdown-menu {
+    width : 18rem;
+  }
+  .table-condensed {
+    > tbody,
+    > thead,
+    > tfoot {
+      > tr {
+        > td,
+        > th {
+          padding : 4px;
+        }
+      }
+    }
+  }
+
+}
+
+// Flatpickr
+.flatpickr-input {
+    &.form-control[readonly] {
+        background: $white;
+        color: $brand-black;
+    }
+}
+
+
+.form-group,.CodeMirror-wrap pre{
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+
+.admin-wrapper {
+  .admin-element {
+    box-sizing: border-box;
+    @extend .wrapper;
+    display: inline-block;
+    vertical-align: top;
+    justify-self: center;
+
+    h3 {
+      margin: 0;
+      padding-left: 40px;
+      position: relative;
+      i {
+        @extend .r-3x;
+        @extend .text-white;
+        top: 0;
+        left: 0;
+        border-radius: 3px;
+        height: 28px;
+        width: 28px;
+        background: $brand-dark;
+        position: absolute;
+
+        &:before {
+          width: 100%;
+          text-align: center;
+          @extend .v-center;
+          font-size: 14px;
+          position: absolute;
+          left: 25%;
+          top: 0;
+          bottom: 0;
+        }
+
+      }
+
+    }
+  }
+
+}
+
+
+//codeflask
+.codeflask{
+  pre,code {
+    background: none!important;
+  }
+}
+
+.codeflask__flatten {
+  padding:     10px !important;
+  line-height: 20px !important;
+  white-space: pre !important;
+  overflow:    auto !important;
+  margin:      0 !important;
+  text-align:  left !important;
+}
+
+.codeflask.codeflask--has-line-numbers:before {
+  background: #f8f9fa;
+}

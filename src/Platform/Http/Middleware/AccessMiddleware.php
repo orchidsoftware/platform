@@ -8,6 +8,9 @@ use Closure;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 
+/**
+ * Class AccessMiddleware.
+ */
 class AccessMiddleware
 {
     /**
@@ -30,8 +33,6 @@ class AccessMiddleware
         $this->auth = $auth;
     }
 
-    /** @noinspection PhpInconsistentReturnPointsInspection */
-
     /**
      * @param          $request
      * @param \Closure $next
@@ -45,12 +46,12 @@ class AccessMiddleware
         if ($this->auth->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->route('dashboard.login');
             }
+
+            return redirect()->route('platform.login');
         }
 
-        if ($this->auth->user()->hasAccess('dashboard.index')) {
+        if ($this->auth->user()->hasAccess('platform.index')) {
             return $next($request);
         }
 

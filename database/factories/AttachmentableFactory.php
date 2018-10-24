@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use Orchid\Platform\Core\Models\Attachment;
-use Orchid\Platform\Core\Models\Attachmentable;
+use Orchid\Attachment\Models\Attachment;
+use Orchid\Attachment\Models\Attachmentable;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ $factory->define(Attachmentable::class, function (Faker $faker) {
 
     if ($attachments > 0) {
         $attachment = [
-            'attachmentable_type' => "Orchid\Platform\Core\Models\Post",
+            'attachmentable_type' => "Orchid\Press\Models\Post",
             'attachment_id'       => Attachment::inRandomOrder()->first()->id,
         ];
     } else {

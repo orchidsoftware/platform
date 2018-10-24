@@ -1,12 +1,13 @@
 @if($filters->count() > 0)
-    <form id="filters"></form>
-    <div class="wrapper-md b-b">
+    <div class="wrapper-md b-b" data-controller="screen--filter">
+        <form id="filters" autocomplete="off" data-action="screen--filter#submit"></form>
         <div class="row">
             <div class="col-md-12">
                 <div class="btn-group pull-right" role="group">
-                    <a      href="{{url()->current()}}"
-                            class="btn btn-default"><i class="icon-refresh"></i>
-                    </a>
+                    <button
+                       data-action="screen--filter#clear"
+                       class="btn btn-default"><i class="icon-refresh"></i>
+                    </button>
                     <button type="submit"
                             id="button-filter"
                             form="filters"
@@ -28,7 +29,7 @@
                             $filter= $filter->display();
                         @endphp
 
-                        @if(is_a($filter,\Orchid\Platform\Fields\FieldContract::class))
+                        @if(is_a($filter,\Orchid\Screen\Contracts\FieldContract::class))
                             {!! $filter->form('filters')->render() !!}
                         @else
                             {!! $filter !!}

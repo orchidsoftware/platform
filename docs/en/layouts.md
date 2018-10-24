@@ -19,7 +19,7 @@ One of the elements of presentation is "Layouts", these are layouts displayable 
 Table layout is used to output minimal information for review and sampling.
 
 ```php
-php artisan make:table PatientListLayout
+php artisan orchid:table PatientListLayout
 ```
 
 Example:
@@ -62,7 +62,7 @@ class PatientListLayout extends Table
             TD::name('last_name')
                 ->title('Last name')
                 ->setRender(function ($patient) {
-                    return '<a href="' . route('dashboard.clinic.patient.edit',
+                    return '<a href="' . route('platform.clinic.patient.edit',
                             $patient->id) . '">' . $patient->last_name . '</a>';
                 }),
 
@@ -93,7 +93,7 @@ Its objective to complex all the essential fields.
 
 Use the following command for creation:
 ```php
-php artisan make:rows PatientFirstRows
+php artisan orchid:rows PatientFirstRows
 ```
 
 Example:
@@ -101,7 +101,7 @@ Example:
 namespace App\Layouts\Clinic\Patient;
 
 use App\Http\Widgets\AppointmentTypes;
-use Orchid\Platform\Fields\Field;
+use Orchid\Screen\Field;
 use Orchid\Platform\Layouts\Rows;
 
 class Appointment extends Rows
@@ -110,7 +110,7 @@ class Appointment extends Rows
     /**
      * @return array
      *
-     * @throws \Orchid\Platform\Exceptions\TypeException
+     * @throws \Orchid\Press\TypeException
      */
     public function fields(): array
     {
@@ -197,7 +197,7 @@ class ChartsLayout extends Chart
 
     /**
      * Available options:
-     * 'bar', 'line', 'scatter',
+     * 'bar', 'line', 
      * 'pie', 'percentage'
      *
      * @var string

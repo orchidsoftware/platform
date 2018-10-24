@@ -5,7 +5,7 @@ Nagbabaka-sakali ang plataporma na sa default, ang kahit anong elemento na nagla
 Kaya ngayon, makakakuha ka na ng database na datos:
 
 ```php
-use Orchid\Platform\Core\Models\Post;
+use Orchid\Press\Models\Post;
 
 $posts = Post::all();
 ```

@@ -21,9 +21,9 @@ Most of menus are displayed at the top of a website, but position may alter for 
 The Menu class is common model of `Eloquent`, that has all its abilities, for example to display only parent menu items with children links and location-aware, do the following:
 
 ```php
-namespace Orchid\Platform\Core\Models\Menu;
+namespace Orchid\Press\Models\Menu;
 
-$menu = Menu::where('lang', App::getLocale())
+$menu = Menu::where('lang', app()->getLocale()())
     ->where('parent',0)
     ->where('type', 'footer')
     ->with('children')

@@ -13,10 +13,7 @@
     <li><a href="/en/docs/configuration">Configuração</a></li>
     <li><a href="/en/docs/authentication">Autenticação</a></li>
     <li><a href="/en/docs/tutorial_blog">Criação de Blog</a></li>
-    <li><a href="/en/docs/tutorial_phpinfo">Expansão do formulário</a></li>
     <li><a href="/en/docs/tutorial_profile">Criação de perfil</a></li>
-     <!--<li><a href="/en/docs/tutorial_clinic">Criação de aplicativos</a></li> -->
-     <!--<li><a href="/en/docs/tutorial_monitor">Desenvolvimento de pacotes</a></li> -->
 </ul>
 
 <h4 class="text-orchid font-thin">Plataforma</h4>
@@ -41,7 +38,7 @@
 
 <h4 class="text-orchid font-thin">Controle de conteúdo</h4>
 <ul class="toc-links">
-    <li><a href="/en/docs/behaviors">Comportamentos</a></li>
+    <li><a href="/en/docs/entities">Comportamentos</a></li>
     <li><a href="/en/docs/post">Postagens</a></li>
     <li><a href="/en/docs/tags">Etiquetas</a></li>
     <li><a href="/en/docs/comments" title="Work with commentaries in ORCHID">Comentários</a></li>

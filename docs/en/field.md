@@ -3,7 +3,7 @@
 Fields are used to generate the output for the form template.
 
 All possible fields are defined in the `config/platform.php` file inside the fields section
-Every field may be used in a behavior, template or filter. 
+Every field may be used in a entity, template or filter. 
 
 If you need to create your own field don't be shy to do it.
 Field consists of one class with a mandatory `create` method that must implement the `view`  to display to user.
@@ -12,25 +12,25 @@ Field consists of one class with a mandatory `create` method that must implement
 ```php
 // Allowed template fields
 'fields' => [
-    'textarea'     => Orchid\Platform\Fields\Types\TextAreaField::class,
-    'input'        => Orchid\Platform\Fields\Types\InputField::class,
-    'list'         => Orchid\Platform\Fields\Types\ListField::class,
-    'tags'         => Orchid\Platform\Fields\Types\TagsField::class,
-    'select'       => Orchid\Platform\Fields\Types\SelectField::class,
-    'relationship' => Orchid\Platform\Fields\Types\RelationshipField::class,
-    'place'        => Orchid\Platform\Fields\Types\PlaceField::class,
-    'picture'      => Orchid\Platform\Fields\Types\PictureField::class,
-    'datetime'     => Orchid\Platform\Fields\Types\DateTimerField::class,
-    'checkbox'     => Orchid\Platform\Fields\Types\CheckBoxField::class,
-    'code'         => Orchid\Platform\Fields\Types\CodeField::class,
-    'wysiwyg'      => Orchid\Platform\Fields\Types\TinyMCEField::class,
-    'password'     => Orchid\Platform\Fields\Types\PasswordField::class,
-    'markdown'     => Orchid\Platform\Fields\Types\SimpleMDEField::class,
+    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
+    'input'        => Orchid\Screen\Fields\InputField::class,
+    'list'         => Orchid\Screen\Fields\ListField::class,
+    'tags'         => Orchid\Screen\Fields\TagsField::class,
+    'select'       => Orchid\Screen\Fields\SelectField::class,
+    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
+    'place'        => Orchid\Screen\Fields\PlaceField::class,
+    'picture'      => Orchid\Screen\Fields\PictureField::class,
+    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
+    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
+    'code'         => Orchid\Screen\Fields\CodeField::class,
+    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
+    'password'     => Orchid\Screen\Fields\PasswordField::class,
+    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
 ],
 ```
 
 
-Fields and behaviors are defined separately, that allows us to use only a key 
+Fields and entities are defined separately, that allows us to use only a key 
 to access them, for example if we need a `wysiwyg` redactor requested value will be our class. 
 This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one click.
 
@@ -205,7 +205,7 @@ return [
                 ])
                 ->name('select')
                 ->title('Select tags')
-                ->help('Allow search bots to index page'),
+                ->help('Allow search bots to index'),
 ];
 ```
 
@@ -290,7 +290,7 @@ services.google.maps.key
 
 
 
-## Behaviors
+## Entities
 
 Behavior fields may upload a dynamic data which is great if you need connections.
 
@@ -312,7 +312,7 @@ AjaxWidget will receive a search value inside the `$query` property and the `$ke
 ```php
 namespace App\Http\Widgets;
 
-use Orchid\Platform\Widget\Widget;
+use Orchid\Widget\Widget;
 
 class AjaxWidget extends Widget
 {

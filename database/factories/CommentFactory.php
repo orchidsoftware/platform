@@ -1,8 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Orchid\Platform\Core\Models\User;
-use Orchid\Platform\Core\Models\Comment;
+use Orchid\Press\Models\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +15,8 @@ use Orchid\Platform\Core\Models\Comment;
 */
 
 $factory->define(Comment::class, function (Faker $faker) {
-    $user = User::inRandomOrder()->first()->id;
-
     return [
-        'user_id'   => $user,
-        'parent_id' => 0,
-        'content'   => $faker->paragraph($nbSentences = 2, $variableNbSentences = true),
+        'content'   => $faker->paragraph(2, true),
         'approved'  => $faker->randomElement([0, 1]),
     ];
 });

@@ -1,67 +1,49 @@
-@extends('dashboard::layouts.auth')
+@extends('platform::layouts.auth')
+@section('title',__('Sign in to your account'))
 
 @section('content')
 
-    <p class="m-t-lg">{{trans('dashboard::auth/account.title')}}</p>
-
-    <form class="m-t-md" role="form" method="POST" action="{{  route('dashboard.login.auth') }}">
+    <p class="m-t-lg text-black">{{__('Sign in to your account')}}</p>
+    <form class="m-t-md" role="form" method="POST" action="{{ route('platform.login.auth') }}">
         @csrf
+    <div class="form-group">
+        <label class="form-label">{{__('Email address')}}</label>
+        <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" required
+               value="{{ old('email') }}"
+               placeholder="{{__('Enter your email')}}">
+        @if ($errors->has('email'))
+            <span class="invalid-feedback text-danger">
+                {{ $errors->first('email') }}
+            </span>
+        @endif
+    </div>
+    <div class="form-group">
+        <label class="form-label w-full">
+            {{__('Password')}}
+            <a href="{{ route('platform.password.request') }}" class="float-right small">{{__('Forgot your password?')}}</a>
+        </label>
+        <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"
+               value="{{ old('password') }}"
+               placeholder="{{__('Enter your password')}}" required>
+        @if ($errors->has('password'))
+            <span class="invalid-feedback text-danger">
+                {{ $errors->first('password') }}
+            </span>
+        @endif
+    </div>
 
-        <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}">
-            <label>Email</label>
-            <div class="controls">
-                <input type="email" name="email" placeholder="{{trans('dashboard::auth/account.enter_email')}}"
-                       class="form-control" required
-                       value="{{ old('email') }}">
-
-                @if ($errors->has('email'))
-                    <span class="form-text text-muted">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                @endif
-            </div>
+    <div class="row">
+        <div class="form-group col-md-6 col-xs-12">
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
+                <span class="custom-control-label"> {{__('Remember Me')}}</span>
+            </label>
         </div>
-
-
-        <div class="form-group form-group-default {{ $errors->has('password') ? ' has-error' : '' }}">
-            <label>{{trans('dashboard::auth/account.password')}}</label>
-            <div class="controls">
-                <input type="password" class="form-control" name="password"
-                       placeholder="{{trans('dashboard::auth/account.enter_password')}}" required>
-
-                @if ($errors->has('password'))
-                    <span class="form-text text-muted">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                @endif
-            </div>
+        <div class="form-group col-md-6 col-xs-12">
+            <button type="submit" class="btn btn-default btn-block">
+                <i class="icon-login text-xs m-r-xs"></i> {{__('Login')}}
+            </button>
         </div>
-
-        <div class="form-group row v-center padder-v">
-            <div class="col-5">
-                <div class="checkbox">
-                    <label class="i-checks">
-                        <input type="checkbox" checked
-                               name="remember"><i></i> {{trans('dashboard::auth/account.remember_me')}}
-                    </label>
-                </div>
-            </div>
-            <div class="col-7 text-right">
-                <a href="{{ route('dashboard.password.request') }}"
-                   class="text-primary small">{{trans('dashboard::auth/account.forgot_password')}}</a>
-            </div>
-        </div>
-
-
-
-
-        <button class="btn btn-default btn-block m-t-md" type="submit" dusk="login-button">
-            <i class="icon-login text-xs m-r-xs"></i> {{trans('dashboard::auth/account.login')}}
-        </button>
-
+    </div>
     </form>
-
-
-
-
 @endsection
