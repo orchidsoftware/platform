@@ -139,9 +139,6 @@ class Post extends Model
         ];
     }
 
-    /**
-     *
-     */
     public static function boot()
     {
         parent::boot();
