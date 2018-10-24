@@ -25,11 +25,14 @@ class RoleListLayout extends Table
                 ->width('100px')
                 ->sort()
                 ->link('platform.systems.roles.edit', 'slug'),
+
             TD::set('name', __('Name'))
                 ->sort()
                 ->link('platform.systems.roles.edit', 'slug', 'name'),
+
             TD::set('slug', __('Slug'))
                 ->sort(),
+
             TD::set('created_at', __('Created'))
                 ->sort(),
         ];

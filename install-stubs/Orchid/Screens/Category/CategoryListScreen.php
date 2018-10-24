@@ -40,7 +40,7 @@ class CategoryListScreen extends Screen
         }
 
         return [
-            'category' => $allCategories, //Category::paginate(),
+            'category' => $allCategories,
         ];
     }
 
@@ -56,10 +56,12 @@ class CategoryListScreen extends Screen
         $category->delimiter = $delimiter;
         $result->push($category);
 
-        if ($category->allChildrenTerm()->count()) {
-            foreach ($category->allChildrenTerm()->get() as $item) {
-                $result = $result->merge($this->getCategory($item, $delimiter.'-'));
-            }
+        if (!$category->allChildrenTerm()->count()) {
+            return $result;
+        }
+
+        foreach ($category->allChildrenTerm()->get() as $item) {
+            $result = $result->merge($this->getCategory($item, $delimiter.'-'));
         }
 
         return $result;

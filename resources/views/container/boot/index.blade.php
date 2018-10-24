@@ -25,12 +25,12 @@
                         <div class="form-inline">
                             <div class="form-group mb-2">
                                 <div>
-                                    Columns<br>
-                                    <p class="text-muted">Determine the columns for your model</p>
+                                    {{ __('Columns') }}<br>
+                                    <p class="text-muted">{{ __('Determine the columns for your model') }}</p>
                                 </div>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <label class="sr-only">Columns</label>
+                                <label class="sr-only">{{ __('Columns') }}</label>
                                 <input type="text"
                                        data-target="components--boot.column"
                                        data-action="keypress->components--boot#addColumn"
@@ -78,7 +78,7 @@
         <div class="app-content-center text-center">
             <h3 class="font-thin">
                 <i class="icon-table block m-b"></i>
-                Выберите или создайте модель
+                {{ __('Select or create model') }}
             </h3>
         </div>
     @endisset
@@ -94,18 +94,18 @@
                     <div class="form-inline">
                         <div class="form-group mb-2">
                             <div>
-                                Relationships<br>
-                                <p class="text-muted">Determine the relationships for this model</p>
+                                {{ __('Relationships') }}<br>
+                                <p class="text-muted">{{ __('Determine the relationships for this model') }}</p>
                             </div>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <label class="sr-only">Choose Model:</label>
+                            <label class="sr-only">{{ __('Choose Model') }}:</label>
 
                             <select
                                     class="form-control w-full"
                                     data-target="components--boot.relation"
                             >
-                                <option>Select Model</option>
+                                <option>{{ __('Select Model') }}</option>
                                 @foreach($models as $name => $value)
                                     <option value="{{$name}}">{{$name}}</option>
                                 @endforeach

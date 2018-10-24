@@ -90,10 +90,8 @@ class UserListScreen extends Screen
      */
     public function asyncGetUser() : array
     {
-        // переписать эту херню
         $id = $this->request->json()->all();
         $id = array_shift($id);
-        // переписать эту херню
 
         $user = is_null($id) ? new User : User::findOrFail($id);
 

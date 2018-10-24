@@ -65,6 +65,7 @@ class CategoryEditScreen extends Screen
             Link::name(__('Save'))
                 ->icon('icon-check')
                 ->method('save'),
+
             Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('remove'),

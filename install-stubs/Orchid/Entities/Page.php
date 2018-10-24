@@ -150,13 +150,6 @@ class Page extends Single
                 ->name('code')
                 ->title('Name Articles')
                 ->help('Article title'),
-
-            /* need api key 'place'
-            Field::tag('place')
-                ->name('place')
-                ->title('Place')
-                ->help('place for google maps'),
-            */
         ];
     }
 
@@ -167,30 +160,5 @@ class Page extends Single
     public function options(): array
     {
         return [];
-        /*
-        return [
-            Field::tag('upload')
-                //default
-                ->name('field.options.upload')
-                ->title('Upload')
-                ->help('place for google maps')
-                ->value('id')
-
-                //only upload
-                ->class(self::class)
-                ->storage('public')
-                ->mime('image/png')
-                ->maxFileSize(2)
-                ->parallelUploads(10)
-                ->maxFiles(10)
-
-                //only image
-                ->resizeMethod('contain/crop')
-                ->resizeQuality(0.75)
-                ->resizeMimeType('image/jpeg')
-                ->resizeWidth(200)
-                ->resizeHeight(200),
-        ];
-        */
     }
 }

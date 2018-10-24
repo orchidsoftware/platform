@@ -77,7 +77,6 @@ return [
         'tags'         => Orchid\Screen\Fields\TagsField::class,
         'select'       => Orchid\Screen\Fields\SelectField::class,
         'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-        'place'        => Orchid\Screen\Fields\PlaceField::class,
         'picture'      => Orchid\Screen\Fields\PictureField::class,
         'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
         'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,

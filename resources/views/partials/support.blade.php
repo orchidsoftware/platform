@@ -9,7 +9,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title m-b text-black font-thin">Связаться с представителем</h4>
+                        <h4 class="modal-title m-b text-black font-thin">{{ __('Support') }}</h4>
                     </div>
                     <div class="modal-body">
 
@@ -22,13 +22,13 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="email" class="control-label">{{ __('Name') }}</label>
+                            <label for="email" class="control-label">{{ __('Email') }}</label>
                             <input type="email" name="email" class="form-control" placeholder="Email"
                                    value="{{Auth::user()->email}}" required>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="username" class="control-label">{{ __('Name') }}</label>
+                            <label for="username" class="control-label">{{ __('Message') }}</label>
 
                             <textarea class="form-control no-resize" name="message"
                                       required
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <button type="submit" class="btn btn-primary">{{ __('Send') }}
-                                    <i class="m-l-sm icon-paper-plane"></i>
+                                    <i class="m-l-xs icon-paper-plane"></i>
                                 </button>
                             </div>
                         </div>

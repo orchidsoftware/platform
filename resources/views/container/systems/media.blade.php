@@ -38,23 +38,17 @@
                             <thead>
                             <tr>
                                 <th width="80px" class="text-center">
-                                    <a href="?sort=content.ru.name" class=" text-muted ">
-                                        Name
-                                    </a>
+                                    {{ __('Name') }}
                                 </th>
                                 <th class="text-center"></th>
                                 <th class="text-center">
 
                                 </th>
                                 <th class="text-center">
-                                    <a href="?sort=publish_at" class=" text-muted ">
-                                        Size
-                                    </a>
+                                    {{ __('Size') }}
                                 </th>
                                 <th class="text-center">
-                                    <a href="?sort=created_at" class=" text-muted ">
-                                        Modified
-                                    </a>
+                                    {{ __('Modified') }}
                                 </th>
                             </tr>
                             </thead>
@@ -175,11 +169,6 @@
 
 
                 <div id="aside-filemanager" class="col wi-col no-padder">
-
-                    <div class="right_none_selected" style="display: none;">
-                        <i class="icon-cursor"></i>
-                        <p> Ничего не выбрано</p>
-                    </div>
 
                     <div class="wrapper detail v-center text-center" data-target="components--media.src">
 

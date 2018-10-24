@@ -96,18 +96,23 @@ class ExampleScreen extends Screen
             Link::name('Example Group Button')
                 ->icon('icon-folder-alt')
                 ->group([
+
                     Link::name('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
+
                     Link::name('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
+
                     Link::name('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
+
                     Link::name('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),
+
                     Link::name('Example Button')
                         ->method('example')
                         ->icon('icon-bag'),

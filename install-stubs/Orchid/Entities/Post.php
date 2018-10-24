@@ -170,13 +170,6 @@ class Post extends Many
                 ->name('code')
                 ->title('Name Articles')
                 ->help('Article title'),
-
-            /* need api key 'place'
-            Field::tag('place')
-                ->name('place')
-                ->title('Place')
-                ->help('place for google maps'),
-            */
         ];
     }
 

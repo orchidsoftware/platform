@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
@@ -138,9 +139,16 @@ class Post extends Model
         ];
     }
 
+    /**
+     *
+     */
     public static function boot()
     {
         parent::boot();
+
+        self::creating(function ($model) {
+            $model->publish_at = Carbon::now();
+        });
 
         self::saving(function ($model) {
             $model->createSlug($model->slug);
