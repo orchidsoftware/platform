@@ -1,13 +1,13 @@
-<div class="admin-wrapper">
-    <div class="wrapper">
-        <div class="row m-b">
-            <div class="wrapper">
+<div class="admin-wrapper b-t">
+    <div class="wrapper-lg">
+        <div class="row m-b-xl text-center">
+            <div class="wrapper w-full">
                 <h1 class="text-dark font-thin m-t-md m-b-sm"><i class="icon-directions m-r-xs"></i> Get Started</h1>
                 <p class="lead m-b-n">Make it short and sweet, but not too short so folks don't simply skip over it
                                       entirely.</p>
             </div>
         </div>
-        <div class="row m-b">
+        <div class="row">
             <div class="col-md-4 no-padder admin-element-item">
 
                 <div class="admin-element w-full">
