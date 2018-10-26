@@ -26,7 +26,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Boot the application events.
      */
-    public function boot()
+    public function boot() : void
     {
         $this->registerEloquentFactoriesFrom()
             ->registerOrchid()
@@ -42,7 +42,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerEloquentFactoriesFrom()
+    protected function registerEloquentFactoriesFrom() : self
     {
         $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
 
@@ -54,7 +54,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerDatabase()
+    protected function registerDatabase() : self
     {
         $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
 
@@ -66,7 +66,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    public function registerTranslations()
+    public function registerTranslations() : self
     {
         $this->loadTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang'), 'platform');
 
@@ -78,10 +78,9 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerConfig()
+    protected function registerConfig() : self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/config/scout.php')    => config_path('scout.php'),
             realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
             realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
         ], 'config');
@@ -94,7 +93,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerOrchid()
+    protected function registerOrchid() : self
     {
         $this->publishes([
             realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
@@ -109,7 +108,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    public function registerViews()
+    public function registerViews() : self
     {
         $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
@@ -123,7 +122,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register provider.
      */
-    public function registerProviders()
+    public function registerProviders() : void
     {
         foreach ($this->provides() as $provide) {
             $this->app->register($provide);
@@ -135,7 +134,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides() : array
     {
         return [
             DashboardServiceProvider::class,
@@ -158,7 +157,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register()
+    public function register() : void
     {
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {

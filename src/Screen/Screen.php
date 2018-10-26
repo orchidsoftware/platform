@@ -99,7 +99,7 @@ abstract class Screen extends Controller
         $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
-            if (property_exists($layout, 'slug') && $layout->slug == $slugLayouts) {
+            if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
                 return $layout->build($post, true);
             }
         }
@@ -187,7 +187,7 @@ abstract class Screen extends Controller
     private function checkClassInArray($class): bool
     {
         foreach ($this->arguments as $value) {
-            if (is_object($value) && get_class($value) == $class) {
+            if (is_object($value) && get_class($value) === $class) {
                 return true;
             }
         }

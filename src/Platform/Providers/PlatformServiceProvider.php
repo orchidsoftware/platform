@@ -23,7 +23,7 @@ class PlatformServiceProvider extends ServiceProvider
      *
      * @param Dashboard $dashboard
      */
-    public function boot(Dashboard $dashboard)
+    public function boot(Dashboard $dashboard) : void
     {
         $this->dashboard = $dashboard;
 

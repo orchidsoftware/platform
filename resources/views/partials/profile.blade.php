@@ -31,7 +31,7 @@
                    onclick="event.preventDefault();document.getElementById('return-original-user').submit();"
                 >
                     <i class="icon-logout m-r-xs" aria-hidden="true"></i>
-                    <span>{{ __('Return to your account') }}</span>
+                    <span>{{ __('Back to my account') }}</span>
                 </a>
                 <form id="return-original-user" class="hidden"
                       action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
