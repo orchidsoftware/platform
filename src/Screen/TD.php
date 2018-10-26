@@ -79,7 +79,7 @@ class TD
     {
         $td = new static($name);
         $td->column = $name;
-        $td->title = is_null($td->title) ? title_case($name) : $title;
+        $td->title = is_null($title) ? title_case($name) : $title;
 
         return $td;
     }

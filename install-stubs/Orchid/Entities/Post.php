@@ -247,12 +247,14 @@ class Post extends Many
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
                 ->sort()
+                ->align('right')
                 ->setRender(function ($item) {
                     return $item->publish_at->toDateString();
                 }),
 
             TD::set('created_at', 'Date of creation')
                 ->filter('date')
+                ->align('right')
                 ->sort()
                 ->setRender(function ($item) {
                     return $item->created_at->toDateString();
