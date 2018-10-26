@@ -174,7 +174,7 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
-            file_put_contents(app_path('../.env'), $str . PHP_EOL . $constant . '=' . $value . PHP_EOL);
+            file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
         }
 
         return $this;
