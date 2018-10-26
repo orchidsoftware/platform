@@ -52,9 +52,22 @@
         <tbody>
 
 
-
-
             @foreach($data as $key => $datum)
+                @php
+                    //dump($key);
+                    /*
+                    dump($datum);
+                    $trclass = '';
+
+                    switch ($key % 3) {
+                        case 1 :
+                            $trclass = 'bg-success';
+                            break;
+                        case 2 :
+                            $trclass = 'bg-info';
+                            break;
+                    }*/
+                @endphp
                 <tr>
                     @foreach($fields as $td)
                         <td class="text-{{$td->align}}">

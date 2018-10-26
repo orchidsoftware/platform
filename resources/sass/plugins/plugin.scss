@@ -197,17 +197,19 @@ div.mce-fullscreen {
   pre,code {
     background: none!important;
   }
+  code[class*="language-"], pre[class*="language-"] {
+    line-height: 20px;
+  }
+  .codeflask__flatten {
+    padding:     10px;
+    white-space: pre;
+    overflow:    auto;
+    margin:      0;
+    text-align:  left;
+  }
+  &.codeflask--has-line-numbers:before {
+    background: #f8f9fa;
+  }
 }
 
-.codeflask__flatten {
-  padding:     10px !important;
-  line-height: 20px !important;
-  white-space: pre !important;
-  overflow:    auto !important;
-  margin:      0 !important;
-  text-align:  left !important;
-}
 
-.codeflask.codeflask--has-line-numbers:before {
-  background: #f8f9fa;
-}
