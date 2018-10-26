@@ -742,7 +742,13 @@ blockquote {
   }
 }
 
-
 .breadcrumb {
   border-radius: unset;
+}
+
+.sub-menu {
+  transition: all .4s ease-in-out 0s;
+  .dropdown-item:hover, .dropdown-item:focus {
+    background-color: inherit;
+  }
 }

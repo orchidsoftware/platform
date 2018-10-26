@@ -52,8 +52,6 @@
         <tbody>
 
 
-
-
             @foreach($data as $key => $datum)
                 <tr>
                     @foreach($fields as $td)
