@@ -20,7 +20,7 @@
             {{ __($label) }}
         </a>
         @if (!empty($childs))
-            <div class="collapse sub-menu @if(active($active)=='active') show @endif" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
+            <div class="collapse sub-menu {{active($active,'show')}}" id="menu-{{$slug}}" data-parent="#headerMenuCollapse">
                 @isset($groupname)
                     <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{ __($groupname) }}</div>
                 @endisset
