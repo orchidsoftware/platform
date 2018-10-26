@@ -187,7 +187,7 @@ abstract class Screen extends Controller
     private function checkClassInArray($class): bool
     {
         foreach ($this->arguments as $value) {
-            if (is_object($value) && get_class($value) === $class) {
+            if (is_object($value) && get_class($value) == $class) {
                 return true;
             }
         }
