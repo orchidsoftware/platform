@@ -255,3 +255,12 @@ $input-height-small : (floor($font-size-small * $line-height-small) + ($padding-
 $state-warning-text : #8a6d3b;
 $state-danger-text : #a94442;
 $state-success-text : #3c763d;
+
+$grid-breakpoints: (
+                           xs: 0,
+                           sm: 576px,
+                           md: 768px,
+                           lg: 992px,
+                           xl: 1200px,
+                           xxl: 1900px,
+                   )

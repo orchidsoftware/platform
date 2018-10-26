@@ -4,7 +4,7 @@
                     <span class="thumb-xs avatar m-r-xs">
                         <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
                     </span>
-            <span class="ml-2 d-none d-lg-block" style="width:140px;font-size: 0.82857rem;">
+            <span class="ml-2" style="width:140px;font-size: 0.82857rem;">
                         <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
                         <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
                     </span>

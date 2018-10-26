@@ -118,7 +118,11 @@ body {
   }
 }
 
-
+@media (min-width: 1900px) {
+  .aside {
+    max-width: $app-aside-width;
+  }
+}
 
 @media (min-width: 768px) {
 
@@ -131,11 +135,6 @@ body {
   //.navbar-collapse,
   .app-content{
     margin-left: $app-aside-width;
-  }
-
-
-  .aside{
-    max-width: $app-aside-width;
   }
 
   .bg-auto {
