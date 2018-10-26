@@ -7,7 +7,7 @@
     <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
 
 
-        <div class="aside col-xs-12 col-md-2 col-xxl-2 offset-md-1 offset-xxl-2 no-padder bg-dark">
+        <div class="aside col-xs-12 col-md-3 col-xl-2 col-xxl-2 offset-xl-1 offset-xxl-2 no-padder bg-dark">
 
             <div class="d-flex v-center wrapper mt-md-4">
 
@@ -40,7 +40,7 @@
             </div>
 
         </div>
-        <div class="col-md-9 col-xxl-6 bg-white b-r box-shadow-lg no-padder">
+        <div class="col-md-9 col-xl-8 col-xxl-7 bg-white b-r box-shadow-lg no-padder">
 
             <div class="wrapper mt-4">
                 <div class="v-center">
