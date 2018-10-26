@@ -100,7 +100,7 @@ class Comment extends Model
      */
     public function isApproved() : bool
     {
-        return $this->attributes['approved'] == 1;
+        return $this->attributes['approved'] === 1;
     }
 
     /**

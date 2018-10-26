@@ -63,7 +63,7 @@ abstract class Table
         $filters = collect();
         foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
-            if ($filter->dashboard == $dashboard) {
+            if ($filter->dashboard === $dashboard) {
                 $filters->push($filter);
             }
         }

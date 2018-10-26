@@ -22,230 +22,223 @@
 
 @section('content')
 
-    <style>
-
-    </style>
     <div class=""
         data-controller="components--media"
         data-components--media-baseurl="{{ route('platform.systems.media.index') }}"
         data-components--media-path="{{$path}}">
 
-        <div class="hbox hbox-auto-xs hbox-auto-sm pos-rlt">
-            <div class="hbox-col">
-                <div id="filemanager">
-                    <div id="content">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th width="80px" class="text-center">
-                                    {{ __('Name') }}
-                                </th>
-                                <th class="text-center"></th>
-                                <th class="text-center">
 
-                                </th>
-                                <th class="text-center">
-                                    {{ __('Size') }}
-                                </th>
-                                <th class="text-center">
-                                    {{ __('Modified') }}
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {{-- Directories--}}
-                            @foreach($directories as $directory)
-                                <tr class="media-file"
-                                    data-type="{{$directory['type']}}"
-                                    data-src="{{$directory['path']}}"
-                                    data-name="{{$directory['name']}}"
-                                    data-size="{{$directory['size']}}"
-                                    data-modified="{{$directory['lastModified']}}"
-                                >
-                                    <td class="text-center no-padder">
-                                        <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
-                                            <i class="icon icon-folder-alt main-icon"></i> </a>
 
-                                    </td>
-                                    <td class="text-left media-name">
-                                        <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
-                                            {{$directory['name']}}
-                                        </a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <i class="icon-options"></i>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item media-move">
-                                                <i class="icon-cursor-move"></i>Переместить</a>
-                                            <a class="dropdown-item media-rename">
-                                                <i class="icon-font"></i>Переименовать</a>
-                                            <a class="dropdown-item media-delete">
-                                                <i class="icon-trash"></i> Удалить</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center media-size media-view">
-                                        -
-                                    </td>
-                                    <td class="text-center media-modified media-view">
-                                        {{$directory['lastModified']}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            {{-- Directories--}}
-                            {{-- Files--}}
-                            @foreach($files as $file)
-                                <tr class="media-file"
-                                    data-type="{{$file['type']}}"
-                                    data-src="{{$file['path']}}"
-                                    data-name="{{$file['name']}}"
-                                    data-size="{{$file['size']}}"
-                                    data-modified="{{$file['lastModified']}}"
-                                >
-                                    <td class="text-center no-padder media-view">
-                                            @if (str_is('image*',$file['type']))
-                                                <img src="{{$file['path']}}" class="img-responsive b">
-                                            @elseif(str_is('video*',$file['type']))
-                                                <i class="main-icon icon icon-camrecorder"></i>
-                                            @elseif (str_is('audio*',$file['type']))
-                                                <i class="main-icon icon icon-music-tone"></i>
-                                            @else
-                                                <i class="main-icon icon icon-doc"></i>
-                                            @endif
-                                    </td>
-                                    <td class="text-left media-name media-view">
-                                            {{$file['name']}}
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <i class="icon-options"></i>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item media-getlink">
-                                                <i class="icon-link"></i> Скопировать ссылку</a>
-                                            <a class="dropdown-item media-move">
-                                                <i class="icon-cursor-move"></i>Переместить</a>
-                                            <a class="dropdown-item media-rename">
-                                                <i class="icon-font"></i>Переименовать</a>
-                                            <a class="dropdown-item media-delete">
-                                                <i class="icon-trash"></i> Удалить</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-right media-size media-view">
-                                        {{$file['size']}}
-                                    </td>
-                                    <td class="text-center media-modified media-view">
-                                        {{$file['lastModified']}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            {{-- Files--}}
-                            </tbody>
-                        </table>
+        <div class="">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="80px" class="text-center">
+                        {{ __('Name') }}
+                    </th>
+                    <th class="text-center"></th>
+                    <th class="text-center" width="5%">
 
-                        <footer class="wrapper">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <small class="text-muted inline m-t-sm m-b-sm">{{$directories->count()}} folders
-                                                                                                             and {{$files->count()}}
-                                                                                                             files
-                                    </small>
-                                </div>
-                                <div class="col-sm-7 text-right text-center-xs">
+                    </th>
+                    <th class="text-right" width="10%">
+                        {{ __('Size') }}
+                    </th>
+                    <th class="text-center" width="20%">
+                        {{ __('Modified') }}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {{-- Directories--}}
+                @foreach($directories as $directory)
+                    <tr class="media-file"
+                        data-type="{{$directory['type']}}"
+                        data-src="{{$directory['path']}}"
+                        data-name="{{$directory['name']}}"
+                        data-size="{{$directory['size']}}"
+                        data-modified="{{$directory['lastModified']}}"
+                    >
+                        <td class="text-center no-padder">
+                            <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
+                                <i class="icon icon-folder-alt main-icon h4"></i> </a>
 
-                                </div>
+                        </td>
+                        <td class="text-left media-name">
+                            <a href="{{route('platform.systems.media.index',$route.$directory['name'])}}">
+                                {{$directory['name']}}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-options"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item media-move">
+                                    <i class="icon-cursor-move m-r-xs"></i> {{ __('Move') }}</a>
+                                <a class="dropdown-item media-rename">
+                                    <i class="icon-font m-r-xs"></i> {{ __('Rename') }} </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item media-delete">
+                                    <i class="icon-trash m-r-xs"></i> {{ __('Delete') }} </a>
                             </div>
-                        </footer>
+                        </td>
+                        <td class="text-right media-size media-view">
+                            -
+                        </td>
+                        <td class="text-center media-modified media-view">
+                            {{$directory['lastModified']}}
+                        </td>
+                    </tr>
+                @endforeach
+                {{-- Directories--}}
+                {{-- Files--}}
+                @foreach($files as $file)
+                    <tr class="media-file"
+                        data-type="{{$file['type']}}"
+                        data-src="{{$file['path']}}"
+                        data-name="{{$file['name']}}"
+                        data-size="{{$file['size']}}"
+                        data-modified="{{$file['lastModified']}}"
+                    >
+                        <td class="text-center no-padder media-view">
+                            @if (str_is('image*',$file['type']))
+                                <img src="{{$file['path']}}" class="img-responsive img-fluid b">
+                            @elseif(str_is('video*',$file['type']))
+                                <i class="main-icon icon icon-camrecorder h4"></i>
+                            @elseif (str_is('audio*',$file['type']))
+                                <i class="main-icon icon icon-music-tone h4"></i>
+                            @else
+                                <i class="main-icon icon icon-doc h4"></i>
+                            @endif
+                        </td>
+                        <td class="text-left media-name media-view">
+                            {{$file['name']}}
+                        </td>
+                        <td class="text-center">
+                            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-options"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item media-getlink">
+                                    <i class="icon-link m-r-xs"></i> {{ __('Copy link') }}</a>
+                                <a class="dropdown-item media-move">
+                                    <i class="icon-cursor-move m-r-xs"></i> {{ __('Move') }} </a>
+                                <a class="dropdown-item media-rename">
+                                    <i class="icon-font m-r-xs"></i> {{ __('Rename') }} </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item media-delete">
+                                    <i class="icon-trash m-r-xs"></i> {{ __('Delete') }} </a>
+                            </div>
+                        </td>
+                        <td class="text-right media-size media-view">
+                            {{$file['size']}}
+                        </td>
+                        <td class="text-center media-modified media-view">
+                            {{$file['lastModified']}}
+                        </td>
+                    </tr>
+                @endforeach
+                {{-- Files--}}
+                </tbody>
+            </table>
 
+            <footer class="wrapper">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <small class="text-muted inline m-t-sm m-b-sm">{{$directories->count()}} folders
+                                                                                                 and {{$files->count()}}
+                                                                                                 files
+                        </small>
+                    </div>
+                    <div class="col-sm-7 text-right text-center-xs">
 
                     </div>
-
                 </div>
-            </div>
-            <div class="hbox-col b-l w-xxl">
+            </footer>
 
-
-                <div id="aside-filemanager" class="col wi-col no-padder">
-
-                    <div class="wrapper detail v-center text-center" data-target="components--media.src">
-
-                        <a href="" target="_blank" class="media-preview media-image" style="display: none;">
-                            <img src="" class="img-responsive b">
-                        </a>
-
-                        <video width="100%" height="auto" controls class="media-preview media-video" style="display: none;">
-                            <source src="selected_file.path" type="video/mp4">
-                            <source src="selected_file.path" type="video/ogg">
-                            <source src="selected_file.path" type="video/webm">
-
-                            {{trans('platform::systems/media.video_support')}}
-                        </video>
-
-
-                        <div class="media-preview media-audio" style="display: none;">
-                            <i class="icon-music-tone"></i>
-                            <audio controls class="w-full">
-                                <source src="selected_file.path" type="audio/ogg">
-                                <source src="selected_file.path" type="audio/mpeg">
-                                {{trans('platform::systems/media.audio_support')}}
-                            </audio>
-                        </div>
-
-
-                        <i class="icon-folder-alt media-preview media-directory" style="display: none;"></i>
-
-                        <a href="" target="_blank" class="media-preview media-doc" style="display: none;">
-                            <i class="icon-doc" ></i>
-                            <p>open</p>
-                        </a>
-
-                    </div>
-
-                    <div class="divider b-t m-t-sm"></div>
-
-
-                    <div class="wrapper">
-                        <div class="row">
-                            <div class="col-md-5">
-                                Название :
-                            </div>
-                            <div class="col-md-7" data-target="components--media.name">
-                                -
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                Тип файла:
-                            </div>
-                            <div class="col-md-7" data-target="components--media.type">
-                                -
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                Размер:
-                            </div>
-                            <div class="col-md-7" data-target="components--media.size">
-                                -
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                Модификация:
-                            </div>
-                            <div class="col-md-7" data-target="components--media.modified">
-                                -
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
         </div>
+
+
+
+        <div id="aside-filemanager" class="col wi-col no-padder">
+
+            <div class="wrapper detail v-center text-center" data-target="components--media.src">
+
+                <a href="" target="_blank" class="media-preview media-image" style="display: none;">
+                    <img src="" class="img-responsive b">
+                </a>
+
+                <video width="100%" height="auto" controls class="media-preview media-video" style="display: none;">
+                    <source src="selected_file.path" type="video/mp4">
+                    <source src="selected_file.path" type="video/ogg">
+                    <source src="selected_file.path" type="video/webm">
+
+                    {{trans('platform::systems/media.video_support')}}
+                </video>
+
+
+                <div class="media-preview media-audio" style="display: none;">
+                    <i class="icon-music-tone"></i>
+                    <audio controls class="w-full">
+                        <source src="selected_file.path" type="audio/ogg">
+                        <source src="selected_file.path" type="audio/mpeg">
+                        {{trans('platform::systems/media.audio_support')}}
+                    </audio>
+                </div>
+
+
+                <i class="icon-folder-alt media-preview media-directory" style="display: none;"></i>
+
+                <a href="" target="_blank" class="media-preview media-doc" style="display: none;">
+                    <i class="icon-doc" ></i>
+                    <p>open</p>
+                </a>
+
+            </div>
+
+            <div class="divider b-t m-t-sm"></div>
+
+
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-5">
+                        Название :
+                    </div>
+                    <div class="col-md-7" data-target="components--media.name">
+                        -
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Тип файла:
+                    </div>
+                    <div class="col-md-7" data-target="components--media.type">
+                        -
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Размер:
+                    </div>
+                    <div class="col-md-7" data-target="components--media.size">
+                        -
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        Модификация:
+                    </div>
+                    <div class="col-md-7" data-target="components--media.modified">
+                        -
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
         <!-- Delete File Modal  -->
         <div class="modal fade modal-danger" id="confirm_delete_modal" >
             <div class="modal-dialog">

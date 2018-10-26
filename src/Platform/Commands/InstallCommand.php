@@ -73,7 +73,8 @@ class InstallCommand extends Command
         $this
             ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN', 'localhost')
             ->askEnv('What prefix to use the panel?', 'DASHBOARD_PREFIX', 'dashboard')
-            ->createAdmin();
+            ->setValueEnv('SCOUT_DRIVER', 'null')
+            ->info("To create a user, run 'artisan orchid:admin'");
 
         $this->line("To start the embedded server, run 'artisan serve'");
     }
@@ -149,16 +150,6 @@ class InstallCommand extends Command
     }
 
     /**
-     * @return $this
-     */
-    private function createAdmin() : self
-    {
-        $this->info("To create a user, run 'artisan orchid:admin'");
-
-        return $this;
-    }
-
-    /**
      * @param string        $question
      * @param        string $constant
      * @param string        $default
@@ -169,6 +160,17 @@ class InstallCommand extends Command
     {
         $value = $this->ask($question, $default);
 
+        return $this->setValueEnv($constant, $value);
+    }
+
+    /**
+     * @param      $constant
+     * @param null $value
+     *
+     * @return \Orchid\Platform\Commands\InstallCommand
+     */
+    private function setValueEnv($constant, $value = null) : self
+    {
         $str = file_get_contents(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {

@@ -28,20 +28,15 @@ class MediaController extends Controller
     private $directory = '';
 
     /**
-     * @var \Illuminate\Config\Repository|mixed|string
-     */
-    private $disk;
-
-    /**
      * MediaController constructor.
      */
     public function __construct()
     {
         $this->checkPermission('platform.systems.media');
 
-        $this->disk = config('platform.disks.media', 'public');
+        $disk = (string) config('platform.disks.media', 'public');
 
-        $this->filesystem = Storage::disk($this->disk);
+        $this->filesystem = Storage::disk($disk);
     }
 
     /**
@@ -105,7 +100,7 @@ class MediaController extends Controller
     private function getSize($bytes)
     {
         $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-        if ($bytes == 0) {
+        if ($bytes === 0) {
             return '0 B';
         }
         $i = ((int) floor(log($bytes / 100) / log(1000)) >= 0) ?: 0;
