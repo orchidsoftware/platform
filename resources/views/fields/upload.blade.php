@@ -7,6 +7,15 @@
         data-fields--upload-id="dropzone-{{$id}}"
         data-fields--upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}"
         data-fields--upload-groups="{{$attributes['groups'] ?? ''}}"
+        data-fields--upload-multiple="{{$attributes['multiple']}}"
+        data-fields--upload-parallelUploads="{{$attributes['parallelUploads']}}"
+        data-fields--upload-maxFileSize="{{$attributes['maxFileSize']}}"
+        data-fields--upload-maxFiles="{{$attributes['maxFiles']}}"
+        data-fields--upload-acceptedFiles="{{$attributes['acceptedFiles']}}"
+        data-fields--upload-resizeQuality="{{$attributes['resizeQuality']}}"
+        data-fields--upload-resizeWidth="{{$attributes['resizeWidth']}}"
+        data-fields--upload-resizeHeight="{{$attributes['resizeHeight']}}"
+
 >
  <div id="dropzone-{{$id}}" class="dropzone-wrapper">
     <div class="fallback">

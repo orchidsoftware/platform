@@ -48,6 +48,23 @@ class UploadField extends Field
     public $view = 'platform::fields.upload';
 
     /**
+     * All attributes that are available to the field.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'value' => null,
+        'multiple' => true,
+        'parallelUploads' => 10,
+        'maxFileSize' => 9999,
+        'maxFiles' => 9999,
+        'acceptedFiles' => null,
+        'resizeQuality' => 0.8,
+        'resizeWidth' => null,
+        'resizeHeight' => null,
+    ];
+
+    /**
      * Attributes available for a particular tag.
      *
      * @var array
