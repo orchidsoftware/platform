@@ -41,7 +41,7 @@ class Post extends Many
      *
      * @var null
      */
-    public $groupname = 'platform::menu.common posts';
+    public $groupname = 'Common Posts';
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $model
