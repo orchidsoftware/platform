@@ -166,7 +166,7 @@ class Menu
             $user = $this->user;
 
             $this->container = $this->container->filter(function ($item) use ($user) {
-                return isset($item['arg']['permission']) ? $user->hasAccess($item['arg']['permission']) : true;
+                return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
             });
         }
 

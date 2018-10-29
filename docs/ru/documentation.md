@@ -11,16 +11,11 @@
     <li><a href="/ru/docs/license">Лицензия</a></li>
 </ul>
 
-<h4 class="text-orchid font-thin">C чего начать</h4>
-<ul class="toc-links">
-    <li><a href="/ru/docs/configuration">Обзор параметров</a></li>
-    <li><a href="/ru/docs/authentication">Авторизация</a></li>
-    <li><a href="/ru/docs/tutorial_blog">Создание блога</a></li>
-    <li><a href="/ru/docs/tutorial_profile">Создание экрана</a></li>
-</ul>
 
 <h4 class="text-orchid font-thin">Платформа</h4>
 <ul class="toc-links">
+    <li><a href="/ru/docs/configuration">Обзор параметров</a></li>
+    <li><a href="/ru/docs/authentication">Авторизация</a></li>
     <li><a href="/ru/docs/panel_menu">Меню панели</a></li>
     <li><a href="/ru/docs/screens">Экраны</a></li>
     <li><a href="/ru/docs/layouts">Макеты</a></li>
