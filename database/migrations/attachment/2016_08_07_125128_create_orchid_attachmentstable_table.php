@@ -52,6 +52,5 @@ class CreateOrchidAttachmentstableTable extends Migration
     {
         Schema::drop('attachmentable');
         Schema::drop('attachments');
-
     }
 }
