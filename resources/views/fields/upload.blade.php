@@ -1,5 +1,4 @@
 @component($typeForm,get_defined_vars())
-
 <div
         data-controller="fields--upload"
         data-fields--upload-storage="{{$storage ?? 'public'}}"
@@ -8,13 +7,13 @@
         data-fields--upload-data="{!!htmlspecialchars(json_encode($value), ENT_QUOTES, 'UTF-8')!!}"
         data-fields--upload-groups="{{$attributes['groups'] ?? ''}}"
         data-fields--upload-multiple="{{$attributes['multiple']}}"
-        data-fields--upload-parallelUploads="{{$parallelUploads}}"
-        data-fields--upload-maxFileSize="{{$maxFileSize}}"
-        data-fields--upload-maxFiles="{{$maxFiles}}"
-        data-fields--upload-acceptedFiles="{{$acceptedFiles}}"
-        data-fields--upload-resizeQuality="{{$resizeQuality}}"
-        data-fields--upload-resizeWidth="{{$resizeWidth}}"
-        data-fields--upload-resizeHeight="{{$resizeHeight}}"
+        data-fields--upload-parallel-uploads="{{$parallelUploads ?? 'null'}}"
+        data-fields--upload-max-file-size="{{$maxFileSize ?? 'null'}}"
+        data-fields--upload-max-files="{{$maxFiles ?? 'null'}}"
+        data-fields--upload-accepted-files="{{$acceptedFiles ?? 'null'}}"
+        data-fields--upload-resize-quality="{{$resizeQuality ?? 'null'}}"
+        data-fields--upload-resize-width="{{$resizeWidth ?? 'null'}}"
+        data-fields--upload-resize-height="{{$resizeHeight ?? 'null'}}"
 
 >
  <div id="dropzone-{{$id}}" class="dropzone-wrapper">

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Attachment\File;
 use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Post;
 
 /**
  * Class AttachmentController.
@@ -31,15 +31,15 @@ class AttachmentController extends Controller
     public function upload(Request $request)
     {
         $attachment = [];
-        foreach ($request->allFiles() as $file) {
-            $model = app()->make(File::class, [
-                'file'  => $file,
-                'disk'  => $request->get('storage', 'public'),
-                'group' => $request->get('group'),
-            ])->load();
+        foreach ($request->allFiles() as $files) {
 
-            $model->url = $model->url();
-            $attachment[] = $model;
+            if(!is_array($files)){
+                $files = [$files];
+            }
+
+            foreach ($files as $file){
+                $attachment[] = $this->createModel($file,$request);
+            }
         }
 
         if (count($attachment) > 1) {
@@ -120,5 +120,21 @@ class AttachmentController extends Controller
         $files->save();
 
         return response(200);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function createModel($file, Request $request)
+    {
+        $model = app()->make(File::class, [
+            'file'  => $file,
+            'disk'  => $request->get('storage', 'public'),
+            'group' => $request->get('group'),
+        ])->load();
+
+        $model->url = $model->url();
+
+        return $model;
     }
 }
