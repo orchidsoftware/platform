@@ -50,7 +50,7 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attachments');
         Schema::drop('attachmentable');
+        Schema::drop('attachments');
     }
 }
