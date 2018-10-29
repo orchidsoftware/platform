@@ -71,7 +71,8 @@ class UploadFileLister implements ShouldQueue
             ->filter($template)
             ->encode($template->extension, $template->quality);
 
-        Storage::disk($attachment->getAttribute('disk'))->put(date('Y/m/d', $this->time).'/'.$name, $content, [
+        Storage::disk($attachment->getAttribute('disk'))
+            ->putFileAs(date('Y/m/d', $this->time).'/'.$name, $content, [
             'mime_type' => $attachment->getMimeType(),
         ]);
     }
