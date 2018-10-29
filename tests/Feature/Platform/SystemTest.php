@@ -31,7 +31,7 @@ class SystemTest extends TestFeatureCase
             ->get(route('platform.systems.index'));
 
         $response->assertStatus(200);
-        $this->assertContains('Systems', $response->baseResponse->content());
+        $this->assertContains('System', $response->baseResponse->content());
     }
 
     public function test_route_PlatformSystemsMenuIndex()

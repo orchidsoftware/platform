@@ -6,11 +6,11 @@ namespace Orchid\Attachment;
 
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class File.

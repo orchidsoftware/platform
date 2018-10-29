@@ -36,7 +36,7 @@ class Page extends Single
      *
      * @var null
      */
-    public $groupname = 'platform::menu.static pages';
+    public $groupname = 'Static Pages';
 
     /**
      * Rules Validation.

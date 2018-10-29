@@ -40,7 +40,7 @@
             </div>
 
         </div>
-        <div class="col-md-9 col-xl-8 col-xxl-7 bg-white b-r box-shadow-lg no-padder">
+        <div class="col-md-9 col-xl-8 col-xxl-6 bg-white b-r box-shadow-lg no-padder">
 
             <div class="wrapper mt-4">
                 <div class="v-center">

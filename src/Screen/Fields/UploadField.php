@@ -39,6 +39,13 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this help($value = true)
  * @method $this storage($value = true)
+ * @method $this parallelUploads($value = true)
+ * @method $this maxFileSize($value = true)
+ * @method $this maxFiles($value = true)
+ * @method $this acceptedFiles($value = true)
+ * @method $this resizeQuality($value = true)
+ * @method $this resizeWidth($value = true)
+ * @method $this resizeHeight($value = true)
  */
 class UploadField extends Field
 {
@@ -46,6 +53,23 @@ class UploadField extends Field
      * @var string
      */
     public $view = 'platform::fields.upload';
+
+    /**
+     * All attributes that are available to the field.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'value'           => null,
+        'multiple'        => true,
+        'parallelUploads' => 10,
+        'maxFileSize'     => 9999,
+        'maxFiles'        => 9999,
+        'acceptedFiles'   => null,
+        'resizeQuality'   => 0.8,
+        'resizeWidth'     => null,
+        'resizeHeight'    => null,
+    ];
 
     /**
      * Attributes available for a particular tag.
