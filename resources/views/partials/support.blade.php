@@ -18,13 +18,13 @@
                         <div class="form-group mb-3">
                             <label for="name" class="control-label">{{ __('Name') }}</label>
                             <input type="text" name="name" class="form-control" placeholder="Username"
-                                   value="{{Auth::user()->getNameTitle()}}" required>
+                                   value="{{optional(Auth::user())->getNameTitle()}}" required>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="email" class="control-label">{{ __('Email') }}</label>
                             <input type="email" name="email" class="form-control" placeholder="Email"
-                                   value="{{Auth::user()->email}}" required>
+                                   value="{{optional(Auth::user())->email}}" required>
                         </div>
 
                         <div class="form-group mb-3">
