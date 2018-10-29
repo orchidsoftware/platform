@@ -277,20 +277,6 @@ return [
 Все доступные параметры *Inputmask* можно посмотреть [здесь](https://github.com/RobinHerbots/Inputmask#options)
 
 
-## Локация (Place)
- 
-Поле `локация` требует, чтобы ключ для карты [Google](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=ru) указывался в `config/service`
-services.google.maps.key
-```php
-//
-'google' => Field::tag('place')
-                ->name('place')
-                ->title('Place')
-                ->help('place for google maps'),
-```
-
-
-
 ## Отношения
 
 Поля отношения могут подгружать динамические данные, это хорошее решение, если вам нужны связи.

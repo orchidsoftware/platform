@@ -165,15 +165,10 @@ class Menu
             $this->user = Auth::user();
             $user = $this->user;
 
-            if($user === null){
-                $this->container = $this->container->filter(function ($item) use ($user) {
-                    return !isset($item['arg']['permission']);
-                });
-            }else{
-                $this->container = $this->container->filter(function ($item) use ($user) {
-                    return isset($item['arg']['permission']) ? $user->hasAccess($item['arg']['permission']) : true;
-                });
-            }
+            $this->container = $this->container->filter(function ($item) use ($user) {
+                return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
+            });
+        }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
             if (! array_key_exists('template', $value)) {
