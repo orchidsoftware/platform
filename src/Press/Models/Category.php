@@ -29,6 +29,7 @@ class Category extends Taxonomy
     public function setTaxonomy()
     {
         $this['taxonomy'] = $this->taxonomy;
+
         return $this;
     }
 
@@ -40,14 +41,9 @@ class Category extends Taxonomy
      */
     public function allOtherCategory()
     {
-        if ($this->exists) {
-            foreach (Category::whereNotIn('id', [$this->id])->get() as $category) {
-                $allOtherCategory[$category->id] = $category->term->GetContent('name');
-            }
-        } else {
-            foreach (Category::get() as $category) {
-                $allOtherCategory[$category->id] = $category->term->GetContent('name');
-            }
+        $categoryes = ($this->exists) ? Category::whereNotIn('id', [$this->id])->get() : Category::get();
+        foreach ($categoryes as $category) {
+            $allOtherCategory[$category->id] = $category->term->GetContent('name');
         }
 
         return $allOtherCategory;
@@ -67,6 +63,7 @@ class Category extends Taxonomy
         $this->term_id = $newTerm->id;
         $this->term()->associate($newTerm);
         $this->setTaxonomy();
+
         return $this;
     }
 
@@ -80,6 +77,7 @@ class Category extends Taxonomy
     public function setParent($parent_id = 0)
     {
         $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : 0;
+
         return $this;
     }
 
