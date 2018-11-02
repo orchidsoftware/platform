@@ -37,8 +37,8 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        if ($category->exists) {
-            $category->slug = $category->term->slug;
+        if (!$category->exists) {
+            $category->setRelation('term', [new Term()]);
         }
 
         return [
@@ -85,10 +85,6 @@ class CategoryEditScreen extends Screen
     public function save(Category $category, Request $request)
     {
         $attributes = $request->get('category');
-
-        $attributes['term']['content'][App::getLocale()] = $attributes['content'];
-        $attributes['term']['slug'] = $attributes['slug'];
-        unset($attributes['slug']);
 
         if (! $category->exists) {
             $category->newWithCreateTerm($attributes['term']);
