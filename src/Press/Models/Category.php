@@ -40,7 +40,7 @@ class Category extends Taxonomy
      */
     public function allOtherCategory()
     {
-        $categoryes = ($this->exists) ? Category::whereNotIn('id', [$this->id])->get() : Category::get();
+        $categoryes = ($this->exists) ? self::whereNotIn('id', [$this->id])->get() : self::get();
         foreach ($categoryes as $category) {
             $allOtherCategory[$category->id] = $category->term->GetContent('name');
         }
