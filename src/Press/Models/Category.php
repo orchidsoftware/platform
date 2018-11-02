@@ -19,9 +19,8 @@ class Category extends Taxonomy
      */
     protected $taxonomy = 'category';
 
-
     /**
-     *  Set taxonomy
+     *  Set taxonomy.
      *
      *
      * @return $this
@@ -29,11 +28,12 @@ class Category extends Taxonomy
     public function setTaxonomy()
     {
         $this['taxonomy'] = $this->taxonomy;
+
         return $this;
     }
 
     /**
-     *  Select all other categories
+     *  Select all other categories.
      *
      *
      * @return $this
@@ -41,11 +41,11 @@ class Category extends Taxonomy
     public function allOtherCategory()
     {
         if ($this->exists) {
-            foreach (Category::whereNotIn('id', [$this->id])->get() as $category) {
+            foreach (self::whereNotIn('id', [$this->id])->get() as $category) {
                 $allOtherCategory[$category->id] = $category->term->GetContent('name');
             }
         } else {
-            foreach (Category::get() as $category) {
+            foreach (self::get() as $category) {
                 $allOtherCategory[$category->id] = $category->term->GetContent('name');
             }
         }
@@ -53,9 +53,8 @@ class Category extends Taxonomy
         return $allOtherCategory;
     }
 
-
     /**
-     *  Create category term
+     *  Create category term.
      *
      * @param array $term
      *
@@ -67,11 +66,12 @@ class Category extends Taxonomy
         $this->term_id = $newTerm->id;
         $this->term()->associate($newTerm);
         $this->setTaxonomy();
+
         return $this;
     }
 
     /**
-     *  set parent category
+     *  set parent category.
      *
      * @param array $term
      *
@@ -80,9 +80,7 @@ class Category extends Taxonomy
     public function setParent($parent_id = 0)
     {
         $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : 0;
+
         return $this;
     }
-
-
-
 }
