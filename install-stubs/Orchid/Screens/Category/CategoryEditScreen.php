@@ -40,6 +40,7 @@ class CategoryEditScreen extends Screen
         if ($category->exists) {
             $category->slug = $category->term->slug;
         }
+
         return [
             'category' => $category,
             'catselect'=> $category->allOtherCategory(),

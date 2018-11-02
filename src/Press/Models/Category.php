@@ -19,9 +19,8 @@ class Category extends Taxonomy
      */
     protected $taxonomy = 'category';
 
-
     /**
-     *  Set taxonomy
+     *  Set taxonomy.
      *
      *
      * @return $this
@@ -34,7 +33,7 @@ class Category extends Taxonomy
     }
 
     /**
-     *  Select all other categories
+     *  Select all other categories.
      *
      *
      * @return $this
@@ -49,9 +48,8 @@ class Category extends Taxonomy
         return $allOtherCategory;
     }
 
-
     /**
-     *  Create category term
+     *  Create category term.
      *
      * @param array $term
      *
@@ -68,7 +66,7 @@ class Category extends Taxonomy
     }
 
     /**
-     *  set parent category
+     *  set parent category.
      *
      * @param array $term
      *
@@ -80,7 +78,4 @@ class Category extends Taxonomy
 
         return $this;
     }
-
-
-
 }
