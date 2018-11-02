@@ -17,7 +17,7 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
-        $categoryContent='category.term.content.'.app()->getLocale();
+        $categoryContent = 'category.term.content.'.app()->getLocale();
 
         return [
             Field::tag('input')

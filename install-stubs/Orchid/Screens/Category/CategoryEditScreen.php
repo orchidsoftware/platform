@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Orchid\Press\Models\Term;
 use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Support\Facades\App;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
 
 class CategoryEditScreen extends Screen
@@ -37,7 +36,7 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        if (!$category->exists) {
+        if (! $category->exists) {
             $category->setRelation('term', [new Term()]);
         }
 
