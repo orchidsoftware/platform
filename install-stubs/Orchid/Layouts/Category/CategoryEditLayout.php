@@ -17,15 +17,12 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
+        $categoryContent = 'category.term.content.'.app()->getLocale();
+
         return [
             Field::tag('input')
                 ->type('text')
-                ->name('category.content.name')
-                ->modifyValue(function () {
-                    if ($this->query->getContent('category')->exists) {
-                        return $this->query->getContent('category')->term->GetContent('name');
-                    }
-                })
+                ->name($categoryContent.'.name')
                 ->max(255)
                 ->require()
                 ->title(__('Category name'))
@@ -34,7 +31,7 @@ class CategoryEditLayout extends Rows
 
             Field::tag('input')
                 ->type('text')
-                ->name('category.slug')
+                ->name('category.term.slug')
                 ->max(255)
                 ->require()
                 ->title(__('Slug')),
@@ -49,12 +46,7 @@ class CategoryEditLayout extends Rows
                 ->title(__('Parent Category')),
 
             Field::tag('wysiwyg')
-                ->name('category.content.body')
-                ->modifyValue(function () {
-                    if ($this->query->getContent('category')->exists) {
-                        return $this->query->getContent('category')->term->GetContent('body');
-                    }
-                })
+                ->name($categoryContent.'.body')
                 ->title(__('Description')),
 
         ];
