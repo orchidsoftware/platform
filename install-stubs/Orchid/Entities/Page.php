@@ -141,11 +141,11 @@ class Page extends Single
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            SimpleMDEField::name('body2')
+            SimpleMDEField::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            CodeField::name('code')
+            CodeField::make('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];

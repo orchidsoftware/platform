@@ -162,11 +162,11 @@ class Post extends Many
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            SimpleMDEField::name('body2')
+            SimpleMDEField::make('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            CodeField::name('code')
+            CodeField::make('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];
@@ -180,7 +180,7 @@ class Post extends Many
     public function main(): array
     {
         $main = parent::main();
-        $main[] = UploadField::name('attachment')
+        $main[] = UploadField::make('attachment')
             ->title('Upload DropBox');
 
         return $main;

@@ -30,7 +30,7 @@ class CategoryEditLayout extends Rows
                 ->placeholder(__('Category name'))
                 ->help(__('Category title')),
 
-            InputField::tag('category.term.slug')
+            InputField::make('category.term.slug')
                 ->type('text')
                 ->max(255)
                 ->require()

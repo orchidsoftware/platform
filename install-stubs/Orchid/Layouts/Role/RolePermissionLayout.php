@@ -32,7 +32,7 @@ class RolePermissionLayout extends Rows
     public function generatedPermissionFields(Collection $permissionsRaw): array
     {
         foreach ($permissionsRaw as $group => $items) {
-            $fields[] = LabelField::name($group)
+            $fields[] = LabelField::make($group)
                 ->title($group)
                 ->hr(false);
 
