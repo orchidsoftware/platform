@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Category;
 
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\TinyMCEField;
 use Orchid\Screen\Layouts\Rows;
 
 class CategoryEditLayout extends Rows
@@ -20,33 +22,29 @@ class CategoryEditLayout extends Rows
         $categoryContent = 'category.term.content.'.app()->getLocale();
 
         return [
-            Field::tag('input')
+            InputField::make($categoryContent . '.name')
                 ->type('text')
-                ->name($categoryContent.'.name')
                 ->max(255)
                 ->require()
                 ->title(__('Category name'))
                 ->placeholder(__('Category name'))
                 ->help(__('Category title')),
 
-            Field::tag('input')
+            InputField::tag('category.term.slug')
                 ->type('text')
-                ->name('category.term.slug')
                 ->max(255)
                 ->require()
                 ->title(__('Slug')),
 
-            Field::tag('select')
+            SelectField::make('category.parent_id')
                 ->options(function () {
                     $options = $this->query->getContent('catselect');
 
                     return array_replace([0=> __('Without parent')], $options);
                 })
-                ->name('category.parent_id')
                 ->title(__('Parent Category')),
 
-            Field::tag('wysiwyg')
-                ->name($categoryContent.'.body')
+            TinyMCEField::make($categoryContent . '.body')
                 ->title(__('Description')),
 
         ];

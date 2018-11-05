@@ -130,6 +130,8 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
+     * @deprecated use make or new instants
+     *
      * @param string $type
      *
      * @return FieldContract
