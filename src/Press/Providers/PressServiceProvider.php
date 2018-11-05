@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Entities\Single;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\Finder\Finder;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
-use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -48,15 +48,15 @@ class PressServiceProvider extends ServiceProvider
         $directory = app_path('Orchid/Entities');
         $resources = [];
 
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             return [];
         }
 
         foreach ((new Finder)->in($directory)->files() as $resource) {
-            $resource = $namespace . str_replace(
+            $resource = $namespace.str_replace(
                     ['/', '.php'],
                     ['\\', ''],
-                    Str::after($resource->getPathname(), app_path() . DIRECTORY_SEPARATOR)
+                    Str::after($resource->getPathname(), app_path().DIRECTORY_SEPARATOR)
                 );
 
             if (is_subclass_of($resource, Many::class) ||
@@ -85,7 +85,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH . '/database/migrations/press'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/press'));
 
         return $this;
     }
@@ -98,7 +98,7 @@ class PressServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(PLATFORM_PATH . '/config/press.php') => config_path('press.php'),
+            realpath(PLATFORM_PATH.'/config/press.php') => config_path('press.php'),
         ]);
 
         return $this;
@@ -137,7 +137,7 @@ class PressServiceProvider extends ServiceProvider
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                    'slug' => 'platform.posts.type.' . $post->slug,
+                    'slug' => 'platform.posts.type.'.$post->slug,
                     'description' => $post->name,
                 ];
             });

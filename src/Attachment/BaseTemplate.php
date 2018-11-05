@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
-use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image;
 use Orchid\Attachment\Models\Attachment;
+use Intervention\Image\Filters\FilterInterface;
 
 /**
  * Class BaseTemplate.

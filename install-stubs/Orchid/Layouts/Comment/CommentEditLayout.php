@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Comment;
 
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\CheckBoxField;
 use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Layouts\Rows;
 
 class CommentEditLayout extends Rows
 {

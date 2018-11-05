@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Composer\Semver\Comparator;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class Updates
 {

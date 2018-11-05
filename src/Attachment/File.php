@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
+use Mimey\MimeTypes;
+use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Mimey\MimeTypes;
 use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\UploadFileEvent;
 
 /**
@@ -107,7 +107,7 @@ class File
     {
         $file = $this->getMatchesHash();
 
-        if (!$this->storage->has($this->date)) {
+        if (! $this->storage->has($this->date)) {
             $this->storage->makeDirectory($this->date);
         }
 
@@ -139,8 +139,8 @@ class File
      */
     private function save(): Attachment
     {
-        $hashName = sha1($this->time . $this->file->getClientOriginalName());
-        $name = $hashName . '.' . $this->getClientOriginalExtension();
+        $hashName = sha1($this->time.$this->file->getClientOriginalName());
+        $name = $hashName.'.'.$this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),
@@ -152,7 +152,7 @@ class File
             'mime' => $this->getMimeType(),
             'extension' => $this->getClientOriginalExtension(),
             'size' => $this->file->getSize(),
-            'path' => $this->date . DIRECTORY_SEPARATOR,
+            'path' => $this->date.DIRECTORY_SEPARATOR,
             'hash' => $this->hash,
             'disk' => $this->disk,
             'group' => $this->group,

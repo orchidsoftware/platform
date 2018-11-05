@@ -122,7 +122,7 @@ class Menu
             $arg = get_object_vars($arg);
         }
 
-        if (array_key_exists('show', $arg) && !$arg['show']) {
+        if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }
 
@@ -161,7 +161,7 @@ class Menu
         /*
          * Check access
          */
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
 
@@ -171,11 +171,11 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (!array_key_exists('template', $value)) {
+            if (! array_key_exists('template', $value)) {
                 $value['template'] = 'platform::partials.mainMenu';
             }
 
-            if (!is_null($template)) {
+            if (! is_null($template)) {
                 $value['template'] = $template;
             }
 
@@ -195,7 +195,7 @@ class Menu
         /*
          * Check access
          */
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
 

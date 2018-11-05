@@ -87,7 +87,7 @@ class InstallCommand extends Command
      */
     private function executeCommand(string $command, array $parameters = []): self
     {
-        if (!$this->progressBar->getProgress()) {
+        if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();
             echo ' ';
         }
@@ -114,7 +114,7 @@ class InstallCommand extends Command
 
         $this->info(' Attempting to set ORCHID User model as parent to App\User');
 
-        if (!file_exists(app_path('User.php'))) {
+        if (! file_exists(app_path('User.php'))) {
             $this->warn('Unable to locate "app/User.php".  Did you move this file?');
             $this->warn('You will need to update this manually.  Change "extends Authenticatable" to "extends \Orchid\Platform\Models\User" in your User model');
 
@@ -135,7 +135,7 @@ class InstallCommand extends Command
 
         $this->info(' Add semantic links to public files to ignore VCS');
 
-        if (!file_exists(app_path('../.gitignore'))) {
+        if (! file_exists(app_path('../.gitignore'))) {
             $this->warn('Unable to locate ".gitignore".  Did you move this file?');
             $this->warn('A semantic link to public files was not added to the ignore list');
 
@@ -145,7 +145,7 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('../.gitignore'));
 
         if ($str !== false && strpos($str, '/public/orchid') === false) {
-            file_put_contents(app_path('../.gitignore'), $str . PHP_EOL . '/public/orchid' . PHP_EOL);
+            file_put_contents(app_path('../.gitignore'), $str.PHP_EOL.'/public/orchid'.PHP_EOL);
         }
     }
 
@@ -174,7 +174,7 @@ class InstallCommand extends Command
         $str = file_get_contents(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
-            file_put_contents(app_path('../.env'), $str . PHP_EOL . $constant . '=' . $value . PHP_EOL);
+            file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
         }
 
         return $this;
@@ -185,13 +185,13 @@ class InstallCommand extends Command
      */
     private function checkInstall(): self
     {
-        if (!file_exists(app_path('Orchid'))) {
+        if (! file_exists(app_path('Orchid'))) {
             return $this;
         }
 
         $confim = $this->confirm('The platform has already been installed, do you really want to repeat?');
 
-        if (!$confim) {
+        if (! $confim) {
             die();
         }
 

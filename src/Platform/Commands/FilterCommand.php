@@ -36,7 +36,7 @@ class FilterCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return PLATFORM_PATH . '/resources/stubs/filters.stub';
+        return PLATFORM_PATH.'/resources/stubs/filters.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class FilterCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace . '\Orchid\Filters';
+        return $rootNamespace.'\Orchid\Filters';
     }
 }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 /**
  * Class Controller.
@@ -29,6 +29,6 @@ class Controller extends BaseController
             abort(404);
         });
 
-        abort_if(!is_null(Auth::user()) && !Auth::user()->hasAccess($permission), 404);
+        abort_if(! is_null(Auth::user()) && ! Auth::user()->hasAccess($permission), 404);
     }
 }

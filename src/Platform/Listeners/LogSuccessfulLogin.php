@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Listeners;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class LogSuccessfulLogin implements ShouldQueue
 {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Fields\InputField;
 
 class UserEditLayout extends Rows
 {

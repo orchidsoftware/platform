@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
-use Illuminate\Support\Collection;
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\LabelField;
 use Orchid\Screen\Layouts\Rows;
+use Illuminate\Support\Collection;
+use Orchid\Screen\Fields\LabelField;
+use Orchid\Screen\Fields\CheckBoxField;
 
 class RolePermissionLayout extends Rows
 {
@@ -39,7 +39,7 @@ class RolePermissionLayout extends Rows
             foreach (collect($items)->chunk(3) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
-                        $permissions[] = CheckBoxField::make('permissions.' . base64_encode($permission['slug']))
+                        $permissions[] = CheckBoxField::make('permissions.'.base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
                             ->value((int) $permission['active'])
                             ->hr(false);
