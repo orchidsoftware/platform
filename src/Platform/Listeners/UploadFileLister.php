@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Listeners;
 
-use Illuminate\Support\Facades\Log;
-use Orchid\Attachment\BaseTemplate;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
-use Orchid\Attachment\Models\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Orchid\Attachment\BaseTemplate;
+use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
 
 /**
@@ -54,26 +54,26 @@ class UploadFileLister implements ShouldQueue
 
     /**
      * @param \Orchid\Attachment\Models\Attachment $attachment
-     * @param string                               $name
-     * @param \Orchid\Attachment\BaseTemplate      $template
+     * @param string $name
+     * @param \Orchid\Attachment\BaseTemplate $template
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     private function saveImageProcessing(Attachment $attachment, string $name, BaseTemplate $template)
     {
-        if (! is_null($name)) {
-            $name = '_'.$name;
+        if (!is_null($name)) {
+            $name = '_' . $name;
         }
 
-        $name = sha1($this->time.$attachment->getAttribute('original_name')).$name.'.'.$attachment->getAttribute('extension');
+        $name = sha1($this->time . $attachment->getAttribute('original_name')) . $name . '.' . $attachment->getAttribute('extension');
 
         $content = Image::make($attachment->read())
             ->filter($template)
             ->encode($template->extension, $template->quality);
 
         Storage::disk($attachment->getAttribute('disk'))
-            ->put(date('Y/m/d', $this->time).'/'.$name, $content->__toString(), [
-            'mime_type' => $attachment->getMimeType(),
-        ]);
+            ->put(date('Y/m/d', $this->time) . '/' . $name, $content->__toString(), [
+                'mime_type' => $attachment->getMimeType(),
+            ]);
     }
 }

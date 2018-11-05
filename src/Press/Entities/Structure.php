@@ -73,7 +73,7 @@ trait Structure
     {
         return [
             'publish' => __('Published'),
-            'draft'   => __('Draft'),
+            'draft' => __('Draft'),
         ];
     }
 
@@ -83,7 +83,7 @@ trait Structure
      * @return array
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function isValid() : array
+    public function isValid(): array
     {
         return $this->validate(request(), $this->rules());
     }
@@ -93,7 +93,7 @@ trait Structure
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [];
     }
@@ -103,21 +103,21 @@ trait Structure
      *
      * @return mixed
      */
-    abstract public function main() : array;
+    abstract public function main(): array;
 
     /**
      * Registered fields for filling.
      *
      * @return mixed
      */
-    abstract public function fields() : array;
+    abstract public function fields(): array;
 
     /**
      * Registered fields for options.
      *
      * @return mixed
      */
-    abstract public function options() : array;
+    abstract public function options(): array;
 
     /**
      * Language support for recording.

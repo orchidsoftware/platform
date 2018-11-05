@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
@@ -72,8 +72,8 @@ class Tag extends Model
     /**
      * Finds a tag by its name.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $name
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  string $name
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeName(Builder $query, $name)
@@ -84,8 +84,8 @@ class Tag extends Model
     /**
      * Finds a tag by its slug.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $slug
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  string $slug
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSlug(Builder $query, $slug)
@@ -106,7 +106,7 @@ class Tag extends Model
     /**
      * Sets the tagged entities model.
      *
-     * @param  string  $taggedModel
+     * @param  string $taggedModel
      * @return void
      */
     public static function setTaggedModel($taggedModel)

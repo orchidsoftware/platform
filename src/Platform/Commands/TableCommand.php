@@ -34,9 +34,9 @@ class TableCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/table.stub';
+        return PLATFORM_PATH . '/resources/stubs/table.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class TableCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace.'\Orchid\Layouts';
+        return $rootNamespace . '\Orchid\Layouts';
     }
 }

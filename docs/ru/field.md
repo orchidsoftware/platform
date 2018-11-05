@@ -46,7 +46,7 @@ Input - является одним из разносторонних элеме
 Пример записи:
 ```php
 return [
-    'body' => Field::tag('input')
+    'body' => InputField::make()
                   ->type('text')
                   ->name('place')
                   ->max(255)
@@ -70,7 +70,7 @@ return [
 Пример записи:
 ```php
 return [
-    'body' => Field::tag('wysiwyg')
+    'body' => TinyMCEField::make()
                   ->name('body')
                   ->required()
                   ->title('Name Articles')
@@ -89,7 +89,7 @@ return [
 Пример записи:
 ```php
 return [
-    'body' => Field::tag('markdown')
+    'body' => SimpleMDEField::make()
                   ->name('body')
                   ->title('О чём вы хотите рассказать?'),
 ];
@@ -103,7 +103,7 @@ return [
 Пример записи:
 ```php
 return [
-    'picture' => Field::tag('picture')
+    'picture' => PictureField::make()
                     ->name('picture')
                     ->width(500)
                     ->height(300),
@@ -119,7 +119,7 @@ return [
 Пример записи:
 ```php
 return [
-    'open' => Field::tag('datetime')
+    'open' => DateTimerField::make()
                   ->type('text')
                   ->name('open')
                   ->title('Opening date')
@@ -135,7 +135,7 @@ return [
 Пример записи:
 ```php
 return [
-    'free' => Field::tag('checkbox')
+    'free' => CheckBoxField::make()
                    ->name('free')
                    ->value(1)
                    ->title('Free')
@@ -151,7 +151,7 @@ return [
 Пример записи:
 ```php
 return [
-    'block' => Field::tag('code')
+    'block' => CodeField::make()
                    ->name('block')
                    ->title('Code Block')
                    ->help('Simple web editor'),
@@ -168,7 +168,7 @@ return [
 Пример записи:
 ```php
 return [
-    'description' => Field::tag('textarea')
+    'description' => TextAreaField::make()
                          ->name('description')
                          ->max(255)
                          ->rows(5)
@@ -185,7 +185,7 @@ return [
 Пример записи:
 ```php
 return [
-    'keywords' => Field::tag('tags')
+    'keywords' => TagsField::make()
                       ->name('keywords')
                       ->title('Keywords')
                       ->help('SEO keywords'),
@@ -199,7 +199,7 @@ return [
 
 ```php
 return [
-    'selest' => Field::tag('select')
+    'selest' => SelectField::make()
                 ->options([
                     'index'   => 'Index',
                     'noindex' => 'No index',
@@ -234,7 +234,7 @@ return [
 Пример записи:
 ```php
 return [
-    'phone' => Field::tag('input')
+    'phone' => InputField::make()
                    ->type('text')
                    ->name('phone')
                    ->mask('(999) 999-9999')
@@ -248,7 +248,7 @@ return [
 
 ```php
 return [
-    'price' => Field::tag('input')
+    'price' => InputField::make()
               ->type('text')
               ->name('price')
               ->mask(json_encode([
@@ -261,7 +261,7 @@ return [
 
 ```php
 return [
-    'price' => Field::tag('input')
+    'price' => InputField::make()
              ->type('text')
              ->name('price')
              ->mask(json_encode([
@@ -359,7 +359,7 @@ class AjaxWidget extends Widget
 атрибут который необходимо переопределить:
 
 ```php
-Field::tag('input')
+InputField::make()
     ->type('text')
     ->name('name')
     ->modifyValue(function ($value) {

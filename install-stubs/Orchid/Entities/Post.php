@@ -4,13 +4,24 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
-use Orchid\Press\Entities\Many;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Http\Filters\CreatedFilter;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
-use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\CodeField;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\PictureField;
+use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\TagsField;
+use Orchid\Screen\Fields\TextAreaField;
+use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\UploadField;
+use Orchid\Screen\Fields\UTMField;
+use Orchid\Screen\TD;
 
 class Post extends Many
 {
@@ -99,75 +110,63 @@ class Post extends Many
     {
         return [
 
-            Field::group([
+            Field::group(array(
 
-                Field::tag('input')
+                InputField::make('name')
                     ->type('text')
-                    ->name('name')
                     ->max(255)
                     ->required()
                     ->title('Name Articles')
                     ->help('Article title'),
 
-                Field::tag('input')
+                InputField::make('title')
                     ->type('text')
-                    ->name('title')
                     ->max(255)
                     ->required()
                     ->title('Article Title')
                     ->help('SEO title'),
 
-            ]),
+            )),
 
             Field::group([
-                Field::tag('select')
-                    ->options([
-                        'index'   => 'Index',
-                        'noindex' => 'No index',
-                    ])
-                    ->name('robot')
-                    ->title('Indexing')
-                    ->help('Allow search bots to index'),
 
-                Field::tag('input')
+                DateTimerField::make('open')
+                    ->title('Opening date')
+                    ->help('The opening event will take place'),
+
+                InputField::make('phone')
                     ->type('text')
-                    ->name('phone')
                     ->mask('(999) 999-9999')
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                Field::tag('checkbox')
-                    ->name('free')
+                CheckBoxField::make('free')
                     ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
-
             ]),
 
-            Field::tag('wysiwyg')
-                ->name('body')
+
+            TinyMCEField::make('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('picture')
+            PictureField::make('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
-            Field::tag('utm')
-                ->name('link')
+            UTMField::make('link')
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            Field::tag('markdown')
-                ->name('body2')
+            SimpleMDEField::name('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('code')
-                ->name('code')
+            CodeField::name('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];
@@ -181,8 +180,7 @@ class Post extends Many
     public function main(): array
     {
         $main = parent::main();
-        $main[] = Field::tag('upload')
-            ->name('attachment')
+        $main[] = UploadField::name('attachment')
             ->title('Upload DropBox');
 
         return $main;
@@ -195,20 +193,17 @@ class Post extends Many
     public function options(): array
     {
         return [
-            Field::tag('textarea')
-                ->name('description')
+            TextAreaField::make('description')
                 ->max(255)
                 ->rows(5)
                 ->required()
                 ->title('Short description'),
 
-            Field::tag('datetime')
-                ->name('open')
+            DateTimerField::make('open')
                 ->title('Opening date')
                 ->help('The opening event will take place'),
 
-            Field::tag('tags')
-                ->name('keywords')
+            TagsField::make('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
         ];

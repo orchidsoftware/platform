@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Dashboard;
 
 class DashboardServiceProvider extends ServiceProvider
 {

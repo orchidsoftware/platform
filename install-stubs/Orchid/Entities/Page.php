@@ -4,8 +4,19 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\Field;
 use Orchid\Press\Entities\Single;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\CodeField;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\PictureField;
+use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\TagsField;
+use Orchid\Screen\Fields\TextAreaField;
+use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\UTMField;
 
 class Page extends Single
 {
@@ -46,7 +57,7 @@ class Page extends Single
     public function rules(): array
     {
         return [
-            'id'             => 'sometimes|integer|unique:posts',
+            'id' => 'sometimes|integer|unique:posts',
             'content.*.name' => 'required|string',
             'content.*.body' => 'required|string',
         ];
@@ -62,17 +73,15 @@ class Page extends Single
 
             Field::group([
 
-                Field::tag('input')
+                InputField::make('name')
                     ->type('text')
-                    ->name('name')
                     ->max(255)
                     ->required()
                     ->title('Name Articles')
                     ->help('Article title'),
 
-                Field::tag('input')
+                InputField::make('title')
                     ->type('text')
-                    ->name('title')
                     ->max(255)
                     ->required()
                     ->title('Article Title')
@@ -82,72 +91,61 @@ class Page extends Single
 
             Field::group([
 
-                Field::tag('datetime')
-                    ->name('open')
+                DateTimerField::make('open')
                     ->title('Opening date')
                     ->help('The opening event will take place'),
 
-                Field::tag('input')
+                InputField::make('phone')
                     ->type('text')
-                    ->name('phone')
                     ->mask('(999) 999-9999')
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                Field::tag('checkbox')
-                    ->name('free')
+                CheckBoxField::make('free')
                     ->sendTrueOrFalse()
                     ->title('Free')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
-
             ]),
 
-            Field::tag('textarea')
-                ->name('description')
+            TextAreaField::make('description')
                 ->max(255)
                 ->rows(5)
                 ->required()
                 ->title('Short description'),
 
-            Field::tag('wysiwyg')
-                ->name('body')
+            TinyMCEField::make('body')
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('picture')
+            PictureField::make('picture')
                 ->name('picture')
                 ->width(500)
                 ->height(300),
 
-            Field::tag('utm')
-                ->name('link')
+            UTMField::make('link')
                 ->title('UTM link')
                 ->help('Generated link'),
 
-            Field::tag('select')
+            SelectField::make('robot.')
                 ->options([
-                    'index'   => 'Index',
+                    'index' => 'Index',
                     'noindex' => 'No index',
                 ])
                 ->multiple()
-                ->name('robot.')
                 ->title('Indexing')
                 ->help('Allow search bots to index'),
 
-            Field::tag('tags')
-                ->name('keywords')
+            TagsField::make('keywords')
                 ->title('Keywords')
                 ->help('SEO keywords'),
 
-            Field::tag('markdown')
-                ->name('body2')
+            SimpleMDEField::name('body2')
                 ->title('Name Articles')
                 ->help('Article title'),
 
-            Field::tag('code')
-                ->name('code')
+            CodeField::name('code')
                 ->title('Name Articles')
                 ->help('Article title'),
         ];

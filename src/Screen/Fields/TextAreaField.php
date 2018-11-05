@@ -62,4 +62,13 @@ class TextAreaField extends Field
         'tabindex',
         'wrap',
     ];
+
+    /**
+     * @param null $name
+     * @return TextAreaField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

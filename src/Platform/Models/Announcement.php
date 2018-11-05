@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Parsedown;
-use Orchid\Platform\Dashboard;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Orchid\Platform\Dashboard;
+use Parsedown;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Announcement extends Model

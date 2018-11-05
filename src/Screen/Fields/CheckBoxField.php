@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this type($value = true)
  * @method $this help($value = true)
+ * @method $this sendTrueOrFalse($value = true)
  */
 class CheckBoxField extends Field
 {
@@ -52,10 +53,10 @@ class CheckBoxField extends Field
      * @var array
      */
     public $attributes = [
-        'type'     => 'checkbox',
-        'class'    => 'custom-control-input',
-        'value'    => false,
-        'novalue'  => 0,
+        'type' => 'checkbox',
+        'class' => 'custom-control-input',
+        'value' => false,
+        'novalue' => 0,
         'yesvalue' => 1,
     ];
 
@@ -96,4 +97,13 @@ class CheckBoxField extends Field
         'novalue',
         'yesvalue',
     ];
+
+    /**
+     * @param null $name
+     * @return CheckBoxField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

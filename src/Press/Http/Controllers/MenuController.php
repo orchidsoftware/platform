@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Menu;
-use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -63,10 +63,10 @@ class MenuController extends Controller
             ->get();
 
         return view('platform::container.systems.menu', [
-            'name'           => $name,
-            'locales'        => config('press.locales'),
-            'currentLocale'  => $currentLocale,
-            'menu'           => $menu,
+            'name' => $name,
+            'locales' => config('press.locales'),
+            'currentLocale' => $currentLocale,
+            'menu' => $menu,
             'availableMenus' => $availableMenus,
         ]);
     }
@@ -81,19 +81,19 @@ class MenuController extends Controller
         $data = json_decode($request->get('data'), true);
 
         $menu = Dashboard::model(Menu::class)::create(array_merge($data, [
-            'lang'   => $request->get('lang'),
-            'type'   => $request->get('menu'),
+            'lang' => $request->get('lang'),
+            'type' => $request->get('menu'),
             'parent' => 0,
         ]));
 
         return response()->json([
             'type' => 'success',
-            'id'   => $menu->id,
+            'id' => $menu->id,
         ]);
     }
 
     /**
-     * @param string  $menu
+     * @param string $menu
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -112,7 +112,7 @@ class MenuController extends Controller
 
     /**
      * @param array $items
-     * @param int   $parent
+     * @param int $parent
      */
     private function createMenuElement(array $items, $parent = 0)
     {
@@ -120,8 +120,8 @@ class MenuController extends Controller
             Dashboard::model(Menu::class)::firstOrNew([
                 'id' => $item['id'],
             ])->fill(array_merge($item, [
-                'lang'   => $this->lang,
-                'type'   => $this->menu,
+                'lang' => $this->lang,
+                'type' => $this->menu,
                 'parent' => $parent,
             ]))->save();
 

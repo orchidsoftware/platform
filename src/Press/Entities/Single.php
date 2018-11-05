@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\SelectField;
 
 abstract class Single
 {
@@ -19,13 +20,11 @@ abstract class Single
     public function main(): array
     {
         return [
-            Field::tag('datetime')
-                ->name('publish_at')
+            DateTimerField::make('publish_at')
                 ->title(__('Time of Publication')),
 
-            Field::tag('select')
+            SelectField::make('status')
                 ->options($this->status())
-                ->name('status')
                 ->title(__('Status')),
         ];
     }

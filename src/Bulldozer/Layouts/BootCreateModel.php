@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Layouts;
 
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Layouts\Rows;
 
 /**
@@ -21,10 +21,9 @@ class BootCreateModel extends Rows
     public function fields(): array
     {
         return [
-            Field::tag('input')
+            InputField::make('name')
                 ->title(__('Model Name:'))
                 ->help(__('Create a new model for your application'))
-                ->name('name')
                 ->pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
                 ->required(),
         ];

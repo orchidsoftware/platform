@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivityTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\LogsActivityTrait;
 
 class TermRelationship extends Model
 {
@@ -40,7 +40,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post() : BelongsTo
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(Post::class), 'post_id');
     }
@@ -48,7 +48,7 @@ class TermRelationship extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function taxonomy() : BelongsTo
+    public function taxonomy(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(Taxonomy::class), 'term_taxonomy_id');
     }

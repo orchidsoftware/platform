@@ -11,14 +11,14 @@ interface FieldContract
      *
      * @return string
      */
-    public function getView() : string;
+    public function getView(): string;
 
     /**
      * Get the name of the template.
      *
      * @return array
      */
-    public function getRequired() : array;
+    public function getRequired(): array;
 
     /**
      * The process of creating.
@@ -51,5 +51,5 @@ interface FieldContract
     /**
      * @return array
      */
-    public function getAttributes() : array;
+    public function getAttributes(): array;
 }

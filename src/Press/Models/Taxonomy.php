@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Press\Builders\TaxonomyBuilder;
-use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\LogsActivityTrait;
+use Orchid\Press\Builders\TaxonomyBuilder;
 
 class Taxonomy extends Model
 {
@@ -57,7 +57,7 @@ class Taxonomy extends Model
      */
     public function __get($key)
     {
-        if (! isset($this->$key) && isset($this->term->$key)) {
+        if (!isset($this->$key) && isset($this->term->$key)) {
             return $this->term->$key;
         }
 
@@ -69,7 +69,7 @@ class Taxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function term() : BelongsTo
+    public function term(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(Term::class), 'term_id');
     }
@@ -79,7 +79,7 @@ class Taxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function parentTerm() : BelongsTo
+    public function parentTerm(): BelongsTo
     {
         return $this->belongsTo(static::class, 'parent_id');
     }
@@ -97,7 +97,7 @@ class Taxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function childrenTerm() : HasMany
+    public function childrenTerm(): HasMany
     {
         return $this->hasMany(static::class, 'parent_id');
     }
@@ -107,7 +107,7 @@ class Taxonomy extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function posts() : BelongsToMany
+    public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model(Post::class), 'term_relationships', 'term_taxonomy_id', 'post_id');
     }

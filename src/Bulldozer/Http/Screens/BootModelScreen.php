@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Orchid\Bulldozer\Builders\Model;
-use Illuminate\Http\RedirectResponse;
 use Orchid\Bulldozer\Builders\Migration;
+use Orchid\Bulldozer\Builders\Model;
 use Orchid\Bulldozer\Layouts\BootCreateModel;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 
 /**
  * Class BootModelScreen.
@@ -79,10 +79,10 @@ class BootModelScreen extends Screen
         }
 
         return [
-            'models'        => $this->models,
-            'name'          => $model,
-            'model'         => $this->models->get($model),
-            'fieldTypes'    => Migration::TYPES,
+            'models' => $this->models,
+            'name' => $model,
+            'model' => $this->models->get($model),
+            'fieldTypes' => Migration::TYPES,
             'relationTypes' => Model::RELATIONS,
         ];
     }
@@ -172,7 +172,7 @@ class BootModelScreen extends Screen
     }
 
     /**
-     * @param string                   $model
+     * @param string $model
      * @param \Illuminate\Http\Request $request
      *
      * @throws \Exception
@@ -196,9 +196,9 @@ class BootModelScreen extends Screen
         foreach ($this->models as $name => $model) {
             $property = [
                 'fillable' => [],
-                'guarded'  => [],
-                'hidden'   => [],
-                'visible'  => [],
+                'guarded' => [],
+                'hidden' => [],
+                'visible' => [],
             ];
 
             $migration = [];
@@ -219,7 +219,7 @@ class BootModelScreen extends Screen
                     $property['visible'][] = $key;
                 }
 
-                $migrate = $column['name'].':'.Migration::TYPES[$column['type']];
+                $migrate = $column['name'] . ':' . Migration::TYPES[$column['type']];
 
                 if (isset($column['unique'])) {
                     $migrate .= ':unique';
@@ -233,13 +233,13 @@ class BootModelScreen extends Screen
             }
 
             $model = new Model($name, [
-                'property'  => array_filter($property),
+                'property' => array_filter($property),
                 'relations' => $model->get('relations', []),
             ]);
 
             $model = $model->generate();
 
-            file_put_contents(app_path($name.'.php'), $model);
+            file_put_contents(app_path($name . '.php'), $model);
             Migration::make($name, implode(',', $migration));
         }
 
@@ -258,7 +258,7 @@ class BootModelScreen extends Screen
     public function getRelated(string $model)
     {
         return view('platform::partials.boot.relatedOption', [
-            'name'   => $model,
+            'name' => $model,
             'models' => $this->models,
         ]);
     }

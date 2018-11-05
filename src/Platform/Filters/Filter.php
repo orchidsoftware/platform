@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 abstract class Filter
 {
@@ -60,7 +60,7 @@ abstract class Filter
      *
      * @return Builder
      */
-    public function filter(Builder $builder) : Builder
+    public function filter(Builder $builder): Builder
     {
         if (is_null($this->parameters) || $this->request->filled($this->parameters)) {
             return $this->run($builder);
@@ -74,7 +74,7 @@ abstract class Filter
      *
      * @return Builder
      */
-    abstract public function run(Builder $builder) : Builder;
+    abstract public function run(Builder $builder): Builder;
 
     /**
      * User mapping method.

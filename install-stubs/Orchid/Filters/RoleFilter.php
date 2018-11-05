@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Filters;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Models\Role;
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Platform\Models\Role;
+use Orchid\Screen\Fields\SelectField;
 
 class RoleFilter extends Filter
 {
@@ -41,10 +41,9 @@ class RoleFilter extends Filter
      */
     public function display()
     {
-        return Field::tag('select')
+        return SelectField::make('role')
             ->options($this->getRoles())
             ->value($this->request->get('role'))
-            ->name('role')
             ->title(__('Roles'))
             ->hr(false);
     }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Traits\LogsActivityTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model
 {
@@ -35,7 +35,7 @@ class Term extends Model
      */
     protected $casts = [
         'content' => 'array',
-        'slug'    => 'string',
+        'slug' => 'string',
     ];
 
     /**
@@ -48,7 +48,7 @@ class Term extends Model
      *
      * @return string
      */
-    public function getRouteKeyName() : string
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -56,7 +56,7 @@ class Term extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function taxonomy() : HasOne
+    public function taxonomy(): HasOne
     {
         return $this->hasOne(Dashboard::model(Taxonomy::class), 'term_id');
     }

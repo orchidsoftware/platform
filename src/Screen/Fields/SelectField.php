@@ -55,10 +55,19 @@ class SelectField extends Field
     /**
      * @return $this
      */
-    public function multiple() : self
+    public function multiple(): self
     {
         $this->attributes['multiple'] = 'multiple';
 
         return $this;
+    }
+
+    /**
+     * @param null $name
+     * @return SelectField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
     }
 }

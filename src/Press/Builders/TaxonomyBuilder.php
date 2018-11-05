@@ -18,7 +18,7 @@ class TaxonomyBuilder extends Builder
      *
      * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
-    public function posts() : self
+    public function posts(): self
     {
         return $this->with('posts');
     }
@@ -28,7 +28,7 @@ class TaxonomyBuilder extends Builder
      *
      * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
-    public function category() : self
+    public function category(): self
     {
         return $this->where('taxonomy', 'category');
     }
@@ -50,9 +50,9 @@ class TaxonomyBuilder extends Builder
      *
      * @return \Orchid\Press\Builders\TaxonomyBuilder
      */
-    public function slug($slug = null) : self
+    public function slug($slug = null): self
     {
-        if (! empty($slug)) {
+        if (!empty($slug)) {
             // set this slug to be used in with callback
             $this->slug = $slug;
 

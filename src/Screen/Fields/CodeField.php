@@ -26,9 +26,9 @@ class CodeField extends Field
      * @var array
      */
     public $attributes = [
-        'class'        => 'form-control',
-        'language'     => 'js',
-        'lineNumbers'  => true,
+        'class' => 'form-control',
+        'language' => 'js',
+        'lineNumbers' => true,
         'defaultTheme' => true,
     ];
 
@@ -69,6 +69,15 @@ class CodeField extends Field
         'type',
         'value',
     ];
+
+    /**
+     * @param null $name
+     * @return CodeField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 
     /**
      * @param $value

@@ -34,9 +34,9 @@ class ScreenCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/screen.stub';
+        return PLATFORM_PATH . '/resources/stubs/screen.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class ScreenCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace.'\Orchid\Screens';
+        return $rootNamespace . '\Orchid\Screens';
     }
 }

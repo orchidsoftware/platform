@@ -63,4 +63,13 @@ class RelationshipField extends Field
         'size',
         'tabindex',
     ];
+
+    /**
+     * @param null $name
+     * @return RelationshipField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

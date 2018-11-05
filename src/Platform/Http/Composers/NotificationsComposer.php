@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Composers;
 
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Orchid\Platform\Notifications\DashboardNotification;
 
 class NotificationsComposer
@@ -16,8 +16,8 @@ class NotificationsComposer
     public function compose(View $view)
     {
         $notifications = Auth::user()
-        ->unreadNotifications
-        ->where('type', DashboardNotification::class);
+            ->unreadNotifications
+            ->where('type', DashboardNotification::class);
 
         $view->with('notifications', $notifications);
     }

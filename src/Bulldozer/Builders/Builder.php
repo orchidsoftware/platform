@@ -25,7 +25,7 @@ abstract class Builder
     /**
      * Class constructor.
      *
-     * @param string  $class
+     * @param string $class
      * @param array $parameters
      * @throws \ReflectionException
      */
@@ -33,7 +33,7 @@ abstract class Builder
     {
         $this->parameters = collect($parameters);
 
-        if (! class_exists($class)) {
+        if (!class_exists($class)) {
             $this->class = new ClassGenerator;
             $this->class->setName($class);
 
@@ -47,7 +47,7 @@ abstract class Builder
      * @param $parameters
      * @return $this
      */
-    public function setParameters($parameters) : self
+    public function setParameters($parameters): self
     {
         $this->parameters = collect($parameters);
 

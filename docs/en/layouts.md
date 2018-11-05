@@ -116,18 +116,18 @@ class Appointment extends Rows
     {
         return [
 
-            Field::tag('datetime')
+            DateTimerField::make()
                 ->name('appointment_time')
                 ->required()
                 ->title('Time'),
 
-            Field::tag('relationship')
+            RelationshipField::make()
                 ->name('appointment_type')
                 ->required()
                 ->title('Appointment type')
                 ->handler(AppointmentTypes::class),
 
-            Field::tag('textarea')
+            TextAreaField::make()
                 ->name('doctor_notes')
                 ->rows(10)
                 ->required()

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Traits;
 
 use Base64Url\Base64Url;
-use Orchid\Platform\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Orchid\Platform\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity as SpatieLogsActivity;
 
 trait LogsActivityTrait
@@ -33,7 +33,7 @@ trait LogsActivityTrait
     /**
      * @return string
      */
-    public function classEncodeBase64Url() : string
+    public function classEncodeBase64Url(): string
     {
         return Base64Url::encode(get_class($this));
     }
@@ -43,7 +43,7 @@ trait LogsActivityTrait
      *
      * @return string
      */
-    public function historyDescription() : string
+    public function historyDescription(): string
     {
         return 'История изменений модели';
     }

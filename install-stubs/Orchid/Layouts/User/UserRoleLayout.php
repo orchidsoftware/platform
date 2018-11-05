@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Screen\Field;
-use Orchid\Screen\Layouts\Rows;
 use Illuminate\Support\Collection;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\LabelField;
+use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Layouts\Rows;
 
 class UserRoleLayout extends Rows
 {
@@ -18,7 +21,7 @@ class UserRoleLayout extends Rows
      */
     public function fields(): array
     {
-        $fields[] = Field::tag('select')
+        $fields[] = SelectField::make('roles.')
             ->options($this->query
                 ->getContent('roles')
                 ->pluck('name', 'slug')
@@ -31,7 +34,6 @@ class UserRoleLayout extends Rows
                     ->toArray();
             })
             ->multiple()
-            ->name('roles[]')
             ->horizontal()
             ->title(__('Name role'));
 
@@ -49,8 +51,7 @@ class UserRoleLayout extends Rows
     public function generatedPermissionFields(Collection $permissionsRaw) : array
     {
         foreach ($permissionsRaw as $group => $items) {
-            $fields[] = Field::tag('label')
-                ->name($group)
+            $fields[] = LabelField::make($group)
                 ->title($group)
                 ->horizontal()
                 ->hr(false);
@@ -58,9 +59,8 @@ class UserRoleLayout extends Rows
             foreach (collect($items)->chunk(4) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
-                        $permissions[] = Field::tag('checkbox')
+                        $permissions[] = CheckBoxField::make('permissions.' . base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
-                            ->name('permissions.'.base64_encode($permission['slug']))
                             ->value($permission['active'])
                             ->sendTrueOrFalse()
                             ->hr(false);

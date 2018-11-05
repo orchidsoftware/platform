@@ -547,35 +547,35 @@ class ProfileLayout extends Rows
     {
         return [
 
-            Field::tag('picture')
+            PictureField::make()
                 ->name('profile.avatar')
                 ->title('Profile avatar')
                 ->width(200)
                 ->height(200),
 
-            Field::tag('input')
+            InputField::make()
                 ->name('profile.name')
                 ->required()
                 ->title('Profile name'),
 
-            Field::tag('input')
+            InputField::make()
                 ->name('profile.email')
                 ->required()
                 ->readonly()
                 ->disable()
                 ->title('E-mail'),
 
-            Field::tag('input')
+            InputField::make()
                 ->name('profile.first_name')
                 ->required()
                 ->title('First name'),
 
-            Field::tag('input')
+            InputField::make()
                 ->name('profile.last_name')
                 ->required()
                 ->title('Last name'),
 
-            Field::tag('relationship')
+            RelationshipField::make()
                 ->name('profile.city_id')
                 ->required()
                 ->title('City')
@@ -737,12 +737,12 @@ class ProfilePasswordLayout extends Rows
     public function fields(): array
     {
         return [
-            Field::tag('password')
+            PasswordField::make()
                 ->name('profile.password')
                 ->required()
                 ->title('Enter password'),
 
-            Field::tag('password')
+            PasswordField::make()
                 ->name('profile.password_confirmation')
                 ->required()
                 ->title('Confirm password')
@@ -976,7 +976,7 @@ class BrowserFilter extends Filter
                             ->groupBy('browser')
                             ->pluck('browser','browser');
 
-        return Field::tag('select')
+        return SelectField::make()
             ->options($browsers)
             ->value($this->request->get('browser'))
             ->name('browser')
@@ -1036,7 +1036,7 @@ class PlatformFilter extends Filter
                             ->groupBy('platform')
                             ->pluck('platform','platform');
 
-        return Field::tag('select')
+        return SelectField::make()
             ->options($platform)
             ->value($this->request->get('platform'))
             ->name('platform')

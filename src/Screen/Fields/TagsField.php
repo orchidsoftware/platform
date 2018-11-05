@@ -52,7 +52,7 @@ class TagsField extends Field
      * @var array
      */
     public $attributes = [
-        'class'    => 'form-control',
+        'class' => 'form-control',
         'multiple' => 'multiple',
     ];
 
@@ -93,6 +93,15 @@ class TagsField extends Field
     ];
 
     /**
+     * @param null $name
+     * @return TagsField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
+
+    /**
      * @param $name
      *
      * @return \Orchid\Screen\Field|void
@@ -100,7 +109,7 @@ class TagsField extends Field
     public function modifyName($name)
     {
         if (substr($name, -1) !== '.') {
-            $this->attributes['name'] = $name.'[]';
+            $this->attributes['name'] = $name . '[]';
         }
 
         parent::modifyName($this->attributes['name']);

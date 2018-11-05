@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\SystemMenuComposer;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
+use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class PlatformServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class PlatformServiceProvider extends ServiceProvider
      *
      * @param Dashboard $dashboard
      */
-    public function boot(Dashboard $dashboard) : void
+    public function boot(Dashboard $dashboard): void
     {
         $this->dashboard = $dashboard;
 
@@ -45,15 +45,15 @@ class PlatformServiceProvider extends ServiceProvider
         return [
             __('Main') => [
                 [
-                    'slug'        => 'platform.index',
+                    'slug' => 'platform.index',
                     'description' => __('Main'),
                 ],
                 [
-                    'slug'        => 'platform.systems',
+                    'slug' => 'platform.systems',
                     'description' => __('Systems'),
                 ],
                 [
-                    'slug'        => 'platform.systems.index',
+                    'slug' => 'platform.systems.index',
                     'description' => __('Settings'),
                 ],
             ],
@@ -68,23 +68,23 @@ class PlatformServiceProvider extends ServiceProvider
         return [
             __('Systems') => [
                 [
-                    'slug'        => 'platform.systems.attachment',
+                    'slug' => 'platform.systems.attachment',
                     'description' => __('Attachment'),
                 ],
                 [
-                    'slug'        => 'platform.systems.cache',
+                    'slug' => 'platform.systems.cache',
                     'description' => __('Cache'),
                 ],
                 [
-                    'slug'        => 'platform.systems.backups',
+                    'slug' => 'platform.systems.backups',
                     'description' => __('Backups'),
                 ],
                 [
-                    'slug'        => 'platform.systems.announcement',
+                    'slug' => 'platform.systems.announcement',
                     'description' => __('Announcement'),
                 ],
                 [
-                    'slug'        => 'platform.systems.history',
+                    'slug' => 'platform.systems.history',
                     'description' => __('Change history'),
                 ],
             ],

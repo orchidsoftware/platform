@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
-use Orchid\Screen\Exceptions\TypeException;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Exceptions\TypeException;
 
 /**
  * Class Field.
@@ -26,6 +26,7 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method $this title($value = true)
  * @method $this hr($value = true)
  * @method $this options($value = true)
+ * @method $this value($value = true)
  */
 class Field implements FieldContract
 {
@@ -137,9 +138,9 @@ class Field implements FieldContract
      */
     public static function tag(string $type): FieldContract
     {
-        $field = config('platform.fields.'.$type);
+        $field = config('platform.fields.' . $type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
+        if (!is_subclass_of($field, FieldContract::class)) {
             throw new TypeException($type);
         }
 
@@ -185,7 +186,7 @@ class Field implements FieldContract
      *
      * @return array
      */
-    public function getRequired() : array
+    public function getRequired(): array
     {
         return $this->required;
     }
@@ -195,7 +196,7 @@ class Field implements FieldContract
      *
      * @return string
      */
-    public function getView() : string
+    public function getView(): string
     {
         return $this->view;
     }
@@ -207,7 +208,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            throw_if(! collect($this->attributes)->offsetExists($attribute),
+            throw_if(!collect($this->attributes)->offsetExists($attribute),
                 FieldRequiredAttributeException::class, $attribute);
         }
 
@@ -228,7 +229,7 @@ class Field implements FieldContract
         $this->attributes['id'] = $this->getId();
 
         if ($this->hasError()) {
-            if (! isset($attributes['class']) || is_null($attributes['class'])) {
+            if (!isset($attributes['class']) || is_null($attributes['class'])) {
                 $attributes['class'] = ' is-invalid';
             } else {
                 $attributes['class'] .= ' is-invalid';
@@ -237,11 +238,11 @@ class Field implements FieldContract
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
-            'id'         => $this->getId(),
-            'old'        => $this->getOldValue(),
-            'slug'       => $this->getSlug(),
-            'oldName'    => $this->getOldName(),
-            'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
+            'id' => $this->getId(),
+            'old' => $this->getOldValue(),
+            'slug' => $this->getSlug(),
+            'oldName' => $this->getOldName(),
+            'typeForm' => $this->typeForm ?? $this->vertical()->typeForm,
         ]));
     }
 
@@ -270,7 +271,7 @@ class Field implements FieldContract
     /**
      * @return array
      */
-    public function getAttributes() : array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
@@ -284,14 +285,14 @@ class Field implements FieldContract
 
         collect($this->getAttributes())->only(array_merge($this->universalAttributes,
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
-                $key = title_case($key);
-                $signature = 'modify'.$key;
-                if (in_array($signature, $modifiers, true)) {
-                    $this->attributes[$key] = $this->$signature($item);
-                }
-            });
+            $key = title_case($key);
+            $signature = 'modify' . $key;
+            if (in_array($signature, $modifiers, true)) {
+                $this->attributes[$key] = $this->$signature($item);
+            }
+        });
 
-        return  collect($this->getAttributes())
+        return collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes));
     }
 
@@ -314,7 +315,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -376,16 +377,16 @@ class Field implements FieldContract
 
         $this->attributes['name'] = $name;
 
-        if (! is_null($prefix)) {
-            $this->attributes['name'] = $prefix.$name;
+        if (!is_null($prefix)) {
+            $this->attributes['name'] = $prefix . $name;
         }
 
-        if (is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $lang.$name;
+        if (is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $lang . $name;
         }
 
-        if (! is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
+        if (!is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
         }
 
         if ($name instanceof \Closure) {
@@ -418,7 +419,7 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        if (! is_array($group)) {
+        if (!is_array($group)) {
             return call_user_func($group);
         }
 

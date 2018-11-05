@@ -27,9 +27,9 @@ class Widget implements WidgetContractInterface
      *
      * @return \Orchid\Widget\Widget
      */
-    private function getWidgetFromConfig(string $key):self
+    private function getWidgetFromConfig(string $key): self
     {
-        $class = config('widget.widgets.'.$key);
+        $class = config('widget.widgets.' . $key);
 
         return new $class;
     }

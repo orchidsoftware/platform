@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Orchid\Screen\Field;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Illuminate\Support\Collection;
-use Illuminate\Contracts\Pagination\Paginator;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\SelectField;
 
 abstract class Many
 {
@@ -64,9 +66,9 @@ abstract class Many
     public function generateGrid(): array
     {
         return [
-            'data'   => $this->get(),
+            'data' => $this->get(),
             'fields' => $this->grid(),
-            'type'   => $this,
+            'type' => $this,
         ];
     }
 
@@ -82,7 +84,7 @@ abstract class Many
 
         return view('platform::container.posts.filter', [
             'filters' => $dashboardFilter,
-            'chunk'   => $chunk,
+            'chunk' => $chunk,
         ]);
     }
 
@@ -115,20 +117,18 @@ abstract class Many
     public function main(): array
     {
         return [
-            Field::tag('input')
+            InputField::make('slug')
                 ->type('text')
                 ->name('slug')
                 ->max(255)
                 ->title(__('Semantic URL'))
                 ->placeholder(__('Unique name')),
 
-            Field::tag('datetime')
-                ->name('publish_at')
+            DateTimerField::make('publish_at')
                 ->title(__('Time of publication')),
 
-            Field::tag('select')
+            SelectField::make('status')
                 ->options($this->status())
-                ->name('status')
                 ->title(__('Status')),
         ];
     }

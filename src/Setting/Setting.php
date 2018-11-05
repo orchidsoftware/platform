@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -58,7 +58,7 @@ class Setting extends Model
     protected static $logAttributes = ['*'];
 
     /**
-     * @param string       $key
+     * @param string $key
      * @param string|array $value
      *
      * Fast record
@@ -94,18 +94,18 @@ class Setting extends Model
 
     /**
      * @param string|array $key
-     * @param string|null  $default
+     * @param string|null $default
      *                              Get values
      *
      * @return mixed
      */
     public function get($key, $default = null)
     {
-        if (! $this->cache) {
+        if (!$this->cache) {
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-' . implode(',', (array)$key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }

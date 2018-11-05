@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Platform\Dashboard;
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use Orchid\Platform\Dashboard;
 
 class SearchController
 {
     /**
      * @param \Orchid\Platform\Dashboard $dashboard
-     * @param string|null                $query
+     * @param string|null $query
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -41,16 +41,16 @@ class SearchController
      *
      * @return array
      */
-    private function generatedPresent(LengthAwarePaginator $paginator) : Collection
+    private function generatedPresent(LengthAwarePaginator $paginator): Collection
     {
         return collect($paginator->items())
             ->map(function ($item) {
-                return (object) [
-                'title'    => $item->searchTitle(),
-                'subTitle' => $item->searchSubTitle(),
-                'url'      => $item->searchUrl(),
-                'avatar'   => $item->searchAvatar(),
-            ];
+                return (object)[
+                    'title' => $item->searchTitle(),
+                    'subTitle' => $item->searchSubTitle(),
+                    'url' => $item->searchUrl(),
+                    'avatar' => $item->searchAvatar(),
+                ];
             });
     }
 }

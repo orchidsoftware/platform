@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\Artisan;
 class Migration
 {
     public const TYPES = [
-        1  => 'bigIncrements',
-        2  => 'bigInteger',
-        3  => 'binary',
-        4  => 'boolean',
-        5  => 'char',
-        6  => 'date',
-        7  => 'dateTime',
-        8  => 'dateTimeTz',
-        9  => 'decimal',
+        1 => 'bigIncrements',
+        2 => 'bigInteger',
+        3 => 'binary',
+        4 => 'boolean',
+        5 => 'char',
+        6 => 'date',
+        7 => 'dateTime',
+        8 => 'dateTimeTz',
+        9 => 'decimal',
         10 => 'double',
         11 => 'enum',
         12 => 'float',
@@ -75,7 +75,7 @@ class Migration
         $name = "create_{$name}_table";
 
         return Artisan::call('make:migration:schema', [
-            'name'     => $name,
+            'name' => $name,
             '--schema' => $schema,
         ]);
     }

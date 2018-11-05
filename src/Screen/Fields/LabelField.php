@@ -17,4 +17,13 @@ class LabelField extends Field
      * @var string
      */
     public $view = 'platform::fields.label';
+
+    /**
+     * @param null $name
+     * @return LabelField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

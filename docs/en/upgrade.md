@@ -22,7 +22,7 @@ More information about it may be found in issue #391
 
 **New notation:**
 ```php
-Field::tag('wysiwyg')
+TinyMCEField::make()
     ->name('body')
     ->max(255)
     ->required()
@@ -97,7 +97,7 @@ Impractical features that were previously declined deprecated are now deleted:
 The more functionat alternative to `robot` field is:
 
 ```php
-Field::tag('select')
+SelectField::make()
     ->options([
         'index' => 'Index',
         'noindex' => 'No index',

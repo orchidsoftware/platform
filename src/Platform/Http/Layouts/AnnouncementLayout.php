@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Layouts;
 
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\SimpleMDEField;
 use Orchid\Screen\Layouts\Rows;
 
 class AnnouncementLayout extends Rows
@@ -16,10 +16,9 @@ class AnnouncementLayout extends Rows
     public function fields(): array
     {
         return [
-            Field::tag('markdown')
+            SimpleMDEField::make('announcement.content')
                 ->title('Предварительное оповещение о каком-либо событии.')
-                ->type('text')
-                ->name('announcement.content'),
+                ->type('text'),
         ];
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Composers;
 
-use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
@@ -54,9 +54,9 @@ class PressMenuComposer
                     ->setIcon($page->icon)
                     ->setGroupName($page->groupname)
                     ->setRoute(route($route, [$page->slug]))
-                    ->setPermission('platform.posts.type.'.$page->slug)
+                    ->setPermission('platform.posts.type.' . $page->slug)
                     ->setDivider($page->divider)
-                    ->setActive(route($route, [$page->slug]).'*')
+                    ->setActive(route($route, [$page->slug]) . '*')
                     ->setSort($key)
                     ->setShow($page->display)
             );

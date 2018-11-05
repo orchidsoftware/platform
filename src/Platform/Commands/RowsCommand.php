@@ -34,9 +34,9 @@ class RowsCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/rows.stub';
+        return PLATFORM_PATH . '/resources/stubs/rows.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class RowsCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace.'\Orchid\Layouts';
+        return $rootNamespace . '\Orchid\Layouts';
     }
 }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
@@ -41,9 +41,9 @@ class Menu extends Model
      * @var array
      */
     protected $casts = [
-        'type'   => 'string',
+        'type' => 'string',
         'parent' => 'integer',
-        'sort'   => 'integer',
+        'sort' => 'integer',
     ];
 
     /**
@@ -54,7 +54,7 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function children() : HasMany
+    public function children(): HasMany
     {
         return $this->hasMany(static::class, 'parent')->orderBy('sort');
     }
@@ -62,7 +62,7 @@ class Menu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function parent() : HasOne
+    public function parent(): HasOne
     {
         return $this->hasOne(static::class, 'id', 'parent');
     }

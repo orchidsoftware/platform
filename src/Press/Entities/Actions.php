@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Model;
 
 trait Actions
 {
@@ -22,7 +22,7 @@ trait Actions
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function create(Model $model) : Model
+    public function create(Model $model): Model
     {
         return $model;
     }

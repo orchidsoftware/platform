@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Laravel\Scout\Searchable;
 
 trait GlobalSearchTrait
 {
@@ -57,7 +57,7 @@ trait GlobalSearchTrait
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function searchQuery(string $query = null) : LengthAwarePaginator
+    public function searchQuery(string $query = null): LengthAwarePaginator
     {
         return $this->search($query)->paginate(5);
     }

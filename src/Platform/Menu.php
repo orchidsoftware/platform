@@ -65,7 +65,7 @@ class Menu
      *
      * @return Menu
      */
-    public function place(string $location) : self
+    public function place(string $location): self
     {
         $this->location = $location;
 
@@ -77,7 +77,7 @@ class Menu
      *
      * @return Menu
      */
-    public function template(string $template) : self
+    public function template(string $template): self
     {
         $this->template = $template;
 
@@ -101,7 +101,7 @@ class Menu
      *
      * @return Menu
      */
-    public function sortBy(int $sort) : self
+    public function sortBy(int $sort): self
     {
         $this->sort = $sort;
 
@@ -112,7 +112,7 @@ class Menu
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param array|ItemMenu  $arg
+     * @param array|ItemMenu $arg
      *
      * @return $this
      */
@@ -122,13 +122,13 @@ class Menu
             $arg = get_object_vars($arg);
         }
 
-        if (array_key_exists('show', $arg) && ! $arg['show']) {
+        if (array_key_exists('show', $arg) && !$arg['show']) {
             return $this;
         }
 
         $arg = array_merge([
-            'icon'    => 'icon-folder',
-            'sort'    => 0,
+            'icon' => 'icon-folder',
+            'sort' => 0,
         ], $arg);
 
         $this->location = $place;
@@ -137,8 +137,8 @@ class Menu
 
         $this->item = [
             'location' => $this->location,
-            'arg'      => $this->arg,
-            'sort'     => $this->sort,
+            'arg' => $this->arg,
+            'sort' => $this->sort,
         ];
 
         $this->container[$this->arg['slug']] = $this->item;
@@ -149,19 +149,19 @@ class Menu
     /**
      * Generate on the menu display.
      *
-     * @param string      $location
+     * @param string $location
      * @param string|null $template
      *
      * @return string
      */
-    public function render(string $location, string $template = null) : string
+    public function render(string $location, string $template = null): string
     {
         $html = '';
 
         /*
          * Check access
          */
-        if (! isset($this->user)) {
+        if (!isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
 
@@ -171,11 +171,11 @@ class Menu
         }
 
         foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (! array_key_exists('template', $value)) {
+            if (!array_key_exists('template', $value)) {
                 $value['template'] = 'platform::partials.mainMenu';
             }
 
-            if (! is_null($template)) {
+            if (!is_null($template)) {
                 $value['template'] = $template;
             }
 
@@ -190,12 +190,12 @@ class Menu
      *
      * @return Collection
      */
-    public function build(string $location) : Collection
+    public function build(string $location): Collection
     {
         /*
          * Check access
          */
-        if (! isset($this->user)) {
+        if (!isset($this->user)) {
             $this->user = Auth::user();
             $user = $this->user;
 
@@ -214,7 +214,7 @@ class Menu
      *
      * @return Collection
      */
-    private function findAllChildren($key) : Collection
+    private function findAllChildren($key): Collection
     {
         return $this->container
             ->where('location', $key)

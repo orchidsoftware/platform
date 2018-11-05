@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Intervention\Image\Facades\Image;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Attachment.
@@ -70,15 +70,15 @@ class Attachment extends Model
     {
         $disk = $this->getAttribute('disk');
 
-        if (! empty($size)) {
-            $size = '_'.$size;
+        if (!empty($size)) {
+            $size = '_' . $size;
 
-            if (! Storage::disk($disk)->exists($this->physicalPath())) {
+            if (!Storage::disk($disk)->exists($this->physicalPath())) {
                 return $this->url(null);
             }
         }
 
-        return Storage::disk($disk)->url($this->path.$this->name.$size.'.'.$this->extension);
+        return Storage::disk($disk)->url($this->path . $this->name . $size . '.' . $this->extension);
     }
 
     /**
@@ -92,9 +92,9 @@ class Attachment extends Model
     /**
      * @return string
      */
-    public function physicalPath() : string
+    public function physicalPath(): string
     {
-        return $this->path.$this->name.'.'.$this->extension;
+        return $this->path . $this->name . '.' . $this->extension;
     }
 
     /**
@@ -103,7 +103,7 @@ class Attachment extends Model
      * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function read() : string
+    public function read(): string
     {
         return Storage::disk($this->getAttribute('disk'))->get($this->physicalPath());
     }
@@ -111,7 +111,7 @@ class Attachment extends Model
     /**
      * @param null $width
      * @param null $height
-     * @param int  $quality
+     * @param int $quality
      *
      * @return \Intervention\Image\Image
      */
@@ -152,21 +152,21 @@ class Attachment extends Model
     /**
      * Physical removal of all copies of a file.
      *
-     * @param self   $attachment
+     * @param self $attachment
      * @param string $storageName
      */
     private function removePhysicalFile(self $attachment, string $storageName)
     {
         $storage = Storage::disk($storageName);
 
-        $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
+        $storage->delete($attachment->path . $attachment->name . '.' . $attachment->extension);
 
         if (strpos($this->mime, 'image') !== 0) {
             return;
         }
 
         foreach (array_keys(config('platform.images', [])) as $format) {
-            $storage->delete($attachment->path.$attachment->name.'_'.$format.'.'.$attachment->extension);
+            $storage->delete($attachment->path . $attachment->name . '_' . $format . '.' . $attachment->extension);
         }
     }
 
@@ -175,7 +175,7 @@ class Attachment extends Model
      *
      * @return string
      */
-    public function getMimeType() : string
+    public function getMimeType(): string
     {
         $mimes = new MimeTypes();
 

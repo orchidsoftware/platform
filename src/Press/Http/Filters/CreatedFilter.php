@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
 
 class CreatedFilter extends Filter
 {
@@ -27,7 +27,7 @@ class CreatedFilter extends Filter
      *
      * @return Builder
      */
-    public function run(Builder $builder) : Builder
+    public function run(Builder $builder): Builder
     {
         return $builder->where('created_at', '>', $this->request->get('start_created_at'))
             ->where('created_at', '<', $this->request->get('end_created_at'));

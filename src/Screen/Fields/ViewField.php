@@ -78,4 +78,13 @@ class ViewField extends Field
 
         return $this;
     }
+
+    /**
+     * @param null $name
+     * @return ViewField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

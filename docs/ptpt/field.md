@@ -46,7 +46,7 @@ A entrada destina-se principalmente a criar campos de texto.
 Um exemplo:
 ```php
 return [
-    'body' => Field::tag('input')
+    'body' => InputField::make()
                   ->type('text')
                   ->name('place')
                   ->max(255)
@@ -69,7 +69,7 @@ O redactor permite adicionar imagens, tabelas, definir estilos de texto e inseri
 Um exemplo:
 ```php
 return [
-    'body' => Field::tag('wysiwyg')
+    'body' => TinyMCEField::make()
                   ->name('body')
                   ->required()
                   ->title('Name Articles')
@@ -88,7 +88,7 @@ Redator de linguagem de marcação clara
 um exemplo:
 ```php
 return [
-    'body' => Field::tag('markdown')
+    'body' => SimpleMDEField::make()
                   ->name('body')
                   ->title('What would you tell us?'),
 ];
@@ -102,7 +102,7 @@ Permite carregar imagens e cortá-las para o formato exigido
 Um exemplo:
 ```php
 return [
-    'picture' => Field::tag('picture')
+    'picture' => PictureField::make()
                     ->name('picture')
                     ->width(500)
                     ->height(300),,
@@ -118,7 +118,7 @@ Permite definir data e hora
 Um exemplo:
 ```php
 return [
-    'open' => Field::tag('datetime')
+    'open' => DateTimerField::make()
                   ->type('text')
                   ->name('open')
                   ->title('Opening date')
@@ -134,7 +134,7 @@ Elemento de interface gráfica do utilizador que permite ao utilizador controlar
 Um exemplo:
 ```php
 return [
-    'free' => Field::tag('checkbox')
+    'free' => CheckBoxField::make()
                    ->name('free')
                    ->value(1)
                    ->title('Free')
@@ -150,7 +150,7 @@ Um campo para um código de programa com um highligt
 Um exemplo:
 ```php
 return [
-    'block' => Field::tag('code')
+    'block' => CodeField::make()
                    ->name('block')
                    ->title('Code Block')
                    ->help('Simple web editor'),
@@ -167,7 +167,7 @@ Ao contrário da etiqueta `input`, é possível fazer um intervalo de linha, ser
 Um exemplo:
 ```php
 return [
-    'description' => Field::tag('textarea')
+    'description' => TextAreaField::make()
                          ->name('description')
                          ->max(255)
                          ->rows(5)
@@ -184,7 +184,7 @@ Uma notação de vários valores delimitados por vírgula
 Um exemplo:
 ```php
 return [
-    'keywords' => Field::tag('tags')
+    'keywords' => TagsField::make()
                       ->name('keywords')
                       ->title('Keywords')
                       ->help('SEO keywords'),
@@ -198,7 +198,7 @@ Seleção simples da lista de matrizes:
 
 ```php
 return [
-    'selest' => Field::tag('select')
+    'selest' => SelectField::make()
                 ->options([
                     'index'   => 'Index',
                     'noindex' => 'No index',
@@ -233,7 +233,7 @@ Uma máscara para entrada de dados na etiqueta `input`.
 Um exemplo:
 ```php
 return [
-    'phone' => Field::tag('input')
+    'phone' => InputField::make()
                    ->type('text')
                    ->name('phone')
                    ->mask('(999) 999-9999')
@@ -247,7 +247,7 @@ Um json com parâmetros pode ser passado para a máscara, por exemplo:
 
 ```php
 return [
-    'price' => Field::tag('input')
+    'price' => InputField::make()
               ->type('text')
               ->name('price')
               ->mask(json_encode([
@@ -260,7 +260,7 @@ return [
 
 ```php
 return [
-    'price' => Field::tag('input')
+    'price' => InputField::make()
              ->type('text')
              ->name('price')
              ->mask(json_encode([

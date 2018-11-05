@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Screen\Field;
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Fields\SelectField;
 
 class StatusFilter extends Filter
 {
@@ -27,7 +27,7 @@ class StatusFilter extends Filter
      *
      * @return Builder
      */
-    public function run(Builder $builder) : Builder
+    public function run(Builder $builder): Builder
     {
         return $builder->status($this->request->get('status'));
     }
@@ -37,8 +37,7 @@ class StatusFilter extends Filter
      */
     public function display()
     {
-        return Field::tag('select')
-            ->name('status')
+        return SelectField::make('status')
             ->value($this->request->get('status'))
             ->options($this->entity->status())
             ->title(__('Status'))

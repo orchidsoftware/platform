@@ -81,4 +81,13 @@ class SimpleMDEField extends Field
         'type',
         'value',
     ];
+
+    /**
+     * @param null $name
+     * @return SimpleMDEField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

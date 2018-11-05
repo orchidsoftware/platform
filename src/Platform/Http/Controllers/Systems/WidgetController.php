@@ -13,7 +13,7 @@ class WidgetController
 {
     /**
      * @param WidgetContractInterface $widget
-     * @param null                    $key
+     * @param null $key
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -22,7 +22,7 @@ class WidgetController
         $widget->query = request('term');
         $widget->key = $key;
 
-        if (! is_null($key)) {
+        if (!is_null($key)) {
             return response()->json($widget->handler());
         }
 

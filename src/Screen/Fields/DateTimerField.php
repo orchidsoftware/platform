@@ -51,11 +51,11 @@ class DateTimerField extends Field
      * @var array
      */
     public $attributes = [
-        'type'                                  => 'text',
-        'class'                                 => 'form-control',
-        'data-controller'                       => 'components--datetime',
+        'type' => 'text',
+        'class' => 'form-control',
+        'data-controller' => 'components--datetime',
         'data-components--datetime-enable-time' => 'true',
-        'data-components--datetime-time_24hr'   => 'true',
+        'data-components--datetime-time_24hr' => 'true',
         'data-components--datetime-allow-input' => 'true',
     ];
 
@@ -97,4 +97,13 @@ class DateTimerField extends Field
         'data-components--datetime-time_24hr',
         'data-components--datetime-allow-input',
     ];
+
+    /**
+     * @param null $name
+     * @return DateTimerField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

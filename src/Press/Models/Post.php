@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Traits\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Database\Eloquent\Builder;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Press\Traits\JsonRelationsTrait;
-use Orchid\Screen\Exceptions\TypeException;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\LogsActivityTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Press\Traits\JsonRelationsTrait;
+use Orchid\Press\Traits\TaggableTrait;
+use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * @property mixed options
@@ -72,8 +72,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type'    => 'string',
-        'slug'    => 'string',
+        'type' => 'string',
+        'slug' => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -181,7 +181,7 @@ class Post extends Model
      */
     public function getEntityObject($slug = null)
     {
-        if (! is_null($this->entity)) {
+        if (!is_null($this->entity)) {
             return $this->entity;
         }
 
@@ -206,7 +206,7 @@ class Post extends Model
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptions() : Collection
+    public function getOptions(): Collection
     {
         return collect($this->options);
     }
@@ -221,7 +221,7 @@ class Post extends Model
     {
         $option = $this->getAttribute('options');
 
-        if (! is_array($option)) {
+        if (!is_array($option)) {
             $option = [];
         }
 
@@ -237,7 +237,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function checkLanguage($key) : bool
+    public function checkLanguage($key): bool
     {
         $locale = $this->getOption('locale', []);
 
@@ -287,7 +287,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments() : HasMany
+    public function comments(): HasMany
     {
         return $this->hasMany(Dashboard::model(Comment::class), 'post_id');
     }
@@ -297,7 +297,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author() : BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(User::class), 'user_id');
     }
@@ -310,7 +310,7 @@ class Post extends Model
      *
      * @return bool
      */
-    public function hasTerm($taxonomy, $term) : bool
+    public function hasTerm($taxonomy, $term): bool
     {
         return isset($this->getTermsAttribute()[$taxonomy][$term]);
     }
@@ -320,7 +320,7 @@ class Post extends Model
      *
      * @return array
      */
-    public function getTermsAttribute() : array
+    public function getTermsAttribute(): array
     {
         $taxonomies = $this->taxonomies;
         foreach ($taxonomies as $taxonomy) {
@@ -336,18 +336,18 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function taxonomies() : BelongsToMany
+    public function taxonomies(): BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model(Taxonomy::class), 'term_relationships', 'post_id', 'term_taxonomy_id');
     }
 
     /**
      * @param string $taxonomy
-     * @param mixed  $term
+     * @param mixed $term
      *
      * @return mixed
      */
-    public function scopeTaxonomy(Builder $query, $taxonomy, $term) : Builder
+    public function scopeTaxonomy(Builder $query, $taxonomy, $term): Builder
     {
         return $query->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
             $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
@@ -361,7 +361,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function makeSlug($title) : string
+    public function makeSlug($title): string
     {
         $slug = Str::slug($title);
         $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
@@ -376,7 +376,7 @@ class Post extends Model
      *
      * @return Builder
      */
-    public function scopePublished(Builder $query) : Builder
+    public function scopePublished(Builder $query): Builder
     {
         return $query->status('publish');
     }
@@ -385,11 +385,11 @@ class Post extends Model
      * Get only posts with a custom status.
      *
      * @param Builder $query
-     * @param string  $postStatus
+     * @param string $postStatus
      *
      * @return Builder
      */
-    public function scopeStatus(Builder $query, string $postStatus) : Builder
+    public function scopeStatus(Builder $query, string $postStatus): Builder
     {
         return $query->where('status', $postStatus);
     }
@@ -398,11 +398,11 @@ class Post extends Model
      * Get only posts from a custom post type.
      *
      * @param Builder $query
-     * @param string  $type
+     * @param string $type
      *
      * @return Builder
      */
-    public function scopeType(Builder $query, string $type) : Builder
+    public function scopeType(Builder $query, string $type): Builder
     {
         return $query->where('type', $type);
     }
@@ -411,25 +411,25 @@ class Post extends Model
      * Get only posts from an array of custom post types.
      *
      * @param Builder $query
-     * @param array   $type
+     * @param array $type
      *
      * @return Builder
      */
-    public function scopeTypeIn(Builder $query, array $type) : Builder
+    public function scopeTypeIn(Builder $query, array $type): Builder
     {
         return $query->whereIn('type', $type);
     }
 
     /**
      * @param Builder $query
-     * @param null    $entity
+     * @param null $entity
      *
      * @return Builder
      * @throws \Throwable
      */
-    public function scopeFiltersApply(Builder $query, $entity = null) : Builder
+    public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             try {
                 $this->getEntity($entity);
             } catch (TypeException $e) {
@@ -441,11 +441,11 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param bool    $dashboard
+     * @param bool $dashboard
      *
      * @return Builder
      */
-    private function filter(Builder $query, $dashboard = false) : Builder
+    private function filter(Builder $query, $dashboard = false): Builder
     {
         $filters = $this->entity->getFilters($dashboard);
         foreach ($filters as $filter) {
@@ -457,14 +457,14 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param null    $entity
+     * @param null $entity
      *
      * @return Builder
      * @throws \Throwable | TypeException
      */
-    public function scopeFiltersApplyDashboard(Builder $query, $entity = null) : Builder
+    public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             $this->getEntity($entity);
         }
 
@@ -479,7 +479,7 @@ class Post extends Model
      */
     public function createSlug($slug = null)
     {
-        if (! is_null($slug) && $this->getOriginal('slug') === $slug) {
+        if (!is_null($slug) && $this->getOriginal('slug') === $slug) {
             $this->setAttribute('slug', $slug);
 
             return;

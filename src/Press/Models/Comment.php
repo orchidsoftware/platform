@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\AttachTrait;
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
@@ -38,10 +38,10 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'post_id'   => 'integer',
-        'user_id'   => 'integer',
+        'post_id' => 'integer',
+        'user_id' => 'integer',
         'parent_id' => 'integer',
-        'approved'  => 'boolean',
+        'approved' => 'boolean',
     ];
 
     /**
@@ -68,7 +68,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post() : BelongsTo
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(Post::class), 'post_id');
     }
@@ -78,7 +78,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function original() : BelongsTo
+    public function original(): BelongsTo
     {
         return $this->belongsTo(static::class, 'parent_id');
     }
@@ -88,7 +88,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies() : HasMany
+    public function replies(): HasMany
     {
         return $this->hasMany(static::class, 'parent_id');
     }
@@ -98,7 +98,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function isApproved() : bool
+    public function isApproved(): bool
     {
         return $this->attributes['approved'] === 1 || $this->attributes['approved'] === true;
     }
@@ -108,7 +108,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function isReply() : bool
+    public function isReply(): bool
     {
         return $this->attributes['parent_id'] > 0;
     }
@@ -118,7 +118,7 @@ class Comment extends Model
      *
      * @return bool
      */
-    public function hasReplies() : bool
+    public function hasReplies(): bool
     {
         return count($this->replies) > 0;
     }
@@ -128,7 +128,7 @@ class Comment extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author() : BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Dashboard::model(User::class), 'user_id');
     }
@@ -138,7 +138,7 @@ class Comment extends Model
      *
      * @return Comment
      */
-    public function scopeApproved(Builder $query) : Builder
+    public function scopeApproved(Builder $query): Builder
     {
         return $query->where('approved', 1);
     }

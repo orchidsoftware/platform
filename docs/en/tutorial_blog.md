@@ -261,7 +261,7 @@ class Blog extends Many
     public function fields() : array
     {
         return [
-            Field::tag('input')
+            InputField::make()
                 ->type('text')
                 ->name('name')
                 ->max(255)
@@ -269,12 +269,12 @@ class Blog extends Many
                 ->title('Article name')
                 ->help('What\'s the name of the article?'),
 
-            Field::tag('wysiwyg')
+            TinyMCEField::make()
                 ->name('body')
                 ->required()
                 ->rows(10),
 
-            Field::tag('input')
+            InputField::make()
                 ->type('text')
                 ->name('title')
                 ->max(255)
@@ -282,13 +282,13 @@ class Blog extends Many
                 ->title('Page title')
                 ->help('Title of the tab'),
 
-            Field::tag('textarea')
+            TextAreaField::make()
                 ->name('description')
                 ->rows(5)
                 ->required()
                 ->title('Brief summary'),
 
-            Field::tag('tags')
+            TagsField::make()
                 ->name('keywords')
                 ->title('Key words'),
         ];

@@ -141,13 +141,13 @@ class TD
      */
     public function column(string $column = null): self
     {
-        if (! is_null($column)) {
+        if (!is_null($column)) {
             $this->column = $column;
         }
 
-        if ($this->locale && ! is_null($column)) {
-            $locale = '.'.app()->getLocale().'.';
-            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
+        if ($this->locale && !is_null($column)) {
+            $locale = '.' . app()->getLocale() . '.';
+            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
         }
 
         return $this;
@@ -219,14 +219,14 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (! is_null($text)) {
+            if (!is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
             return view('platform::partials.td.link', [
-                'route'      => $route,
+                'route' => $route,
                 'attributes' => $attributes,
-                'text'       => $text,
+                'text' => $text,
             ]);
         });
 
@@ -246,7 +246,7 @@ class TD
     }
 
     /**
-     * @param string      $modal
+     * @param string $modal
      * @param             string $method
      * @param             string $options
      * @param string|null $text
@@ -271,11 +271,11 @@ class TD
             $text = is_null($text) ? $text : $datum->getContent($text);
 
             return view('platform::partials.td.async', [
-                'modal'      => $modal,
+                'modal' => $modal,
                 'attributes' => $attributes,
-                'text'       => $text,
-                'method'     => $method,
-                'route'      => $this->asyncRoute,
+                'text' => $text,
+                'method' => $method,
+                'route' => $this->asyncRoute,
             ]);
         });
 
@@ -299,7 +299,7 @@ class TD
      *
      * @return $this
      */
-    public function asyncRoute(string $route) : self
+    public function asyncRoute(string $route): self
     {
         $this->asyncRoute = $route;
 

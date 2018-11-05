@@ -28,7 +28,7 @@ class UploadFileEvent
      * ImageAttachment constructor.
      *
      * @param \Orchid\Attachment\Models\Attachment $attachment
-     * @param int                                $time
+     * @param int $time
      */
     public function __construct(Attachment $attachment, int $time)
     {

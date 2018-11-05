@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
-use Orchid\Screen\Field;
-use Orchid\Screen\Layouts\Rows;
 use Illuminate\Support\Collection;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\LabelField;
+use Orchid\Screen\Layouts\Rows;
 
 class RolePermissionLayout extends Rows
 {
@@ -30,17 +32,15 @@ class RolePermissionLayout extends Rows
     public function generatedPermissionFields(Collection $permissionsRaw): array
     {
         foreach ($permissionsRaw as $group => $items) {
-            $fields[] = Field::tag('label')
-                ->name($group)
+            $fields[] = LabelField::name($group)
                 ->title($group)
                 ->hr(false);
 
             foreach (collect($items)->chunk(3) as $chunks) {
                 $fields[] = Field::group(function () use ($chunks) {
                     foreach ($chunks as $permission) {
-                        $permissions[] = Field::tag('checkbox')
+                        $permissions[] = CheckBoxField::make('permissions.' . base64_encode($permission['slug']))
                             ->placeholder($permission['description'])
-                            ->name('permissions.'.base64_encode($permission['slug']))
                             ->value((int) $permission['active'])
                             ->hr(false);
                     }
@@ -49,8 +49,7 @@ class RolePermissionLayout extends Rows
                 });
             }
 
-            $fields[] = Field::tag('label')
-                ->name('close');
+            $fields[] = LabelField::make('close');
         }
 
         return $fields ?? [];

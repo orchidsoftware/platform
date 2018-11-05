@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
-use Orchid\Platform\Dashboard;
-use Orchid\Platform\Models\Role;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\AddRoleEvent;
 use Orchid\Platform\Events\RemoveRoleEvent;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Platform\Models\Role;
 
 trait UserAccess
 {
@@ -29,7 +29,7 @@ trait UserAccess
     /**
      * @return BelongsToMany
      */
-    public function roles() : BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Dashboard::model(Role::class), 'role_users', 'user_id', 'role_id');
     }
@@ -39,7 +39,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function inRole($role) : bool
+    public function inRole($role): bool
     {
         $role = array_first($this->roles, function ($instance) use ($role) {
             if ($role instanceof RoleInterface) {
@@ -61,9 +61,9 @@ trait UserAccess
      *
      * @return bool
      */
-    public function hasAccess($checkPermissions, $cache = true) : bool
+    public function hasAccess($checkPermissions, $cache = true): bool
     {
-        if (! $cache || is_null($this->cachePermissions)) {
+        if (!$cache || is_null($this->cachePermissions)) {
             $this->cachePermissions = $this->roles()
                 ->pluck('permissions')
                 ->prepend($this->permissions);
@@ -85,7 +85,7 @@ trait UserAccess
      *
      * @return Model
      */
-    public function addRole(Model $role) : Model
+    public function addRole(Model $role): Model
     {
         $result = $this->roles()->save($role);
 
@@ -101,7 +101,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function removeRoleBySlug($slug) : bool
+    public function removeRoleBySlug($slug): bool
     {
         $role = $this->roles()->where('slug', $slug)->first();
 
@@ -113,7 +113,7 @@ trait UserAccess
      *
      * @return bool
      */
-    public function removeRole(RoleInterface $role) : bool
+    public function removeRole(RoleInterface $role): bool
     {
         $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
 
@@ -143,10 +143,10 @@ trait UserAccess
     /**
      * @return bool
      */
-    public function delete() : bool
+    public function delete(): bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-        if ($this->exists && ! $isSoftDeleted) {
+        if ($this->exists && !$isSoftDeleted) {
             $this->roles()->detach();
         }
 

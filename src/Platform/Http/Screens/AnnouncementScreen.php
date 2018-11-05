@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Screens;
 
+use Illuminate\Http\Request;
+use Orchid\Platform\Http\Layouts\AnnouncementLayout;
+use Orchid\Platform\Models\Announcement;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
-use Orchid\Platform\Models\Announcement;
-use Orchid\Platform\Http\Layouts\AnnouncementLayout;
 
 class AnnouncementScreen extends Screen
 {
@@ -45,7 +45,7 @@ class AnnouncementScreen extends Screen
     public function query(): array
     {
         $announcement = Announcement::getActive();
-        $this->active = ! is_null($announcement);
+        $this->active = !is_null($announcement);
 
         return [
             'announcement' => $announcement,
@@ -61,7 +61,7 @@ class AnnouncementScreen extends Screen
             Link::name(__('Create'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
-                ->show(! $this->active),
+                ->show(!$this->active),
 
             Link::name(__('Refresh'))
                 ->icon('icon-check')
@@ -89,7 +89,7 @@ class AnnouncementScreen extends Screen
 
     /**
      * @param \Orchid\Platform\Models\Announcement $announcement
-     * @param \Illuminate\Http\Request             $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -99,7 +99,7 @@ class AnnouncementScreen extends Screen
             ->fill($request->get('announcement'))
             ->fill([
                 'user_id' => $request->user()->id,
-                'active'  => 1,
+                'active' => 1,
             ])->save();
 
         Alert::info(__('Announcement has been created or updated.'));

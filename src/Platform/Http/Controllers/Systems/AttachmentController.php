@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Attachment\File;
 use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Post;
 
 /**
  * Class AttachmentController.
@@ -32,7 +32,7 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $files) {
-            if (! is_array($files)) {
+            if (!is_array($files)) {
                 $files = [$files];
             }
 
@@ -127,8 +127,8 @@ class AttachmentController extends Controller
     private function createModel($file, Request $request)
     {
         $model = app()->make(File::class, [
-            'file'  => $file,
-            'disk'  => $request->get('storage', 'public'),
+            'file' => $file,
+            'disk' => $request->get('storage', 'public'),
             'group' => $request->get('group'),
         ])->load();
 

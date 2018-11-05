@@ -53,7 +53,7 @@ class UTMField extends Field
      * @var array
      */
     public $attributes = [
-        'type'  => 'url',
+        'type' => 'url',
         'class' => 'form-control',
     ];
 
@@ -91,4 +91,13 @@ class UTMField extends Field
         'tabindex',
         'value',
     ];
+
+    /**
+     * @param null $name
+     * @return UTMField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

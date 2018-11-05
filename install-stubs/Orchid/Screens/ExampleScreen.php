@@ -2,18 +2,18 @@
 
 namespace App\Orchid\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Field;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Alert;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
-use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class ExampleScreen extends Screen
 {
@@ -146,9 +146,8 @@ class ExampleScreen extends Screen
 
             Layouts::modals([
                 'exampleModal' => Layouts::rows([
-                    Field::tag('input')
+                    InputField::make('user.password')
                         ->type('test')
-                        ->name('user.password')
                         ->title(__('Example'))
                         ->placeholder(__('Example')),
                 ]),

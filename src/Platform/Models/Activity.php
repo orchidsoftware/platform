@@ -14,7 +14,7 @@ class Activity extends \Spatie\Activitylog\Models\Activity
     /**
      * @return int
      */
-    public function countChanges() : int
+    public function countChanges(): int
     {
         return \count($this->changes()['attributes'] ?? []);
     }

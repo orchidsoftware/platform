@@ -61,7 +61,7 @@ class Dashboard
     {
         $this->menu = new Menu;
         $this->permission = collect([
-            'all'     => collect(),
+            'all' => collect(),
             'removed' => collect(),
         ]);
         $this->resources = collect();
@@ -91,7 +91,7 @@ class Dashboard
     {
         $prefix = config('platform.prefix');
 
-        return str_start($prefix.$path, '/');
+        return str_start($prefix . $path, '/');
     }
 
     /**
@@ -110,7 +110,7 @@ class Dashboard
      * Get a Dashboard configuration option.
      *
      * @param  string $key
-     * @param  mixed  $default
+     * @param  mixed $default
      *
      * @return mixed
      */
@@ -120,7 +120,7 @@ class Dashboard
     }
 
     /**
-     * @param string      $key
+     * @param string $key
      * @param string|null $default
      *
      * @return mixed
@@ -135,14 +135,14 @@ class Dashboard
     /**
      * Get the class name for a given Dashboard model.
      *
-     * @param  string      $key
+     * @param  string $key
      * @param  null|string $default
      *
      * @return string
      */
     public static function model(string $key, string $default = null)
     {
-        return array_get(static::$options, 'models.'.$key, $default ?? $key);
+        return array_get(static::$options, 'models.' . $key, $default ?? $key);
     }
 
     /**
@@ -287,7 +287,7 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (! $removed->count()) {
+        if (!$removed->count()) {
             return $all;
         }
 

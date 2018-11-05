@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
-use Orchid\Screen\Field;
+use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Layouts\Rows;
 
 class UserEditLayout extends Rows
@@ -19,18 +19,16 @@ class UserEditLayout extends Rows
     public function fields(): array
     {
         return [
-            Field::tag('input')
+            InputField::make('user.name')
                 ->type('text')
-                ->name('user.name')
                 ->max(255)
                 ->required()
                 ->horizontal()
                 ->title(__('Name'))
                 ->placeholder(__('Name')),
 
-            Field::tag('input')
+            InputField::make('user.email')
                 ->type('email')
-                ->name('user.email')
                 ->required()
                 ->horizontal()
                 ->hr(false)

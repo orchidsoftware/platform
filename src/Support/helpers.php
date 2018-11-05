@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-if (! function_exists('alert')) {
+if (!function_exists('alert')) {
     /**
      * Helper function to send an alert.
      *
      * @param string|null $message
-     * @param string      $level
+     * @param string $level
      *
      * @return \Orchid\Alert\Alert
      */
@@ -15,7 +15,7 @@ if (! function_exists('alert')) {
     {
         $notifier = app('alert');
 
-        if (! is_null($message)) {
+        if (!is_null($message)) {
             return $notifier->message($message, $level);
         }
 
@@ -23,7 +23,7 @@ if (! function_exists('alert')) {
     }
 }
 
-if (! function_exists('setting')) {
+if (!function_exists('setting')) {
     /**
      * @param      $key
      * @param null $default
@@ -36,14 +36,14 @@ if (! function_exists('setting')) {
     }
 }
 
-if (! function_exists('generate_form')) {
+if (!function_exists('generate_form')) {
     /**
      * Generate a ready-made html form for display to the user.
      *
-     * @param array                                $fields
+     * @param array $fields
      * @param array|\Orchid\Screen\Repository|null $data
-     * @param string|null                          $language
-     * @param string|null                          $prefix
+     * @param string|null $language
+     * @param string|null $prefix
      *
      * @throws \Throwable
      *
@@ -62,7 +62,7 @@ if (! function_exists('generate_form')) {
     }
 }
 
-if (! function_exists('dashboard_domain')) {
+if (!function_exists('dashboard_domain')) {
 
     /**
      * @param string $default
@@ -79,7 +79,7 @@ if (! function_exists('dashboard_domain')) {
     }
 }
 
-if (! function_exists('is_sort')) {
+if (!function_exists('is_sort')) {
 
     /**
      * @param null $property
@@ -94,7 +94,7 @@ if (! function_exists('is_sort')) {
     }
 }
 
-if (! function_exists('get_sort')) {
+if (!function_exists('get_sort')) {
 
     /**
      * @param null $property
@@ -109,7 +109,7 @@ if (! function_exists('get_sort')) {
     }
 }
 
-if (! function_exists('get_filter')) {
+if (!function_exists('get_filter')) {
 
     /**
      * @param null $property
@@ -124,7 +124,7 @@ if (! function_exists('get_filter')) {
     }
 }
 
-if (! function_exists('get_filter_string')) {
+if (!function_exists('get_filter_string')) {
 
     /**
      * @param null $property
@@ -143,7 +143,7 @@ if (! function_exists('get_filter_string')) {
     }
 }
 
-if (! function_exists('revert_sort')) {
+if (!function_exists('revert_sort')) {
 
     /**
      * @param null $property

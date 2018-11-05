@@ -203,7 +203,7 @@ class ItemMenu
 
     /**
      * @param \Closure $badge
-     * @param string   $class
+     * @param string $class
      *
      * @return \Orchid\Platform\ItemMenu
      */
@@ -211,7 +211,7 @@ class ItemMenu
     {
         $this->badge = [
             'class' => $class,
-            'data'  => $badge,
+            'data' => $badge,
         ];
 
         return $this;

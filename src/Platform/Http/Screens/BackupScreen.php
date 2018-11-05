@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Screens;
 
 use Carbon\Carbon;
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Support\Formats;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Layouts\BackupLayout;
+use Orchid\Screen\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Formats;
 
 class BackupScreen extends Screen
 {
@@ -120,11 +120,11 @@ class BackupScreen extends Screen
                 ->each(function ($file) use ($disk, $diskName, &$backups) {
                     // make an array of backup files, with their filesize and creation date
                     $backups[] = new Repository([
-                        'path'          => $file,
-                        'size'          => Formats::formatBytes($disk->size($file)),
+                        'path' => $file,
+                        'size' => Formats::formatBytes($disk->size($file)),
                         'last_modified' => Carbon::createFromTimestamp($disk->lastModified($file))->diffForHumans(),
-                        'disk'          => $diskName,
-                        'url'           => $disk->url($file),
+                        'disk' => $diskName,
+                        'url' => $disk->url($file),
                     ]);
                 });
         }

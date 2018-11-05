@@ -83,4 +83,13 @@ class PictureField extends Field
         'type',
         'value',
     ];
+
+    /**
+     * @param null $name
+     * @return PictureField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

@@ -37,7 +37,7 @@ trait JsonRelationsTrait
     /**
      * @return array
      */
-    private function jsonRelationInit() : array
+    private function jsonRelationInit(): array
     {
         $options = $this->getAttribute($this->jsonRelationColumn);
 
@@ -68,7 +68,7 @@ trait JsonRelationsTrait
     {
         $option = $this->jsonRelationInit();
 
-        if (! array_key_exists($name, $option)) {
+        if (!array_key_exists($name, $option)) {
             $option[$name] = [];
         }
 

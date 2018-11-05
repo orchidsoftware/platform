@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Alert\AlertServiceProvider;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
-use Orchid\Widget\WidgetServiceProvider;
-use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
 use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
+use Orchid\Alert\AlertServiceProvider;
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Orchid\Widget\WidgetServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
+use Watson\Active\ActiveServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -26,7 +26,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Boot the application events.
      */
-    public function boot() : void
+    public function boot(): void
     {
         $this->registerEloquentFactoriesFrom()
             ->registerOrchid()
@@ -42,9 +42,9 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerEloquentFactoriesFrom() : self
+    protected function registerEloquentFactoriesFrom(): self
     {
-        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
+        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH . '/database/factories'));
 
         return $this;
     }
@@ -54,9 +54,9 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerDatabase() : self
+    protected function registerDatabase(): self
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH . '/database/migrations/platform'));
 
         return $this;
     }
@@ -66,9 +66,9 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    public function registerTranslations() : self
+    public function registerTranslations(): self
     {
-        $this->loadTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang'), 'platform');
+        $this->loadTranslationsFrom(realpath(PLATFORM_PATH . '/resources/lang'), 'platform');
 
         return $this;
     }
@@ -78,11 +78,11 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerConfig() : self
+    protected function registerConfig(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
-            realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
+            realpath(PLATFORM_PATH . '/config/platform.php') => config_path('platform.php'),
+            realpath(PLATFORM_PATH . '/config/widget.php') => config_path('widget.php'),
         ], 'config');
 
         return $this;
@@ -93,11 +93,11 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    protected function registerOrchid() : self
+    protected function registerOrchid(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
-            realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
+            realpath(PLATFORM_PATH . '/install-stubs/routes/') => base_path('routes'),
+            realpath(PLATFORM_PATH . '/install-stubs/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;
@@ -108,12 +108,12 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return $this
      */
-    public function registerViews() : self
+    public function registerViews(): self
     {
-        $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
+        $this->loadViewsFrom(PLATFORM_PATH . '/resources/views', 'platform');
 
         $this->publishes([
-            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/platform'),
+            PLATFORM_PATH . '/resources/views' => resource_path('views/vendor/platform'),
         ], 'views');
 
         return $this;
@@ -122,7 +122,7 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register provider.
      */
-    public function registerProviders() : void
+    public function registerProviders(): void
     {
         foreach ($this->provides() as $provide) {
             $this->app->register($provide);
@@ -134,7 +134,7 @@ class FoundationServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides() : array
+    public function provides(): array
     {
         return [
             DashboardServiceProvider::class,
@@ -157,21 +157,21 @@ class FoundationServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register() : void
+    public function register(): void
     {
-        if (! Route::hasMacro('screen')) {
+        if (!Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name) {
-                return Route::any($url.'/{method?}/{argument?}')
-                    ->uses($screen.'@handle')
+                return Route::any($url . '/{method?}/{argument?}')
+                    ->uses($screen . '@handle')
                     ->name($name);
             });
         }
 
-        if (! defined('PLATFORM_PATH')) {
+        if (!defined('PLATFORM_PATH')) {
             /*
              * Get the path to the ORCHID Platform folder.
              */
-            define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
+            define('PLATFORM_PATH', realpath(__DIR__ . '/../../../'));
         }
     }
 }

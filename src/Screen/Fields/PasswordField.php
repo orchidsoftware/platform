@@ -50,7 +50,7 @@ class PasswordField extends Field
      * @var array
      */
     public $attributes = [
-        'type'  => 'password',
+        'type' => 'password',
         'class' => 'form-control',
     ];
 
@@ -88,4 +88,13 @@ class PasswordField extends Field
         'tabindex',
         'type',
     ];
+
+    /**
+     * @param null $name
+     * @return PasswordField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

@@ -29,8 +29,8 @@ abstract class Table
     public function build(Repository $query)
     {
         return view($this->template, [
-            'data'    => $query->getContent($this->data),
-            'fields'  => $this->fields(),
+            'data' => $query->getContent($this->data),
+            'fields' => $this->fields(),
             'filters' => $this->showFilterDashboard(),
         ]);
     }
@@ -47,7 +47,7 @@ abstract class Table
 
         return view('platform::container.layouts.filter', [
             'filters' => $dashboardFilter,
-            'chunk'   => $chunk,
+            'chunk' => $chunk,
         ]);
     }
 
@@ -74,7 +74,7 @@ abstract class Table
     /**
      * @return array
      */
-    public function filters() : array
+    public function filters(): array
     {
         return [];
     }
@@ -82,7 +82,7 @@ abstract class Table
     /**
      * @return array
      */
-    public function fields() : array
+    public function fields(): array
     {
         return [];
     }

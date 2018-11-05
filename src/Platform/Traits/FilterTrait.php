@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-use Orchid\Platform\Filters\HttpFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\HttpFilter;
 
 trait FilterTrait
 {
     /**
      * @param Builder $query
-     * @param array   $filters
+     * @param array $filters
      *
      * @return Builder
      */
-    public function scopeFiltersApply(Builder $query, array $filters = []) : Builder
+    public function scopeFiltersApply(Builder $query, array $filters = []): Builder
     {
         foreach ($filters as $filter) {
-            if (! is_object($filter)) {
+            if (!is_object($filter)) {
                 $filter = app()->make($filter);
             }
 
@@ -44,7 +44,7 @@ trait FilterTrait
     /**
      * @param Builder $builder
      * @param         $column
-     * @param string  $direction
+     * @param string $direction
      *
      * @return Builder
      */
@@ -63,8 +63,8 @@ trait FilterTrait
     public function getOptionsFilter()
     {
         return collect([
-            'allowedFilters'  => collect($this->allowedFilters ?? []),
-            'allowedSorts'    => collect($this->allowedSorts ?? []),
+            'allowedFilters' => collect($this->allowedFilters ?? []),
+            'allowedSorts' => collect($this->allowedSorts ?? []),
         ]);
     }
 }

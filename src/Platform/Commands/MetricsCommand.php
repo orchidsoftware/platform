@@ -34,9 +34,9 @@ class MetricsCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub() : string
+    protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/metrics.stub';
+        return PLATFORM_PATH . '/resources/stubs/metrics.stub';
     }
 
     /**
@@ -46,8 +46,8 @@ class MetricsCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace) : string
+    protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace.'\Orchid\Layouts';
+        return $rootNamespace . '\Orchid\Layouts';
     }
 }

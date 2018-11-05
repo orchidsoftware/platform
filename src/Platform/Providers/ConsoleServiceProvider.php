@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Commands\LinkCommand;
-use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
-use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\FilterCommand;
-use Orchid\Platform\Commands\ScreenCommand;
-use Orchid\Platform\Commands\WidgetCommand;
 use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\MetricsCommand;
+use Orchid\Platform\Commands\RowsCommand;
+use Orchid\Platform\Commands\ScreenCommand;
+use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\WidgetCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -41,7 +41,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! $this->app->runningInConsole()) {
+        if (!$this->app->runningInConsole()) {
             return;
         }
 

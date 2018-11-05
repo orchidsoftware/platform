@@ -17,4 +17,13 @@ class PlaceField extends Field
      * @var string
      */
     public $view = 'platform::fields.place';
+
+    /**
+     * @param null $name
+     * @return PlaceField
+     */
+    public static function make($name = null): self
+    {
+        return (new static)->name($name);
+    }
 }

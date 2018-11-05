@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
@@ -37,7 +37,7 @@ class ResetPasswordController extends Controller
      * If no token is present, display the link request form.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string|null              $token
+     * @param string|null $token
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */

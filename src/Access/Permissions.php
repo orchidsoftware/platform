@@ -26,7 +26,7 @@ class Permissions
      *
      * @return \Illuminate\Support\Collection
      */
-    public function get() : Collection
+    public function get(): Collection
     {
         return $this->container->collapse();
     }
