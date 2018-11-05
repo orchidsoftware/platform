@@ -63,35 +63,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Available fields to form templates
-    |--------------------------------------------------------------------------
-    |
-    | Declared fields for user filling.
-    | Be shy and add to what you need
-    |
-    */
-
-    'fields' => [
-        'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-        'input'        => Orchid\Screen\Fields\InputField::class,
-        'tags'         => Orchid\Screen\Fields\TagsField::class,
-        'select'       => Orchid\Screen\Fields\SelectField::class,
-        'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-        'picture'      => Orchid\Screen\Fields\PictureField::class,
-        'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-        'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-        'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-        'password'     => Orchid\Screen\Fields\PasswordField::class,
-        'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-        'label'        => Orchid\Screen\Fields\LabelField::class,
-        'upload'       => Orchid\Screen\Fields\UploadField::class,
-        'utm'          => Orchid\Screen\Fields\UTMField::class,
-        'view'         => Orchid\Screen\Fields\ViewField::class,
-        'code'         => Orchid\Screen\Fields\CodeField::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Dashboard Resource
     |--------------------------------------------------------------------------
     |
