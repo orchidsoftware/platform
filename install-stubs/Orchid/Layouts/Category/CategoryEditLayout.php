@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Category;
 
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Field;
 use Orchid\Screen\Layouts\Rows;
 
 class CategoryEditLayout extends Rows
@@ -19,40 +17,36 @@ class CategoryEditLayout extends Rows
      */
     public function fields(): array
     {
+        $categoryContent = 'category.term.content.'.app()->getLocale();
+
         return [
-            InputField::make('category.content.name')
+            Field::tag('input')
                 ->type('text')
-                ->modifyValue(function () {
-                    if ($this->query->getContent('category')->exists) {
-                        return $this->query->getContent('category')->term->GetContent('name');
-                    }
-                })
+                ->name($categoryContent.'.name')
                 ->max(255)
                 ->require()
                 ->title(__('Category name'))
                 ->placeholder(__('Category name'))
                 ->help(__('Category title')),
 
-            InputField::make('category.slug')
+            Field::tag('input')
                 ->type('text')
+                ->name('category.term.slug')
                 ->max(255)
                 ->require()
                 ->title(__('Slug')),
 
-            SelectField::make('category.parent_id')
+            Field::tag('select')
                 ->options(function () {
                     $options = $this->query->getContent('catselect');
 
                     return array_replace([0=> __('Without parent')], $options);
                 })
+                ->name('category.parent_id')
                 ->title(__('Parent Category')),
 
-            TinyMCEField::make('category.content.body')
-                ->modifyValue(function () {
-                    if ($this->query->getContent('category')->exists) {
-                        return $this->query->getContent('category')->term->GetContent('body');
-                    }
-                })
+            Field::tag('wysiwyg')
+                ->name($categoryContent.'.body')
                 ->title(__('Description')),
 
         ];

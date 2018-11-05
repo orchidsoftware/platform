@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Orchid\Press\Models\Term;
 use Orchid\Press\Models\Category;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Support\Facades\App;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
 
 class CategoryEditScreen extends Screen
@@ -37,20 +36,13 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        if ($category->exists) {
-            foreach (Category::whereNotIn('id', [$category->id])->get() as $cat) {
-                $catselect[$cat->id] = $cat->term->GetContent('name');
-            }
-            $category['slug'] = $category->term->slug;
-        } else {
-            foreach (Category::get() as $cat) {
-                $catselect[$cat->id] = $cat->term->GetContent('name');
-            }
+        if (! $category->exists) {
+            $category->setRelation('term', [new Term()]);
         }
 
         return [
             'category' => $category,
-            'catselect'=> $catselect,
+            'catselect'=> $category->allOtherCategory(),
         ];
     }
 
@@ -93,26 +85,13 @@ class CategoryEditScreen extends Screen
     {
         $attributes = $request->get('category');
 
-        $locale = App::getLocale();
-        $attributes['term']['content'][$locale] = $attributes['content'];
-        $attributes['term']['slug'] = $attributes['slug'];
-        unset($attributes['slug']);
-
         if (! $category->exists) {
-            $term = Term::firstOrCreate($attributes['term']);
-            $category->term_id = $term->id;
-            $category->term()->associate($term);
+            $category->newWithCreateTerm($attributes['term']);
         }
 
-        $category->taxonomy = 'category';
-        if ((int) $attributes['parent_id'] > 0) {
-            $category->parent_id = (int) $attributes['parent_id'];
-        } else {
-            $category->parent_id = null;
-        }
-        $category->term->fill($attributes['term']);
+        $category->setParent($attributes['parent_id']);
 
-        $category->term->save();
+        $category->term->fill($attributes['term'])->save();
         $category->save();
 
         Alert::info(__('Category was saved'));
@@ -127,6 +106,7 @@ class CategoryEditScreen extends Screen
      */
     public function remove(Category $category)
     {
+        $category->term->delete();
         $category->delete();
 
         Alert::info(__('Category was removed'));
