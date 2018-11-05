@@ -20,11 +20,11 @@ class WidgetServiceProvider extends ServiceProvider
         Blade::directive('widget', function ($expression) {
             $segments = explode(',', preg_replace("/[\(\)\\\]/", '', $expression));
 
-            if (!array_key_exists(1, $segments)) {
-                return '<?php echo (new \Orchid\Widget\Widget)->get(' . $segments[0] . '); ?>';
+            if (! array_key_exists(1, $segments)) {
+                return '<?php echo (new \Orchid\Widget\Widget)->get('.$segments[0].'); ?>';
             }
 
-            return '<?php echo (new \Orchid\Widget\Widget)->get(' . $segments[0] . ',' . $segments[1] . '); ?>';
+            return '<?php echo (new \Orchid\Widget\Widget)->get('.$segments[0].','.$segments[1].'); ?>';
         });
     }
 }

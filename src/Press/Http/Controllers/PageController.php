@@ -6,9 +6,9 @@ namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Models\Page;
 use Orchid\Support\Facades\Alert;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -21,7 +21,7 @@ class PageController extends Controller
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('platform.posts.type.' . $page->slug);
+        $this->checkPermission('platform.posts.type.'.$page->slug);
         $type = $page->getEntityObject($page->slug);
 
         return view('platform::container.posts.page', [
@@ -41,7 +41,7 @@ class PageController extends Controller
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('platform.posts.type.' . $page->slug);
+        $this->checkPermission('platform.posts.type.'.$page->slug);
         $type = $page->getEntityObject($page->slug);
         $type->isValid();
 

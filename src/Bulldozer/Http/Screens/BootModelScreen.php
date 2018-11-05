@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Orchid\Bulldozer\Builders\Migration;
-use Orchid\Bulldozer\Builders\Model;
-use Orchid\Bulldozer\Layouts\BootCreateModel;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Orchid\Bulldozer\Builders\Model;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Bulldozer\Builders\Migration;
+use Orchid\Bulldozer\Layouts\BootCreateModel;
 
 /**
  * Class BootModelScreen.
@@ -219,7 +219,7 @@ class BootModelScreen extends Screen
                     $property['visible'][] = $key;
                 }
 
-                $migrate = $column['name'] . ':' . Migration::TYPES[$column['type']];
+                $migrate = $column['name'].':'.Migration::TYPES[$column['type']];
 
                 if (isset($column['unique'])) {
                     $migrate .= ':unique';
@@ -239,7 +239,7 @@ class BootModelScreen extends Screen
 
             $model = $model->generate();
 
-            file_put_contents(app_path($name . '.php'), $model);
+            file_put_contents(app_path($name.'.php'), $model);
             Migration::make($name, implode(',', $migration));
         }
 

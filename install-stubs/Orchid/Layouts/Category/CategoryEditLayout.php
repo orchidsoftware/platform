@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Category;
 
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\TinyMCEField;
-use Orchid\Screen\Layouts\Rows;
 
 class CategoryEditLayout extends Rows
 {
@@ -22,7 +22,7 @@ class CategoryEditLayout extends Rows
         $categoryContent = 'category.term.content.'.app()->getLocale();
 
         return [
-            InputField::make($categoryContent . '.name')
+            InputField::make($categoryContent.'.name')
                 ->type('text')
                 ->max(255)
                 ->require()
@@ -44,7 +44,7 @@ class CategoryEditLayout extends Rows
                 })
                 ->title(__('Parent Category')),
 
-            TinyMCEField::make($categoryContent . '.body')
+            TinyMCEField::make($categoryContent.'.body')
                 ->title(__('Description')),
 
         ];

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
 {
@@ -145,7 +145,7 @@ class HttpFilter
             return true;
         }
 
-        if ($this->sorts->search('-' . $property, true) !== false) {
+        if ($this->sorts->search('-'.$property, true) !== false) {
             return true;
         }
 
@@ -160,7 +160,7 @@ class HttpFilter
     public function revertSort($property)
     {
         if ($this->getSort($property) === 'asc') {
-            return '-' . $property;
+            return '-'.$property;
         }
 
         return $property;

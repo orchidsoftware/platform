@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -101,11 +101,11 @@ class Setting extends Model
      */
     public function get($key, $default = null)
     {
-        if (!$this->cache) {
+        if (! $this->cache) {
             return $this->getNoCache($key, $default);
         }
 
-        return Cache::rememberForever('settings-' . implode(',', (array)$key), function () use ($key, $default) {
+        return Cache::rememberForever('settings-'.implode(',', (array) $key), function () use ($key, $default) {
             return $this->getNoCache($key, $default);
         });
     }

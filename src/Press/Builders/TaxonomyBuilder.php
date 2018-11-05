@@ -52,7 +52,7 @@ class TaxonomyBuilder extends Builder
      */
     public function slug($slug = null): self
     {
-        if (!empty($slug)) {
+        if (! empty($slug)) {
             // set this slug to be used in with callback
             $this->slug = $slug;
 

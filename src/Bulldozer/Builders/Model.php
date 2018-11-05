@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Bulldozer\Builders;
 
 use Zend\Code\Generator\DocBlock\Tag;
-use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\FileGenerator;
 use Zend\Code\Generator\MethodGenerator;
+use Zend\Code\Generator\DocBlockGenerator;
 use Zend\Code\Generator\PropertyGenerator;
 
 /**
@@ -85,7 +85,7 @@ class Model extends Builder
      */
     protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var'): self
     {
-        if (!array_has($this->parameters, 'property.' . $property)) {
+        if (! array_has($this->parameters, 'property.'.$property)) {
             return $this;
         }
 
@@ -114,31 +114,31 @@ class Model extends Builder
     {
         $params = [];
 
-        if (!is_null($local) || !is_null($related)) {
+        if (! is_null($local) || ! is_null($related)) {
             $params[] = "'$local'";
         }
 
-        if (!is_null($related)) {
+        if (! is_null($related)) {
             $params[] = "'$related'";
         }
 
         $params = implode(',', $params);
 
-        if (!empty($params)) {
-            $params = ',' . $params;
+        if (! empty($params)) {
+            $params = ','.$params;
         }
 
         $method = new MethodGenerator(
             $name,
             [],
             MethodGenerator::FLAG_PUBLIC,
-            'return $this->' . $type . '(' . $name . '::class' . $params . ');',
+            'return $this->'.$type.'('.$name.'::class'.$params.');',
             DocBlockGenerator::fromArray([
                 'shortDescription' => 'Generated attitude',
                 'longDescription' => null,
                 'tags' => [
                     new Tag\ReturnTag([
-                        'datatype' => "\Illuminate\Database\Eloquent\Relations\\" . $type,
+                        'datatype' => "\Illuminate\Database\Eloquent\Relations\\".$type,
                     ]),
                 ],
             ])

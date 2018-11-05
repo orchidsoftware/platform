@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Providers;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Bulldozer\Http\Composers\SystemMenuComposer;
-use Orchid\Platform\Dashboard;
 
 /**
  * Class BulldozerServiceProvider.
