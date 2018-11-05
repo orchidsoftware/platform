@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [3.0.1] - 2018-10-29
+
+### Added
+- jQuery global  [709](https://github.com/orchidsoftware/platform/pull/709)
+- Sub menu [709](https://github.com/orchidsoftware/platform/pull/709)
+
+### Deprecated
+- Field::tag use `make` method [710](https://github.com/orchidsoftware/platform/issues/710)
+
+### Fixed
+- Migration rollback  [708](https://github.com/orchidsoftware/platform/pull/708)
+
+
 ## [3.0] - 2018-10-29
 
 ### Added
