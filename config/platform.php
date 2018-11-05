@@ -95,9 +95,10 @@ return [
     |
     | The address where customer support e-mails should be sent.
     |
+    | Example: support@example.com
     */
 
-    'support' => 'support@example.com',
+    'support' => env('DASHBOARD_SUPPORT'),
 
     /*
     |--------------------------------------------------------------------------

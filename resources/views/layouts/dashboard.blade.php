@@ -69,5 +69,5 @@
         </div>
     </div>
 
-    @include('platform::partials.support')
+    @includeWhen(!is_null(config('platform.support')),'platform::partials.support')
 @endsection
