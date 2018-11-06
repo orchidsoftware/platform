@@ -6,7 +6,6 @@ namespace App\Orchid\Screens\Category;
 
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
 use Orchid\Press\Models\Category;
 use App\Orchid\Layouts\Category\CategoryListLayout;
 
