@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Entities\Single;
-use Illuminate\Support\Facades\View;
-use Symfony\Component\Finder\Finder;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
+use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -137,7 +137,7 @@ class PressServiceProvider extends ServiceProvider
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                    'slug' => 'platform.posts.type.'.$post->slug,
+                    'slug'        => 'platform.posts.type.' . $post->slug,
                     'description' => $post->name,
                 ];
             });
@@ -157,11 +157,11 @@ class PressServiceProvider extends ServiceProvider
         return [
             __('Systems') => [
                 [
-                    'slug' => 'platform.systems.menu',
+                    'slug'        => 'platform.systems.menu',
                     'description' => __('Menu'),
                 ],
                 [
-                    'slug' => 'platform.systems.media',
+                    'slug'        => 'platform.systems.media',
                     'description' => __('Media'),
                 ],
             ],

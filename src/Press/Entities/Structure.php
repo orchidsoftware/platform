@@ -65,6 +65,13 @@ trait Structure
     public $display = true;
 
     /**
+     * Priority display in menu
+     *
+     * @var int
+     */
+    public $sort = 0;
+
+    /**
      * Basic statuses possible for the object.
      *
      * @return array
