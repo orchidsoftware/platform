@@ -188,7 +188,6 @@ export default class extends Controller {
 
 
         this.checkExist();
-        //window.Turbolinks.visit(window.location, {action: 'replace'});
 
         $('#menuModal').modal('toggle');
     }

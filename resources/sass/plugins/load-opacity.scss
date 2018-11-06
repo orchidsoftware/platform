@@ -23,33 +23,3 @@
     opacity: 1;
   }
 }
-
-.load {
-  .load-animation {
-    position: relative;
-    &:before {
-      content:         " ";
-      position:        absolute;
-      top:             0;
-      right:           0;
-      bottom:          0;
-      z-index:         2000;
-      left:            0;
-      animation:       shimmer 1s infinite forwards;
-      background:      #f6f7f9 linear-gradient(to bottom, #f6f7f9 0%, #e9ebee 20%, #f6f7f9 40%, #f6f7f9 100%) no-repeat;
-      background-size: 100% 150%;
-    }
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0 100%;
-  }
-  50% {
-    background-position: 0 -100%;
-  }
-  100% {
-    background-position: 0 100%;
-  }
-}
