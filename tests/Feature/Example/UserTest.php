@@ -34,14 +34,6 @@ class UserTest extends TestFeatureCase
         $this->assertContains($this->user->email, $response->baseResponse->content());
     }
 
-    public function test_route_SystemsUsersCreate()
-    {
-        $response = $this->actingAs($this->user)
-            ->get(route('platform.systems.users.create'));
-        $response->assertStatus(200);
-        $this->assertContains('field--username', $response->baseResponse->content());
-    }
-
     public function test_route_SystemsUsersEdit()
     {
         $response = $this->actingAs($this->user)
