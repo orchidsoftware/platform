@@ -129,10 +129,10 @@ class Layouts
     public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = !is_array($layouts) ? [$layouts] : $layouts;
+            $layouts = ! is_array($layouts) ? [$layouts] : $layouts;
 
             foreach ($layouts as $layout) {
-                $layout = !is_object($layout) ? new $layout : $layout;
+                $layout = ! is_object($layout) ? new $layout : $layout;
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
                     $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());
@@ -201,8 +201,7 @@ class Layouts
      */
     public static function rows(array $fields): Rows
     {
-        return new class($fields) extends Rows
-        {
+        return new class($fields) extends Rows {
             /**
              * @var array
              */

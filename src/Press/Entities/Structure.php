@@ -65,7 +65,7 @@ trait Structure
     public $display = true;
 
     /**
-     * Priority display in menu
+     * Priority display in menu.
      *
      * @var int
      */
