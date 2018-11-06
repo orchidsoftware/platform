@@ -47,7 +47,7 @@ class RoleListScreen extends Screen
         return [
             Link::name(__('Add'))
                 ->icon('icon-plus')
-                ->method('create'),
+                ->link(route('platform.systems.roles.create')),
         ];
     }
 
@@ -61,13 +61,5 @@ class RoleListScreen extends Screen
         return [
             RoleListLayout::class,
         ];
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
-        return redirect()->route('platform.systems.roles.create');
     }
 }

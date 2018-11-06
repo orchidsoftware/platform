@@ -16,7 +16,6 @@ $this->screen('/main', 'PlatformScreen', 'platform.main');
 
 // Users...
 $this->screen('users/{users}/edit', 'User\UserEditScreen', 'platform.systems.users.edit');
-$this->screen('users/create', 'User\UserEditScreen', 'platform.systems.users.create');
 $this->screen('users', 'User\UserListScreen', 'platform.systems.users');
 
 // Roles...

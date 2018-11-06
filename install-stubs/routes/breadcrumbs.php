@@ -8,12 +8,6 @@ Breadcrumbs::for('platform.systems.users', function ($trail) {
     $trail->push(__('Users'), route('platform.systems.users'));
 });
 
-// Platform > System > Users > Create
-Breadcrumbs::for('platform.systems.users.create', function ($trail) {
-    $trail->parent('platform.systems.users');
-    $trail->push(__('Create'), route('platform.systems.users.create'));
-});
-
 // Platform > System > Users > User
 Breadcrumbs::for('platform.systems.users.edit', function ($trail, $user) {
     $trail->parent('platform.systems.users');

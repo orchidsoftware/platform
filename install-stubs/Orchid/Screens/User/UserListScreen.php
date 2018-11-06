@@ -52,11 +52,7 @@ class UserListScreen extends Screen
      */
     public function commandBar() : array
     {
-        return [
-            Link::name(__('Add'))
-                ->icon('icon-plus')
-                ->method('create'),
-        ];
+        return [];
     }
 
     /**
@@ -75,14 +71,6 @@ class UserListScreen extends Screen
                 ],
             ])->async('asyncGetUser'),
         ];
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
-        return redirect()->route('platform.systems.users.create');
     }
 
     /**

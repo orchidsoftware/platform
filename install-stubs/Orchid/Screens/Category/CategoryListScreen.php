@@ -77,7 +77,7 @@ class CategoryListScreen extends Screen
         return [
             Link::name(__('Add'))
                 ->icon('icon-plus')
-                ->method('create'),
+                ->link(route('platform.systems.category.create')),
         ];
     }
 
@@ -91,15 +91,5 @@ class CategoryListScreen extends Screen
         return [
             CategoryListLayout::class,
         ];
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return null
-     */
-    public function create()
-    {
-        return redirect()->route('platform.systems.category.create');
     }
 }
