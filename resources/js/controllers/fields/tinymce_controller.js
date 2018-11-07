@@ -59,11 +59,11 @@ export default class extends Controller {
      *
      */
     connect() {
-    // require.context(
-    //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
-    //    true,
-    //    /.*/
-    // );
+        // require.context(
+        //    'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+        //    true,
+        //    /.*/
+        // );
 
         tinymce.baseURL = '/orchid/js/tinymce';
 
@@ -126,7 +126,7 @@ export default class extends Controller {
      */
     upload(blobInfo, success) {
         const data = new FormData();
-            data.append('file', blobInfo.blob());
+        data.append('file', blobInfo.blob());
 
         axios
             .post(platform.prefix('/systems/files'), data)

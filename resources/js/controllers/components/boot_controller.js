@@ -26,7 +26,7 @@ export default class extends Controller {
      */
     addColumn(event) {
 
-        if(event.which !== 13 && event.which !== 1){
+        if (event.which !== 13 && event.which !== 1) {
             return;
         }
 
@@ -34,7 +34,7 @@ export default class extends Controller {
             return;
         }
 
-        if(document.querySelector(`input[name="columns[${this.columnTarget.value}][name]"]`) !== null){
+        if (document.querySelector(`input[name="columns[${this.columnTarget.value}][name]"]`) !== null) {
             return;
         }
 
@@ -54,7 +54,7 @@ export default class extends Controller {
      * @param event
      */
     removeColumn(event) {
-        event.path.forEach( (element) => {
+        event.path.forEach((element) => {
             if (element.nodeName === 'TR') {
                 element.remove();
                 return event.preventDefault();
@@ -68,7 +68,7 @@ export default class extends Controller {
      */
     addRelation(event) {
 
-        if(event.which !== 13 && event.which !== 1){
+        if (event.which !== 13 && event.which !== 1) {
             return;
         }
 
@@ -76,7 +76,7 @@ export default class extends Controller {
             return;
         }
 
-        if(document.querySelector(`input[name="relations[${this.relationTarget.value}][name]"]`) !== null){
+        if (document.querySelector(`input[name="relations[${this.relationTarget.value}][name]"]`) !== null) {
             return;
         }
 

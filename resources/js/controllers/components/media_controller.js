@@ -75,10 +75,10 @@ export default class extends Controller {
      * @param object
      */
     load_view(object) {
-        this.typeTarget.textContent  = object.type;
-        this.nameTarget.textContent  = object.name;
-        this.sizeTarget.textContent  = object.size;
-        this.modifiedTarget.textContent  = object.modified;
+        this.typeTarget.textContent = object.type;
+        this.nameTarget.textContent = object.name;
+        this.sizeTarget.textContent = object.size;
+        this.modifiedTarget.textContent = object.modified;
 
         var elems = this.srcTarget.querySelectorAll("[src]");
         for (var i = 0; i < elems.length; i++) {
@@ -98,7 +98,7 @@ export default class extends Controller {
             elems[i].style.display = `none`;
         }
 
-        var types = ["video", "audio", "directory", "image" ];
+        var types = ["video", "audio", "directory", "image"];
         var yesType = false;
         var type = object.type;
         for (var i = 0; i < types.length; i++) {
@@ -130,6 +130,7 @@ export default class extends Controller {
         document.body.removeChild(tempInput);
 
     }
+
     /**
      * @param element
      */
@@ -147,22 +148,21 @@ export default class extends Controller {
     /**
      *
      */
-    confirm_delete () {
+    confirm_delete() {
         let data = $('#confirm_delete_modal').data();
 
         $('#confirm_delete_modal').modal('hide');
         $.post(
-
-             `${this.baseUrl}/delete_file_folder`,
-             {
-                 folder_location: this.path,
-                 file_folder: data.name,
-                 type: data.type,
-                 _token: this.CSRF_TOKEN,
-             },
-             ({ success }) => {
-                 window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
-             },
+            `${this.baseUrl}/delete_file_folder`,
+            {
+                folder_location: this.path,
+                file_folder: data.name,
+                type: data.type,
+                _token: this.CSRF_TOKEN,
+            },
+            ({success}) => {
+                window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
+            },
         );
     }
 
@@ -182,7 +182,7 @@ export default class extends Controller {
     /**
      *
      */
-    confirm_rename () {
+    confirm_rename() {
         let data = $('#rename_file_modal').data();
         let new_filename = $('#rename_file_modal .new_filename').val();
 
@@ -195,7 +195,7 @@ export default class extends Controller {
                 new_filename: new_filename,
                 _token: this.CSRF_TOKEN,
             },
-            ({ success, error }) => {
+            ({success, error}) => {
                 window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
             },
         );
@@ -218,7 +218,7 @@ export default class extends Controller {
     /**
      *
      */
-    confirm_move () {
+    confirm_move() {
         let data = $('#move_file_modal').data();
         let destination = `${$('#move_file_modal .move_folder').val()}/${data.name}`;
 
@@ -231,7 +231,7 @@ export default class extends Controller {
                 destination: destination,
                 _token: this.CSRF_TOKEN,
             },
-            ({ success, error }) => {
+            ({success, error}) => {
                 window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
             },
         );
@@ -241,14 +241,14 @@ export default class extends Controller {
     /**
      *
      */
-    new_folder () {
+    new_folder() {
         $('#new_folder_modal').modal('show');
     }
 
     /**
      *
      */
-    confirm_new_folder(){
+    confirm_new_folder() {
 
         let new_folder_path = `${this.path}/${$('#new_folder_modal .new_folder_name').val()}`;
 
@@ -259,7 +259,7 @@ export default class extends Controller {
                 new_folder: new_folder_path,
                 _token: this.CSRF_TOKEN,
             },
-            ({ success }) => {
+            ({success}) => {
                 window.Turbolinks.visit(window.location.toString(), {action: 'replace'});
                 $('#new_folder_modal .new_folder_name').val('');
             },
@@ -269,16 +269,16 @@ export default class extends Controller {
     /**
      *
      */
-    dropzone_options () {
+    dropzone_options() {
         const CSRF_TOKEN = this.CSRF_TOKEN;
         const path = this.path;
-        let previewTemplate='<table><tr class="media-preview">' +
+        let previewTemplate = '<table><tr class="media-preview">' +
             '<td class="text-center no-padder media-view"><img class="img-responsive b" data-dz-thumbnail></td>' +
             '<td class="text-left media-view" data-dz-name></td><td></td>' +
             '<td class="text-right media-view" data-dz-size></td>' +
             '<td class="text-center dz-progress">' +
-                '<div id="uploadProgress" class="progress active progress-striped" style="display: flex;">' +
-                '<div class="progress-bar progress-bar-success" style="width: 0"></div></div></td>' +
+            '<div id="uploadProgress" class="progress active progress-striped" style="display: flex;">' +
+            '<div class="progress-bar progress-bar-success" style="width: 0"></div></div></td>' +
             '</tr></table>';
         var loadProgress = document.createElement("div");
 

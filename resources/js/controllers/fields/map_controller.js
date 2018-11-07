@@ -11,6 +11,22 @@ export default class extends Controller {
         "address"
     ];
 
+    get getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                return {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                };
+            })
+        }
+
+        return {
+            latitude: 0,
+            longitude: 0
+        }
+    }
+
     /**
      *
      */
@@ -87,7 +103,7 @@ export default class extends Controller {
                     let lat = val.lat;
                     let lng = val.lon;
                     let name = val.display_name;
-                    items.push("<li style='cursor:pointer' data-name='"+name+"' data-lat='"+lat+"' data-lng='"+lng+"' data-lat1='"+bb[0]+"' data-lat2='"+bb[1]+"' data-lng1='"+bb[2]+"' data-lng2='"+bb[3]+"' data-type='"+ val.osm_type +"' data-action='click->fields--place#chooseAddr'>" + val.display_name + "</li>");
+                    items.push("<li style='cursor:pointer' data-name='" + name + "' data-lat='" + lat + "' data-lng='" + lng + "' data-lat1='" + bb[0] + "' data-lat2='" + bb[1] + "' data-lng1='" + bb[2] + "' data-lng2='" + bb[3] + "' data-type='" + val.osm_type + "' data-action='click->fields--place#chooseAddr'>" + val.display_name + "</li>");
                 });
 
                 results.innerHTML = null;
@@ -122,22 +138,6 @@ export default class extends Controller {
         leafletMarker.setLatLng([lat, lng]);
         updateCoords();
         this.addressTarget.value = name;
-    }
-
-    get getCurrentLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                return {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                };
-            })
-        }
-
-        return {
-            latitude: 0,
-            longitude: 0
-        }
     }
 
 }

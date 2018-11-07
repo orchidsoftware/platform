@@ -17,12 +17,12 @@ export default class extends Controller {
     open(options) {
         this.titleTarget.textContent = options.title;
         this.element.querySelector('form').action = options.submit;
-        
-        if(this.data.get('async')){
+
+        if (this.data.get('async')) {
             this.asyncLoadData(JSON.parse(options.params));
         }
 
-        $(this.element).modal('toggle')
+        $(this.element).modal('toggle');
     }
 
     /**
@@ -30,9 +30,9 @@ export default class extends Controller {
      * @param params
      */
     asyncLoadData(params) {
-        axios.post( this.data.get('url') +'/'+ this.data.get('method') + '/' + this.data.get('slug'),params).then((response) => {
+        axios.post(this.data.get('url') + '/' + this.data.get('method') + '/' + this.data.get('slug'), params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
         });
     }
-    
+
 }

@@ -1,25 +1,23 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
     /**
      *
      */
     connect() {
-
         const slug = this.data.get('slug');
         const key = this.data.get('key');
 
         window.loadGoogleMaps = {
-            "load": () => {
+            load: () => {
                 if (window.google === undefined || window.google.maps === undefined) {
                     window.loadGoogleMaps.status = true;
                     $.getScript(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${key}`, () => {
-                        document.documentElement.dispatchEvent(new Event("googleMapsLoad"));
+                        document.documentElement.dispatchEvent(new Event('googleMapsLoad'));
                     });
-
                 }
             },
-            "status": false
+            status: false,
         };
 
         if (!window.loadGoogleMaps.status) {
@@ -43,29 +41,24 @@ export default class extends Controller {
             });
 
             $(`#map-place-${slug}`).on('show.bs.modal', () => {
-
                 setTimeout(() => {
                     const myLatLng = {
                         lat: parseFloat($(`#lat-${slug}`).val()),
-                        lng: parseFloat($(`#lng-${slug}`).val())
+                        lng: parseFloat($(`#lng-${slug}`).val()),
                     };
 
                     const map = new google.maps.Map(document.getElementById(`map-place-${slug}-canvas`), {
                         center: myLatLng,
-                        zoom: 12
+                        zoom: 12,
                     });
 
                     new google.maps.Marker({
                         map,
                         position: myLatLng,
-                        title: $(`#place-${slug}`).val()
+                        title: $(`#place-${slug}`).val(),
                     });
-
                 }, 300);
-
             });
-
         });
-
     }
 }

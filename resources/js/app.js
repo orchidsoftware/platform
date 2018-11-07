@@ -5,6 +5,7 @@ import { definitionsFromContext } from 'stimulus/webpack-helpers';
 $.fn.select2.defaults.set('theme', 'bootstrap');
 
 const jq = require('jquery');
+
 global.$ = jq;
 global.jQuery = jq;
 

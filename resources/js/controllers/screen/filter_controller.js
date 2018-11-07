@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
     /**
@@ -22,26 +22,23 @@ export default class extends Controller {
      *
      */
     setAllFilter() {
-        let params = {};
+        const params = {};
 
         document.querySelectorAll('[form="filters"]').forEach((element) => {
-
-            let name = element.name.trim();
-            let value = element.value.trim();
+            const name = element.name.trim();
+            const value = element.value.trim();
 
             if (name !== ''
                 && value !== null
                 && value !== ''
                 && value !== undefined) {
-
                 params[name] = value;
             }
-
         });
 
-        let url = this.buildGetUrlParams(params);
+        const url = this.buildGetUrlParams(params);
 
-        window.Turbolinks.visit(url, {action: 'replace'});
+        window.Turbolinks.visit(url, { action: 'replace' });
     }
 
     /**
@@ -62,7 +59,7 @@ export default class extends Controller {
      * @param event
      */
     clear(event) {
-        window.Turbolinks.visit(window.location.origin + window.location.pathname, {action: 'replace'});
+        window.Turbolinks.visit(window.location.origin + window.location.pathname, { action: 'replace' });
         event.preventDefault();
     }
 
@@ -71,7 +68,7 @@ export default class extends Controller {
      * @param event
      */
     clearFilter(event) {
-        let filter = event.target.dataset.filter;
+        const filter = event.target.dataset.filter;
         document.querySelector(`input[name='filter[${filter}]']`).value = '';
 
         this.element.remove();

@@ -1,4 +1,4 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
     /**
@@ -9,20 +9,18 @@ export default class extends Controller {
 
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-            }
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+            },
         });
 
         $(select).select2({
-            theme: "bootstrap",
+            theme: 'bootstrap',
             ajax: {
-                type: "POST",
+                type: 'POST',
                 cache: true,
                 delay: 250,
-                url: () => {
-                    return this.data.get('url');
-                },
-                dataType: 'json'
+                url: () => this.data.get('url'),
+                dataType: 'json',
             },
             selectOnClose: true,
             placeholder: this.data.get('placeholder'),

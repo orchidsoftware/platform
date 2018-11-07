@@ -20,6 +20,6 @@ export default class extends Controller {
 
         return event.preventDefault();
 
-    // TODO: $('#screen-modal-type-'+key).addClass($('#show-button-modal-'+key).data('modalType'));
+        // TODO: $('#screen-modal-type-'+key).addClass($('#show-button-modal-'+key).data('modalType'));
     }
 }

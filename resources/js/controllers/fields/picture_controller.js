@@ -1,5 +1,5 @@
 import {Controller} from "stimulus";
-import Cropper  from 'cropperjs';
+import Cropper      from 'cropperjs';
 
 export default class extends Controller {
 

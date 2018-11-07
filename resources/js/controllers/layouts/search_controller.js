@@ -1,6 +1,13 @@
-import {Controller} from 'stimulus';
+import { Controller } from 'stimulus';
 
 export default class extends Controller {
+    /**
+     *
+     * @returns {HTMLElement}
+     */
+    get getResultElement() {
+        return document.getElementById('search-result');
+    }
 
     /**
      * Search Event
@@ -8,17 +15,16 @@ export default class extends Controller {
      * @param event
      */
     query(event) {
-
-        let element = this.getResultElement;
+        const element = this.getResultElement;
 
         if (event.target.value === '') {
-            element.classList.remove("show")
+            element.classList.remove('show');
         }
 
         axios
             .post(platform.prefix(`/search/${event.target.value}`))
-            .then(response => {
-                element.classList.add("show");
+            .then((response) => {
+                element.classList.add('show');
                 element.innerHTML = response.data;
             });
     }
@@ -26,9 +32,9 @@ export default class extends Controller {
     /**
      * Event for blur
      */
-    blur(){
-        let element = this.getResultElement;
-        element.classList.remove("show")
+    blur() {
+        const element = this.getResultElement;
+        element.classList.remove('show');
     }
 
     /**
@@ -36,20 +42,12 @@ export default class extends Controller {
      *
      * @param event
      */
-    focus(event){
+    focus(event) {
         if (event.target.value === '') {
-          return;
+            return;
         }
 
-        let element = this.getResultElement;
-        element.classList.add("show")
-    }
-
-    /**
-     *
-     * @returns {HTMLElement}
-     */
-    get getResultElement(){
-        return document.getElementById("search-result");
+        const element = this.getResultElement;
+        element.classList.add('show');
     }
 }
