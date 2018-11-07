@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use App\Category;
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
-use Orchid\Press\Entities\Many;
-use Orchid\Screen\Fields\UTMField;
-use Orchid\Screen\Fields\CodeField;
-use Orchid\Screen\Fields\TagsField;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\SelectField;
-use Orchid\Screen\Fields\UploadField;
-use Orchid\Screen\Fields\PictureField;
-use Orchid\Screen\Fields\TinyMCEField;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Fields\DateTimerField;
-use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Http\Filters\CreatedFilter;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
-use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Press\Models\Category;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\CodeField;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\PictureField;
+use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\TagsField;
+use Orchid\Screen\Fields\TextAreaField;
+use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\UploadField;
+use Orchid\Screen\Fields\UTMField;
+use Orchid\Screen\TD;
 
 class Post extends Many
 {
@@ -252,7 +252,7 @@ class Post extends Many
                 ->sort()
                 ->align('right')
                 ->setRender(function ($item) {
-                    return $item->publish_at->toDateString();
+                    return optional($item->publish_at)->toDateString();
                 }),
 
             TD::set('created_at', 'Date of creation')
