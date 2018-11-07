@@ -63,7 +63,7 @@ class Post extends Many
      */
     public function create(Model $model) : Model
     {
-        return $model->load(['attachment', 'tags', 'taxonomies']);
+        return $model->load(['attachment', 'tags']);
     }
 
     /**
@@ -74,7 +74,6 @@ class Post extends Many
         $model->save();
 
         $model->setTags(request('tags', []));
-        $model->taxonomies()->syncWithoutDetaching(request('category', []));
         $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
 
