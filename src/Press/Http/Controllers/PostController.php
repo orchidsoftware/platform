@@ -101,7 +101,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Many $type, Post $post): RedirectResponse
     {
-        return $this->store($request,$type,$post);
+        return $this->store($request, $type, $post);
     }
 
     /**

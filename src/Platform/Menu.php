@@ -161,7 +161,7 @@ class Menu
         $this->checkAccess()
             ->where('location', $location)
             ->sortBy('sort')
-            ->each(function ($value) use($template, &$html){
+            ->each(function ($value) use ($template, &$html) {
                 if (! array_key_exists('template', $value)) {
                     $value['template'] = 'platform::partials.mainMenu';
                 }
@@ -191,12 +191,13 @@ class Menu
     /**
      * @return \Illuminate\Support\Collection
      */
-    private function checkAccess(){
+    private function checkAccess()
+    {
         $this->user = Auth::user();
         $user = $this->user;
 
         $this->container = $this->container->filter(function ($item) use ($user) {
-            return isset($item['arg']['permission']) ?  optional($user)->hasAccess($item['arg']['permission']) : true;
+            return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
         });
 
         return $this->container;

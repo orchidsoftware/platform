@@ -131,7 +131,7 @@ trait UserAccess
     {
         $this->roles()->detach();
 
-       $this->eventRemoveRole($roles);
+        $this->eventRemoveRole($roles);
 
         $this->roles()->attach($roles);
 
@@ -143,14 +143,16 @@ trait UserAccess
     /**
      * @param $roles
      */
-    public function eventAddRole($roles){
+    public function eventAddRole($roles)
+    {
         event(new AddRoleEvent($this, $roles));
     }
 
     /**
      * @param $roles
      */
-    public function eventRemoveRole($roles){
+    public function eventRemoveRole($roles)
+    {
         event(new RemoveRoleEvent($this, $roles));
     }
 
