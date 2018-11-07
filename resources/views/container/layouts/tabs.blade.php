@@ -19,7 +19,6 @@
         </ul>
     </div>
 
-
     <!-- main content -->
     <section>
         <div class="bg-white-only bg-auto no-border-xs">

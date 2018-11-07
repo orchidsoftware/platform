@@ -55,7 +55,6 @@ small, .small {
   text-shadow: none;
 }
 
-
 .badge {
   background-color: $badge-bg;
   &.up {
@@ -65,7 +64,6 @@ small, .small {
     margin-left: -10px;
   }
 }
-
 
 .badge-sm {
   font-size: 85%;
@@ -370,7 +368,6 @@ blockquote {
   }
 }
 
-
 .nav-tabs {
   .nav-item {
     &:hover .nav-link,
@@ -628,7 +625,6 @@ blockquote {
     }
   }
 }
-
 
 .dropdown-header {
   padding: 5px 15px;

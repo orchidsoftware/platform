@@ -6,7 +6,6 @@ import tinymce from 'tinymce/tinymce';
 // import 'tinymce/themes/modern';
 // import 'tinymce/themes/inlite'
 
-
 // Plugins
 
 /*
@@ -65,7 +64,6 @@ export default class extends Controller {
     //    true,
     //    /.*/
     // );
-
 
         tinymce.baseURL = '/orchid/js/tinymce';
 

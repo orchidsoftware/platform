@@ -2,7 +2,6 @@
 
     {!! $filters ?? '' !!}
 
-
     <table class="table">
         <thead>
         <tr>
@@ -26,14 +25,12 @@
                             {{$th->title}}
                         @endif
 
-
                         @isset($th->filter)
                             @includeIf("platform::partials.filters.{$th->filter}",[
                                 'th' => $th
                             ])
                         @endisset
                     </div>
-
 
                     @if($filter = get_filter_string($th->column))
                         <div data-controller="screen--filter">
@@ -51,7 +48,6 @@
         </thead>
         <tbody>
 
-
             @foreach($data as $key => $datum)
                 <tr>
                     @foreach($fields as $td)
@@ -68,7 +64,6 @@
             @endforeach
         </tbody>
     </table>
-
 
     @if(
 (method_exists($data,'total') && optional($data)->total() === 0) ||
@@ -100,10 +95,6 @@
             </div>
         </footer>
     @endif
-
-
-
-
 
 </div>
 

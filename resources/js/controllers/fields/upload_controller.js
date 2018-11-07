@@ -57,7 +57,6 @@ export default class extends Controller {
         this[this.getAttachmentTargetKey('alt')].value = data.alt;
         this[this.getAttachmentTargetKey('description')].value = data.description;
 
-
         //this[this.getAttachmentTargetKey('url')].value = data.url;
         this.data.set('url',data.url);
 
@@ -179,7 +178,6 @@ export default class extends Controller {
 
                         let removeButton = Dropzone.createElement('<a href="javascript:;" class="btn-remove">&times;</a>');
                         let editButton = Dropzone.createElement('<a href="javascript:;" class="btn-edit"><i class="icon-note" aria-hidden="true"></i></a>');
-
 
                         removeButton.addEventListener('click', (event) => {
                             event.preventDefault();

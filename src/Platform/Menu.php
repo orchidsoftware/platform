@@ -158,29 +158,20 @@ class Menu
     {
         $html = '';
 
-        /*
-         * Check access
-         */
-        if (! isset($this->user)) {
-            $this->user = Auth::user();
-            $user = $this->user;
+        $this->checkAccess()
+            ->where('location', $location)
+            ->sortBy('sort')
+            ->each(function ($value) use($template, &$html){
+                if (! array_key_exists('template', $value)) {
+                    $value['template'] = 'platform::partials.mainMenu';
+                }
 
-            $this->container = $this->container->filter(function ($item) use ($user) {
-                return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
+                if (! is_null($template)) {
+                    $value['template'] = $template;
+                }
+
+                $html .= view($value['template'], collect($value['arg']));
             });
-        }
-
-        foreach ($this->container->where('location', $location)->sortBy('sort') as $key => $value) {
-            if (! array_key_exists('template', $value)) {
-                $value['template'] = 'platform::partials.mainMenu';
-            }
-
-            if (! is_null($template)) {
-                $value['template'] = $template;
-            }
-
-            $html .= view($value['template'], collect($value['arg']));
-        }
 
         return $html;
     }
@@ -192,21 +183,23 @@ class Menu
      */
     public function build(string $location): Collection
     {
-        /*
-         * Check access
-         */
-        if (! isset($this->user)) {
-            $this->user = Auth::user();
-            $user = $this->user;
-
-            $this->container = $this->container->filter(function ($item) use ($user) {
-                return isset($item['arg']['permission']) ? $user->hasAccess($item['arg']['permission']) : true;
-            });
-        }
-
         return $this->findAllChildren($location)->filter(function ($value) {
             return count($value['children']);
         });
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    private function checkAccess(){
+        $this->user = Auth::user();
+        $user = $this->user;
+
+        $this->container = $this->container->filter(function ($item) use ($user) {
+            return isset($item['arg']['permission']) ?  optional($user)->hasAccess($item['arg']['permission']) : true;
+        });
+
+        return $this->container;
     }
 
     /**
@@ -216,7 +209,7 @@ class Menu
      */
     private function findAllChildren($key): Collection
     {
-        return $this->container
+        return $this->checkAccess()
             ->where('location', $key)
             ->sortBy('sort')
             ->map(function ($item, $key) {

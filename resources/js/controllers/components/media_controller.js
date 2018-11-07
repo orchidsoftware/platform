@@ -43,8 +43,6 @@ export default class extends Controller {
             media.move(event.target);
         });
 
-
-
         $('#new_folder').click(() => {
             media.new_folder();
         });
@@ -56,7 +54,6 @@ export default class extends Controller {
         const fileuploadDropzone = new Dropzone('#upload', DropzoneOptions);
 
     }
-
 
     /**
      *
@@ -204,7 +201,6 @@ export default class extends Controller {
         );
     }
 
-
     /**
      * @param element
      */
@@ -218,7 +214,6 @@ export default class extends Controller {
         $('#move_file_modal .move_folder').val(this.path);
         $('#move_file_modal').modal('show');
     }
-
 
     /**
      *

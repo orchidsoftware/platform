@@ -39,7 +39,6 @@ export default class extends Controller {
         cropPanel.width = this.data.get('width');
         cropPanel.height = this.data.get('height');
 
-
         this.cropper = new Cropper(cropPanel, {
             aspectRatio: this.data.get('width') / this.data.get('height'),
             preview: '.preview',

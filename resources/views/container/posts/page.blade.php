@@ -40,7 +40,6 @@
     </ul>
 @stop
 
-
 @section('content')
     <div id="post" data-post-id="{{$post->id}}">
         <!-- hbox layout -->

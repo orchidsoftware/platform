@@ -8,7 +8,6 @@ $icon-font-path: '/orchid/fonts/';
 $fa-font-path: '/orchid/fonts/';
 $orchid-font-path: '/orchid/fonts/';
 
-
 $grid-breakpoints : (
                             xs: 0,
                             sm: 576px,
@@ -64,8 +63,6 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          #3C4146 !default;
 
-
-
 //Mixing Color varriable for creating both light and dark colors
 $mix-percentage-dark : 81%;
 $mix-percentage-darker : 60%;
@@ -115,7 +112,6 @@ $brand-grey-light : mix($brand-grey, #ffffff, 10%);
 $body-bg : #f6f8fa;//lighten($brand-light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
-
 
 $font-family-sans-serif : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 $font-family-serif : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";

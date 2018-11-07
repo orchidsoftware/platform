@@ -11,7 +11,6 @@ export default class extends Controller {
         "address"
     ];
 
-
     /**
      *
      */
@@ -62,7 +61,6 @@ export default class extends Controller {
 
     }
 
-
     /**
      *
      */
@@ -70,7 +68,6 @@ export default class extends Controller {
         document.getElementById('marker__latitude').value = leafletMarker.getLatLng().lat;
         document.getElementById('marker__longitude').value = leafletMarker.getLatLng().lng;
     }
-
 
     /**
      *
@@ -127,7 +124,6 @@ export default class extends Controller {
         this.addressTarget.value = name;
     }
 
-
     get getCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -143,6 +139,5 @@ export default class extends Controller {
             longitude: 0
         }
     }
-
 
 }

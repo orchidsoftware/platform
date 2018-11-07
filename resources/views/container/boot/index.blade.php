@@ -46,7 +46,6 @@
                     </div>
                 </div>
 
-
                 <table class="table m-b-none">
                     <thead>
                     <tr>
@@ -69,7 +68,6 @@
 
                     </tbody>
                 </table>
-
 
             </div>
         </div>
@@ -120,7 +118,6 @@
                 </div>
             </div>
 
-
             <table class="table m-b-none">
                 <thead>
                 <tr>
@@ -146,7 +143,6 @@
 </div>
 @endisset
 
-
 @push('scripts')
     <script type="text/x-tmpl" id="boot-template-column">
         @include('platform::partials.boot.column', [
@@ -154,7 +150,6 @@
             'fieldTypes' => $fieldTypes
         ])
     </script>
-
 
     <script type="text/x-tmpl" id="boot-template-relationship">
         @include('platform::partials.boot.relationship', [

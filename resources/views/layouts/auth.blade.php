@@ -1,6 +1,5 @@
 @extends('platform::layouts.app')
 
-
 @section('body')
 
     <div class="" style="

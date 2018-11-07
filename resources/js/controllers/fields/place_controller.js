@@ -22,7 +22,6 @@ export default class extends Controller {
             "status": false
         };
 
-
         if (!window.loadGoogleMaps.status) {
             window.loadGoogleMaps.load();
         }
@@ -33,11 +32,9 @@ export default class extends Controller {
             }
         });
 
-
         document.documentElement.addEventListener('googleMapsLoad', () => {
             const input = document.getElementById(`place-${slug}`);
             const autocomplete = new google.maps.places.Autocomplete(input);
-
 
             autocomplete.addListener('place_changed', () => {
                 const cors = autocomplete.getPlace().geometry.location;
@@ -45,9 +42,7 @@ export default class extends Controller {
                 $(`#lng-${slug}`).val(cors.lng());
             });
 
-
             $(`#map-place-${slug}`).on('show.bs.modal', () => {
-
 
                 setTimeout(() => {
                     const myLatLng = {
@@ -68,11 +63,9 @@ export default class extends Controller {
 
                 }, 300);
 
-
             });
 
         });
-
 
     }
 }

@@ -15,7 +15,6 @@
     @includeWhen(session('restore'),'platform::container.posts.restore')
 @stop
 
-
 @section('content')
 
         @include('platform::container.layouts.table',[

@@ -52,7 +52,6 @@ export default class extends Controller {
         this.targetTarget.value = object.target;
         this.titleTarget.value = object.title;
 
-
         this.checkExist();
     }
 
@@ -186,7 +185,6 @@ export default class extends Controller {
         this.targetTarget.value = '_self';
         this.id = '';
 
-
         this.checkExist();
 
         $('#menuModal').modal('toggle');
@@ -229,7 +227,6 @@ export default class extends Controller {
             return false;
         }
 
-
         this.hiddenBlocks([
             'errors.slug',
             'errors.label',
@@ -254,7 +251,6 @@ export default class extends Controller {
             this.hiddenBlocks('menu.create');
             return;
         }
-
 
         this.showBlocks([
             'menu.create',

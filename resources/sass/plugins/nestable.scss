@@ -74,7 +74,7 @@
   line-height: 20px;
 }
 
-.dd-handle {
+.dd-handle, .dd3-content {
   display:               block;
   margin:                5px 0;
   padding:               10px 10px;
@@ -180,17 +180,6 @@
 /**
  * Nestable Draggable Handles
  */
-
-.dd3-content {
-  display: block;
-  margin: 5px 0;
-  padding: 10px 10px 10px 50px;
-  text-decoration: none;
-  border: 1px solid #ebebeb;
-  background: #ffffff;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-}
 
 .dd-dragel > .dd3-item > .dd3-content {
   margin: 0;

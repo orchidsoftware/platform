@@ -1,6 +1,5 @@
 @extends('platform::layouts.dashboard')
 
-
 @section('title',__('Menu'))
 @section('description',$name)
 @section('controller','components--menu')
@@ -63,9 +62,6 @@
 
 @section('content')
 
-
-
-
     <div class="wrapper">
         <div class="dd" data-lang="{{$currentLocale}}" data-name="{{$name}}">
             <ol class="dd-list">
@@ -75,8 +71,6 @@
             </ol>
         </div>
     </div>
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-hidden="true">

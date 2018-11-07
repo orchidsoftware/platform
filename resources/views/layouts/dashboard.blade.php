@@ -1,11 +1,8 @@
 @extends('platform::layouts.app')
 
-
 @section('body')
 
-
     <div class="app row m-n" id="app" data-controller="@yield('controller')" @yield('controller-data')>
-
 
         <div class="aside col-xs-12 col-md-3 col-xl-2 col-xxl-2 offset-xl-1 offset-xxl-2 no-padder bg-dark">
 
@@ -21,7 +18,6 @@
                 </a>
 
             </div>
-
 
             <nav class="collapse d-lg-block" id="headerMenuCollapse">
 

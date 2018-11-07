@@ -19,7 +19,6 @@
     </ul>
 @endsection
 
-
 @section('content')
 
     <div class=""
@@ -157,13 +156,11 @@
                             </div>
                         </footer>
 
-
                     </div>
 
                 </div>
             </div>
             <div class="hbox-col b-l w-xxl">
-
 
                 <div id="aside-filemanager" class="col wi-col no-padder">
 
@@ -181,7 +178,6 @@
                             {{trans('platform::systems/media.video_support')}}
                         </video>
 
-
                         <div class="media-preview media-audio" style="display: none;">
                             <i class="icon-music-tone"></i>
                             <audio controls class="w-full">
@@ -190,7 +186,6 @@
                                 {{trans('platform::systems/media.audio_support')}}
                             </audio>
                         </div>
-
 
                         <i class="icon-folder-alt media-preview media-directory" style="display: none;"></i>
 
@@ -202,7 +197,6 @@
                     </div>
 
                     <div class="divider b-t m-t-sm"></div>
-
 
                     <div class="wrapper">
                         <div class="row">

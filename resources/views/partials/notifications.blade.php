@@ -9,7 +9,6 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white">
 
-
         @if(count($notifications) > 0)
             <div class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                 {{ __('Notifications') }}
@@ -53,7 +52,4 @@
 
     </div>
 </div>
-
-
-
 

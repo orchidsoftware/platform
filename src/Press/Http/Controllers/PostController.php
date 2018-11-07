@@ -101,23 +101,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Many $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
-        $type->isValid();
-
-        $post->fill($request->all())->fill([
-            'type' => $type->slug,
-            'user_id' => $request->user()->id,
-            'options' => $post->getOptions(),
-        ]);
-
-        $type->save($post);
-
-        Alert::success(__('Operation completed successfully.'));
-
-        return redirect()->route('platform.posts.type', [
-            'type' => $post->type,
-            'slug' => $post->id,
-        ]);
+        return $this->store($request,$type,$post);
     }
 
     /**

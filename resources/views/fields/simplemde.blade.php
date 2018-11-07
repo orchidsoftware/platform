@@ -3,8 +3,6 @@
         <textarea @include('platform::partials.fields.attributes', ['attributes' => $attributes])>{{$attributes['value']}}</textarea>
         <input class="d-none upload" type="file" data-action="fields--simplemde#upload">
 
-
-
         <div class="modal fade slide-right" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content-wrapper">

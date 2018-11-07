@@ -1,6 +1,5 @@
 @extends('platform::layouts.dashboard')
 
-
 @section('content')
 
     <div class="container text-center">

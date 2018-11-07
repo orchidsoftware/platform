@@ -20,7 +20,6 @@
 
 @section('content')
 
-
     <div class=" admin-wrapper wrapper-md">
             <div class="row">
 
@@ -44,9 +43,7 @@
                     </div>
                 @endforeach
 
-
             </div>
         </div>
-
 
 @stop

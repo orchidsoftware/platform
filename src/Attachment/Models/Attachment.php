@@ -159,7 +159,7 @@ class Attachment extends Model
     {
         $storage = Storage::disk($storageName);
 
-        $storage->delete($attachment->path.$attachment->name.'.'.$attachment->extension);
+        $storage->delete($this->physicalPath());
 
         if (strpos($this->mime, 'image') !== 0) {
             return;
