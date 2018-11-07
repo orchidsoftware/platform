@@ -26,7 +26,6 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method $this title($value = true)
  * @method $this hr($value = true)
  * @method $this options($value = true)
- * @method $this value($value = true)
  */
 class Field implements FieldContract
 {
@@ -171,6 +170,17 @@ class Field implements FieldContract
     }
 
     /**
+     * @param $value
+     * @return $this
+     */
+    public function value($value) : self
+    {
+        $this->attributes['value'] = $value;
+
+        return $this;
+    }
+
+    /**
      * @param $key
      * @param $value
      *
@@ -253,7 +263,7 @@ class Field implements FieldContract
      *
      * @return $this
      */
-    private function translate()
+    private function translate() : self
     {
         if (empty($this->translations)) {
             return $this;
@@ -327,7 +337,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug() : string
     {
         return str_slug($this->get('name'));
     }
@@ -343,7 +353,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getOldName()
+    public function getOldName() : string
     {
         $name = str_ireplace(['][', '['], '.', $this->get('name'));
         $name = str_ireplace([']'], '', $name);
@@ -354,7 +364,7 @@ class Field implements FieldContract
     /**
      * @return bool
      */
-    private function hasError()
+    private function hasError() : bool
     {
         return optional(session('errors'))->has($this->getOldName()) ?? false;
     }
@@ -431,7 +441,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function vertical()
+    public function vertical() : self
     {
         $this->typeForm = 'platform::partials.fields.vertical';
 
@@ -441,7 +451,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function horizontal()
+    public function horizontal() : self
     {
         $this->typeForm = 'platform::partials.fields.horizontal';
 

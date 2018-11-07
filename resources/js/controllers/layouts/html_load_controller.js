@@ -9,7 +9,7 @@ export default class extends Controller {
      */
     initialize() {
         Turbolinks.start();
-        Turbolinks.setProgressBarDelay(100);
+        Turbolinks.setProgressBarDelay(50);
         window.platform = platform();
     }
 
