@@ -2,7 +2,7 @@
     <div data-controller="fields--tag">
         <select @include('platform::partials.fields.attributes', ['attributes' => $attributes])>
             @foreach($value as $tag)
-                <option value="{{$tag}}" selected="selected">{{$tag}}</option>
+                <option value="{{$tag['slug'] ?? $tag}}" selected="selected">{{$tag['name'] ?? $tag}}</option>
             @endforeach
         </select>
     </div>

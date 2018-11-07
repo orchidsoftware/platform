@@ -33,10 +33,10 @@ class Category extends Taxonomy
     }
 
     /**
-     *  Select all other categories.
+     * Select all other categories.
      *
      *
-     * @return $this
+     * @return array
      */
     public function allOtherCategory()
     {
@@ -45,7 +45,7 @@ class Category extends Taxonomy
             $allOtherCategory[$category->id] = $category->term->GetContent('name');
         }
 
-        return $allOtherCategory;
+        return $allOtherCategory ?? [];
     }
 
     /**
@@ -55,7 +55,7 @@ class Category extends Taxonomy
      *
      * @return $this
      */
-    public function newWithCreateTerm($term)
+    public function newWithCreateTerm($term): self
     {
         $newTerm = Term::firstOrCreate($term);
         $this->term_id = $newTerm->id;
@@ -66,13 +66,13 @@ class Category extends Taxonomy
     }
 
     /**
-     *  set parent category.
+     * Set parent category.
      *
-     * @param array $term
+     * @param int $parent_id
      *
-     * @return $this
+     * @return \Orchid\Press\Models\Category
      */
-    public function setParent($parent_id = 0)
+    public function setParent($parent_id = 0): self
     {
         $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : 0;
 

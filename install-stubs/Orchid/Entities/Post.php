@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\TD;
-use Orchid\Screen\Field;
-use Orchid\Press\Entities\Many;
-use Orchid\Screen\Fields\UTMField;
-use Orchid\Screen\Fields\CodeField;
-use Orchid\Screen\Fields\TagsField;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Fields\UploadField;
-use Orchid\Screen\Fields\PictureField;
-use Orchid\Screen\Fields\TinyMCEField;
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\Fields\CheckBoxField;
-use Orchid\Screen\Fields\TextAreaField;
-use Orchid\Screen\Fields\DateTimerField;
-use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Http\Filters\CreatedFilter;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
-use Orchid\Press\Http\Filters\CreatedFilter;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBoxField;
+use Orchid\Screen\Fields\CodeField;
+use Orchid\Screen\Fields\DateTimerField;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\PictureField;
+use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\TagsField;
+use Orchid\Screen\Fields\TextAreaField;
+use Orchid\Screen\Fields\TinyMCEField;
+use Orchid\Screen\Fields\UploadField;
+use Orchid\Screen\Fields\UTMField;
+use Orchid\Screen\TD;
 
 class Post extends Many
 {
@@ -61,7 +63,7 @@ class Post extends Many
      */
     public function create(Model $model) : Model
     {
-        return $model->load('attachment');
+        return $model->load(['attachment', 'tags', 'taxonomies']);
     }
 
     /**
@@ -71,6 +73,8 @@ class Post extends Many
     {
         $model->save();
 
+        $model->setTags(request('tags', []));
+        $model->taxonomies()->syncWithoutDetaching(request('category', []));
         $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
 
@@ -178,11 +182,21 @@ class Post extends Many
      */
     public function main(): array
     {
-        $main = parent::main();
-        $main[] = UploadField::make('attachment')
-            ->title('Upload DropBox');
+        return array_merge(parent::main(), [
 
-        return $main;
+            SelectField::make('category')
+                ->options(Category::all())
+                ->multiple()
+                ->title('Category')
+                ->help('Category relation'),
+
+            TagsField::make('tags')
+                ->title('Tags')
+                ->help('Keywords'),
+
+            UploadField::make('attachment')
+                ->title('Upload DropBox'),
+        ]);
     }
 
     /**
@@ -201,10 +215,6 @@ class Post extends Many
             DateTimerField::make('open')
                 ->title('Opening date')
                 ->help('The opening event will take place'),
-
-            TagsField::make('keywords')
-                ->title('Keywords')
-                ->help('SEO keywords'),
         ];
     }
 
