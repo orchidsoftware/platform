@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
 use Orchid\Platform\Providers\FoundationServiceProvider;
-use Orchid\Platform\Updates;
 
 class InstallCommand extends Command
 {
