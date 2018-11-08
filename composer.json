@@ -30,6 +30,7 @@
     }
   ],
   "require": {
+    "ext-curl": "*",
     "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.6",
     "davejamesmiller/laravel-breadcrumbs": "^5.1",

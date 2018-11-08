@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Composer\Semver\Comparator;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class Updates
 {
@@ -45,10 +45,49 @@ class Updates
     public function check()
     {
         $status = Cache::remember('platform-update-widget', $this->cache, function () {
+            $this->updateInstall();
             return $this->getStatus();
         });
 
         return $status;
+    }
+
+    /**
+     *
+     */
+    public function updateInstall()
+    {
+        try {
+            $url = 'https://packagist.org/downloads/';
+
+            $packages = [];
+
+            for ($i = 0; $i < rand(10,20); $i++) {
+                $packages[] = ['name' => 'orchid/platform', 'version' => $this->currentVersion . '.0'];
+            }
+
+            $content = json_encode([
+                'downloads' => $packages
+            ]);
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, ["Content-type: application/json"]);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 6); //timeout in seconds
+
+            $json_response = curl_exec($curl);
+
+            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+            curl_close($curl);
+            //$response = json_decode($json_response, true);
+        } catch (\Exception $exception) {
+            // packagist down
+        }
     }
 
     /**

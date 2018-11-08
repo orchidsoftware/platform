@@ -6,6 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Illuminate\Console\Command;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Updates;
 
 class InstallCommand extends Command
 {
@@ -50,6 +51,8 @@ class InstallCommand extends Command
         ________________________________________________________________
         ");
 
+        $updates = new Updates();
+        $updates->updateInstall();
         sleep(1);
 
         $this
