@@ -178,14 +178,13 @@ class User extends Authenticatable implements UserInterface
     public function getStatusPermission()
     {
         $permissions = $this->permissions ?? [];
-        
+
         return Dashboard::getPermission()
             ->sort()
             ->transform(function ($group) use ($permissions) {
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
-
                     $slug = $value['slug'];
                     $group[$key]['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
                 }
