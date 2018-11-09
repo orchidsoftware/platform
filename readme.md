@@ -29,7 +29,7 @@ Documentation can be found at [ORCHID website](http://orchid.software).
 
 ## Installation
 
-Firstly, download the Laravel installer using Composer:
+Download using Composer:
 ```php
 $ composer require orchid/platform
 ```
