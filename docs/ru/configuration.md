@@ -20,9 +20,7 @@ ORCHID использует стандартную систему настрое
 'domain' => 'admin.example.com',
 ```
  
- Помните, что ваши параметры веб сервера должны быть настроены должным образом.
-
-
+Помните, что ваши параметры веб сервера должны быть настроены должным образом.
 
 
 ## Префикс платформы
@@ -31,12 +29,8 @@ ORCHID использует стандартную систему настрое
 ```php
 'prefix' => env('DASHBOARD_PREFIX', 'dashboard'),
 ```
-
-По префиксу к графическому интерфейсу обычно можно выявить какая система установлена на веб сайте,
-например `wp-admin` для WordPress, что может дать возможность автоматически искать старые уязвимые версии ПО и получать над ними контроль.
  
-Есть и другие причины, но рассматривать в этом разделе мы не будем. 
-Главное ORCHID предоставляет возможность смены префикса `dashboard` на любое другое название, например `admin` или `administrator`.
+Предоставляет возможность смены префикса `dashboard` на любое другое название, например `admin` или `administrator`.
 
 
 
@@ -91,36 +85,6 @@ php artisan orchid:auth
 вы можете создавать одни и те же записи на разных языках, что бы добавить язык, требуется лишь указать
 новый элемент массива.
 
-
-
-## Поля
-
-```php
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'robot'        => Orchid\Screen\Fields\RobotField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'place'        => Orchid\Screen\Fields\PlaceField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-В конфигурации полей указываются алиасы для поля, например `wysiwyg` редактор, это позволяет
-абстрагироваться от используемых элементов. Например в ходе работы вы поняли, что функций редактора
-не хватает, вместо того, чтобы изменять редактор в каждом используемом файле, вам достаточно будет изменить 
-класс на который ссылается тот самый алиас.
-
-[Подробнее о полях](/ru/docs/field/)
-
-
 ## Пользовательское меню
 
 ```php
@@ -134,8 +98,6 @@ php artisan orchid:auth
 Конфигурация меню требует лишь указание ключа и значение, которое будет отображаться пользователю. 
 По умолчанию добавлены три типа меню, верхнее, боковое и нижнее. 
 Вы можете добавлять или удалять в зависимости от потребностей.
-
-Пример использования меню можно посмотреть [здесь](/ru/docs/tutorial_blog/#vidzhet).
 
 
 ## Ресурсы панели управления
