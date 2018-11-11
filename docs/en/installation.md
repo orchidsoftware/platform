@@ -43,11 +43,6 @@ Run process
 php artisan orchid:install
 ```
 
-Make the user styles, javascript scenarios and other linkable files available:
-```php
-php artisan storage:link
-php artisan orchid:link
-```
 
 > **Notice.** Some platforms (vagrant) can not create symbolic links with this commands. And it may become necessary to manually perform the following commands 
 `cp -rf vendor/orchid/platform/public public/orchid` and `mkdir -p public/storage/public`
