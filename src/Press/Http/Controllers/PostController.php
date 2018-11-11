@@ -14,6 +14,9 @@ use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+    /**
+     *
+     */
     public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
@@ -46,10 +49,11 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Post $post
      * @param Many $type
-     *
+     * @param Post $post
+     * 
      * @return RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request, Many $type, Post $post): RedirectResponse
     {

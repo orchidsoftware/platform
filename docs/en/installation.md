@@ -10,7 +10,7 @@ The platform and the framework use the Composer to provide and control your depe
 Install the framework with the `composer create-project` command in your terminal:
 
 ```php
-$ composer create-project laravel/laravel orchid "5.6.*" --prefer-dist
+$ composer create-project laravel/laravel orchid-project "5.7.*" --prefer-dist
 ```
 
 This will create a new folder `orchid`, download some dependencies into it and even generate main folders and files required to start your work. In other words it will install your new framework project.
@@ -32,21 +32,15 @@ $ composer require orchid/platform
 > **Notice.** If you have installed the Laravel the other way you will have to generate the key
 using the command `php artisan key:generate`
 
-## Publish preferences
-
-To publish your preferences and extra files do the following:
-```php
-php artisan vendor:publish --provider="Orchid\Platform\Providers\FoundationServiceProvider"
-php artisan vendor:publish --all
-```
+## Install
 
 
 > **Notice.** You also need to create a new database, add the credentials to the `.env` file and add your app URL to the `APP_URL` variable.
 
 
-Apply all our migrations to create a database:
+Run process
 ```php
-php artisan migrate
+php artisan orchid:install
 ```
 
 Make the user styles, javascript scenarios and other linkable files available:
@@ -58,22 +52,7 @@ php artisan orchid:link
 > **Notice.** Some platforms (vagrant) can not create symbolic links with this commands. And it may become necessary to manually perform the following commands 
 `cp -rf vendor/orchid/platform/public public/orchid` and `mkdir -p public/storage/public`
 
-## User model
-
-The platform is shipped with the prepared bundle of user functions, for example, access rights security, that's why
-it's necessary to extend the base user model in `App\Users`:
-
-```php
-namespace App;
-
-use Orchid\Platform\Models\User as BaseUser;
-
-class User extends BaseUser
-{
-
-}
-
-```
+## Create user
 
 Run the following command to create a user with supreme (at the moment of creation) rights passing the username, e-mail and password:
 ```php
