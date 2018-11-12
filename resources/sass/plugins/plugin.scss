@@ -134,6 +134,12 @@ div.mce-fullscreen {
 }
 
 // Flatpickr
+.dropdown{
+  .flatpickr-calendar{
+    box-shadow: none;
+  }
+}
+
 .flatpickr-input {
     &.form-control[readonly] {
         background: $white;

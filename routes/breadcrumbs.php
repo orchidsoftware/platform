@@ -10,7 +10,7 @@ Breadcrumbs::for('platform.index', function ($trail) {
 // Platform > System
 Breadcrumbs::for('platform.systems.index', function ($trail) {
     $trail->parent('platform.index');
-    $trail->push(__('System'), route('platform.systems.index'));
+    $trail->push(__('Systems'), route('platform.systems.index'));
 });
 
 // Platform > System > Menu
@@ -52,7 +52,7 @@ Breadcrumbs::for('platform.systems.backups', function ($trail) {
 // Platform > System > Bulldozer
 Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->parent('platform.systems.index');
-    $trail->push(__('Bulldozer'), route('platform.bulldozer.index'));
+    $trail->push(__('Строитель моделей'), route('platform.bulldozer.index'));
 });
 
 // Platform > System > Announcement
@@ -78,7 +78,7 @@ Breadcrumbs::for('platform.posts.type.create', function ($trail, $type) {
 // Platform > Posts > Edit
 Breadcrumbs::for('platform.posts.type.edit', function ($trail, $type, $post) {
     $trail->parent('platform.posts.type', $type);
-    $trail->push($post->getContent($type->slugFields), route('platform.posts.type.edit', [$type->slug, $post->slug]));
+    $trail->push($post->getContent($type->slugFields) ?? '', route('platform.posts.type.edit', [$type->slug, $post->slug]));
 });
 
 // Platform > Pages

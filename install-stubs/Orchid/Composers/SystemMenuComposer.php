@@ -31,7 +31,7 @@ class SystemMenuComposer
     {
         $this->dashboard->menu
             ->add('Systems',
-                ItemMenu::setLabel(__('Sharing access rights'))
+                ItemMenu::setLabel(__('Access rights'))
                     ->setIcon('icon-lock')
                     ->setSlug('Auth')
                     ->setActive('platform.systems.*')
@@ -55,7 +55,7 @@ class SystemMenuComposer
                     ->setGroupName(__('A Role defines a set of tasks a user assigned the role is allowed to perform. '))
             )
             ->add('CMS',
-                ItemMenu::setLabel(__('Category'))
+                ItemMenu::setLabel(__('Categories'))
                     ->setIcon('icon-briefcase')
                     ->setRoute(route('platform.systems.category'))
                     ->setPermission('platform.systems.category')

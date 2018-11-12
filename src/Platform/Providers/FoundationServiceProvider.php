@@ -68,7 +68,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang'), 'platform');
+        $this->loadJsonTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang/'));
 
         return $this;
     }

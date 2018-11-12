@@ -27,7 +27,7 @@ class RoleEditScreen extends Screen
      *
      * @var string
      */
-    public $description = 'Sharing access rights';
+    public $description = 'Access rights';
 
     /**
      * Query data.

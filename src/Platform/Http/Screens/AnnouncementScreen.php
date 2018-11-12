@@ -25,7 +25,7 @@ class AnnouncementScreen extends Screen
      *
      * @var string
      */
-    public $description = 'Resource announcements';
+    public $description = 'Messages for all users';
 
     /**
      * @var string

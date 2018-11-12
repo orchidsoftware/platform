@@ -29,14 +29,14 @@ class BootModelScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Boot Models';
+    public $name = 'Model builder';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'Add your Models, customize your columns, and even setup relationships.';
+    public $description = 'Helps to quickly develop application';
 
     /**
      * @var string

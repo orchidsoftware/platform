@@ -16,7 +16,7 @@ class PlatformScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Dashboard Panel';
+    public $name = 'Dashboard';
 
     /**
      * Display header description.

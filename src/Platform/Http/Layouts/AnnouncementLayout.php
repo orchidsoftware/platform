@@ -17,7 +17,7 @@ class AnnouncementLayout extends Rows
     {
         return [
             SimpleMDEField::make('announcement.content')
-                ->title('Предварительное оповещение о каком-либо событии.')
+                ->hr(false)
                 ->type('text'),
         ];
     }

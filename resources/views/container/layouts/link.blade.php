@@ -2,7 +2,7 @@
     <button class="btn btn-link dropdown-item" data-toggle="dropdown" aria-expanded="false">
         <i class="{{$icon ?? ''}} m-r-xs"></i>{{$name ?? ''}}
     </button>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow col-md-4 bg-white" x-placement="bottom-end">
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white" x-placement="bottom-end">
         @foreach($group as $item)
             @includeWhen($item->show,'platform::container.layouts.link',[
                 'slug'      => $item->slug,

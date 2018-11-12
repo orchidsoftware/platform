@@ -1,6 +1,6 @@
 @extends('platform::layouts.dashboard')
 
-@section('title',__('Systems'))
+@section('title',__('System settings'))
 @section('description', __('Global system settings'))
 @section('controller','layouts--systems')
 

@@ -77,7 +77,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Element Menu') }}</h5>
+                    <h5 class="modal-title">{{ __('Element settings') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -119,11 +119,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label>{{ __('Display Name') }}</label>
+                                <label>{{ __('Display') }}</label>
                                 <select class="form-control" data-target="components--menu.auth">
                                     <option value="0"
                                             selected>{{ __('Visible to everyone') }}</option>
-                                    <option value="1">{{ __('Only authorized users') }}</option>
+                                    <option value="1">{{ __('Only identified users') }}</option>
                                 </select>
                             </div>
 
@@ -167,7 +167,7 @@
                                        placeholder="red">
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Link Target') }}</label>
+                                <label>{{ __('Link target') }}</label>
                                 <select class="form-control" data-target="components--menu.target">
                                     <option value="_self" selected>{{ __('In the current window') }}</option>
                                     <option value="_blank">{{ __('In a new window') }}</option>

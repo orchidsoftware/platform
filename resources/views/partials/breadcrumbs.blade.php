@@ -1,6 +1,6 @@
 @if (count($breadcrumbs) > 1)
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb padder">
+        <ol class="breadcrumb padder m-0">
             @foreach ($breadcrumbs as $breadcrumb)
 
                 @if ($breadcrumb->url && !$loop->last)

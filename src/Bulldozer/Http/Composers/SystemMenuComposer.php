@@ -39,7 +39,7 @@ class SystemMenuComposer
                     ->setRoute(route('platform.bulldozer.index'))
                     ->setPermission('platform.bulldozer')
                     ->setActive('platform.bulldozer.*')
-                    ->setGroupName(__('Allows you to quickly develop an application'))
+                    ->setGroupName(__('Add your models, customize your columns, and even set up relationships.'))
             );
     }
 }

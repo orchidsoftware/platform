@@ -22,9 +22,10 @@ class BootCreateModel extends Rows
     {
         return [
             InputField::make('name')
-                ->title(__('Model Name:'))
+                ->title(__('Model name:'))
                 ->help(__('Create a new model for your application'))
                 ->pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
+                ->hr(false)
                 ->required(),
         ];
     }

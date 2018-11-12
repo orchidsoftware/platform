@@ -73,14 +73,14 @@ class SystemMenuComposer
             ->add('Tools',
                 ItemMenu::setLabel(__('Backups'))
                     ->setIcon('icon-clock')
-                    ->setGroupName('It is necessary for the ability to quickly recover information in case of loss of a working copy.')
+                    ->setGroupName('Necessary for the ability to quickly recover information in case of loss of a working copy.')
                     ->setRoute(route('platform.systems.backups'))
                     ->setPermission('platform.systems.backups')
             )
             ->add('Tools',
                 ItemMenu::setLabel(__('Public alert'))
                     ->setIcon('icon-bulb')
-                    ->setGroupName('Allows you to pre-inform active users about any event.')
+                    ->setGroupName(__('Allows you to pre-inform active users about an event.'))
                     ->setRoute(route('platform.systems.announcement'))
                     ->setPermission('platform.systems.announcement')
             );

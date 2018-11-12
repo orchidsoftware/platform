@@ -51,7 +51,7 @@ class MediaController extends Controller
 
         return view('platform::container.systems.media', [
             'name' => __('Media'),
-            'description' => __('Filemanager'),
+            'description' => __('File Manager'),
             'path' => $path,
             'dir' => $this->getDirPath($path),
             'files' => $this->getFiles($path),
