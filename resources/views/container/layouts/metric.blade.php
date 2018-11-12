@@ -3,7 +3,7 @@
         <h4 class="font-thin text-black">{{ __($title) }}</h4>
         <div class="row padder-v">
             @foreach($metrics as $key => $metric)
-                <div class="col b-r">
+                <div class="col  @if(!$loop->last) b-r @endif">
                     <p class="text-muted">{{ __($key) }}</p>
                     <p class="h3 m-b-xs text-black font-thin">{{ $metric['keyValue'] }}</p>
 

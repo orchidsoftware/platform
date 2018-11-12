@@ -52,7 +52,7 @@
                         data-action="components--menu#clear"
                         data-toggle="modal"
                         data-target="#menuModal">
-                    <i class="icon-plus m-r-xs"></i> {{ __('Add Element') }}
+                    <i class="icon-plus m-r-xs"></i> {{ __('Add element') }}
                 </button>
 
             </li>
@@ -77,10 +77,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Element settings') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <h5 class="modal-title">{{ __('Element settings') }}</h5>
                 </div>
                 <div class="modal-body">
                     <div class="wrapper-md">
@@ -99,7 +99,7 @@
                                        id="errors.label">{{ __('Please fill in the field.') }}</small>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Alternative name') }} <span class="text-danger">*</span></label>
+                                <label>{{ __('Alternative text') }} <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control"
                                        data-target="components--menu.title"
                                        required

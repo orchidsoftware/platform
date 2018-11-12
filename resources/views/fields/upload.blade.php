@@ -48,15 +48,15 @@
                                  <div class="wrapper">
 
                                      <div class="form-group">
-                                         <label>{{__('System Name')}}</label>
+                                         <label>{{__('System name')}}</label>
                                          <input type="text" class="form-control" data-target="fields--upload.name" readonly maxlength="255">
                                      </div>
                                      <div class="form-group">
-                                         <label>{{ __('Display Name') }}</label>
+                                         <label>{{ __('Display name') }}</label>
                                          <input type="text" class="form-control" data-target="fields--upload.original" maxlength="255" placeholder="{{ __('Display Name') }}">
                                      </div>
                                      <div class="form-group">
-                                         <label>{{ __('Alternative Text') }}</label>
+                                         <label>{{ __('Alternative text') }}</label>
                                          <input type="text" class="form-control" data-target="fields--upload.alt" maxlength="255" placeholder="{{  __('Alternative Text')  }}">
                                      </div>
                                      <div class="form-group">
