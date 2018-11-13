@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Orchid\Platform\Listeners\LogSuccessfulLogin;
+use Spatie\Activitylog\Models\Activity;
 use Orchid\Platform\Models\Announcement;
+use Orchid\Platform\Listeners\LogSuccessfulLogin;
 use Orchid\Platform\Observers\ActivityLogObserver;
 use Orchid\Platform\Observers\AnnouncementObserver;
-use Spatie\Activitylog\Models\Activity;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
