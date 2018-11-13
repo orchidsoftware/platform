@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Orchid\Press\Entities\EntityContract;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Entities\EntityContract;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller

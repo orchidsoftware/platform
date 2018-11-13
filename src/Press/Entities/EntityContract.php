@@ -3,7 +3,7 @@
 namespace Orchid\Press\Entities;
 
 /**
- * Interface EntityContract
+ * Interface EntityContract.
  */
 interface EntityContract
 {
@@ -12,7 +12,7 @@ interface EntityContract
      *
      * @return array
      */
-    public function status(): array ;
+    public function status(): array;
 
     /**
      * Request Validation.
