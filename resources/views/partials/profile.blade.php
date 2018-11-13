@@ -2,12 +2,12 @@
     <div class="dropdown">
         <a href="#" class="nav-link p-0 v-center" data-toggle="dropdown">
                     <span class="thumb-xs avatar m-r-xs">
-                        <img src="{{Auth::user()->getAvatar()}}" class="b bg-light" alt="test">
+                        <img src="{{Auth::user()->getAvatar()}}" class="b b-dark bg-light" alt="test">
                     </span>
             <span class="ml-2" style="width:140px;font-size: 0.82857rem;">
-                        <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
-                        <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
-                    </span>
+                <span class="text-ellipsis">{{Auth::user()->getNameTitle()}}</span>
+                <span class="text-muted d-block text-ellipsis">{{Auth::user()->getSubTitle()}}</span>
+            </span>
         </a>
         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow bg-white">
             {!! Dashboard::menu()->render('Profile','platform::partials.dropdownMenu') !!}
