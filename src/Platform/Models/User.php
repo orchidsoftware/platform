@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\App;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Platform\Notifications\ResetPassword;
-use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguageTrait;
+use Illuminate\Support\Facades\App;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Platform\Traits\FilterTrait;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravolt\Avatar\Facade as AvatarGenerator;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -166,7 +166,6 @@ class User extends Authenticatable implements UserInterface
         $hash = md5(strtolower(trim($this->email)));
 
         return "https://www.gravatar.com/avatar/$hash?f=y";
-
 
         $name = title_case(str_slug($this->getNameTitle(), ' '));
 
