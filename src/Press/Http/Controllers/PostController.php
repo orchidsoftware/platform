@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Orchid\Press\Entities\EntityContract;
 use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
@@ -29,11 +30,11 @@ class PostController extends Controller
     }
 
     /**
-     * @param Many $type
+     * @param EntityContract $type
      *
      * @return View
      */
-    public function create(Many $type): View
+    public function create(EntityContract $type): View
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
@@ -46,13 +47,13 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @return RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, Many $type, Post $post): RedirectResponse
+    public function store(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
@@ -94,19 +95,19 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function update(Request $request, Many $type, Post $post): RedirectResponse
+    public function update(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
         return $this->store($request, $type, $post);
     }
 
     /**
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @throws \Exception
@@ -116,7 +117,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Many $type, Post $post): RedirectResponse
+    public function destroy(EntityContract $type, Post $post): RedirectResponse
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
