@@ -25,10 +25,10 @@ Breadcrumbs::for('platform.systems.menu.create ', function ($trail) {
     $trail->push(__('Create'), route('platform.systems.menu.create '));
 });
 
-// Platform > System > Menu > Edit Menu
+// Platform > System > Menu > Editing
 Breadcrumbs::for('platform.systems.menu.show', function ($trail, $menu) {
     $trail->parent('platform.systems.menu.index');
-    $trail->push(__('Edit Menu'), route('platform.systems.menu.show', $menu));
+    $trail->push(__('Editing'), route('platform.systems.menu.show', $menu));
 });
 
 // Platform > System > Media

@@ -230,5 +230,9 @@
   "Dashboard": "Панель управления",
   "There are no records in this view.": "По вашему запросу ничего не найдено.",
   "Displayed records: :from-:to of :total": "Отображено записей: :from-:to из :total",
-  "Welcome" : "Добро пожаловать"
+  "Welcome" : "Добро пожаловать",
+  "Editing": "Редактирование",
+  "Header menu": "Верхнее меню",
+  "Sidebar menu": "Боковое меню",
+  "Footer menu": "Нижнее меню"
 }

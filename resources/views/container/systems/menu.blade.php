@@ -35,12 +35,12 @@
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button"
                        aria-haspopup="true"
                        aria-expanded="false">
-                        <i class="icon-menu m-r-xs"></i> {{$availableMenus[$name]}}
+                        <i class="icon-menu m-r-xs"></i> {{ __($availableMenus[$name]) }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         @foreach($availableMenus as $key => $value)
                             <a href="{{ route('platform.systems.menu.show',$key) }}"
-                               class="dropdown-item">{{ $value }}
+                               class="dropdown-item">{{ __($value) }}
                             </a>
                         @endforeach
                     </ul>
