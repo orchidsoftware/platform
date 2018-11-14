@@ -148,9 +148,7 @@
   "Need help?": "Нужна помощь?",
   "No notifications": "Никаких уведомлений",
   "Notifications": "Уведомления",
-  "Oh snap!": "Ой оснастки!",
   "Only identified users": "Только идентифицированным пользователям",
-  "Oops.. You just found an error page..": "Упс.. вы просто нашли страницу с ошибкой..",
   "Operation completed successfully.": "Операция успешно завершена.",
   "Original referrer: (e.g. google, newsletter)": "Оригинальный реферер: (например, Google, Новостная рассылка)",
   "Paid keywords: (e.g. running+shoes)": "Оплачиваемые ключевые слова: (например, бег+обувь)",
@@ -228,5 +226,7 @@
   "Messages for all users": "Сообщения для всех пользователей",
   "Announcements": "Объявления",
   "Allows you to pre-inform active users about an event.": "Позволяет предварительно информировать активных пользователей о событии.",
-  "Display": "Отображать"
+  "Display": "Отображать",
+  "You request a page that doesn't exist.": "Вы запросили страницу, которой не существует.",
+  "It's possible you entered the wrong address or the link doesn't work.": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет."
 }

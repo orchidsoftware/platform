@@ -7,7 +7,7 @@ namespace Orchid\Press\Entities;
 use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\DateTimerField;
 
-abstract class Single
+abstract class Single implements EntityContract
 {
     use Structure, Actions;
 

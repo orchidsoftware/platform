@@ -76,7 +76,7 @@ trait Structure
      *
      * @return array
      */
-    public function status()
+    public function status() : array
     {
         return [
             'publish' => __('Published'),
