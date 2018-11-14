@@ -218,9 +218,6 @@
   "We are sorry but our service is currently not available…": "Нам очень жаль, но на данный момент наш сервис недоступен...",
   "What to search...": "Что искать...",
   "Without parent": "Без родителей",
-  "elements": "элементы",
-  "of": "из",
-  "show": "показать",
   "Add your models, customize your columns, and even set up relationships." : "Добавьте свои модели, настройте свои столбцы и установите отношения.",
   "Necessary for the ability to quickly recover information in case of loss of a working copy.": "Необходимо для возможности быстрого восстановления информации в случае потери рабочей копии.",
   "Messages for all users": "Сообщения для всех пользователей",
@@ -228,5 +225,10 @@
   "Allows you to pre-inform active users about an event.": "Позволяет предварительно информировать активных пользователей о событии.",
   "Display": "Отображать",
   "You request a page that doesn't exist.": "Вы запросили страницу, которой не существует.",
-  "It's possible you entered the wrong address or the link doesn't work.": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет."
+  "It's possible you entered the wrong address or the link doesn't work.": "Возможно, вы ввели неправильный адрес страницы либо перешли по ссылке, которая никуда не ведет.",
+  "The details you entered did not match our records. Please double-check and try again.": "Вы ввели некорректные данные. Пожалуйста, перепроверьте их и попробуйте ещё раз.",
+  "Dashboard": "Панель управления",
+  "There are no records in this view.": "По вашему запросу ничего не найдено.",
+  "Displayed records: :from-:to of :total": "Отображено записей: :from-:to из :total",
+  "Welcome" : "Добро пожаловать"
 }

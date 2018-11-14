@@ -84,10 +84,13 @@
         <footer class="wrapper">
             <div class="row">
                 <div class="col-sm-5">
-                    <small class="text-muted inline m-t-sm m-b-sm">{{__('show')}}
-                        {{($data->currentPage()-1)*$data->perPage()+1}}
-                        -{{($data->currentPage()-1)*$data->perPage()+count($data->items())}}
-                        {{__('of')}} {{$data->total()}} {{__('elements')}}</small>
+                    <small class="text-muted inline m-t-sm m-b-sm">
+                        {{ __("Displayed records: :from-:to of :total",[
+                            'from' => ($data->currentPage()-1)*$data->perPage()+1,
+                            'to' => ($data->currentPage()-1)*$data->perPage()+count($data->items()),
+                            'total' => $data->total(),
+                        ]) }}
+                    </small>
                 </div>
                 <div class="col-sm-7 text-right text-center-xs">
                     {!! $data->appends(request()->except(['page','_token']))->links('platform::partials.pagination') !!}

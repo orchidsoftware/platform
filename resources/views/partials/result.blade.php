@@ -1,4 +1,4 @@
-@foreach($results as $group)
+@forelse($results as $group)
 
     @empty(!$group['label'])
         <div class="hidden-folded padder m-t-xs m-b-xs text-muted text-xs">{{$group['label']}}</div>
@@ -23,4 +23,10 @@
         </a>
     @endforeach
 
-@endforeach
+    @empty
+
+        <p>
+            {{ __("There are no records in this view.") }}
+        </p>
+
+@endforelse
