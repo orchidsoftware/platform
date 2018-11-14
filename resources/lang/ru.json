@@ -228,5 +228,9 @@
   "Messages for all users": "Сообщения для всех пользователей",
   "Announcements": "Объявления",
   "Allows you to pre-inform active users about an event.": "Позволяет предварительно информировать активных пользователей о событии.",
-  "Display": "Отображать"
+  "Display": "Отображать",
+  "Editing": "Редактирование",
+  "Header menu": "Верхнее меню",
+  "Sidebar menu": "Боковое меню",
+  "Footer menu": "Нижнее меню"
 }
