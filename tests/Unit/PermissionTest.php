@@ -124,10 +124,8 @@ class PermissionTest extends TestUnitCase
         $this->assertTrue($user->delete());
     }
 
-    /**
-     *
-     */
-    public function test_it_delete_role(){
+    public function test_it_delete_role()
+    {
         $user = $this->createUser();
         $role = $this->createRole();
 
@@ -140,5 +138,4 @@ class PermissionTest extends TestUnitCase
 
         $this->assertFalse($user->inRole($role));
     }
-
 }
