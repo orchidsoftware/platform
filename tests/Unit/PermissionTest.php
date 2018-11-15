@@ -120,5 +120,25 @@ class PermissionTest extends TestUnitCase
         $user->removeRoleBySlug($role->slug);
 
         $this->assertFalse($user->inRole($role));
+
+        $this->assertTrue($user->delete());
     }
+
+    /**
+     *
+     */
+    public function test_it_delete_role(){
+        $user = $this->createUser();
+        $role = $this->createRole();
+
+        $user->addRole($role);
+        $this->assertTrue($user->inRole($role));
+
+        $this->assertTrue($role->delete());
+
+        $user->refresh();
+
+        $this->assertFalse($user->inRole($role));
+    }
+
 }
