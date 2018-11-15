@@ -53,12 +53,9 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return void
      */
-    protected function sendFailedLoginResponse(Request $request)
+    protected function sendFailedLoginResponse()
     {
         throw ValidationException::withMessages([
             $this->username() => [__('The details you entered did not match our records. Please double-check and try again.')],

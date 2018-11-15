@@ -35,7 +35,7 @@ class MenuTest extends TestUnitCase
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return array
      */
     private function createMenuWithChildren()
     {

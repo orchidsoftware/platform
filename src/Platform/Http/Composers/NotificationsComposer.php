@@ -12,6 +12,7 @@ class NotificationsComposer
 {
     /**
      * Registering the main menu items.
+     * @param View $view
      */
     public function compose(View $view)
     {

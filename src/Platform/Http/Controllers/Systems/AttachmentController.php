@@ -122,6 +122,8 @@ class AttachmentController extends Controller
     }
 
     /**
+     * @param $file
+     * @param Request $request
      * @return mixed
      */
     private function createModel($file, Request $request)

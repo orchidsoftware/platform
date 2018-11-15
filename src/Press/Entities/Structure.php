@@ -88,7 +88,6 @@ trait Structure
      * Request Validation.
      *
      * @return array
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function isValid(): array
     {
