@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
-use Orchid\Tests\TestUnitCase;
 
 /**
  * Class PermissionTest.
@@ -34,7 +34,7 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($role->getUsers()->count(), 1);
         $this->assertTrue($user->inRole('admin'));
         $this->assertTrue($user->inRole($role));
-        $this->assertFalse($user->inRole("notFoundRole"));
+        $this->assertFalse($user->inRole('notFoundRole'));
 
         // Role permissions
         $this->assertTrue($user->hasAccess('access.roles.to.public.data', false));
@@ -94,9 +94,6 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 
-    /**
-     *
-     */
     public function test_it_replase_permission()
     {
         $user = $this->createUser();
@@ -119,11 +116,9 @@ class PermissionTest extends TestUnitCase
 
         $this->assertFalse($user->inRole($role));
 
-
         $user->addRole($role);
         $user->removeRoleBySlug($role->slug);
 
         $this->assertFalse($user->inRole($role));
     }
-
 }
