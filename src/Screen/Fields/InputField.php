@@ -109,12 +109,10 @@ class InputField extends Field
      */
     public function modifyMask($mask): self
     {
-
         if (is_array($mask)) {
             $this->attributes['mask'] = json_encode($mask);
         }
 
         return $this;
     }
-
 }
