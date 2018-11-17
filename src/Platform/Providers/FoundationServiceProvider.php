@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Alert\AlertServiceProvider;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
-use Orchid\Widget\WidgetServiceProvider;
-use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
 use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
+use Orchid\Alert\AlertServiceProvider;
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Orchid\Widget\WidgetServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
+use Watson\Active\ActiveServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -160,9 +160,8 @@ class FoundationServiceProvider extends ServiceProvider
     public function register(): void
     {
         if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name) {
-                return Route::any($url.'/{method?}/{argument?}')
-                    ->uses($screen.'@handle')
+            Route::macro('screen', function ($url, $screen, $name = null) {
+                return Route::any($url . '/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
         }

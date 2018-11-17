@@ -11,67 +11,49 @@ declare(strict_types=1);
 |
 */
 
-$this->get('/', [
-    'as'   => 'platform.systems.index',
-    'uses' => 'SystemController@index',
-]);
+use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
+use Orchid\Platform\Http\Controllers\Systems\CacheController;
+use Orchid\Platform\Http\Controllers\Systems\NotificationController;
+use Orchid\Platform\Http\Controllers\Systems\SupportController;
+use Orchid\Platform\Http\Controllers\Systems\SystemController;
+use Orchid\Platform\Http\Controllers\Systems\TagsController;
+use Orchid\Platform\Http\Controllers\Systems\WidgetController;
 
-$this->get('cache', [
-    'as'   => 'platform.systems.cache',
-    'uses' => 'CacheController@store',
-]);
+$this->get('/', [SystemController::class, 'index'])
+    ->name('platform.systems.index');
 
-$this->post('notification/read', [
-    'as'   => 'platform.notification.read',
-    'uses' => 'NotificationController@markAllAsRead',
-]);
+$this->get('cache', [CacheController::class, 'store'])
+    ->name('platform.systems.cache');
 
-$this->post('notification/remove', [
-    'as'   => 'platform.notification.remove',
-    'uses' => 'NotificationController@remove',
-]);
+$this->post('notification/read', [NotificationController::class, 'markAllAsRead'])
+    ->name('platform.notification.read');
 
-$this->post('files', [
-    'as'   => 'platform.systems.files.upload',
-    'uses' => 'AttachmentController@upload',
-]);
+$this->post('notification/remove', [NotificationController::class, 'remove'])
+    ->name('platform.notification.remove');
 
-$this->post('files/sort', [
-    'as'   => 'platform.systems.files.sort',
-    'uses' => 'AttachmentController@sort',
-]);
+$this->post('files', [AttachmentController::class, 'upload'])
+    ->name('platform.systems.files.upload');
 
-$this->delete('files/{id}', [
-    'as'   => 'platform.systems.files.destroy',
-    'uses' => 'AttachmentController@destroy',
-]);
+$this->post('files/sort', [AttachmentController::class, 'sort'])
+    ->name('platform.systems.files.sort');
 
-$this->get('files/post/{id}', [
-    'as'   => 'platform.systems.files.destroy',
-    'uses' => 'AttachmentController@getFilesPost',
-]);
+$this->delete('files/{id}', [AttachmentController::class, 'destroy'])
+    ->name('platform.systems.files.destroy');
 
-$this->post('files/get', [
-    'as'   => 'platform.systems.files.destroy',
-    'uses' => 'AttachmentController@getFilesByIds',
-]);
+$this->get('files/post/{id}', [AttachmentController::class, 'getFilesPost'])
+    ->name('platform.systems.files.getFilesPost');
 
-$this->put('files/post/{id}', [
-    'as'   => 'platform.systems.files.update',
-    'uses' => 'AttachmentController@update',
-]);
+$this->post('files/get', [AttachmentController::class, 'getFilesByIds'])
+    ->name('platform.systems.files.getFilesByIds');
 
-$this->get('tags/{tags?}', [
-    'as'   => 'platform.systems.tag.search',
-    'uses' => 'TagsController@show',
-]);
+$this->put('files/post/{id}', [AttachmentController::class, 'update'])
+    ->name('platform.systems.files.update');
 
-$this->post('widget/{widget}/{key?}', [
-    'as'   => 'platform.systems.widget',
-    'uses' => 'WidgetController@index',
-]);
+$this->get('tags/{tags?}', [TagsController::class, 'show'])
+    ->name('platform.systems.tag.search');
 
-$this->post('support', [
-    'as'   => 'platform.systems.support',
-    'uses' => 'SupportController@send',
-]);
+$this->post('widget/{widget}/{key?}', [WidgetController::class, 'index'])
+    ->name('platform.systems.widget');
+
+$this->post('support', [SupportController::class, 'send'])
+    ->name('platform.systems.support');
