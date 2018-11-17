@@ -122,7 +122,7 @@ class Menu
             $arg = get_object_vars($arg);
         }
 
-        if (array_key_exists('show', $arg) && !$arg['show']) {
+        if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }
 
@@ -132,8 +132,8 @@ class Menu
         ], $arg);
 
         $this->location = $place;
-        $this->arg      = $arg;
-        $this->sort     = $arg['sort'];
+        $this->arg = $arg;
+        $this->sort = $arg['sort'];
 
         $this->item = [
             'location' => $this->location,
@@ -162,11 +162,11 @@ class Menu
             ->where('location', $location)
             ->sortBy('sort')
             ->each(function ($value) use ($template, &$html) {
-                if (!array_key_exists('template', $value)) {
+                if (! array_key_exists('template', $value)) {
                     $value['template'] = 'platform::partials.mainMenu';
                 }
 
-                if (!is_null($template)) {
+                if (! is_null($template)) {
                     $value['template'] = $template;
                 }
 
@@ -194,7 +194,7 @@ class Menu
     private function checkAccess()
     {
         $this->user = Auth::user();
-        $user       = $this->user;
+        $user = $this->user;
 
         $this->container = $this->container->filter(function ($item) use ($user) {
             return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
@@ -214,7 +214,7 @@ class Menu
             ->where('location', $key)
             ->sortBy('sort')
             ->map(function ($item, $key) {
-                $item             = $item['arg'];
+                $item = $item['arg'];
                 $item['children'] = $this->findAllChildren($key);
 
                 return $item;

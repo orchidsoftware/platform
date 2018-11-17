@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Post;
+use Orchid\Press\Entities\Many;
+use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Entities\EntityContract;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Models\Post;
-use Orchid\Support\Facades\Alert;
+use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function index(Many $type): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.main', $type->generateGrid());
     }
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create(EntityContract $type): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.create', [
             'type'    => $type,
@@ -55,7 +55,7 @@ class PostController extends Controller
      */
     public function store(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
@@ -84,7 +84,7 @@ class PostController extends Controller
      */
     public function edit(Many $type, Post $post): View
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.edit', [
             'type'    => $type,
@@ -119,7 +119,7 @@ class PostController extends Controller
      */
     public function destroy(EntityContract $type, Post $post): RedirectResponse
     {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX . $type->slug);
+        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         $type->delete($post);
 

@@ -39,7 +39,7 @@ class MakeWidget extends GeneratorCommand
      */
     protected function getStub()
     {
-        return PLATFORM_PATH . '/resources/stubs/widget.stub';
+        return PLATFORM_PATH.'/resources/stubs/widget.stub';
     }
 
     /**
@@ -51,6 +51,6 @@ class MakeWidget extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Http\Widgets';
+        return $rootNamespace.'\Http\Widgets';
     }
 }

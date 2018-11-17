@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Press\Http\Controllers;
 
 use Exception;
+use Orchid\Support\Formats;
 use Illuminate\Http\Request;
+use Orchid\Support\Facades\Alert;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Support\Facades\Alert;
-use Orchid\Support\Formats;
 
 /**
  * Class MediaController.
@@ -34,7 +34,7 @@ class MediaController extends Controller
     {
         $this->checkPermission('platform.systems.media');
 
-        $disk = (string)config('platform.disks.media', 'public');
+        $disk = (string) config('platform.disks.media', 'public');
 
         $this->filesystem = Storage::disk($disk);
     }
@@ -46,7 +46,7 @@ class MediaController extends Controller
      */
     public function index($path = DIRECTORY_SEPARATOR)
     {
-        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path . DIRECTORY_SEPARATOR : $path;
+        $path = substr($path, 0) !== DIRECTORY_SEPARATOR ? $path.DIRECTORY_SEPARATOR : $path;
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media', [
@@ -103,9 +103,9 @@ class MediaController extends Controller
         if ($bytes === 0) {
             return '0 B';
         }
-        $i = ((int)floor(log($bytes / 100) / log(1000)) >= 0) ?: 0;
+        $i = ((int) floor(log($bytes / 100) / log(1000)) >= 0) ?: 0;
 
-        return round(100 * (($bytes / 100) / (1024 ** $i)), 0) . ' ' . $sizes[$i];
+        return round(100 * (($bytes / 100) / (1024 ** $i)), 0).' '.$sizes[$i];
     }
 
     /**
@@ -117,7 +117,7 @@ class MediaController extends Controller
     {
         return $files->map(function ($file) {
             $modified = $this->filesystem->lastModified($file);
-            $name     = strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file;
+            $name = strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file;
 
             return [
                 'name'         => $name,
@@ -137,8 +137,8 @@ class MediaController extends Controller
     public function newFolder(Request $request)
     {
         $new_folder = $request->new_folder;
-        $success    = false;
-        $error      = '';
+        $success = false;
+        $error = '';
 
         if ($this->filesystem->exists($new_folder)) {
             $error = trans('platform::systems/media.error_creating_folder');
@@ -148,7 +148,7 @@ class MediaController extends Controller
             $error = trans('platform::systems/media.error_creating_dir');
         }
         if ($success) {
-            Alert::success('Successfully created - ' . $new_folder);
+            Alert::success('Successfully created - '.$new_folder);
         } else {
             Alert::error($error);
         }
@@ -164,29 +164,29 @@ class MediaController extends Controller
     public function deleteFileFolder(Request $request)
     {
         $folderLocation = $request->folder_location;
-        $fileFolder     = $request->file_folder;
-        $type           = $request->type;
-        $success        = true;
-        $error          = '';
+        $fileFolder = $request->file_folder;
+        $type = $request->type;
+        $success = true;
+        $error = '';
 
         if (is_array($folderLocation)) {
             $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
-        $location   = "{$this->directory}/{$folderLocation}";
+        $location = "{$this->directory}/{$folderLocation}";
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type === 'directory') {
-            if (!$this->filesystem->deleteDirectory($fileFolder)) {
-                $error   = trans('platform::systems/media.error_deleting_folder');
+            if (! $this->filesystem->deleteDirectory($fileFolder)) {
+                $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } elseif (!$this->filesystem->delete($fileFolder)) {
-            $error   = trans('platform::systems/media.error_deleting_file');
+        } elseif (! $this->filesystem->delete($fileFolder)) {
+            $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
         if ($success) {
-            Alert::success('Successfully deleted - ' . $fileFolder);
+            Alert::success('Successfully deleted - '.$fileFolder);
         } else {
             Alert::error($error);
         }
@@ -219,17 +219,17 @@ class MediaController extends Controller
      */
     public function moveFile(Request $request)
     {
-        $source         = $request->source;
-        $destination    = $request->destination;
+        $source = $request->source;
+        $destination = $request->destination;
         $folderLocation = $request->folder_location;
-        $success        = false;
+        $success = false;
 
         if (is_array($folderLocation)) {
             $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
         }
 
-        $location    = "{$this->directory}/{$folderLocation}";
-        $source      = "{$location}/{$source}";
+        $location = "{$this->directory}/{$folderLocation}";
+        $source = "{$location}/{$source}";
         $destination = "{$this->directory}/{$destination}";
         /*
         $destination = strpos($destination,
@@ -238,15 +238,15 @@ class MediaController extends Controller
         */
 
         $error = trans('platform::systems/media.error_already_exists');
-        if (!file_exists($destination)) {
+        if (! file_exists($destination)) {
             $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move($source, $destination)) {
                 $success = true;
-                $error   = false;
+                $error = false;
             }
         }
         if ($success) {
-            Alert::success('Successfully moved file/folder to ' . $destination);
+            Alert::success('Successfully moved file/folder to '.$destination);
         } else {
             Alert::error($error);
         }
@@ -262,9 +262,9 @@ class MediaController extends Controller
     public function renameFile(Request $request)
     {
         $folderLocation = $request->folder_location;
-        $filename       = $request->filename;
-        $newFilename    = $request->new_filename;
-        $success        = false;
+        $filename = $request->filename;
+        $newFilename = $request->new_filename;
+        $success = false;
 
         if (is_array($folderLocation)) {
             $folderLocation = rtrim(implode(DIRECTORY_SEPARATOR, $folderLocation), DIRECTORY_SEPARATOR);
@@ -273,15 +273,15 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
 
         $error = trans('platform::systems/media.error_may_exist');
-        if (!$this->filesystem->exists("{$location}/{$newFilename}")) {
+        if (! $this->filesystem->exists("{$location}/{$newFilename}")) {
             $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
-                $error   = false;
+                $error = false;
             }
         }
         if ($success) {
-            Alert::success('Successfully renamed file/folder - ' . $filename . ' to ' . $newFilename);
+            Alert::success('Successfully renamed file/folder - '.$filename.' to '.$newFilename);
         } else {
             Alert::error($error);
         }
@@ -304,7 +304,7 @@ class MediaController extends Controller
             $success = true;
             $message = trans('platform::systems/media.success_uploaded_file');
         } catch (Exception $e) {
-            $path    = '';
+            $path = '';
             $success = false;
             $message = $e->getMessage();
         }
@@ -330,7 +330,7 @@ class MediaController extends Controller
                 ],
             ]);
         } catch (Exception $e) {
-            $code    = 500;
+            $code = 500;
             $message = 'Internal error';
 
             if ($e->getCode()) {
@@ -365,12 +365,12 @@ class MediaController extends Controller
                 if ($bkey === $key) {
                     break;
                 }
-                $path = $path . $delimiter . $breadcrumb;
+                $path = $path.$delimiter.$breadcrumb;
             }
 
             return [
                 'name' => $item,
-                'path' => empty($path) ? $item : $path . $delimiter . $item,
+                'path' => empty($path) ? $item : $path.$delimiter.$item,
             ];
         }, $breadcrumbs, array_keys($breadcrumbs));
     }

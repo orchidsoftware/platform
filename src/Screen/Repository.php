@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use ArrayAccess;
-use Countable;
 use Iterator;
+use Countable;
+use ArrayAccess;
 
 /**
  * Class Repository.

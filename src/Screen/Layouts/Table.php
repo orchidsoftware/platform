@@ -43,7 +43,7 @@ abstract class Table
     public function showFilterDashboard()
     {
         $dashboardFilter = $this->getFilters(true);
-        $chunk           = ceil($dashboardFilter->count() / 4);
+        $chunk = ceil($dashboardFilter->count() / 4);
 
         return view('platform::container.layouts.filter', [
             'filters' => $dashboardFilter,

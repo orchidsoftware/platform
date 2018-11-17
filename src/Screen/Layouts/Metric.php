@@ -45,7 +45,7 @@ abstract class Metric
      */
     public function build(Repository $query)
     {
-        $data    = $query->getContent($this->data, []);
+        $data = $query->getContent($this->data, []);
         $metrics = array_combine($this->labels, $data);
 
         return view($this->template, [

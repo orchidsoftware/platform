@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 /**
  * Class RouteBootServiceProvider.
@@ -29,10 +29,10 @@ class RouteBulldozerServiceProvider extends RouteServiceProvider
      */
     public function map()
     {
-        Route::domain((string)config('platform.domain'))
+        Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/bulldozer'))
             ->middleware(config('platform.middleware.private'))
             //->namespace($this->namespace)
-            ->group(realpath(PLATFORM_PATH . '/routes/bulldozer.php'));
+            ->group(realpath(PLATFORM_PATH.'/routes/bulldozer.php'));
     }
 }

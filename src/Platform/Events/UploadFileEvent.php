@@ -33,6 +33,6 @@ class UploadFileEvent
     public function __construct(Attachment $attachment, int $time)
     {
         $this->attachment = $attachment;
-        $this->time       = $time;
+        $this->time = $time;
     }
 }
