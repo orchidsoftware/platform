@@ -122,7 +122,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $parameters
+     * @param mixed ...$paramentrs
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \ReflectionException
      * @throws \Throwable
@@ -208,11 +209,11 @@ abstract class Screen extends Controller
         }
 
         foreach ($this->permission as $item) {
-            if (! Auth::user()->hasAccess($item)) {
-                return false;
+            if (Auth::user()->hasAccess($item)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 }
