@@ -218,7 +218,7 @@
   "We are sorry but our service is currently not available…": "Нам очень жаль, но на данный момент наш сервис недоступен...",
   "What to search...": "Что искать...",
   "Without parent": "Без родителей",
-  "Add your models, customize your columns, and even set up relationships." : "Добавьте свои модели, настройте свои столбцы и установите отношения.",
+  "Add your models, customize your columns, and even set up relationships.": "Добавьте свои модели, настройте свои столбцы и установите отношения.",
   "Necessary for the ability to quickly recover information in case of loss of a working copy.": "Необходимо для возможности быстрого восстановления информации в случае потери рабочей копии.",
   "Messages for all users": "Сообщения для всех пользователей",
   "Announcements": "Объявления",
@@ -230,8 +230,9 @@
   "Dashboard": "Панель управления",
   "There are no records in this view.": "По вашему запросу ничего не найдено.",
   "Displayed records: :from-:to of :total": "Отображено записей: :from-:to из :total",
-  "Welcome" : "Добро пожаловать",
+  "Welcome": "Добро пожаловать",
   "Editing": "Редактирование",
   "Header menu": "Верхнее меню",
   "Sidebar menu": "Боковое меню",
   "Footer menu": "Нижнее меню"
+}
