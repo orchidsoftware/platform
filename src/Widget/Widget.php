@@ -29,7 +29,7 @@ class Widget implements WidgetContractInterface
      */
     private function getWidgetFromConfig(string $key): self
     {
-        $class = config('widget.widgets.'.$key);
+        $class = config('widget.widgets.' . $key);
 
         return new $class;
     }

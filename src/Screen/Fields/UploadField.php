@@ -60,15 +60,15 @@ class UploadField extends Field
      * @var array
      */
     public $attributes = [
-        'value' => null,
-        'multiple' => true,
+        'value'           => null,
+        'multiple'        => true,
         'parallelUploads' => 10,
-        'maxFileSize' => 9999,
-        'maxFiles' => 9999,
-        'acceptedFiles' => null,
-        'resizeQuality' => 0.8,
-        'resizeWidth' => null,
-        'resizeHeight' => null,
+        'maxFileSize'     => 9999,
+        'maxFiles'        => 9999,
+        'acceptedFiles'   => null,
+        'resizeQuality'   => 0.8,
+        'resizeWidth'     => null,
+        'resizeHeight'    => null,
     ];
 
     /**

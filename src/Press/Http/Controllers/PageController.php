@@ -6,9 +6,9 @@ namespace Orchid\Press\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Orchid\Platform\Http\Controllers\Controller;
 use Orchid\Press\Models\Page;
 use Orchid\Support\Facades\Alert;
-use Orchid\Platform\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -21,13 +21,13 @@ class PageController extends Controller
      */
     public function show(Page $page = null)
     {
-        $this->checkPermission('platform.posts.type.'.$page->slug);
+        $this->checkPermission('platform.posts.type.' . $page->slug);
         $type = $page->getEntityObject($page->slug);
 
         return view('platform::container.posts.page', [
-            'type' => $type,
+            'type'    => $type,
             'locales' => collect($type->locale()),
-            'post' => $type->create($page),
+            'post'    => $type->create($page),
         ]);
     }
 
@@ -41,18 +41,18 @@ class PageController extends Controller
      */
     public function update(Page $page, Request $request)
     {
-        $this->checkPermission('platform.posts.type.'.$page->slug);
+        $this->checkPermission('platform.posts.type.' . $page->slug);
         $type = $page->getEntityObject($page->slug);
         $type->isValid();
 
         $page
             ->fill($request->all())
             ->fill([
-                'user_id' => $request->user()->id,
-                'type' => 'page',
-                'slug' => $page->slug,
-                'status' => 'publish',
-                'options' => $page->getOptions(),
+                'user_id'    => $request->user()->id,
+                'type'       => 'page',
+                'slug'       => $page->slug,
+                'status'     => 'publish',
+                'options'    => $page->getOptions(),
                 'publish_at' => Carbon::now(),
             ]);
 

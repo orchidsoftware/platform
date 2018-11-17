@@ -53,7 +53,7 @@ class UTMField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'url',
+        'type'  => 'url',
         'class' => 'form-control',
     ];
 

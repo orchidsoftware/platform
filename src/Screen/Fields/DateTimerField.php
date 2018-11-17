@@ -51,11 +51,11 @@ class DateTimerField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'text',
-        'class' => 'form-control',
-        'data-controller' => 'fields--datetime',
+        'type'                              => 'text',
+        'class'                             => 'form-control',
+        'data-controller'                   => 'fields--datetime',
         'data-fields--datetime-enable-time' => 'true',
-        'data-fields--datetime-time_24hr' => 'true',
+        'data-fields--datetime-time_24hr'   => 'true',
         'data-fields--datetime-allow-input' => 'true',
     ];
 

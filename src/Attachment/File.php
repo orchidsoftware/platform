@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
-use Mimey\MimeTypes;
-use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Mimey\MimeTypes;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Events\UploadFileEvent;
 
 /**
@@ -71,14 +71,14 @@ class File
      */
     public function __construct(UploadedFile $file, string $disk, string $group = null)
     {
-        $this->time = time();
-        $this->date = date('Y/m/d', $this->time);
-        $this->file = $file;
-        $this->mimes = new MimeTypes();
+        $this->time     = time();
+        $this->date     = date('Y/m/d', $this->time);
+        $this->file     = $file;
+        $this->mimes    = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
-        $this->disk = $disk;
-        $this->group = $group;
+        $this->disk    = $disk;
+        $this->group   = $group;
         $this->storage = Storage::disk($disk);
     }
 
@@ -107,7 +107,7 @@ class File
     {
         $file = $this->getMatchesHash();
 
-        if (! $this->storage->has($this->date)) {
+        if (!$this->storage->has($this->date)) {
             $this->storage->makeDirectory($this->date);
         }
 
@@ -116,9 +116,9 @@ class File
         }
 
         $file = $file->replicate()->fill([
-            'sort' => 0,
+            'sort'    => 0,
             'user_id' => Auth::id(),
-            'group' => $this->group,
+            'group'   => $this->group,
         ]);
 
         $file->save();
@@ -139,24 +139,24 @@ class File
      */
     private function save(): Attachment
     {
-        $hashName = sha1($this->time.$this->file->getClientOriginalName());
-        $name = $hashName.'.'.$this->getClientOriginalExtension();
+        $hashName = sha1($this->time . $this->file->getClientOriginalName());
+        $name     = $hashName . '.' . $this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),
         ]);
 
         $attach = Dashboard::model(Attachment::class)::create([
-            'name' => $hashName,
+            'name'          => $hashName,
             'original_name' => $this->file->getClientOriginalName(),
-            'mime' => $this->getMimeType(),
-            'extension' => $this->getClientOriginalExtension(),
-            'size' => $this->file->getSize(),
-            'path' => $this->date.DIRECTORY_SEPARATOR,
-            'hash' => $this->hash,
-            'disk' => $this->disk,
-            'group' => $this->group,
-            'user_id' => Auth::id(),
+            'mime'          => $this->getMimeType(),
+            'extension'     => $this->getClientOriginalExtension(),
+            'size'          => $this->file->getSize(),
+            'path'          => $this->date . DIRECTORY_SEPARATOR,
+            'hash'          => $this->hash,
+            'disk'          => $this->disk,
+            'group'         => $this->group,
+            'user_id'       => Auth::id(),
         ]);
 
         event(new UploadFileEvent($attach, $this->time));

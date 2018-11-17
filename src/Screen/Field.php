@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
-use Orchid\Screen\Exceptions\TypeException;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Exceptions\TypeException;
 
 /**
  * Class Field.
@@ -139,9 +139,9 @@ class Field implements FieldContract
      */
     public static function tag(string $type): FieldContract
     {
-        $field = config('platform.fields.'.$type);
+        $field = config('platform.fields.' . $type);
 
-        if (! is_subclass_of($field, FieldContract::class)) {
+        if (!is_subclass_of($field, FieldContract::class)) {
             throw new TypeException($type);
         }
 
@@ -173,7 +173,7 @@ class Field implements FieldContract
      * @param $value
      * @return $this
      */
-    public function value($value) : self
+    public function value($value): self
     {
         $this->attributes['value'] = $value;
 
@@ -220,7 +220,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            throw_if(! collect($this->attributes)->offsetExists($attribute),
+            throw_if(!collect($this->attributes)->offsetExists($attribute),
                 FieldRequiredAttributeException::class, $attribute);
         }
 
@@ -237,11 +237,11 @@ class Field implements FieldContract
         $this->checkRequired();
         $this->translate();
 
-        $attributes = $this->getModifyAttributes();
+        $attributes             = $this->getModifyAttributes();
         $this->attributes['id'] = $this->getId();
 
         if ($this->hasError()) {
-            if (! isset($attributes['class']) || is_null($attributes['class'])) {
+            if (!isset($attributes['class']) || is_null($attributes['class'])) {
                 $attributes['class'] = ' is-invalid';
             } else {
                 $attributes['class'] .= ' is-invalid';
@@ -250,11 +250,11 @@ class Field implements FieldContract
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
-            'id' => $this->getId(),
-            'old' => $this->getOldValue(),
-            'slug' => $this->getSlug(),
-            'oldName' => $this->getOldName(),
-            'typeForm' => $this->typeForm ?? $this->vertical()->typeForm,
+            'id'         => $this->getId(),
+            'old'        => $this->getOldValue(),
+            'slug'       => $this->getSlug(),
+            'oldName'    => $this->getOldName(),
+            'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
         ]));
     }
 
@@ -263,7 +263,7 @@ class Field implements FieldContract
      *
      * @return $this
      */
-    private function translate() : self
+    private function translate(): self
     {
         if (empty($this->translations)) {
             return $this;
@@ -297,12 +297,12 @@ class Field implements FieldContract
 
         collect($this->getAttributes())->only(array_merge($this->universalAttributes,
             $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
-                $key = title_case($key);
-                $signature = 'modify'.$key;
-                if (in_array($signature, $modifiers, true)) {
-                    $this->attributes[$key] = $this->$signature($item);
-                }
-            });
+            $key       = title_case($key);
+            $signature = 'modify' . $key;
+            if (in_array($signature, $modifiers, true)) {
+                $this->attributes[$key] = $this->$signature($item);
+            }
+        });
 
         return collect($this->getAttributes())
             ->only(array_merge($this->universalAttributes, $this->inlineAttributes));
@@ -327,7 +327,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (! isset($this->attributes[$key])) {
+        if (!isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -337,7 +337,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return str_slug($this->get('name'));
     }
@@ -353,7 +353,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getOldName() : string
+    public function getOldName(): string
     {
         $name = str_ireplace(['][', '['], '.', $this->get('name'));
         $name = str_ireplace([']'], '', $name);
@@ -364,7 +364,7 @@ class Field implements FieldContract
     /**
      * @return bool
      */
-    private function hasError() : bool
+    private function hasError(): bool
     {
         return optional(session('errors'))->has($this->getOldName()) ?? false;
     }
@@ -385,20 +385,20 @@ class Field implements FieldContract
     public function modifyName($name)
     {
         $prefix = $this->get('prefix');
-        $lang = $this->get('lang');
+        $lang   = $this->get('lang');
 
         $this->attributes['name'] = $name;
 
-        if (! is_null($prefix)) {
-            $this->attributes['name'] = $prefix.$name;
+        if (!is_null($prefix)) {
+            $this->attributes['name'] = $prefix . $name;
         }
 
-        if (is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $lang.$name;
+        if (is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $lang . $name;
         }
 
-        if (! is_null($prefix) && ! is_null($lang)) {
-            $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
+        if (!is_null($prefix) && !is_null($lang)) {
+            $this->attributes['name'] = $prefix . '[' . $lang . ']' . $name;
         }
 
         if ($name instanceof \Closure) {
@@ -431,7 +431,7 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        if (! is_array($group)) {
+        if (!is_array($group)) {
             return call_user_func($group);
         }
 
@@ -441,7 +441,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function vertical() : self
+    public function vertical(): self
     {
         $this->typeForm = 'platform::partials.fields.vertical';
 
@@ -451,7 +451,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function horizontal() : self
+    public function horizontal(): self
     {
         $this->typeForm = 'platform::partials.fields.horizontal';
 

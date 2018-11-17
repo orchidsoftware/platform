@@ -26,9 +26,9 @@ class CodeField extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'language' => 'js',
-        'lineNumbers' => true,
+        'class'        => 'form-control',
+        'language'     => 'js',
+        'lineNumbers'  => true,
         'defaultTheme' => true,
     ];
 

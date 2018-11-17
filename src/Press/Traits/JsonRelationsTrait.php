@@ -29,7 +29,7 @@ trait JsonRelationsTrait
         $option = $this->jsonRelationInit();
 
         $option[$name][] = $id;
-        $option[$name] = array_unique($option[$name]);
+        $option[$name]   = array_unique($option[$name]);
 
         return $this->jsonRelationSave($option);
     }
@@ -51,7 +51,7 @@ trait JsonRelationsTrait
      */
     private function jsonRelationSave(array $value)
     {
-        $options = $this->jsonRelationInit();
+        $options                         = $this->jsonRelationInit();
         $options[$this->jsonRelationKey] = $value;
 
         $this->setAttribute($this->jsonRelationColumn, $options);
@@ -68,7 +68,7 @@ trait JsonRelationsTrait
     {
         $option = $this->jsonRelationInit();
 
-        if (! array_key_exists($name, $option)) {
+        if (!array_key_exists($name, $option)) {
             $option[$name] = [];
         }
 

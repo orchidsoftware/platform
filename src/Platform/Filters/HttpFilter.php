@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class HttpFilter
 {
@@ -43,7 +43,7 @@ class HttpFilter
         $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
-        $this->sorts = collect($this->request->get('sort', []));
+        $this->sorts   = collect($this->request->get('sort', []));
     }
 
     /**
@@ -84,8 +84,8 @@ class HttpFilter
         $this->sorts
             ->each(function (string $sort) use ($builder) {
                 $descending = $sort[0] === '-';
-                $key = ltrim($sort, '-');
-                $key = str_replace('.', '->', $key);
+                $key        = ltrim($sort, '-');
+                $key        = str_replace('.', '->', $key);
                 $builder->orderBy($key, $descending ? 'desc' : 'asc');
             });
     }
@@ -145,7 +145,7 @@ class HttpFilter
             return true;
         }
 
-        if ($this->sorts->search('-'.$property, true) !== false) {
+        if ($this->sorts->search('-' . $property, true) !== false) {
             return true;
         }
 
@@ -160,7 +160,7 @@ class HttpFilter
     public function revertSort($property)
     {
         if ($this->getSort($property) === 'asc') {
-            return '-'.$property;
+            return '-' . $property;
         }
 
         return $property;

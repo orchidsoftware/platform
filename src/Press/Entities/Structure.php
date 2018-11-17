@@ -76,11 +76,11 @@ trait Structure
      *
      * @return array
      */
-    public function status() : array
+    public function status(): array
     {
         return [
             'publish' => __('Published'),
-            'draft' => __('Draft'),
+            'draft'   => __('Draft'),
         ];
     }
 

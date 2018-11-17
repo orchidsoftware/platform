@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\AttachTrait;
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
@@ -38,10 +38,10 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'post_id' => 'integer',
-        'user_id' => 'integer',
+        'post_id'   => 'integer',
+        'user_id'   => 'integer',
         'parent_id' => 'integer',
-        'approved' => 'boolean',
+        'approved'  => 'boolean',
     ];
 
     /**

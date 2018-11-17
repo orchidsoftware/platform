@@ -65,7 +65,7 @@ class TD
      */
     public function __construct(string $name)
     {
-        $this->name = $name;
+        $this->name   = $name;
         $this->column = $name;
     }
 
@@ -77,9 +77,9 @@ class TD
      */
     public static function set(string $name, string $title = null): self
     {
-        $td = new static($name);
+        $td         = new static($name);
         $td->column = $name;
-        $td->title = is_null($title) ? title_case($name) : $title;
+        $td->title  = is_null($title) ? title_case($name) : $title;
 
         return $td;
     }
@@ -141,13 +141,13 @@ class TD
      */
     public function column(string $column = null): self
     {
-        if (! is_null($column)) {
+        if (!is_null($column)) {
             $this->column = $column;
         }
 
-        if ($this->locale && ! is_null($column)) {
-            $locale = '.'.app()->getLocale().'.';
-            $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
+        if ($this->locale && !is_null($column)) {
+            $locale       = '.' . app()->getLocale() . '.';
+            $this->column = preg_replace('/' . preg_quote('.', '/') . '/', $locale, $column);
         }
 
         return $this;
@@ -208,7 +208,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
-            $options = is_array($options) ? $options : [$options];
+            $options    = is_array($options) ? $options : [$options];
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -219,14 +219,14 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (! is_null($text)) {
+            if (!is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
             return view('platform::partials.td.link', [
-                'route' => $route,
+                'route'      => $route,
                 'attributes' => $attributes,
-                'text' => $text,
+                'text'       => $text,
             ]);
         });
 
@@ -257,7 +257,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
-            $options = is_array($options) ? $options : [$options];
+            $options    = is_array($options) ? $options : [$options];
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -271,11 +271,11 @@ class TD
             $text = is_null($text) ? $text : $datum->getContent($text);
 
             return view('platform::partials.td.async', [
-                'modal' => $modal,
+                'modal'      => $modal,
                 'attributes' => $attributes,
-                'text' => $text,
-                'method' => $method,
-                'route' => $this->asyncRoute,
+                'text'       => $text,
+                'method'     => $method,
+                'route'      => $this->asyncRoute,
             ]);
         });
 

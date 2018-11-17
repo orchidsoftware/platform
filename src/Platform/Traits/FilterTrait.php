@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-use Orchid\Platform\Filters\HttpFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\HttpFilter;
 
 trait FilterTrait
 {
@@ -18,7 +18,7 @@ trait FilterTrait
     public function scopeFiltersApply(Builder $query, array $filters = []): Builder
     {
         foreach ($filters as $filter) {
-            if (! is_object($filter)) {
+            if (!is_object($filter)) {
                 $filter = app()->make($filter);
             }
 
@@ -64,7 +64,7 @@ trait FilterTrait
     {
         return collect([
             'allowedFilters' => collect($this->allowedFilters ?? []),
-            'allowedSorts' => collect($this->allowedSorts ?? []),
+            'allowedSorts'   => collect($this->allowedSorts ?? []),
         ]);
     }
 }

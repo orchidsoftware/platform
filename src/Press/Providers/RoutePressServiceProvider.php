@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
-use Orchid\Press\Models\Page;
-use Orchid\Press\Models\Post;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
 use Orchid\Press\Models\Category;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Orchid\Press\Models\Page;
+use Orchid\Press\Models\Post;
 
 class RoutePressServiceProvider extends ServiceProvider
 {
@@ -66,7 +66,7 @@ class RoutePressServiceProvider extends ServiceProvider
 
             if (is_null($page)) {
                 $model->slug = $value;
-                $page = $model;
+                $page        = $model;
             }
 
             return $page;
@@ -90,10 +90,10 @@ class RoutePressServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        Route::domain((string) config('platform.domain'))
+        Route::domain((string)config('platform.domain'))
             ->prefix(Dashboard::prefix('/press'))
             ->middleware(config('platform.middleware.private'))
             ->namespace($this->namespace)
-            ->group(realpath(PLATFORM_PATH.'/routes/press.php'));
+            ->group(realpath(PLATFORM_PATH . '/routes/press.php'));
     }
 }

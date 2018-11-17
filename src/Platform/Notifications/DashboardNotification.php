@@ -23,9 +23,9 @@ class DashboardNotification extends Notification
      * @var array
      */
     public $type = [
-        'info' => 'text-info',
+        'info'    => 'text-info',
         'success' => 'text-success',
-        'error' => 'text-danger',
+        'error'   => 'text-danger',
         'warning' => 'text-warning',
     ];
 
@@ -36,7 +36,7 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        if (! array_key_exists('type', $message)) {
+        if (!array_key_exists('type', $message)) {
             $message['type'] = 'info';
         }
 

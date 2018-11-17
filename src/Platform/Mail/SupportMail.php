@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Mail;
 
-use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
+use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -40,8 +40,8 @@ class SupportMail extends Mailable
             ->subject('Сообщение с веб-сайта')
             ->markdown('platform::emails.support', [
                 'message' => $this->request->get('message'),
-                'email' => $this->request->get('email'),
-                'name' => $this->request->get('name'),
+                'email'   => $this->request->get('email'),
+                'name'    => $this->request->get('name'),
             ]);
     }
 }

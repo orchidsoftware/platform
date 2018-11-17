@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\InputField;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Fields\InputField;
 
 class SearchFilter extends Filter
 {
@@ -31,10 +31,10 @@ class SearchFilter extends Filter
     public function run(Builder $builder): Builder
     {
         if ($builder->getQuery()->getConnection() instanceof PostgresConnection) {
-            return $builder->whereRaw('content::TEXT ILIKE ?', '%'.$this->request->get('search').'%');
+            return $builder->whereRaw('content::TEXT ILIKE ?', '%' . $this->request->get('search') . '%');
         }
 
-        return $builder->where('content', 'LIKE', '%'.$this->request->get('search').'%');
+        return $builder->where('content', 'LIKE', '%' . $this->request->get('search') . '%');
     }
 
     /**

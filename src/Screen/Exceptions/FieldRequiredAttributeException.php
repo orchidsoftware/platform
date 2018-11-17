@@ -21,6 +21,6 @@ class FieldRequiredAttributeException extends Exception
     public function __construct(string $attribute = '', int $code = 0, \Throwable $previous = null)
     {
         parent::__construct($attribute, $code, $previous);
-        $this->message = 'Field must have the following attribute: '.$attribute;
+        $this->message = 'Field must have the following attribute: ' . $attribute;
     }
 }

@@ -31,13 +31,13 @@ trait MultiLanguageTrait
             return $this->getAttribute($field);
         }
 
-        $jsonContent = (array) $this->getAttribute($this->jsonColumnName);
-        $fullName = ($locale ?? app()->getLocale()).'.'.$field;
+        $jsonContent = (array)$this->getAttribute($this->jsonColumnName);
+        $fullName    = ($locale ?? app()->getLocale()) . '.' . $field;
 
         if (array_has($jsonContent, $fullName)) {
             return array_get($jsonContent, $fullName);
         }
 
-        return array_get($jsonContent, config('app.fallback_locale').'.'.$field);
+        return array_get($jsonContent, config('app.fallback_locale') . '.' . $field);
     }
 }

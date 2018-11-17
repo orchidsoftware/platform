@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Press\Builders\TaxonomyBuilder;
-use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\LogsActivityTrait;
+use Orchid\Press\Builders\TaxonomyBuilder;
 
 class Taxonomy extends Model
 {
@@ -57,7 +57,7 @@ class Taxonomy extends Model
      */
     public function __get($key)
     {
-        if (! isset($this->$key) && isset($this->term->$key)) {
+        if (!isset($this->$key) && isset($this->term->$key)) {
             return $this->term->$key;
         }
 

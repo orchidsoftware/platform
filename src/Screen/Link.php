@@ -92,19 +92,19 @@ class Link
      */
     public function build($arguments = null)
     {
-        if (! $this->show) {
+        if (!$this->show) {
             return '';
         }
 
         return view('platform::container.layouts.link', [
-            'slug' => $this->slug,
-            'name' => $this->name,
-            'method' => $this->method,
-            'icon' => $this->icon,
-            'modal' => $this->modal,
-            'title' => $this->title,
-            'link' => $this->link,
-            'group' => $this->group,
+            'slug'      => $this->slug,
+            'name'      => $this->name,
+            'method'    => $this->method,
+            'icon'      => $this->icon,
+            'modal'     => $this->modal,
+            'title'     => $this->title,
+            'link'      => $this->link,
+            'group'     => $this->group,
             'arguments' => $arguments,
         ]);
     }

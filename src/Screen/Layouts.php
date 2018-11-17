@@ -77,7 +77,7 @@ class Layouts
      */
     public static function __callStatic($name, $arguments)
     {
-        $new = new static;
+        $new         = new static;
         $new->active = $name;
 
         return call_user_func_array([$new, 'setLayouts'], $arguments);
@@ -122,17 +122,17 @@ class Layouts
 
     /**
      * @param \Orchid\Screen\Repository $repository
-     * @param bool                      $async
+     * @param bool $async
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function build(Repository $repository, $async = false)
     {
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = ! is_array($layouts) ? [$layouts] : $layouts;
+            $layouts = !is_array($layouts) ? [$layouts] : $layouts;
 
             foreach ($layouts as $layout) {
-                $layout = ! is_object($layout) ? new $layout : $layout;
+                $layout = !is_object($layout) ? new $layout : $layout;
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
                     $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());
@@ -155,13 +155,13 @@ class Layouts
 
     /**
      * @param string $method
-     * @param bool   $async
+     * @param bool $async
      *
      * @return \Orchid\Screen\Layouts
      */
     public function async(string $method, $async = true): self
     {
-        $this->async = $async;
+        $this->async       = $async;
         $this->asyncMethod = $method;
 
         return $this;
@@ -186,10 +186,10 @@ class Layouts
      */
     public static function view(string $view)
     {
-        $new = new static;
-        $new->active = 'view';
+        $new                    = new static;
+        $new->active            = 'view';
         $new->templates['view'] = $view;
-        $new->slug = sha1(serialize($new));
+        $new->slug              = sha1(serialize($new));
 
         return $new;
     }
@@ -201,7 +201,8 @@ class Layouts
      */
     public static function rows(array $fields): Rows
     {
-        return new class($fields) extends Rows {
+        return new class($fields) extends Rows
+        {
             /**
              * @var array
              */

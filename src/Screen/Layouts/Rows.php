@@ -31,7 +31,7 @@ abstract class Rows
     public function build(Repository $query)
     {
         $this->query = $query;
-        $form = new Builder($this->fields(), $query);
+        $form        = new Builder($this->fields(), $query);
 
         return view($this->template, [
             'form' => $form->generateForm(),

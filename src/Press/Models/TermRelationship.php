@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivityTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\LogsActivityTrait;
 
 class TermRelationship extends Model
 {

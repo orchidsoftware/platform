@@ -50,7 +50,7 @@ class PasswordField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'password',
+        'type'  => 'password',
         'class' => 'form-control',
     ];
 

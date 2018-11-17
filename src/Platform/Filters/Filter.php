@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 abstract class Filter
 {
@@ -50,9 +50,9 @@ abstract class Filter
      */
     public function __construct($entity = null)
     {
-        $this->entity = $entity;
+        $this->entity  = $entity;
         $this->request = request();
-        $this->lang = app()->getLocale();
+        $this->lang    = app()->getLocale();
     }
 
     /**

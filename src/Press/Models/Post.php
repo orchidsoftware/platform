@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Traits\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Database\Eloquent\Builder;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Press\Traits\JsonRelationsTrait;
-use Orchid\Screen\Exceptions\TypeException;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\LogsActivityTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Press\Traits\JsonRelationsTrait;
+use Orchid\Press\Traits\TaggableTrait;
+use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * @property mixed options
@@ -72,8 +72,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type' => 'string',
-        'slug' => 'string',
+        'type'    => 'string',
+        'slug'    => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -181,7 +181,7 @@ class Post extends Model
      */
     public function getEntityObject($slug = null)
     {
-        if (! is_null($this->entity)) {
+        if (!is_null($this->entity)) {
             return $this->entity;
         }
 
@@ -221,7 +221,7 @@ class Post extends Model
     {
         $option = $this->getAttribute('options');
 
-        if (! is_array($option)) {
+        if (!is_array($option)) {
             $option = [];
         }
 
@@ -324,7 +324,8 @@ class Post extends Model
     {
         $taxonomies = $this->taxonomies;
         foreach ($taxonomies as $taxonomy) {
-            $taxonomyName = $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
+            $taxonomyName                                  =
+                $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
             $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term->content;
         }
 
@@ -364,7 +365,7 @@ class Post extends Model
      */
     public function makeSlug($title): string
     {
-        $slug = Str::slug($title);
+        $slug  = Str::slug($title);
         $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
 
         return $count ? "{$slug}-{$count}" : $slug;
@@ -430,7 +431,7 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             try {
                 $this->getEntity($entity);
             } catch (TypeException $e) {
@@ -465,7 +466,7 @@ class Post extends Model
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             $this->getEntity($entity);
         }
 
@@ -480,7 +481,7 @@ class Post extends Model
      */
     public function createSlug($slug = null)
     {
-        if (! is_null($slug) && $this->getOriginal('slug') === $slug) {
+        if (!is_null($slug) && $this->getOriginal('slug') === $slug) {
             $this->setAttribute('slug', $slug);
 
             return;
@@ -490,7 +491,7 @@ class Post extends Model
             $entityObject = $this->getEntityObject();
             if (property_exists($entityObject, 'slugFields')) {
                 $content = $this->getAttribute('content');
-                $slug = head($content)[$entityObject->slugFields] ?? '';
+                $slug    = head($content)[$entityObject->slugFields] ?? '';
             }
         }
 

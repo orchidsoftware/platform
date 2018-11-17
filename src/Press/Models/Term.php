@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Traits\LogsActivityTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Term extends Model
 {
@@ -35,7 +35,7 @@ class Term extends Model
      */
     protected $casts = [
         'content' => 'array',
-        'slug' => 'string',
+        'slug'    => 'string',
     ];
 
     /**

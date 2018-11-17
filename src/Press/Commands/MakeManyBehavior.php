@@ -36,7 +36,7 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return PLATFORM_PATH.'/resources/stubs/many.stub';
+        return PLATFORM_PATH . '/resources/stubs/many.stub';
     }
 
     /**
@@ -48,6 +48,6 @@ class MakeManyBehavior extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace.'\Orchid\Entities';
+        return $rootNamespace . '\Orchid\Entities';
     }
 }

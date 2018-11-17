@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Laravel\Scout\Searchable;
 
 trait GlobalSearchTrait
 {
