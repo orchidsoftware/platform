@@ -250,10 +250,10 @@ return [
     'price' => InputField::make()
               ->type('text')
               ->name('price')
-              ->mask(json_encode([
+              ->mask([
                  'mask' => '999 999 999.99',
                  'numericInput' => true
-              ]))
+              ])
               ->title('Cost')
 ];
 ```   
@@ -263,12 +263,12 @@ return [
     'price' => InputField::make()
              ->type('text')
              ->name('price')
-             ->mask(json_encode([
+             ->mask([
                 'alias' => 'currency',
                 'prefix' => ' ',
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
-             ]))
+             ])
              ->title('Cost'),
 ];
 ```   

@@ -142,18 +142,18 @@ class User extends Authenticatable implements UserInterface
             });
 
         $user = static::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => bcrypt($password),
+            'name'        => $name,
+            'email'       => $email,
+            'password'    => bcrypt($password),
             'permissions' => $permissions,
-            'locale' => App::getLocale(),
+            'locale'      => App::getLocale(),
         ]);
 
         $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
-            'title' => "Welcome {$name}",
+            'title'   => "Welcome {$name}",
             'message' => 'You can find the latest news of the project on the website',
-            'action' => 'https://orchid.software/',
-            'type' => 'info',
+            'action'  => 'https://orchid.software/',
+            'type'    => 'info',
         ]));
     }
 
