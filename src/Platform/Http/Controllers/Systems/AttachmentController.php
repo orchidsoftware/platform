@@ -114,9 +114,9 @@ class AttachmentController extends Controller
      */
     public function update($id, Request $request)
     {
-        $files = Attachment::findOrFail($id);
-        $files->fill($request->all());
-        $files->save();
+        Attachment::findOrFail($id)
+            ->fill($request->all())
+            ->save();
 
         return response(200);
     }

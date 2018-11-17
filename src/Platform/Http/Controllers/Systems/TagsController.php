@@ -20,7 +20,9 @@ class TagsController extends Controller
      */
     public function show($tag = null)
     {
-        $tags = Dashboard::model(Post::class)::allTags()->latest('count')->limit(10);
+        $tags = Dashboard::model(Post::class)::allTags()
+            ->latest('count')
+            ->limit(10);
 
         if (! is_null($tag)) {
             $tags = $tags->where('name', 'like', '%'.$tag.'%');

@@ -109,23 +109,6 @@ class Attachment extends Model
     }
 
     /**
-     * @param null $width
-     * @param null $height
-     * @param int $quality
-     *
-     * @return \Intervention\Image\Image
-     */
-    public function getSizeImage($width = null, $height = null, $quality = 100)
-    {
-        return Image::cache(function ($image) use ($width, $height, $quality) {
-            $image->make(static::read())->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->encode(static::getAttribute('extension'), $quality);
-        }, 10, true);
-    }
-
-    /**
      * @return bool|null
      * @throws \Exception
      */
@@ -152,10 +135,10 @@ class Attachment extends Model
     /**
      * Physical removal of all copies of a file.
      *
-     * @param self $attachment
+     * @param Attachment $attachment
      * @param string $storageName
      */
-    private function removePhysicalFile(self $attachment, string $storageName)
+    private function removePhysicalFile(Attachment $attachment, string $storageName)
     {
         $storage = Storage::disk($storageName);
 
