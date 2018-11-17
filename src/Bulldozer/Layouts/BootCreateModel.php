@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Layouts;
 
-use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Fields\InputField;
 
 /**
  * Class BootCreateModel.

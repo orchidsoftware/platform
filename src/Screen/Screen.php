@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -96,7 +96,7 @@ abstract class Screen extends Controller
     public function asyncBuild($method, $slugLayouts)
     {
         $query = call_user_func_array([$this, $method], $this->arguments);
-        $post  = new Repository($query);
+        $post = new Repository($query);
 
         foreach ($this->layout() as $layout) {
             if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
@@ -112,7 +112,7 @@ abstract class Screen extends Controller
     public function view()
     {
         $this->reflectionParams('query');
-        $query      = call_user_func_array([$this, 'query'], $this->arguments);
+        $query = call_user_func_array([$this, 'query'], $this->arguments);
         $this->post = new Repository($query);
 
         return view('platform::container.layouts.base', [
@@ -130,15 +130,15 @@ abstract class Screen extends Controller
      */
     public function handle(...$parameters)
     {
-        abort_if(!$this->checkAccess(), 403);
+        abort_if(! $this->checkAccess(), 403);
 
-        if ($this->request->method() === 'GET' || (!count($parameters))) {
+        if ($this->request->method() === 'GET' || (! count($parameters))) {
             $this->arguments = $parameters;
 
             return $this->view();
         }
 
-        $method          = array_pop($parameters);
+        $method = array_pop($parameters);
         $this->arguments = $parameters;
 
         $this->reflectionParams($method);
@@ -159,9 +159,9 @@ abstract class Screen extends Controller
     {
         $class = new \ReflectionClass($this);
 
-        if (!is_string($method)) {
+        if (! is_string($method)) {
             return;
-        } elseif (!$class->hasMethod($method)) {
+        } elseif (! $class->hasMethod($method)) {
             return;
         }
 

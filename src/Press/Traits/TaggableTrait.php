@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Press\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 
 trait TaggableTrait
 {
@@ -203,12 +203,12 @@ trait TaggableTrait
         $tagsToDel = array_diff($entityTags, $tags);
 
         // Detach the tags
-        if (!empty($tagsToDel)) {
+        if (! empty($tagsToDel)) {
             $this->untag($tagsToDel);
         }
 
         // Attach the tags
-        if (!empty($tagsToAdd)) {
+        if (! empty($tagsToAdd)) {
             $this->tag($tagsToAdd);
         }
 
@@ -225,13 +225,13 @@ trait TaggableTrait
             'namespace' => $this->getEntityClassName(),
         ]);
 
-        if (!$tag->exists) {
+        if (! $tag->exists) {
             $tag->name = $name;
 
             $tag->save();
         }
 
-        if (!$this->tags()->get()->contains($tag->id)) {
+        if (! $this->tags()->get()->contains($tag->id)) {
             $tag->update(['count' => $tag->count + 1]);
 
             $this->tags()->attach($tag);

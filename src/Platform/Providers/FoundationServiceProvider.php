@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
-use Intervention\Image\ImageServiceProvider;
-use Laracasts\Generators\GeneratorsServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
-use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
 use Orchid\Alert\AlertServiceProvider;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
 use Orchid\Widget\WidgetServiceProvider;
-use Spatie\Activitylog\ActivitylogServiceProvider;
 use Watson\Active\ActiveServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
+use Intervention\Image\ImageServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
+use Laracasts\Generators\GeneratorsServiceProvider;
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -44,7 +44,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerEloquentFactoriesFrom(): self
     {
-        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH . '/database/factories'));
+        $this->app->make(Factory::class)->load(realpath(PLATFORM_PATH.'/database/factories'));
 
         return $this;
     }
@@ -56,7 +56,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected function registerDatabase(): self
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH . '/database/migrations/platform'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/platform'));
 
         return $this;
     }
@@ -68,7 +68,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerTranslations(): self
     {
-        $this->loadJsonTranslationsFrom(realpath(PLATFORM_PATH . '/resources/lang/'));
+        $this->loadJsonTranslationsFrom(realpath(PLATFORM_PATH.'/resources/lang/'));
 
         return $this;
     }
@@ -81,8 +81,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerConfig(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH . '/config/platform.php') => config_path('platform.php'),
-            realpath(PLATFORM_PATH . '/config/widget.php')   => config_path('widget.php'),
+            realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
+            realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
         ], 'config');
 
         return $this;
@@ -96,8 +96,8 @@ class FoundationServiceProvider extends ServiceProvider
     protected function registerOrchid(): self
     {
         $this->publishes([
-            realpath(PLATFORM_PATH . '/install-stubs/routes/') => base_path('routes'),
-            realpath(PLATFORM_PATH . '/install-stubs/Orchid/') => app_path('Orchid'),
+            realpath(PLATFORM_PATH.'/install-stubs/routes/') => base_path('routes'),
+            realpath(PLATFORM_PATH.'/install-stubs/Orchid/') => app_path('Orchid'),
         ], 'orchid-stubs');
 
         return $this;
@@ -110,10 +110,10 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function registerViews(): self
     {
-        $this->loadViewsFrom(PLATFORM_PATH . '/resources/views', 'platform');
+        $this->loadViewsFrom(PLATFORM_PATH.'/resources/views', 'platform');
 
         $this->publishes([
-            PLATFORM_PATH . '/resources/views' => resource_path('views/vendor/platform'),
+            PLATFORM_PATH.'/resources/views' => resource_path('views/vendor/platform'),
         ], 'views');
 
         return $this;
@@ -159,18 +159,18 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if (!Route::hasMacro('screen')) {
+        if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name = null) {
-                return Route::any($url . '/{method?}/{argument?}', [$screen, 'handle'])
+                return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
         }
 
-        if (!defined('PLATFORM_PATH')) {
+        if (! defined('PLATFORM_PATH')) {
             /*
              * Get the path to the ORCHID Platform folder.
              */
-            define('PLATFORM_PATH', realpath(__DIR__ . '/../../../'));
+            define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
     }
 }

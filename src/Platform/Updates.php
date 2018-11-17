@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform;
 
 use Composer\Semver\Comparator;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class Updates
 {
@@ -61,7 +61,7 @@ class Updates
             $packages = [];
 
             for ($i = 0; $i < rand(10, 20); $i++) {
-                $packages[] = ['name' => 'orchid/platform', 'version' => $this->currentVersion . '.0'];
+                $packages[] = ['name' => 'orchid/platform', 'version' => $this->currentVersion.'.0'];
             }
 
             $content = json_encode([

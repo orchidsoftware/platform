@@ -57,7 +57,7 @@ class Category extends Taxonomy
      */
     public function newWithCreateTerm($term): self
     {
-        $newTerm       = Term::firstOrCreate($term);
+        $newTerm = Term::firstOrCreate($term);
         $this->term_id = $newTerm->id;
         $this->term()->associate($newTerm);
         $this->setTaxonomy();
@@ -74,7 +74,7 @@ class Category extends Taxonomy
      */
     public function setParent($parent_id = 0): self
     {
-        $this->parent_id = ((int)$parent_id > 0) ? (int)$parent_id : 0;
+        $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : 0;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class LinkCommand extends Command
             return;
         }
 
-        $this->laravel->make('files')->link(realpath(PLATFORM_PATH . '/public/'), public_path('orchid'));
+        $this->laravel->make('files')->link(realpath(PLATFORM_PATH.'/public/'), public_path('orchid'));
 
         $this->info('The [public/orchid] directory has been linked.');
     }

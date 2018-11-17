@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Http\Request;
+use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 

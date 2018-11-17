@@ -21,7 +21,7 @@ class SearchController
         $results = $dashboard->getGlobalSearch()
             ->map(function ($model) use ($query) {
                 $result = $model->searchQuery($query);
-                $label  = $model->searchLabel();
+                $label = $model->searchLabel();
 
                 if ($result->total() > 0) {
                     $result = $this->generatedPresent($result);
@@ -45,7 +45,7 @@ class SearchController
     {
         return collect($paginator->items())
             ->map(function ($item) {
-                return (object)[
+                return (object) [
                     'title'    => $item->searchTitle(),
                     'subTitle' => $item->searchSubTitle(),
                     'url'      => $item->searchUrl(),

@@ -33,13 +33,13 @@ abstract class Builder
     {
         $this->parameters = collect($parameters);
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             $this->class = new ClassGenerator;
             $this->class->setName($class);
 
             return;
         }
-        $reflection  = new ClassReflection($class);
+        $reflection = new ClassReflection($class);
         $this->class = ClassGenerator::fromReflection($reflection);
     }
 

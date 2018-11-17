@@ -100,7 +100,7 @@ class ItemMenu
         $item = new self();
 
         $item->label = $label;
-        $item->slug  = str_slug($label);
+        $item->slug = str_slug($label);
 
         return $item;
     }

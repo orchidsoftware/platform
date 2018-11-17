@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\App;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Platform\Notifications\ResetPassword;
-use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguageTrait;
+use Illuminate\Support\Facades\App;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Platform\Traits\FilterTrait;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravolt\Avatar\Facade as AvatarGenerator;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -185,8 +185,8 @@ class User extends Authenticatable implements UserInterface
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
-                    $slug                  = $value['slug'];
-                    $group[$key]['active'] = array_key_exists($slug, $permissions) && (bool)$permissions[$slug];
+                    $slug = $value['slug'];
+                    $group[$key]['active'] = array_key_exists($slug, $permissions) && (bool) $permissions[$slug];
                 }
 
                 return $group;

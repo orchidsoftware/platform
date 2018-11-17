@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
-use Orchid\Screen\Fields\DateTimerField;
+use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\DateTimerField;
+use Illuminate\Contracts\Pagination\Paginator;
 
 abstract class Many implements EntityContract
 {
@@ -80,7 +80,7 @@ abstract class Many implements EntityContract
     public function showFilterDashboard(): View
     {
         $dashboardFilter = $this->getFilters(true);
-        $chunk           = ceil($dashboardFilter->count() / 4);
+        $chunk = ceil($dashboardFilter->count() / 4);
 
         return view('platform::container.posts.filter', [
             'filters' => $dashboardFilter,
