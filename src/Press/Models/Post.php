@@ -342,6 +342,7 @@ class Post extends Model
     }
 
     /**
+     * @param Builder $query
      * @param string $taxonomy
      * @param mixed $term
      *

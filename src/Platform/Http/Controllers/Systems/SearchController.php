@@ -39,7 +39,7 @@ class SearchController
     /**
      * @param \Illuminate\Contracts\Pagination\LengthAwarePaginator $paginator
      *
-     * @return array
+     * @return Collection
      */
     private function generatedPresent(LengthAwarePaginator $paginator): Collection
     {

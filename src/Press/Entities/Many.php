@@ -12,7 +12,7 @@ use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\DateTimerField;
 use Illuminate\Contracts\Pagination\Paginator;
 
-abstract class Many
+abstract class Many implements EntityContract
 {
     use Structure, Actions;
 

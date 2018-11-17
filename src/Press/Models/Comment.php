@@ -136,7 +136,8 @@ class Comment extends Model
     /**
      * Where clause for only approved comments.
      *
-     * @return Comment
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeApproved(Builder $query): Builder
     {

@@ -22,9 +22,9 @@ class PermissionTest extends TestUnitCase
         $user = $this->createUser();
 
         // User permissions
-        $this->assertEquals($user->hasAccess('access.to.public.data'), true);
-        $this->assertEquals($user->hasAccess('access.to.secret.data'), false);
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data'), false);
+        $this->assertTrue($user->hasAccess('access.to.public.data'));
+        $this->assertFalse($user->hasAccess('access.to.secret.data'));
+        $this->assertFalse($user->hasAccess('access.roles.to.public.data'));
 
         $role = $this->createRole();
         $user->addRole($role);
@@ -32,10 +32,12 @@ class PermissionTest extends TestUnitCase
         // User of role
         $this->assertEquals($user->getRoles()->count(), 1);
         $this->assertEquals($role->getUsers()->count(), 1);
-        $this->assertEquals($user->inRole('admin'), true);
+        $this->assertTrue($user->inRole('admin'));
+        $this->assertTrue($user->inRole($role));
+        $this->assertFalse($user->inRole('notFoundRole'));
 
         // Role permissions
-        $this->assertEquals($user->hasAccess('access.roles.to.public.data', false), true);
+        $this->assertTrue($user->hasAccess('access.roles.to.public.data', false));
     }
 
     /**
@@ -92,19 +94,48 @@ class PermissionTest extends TestUnitCase
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }
 
-    /*
-        public function test_it_replase_permission()
-        {
-            $user = $this->createUser();
+    public function test_it_replase_permission()
+    {
+        $user = $this->createUser();
 
-            $user->replaceRoles([]);
-            //
-        }
+        $user->replaceRoles([]);
 
-        public function test_it_delete_user()
-        {
-            $user = $this->createUser();
-            $user->delete();
-        }
-    */
+        $this->assertTrue($user->roles()->get()->isEmpty());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_it_delete_user()
+    {
+        $user = $this->createUser();
+        $role = $this->createRole();
+
+        $user->addRole($role);
+        $user->removeRole($role);
+
+        $this->assertFalse($user->inRole($role));
+
+        $user->addRole($role);
+        $user->removeRoleBySlug($role->slug);
+
+        $this->assertFalse($user->inRole($role));
+
+        $this->assertTrue($user->delete());
+    }
+
+    public function test_it_delete_role()
+    {
+        $user = $this->createUser();
+        $role = $this->createRole();
+
+        $user->addRole($role);
+        $this->assertTrue($user->inRole($role));
+
+        $this->assertTrue($role->delete());
+
+        $user->refresh();
+
+        $this->assertFalse($user->inRole($role));
+    }
 }

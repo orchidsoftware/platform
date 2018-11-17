@@ -87,7 +87,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->middleware(config('platform.middleware.private'))
-            ->namespace($this->namespace)
+            //->namespace($this->namespace)
             ->group(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
 
         /*
@@ -96,7 +96,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->middleware(config('platform.middleware.public'))
-            ->namespace('Orchid\Platform\Http\Controllers\Auth')
+            //->namespace('Orchid\Platform\Http\Controllers\Auth')
             ->group(realpath(PLATFORM_PATH.'/routes/auth.php'));
 
         /*
@@ -105,7 +105,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/systems'))
             ->middleware(config('platform.middleware.private'))
-            ->namespace('Orchid\Platform\Http\Controllers\Systems')
+            //->namespace('Orchid\Platform\Http\Controllers\Systems')
             ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
 
         /*
@@ -115,7 +115,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::domain((string) config('platform.domain'))
                 ->prefix(Dashboard::prefix('/'))
                 ->middleware(config('platform.middleware.private'))
-                ->namespace('App\Orchid\Screens')
+                //->namespace('App\Orchid\Screens')
                 ->group(base_path('routes/platform.php'));
         }
     }

@@ -46,7 +46,8 @@
     "spatie/laravel-backup": "^5.10",
     "spomky-labs/base64url": "^1.0",
     "watson/active": "^3.0",
-    "zendframework/zend-code": "^3.3"
+    "zendframework/zend-code": "^3.3",
+    "ext-json": "*"
   },
   "require-dev": {
     "fzaninotto/faker": "^1.4",

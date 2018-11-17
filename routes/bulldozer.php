@@ -2,4 +2,6 @@
 
 declare(strict_types=1);
 
-$this->screen('/{model?}', 'Screens\BootModelScreen', 'platform.bulldozer.index');
+use Orchid\Bulldozer\Http\Screens\BootModelScreen;
+
+$this->screen('/{model?}', BootModelScreen::class, 'platform.bulldozer.index');

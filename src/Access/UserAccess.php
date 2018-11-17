@@ -99,27 +99,27 @@ trait UserAccess
      *
      * @param $slug
      *
-     * @return bool
+     * @return int
      */
-    public function removeRoleBySlug($slug): bool
+    public function removeRoleBySlug($slug): int
     {
         $role = $this->roles()->where('slug', $slug)->first();
 
-        return $this->removeRole($role);
+        return $this->roles()->detach($role);
     }
 
     /**
      * @param RoleInterface $role
      *
-     * @return bool
+     * @return int
      */
-    public function removeRole(RoleInterface $role): bool
+    public function removeRole(RoleInterface $role): int
     {
-        $result = $this->roles()->where('slug', $role->getRoleSlug())->first()->remove();
+        $result = $this->roles()->where('slug', $role->getRoleSlug())->first();
 
         $this->eventRemoveRole($role);
 
-        return $result;
+        return $this->roles()->detach($result);
     }
 
     /**

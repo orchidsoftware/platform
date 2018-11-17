@@ -90,6 +90,7 @@ class InputField extends Field
         'tabindex',
         'type',
         'value',
+        'mask',
     ];
 
     /**
@@ -99,5 +100,19 @@ class InputField extends Field
     public static function make($name = null): self
     {
         return (new static)->name($name);
+    }
+
+    /**
+     * @param string|array $mask
+     *
+     * @return InputField
+     */
+    public function modifyMask($mask): self
+    {
+        if (is_array($mask)) {
+            $this->attributes['mask'] = json_encode($mask);
+        }
+
+        return $this;
     }
 }
