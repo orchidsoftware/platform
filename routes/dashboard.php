@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\SearchController;
-use Orchid\Platform\Http\Screens\AnnouncementScreen;
 use Orchid\Platform\Http\Screens\BackupScreen;
 use Orchid\Platform\Http\Screens\HistoryScreen;
-
+use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +25,7 @@ $this->fallback(function () {
     return view('platform::errors.404');
 });
 
-$this->post('/search/{query}', [SearchController::class,'index'])->name('platform.search');
+$this->post('/search/{query}', [SearchController::class, 'index'])->name('platform.search');
 
 $this->screen('/backups', BackupScreen::class, 'platform.systems.backups');
 $this->screen('/announcement', AnnouncementScreen::class, 'platform.systems.announcement');

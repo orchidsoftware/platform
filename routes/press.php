@@ -11,7 +11,8 @@ declare(strict_types=1);
 |
 */
 
-use Orchid\Press\Http\Controllers\{PageController, PostController};
+use Orchid\Press\Http\Controllers\PageController;
+use Orchid\Press\Http\Controllers\PostController;
 
 $this->post('posts/restore/{id?}', [PostController::class, 'restore'])
     ->name('platform.posts.restore');
