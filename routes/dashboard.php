@@ -27,6 +27,6 @@ $this->fallback(function () {
 
 $this->post('/search/{query}', [SearchController::class, 'index'])->name('platform.search');
 
-$this->screen('/backups', BackupScreen::class, 'platform.systems.backups');
-$this->screen('/announcement', AnnouncementScreen::class, 'platform.systems.announcement');
-$this->screen('/history', HistoryScreen::class, 'platform.systems.history');
+$this->screen('/backups', BackupScreen::class)->name('platform.systems.backups');
+$this->screen('/announcement', AnnouncementScreen::class)->name('platform.systems.announcement');
+$this->screen('/history', HistoryScreen::class)->name('platform.systems.history');
