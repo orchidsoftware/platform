@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Support `argon` hash driver
+
+### Changed
+- Method `url()` Attachment first parameter is the default value.
+- Route use class [729](https://github.com/orchidsoftware/platform/issues/729)
+- Route helper `->screen()` no longer requires the third parameter as mandatory, use `->screen(...)->name()`
+
+### Removed
+- Attachment no longer create copies of images. [719](https://github.com/orchidsoftware/platform/issues/719). Use events for your own creation or packages to create cdn, for example, [Intervention/imagecache](https://github.com/Intervention/imagecache)
 
 ## [3.0.8] - 2018-11-16
 

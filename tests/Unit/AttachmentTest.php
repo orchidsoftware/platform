@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
+use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
 use Orchid\Tests\TestUnitCase;
-use Illuminate\Http\UploadedFile;
 
 /**
  * Class AttachmentTest.
@@ -48,9 +48,7 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-        $this->assertContains('low', $upload->url('low'));
-        $this->assertContains('medium', $upload->url('medium'));
-        $this->assertContains('high', $upload->url('high'));
+        $this->assertNotNull($upload->url());
     }
 
     protected function setUp()

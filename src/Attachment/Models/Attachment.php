@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Attachment.
@@ -61,23 +61,19 @@ class Attachment extends Model
     /**
      * Return the address by which you can access the file.
      *
-     * @param string $size
+     * @param string $default
      *
      * @return string
      */
-    public function url($size = ''): string
+    public function url($default = null): ?string
     {
         $disk = $this->getAttribute('disk');
 
-        if (! empty($size)) {
-            $size = '_'.$size;
-
-            if (! Storage::disk($disk)->exists($this->physicalPath($size))) {
-                return $this->url();
-            }
+        if (Storage::disk($disk)->exists($this->physicalPath())) {
+            return Storage::disk($disk)->url($this->physicalPath());
         }
 
-        return Storage::disk($disk)->url($this->path.$this->name.$size.'.'.$this->extension);
+        return $default;
     }
 
     /**
@@ -91,9 +87,9 @@ class Attachment extends Model
     /**
      * @return string
      */
-    public function physicalPath($size = ''): string
+    public function physicalPath(): string
     {
-        return $this->path.$this->name.$size.'.'.$this->extension;
+        return $this->path . $this->name . '.' . $this->extension;
     }
 
     /**
@@ -115,7 +111,8 @@ class Attachment extends Model
     {
         if ($this->exists) {
             if (self::where('hash', $this->hash)->where('disk', $this->disk)->count() <= 1) {
-                $this->removePhysicalFile($this, $this->getAttribute('disk'));
+                //Physical removal of all copies of a file.
+                Storage::disk($this->disk)->delete($this->physicalPath());
             }
             $this->relationships()->delete();
         }
@@ -129,27 +126,6 @@ class Attachment extends Model
     public function relationships()
     {
         return $this->hasMany(Dashboard::model(Attachmentable::class), 'attachment_id');
-    }
-
-    /**
-     * Physical removal of all copies of a file.
-     *
-     * @param Attachment $attachment
-     * @param string $storageName
-     */
-    private function removePhysicalFile(self $attachment, string $storageName)
-    {
-        $storage = Storage::disk($storageName);
-
-        $storage->delete($this->physicalPath());
-
-        if (strpos($this->mime, 'image') !== 0) {
-            return;
-        }
-
-        foreach (array_keys(config('platform.images', [])) as $format) {
-            $storage->delete($attachment->path.$attachment->name.'_'.$format.'.'.$attachment->extension);
-        }
     }
 
     /**

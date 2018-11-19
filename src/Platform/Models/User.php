@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Laravolt\Avatar\Facade as AvatarGenerator;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -135,7 +136,7 @@ class User extends Authenticatable implements UserInterface
         $user = static::create([
             'name'        => $name,
             'email'       => $email,
-            'password'    => bcrypt($password),
+            'password'    => Hash::make($password),
             'permissions' => $permissions,
         ]);
 

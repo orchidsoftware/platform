@@ -16,6 +16,7 @@ class SupportFormatsTest extends TestUnitCase
 
     public function test_format_bytes()
     {
+        $this->assertEquals(Formats::formatBytes(0), 0);
         $this->assertEquals(Formats::formatBytes(1000), '1000 bytes');
         $this->assertEquals(Formats::formatBytes(2000), '1.95 KB');
         $this->assertEquals(Formats::formatBytes(10000000), '9.54 MB');
