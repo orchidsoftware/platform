@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Orchid\Platform\Notifications\ResetPassword;
-use Orchid\Platform\Traits\FilterTrait;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Support\Facades\Dashboard;
+use Orchid\Platform\Traits\FilterTrait;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Laravolt\Avatar\Facade as AvatarGenerator;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Platform\Notifications\ResetPassword;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements UserInterface
 {

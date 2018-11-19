@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Route;
 use Orchid\Platform\Dashboard;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 /**
  * Class RouteBootServiceProvider.

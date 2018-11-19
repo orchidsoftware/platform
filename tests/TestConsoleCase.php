@@ -18,6 +18,6 @@ abstract class TestConsoleCase extends TestCase
      */
     public function generateNameFromMethod(): string
     {
-        return studly_case(debug_backtrace()[1]['function'] . str_random());
+        return studly_case(debug_backtrace()[1]['function'].str_random());
     }
 }
