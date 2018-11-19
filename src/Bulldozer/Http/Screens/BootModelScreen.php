@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Orchid\Bulldozer\Builders\Model;
-use Illuminate\Http\RedirectResponse;
 use Orchid\Bulldozer\Builders\Migration;
-use Orchid\Bulldozer\Layouts\BootCreateModel;
+use Orchid\Bulldozer\Builders\Model;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
 
 /**
  * Class BootModelScreen.
@@ -124,7 +124,14 @@ class BootModelScreen extends Screen
             Layouts::view('platform::container.boot.index'),
             Layouts::modals([
                 'CreateModelModal' => [
-                    BootCreateModel::class,
+                    Layouts::rows([
+                        InputField::make('name')
+                            ->title(__('Model name:'))
+                            ->help(__('Create a new model for your application'))
+                            ->pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
+                            ->hr(false)
+                            ->required(),
+                    ]),
                 ],
             ]),
         ];

@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Facades\App;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Laravolt\Avatar\Facade as AvatarGenerator;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Support\Facades\Dashboard;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements UserInterface
 {
@@ -35,15 +34,7 @@ class User extends Authenticatable implements UserInterface
         'email',
         'password',
         'last_login',
-        'avatar',
         'permissions',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $attributes = [
-        'locale' => 'en',
     ];
 
     /**
@@ -146,7 +137,6 @@ class User extends Authenticatable implements UserInterface
             'email'       => $email,
             'password'    => bcrypt($password),
             'permissions' => $permissions,
-            'locale'      => App::getLocale(),
         ]);
 
         $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
