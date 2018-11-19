@@ -72,8 +72,8 @@ class Attachment extends Model
         if (! empty($size)) {
             $size = '_'.$size;
 
-            if (! Storage::disk($disk)->exists($this->physicalPath())) {
-                return $this->url(null);
+            if (! Storage::disk($disk)->exists($this->physicalPath($size))) {
+                return $this->url();
             }
         }
 
@@ -91,9 +91,9 @@ class Attachment extends Model
     /**
      * @return string
      */
-    public function physicalPath(): string
+    public function physicalPath($size = ''): string
     {
-        return $this->path.$this->name.'.'.$this->extension;
+        return $this->path.$this->name.$size.'.'.$this->extension;
     }
 
     /**
