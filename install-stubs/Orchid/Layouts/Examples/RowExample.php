@@ -33,14 +33,16 @@ class RowExample extends Rows
                     ->max(255)
                     ->required()
                     ->title('Name Articles')
-                    ->help('Article title'),
+                    ->help('Article title')
+                    ->popover('Tooltip - hint that user opens himself.'),
 
                 InputField::make('title')
                     ->type('text')
                     ->max(255)
                     ->required()
                     ->title('Article Title')
-                    ->help('SEO title'),
+                    ->help('SEO title')
+                    ->popover('Tooltip - hint that user opens himself.'),
 
             ]),
 

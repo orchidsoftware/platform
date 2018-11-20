@@ -24,6 +24,7 @@ use Orchid\Screen\Field;
  * @method $this wrap($value = true)
  * @method $this help($value = true)
  * @method $this max($value = true)
+ * @method $this popover($value = true)
  */
 class TextAreaField extends Field
 {

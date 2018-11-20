@@ -36,6 +36,7 @@ use Orchid\Screen\Field;
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
  */
 class PasswordField extends Field
 {

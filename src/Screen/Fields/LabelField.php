@@ -10,6 +10,7 @@ use Orchid\Screen\Field;
  * Class LabelField.
  *
  * @method $this name($value = true)
+ * @method $this popover($value = true)
  */
 class LabelField extends Field
 {
