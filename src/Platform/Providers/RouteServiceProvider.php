@@ -16,15 +16,6 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to the controller routes in your routes file.
-     *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'Orchid\Platform\Http';
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @internal param Router $router
@@ -87,7 +78,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->middleware(config('platform.middleware.private'))
-            //->namespace($this->namespace)
             ->group(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
 
         /*
@@ -96,7 +86,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
             ->middleware(config('platform.middleware.public'))
-            //->namespace('Orchid\Platform\Http\Controllers\Auth')
             ->group(realpath(PLATFORM_PATH.'/routes/auth.php'));
 
         /*
@@ -105,7 +94,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/systems'))
             ->middleware(config('platform.middleware.private'))
-            //->namespace('Orchid\Platform\Http\Controllers\Systems')
             ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
 
         /*
@@ -115,7 +103,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::domain((string) config('platform.domain'))
                 ->prefix(Dashboard::prefix('/'))
                 ->middleware(config('platform.middleware.private'))
-                //->namespace('App\Orchid\Screens')
                 ->group(base_path('routes/platform.php'));
         }
     }

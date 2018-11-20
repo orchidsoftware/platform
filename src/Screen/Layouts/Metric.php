@@ -6,6 +6,9 @@ namespace Orchid\Screen\Layouts;
 
 use Orchid\Screen\Repository;
 
+/**
+ * Class Metric
+ */
 abstract class Metric
 {
     /**
