@@ -2,34 +2,6 @@
 ----------
 Os campos são usados para gerar a saída para o modelo do formulário.
 
-Todos os campos possíveis estão definidos no arquivo `config/platform.php` dentro da seção de campos
-Todos os campos podem ser usados num comportamento, modelo ou filtro.
-
-Se precisas de criar o teu próprio campo, não seja tímido para o fazer.
-O campo consiste numa classe com um método obrigatório `create` que deve implementar a `view` para mostrar ao utilizador.
-
-
-```php
-// Allowed template fields
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'select'       => Orchid\Screen\Fields\SelectField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'place'        => Orchid\Screen\Fields\PlaceField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-
 Os campos e comportamentos são definidos separadamente o que nos permite usar apenas uma chave
 para os aceder, por exemplo, se precisarmos de um valor solicitado pelo redactor `wysiwyg`, será a nossa classe.
 Iso permite alterar o `tinymce` para `summernote` ou `ckeditor` quase num clique.

@@ -5,31 +5,6 @@ Fields are used to generate the output for the form template.
 All possible fields are defined in the `config/platform.php` file inside the fields section
 Every field may be used in a entity, template or filter. 
 
-If you need to create your own field don't be shy to do it.
-Field consists of one class with a mandatory `create` method that must implement the `view`  to display to user.
-
-
-```php
-// Allowed template fields
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'select'       => Orchid\Screen\Fields\SelectField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'place'        => Orchid\Screen\Fields\PlaceField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-
 Fields and entities are defined separately, that allows us to use only a key 
 to access them, for example if we need a `wysiwyg` redactor requested value will be our class. 
 This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one click.

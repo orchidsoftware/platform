@@ -3,33 +3,6 @@
 
 Поля используются для генерации вывода шаблона формы заполнения и редактирования
 
-Все возможные поля определены в `config/platform.php` в разделе полей.
-Каждое поле может использоваться в поведении, макете или фильтре. 
-
-Если вам нужно создать своё собственное поле, не стесняйтесь.
-Поле состоит из одного класса с обязательным методом `create`, который должен реализовать `представление` для отображения пользователю.
-
-
-```php
-// Доступные поля для формирования шаблонов
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'select'       => Orchid\Screen\Fields\SelectField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-
 Поля и поведения указываются отдельно, что позволяет использовать лишь ключ, 
 например в записи мы хотим wysing редактор, а значением будет класс. 
 Это позволяет менять редактор с tinymce на summernote или ckeditor почти в один клик.
