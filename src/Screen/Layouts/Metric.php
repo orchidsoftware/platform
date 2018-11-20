@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Metric
+ * Class Metric.
  */
 abstract class Metric extends Base
 {
