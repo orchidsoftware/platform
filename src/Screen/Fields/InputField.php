@@ -90,7 +90,7 @@ class InputField extends Field
         'tabindex',
         'type',
         'value',
-        'mask'
+        'mask',
     ];
 
     /**
@@ -113,6 +113,7 @@ class InputField extends Field
         if (is_array($mask)) {
             $this->attributes['mask'] = json_encode($mask);
         }
+
         return $this;
     }
 }
