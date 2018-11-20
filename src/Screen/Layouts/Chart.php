@@ -9,7 +9,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Chart.
  */
-abstract class Chart
+abstract class Chart extends Base
 {
     /**
      * @var string

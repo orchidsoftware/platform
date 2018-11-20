@@ -9,7 +9,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Table.
  */
-abstract class Table
+abstract class Table extends Base
 {
     /**
      * @var string

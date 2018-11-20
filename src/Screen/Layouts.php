@@ -139,6 +139,13 @@ class Layouts
                     continue;
                 }
 
+                /*
+                 * Check permissions
+                 */
+                if (!$layout->canSee($repository)) {
+                    continue;
+                }
+
                 $build[$key][] = $layout->build($repository);
             }
         }

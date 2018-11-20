@@ -9,7 +9,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Metric
  */
-abstract class Metric
+abstract class Metric extends Base
 {
     /**
      * @var string

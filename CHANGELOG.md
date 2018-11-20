@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Support `argon` hash driver
+- Method `canSee` in layout for check display [733](https://github.com/orchidsoftware/platform/issues/733)
 
 ### Changed
 - Method `url()` Attachment first parameter is the default value.
