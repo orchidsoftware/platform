@@ -142,7 +142,7 @@ class Layouts
                 /*
                  * Check permissions
                  */
-                if (!$layout->canSee($repository)) {
+                if (! $layout->canSee($repository)) {
                     continue;
                 }
 
