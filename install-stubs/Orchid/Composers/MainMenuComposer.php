@@ -50,13 +50,13 @@ class MainMenuComposer
         // Main
         $this->dashboard->menu
             ->add('Main',
-                ItemMenu::setLabel('Example menu')
+                ItemMenu::setLabel('Example 4')
                     ->setIcon('icon-folder')
                     ->setRoute(route('platform.example'))
                     ->setGroupName('Example boilerplate')
             )
             ->add('Main',
-                ItemMenu::setLabel('Example menu')
+                ItemMenu::setLabel('Example 5 menu')
                     ->setSlug('example-menu')
                     ->setIcon('icon-heart')
                     ->setRoute('#')
