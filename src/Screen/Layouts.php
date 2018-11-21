@@ -142,7 +142,7 @@ class Layouts
                 /*
                  * Check permissions
                  */
-                if (! $layout->canSee($repository)) {
+                if (method_exists($layout, 'canSee') && !$layout->canSee($repository)) {
                     continue;
                 }
 
