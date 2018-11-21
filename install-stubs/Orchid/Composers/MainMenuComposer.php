@@ -56,9 +56,22 @@ class MainMenuComposer
                     ->setGroupName('Example boilerplate')
             )
             ->add('Main',
-                ItemMenu::setLabel('Example 5')
+                ItemMenu::setLabel('Example 5 menu')
+                    ->setSlug('example-menu')
+                    ->setIcon('icon-heart')
+                    ->setRoute('#')
+                    ->setChilds(true)
+            )
+            ->add('example-menu',
+                ItemMenu::setLabel('Example sub 1')
+                    ->setIcon('icon-bag')
+                    ->setRoute(route('platform.example'))
+            )
+            ->add('example-menu',
+                ItemMenu::setLabel('Example sub 2')
                     ->setIcon('icon-heart')
                     ->setRoute(route('platform.example'))
+                    ->setGroupName('Separate')
             )
             ->add('Main',
                 ItemMenu::setLabel('Example 6')
