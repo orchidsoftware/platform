@@ -82,7 +82,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
-            realpath(PLATFORM_PATH.'/config/widget.php')   => config_path('widget.php'),
         ], 'config');
 
         return $this;
@@ -147,7 +146,6 @@ class FoundationServiceProvider extends ServiceProvider
             ImageServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
-            WidgetServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,

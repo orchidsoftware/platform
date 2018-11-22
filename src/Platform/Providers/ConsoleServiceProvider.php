@@ -28,7 +28,6 @@ class ConsoleServiceProvider extends ServiceProvider
         AdminCommand::class,
         FilterCommand::class,
         LinkCommand::class,
-        WidgetCommand::class,
         RowsCommand::class,
         ScreenCommand::class,
         TableCommand::class,

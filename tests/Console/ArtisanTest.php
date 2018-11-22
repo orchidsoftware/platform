@@ -40,13 +40,6 @@ class ArtisanTest extends TestConsoleCase
             ->assertExitCode(0);
     }
 
-    public function test_artisan_orchid_widget()
-    {
-        $this->artisan('orchid:widget', ['name' => $this->generateNameFromMethod()])
-            ->expectsOutput('Widget created successfully.')
-            ->assertExitCode(0);
-    }
-
     public function test_artisan_orchid_screen()
     {
         $this->artisan('orchid:screen', ['name' => $this->generateNameFromMethod()])
@@ -79,7 +72,7 @@ class ArtisanTest extends TestConsoleCase
     {
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
-            ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
+            ->expectsQuestion('What is your emWidgetCommandail?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User created successfully.');
     }
