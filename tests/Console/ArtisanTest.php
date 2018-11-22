@@ -72,7 +72,7 @@ class ArtisanTest extends TestConsoleCase
     {
         $this->artisan('orchid:admin')
             ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
-            ->expectsQuestion('What is your emWidgetCommandail?', 'testConsoleCreateUser@console.loc')
+            ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User created successfully.');
     }
