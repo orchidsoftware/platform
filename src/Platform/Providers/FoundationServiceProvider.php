@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
-use Orchid\Widget\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
