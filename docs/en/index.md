@@ -19,6 +19,8 @@ In case you find some mistakes in the documentation please specify the section a
 Before installation and use of the platform we recomend you to read about the problems it was created to solve. This little waste of time will help you in future.
 
 
+![Index](https://orchid.software/img/ui/index.png)
+
 ## Introduction
 
 ORCHID - is an instrument for [RAD](https://en.wikipedia.org/wiki/Rapid_application_development) development of web-sites and linear business-applications. 

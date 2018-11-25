@@ -15,6 +15,9 @@ This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one 
  
 ## Input
 
+
+![Input](https://orchid.software/img/ui/input.png)
+
 Input is one of the most diversed elements of forms that allows you to create different parts of interface and provide interaction with user.
 Input is mainly intended to create text fields.
  
@@ -38,6 +41,9 @@ return [
  
 ## Wysiwyg
 
+
+![Wysing](https://orchid.software/img/ui/wysing.png)
+
 A visual redactor which contents are displayed in the process of redaction and look almost like a result.
 The redactor allows to add images, tables, define text styles and embed videos.
  
@@ -55,6 +61,10 @@ return [
 To display a top panel and a menu, that allows you to view a splash screen and html code, in the redactor, you need to set an attribute `theme('modern')`.
  
 ## Markdown
+
+
+![Markdown](https://orchid.software/img/ui/markdown.png)
+![Markdown2](https://orchid.software/img/ui/markdown2.png)
 
 Light markup language redactor 
  created to write a maximum human-friendly and easy-to-correct text
@@ -86,6 +96,9 @@ return [
            
        
 ## Datetime
+ 
+ 
+![Datatime](https://orchid.software/img/ui/datatime.png)
  
 Allows to set date and time
 
@@ -119,6 +132,9 @@ return [
 ```           
 
 ## Code
+ 
+ 
+![Code](https://orchid.software/img/ui/code.png)
  
 A field for a program code with a highligt
 
@@ -183,21 +199,6 @@ return [
                 ->help('Allow search bots to index'),
 ];
 ```
-
-
-## List
- 
-Dynamical adding and sorting of values
-
-An example:
-```php
-return [
-    'list' => Field::tag('list')
-                  ->name('list')
-                  ->title('Dynamic list')
-                  ->help('Dynamic list'),
-];
-```   
 
 
 ## Mask
