@@ -114,21 +114,23 @@ class AttachmentController extends Controller
      */
     public function update($id, Request $request)
     {
-        $files = Attachment::findOrFail($id);
-        $files->fill($request->all());
-        $files->save();
+        Attachment::findOrFail($id)
+            ->fill($request->all())
+            ->save();
 
         return response(200);
     }
 
     /**
+     * @param $file
+     * @param Request $request
      * @return mixed
      */
     private function createModel($file, Request $request)
     {
         $model = app()->make(File::class, [
-            'file' => $file,
-            'disk' => $request->get('storage', 'public'),
+            'file'  => $file,
+            'disk'  => $request->get('storage', 'public'),
             'group' => $request->get('group'),
         ])->load();
 

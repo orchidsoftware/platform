@@ -72,8 +72,8 @@ class Post extends Model
      * @var array
      */
     protected $casts = [
-        'type' => 'string',
-        'slug' => 'string',
+        'type'    => 'string',
+        'slug'    => 'string',
         'content' => 'array',
         'options' => 'array',
     ];
@@ -324,7 +324,8 @@ class Post extends Model
     {
         $taxonomies = $this->taxonomies;
         foreach ($taxonomies as $taxonomy) {
-            $taxonomyName = $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
+            $taxonomyName =
+                $taxonomy['taxonomy'] === 'post_tag' ? 'tag' : $taxonomy['taxonomy'];
             $terms[$taxonomyName][$taxonomy->term['slug']] = $taxonomy->term->content;
         }
 
@@ -342,6 +343,7 @@ class Post extends Model
     }
 
     /**
+     * @param Builder $query
      * @param string $taxonomy
      * @param mixed $term
      *

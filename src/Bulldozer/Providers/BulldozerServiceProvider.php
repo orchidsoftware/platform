@@ -66,7 +66,7 @@ class BulldozerServiceProvider extends ServiceProvider
         return [
             __('Systems') => [
                 [
-                    'slug' => 'platform.bulldozer',
+                    'slug'        => 'platform.bulldozer',
                     'description' => __('Model Generator'),
                 ],
             ],

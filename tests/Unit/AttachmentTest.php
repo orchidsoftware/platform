@@ -48,9 +48,7 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-        $this->assertContains('low', $upload->url('low'));
-        $this->assertContains('medium', $upload->url('medium'));
-        $this->assertContains('high', $upload->url('high'));
+        $this->assertNotNull($upload->url());
     }
 
     protected function setUp()

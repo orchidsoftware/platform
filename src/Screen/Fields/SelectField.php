@@ -18,6 +18,7 @@ use Orchid\Screen\Field;
  * @method $this size($value = true)
  * @method $this tabindex($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
  */
 class SelectField extends Field
 {

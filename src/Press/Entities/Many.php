@@ -12,7 +12,7 @@ use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\DateTimerField;
 use Illuminate\Contracts\Pagination\Paginator;
 
-abstract class Many
+abstract class Many implements EntityContract
 {
     use Structure, Actions;
 
@@ -66,9 +66,9 @@ abstract class Many
     public function generateGrid(): array
     {
         return [
-            'data' => $this->get(),
+            'data'   => $this->get(),
             'fields' => $this->grid(),
-            'type' => $this,
+            'type'   => $this,
         ];
     }
 
@@ -84,7 +84,7 @@ abstract class Many
 
         return view('platform::container.posts.filter', [
             'filters' => $dashboardFilter,
-            'chunk' => $chunk,
+            'chunk'   => $chunk,
         ]);
     }
 

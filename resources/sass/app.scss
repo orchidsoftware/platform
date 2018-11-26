@@ -13,12 +13,12 @@
 @import "~flatpickr/dist/flatpickr.min";
 @import "~orchid-icons/src/scss/orchid-icons";
 @import "~leaflet/dist/leaflet";
+@import "~quill/dist/quill.snow";
 
 // App
 @import "core/mixins";
 @import "core/reset";
 @import "core/layout";
-@import "core/arrow";
 @import "core/buttons";
 @import "core/modals";
 @import "plugins/plugin";

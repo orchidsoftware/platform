@@ -52,7 +52,7 @@
   background-color: #fff;
   color: $text-color;
   a {
-    color: $link-color!important;
+    color: $link-color;
     &:hover {
       color: darken($link-color, 10%)!important;
     }

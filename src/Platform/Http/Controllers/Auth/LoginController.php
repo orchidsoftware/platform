@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Auth;
 
+use Illuminate\Validation\ValidationException;
 use Orchid\Platform\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -46,5 +47,17 @@ class LoginController extends Controller
     public function redirectTo()
     {
         return config('platform.prefix');
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @return void
+     */
+    protected function sendFailedLoginResponse()
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [__('The details you entered did not match our records. Please double-check and try again.')],
+        ]);
     }
 }

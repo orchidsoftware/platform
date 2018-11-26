@@ -37,6 +37,7 @@ use Orchid\Screen\Field;
  * @method $this tabindex($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
  */
 class DateTimerField extends Field
 {
@@ -51,12 +52,12 @@ class DateTimerField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'text',
-        'class' => 'form-control',
-        'data-controller' => 'components--datetime',
-        'data-components--datetime-enable-time' => 'true',
-        'data-components--datetime-time_24hr' => 'true',
-        'data-components--datetime-allow-input' => 'true',
+        'type'                              => 'text',
+        'class'                             => 'form-control',
+        'data-controller'                   => 'fields--datetime',
+        'data-fields--datetime-enable-time' => 'true',
+        'data-fields--datetime-time_24hr'   => 'true',
+        'data-fields--datetime-allow-input' => 'true',
     ];
 
     /**
@@ -93,9 +94,9 @@ class DateTimerField extends Field
         'tabindex',
         'value',
         'data-controller',
-        'data-components--datetime-enable-time',
-        'data-components--datetime-time_24hr',
-        'data-components--datetime-allow-input',
+        'data-fields--datetime-enable-time',
+        'data-fields--datetime-time_24hr',
+        'data-fields--datetime-allow-input',
     ];
 
     /**

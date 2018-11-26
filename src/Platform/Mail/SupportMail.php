@@ -40,8 +40,8 @@ class SupportMail extends Mailable
             ->subject('Сообщение с веб-сайта')
             ->markdown('platform::emails.support', [
                 'message' => $this->request->get('message'),
-                'email' => $this->request->get('email'),
-                'name' => $this->request->get('name'),
+                'email'   => $this->request->get('email'),
+                'name'    => $this->request->get('name'),
             ]);
     }
 }

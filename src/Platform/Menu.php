@@ -137,8 +137,8 @@ class Menu
 
         $this->item = [
             'location' => $this->location,
-            'arg' => $this->arg,
-            'sort' => $this->sort,
+            'arg'      => $this->arg,
+            'sort'     => $this->sort,
         ];
 
         $this->container[$this->arg['slug']] = $this->item;

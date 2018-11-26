@@ -5,31 +5,6 @@ Fields are used to generate the output for the form template.
 All possible fields are defined in the `config/platform.php` file inside the fields section
 Every field may be used in a entity, template or filter. 
 
-If you need to create your own field don't be shy to do it.
-Field consists of one class with a mandatory `create` method that must implement the `view`  to display to user.
-
-
-```php
-// Allowed template fields
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'select'       => Orchid\Screen\Fields\SelectField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'place'        => Orchid\Screen\Fields\PlaceField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-
 Fields and entities are defined separately, that allows us to use only a key 
 to access them, for example if we need a `wysiwyg` redactor requested value will be our class. 
 This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one click.
@@ -39,6 +14,9 @@ This allows to change the `tinymce` to `summernote` or `ckeditor` almost in one 
  
  
 ## Input
+
+
+![Input](https://orchid.software/img/ui/input.png)
 
 Input is one of the most diversed elements of forms that allows you to create different parts of interface and provide interaction with user.
 Input is mainly intended to create text fields.
@@ -63,6 +41,9 @@ return [
  
 ## Wysiwyg
 
+
+![Wysing](https://orchid.software/img/ui/wysing.png)
+
 A visual redactor which contents are displayed in the process of redaction and look almost like a result.
 The redactor allows to add images, tables, define text styles and embed videos.
  
@@ -80,6 +61,10 @@ return [
 To display a top panel and a menu, that allows you to view a splash screen and html code, in the redactor, you need to set an attribute `theme('modern')`.
  
 ## Markdown
+
+
+![Markdown](https://orchid.software/img/ui/markdown.png)
+![Markdown2](https://orchid.software/img/ui/markdown2.png)
 
 Light markup language redactor 
  created to write a maximum human-friendly and easy-to-correct text
@@ -111,6 +96,9 @@ return [
            
        
 ## Datetime
+ 
+ 
+![Datatime](https://orchid.software/img/ui/datatime.png)
  
 Allows to set date and time
 
@@ -144,6 +132,9 @@ return [
 ```           
 
 ## Code
+ 
+ 
+![Code](https://orchid.software/img/ui/code.png)
  
 A field for a program code with a highligt
 
@@ -210,21 +201,6 @@ return [
 ```
 
 
-## List
- 
-Dynamical adding and sorting of values
-
-An example:
-```php
-return [
-    'list' => Field::tag('list')
-                  ->name('list')
-                  ->title('Dynamic list')
-                  ->help('Dynamic list'),
-];
-```   
-
-
 ## Mask
  
 A mask for data input in `input` tag. 
@@ -250,10 +226,10 @@ return [
     'price' => InputField::make()
               ->type('text')
               ->name('price')
-              ->mask(json_encode([
+              ->mask([
                  'mask' => '999 999 999.99',
                  'numericInput' => true
-              ]))
+              ])
               ->title('Cost')
 ];
 ```   
@@ -263,12 +239,12 @@ return [
     'price' => InputField::make()
              ->type('text')
              ->name('price')
-             ->mask(json_encode([
+             ->mask([
                 'alias' => 'currency',
                 'prefix' => ' ',
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
-             ]))
+             ])
              ->title('Cost'),
 ];
 ```   

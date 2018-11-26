@@ -9,7 +9,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Chart.
  */
-abstract class Chart
+abstract class Chart extends Base
 {
     /**
      * @var string
@@ -74,12 +74,12 @@ abstract class Chart
     public function build(Repository $query)
     {
         return view($this->template, [
-            'title' => $this->title,
-            'slug' => str_slug($this->title),
-            'type' => $this->type,
+            'title'  => $this->title,
+            'slug'   => str_slug($this->title),
+            'type'   => $this->type,
             'height' => $this->height,
             'labels' => json_encode(collect($this->labels)),
-            'data' => json_encode($query->getContent($this->data)),
+            'data'   => json_encode($query->getContent($this->data)),
             'colors' => json_encode($this->colors),
         ]);
     }

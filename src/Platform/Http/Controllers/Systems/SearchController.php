@@ -39,17 +39,17 @@ class SearchController
     /**
      * @param \Illuminate\Contracts\Pagination\LengthAwarePaginator $paginator
      *
-     * @return array
+     * @return Collection
      */
     private function generatedPresent(LengthAwarePaginator $paginator): Collection
     {
         return collect($paginator->items())
             ->map(function ($item) {
                 return (object) [
-                    'title' => $item->searchTitle(),
+                    'title'    => $item->searchTitle(),
                     'subTitle' => $item->searchSubTitle(),
-                    'url' => $item->searchUrl(),
-                    'avatar' => $item->searchAvatar(),
+                    'url'      => $item->searchUrl(),
+                    'avatar'   => $item->searchAvatar(),
                 ];
             });
     }

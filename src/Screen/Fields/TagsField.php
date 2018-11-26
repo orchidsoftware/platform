@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
  */
 class TagsField extends Field
 {
@@ -52,7 +53,7 @@ class TagsField extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
+        'class'    => 'form-control',
         'multiple' => 'multiple',
     ];
 

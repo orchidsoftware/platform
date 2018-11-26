@@ -10,7 +10,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Rows.
  */
-abstract class Rows
+abstract class Rows extends Base
 {
     /**
      * @var string

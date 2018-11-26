@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
  * @method $this mask($value = true)
  */
 class InputField extends Field
@@ -90,14 +91,30 @@ class InputField extends Field
         'tabindex',
         'type',
         'value',
+        'mask',
     ];
 
     /**
      * @param null $name
+     *
      * @return InputField
      */
     public static function make($name = null): self
     {
         return (new static)->name($name);
+    }
+
+    /**
+     * @param string|array $mask
+     *
+     * @return InputField
+     */
+    public function modifyMask($mask): self
+    {
+        if (is_array($mask)) {
+            $this->attributes['mask'] = json_encode($mask);
+        }
+
+        return $this;
     }
 }

@@ -40,6 +40,7 @@ use Orchid\Screen\Field;
  * @method $this help($value = true)
  * @method $this width($value = true)
  * @method $this height($value = true)
+ * @method $this popover($value = true)
  */
 class PictureField extends Field
 {

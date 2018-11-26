@@ -224,9 +224,9 @@ class TD
             }
 
             return view('platform::partials.td.link', [
-                'route' => $route,
+                'route'      => $route,
                 'attributes' => $attributes,
-                'text' => $text,
+                'text'       => $text,
             ]);
         });
 
@@ -271,11 +271,11 @@ class TD
             $text = is_null($text) ? $text : $datum->getContent($text);
 
             return view('platform::partials.td.async', [
-                'modal' => $modal,
+                'modal'      => $modal,
                 'attributes' => $attributes,
-                'text' => $text,
-                'method' => $method,
-                'route' => $this->asyncRoute,
+                'text'       => $text,
+                'method'     => $method,
+                'route'      => $this->asyncRoute,
             ]);
         });
 

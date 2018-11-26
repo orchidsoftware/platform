@@ -11,42 +11,33 @@ declare(strict_types=1);
 |
 */
 
-$this->post('posts/restore/{id?}', [
-    'as'   => 'platform.posts.restore',
-    'uses' => 'PostController@restore',
-]);
+use Orchid\Press\Http\Controllers\MenuController;
+use Orchid\Press\Http\Controllers\PageController;
+use Orchid\Press\Http\Controllers\PostController;
+use Orchid\Press\Http\Controllers\MediaController;
 
-$this->get('posts/{type}/create', [
-    'as'   => 'platform.posts.type.create',
-    'uses' => 'PostController@create',
-]);
+$this->post('posts/restore/{id?}', [PostController::class, 'restore'])
+    ->name('platform.posts.restore');
 
-$this->get('posts/{type}/{post}/edit', [
-    'as'   => 'platform.posts.type.edit',
-    'uses' => 'PostController@edit',
-]);
+$this->get('posts/{type}/create', [PostController::class, 'create'])
+    ->name('platform.posts.type.create');
 
-$this->get('posts/{type}/{post?}', [
-    'as'   => 'platform.posts.type',
-    'uses' => 'PostController@index',
-]);
+$this->get('posts/{type}/{post}/edit', [PostController::class, 'edit'])
+    ->name('platform.posts.type.edit');
 
-$this->post('posts/{type}', [
-    'as'   => 'platform.posts.type.store',
-    'uses' => 'PostController@store',
-]);
+$this->get('posts/{type}/{post?}', [PostController::class, 'index'])
+    ->name('platform.posts.type');
 
-$this->put('posts/{type}/{post?}', [
-    'as'   => 'platform.posts.type.update',
-    'uses' => 'PostController@update',
-]);
+$this->post('posts/{type}', [PostController::class, 'store'])
+    ->name('platform.posts.type.store');
 
-$this->delete('posts/{type}/{post?}', [
-    'as'   => 'platform.posts.type.destroy',
-    'uses' => 'PostController@destroy',
-]);
+$this->put('posts/{type}/{post?}', [PostController::class, 'update'])
+    ->name('platform.posts.type.update');
 
-$this->resource('menu', 'MenuController', [
+$this->delete('posts/{type}/{post?}', [PostController::class, 'destroy'])
+    ->name('platform.posts.type.destroy');
+
+$this->resource('menu', MenuController::class, [
     'only'  => [
         'index', 'show', 'update', 'create', 'destroy',
     ],
@@ -59,28 +50,23 @@ $this->resource('menu', 'MenuController', [
     ],
 ]);
 
-$this->get('page/{page}', [
-    'as'   => 'platform.pages.show',
-    'uses' => 'PageController@show',
-]);
+$this->get('page/{page}', [PageController::class, 'show'])
+    ->name('platform.pages.show');
 
-$this->put('page/{page}', [
-    'as'   => 'platform.pages.update',
-    'uses' => 'PageController@update',
-]);
+$this->put('page/{page}', [PageController::class, 'update'])
+    ->name('platform.pages.update');
 
 $this->group([
     'as'     => 'platform.systems.media.',
     'prefix' => 'media',
 ], function () {
-    $this->get('/{parameters?}', ['uses' => 'MediaController@index', 'as' => 'index'])->where('parameters', '.*');
-    $this->post('files', ['uses' => 'MediaController@files', 'as' => 'files']);
-    $this->post('new_folder', ['uses' => 'MediaController@newFolder', 'as' => 'newFolder']);
-    $this->post('delete_file_folder',
-        ['uses' => 'MediaController@deleteFileFolder', 'as' => 'deleteFileFolder']);
-    $this->post('directories', ['uses' => 'MediaController@getAllDirs', 'as' => 'getAllDirs']);
-    $this->post('move_file', ['uses' => 'MediaController@moveFile', 'as' => 'moveFile']);
-    $this->post('rename_file', ['uses' => 'MediaController@renameFile', 'as' => 'renameFile']);
-    $this->post('upload', ['uses' => 'MediaController@upload', 'as' => 'upload']);
-    $this->post('remove', ['uses' => 'MediaController@remove', 'as' => 'remove']);
+    $this->get('/{parameters?}', ['uses' => MediaController::class.'@index', 'as' => 'index'])->where('parameters', '.*');
+    $this->post('files', ['uses' => MediaController::class.'@files', 'as' => 'files']);
+    $this->post('new_folder', ['uses' => MediaController::class.'@newFolder', 'as' => 'newFolder']);
+    $this->post('delete_file_folder', ['uses' => MediaController::class.'@deleteFileFolder', 'as' => 'deleteFileFolder']);
+    $this->post('directories', ['uses' => MediaController::class.'@getAllDirs', 'as' => 'getAllDirs']);
+    $this->post('move_file', ['uses' => MediaController::class.'@moveFile', 'as' => 'moveFile']);
+    $this->post('rename_file', ['uses' => MediaController::class.'@renameFile', 'as' => 'renameFile']);
+    $this->post('upload', ['uses' => MediaController::class.'@upload', 'as' => 'upload']);
+    $this->post('remove', ['uses' => MediaController::class.'@remove', 'as' => 'remove']);
 });

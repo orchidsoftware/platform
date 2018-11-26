@@ -7,8 +7,6 @@ namespace Orchid\Platform\Providers;
 use Illuminate\Auth\Events\Login;
 use Spatie\Activitylog\Models\Activity;
 use Orchid\Platform\Models\Announcement;
-use Orchid\Platform\Events\UploadFileEvent;
-use Orchid\Platform\Listeners\UploadFileLister;
 use Orchid\Platform\Listeners\LogSuccessfulLogin;
 use Orchid\Platform\Observers\ActivityLogObserver;
 use Orchid\Platform\Observers\AnnouncementObserver;
@@ -24,9 +22,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Login::class => [
             LogSuccessfulLogin::class,
-        ],
-        UploadFileEvent::class => [
-            UploadFileLister::class,
         ],
     ];
 

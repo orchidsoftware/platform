@@ -53,10 +53,10 @@ class CheckBoxField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'checkbox',
-        'class' => 'custom-control-input',
-        'value' => false,
-        'novalue' => 0,
+        'type'     => 'checkbox',
+        'class'    => 'custom-control-input',
+        'value'    => false,
+        'novalue'  => 0,
         'yesvalue' => 1,
     ];
 

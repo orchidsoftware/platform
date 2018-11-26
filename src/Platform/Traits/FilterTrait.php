@@ -64,7 +64,7 @@ trait FilterTrait
     {
         return collect([
             'allowedFilters' => collect($this->allowedFilters ?? []),
-            'allowedSorts' => collect($this->allowedSorts ?? []),
+            'allowedSorts'   => collect($this->allowedSorts ?? []),
         ]);
     }
 }

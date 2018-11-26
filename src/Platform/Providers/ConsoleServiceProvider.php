@@ -12,7 +12,6 @@ use Orchid\Platform\Commands\ChartCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
-use Orchid\Platform\Commands\WidgetCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 
@@ -28,7 +27,6 @@ class ConsoleServiceProvider extends ServiceProvider
         AdminCommand::class,
         FilterCommand::class,
         LinkCommand::class,
-        WidgetCommand::class,
         RowsCommand::class,
         ScreenCommand::class,
         TableCommand::class,

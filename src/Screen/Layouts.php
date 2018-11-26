@@ -122,7 +122,7 @@ class Layouts
 
     /**
      * @param \Orchid\Screen\Repository $repository
-     * @param bool                      $async
+     * @param bool $async
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -136,6 +136,13 @@ class Layouts
 
                 if (is_a($layout, self::class) && $layout->active === 'view') {
                     $build[$key][] = view($layout->templates[$layout->active], $repository->toArray());
+                    continue;
+                }
+
+                /*
+                 * Check permissions
+                 */
+                if (method_exists($layout, 'canSee') && ! $layout->canSee($repository)) {
                     continue;
                 }
 
@@ -155,7 +162,7 @@ class Layouts
 
     /**
      * @param string $method
-     * @param bool   $async
+     * @param bool $async
      *
      * @return \Orchid\Screen\Layouts
      */

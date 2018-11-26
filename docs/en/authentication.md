@@ -6,6 +6,9 @@
 
 In the installed ORCHID configuration the users authentication page is already there at the `/dashboard/login` address.
 
+
+![Auth](https://orchid.software/img/ui/auth.png)
+
 At the installation stage you have inherited the model in `app/User.php` to further be able to  expand an authentication model and in the meantime to define it for Laravel.
 (Look in the configuration file `config/auth.php`).
 

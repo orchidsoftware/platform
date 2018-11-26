@@ -16,12 +16,12 @@ use Zend\Code\Generator\PropertyGenerator;
 class Model extends Builder
 {
     const RELATIONS = [
-        'hasOne' => 'One to One (hasOne)',
-        'hasMany' => 'One to Many (hasMany)',
-        'belongsToMany' => 'Many to Many (belongsToMany)',
+        'hasOne'         => 'One to One (hasOne)',
+        'hasMany'        => 'One to Many (hasMany)',
+        'belongsToMany'  => 'Many to Many (belongsToMany)',
         'hasManyThrough' => 'Has Many Through (belongsToMany)',
-        'morphMany' => 'Polymorphic (morphMany)',
-        'morphedByMany' => 'Many to Many Polymorphic (morphedByMany)',
+        'morphMany'      => 'Polymorphic (morphMany)',
+        'morphedByMany'  => 'Many to Many Polymorphic (morphedByMany)',
     ];
 
     /**
@@ -39,13 +39,13 @@ class Model extends Builder
         'fillable' => [
             'comment' => 'The attributes that are mass assignable.',
         ],
-        'guarded' => [
+        'guarded'  => [
             'comment' => 'The attributes that aren\'t mass assignabe.',
         ],
-        'hidden' => [
+        'hidden'   => [
             'comment' => 'The attributes that should be hidden for serialization.',
         ],
-        'visible' => [
+        'visible'  => [
             'comment' => 'The attributes that should be visible in serialization.',
         ],
     ];
@@ -135,8 +135,8 @@ class Model extends Builder
             'return $this->'.$type.'('.$name.'::class'.$params.');',
             DocBlockGenerator::fromArray([
                 'shortDescription' => 'Generated attitude',
-                'longDescription' => null,
-                'tags' => [
+                'longDescription'  => null,
+                'tags'             => [
                     new Tag\ReturnTag([
                         'datatype' => "\Illuminate\Database\Eloquent\Relations\\".$type,
                     ]),

@@ -12,6 +12,9 @@ use Orchid\Screen\Field;
  * @method $this name($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this popover($value = true)
+ * @method $this language($value = true)
+ * @method $this lineNumbers($value = true)
  */
 class CodeField extends Field
 {
@@ -26,9 +29,9 @@ class CodeField extends Field
      * @var array
      */
     public $attributes = [
-        'class' => 'form-control',
-        'language' => 'js',
-        'lineNumbers' => true,
+        'class'        => 'form-control',
+        'language'     => 'js',
+        'lineNumbers'  => true,
         'defaultTheme' => true,
     ];
 

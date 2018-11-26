@@ -50,13 +50,13 @@ class MediaController extends Controller
         $path = $path === DIRECTORY_SEPARATOR ? '' : $path;
 
         return view('platform::container.systems.media', [
-            'name' => __('Media'),
+            'name'        => __('Media'),
             'description' => __('File Manager'),
-            'path' => $path,
-            'dir' => $this->getDirPath($path),
-            'files' => $this->getFiles($path),
+            'path'        => $path,
+            'dir'         => $this->getDirPath($path),
+            'files'       => $this->getFiles($path),
             'directories' => $this->getDirectories($path),
-            'route' => $path,
+            'route'       => $path,
         ]);
     }
 
@@ -120,10 +120,10 @@ class MediaController extends Controller
             $name = strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file;
 
             return [
-                'name' => $name,
-                'type' => $this->filesystem->mimeType($file),
-                'path' => $this->filesystem->url($file),
-                'size' => $this->getSize($this->filesystem->size($file)),
+                'name'         => $name,
+                'type'         => $this->filesystem->mimeType($file),
+                'path'         => $this->filesystem->url($file),
+                'size'         => $this->getSize($this->filesystem->size($file)),
                 'lastModified' => Formats::toDateTimeString($modified),
             ];
         })->sortBy('name');
@@ -298,7 +298,8 @@ class MediaController extends Controller
     {
         try {
             foreach ($request->files as $file) {
-                $path = $file->move($this->filesystem->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
+                $path =
+                    $file->move($this->filesystem->getDriver()->getAdapter()->applyPathPrefix(str_replace(',', '/', $request->upload_path)), $file->getClientOriginalName());
             }
             $success = true;
             $message = trans('platform::systems/media.success_uploaded_file');
@@ -324,7 +325,7 @@ class MediaController extends Controller
         try {
             return response()->json([
                 'data' => [
-                    'status' => 200,
+                    'status'  => 200,
                     'message' => trans('platform::systems/media.image_removed'),
                 ],
             ]);
@@ -342,7 +343,7 @@ class MediaController extends Controller
 
             return response()->json([
                 'data' => [
-                    'status' => $code,
+                    'status'  => $code,
                     'message' => $message,
                 ],
             ], $code);

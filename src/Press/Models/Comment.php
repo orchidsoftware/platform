@@ -38,10 +38,10 @@ class Comment extends Model
      * @var array
      */
     protected $casts = [
-        'post_id' => 'integer',
-        'user_id' => 'integer',
+        'post_id'   => 'integer',
+        'user_id'   => 'integer',
         'parent_id' => 'integer',
-        'approved' => 'boolean',
+        'approved'  => 'boolean',
     ];
 
     /**
@@ -136,7 +136,8 @@ class Comment extends Model
     /**
      * Where clause for only approved comments.
      *
-     * @return Comment
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeApproved(Builder $query): Builder
     {

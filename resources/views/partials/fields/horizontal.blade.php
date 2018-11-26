@@ -1,6 +1,11 @@
 <div class="form-group row">
     @isset($title)
         <label for="{{$id}}" class="col-sm-2 v-center">{{$title}}
+
+            @includeWhen(isset($popover),'platform::partials.fields.popover',[
+                'content' => $popover ?? ''
+            ])
+
             @if(isset($attributes['required']) && $attributes['required'])
                 <span class="text-danger m-l-xs">*</span>
             @endif

@@ -28,7 +28,7 @@ class CategoryTest extends TestFeatureCase
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return array
      */
     private function createTaxonomyWithChildren()
     {

@@ -117,7 +117,7 @@ abstract class Screen extends Controller
 
         return view('platform::container.layouts.base', [
             'arguments' => $this->arguments,
-            'screen' => $this,
+            'screen'    => $this,
         ]);
     }
 
@@ -209,11 +209,11 @@ abstract class Screen extends Controller
         }
 
         foreach ($this->permission as $item) {
-            if (! Auth::user()->hasAccess($item)) {
-                return false;
+            if (Auth::user()->hasAccess($item)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 }

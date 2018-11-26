@@ -21,11 +21,7 @@
 ## Introduction
 
 Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
-Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications.
-
-## Official Documentation
-
-Documentation can be found at [ORCHID website](http://orchid.software).
+Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications. Documentation can be found at [ORCHID website](http://orchid.software).
 
 ## Installation
 
@@ -46,6 +42,11 @@ php artisan orchid:admin admin admin@admin.com password
 ```
 
 Once these commands have completed, you are ready to enjoy platform!
+
+
+###### Simple screenshot:
+
+![screenshot](https://user-images.githubusercontent.com/5102591/48972240-8f216c80-f037-11e8-98a6-51f788349f10.png)
 
 ## Change log
 

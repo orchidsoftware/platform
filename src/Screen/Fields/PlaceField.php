@@ -10,6 +10,7 @@ use Orchid\Screen\Field;
  * Class PlaceField.
  *
  * @method $this name($value = true)
+ * @method $this popover($value = true)
  */
 class PlaceField extends Field
 {

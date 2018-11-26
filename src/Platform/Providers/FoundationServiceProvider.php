@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
-use Orchid\Widget\WidgetServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Intervention\Image\ImageServiceProvider;
@@ -82,7 +81,6 @@ class FoundationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             realpath(PLATFORM_PATH.'/config/platform.php') => config_path('platform.php'),
-            realpath(PLATFORM_PATH.'/config/widget.php') => config_path('widget.php'),
         ], 'config');
 
         return $this;
@@ -147,7 +145,6 @@ class FoundationServiceProvider extends ServiceProvider
             ImageServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
-            WidgetServiceProvider::class,
             ConsoleServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
@@ -160,9 +157,8 @@ class FoundationServiceProvider extends ServiceProvider
     public function register(): void
     {
         if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name) {
-                return Route::any($url.'/{method?}/{argument?}')
-                    ->uses($screen.'@handle')
+            Route::macro('screen', function ($url, $screen, $name = null) {
+                return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
         }

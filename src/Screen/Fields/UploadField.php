@@ -46,6 +46,7 @@ use Orchid\Screen\Field;
  * @method $this resizeQuality($value = true)
  * @method $this resizeWidth($value = true)
  * @method $this resizeHeight($value = true)
+ * @method $this popover($value = true)
  */
 class UploadField extends Field
 {
@@ -60,15 +61,15 @@ class UploadField extends Field
      * @var array
      */
     public $attributes = [
-        'value' => null,
-        'multiple' => true,
+        'value'           => null,
+        'multiple'        => true,
         'parallelUploads' => 10,
-        'maxFileSize' => 9999,
-        'maxFiles' => 9999,
-        'acceptedFiles' => null,
-        'resizeQuality' => 0.8,
-        'resizeWidth' => null,
-        'resizeHeight' => null,
+        'maxFileSize'     => 9999,
+        'maxFiles'        => 9999,
+        'acceptedFiles'   => null,
+        'resizeQuality'   => 0.8,
+        'resizeWidth'     => null,
+        'resizeHeight'    => null,
     ];
 
     /**

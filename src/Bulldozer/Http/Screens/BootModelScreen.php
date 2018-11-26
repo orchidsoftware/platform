@@ -10,9 +10,9 @@ use Orchid\Screen\Layouts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Orchid\Bulldozer\Builders\Model;
+use Orchid\Screen\Fields\InputField;
 use Illuminate\Http\RedirectResponse;
 use Orchid\Bulldozer\Builders\Migration;
-use Orchid\Bulldozer\Layouts\BootCreateModel;
 
 /**
  * Class BootModelScreen.
@@ -79,10 +79,10 @@ class BootModelScreen extends Screen
         }
 
         return [
-            'models' => $this->models,
-            'name' => $model,
-            'model' => $this->models->get($model),
-            'fieldTypes' => Migration::TYPES,
+            'models'        => $this->models,
+            'name'          => $model,
+            'model'         => $this->models->get($model),
+            'fieldTypes'    => Migration::TYPES,
             'relationTypes' => Model::RELATIONS,
         ];
     }
@@ -124,7 +124,14 @@ class BootModelScreen extends Screen
             Layouts::view('platform::container.boot.index'),
             Layouts::modals([
                 'CreateModelModal' => [
-                    BootCreateModel::class,
+                    Layouts::rows([
+                        InputField::make('name')
+                            ->title(__('Model name:'))
+                            ->help(__('Create a new model for your application'))
+                            ->pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
+                            ->hr(false)
+                            ->required(),
+                    ]),
                 ],
             ]),
         ];
@@ -196,9 +203,9 @@ class BootModelScreen extends Screen
         foreach ($this->models as $name => $model) {
             $property = [
                 'fillable' => [],
-                'guarded' => [],
-                'hidden' => [],
-                'visible' => [],
+                'guarded'  => [],
+                'hidden'   => [],
+                'visible'  => [],
             ];
 
             $migration = [];
@@ -233,7 +240,7 @@ class BootModelScreen extends Screen
             }
 
             $model = new Model($name, [
-                'property' => array_filter($property),
+                'property'  => array_filter($property),
                 'relations' => $model->get('relations', []),
             ]);
 
@@ -258,7 +265,7 @@ class BootModelScreen extends Screen
     public function getRelated(string $model)
     {
         return view('platform::partials.boot.relatedOption', [
-            'name' => $model,
+            'name'   => $model,
             'models' => $this->models,
         ]);
     }

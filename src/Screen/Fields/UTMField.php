@@ -39,6 +39,7 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this help($value = true)
  * @method $this mask($value = true)
+ * @method $this popover($value = true)
  */
 class UTMField extends Field
 {
@@ -53,7 +54,7 @@ class UTMField extends Field
      * @var array
      */
     public $attributes = [
-        'type' => 'url',
+        'type'  => 'url',
         'class' => 'form-control',
     ];
 

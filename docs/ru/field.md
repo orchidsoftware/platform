@@ -3,33 +3,6 @@
 
 Поля используются для генерации вывода шаблона формы заполнения и редактирования
 
-Все возможные поля определены в `config/platform.php` в разделе полей.
-Каждое поле может использоваться в поведении, макете или фильтре. 
-
-Если вам нужно создать своё собственное поле, не стесняйтесь.
-Поле состоит из одного класса с обязательным методом `create`, который должен реализовать `представление` для отображения пользователю.
-
-
-```php
-// Доступные поля для формирования шаблонов
-'fields' => [
-    'textarea'     => Orchid\Screen\Fields\TextAreaField::class,
-    'input'        => Orchid\Screen\Fields\InputField::class,
-    'list'         => Orchid\Screen\Fields\ListField::class,
-    'tags'         => Orchid\Screen\Fields\TagsField::class,
-    'select'       => Orchid\Screen\Fields\SelectField::class,
-    'relationship' => Orchid\Screen\Fields\RelationshipField::class,
-    'picture'      => Orchid\Screen\Fields\PictureField::class,
-    'datetime'     => Orchid\Screen\Fields\DateTimerField::class,
-    'checkbox'     => Orchid\Screen\Fields\CheckBoxField::class,
-    'code'         => Orchid\Screen\Fields\CodeField::class,
-    'wysiwyg'      => Orchid\Screen\Fields\TinyMCEField::class,
-    'password'     => Orchid\Screen\Fields\PasswordField::class,
-    'markdown'     => Orchid\Screen\Fields\SimpleMDEField::class,
-],
-```
-
-
 Поля и поведения указываются отдельно, что позволяет использовать лишь ключ, 
 например в записи мы хотим wysing редактор, а значением будет класс. 
 Это позволяет менять редактор с tinymce на summernote или ckeditor почти в один клик.
@@ -39,6 +12,9 @@
  
  
 ## Input
+
+
+![Input](https://orchid.software/img/ui/input.png)
 
 Input - является одним из разносторонних элементов формы и позволяет создавать разные части интерфейса и обеспечивать взаимодействие с пользователем. 
 Главным образом input предназначен для создания текстовых полей.
@@ -63,6 +39,9 @@ return [
  
 ## Wysiwyg
 
+
+![Wysing](https://orchid.software/img/ui/wysing.png)
+
 Визуальный редактор в котором содержание отображается в процессе редактирования и 
 выглядит максимально близко похожим на конечный результат.
 Редактор позволяет вставлять рисунки, таблицы, указывать стили оформления текста, видео.
@@ -81,6 +60,9 @@ return [
 Для отображения в редакторе верхней панели и меню, в котором доступны функции полноэкранного режима и просмотр html кода, нужно установить атрибут `theme('modern')`.
  
 ## Markdown
+
+![Markdown](https://orchid.software/img/ui/markdown.png)
+![Markdown2](https://orchid.software/img/ui/markdown2.png)
 
 Редактор для облегчённого языка разметки,
  созданный с целью написания максимально читаемого и удобного для правки текста,
@@ -112,6 +94,8 @@ return [
            
        
 ## Datetime
+ 
+![Datatime](https://orchid.software/img/ui/datatime.png) 
  
 Позволяет выбрать дату и время
 
@@ -147,6 +131,9 @@ return [
 ## Code
  
 Поле для записи программного кода с возможностью подсветки
+
+![Code](https://orchid.software/img/ui/code.png)
+
 
 Пример записи:
 ```php
@@ -211,21 +198,6 @@ return [
 ```
 
 
-## List
- 
-Динамическое добавление и сортировка значений
-
-Пример записи:
-```php
-return [
-    'list' => Field::tag('list')
-                  ->name('list')
-                  ->title('Dynamic list')
-                  ->help('Dynamic list'),
-];
-```   
-
-
 ## Mask
  
 Маска для ввода значений к тегу input. 
@@ -251,10 +223,10 @@ return [
     'price' => InputField::make()
               ->type('text')
               ->name('price')
-              ->mask(json_encode([
+              ->mask([
                  'mask' => '999 999 999.99',
                  'numericInput' => true
-              ]))
+              ])
               ->title('Стоимость')
 ];
 ```   
@@ -264,12 +236,12 @@ return [
     'price' => InputField::make()
              ->type('text')
              ->name('price')
-             ->mask(json_encode([
+             ->mask([
                 'alias' => 'currency',
                 'prefix' => ' ',
                 'groupSeparator' => ' ',
                 'digitsOptional' => true,
-             ]))
+             ])
              ->title('Стоимость'),
 ];
 ```   

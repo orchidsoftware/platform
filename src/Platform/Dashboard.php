@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.0.6';
+    public const VERSION = '3.1.0';
 
     /**
      * The Dashboard configuration options.
@@ -61,7 +61,7 @@ class Dashboard
     {
         $this->menu = new Menu;
         $this->permission = collect([
-            'all' => collect(),
+            'all'     => collect(),
             'removed' => collect(),
         ]);
         $this->resources = collect();

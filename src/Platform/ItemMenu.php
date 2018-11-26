@@ -211,7 +211,7 @@ class ItemMenu
     {
         $this->badge = [
             'class' => $class,
-            'data' => $badge,
+            'data'  => $badge,
         ];
 
         return $this;

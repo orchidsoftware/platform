@@ -99,7 +99,7 @@ class AnnouncementScreen extends Screen
             ->fill($request->get('announcement'))
             ->fill([
                 'user_id' => $request->user()->id,
-                'active' => 1,
+                'active'  => 1,
             ])->save();
 
         Alert::info(__('Announcement has been created or updated.'));

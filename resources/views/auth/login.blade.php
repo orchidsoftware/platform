@@ -2,7 +2,6 @@
 @section('title',__('Sign in to your account'))
 
 @section('content')
-
     <p class="m-t-lg text-black">{{__('Sign in to your account')}}</p>
     <form class="m-t-md" role="form" method="POST" action="{{ route('platform.login.auth') }}">
         @csrf

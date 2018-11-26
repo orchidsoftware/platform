@@ -9,7 +9,7 @@ use Orchid\Screen\Repository;
 /**
  * Class Table.
  */
-abstract class Table
+abstract class Table extends Base
 {
     /**
      * @var string
@@ -29,8 +29,8 @@ abstract class Table
     public function build(Repository $query)
     {
         return view($this->template, [
-            'data' => $query->getContent($this->data),
-            'fields' => $this->fields(),
+            'data'    => $query->getContent($this->data),
+            'fields'  => $this->fields(),
             'filters' => $this->showFilterDashboard(),
         ]);
     }
@@ -47,7 +47,7 @@ abstract class Table
 
         return view('platform::container.layouts.filter', [
             'filters' => $dashboardFilter,
-            'chunk' => $chunk,
+            'chunk'   => $chunk,
         ]);
     }
 

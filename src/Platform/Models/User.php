@@ -6,7 +6,7 @@ namespace Orchid\Platform\Models;
 
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
@@ -35,15 +35,7 @@ class User extends Authenticatable implements UserInterface
         'email',
         'password',
         'last_login',
-        'avatar',
         'permissions',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $attributes = [
-        'locale' => 'en',
     ];
 
     /**
@@ -144,9 +136,8 @@ class User extends Authenticatable implements UserInterface
         $user = static::create([
             'name'        => $name,
             'email'       => $email,
-            'password'    => bcrypt($password),
+            'password'    => Hash::make($password),
             'permissions' => $permissions,
-            'locale'      => App::getLocale(),
         ]);
 
         $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
@@ -166,14 +157,6 @@ class User extends Authenticatable implements UserInterface
         $hash = md5(strtolower(trim($this->email)));
 
         return "https://www.gravatar.com/avatar/$hash?f=y";
-
-        $name = title_case(str_slug($this->getNameTitle(), ' '));
-
-        return AvatarGenerator::create($name)
-            //->setBackground('#fff')
-            //->setForeground('#363f44')
-            ->setBorder(0, '#fff')
-            ->toBase64();
     }
 
     /**

@@ -32,7 +32,6 @@ class RouteBulldozerServiceProvider extends RouteServiceProvider
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/bulldozer'))
             ->middleware(config('platform.middleware.private'))
-            ->namespace($this->namespace)
             ->group(realpath(PLATFORM_PATH.'/routes/bulldozer.php'));
     }
 }

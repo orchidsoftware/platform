@@ -10,6 +10,7 @@ use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Entities\EntityContract;
 use Orchid\Platform\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -29,36 +30,36 @@ class PostController extends Controller
     }
 
     /**
-     * @param Many $type
+     * @param EntityContract $type
      *
      * @return View
      */
-    public function create(Many $type): View
+    public function create(EntityContract $type): View
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.create', [
-            'type' => $type,
+            'type'    => $type,
             'locales' => collect($type->locale()),
-            'post' => $type->create(new Post),
+            'post'    => $type->create(new Post),
         ]);
     }
 
     /**
      * @param Request $request
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @return RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, Many $type, Post $post): RedirectResponse
+    public function store(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
         $type->isValid();
 
         $post->fill($request->all())->fill([
-            'type' => $type->slug,
+            'type'    => $type->slug,
             'user_id' => $request->user()->id,
             'options' => $post->getOptions(),
         ]);
@@ -86,27 +87,27 @@ class PostController extends Controller
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 
         return view('platform::container.posts.edit', [
-            'type' => $type,
+            'type'    => $type,
             'locales' => collect($type->locale()),
-            'post' => $type->create($post),
+            'post'    => $type->create($post),
         ]);
     }
 
     /**
      * @param Request $request
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
      */
-    public function update(Request $request, Many $type, Post $post): RedirectResponse
+    public function update(Request $request, EntityContract $type, Post $post): RedirectResponse
     {
         return $this->store($request, $type, $post);
     }
 
     /**
-     * @param Many $type
+     * @param EntityContract $type
      * @param Post $post
      *
      * @throws \Exception
@@ -116,7 +117,7 @@ class PostController extends Controller
      * @internal param Request $request
      * @internal param Post $type
      */
-    public function destroy(Many $type, Post $post): RedirectResponse
+    public function destroy(EntityContract $type, Post $post): RedirectResponse
     {
         $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
 

@@ -221,7 +221,7 @@ trait TaggableTrait
     public function addTag($name)
     {
         $tag = $this->createTagsModel()->firstOrNew([
-            'slug' => $this->generateTagSlug($name),
+            'slug'      => $this->generateTagSlug($name),
             'namespace' => $this->getEntityClassName(),
         ]);
 

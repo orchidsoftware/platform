@@ -120,11 +120,11 @@ class BackupScreen extends Screen
                 ->each(function ($file) use ($disk, $diskName, &$backups) {
                     // make an array of backup files, with their filesize and creation date
                     $backups[] = new Repository([
-                        'path' => $file,
-                        'size' => Formats::formatBytes($disk->size($file)),
+                        'path'          => $file,
+                        'size'          => Formats::formatBytes($disk->size($file)),
                         'last_modified' => Carbon::createFromTimestamp($disk->lastModified($file))->diffForHumans(),
-                        'disk' => $diskName,
-                        'url' => $disk->url($file),
+                        'disk'          => $diskName,
+                        'url'           => $disk->url($file),
                     ]);
                 });
         }

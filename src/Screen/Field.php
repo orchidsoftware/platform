@@ -173,7 +173,7 @@ class Field implements FieldContract
      * @param $value
      * @return $this
      */
-    public function value($value) : self
+    public function value($value): self
     {
         $this->attributes['value'] = $value;
 
@@ -250,11 +250,11 @@ class Field implements FieldContract
 
         return view($this->view, array_merge($this->getAttributes(), [
             'attributes' => $attributes,
-            'id' => $this->getId(),
-            'old' => $this->getOldValue(),
-            'slug' => $this->getSlug(),
-            'oldName' => $this->getOldName(),
-            'typeForm' => $this->typeForm ?? $this->vertical()->typeForm,
+            'id'         => $this->getId(),
+            'old'        => $this->getOldValue(),
+            'slug'       => $this->getSlug(),
+            'oldName'    => $this->getOldName(),
+            'typeForm'   => $this->typeForm ?? $this->vertical()->typeForm,
         ]));
     }
 
@@ -263,7 +263,7 @@ class Field implements FieldContract
      *
      * @return $this
      */
-    private function translate() : self
+    private function translate(): self
     {
         if (empty($this->translations)) {
             return $this;
@@ -337,7 +337,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return str_slug($this->get('name'));
     }
@@ -353,7 +353,7 @@ class Field implements FieldContract
     /**
      * @return string
      */
-    public function getOldName() : string
+    public function getOldName(): string
     {
         $name = str_ireplace(['][', '['], '.', $this->get('name'));
         $name = str_ireplace([']'], '', $name);
@@ -364,7 +364,7 @@ class Field implements FieldContract
     /**
      * @return bool
      */
-    private function hasError() : bool
+    private function hasError(): bool
     {
         return optional(session('errors'))->has($this->getOldName()) ?? false;
     }
@@ -441,7 +441,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function vertical() : self
+    public function vertical(): self
     {
         $this->typeForm = 'platform::partials.fields.vertical';
 
@@ -451,7 +451,7 @@ class Field implements FieldContract
     /**
      * @return $this
      */
-    public function horizontal() : self
+    public function horizontal(): self
     {
         $this->typeForm = 'platform::partials.fields.horizontal';
 
