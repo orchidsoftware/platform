@@ -11,7 +11,6 @@ use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -154,13 +153,9 @@ class User extends Authenticatable implements UserInterface
      */
     public function getAvatar()
     {
-        $name = title_case(str_slug($this->getNameTitle(), ' '));
+        $hash = md5(strtolower(trim($this->email)));
 
-        return AvatarGenerator::create($name)
-            //->setBackground('#fff')
-            //->setForeground('#363f44')
-            ->setBorder(0, '#fff')
-            ->toBase64();
+        return "https://www.gravatar.com/avatar/$hash?f=y";
     }
 
     /**
