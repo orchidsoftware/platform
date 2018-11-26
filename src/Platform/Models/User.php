@@ -11,7 +11,6 @@ use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Laravolt\Avatar\Facade as AvatarGenerator;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
