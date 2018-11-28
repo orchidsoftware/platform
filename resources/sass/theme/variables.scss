@@ -8,13 +8,15 @@ $icon-font-path: '/orchid/fonts/';
 $fa-font-path: '/orchid/fonts/';
 $orchid-font-path: '/orchid/fonts/';
 
-$grid-breakpoints : (
-                            xs: 0,
-                            sm: 576px,
-                            md: 768px,
-                            lg: 992px,
-                            xl: 1200px
-                    );
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1900px,
+);
+
 
 // Colors
 $orchid-color: #ac5ca0;
@@ -113,11 +115,6 @@ $body-bg : #f6f8fa;//lighten($brand-light, 1%);
 $text-color : #58666e;
 $text-muted : lighten($text-color, 25%);
 
-$font-family-sans-serif : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-$font-family-serif : -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-$font-family-base : $font-family-sans-serif;
-
-$font-size-base-px : 14px;
 $font-size-base : 1rem;
 $font-size-lg : 1.23*$font-size-base; //ceil($font-size-base * 1.23); // ~20px
 $font-size-md : 1.142857*$font-size-base; //ceil($font-size-base * 1); // ~16px
@@ -130,10 +127,6 @@ $link-hover-color : darken($text-color, 30%);
 $border-radius-base : 2px;
 $border-color : darken($brand-light, 5%);
 
-$line-height-base : 1.42857143; // 20/14
-$line-height-computed : floor($font-size-base * $line-height-base); // ~20px
-$line-height-computed-px : 20px;
-$icon-css-prefix : i;
 
 // Buttons
 // -------------------------
@@ -167,18 +160,6 @@ $list-group-active-color : $brand-info;
 
 $table-border-color : lighten($border-color, 4%);
 $table-striped-color : lighten($brand-light, 4.5%);
-
-$arrow-width : 8px;
-$arrow-color : #ffffff;
-$arrow-outer-width : ($arrow-width + 1);
-$arrow-outer-color : rgba(0, 0, 0, 0.1);
-
-$switch-width : 35px;
-$switch-height : 20px;
-$switch-md-width : 40px;
-$switch-md-height : 24px;
-$switch-lg-width : 50px;
-$switch-lg-height : 30px;
 
 $app-aside-width : 250px;
 $aside-wrap-main-width: 0px;
@@ -228,8 +209,8 @@ $border-radius-small : 3px;
 $caret-width-base : 4px;
 $caret-width-large : 5px;
 $cursor-disabled : not-allowed;
-$font-size-large : ceil(($font-size-base-px * 1.25)); // ~18px
-$font-size-small : ceil(($font-size-base-px * 0.85));
+$font-size-large : ceil((14px * 1.25)); // ~18px
+$font-size-small : ceil((14px * 0.85));
 $padding-base-vertical : 6px;
 $padding-base-horizontal : 12px;
 $padding-large-vertical : 10px;
@@ -245,18 +226,10 @@ $input-bg-disabled : $gray-lighter;
 $input-color : $gray;
 $input-border : #cccccc;
 $input-color-placeholder : #999999;
-$input-height-base : ($line-height-computed-px + ($padding-base-vertical * 2) + 2);
+$input-height-base : (20px + ($padding-base-vertical * 2) + 2);
 $input-height-large : (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 $input-height-small : (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
 $state-warning-text : #8a6d3b;
 $state-danger-text : #a94442;
 $state-success-text : #3c763d;
 
-$grid-breakpoints: (
-                           xs: 0,
-                           sm: 576px,
-                           md: 768px,
-                           lg: 992px,
-                           xl: 1200px,
-                           xxl: 1900px,
-                   )

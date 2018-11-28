@@ -1,7 +1,7 @@
 // reset
 html {
   background-color: $body-bg;
-  font-size: $font-size-base-px;
+  font-size: 14px;
 }
 
 body {
@@ -411,7 +411,7 @@ blockquote {
     background-color: #fff;
     border: 1px solid $border-color;
     border-top-width: 0;
-    border-radius: 0 0 $panel-border-radius $panel-border-radius;
+    border-radius: 0 0 $border-radius-base $border-radius-base;
   }
 }
 
@@ -454,7 +454,7 @@ blockquote {
 
 .panel,
 .card {
-  border-radius: $panel-border-radius;
+  border-radius: $border-radius-base;
   .accordion-toggle {
     font-size: 14px;
     display: block;
@@ -476,7 +476,7 @@ blockquote {
   .card-default & {
     background-color: $panel-heading-bg;
   }
-  border-radius: $panel-border-radius $panel-border-radius 0 0;
+  border-radius: $border-radius-base $border-radius-base 0 0;
   &.no-border {
     margin: -1px -1px 0 -1px;
     border: none;
@@ -491,7 +491,7 @@ blockquote {
 
 .card-footer {
   border-color: $panel-heading-border;
-  border-radius: 0 0 $panel-border-radius $panel-border-radius;
+  border-radius: 0 0 $border-radius-base $border-radius-base;
   background-color: $panel-footer-bg;
 }
 

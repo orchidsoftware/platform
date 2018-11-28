@@ -40,7 +40,6 @@
     "laracasts/generators": "^1.1",
     "laravel/framework": "5.7.*",
     "laravel/scout": "^5.0",
-    "laravolt/avatar": "^2.0",
     "ralouphie/mimey": "^1.0",
     "spatie/laravel-activitylog": "^2.8",
     "spatie/laravel-backup": "^5.10",
