@@ -155,7 +155,7 @@ class User extends Authenticatable implements UserInterface
     {
         $hash = md5(strtolower(trim($this->email)));
 
-        return "https://www.gravatar.com/avatar/$hash?f=y";
+        return "https://www.gravatar.com/avatar/$hash";
     }
 
     /**
