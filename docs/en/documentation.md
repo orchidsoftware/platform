@@ -18,7 +18,6 @@
     <li><a href="/en/docs/filters">Filters</a></li>
     <li><a href="/en/docs/field">Fields</a></li>
     <li><a href="/en/docs/widget">Widgets</a></li>
-    <li><a href="/en/docs/form">Forms</a></li>
     <li><a href="/en/docs/extension">Extention</a></li>
     <li><a href="/en/docs/access">Access rights</a></li>
     <li><a href="/en/docs/settings">Settings</a></li>
