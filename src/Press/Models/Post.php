@@ -5,26 +5,25 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Traits\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Database\Eloquent\Builder;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Press\Traits\JsonRelationsTrait;
-use Orchid\Screen\Exceptions\TypeException;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Traits\LogsActivityTrait;
 use Orchid\Platform\Traits\MultiLanguageTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Orchid\Press\Traits\JsonRelationsTrait;
+use Orchid\Press\Traits\TaggableTrait;
+use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * @property mixed options
@@ -38,8 +37,7 @@ class Post extends Model
         Searchable,
         AttachTrait,
         JsonRelationsTrait,
-        FilterTrait,
-        LogsActivityTrait;
+        FilterTrait;
 
     /**
      * @var string
@@ -119,11 +117,6 @@ class Post extends Model
         'created_at',
         'deleted_at',
     ];
-
-    /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
 
     /**
      * Return the sluggable configuration array for this model.

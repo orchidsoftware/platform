@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Setting.
  */
 class Setting extends Model
 {
-    use LogsActivity;
-
     /**
      * @var bool
      */
@@ -53,11 +50,6 @@ class Setting extends Model
     ];
 
     /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
-
-    /**
      * @param string $key
      * @param string|array $value
      *
@@ -85,9 +77,7 @@ class Setting extends Model
      */
     private function cacheForget($key)
     {
-        $key = is_array($key) ? $key : [$key];
-
-        foreach ($key as $value) {
+        foreach (array_wrap($key) as $value) {
             Cache::forget($value);
         }
     }
@@ -136,7 +126,7 @@ class Setting extends Model
      */
     public function forget($key)
     {
-        $key = is_array($key) ? $key : [$key];
+        $key = array_wrap($key);
         $result = $this->whereIn('key', $key)->delete();
         $this->cacheForget($key);
 

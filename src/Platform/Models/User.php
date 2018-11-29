@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Exception;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Support\Facades\Dashboard;
 
 class User extends Authenticatable implements UserInterface
 {
-    use Notifiable, UserAccess, MultiLanguageTrait, FilterTrait, LogsActivity;
+    use Notifiable, UserAccess, MultiLanguageTrait, FilterTrait;
 
     /**
      * The database table used by the model.
@@ -74,11 +74,6 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
-
-    /**
      * Send the password reset notification.
      *
      * @param string $token
@@ -115,13 +110,12 @@ class User extends Authenticatable implements UserInterface
      * @param $email
      * @param $password
      *
-     * @return mixed
+     * @throws \Exception
      */
     public static function createAdmin($name, $email, $password)
     {
         if (static::where('email', $email)->exists()) {
-            echo 'User exist', PHP_EOL;
-            die();
+            throw new Exception('User exist');
         }
 
         $permissions = collect();

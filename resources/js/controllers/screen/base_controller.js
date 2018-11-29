@@ -1,6 +1,7 @@
-import { Controller } from 'stimulus';
+import {Controller} from 'stimulus';
 
 export default class extends Controller {
+
     /**
      *
      * @param event
@@ -19,7 +20,5 @@ export default class extends Controller {
         });
 
         return event.preventDefault();
-
-        // TODO: $('#screen-modal-type-'+key).addClass($('#show-button-modal-'+key).data('modalType'));
     }
 }

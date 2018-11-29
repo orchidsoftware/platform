@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\InputField;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\PostgresConnection;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Fields\InputField;
 
 class SearchFilter extends Filter
 {
@@ -49,7 +49,6 @@ class SearchFilter extends Filter
             ->placeholder(__('Search...'))
             ->title(__('Search'))
             ->maxlength(200)
-            ->autocomplete('off')
-            ->hr(false);
+            ->autocomplete('off');
     }
 }

@@ -75,5 +75,11 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User created successfully.');
+
+        $this->artisan('orchid:admin')
+            ->expectsQuestion('What is your name?', 'testConsoleCreateUser')
+            ->expectsQuestion('What is your email?', 'testConsoleCreateUser@console.loc')
+            ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
+            ->expectsOutput('User already exists or an error occurred!');
     }
 }

@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\AttachTrait;
-use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Traits\AttachTrait;
 
 class Menu extends Model
 {
-    use AttachTrait,
-        LogsActivityTrait;
+    use AttachTrait;
 
     /**
      * @var string
@@ -45,11 +43,6 @@ class Menu extends Model
         'parent' => 'integer',
         'sort'   => 'integer',
     ];
-
-    /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

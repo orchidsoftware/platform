@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Dashboard;
+use Exception;
 use Illuminate\Console\Command;
-use Orchid\Platform\Models\User;
 use Illuminate\Database\QueryException;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\User;
 
 class AdminCommand extends Command
 {
@@ -65,9 +66,8 @@ class AdminCommand extends Command
                 );
 
             $this->info('User created successfully.');
-        } catch (QueryException $e) {
+        } catch (Exception | QueryException $e) {
             $this->error('User already exists or an error occurred!');
-            $this->error($e->getMessage());
         }
     }
 }

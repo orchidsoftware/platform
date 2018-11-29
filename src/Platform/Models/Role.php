@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Orchid\Access\RoleAccess;
 use Orchid\Access\RoleInterface;
-use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Traits\FilterTrait;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Role extends Model implements RoleInterface
 {
-    use RoleAccess, FilterTrait, MultiLanguageTrait, LogsActivity;
+    use RoleAccess, FilterTrait, MultiLanguageTrait;
 
     /**
      * @var string
@@ -55,11 +54,6 @@ class Role extends Model implements RoleInterface
         'name',
         'slug',
     ];
-
-    /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
 
     /**
      * Set permission as boolean.

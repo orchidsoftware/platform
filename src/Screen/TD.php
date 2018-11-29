@@ -85,32 +85,6 @@ class TD
     }
 
     /**
-     * @deprecated Use the set method
-     *
-     * @param string $name
-     *
-     * @return TD
-     */
-    public static function name(string $name): self
-    {
-        return new static($name);
-    }
-
-    /**
-     * @deprecated Use the set method
-     *
-     * @param string $title
-     *
-     * @return TD
-     */
-    public function title(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * @param string $width
      *
      * @return TD
@@ -208,7 +182,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
-            $options = is_array($options) ? $options : [$options];
+            $options = array_wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {
@@ -257,7 +231,7 @@ class TD
     {
         $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
-            $options = is_array($options) ? $options : [$options];
+            $options = array_wrap($options);
 
             foreach ($options as $option) {
                 if (method_exists($datum, 'getContent')) {

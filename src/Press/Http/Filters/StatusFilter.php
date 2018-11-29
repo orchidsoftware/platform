@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Fields\SelectField;
-use Illuminate\Database\Eloquent\Builder;
 
 class StatusFilter extends Filter
 {
@@ -41,7 +41,6 @@ class StatusFilter extends Filter
             ->value($this->request->get('status'))
             ->options($this->entity->status())
             ->title(__('Status'))
-            ->autocomplete('off')
-            ->hr(false);
+            ->autocomplete('off');
     }
 }

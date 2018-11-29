@@ -25,8 +25,8 @@
 
     @empty
 
-        <p>
-            {{ __("There are no records in this view.") }}
+        <p class="ml-3 mr-3 mb-0 text-center">
+            {{ __('There are no records in this view.') }}
         </p>
 
 @endforelse

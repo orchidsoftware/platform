@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Screens\BackupScreen;
-use Orchid\Platform\Http\Screens\HistoryScreen;
-use Orchid\Platform\Http\Screens\AnnouncementScreen;
 use Orchid\Platform\Http\Controllers\Systems\SearchController;
+use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Screens\BackupScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +28,3 @@ $this->post('/search/{query}', [SearchController::class, 'index'])->name('platfo
 
 $this->screen('/backups', BackupScreen::class)->name('platform.systems.backups');
 $this->screen('/announcement', AnnouncementScreen::class)->name('platform.systems.announcement');
-$this->screen('/history', HistoryScreen::class)->name('platform.systems.history');

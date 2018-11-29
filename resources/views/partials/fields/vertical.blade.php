@@ -23,6 +23,6 @@
         <small class="form-text text-muted">{{$help}}</small>
     @endif
 </div>
-@if($hr ?? true)
+@isset($hr)
     <div class="line line-dashed b-b line-lg"></div>
-@endif
+@endisset

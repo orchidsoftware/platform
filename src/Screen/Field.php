@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
-use Orchid\Screen\Exceptions\TypeException;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
 
 /**
@@ -24,7 +23,6 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method $this style($value = true)
  * @method $this tabindex($value = true)
  * @method $this title($value = true)
- * @method $this hr($value = true)
  * @method $this options($value = true)
  */
 class Field implements FieldContract
@@ -127,26 +125,6 @@ class Field implements FieldContract
      * @var array
      */
     public $inlineAttributes = [];
-
-    /**
-     * @deprecated use make or new instants
-     *
-     * @param string $type
-     *
-     * @return FieldContract
-     *
-     * @throws \Throwable TypeException
-     */
-    public static function tag(string $type): FieldContract
-    {
-        $field = config('platform.fields.'.$type);
-
-        if (! is_subclass_of($field, FieldContract::class)) {
-            throw new TypeException($type);
-        }
-
-        return new $field();
-    }
 
     /**
      * @param $name
@@ -454,6 +432,16 @@ class Field implements FieldContract
     public function horizontal(): self
     {
         $this->typeForm = 'platform::partials.fields.horizontal';
+
+        return $this;
+    }
+
+    /**
+     * @return \Orchid\Screen\Field
+     */
+    public function hr(): self
+    {
+        $this->set('hr');
 
         return $this;
     }

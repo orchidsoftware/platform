@@ -52,7 +52,7 @@ Breadcrumbs::for('platform.systems.backups', function ($trail) {
 // Platform > System > Bulldozer
 Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->parent('platform.systems.index');
-    $trail->push(__('Строитель моделей'), route('platform.bulldozer.index'));
+    $trail->push(__('Model Builder'), route('platform.bulldozer.index'));
 });
 
 // Platform > System > Announcement

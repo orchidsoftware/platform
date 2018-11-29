@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\LogsActivityTrait;
-use Orchid\Platform\Traits\MultiLanguageTrait;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Traits\MultiLanguageTrait;
 
 class Term extends Model
 {
-    use MultiLanguageTrait,
-        LogsActivityTrait;
+    use MultiLanguageTrait;
 
     /**
      * @var string
@@ -37,11 +35,6 @@ class Term extends Model
         'content' => 'array',
         'slug'    => 'string',
     ];
-
-    /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
 
     /**
      * Get the route key for the model.

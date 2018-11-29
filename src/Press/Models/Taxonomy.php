@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Press\Builders\TaxonomyBuilder;
-use Orchid\Platform\Traits\LogsActivityTrait;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Orchid\Platform\Dashboard;
+use Orchid\Press\Builders\TaxonomyBuilder;
 
 class Taxonomy extends Model
 {
-    use LogsActivityTrait;
-
     /**
      * @var bool
      */
@@ -42,11 +39,6 @@ class Taxonomy extends Model
     protected $with = [
         'term',
     ];
-
-    /**
-     * @var string
-     */
-    protected static $logAttributes = ['*'];
 
     /**
      * Magic method to return the meta data like the post original fields.

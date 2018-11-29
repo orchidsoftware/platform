@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen\Layouts;
 
+use Orchid\Screen\Repository;
+
 /**
  * Class Base.
  */
@@ -14,7 +16,7 @@ abstract class Base
      *
      * @return bool
      */
-    public function canSee(): bool
+    public function canSee(Repository $query): bool
     {
         return true;
     }

@@ -54,6 +54,10 @@ div.mce-fullscreen {
   z-index: 1050;
 }
 
+.editor-toolbar, .CodeMirror {
+  border-radius: 0;
+}
+
 // SimpleMDE Markdown Editor
 .CodeMirror-fullscreen, .editor-toolbar.fullscreen, .editor-preview-side {
   z-index : 1040;
