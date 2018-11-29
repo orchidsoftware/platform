@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Orchid\Alert\AlertServiceProvider;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Scout\ScoutServiceProvider;
-use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageServiceProvider;
-use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
+use Laravel\Scout\ScoutServiceProvider;
+use Orchid\Alert\AlertServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Watson\Active\ActiveServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -136,7 +135,6 @@ class FoundationServiceProvider extends ServiceProvider
         return [
             DashboardServiceProvider::class,
             ScoutServiceProvider::class,
-            ActivitylogServiceProvider::class,
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
