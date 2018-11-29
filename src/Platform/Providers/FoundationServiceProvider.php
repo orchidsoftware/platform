@@ -14,7 +14,6 @@ use Intervention\Image\ImageServiceProvider;
 use Spatie\Activitylog\ActivitylogServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
-use Laravolt\Avatar\ServiceProvider as AvatarServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -141,7 +140,6 @@ class FoundationServiceProvider extends ServiceProvider
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
-            AvatarServiceProvider::class,
             ImageServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
