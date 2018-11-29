@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Models;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Press\Builders\TaxonomyBuilder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Orchid\Platform\Dashboard;
-use Orchid\Press\Builders\TaxonomyBuilder;
 
 class Taxonomy extends Model
 {

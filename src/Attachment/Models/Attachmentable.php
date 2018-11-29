@@ -19,5 +19,4 @@ class Attachmentable extends Model
      * @var string
      */
     protected $table = 'attachmentable';
-
 }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\PostgresConnection;
 use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Fields\InputField;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\PostgresConnection;
 
 class SearchFilter extends Filter
 {
