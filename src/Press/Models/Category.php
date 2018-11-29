@@ -74,7 +74,7 @@ class Category extends Taxonomy
      */
     public function setParent($parent_id = 0): self
     {
-        $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : 0;
+        $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : null;
 
         return $this;
     }
