@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\SearchController;
-use Orchid\Platform\Http\Screens\AnnouncementScreen;
 use Orchid\Platform\Http\Screens\BackupScreen;
+use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
 /*
 |--------------------------------------------------------------------------

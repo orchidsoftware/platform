@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Orchid\Bulldozer\Builders\Migration;
-use Orchid\Bulldozer\Builders\Model;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Orchid\Bulldozer\Builders\Model;
+use Orchid\Screen\Fields\InputField;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Bulldozer\Builders\Migration;
 
 /**
  * Class BootModelScreen.
