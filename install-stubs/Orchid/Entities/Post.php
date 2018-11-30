@@ -7,6 +7,7 @@ namespace App\Orchid\Entities;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
+use Orchid\Press\Models\Category;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
@@ -19,6 +20,7 @@ use Orchid\Screen\Fields\CheckBoxField;
 use Orchid\Screen\Fields\TextAreaField;
 use Orchid\Screen\Fields\DateTimerField;
 use Orchid\Screen\Fields\SimpleMDEField;
+use Orchid\Screen\Fields\SelectField;
 use Orchid\Press\Http\Filters\SearchFilter;
 use Orchid\Press\Http\Filters\StatusFilter;
 use Orchid\Press\Http\Filters\CreatedFilter;
@@ -197,6 +199,14 @@ class Post extends Many
     public function options(): array
     {
         return [
+            SelectField::make('category')
+                ->options(function () {
+                    $options = (new Category())->getAllCategories();
+                    return array_replace([0=> __('Without category')], $options);
+                })
+                ->title('Category')
+                ->help('Select category'),
+            
             TextAreaField::make('description')
                 ->max(255)
                 ->rows(5)
