@@ -63,7 +63,7 @@ class Post extends Many
      */
     public function create(Model $model) : Model
     {
-        return $model->load(['attachment', 'tags']);
+        return $model->load(['attachment', 'tags', 'taxonomies']);
     }
 
     /**
@@ -73,6 +73,7 @@ class Post extends Many
     {
         $model->save();
 
+        $model->taxonomies()->sync(array_flatten(request(['options.category'])));
         $model->setTags(request('tags', []));
         $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
@@ -186,7 +187,6 @@ class Post extends Many
             TagsField::make('tags')
                 ->title('Tags')
                 ->help('Keywords'),
-
             UploadField::make('attachment')
                 ->title('Upload DropBox'),
         ]);
@@ -199,14 +199,15 @@ class Post extends Many
     public function options(): array
     {
         return [
-            SelectField::make('category')
+            SelectField::make('category.')
                 ->options(function () {
                     $options = (new Category())->getAllCategories();
                     return array_replace([0=> __('Without category')], $options);
                 })
+                ->multiple()
                 ->title('Category')
                 ->help('Select category'),
-            
+
             TextAreaField::make('description')
                 ->max(255)
                 ->rows(5)
