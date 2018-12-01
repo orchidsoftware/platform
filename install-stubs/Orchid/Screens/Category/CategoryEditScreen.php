@@ -42,7 +42,7 @@ class CategoryEditScreen extends Screen
 
         return [
             'category' => $category,
-            'catselect'=> $category->allOtherCategory(),
+            'catselect'=> $category->getAllCategories(),
         ];
     }
 

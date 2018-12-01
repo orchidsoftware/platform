@@ -33,19 +33,18 @@ class Category extends Taxonomy
     }
 
     /**
-     * Select all other categories.
+     * Select all categories, except current.
      *
      *
      * @return array
      */
-    public function allOtherCategory()
+    public function getAllCategories()
     {
-        $categoryes = ($this->exists) ? self::whereNotIn('id', [$this->id])->get() : self::get();
-        foreach ($categoryes as $category) {
-            $allOtherCategory[$category->id] = $category->term->GetContent('name');
-        }
+        $categories = ($this->exists) ? self::whereNotIn('id', [$this->id])->get() : self::get();
 
-        return $allOtherCategory ?? [];
+        return $categories->mapWithKeys(function ($item, $key) {
+            return [$item->id => $item->term->GetContent('name')];
+        })->toArray();
     }
 
     /**

@@ -7,10 +7,12 @@ namespace App\Orchid\Entities;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
+use Orchid\Press\Models\Category;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
 use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\UploadField;
 use Orchid\Screen\Fields\PictureField;
 use Orchid\Screen\Fields\TinyMCEField;
@@ -61,7 +63,10 @@ class Post extends Many
      */
     public function create(Model $model) : Model
     {
-        return $model->load(['attachment', 'tags']);
+        return $model->load(['attachment', 'tags', 'taxonomies'])
+            ->setAttribute('category', $model->taxonomies->map(function ($item) {
+                return $item->id;
+            })->toArray());
     }
 
     /**
@@ -71,6 +76,7 @@ class Post extends Many
     {
         $model->save();
 
+        $model->taxonomies()->sync(array_flatten(request(['category'])));
         $model->setTags(request('tags', []));
         $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
@@ -180,11 +186,18 @@ class Post extends Many
     public function main(): array
     {
         return array_merge(parent::main(), [
+            SelectField::make('category.')
+                ->options(function () {
+                    $options = (new Category())->getAllCategories();
 
+                    return array_replace([0=> __('Without category')], $options);
+                })
+                ->multiple()
+                ->title('Category')
+                ->help('Select category'),
             TagsField::make('tags')
                 ->title('Tags')
                 ->help('Keywords'),
-
             UploadField::make('attachment')
                 ->title('Upload DropBox'),
         ]);
