@@ -32,7 +32,6 @@ class Category extends Taxonomy
         return $this;
     }
 
-
     /**
      * Select all categories, except current.
      *
