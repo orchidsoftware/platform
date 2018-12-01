@@ -63,7 +63,8 @@ class Post extends Many
      */
     public function create(Model $model) : Model
     {
-        return $model->load(['attachment', 'tags', 'taxonomies']);
+        return $model->load(['attachment', 'tags', 'taxonomies'])
+            ->setAttribute('category',$model->taxonomies->map(function ($item) {return $item->id;})->toArray());
     }
 
     /**
@@ -73,7 +74,7 @@ class Post extends Many
     {
         $model->save();
 
-        $model->taxonomies()->sync(array_flatten(request(['options.category'])));
+        $model->taxonomies()->sync(array_flatten(request(['category'])));
         $model->setTags(request('tags', []));
         $model->attachment()->syncWithoutDetaching(request('attachment', []));
     }
@@ -183,7 +184,14 @@ class Post extends Many
     public function main(): array
     {
         return array_merge(parent::main(), [
-
+            SelectField::make('category.')
+                ->options(function () {
+                    $options = (new Category())->getAllCategories();
+                    return array_replace([0=> __('Without category')], $options);
+                })
+                ->multiple()
+                ->title('Category')
+                ->help('Select category'),
             TagsField::make('tags')
                 ->title('Tags')
                 ->help('Keywords'),
@@ -199,16 +207,6 @@ class Post extends Many
     public function options(): array
     {
         return [
-            SelectField::make('category.')
-                ->options(function () {
-                    $options = (new Category())->getAllCategories();
-
-                    return array_replace([0=> __('Without category')], $options);
-                })
-                ->multiple()
-                ->title('Category')
-                ->help('Select category'),
-
             TextAreaField::make('description')
                 ->max(255)
                 ->rows(5)
