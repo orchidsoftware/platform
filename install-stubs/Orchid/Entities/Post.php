@@ -64,7 +64,9 @@ class Post extends Many
     public function create(Model $model) : Model
     {
         return $model->load(['attachment', 'tags', 'taxonomies'])
-            ->setAttribute('category',$model->taxonomies->map(function ($item) {return $item->id;})->toArray());
+            ->setAttribute('category', $model->taxonomies->map(function ($item) {
+                return $item->id;
+            })->toArray());
     }
 
     /**
@@ -187,6 +189,7 @@ class Post extends Many
             SelectField::make('category.')
                 ->options(function () {
                     $options = (new Category())->getAllCategories();
+
                     return array_replace([0=> __('Without category')], $options);
                 })
                 ->multiple()
