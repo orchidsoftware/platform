@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">Building a business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
+<h4 align="center">Building a rapid business application using the  <a href="https://laravel.com" target="_blank">Laravel</a> framework.</h4>
 
 <p align="center">
 <a href="https://travis-ci.org/orchidsoftware/platform/"><img src="https://travis-ci.org/orchidsoftware/platform.svg?branch=master"></a>
@@ -20,8 +20,8 @@
 
 ## Introduction
 
-Platform gives you a simpler and faster way to create professional-quality business applications for Laravel framework.  
-Using application templates, saves the time and effort of building from scratch, without sacrificing the flexibility needed to create custom applications. Documentation can be found at [ORCHID website](http://orchid.software).
+Platform gives you a simpler and faster way to create professional-quality business applications usage Laravel framework.  
+Documentation can be found at [ORCHID website](http://orchid.software).
 
 ## Installation
 

@@ -13,12 +13,6 @@
             $valuename=$value['name'];
         else $valuename='';
     @endphp
-    <style>
-        .osm-list {
-            margin-top:20px;
-            padding-left: 20px;
-        }
-    </style>
     <div data-controller="fields--map">
         <div id="osmap" class="b" style="width:100%; height:300px; margin-bottom:10px;">
 
@@ -29,7 +23,7 @@
                data-target="fields--map.address"
                data-action="keyup->fields--map#search"/>
         <div id="marker__results"></div>
-        <div class="row" style="margin-top: 20px;">
+        <div class="row mt-3">
             <div class="col-md">
                 <label>Latitude</label>
                 <input class="form-control" id="marker__latitude"
