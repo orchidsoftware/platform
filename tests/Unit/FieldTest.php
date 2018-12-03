@@ -36,10 +36,9 @@ class FieldTest extends TestUnitCase
                     'name'    => 'example',
                     'handler' => 'handler',
                 ], ],
-            [\Orchid\Screen\Fields\PlaceField::class,
+            [\Orchid\Screen\Fields\MapField::class,
                 [
                     'name' => 'example',
-                    'lang' => 'en',
                 ], ],
             [\Orchid\Screen\Fields\PictureField::class,
                 [
