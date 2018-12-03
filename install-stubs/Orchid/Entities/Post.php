@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
-use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
@@ -14,6 +13,7 @@ use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
 use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\UploadField;
 use Orchid\Screen\Fields\PictureField;
