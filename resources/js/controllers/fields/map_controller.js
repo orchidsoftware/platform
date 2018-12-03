@@ -8,52 +8,17 @@ export default class extends Controller {
      * @type {string[]}
      */
     static targets = [
-        "address"
+        "search",
+        "lat",
+        "lng"
     ];
 
     /**
      *
      */
     connect() {
-
-        let customControl = L.Control.extend({
-
-            options: {
-                position: 'bottomleft'
-            },
-
-            onAdd: (map) => {
-                var container = L.DomUtil.create('input');
-                container.type = "button";
-                container.title = "Set Latitude && Longitude";
-                container.value = "<i class='icon-settings'> </i>";
-
-                container.style.backgroundColor = 'white';
-                //container.style.backgroundImage = "url(https://t1.gstatic.com/images?q=tbn:ANd9GcR6FCUMW5bPn8C4PbKak2BJQQsmC-K9-mbYBeFZm1ZM2w2GRy40Ew)";
-                container.style.backgroundSize = "30px 30px";
-                container.style.width = '30px';
-                container.style.height = '30px';
-
-                container.onmouseover = () => {
-                    container.style.backgroundColor = 'pink';
-                };
-                container.onmouseout = () => {
-                    container.style.backgroundColor = 'white';
-                };
-
-                container.onclick = (e) => {
-                    console.log('buttonClicked');
-                    return e.preventDefault();
-
-                };
-
-                return container;
-            }
-        });
-
-
-        const default_lat = document.getElementById(`marker__latitude`).value;
-        const default_lng = document.getElementById(`marker__longitude`).value;
+        const default_lat = this.latTarget.value;
+        const default_lng = this.lngTarget.value;
         const default_zoom = '4';
         const max_zoom = '18';
 
@@ -68,7 +33,7 @@ export default class extends Controller {
             shadowUrl: base64shadow
         });
 
-        this.leafletMap = L.map('osmap', {
+        this.leafletMap = L.map(this.data.get('id'), {
             center: [default_lat, default_lng],
             zoom: default_zoom
         });
@@ -89,18 +54,14 @@ export default class extends Controller {
             this.updateCoords();
             this.leafletMap.panTo(e.latlng);
         });
-
-        this.leafletMap.addControl(new customControl());
-        this.leafletMap.addControl(new customControl());
-        this.leafletMap.addControl(new customControl());
     }
 
     /**
      *
      */
     updateCoords() {
-        document.getElementById('marker__latitude').value = this.leafletMarker.getLatLng().lat;
-        document.getElementById('marker__longitude').value = this.leafletMarker.getLatLng().lng;
+        this.latTarget.value = this.leafletMarker.getLatLng().lat;
+        this.lngTarget.value  = this.leafletMarker.getLatLng().lng;
     }
 
     /**
@@ -110,12 +71,12 @@ export default class extends Controller {
 
         const results = document.getElementById('marker__results');
 
-        if (this.addressTarget.value.length <= 3) {
+        if (this.searchTarget.value.length <= 3) {
             return;
         }
 
         axios
-            .get('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + this.addressTarget.value)
+            .get('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + this.searchTarget.value)
             .then(response => {
 
                 let items = [];
@@ -138,7 +99,7 @@ export default class extends Controller {
                     return;
                 }
 
-                $('<p>', {html: "No results found"}).appendTo(results);
+                $('<small>', {html: "No results found"}).appendTo(results);
             });
 
     }
@@ -163,7 +124,7 @@ export default class extends Controller {
         this.leafletMap.fitBounds(bounds);
         this.leafletMarker.setLatLng([lat, lng]);
         this.updateCoords();
-        this.addressTarget.value = name;
+        this.searchTarget.value = name;
     }
 
 }

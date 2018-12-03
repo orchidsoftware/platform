@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
+use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
@@ -158,6 +159,11 @@ class Post extends Many
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            MapField::make('place')
+                ->required()
+                ->title('Object on the map')
+                ->help('Enter the coordinates, or use the search'),
 
             PictureField::make('picture')
                 ->name('picture')

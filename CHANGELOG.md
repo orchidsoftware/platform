@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support `argon` hash driver
 - Method `canSee` in layout for check display [733](https://github.com/orchidsoftware/platform/issues/733)
 - Popovers for fields [734](https://github.com/orchidsoftware/platform/issues/734)
+- Field maps leafletjs [714](https://github.com/orchidsoftware/platform/issues/714)
 
 ### Changed
 - Method `url()` Attachment first parameter is the default value.
@@ -17,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Route helper `->screen()` no longer requires the third parameter as mandatory, use `->screen(...)->name()`
 
 ### Removed
--
+- Google Maps field
 - Attachment no longer create copies of images. [719](https://github.com/orchidsoftware/platform/issues/719). Use events for your own creation or packages to create cdn, for example, [Intervention/imagecache](https://github.com/Intervention/imagecache)
 - Widget systems now in a separate [package](https://github.com/orchidsoftware/widget)
 

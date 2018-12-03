@@ -6,6 +6,7 @@ namespace App\Orchid\Entities;
 
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Single;
+use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
@@ -118,6 +119,11 @@ class Page extends Single
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            MapField::make('place')
+                ->required()
+                ->title('Object on the map')
+                ->help('Enter the coordinates, or use the search'),
 
             PictureField::make('picture')
                 ->name('picture')

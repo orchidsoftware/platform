@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
@@ -75,6 +76,11 @@ class RowExample extends Rows
                 ->required()
                 ->title('Name Articles')
                 ->help('Article title'),
+
+            MapField::make('place')
+                ->required()
+                ->title('Object on the map')
+                ->help('Enter the coordinates, or use the search'),
 
             PictureField::make('picture')
                 ->name('picture')
