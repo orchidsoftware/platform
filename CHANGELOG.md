@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Method `canSee` in layout for check display [733](https://github.com/orchidsoftware/platform/issues/733)
 - Popovers for fields [734](https://github.com/orchidsoftware/platform/issues/734)
 - Field maps leafletjs [714](https://github.com/orchidsoftware/platform/issues/714)
+- Quill editor field [724](https://github.com/orchidsoftware/platform/issues/724)
 
 ### Changed
 - Method `url()` Attachment first parameter is the default value.
