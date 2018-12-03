@@ -3,8 +3,8 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
