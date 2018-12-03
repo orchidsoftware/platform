@@ -9,9 +9,6 @@ use Orchid\Tests\TestUnitCase;
 
 class UpdateTest extends TestUnitCase
 {
-    /**
-     *
-     */
     public function testUpdate(): void
     {
         $update = new Updates();
