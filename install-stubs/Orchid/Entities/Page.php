@@ -7,6 +7,7 @@ namespace App\Orchid\Entities;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Single;
 use Orchid\Screen\Fields\MapField;
+use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\Fields\UTMField;
 use Orchid\Screen\Fields\CodeField;
 use Orchid\Screen\Fields\TagsField;
@@ -148,6 +149,10 @@ class Page extends Single
                 ->help('SEO keywords'),
 
             SimpleMDEField::make('body2')
+                ->title('Name Articles')
+                ->help('Article title'),
+
+            QuillField::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 

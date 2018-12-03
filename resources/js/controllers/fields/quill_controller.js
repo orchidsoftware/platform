@@ -19,7 +19,6 @@ export default class extends Controller {
                     ['link', 'image', 'video', 'clean'],
                 ]
             },
-            placeholder: 'Compose an epic...',
         });
 
         /**

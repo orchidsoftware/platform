@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Entities;
 
+use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\TD;
 use Orchid\Screen\Field;
 use Orchid\Press\Entities\Many;
@@ -175,6 +176,10 @@ class Post extends Many
                 ->help('Generated link'),
 
             SimpleMDEField::make('body2')
+                ->title('Name Articles')
+                ->help('Article title'),
+
+            QuillField::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 

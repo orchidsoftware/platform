@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Fields\UTMField;
@@ -109,6 +110,10 @@ class RowExample extends Rows
                 ->help('Article title'),
 
             CodeField::make('code')
+                ->title('Name Articles')
+                ->help('Article title'),
+
+            QuillField::make('body3')
                 ->title('Name Articles')
                 ->help('Article title'),
 

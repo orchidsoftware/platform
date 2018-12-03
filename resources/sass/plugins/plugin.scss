@@ -151,7 +151,7 @@ div.mce-fullscreen {
     }
 }
 
-.form-group,.CodeMirror-wrap pre{
+.CodeMirror-wrap pre{
   word-wrap: break-word;
   word-break: break-all;
 }
@@ -217,3 +217,9 @@ div.mce-fullscreen {
   }
 }
 
+
+// Quill
+
+.ql-editor{
+  padding: 0;
+}
