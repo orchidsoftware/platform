@@ -2,18 +2,18 @@
 
 namespace App\Orchid\Screens;
 
-use Orchid\Screen\Link;
-use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
-use Orchid\Screen\Repository;
-use Orchid\Support\Facades\Alert;
-use Orchid\Screen\Fields\InputField;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
-use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
+use Orchid\Screen\Fields\InputField;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class ExampleScreen extends Screen
 {
@@ -71,6 +71,10 @@ class ExampleScreen extends Screen
                 ['keyValue' => number_format(65661, 2), 'keyDiff' => 3.84],
                 ['keyValue' => number_format(10000, 0), 'keyDiff' => -169.54],
                 ['keyValue' => number_format(1454887.12, 2), 'keyDiff' => 0.2],
+            ],
+            'place'   => [
+                'lat' => 37.181244855427394,
+                'lng' => -3.6021993309259415,
             ],
         ];
     }
