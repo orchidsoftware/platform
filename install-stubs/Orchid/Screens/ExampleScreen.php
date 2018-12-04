@@ -2,18 +2,18 @@
 
 namespace App\Orchid\Screens;
 
-use App\Orchid\Layouts\Examples\ChartBarExample;
-use App\Orchid\Layouts\Examples\ChartLineExample;
-use App\Orchid\Layouts\Examples\ChartPieExample;
-use App\Orchid\Layouts\Examples\MetricsExample;
+use Orchid\Screen\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Repository;
+use Orchid\Support\Facades\Alert;
+use Orchid\Screen\Fields\InputField;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
-use Orchid\Screen\Fields\InputField;
-use Orchid\Screen\Layouts;
-use Orchid\Screen\Link;
-use Orchid\Screen\Repository;
-use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Alert;
+use App\Orchid\Layouts\Examples\MetricsExample;
+use App\Orchid\Layouts\Examples\ChartBarExample;
+use App\Orchid\Layouts\Examples\ChartPieExample;
+use App\Orchid\Layouts\Examples\ChartLineExample;
 
 class ExampleScreen extends Screen
 {
