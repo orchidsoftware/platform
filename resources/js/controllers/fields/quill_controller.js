@@ -80,7 +80,8 @@ export default class extends Controller {
         });
 
         //set value
-        editor.setText(input.value);
+        //editor.setText(input.value);
+        editor.root.innerHTML = input.value;
 
         //save value
         editor.on('text-change', () => {
