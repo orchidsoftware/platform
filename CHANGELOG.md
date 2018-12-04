@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.1] - 2018-12-04
+
+### Added
+- Property zoom for maps field
+
+### Fixed
+- Show maps coordinates
 
 ## [3.1.0] - 2018-12-04
 

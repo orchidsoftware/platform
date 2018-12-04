@@ -39,6 +39,7 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this help($value = true)
  * @method $this popover($value = true)
+ * @method $this zoom($value = true)
  */
 class MapField extends Field
 {
@@ -46,6 +47,15 @@ class MapField extends Field
      * @var string
      */
     public $view = 'platform::fields.map';
+
+    /**
+     * Default attributes value.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'zoom' => 14,
+    ];
 
     /**
      * Attributes available for a particular tag.
@@ -86,6 +96,7 @@ class MapField extends Field
 
     /**
      * @param null $name
+     *
      * @return PlaceField
      */
     public static function make($name = null): self

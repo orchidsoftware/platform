@@ -1,7 +1,7 @@
 @component($typeForm,get_defined_vars())
-
     <div data-controller="fields--map"
          data-fields--map-id="{{$id}}"
+         data-fields--map-zoom="{{$zoom}}"
     >
         <div id="{{$id}}" class="osmap-map b m-b w-full" style="height:300px;">
 
@@ -12,9 +12,9 @@
                 <input class="form-control"
                        id="marker__latitude"
                        data-target="fields--map.lat"
-                            @if($required ?? false) required @endif
+                       @if($required ?? false) required @endif
                        name="{{$name}}[lat]"
-                       value="{{$lat ?? ''}}"/>
+                       value="{{ $value['lat'] ?? '' }}"/>
             </div>
             <div class="col-md">
                 <label for="{{$name}}[lng]">{{ __('Longitude') }}</label>
@@ -22,9 +22,9 @@
                        id="marker__longitude"
 
                        data-target="fields--map.lng"
-                            @if($required ?? false) required @endif
+                       @if($required ?? false) required @endif
                        name="{{$name}}[lng]"
-                       value="{{$lng ?? ''}}"/>
+                       value="{{ $value['lng'] ?? '' }}"/>
             </div>
         </div>
         <div class="row mt-3">
