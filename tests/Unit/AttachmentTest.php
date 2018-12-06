@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Illuminate\Http\UploadedFile;
 use Orchid\Attachment\File;
-use Orchid\Attachment\Models\Attachment;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\User;
+use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\Models\Attachment;
 
 /**
  * Class AttachmentTest.
@@ -43,7 +43,7 @@ class AttachmentTest extends TestUnitCase
             'name' => $upload->original_name,
         ]);
 
-        $this->assertContains($upload->name . '.xml', $upload->url());
+        $this->assertContains($upload->name.'.xml', $upload->url());
     }
 
     /**
@@ -72,7 +72,6 @@ class AttachmentTest extends TestUnitCase
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
 
-
         $this->assertEquals($upload->user()->first()->email, $user->email);
     }
 
@@ -84,7 +83,6 @@ class AttachmentTest extends TestUnitCase
         $file = UploadedFile::fake()->create('example.jpg', 1920, 1080);
         $attachment = new File($file, $this->disk);
         $upload = $attachment->load();
-
 
         $this->assertNotNull($upload->getUrlAttribute());
         $this->assertNotNull($upload->url());

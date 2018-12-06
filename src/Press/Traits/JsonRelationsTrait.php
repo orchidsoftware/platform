@@ -8,7 +8,6 @@ namespace Orchid\Press\Traits;
  * @deprecated
  *
  * Trait JsonRelationsTrait
- * @package Orchid\Press\Traits
  */
 trait JsonRelationsTrait
 {
