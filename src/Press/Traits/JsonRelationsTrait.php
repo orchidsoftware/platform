@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
+/**
+ * @deprecated
+ *
+ * Trait JsonRelationsTrait
+ * @package Orchid\Press\Traits
+ */
 trait JsonRelationsTrait
 {
     /**

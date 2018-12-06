@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Setting.
@@ -109,14 +109,17 @@ class Setting extends Model
     public function getNoCache($key, $default = null)
     {
         if (is_array($key)) {
-            $result = $this->select('key', 'value')->whereIn('key', $key)->pluck('value', 'key')->toArray();
+            $result = $this->select('key', 'value')
+                ->whereIn('key', $key)
+                ->pluck('value', 'key')
+                ->toArray();
 
             return empty($result) ? $default : $result;
         }
 
         $result = $this->select('value')->where('key', $key)->first();
 
-        return is_null($result) ? $default : $result->value;
+        return $result === null ? $default : $result->value;
     }
 
     /**

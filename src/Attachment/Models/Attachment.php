@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Attachment.
@@ -82,17 +82,6 @@ class Attachment extends Model
     public function physicalPath(): string
     {
         return $this->path.$this->name.'.'.$this->extension;
-    }
-
-    /**
-     * Get the contents of a file.
-     *
-     * @return string
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    public function read(): string
-    {
-        return Storage::disk($this->getAttribute('disk'))->get($this->physicalPath());
     }
 
     /**
