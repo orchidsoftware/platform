@@ -16,7 +16,6 @@ use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Press\Traits\JsonRelationsTrait;
 use Orchid\Screen\Exceptions\TypeException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\MultiLanguageTrait;
@@ -36,7 +35,6 @@ class Post extends Model
         MultiLanguageTrait,
         Searchable,
         AttachTrait,
-        JsonRelationsTrait,
         FilterTrait;
 
     /**

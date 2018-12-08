@@ -10,7 +10,6 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-use Intervention\Image\ImageServiceProvider;
 use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
 
@@ -138,7 +137,6 @@ class FoundationServiceProvider extends ServiceProvider
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
-            ImageServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
             ConsoleServiceProvider::class,

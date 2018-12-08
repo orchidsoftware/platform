@@ -1,8 +1,7 @@
-import {Controller} from 'stimulus';
-import {Chart}      from 'frappe-charts/dist/frappe-charts.esm';
+import { Controller } from 'stimulus';
+import { Chart } from 'frappe-charts/dist/frappe-charts.esm';
 
 export default class extends Controller {
-
     /**
      *
      */

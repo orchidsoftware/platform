@@ -9,15 +9,15 @@ export default class extends Controller {
         const selector = this.element.querySelector('.quill').id;
         const input = this.element.querySelector('input');
 
-        let editor = new Quill(`#${selector}`, {
+        const editor = new Quill(`#${selector}`, {
             theme: 'snow',
             modules: {
                 toolbar: [
                     ['bold', 'italic', 'underline', 'strike'],
-                    [{'header': '1'}, {'header': '2'}, 'blockquote', 'code-block'],
-                    [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}, {'align': []}],
+                    [{ header: '1' }, { header: '2' }, 'blockquote', 'code-block'],
+                    [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }, { align: [] }],
                     ['link', 'image', 'video', 'clean'],
-                ]
+                ],
             },
         });
 
@@ -54,10 +54,10 @@ export default class extends Controller {
 
             axios
                 .post(platform.prefix('/systems/files'), formData)
-                .then(response => {
+                .then((response) => {
                     insertToEditor(response.data.url);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.warn('quill image upload failed');
                     console.warn(error);
                 });
@@ -79,11 +79,11 @@ export default class extends Controller {
             selectLocalImage();
         });
 
-        //set value
-        //editor.setText(input.value);
+        // set value
+        // editor.setText(input.value);
         editor.root.innerHTML = input.value;
 
-        //save value
+        // save value
         editor.on('text-change', () => {
             input.value = editor.getText() ? editor.root.innerHTML : '';
         });
