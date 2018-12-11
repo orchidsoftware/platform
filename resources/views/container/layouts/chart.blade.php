@@ -1,4 +1,4 @@
-<div class="m-b"
+<div
      data-controller="screen--chart"
      data-screen--chart-parent="#{{$slug}}"
      data-screen--chart-title="{{$title}}"
