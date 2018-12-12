@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\Command;
-use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Platform\Updates;
+use Illuminate\Console\Command;
 use Orchid\Press\Providers\PressServiceProvider;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -71,14 +71,14 @@ class InstallCommand extends Command
                     'config',
                     'migrations',
                     'orchid-stubs',
-                ]])
+                ], ])
             ->executeCommand('vendor:publish', [
                 '--provider' => PressServiceProvider::class,
                 '--force'    => true,
                 '--tag'      => [
                     'config',
                     'migrations',
-                ]])
+                ], ])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->executeCommand('orchid:link');
