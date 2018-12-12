@@ -2,7 +2,6 @@
 <ul class="toc-links">
     <li><a href="/ru/docs/preface">Предисловие</a></li>
     <li><a href="/ru/docs">Введение</a></li>
-    <li><a href="/ru/docs/requirements">Требования</a></li>
     <li><a href="/ru/docs/installation">Установка</a></li>
     <li><a href="/ru/docs/code-of-conduct">Кодекс поведения</a></li>
     <li><a href="/ru/docs/contributors">Участие в разработке</a></li>
