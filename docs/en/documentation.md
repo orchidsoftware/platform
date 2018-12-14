@@ -1,7 +1,6 @@
 <h4 class="text-orchid font-thin">Where to start</h4>
 <ul class="toc-links">
     <li><a href="/en/docs" title="ORCHID is ...">Introduction</a></li>
-    <li><a href="/en/docs/requirements" title="This guideline contains detailed system requirements to install ORCHID to Laravel Framework">Requirements</a></li>
     <li><a href="/en/docs/installation" title="This guideline embraces the preparations, scenario start-up and steps to perform after installation procedure">Installation</a></li>
     <li><a href="/en/docs/contributors">Contribution</a></li>
     <li><a href="/en/docs/license">Licensing</a></li>

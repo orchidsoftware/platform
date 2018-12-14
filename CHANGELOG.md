@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.5] - 2018-12-12
+
+### Fixed
+- Publish `PressServiceProvider` files during installation
+
 ## [3.1.4] - 2018-12-09
 
 ### Added

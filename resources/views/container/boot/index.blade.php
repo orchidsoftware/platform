@@ -1,4 +1,4 @@
-<div data-controller="components--boot" class=" m-b">
+<div data-controller="components--boot" class="m-b">
     @if(count($models))
         <div class="nav-tabs-alt">
             <ul class="nav nav-tabs padder" role="tablist">

@@ -6,6 +6,7 @@ namespace Orchid\Platform\Commands;
 
 use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
+use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class InstallCommand extends Command
@@ -58,12 +59,26 @@ class InstallCommand extends Command
         $this
             ->checkInstall()
             ->executeCommand('migrate')
-            ->executeCommand('vendor:publish', ['--force' => true, '--tag' => 'migrations'])
-            ->executeCommand('vendor:publish', ['--provider' => FoundationServiceProvider::class, '--force' => true, '--tag' => [
-                'config',
-                'migrations',
-                'orchid-stubs',
-            ]])
+            ->executeCommand('vendor:publish',
+                [
+                    '--force' => true,
+                    '--tag'   => 'migrations',
+                ])
+            ->executeCommand('vendor:publish', [
+                '--provider' => FoundationServiceProvider::class,
+                '--force'    => true,
+                '--tag'      => [
+                    'config',
+                    'migrations',
+                    'orchid-stubs',
+                ], ])
+            ->executeCommand('vendor:publish', [
+                '--provider' => PressServiceProvider::class,
+                '--force'    => true,
+                '--tag'      => [
+                    'config',
+                    'migrations',
+                ], ])
             ->executeCommand('migrate')
             ->executeCommand('storage:link')
             ->executeCommand('orchid:link');
