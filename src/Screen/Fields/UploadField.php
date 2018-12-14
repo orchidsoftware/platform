@@ -47,6 +47,7 @@ use Orchid\Screen\Field;
  * @method $this resizeWidth($value = true)
  * @method $this resizeHeight($value = true)
  * @method $this popover($value = true)
+ * @method $this groups($value = true)
  */
 class UploadField extends Field
 {
