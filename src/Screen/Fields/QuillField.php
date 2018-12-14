@@ -38,6 +38,7 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
+ * @method $this height($value = true)
  */
 class QuillField extends Field
 {
@@ -45,6 +46,16 @@ class QuillField extends Field
      * @var string
      */
     public $view = 'platform::fields.quill';
+
+    /**
+     * All attributes that are available to the field.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'value'  => null,
+        'height' => '300px',
+    ];
 
     /**
      * Attributes available for a particular tag.
@@ -80,6 +91,7 @@ class QuillField extends Field
         'tabindex',
         'type',
         'value',
+        'height'
     ];
 
     /**

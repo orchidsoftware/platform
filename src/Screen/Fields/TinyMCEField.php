@@ -39,6 +39,7 @@ use Orchid\Screen\Field;
  * @method $this value($value = true)
  * @method $this help($value = true)
  * @method $this popover($value = true)
+ * @method $this height($value = true)
  */
 class TinyMCEField extends Field
 {
@@ -46,6 +47,16 @@ class TinyMCEField extends Field
      * @var string
      */
     public $view = 'platform::fields.tinymce';
+
+    /**
+     * All attributes that are available to the field.
+     *
+     * @var array
+     */
+    public $attributes = [
+        'value'  => null,
+        'height' => '300px',
+    ];
 
     /**
      * Attributes available for a particular tag.
@@ -81,6 +92,7 @@ class TinyMCEField extends Field
         'tabindex',
         'type',
         'value',
+        'height',
     ];
 
     /**
