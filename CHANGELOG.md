@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.6] - 2018-12-14
+
+### Added
+- Attribute `height` for Quill & TinyMCE
+
+### Removed
+- User localization column
+
 ## [3.1.5] - 2018-12-12
 
 ### Fixed
