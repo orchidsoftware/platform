@@ -38,7 +38,7 @@ use Orchid\Screen\Field;
  * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help($value = true)
- * @method $this height($value = true)
+ * @method $this height($value = '300px')
  */
 class QuillField extends Field
 {

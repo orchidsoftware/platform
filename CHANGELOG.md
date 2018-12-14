@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.1.6] - 2018-12-14
 
 ### Added
-- Attribute `height` for Quill & TinyMCE
+- Attribute `height` for Quill / TinyMCE / Map / Code Fields
 
 ### Removed
 - User localization column

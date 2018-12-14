@@ -40,6 +40,7 @@ use Orchid\Screen\Field;
  * @method $this help($value = true)
  * @method $this popover($value = true)
  * @method $this zoom($value = true)
+ * @method $this height($value = '300px')
  */
 class MapField extends Field
 {
@@ -54,7 +55,8 @@ class MapField extends Field
      * @var array
      */
     public $attributes = [
-        'zoom' => 14,
+        'zoom'   => 14,
+        'height' => '300px',
     ];
 
     /**

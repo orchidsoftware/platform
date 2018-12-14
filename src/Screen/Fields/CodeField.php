@@ -15,6 +15,7 @@ use Orchid\Screen\Field;
  * @method $this popover($value = true)
  * @method $this language($value = true)
  * @method $this lineNumbers($value = true)
+ * @method $this height($value = '300px')
  */
 class CodeField extends Field
 {
@@ -33,6 +34,7 @@ class CodeField extends Field
         'language'     => 'js',
         'lineNumbers'  => true,
         'defaultTheme' => true,
+        'height'       => '300px',
     ];
 
     /**
