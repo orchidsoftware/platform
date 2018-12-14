@@ -73,7 +73,7 @@ class CodeField extends Field
         'tabindex',
         'type',
         'value',
-        'height'
+        'height',
     ];
 
     /**
