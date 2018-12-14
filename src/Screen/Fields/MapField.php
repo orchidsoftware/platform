@@ -93,7 +93,7 @@ class MapField extends Field
         'tabindex',
         'type',
         'value',
-        'mask',
+        'height'
     ];
 
     /**
