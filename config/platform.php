@@ -8,7 +8,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | You can use the admin panel on a separate subdomain.
-    | For example: 'admin.example.com'
+    |
+    | Example: 'admin.example.com'
     |
     */
 
@@ -20,7 +21,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This prefix method can be used for the prefix of each
-    | route in the administration panel. For example, you can change to '/admin'
+    | route in the administration panel.
+    |
+    | Example: '/', '/admin', '/dashboard'
     |
     */
 
@@ -43,10 +46,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Auth
+    | Login page
     |--------------------------------------------------------------------------
     |
-    | Available settings
+    | The property controls the display / hide of the page.
+    | The authorization page has basic properties and does not have the
+    | ability to change, use the command to change: artisan make:auth
     |
     */
 
@@ -57,6 +62,8 @@ return [
     | Main Route
     |--------------------------------------------------------------------------
     |
+    | The main page of the application is recorded as the name of the route,
+    | it will be opened by users when they enter or click on logos and links.
     |
     */
     'index' => 'platform.main',
@@ -66,7 +73,9 @@ return [
     | Dashboard Resource
     |--------------------------------------------------------------------------
     |
-    | Automatically connect the stored links. For example js and css files
+    | Automatically connect the stored links.
+    |
+    | Example: '/application.js', '/style/classic/ui.css'
     |
     */
 
@@ -80,6 +89,9 @@ return [
     | Template view
     |--------------------------------------------------------------------------
     |
+    | Templates that will be displayed in the application and used pages,
+    | allowing to customize the part of the user interface that is
+    | suitable for specifying the name, logo, accompanying documents, etc.
     |
     */
 
