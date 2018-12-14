@@ -91,7 +91,7 @@ class QuillField extends Field
         'tabindex',
         'type',
         'value',
-        'height'
+        'height',
     ];
 
     /**
