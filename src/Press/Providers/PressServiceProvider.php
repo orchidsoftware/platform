@@ -99,7 +99,7 @@ class PressServiceProvider extends ServiceProvider
     {
         $this->publishes([
             realpath(PLATFORM_PATH.'/config/press.php') => config_path('press.php'),
-        ]);
+        ], 'config');
 
         return $this;
     }
