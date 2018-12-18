@@ -92,7 +92,7 @@ class PressServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            realpath(PLATFORM_PATH . '/config/press.php'), 'press',
+            realpath(PLATFORM_PATH . '/config/press.php'), 'press'
         );
     }
 
