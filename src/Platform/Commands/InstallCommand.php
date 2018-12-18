@@ -37,7 +37,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->progressBar = $this->output->createProgressBar(9);
+        $this->progressBar = $this->output->createProgressBar(10);
 
         $this->info("
         ________________________________________________________________

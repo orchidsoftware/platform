@@ -30,6 +30,10 @@ class PressServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
+        $this->registerDatabase()
+            ->registerConfig()
+            ->registerProviders();
+
         $this->dashboard
             ->registerEntities($this->findEntities())
             ->registerPermissions($this->registerPermissionsEntities())
@@ -66,16 +70,6 @@ class PressServiceProvider extends ServiceProvider
         }
 
         return collect($resources)->sort()->all();
-    }
-
-    /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-        $this->registerDatabase()
-            ->registerConfig()
-            ->registerProviders();
     }
 
     /**
