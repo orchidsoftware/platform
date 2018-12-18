@@ -150,10 +150,6 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(
-            realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
-        );
-
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name = null) {
                 return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
@@ -167,5 +163,9 @@ class FoundationServiceProvider extends ServiceProvider
              */
             define('PLATFORM_PATH', realpath(__DIR__.'/../../../'));
         }
+
+        $this->mergeConfigFrom(
+            realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
+        );
     }
 }
