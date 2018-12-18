@@ -151,7 +151,7 @@ class FoundationServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            realpath(PLATFORM_PATH . '/config/platform.php'), 'platform'
+            realpath(PLATFORM_PATH.'/config/platform.php'), 'platform'
         );
 
         if (! Route::hasMacro('screen')) {
