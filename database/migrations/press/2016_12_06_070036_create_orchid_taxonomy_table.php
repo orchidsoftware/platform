@@ -11,7 +11,7 @@ class CreateOrchidTaxonomyTable extends Migration
      */
     public function up()
     {
-        Schema::create('term_taxonomy', function (Blueprint $table) {
+        Schema::create('term_taxonomy', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('term_id');
             $table->string('taxonomy');

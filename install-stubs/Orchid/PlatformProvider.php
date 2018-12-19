@@ -27,7 +27,7 @@ class PlatformProvider extends ServiceProvider
             ->registerPermissions($this->registerPermissionsSystems());
 
         $dashboard->registerGlobalSearch([
-          //...Models
+            //...Models
         ]);
     }
 

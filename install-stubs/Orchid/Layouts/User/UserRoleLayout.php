@@ -26,7 +26,7 @@ class UserRoleLayout extends Rows
                 ->getContent('roles')
                 ->pluck('name', 'slug')
                 ->toArray())
-            ->value(function () {
+            ->value(function() {
                 return $this->query
                     ->getContent('roles')
                     ->where('active', true)
@@ -57,7 +57,7 @@ class UserRoleLayout extends Rows
                 ->hr(false);
 
             foreach (collect($items)->chunk(4) as $chunks) {
-                $fields[] = Field::group(function () use ($chunks) {
+                $fields[] = Field::group(function() use ($chunks) {
                     foreach ($chunks as $permission) {
                         $permissions[] = CheckBoxField::make('permissions.'.base64_encode($permission['slug']))
                             ->placeholder($permission['description'])

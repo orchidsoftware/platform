@@ -66,7 +66,7 @@ class Post extends Many
     public function create(Model $model) : Model
     {
         return $model->load(['attachment', 'tags', 'taxonomies'])
-            ->setAttribute('category', $model->taxonomies->map(function ($item) {
+            ->setAttribute('category', $model->taxonomies->map(function($item) {
                 return $item->id;
             })->toArray());
     }
@@ -198,7 +198,7 @@ class Post extends Many
     {
         return array_merge(parent::main(), [
             SelectField::make('category.')
-                ->options(function () {
+                ->options(function() {
                     $options = (new Category())->getAllCategories();
 
                     return array_replace([0=> __('Without category')], $options);
@@ -267,7 +267,7 @@ class Post extends Many
                 ->filter('date')
                 ->sort()
                 ->align('right')
-                ->setRender(function ($item) {
+                ->setRender(function($item) {
                     return optional($item->publish_at)->toDateString();
                 }),
 
@@ -275,7 +275,7 @@ class Post extends Many
                 ->filter('date')
                 ->align('right')
                 ->sort()
-                ->setRender(function ($item) {
+                ->setRender(function($item) {
                     return $item->created_at->toDateString();
                 }),
         ];

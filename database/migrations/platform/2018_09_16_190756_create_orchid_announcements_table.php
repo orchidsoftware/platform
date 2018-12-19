@@ -13,7 +13,7 @@ class CreateOrchidAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('announcements', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->text('content');

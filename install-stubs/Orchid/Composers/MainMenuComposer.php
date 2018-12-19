@@ -38,7 +38,7 @@ class MainMenuComposer
             ->add('Profile',
                 ItemMenu::setLabel('Example 2')
                     ->setIcon('icon-heart')
-                    ->setBadge(function () {
+                    ->setBadge(function() {
                         return 6;
                     })
             )

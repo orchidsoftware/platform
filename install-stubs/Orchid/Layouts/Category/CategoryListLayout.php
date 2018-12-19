@@ -31,16 +31,16 @@ class CategoryListLayout extends Table
     {
         return [
             TD::set('name', __('Name'))
-                ->setRender(function ($category) {
+                ->setRender(function($category) {
                     return '<a href="'.route('platform.systems.category.edit',
                             $category->id).'">'.$category->delimiter.' '.$category->term->GetContent('name').'</a>';
                 }),
             TD::set('slug', __('Slug'))
-                ->setRender(function ($category) {
+                ->setRender(function($category) {
                     return $category->term->slug;
                 }),
             TD::set('created_at', __('Created'))
-                ->setRender(function ($category) {
+                ->setRender(function($category) {
                     return $category->term->created_at;
                 }),
         ];

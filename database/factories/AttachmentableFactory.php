@@ -15,7 +15,7 @@ use Orchid\Attachment\Models\Attachmentable;
 |
 */
 
-$factory->define(Attachmentable::class, function (Faker $faker) {
+$factory->define(Attachmentable::class, function(Faker $faker) {
     $attachments = Attachment::get()->count();
 
     if ($attachments > 0) {

@@ -91,11 +91,11 @@ class UserEditScreen extends Screen
             UserRoleLayout::class,
 
             Layouts::modals([
-               'password' => Layouts::rows([
-                   PasswordField::make('user.password')
-                       ->title(__('Password'))
-                       ->placeholder('********'),
-               ]),
+                'password' => Layouts::rows([
+                    PasswordField::make('user.password')
+                        ->title(__('Password'))
+                        ->placeholder('********'),
+                ]),
             ]),
         ];
     }
@@ -152,7 +152,7 @@ class UserEditScreen extends Screen
      */
     public function switchUserStart(User $user, Request $request)
     {
-        if (! session()->has('original_user')) {
+        if (!session()->has('original_user')) {
             session()->put('original_user', $request->user()->id);
         }
         Auth::login($user);

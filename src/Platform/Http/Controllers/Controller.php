@@ -22,13 +22,13 @@ class Controller extends BaseController
      */
     protected function checkPermission(string $permission)
     {
-        $this->middleware(function ($request, $next) use ($permission) {
+        $this->middleware(function($request, $next) use ($permission) {
             if (Auth::user()->hasAccess($permission)) {
                 return $next($request);
             }
             abort(404);
         });
 
-        abort_if(! is_null(Auth::user()) && ! Auth::user()->hasAccess($permission), 404);
+        abort_if(!is_null(Auth::user()) && !Auth::user()->hasAccess($permission), 404);
     }
 }

@@ -93,7 +93,7 @@ class MediaController extends Controller
     }
 
     /**
-     * @param $bytes
+     * @param integer $bytes
      *
      * @return string
      */
@@ -115,7 +115,7 @@ class MediaController extends Controller
      */
     private function filesToFormat(Collection $files): Collection
     {
-        return $files->map(function ($file) {
+        return $files->map(function($file) {
             $modified = $this->filesystem->lastModified($file);
             $name = strpos($file, '/') > 1 ? str_replace('/', '', strrchr($file, '/')) : $file;
 
@@ -177,11 +177,11 @@ class MediaController extends Controller
         $fileFolder = "{$location}/{$fileFolder}";
 
         if ($type === 'directory') {
-            if (! $this->filesystem->deleteDirectory($fileFolder)) {
+            if (!$this->filesystem->deleteDirectory($fileFolder)) {
                 $error = trans('platform::systems/media.error_deleting_folder');
                 $success = false;
             }
-        } elseif (! $this->filesystem->delete($fileFolder)) {
+        } elseif (!$this->filesystem->delete($fileFolder)) {
             $error = trans('platform::systems/media.error_deleting_file');
             $success = false;
         }
@@ -238,7 +238,7 @@ class MediaController extends Controller
         */
 
         $error = trans('platform::systems/media.error_already_exists');
-        if (! file_exists($destination)) {
+        if (!file_exists($destination)) {
             $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move($source, $destination)) {
                 $success = true;
@@ -273,7 +273,7 @@ class MediaController extends Controller
         $location = "{$this->directory}/{$folderLocation}";
 
         $error = trans('platform::systems/media.error_may_exist');
-        if (! $this->filesystem->exists("{$location}/{$newFilename}")) {
+        if (!$this->filesystem->exists("{$location}/{$newFilename}")) {
             $error = trans('platform::systems/media.error_moving');
             if ($this->filesystem->move("{$location}/{$filename}", "{$location}/{$newFilename}")) {
                 $success = true;
@@ -360,7 +360,7 @@ class MediaController extends Controller
     {
         $breadcrumbs = array_filter(explode($delimiter, $path));
 
-        return array_map(function ($item, $key, $path = '') use ($breadcrumbs, $delimiter) {
+        return array_map(function($item, $key, $path = '') use ($breadcrumbs, $delimiter) {
             foreach ($breadcrumbs as $bkey => $breadcrumb) {
                 if ($bkey === $key) {
                     break;

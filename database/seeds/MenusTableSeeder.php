@@ -19,9 +19,9 @@ class MenusTableSeeder extends Seeder
         foreach ($MenuTypes as $MenuType) {
             $Type = ['type' => $MenuType];
 
-            factory(Menu::class, 5)->create($Type)->each(function ($u) use ($Type) {
+            factory(Menu::class, 5)->create($Type)->each(function($u) use ($Type) {
                 $u->children()->saveMany(factory(Menu::class, 2)->create($Type)
-                    ->each(function ($p) use ($Type) {
+                    ->each(function($p) use ($Type) {
                         $p->children()->saveMany(factory(Menu::class, 2)->make($Type));
                     }));
             });

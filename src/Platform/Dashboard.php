@@ -256,7 +256,7 @@ class Dashboard
      */
     public function getEntities(): Collection
     {
-        return $this->entities->transform(function ($value) {
+        return $this->entities->transform(function($value) {
             return is_object($value) ? $value : new $value;
         });
     }
@@ -266,7 +266,7 @@ class Dashboard
      */
     public function getGlobalSearch(): Collection
     {
-        return $this->globalSearch->transform(function ($value) {
+        return $this->globalSearch->transform(function($value) {
             return is_object($value) ? $value : new $value;
         });
     }
@@ -287,11 +287,11 @@ class Dashboard
         $all = $this->permission->get('all');
         $removed = $this->permission->get('removed');
 
-        if (! $removed->count()) {
+        if (!$removed->count()) {
             return $all;
         }
 
-        return $all->map(function ($group) use ($removed) {
+        return $all->map(function($group) use ($removed) {
             foreach ($group[key($group)] as $key => $item) {
                 if ($removed->contains($item['slug'])) {
                     unset($group[key($group)][$key]);

@@ -55,7 +55,7 @@ class CategoryListScreen extends Screen
         $category->delimiter = $delimiter;
         $result->push($category);
 
-        if (! $category->allChildrenTerm()->count()) {
+        if (!$category->allChildrenTerm()->count()) {
             return $result;
         }
 

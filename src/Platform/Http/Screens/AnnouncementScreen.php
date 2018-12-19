@@ -45,7 +45,7 @@ class AnnouncementScreen extends Screen
     public function query(): array
     {
         $announcement = Announcement::getActive();
-        $this->active = ! is_null($announcement);
+        $this->active = !is_null($announcement);
 
         return [
             'announcement' => $announcement,
@@ -61,7 +61,7 @@ class AnnouncementScreen extends Screen
             Link::name(__('Create'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
-                ->show(! $this->active),
+                ->show(!$this->active),
 
             Link::name(__('Refresh'))
                 ->icon('icon-check')

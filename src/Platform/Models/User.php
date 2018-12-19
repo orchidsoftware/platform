@@ -122,7 +122,7 @@ class User extends Authenticatable implements UserInterface
 
         Dashboard::getPermission()
             ->collapse()
-            ->each(function ($item) use ($permissions) {
+            ->each(function($item) use ($permissions) {
                 $permissions->put($item['slug'], true);
             });
 
@@ -161,7 +161,7 @@ class User extends Authenticatable implements UserInterface
 
         return Dashboard::getPermission()
             ->sort()
-            ->transform(function ($group) use ($permissions) {
+            ->transform(function($group) use ($permissions) {
                 $group = collect($group)->sortBy('description')->toArray();
 
                 foreach ($group as $key => $value) {
@@ -179,7 +179,7 @@ class User extends Authenticatable implements UserInterface
     public function getStatusRoles()
     {
         return collect($this->roles)
-            ->transform(function ($role) {
+            ->transform(function($role) {
                 $role->active = true;
 
                 return $role;

@@ -52,7 +52,7 @@ class PressServiceProvider extends ServiceProvider
         $directory = app_path('Orchid/Entities');
         $resources = [];
 
-        if (! is_dir($directory)) {
+        if (!is_dir($directory)) {
             return [];
         }
 
@@ -141,7 +141,7 @@ class PressServiceProvider extends ServiceProvider
         $posts = $this->dashboard
             ->getEntities()
             ->where('display', true)
-            ->map(function ($post) {
+            ->map(function($post) {
                 return [
                     'slug'        => 'platform.posts.type.'.$post->slug,
                     'description' => $post->name,

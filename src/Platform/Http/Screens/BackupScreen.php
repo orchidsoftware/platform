@@ -113,11 +113,11 @@ class BackupScreen extends Screen
             $files = $disk->allFiles();
 
             collect($files)
-                ->filter(function ($file) {
+                ->filter(function($file) {
                     // only take the zip files into account
                     return preg_match("/^(.*)(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2}).zip$/", $file);
                 })
-                ->each(function ($file) use ($disk, $diskName, &$backups) {
+                ->each(function($file) use ($disk, $diskName, &$backups) {
                     // make an array of backup files, with their filesize and creation date
                     $backups[] = new Repository([
                         'path'          => $file,

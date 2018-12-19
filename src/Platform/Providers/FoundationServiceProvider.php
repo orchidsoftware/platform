@@ -150,14 +150,14 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if (! Route::hasMacro('screen')) {
-            Route::macro('screen', function ($url, $screen, $name = null) {
+        if (!Route::hasMacro('screen')) {
+            Route::macro('screen', function($url, $screen, $name = null) {
                 return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
                     ->name($name);
             });
         }
 
-        if (! defined('PLATFORM_PATH')) {
+        if (!defined('PLATFORM_PATH')) {
             /*
              * Get the path to the ORCHID Platform folder.
              */

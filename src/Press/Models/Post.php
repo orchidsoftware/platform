@@ -134,11 +134,11 @@ class Post extends Model
     {
         parent::boot();
 
-        self::creating(function ($model) {
+        self::creating(function($model) {
             $model->publish_at = Carbon::now();
         });
 
-        self::saving(function ($model) {
+        self::saving(function($model) {
             $model->createSlug($model->slug);
         });
     }
@@ -172,7 +172,7 @@ class Post extends Model
      */
     public function getEntityObject($slug = null)
     {
-        if (! is_null($this->entity)) {
+        if (!is_null($this->entity)) {
             return $this->entity;
         }
 
@@ -212,7 +212,7 @@ class Post extends Model
     {
         $option = $this->getAttribute('options');
 
-        if (! is_array($option)) {
+        if (!is_array($option)) {
             $option = [];
         }
 
@@ -338,12 +338,12 @@ class Post extends Model
      * @param string $taxonomy
      * @param mixed $term
      *
-     * @return mixed
+     * @return Builder
      */
     public function scopeTaxonomy(Builder $query, $taxonomy, $term): Builder
     {
-        return $query->whereHas('taxonomies', function ($query) use ($taxonomy, $term) {
-            $query->where('taxonomy', $taxonomy)->whereHas('term', function ($query) use ($term) {
+        return $query->whereHas('taxonomies', function($query) use ($taxonomy, $term) {
+            $query->where('taxonomy', $taxonomy)->whereHas('term', function($query) use ($term) {
                 $query->where('slug', $term);
             });
         });
@@ -422,7 +422,7 @@ class Post extends Model
      */
     public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             try {
                 $this->getEntity($entity);
             } catch (TypeException $e) {
@@ -457,7 +457,7 @@ class Post extends Model
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
-        if (! is_null($entity)) {
+        if (!is_null($entity)) {
             $this->getEntity($entity);
         }
 
@@ -472,7 +472,7 @@ class Post extends Model
      */
     public function createSlug($slug = null)
     {
-        if (! is_null($slug) && $this->getOriginal('slug') === $slug) {
+        if (!is_null($slug) && $this->getOriginal('slug') === $slug) {
             $this->setAttribute('slug', $slug);
 
             return;

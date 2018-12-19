@@ -69,7 +69,7 @@ class SystemMenuComposer
                     ->setPermission('platform.systems.comments')
                     ->setSort(1000)
                     ->setGroupName(__("Comments allow your website's visitors to have a discussion with you and each other."))
-                    ->setBadge(function () {
+                    ->setBadge(function() {
                         return \Orchid\Press\Models\Comment::where('approved', 0)->count() ?: null;
                     })
             );

@@ -20,7 +20,7 @@ class BackupLayout extends Table
     public function fields(): array
     {
         return [
-            TD::set('path', 'path')->setRender(function ($file) {
+            TD::set('path', 'path')->setRender(function($file) {
                 return "<a href='{$file['url']}' target='_blank'>{$file['path']}</a>";
             }),
             TD::set('disk', 'disk'),

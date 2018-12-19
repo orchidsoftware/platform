@@ -59,7 +59,7 @@ $this->put('page/{page}', [PageController::class, 'update'])
 $this->group([
     'as'     => 'platform.systems.media.',
     'prefix' => 'media',
-], function () {
+], function() {
     $this->get('/{parameters?}', ['uses' => MediaController::class.'@index', 'as' => 'index'])->where('parameters', '.*');
     $this->post('files', ['uses' => MediaController::class.'@files', 'as' => 'files']);
     $this->post('new_folder', ['uses' => MediaController::class.'@newFolder', 'as' => 'newFolder']);
