@@ -65,7 +65,7 @@ class AdminCommand extends Command
                 );
 
             $this->info('User created successfully.');
-        } catch (Exception | QueryException $e) {
+        } catch (\Exception | QueryException $e) {
             $this->error('User already exists or an error occurred!');
         }
     }
