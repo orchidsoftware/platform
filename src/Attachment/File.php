@@ -107,7 +107,7 @@ class File
     {
         $file = $this->getMatchesHash();
 
-        if (!$this->storage->has($this->date)) {
+        if (! $this->storage->has($this->date)) {
             $this->storage->makeDirectory($this->date);
         }
 

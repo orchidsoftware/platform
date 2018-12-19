@@ -114,7 +114,7 @@ trait TaggableTrait
         $tags = (new static)->prepareTags($tags);
 
         foreach ($tags as $tag) {
-            $query->whereHas('tags', function($query) use ($type, $tag) {
+            $query->whereHas('tags', function ($query) use ($type, $tag) {
                 $query->where($type, $tag);
             });
         }
@@ -133,7 +133,7 @@ trait TaggableTrait
     {
         $tags = (new static)->prepareTags($tags);
 
-        return $query->whereHas('tags', function($query) use ($type, $tags) {
+        return $query->whereHas('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
         });
     }
@@ -149,7 +149,7 @@ trait TaggableTrait
     {
         $tags = (new static)->prepareTags($tags);
 
-        return $query->whereDoesntHave('tags', function($query) use ($type, $tags) {
+        return $query->whereDoesntHave('tags', function ($query) use ($type, $tags) {
             $query->whereIn($type, $tags);
         });
     }
@@ -203,12 +203,12 @@ trait TaggableTrait
         $tagsToDel = array_diff($entityTags, $tags);
 
         // Detach the tags
-        if (!empty($tagsToDel)) {
+        if (! empty($tagsToDel)) {
             $this->untag($tagsToDel);
         }
 
         // Attach the tags
-        if (!empty($tagsToAdd)) {
+        if (! empty($tagsToAdd)) {
             $this->tag($tagsToAdd);
         }
 
@@ -225,13 +225,13 @@ trait TaggableTrait
             'namespace' => $this->getEntityClassName(),
         ]);
 
-        if (!$tag->exists) {
+        if (! $tag->exists) {
             $tag->name = $name;
 
             $tag->save();
         }
 
-        if (!$this->tags()->get()->contains($tag->id)) {
+        if (! $this->tags()->get()->contains($tag->id)) {
             $tag->update(['count' => $tag->count + 1]);
 
             $this->tags()->attach($tag);
@@ -252,7 +252,7 @@ trait TaggableTrait
         $tag = $this
             ->createTagsModel()
             ->whereNamespace($namespace)
-            ->where(function($query) use ($name, $slug) {
+            ->where(function ($query) use ($name, $slug) {
                 $query
                     ->orWhere('name', '=', $name)
                     ->orWhere('slug', '=', $slug);

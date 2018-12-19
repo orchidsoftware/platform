@@ -19,7 +19,7 @@ class SearchController
     public function index(Dashboard $dashboard, string $query = null)
     {
         $results = $dashboard->getGlobalSearch()
-            ->map(function($model) use ($query) {
+            ->map(function ($model) use ($query) {
                 $result = $model->searchQuery($query);
                 $label = $model->searchLabel();
 
@@ -44,7 +44,7 @@ class SearchController
     private function generatedPresent(LengthAwarePaginator $paginator): Collection
     {
         return collect($paginator->items())
-            ->map(function($item) {
+            ->map(function ($item) {
                 return (object) [
                     'title'    => $item->searchTitle(),
                     'subTitle' => $item->searchSubTitle(),

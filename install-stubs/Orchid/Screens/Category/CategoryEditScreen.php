@@ -36,7 +36,7 @@ class CategoryEditScreen extends Screen
      */
     public function query(Category $category = null): array
     {
-        if (!$category->exists) {
+        if (! $category->exists) {
             $category->setRelation('term', [new Term()]);
         }
 
@@ -85,7 +85,7 @@ class CategoryEditScreen extends Screen
     {
         $attributes = $request->get('category');
 
-        if (!$category->exists) {
+        if (! $category->exists) {
             $category->newWithCreateTerm($attributes['term']);
         }
 

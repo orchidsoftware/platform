@@ -115,11 +115,11 @@ class TD
      */
     public function column(string $column = null): self
     {
-        if (!is_null($column)) {
+        if (! is_null($column)) {
             $this->column = $column;
         }
 
-        if ($this->locale && !is_null($column)) {
+        if ($this->locale && ! is_null($column)) {
             $locale = '.'.app()->getLocale().'.';
             $this->column = preg_replace('/'.preg_quote('.', '/').'/', $locale, $column);
         }
@@ -180,7 +180,7 @@ class TD
      */
     public function link(string $route, $options, string $text = null): self
     {
-        $this->setRender(function($datum) use ($route, $options, $text) {
+        $this->setRender(function ($datum) use ($route, $options, $text) {
             $attributes = [];
             $options = array_wrap($options);
 
@@ -193,7 +193,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (!is_null($text)) {
+            if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
@@ -229,7 +229,7 @@ class TD
      */
     public function loadModalAsync(string $modal, $method, $options, string $text = null): self
     {
-        $this->setRender(function($datum) use ($modal, $method, $options, $text) {
+        $this->setRender(function ($datum) use ($modal, $method, $options, $text) {
             $attributes = [];
             $options = array_wrap($options);
 

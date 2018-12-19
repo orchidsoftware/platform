@@ -11,7 +11,7 @@ class CreateOrchidMenuTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu', function(Blueprint $table) {
+        Schema::create('menu', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
             $table->string('title')->nullable();

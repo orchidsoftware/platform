@@ -11,7 +11,7 @@ class CreateOrchidAttachmentstableTable extends Migration
      */
     public function up()
     {
-        Schema::create('attachments', function(Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->text('original_name');
@@ -29,7 +29,7 @@ class CreateOrchidAttachmentstableTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attachmentable', function(Blueprint $table) {
+        Schema::create('attachmentable', function (Blueprint $table) {
             $table->increments('id');
             $table->string('attachmentable_type');
             $table->unsignedInteger('attachmentable_id');

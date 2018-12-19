@@ -85,7 +85,7 @@ class Model extends Builder
      */
     protected function setProperty(string $property, $value, $comment = null, $docContent = 'array', $docName = 'var'): self
     {
-        if (!array_has($this->parameters, 'property.'.$property)) {
+        if (! array_has($this->parameters, 'property.'.$property)) {
             return $this;
         }
 
@@ -114,17 +114,17 @@ class Model extends Builder
     {
         $params = [];
 
-        if (!is_null($local) || !is_null($related)) {
+        if (! is_null($local) || ! is_null($related)) {
             $params[] = "'$local'";
         }
 
-        if (!is_null($related)) {
+        if (! is_null($related)) {
             $params[] = "'$related'";
         }
 
         $params = implode(',', $params);
 
-        if (!empty($params)) {
+        if (! empty($params)) {
             $params = ','.$params;
         }
 

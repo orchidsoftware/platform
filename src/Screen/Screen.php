@@ -130,9 +130,9 @@ abstract class Screen extends Controller
      */
     public function handle(...$parameters)
     {
-        abort_if(!$this->checkAccess(), 403);
+        abort_if(! $this->checkAccess(), 403);
 
-        if ($this->request->method() === 'GET' || (!count($parameters))) {
+        if ($this->request->method() === 'GET' || (! count($parameters))) {
             $this->arguments = $parameters;
 
             return $this->view();
@@ -159,9 +159,9 @@ abstract class Screen extends Controller
     {
         $class = new \ReflectionClass($this);
 
-        if (!is_string($method)) {
+        if (! is_string($method)) {
             return;
-        } elseif (!$class->hasMethod($method)) {
+        } elseif (! $class->hasMethod($method)) {
             return;
         }
 

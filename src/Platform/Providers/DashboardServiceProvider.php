@@ -23,7 +23,7 @@ class DashboardServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Dashboard::class, function() {
+        $this->app->singleton(Dashboard::class, function () {
             return new Dashboard();
         });
     }

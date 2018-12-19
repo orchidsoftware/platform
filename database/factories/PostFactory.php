@@ -14,7 +14,7 @@ use Orchid\Press\Models\Post;
 |
 */
 
-$factory->define(Post::class, function(Faker $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     $type = $faker->randomElement(['demo']);
 
     $status = ['publish'];

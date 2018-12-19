@@ -198,7 +198,7 @@ class Field implements FieldContract
     public function checkRequired()
     {
         foreach ($this->required as $attribute) {
-            throw_if(!collect($this->attributes)->offsetExists($attribute),
+            throw_if(! collect($this->attributes)->offsetExists($attribute),
                 FieldRequiredAttributeException::class, $attribute);
         }
 
@@ -219,7 +219,7 @@ class Field implements FieldContract
         $this->attributes['id'] = $this->getId();
 
         if ($this->hasError()) {
-            if (!isset($attributes['class']) || is_null($attributes['class'])) {
+            if (! isset($attributes['class']) || is_null($attributes['class'])) {
                 $attributes['class'] = ' is-invalid';
             } else {
                 $attributes['class'] .= ' is-invalid';
@@ -274,7 +274,7 @@ class Field implements FieldContract
         $modifiers = get_class_methods($this);
 
         collect($this->getAttributes())->only(array_merge($this->universalAttributes,
-            $this->inlineAttributes))->map(function($item, $key) use ($modifiers) {
+            $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
                 $key = title_case($key);
                 $signature = 'modify'.$key;
                 if (in_array($signature, $modifiers, true)) {
@@ -305,7 +305,7 @@ class Field implements FieldContract
      */
     public function get($key, $value = null)
     {
-        if (!isset($this->attributes[$key])) {
+        if (! isset($this->attributes[$key])) {
             return $value;
         }
 
@@ -367,15 +367,15 @@ class Field implements FieldContract
 
         $this->attributes['name'] = $name;
 
-        if (!is_null($prefix)) {
+        if (! is_null($prefix)) {
             $this->attributes['name'] = $prefix.$name;
         }
 
-        if (is_null($prefix) && !is_null($lang)) {
+        if (is_null($prefix) && ! is_null($lang)) {
             $this->attributes['name'] = $lang.$name;
         }
 
-        if (!is_null($prefix) && !is_null($lang)) {
+        if (! is_null($prefix) && ! is_null($lang)) {
             $this->attributes['name'] = $prefix.'['.$lang.']'.$name;
         }
 
@@ -409,7 +409,7 @@ class Field implements FieldContract
      */
     public static function group($group)
     {
-        if (!is_array($group)) {
+        if (! is_array($group)) {
             return call_user_func($group);
         }
 

@@ -44,7 +44,7 @@ class Updates
      */
     public function check()
     {
-        $status = Cache::remember('platform-update-widget', $this->cache, function() {
+        $status = Cache::remember('platform-update-widget', $this->cache, function () {
             $this->updateInstall();
 
             return $this->getStatus();

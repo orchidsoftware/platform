@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function binding()
     {
-        Route::bind('roles', function($value) {
+        Route::bind('roles', function ($value) {
             $role = Dashboard::modelClass(Role::class);
 
             if (is_numeric($value)) {
@@ -50,7 +50,7 @@ class RouteServiceProvider extends ServiceProvider
             return $role->where('slug', $value)->firstOrFail();
         });
 
-        Route::bind('widget', function($value) {
+        Route::bind('widget', function ($value) {
             try {
                 $widget = app()->make(Base64Url::decode($value));
             } catch (\Exception $exception) {
@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
                 return abort(404, $exception->getMessage());
             }
 
-            abort_if(!is_a($widget, WidgetContractInterface::class), 403);
+            abort_if(! is_a($widget, WidgetContractInterface::class), 403);
 
             return $widget;
         });

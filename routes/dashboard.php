@@ -16,11 +16,11 @@ use Orchid\Platform\Http\Controllers\Systems\SearchController;
 */
 
 // Index and default...
-$this->get('/', function() {
+$this->get('/', function () {
     return redirect()->route(config('platform.index'));
 })->name('platform.index');
 
-$this->fallback(function() {
+$this->fallback(function () {
     return view('platform::errors.404');
 });
 

@@ -122,7 +122,7 @@ class Menu
             $arg = get_object_vars($arg);
         }
 
-        if (array_key_exists('show', $arg) && !$arg['show']) {
+        if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
         }
 
@@ -161,12 +161,12 @@ class Menu
         $this->checkAccess()
             ->where('location', $location)
             ->sortBy('sort')
-            ->each(function($value) use ($template, &$html) {
-                if (!array_key_exists('template', $value)) {
+            ->each(function ($value) use ($template, &$html) {
+                if (! array_key_exists('template', $value)) {
                     $value['template'] = 'platform::partials.mainMenu';
                 }
 
-                if (!is_null($template)) {
+                if (! is_null($template)) {
                     $value['template'] = $template;
                 }
 
@@ -183,7 +183,7 @@ class Menu
      */
     public function build(string $location): Collection
     {
-        return $this->findAllChildren($location)->filter(function($value) {
+        return $this->findAllChildren($location)->filter(function ($value) {
             return count($value['children']);
         });
     }
@@ -196,7 +196,7 @@ class Menu
         $this->user = Auth::user();
         $user = $this->user;
 
-        $this->container = $this->container->filter(function($item) use ($user) {
+        $this->container = $this->container->filter(function ($item) use ($user) {
             return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
         });
 
@@ -213,7 +213,7 @@ class Menu
         return $this->checkAccess()
             ->where('location', $key)
             ->sortBy('sort')
-            ->map(function($item, $key) {
+            ->map(function ($item, $key) {
                 $item = $item['arg'];
                 $item['children'] = $this->findAllChildren($key);
 

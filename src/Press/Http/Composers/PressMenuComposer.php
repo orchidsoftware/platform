@@ -44,7 +44,7 @@ class PressMenuComposer
         $this->dashboard->getEntities()
             ->where('display', true)
             ->sortBy('sort')
-            ->each(function($page) use ($kernel) {
+            ->each(function ($page) use ($kernel) {
                 $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
 
                 $kernel->menu->add('Main',

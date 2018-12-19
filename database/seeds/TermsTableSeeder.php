@@ -15,7 +15,7 @@ class TermsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Term::class, 20)->create()->each(function($u) {
+        factory(Term::class, 20)->create()->each(function ($u) {
             $u->taxonomy()->saveMany(factory(Taxonomy::class, 1)->make());
         });
     }

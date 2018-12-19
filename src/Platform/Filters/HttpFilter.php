@@ -40,7 +40,7 @@ class HttpFilter
     {
         $this->request = $request ?? request();
 
-        $this->filters = collect($this->request->get('filter', []))->map(function($item) {
+        $this->filters = collect($this->request->get('filter', []))->map(function ($item) {
             return $this->parseHttpValue($item);
         });
         $this->sorts = collect($this->request->get('sort', []));
@@ -82,7 +82,7 @@ class HttpFilter
     protected function addSortsToQuery(Builder $builder)
     {
         $this->sorts
-            ->each(function(string $sort) use ($builder) {
+            ->each(function (string $sort) use ($builder) {
                 $descending = $sort[0] === '-';
                 $key = ltrim($sort, '-');
                 $key = str_replace('.', '->', $key);
@@ -97,7 +97,7 @@ class HttpFilter
     {
         $allowedFilters = $this->options->get('allowedFilters')->toArray();
 
-        $this->filters->each(function($value, $property) use ($builder, $allowedFilters) {
+        $this->filters->each(function ($value, $property) use ($builder, $allowedFilters) {
             $allowProperty = $property;
             if (strpos($property, '.') !== false) {
                 $allowProperty = strstr($property, '.', true);
