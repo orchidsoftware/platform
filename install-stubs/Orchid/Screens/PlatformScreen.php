@@ -46,11 +46,11 @@ class PlatformScreen extends Screen
     public function commandBar(): array
     {
         return [
-          Link::name('Website')
+            Link::name('Website')
             ->link('http://orchid.software')
             ->icon('icon-globe-alt'),
 
-          Link::name('GitHub')
+            Link::name('GitHub')
             ->link('https://github.com/orchidsoftware/platform')
             ->icon('icon-social-github'),
         ];
