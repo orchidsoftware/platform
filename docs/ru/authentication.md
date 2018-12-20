@@ -44,6 +44,6 @@ php artisan make:auth
 ```php
     'middleware' => [
         'public'  => ['web'],
-        'private' => ['web', `auth`, 'platform'],
+        'private' => ['web', 'auth', 'platform'],
     ],
 ```
