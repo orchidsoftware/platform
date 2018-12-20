@@ -338,7 +338,7 @@ class Post extends Model
      * @param string $taxonomy
      * @param mixed $term
      *
-     * @return mixed
+     * @return Builder
      */
     public function scopeTaxonomy(Builder $query, $taxonomy, $term): Builder
     {

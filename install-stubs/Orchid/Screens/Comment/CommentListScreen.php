@@ -35,7 +35,7 @@ class CommentListScreen extends Screen
                 $query->select('id', 'type', 'slug');
             },
         ])->latest()
-          ->paginate();
+            ->paginate();
 
         return [
             'comments' => $comments,

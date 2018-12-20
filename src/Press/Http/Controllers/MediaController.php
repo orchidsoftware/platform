@@ -93,7 +93,7 @@ class MediaController extends Controller
     }
 
     /**
-     * @param $bytes
+     * @param int $bytes
      *
      * @return string
      */

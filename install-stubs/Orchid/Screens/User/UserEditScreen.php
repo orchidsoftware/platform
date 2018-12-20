@@ -91,11 +91,11 @@ class UserEditScreen extends Screen
             UserRoleLayout::class,
 
             Layouts::modals([
-               'password' => Layouts::rows([
-                   PasswordField::make('user.password')
-                       ->title(__('Password'))
-                       ->placeholder('********'),
-               ]),
+                'password' => Layouts::rows([
+                    PasswordField::make('user.password')
+                        ->title(__('Password'))
+                        ->placeholder('********'),
+                ]),
             ]),
         ];
     }

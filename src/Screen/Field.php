@@ -130,7 +130,7 @@ class Field implements FieldContract
      * @param $name
      * @param $arguments
      *
-     * @return mixed
+     * @return Field
      */
     public function __call($name, $arguments)
     {
@@ -192,7 +192,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return $this|mixed
+     * @return Field
      * @throws \Throwable
      */
     public function checkRequired()

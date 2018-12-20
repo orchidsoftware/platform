@@ -182,7 +182,7 @@ class InstallCommand extends Command
     }
 
     /**
-     * @param      $constant
+     * @param      string $constant
      * @param null $value
      *
      * @return \Orchid\Platform\Commands\InstallCommand

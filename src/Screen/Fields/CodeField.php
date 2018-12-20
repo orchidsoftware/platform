@@ -77,7 +77,7 @@ class CodeField extends Field
     ];
 
     /**
-     * @param null $name
+     * @param string $name
      * @return CodeField
      */
     public static function make($name = null): self

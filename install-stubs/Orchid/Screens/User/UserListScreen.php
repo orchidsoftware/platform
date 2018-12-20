@@ -37,7 +37,7 @@ class UserListScreen extends Screen
     public function query() : array
     {
         return  [
-          'users'  => User::with('roles')
+            'users'  => User::with('roles')
                 ->FiltersApply([RoleFilter::class])
                 ->defaultSort('id', 'desc')
                 ->paginate(),
