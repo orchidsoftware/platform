@@ -39,10 +39,10 @@ php artisan orchid: auth
 ```
 
 Magdagdag tayo ng `auth` na middleware sa konpigurasyon ng plataporma ` config/platform.php`, para sa mga tamang pagredirekta.
-Mangyaring tandaan na kailangan mong itakda ito bago ang `dashboard`
+Mangyaring tandaan na kailangan mong itakda ito bago ang `platform`
 ```php
     'middleware' => [
         'public' => ['web'],
-        'private' => ['web', 'auth', 'dashboard'],
+        'private' => ['web', 'auth', 'platform'],
     ],
 ```

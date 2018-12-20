@@ -31,10 +31,10 @@ php artisan orchid:auth
 ```
 
 Nós adicionamos o middleware `auth` à nossa configuração da plataforma `config/platform.php` para permitir redirecionamentos corretos.
-Presta atenção que este valor deve ser definido antes do `painel de controle'
+Presta atenção que este valor deve ser definido antes do `platform'
 ```php
     'middleware' => [
         'public'  => ['web'],
-        'private' => ['web', 'auth', 'dashboard'],
+        'private' => ['web', 'auth', 'platform'],
     ],
 ```

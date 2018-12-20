@@ -40,10 +40,10 @@ php artisan make:auth
 ```
 
 Добавим `auth` middleware в конфигурацию платформы `config/platform.php`, для правильных редиректов.
-Обратите внимание, что его необходимо указывать раньше `dashboard`
+Обратите внимание, что его необходимо указывать раньше `platform`
 ```php
     'middleware' => [
         'public'  => ['web'],
-        'private' => ['web', 'platform'],
+        'private' => ['web', `auth`, 'platform'],
     ],
 ```

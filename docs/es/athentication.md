@@ -30,10 +30,10 @@ Luego, utilizamos el comando Lavarel ya incluido para crear todas las rutas y pl
 php artisan make:auth
 ```
 
-Añadimos el middleware `auth` a la configuración de nuestra plataforma `config/platform.php` para permitir redirecciones correctas. Preste atención, este valor debe ser definido antes que `dashboard`
+Añadimos el middleware `auth` a la configuración de nuestra plataforma `config/platform.php` para permitir redirecciones correctas. Preste atención, este valor debe ser definido antes que `platform`
 ```php
     'middleware' => [
         'public'  => ['web'],
-        'private' => ['web', 'auth', 'dashboard'],
+        'private' => ['web', 'auth', 'platform'],
     ],
 ```
