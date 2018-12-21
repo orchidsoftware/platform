@@ -38,7 +38,7 @@
 &gt; It can span multiple lines!</pre>
                                     <h4 class="m-b font-thin">Images &nbsp;
                                         <small>Need to upload an image? <a href="http://imgur.com/"
-                                                                           target="_blank">Imgur</a>
+                                                                           target="_blank" rel="noopener">Imgur</a>
                                                has a great interface.
                                         </small>
                                     </h4>

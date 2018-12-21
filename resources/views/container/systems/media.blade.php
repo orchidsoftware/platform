@@ -166,7 +166,7 @@
 
                     <div class="wrapper detail v-center text-center" data-target="components--media.src">
 
-                        <a href="" target="_blank" class="media-preview media-image" style="display: none;">
+                        <a href="" target="_blank" class="media-preview media-image" rel="noopener" style="display: none;">
                             <img src="" class="img-responsive b">
                         </a>
 
@@ -189,7 +189,7 @@
 
                         <i class="icon-folder-alt media-preview media-directory" style="display: none;"></i>
 
-                        <a href="" target="_blank" class="media-preview media-doc" style="display: none;">
+                        <a href="" target="_blank" class="media-preview media-doc" rel="noopener" style="display: none;">
                             <i class="icon-doc" ></i>
                             <p>open</p>
                         </a>

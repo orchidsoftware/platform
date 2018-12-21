@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Attributes rel="noopener" for target "_blank"
+
+### Removed
+- Divider for entities because visually does not share
+
 ## [3.1.7] - 2018-12-17
 
 ### Fixed
