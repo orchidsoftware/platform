@@ -54,7 +54,6 @@ class PressMenuComposer
                         ->setGroupName($page->groupname)
                         ->setRoute(route($route, [$page->slug]))
                         ->setPermission('platform.posts.type.'.$page->slug)
-                        ->setDivider($page->divider)
                         ->setActive(route($route, [$page->slug]).'*')
                         ->setSort($page->sort)
                         ->setShow($page->display)

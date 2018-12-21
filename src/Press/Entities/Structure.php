@@ -51,13 +51,6 @@ trait Structure
     public $groupname;
 
     /**
-     * Status divider.
-     *
-     * @var null
-     */
-    public $divider = false;
-
-    /**
      * Show the data to the user.
      *
      * @var bool
