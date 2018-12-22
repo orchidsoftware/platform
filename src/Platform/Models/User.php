@@ -178,11 +178,11 @@ class User extends Authenticatable implements UserInterface
      */
     public function getStatusRoles()
     {
-        return collect($this->roles)
+        return collect($this->roles)->keyBy('id')
             ->transform(function ($role) {
                 $role->active = true;
 
                 return $role;
-            })->union(Role::all());
+            })->union(Role::all()->keyBy('id'));
     }
 }
