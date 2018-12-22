@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.8] - 2018-12-22
+
 ### Added
 - Attributes rel="noopener" for target "_blank"
 
