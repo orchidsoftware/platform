@@ -25,7 +25,7 @@ class Page extends Single
     /**
      * @var string
      */
-    public $name = 'Demo page';
+    public $name = 'Example page';
 
     /**
      * @var string
@@ -35,7 +35,7 @@ class Page extends Single
     /**
      * @var string
      */
-    public $slug = 'demo-page';
+    public $slug = 'example-page';
 
     /**
      * Slug url /news/{name}.

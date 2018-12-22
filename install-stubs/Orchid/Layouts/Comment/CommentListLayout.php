@@ -26,7 +26,7 @@ class CommentListLayout extends Table
                         return '<i class="icon-check text-success mx-3"></i>';
                     }
 
-                    return '<i class="icon-close text-danger  mx-3"></i>';
+                    return '<i class="icon-close text-danger mx-3"></i>';
                 }),
 
             TD::set('content', __('Content'))

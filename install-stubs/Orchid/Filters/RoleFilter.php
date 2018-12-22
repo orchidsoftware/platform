@@ -44,8 +44,7 @@ class RoleFilter extends Filter
         return SelectField::make('role')
             ->options($this->getRoles())
             ->value($this->request->get('role'))
-            ->title(__('Roles'))
-            ->hr(false);
+            ->title(__('Roles'));
     }
 
     /**

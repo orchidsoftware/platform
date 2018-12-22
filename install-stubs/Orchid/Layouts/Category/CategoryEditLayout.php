@@ -25,7 +25,7 @@ class CategoryEditLayout extends Rows
             InputField::make($categoryContent.'.name')
                 ->type('text')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(__('Category name'))
                 ->placeholder(__('Category name'))
                 ->help(__('Category title')),
@@ -33,7 +33,7 @@ class CategoryEditLayout extends Rows
             InputField::make('category.term.slug')
                 ->type('text')
                 ->max(255)
-                ->require()
+                ->required()
                 ->title(__('Slug')),
 
             SelectField::make('category.parent_id')

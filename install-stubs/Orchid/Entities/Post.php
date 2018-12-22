@@ -32,7 +32,7 @@ class Post extends Many
     /**
      * @var string
      */
-    public $name = 'Demo post';
+    public $name = 'Example post';
 
     /**
      * @var string
@@ -42,7 +42,7 @@ class Post extends Many
     /**
      * @var string
      */
-    public $slug = 'demo';
+    public $slug = 'example-post';
 
     /**
      * Slug url /news/{name}.
