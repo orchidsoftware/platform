@@ -4,9 +4,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/orchid/favicon/favicon-16x16.png">
     <link rel="manifest" href="/orchid/favicon/manifest.json">
     <link rel="mask-icon" href="/orchid/favicon/safari-pinned-tab.svg" color="#1a2021">
-    <meta name="apple-mobile-web-app-title" content="ORCHID">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="ORCHID">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="ORCHID">
+    <meta name="theme-color" content="#3e4348">
+    <meta name="msapplication-navbutton-color" content="#3e4348">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/">
 @endpush
 
 <p class="h2 n-m font-thin v-center">
