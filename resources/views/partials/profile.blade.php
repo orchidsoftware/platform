@@ -17,12 +17,6 @@
                 <div class="dropdown-divider"></div>
             @endif
 
-            @if(!is_null(config('platform.support')))
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#support">
-                    <i class="m-r-xs icon-help"></i> {{ __('Need help?') }}
-                </a>
-            @endif
-
             @if(Auth::user()->hasAccess('platform.systems.index'))
                 <a href="{{ route('platform.systems.index') }}" class="dropdown-item">
                     <i class="icon-settings m-r-xs" aria-hidden="true"></i>

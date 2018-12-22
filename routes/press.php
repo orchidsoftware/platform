@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+use Orchid\Press\Http\Controllers\MenuController;
+use Orchid\Press\Http\Controllers\PageController;
+use Orchid\Press\Http\Controllers\PostController;
+use Orchid\Press\Http\Controllers\MediaController;
+
 /*
 |--------------------------------------------------------------------------
 | Press Web Routes
@@ -10,11 +15,6 @@ declare(strict_types=1);
 | Base route
 |
 */
-
-use Orchid\Press\Http\Controllers\MenuController;
-use Orchid\Press\Http\Controllers\PageController;
-use Orchid\Press\Http\Controllers\PostController;
-use Orchid\Press\Http\Controllers\MediaController;
 
 $this->post('posts/restore/{id?}', [PostController::class, 'restore'])
     ->name('platform.posts.restore');

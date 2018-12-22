@@ -100,15 +100,4 @@ return [
         'footer' => 'platform::layouts.footer',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Support Email
-    |--------------------------------------------------------------------------
-    |
-    | The address where customer support e-mails should be sent.
-    |
-    | Example: support@example.com
-    */
-
-    'support' => env('DASHBOARD_SUPPORT'),
 ];

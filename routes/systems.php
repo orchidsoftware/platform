@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+use Orchid\Platform\Http\Controllers\Systems\TagsController;
+use Orchid\Platform\Http\Controllers\Systems\CacheController;
+use Orchid\Platform\Http\Controllers\Systems\SystemController;
+use Orchid\Platform\Http\Controllers\Systems\WidgetController;
+use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
+use Orchid\Platform\Http\Controllers\Systems\NotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Systems Web Routes
@@ -10,14 +17,6 @@ declare(strict_types=1);
 | Base route
 |
 */
-
-use Orchid\Platform\Http\Controllers\Systems\TagsController;
-use Orchid\Platform\Http\Controllers\Systems\CacheController;
-use Orchid\Platform\Http\Controllers\Systems\SystemController;
-use Orchid\Platform\Http\Controllers\Systems\WidgetController;
-use Orchid\Platform\Http\Controllers\Systems\SupportController;
-use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
-use Orchid\Platform\Http\Controllers\Systems\NotificationController;
 
 $this->get('/', [SystemController::class, 'index'])
     ->name('platform.systems.index');
@@ -54,6 +53,3 @@ $this->get('tags/{tags?}', [TagsController::class, 'show'])
 
 $this->post('widget/{widget}/{key?}', [WidgetController::class, 'index'])
     ->name('platform.systems.widget');
-
-$this->post('support', [SupportController::class, 'send'])
-    ->name('platform.systems.support');

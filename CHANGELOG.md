@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.2.0] - 2018-12-22
+
+### Removed
+- The modal support service window has been removed in favor of creating custom forms, since the set of fields and the template could not be changed
+
 ## [3.1.8] - 2018-12-22
 
 ### Added
