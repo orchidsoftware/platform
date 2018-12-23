@@ -7,7 +7,6 @@ namespace Orchid\Tests;
 use Watson\Active\Active;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Alert;
-use Intervention\Image\Facades\Image;
 use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
@@ -152,7 +151,6 @@ trait Environment
             'Active'      => Active::class,
             'Breadcrumbs' => Breadcrumbs::class,
             'Dashboard'   => Dashboard::class,
-            'Image'       => Image::class,
         ];
     }
 }

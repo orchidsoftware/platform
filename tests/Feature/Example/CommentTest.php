@@ -36,7 +36,7 @@ class CommentTest extends TestFeatureCase
 
         $response->assertStatus(200);
 
-        $this->assertContains('icon-check', $response->baseResponse->content());
+        $this->assertContains('icon-check', $response->getContent());
     }
 
     /**
@@ -67,6 +67,6 @@ class CommentTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.comments.edit', $comments->first()->id));
         $response->assertStatus(200);
-        $this->assertContains($comments->first()->content, $response->baseResponse->content());
+        $this->assertContains($comments->first()->content, $response->getContent());
     }
 }

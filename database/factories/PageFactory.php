@@ -1,8 +1,7 @@
 <?php
 
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Faker\Generator as Faker;
-use Orchid\Press\Models\Post;
+use Orchid\Press\Models\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +14,14 @@ use Orchid\Press\Models\Post;
 |
 */
 
-$factory->define(Post::class, function (Faker $faker) {
-    
-    $name = $faker->sentence(6);
+$factory->define(Page::class, function (Faker $faker) {
 
     return [
-        'type'       => 'example-post',
+        'type'       => 'example-page',
         'status'     => 'publish',
         'content'    => [
             'en' => [
-                'name'        => $name,
+                'name'        => $faker->sentence(6),
                 'title'       => $faker->sentence(6),
                 'description' => $faker->paragraph(2),
                 'body'        => $faker->text,
@@ -43,6 +40,6 @@ $factory->define(Post::class, function (Faker $faker) {
                 'en' => 'true',
             ],
         ],
-        'slug'       => SlugService::createSlug(Post::class, 'slug', $name),
+        'slug'       => 'example-page',
     ];
 });

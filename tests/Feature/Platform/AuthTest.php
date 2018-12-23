@@ -20,8 +20,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.login'));
 
         $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->baseResponse->content());
-        $this->assertContains('type="password"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->getContent());
+        $this->assertContains('type="password"', $response->getContent());
     }
 
     public function test_route_DashboardLogin_auth()
@@ -48,8 +48,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.request'));
 
         $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->baseResponse->content());
-        $this->assertNotContains('type="password"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->getContent());
+        $this->assertNotContains('type="password"', $response->getContent());
     }
 
     public function test_route_DashboardPasswordReset()
@@ -57,9 +57,9 @@ class AuthTest extends TestFeatureCase
         $response = $this->get(route('platform.password.reset', '11111'));
 
         $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->baseResponse->content());
-        $this->assertContains('type="password"', $response->baseResponse->content());
-        $this->assertContains('"password_confirmation"', $response->baseResponse->content());
+        $this->assertContains('type="email"', $response->getContent());
+        $this->assertContains('type="password"', $response->getContent());
+        $this->assertContains('"password_confirmation"', $response->getContent());
     }
 
     public function test_route_DashboardPasswordReset_auth()

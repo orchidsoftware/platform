@@ -111,8 +111,8 @@ class PostTest extends TestUnitCase
      */
     public function it_can_have_different_post_type()
     {
-        $page = factory(Post::class)->create(['type' => 'page']);
-        $this->assertEquals($page->type, 'page');
+        $page = factory(Post::class)->create(['type' => 'example-page']);
+        $this->assertEquals($page->type, 'example-page');
     }
 
     /**

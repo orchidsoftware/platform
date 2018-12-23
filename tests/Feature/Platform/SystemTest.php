@@ -31,7 +31,7 @@ class SystemTest extends TestFeatureCase
             ->get(route('platform.systems.index'));
 
         $response->assertStatus(200);
-        $this->assertContains('System', $response->baseResponse->content());
+        $this->assertContains('System', $response->getContent());
     }
 
     public function test_route_PlatformSystemsMenuIndex()
@@ -48,7 +48,7 @@ class SystemTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.menu.show', 'header'));
         $response->assertStatus(200);
-        $this->assertContains('data-controller="components--menu"', $response->baseResponse->content());
+        $this->assertContains('data-controller="components--menu"', $response->getContent());
     }
 
     public function test_route_PlatformSystemsMediaIndex()
@@ -56,6 +56,6 @@ class SystemTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.media.index'));
         $response->assertStatus(200);
-        $this->assertContains('id="filemanager"', $response->baseResponse->content());
+        $this->assertContains('id="filemanager"', $response->getContent());
     }
 }

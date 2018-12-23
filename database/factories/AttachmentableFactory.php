@@ -18,14 +18,8 @@ use Orchid\Attachment\Models\Attachmentable;
 $factory->define(Attachmentable::class, function (Faker $faker) {
     $attachments = Attachment::get()->count();
 
-    if ($attachments > 0) {
-        $attachment = [
-            'attachmentable_type' => "Orchid\Press\Models\Post",
-            'attachment_id'       => Attachment::inRandomOrder()->first()->id,
-        ];
-    } else {
-        $attachment = [];
-    }
-
-    return $attachment;
+    return $attachments > 0 ? [
+        'attachmentable_type' => "Orchid\Press\Models\Post",
+        'attachment_id'       => Attachment::inRandomOrder()->first()->id,
+    ] : [];
 });

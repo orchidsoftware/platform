@@ -30,8 +30,8 @@ class UserTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.users'));
         $response->assertStatus(200);
-        $this->assertContains($this->user->name, $response->baseResponse->content());
-        $this->assertContains($this->user->email, $response->baseResponse->content());
+        $this->assertContains($this->user->name, $response->getContent());
+        $this->assertContains($this->user->email, $response->getContent());
     }
 
     public function test_route_SystemsUsersEdit()
@@ -39,8 +39,8 @@ class UserTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.users.edit', $this->user->id));
         $response->assertStatus(200);
-        $this->assertContains($this->user->name, $response->baseResponse->content());
-        $this->assertContains($this->user->email, $response->baseResponse->content());
+        $this->assertContains($this->user->name, $response->getContent());
+        $this->assertContains($this->user->email, $response->getContent());
     }
 
     public function test_route_SystemsUsersEdit_remove()

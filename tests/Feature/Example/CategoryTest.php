@@ -62,7 +62,7 @@ class CategoryTest extends TestFeatureCase
         $taxonomy = Taxonomy::where('parent_id', null)->get()->first();
 
         $response->assertStatus(200);
-        $this->assertContains($taxonomy->term->getContent('name'), $response->baseResponse->content());
+        $this->assertContains($taxonomy->term->getContent('name'), $response->getContent());
     }
 
     public function test_route_SystemsCategoryEdit()
@@ -73,6 +73,6 @@ class CategoryTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.category.edit', $taxonomy->id));
         $response->assertStatus(200);
-        $this->assertContains($taxonomy->term->getContent('name'), $response->baseResponse->content());
+        $this->assertContains($taxonomy->term->getContent('name'), $response->getContent());
     }
 }
