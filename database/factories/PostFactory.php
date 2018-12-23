@@ -1,8 +1,8 @@
 <?php
 
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Faker\Generator as Faker;
 use Orchid\Press\Models\Post;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,6 @@ use Orchid\Press\Models\Post;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
-    
     $name = $faker->sentence(6);
 
     return [

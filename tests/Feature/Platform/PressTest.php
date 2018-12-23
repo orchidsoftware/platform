@@ -39,9 +39,6 @@ class PressTest extends TestFeatureCase
         $this->post = factory(Post::class)->create();
     }
 
-    /**
-     *
-     */
     public function test_route_PagesShow()
     {
         $response = $this->actingAs($this->user)
@@ -52,9 +49,6 @@ class PressTest extends TestFeatureCase
         $this->assertContains($this->page->getContent('description'), $response->getContent());
     }
 
-    /**
-     *
-     */
     public function test_route_PagesUpdate()
     {
         $response = $this->actingAs($this->user)
@@ -64,9 +58,6 @@ class PressTest extends TestFeatureCase
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
     }
 
-    /**
-     *
-     */
     public function test_route_PostsType()
     {
         $response = $this->actingAs($this->user)
@@ -77,9 +68,6 @@ class PressTest extends TestFeatureCase
         $this->assertNotContains($this->post->getContent('description'), $response->getContent());
     }
 
-    /**
-     *
-     */
     public function test_route_PostsTypeEdit()
     {
         $response = $this->actingAs($this->user)
@@ -90,9 +78,6 @@ class PressTest extends TestFeatureCase
         $this->assertContains($this->post->getContent('description'), $response->getContent());
     }
 
-    /**
-     *
-     */
     public function test_route_PostsTypeUpdate()
     {
         $response = $this->actingAs($this->user)

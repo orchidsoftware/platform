@@ -15,7 +15,6 @@ use Orchid\Press\Models\Page;
 */
 
 $factory->define(Page::class, function (Faker $faker) {
-
     return [
         'type'       => 'example-page',
         'status'     => 'publish',
