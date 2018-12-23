@@ -11,8 +11,6 @@ use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Taxonomy;
 
-//use Thunder\Shortcode\Shortcode\ShortcodeInterface;
-
 class PostTest extends TestUnitCase
 {
     /**

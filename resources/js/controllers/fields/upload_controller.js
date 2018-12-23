@@ -233,7 +233,7 @@ export default class extends Controller {
                 });
 
                 this.on('removedfile', file => {
-                    $(`${dropname}.files-${file.data.id}`).remove();
+                    $(`${dropname} .files-${file.data.id}`).remove();
                     axios
                         .delete(platform.prefix(`/systems/files/${file.data.id}`), {
                             storage: $('#post-attachment-dropzone').data('storage'),
@@ -248,13 +248,24 @@ export default class extends Controller {
                 return response.message;
             },
 
-            success(file, response) {
-                file.data = response;
+            success(file,response) {
+
+                if(!Array.isArray(response)){
+                    response = [response];
+                }
+
+                response.forEach((item) => {
+                    if(file.name === item.original_name){
+                        file.data = item;
+                        return false;
+                    }
+                });
+
                 $(`${dropname} .dz-preview:last-child`)
-                    .attr('data-file-id', response.id)
+                    .attr('data-file-id', file.data.id)
                     .addClass('file-sort');
                 $(
-                    `<input type='hidden' class='files-${response.id}' name='${name}[]' value='${response.id}'  />`
+                    `<input type='hidden' class='files-${file.data.id}' name='${name}[]' value='${file.data.id}'  />`
                 ).appendTo(dropname);
             },
         });

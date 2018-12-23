@@ -6,12 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.2.2] - 2018-12-23
+
+### Fixed
+- UploadField multiple upload file
+
 ## [3.2.1] - 2018-12-23
 
 ### Fixed
 - Collection by default not set keys, mixed items unpredictable. [752](https://github.com/orchidsoftware/platform/pull/752)
 
 ## [3.2.0] - 2018-12-22
+
+### Changed
+- Rename `Demo` to `Example` entity
 
 ### Removed
 - The modal support service window has been removed in favor of creating custom forms, since the set of fields and the template could not be changed

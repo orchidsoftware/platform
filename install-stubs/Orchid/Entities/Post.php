@@ -206,9 +206,11 @@ class Post extends Many
                 ->multiple()
                 ->title('Category')
                 ->help('Select category'),
+
             TagsField::make('tags')
                 ->title('Tags')
                 ->help('Keywords'),
+
             UploadField::make('attachment')
                 ->title('Upload DropBox'),
         ]);

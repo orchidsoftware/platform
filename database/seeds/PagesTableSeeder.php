@@ -14,7 +14,7 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $pages = ['demo-page'];
+        $pages = ['example-page'];
         foreach ($pages as $page) {
             if (Post::where('type', '=', 'page')->where('slug', '=', $page)->count() == 0) {
                 factory(Post::class)->create(['type' => 'page', 'slug' => $page]);

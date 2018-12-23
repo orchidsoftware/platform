@@ -31,7 +31,7 @@ class PressTest extends TestFeatureCase
         $page = $this->createPage();
 
         $response = $this->actingAs($this->user)
-            ->get(route('platform.pages.show', 'demo-page'));
+            ->get(route('platform.pages.show', 'example-page'));
         $response->assertStatus(200);
         $this->assertContains($page->getContent('title'), $response->baseResponse->content());
         $this->assertContains($page->getContent('description'), $response->baseResponse->content());
@@ -39,9 +39,10 @@ class PressTest extends TestFeatureCase
 
     private function createPage()
     {
-        $page = factory(Post::class)->create(['type' => 'page', 'slug' => 'demo-page']);
-
-        return $page;
+        return factory(Post::class)->create([
+            'type' => 'page',
+            'slug' => 'example-page'
+        ]);
     }
 
     public function test_route_PagesUpdate()
@@ -49,7 +50,7 @@ class PressTest extends TestFeatureCase
         $page = $this->createPage();
 
         $response = $this->actingAs($this->user)
-            ->put(route('platform.pages.update', 'demo-page'));
+            ->put(route('platform.pages.update', 'example-page'));
         $response->assertStatus(302);
         //$response->assertSessionHas('level', 'success');
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
@@ -59,7 +60,7 @@ class PressTest extends TestFeatureCase
     {
         $post = $this->createPost();
         $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type', 'demo'));
+            ->get(route('platform.posts.type', 'example-post'));
 
         $response->assertStatus(200);
         $this->assertContains($post->getContent('name'), $response->baseResponse->content());
@@ -78,7 +79,7 @@ class PressTest extends TestFeatureCase
         $post = $this->createPost();
 
         $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type.edit', ['demo', $post->slug]));
+            ->get(route('platform.posts.type.edit', ['example-post', $post->slug]));
 
         $response->assertStatus(200);
         $this->assertContains($post->getContent('title'), $response->baseResponse->content());
@@ -90,7 +91,7 @@ class PressTest extends TestFeatureCase
         $post = $this->createPost();
 
         $response = $this->actingAs($this->user)
-            ->put(route('platform.posts.type.update', ['demo', $post->slug]));
+            ->put(route('platform.posts.type.update', ['example-post', $post->slug]));
         $response->assertStatus(302);
         //$response->assertSessionHas('level', 'success');
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
