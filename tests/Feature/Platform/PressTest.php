@@ -41,7 +41,7 @@ class PressTest extends TestFeatureCase
     {
         return factory(Post::class)->create([
             'type' => 'page',
-            'slug' => 'example-page'
+            'slug' => 'example-page',
         ]);
     }
 
