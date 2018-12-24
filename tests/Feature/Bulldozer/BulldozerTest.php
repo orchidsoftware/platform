@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Bulldozer;
 
-use Orchid\Tests\TestFeatureCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestFeatureCase;
 
 class BulldozerTest extends TestFeatureCase
 {
