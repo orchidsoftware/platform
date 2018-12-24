@@ -33,7 +33,7 @@ class AnnouncementTest extends TestFeatureCase
         $response->assertStatus(200);
     }
 
-    private function test_create_announcement($text = 'Global Announcement Test')
+    private function createAnnouncement($text = 'Global Announcement Test')
     {
         $response = $this
             ->actingAs($this->user)
@@ -54,14 +54,14 @@ class AnnouncementTest extends TestFeatureCase
 
     public function test_rewrite_announcement()
     {
-        $this->test_create_announcement();
-        $this->test_create_announcement('Global Announcement Test Rewrite');
+        $this->createAnnouncement();
+        $this->createAnnouncement('Global Announcement Test Rewrite');
     }
 
 
     public function test_delete_announcement($text = 'Delete Announcement')
     {
-        $this->test_create_announcement($text);
+        $this->createAnnouncement($text);
 
         $this
             ->actingAs($this->user)
