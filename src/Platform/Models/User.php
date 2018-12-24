@@ -8,13 +8,13 @@ use Exception;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Facades\Hash;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 use Orchid\Platform\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class User extends Authenticatable implements UserInterface
 {

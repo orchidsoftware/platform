@@ -17,24 +17,23 @@ class DashboardNotification extends Notification
      */
     public $message;
 
-
     /**
-     * Status
+     * Status.
      */
     public const INFO = 'text-info';
 
     /**
-     * Status
+     * Status.
      */
     public const SUCCESS = 'text-success';
 
     /**
-     * Status
+     * Status.
      */
     public const ERROR = 'text-danger';
 
     /**
-     * Status
+     * Status.
      */
     public const WARNING = 'text-warning';
 

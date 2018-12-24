@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Tests\TestFeatureCase;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class NotificationTest extends TestFeatureCase
 {
@@ -15,16 +15,12 @@ class NotificationTest extends TestFeatureCase
      */
     private $user;
 
-    /**
-     *
-     */
     public function setUp()
     {
         parent::setUp();
 
         $this->user = factory(User::class)->create();
     }
-
 
     public function test_view_notification()
     {
@@ -37,7 +33,6 @@ class NotificationTest extends TestFeatureCase
         $response->assertStatus(200);
         $this->assertContains('Hello Test', $response->getContent());
     }
-
 
     public function test_mask_all_as_read()
     {
@@ -60,7 +55,6 @@ class NotificationTest extends TestFeatureCase
 
         $this->assertNotContains('Test remove notification', $response->getContent());
     }
-
 
     /**
      * @param string $title

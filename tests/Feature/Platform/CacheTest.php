@@ -9,15 +9,11 @@ use Orchid\Tests\TestFeatureCase;
 
 class CacheTest extends TestFeatureCase
 {
-
     /**
      * @var User
      */
     private $user;
 
-    /**
-     *
-     */
     public function setUp()
     {
         parent::setUp();
@@ -49,11 +45,10 @@ class CacheTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->user)
-            ->get(route('platform.systems.cache',[
-                'action' => $route
+            ->get(route('platform.systems.cache', [
+                'action' => $route,
             ]));
 
         $response->assertStatus(302);
     }
-
 }
