@@ -16,15 +16,15 @@ use Orchid\Screen\Field;
  * @method $this form($value = true)
  * @method $this maxlength($value = true)
  * @method $this name($value = true)
- * @method $this placeholder($value = true)
+ * @method $this placeholder(string $value = null)
  * @method $this readonly($value = true)
  * @method $this required($value = true)
  * @method $this rows($value = true)
  * @method $this tabindex($value = true)
  * @method $this wrap($value = true)
- * @method $this help($value = true)
+ * @method $this help(string $value = null)
  * @method $this max($value = true)
- * @method $this popover($value = true)
+ * @method $this popover(string $value = null)
  */
 class TextAreaField extends Field
 {

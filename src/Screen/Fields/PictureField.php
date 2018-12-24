@@ -28,7 +28,7 @@ use Orchid\Screen\Field;
  * @method $this multiple($value = true)
  * @method $this name($value = true)
  * @method $this pattern($value = true)
- * @method $this placeholder($value = true)
+ * @method $this placeholder(string $value = null)
  * @method $this readonly($value = true)
  * @method $this required($value = true)
  * @method $this size($value = true)
@@ -37,10 +37,10 @@ use Orchid\Screen\Field;
  * @method $this tabindex($value = true)
  * @method $this type($value = true)
  * @method $this value($value = true)
- * @method $this help($value = true)
+ * @method $this help(string $value = null)
  * @method $this width($value = true)
  * @method $this height($value = true)
- * @method $this popover($value = true)
+ * @method $this popover(string $value = null)
  */
 class PictureField extends Field
 {
