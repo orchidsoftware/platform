@@ -75,7 +75,7 @@ class PressTest extends TestFeatureCase
 
         $response->assertStatus(200);
         $this->assertContains($this->post->getContent('title'), $response->getContent());
-        $this->assertContains($this->post->getContent('description'), $response->getContent());
+        $this->assertNotContains($this->post->getContent('description'), $response->getContent());
     }
 
     public function test_route_PostsTypeUpdate()
