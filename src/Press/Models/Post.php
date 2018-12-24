@@ -260,20 +260,6 @@ class Post extends Model
     }
 
     /**
-     * Main image (First image).
-     *
-     * @param null $size
-     *
-     * @return mixed
-     */
-    public function hero($size = null)
-    {
-        $first = $this->attachment('image')->oldest('sort')->first();
-
-        return $first ? $first->url($size) : null;
-    }
-
-    /**
      * Comments relationship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

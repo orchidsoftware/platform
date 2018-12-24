@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class DashboardTest.
  */
 class DashboardTest extends TestUnitCase
 {
+
+    public function testIsVersion()
+    {
+        $this->assertEquals(Dashboard::version(), Dashboard::VERSION);
+    }
+
     public function testIsModelDefault()
     {
         $class = Dashboard::modelClass('UnknownClass', User::class);

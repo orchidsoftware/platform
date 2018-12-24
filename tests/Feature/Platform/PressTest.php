@@ -81,7 +81,10 @@ class PressTest extends TestFeatureCase
     public function test_route_PostsTypeUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->put(route('platform.posts.type.update', ['example-post', $this->post->slug]));
+            ->put(
+                route('platform.posts.type.update', ['example-post', $this->post->slug]),
+                [$this->post->toArray()]
+            );
 
         $response->assertStatus(302);
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
