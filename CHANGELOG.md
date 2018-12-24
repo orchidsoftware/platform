@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.2.2] - 2018-12-23
+## [3.2.2] - 2018-12-24
 
 ### Fixed
 - UploadField multiple upload file
