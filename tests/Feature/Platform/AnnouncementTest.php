@@ -14,9 +14,6 @@ class AnnouncementTest extends TestFeatureCase
      */
     private $user;
 
-    /**
-     *
-     */
     public function setUp()
     {
         parent::setUp();
@@ -58,7 +55,6 @@ class AnnouncementTest extends TestFeatureCase
         $this->test_create_announcement('Global Announcement Test Rewrite');
     }
 
-
     public function test_delete_announcement($text = 'Delete Announcement')
     {
         $this->test_create_announcement($text);
@@ -73,5 +69,4 @@ class AnnouncementTest extends TestFeatureCase
 
         $this->assertNotContains($text, $response->getContent());
     }
-
 }
