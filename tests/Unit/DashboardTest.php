@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class DashboardTest.

@@ -17,17 +17,26 @@ class DashboardNotification extends Notification
      */
     public $message;
 
+
     /**
-     * Status.
-     *
-     * @var array
+     * Status
      */
-    public $type = [
-        'info'    => 'text-info',
-        'success' => 'text-success',
-        'error'   => 'text-danger',
-        'warning' => 'text-warning',
-    ];
+    public const INFO = 'text-info';
+
+    /**
+     * Status
+     */
+    public const SUCCESS = 'text-success';
+
+    /**
+     * Status
+     */
+    public const ERROR = 'text-danger';
+
+    /**
+     * Status
+     */
+    public const WARNING = 'text-warning';
 
     /**
      * DashboardNotification constructor.
@@ -36,11 +45,7 @@ class DashboardNotification extends Notification
      */
     public function __construct(array $message)
     {
-        if (! array_key_exists('type', $message)) {
-            $message['type'] = 'info';
-        }
-
-        $message['type'] = $this->type[$message['type']];
+        $message['type'] = $message['type'] ?? self::INFO;
         $message['time'] = Carbon::now();
 
         $this->message = $message;

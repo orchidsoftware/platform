@@ -58,13 +58,13 @@ $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
     'title' => 'Hello Word',
     'message' => 'New post!',
     'action' => 'https://google.com',
-    'type' => 'error',
+    'type' => DashboardNotification::INFO,
 ]));
 ```
 
 Allowed types:
 
-- info (By default)
-- success
-- warning
-- error
+- DashboardNotification::INFO (By default)
+- DashboardNotification::SUCCESS
+- DashboardNotification::WARNING
+- DashboardNotification::ERROR

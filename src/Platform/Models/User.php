@@ -8,6 +8,7 @@ use Exception;
 use Orchid\Access\UserAccess;
 use Orchid\Access\UserInterface;
 use Illuminate\Support\Facades\Hash;
+use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Support\Facades\Dashboard;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Notifications\Notifiable;
@@ -133,11 +134,11 @@ class User extends Authenticatable implements UserInterface
             'permissions' => $permissions,
         ]);
 
-        $user->notify(new \Orchid\Platform\Notifications\DashboardNotification([
+        $user->notify(new DashboardNotification([
             'title'   => "Welcome {$name}",
             'message' => 'You can find the latest news of the project on the website',
             'action'  => 'https://orchid.software/',
-            'type'    => 'info',
+            'type'    => DashboardNotification::INFO,
         ]));
     }
 

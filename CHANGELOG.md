@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [3.3.0] - 2018-12-24
+
+### Changed
+- Notification type string replace to constants, DashboardNotification::SUCCESS
+
 ## [3.2.2] - 2018-12-24
 
 ### Fixed
