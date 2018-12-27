@@ -46,8 +46,13 @@ export default class extends Controller {
         this.leafletMarker = L.marker([default_lat, default_lng], {
             icon: markerIcon,
             draggable: true,
+            autoPan:true,
+            autoPanPadding:L.point(100, 100)
         }).addTo(this.leafletMap);
 
+        this.leafletMarker.on('dragend', () => {
+            this.updateCoords();
+        });
 
         this.leafletMap.on('click', (e) => {
             this.leafletMarker.setLatLng(e.latlng);
