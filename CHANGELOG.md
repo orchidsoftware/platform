@@ -6,16 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.3.1] - 2018-12-24
+## [3.3.3] - 2018-12-27
+
+### Changed
+
+- MapField autoscroll [755](https://github.com/orchidsoftware/platform/pull/755)
 
 ### Removed
 
 - Method `hero` for Post Models
-
-## [3.3.0] - 2018-12-24
-
-### Changed
-- Notification type string replace to constants, DashboardNotification::SUCCESS
 
 ## [3.2.2] - 2018-12-24
 
