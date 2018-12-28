@@ -193,7 +193,7 @@ class TD
                 $attributes[] = $datum->getAttribute($option);
             }
 
-            if (!is_null($text)) {
+            if (! is_null($text)) {
                 $text = $datum->getContent($text);
             }
 
