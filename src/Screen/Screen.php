@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -95,14 +95,21 @@ abstract class Screen extends Controller
      */
     public function asyncBuild($method, $slugLayouts)
     {
+
+        $this->arguments = $this->request->json()->all();
+
+        $this->reflectionParams($method);
         $query = call_user_func_array([$this, $method], $this->arguments);
         $post = new Repository($query);
+
 
         foreach ($this->layout() as $layout) {
             if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
                 return $layout->build($post, true);
             }
         }
+
+        dd($slugLayouts);
     }
 
     /**
@@ -141,11 +148,12 @@ abstract class Screen extends Controller
         $method = array_pop($parameters);
         $this->arguments = $parameters;
 
-        $this->reflectionParams($method);
 
         if (starts_with($method, 'async')) {
-            return $this->asyncBuild($method, $this->arguments);
+            return $this->asyncBuild($method, array_pop($this->arguments));
         }
+
+        $this->reflectionParams($method);
 
         return call_user_func_array([$this, $method], $this->arguments);
     }

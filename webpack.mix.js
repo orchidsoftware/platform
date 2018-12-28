@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const {mix} = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,8 +10,6 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
-mix.setPublicPath('public');
 
 /*
 mix.webpackConfig({
@@ -36,13 +34,13 @@ mix.webpackConfig({
 */
 
 if (!mix.inProduction()) {
-  mix
-    .webpackConfig({
-      devtool: 'source-map',
-    })
-    .sourceMaps();
+    mix
+        .webpackConfig({
+            devtool: 'source-map',
+        })
+        .sourceMaps();
 } else {
-  mix.version();
+    mix.version();
 }
 
 const vendor = [
@@ -53,17 +51,18 @@ const vendor = [
 ];
 
 mix
-  .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
-  .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
-  .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
-  .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
-  .sass('resources/sass/app.scss', 'css/orchid.css')
-  .js('resources/js/app.js', 'js/orchid.js')
-  .extract(vendor)
-  .autoload({
-      jquery: [
-        '$', 'window.jQuery', 'jQuery', 'jquery',
-        'bootstrap','jquery-ui-bundle','nestable',
-        'select2'
-      ],
-  });
+    .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
+    .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
+    .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
+    .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
+    .sass('resources/sass/app.scss', 'css/orchid.css')
+    .js('resources/js/app.js', 'js/orchid.js')
+    .extract(vendor)
+    .autoload({
+        jquery: [
+            '$', 'window.jQuery', 'jQuery', 'jquery',
+            'bootstrap', 'jquery-ui-bundle', 'nestable',
+            'select2'
+        ],
+    })
+    .setPublicPath('public');
