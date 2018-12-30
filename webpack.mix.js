@@ -1,4 +1,4 @@
-const {mix} = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,28 +11,6 @@ const {mix} = require('laravel-mix');
  |
  */
 
-/*
-mix.webpackConfig({
-    module: {
-        loaders: [
-            {
-                test: require.resolve('tinymce/tinymce'),
-                use: [
-                    'imports-loader?this=>window',
-                    'exports-loader?window.tinymce',
-                ]
-            },
-            {
-                test: /tinymce\/(themes|plugins|skins)\//,
-                use: [
-                    'imports-loader?this=>window'
-                ]
-            },
-        ]
-    }
-});
-*/
-
 if (!mix.inProduction()) {
     mix
         .webpackConfig({
@@ -43,21 +21,21 @@ if (!mix.inProduction()) {
     mix.version();
 }
 
-const vendor = [
-    'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
-    'jquery', 'popper.js', 'jquery-ui-bundle', 'bootstrap',
-    'dropzone', 'nestable', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
-    'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr'
-];
-
 mix
     .copy('./node_modules/orchid-icons/src/fonts/', 'public/fonts')
     .copyDirectory('./node_modules/tinymce/plugins', 'public/js/tinymce/plugins')
     .copyDirectory('./node_modules/tinymce/themes', 'public/js/tinymce/themes')
     .copyDirectory('./node_modules/tinymce/skins', 'public/js/tinymce/skins')
-    .sass('resources/sass/app.scss', 'css/orchid.css')
+    .sass('resources/sass/app.scss', 'css/orchid.css', {
+        implementation: require('node-sass')
+    })
     .js('resources/js/app.js', 'js/orchid.js')
-    .extract(vendor)
+    .extract([
+        'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
+        'jquery', 'popper.js', 'jquery-ui-bundle', 'bootstrap',
+        'dropzone', 'nestable', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
+        'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr'
+    ])
     .autoload({
         jquery: [
             '$', 'window.jQuery', 'jQuery', 'jquery',

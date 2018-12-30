@@ -1,6 +1,14 @@
 {
-  "plugins": ["transform-class-properties"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-block-scoping"
+  ],
   "presets": [
-    ["env", { "modules": false }]
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
   ]
 }
