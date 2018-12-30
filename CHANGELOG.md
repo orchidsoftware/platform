@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.4] - 2018-12-31
+
+### Changed
+
+- Acync modal & User table edit
+
 ## [3.3.3] - 2018-12-27
 
 ### Changed
