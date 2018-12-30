@@ -1,13 +1,14 @@
 import { Application, Controller } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
 
-// remove
-$.fn.select2.defaults.set('theme', 'bootstrap');
+global.$ = global.jQuery = require('jquery');
 
-const jq = require('jquery');
+require('popper.js');
+require('jquery-ui-bundle');
+require('bootstrap');
+require('select2');
+require('nestable');
 
-global.$ = jq;
-global.jQuery = jq;
 
 window.application = Application.start();
 window.Controller = Controller;
