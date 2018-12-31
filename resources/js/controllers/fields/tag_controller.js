@@ -6,6 +6,7 @@ export default class extends Controller {
 
         setTimeout(() => {
             $(select).select2({
+                theme: 'bootstrap',
                 templateResult: (state) => {
                     if (!state.id || !state.count) {
                         return state.text;
