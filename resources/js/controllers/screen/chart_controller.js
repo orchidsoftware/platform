@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { Chart } from 'frappe-charts/dist/frappe-charts.esm';
+import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm';
 
 export default class extends Controller {
     /**

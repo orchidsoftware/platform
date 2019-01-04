@@ -5,18 +5,18 @@ var table = (function () {
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
     var noop = function () {
-        var args = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-          args[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var compose = function (fa, fb) {
       return function () {
-          var args = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-          return fa(fb.apply(null, args));
+        return fa(fb.apply(null, args));
       };
     };
     var constant = function (value) {
@@ -27,28 +27,27 @@ var table = (function () {
     var identity = function (x) {
       return x;
     };
-
     function curry(fn) {
-        var initialArgs = [];
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-          initialArgs[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
       return function () {
-          var restArgs = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            restArgs[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-          var all = initialArgs.concat(restArgs);
-          return fn.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
     }
     var not = function (f) {
       return function () {
-          var args = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-          return !f.apply(null, args);
+        return !f.apply(null, args);
       };
     };
     var die = function (msg) {
@@ -2482,21 +2481,21 @@ var table = (function () {
       });
     };
     var serializeElements = function (editor, elements) {
-        return map(elements, function (elm) {
-            return editor.selection.serializer.serialize(elm.dom(), {});
-        }).join('');
+      return map(elements, function (elm) {
+        return editor.selection.serializer.serialize(elm.dom(), {});
+      }).join('');
     };
     var getTextContent = function (elements) {
-        return map(elements, function (element) {
-            return element.dom().innerText;
-        }).join('');
+      return map(elements, function (element) {
+        return element.dom().innerText;
+      }).join('');
     };
     var registerEvents = function (editor, selections, actions, cellSelection) {
       editor.on('BeforeGetContent', function (e) {
         var multiCellContext = function (cells) {
           e.preventDefault();
           extractSelected(cells).each(function (elements) {
-              e.content = e.format === 'text' ? getTextContent(elements) : serializeElements(editor, elements);
+            e.content = e.format === 'text' ? getTextContent(elements) : serializeElements(editor, elements);
           });
         };
         if (e.selection === true) {
@@ -3945,9 +3944,9 @@ var table = (function () {
       var map = function (f) {
         return value$1(f(o));
       };
-        var mapError = function (f) {
-            return value$1(o);
-        };
+      var mapError = function (f) {
+        return value$1(o);
+      };
       var each = function (f) {
         f(o);
       };
@@ -3977,7 +3976,7 @@ var table = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
-          mapError: mapError,
+        mapError: mapError,
         each: each,
         bind: bind,
         exists: exists,
@@ -4001,9 +4000,9 @@ var table = (function () {
       var map = function (f) {
         return error(message);
       };
-        var mapError = function (f) {
-            return error(f(message));
-        };
+      var mapError = function (f) {
+        return error(f(message));
+      };
       var bind = function (f) {
         return error(message);
       };
@@ -4021,7 +4020,7 @@ var table = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
-          mapError: mapError,
+        mapError: mapError,
         each: noop,
         bind: bind,
         exists: never,

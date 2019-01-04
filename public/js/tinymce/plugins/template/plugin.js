@@ -5,17 +5,17 @@ var template = (function () {
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
     function curry(fn) {
-        var initialArgs = [];
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-          initialArgs[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
       return function () {
-          var restArgs = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            restArgs[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-          var all = initialArgs.concat(restArgs);
-          return fn.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
     }
 

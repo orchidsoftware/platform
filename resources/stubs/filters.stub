@@ -4,6 +4,7 @@ namespace DummyNamespace;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Field;
 
 class DummyClass extends Filter
 {
@@ -34,9 +35,9 @@ class DummyClass extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Field
      */
-    public function display()
+    public function display(): ?Field
     {
         //
     }

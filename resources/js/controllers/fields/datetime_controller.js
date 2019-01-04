@@ -1,5 +1,5 @@
 import Flatpickr from 'stimulus-flatpickr';
-import rangePlugin from 'flatpickr/dist/plugins/rangePlugin.js';
+import rangePlugin from 'flatpickr/dist/plugins/rangePlugin';
 import 'flatpickr/dist/l10n';
 
 export default class extends Flatpickr {

@@ -38,7 +38,7 @@
 php artisan orchid:screen Users
 ```
 
-В директории `app/Http/Controllers/Screens` будет создан файл `Users` со следующим содержанием:
+В директории `app/Orchid/Screens` будет создан файл `Users` со следующим содержанием:
 
 ```php
 namespace App\Http\Controllers\Screens;
@@ -101,9 +101,11 @@ class Users extends Screen
 
 Зарегистировать каждый экран можно с помощью метода `screen` у Route
 ```php
-Route::screen('/news', 'Screens\Users','platform.screens.users.list');
-//or
-$route->screen('/news', 'Screens\Users','platform.screens.users.list');
+use App/Orchid/Screens/Users;
+
+Route::screen('/news', Users::class)->name('platform.screens.users.list');
+//или
+$route->screen('/news', Users::class)->name('platform.screens.users.list');
 ```
 
 

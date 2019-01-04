@@ -22,7 +22,7 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method $this spellcheck($value = true)
  * @method $this style($value = true)
  * @method $this tabindex($value = true)
- * @method $this title($value = true)
+ * @method $this title(string $value = null)
  * @method $this options($value = true)
  */
 class Field implements FieldContract

@@ -46,6 +46,7 @@ trait RoleAccess
 
     /**
      * @return bool
+     * @throws \Exception
      */
     public function delete(): bool
     {

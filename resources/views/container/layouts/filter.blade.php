@@ -19,16 +19,7 @@
             @foreach($filters->chunk($chunk) as $value)
                 <div class="col-sm-3">
                     @foreach($value as $filter)
-
-                        @php
-                            $filter= $filter->display();
-                        @endphp
-
-                        @if(is_a($filter,\Orchid\Screen\Contracts\FieldContract::class))
-                            {!! $filter->form('filters')->render() !!}
-                        @else
-                            {!! $filter !!}
-                        @endif
+                        {!! optional($filter->display())->form('filters')->render() !!}
                     @endforeach
                 </div>
             @endforeach

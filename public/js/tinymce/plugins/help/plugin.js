@@ -9,28 +9,27 @@ var help = (function () {
         return value;
       };
     };
-
     function curry(fn) {
-        var initialArgs = [];
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-          initialArgs[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
       return function () {
-          var restArgs = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            restArgs[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-          var all = initialArgs.concat(restArgs);
-          return fn.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
     }
     var not = function (f) {
       return function () {
-          var args = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-          return !f.apply(null, args);
+        return !f.apply(null, args);
       };
     };
     var never = constant(false);

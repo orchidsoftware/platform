@@ -55,7 +55,8 @@ class MenuController extends Controller
         $availableMenus = config('press.menu');
         $currentLocale = $request->get('lang', app()->getLocale());
 
-        $menu = Dashboard::model(Menu::class)::where('lang', $currentLocale)
+        $menu = Dashboard::modelClass(Menu::class)
+            ->where('lang', $currentLocale)
             ->where('parent', 0)
             ->where('type', $name)
             ->orderBy('sort', 'asc')

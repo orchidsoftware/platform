@@ -41,9 +41,9 @@ var autosave = (function () {
         s: 1000,
         m: 60000
       };
-        var toParse = timeString || defaultTime;
-        var parsedTime = /^(\d+)([ms]?)$/.exec('' + toParse);
-        return (parsedTime[2] ? multiples[parsedTime[2]] : 1) * parseInt(toParse, 10);
+      var toParse = timeString || defaultTime;
+      var parsedTime = /^(\d+)([ms]?)$/.exec('' + toParse);
+      return (parsedTime[2] ? multiples[parsedTime[2]] : 1) * parseInt(toParse, 10);
     };
 
     var shouldAskBeforeUnload = function (editor) {
@@ -61,10 +61,10 @@ var autosave = (function () {
       return editor.getParam('autosave_restore_when_empty', false);
     };
     var getAutoSaveInterval = function (editor) {
-        return parse(editor.settings.autosave_interval, '30s');
+      return parse(editor.settings.autosave_interval, '30s');
     };
     var getAutoSaveRetention = function (editor) {
-        return parse(editor.settings.autosave_retention, '20m');
+      return parse(editor.settings.autosave_retention, '20m');
     };
 
     var isEmpty = function (editor, html) {
@@ -73,41 +73,41 @@ var autosave = (function () {
       return html === '' || new RegExp('^<' + forcedRootBlockName + '[^>]*>((\xA0|&nbsp;|[ \t]|<br[^>]*>)+?|)</' + forcedRootBlockName + '>|<br>$', 'i').test(html);
     };
     var hasDraft = function (editor) {
-        var time = parseInt(global$1.getItem(getAutoSavePrefix(editor) + 'time'), 10) || 0;
-        if (new Date().getTime() - time > getAutoSaveRetention(editor)) {
+      var time = parseInt(global$1.getItem(getAutoSavePrefix(editor) + 'time'), 10) || 0;
+      if (new Date().getTime() - time > getAutoSaveRetention(editor)) {
         removeDraft(editor, false);
         return false;
       }
       return true;
     };
     var removeDraft = function (editor, fire) {
-        var prefix = getAutoSavePrefix(editor);
+      var prefix = getAutoSavePrefix(editor);
       global$1.removeItem(prefix + 'draft');
       global$1.removeItem(prefix + 'time');
       if (fire !== false) {
-          fireRemoveDraft(editor);
+        fireRemoveDraft(editor);
       }
     };
     var storeDraft = function (editor) {
-        var prefix = getAutoSavePrefix(editor);
+      var prefix = getAutoSavePrefix(editor);
       if (!isEmpty(editor) && editor.isDirty()) {
         global$1.setItem(prefix + 'draft', editor.getContent({
           format: 'raw',
           no_events: true
         }));
         global$1.setItem(prefix + 'time', new Date().getTime().toString());
-          fireStoreDraft(editor);
+        fireStoreDraft(editor);
       }
     };
     var restoreDraft = function (editor) {
-        var prefix = getAutoSavePrefix(editor);
+      var prefix = getAutoSavePrefix(editor);
       if (hasDraft(editor)) {
         editor.setContent(global$1.getItem(prefix + 'draft'), { format: 'raw' });
-          fireRestoreDraft(editor);
+        fireRestoreDraft(editor);
       }
     };
     var startStoreDraft = function (editor, started) {
-        var interval = getAutoSaveInterval(editor);
+      var interval = getAutoSaveInterval(editor);
       if (!started.get()) {
         setInterval(function () {
           if (!editor.removed) {
@@ -126,27 +126,27 @@ var autosave = (function () {
     };
 
     function curry(fn) {
-        var initialArgs = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            initialArgs[_i - 1] = arguments[_i];
-        }
+      var initialArgs = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+        initialArgs[_i - 1] = arguments[_i];
+      }
       return function () {
-          var restArgs = [];
-          for (var _i = 0; _i < arguments.length; _i++) {
-              restArgs[_i] = arguments[_i];
-          }
-          var all = initialArgs.concat(restArgs);
-          return fn.apply(null, all);
+        var restArgs = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          restArgs[_i] = arguments[_i];
+        }
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
     }
 
     var get = function (editor) {
       return {
-          hasDraft: curry(hasDraft, editor),
-          storeDraft: curry(storeDraft, editor),
-          restoreDraft: curry(restoreDraft, editor),
-          removeDraft: curry(removeDraft, editor),
-          isEmpty: curry(isEmpty, editor)
+        hasDraft: curry(hasDraft, editor),
+        storeDraft: curry(storeDraft, editor),
+        restoreDraft: curry(restoreDraft, editor),
+        removeDraft: curry(removeDraft, editor),
+        isEmpty: curry(isEmpty, editor)
       };
     };
 
@@ -158,7 +158,7 @@ var autosave = (function () {
         if (editor.plugins.autosave) {
           editor.plugins.autosave.storeDraft();
         }
-          if (!msg && editor.isDirty() && shouldAskBeforeUnload(editor)) {
+        if (!msg && editor.isDirty() && shouldAskBeforeUnload(editor)) {
           msg = editor.translate('You have unsaved changes are you sure you want to navigate away?');
         }
       });
@@ -171,25 +171,25 @@ var autosave = (function () {
     var postRender = function (editor, started) {
       return function (e) {
         var ctrl = e.control;
-          ctrl.disabled(!hasDraft(editor));
+        ctrl.disabled(!hasDraft(editor));
         editor.on('StoreDraft RestoreDraft RemoveDraft', function () {
-            ctrl.disabled(!hasDraft(editor));
+          ctrl.disabled(!hasDraft(editor));
         });
-          startStoreDraft(editor, started);
+        startStoreDraft(editor, started);
       };
     };
     var register = function (editor, started) {
       editor.addButton('restoredraft', {
         title: 'Restore last draft',
         onclick: function () {
-            restoreLastDraft(editor);
+          restoreLastDraft(editor);
         },
         onPostRender: postRender(editor, started)
       });
       editor.addMenuItem('restoredraft', {
         text: 'Restore last draft',
         onclick: function () {
-            restoreLastDraft(editor);
+          restoreLastDraft(editor);
         },
         onPostRender: postRender(editor, started),
         context: 'file'
@@ -198,14 +198,14 @@ var autosave = (function () {
 
     global.add('autosave', function (editor) {
       var started = Cell(false);
-        setup(editor);
-        register(editor, started);
-        editor.on('init', function () {
-            if (shouldRestoreWhenEmpty(editor) && editor.dom.isEmpty(editor.getBody())) {
-                restoreDraft(editor);
-            }
-        });
-        return get(editor);
+      setup(editor);
+      register(editor, started);
+      editor.on('init', function () {
+        if (shouldRestoreWhenEmpty(editor) && editor.dom.isEmpty(editor.getBody())) {
+          restoreDraft(editor);
+        }
+      });
+      return get(editor);
     });
     function Plugin () {
     }

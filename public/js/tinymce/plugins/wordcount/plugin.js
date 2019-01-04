@@ -66,9 +66,9 @@ var wordcount = (function () {
     };
 
     var constant = function (value) {
-        return function () {
-            return value;
-        };
+      return function () {
+        return value;
+      };
     };
     var never = constant(false);
     var always = constant(true);
@@ -76,91 +76,91 @@ var wordcount = (function () {
     var never$1 = never;
     var always$1 = always;
     var none = function () {
-        return NONE;
+      return NONE;
     };
     var NONE = function () {
-        var eq = function (o) {
-            return o.isNone();
-        };
-        var call$$1 = function (thunk) {
-            return thunk();
-        };
-        var id = function (n) {
-            return n;
-        };
-        var noop$$1 = function () {
-        };
-        var nul = function () {
-            return null;
-        };
-        var undef = function () {
-            return undefined;
-        };
-        var me = {
-            fold: function (n, s) {
-                return n();
-            },
-            is: never$1,
-            isSome: never$1,
-            isNone: always$1,
-            getOr: id,
-            getOrThunk: call$$1,
-            getOrDie: function (msg) {
-                throw new Error(msg || 'error: getOrDie called on none.');
-            },
-            getOrNull: nul,
-            getOrUndefined: undef,
-            or: id,
-            orThunk: call$$1,
-            map: none,
-            ap: none,
-            each: noop$$1,
-            bind: none,
-            flatten: none,
-            exists: never$1,
-            forall: always$1,
-            filter: none,
-            equals: eq,
-            equals_: eq,
-            toArray: function () {
-                return [];
-            },
-            toString: constant('none()')
-        };
-        if (Object.freeze)
-            Object.freeze(me);
-        return me;
+      var eq = function (o) {
+        return o.isNone();
+      };
+      var call$$1 = function (thunk) {
+        return thunk();
+      };
+      var id = function (n) {
+        return n;
+      };
+      var noop$$1 = function () {
+      };
+      var nul = function () {
+        return null;
+      };
+      var undef = function () {
+        return undefined;
+      };
+      var me = {
+        fold: function (n, s) {
+          return n();
+        },
+        is: never$1,
+        isSome: never$1,
+        isNone: always$1,
+        getOr: id,
+        getOrThunk: call$$1,
+        getOrDie: function (msg) {
+          throw new Error(msg || 'error: getOrDie called on none.');
+        },
+        getOrNull: nul,
+        getOrUndefined: undef,
+        or: id,
+        orThunk: call$$1,
+        map: none,
+        ap: none,
+        each: noop$$1,
+        bind: none,
+        flatten: none,
+        exists: never$1,
+        forall: always$1,
+        filter: none,
+        equals: eq,
+        equals_: eq,
+        toArray: function () {
+          return [];
+        },
+        toString: constant('none()')
+      };
+      if (Object.freeze)
+        Object.freeze(me);
+      return me;
     }();
 
     var typeOf = function (x) {
-        if (x === null)
-            return 'null';
-        var t = typeof x;
-        if (t === 'object' && Array.prototype.isPrototypeOf(x))
-            return 'array';
-        if (t === 'object' && String.prototype.isPrototypeOf(x))
-            return 'string';
-        return t;
+      if (x === null)
+        return 'null';
+      var t = typeof x;
+      if (t === 'object' && Array.prototype.isPrototypeOf(x))
+        return 'array';
+      if (t === 'object' && String.prototype.isPrototypeOf(x))
+        return 'string';
+      return t;
     };
     var isType = function (type) {
-        return function (value) {
-            return typeOf(value) === type;
-        };
+      return function (value) {
+        return typeOf(value) === type;
+      };
     };
     var isFunction = isType('function');
 
     var map = function (xs, f) {
-        var len = xs.length;
-        var r = new Array(len);
-        for (var i = 0; i < len; i++) {
-            var x = xs[i];
-            r[i] = f(x, i, xs);
-        }
-        return r;
+      var len = xs.length;
+      var r = new Array(len);
+      for (var i = 0; i < len; i++) {
+        var x = xs[i];
+        r[i] = f(x, i, xs);
+      }
+      return r;
     };
     var slice = Array.prototype.slice;
     var from$1 = isFunction(Array.from) ? Array.from : function (x) {
-        return slice.call(x);
+      return slice.call(x);
     };
 
     var SETS$1 = UnicodeData.SETS;
@@ -191,7 +191,7 @@ var wordcount = (function () {
     };
     var classify = function (string) {
       var memoized = memoize(getType);
-        return map(string.split(''), memoized);
+      return map(string.split(''), memoized);
     };
     var StringMapper = { classify: classify };
 

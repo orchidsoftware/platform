@@ -15,7 +15,7 @@ var inlite = (function () {
         return Array.isArray(item) ? results.concat(flatten(item)) : results.concat(item);
       }, []);
     };
-    var DeepFlatten = {flatten: flatten};
+    var DeepFlatten = { flatten: flatten };
 
     var result = function (id, rect) {
       return {
@@ -457,7 +457,7 @@ var inlite = (function () {
     };
     var getToolbars = function (editor) {
       var contextToolbars = editor.contextToolbars;
-        return DeepFlatten.flatten([
+      return DeepFlatten.flatten([
         contextToolbars ? contextToolbars : [],
         createToolbar(editor, 'img', 'image', 'alignleft aligncenter alignright')
       ]);
@@ -551,9 +551,9 @@ var inlite = (function () {
     var Render = { renderUI: renderUI };
 
     var noop = function () {
-        var args = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-          args[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var constant = function (value) {
@@ -8142,7 +8142,7 @@ var inlite = (function () {
       }
     };
     var setupHideFloatPanels = function (editor) {
-        editor.on('mousedown progressstate', function () {
+      editor.on('mousedown progressstate', function () {
         FloatPanel.hideAll();
       });
     };

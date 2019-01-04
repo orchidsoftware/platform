@@ -106,8 +106,6 @@ abstract class Screen extends Controller
                 return $layout->build($post, true);
             }
         }
-
-        dd($slugLayouts);
     }
 
     /**
@@ -127,7 +125,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param mixed ...$paramentrs
+     * @param array $parameters
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \ReflectionException

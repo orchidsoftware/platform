@@ -6,6 +6,7 @@ namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Screen\Field;
 
 abstract class Filter
 {
@@ -77,9 +78,9 @@ abstract class Filter
     abstract public function run(Builder $builder): Builder;
 
     /**
-     * User mapping method.
+     * @return Field|null
      */
-    public function display()
+    public function display() : ?Field
     {
         //
     }

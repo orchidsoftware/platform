@@ -7,7 +7,7 @@ namespace Orchid\Screen\Fields;
 use Orchid\Screen\Field;
 
 /**
- * Class MapField.
+ * Class DateRangeField.
  *
  * @method $this accept($value = true)
  * @method $this accesskey($value = true)
@@ -35,19 +35,16 @@ use Orchid\Screen\Field;
  * @method $this src($value = true)
  * @method $this step($value = true)
  * @method $this tabindex($value = true)
- * @method $this type($value = true)
  * @method $this value($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)
- * @method $this zoom($value = true)
- * @method $this height($value = '300px')
  */
-class MapField extends Field
+class DateRangeField extends Field
 {
     /**
      * @var string
      */
-    public $view = 'platform::fields.map';
+    public $view = 'platform::fields.range';
 
     /**
      * Default attributes value.
@@ -55,8 +52,8 @@ class MapField extends Field
      * @var array
      */
     public $attributes = [
-        'zoom'   => 14,
-        'height' => '300px',
+        'type'  => 'text',
+        'class' => 'form-control',
     ];
 
     /**
@@ -91,15 +88,13 @@ class MapField extends Field
         'src',
         'step',
         'tabindex',
-        'type',
         'value',
-        'height',
     ];
 
     /**
      * @param null $name
      *
-     * @return MapField
+     * @return DateTimerField
      */
     public static function make($name = null): self
     {

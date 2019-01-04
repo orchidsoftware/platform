@@ -3,18 +3,18 @@ var mobile = (function () {
     'use strict';
 
     var noop = function () {
-        var args = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-          args[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var compose = function (fa, fb) {
       return function () {
-          var args = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-          return fa(fb.apply(null, args));
+        return fa(fb.apply(null, args));
       };
     };
     var constant = function (value) {
@@ -25,28 +25,27 @@ var mobile = (function () {
     var identity = function (x) {
       return x;
     };
-
     function curry(fn) {
-        var initialArgs = [];
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-          initialArgs[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
       return function () {
-          var restArgs = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            restArgs[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-          var all = initialArgs.concat(restArgs);
-          return fn.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
     }
     var not = function (f) {
       return function () {
-          var args = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-          return !f.apply(null, args);
+        return !f.apply(null, args);
       };
     };
     var die = function (msg) {
@@ -1204,9 +1203,9 @@ var mobile = (function () {
       var map = function (f) {
         return value$1(f(o));
       };
-        var mapError = function (f) {
-            return value$1(o);
-        };
+      var mapError = function (f) {
+        return value$1(o);
+      };
       var each = function (f) {
         f(o);
       };
@@ -1236,7 +1235,7 @@ var mobile = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
-          mapError: mapError,
+        mapError: mapError,
         each: each,
         bind: bind,
         exists: exists,
@@ -1260,9 +1259,9 @@ var mobile = (function () {
       var map = function (f) {
         return error(message);
       };
-        var mapError = function (f) {
-            return error(f(message));
-        };
+      var mapError = function (f) {
+        return error(f(message));
+      };
       var bind = function (f) {
         return error(message);
       };
@@ -1280,7 +1279,7 @@ var mobile = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
-          mapError: mapError,
+        mapError: mapError,
         each: noop,
         bind: bind,
         exists: never,
@@ -4312,11 +4311,11 @@ var mobile = (function () {
       fOverrides
     ]);
     var externalSpec = objOf([
-        fFactory,
-        fSchema,
-        fName,
-        fDefaults,
-        fOverrides
+      fFactory,
+      fSchema,
+      fName,
+      fDefaults,
+      fOverrides
     ]);
     var optionalSpec = objOf([
       fFactory,
@@ -12614,10 +12613,10 @@ var mobile = (function () {
       return {
         getNotificationManagerImpl: function () {
           return {
-              open: constant({
-                  progressBar: {value: noop},
-                  close: noop
-              }),
+            open: constant({
+              progressBar: { value: noop },
+              close: noop
+            }),
             close: noop,
             reposition: noop,
             getArgs: identity
