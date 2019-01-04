@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Filters;
 
+use Orchid\Screen\Field;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-use Orchid\Screen\Field;
 
 abstract class Filter
 {

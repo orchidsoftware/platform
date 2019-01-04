@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Orchid\Filters;
 
+use Orchid\Screen\Field;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Field;
 use Orchid\Screen\Fields\SelectField;
 use Illuminate\Database\Eloquent\Builder;
 
