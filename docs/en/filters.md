@@ -55,11 +55,15 @@ class QueryFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Field
      */
-    public function display()
+    public function display(): Field
     {
-        return view('simpleFilter',[]);
+        return InputField::make('query')
+            ->type('text')
+            ->value($this->request->get('query'))
+            ->placeholder(__('Search...'))
+            ->title(__('Search'));
     }
 }
 ```
