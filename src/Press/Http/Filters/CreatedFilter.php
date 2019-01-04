@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Platform\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\DateRangeField;
 
 class CreatedFilter extends Filter
 {
@@ -34,12 +36,20 @@ class CreatedFilter extends Filter
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|void
+     * @return Field
      */
-    public function display()
+    public function display() : Field
     {
+        return DateRangeField::make('created_at')
+            ->title(__('Date of creation'))
+            ->value([
+                'start' => $this->request->get('start_created_at'),
+                'end'   => $this->request->get('end_created_at'),
+            ]);
+        /*
         return view('platform::container.posts.filters.created', [
             'request' => $this->request,
         ]);
+        */
     }
 }

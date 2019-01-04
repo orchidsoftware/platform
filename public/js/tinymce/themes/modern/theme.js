@@ -150,9 +150,9 @@ var modern = (function () {
     var global$7 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
     var noop = function () {
-      var x = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-        x[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var constant = function (value) {
@@ -1138,7 +1138,7 @@ var modern = (function () {
         };
       }
       if (hasStatusbar(editor)) {
-        var linkHtml = '<a href="https://www.tinymce.com/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce" rel="noopener" target="_blank" role="presentation" tabindex="-1">tinymce</a>';
+        var linkHtml = '<a href="https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce" rel="noopener" target="_blank" role="presentation" tabindex="-1">Tiny</a>';
         var html = global$5.translate([
           'Powered by {0}',
           linkHtml
@@ -7984,7 +7984,7 @@ var modern = (function () {
       }
     };
     var setupHideFloatPanels = function (editor) {
-      editor.on('mousedown', function () {
+      editor.on('mousedown progressstate', function () {
         FloatPanel.hideAll();
       });
     };

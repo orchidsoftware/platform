@@ -5,18 +5,18 @@ var table = (function () {
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
     var noop = function () {
-      var x = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-        x[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var compose = function (fa, fb) {
       return function () {
-        var x = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-        return fa(fb.apply(null, arguments));
+        return fa(fb.apply(null, args));
       };
     };
     var constant = function (value) {
@@ -27,33 +27,27 @@ var table = (function () {
     var identity = function (x) {
       return x;
     };
-    var curry = function (f) {
-      var x = [];
+    function curry(fn) {
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-        x[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
-      var args = new Array(arguments.length - 1);
-      for (var i = 1; i < arguments.length; i++)
-        args[i - 1] = arguments[i];
       return function () {
-        var x = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-        var newArgs = new Array(arguments.length);
-        for (var j = 0; j < newArgs.length; j++)
-          newArgs[j] = arguments[j];
-        var all = args.concat(newArgs);
-        return f.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
-    };
+    }
     var not = function (f) {
       return function () {
-        var x = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-        return !f.apply(null, arguments);
+        return !f.apply(null, args);
       };
     };
     var die = function (msg) {
@@ -2486,17 +2480,22 @@ var table = (function () {
         return [CopySelected.extract(replica, Ephemera.attributeSelector())];
       });
     };
-    var serializeElement = function (editor, elm) {
-      return editor.selection.serializer.serialize(elm.dom(), {});
+    var serializeElements = function (editor, elements) {
+      return map(elements, function (elm) {
+        return editor.selection.serializer.serialize(elm.dom(), {});
+      }).join('');
+    };
+    var getTextContent = function (elements) {
+      return map(elements, function (element) {
+        return element.dom().innerText;
+      }).join('');
     };
     var registerEvents = function (editor, selections, actions, cellSelection) {
       editor.on('BeforeGetContent', function (e) {
         var multiCellContext = function (cells) {
           e.preventDefault();
           extractSelected(cells).each(function (elements) {
-            e.content = map(elements, function (elm) {
-              return serializeElement(editor, elm);
-            }).join('');
+            e.content = e.format === 'text' ? getTextContent(elements) : serializeElements(editor, elements);
           });
         };
         if (e.selection === true) {
@@ -3945,6 +3944,9 @@ var table = (function () {
       var map = function (f) {
         return value$1(f(o));
       };
+      var mapError = function (f) {
+        return value$1(o);
+      };
       var each = function (f) {
         f(o);
       };
@@ -3974,6 +3976,7 @@ var table = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
+        mapError: mapError,
         each: each,
         bind: bind,
         exists: exists,
@@ -3997,6 +4000,9 @@ var table = (function () {
       var map = function (f) {
         return error(message);
       };
+      var mapError = function (f) {
+        return error(f(message));
+      };
       var bind = function (f) {
         return error(message);
       };
@@ -4014,6 +4020,7 @@ var table = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
+        mapError: mapError,
         each: noop,
         bind: bind,
         exists: never,
@@ -7105,6 +7112,7 @@ var table = (function () {
       var start = getStart$1(selection);
       return defaultView(start);
     };
+    var domRange = type$2.domRange;
     var relative$1 = type$2.relative;
     var exact = type$2.exact;
 
@@ -7262,6 +7270,8 @@ var table = (function () {
         }
       });
     };
+    var ltr$2 = adt$1.ltr;
+    var rtl$2 = adt$1.rtl;
 
     var searchForPoint = function (rectForOffset, x, y, maxX, length) {
       if (length === 0)

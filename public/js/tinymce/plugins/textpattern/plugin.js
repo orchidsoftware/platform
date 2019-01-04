@@ -22,19 +22,226 @@ var textpattern = (function () {
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-    var get = function (patternsState) {
+    var constant = function (value) {
+      return function () {
+        return value;
+      };
+    };
+    var never = constant(false);
+    var always = constant(true);
+
+    var never$1 = never;
+    var always$1 = always;
+    var none = function () {
+      return NONE;
+    };
+    var NONE = function () {
+      var eq = function (o) {
+        return o.isNone();
+      };
+      var call$$1 = function (thunk) {
+        return thunk();
+      };
+      var id = function (n) {
+        return n;
+      };
+      var noop$$1 = function () {
+      };
+      var nul = function () {
+        return null;
+      };
+      var undef = function () {
+        return undefined;
+      };
+      var me = {
+        fold: function (n, s) {
+          return n();
+        },
+        is: never$1,
+        isSome: never$1,
+        isNone: always$1,
+        getOr: id,
+        getOrThunk: call$$1,
+        getOrDie: function (msg) {
+          throw new Error(msg || 'error: getOrDie called on none.');
+        },
+        getOrNull: nul,
+        getOrUndefined: undef,
+        or: id,
+        orThunk: call$$1,
+        map: none,
+        ap: none,
+        each: noop$$1,
+        bind: none,
+        flatten: none,
+        exists: never$1,
+        forall: always$1,
+        filter: none,
+        equals: eq,
+        equals_: eq,
+        toArray: function () {
+          return [];
+        },
+        toString: constant('none()')
+      };
+      if (Object.freeze)
+        Object.freeze(me);
+      return me;
+    }();
+    var some = function (a) {
+      var constant_a = function () {
+        return a;
+      };
+      var self = function () {
+        return me;
+      };
+      var map = function (f) {
+        return some(f(a));
+      };
+      var bind = function (f) {
+        return f(a);
+      };
+      var me = {
+        fold: function (n, s) {
+          return s(a);
+        },
+        is: function (v) {
+          return a === v;
+        },
+        isSome: always$1,
+        isNone: never$1,
+        getOr: constant_a,
+        getOrThunk: constant_a,
+        getOrDie: constant_a,
+        getOrNull: constant_a,
+        getOrUndefined: constant_a,
+        or: self,
+        orThunk: self,
+        map: map,
+        ap: function (optfab) {
+          return optfab.fold(none, function (fab) {
+            return some(fab(a));
+          });
+        },
+        each: function (f) {
+          f(a);
+        },
+        bind: bind,
+        flatten: constant_a,
+        exists: bind,
+        forall: bind,
+        filter: function (f) {
+          return f(a) ? me : NONE;
+        },
+        equals: function (o) {
+          return o.is(a);
+        },
+        equals_: function (o, elementEq) {
+          return o.fold(never$1, function (b) {
+            return elementEq(a, b);
+          });
+        },
+        toArray: function () {
+          return [a];
+        },
+        toString: function () {
+          return 'some(' + a + ')';
+        }
+      };
+      return me;
+    };
+    var from = function (value) {
+      return value === null || value === undefined ? NONE : some(value);
+    };
+    var Option = {
+      some: some,
+      none: none,
+      from: from
+    };
+
+    var typeOf = function (x) {
+      if (x === null)
+        return 'null';
+      var t = typeof x;
+      if (t === 'object' && Array.prototype.isPrototypeOf(x))
+        return 'array';
+      if (t === 'object' && String.prototype.isPrototypeOf(x))
+        return 'string';
+      return t;
+    };
+    var isType = function (type) {
+      return function (value) {
+        return typeOf(value) === type;
+      };
+    };
+    var isFunction = isType('function');
+
+    var filter = function (xs, pred) {
+      var r = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        if (pred(x, i, xs)) {
+          r.push(x);
+        }
+      }
+      return r;
+    };
+    var slice = Array.prototype.slice;
+    var sort = function (xs, comparator) {
+      var copy = slice.call(xs, 0);
+      copy.sort(comparator);
+      return copy;
+    };
+    var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+      return slice.call(x);
+    };
+
+    var hasOwnProperty = Object.hasOwnProperty;
+    var get = function (obj, key) {
+      return has(obj, key) ? Option.some(obj[key]) : Option.none();
+    };
+    var has = function (obj, key) {
+      return hasOwnProperty.call(obj, key);
+    };
+
+    var isInlinePattern = function (pattern) {
+      return has(pattern, 'start') && has(pattern, 'end');
+    };
+    var isBlockPattern = function (pattern) {
+      return !has(pattern, 'end') && !has(pattern, 'replacement');
+    };
+    var isReplacementPattern = function (pattern) {
+      return has(pattern, 'replacement');
+    };
+    var sortPatterns = function (patterns) {
+      return sort(patterns, function (a, b) {
+        if (a.start.length === b.start.length) {
+          return 0;
+        }
+        return a.start.length > b.start.length ? -1 : 1;
+      });
+    };
+    var createPatternSet = function (patterns) {
+      return {
+        inlinePatterns: sortPatterns(filter(patterns, isInlinePattern)),
+        blockPatterns: sortPatterns(filter(patterns, isBlockPattern)),
+        replacementPatterns: filter(patterns, isReplacementPattern)
+      };
+    };
+
+    var get$1 = function (patternsState) {
       var setPatterns = function (newPatterns) {
-        patternsState.set(newPatterns);
+        patternsState.set(createPatternSet(newPatterns));
       };
       var getPatterns = function () {
-        return patternsState.get();
+        return patternsState.get().inlinePatterns.concat(patternsState.get().blockPatterns, patternsState.get().replacementPatterns);
       };
       return {
         setPatterns: setPatterns,
         getPatterns: getPatterns
       };
     };
-    var Api = { get: get };
+    var Api = { get: get$1 };
 
     var defaultPatterns = [
       {
@@ -92,10 +299,10 @@ var textpattern = (function () {
         cmd: 'InsertUnorderedList'
       }
     ];
-    var getPatterns = function (editorSettings) {
-      return editorSettings.textpattern_patterns !== undefined ? editorSettings.textpattern_patterns : defaultPatterns;
+    var getPatternSet = function (editorSettings) {
+      var patterns = get(editorSettings, 'textpattern_patterns').getOr(defaultPatterns);
+      return createPatternSet(patterns);
     };
-    var Settings = { getPatterns: getPatterns };
 
     var global$1 = tinymce.util.Tools.resolve('tinymce.util.Delay');
 
@@ -105,26 +312,16 @@ var textpattern = (function () {
 
     var global$4 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
-    var sortPatterns = function (patterns) {
-      return patterns.sort(function (a, b) {
-        if (a.start.length > b.start.length) {
-          return -1;
-        }
-        if (a.start.length < b.start.length) {
-          return 1;
-        }
-        return 0;
-      });
-    };
     var findPattern = function (patterns, text) {
       for (var i = 0; i < patterns.length; i++) {
-        if (text.indexOf(patterns[i].start) !== 0) {
+        var pattern = patterns[i];
+        if (text.indexOf(pattern.start) !== 0) {
           continue;
         }
-        if (patterns[i].end && text.lastIndexOf(patterns[i].end) !== text.length - patterns[i].end.length) {
+        if (pattern.end && text.lastIndexOf(pattern.end) !== text.length - pattern.end.length) {
           continue;
         }
-        return patterns[i];
+        return pattern;
       }
     };
     var isMatchingPattern = function (pattern, text, offset, delta) {
@@ -136,27 +333,14 @@ var textpattern = (function () {
     };
     var findEndPattern = function (patterns, text, offset, delta) {
       var pattern, i;
-      var sortedPatterns = sortPatterns(patterns);
-      for (i = 0; i < sortedPatterns.length; i++) {
-        pattern = sortedPatterns[i];
+      for (i = 0; i < patterns.length; i++) {
+        pattern = patterns[i];
         if (pattern.end !== undefined && isMatchingPattern(pattern, text, offset, delta) && hasContent(offset, delta, pattern)) {
           return pattern;
         }
       }
     };
-    var Patterns = {
-      findPattern: findPattern,
-      findEndPattern: findEndPattern
-    };
-
-    var splitContainer = function (container, pattern, endOffset, startOffset, space) {
-      container = startOffset > 0 ? container.splitText(startOffset) : container;
-      container.splitText(endOffset - startOffset + pattern.end.length);
-      container.deleteData(0, pattern.start.length);
-      container.deleteData(container.data.length - pattern.end.length, pattern.end.length);
-      return container;
-    };
-    var patternFromRng = function (patterns, rng, space) {
+    var findInlinePattern = function (patterns, rng, space) {
       if (rng.collapsed === false) {
         return;
       }
@@ -166,7 +350,7 @@ var textpattern = (function () {
       if (container.nodeType !== 3) {
         return;
       }
-      var endPattern = Patterns.findEndPattern(patterns, text, rng.startOffset, delta);
+      var endPattern = findEndPattern(patterns, text, rng.startOffset, delta);
       if (endPattern === undefined) {
         return;
       }
@@ -179,7 +363,7 @@ var textpattern = (function () {
       var patternRng = document.createRange();
       patternRng.setStart(container, startOffset);
       patternRng.setEnd(container, endOffset + endPattern.end.length);
-      var startPattern = Patterns.findPattern(patterns, patternRng.toString());
+      var startPattern = findPattern(patterns, patternRng.toString());
       if (endPattern === undefined || startPattern !== endPattern || container.data.length <= endPattern.start.length + endPattern.end.length) {
         return;
       }
@@ -189,7 +373,36 @@ var textpattern = (function () {
         endOffset: endOffset
       };
     };
-    var splitAndApply = function (editor, container, found, space) {
+    var findReplacementPattern = function (patterns, startSearch, text) {
+      for (var i = 0; i < patterns.length; i++) {
+        var index = text.lastIndexOf(patterns[i].start, startSearch);
+        if (index !== -1) {
+          return Option.some({
+            pattern: patterns[i],
+            startOffset: index
+          });
+        }
+      }
+      return Option.none();
+    };
+
+    var isText = function (node) {
+      return node && node.nodeType === 3;
+    };
+    var setSelection = function (editor, textNode, offset) {
+      var newRng = editor.dom.createRng();
+      newRng.setStart(textNode, offset);
+      newRng.setEnd(textNode, offset);
+      editor.selection.setRng(newRng);
+    };
+    var splitContainer = function (container, pattern, endOffset, startOffset) {
+      container = startOffset > 0 ? container.splitText(startOffset) : container;
+      container.splitText(endOffset - startOffset + pattern.end.length);
+      container.deleteData(0, pattern.start.length);
+      container.deleteData(container.data.length - pattern.end.length, pattern.end.length);
+      return container;
+    };
+    var splitAndApply = function (editor, container, found, inline) {
       var formatArray = global$4.isArray(found.pattern.format) ? found.pattern.format : [found.pattern.format];
       var validFormats = global$4.grep(formatArray, function (formatName) {
         var format = editor.formatter.get(formatName);
@@ -197,7 +410,10 @@ var textpattern = (function () {
       });
       if (validFormats.length !== 0) {
         editor.undoManager.transact(function () {
-          container = splitContainer(container, found.pattern, found.endOffset, found.startOffset, space);
+          container = splitContainer(container, found.pattern, found.endOffset, found.startOffset);
+          if (inline) {
+            editor.selection.setCursorLocation(container.nextSibling, 1);
+          }
           formatArray.forEach(function (format) {
             editor.formatter.apply(format, {}, container);
           });
@@ -205,20 +421,29 @@ var textpattern = (function () {
         return container;
       }
     };
-    var doApplyInlineFormat = function (editor, patterns, space) {
-      var rng = editor.selection.getRng(true);
-      var foundPattern = patternFromRng(patterns, rng, space);
-      if (foundPattern) {
-        return splitAndApply(editor, rng.startContainer, foundPattern, space);
-      }
+    var applyInlinePattern = function (editor, patterns, inline) {
+      var rng = editor.selection.getRng();
+      return Option.from(findInlinePattern(patterns, rng, inline)).map(function (foundPattern) {
+        return splitAndApply(editor, rng.startContainer, foundPattern, inline);
+      });
     };
-    var applyInlineFormatSpace = function (editor, patterns) {
-      return doApplyInlineFormat(editor, patterns, true);
+    var applyInlinePatternSpace = function (editor, patterns) {
+      applyInlinePattern(editor, patterns, true).each(function (wrappedTextNode) {
+        var lastChar = wrappedTextNode.data.slice(-1);
+        if (/[\u00a0 ]/.test(lastChar)) {
+          wrappedTextNode.deleteData(wrappedTextNode.data.length - 1, 1);
+          var lastCharNode = editor.dom.doc.createTextNode(lastChar);
+          editor.dom.insertAfter(lastCharNode, wrappedTextNode.parentNode);
+          setSelection(editor, lastCharNode, 1);
+        }
+      });
     };
-    var applyInlineFormatEnter = function (editor, patterns) {
-      return doApplyInlineFormat(editor, patterns, false);
+    var applyInlinePatternEnter = function (editor, patterns) {
+      applyInlinePattern(editor, patterns, false).each(function (wrappedTextNode) {
+        setSelection(editor, wrappedTextNode, wrappedTextNode.data.length);
+      });
     };
-    var applyBlockFormat = function (editor, patterns) {
+    var applyBlockPattern = function (editor, patterns) {
       var selection, dom, container, firstTextNode, node, format, textBlockElm, pattern, walker, rng, offset;
       selection = editor.selection;
       dom = editor.dom;
@@ -229,13 +454,13 @@ var textpattern = (function () {
       if (textBlockElm) {
         walker = new global$3(textBlockElm, textBlockElm);
         while (node = walker.next()) {
-          if (node.nodeType === 3) {
+          if (isText(node)) {
             firstTextNode = node;
             break;
           }
         }
         if (firstTextNode) {
-          pattern = Patterns.findPattern(patterns, firstTextNode.data);
+          pattern = findPattern(patterns, firstTextNode.data);
           if (!pattern) {
             return;
           }
@@ -267,41 +492,62 @@ var textpattern = (function () {
         }
       }
     };
-    var Formatter = {
-      patternFromRng: patternFromRng,
-      applyInlineFormatSpace: applyInlineFormatSpace,
-      applyInlineFormatEnter: applyInlineFormatEnter,
-      applyBlockFormat: applyBlockFormat
+    var selectionInsertText = function (editor, string) {
+      var rng = editor.selection.getRng();
+      var container = rng.startContainer;
+      if (isText(container)) {
+        var offset = rng.startOffset;
+        container.insertData(offset, string);
+        setSelection(editor, container, offset + string.length);
+      } else {
+        var newNode = editor.dom.doc.createTextNode(string);
+        rng.insertNode(newNode);
+        setSelection(editor, newNode, newNode.length);
+      }
+    };
+    var applyReplacement = function (editor, target, match) {
+      target.deleteData(match.startOffset, match.pattern.start.length);
+      editor.insertContent(match.pattern.replacement);
+      Option.from(target.nextSibling).filter(isText).each(function (nextSibling) {
+        nextSibling.insertData(0, target.data);
+        editor.dom.remove(target);
+      });
+    };
+    var extractChar = function (node, match) {
+      var offset = match.startOffset + match.pattern.start.length;
+      var char = node.data.slice(offset, offset + 1);
+      node.deleteData(offset, 1);
+      return char;
+    };
+    var applyReplacementPattern = function (editor, patterns, inline) {
+      var rng = editor.selection.getRng();
+      var container = rng.startContainer;
+      if (rng.collapsed && isText(container)) {
+        findReplacementPattern(patterns, rng.startOffset, container.data).each(function (match) {
+          var char = inline ? Option.some(extractChar(container, match)) : Option.none();
+          applyReplacement(editor, container, match);
+          char.each(function (ch) {
+            return selectionInsertText(editor, ch);
+          });
+        });
+      }
+    };
+    var applyReplacementPatternSpace = function (editor, patterns) {
+      applyReplacementPattern(editor, patterns, true);
+    };
+    var applyReplacementPatternEnter = function (editor, patterns) {
+      applyReplacementPattern(editor, patterns, false);
     };
 
-    function handleEnter(editor, patterns) {
-      var wrappedTextNode, rng;
-      wrappedTextNode = Formatter.applyInlineFormatEnter(editor, patterns);
-      if (wrappedTextNode) {
-        rng = editor.dom.createRng();
-        rng.setStart(wrappedTextNode, wrappedTextNode.data.length);
-        rng.setEnd(wrappedTextNode, wrappedTextNode.data.length);
-        editor.selection.setRng(rng);
-      }
-      Formatter.applyBlockFormat(editor, patterns);
-    }
-    function handleInlineKey(editor, patterns) {
-      var wrappedTextNode, lastChar, lastCharNode, rng, dom;
-      wrappedTextNode = Formatter.applyInlineFormatSpace(editor, patterns);
-      if (wrappedTextNode) {
-        dom = editor.dom;
-        lastChar = wrappedTextNode.data.slice(-1);
-        if (/[\u00a0 ]/.test(lastChar)) {
-          wrappedTextNode.deleteData(wrappedTextNode.data.length - 1, 1);
-          lastCharNode = dom.doc.createTextNode(lastChar);
-          dom.insertAfter(lastCharNode, wrappedTextNode.parentNode);
-          rng = dom.createRng();
-          rng.setStart(lastCharNode, 1);
-          rng.setEnd(lastCharNode, 1);
-          editor.selection.setRng(rng);
-        }
-      }
-    }
+    var handleEnter = function (editor, patternSet) {
+      applyReplacementPatternEnter(editor, patternSet.replacementPatterns);
+      applyInlinePatternEnter(editor, patternSet.inlinePatterns);
+      applyBlockPattern(editor, patternSet.blockPatterns);
+    };
+    var handleInlineKey = function (editor, patternSet) {
+      applyReplacementPatternSpace(editor, patternSet.replacementPatterns);
+      applyInlinePatternSpace(editor, patternSet.inlinePatterns);
+    };
     var checkKeyEvent = function (codes, event, predicate) {
       for (var i = 0; i < codes.length; i++) {
         if (predicate(codes[i], event)) {
@@ -357,7 +603,7 @@ var textpattern = (function () {
     var Keyboard = { setup: setup };
 
     global.add('textpattern', function (editor) {
-      var patternsState = Cell(Settings.getPatterns(editor.settings));
+      var patternsState = Cell(getPatternSet(editor.settings));
       Keyboard.setup(editor, patternsState);
       return Api.get(patternsState);
     });

@@ -4,26 +4,20 @@ var template = (function () {
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-    var curry = function (f) {
-      var x = [];
+    function curry(fn) {
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-        x[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
-      var args = new Array(arguments.length - 1);
-      for (var i = 1; i < arguments.length; i++)
-        args[i - 1] = arguments[i];
       return function () {
-        var x = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-        var newArgs = new Array(arguments.length);
-        for (var j = 0; j < newArgs.length; j++)
-          newArgs[j] = arguments[j];
-        var all = args.concat(newArgs);
-        return f.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
-    };
+    }
 
     var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 

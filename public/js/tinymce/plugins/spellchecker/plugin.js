@@ -474,7 +474,9 @@ var spellchecker = (function () {
       checkIfFinished(editor, startedState, textMatcherState);
     };
     var finish = function (editor, startedState, textMatcherState) {
+      var bookmark = editor.selection.getBookmark();
       getTextMatcher(editor, textMatcherState).reset();
+      editor.selection.moveToBookmark(bookmark);
       textMatcherState.set(null);
       if (startedState.get()) {
         startedState.set(false);
@@ -528,6 +530,7 @@ var spellchecker = (function () {
         suggestions: suggestions,
         hasDictionarySupport: hasDictionarySupport
       });
+      var bookmark = editor.selection.getBookmark();
       getTextMatcher(editor, textMatcherState).find(Settings.getSpellcheckerWordcharPattern(editor)).filter(function (match) {
         return !!suggestions[match.text];
       }).wrap(function (match) {
@@ -537,6 +540,7 @@ var spellchecker = (function () {
           'data-mce-word': match.text
         });
       });
+      editor.selection.moveToBookmark(bookmark);
       startedState.set(true);
       Events.fireSpellcheckStart(editor);
     };

@@ -6,6 +6,7 @@ namespace App\Orchid\Filters;
 
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\SelectField;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -36,10 +37,9 @@ class RoleFilter extends Filter
     }
 
     /**
-     * @return mixed
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     * @return Field|null
      */
-    public function display()
+    public function display() : ?Field
     {
         return SelectField::make('role')
             ->options($this->getRoles())

@@ -15,7 +15,8 @@ export default class extends Controller {
      * @param options
      */
     open(options) {
-        this.titleTarget.textContent = options.title;
+        /* TODO: Added titile */
+        //this.titleTarget.textContent = options.title;
         this.element.querySelector('form').action = options.submit;
 
         if (this.data.get('async')) {
@@ -30,7 +31,10 @@ export default class extends Controller {
      * @param params
      */
     asyncLoadData(params) {
-        axios.post(this.data.get('url') + '/' + this.data.get('method') + '/' + this.data.get('slug'), params).then((response) => {
+
+        let name = this.data.get('url') + '/' + this.data.get('slug') + '/' + this.data.get('method');
+
+        axios.post(name, params).then((response) => {
             this.element.querySelector('[data-async]').innerHTML = response.data;
         });
     }

@@ -3,18 +3,18 @@ var mobile = (function () {
     'use strict';
 
     var noop = function () {
-      var x = [];
+      var args = [];
       for (var _i = 0; _i < arguments.length; _i++) {
-        x[_i] = arguments[_i];
+        args[_i] = arguments[_i];
       }
     };
     var compose = function (fa, fb) {
       return function () {
-        var x = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-        return fa(fb.apply(null, arguments));
+        return fa(fb.apply(null, args));
       };
     };
     var constant = function (value) {
@@ -25,33 +25,27 @@ var mobile = (function () {
     var identity = function (x) {
       return x;
     };
-    var curry = function (f) {
-      var x = [];
+    function curry(fn) {
+      var initialArgs = [];
       for (var _i = 1; _i < arguments.length; _i++) {
-        x[_i - 1] = arguments[_i];
+        initialArgs[_i - 1] = arguments[_i];
       }
-      var args = new Array(arguments.length - 1);
-      for (var i = 1; i < arguments.length; i++)
-        args[i - 1] = arguments[i];
       return function () {
-        var x = [];
+        var restArgs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          restArgs[_i] = arguments[_i];
         }
-        var newArgs = new Array(arguments.length);
-        for (var j = 0; j < newArgs.length; j++)
-          newArgs[j] = arguments[j];
-        var all = args.concat(newArgs);
-        return f.apply(null, all);
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
       };
-    };
+    }
     var not = function (f) {
       return function () {
-        var x = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
+          args[_i] = arguments[_i];
         }
-        return !f.apply(null, arguments);
+        return !f.apply(null, args);
       };
     };
     var die = function (msg) {
@@ -1209,6 +1203,9 @@ var mobile = (function () {
       var map = function (f) {
         return value$1(f(o));
       };
+      var mapError = function (f) {
+        return value$1(o);
+      };
       var each = function (f) {
         f(o);
       };
@@ -1238,6 +1235,7 @@ var mobile = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
+        mapError: mapError,
         each: each,
         bind: bind,
         exists: exists,
@@ -1261,6 +1259,9 @@ var mobile = (function () {
       var map = function (f) {
         return error(message);
       };
+      var mapError = function (f) {
+        return error(f(message));
+      };
       var bind = function (f) {
         return error(message);
       };
@@ -1278,6 +1279,7 @@ var mobile = (function () {
         orThunk: orThunk,
         fold: fold,
         map: map,
+        mapError: mapError,
         each: noop,
         bind: bind,
         exists: never,
@@ -1373,6 +1375,7 @@ var mobile = (function () {
     var strict = adt.strict;
     var asOption = adt.asOption;
     var defaultedThunk = adt.defaultedThunk;
+    var asDefaultedOptionThunk = adt.asDefaultedOptionThunk;
     var mergeWithThunk = adt.mergeWithThunk;
 
     var comparison = Adt.generate([
@@ -4307,6 +4310,13 @@ var mobile = (function () {
       fDefaults,
       fOverrides
     ]);
+    var externalSpec = objOf([
+      fFactory,
+      fSchema,
+      fName,
+      fDefaults,
+      fOverrides
+    ]);
     var optionalSpec = objOf([
       fFactory,
       fSchema,
@@ -4340,6 +4350,7 @@ var mobile = (function () {
       };
     };
     var required = convert(adt$3.required, requiredSpec);
+    var external = convert(adt$3.external, externalSpec);
     var optional = convert(adt$3.optional, optionalSpec);
     var group = convert(adt$3.group, groupSpec);
     var original = constant('entirety');
@@ -12602,7 +12613,10 @@ var mobile = (function () {
       return {
         getNotificationManagerImpl: function () {
           return {
-            open: identity,
+            open: constant({
+              progressBar: { value: noop },
+              close: noop
+            }),
             close: noop,
             reposition: noop,
             getArgs: identity

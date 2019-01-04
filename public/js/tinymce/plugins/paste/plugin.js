@@ -754,6 +754,356 @@ var paste = (function () {
       insertContent: insertContent
     };
 
+    var constant = function (value) {
+      return function () {
+        return value;
+      };
+    };
+    function curry(fn) {
+      var initialArgs = [];
+      for (var _i = 1; _i < arguments.length; _i++) {
+        initialArgs[_i - 1] = arguments[_i];
+      }
+      return function () {
+        var restArgs = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          restArgs[_i] = arguments[_i];
+        }
+        var all = initialArgs.concat(restArgs);
+        return fn.apply(null, all);
+      };
+    }
+    var never = constant(false);
+    var always = constant(true);
+
+    var never$1 = never;
+    var always$1 = always;
+    var none = function () {
+      return NONE;
+    };
+    var NONE = function () {
+      var eq = function (o) {
+        return o.isNone();
+      };
+      var call$$1 = function (thunk) {
+        return thunk();
+      };
+      var id = function (n) {
+        return n;
+      };
+      var noop$$1 = function () {
+      };
+      var nul = function () {
+        return null;
+      };
+      var undef = function () {
+        return undefined;
+      };
+      var me = {
+        fold: function (n, s) {
+          return n();
+        },
+        is: never$1,
+        isSome: never$1,
+        isNone: always$1,
+        getOr: id,
+        getOrThunk: call$$1,
+        getOrDie: function (msg) {
+          throw new Error(msg || 'error: getOrDie called on none.');
+        },
+        getOrNull: nul,
+        getOrUndefined: undef,
+        or: id,
+        orThunk: call$$1,
+        map: none,
+        ap: none,
+        each: noop$$1,
+        bind: none,
+        flatten: none,
+        exists: never$1,
+        forall: always$1,
+        filter: none,
+        equals: eq,
+        equals_: eq,
+        toArray: function () {
+          return [];
+        },
+        toString: constant('none()')
+      };
+      if (Object.freeze)
+        Object.freeze(me);
+      return me;
+    }();
+    var some = function (a) {
+      var constant_a = function () {
+        return a;
+      };
+      var self = function () {
+        return me;
+      };
+      var map = function (f) {
+        return some(f(a));
+      };
+      var bind = function (f) {
+        return f(a);
+      };
+      var me = {
+        fold: function (n, s) {
+          return s(a);
+        },
+        is: function (v) {
+          return a === v;
+        },
+        isSome: always$1,
+        isNone: never$1,
+        getOr: constant_a,
+        getOrThunk: constant_a,
+        getOrDie: constant_a,
+        getOrNull: constant_a,
+        getOrUndefined: constant_a,
+        or: self,
+        orThunk: self,
+        map: map,
+        ap: function (optfab) {
+          return optfab.fold(none, function (fab) {
+            return some(fab(a));
+          });
+        },
+        each: function (f) {
+          f(a);
+        },
+        bind: bind,
+        flatten: constant_a,
+        exists: bind,
+        forall: bind,
+        filter: function (f) {
+          return f(a) ? me : NONE;
+        },
+        equals: function (o) {
+          return o.is(a);
+        },
+        equals_: function (o, elementEq) {
+          return o.fold(never$1, function (b) {
+            return elementEq(a, b);
+          });
+        },
+        toArray: function () {
+          return [a];
+        },
+        toString: function () {
+          return 'some(' + a + ')';
+        }
+      };
+      return me;
+    };
+    var from = function (value) {
+      return value === null || value === undefined ? NONE : some(value);
+    };
+    var Option = {
+      some: some,
+      none: none,
+      from: from
+    };
+
+    var typeOf = function (x) {
+      if (x === null)
+        return 'null';
+      var t = typeof x;
+      if (t === 'object' && Array.prototype.isPrototypeOf(x))
+        return 'array';
+      if (t === 'object' && String.prototype.isPrototypeOf(x))
+        return 'string';
+      return t;
+    };
+    var isType = function (type) {
+      return function (value) {
+        return typeOf(value) === type;
+      };
+    };
+    var isFunction = isType('function');
+
+    var map = function (xs, f) {
+      var len = xs.length;
+      var r = new Array(len);
+      for (var i = 0; i < len; i++) {
+        var x = xs[i];
+        r[i] = f(x, i, xs);
+      }
+      return r;
+    };
+    var each = function (xs, f) {
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        f(x, i, xs);
+      }
+    };
+    var filter$1 = function (xs, pred) {
+      var r = [];
+      for (var i = 0, len = xs.length; i < len; i++) {
+        var x = xs[i];
+        if (pred(x, i, xs)) {
+          r.push(x);
+        }
+      }
+      return r;
+    };
+    var slice = Array.prototype.slice;
+    var from$1 = isFunction(Array.from) ? Array.from : function (x) {
+      return slice.call(x);
+    };
+
+    var nu = function (baseFn) {
+      var data = Option.none();
+      var callbacks = [];
+      var map$$1 = function (f) {
+        return nu(function (nCallback) {
+          get(function (data) {
+            nCallback(f(data));
+          });
+        });
+      };
+      var get = function (nCallback) {
+        if (isReady())
+          call(nCallback);
+        else
+          callbacks.push(nCallback);
+      };
+      var set = function (x) {
+        data = Option.some(x);
+        run(callbacks);
+        callbacks = [];
+      };
+      var isReady = function () {
+        return data.isSome();
+      };
+      var run = function (cbs) {
+        each(cbs, call);
+      };
+      var call = function (cb) {
+        data.each(function (x) {
+          setTimeout(function () {
+            cb(x);
+          }, 0);
+        });
+      };
+      baseFn(set);
+      return {
+        get: get,
+        map: map$$1,
+        isReady: isReady
+      };
+    };
+    var pure$1 = function (a) {
+      return nu(function (callback) {
+        callback(a);
+      });
+    };
+    var LazyValue = {
+      nu: nu,
+      pure: pure$1
+    };
+
+    var bounce = function (f) {
+      return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+          args[_i] = arguments[_i];
+        }
+        var me = this;
+        setTimeout(function () {
+          f.apply(me, args);
+        }, 0);
+      };
+    };
+
+    var nu$1 = function (baseFn) {
+      var get = function (callback) {
+        baseFn(bounce(callback));
+      };
+      var map = function (fab) {
+        return nu$1(function (callback) {
+          get(function (a) {
+            var value = fab(a);
+            callback(value);
+          });
+        });
+      };
+      var bind = function (aFutureB) {
+        return nu$1(function (callback) {
+          get(function (a) {
+            aFutureB(a).get(callback);
+          });
+        });
+      };
+      var anonBind = function (futureB) {
+        return nu$1(function (callback) {
+          get(function (a) {
+            futureB.get(callback);
+          });
+        });
+      };
+      var toLazy = function () {
+        return LazyValue.nu(get);
+      };
+      var toCached = function () {
+        var cache = null;
+        return nu$1(function (callback) {
+          if (cache === null) {
+            cache = toLazy();
+          }
+          cache.get(callback);
+        });
+      };
+      return {
+        map: map,
+        bind: bind,
+        anonBind: anonBind,
+        toLazy: toLazy,
+        toCached: toCached,
+        get: get
+      };
+    };
+    var pure$2 = function (a) {
+      return nu$1(function (callback) {
+        callback(a);
+      });
+    };
+    var Future = {
+      nu: nu$1,
+      pure: pure$2
+    };
+
+    var par = function (asyncValues, nu) {
+      return nu(function (callback) {
+        var r = [];
+        var count = 0;
+        var cb = function (i) {
+          return function (value) {
+            r[i] = value;
+            count++;
+            if (count >= asyncValues.length) {
+              callback(r);
+            }
+          };
+        };
+        if (asyncValues.length === 0) {
+          callback([]);
+        } else {
+          each(asyncValues, function (asyncValue, i) {
+            asyncValue.get(cb(i));
+          });
+        }
+      });
+    };
+
+    var par$1 = function (futures) {
+      return par(futures, Future.nu);
+    };
+    var mapM = function (array, fn) {
+      var futures = map(array, fn);
+      return par$1(futures);
+    };
+
     var pasteHtml$1 = function (editor, html, internalFlag) {
       var internal = internalFlag ? internalFlag : InternalHtml.isMarked(html);
       var args = ProcessFilters.process(editor, InternalHtml.unmark(html), internal);
@@ -817,17 +1167,12 @@ var paste = (function () {
       return m ? editor.dom.encode(m[1]) : null;
     };
     var uniqueId = Utils.createIdGenerator('mceclip');
-    var pasteImage = function (editor, rng, reader, blob) {
-      if (rng) {
-        editor.selection.setRng(rng);
-        rng = null;
-      }
-      var dataUri = reader.result;
-      var base64 = getBase64FromUri(dataUri);
+    var pasteImage = function (editor, imageItem) {
+      var base64 = getBase64FromUri(imageItem.uri);
       var id = uniqueId();
-      var name$$1 = editor.settings.images_reuse_filename && blob.name ? extractFilename(editor, blob.name) : id;
+      var name$$1 = editor.settings.images_reuse_filename && imageItem.blob.name ? extractFilename(editor, imageItem.blob.name) : id;
       var img = new Image();
-      img.src = dataUri;
+      img.src = imageItem.uri;
       if (isValidDataUriImage(editor.settings, img)) {
         var blobCache = editor.editorUpload.blobCache;
         var blobInfo = void 0, existingBlobInfo = void 0;
@@ -835,41 +1180,62 @@ var paste = (function () {
           return cachedBlobInfo.base64() === base64;
         });
         if (!existingBlobInfo) {
-          blobInfo = blobCache.create(id, blob, base64, name$$1);
+          blobInfo = blobCache.create(id, imageItem.blob, base64, name$$1);
           blobCache.add(blobInfo);
         } else {
           blobInfo = existingBlobInfo;
         }
         pasteHtml$1(editor, '<img src="' + blobInfo.blobUri() + '">', false);
       } else {
-        pasteHtml$1(editor, '<img src="' + dataUri + '">', false);
+        pasteHtml$1(editor, '<img src="' + imageItem.uri + '">', false);
       }
     };
     var isClipboardEvent = function (event$$1) {
       return event$$1.type === 'paste';
     };
+    var readBlobsAsDataUris = function (items) {
+      return mapM(items, function (item) {
+        return Future.nu(function (resolve) {
+          var blob = item.getAsFile ? item.getAsFile() : item;
+          var reader = new window.FileReader();
+          reader.onload = function () {
+            resolve({
+              blob: blob,
+              uri: reader.result
+            });
+          };
+          reader.readAsDataURL(blob);
+        });
+      });
+    };
+    var getImagesFromDataTransfer = function (dataTransfer) {
+      var items = dataTransfer.items ? map(from$1(dataTransfer.items), function (item) {
+        return item.getAsFile();
+      }) : [];
+      var files = dataTransfer.files ? from$1(dataTransfer.files) : [];
+      var images = filter$1(items.length > 0 ? items : files, function (file) {
+        return /^image\/(jpeg|png|gif|bmp)$/.test(file.type);
+      });
+      return images;
+    };
     var pasteImageData = function (editor, e, rng) {
       var dataTransfer = isClipboardEvent(e) ? e.clipboardData : e.dataTransfer;
-      function processItems(items) {
-        var i, item, reader, hadImage = false;
-        if (items) {
-          for (i = 0; i < items.length; i++) {
-            item = items[i];
-            if (/^image\/(jpeg|png|gif|bmp)$/.test(item.type)) {
-              var blob = item.getAsFile ? item.getAsFile() : item;
-              reader = new window.FileReader();
-              reader.onload = pasteImage.bind(null, editor, rng, reader, blob);
-              reader.readAsDataURL(blob);
-              e.preventDefault();
-              hadImage = true;
-            }
-          }
-        }
-        return hadImage;
-      }
       if (editor.settings.paste_data_images && dataTransfer) {
-        return processItems(dataTransfer.items) || processItems(dataTransfer.files);
+        var images = getImagesFromDataTransfer(dataTransfer);
+        if (images.length > 0) {
+          e.preventDefault();
+          readBlobsAsDataUris(images).get(function (blobResults) {
+            if (rng) {
+              editor.selection.setRng(rng);
+            }
+            each(blobResults, function (result) {
+              pasteImage(editor, result);
+            });
+          });
+          return true;
+        }
       }
+      return false;
     };
     var isBrokenAndroidClipboardEvent = function (e) {
       var clipboardData = e.clipboardData;
@@ -1158,7 +1524,7 @@ var paste = (function () {
       };
     };
 
-    var noop = function () {
+    var noop$1 = function () {
     };
     var hasWorkingClipboardApi = function (clipboardData) {
       return global$1.iOS === false && clipboardData !== undefined && typeof clipboardData.setData === 'function' && Utils.isMsEdge() !== true;
@@ -1221,9 +1587,15 @@ var paste = (function () {
         text: editor.selection.getContent({ format: 'text' })
       };
     };
+    var isTableSelection = function (editor) {
+      return !!editor.dom.getParent(editor.selection.getStart(), 'td[data-mce-selected],th[data-mce-selected]', editor.getBody());
+    };
+    var hasSelectedContent = function (editor) {
+      return !editor.selection.isCollapsed() || isTableSelection(editor);
+    };
     var cut = function (editor) {
       return function (evt) {
-        if (editor.selection.isCollapsed() === false) {
+        if (hasSelectedContent(editor)) {
           setClipboardData(evt, getData(editor), fallback(editor), function () {
             setTimeout(function () {
               editor.execCommand('Delete');
@@ -1234,8 +1606,8 @@ var paste = (function () {
     };
     var copy = function (editor) {
       return function (evt) {
-        if (editor.selection.isCollapsed() === false) {
-          setClipboardData(evt, getData(editor), fallback(editor), noop);
+        if (hasSelectedContent(editor)) {
+          setClipboardData(evt, getData(editor), fallback(editor), noop$1);
         }
       };
     };
@@ -1435,27 +1807,6 @@ var paste = (function () {
       }
     };
     var Quirks = { setup: setup$2 };
-
-    var curry = function (f) {
-      var x = [];
-      for (var _i = 1; _i < arguments.length; _i++) {
-        x[_i - 1] = arguments[_i];
-      }
-      var args = new Array(arguments.length - 1);
-      for (var i = 1; i < arguments.length; i++)
-        args[i - 1] = arguments[i];
-      return function () {
-        var x = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-          x[_i] = arguments[_i];
-        }
-        var newArgs = new Array(arguments.length);
-        for (var j = 0; j < newArgs.length; j++)
-          newArgs[j] = arguments[j];
-        var all = args.concat(newArgs);
-        return f.apply(null, all);
-      };
-    };
 
     var stateChange = function (editor, clipboard, e) {
       var ctrl = e.control;

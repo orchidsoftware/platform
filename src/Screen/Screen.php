@@ -95,6 +95,9 @@ abstract class Screen extends Controller
      */
     public function asyncBuild($method, $slugLayouts)
     {
+        $this->arguments = $this->request->json()->all();
+
+        $this->reflectionParams($method);
         $query = call_user_func_array([$this, $method], $this->arguments);
         $post = new Repository($query);
 
@@ -122,7 +125,7 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param mixed ...$paramentrs
+     * @param array $parameters
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      * @throws \ReflectionException
@@ -141,11 +144,11 @@ abstract class Screen extends Controller
         $method = array_pop($parameters);
         $this->arguments = $parameters;
 
-        $this->reflectionParams($method);
-
         if (starts_with($method, 'async')) {
-            return $this->asyncBuild($method, $this->arguments);
+            return $this->asyncBuild($method, array_pop($this->arguments));
         }
+
+        $this->reflectionParams($method);
 
         return call_user_func_array([$this, $method], $this->arguments);
     }

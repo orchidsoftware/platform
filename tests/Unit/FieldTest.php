@@ -74,6 +74,10 @@ class FieldTest extends TestUnitCase
                 [
                     'name' => 'example',
                 ], ],
+            [\Orchid\Screen\Fields\DateRangeField::class,
+             [
+                 'name' => 'example',
+             ], ],
         ];
     }
 

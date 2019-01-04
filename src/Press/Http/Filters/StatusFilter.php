@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Orchid\Platform\Filters\Filter;
-use Orchid\Screen\Fields\SelectField;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Platform\Filters\Filter;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\SelectField;
 
 class StatusFilter extends Filter
 {
@@ -33,9 +34,9 @@ class StatusFilter extends Filter
     }
 
     /**
-     * @throws \Throwable
+     * @return Field
      */
-    public function display()
+    public function display(): Field
     {
         return SelectField::make('status')
             ->value($this->request->get('status'))
