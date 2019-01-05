@@ -12,6 +12,13 @@ use Orchid\Screen\Repository;
 abstract class Base
 {
     /**
+     * @param Repository $query
+     *
+     * @return mixed
+     */
+    abstract function build(Repository $query);
+
+    /**
      * @param $query
      *
      * @return bool

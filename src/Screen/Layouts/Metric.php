@@ -14,7 +14,7 @@ abstract class Metric extends Base
     /**
      * @var string
      */
-    private $template = 'platform::container.layouts.metric';
+    public $template = 'platform::container.layouts.metric';
 
     /**
      * @var string

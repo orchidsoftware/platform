@@ -54,16 +54,6 @@ abstract class Chart extends Base
         '#F1C40F',
         '#D90368',
         '#00CC66',
-        /*
-      '#d0dff9',
-      '#a3c3f9',
-      '#7da1dd',
-      '#5580c7',
-      '#2860bd',
-      '#0a3f98',
-      '#062457',
-      '#0c182c',
-        */
     ];
 
     /**

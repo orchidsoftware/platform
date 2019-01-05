@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Filters can no longer view
 
+### Removed
+- Filter property `$dashboard`
+
 ## [3.3.4] - 2018-12-31
 
 ### Changed

@@ -20,11 +20,6 @@ class SearchFilter extends Filter
     ];
 
     /**
-     * @var bool
-     */
-    public $dashboard = true;
-
-    /**
      * @param Builder $builder
      *
      * @return Builder

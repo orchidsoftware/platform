@@ -79,7 +79,7 @@ abstract class Many implements EntityContract
      */
     public function showFilterDashboard(): View
     {
-        $dashboardFilter = $this->getFilters(true);
+        $dashboardFilter = $this->getFilters();
         $chunk = ceil($dashboardFilter->count() / 4);
 
         return view('platform::container.posts.filter', [
@@ -91,18 +91,14 @@ abstract class Many implements EntityContract
     /**
      * Get all the filters.
      *
-     * @param bool $dashboard
-     *
      * @return Collection
      */
-    public function getFilters($dashboard = false): Collection
+    public function getFilters(): Collection
     {
         $filters = collect();
         foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
-            if ($filter->dashboard === $dashboard) {
-                $filters->push($filter);
-            }
+            $filters->push($filter);
         }
 
         return $filters;

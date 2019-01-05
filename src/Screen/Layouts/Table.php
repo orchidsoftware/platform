@@ -42,7 +42,7 @@ abstract class Table extends Base
      */
     public function showFilterDashboard()
     {
-        $dashboardFilter = $this->getFilters(true);
+        $dashboardFilter = $this->getFilters();
         $chunk = ceil($dashboardFilter->count() / 4);
 
         return view('platform::container.layouts.filter', [
@@ -54,18 +54,14 @@ abstract class Table extends Base
     /**
      * Get all the filters.
      *
-     * @param bool $dashboard
-     *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getFilters($dashboard = false)
+    public function getFilters()
     {
         $filters = collect();
         foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
-            if ($filter->dashboard === $dashboard) {
                 $filters->push($filter);
-            }
         }
 
         return $filters;

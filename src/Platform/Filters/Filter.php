@@ -33,13 +33,6 @@ abstract class Filter
     public $lang;
 
     /**
-     * Apply a filter in the administration panel.
-     *
-     * @var bool
-     */
-    public $dashboard = false;
-
-    /**
      * @var null
      */
     public $entity;

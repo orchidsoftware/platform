@@ -420,13 +420,13 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param bool $dashboard
      *
      * @return Builder
      */
-    private function filter(Builder $query, $dashboard = false): Builder
+    private function filter(Builder $query): Builder
     {
-        $filters = $this->entity->getFilters($dashboard);
+        $filters = $this->entity->getFilters();
+
         foreach ($filters as $filter) {
             $query = $filter->filter($query);
         }
@@ -447,7 +447,7 @@ class Post extends Model
             $this->getEntity($entity);
         }
 
-        return $this->filter($query, true);
+        return $this->filter($query);
     }
 
     /**
