@@ -61,7 +61,7 @@ abstract class Table extends Base
         $filters = collect();
         foreach ($this->filters() as $filter) {
             $filter = new $filter($this);
-                $filters->push($filter);
+            $filters->push($filter);
         }
 
         return $filters;

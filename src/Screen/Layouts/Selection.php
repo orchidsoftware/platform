@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Selection
+ * Class Selection.
  */
 abstract class Selection extends Base
 {
@@ -26,7 +26,7 @@ abstract class Selection extends Base
         $filters = $this->filters();
 
         if (count($filters) === 0) {
-            return null;
+            return;
         }
 
         return view($this->template, [
