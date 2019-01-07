@@ -23,22 +23,25 @@ abstract class Selection extends Base
      */
     public function build(Repository $query)
     {
-        $filters = $this->filters();
+        $filters = collect($this->filters());
+        $count   = $filters->count();
 
-        if (count($filters) === 0) {
+        if ($count === 0) {
             return null;
+        }
+
+        foreach ($filters as $key => $filter) {
+            $filters[$key] = new $filter;
         }
 
         return view($this->template, [
             'filters' => $filters,
+            'chunk'   => ceil($count / 4),
         ]);
     }
 
     /**
      * @return array
      */
-    public function filters(): array
-    {
-        return [];
-    }
+    abstract public function filters(): array;
 }

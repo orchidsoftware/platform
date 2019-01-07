@@ -221,5 +221,11 @@ div.mce-fullscreen {
 // Quill
 
 .ql-editor{
-  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
 }

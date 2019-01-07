@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Orchid\Screen\Layouts\Selection;
+
+class DummyClass extends Selection
+{
+    /**
+     * @return array
+     */
+    public function filters(): array
+    {
+        return [];
+    }
+}

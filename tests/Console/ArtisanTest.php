@@ -61,6 +61,13 @@ class ArtisanTest extends TestConsoleCase
             ->assertExitCode(0);
     }
 
+    public function test_artisan_orchid_selection()
+    {
+        $this->artisan('orchid:selection', ['name' => $this->generateNameFromMethod()])
+            ->expectsOutput('Selection created successfully.')
+            ->assertExitCode(0);
+    }
+
     public function test_artisan_orchid_metrics()
     {
         $this->artisan('orchid:metrics', ['name' => $this->generateNameFromMethod()])

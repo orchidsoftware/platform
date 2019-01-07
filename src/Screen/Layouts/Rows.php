@@ -31,7 +31,7 @@ abstract class Rows extends Base
     public function build(Repository $query)
     {
         $this->query = $query;
-        $form = new Builder($this->fields(), $query);
+        $form        = new Builder($this->fields(), $query);
 
         return view($this->template, [
             'form' => $form->generateForm(),
@@ -41,8 +41,5 @@ abstract class Rows extends Base
     /**
      * @return array
      */
-    public function fields(): array
-    {
-        return [];
-    }
+    abstract public function fields(): array;
 }

@@ -31,55 +31,11 @@ abstract class Table extends Base
         return view($this->template, [
             'data'    => $query->getContent($this->data),
             'fields'  => $this->fields(),
-            'filters' => $this->showFilterDashboard(),
         ]);
-    }
-
-    /**
-     * Display form for filtering.
-     *
-     * @return View
-     */
-    public function showFilterDashboard()
-    {
-        $dashboardFilter = $this->getFilters();
-        $chunk = ceil($dashboardFilter->count() / 4);
-
-        return view('platform::container.layouts.filter', [
-            'filters' => $dashboardFilter,
-            'chunk'   => $chunk,
-        ]);
-    }
-
-    /**
-     * Get all the filters.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    public function getFilters()
-    {
-        $filters = collect();
-        foreach ($this->filters() as $filter) {
-            $filter = new $filter($this);
-                $filters->push($filter);
-        }
-
-        return $filters;
     }
 
     /**
      * @return array
      */
-    public function filters(): array
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function fields(): array
-    {
-        return [];
-    }
+    abstract public function fields(): array;
 }
