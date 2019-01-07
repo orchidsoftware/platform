@@ -41,9 +41,9 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * @return $this|\Illuminate\Database\Eloquent\Model
+     * @return User
      */
-    private function createUser()
+    private function createUser() : User
     {
         return User::firstOrCreate([
             'email' => 'test@test.com',
@@ -59,9 +59,9 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
-     * @return $this|\Illuminate\Database\Eloquent\Model
+     * @return Role
      */
-    private function createRole()
+    private function createRole() : Role
     {
         return Role::firstOrCreate([
             'slug' => 'admin',

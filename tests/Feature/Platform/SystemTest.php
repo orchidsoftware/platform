@@ -30,7 +30,7 @@ class SystemTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.index'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $this->assertContains('System', $response->getContent());
     }
 
@@ -47,7 +47,7 @@ class SystemTest extends TestFeatureCase
     {
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.menu.show', 'header'));
-        $response->assertStatus(200);
+        $response->assertOk();
         $this->assertContains('data-controller="components--menu"', $response->getContent());
     }
 
@@ -55,7 +55,7 @@ class SystemTest extends TestFeatureCase
     {
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.media.index'));
-        $response->assertStatus(200);
+        $response->assertOk();
         $this->assertContains('id="filemanager"', $response->getContent());
     }
 }

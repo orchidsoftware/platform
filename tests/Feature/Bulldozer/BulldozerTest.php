@@ -27,6 +27,6 @@ class BulldozerTest extends TestFeatureCase
             ->actingAs($this->user)
             ->get(route('platform.bulldozer.index'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 }

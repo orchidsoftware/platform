@@ -21,8 +21,9 @@ class DashboardTest extends TestFeatureCase
             ->actingAs($this->getUser())
             ->get(route('platform.index'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/dashboard/main');
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/dashboard/main');
     }
 
     private function getUser()
@@ -39,22 +40,26 @@ class DashboardTest extends TestFeatureCase
     {
         $response = $this->get(route('platform.index'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/dashboard/login');
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/dashboard/login');
     }
 
     public function test_route_SaviorBackups()
     {
-        $response = $this->actingAs($this->getUser())
+        $response = $this
+            ->actingAs($this->getUser())
             ->get(route('platform.systems.backups'));
-        $response->assertStatus(200);
+
+        $response->assertOk();
     }
 
     public function test_route_SaviorBackups_method_runBackup()
     {
-        $response = $this->actingAs($this->getUser())
+        $response = $this
+            ->actingAs($this->getUser())
             ->post(route('platform.systems.backups', 'runBackup'));
-        //dump($response);
+
         $response->assertStatus(302);
     }
 }

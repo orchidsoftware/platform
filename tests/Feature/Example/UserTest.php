@@ -27,28 +27,34 @@ class UserTest extends TestFeatureCase
 
     public function test_route_SystemsUsers()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->get(route('platform.systems.users'));
-        $response->assertStatus(200);
-        $this->assertContains($this->user->name, $response->getContent());
-        $this->assertContains($this->user->email, $response->getContent());
+
+        $response->assertOk()
+            ->assertSee($this->user->name)
+            ->assertSee($this->user->email);
     }
 
     public function test_route_SystemsUsersEdit()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->get(route('platform.systems.users.edit', $this->user->id));
-        $response->assertStatus(200);
-        $this->assertContains($this->user->name, $response->getContent());
-        $this->assertContains($this->user->email, $response->getContent());
+
+        $response->assertOk()
+            ->assertSee($this->user->name)
+            ->assertSee($this->user->email);
     }
 
     public function test_route_SystemsUsersEdit_remove()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->post(route('platform.systems.users.edit', [$this->user->id, 'remove']));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/dashboard/users');
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/dashboard/users');
     }
 }

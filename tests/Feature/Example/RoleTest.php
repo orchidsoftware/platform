@@ -31,28 +31,35 @@ class RoleTest extends TestFeatureCase
 
     public function test_route_SystemsRoles()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->get(route('platform.systems.roles'));
-        $response->assertStatus(200);
-        $this->assertContains($this->role->name, $response->getContent());
-        $this->assertContains($this->role->slug, $response->getContent());
+
+        $response
+            ->assertOk()
+            ->assertSee($this->role->name)
+            ->assertSee($this->role->slug);
     }
 
     public function test_route_SystemsRolesCreate()
     {
         $response = $this->actingAs($this->user)
             ->get(route('platform.systems.roles.create'));
-        $response->assertStatus(200);
-        $this->assertContains('field--roleslug', $response->getContent());
+
+        $response
+            ->assertOk()
+            ->assertSee('field--roleslug');
     }
 
     public function test_route_SystemsRolesEdit()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->get(route('platform.systems.roles.edit', $this->role->slug));
-        $response->assertStatus(200);
-        $this->assertContains('field--roleslug', $response->getContent());
-        $this->assertContains($this->role->name, $response->getContent());
-        $this->assertContains($this->role->slug, $response->getContent());
+
+        $response->assertOk()
+        ->assertSee('field--roleslug')
+        ->assertSee($this->role->name)
+        ->assertSee($this->role->slug);
     }
 }

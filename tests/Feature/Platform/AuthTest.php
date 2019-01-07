@@ -19,18 +19,21 @@ class AuthTest extends TestFeatureCase
     {
         $response = $this->get(route('platform.login'));
 
-        $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->getContent());
-        $this->assertContains('type="password"', $response->getContent());
+        $response
+            ->assertOk()
+            ->assertSee('type="email"')
+            ->assertSee('type="password"');
     }
 
     public function test_route_DashboardLogin_auth()
     {
-        $response = $this->actingAs($this->getUser())
+        $response = $this
+            ->actingAs($this->getUser())
             ->get(route('platform.login'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/home');
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/home');
     }
 
     private function getUser()
@@ -47,19 +50,19 @@ class AuthTest extends TestFeatureCase
     {
         $response = $this->get(route('platform.password.request'));
 
-        $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->getContent());
-        $this->assertNotContains('type="password"', $response->getContent());
+        $response->assertOk()
+            ->assertSee('type="email"')
+            ->assertDontSee('type="password"');
     }
 
     public function test_route_DashboardPasswordReset()
     {
         $response = $this->get(route('platform.password.reset', '11111'));
 
-        $response->assertStatus(200);
-        $this->assertContains('type="email"', $response->getContent());
-        $this->assertContains('type="password"', $response->getContent());
-        $this->assertContains('"password_confirmation"', $response->getContent());
+        $response->assertOk()
+            ->assertSee('type="email"')
+            ->assertSee('type="password"')
+            ->assertSee('"password_confirmation"', $response->getContent());
     }
 
     public function test_route_DashboardPasswordReset_auth()
@@ -67,7 +70,8 @@ class AuthTest extends TestFeatureCase
         $response = $this->actingAs($this->getUser())
             ->get(route('platform.password.reset', '11111'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/home');
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/home');
     }
 }

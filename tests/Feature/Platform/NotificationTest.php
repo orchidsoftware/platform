@@ -30,8 +30,9 @@ class NotificationTest extends TestFeatureCase
             ->actingAs($this->user)
             ->get(route('platform.main'));
 
-        $response->assertStatus(200);
-        $this->assertContains('Hello Test', $response->getContent());
+        $response
+            ->assertOk()
+            ->assertSee('Hello Test');
     }
 
     public function test_mask_all_as_read()
@@ -42,7 +43,7 @@ class NotificationTest extends TestFeatureCase
             ->actingAs($this->user)
             ->post(route('platform.notification.read'));
 
-        $this->assertNotContains('Mask all as read', $response->getContent());
+        $response->assertDontSee('Mask all as read');
     }
 
     public function test_remove()
@@ -53,7 +54,7 @@ class NotificationTest extends TestFeatureCase
             ->actingAs($this->user)
             ->post(route('platform.notification.remove'));
 
-        $this->assertNotContains('Test remove notification', $response->getContent());
+        $response->assertDontSee('Test remove notification');
     }
 
     /**

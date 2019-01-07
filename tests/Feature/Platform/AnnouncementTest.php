@@ -27,7 +27,13 @@ class AnnouncementTest extends TestFeatureCase
             ->actingAs($this->user)
             ->get(route('platform.systems.announcement'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
+    }
+
+    public function test_rewrite_announcement()
+    {
+        $this->createAnnouncement();
+        $this->createAnnouncement('Global Announcement Test Rewrite');
     }
 
     private function createAnnouncement($text = 'Global Announcement Test')
@@ -46,13 +52,7 @@ class AnnouncementTest extends TestFeatureCase
             ->actingAs($this->user)
             ->get(route('platform.main'));
 
-        $this->assertContains($text, $response->getContent());
-    }
-
-    public function test_rewrite_announcement()
-    {
-        $this->createAnnouncement();
-        $this->createAnnouncement('Global Announcement Test Rewrite');
+        $response->assertSee($text);
     }
 
     public function test_delete_announcement($text = 'Delete Announcement')
@@ -67,6 +67,6 @@ class AnnouncementTest extends TestFeatureCase
             ->actingAs($this->user)
             ->get(route('platform.main'));
 
-        $this->assertNotContains($text, $response->getContent());
+        $response->assertDontSee($text);
     }
 }

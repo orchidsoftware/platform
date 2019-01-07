@@ -78,6 +78,8 @@ class AttachmentController extends Controller
     }
 
     /**
+     * @deprecated
+     *
      * @param $id
      *
      * @return \Illuminate\Http\JsonResponse

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Platform;
 
+use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class PressTest extends TestFeatureCase
@@ -41,12 +41,14 @@ class PressTest extends TestFeatureCase
 
     public function test_route_PagesShow()
     {
-        $response = $this->actingAs($this->user)
+        $response = $this
+            ->actingAs($this->user)
             ->get(route('platform.pages.show', 'example-page'));
 
-        $response->assertStatus(200);
-        $this->assertContains($this->page->getContent('title'), $response->getContent());
-        $this->assertContains($this->page->getContent('description'), $response->getContent());
+        $response
+            ->assertOk()
+            ->assertSee($this->page->getContent('title'))
+            ->assertSee($this->page->getContent('description'));
     }
 
     public function test_route_PagesUpdate()
@@ -63,7 +65,7 @@ class PressTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.posts.type', 'example-post'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $this->assertContains($this->post->getContent('name'), $response->getContent());
         $this->assertNotContains($this->post->getContent('description'), $response->getContent());
     }
@@ -73,7 +75,7 @@ class PressTest extends TestFeatureCase
         $response = $this->actingAs($this->user)
             ->get(route('platform.posts.type.edit', ['example-post', $this->post->slug]));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $this->assertContains($this->post->getContent('title'), $response->getContent());
         $this->assertNotContains($this->post->getContent('description'), $response->getContent());
     }
