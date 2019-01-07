@@ -7,7 +7,7 @@ namespace Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 
 /**
- * Class Selection
+ * Class Selection.
  */
 abstract class Selection extends Base
 {

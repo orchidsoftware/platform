@@ -16,7 +16,7 @@ abstract class Base
      *
      * @return mixed
      */
-    abstract function build(Repository $query);
+    abstract public function build(Repository $query);
 
     /**
      * @param $query
