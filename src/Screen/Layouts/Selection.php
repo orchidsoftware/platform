@@ -24,10 +24,10 @@ abstract class Selection extends Base
     public function build(Repository $query)
     {
         $filters = collect($this->filters());
-        $count   = $filters->count();
+        $count = $filters->count();
 
         if ($count === 0) {
-            return null;
+            return;
         }
 
         foreach ($filters as $key => $filter) {

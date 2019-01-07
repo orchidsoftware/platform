@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Platform;
 
-use Illuminate\Http\UploadedFile;
 use Orchid\Platform\Models\User;
+use Illuminate\Http\UploadedFile;
 use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
