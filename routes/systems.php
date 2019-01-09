@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\TagsController;
-use Orchid\Platform\Http\Controllers\Systems\CacheController;
-use Orchid\Platform\Http\Controllers\Systems\SystemController;
-use Orchid\Platform\Http\Controllers\Systems\WidgetController;
 use Orchid\Platform\Http\Controllers\Systems\AttachmentController;
+use Orchid\Platform\Http\Controllers\Systems\CacheController;
 use Orchid\Platform\Http\Controllers\Systems\NotificationController;
+use Orchid\Platform\Http\Controllers\Systems\SystemController;
+use Orchid\Platform\Http\Controllers\Systems\TagsController;
+use Orchid\Platform\Http\Controllers\Systems\WidgetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +38,6 @@ $this->post('files/sort', [AttachmentController::class, 'sort'])
 
 $this->delete('files/{id}', [AttachmentController::class, 'destroy'])
     ->name('platform.systems.files.destroy');
-
-$this->get('files/post/{id}', [AttachmentController::class, 'getFilesPost'])
-    ->name('platform.systems.files.getFilesPost');
 
 $this->post('files/get', [AttachmentController::class, 'getFilesByIds'])
     ->name('platform.systems.files.getFilesByIds');
