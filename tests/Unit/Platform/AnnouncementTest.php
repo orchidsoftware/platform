@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit\Platform;
 
-use Orchid\Platform\Models\Announcement;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestUnitCase;
+use Orchid\Platform\Models\User;
+use Orchid\Platform\Models\Announcement;
 
 class AnnouncementTest extends TestUnitCase
 {
