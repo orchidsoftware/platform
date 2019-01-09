@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Platform;
+namespace Orchid\Tests\Feature\Platform;
 
+use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
-use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class PressTest extends TestFeatureCase

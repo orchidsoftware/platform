@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Platform;
+namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
-use Orchid\Tests\TestFeatureCase;
 use Orchid\Platform\Notifications\DashboardNotification;
+use Orchid\Tests\TestFeatureCase;
 
 class NotificationTest extends TestFeatureCase
 {

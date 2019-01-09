@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Bulldozer;
+namespace Orchid\Tests\Feature\Bulldozer;
 
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;

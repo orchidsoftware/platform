@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Example;
+namespace Orchid\Tests\Feature\Example;
 
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
