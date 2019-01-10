@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\Role;
 
-use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class RoleListLayout extends Table
 {
@@ -21,7 +21,7 @@ class RoleListLayout extends Table
     {
         return [
             TD::set('id', 'ID')
-                ->align('center')
+                ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->sort()
                 ->link('platform.systems.roles.edit', 'slug'),

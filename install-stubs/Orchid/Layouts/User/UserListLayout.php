@@ -34,7 +34,7 @@ class UserListLayout extends Table
     {
         return [
             TD::set('id', 'ID')
-                ->align('center')
+                ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->sort()
                 ->link('platform.systems.users.edit', 'id'),

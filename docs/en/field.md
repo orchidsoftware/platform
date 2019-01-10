@@ -23,15 +23,13 @@ Input is mainly intended to create text fields.
  
 An example:
 ```php
-return [
-    'body' => InputField::make()
-                  ->type('text')
-                  ->name('place')
-                  ->max(255)
-                  ->required()
-                  ->title('Name Articles')
-                  ->help('Article title'),
-];
+InputField::make()
+    ->type('text')
+    ->name('place')
+    ->max(255)
+    ->required()
+    ->title('Name Articles')
+    ->help('Article title');
 ``` 
  
 
@@ -49,14 +47,12 @@ The redactor allows to add images, tables, define text styles and embed videos.
  
 An example:
 ```php
-return [
-    'body' => TinyMCEField::make()
-                  ->name('body')
-                  ->required()
-                  ->title('Name Articles')
-                  ->help('Article title')
-                  ->theme('inline'),
-];
+TinyMCEField::make()
+    ->name('body')
+    ->required()
+    ->title('Name Articles')
+    ->help('Article title')
+    ->theme('inline');
 ``` 
 To display a top panel and a menu, that allows you to view a splash screen and html code, in the redactor, you need to set an attribute `theme('modern')`.
  
@@ -72,11 +68,9 @@ Light markup language redactor
  
 an example:
 ```php
-return [
-    'body' => SimpleMDEField::make()
-                  ->name('body')
-                  ->title('What would you tell us?'),
-];
+SimpleMDEField::make()
+    ->name('body')
+    ->title('What would you tell us?');
 ```  
  
 ## Picture
@@ -86,12 +80,10 @@ Allows to upload pictures and cut them to a required format
 
 An example:
 ```php
-return [
-    'picture' => PictureField::make()
-                    ->name('picture')
-                    ->width(500)
-                    ->height(300),,
-];
+PictureField::make()
+    ->name('picture')
+    ->width(500)
+    ->height(300);
 ```  
            
        
@@ -105,13 +97,11 @@ Allows to set date and time
 
 An example:
 ```php
-return [
-    'open' => DateTimerField::make()
-                  ->type('text')
-                  ->name('open')
-                  ->title('Opening date')
-                  ->help('The opening event will take place'),
-];
+DateTimerField::make()
+    ->type('text')
+    ->name('open')
+    ->title('Opening date')
+    ->help('The opening event will take place');
 ```           
            
 ## Checkbox
@@ -121,14 +111,12 @@ User graphical interface element that allows a user to control the parameter wit
 
 An example:
 ```php
-return [
-    'free' => CheckBoxField::make()
-                   ->name('free')
-                   ->value(1)
-                   ->title('Free')
-                   ->placeholder('Event for free')
-                   ->help('Event for free'),,
-];
+CheckBoxField::make()
+    ->name('free')
+    ->value(1)
+    ->title('Free')
+    ->placeholder('Event for free')
+    ->help('Event for free');
 ```           
 
 ## Code
@@ -140,12 +128,10 @@ A field for a program code with a highligt
 
 An example:
 ```php
-return [
-    'block' => CodeField::make()
-                   ->name('block')
-                   ->title('Code Block')
-                   ->help('Simple web editor'),
-];
+CodeField::make()
+    ->name('block')
+    ->title('Code Block')
+    ->help('Simple web editor');
 ```    
 
 
@@ -157,14 +143,12 @@ As opposed to `input` tag, it's possible to do a line break there, it will be sa
 
 An example:
 ```php
-return [
-    'description' => TextAreaField::make()
-                         ->name('description')
-                         ->max(255)
-                         ->rows(5)
-                         ->required()
-                         ->title('Short description'),
-];
+TextAreaField::make()
+    ->name('description')
+    ->max(255)
+    ->rows(5)
+    ->required()
+    ->title('Short description');
 ```    
 
 
@@ -174,12 +158,10 @@ A notation of several values delimited by comma
 
 An example:
 ```php
-return [
-    'keywords' => TagsField::make()
-                      ->name('keywords')
-                      ->title('Keywords')
-                      ->help('SEO keywords'),
-];
+TagsField::make()
+    ->name('keywords')
+    ->title('Keywords')
+    ->help('SEO keywords');
 ```   
 
 
@@ -188,16 +170,14 @@ return [
 Simple selection from array list:
 
 ```php
-return [
-    'selest' => SelectField::make()
-                ->options([
-                    'index'   => 'Index',
-                    'noindex' => 'No index',
-                ])
-                ->name('select')
-                ->title('Select tags')
-                ->help('Allow search bots to index'),
-];
+SelectField::make()
+    ->options([
+        'index'   => 'Index',
+        'noindex' => 'No index',
+    ])
+    ->name('select')
+    ->title('Select tags')
+    ->help('Allow search bots to index');
 ```
 
 
@@ -208,62 +188,42 @@ It's great to use it when a value must be inserted in some standard way, for exa
 
 An example:
 ```php
-return [
-    'phone' => InputField::make()
-                   ->type('text')
-                   ->name('phone')
-                   ->mask('(999) 999-9999')
-                   ->title('Phone')
-                   ->help('Number Phone'),
-];
+InputField::make()
+    ->type('text')
+    ->name('phone')
+    ->mask('(999) 999-9999')
+    ->title('Phone')
+    ->help('Number Phone');
 ```   
 
 A json with parameters may be passed to mask, eg:
 
 
 ```php
-return [
-    'price' => InputField::make()
-              ->type('text')
-              ->name('price')
-              ->mask([
-                 'mask' => '999 999 999.99',
-                 'numericInput' => true
-              ])
-              ->title('Cost')
-];
+InputField::make()
+    ->type('text')
+    ->name('price')
+    ->mask([
+         'mask' => '999 999 999.99',
+         'numericInput' => true
+    ])
+    ->title('Cost');
 ```   
 
 ```php
-return [
-    'price' => InputField::make()
-             ->type('text')
-             ->name('price')
-             ->mask([
-                'alias' => 'currency',
-                'prefix' => ' ',
-                'groupSeparator' => ' ',
-                'digitsOptional' => true,
-             ])
-             ->title('Cost'),
-];
+InputField::make()
+    ->type('text')
+    ->name('price')
+    ->mask([
+        'alias' => 'currency',
+        'prefix' => ' ',
+        'groupSeparator' => ' ',
+        'digitsOptional' => true,
+    ])
+    ->title('Cost');
 ```   
 
 All available *Inputmask* may be found [here](https://github.com/RobinHerbots/Inputmask#options)
-
-
-## Location (Place)
- 
-A `location` field requires the key for [Google](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=ru) map to be defined in `config/service`
-services.google.maps.key
-```php
-//
-'google' => Field::tag('place')
-                ->name('place')
-                ->title('Place')
-                ->help('place for google maps'),
-```
-
 
 
 ## Entities
@@ -271,14 +231,11 @@ services.google.maps.key
 Behavior fields may upload a dynamic data which is great if you need connections.
 
 ```php
-    'type' => [
-        'tag'      => 'relationship',
-        'name'     => 'type',
-        'required' => true,
-        'title'    => 'avatar',
-        'help'     => 'Article title',
-        'handler'  => AjaxWidget::class,
-    ],
+RelationshipField::make()
+    ->name('my_title')
+    ->required()
+    ->title('My title')
+    ->handler(AjaxWidget::class);
 ```
 
 

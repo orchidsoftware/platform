@@ -9,10 +9,9 @@ A tag (mark) - is a keyword or a phrase that can thematically group text, images
 Tags can be connected to all created models by the following trait
 
 ```php
-use Cartalyst\Tags\TaggableTrait;
-use Cartalyst\Tags\TaggableInterface;
+use Orchid\Press\TraitsTaggableTrait;
 
-class Product extends Eloquent implements TaggableInterface
+class Product extends Eloquent
 {
     use TaggableTrait;
 }

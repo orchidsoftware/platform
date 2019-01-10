@@ -6,14 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.0] - 2019-01-11
+
 ### Added
 - Date ranged field
+- TD align constant
+- Selection layout for filters
 
 ### Changed
 - Filters can no longer view
 
 ### Removed
 - Filter property `$dashboard`
+- Filters for table
+
+### Fixed
+- Correct tips for Field
 
 ## [3.3.4] - 2018-12-31
 

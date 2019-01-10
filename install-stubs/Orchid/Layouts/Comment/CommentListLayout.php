@@ -46,14 +46,14 @@ class CommentListLayout extends Table
 
                     return '<i class="icon-close mx-3"></i>';
                 })
-                ->align('center'),
+                ->align(TD::ALIGN_CENTER),
 
             TD::set('user_id', __('User'))
                 ->setRender(function ($comment) {
                     return '<a href="'.route('platform.systems.users.edit',
                             $comment->user_id).'"><i class="icon-user mx-3"></i></a>';
                 })
-                ->align('center'),
+                ->align(TD::ALIGN_CENTER),
 
             TD::set('updated_at', __('Last edit'))
                 ->setRender(function ($comment) {

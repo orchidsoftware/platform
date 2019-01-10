@@ -9,10 +9,9 @@
 Теги можно подключать ко всем созданным моделям, с помощью трейта
 
 ```php
-use Cartalyst\Tags\TaggableTrait;
-use Cartalyst\Tags\TaggableInterface;
+use Orchid\Press\TraitsTaggableTrait;
 
-class Product extends Eloquent implements TaggableInterface
+class Product extends Eloquent
 {
     use TaggableTrait;
 }

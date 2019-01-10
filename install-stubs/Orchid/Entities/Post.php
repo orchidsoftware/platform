@@ -242,7 +242,7 @@ class Post extends Many
     {
         return [
             TD::set('id', 'ID')
-                ->align('center')
+                ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->filter('numeric')
                 ->sort()
@@ -268,14 +268,14 @@ class Post extends Many
             TD::set('publish_at', 'Date of publication')
                 ->filter('date')
                 ->sort()
-                ->align('right')
+                ->align(TD::ALIGN_RIGHT)
                 ->setRender(function ($item) {
                     return optional($item->publish_at)->toDateString();
                 }),
 
             TD::set('created_at', 'Date of creation')
                 ->filter('date')
-                ->align('right')
+                ->align(TD::ALIGN_RIGHT)
                 ->sort()
                 ->setRender(function ($item) {
                     return $item->created_at->toDateString();

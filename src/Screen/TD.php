@@ -8,6 +8,22 @@ use Closure;
 
 class TD
 {
+
+    /**
+     * Align the cell to the left
+     */
+    public const ALIGN_LEFT = 'left';
+
+    /**
+     * Align the cell to the center
+     */
+    public const ALIGN_CENTER = 'center';
+
+    /**
+     * Align the cell to the right
+     */
+    public const ALIGN_RIGHT = 'right';
+
     /**
      * @var string
      */
@@ -39,7 +55,7 @@ class TD
     public $render;
 
     /**
-     * @var
+     * @var string
      */
     public $column;
 

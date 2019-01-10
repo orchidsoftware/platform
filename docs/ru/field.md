@@ -21,15 +21,13 @@ Input - является одним из разносторонних элеме
  
 Пример записи:
 ```php
-return [
-    'body' => InputField::make()
-                  ->type('text')
-                  ->name('place')
-                  ->max(255)
-                  ->required()
-                  ->title('Name Articles')
-                  ->help('Article title'),
-];
+InputField::make()
+    ->type('text')
+    ->name('place')
+    ->max(255)
+    ->required()
+    ->title('Name Articles')
+    ->help('Article title');
 ``` 
  
 
@@ -48,14 +46,12 @@ return [
  
 Пример записи:
 ```php
-return [
-    'body' => TinyMCEField::make()
-                  ->name('body')
-                  ->required()
-                  ->title('Name Articles')
-                  ->help('Article title')
-                  ->theme('inlite'),
-];
+TinyMCEField::make()
+    ->name('body')
+    ->required()
+    ->title('Name Articles')
+    ->help('Article title')
+    ->theme('inlite');
 ``` 
 Для отображения в редакторе верхней панели и меню, в котором доступны функции полноэкранного режима и просмотр html кода, нужно установить атрибут `theme('modern')`.
  
@@ -70,11 +66,9 @@ return [
  
 Пример записи:
 ```php
-return [
-    'body' => SimpleMDEField::make()
-                  ->name('body')
-                  ->title('О чём вы хотите рассказать?'),
-];
+SimpleMDEField::make()
+    ->name('body')
+    ->title('О чём вы хотите рассказать?')
 ```  
  
 ## Picture
@@ -84,12 +78,10 @@ return [
 
 Пример записи:
 ```php
-return [
-    'picture' => PictureField::make()
-                    ->name('picture')
-                    ->width(500)
-                    ->height(300),
-];
+PictureField::make()
+    ->name('picture')
+    ->width(500)
+    ->height(300);
 ```  
            
        
@@ -102,13 +94,11 @@ return [
 
 Пример записи:
 ```php
-return [
-    'open' => DateTimerField::make()
-                  ->type('text')
-                  ->name('open')
-                  ->title('Opening date')
-                  ->help('The opening event will take place'),
-];
+DateTimerField::make()
+    ->type('text')
+    ->name('open')
+    ->title('Opening date')
+    ->help('The opening event will take place');
 ```           
            
 ## Checkbox
@@ -118,14 +108,12 @@ return [
 
 Пример записи:
 ```php
-return [
-    'free' => CheckBoxField::make()
-                   ->name('free')
-                   ->value(1)
-                   ->title('Free')
-                   ->placeholder('Event for free')
-                   ->help('Event for free'),
-];
+CheckBoxField::make()
+    ->name('free')
+    ->value(1)
+    ->title('Free')
+    ->placeholder('Event for free')
+    ->help('Event for free');
 ```           
 
 ## Code
@@ -137,12 +125,10 @@ return [
 
 Пример записи:
 ```php
-return [
-    'block' => CodeField::make()
-                   ->name('block')
-                   ->title('Code Block')
-                   ->help('Simple web editor'),
-];
+CodeField::make()
+    ->name('block')
+    ->title('Code Block')
+    ->help('Simple web editor');
 ```    
 
 
@@ -154,14 +140,12 @@ return [
 
 Пример записи:
 ```php
-return [
-    'description' => TextAreaField::make()
-                         ->name('description')
-                         ->max(255)
-                         ->rows(5)
-                         ->required()
-                         ->title('Short description'),
-];
+TextAreaField::make()
+    ->name('description')
+    ->max(255)
+    ->rows(5)
+    ->required()
+    ->title('Short description');
 ```    
 
 
@@ -171,12 +155,10 @@ return [
 
 Пример записи:
 ```php
-return [
-    'keywords' => TagsField::make()
-                      ->name('keywords')
-                      ->title('Keywords')
-                      ->help('SEO keywords'),
-];
+TagsField::make()
+    ->name('keywords')
+    ->title('Keywords')
+    ->help('SEO keywords');
 ```   
 
 
@@ -185,16 +167,14 @@ return [
 Простой выбор из списка массива:
 
 ```php
-return [
-    'selest' => SelectField::make()
-                ->options([
-                    'index'   => 'Index',
-                    'noindex' => 'No index',
-                ])
-                ->name('select')
-                ->title('Select tags')
-                ->help('Allow search bots to index'),
-];
+SelectField::make()
+    ->options([
+        'index'   => 'Index',
+        'noindex' => 'No index',
+    ])
+    ->name('select')
+    ->title('Select tags')
+    ->help('Allow search bots to index');
 ```
 
 
@@ -205,45 +185,39 @@ return [
 
 Пример записи:
 ```php
-return [
-    'phone' => InputField::make()
-                   ->type('text')
-                   ->name('phone')
-                   ->mask('(999) 999-9999')
-                   ->title('Phone')
-                   ->help('Number Phone'),
-];
+InputField::make()
+    ->type('text')
+    ->name('phone')
+    ->mask('(999) 999-9999')
+    ->title('Phone')
+    ->help('Number Phone');
 ```   
 
 В маску можно передавать json с параметрами, например:
 
 
 ```php
-return [
-    'price' => InputField::make()
-              ->type('text')
-              ->name('price')
-              ->mask([
-                 'mask' => '999 999 999.99',
-                 'numericInput' => true
-              ])
-              ->title('Стоимость')
-];
+InputField::make()
+    ->type('text')
+    ->name('price')
+    ->mask([
+     'mask' => '999 999 999.99',
+     'numericInput' => true
+    ])
+    ->title('Стоимость');
 ```   
 
 ```php
-return [
-    'price' => InputField::make()
-             ->type('text')
-             ->name('price')
-             ->mask([
-                'alias' => 'currency',
-                'prefix' => ' ',
-                'groupSeparator' => ' ',
-                'digitsOptional' => true,
-             ])
-             ->title('Стоимость'),
-];
+InputField::make()
+    ->type('text')
+    ->name('price')
+    ->mask([
+        'alias' => 'currency',
+        'prefix' => ' ',
+        'groupSeparator' => ' ',
+        'digitsOptional' => true,
+    ])
+    ->title('Стоимость');
 ```   
 
 Все доступные параметры *Inputmask* можно посмотреть [здесь](https://github.com/RobinHerbots/Inputmask#options)
@@ -254,14 +228,11 @@ return [
 Поля отношения могут подгружать динамические данные, это хорошее решение, если вам нужны связи.
 
 ```php
-    'type' => [
-        'tag'      => 'relationship',
-        'name'     => 'type',
-        'required' => true,
-        'title'    => 'avatar',
-        'help'     => 'Article title',
-        'handler'  => AjaxWidget::class,
-    ],
+RelationshipField::make()
+    ->name('my_title')
+    ->required()
+    ->title('My title')
+    ->handler(AjaxWidget::class);
 ```
 
 
