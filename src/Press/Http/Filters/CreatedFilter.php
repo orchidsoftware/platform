@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Field;
+use Orchid\Platform\Filters\Filter;
 use Orchid\Screen\Fields\DateRangeField;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreatedFilter extends Filter
 {
