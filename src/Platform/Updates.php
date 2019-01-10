@@ -86,7 +86,6 @@ class Updates
         } catch (\Exception $exception) {
             // packagist down
         }
-
     }
 
     /**

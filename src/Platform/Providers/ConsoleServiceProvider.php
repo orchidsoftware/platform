@@ -9,12 +9,12 @@ use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
-use Orchid\Platform\Commands\SelectionCommand;
 use Orchid\Platform\Commands\TableCommand;
 use Orchid\Platform\Commands\FilterCommand;
 use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
+use Orchid\Platform\Commands\SelectionCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

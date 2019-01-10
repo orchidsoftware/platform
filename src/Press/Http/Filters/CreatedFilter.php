@@ -41,10 +41,5 @@ class CreatedFilter extends Filter
                 'start' => $this->request->get('start_created_at'),
                 'end'   => $this->request->get('end_created_at'),
             ]);
-        /*
-        return view('platform::container.posts.filters.created', [
-            'request' => $this->request,
-        ]);
-        */
     }
 }

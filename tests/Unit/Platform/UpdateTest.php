@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Platform;
+namespace Orchid\Tests\Unit\Platform;
 
 use Orchid\Platform\Updates;
 use Orchid\Tests\TestUnitCase;

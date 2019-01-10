@@ -6,7 +6,6 @@ namespace Orchid\Platform\Http\Controllers\Systems;
 
 use Orchid\Attachment\File;
 use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -50,6 +49,8 @@ class AttachmentController extends Controller
 
     /**
      * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function sort(Request $request)
     {
@@ -59,6 +60,8 @@ class AttachmentController extends Controller
                 $attachment->sort = $sort;
                 $attachment->save();
             });
+
+        return response(200);
     }
 
     /**
@@ -75,23 +78,6 @@ class AttachmentController extends Controller
         Attachment::find($id)->delete($storage);
 
         return response(200);
-    }
-
-    /**
-     * @deprecated
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getFilesPost($id)
-    {
-        $files = Post::find($id)
-            ->attachment()
-            ->oldest('sort')
-            ->get();
-
-        return response()->json($files);
     }
 
     /**

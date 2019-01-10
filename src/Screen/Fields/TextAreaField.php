@@ -19,11 +19,11 @@ use Orchid\Screen\Field;
  * @method $this placeholder(string $value = null)
  * @method $this readonly($value = true)
  * @method $this required($value = true)
- * @method $this rows($value = true)
+ * @method $this rows(int $value)
  * @method $this tabindex($value = true)
  * @method $this wrap($value = true)
  * @method $this help(string $value = null)
- * @method $this max($value = true)
+ * @method $this max(int $value)
  * @method $this popover(string $value = null)
  */
 class TextAreaField extends Field

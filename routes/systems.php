@@ -39,9 +39,6 @@ $this->post('files/sort', [AttachmentController::class, 'sort'])
 $this->delete('files/{id}', [AttachmentController::class, 'destroy'])
     ->name('platform.systems.files.destroy');
 
-$this->get('files/post/{id}', [AttachmentController::class, 'getFilesPost'])
-    ->name('platform.systems.files.getFilesPost');
-
 $this->post('files/get', [AttachmentController::class, 'getFilesByIds'])
     ->name('platform.systems.files.getFilesByIds');
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Platform;
+namespace Orchid\Tests\Feature\Platform;
 
 use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
@@ -36,6 +36,34 @@ class AuthTest extends TestFeatureCase
             ->assertRedirect('/home');
     }
 
+    public function test_route_DashboardLogin_auth_success()
+    {
+        $user = $this->getUser();
+
+        $response = $this->post(route('platform.login.auth'), [
+            'email'    => $user->email,
+            'password' => 'secret',
+        ]);
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect(config('platform.prefix'));
+    }
+
+    public function test_route_DashboardLogin_auth_fail()
+    {
+        $user = $this->getUser();
+
+        $response = $this->post(route('platform.login.auth'), [
+            'email'    => $user->email,
+            'password' => 'Incorrect password',
+        ]);
+
+        $response
+            ->assertStatus(302)
+            ->assertRedirect('/');
+    }
+
     private function getUser()
     {
         if ($this->user) {
@@ -62,7 +90,7 @@ class AuthTest extends TestFeatureCase
         $response->assertOk()
             ->assertSee('type="email"')
             ->assertSee('type="password"')
-            ->assertSee('"password_confirmation"', $response->getContent());
+            ->assertSee('"password_confirmation"');
     }
 
     public function test_route_DashboardPasswordReset_auth()
