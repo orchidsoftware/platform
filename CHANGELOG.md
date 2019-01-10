@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Date ranged field
 - TD align constant
-- Selection layout for filters
+- Selection layout for filters [753](https://github.com/orchidsoftware/platform/issues/753)
 
 ### Changed
 - Filters can no longer view
