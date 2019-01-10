@@ -8,19 +8,18 @@ use Closure;
 
 class TD
 {
-
     /**
-     * Align the cell to the left
+     * Align the cell to the left.
      */
     public const ALIGN_LEFT = 'left';
 
     /**
-     * Align the cell to the center
+     * Align the cell to the center.
      */
     public const ALIGN_CENTER = 'center';
 
     /**
-     * Align the cell to the right
+     * Align the cell to the right.
      */
     public const ALIGN_RIGHT = 'right';
 
