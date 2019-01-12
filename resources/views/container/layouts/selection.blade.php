@@ -22,26 +22,5 @@
                 @endforeach
             </div>
         @endforeach
-        @foreach($filters->chunk($chunk) as $value)
-            <div class="col">
-                @foreach($value as $filter)
-                    {!! optional($filter->display())->form('filters')->render() !!}
-                @endforeach
-            </div>
-        @endforeach
-        @foreach($filters->chunk($chunk) as $value)
-            <div class="col">
-                @foreach($value as $filter)
-                    {!! optional($filter->display())->form('filters')->render() !!}
-                @endforeach
-            </div>
-        @endforeach
-        @foreach($filters->chunk($chunk) as $value)
-            <div class="col">
-                @foreach($value as $filter)
-                    {!! optional($filter->display())->form('filters')->render() !!}
-                @endforeach
-            </div>
-        @endforeach
     </div>
 </div>
