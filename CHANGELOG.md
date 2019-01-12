@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.1] - 2019-01-12
+
+### Fixed
+- Removed unnecessary foreach in selection.blade.php [758](https://github.com/orchidsoftware/platform/pull/758)
+
 ## [3.4.0] - 2019-01-11
 
 ### Added
