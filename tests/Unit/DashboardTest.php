@@ -49,7 +49,7 @@ class DashboardTest extends TestUnitCase
 
         $this->assertEquals($class, 'MyCustomClass');
         $this->assertEquals($option, 'MyCustomClass');
-        $this->assertEquals( Dashboard::option('random'), null);
+        $this->assertEquals(Dashboard::option('random'), null);
     }
 
     protected function setUp()
