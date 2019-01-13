@@ -99,7 +99,7 @@ class PostController extends Controller
      * @param Post $post
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
      */
     public function update(Request $request, EntityContract $type, Post $post): RedirectResponse
     {

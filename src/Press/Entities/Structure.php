@@ -81,7 +81,6 @@ trait Structure
      * Request Validation.
      *
      * @return array
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function isValid(): array
     {
@@ -126,6 +125,6 @@ trait Structure
      */
     public function locale(): array
     {
-        return config('press.locales');
+        return config('press.locales', []);
     }
 }

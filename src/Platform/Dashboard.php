@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.4.1';
+    public const VERSION = '3.4.2';
 
     /**
      * The Dashboard configuration options.
@@ -24,11 +24,6 @@ class Dashboard
      * @var Menu
      */
     public $menu;
-
-    /**
-     * @var Collection
-     */
-    public $fields;
 
     /**
      * JS and CSS resources for implementation in the panel.
@@ -66,7 +61,6 @@ class Dashboard
         ]);
         $this->resources = collect();
         $this->entities = collect();
-        $this->fields = collect();
         $this->globalSearch = collect();
     }
 
@@ -110,11 +104,11 @@ class Dashboard
      * Get a Dashboard configuration option.
      *
      * @param  string $key
-     * @param  mixed $default
+     * @param  mixed|null $default
      *
      * @return mixed
      */
-    public static function option(string $key, $default)
+    public static function option(string $key, $default = null)
     {
         return array_get(static::$options, $key, $default);
     }
@@ -201,26 +195,6 @@ class Dashboard
         $this->globalSearch = $this->globalSearch->merge($value);
 
         return $this;
-    }
-
-    /**
-     * @param array $value
-     *
-     * @return $this
-     */
-    public function registerFields(array $value): self
-    {
-        $this->fields = $this->fields->merge($value);
-
-        return $this;
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getFields(): Collection
-    {
-        return $this->fields;
     }
 
     /**

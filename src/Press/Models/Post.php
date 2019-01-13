@@ -16,7 +16,7 @@ use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Screen\Exceptions\TypeException;
+use Orchid\Press\Exceptions\EntityTypeException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\MultiLanguageTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @property mixed options
+ * Class Post
  */
 class Post extends Model
 {
@@ -148,7 +148,7 @@ class Post extends Model
      *
      * @return array
      *
-     * @throws \Throwable| TypeException
+     * @throws \Throwable| EntityTypeException
      */
     public function toSearchableArray(): array
     {
@@ -168,7 +168,7 @@ class Post extends Model
      *
      * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      *
-     * @throws \Throwable|TypeException
+     * @throws \Throwable|EntityTypeException
      */
     public function getEntityObject($slug = null)
     {
@@ -181,15 +181,16 @@ class Post extends Model
 
     /**
      * @param $slug
+     *
      * @return $this
      *
-     * @throws \Throwable|TypeException
+     * @throws \Throwable|EntityTypeException
      */
     public function getEntity($slug): self
     {
         $this->entity = Dashboard::getEntities()->where('slug', $slug)->first();
 
-        throw_if(is_null($this->entity), TypeException::class, "{$slug} Type is not found");
+        throw_if(is_null($this->entity), EntityTypeException::class, "{$slug} Type is not found");
 
         return $this;
     }
@@ -411,7 +412,7 @@ class Post extends Model
         if (! is_null($entity)) {
             try {
                 $this->getEntity($entity);
-            } catch (TypeException $e) {
+            } catch (EntityTypeException $e) {
             }
         }
 
@@ -439,7 +440,7 @@ class Post extends Model
      * @param null $entity
      *
      * @return Builder
-     * @throws \Throwable | TypeException
+     * @throws \Throwable | EntityTypeException
      */
     public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
@@ -453,7 +454,7 @@ class Post extends Model
     /**
      * @param string|null $slug
      *
-     * @throws \Orchid\Screen\Exceptions\TypeException
+     * @throws \Orchid\Press\Exceptions\EntityTypeException
      * @throws \Throwable
      */
     public function createSlug($slug = null)

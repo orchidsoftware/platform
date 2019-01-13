@@ -108,7 +108,7 @@ abstract class Many implements EntityContract
      * Registered fields for main.
      *
      * @return array
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
      */
     public function main(): array
     {

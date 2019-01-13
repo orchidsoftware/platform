@@ -94,7 +94,7 @@ class DateRangeField extends Field
     /**
      * @param null $name
      *
-     * @return DateTimerField
+     * @return DateRangeField
      */
     public static function make($name = null): self
     {

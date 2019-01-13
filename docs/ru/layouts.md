@@ -157,7 +157,7 @@ class Appointment extends Rows
     /**
      * @return array
      *
-     * @throws \Orchid\Press\TypeException
+     * @throws \Orchid\Press\EntityTypeException
      */
     public function fields(): array
     {

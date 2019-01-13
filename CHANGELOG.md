@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.2] - 2019-01-13
+
+### Changed
+- Rename `TypeException` to `EntityTypeException`
+
+### Removed
+- Unused `registerFiled` and `getField` for Dashboard
+
 ## [3.4.1] - 2019-01-12
 
 ### Fixed

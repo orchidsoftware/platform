@@ -17,7 +17,7 @@ class PageController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
      */
     public function show(Page $page = null)
     {
@@ -37,7 +37,7 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Throwable|\Orchid\Screen\Exceptions\TypeException
+     * @throws \Throwable|\Orchid\Press\Exceptions\EntityTypeException
      */
     public function update(Page $page, Request $request)
     {

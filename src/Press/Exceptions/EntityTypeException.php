@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Orchid\Screen\Exceptions;
+namespace Orchid\Press\Exceptions;
 
 /**
- * Class TypeException.
+ * Class EntityTypeException.
  */
-class TypeException extends \Exception
+class EntityTypeException extends \Exception
 {
     /**
-     * TypeException constructor.
+     * EntityTypeException constructor.
      *
      * @param string $type
      * @param int $code
