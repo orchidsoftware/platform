@@ -73,15 +73,12 @@ class UserListScreen extends Screen
     }
 
     /**
+     * @param User $user
+     *
      * @return array
      */
-    public function asyncGetUser() : array
+    public function asyncGetUser(User $user) : array
     {
-        $id = $this->request->json()->all();
-        $id = array_shift($id);
-
-        $user = is_null($id) ? new User : User::findOrFail($id);
-
         return [
             'user' => $user,
         ];
