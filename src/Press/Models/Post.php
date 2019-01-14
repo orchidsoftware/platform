@@ -16,16 +16,16 @@ use Orchid\Platform\Traits\AttachTrait;
 use Orchid\Platform\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Orchid\Press\Exceptions\EntityTypeException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Press\Exceptions\EntityTypeException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * Class Post
+ * Class Post.
  */
 class Post extends Model
 {
