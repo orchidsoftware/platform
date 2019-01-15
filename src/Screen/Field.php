@@ -130,14 +130,6 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
-     * Serves as a presentation indicator.
-     * If the value is false, the template will not be output.
-     *
-     * @var bool
-     */
-    private $display = true;
-
-    /**
      * @param $name
      * @param $arguments
      *
