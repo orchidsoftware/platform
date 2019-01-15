@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Traits\CanSee;
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
-use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.
@@ -215,8 +215,8 @@ class Field implements FieldContract
      */
     public function render()
     {
-        if(!$this->display){
-            return null;
+        if (! $this->display) {
+            return;
         }
 
         $this->checkRequired();

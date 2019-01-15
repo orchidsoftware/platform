@@ -91,7 +91,7 @@ class Link
     public function build($arguments = null)
     {
         if (! $this->display) {
-            return null;
+            return;
         }
 
         return view('platform::container.layouts.link', [

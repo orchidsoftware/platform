@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Screen\Traits;
 
 /**
- * Trait CanSee
+ * Trait CanSee.
  */
 trait CanSee
 {
