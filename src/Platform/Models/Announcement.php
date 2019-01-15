@@ -71,7 +71,7 @@ class Announcement extends Model
      */
     public static function disableAll()
     {
-        return DB::table((new Announcement())->getTable())->update(['active' => 0]);
+        return DB::table((new self())->getTable())->update(['active' => 0]);
     }
 
     /**
