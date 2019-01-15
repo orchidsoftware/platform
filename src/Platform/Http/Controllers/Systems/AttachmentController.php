@@ -31,9 +31,8 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $files) {
-            if (! is_array($files)) {
-                $files = [$files];
-            }
+
+            $files = array_wrap($files);
 
             foreach ($files as $file) {
                 $attachment[] = $this->createModel($file, $request);

@@ -131,7 +131,7 @@ class Layouts
         $build = [];
 
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = ! is_array($layouts) ? [$layouts] : $layouts;
+            $layouts =  array_wrap($layouts);
 
             foreach ($layouts as $layout) {
                 $layout = ! is_object($layout) ? new $layout : $layout;
