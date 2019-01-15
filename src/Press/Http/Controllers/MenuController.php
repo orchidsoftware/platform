@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Menu;
-use Orchid\Platform\Dashboard;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Press\Models\Menu;
 
 class MenuController extends Controller
 {
     /**
-     * @var
+     * @var string
      */
     public $lang;
 
     /**
-     * @var
+     * @var string
      */
     public $menu;
 
@@ -45,12 +45,12 @@ class MenuController extends Controller
     }
 
     /**
-     * @param         $name
+     * @param string $name
      * @param Request $request
      *
      * @return View
      */
-    public function show($name, Request $request)
+    public function show(string $name, Request $request)
     {
         $availableMenus = config('press.menu');
         $currentLocale = $request->get('lang', app()->getLocale());

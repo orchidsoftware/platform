@@ -37,7 +37,7 @@ class Role extends Model implements RoleInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -47,7 +47,7 @@ class Role extends Model implements RoleInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',

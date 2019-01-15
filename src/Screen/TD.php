@@ -39,12 +39,12 @@ class TD
     public $width;
 
     /**
-     * @var
+     * @var string
      */
     public $filter;
 
     /**
-     * @var
+     * @var string
      */
     public $sort;
 
@@ -64,7 +64,7 @@ class TD
     public $asyncRoute;
 
     /**
-     * @var
+     * @var string
      */
     public $align = 'left';
 
@@ -167,7 +167,7 @@ class TD
     }
 
     /**
-     * @param $data
+     * @param mixed $data
      *
      * @return mixed
      */
@@ -188,7 +188,7 @@ class TD
 
     /**
      * @param string $route
-     * @param        $options
+     * @param mixed $options
      * @param string $text
      *
      * @return TD

@@ -30,7 +30,7 @@ abstract class Screen extends Controller
     public $description;
 
     /**
-     * @var array|Request|string
+     * @var Request
      */
     public $request;
 
@@ -87,8 +87,8 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param $method
-     * @param $slugLayouts
+     * @param mixed $method
+     * @param mixed $slugLayouts
      *
      * @return \Illuminate\Contracts\View\View
      * @throws \Throwable

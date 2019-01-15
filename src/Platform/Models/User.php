@@ -56,7 +56,7 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -66,7 +66,7 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',

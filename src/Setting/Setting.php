@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Setting;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class Setting.
@@ -71,7 +71,7 @@ class Setting extends Model
     }
 
     /**
-     * @param $key
+     * @param string|array $key
      *
      * @return null
      */
@@ -101,8 +101,8 @@ class Setting extends Model
     }
 
     /**
-     * @param             $key
-     * @param string|null $default
+     * @param string|array $key
+     * @param string|array|null $default
      *
      * @return null
      */
@@ -123,7 +123,7 @@ class Setting extends Model
     }
 
     /**
-     * @param $key
+     * @param string|array $key
      *
      * @return mixed
      */

@@ -13,7 +13,7 @@ class DashboardNotification extends Notification
     use Queueable;
 
     /**
-     * @var
+     * @var array|null
      */
     public $message;
 

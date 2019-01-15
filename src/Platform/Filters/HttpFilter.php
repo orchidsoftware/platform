@@ -169,7 +169,7 @@ class HttpFilter
     /**
      * @param $property
      *
-     * @return bool|string
+     * @return string
      */
     public function getSort($property)
     {

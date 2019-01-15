@@ -61,17 +61,17 @@ class AnnouncementScreen extends Screen
             Link::name(__('Create'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
-                ->show(! $this->active),
+                ->canSee(! $this->active),
 
             Link::name(__('Refresh'))
                 ->icon('icon-check')
                 ->method('saveOrUpdate')
-                ->show($this->active),
+                ->canSee($this->active),
 
             Link::name(__('Delete'))
                 ->icon('icon-trash')
                 ->method('disabled')
-                ->show($this->active),
+                ->canSee($this->active),
         ];
     }
 

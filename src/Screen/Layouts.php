@@ -9,6 +9,7 @@ use Orchid\Screen\Layouts\Rows;
 /**
  * Class Layouts.
  *
+ * @method static Layouts blank(array $name)
  * @method static Layouts tabs(array $name)
  * @method static Layouts columns(array $name)
  * @method static Layouts modals(array $name)

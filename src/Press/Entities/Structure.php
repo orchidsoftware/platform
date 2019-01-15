@@ -13,7 +13,7 @@ trait Structure
     /**
      * Visible name of entity.
      *
-     * @var
+     * @var string
      */
     public $name = '';
 
@@ -100,14 +100,14 @@ trait Structure
     /**
      * Registered fields for main.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function main(): array;
 
     /**
      * Registered fields for filling.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function fields(): array;
 

@@ -25,10 +25,10 @@ if (! function_exists('alert')) {
 
 if (! function_exists('setting')) {
     /**
-     * @param      $key
+     * @param string|array $key
      * @param null $default
      *
-     * @return Orchid\Support\Facades\Setting
+     * @return \Orchid\Support\Facades\Setting
      */
     function setting($key, $default = null)
     {
