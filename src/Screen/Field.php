@@ -6,6 +6,7 @@ namespace Orchid\Screen;
 
 use Orchid\Screen\Contracts\FieldContract;
 use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
+use Orchid\Screen\Traits\CanSee;
 
 /**
  * Class Field.
@@ -27,6 +28,8 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  */
 class Field implements FieldContract
 {
+    use CanSee;
+
     /**
      * View template show.
      *
@@ -127,6 +130,14 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
+     * Serves as a presentation indicator.
+     * If the value is false, the template will not be output.
+     *
+     * @var bool
+     */
+    private $display = true;
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -212,6 +223,10 @@ class Field implements FieldContract
      */
     public function render()
     {
+        if(!$this->display){
+            return null;
+        }
+
         $this->checkRequired();
         $this->translate();
 
@@ -273,8 +288,9 @@ class Field implements FieldContract
     {
         $modifiers = get_class_methods($this);
 
-        collect($this->getAttributes())->only(array_merge($this->universalAttributes,
-            $this->inlineAttributes))->map(function ($item, $key) use ($modifiers) {
+        collect($this->getAttributes())
+            ->only(array_merge($this->universalAttributes, $this->inlineAttributes))
+            ->map(function ($item, $key) use ($modifiers) {
                 $key = title_case($key);
                 $signature = 'modify'.$key;
                 if (in_array($signature, $modifiers, true)) {
@@ -417,7 +433,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return $this
+     * @return \Orchid\Screen\Field
      */
     public function vertical(): self
     {
@@ -427,7 +443,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return $this
+     * @return \Orchid\Screen\Field
      */
     public function horizontal(): self
     {
