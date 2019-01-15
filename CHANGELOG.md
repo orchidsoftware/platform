@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Field method `canSee` [759](https://github.com/orchidsoftware/platform/pull/759)
+
+### Changed
+- Link method `show` rename `canSee` [759](https://github.com/orchidsoftware/platform/pull/759)
+
+### Removed
+- Link method `show` [759](https://github.com/orchidsoftware/platform/pull/759)
+
 ## [3.4.2] - 2019-01-13
 
 ### Changed

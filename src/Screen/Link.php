@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use Orchid\Screen\Traits\CanSee;
+
 /**
  * Class Link.
  *
@@ -13,11 +15,12 @@ namespace Orchid\Screen;
  * @method static Link method(string $name)
  * @method static Link icon(string $name)
  * @method static Link link(string $name)
- * @method static Link show(bool $name)
  * @method static Link group(array $name)
  */
 class Link
 {
+    use CanSee;
+
     /**
      * @var
      */
@@ -54,11 +57,6 @@ class Link
     public $link;
 
     /**
-     * @var
-     */
-    public $show = true;
-
-    /**
      * @var array
      */
     public $group = [];
@@ -88,12 +86,12 @@ class Link
     /**
      * @param null $arguments
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function build($arguments = null)
     {
-        if (! $this->show) {
-            return '';
+        if (! $this->display) {
+            return;
         }
 
         return view('platform::container.layouts.link', [
