@@ -164,7 +164,9 @@ abstract class Screen extends Controller
 
         if (! is_string($method)) {
             return;
-        } elseif (! $class->hasMethod($method)) {
+        }
+
+        if (! $class->hasMethod($method)) {
             return;
         }
 

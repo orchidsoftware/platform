@@ -4,17 +4,9 @@
     </button>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white" x-placement="bottom-end">
         @foreach($group as $item)
-            @includeWhen($item->show,'platform::container.layouts.link',[
-                'slug'      => $item->slug,
-                'name'      => $item->name,
-                'method'    => $item->method,
-                'icon'      => $item->icon,
-                'modal'     => $item->modal,
-                'title'     => $item->title,
-                'link'      => $item->link,
-                'group'     => $item->group,
-                'arguments' => $arguments,
-            ])
+
+            {!!  $item->build($arguments) !!}
+
         @endforeach
     </div>
 @elseif(!is_null($modal))

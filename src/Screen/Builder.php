@@ -105,12 +105,14 @@ class Builder
      */
     private function renderGroup($groupField)
     {
+        $group = [];
+
         foreach ($groupField as $field) {
             $group[] = $this->render($field);
         }
 
         $this->form .= view('platform::partials.fields.groups', [
-            'cols' => $group ?? [],
+            'cols' => array_filter($group),
         ])->render();
     }
 
