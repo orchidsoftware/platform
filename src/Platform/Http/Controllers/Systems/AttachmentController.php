@@ -31,7 +31,6 @@ class AttachmentController extends Controller
     {
         $attachment = [];
         foreach ($request->allFiles() as $files) {
-
             $files = array_wrap($files);
 
             foreach ($files as $file) {
