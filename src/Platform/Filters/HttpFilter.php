@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
 {
