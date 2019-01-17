@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
-use Illuminate\Database\Eloquent\Model;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
@@ -72,14 +72,14 @@ class File
      */
     public function __construct(UploadedFile $file, string $disk, string $group = null)
     {
-        $this->time     = time();
-        $this->date     = date('Y/m/d', $this->time);
-        $this->file     = $file;
-        $this->mimes    = new MimeTypes();
+        $this->time = time();
+        $this->date = date('Y/m/d', $this->time);
+        $this->file = $file;
+        $this->mimes = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
-        $this->disk    = $disk;
-        $this->group   = $group;
+        $this->disk = $disk;
+        $this->group = $group;
         $this->storage = Storage::disk($disk);
     }
 
@@ -141,7 +141,7 @@ class File
     private function save(): Model
     {
         $hashName = sha1($this->time.$this->file->getClientOriginalName());
-        $name     = $hashName.'.'.$this->getClientOriginalExtension();
+        $name = $hashName.'.'.$this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),

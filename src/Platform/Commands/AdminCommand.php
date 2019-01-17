@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Support\Collection;
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Database\QueryException;
 
 class AdminCommand extends Command

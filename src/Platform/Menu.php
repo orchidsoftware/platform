@@ -197,8 +197,7 @@ class Menu
 
         $this->container = $this->container
             ->filter(function ($item) use ($user) {
-
-                if (!isset($item['arg']['permission'])) {
+                if (! isset($item['arg']['permission'])) {
                     return true;
                 }
 
