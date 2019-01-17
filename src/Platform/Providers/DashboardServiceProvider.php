@@ -27,14 +27,4 @@ class DashboardServiceProvider extends ServiceProvider
             return new Dashboard();
         });
     }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [Dashboard::class];
-    }
 }
