@@ -58,9 +58,9 @@ class Role extends Model implements RoleInterface
     /**
      * Set permission as boolean.
      *
-     * @param $permissions
+     * @param array $permissions
      */
-    public function setPermissionsAttribute($permissions)
+    public function setPermissionsAttribute(array $permissions = [])
     {
         foreach ($permissions as $key => $value) {
             $permissions[$key] = boolval($value);

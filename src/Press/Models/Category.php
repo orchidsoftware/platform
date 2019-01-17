@@ -20,8 +20,7 @@ class Category extends Taxonomy
     protected $taxonomy = 'category';
 
     /**
-     *  Set taxonomy.
-     *
+     * Set taxonomy.
      *
      * @return $this
      */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Traits;
 
+use Illuminate\Support\Collection;
 use Orchid\Platform\Filters\HttpFilter;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -60,7 +61,7 @@ trait FilterTrait
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function getOptionsFilter()
+    public function getOptionsFilter(): Collection
     {
         return collect([
             'allowedFilters' => collect($this->allowedFilters ?? []),

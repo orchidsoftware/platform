@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
+use Illuminate\Database\Eloquent\Model;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
@@ -48,7 +49,7 @@ class File
     public $fullPath;
 
     /**
-     * @var
+     * @var string
      */
     private $hash;
 
@@ -58,7 +59,7 @@ class File
     public $disk;
 
     /**
-     * @var
+     * @var string
      */
     public $group;
 
@@ -71,14 +72,14 @@ class File
      */
     public function __construct(UploadedFile $file, string $disk, string $group = null)
     {
-        $this->time = time();
-        $this->date = date('Y/m/d', $this->time);
-        $this->file = $file;
-        $this->mimes = new MimeTypes();
+        $this->time     = time();
+        $this->date     = date('Y/m/d', $this->time);
+        $this->file     = $file;
+        $this->mimes    = new MimeTypes();
         $this->fullPath = storage_path("app/public/$this->date/");
         $this->loadHashFile();
-        $this->disk = $disk;
-        $this->group = $group;
+        $this->disk    = $disk;
+        $this->group   = $group;
         $this->storage = Storage::disk($disk);
     }
 
@@ -101,9 +102,9 @@ class File
     }
 
     /**
-     * @return mixed
+     * @return Model|Attachment
      */
-    public function load()
+    public function load(): Model
     {
         $file = $this->getMatchesHash();
 
@@ -135,12 +136,12 @@ class File
     }
 
     /**
-     * @return Attachment
+     * @return Model|Attachment
      */
-    private function save(): Attachment
+    private function save(): Model
     {
         $hashName = sha1($this->time.$this->file->getClientOriginalName());
-        $name = $hashName.'.'.$this->getClientOriginalExtension();
+        $name     = $hashName.'.'.$this->getClientOriginalExtension();
 
         $this->storage->putFileAs($this->date, $this->file, $name, [
             'mime_type' => $this->getMimeType(),
@@ -170,6 +171,7 @@ class File
     private function getClientOriginalExtension()
     {
         $extension = $this->file->getClientOriginalExtension();
+
         if (empty($extension)) {
             $extension = $this->mimes->getExtension($this->file->getClientMimeType());
         }

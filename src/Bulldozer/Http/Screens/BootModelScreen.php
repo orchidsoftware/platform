@@ -190,7 +190,7 @@ class BootModelScreen extends Screen
 
         cache()->forever(static::MODELS, $this->models);
 
-        return abort(200);
+        abort(200);
     }
 
     /**

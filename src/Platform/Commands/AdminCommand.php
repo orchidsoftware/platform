@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
+use Illuminate\Support\Collection;
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
@@ -33,7 +34,7 @@ class AdminCommand extends Command
     /**
      * Permissions.
      *
-     * @var
+     * @var Collection
      */
     protected $permissions;
 

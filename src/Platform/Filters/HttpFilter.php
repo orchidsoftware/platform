@@ -6,6 +6,7 @@ namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class HttpFilter
 {
@@ -15,19 +16,19 @@ class HttpFilter
     protected $request;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $filters;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $sorts;
 
     /**
      * Model options and allowed params.
      *
-     * @var
+     * @var Collection
      */
     protected $options;
 

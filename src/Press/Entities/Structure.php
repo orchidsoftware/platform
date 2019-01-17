@@ -114,7 +114,7 @@ trait Structure
     /**
      * Registered fields for options.
      *
-     * @return mixed
+     * @return array
      */
     abstract public function options(): array;
 

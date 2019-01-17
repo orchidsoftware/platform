@@ -41,7 +41,7 @@ class MenuController extends Controller
             return redirect()->route('platform.systems.menu.show', $availableMenus->keys()->first());
         }
 
-        return abort(404);
+        abort(404);
     }
 
     /**
