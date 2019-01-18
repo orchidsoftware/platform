@@ -1,6 +1,6 @@
 <div class="form-group row">
     @isset($title)
-        <label for="{{$id}}" class="col-sm-2 v-center">{{$title}}
+        <label for="{{$id}}" class="col-sm-2">{{$title}}
 
             @includeWhen(isset($popover),'platform::partials.fields.popover',[
                 'content' => $popover ?? ''
@@ -14,16 +14,20 @@
 
     <div class="col">
         {{$slot}}
+    </div>
 
-        @if($errors->has($oldName))
+
+    @if($errors->has($oldName))
+        <div class="col-sm-5">
             <div class="invalid-feedback d-block">
                 <small>{{$errors->first($oldName)}}</small>
             </div>
-        @elseif(isset($help))
-            <small class="form-text text-muted">{{$help}}</small>
-        @endif
-
-    </div>
+        </div>
+    @elseif(isset($help))
+        <div class="col-sm-5">
+            <small class="form-text text-muted mt-0">{{$help}}</small>
+        </div>
+    @endif
 </div>
 @isset($hr)
     <div class="line line-dashed b-b line-lg"></div>
