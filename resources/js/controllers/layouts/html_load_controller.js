@@ -37,4 +37,11 @@ export default class extends Controller {
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     }
+
+    /**
+     *
+     */
+    goToTop() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
 }

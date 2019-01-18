@@ -6,7 +6,10 @@
 
         <div class="aside col-xs-12 col-md-3 col-xl-2 col-xxl-2 offset-xl-1 offset-xxl-2 no-padder bg-dark">
 
-            <div class="d-flex v-center wrapper mt-md-4">
+
+            <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
+
+            <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full">
 
                 <a class="header-brand" href="{{route('platform.index')}}">
                     @includeIf(config('platform.template.header','platform::layouts.header'))
@@ -16,10 +19,9 @@
                    data-target="#headerMenuCollapse">
                     <span class="header-toggler-icon icon-menu"></span>
                 </a>
-
             </div>
 
-            <nav class="collapse d-lg-block" id="headerMenuCollapse">
+            <nav class="collapse d-lg-block w-full" id="headerMenuCollapse">
 
                 @include('platform::partials.search')
 
@@ -31,8 +33,19 @@
 
             </nav>
 
+            <div class="h-100 w-100 position-relative to-top cursor"
+                 data-action="click->layouts--html-load#goToTop"
+                 title="Go to top"
+                 style="border-bottom: 1px solid #5c6269;">
+                <div class="bottom-left w-100 mb-2">
+                    <small><i class="icon-arrow-up m-r-xs"></i> Go to top</small>
+                </div>
+            </div>
+
             <div class="wrapper m-b m-t d-none d-lg-block">
                 @includeIf(config('platform.template.footer','platform::layouts.footer'))
+            </div>
+
             </div>
 
         </div>
@@ -65,5 +78,4 @@
         </div>
     </div>
 
-    @includeWhen(!is_null(config('platform.support')),'platform::partials.support')
 @endsection
