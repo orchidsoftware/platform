@@ -34,16 +34,6 @@ class TaxonomyBuilder extends Builder
     }
 
     /**
-     * Set taxonomy type to nav_menu.
-     *
-     * @return mixed
-     */
-    public function menu()
-    {
-        return $this->where('taxonomy', 'menu');
-    }
-
-    /**
      * Get a term taxonomy by specific slug.
      *
      * @param string

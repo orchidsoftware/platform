@@ -8,6 +8,7 @@ use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Events\UploadFileEvent;
@@ -48,7 +49,7 @@ class File
     public $fullPath;
 
     /**
-     * @var
+     * @var string
      */
     private $hash;
 
@@ -58,7 +59,7 @@ class File
     public $disk;
 
     /**
-     * @var
+     * @var string
      */
     public $group;
 
@@ -101,9 +102,9 @@ class File
     }
 
     /**
-     * @return mixed
+     * @return Model|Attachment
      */
-    public function load()
+    public function load(): Model
     {
         $file = $this->getMatchesHash();
 
@@ -135,9 +136,9 @@ class File
     }
 
     /**
-     * @return Attachment
+     * @return Model|Attachment
      */
-    private function save(): Attachment
+    private function save(): Model
     {
         $hashName = sha1($this->time.$this->file->getClientOriginalName());
         $name = $hashName.'.'.$this->getClientOriginalExtension();
@@ -170,6 +171,7 @@ class File
     private function getClientOriginalExtension()
     {
         $extension = $this->file->getClientOriginalExtension();
+
         if (empty($extension)) {
             $extension = $this->mimes->getExtension($this->file->getClientMimeType());
         }

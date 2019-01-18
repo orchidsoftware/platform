@@ -38,7 +38,7 @@ class UserListScreen extends Screen
     {
         return  [
             'users'  => User::with('roles')
-                ->FiltersApply([RoleFilter::class])
+                ->filtersApply([RoleFilter::class])
                 ->defaultSort('id', 'desc')
                 ->paginate(),
         ];
@@ -85,14 +85,12 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param $id
+     * @param User $user
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveUser($id)
+    public function saveUser(User $user)
     {
-        $user = User::findOrFail($id);
-
         $attributes = $this->request->get('user');
 
         if (array_key_exists('password', $attributes) && empty($attributes['password'])) {

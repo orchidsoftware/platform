@@ -56,7 +56,7 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -66,7 +66,7 @@ class User extends Authenticatable implements UserInterface
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',
@@ -107,13 +107,13 @@ class User extends Authenticatable implements UserInterface
     }
 
     /**
-     * @param $name
-     * @param $email
-     * @param $password
+     * @param string $name
+     * @param string $email
+     * @param string $password
      *
      * @throws \Exception
      */
-    public static function createAdmin($name, $email, $password)
+    public static function createAdmin(string $name, string $email, string $password)
     {
         if (static::where('email', $email)->exists()) {
             throw new Exception('User exist');

@@ -53,15 +53,15 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('widget', function ($value) {
             try {
                 $widget = app()->make(Base64Url::decode($value));
+
+                abort_if(! is_a($widget, WidgetContractInterface::class), 403);
+
+                return $widget;
             } catch (\Exception $exception) {
                 Log::alert($exception->getMessage());
 
-                return abort(404, $exception->getMessage());
+                abort(404, $exception->getMessage());
             }
-
-            abort_if(! is_a($widget, WidgetContractInterface::class), 403);
-
-            return $widget;
         });
     }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Platform\Filters;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
 class HttpFilter
@@ -15,19 +16,19 @@ class HttpFilter
     protected $request;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $filters;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $sorts;
 
     /**
      * Model options and allowed params.
      *
-     * @var
+     * @var Collection
      */
     protected $options;
 
@@ -169,7 +170,7 @@ class HttpFilter
     /**
      * @param $property
      *
-     * @return bool|string
+     * @return string
      */
     public function getSort($property)
     {

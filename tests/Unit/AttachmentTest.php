@@ -20,12 +20,6 @@ class AttachmentTest extends TestUnitCase
      */
     public $disk;
 
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->disk = 'public';
-    }
-
     /**
      * @test
      */
@@ -123,5 +117,51 @@ class AttachmentTest extends TestUnitCase
         $delete = $upload->delete();
 
         $this->assertTrue($delete);
+    }
+
+    /**
+     * @test
+     */
+    public function testDuplicateAttachmentUpload()
+    {
+        $file = UploadedFile::fake()->create('duplicate.jpg');
+        $clone = clone $file;
+
+        $upload = (new File($file, $this->disk))->load();
+        $clone = (new File($clone, $this->disk))->load();
+
+        $this->assertEquals($upload->url(), $clone->url());
+        $this->assertNotEquals($upload->id, $clone->id);
+
+        $upload->delete();
+        $this->assertNotNull($clone->url());
+    }
+
+    /**
+     * @test
+     */
+    public function testUnknownMimeTypeAttachmentUpload()
+    {
+        $file = UploadedFile::fake()->create('duplicate.gyhkjfewfowejg');
+        $upload = (new File($file, $this->disk))->load();
+
+        $this->assertEquals($upload->getMimeType(), 'unknown');
+    }
+
+    /**
+     * @test
+     */
+    public function testUnknownExtensionAttachmentUpload()
+    {
+        $file = UploadedFile::fake()->create('unknown-file');
+        $upload = (new File($file, $this->disk))->load();
+
+        $this->assertEquals($upload->extension, 'bin');
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->disk = 'public';
     }
 }

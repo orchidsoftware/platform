@@ -193,12 +193,16 @@ class Menu
      */
     private function checkAccess()
     {
-        $this->user = Auth::user();
-        $user = $this->user;
+        $user = Auth::user();
 
-        $this->container = $this->container->filter(function ($item) use ($user) {
-            return isset($item['arg']['permission']) ? optional($user)->hasAccess($item['arg']['permission']) : true;
-        });
+        $this->container = $this->container
+            ->filter(function ($item) use ($user) {
+                if (! isset($item['arg']['permission'])) {
+                    return true;
+                }
+
+                return optional($user)->hasAccess($item['arg']['permission']);
+            });
 
         return $this->container;
     }

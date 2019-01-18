@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Orchid\Platform\Models\User;
 use Illuminate\Support\Collection;
@@ -87,7 +86,7 @@ class Post extends Model
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedFilters = [
         'id',
@@ -103,7 +102,7 @@ class Post extends Model
     ];
 
     /**
-     * @var
+     * @var array
      */
     protected $allowedSorts = [
         'id',
@@ -180,13 +179,13 @@ class Post extends Model
     }
 
     /**
-     * @param $slug
+     * @param string $slug
      *
      * @return $this
      *
      * @throws \Throwable|EntityTypeException
      */
-    public function getEntity($slug): self
+    public function getEntity(string $slug): self
     {
         $this->entity = Dashboard::getEntities()->where('slug', $slug)->first();
 
@@ -225,11 +224,11 @@ class Post extends Model
     }
 
     /**
-     * @param $key
+     * @param string $key
      *
      * @return bool
      */
-    public function checkLanguage($key): bool
+    public function checkLanguage(string $key): bool
     {
         $locale = $this->getOption('locale', []);
 
@@ -248,16 +247,6 @@ class Post extends Model
     public function getUser()
     {
         return $this->belongsTo(Dashboard::model(User::class), 'user_id')->first();
-    }
-
-    /**
-     * Get tags for post as string.
-     *
-     * @return mixed
-     */
-    public function getStringTags()
-    {
-        return $this->tags->implode('name', static::getTagsDelimiter());
     }
 
     /**
@@ -334,19 +323,6 @@ class Post extends Model
                 $query->where('slug', $term);
             });
         });
-    }
-
-    /**
-     * @param $title
-     *
-     * @return string
-     */
-    public function makeSlug($title): string
-    {
-        $slug = Str::slug($title);
-        $count = static::whereRaw("slug RLIKE '^{$slug}(-[0-9]+)?$'")->count();
-
-        return $count ? "{$slug}-{$count}" : $slug;
     }
 
     /**

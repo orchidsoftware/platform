@@ -13,12 +13,12 @@ use Orchid\Platform\Http\Controllers\Controller;
 class MenuController extends Controller
 {
     /**
-     * @var
+     * @var string
      */
     public $lang;
 
     /**
-     * @var
+     * @var string
      */
     public $menu;
 
@@ -41,16 +41,16 @@ class MenuController extends Controller
             return redirect()->route('platform.systems.menu.show', $availableMenus->keys()->first());
         }
 
-        return abort(404);
+        abort(404);
     }
 
     /**
-     * @param         $name
+     * @param string $name
      * @param Request $request
      *
      * @return View
      */
-    public function show($name, Request $request)
+    public function show(string $name, Request $request)
     {
         $availableMenus = config('press.menu');
         $currentLocale = $request->get('lang', app()->getLocale());

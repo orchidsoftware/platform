@@ -91,7 +91,7 @@ class ItemMenu
     }
 
     /**
-     * @param $label
+     * @param string $label
      *
      * @return \Orchid\Platform\ItemMenu
      */

@@ -9,6 +9,7 @@ use Orchid\Screen\Layouts\Rows;
 /**
  * Class Layouts.
  *
+ * @method static Layouts blank(array $name)
  * @method static Layouts tabs(array $name)
  * @method static Layouts columns(array $name)
  * @method static Layouts modals(array $name)
@@ -131,7 +132,7 @@ class Layouts
         $build = [];
 
         foreach ($this->layouts as $key => $layouts) {
-            $layouts = ! is_array($layouts) ? [$layouts] : $layouts;
+            $layouts = array_wrap($layouts);
 
             foreach ($layouts as $layout) {
                 $layout = ! is_object($layout) ? new $layout : $layout;

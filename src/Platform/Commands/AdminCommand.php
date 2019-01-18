@@ -7,6 +7,7 @@ namespace Orchid\Platform\Commands;
 use Orchid\Platform\Dashboard;
 use Illuminate\Console\Command;
 use Orchid\Platform\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Database\QueryException;
 
 class AdminCommand extends Command
@@ -33,7 +34,7 @@ class AdminCommand extends Command
     /**
      * Permissions.
      *
-     * @var
+     * @var Collection
      */
     protected $permissions;
 

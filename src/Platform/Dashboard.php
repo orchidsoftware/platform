@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.4.2';
+    public const VERSION = '3.5.0';
 
     /**
      * The Dashboard configuration options.
@@ -77,11 +77,11 @@ class Dashboard
     /**
      * Get the route with the dashboard prefix.
      *
-     * @param $path
+     * @param string $path
      *
      * @return string
      */
-    public static function prefix($path = ''): string
+    public static function prefix(string $path = ''): string
     {
         $prefix = config('platform.prefix');
 
@@ -140,10 +140,10 @@ class Dashboard
     }
 
     /**
-     * @param $key
-     * @param $custom
+     * @param string $key
+     * @param string $custom
      */
-    public static function useModel($key, $custom)
+    public static function useModel(string $key, string $custom)
     {
         static::$options['models'][$key] = $custom;
     }
@@ -246,7 +246,7 @@ class Dashboard
     }
 
     /**
-     * @return null|Menu
+     * @return Menu
      */
     public function menu(): Menu
     {
