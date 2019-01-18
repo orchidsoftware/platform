@@ -68,26 +68,28 @@ export default class extends Controller {
      */
     addRelation(event) {
 
+        let model = this.relationTarget.value;
+
         if (event.which !== 13 && event.which !== 1) {
             return;
         }
 
-        if (this.relationTarget.value.trim() === '') {
+        if (model.trim() === '') {
             return;
         }
 
-        if (document.querySelector(`input[name="relations[${this.relationTarget.value}][name]"]`) !== null) {
+        if (document.querySelector(`input[name="relations[${model}][name]"]`) !== null) {
             return;
         }
 
         let element = this.createTrFromHTML(tmpl("boot-template-relationship", {
-            "field": this.relationTarget.value,
+            "field": model,
         }));
 
         axios
-            .post(platform.prefix(`/boot/${this.relationTarget.value}/getRelated`))
+            .post(platform.prefix(`/bulldozer/${model}/getRelated`))
             .then(response => {
-                document.querySelector(`select[name="relations[${this.relationTarget.value}][related]"]`).innerHTML = response.data;
+                document.querySelector(`select[name="relations[${model}][related]"]`).innerHTML = response.data;
             });
 
         document.getElementById('boot-container-relationship').appendChild(element);

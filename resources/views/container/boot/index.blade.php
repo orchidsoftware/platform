@@ -1,4 +1,4 @@
-<div data-controller="components--boot" class="m-b">
+<div data-controller="components--boot">
     @if(count($models))
         <div class="nav-tabs-alt">
             <ul class="nav nav-tabs padder" role="tablist">
@@ -73,7 +73,7 @@
         </div>
 
     @else
-        <div class="app-content-center text-center">
+        <div class="app-content-center text-center m-b">
             <h3 class="font-thin">
                 <i class="icon-table block m-b"></i>
                 {{ __('Select or create model') }}
@@ -81,67 +81,67 @@
         </div>
     @endisset
 
-</div>
 
-@isset($model)
-<div class="">
-    <div class="row padder-v">
-        <div class="col-sm-12">
-            <div class="wrapper">
-                <div class="container">
-                    <div class="form-inline">
-                        <div class="form-group mb-2">
-                            <div>
-                                {{ __('Relationships') }}<br>
-                                <p class="text-muted">{{ __('Determine the relationships for this model') }}</p>
+    @isset($model)
+        <div class="row padder-v">
+            <div class="col-sm-12">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="form-inline">
+                            <div class="form-group mb-2">
+                                <div>
+                                    {{ __('Relationships') }}<br>
+                                    <p class="text-muted">{{ __('Determine the relationships for this model') }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label class="sr-only">{{ __('Choose Model') }}:</label>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label class="sr-only">{{ __('Choose Model') }}:</label>
 
-                            <select
-                                    class="form-control w-full"
-                                    data-target="components--boot.relation"
-                            >
-                                <option>{{ __('Select Model') }}</option>
-                                @foreach($models as $name => $value)
-                                    <option value="{{$name}}">{{$name}}</option>
-                                @endforeach
-                            </select>
+                                <select
+                                        class="form-control w-full"
+                                        data-target="components--boot.relation"
+                                >
+                                    <option>{{ __('Select Model') }}</option>
+                                    @foreach($models as $name => $value)
+                                        <option value="{{$name}}">{{$name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="button"
+                                    data-action="components--boot#addRelation"
+                                    class="btn btn-default mb-2">
+                                Add Columns
+                            </button>
                         </div>
-                        <button type="button"
-                                data-action="components--boot#addRelation"
-                                class="btn btn-default mb-2">
-                            Add Columns
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <table class="table m-b-none">
-                <thead>
-                <tr>
-                    <th class="text-center">Model</th>
-                    <th class="text-center">Relationship Type</th>
-                    <th class="text-center">Local Key</th>
-                    <th class="text-center">Related Key</th>
-                </tr>
-                </thead>
-                <tbody id="boot-container-relationship">
-                @foreach($model->get('relations',[]) as $relation)
-                    @include('platform::partials.boot.relationship', [
-                        'model' => $model,
-                        'relation' => $relation,
-                        'columns' => $model ? $model->get('columns',[]) : [],
-                        'relationTypes' => $relationTypes
-                    ])
-                @endforeach
-                </tbody>
-            </table>
+                <table class="table m-b-none">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Relationship Type</th>
+                        <th class="text-center">Local Key</th>
+                        <th class="text-center">Related Key</th>
+                    </tr>
+                    </thead>
+                    <tbody id="boot-container-relationship">
+                    @foreach($model->get('relations',[]) as $relation)
+                        @include('platform::partials.boot.relationship', [
+                            'model' => $model,
+                            'relation' => $relation,
+                            'columns' => $model ? $model->get('columns',[]) : [],
+                            'relationTypes' => $relationTypes
+                        ])
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    @endisset
+
 </div>
-@endisset
+
 
 @push('scripts')
     <script type="text/x-tmpl" id="boot-template-column">

@@ -97,7 +97,7 @@ class BootModelScreen extends Screen
         return [
             Link::name(__('Build all models'))
                 ->icon('icon-magic-wand')
-                ->show($this->exist)
+                ->canSee($this->exist)
                 ->method('buildModels'),
 
             Link::name(__('Add new model'))
@@ -108,7 +108,7 @@ class BootModelScreen extends Screen
 
             Link::name(__('Delete'))
                 ->icon('icon-trash')
-                ->show($this->exist)
+                ->canSee($this->exist)
                 ->method('delete'),
         ];
     }
@@ -179,8 +179,9 @@ class BootModelScreen extends Screen
 
     /**
      * @param string $model
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Exception
      */
     public function save(string $model, Request $request)
@@ -190,7 +191,7 @@ class BootModelScreen extends Screen
 
         cache()->forever(static::MODELS, $this->models);
 
-        abort(200);
+        return response(200);
     }
 
     /**
