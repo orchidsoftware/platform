@@ -229,3 +229,9 @@ div.mce-fullscreen {
   width: 100%;
   padding: 15px;
 }
+
+
+// frappe-chart chart
+.graph-svg-tip {
+  @extend .bg-dark;
+}

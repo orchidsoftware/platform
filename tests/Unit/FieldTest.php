@@ -78,6 +78,10 @@ class FieldTest extends TestUnitCase
              [
                  'name' => 'example',
              ], ],
+            [\Orchid\Screen\Fields\SwitchField::class,
+             [
+                 'name' => 'example',
+             ], ],
         ];
     }
 

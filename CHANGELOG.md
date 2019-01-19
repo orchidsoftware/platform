@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.6.0 - 2019-01-19
+
+### Added
+- New Switches fields
+
+### Changed
+- Footer is now pressed to the bottom of the page
+- The free area between the menu and the footer is the "Up" button
+
 ## [3.5.1] - 2019-01-18
 
 ### Fixed

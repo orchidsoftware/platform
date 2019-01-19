@@ -33,12 +33,12 @@
 
             </nav>
 
-            <div class="h-100 w-100 position-relative to-top cursor"
+            <div class="h-100 w-100 position-relative to-top cursor b-b"
                  data-action="click->layouts--html-load#goToTop"
-                 title="Go to top"
+                 title="{{ __('Go to top') }}"
                  style="border-bottom: 1px solid #5c6269;">
                 <div class="bottom-left w-100 mb-2">
-                    <small><i class="icon-arrow-up m-r-xs"></i> Go to top</small>
+                    <small><i class="icon-arrow-up m-r-xs"></i> {{ __('Go to top') }}</small>
                 </div>
             </div>
 

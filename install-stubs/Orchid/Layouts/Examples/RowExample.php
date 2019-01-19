@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
+use Orchid\Screen\Fields\SwitchField;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Fields\UTMField;
@@ -60,9 +61,15 @@ class RowExample extends Rows
                     ->title('Phone')
                     ->help('Number Phone'),
 
-                CheckBoxField::make('free')
+                CheckBoxField::make('free-checkbox')
                     ->sendTrueOrFalse()
-                    ->title('Free')
+                    ->title('Free checkbox')
+                    ->placeholder('Event for free')
+                    ->help('Event for free'),
+
+                SwitchField::make('free-switch')
+                    ->sendTrueOrFalse()
+                    ->title('Free switch')
                     ->placeholder('Event for free')
                     ->help('Event for free'),
             ]),
