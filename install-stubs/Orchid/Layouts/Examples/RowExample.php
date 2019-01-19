@@ -3,7 +3,6 @@
 namespace App\Orchid\Layouts\Examples;
 
 use Orchid\Screen\Field;
-use Orchid\Screen\Fields\SwitchField;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\MapField;
 use Orchid\Screen\Fields\UTMField;
@@ -12,6 +11,7 @@ use Orchid\Screen\Fields\TagsField;
 use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Fields\QuillField;
 use Orchid\Screen\Fields\SelectField;
+use Orchid\Screen\Fields\SwitchField;
 use Orchid\Screen\Fields\PictureField;
 use Orchid\Screen\Fields\TinyMCEField;
 use Orchid\Screen\Fields\CheckBoxField;
