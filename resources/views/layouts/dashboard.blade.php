@@ -9,7 +9,7 @@
 
             <div class="d-md-flex align-items-start flex-column d-sm-block h-full">
 
-            <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full">
+            <div class="d-sm-flex d-md-block wrapper mt-md-4 w-full v-center">
 
                 <a class="header-brand" href="{{route('platform.index')}}">
                     @includeIf(config('platform.template.header','platform::layouts.header'))
@@ -33,7 +33,7 @@
 
             </nav>
 
-            <div class="h-100 w-100 position-relative to-top cursor b-b"
+            <div class="h-100 w-100 position-relative to-top cursor b-b mt-md-5"
                  data-action="click->layouts--html-load#goToTop"
                  title="{{ __('Go to top') }}"
                  style="border-bottom: 1px solid #5c6269;">
