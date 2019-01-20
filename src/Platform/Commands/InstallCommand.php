@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
-use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Updates;
+use Orchid\Press\Providers\PressServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -92,7 +92,7 @@ class InstallCommand extends Command
             ->askEnv('What domain to use the panel?', 'DASHBOARD_DOMAIN', 'localhost')
             ->askEnv('What prefix to use the panel?', 'DASHBOARD_PREFIX', 'dashboard')
             ->setValueEnv('SCOUT_DRIVER', 'null')
-            ->info("To create a user, run 'artisan orchid:admin'");
+            ->comment("To create a user, run 'artisan orchid:admin'");
 
         $this->line("To start the embedded server, run 'artisan serve'");
     }
@@ -107,7 +107,6 @@ class InstallCommand extends Command
     {
         if (! $this->progressBar->getProgress()) {
             $this->progressBar->start();
-            echo ' ';
         }
 
         $result = $this->call($command, $parameters);
@@ -118,7 +117,6 @@ class InstallCommand extends Command
         }
 
         $this->progressBar->advance();
-        echo ' ';
 
         // Visually slow down the installation process so that the user can read what's happening
         usleep(350000);
@@ -160,7 +158,7 @@ class InstallCommand extends Command
             return;
         }
 
-        $str = file_get_contents(app_path('../.gitignore'));
+        $str = $this->fileGetContent(app_path('../.gitignore'));
 
         if ($str !== false && strpos($str, '/public/orchid') === false) {
             file_put_contents(app_path('../.gitignore'), $str.PHP_EOL.'/public/orchid'.PHP_EOL);
@@ -189,7 +187,7 @@ class InstallCommand extends Command
      */
     private function setValueEnv($constant, $value = null): self
     {
-        $str = file_get_contents(app_path('../.env'));
+        $str =  $this->fileGetContent(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
             file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
@@ -214,5 +212,19 @@ class InstallCommand extends Command
         }
 
         return $this;
+    }
+
+    /**
+     * @param string $file
+     *
+     * @return false|string
+     */
+    private function fileGetContent(string $file)
+    {
+        if (!is_file($file)) {
+            return '';
+        }
+
+        return file_get_contents($file);
     }
 }

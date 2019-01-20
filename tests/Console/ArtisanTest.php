@@ -89,4 +89,14 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What is the password?', 'testConsoleCreateUser')
             ->expectsOutput('User already exists or an error occurred!');
     }
+
+
+    public function test_artisan_orchid_install()
+    {
+        $this->artisan('orchid:install')
+            ->expectsQuestion('The platform has already been installed, do you really want to repeat?','yes')
+            ->expectsQuestion('What domain to use the panel?','localhost')
+            ->expectsQuestion('What prefix to use the panel?','dashboard')
+            ->expectsOutput("To start the embedded server, run 'artisan serve'");
+    }
 }
