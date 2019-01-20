@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
 use Illuminate\Support\ServiceProvider;
@@ -132,7 +133,6 @@ class FoundationServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            DashboardServiceProvider::class,
             ScoutServiceProvider::class,
             AttachmentServiceProvider::class,
             GeneratorsServiceProvider::class,
@@ -150,6 +150,10 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->singleton(Dashboard::class, function () {
+            return new Dashboard();
+        });
+
         if (! Route::hasMacro('screen')) {
             Route::macro('screen', function ($url, $screen, $name = null) {
                 return Route::any($url.'/{method?}/{argument?}', [$screen, 'handle'])
