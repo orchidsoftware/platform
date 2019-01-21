@@ -6,6 +6,7 @@ use Orchid\Press\Http\Controllers\MenuController;
 use Orchid\Press\Http\Controllers\PageController;
 use Orchid\Press\Http\Controllers\PostController;
 use Orchid\Press\Http\Controllers\MediaController;
+use Orchid\Press\Http\Screens\EntitiesScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ $this->get('posts/{type}/create', [PostController::class, 'create'])
 $this->get('posts/{type}/{post}/edit', [PostController::class, 'edit'])
     ->name('platform.posts.type.edit');
 
-$this->get('posts/{type}/{post?}', [PostController::class, 'index'])
+$this->screen('entities/{type}', EntitiesScreen::class)
     ->name('platform.posts.type');
 
 $this->post('posts/{type}', [PostController::class, 'store'])

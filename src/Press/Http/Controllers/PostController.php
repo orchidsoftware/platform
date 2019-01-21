@@ -18,18 +18,6 @@ class PostController extends Controller
     public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
-     * @param Many $type
-     *
-     * @return View
-     */
-    public function index(Many $type): View
-    {
-        $this->checkPermission(static::POST_PERMISSION_PREFIX.$type->slug);
-
-        return view('platform::container.posts.main', $type->generateGrid());
-    }
-
-    /**
      * @param EntityContract $type
      *
      * @return View
