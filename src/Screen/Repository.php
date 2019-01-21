@@ -6,12 +6,11 @@ namespace Orchid\Screen;
 
 use Iterator;
 use Countable;
-use ArrayAccess;
 
 /**
  * Class Repository.
  */
-class Repository extends \Illuminate\Config\Repository implements ArrayAccess, Iterator, Countable
+class Repository extends \Illuminate\Config\Repository implements Iterator, Countable
 {
     /**
      * @var int

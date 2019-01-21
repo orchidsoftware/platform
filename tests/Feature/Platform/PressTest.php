@@ -70,6 +70,14 @@ class PressTest extends TestFeatureCase
         $this->assertNotContains($this->post->getContent('description'), $response->getContent());
     }
 
+    public function test_route_PostsTypeCreate()
+    {
+        $response = $this->actingAs($this->user)
+            ->get(route('platform.posts.type.create', 'example-post'));
+
+        $response->assertOk();
+    }
+
     public function test_route_PostsTypeEdit()
     {
         $response = $this->actingAs($this->user)
