@@ -8,7 +8,6 @@ use Orchid\Screen\Layouts\Selection;
 
 class EntitiesSelection extends Selection
 {
-
     /**
      * @var array
      */

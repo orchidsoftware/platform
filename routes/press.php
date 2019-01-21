@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use Orchid\Press\Http\Screens\EntitiesScreen;
 use Orchid\Press\Http\Controllers\MenuController;
 use Orchid\Press\Http\Controllers\PageController;
 use Orchid\Press\Http\Controllers\PostController;
 use Orchid\Press\Http\Controllers\MediaController;
-use Orchid\Press\Http\Screens\EntitiesScreen;
 
 /*
 |--------------------------------------------------------------------------

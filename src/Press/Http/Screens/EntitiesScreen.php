@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use App\Orchid\Entities\Post;
-use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Entities\EntityContract;
-use Orchid\Press\Http\Layouts\EntitiesLayout;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Http\Layouts\EntitiesSelection;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
+use App\Orchid\Entities\Post;
+use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Http\Layouts\EntitiesLayout;
+use Orchid\Press\Http\Layouts\EntitiesSelection;
 
 class EntitiesScreen extends Screen
 {
@@ -51,9 +49,6 @@ class EntitiesScreen extends Screen
      */
     protected $entity;
 
-    /**
-     *
-     */
     public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
 
     /**
@@ -75,7 +70,7 @@ class EntitiesScreen extends Screen
         $this->filters = $type->filters();
 
         return [
-            'data' => $type->get()
+            'data' => $type->get(),
         ];
     }
 
@@ -87,7 +82,7 @@ class EntitiesScreen extends Screen
         return [
             Link::name(__('Create'))
                 ->icon('icon-check')
-                ->link(route('platform.posts.type.create',$this->entity->slug))
+                ->link(route('platform.posts.type.create', $this->entity->slug)),
         ];
     }
 
@@ -100,7 +95,7 @@ class EntitiesScreen extends Screen
     {
         return [
             new EntitiesSelection($this->filters),
-            new EntitiesLayout($this->grid)
+            new EntitiesLayout($this->grid),
         ];
     }
 
