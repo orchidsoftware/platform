@@ -82,7 +82,7 @@ class PlatformServiceProvider extends ServiceProvider
                 [
                     'slug'        => 'platform.systems.announcement',
                     'description' => __('Announcement'),
-                ]
+                ],
             ],
         ];
     }

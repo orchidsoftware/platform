@@ -100,7 +100,7 @@ class Link
             return;
         }
 
-        if (!is_null($this->view)) {
+        if (! is_null($this->view)) {
             return view($this->view, $query->all());
         }
 
@@ -150,7 +150,7 @@ class Link
      */
     public static function view(string $view)
     {
-        $link       = new static;
+        $link = new static;
         $link->view = $view;
 
         return $link;

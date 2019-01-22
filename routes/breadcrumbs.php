@@ -72,7 +72,7 @@ Breadcrumbs::for('platform.entities.type', function ($trail, $type) {
 // Platform > Posts > Edit
 Breadcrumbs::for('platform.entities.type.edit', function ($trail, $type, $post) {
     $trail->parent('platform.entities.type', $type);
-    $trail->push($post->getContent($type->slugFields) ?? "—", route('platform.entities.type.edit', [$type->slug, $post->slug]));
+    $trail->push($post->getContent($type->slugFields) ?? '—', route('platform.entities.type.edit', [$type->slug, $post->slug]));
 
     //  $trail->push(__('Create'), route('platform.posts.type.create', $type->slug));
 });

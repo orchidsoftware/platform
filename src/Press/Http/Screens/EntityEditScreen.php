@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Orchid\Press\Entities\EntityContract;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Models\Post;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Post;
+use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Entities\EntityContract;
 
 class EntityEditScreen extends Screen
 {
@@ -45,9 +45,6 @@ class EntityEditScreen extends Screen
      */
     protected $exist = false;
 
-    /**
-     *
-     */
     public const POST_PERMISSION_PREFIX = 'platform.entities.type';
 
     /**
@@ -59,7 +56,7 @@ class EntityEditScreen extends Screen
      *
      * @return array
      */
-    public function query(Many $type,Post $post): array
+    public function query(Many $type, Post $post): array
     {
         $this->name = $type->name;
         $this->description = $type->description;
@@ -84,7 +81,7 @@ class EntityEditScreen extends Screen
             Link::name(__('Create'))
                 ->icon('icon-check')
                 ->link('save')
-                ->canSee(!$this->exist),
+                ->canSee(! $this->exist),
 
             Link::name(__('Remove'))
                 ->icon('icon-trash')
@@ -96,7 +93,7 @@ class EntityEditScreen extends Screen
                 ->method('save')
                 ->canSee($this->exist),
 
-            Link::view('platform::container.posts.menu')
+            Link::view('platform::container.posts.menu'),
         ];
     }
 
@@ -135,7 +132,6 @@ class EntityEditScreen extends Screen
 
         Alert::success(__('Operation completed successfully.'));
 
-
         return back();
 
         return redirect()->route('platform.entities.type', [
@@ -169,5 +165,4 @@ class EntityEditScreen extends Screen
             'restore' => route('platform.entities.type', $post->id),
         ]);
     }
-
 }

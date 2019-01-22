@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Http\Layouts\EntitiesLayout;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Http\Layouts\EntitiesSelection;
-use Orchid\Press\Models\Post;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Illuminate\Http\Request;
+use Orchid\Screen\Layouts;
+use Orchid\Press\Models\Post;
+use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Http\Layouts\EntitiesLayout;
+use Orchid\Press\Http\Layouts\EntitiesSelection;
 
 class EntityListScreen extends Screen
 {
@@ -51,9 +50,6 @@ class EntityListScreen extends Screen
      */
     protected $entity;
 
-    /**
-     *
-     */
     public const POST_PERMISSION_PREFIX = 'platform.entities.type';
 
     /**
@@ -75,7 +71,7 @@ class EntityListScreen extends Screen
         $this->filters = $type->filters();
 
         return [
-            'data' => $type->get()
+            'data' => $type->get(),
         ];
     }
 
@@ -87,7 +83,7 @@ class EntityListScreen extends Screen
         return [
             Link::name(__('Create'))
                 ->icon('icon-check')
-                ->link(route('platform.entities.type.edit',$this->entity->slug))
+                ->link(route('platform.entities.type.edit', $this->entity->slug)),
         ];
     }
 
@@ -101,7 +97,7 @@ class EntityListScreen extends Screen
         return [
             Layouts::view('platform::container.posts.restore'),
             new EntitiesSelection($this->filters),
-            new EntitiesLayout($this->grid)
+            new EntitiesLayout($this->grid),
         ];
     }
 
