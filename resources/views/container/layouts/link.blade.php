@@ -5,7 +5,7 @@
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-white" x-placement="bottom-end">
         @foreach($group as $item)
 
-            {!!  $item->build($arguments) !!}
+            {!!  $item->build($query, $arguments) !!}
 
         @endforeach
     </div>
@@ -24,6 +24,8 @@
     <button type="submit"
             formaction="{{ route(Route::currentRouteName(),$arguments )}}/{{ $method }}"
             form="post-form"
+            onclick="window.platform.validateForm('post-form',
+                    '{{__('Please check the entered data, it may be necessary to specify in other languages.')}}')"
             class="btn btn-link dropdown-item">
         @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset
         {{ $name ?? '' }}

@@ -127,4 +127,12 @@ trait Structure
     {
         return config('press.locales', []);
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->slug;
+    }
 }

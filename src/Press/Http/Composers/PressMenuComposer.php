@@ -45,7 +45,7 @@ class PressMenuComposer
             ->where('display', true)
             ->sortBy('sort')
             ->each(function ($page) use ($kernel) {
-                $route = is_a($page, Single::class) ? 'platform.pages.show' : 'platform.posts.type';
+                $route = is_a($page, Single::class) ? 'platform.entities.type.edit' : 'platform.entities.type';
 
                 $kernel->menu->add('Main',
                     ItemMenu::setLabel($page->name)
@@ -53,7 +53,7 @@ class PressMenuComposer
                         ->setIcon($page->icon)
                         ->setGroupName($page->groupname)
                         ->setRoute(route($route, [$page->slug]))
-                        ->setPermission('platform.posts.type.'.$page->slug)
+                        ->setPermission('platform.entities.type'.$page->slug)
                         ->setActive(route($route, [$page->slug]).'*')
                         ->setSort($page->sort)
                         ->setShow($page->display)

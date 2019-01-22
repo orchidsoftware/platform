@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use App\Orchid\Entities\Post;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Entities\EntityContract;
 use Orchid\Press\Http\Layouts\EntitiesLayout;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Http\Layouts\EntitiesSelection;
+use Orchid\Press\Models\Post;
+use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Alert;
 
-class EntitiesScreen extends Screen
+class EntityListScreen extends Screen
 {
     /**
      * Display header name.
@@ -54,7 +54,7 @@ class EntitiesScreen extends Screen
     /**
      *
      */
-    public const POST_PERMISSION_PREFIX = 'platform.posts.type.';
+    public const POST_PERMISSION_PREFIX = 'platform.entities.type';
 
     /**
      * Query data.
@@ -87,7 +87,7 @@ class EntitiesScreen extends Screen
         return [
             Link::name(__('Create'))
                 ->icon('icon-check')
-                ->link(route('platform.posts.type.create',$this->entity->slug))
+                ->link(route('platform.entities.type.edit',$this->entity->slug))
         ];
     }
 
@@ -99,6 +99,7 @@ class EntitiesScreen extends Screen
     public function layout(): array
     {
         return [
+            Layouts::view('platform::container.posts.restore'),
             new EntitiesSelection($this->filters),
             new EntitiesLayout($this->grid)
         ];

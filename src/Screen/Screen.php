@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
+use Orchid\Bulldozer\Builders\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -119,7 +119,6 @@ abstract class Screen extends Controller
         $this->post = new Repository($query);
 
         return view('platform::container.layouts.base', [
-            'arguments' => $this->arguments,
             'screen'    => $this,
         ]);
     }
@@ -172,32 +171,42 @@ abstract class Screen extends Controller
 
         $parameters = $class->getMethod($method)->getParameters();
 
+        $arguments = [];
+
         foreach ($parameters as $key => $parameter) {
-            if ($this->checkClassInArray($key) || is_null($parameter->getClass())) {
-                continue;
-            }
 
-            $object = app()->make($parameter->getClass()->name);
-
-            $this->arguments[$key] = is_subclass_of($object, Model::class)
-            && isset($this->arguments[$key]) ? $object->find($this->arguments[$key]) : $object;
+            $arguments[] = $this->bind($key,$parameter);
         }
+        $this->arguments = $arguments;
     }
 
     /**
-     * @param int $class
+     * @param $key
+     * @param $parameter
      *
-     * @return bool
+     * @return mixed
      */
-    private function checkClassInArray($class): bool
+    private function bind($key, $parameter)
     {
-        foreach ($this->arguments as $value) {
-            if (is_object($value) && get_class($value) == $class) {
-                return true;
+        if (is_null($parameter->getClass())) {
+            return $this->arguments[$key] ?? null;
+        }
+
+        $class = $parameter->getClass()->name;
+
+        $object = array_first($this->arguments, function ($value) use ($class) {
+            return is_subclass_of($value, $class) || is_a($value, $class);
+        });
+
+        if (is_null($object)) {
+            $object = app()->make($class);
+
+            if(method_exists($object,'resolveRouteBinding')){
+                $object =  $object->resolveRouteBinding($this->arguments[$key] ?? null);
             }
         }
 
-        return false;
+        return $object;
     }
 
     /**
@@ -220,5 +229,18 @@ abstract class Screen extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function buildCommandBar() : array
+    {
+        $commands = [];
+        foreach ($this->commandBar() as $command){
+            $commands[] = $command->build($this->post,$this->arguments);
+        }
+
+        return $commands;
     }
 }

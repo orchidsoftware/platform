@@ -451,4 +451,22 @@ class Post extends Model
 
         $this->setAttribute('slug', SlugService::createSlug($this, 'slug', $slug));
     }
+
+
+    /**
+     * Retrieve the model for a bound value.
+     *
+     * @param  mixed  $value
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function resolveRouteBinding($value)
+    {
+        $post = Dashboard::modelClass(Post::class);
+
+        if (is_numeric($value)) {
+            return $post->where('id', $value)->firstOrFail();
+        }
+
+        return $post->where('slug', $value)->firstOrFail();
+    }
 }

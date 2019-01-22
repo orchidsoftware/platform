@@ -73,7 +73,7 @@ class PressTest extends TestFeatureCase
     public function test_route_PostsTypeEdit()
     {
         $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type.edit', ['example-post', $this->post->slug]));
+            ->get(route('platform.entities.type.edit', ['example-post', $this->post->slug]));
 
         $response->assertOk();
         $this->assertContains($this->post->getContent('title'), $response->getContent());
