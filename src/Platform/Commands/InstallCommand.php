@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\Command;
-use Orchid\Platform\Providers\FoundationServiceProvider;
 use Orchid\Platform\Updates;
+use Illuminate\Console\Command;
 use Orchid\Press\Providers\PressServiceProvider;
+use Orchid\Platform\Providers\FoundationServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -187,7 +187,7 @@ class InstallCommand extends Command
      */
     private function setValueEnv($constant, $value = null): self
     {
-        $str =  $this->fileGetContent(app_path('../.env'));
+        $str = $this->fileGetContent(app_path('../.env'));
 
         if ($str !== false && strpos($str, $constant) === false) {
             file_put_contents(app_path('../.env'), $str.PHP_EOL.$constant.'='.$value.PHP_EOL);
@@ -221,7 +221,7 @@ class InstallCommand extends Command
      */
     private function fileGetContent(string $file)
     {
-        if (!is_file($file)) {
+        if (! is_file($file)) {
             return '';
         }
 
