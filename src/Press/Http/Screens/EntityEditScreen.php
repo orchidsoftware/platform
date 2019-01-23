@@ -80,7 +80,7 @@ class EntityEditScreen extends Screen
         return [
             Link::name(__('Create'))
                 ->icon('icon-check')
-                ->link('save')
+                ->method('save')
                 ->canSee(! $this->exist),
 
             Link::name(__('Remove'))
