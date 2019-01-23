@@ -210,7 +210,7 @@ class TD
 
             if (! is_null($text)) {
                 $text = $datum->getContent($text);
-                $text = $text ?? "—";
+                $text = $text ?? '—';
             }
 
             return view('platform::partials.td.link', [

@@ -452,7 +452,6 @@ class Post extends Model
         $this->setAttribute('slug', SlugService::createSlug($this, 'slug', $slug));
     }
 
-
     /**
      * Retrieve the model for a bound value.
      *
@@ -461,7 +460,7 @@ class Post extends Model
      */
     public function resolveRouteBinding($value)
     {
-        $post = Dashboard::modelClass(Post::class);
+        $post = Dashboard::modelClass(self::class);
 
         if (is_numeric($value)) {
             return $post->where('id', $value)->firstOrFail();
