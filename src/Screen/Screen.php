@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -173,8 +173,7 @@ abstract class Screen extends Controller
         $arguments = [];
 
         foreach ($parameters as $key => $parameter) {
-
-            $arguments[] = $this->bind($key,$parameter);
+            $arguments[] = $this->bind($key, $parameter);
         }
         $this->arguments = $arguments;
     }
@@ -236,8 +235,8 @@ abstract class Screen extends Controller
     public function buildCommandBar() : array
     {
         $commands = [];
-        foreach ($this->commandBar() as $command){
-            $commands[] = $command->build($this->post,$this->arguments);
+        foreach ($this->commandBar() as $command) {
+            $commands[] = $command->build($this->post, $this->arguments);
         }
 
         return $commands;
