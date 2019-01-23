@@ -7,7 +7,6 @@ namespace Orchid\Screen;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Orchid\Bulldozer\Builders\Model;
 use Orchid\Platform\Http\Controllers\Controller;
 
 /**
@@ -201,8 +200,8 @@ abstract class Screen extends Controller
         if (is_null($object)) {
             $object = app()->make($class);
 
-            if(method_exists($object,'resolveRouteBinding')){
-                $object =  $object->resolveRouteBinding($this->arguments[$key] ?? null);
+            if (method_exists($object, 'resolveRouteBinding') && isset($this->arguments[$key])) {
+                $object = $object->resolveRouteBinding($this->arguments[$key]);
             }
         }
 
