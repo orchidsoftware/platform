@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.6.2 - 2019-01-24
+
+### Fixed
+- Can't use registerResource in package [765](https://github.com/orchidsoftware/platform/issues/765)
+
 ### Removed
 - DashboardServiceProvider
 
