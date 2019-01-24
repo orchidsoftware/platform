@@ -207,7 +207,7 @@ class Dashboard
     {
         $item = $this->resources->get($key, []);
 
-        $this->resources[$key] = array_merge($item,array_wrap($value));
+        $this->resources[$key] = array_merge($item, array_wrap($value));
 
         return $this;
     }
