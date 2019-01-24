@@ -356,14 +356,6 @@ class Field implements FieldContract
     }
 
     /**
-     * @return array
-     */
-    public function getOriginalAttributes()
-    {
-        return array_except($this->getAttributes(), array_merge($this->universalAttributes, $this->inlineAttributes));
-    }
-
-    /**
      * @param $name
      *
      * @return Field

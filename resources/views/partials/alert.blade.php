@@ -1,5 +1,5 @@
 @if (session()->has('flash_notification.message'))
-    <div class="alert alert-{{ session('flash_notification.level') }} border-0">
+    <div class="alert alert-{{ session('flash_notification.level') }} border-0 no-radius">
         <button type="button"
                 class="close"
                 data-dismiss="alert"
@@ -13,7 +13,7 @@
 <div id="dashboard-alerts"></div>
 
 @empty(!$errors->count())
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger border-0 no-radius" role="alert">
         <strong>{{  __('Oh snap!') }}</strong>
         {{ __('Change a few things up and try submitting again.') }}
         <ul class="m-t-xs">
