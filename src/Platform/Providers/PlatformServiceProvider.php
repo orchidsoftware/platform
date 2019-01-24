@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
-use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Http\Composers\SystemMenuComposer;
+use Orchid\Platform\Dashboard;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
+use Orchid\Platform\Http\Composers\SystemMenuComposer;
 
 class PlatformServiceProvider extends ServiceProvider
 {
@@ -32,7 +32,8 @@ class PlatformServiceProvider extends ServiceProvider
         View::composer('platform::partials.announcement', AnnouncementsComposer::class);
 
         $this->dashboard
-            ->registerResource(config('platform.resource', []))
+            ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
+            ->registerResource('scripts', config('platform.resource.scripts', null))
             ->registerPermissions($this->registerPermissionsMain())
             ->registerPermissions($this->registerPermissionsSystems());
     }

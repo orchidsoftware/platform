@@ -198,13 +198,16 @@ class Dashboard
     }
 
     /**
-     * @param array $value
+     * @param string $key
+     * @param string|array $value
      *
-     * @return $this
+     * @return Dashboard
      */
-    public function registerResource(array $value): self
+    public function registerResource(string $key, $value): self
     {
-        $this->resources = $this->resources->merge($value);
+        $item = $this->resources->get($key, []);
+
+        $this->resources[$key] = array_merge($item,array_wrap($value));
 
         return $this;
     }

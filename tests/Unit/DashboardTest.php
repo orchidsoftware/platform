@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\User;
+use Orchid\Tests\TestUnitCase;
 
 /**
  * Class DashboardTest.
@@ -50,6 +50,54 @@ class DashboardTest extends TestUnitCase
         $this->assertEquals($class, 'MyCustomClass');
         $this->assertEquals($option, 'MyCustomClass');
         $this->assertEquals(Dashboard::option('random'), null);
+    }
+
+    public function testIsRegisterResource()
+    {
+        $dashboard = new Dashboard();
+
+        $script = $dashboard
+            ->registerResource('scripts', 'app.js')
+            ->getResource('scripts');
+
+        $this->assertEquals($script, [
+            'app.js',
+        ]);
+
+        $stylesheets = $dashboard
+            ->registerResource('stylesheets', 'style.css')
+            ->getResource('stylesheets');
+
+        $this->assertEquals($stylesheets, [
+            'style.css',
+        ]);
+
+        $this->assertEquals($dashboard->getResource(), collect([
+            'scripts'     => [
+                'app.js',
+            ],
+            'stylesheets' => [
+                'style.css',
+            ],
+        ]));
+
+        $rewriteScript = $dashboard
+            ->registerResource('scripts', 'custom-app.js')
+            ->getResource('scripts');
+
+        $this->assertEquals($rewriteScript, [
+            'app.js',
+            'custom-app.js',
+        ]);
+
+        $rewriteStyle = $dashboard
+            ->registerResource('stylesheets', 'custom-style.css')
+            ->getResource('stylesheets');
+
+        $this->assertEquals($rewriteStyle, [
+            'style.css',
+            'custom-style.css',
+        ]);
     }
 
     protected function setUp()
