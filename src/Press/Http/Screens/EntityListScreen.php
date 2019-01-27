@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use Orchid\Press\Entities\EntityContract;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -12,6 +11,7 @@ use Orchid\Press\Models\Post;
 use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Entities\EntityContract;
 use Orchid\Press\Http\Layouts\EntitiesLayout;
 use Orchid\Press\Http\Layouts\EntitiesSelection;
 

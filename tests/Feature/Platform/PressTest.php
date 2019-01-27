@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class PressTest extends TestFeatureCase
@@ -44,7 +44,7 @@ class PressTest extends TestFeatureCase
         $response = $this
             ->actingAs($this->user)
             ->get(route('platform.entities.type.page', [
-                'example-page', 'example-page'
+                'example-page', 'example-page',
             ]));
 
         $response
@@ -56,7 +56,7 @@ class PressTest extends TestFeatureCase
     public function test_route_PagesUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->post(route('platform.entities.type.page', ['example-page','example-page','save']));
+            ->post(route('platform.entities.type.page', ['example-page', 'example-page', 'save']));
 
         $response->assertStatus(302);
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
@@ -87,7 +87,7 @@ class PressTest extends TestFeatureCase
     {
         $response = $this->actingAs($this->user)
             ->post(
-                route('platform.entities.type.edit', ['example-post', $this->post->slug,'save']),
+                route('platform.entities.type.edit', ['example-post', $this->post->slug, 'save']),
                 [$this->post->toArray()]
             );
 

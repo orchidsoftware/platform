@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Orchid\Press\Entities\EntityContract;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Models\Post;
-use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Illuminate\Http\Request;
+use Orchid\Press\Models\Post;
+use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Press\Entities\EntityContract;
 
 class EntityEditScreen extends Screen
 {
