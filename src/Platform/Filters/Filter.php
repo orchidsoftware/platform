@@ -33,18 +33,10 @@ abstract class Filter
     public $lang;
 
     /**
-     * @var null
-     */
-    public $entity;
-
-    /**
      * Filter constructor.
-     *
-     * @param $entity
      */
-    public function __construct($entity = null)
+    public function __construct()
     {
-        $this->entity = $entity;
         $this->request = request();
         $this->lang = app()->getLocale();
     }

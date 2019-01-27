@@ -62,6 +62,11 @@ class Link
     public $group = [];
 
     /**
+     * @var string
+     */
+    public $view;
+
+    /**
      * @param $name
      * @param $arguments
      *
@@ -84,14 +89,19 @@ class Link
     }
 
     /**
+     * @param Repository $query
      * @param null $arguments
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build($arguments = null)
+    public function build($query, $arguments = null)
     {
         if (! $this->display) {
             return;
+        }
+
+        if (! is_null($this->view)) {
+            return view($this->view, $query->all());
         }
 
         return view('platform::container.layouts.link', [
@@ -104,6 +114,7 @@ class Link
             'link'      => $this->link,
             'group'     => $this->group,
             'arguments' => $arguments,
+            'query'     => $query,
         ]);
     }
 
@@ -130,5 +141,18 @@ class Link
         $this->group = $links;
 
         return $this;
+    }
+
+    /**
+     * @param string $view
+     *
+     * @return $this
+     */
+    public static function view(string $view)
+    {
+        $link = new static;
+        $link->view = $view;
+
+        return $link;
     }
 }

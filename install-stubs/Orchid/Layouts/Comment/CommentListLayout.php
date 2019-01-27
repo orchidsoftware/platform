@@ -38,7 +38,7 @@ class CommentListLayout extends Table
             TD::set('post_id', __('Recording'))
                 ->setRender(function ($comment) {
                     if (! is_null($comment->post)) {
-                        return '<a href="'.route('platform.posts.type.edit', [
+                        return '<a href="'.route('platform.entities.type.edit', [
                                 $comment->post->type,
                                 $comment->post->id,
                             ]).'"><i class="icon-text-center mx-3"></i></a>';

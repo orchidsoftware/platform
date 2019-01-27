@@ -84,10 +84,6 @@ class PlatformServiceProvider extends ServiceProvider
                     'slug'        => 'platform.systems.announcement',
                     'description' => __('Announcement'),
                 ],
-                [
-                    'slug'        => 'platform.systems.history',
-                    'description' => __('Change history'),
-                ],
             ],
         ];
     }

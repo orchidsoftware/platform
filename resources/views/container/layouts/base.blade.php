@@ -4,9 +4,9 @@
 @section('controller','screen--base')
 @section('navbar')
     <ul class="nav justify-content-end v-center">
-        @foreach($screen->commandBar() as $command)
+        @foreach($screen->buildCommandBar() as $command)
             <li>
-                {!! $command->build($arguments) !!}
+                {!! $command !!}
             </li>
         @endforeach
     </ul>

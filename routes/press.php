@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Orchid\Press\Http\Screens\EntityEditScreen;
+use Orchid\Press\Http\Screens\EntityListScreen;
 use Orchid\Press\Http\Controllers\MenuController;
-use Orchid\Press\Http\Controllers\PageController;
-use Orchid\Press\Http\Controllers\PostController;
 use Orchid\Press\Http\Controllers\MediaController;
 
 /*
@@ -16,26 +16,10 @@ use Orchid\Press\Http\Controllers\MediaController;
 |
 */
 
-$this->post('posts/restore/{id?}', [PostController::class, 'restore'])
-    ->name('platform.posts.restore');
-
-$this->get('posts/{type}/create', [PostController::class, 'create'])
-    ->name('platform.posts.type.create');
-
-$this->get('posts/{type}/{post}/edit', [PostController::class, 'edit'])
-    ->name('platform.posts.type.edit');
-
-$this->get('posts/{type}/{post?}', [PostController::class, 'index'])
-    ->name('platform.posts.type');
-
-$this->post('posts/{type}', [PostController::class, 'store'])
-    ->name('platform.posts.type.store');
-
-$this->put('posts/{type}/{post?}', [PostController::class, 'update'])
-    ->name('platform.posts.type.update');
-
-$this->delete('posts/{type}/{post?}', [PostController::class, 'destroy'])
-    ->name('platform.posts.type.destroy');
+$this->screen('entities/{type}/{post?}/edit', EntityEditScreen::class)->name('platform.entities.type.edit');
+$this->screen('entities/{type}/create', EntityEditScreen::class)->name('platform.entities.type.create');
+$this->screen('entities/{type}/{page?}/page', EntityEditScreen::class)->name('platform.entities.type.page');
+$this->screen('entities/{type}', EntityListScreen::class)->name('platform.entities.type');
 
 $this->resource('menu', MenuController::class, [
     'only'  => [
@@ -49,12 +33,6 @@ $this->resource('menu', MenuController::class, [
         'destroy' => 'platform.systems.menu.destroy',
     ],
 ]);
-
-$this->get('page/{page}', [PageController::class, 'show'])
-    ->name('platform.pages.show');
-
-$this->put('page/{page}', [PageController::class, 'update'])
-    ->name('platform.pages.update');
 
 $this->group([
     'as'     => 'platform.systems.media.',

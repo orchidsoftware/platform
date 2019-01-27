@@ -59,20 +59,6 @@ abstract class Many implements EntityContract
     }
 
     /**
-     * Raw data and fields to display.
-     *
-     * @return array
-     */
-    public function generateGrid(): array
-    {
-        return [
-            'data'   => $this->get(),
-            'fields' => $this->grid(),
-            'type'   => $this,
-        ];
-    }
-
-    /**
      * Display form for filtering.
      *
      * @return View

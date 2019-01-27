@@ -183,7 +183,7 @@ class TD
      */
     public function linkPost(string $text = null): self
     {
-        return $this->link('platform.posts.type.edit', ['type', 'slug'], $text);
+        return $this->link('platform.entities.type.edit', ['type', 'slug'], $text);
     }
 
     /**
@@ -210,6 +210,7 @@ class TD
 
             if (! is_null($text)) {
                 $text = $datum->getContent($text);
+                $text = $text ?? '—';
             }
 
             return view('platform::partials.td.link', [

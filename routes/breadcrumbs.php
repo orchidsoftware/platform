@@ -64,25 +64,25 @@ Breadcrumbs::for('platform.systems.announcement', function ($trail) {
 //Posts
 
 // Platform > Posts
-Breadcrumbs::for('platform.posts.type', function ($trail, $type) {
+Breadcrumbs::for('platform.entities.type', function ($trail, $type) {
     $trail->parent('platform.index');
-    $trail->push(__('Posts'), route('platform.posts.type', $type->slug));
+    $trail->push(__('Posts'), route('platform.entities.type', $type->slug));
 });
 
 // Platform > Posts > Create
-Breadcrumbs::for('platform.posts.type.create', function ($trail, $type) {
-    $trail->parent('platform.posts.type', $type);
-    $trail->push(__('Create'), route('platform.posts.type.create', $type->slug));
+Breadcrumbs::for('platform.entities.type.create', function ($trail, $type) {
+    $trail->parent('platform.entities.type', $type);
+    $trail->push(__('Create'), route('platform.entities.type', $type->slug));
 });
 
 // Platform > Posts > Edit
-Breadcrumbs::for('platform.posts.type.edit', function ($trail, $type, $post) {
-    $trail->parent('platform.posts.type', $type);
-    $trail->push($post->getContent($type->slugFields) ?? '', route('platform.posts.type.edit', [$type->slug, $post->slug]));
+Breadcrumbs::for('platform.entities.type.edit', function ($trail, $type, $post) {
+    $trail->parent('platform.entities.type', $type);
+    $trail->push($post->getContent($type->slugFields) ?? '—', route('platform.entities.type.edit', [$type->slug, $post->slug]));
 });
 
 // Platform > Pages
-Breadcrumbs::for('platform.pages.show', function ($trail, $page) {
+Breadcrumbs::for('platform.entities.type.page', function ($trail, $page) {
     $trail->parent('platform.index');
-    $trail->push(__('Pages'), route('platform.pages.show', $page));
+    $trail->push(__('Pages'), route('platform.entities.type.page', $page));
 });

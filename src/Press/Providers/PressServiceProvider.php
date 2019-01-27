@@ -143,7 +143,7 @@ class PressServiceProvider extends ServiceProvider
             ->where('display', true)
             ->map(function ($post) {
                 return [
-                    'slug'        => 'platform.posts.type.'.$post->slug,
+                    'slug'        => 'platform.entities.type.'.$post->slug,
                     'description' => $post->name,
                 ];
             });

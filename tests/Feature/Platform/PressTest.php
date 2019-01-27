@@ -43,7 +43,9 @@ class PressTest extends TestFeatureCase
     {
         $response = $this
             ->actingAs($this->user)
-            ->get(route('platform.pages.show', 'example-page'));
+            ->get(route('platform.entities.type.page', [
+                'example-page', 'example-page',
+            ]));
 
         $response
             ->assertOk()
@@ -54,7 +56,7 @@ class PressTest extends TestFeatureCase
     public function test_route_PagesUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->put(route('platform.pages.update', 'example-page'));
+            ->post(route('platform.entities.type.page', ['example-page', 'example-page', 'save']));
 
         $response->assertStatus(302);
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
@@ -63,7 +65,7 @@ class PressTest extends TestFeatureCase
     public function test_route_PostsType()
     {
         $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type', 'example-post'));
+            ->get(route('platform.entities.type', 'example-post'));
 
         $response->assertOk();
         $this->assertContains($this->post->getContent('name'), $response->getContent());
@@ -80,8 +82,9 @@ class PressTest extends TestFeatureCase
 
     public function test_route_PostsTypeEdit()
     {
-        $response = $this->actingAs($this->user)
-            ->get(route('platform.posts.type.edit', ['example-post', $this->post->slug]));
+        $response = $this
+            ->actingAs($this->user)
+            ->get(route('platform.entities.type.edit', ['example-post', $this->post->slug]));
 
         $response->assertOk();
         $this->assertContains($this->post->getContent('title'), $response->getContent());
@@ -91,8 +94,8 @@ class PressTest extends TestFeatureCase
     public function test_route_PostsTypeUpdate()
     {
         $response = $this->actingAs($this->user)
-            ->put(
-                route('platform.posts.type.update', ['example-post', $this->post->slug]),
+            ->post(
+                route('platform.entities.type.edit', ['example-post', $this->post->slug, 'save']),
                 [$this->post->toArray()]
             );
 
