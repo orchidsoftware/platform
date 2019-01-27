@@ -75,7 +75,7 @@ class PressTest extends TestFeatureCase
     public function test_route_PostsTypeCreate()
     {
         $response = $this->actingAs($this->user)
-            ->get(route('platform.entities.type.create', ['example-post','example-post']));
+            ->get(route('platform.entities.type.create', ['example-post', 'example-post']));
 
         $response->assertOk();
     }
