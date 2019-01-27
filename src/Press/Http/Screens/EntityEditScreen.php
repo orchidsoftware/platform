@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Orchid\Press\Entities\EntityContract;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Models\Post;
+use Orchid\Screen\Layouts;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
-use Orchid\Screen\Layouts;
-use Illuminate\Http\Request;
-use Orchid\Press\Models\Post;
-use Orchid\Press\Entities\Many;
 use Orchid\Support\Facades\Alert;
-use Illuminate\Http\RedirectResponse;
-use Orchid\Press\Entities\EntityContract;
 
 class EntityEditScreen extends Screen
 {
@@ -36,7 +36,7 @@ class EntityEditScreen extends Screen
     public $permission;
 
     /**
-     * @var Many
+     * @var EntityContract
      */
     protected $entity;
 
@@ -45,18 +45,18 @@ class EntityEditScreen extends Screen
      */
     protected $exist = false;
 
-    public const POST_PERMISSION_PREFIX = 'platform.entities.type';
+    public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
 
     /**
      * Query data.
      *
-     * @param Many $type
+     * @param EntityContract $type
      *
      * @param Post $post
      *
      * @return array
      */
-    public function query(Many $type, Post $post): array
+    public function query(EntityContract $type, Post $post): array
     {
         $this->name = $type->name;
         $this->description = $type->description;
@@ -86,7 +86,7 @@ class EntityEditScreen extends Screen
             Link::name(__('Remove'))
                 ->icon('icon-trash')
                 ->method('destroy')
-                ->canSee($this->exist),
+                ->canSee($this->exist && is_a($this->entity, Many::class)),
 
             Link::name(__('Save'))
                 ->icon('icon-check')
@@ -162,7 +162,11 @@ class EntityEditScreen extends Screen
         return redirect()->route('platform.entities.type', [
             'type' => $type->slug,
         ])->with([
-            'restore' => route('platform.entities.type', $post->id),
+            'restore' => route('platform.entities.type', [
+                'type' => $type->slug,
+                $post->id,
+                'restore',
+            ]),
         ]);
     }
 }

@@ -82,7 +82,7 @@ Breadcrumbs::for('platform.entities.type.edit', function ($trail, $type, $post) 
 });
 
 // Platform > Pages
-Breadcrumbs::for('platform.pages.show', function ($trail, $page) {
+Breadcrumbs::for('platform.entities.type.page', function ($trail, $page) {
     $trail->parent('platform.index');
-    $trail->push(__('Pages'), route('platform.pages.show', $page));
+    $trail->push(__('Pages'), route('platform.entities.type.page', $page));
 });

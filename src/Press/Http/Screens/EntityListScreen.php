@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Screens;
 
+use Orchid\Press\Entities\EntityContract;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -50,7 +51,7 @@ class EntityListScreen extends Screen
      */
     protected $entity;
 
-    public const POST_PERMISSION_PREFIX = 'platform.entities.type';
+    public const POST_PERMISSION_PREFIX = 'platform.entities.type.';
 
     /**
      * Query data.
@@ -106,13 +107,15 @@ class EntityListScreen extends Screen
      *
      * @return RedirectResponse
      */
-    public function restore($id) : RedirectResponse
+    public function restore(EntityContract $type, int $id) : RedirectResponse
     {
         $post = Post::onlyTrashed()->find($id);
         $post->restore();
 
         Alert::success(__('Operation completed successfully.'));
 
-        return back();
+        return redirect()->route('platform.entities.type', [
+            'type' => $type->slug,
+        ]);
     }
 }

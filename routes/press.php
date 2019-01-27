@@ -16,9 +16,11 @@ use Orchid\Press\Http\Controllers\MediaController;
 |
 */
 
+
+$this->screen('entities/{type}/{post?}/edit', EntityEditScreen::class)->name('platform.entities.type.edit');
+$this->screen('entities/{type}/create', EntityEditScreen::class)->name('platform.entities.type.create');
+$this->screen('entities/{type}/{page?}/page', EntityEditScreen::class)->name('platform.entities.type.page');
 $this->screen('entities/{type}', EntityListScreen::class)->name('platform.entities.type');
-$this->screen('entity/{type}/{post?}/edit', EntityEditScreen::class)->name('platform.entities.type.edit');
-$this->screen('entity/{type}/create', EntityEditScreen::class)->name('platform.entities.type.create');
 
 $this->resource('menu', MenuController::class, [
     'only'  => [

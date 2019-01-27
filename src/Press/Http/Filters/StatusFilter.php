@@ -35,8 +35,10 @@ class StatusFilter extends Filter
     {
         return SelectField::make('status')
             ->value($this->request->get('status'))
-            ->options([])
-            //->options($this->entity->status())
+            ->options([
+                'publish' => __('Published'),
+                'draft'   => __('Draft'),
+            ])
             ->title(__('Status'))
             ->autocomplete('off');
     }

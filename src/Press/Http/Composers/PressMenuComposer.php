@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Http\Composers;
 
-use Orchid\Platform\ItemMenu;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemMenu;
 use Orchid\Press\Entities\Single;
 
 class PressMenuComposer
@@ -45,16 +45,17 @@ class PressMenuComposer
             ->where('display', true)
             ->sortBy('sort')
             ->each(function ($page) use ($kernel) {
-                $route = is_a($page, Single::class) ? 'platform.entities.type.edit' : 'platform.entities.type';
+                $route = is_a($page, Single::class) ? 'platform.entities.type.page' : 'platform.entities.type';
+                $params = is_a($page, Single::class) ? [$page->slug, $page->slug] : [$page->slug];
 
                 $kernel->menu->add('Main',
                     ItemMenu::setLabel($page->name)
                         ->setSlug($page->slug)
                         ->setIcon($page->icon)
                         ->setGroupName($page->groupname)
-                        ->setRoute(route($route, [$page->slug]))
-                        ->setPermission('platform.entities.type'.$page->slug)
-                        ->setActive(route($route, [$page->slug]).'*')
+                        ->setRoute(route($route, $params))
+                        ->setPermission('platform.entities.type.'.$page->slug)
+                        ->setActive(route($route, $params).'*')
                         ->setSort($page->sort)
                         ->setShow($page->display)
                 );
