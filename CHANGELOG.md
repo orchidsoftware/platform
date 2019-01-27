@@ -6,11 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 4.0.0 - 2019-01-28
+## 3.7.0 - 2019-01-28
 
 ### Changed
 - Entities have been transferred to use screens [721](https://github.com/orchidsoftware/platform/issues/721)
-- Updated dependency
 
 ### Fixed
 - The order of dependencies and their types returns incorrect values ​​in the screens

@@ -40,7 +40,7 @@
     "laravel/scout": "^5.0",
     "orchid/widget": "^1.2",
     "ralouphie/mimey": "^2.0",
-    "spatie/laravel-backup": "^6.0",
+    "spatie/laravel-backup": "^5.10",
     "spomky-labs/base64url": "^2.0",
     "watson/active": "^3.0",
     "zendframework/zend-code": "^3.3"
