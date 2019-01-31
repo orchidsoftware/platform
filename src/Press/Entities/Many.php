@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\View\View;
 use Orchid\Press\Models\Post;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\InputField;
 use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\DateTimerField;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Pagination\Paginator;
 
 abstract class Many implements EntityContract, UrlRoutable
