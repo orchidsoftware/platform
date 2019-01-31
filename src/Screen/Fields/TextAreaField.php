@@ -15,7 +15,7 @@ use Orchid\Screen\Field;
  * @method $this disabled($value = true)
  * @method $this form($value = true)
  * @method $this maxlength($value = true)
- * @method $this name($value = true)
+ * @method $this name(string $value)
  * @method $this placeholder(string $value = null)
  * @method $this readonly($value = true)
  * @method $this required($value = true)

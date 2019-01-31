@@ -26,7 +26,7 @@ use Orchid\Screen\Field;
  * @method $this maxlength($value = true)
  * @method $this min(int $value)
  * @method $this multiple($value = true)
- * @method $this name($value = true)
+ * @method $this name(string $value)
  * @method $this pattern($value = true)
  * @method $this placeholder(string $value = null)
  * @method $this readonly($value = true)
@@ -100,7 +100,8 @@ class SwitchField extends Field
 
     /**
      * @param null $name
-     * @return CheckBoxField
+     *
+     * @return SwitchField
      */
     public static function make($name = null): self
     {

@@ -33,7 +33,7 @@ class Field implements FieldContract
     /**
      * View template show.
      *
-     * @var
+     * @var string
      */
     public $view;
 

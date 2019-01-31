@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Attachment;
 
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Mimey\MimeTypes;
 use Orchid\Platform\Dashboard;
 use Illuminate\Http\UploadedFile;
@@ -39,7 +40,7 @@ class File
     public $file;
 
     /**
-     * @var Storage
+     * @var Filesystem
      */
     public $storage;
 

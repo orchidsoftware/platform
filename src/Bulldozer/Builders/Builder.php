@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Bulldozer\Builders;
 
+use Illuminate\Support\Collection;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Reflection\ClassReflection;
 
@@ -18,7 +19,7 @@ abstract class Builder
     protected $class;
 
     /**
-     * @var
+     * @var Collection
      */
     protected $parameters;
 
@@ -44,7 +45,7 @@ abstract class Builder
     }
 
     /**
-     * @param $parameters
+     * @param mixed $parameters
      * @return $this
      */
     public function setParameters($parameters): self

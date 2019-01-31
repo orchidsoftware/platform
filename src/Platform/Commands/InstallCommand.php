@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Orchid\Platform\Updates;
 use Illuminate\Console\Command;
-use Orchid\Press\Providers\PressServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
+use Orchid\Platform\Updates;
+use Orchid\Press\Providers\PressServiceProvider;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class InstallCommand extends Command
 {
     /**
-     * @var
+     * @var ProgressBar
      */
     protected $progressBar;
 
@@ -166,9 +167,9 @@ class InstallCommand extends Command
     }
 
     /**
-     * @param string        $question
-     * @param        string $constant
-     * @param string        $default
+     * @param string $question
+     * @param string $constant
+     * @param string|null $default
      *
      * @return $this
      */

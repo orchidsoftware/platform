@@ -67,11 +67,11 @@ class BootModelScreen extends Screen
     /**
      * Query data.
      *
-     * @param $model
+     * @param string $model
      *
      * @return array
      */
-    public function query($model = null): array
+    public function query(string $model = null): array
     {
         if ($model) {
             $this->exist = true;

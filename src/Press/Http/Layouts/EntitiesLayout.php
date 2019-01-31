@@ -29,6 +29,8 @@ class EntitiesLayout extends Table
     }
 
     /**
+     * @param mixed|null $data
+     *
      * @return array
      */
     public function fields($data = null): array

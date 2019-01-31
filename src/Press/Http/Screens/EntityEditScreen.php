@@ -132,8 +132,6 @@ class EntityEditScreen extends Screen
 
         Alert::success(__('Operation completed successfully.'));
 
-        return back();
-
         return redirect()->route('platform.entities.type', [
             'type' => $post->type,
             'slug' => $post->id,

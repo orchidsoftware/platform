@@ -44,7 +44,7 @@ class TD
     public $filter;
 
     /**
-     * @var string
+     * @var bool
      */
     public $sort;
 

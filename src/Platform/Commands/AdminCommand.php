@@ -62,7 +62,7 @@ class AdminCommand extends Command
                 ->createAdmin(
                     $this->argument('name') ?? $this->ask('What is your name?', 'admin'),
                     $this->argument('email') ?? $this->ask('What is your email?', 'admin@admin.com'),
-                    $this->argument('password') ?? $this->secret('What is the password?', 'password')
+                    $this->argument('password') ?? $this->secret('What is the password?')
                 );
 
             $this->info('User created successfully.');

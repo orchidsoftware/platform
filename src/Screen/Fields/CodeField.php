@@ -9,7 +9,7 @@ use Orchid\Screen\Field;
 /**
  * Class InputField.
  *
- * @method $this name($value = true)
+ * @method $this name(string $value)
  * @method $this value($value = true)
  * @method $this help(string $value = null)
  * @method $this popover(string $value = null)

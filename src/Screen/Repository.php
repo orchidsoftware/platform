@@ -18,12 +18,12 @@ class Repository extends \Illuminate\Config\Repository implements Iterator, Coun
     protected $position = 0;
 
     /**
-     * @param      $key
+     * @param string $key
      * @param null $default
      *
      * @return mixed
      */
-    public function getContent($key, $default = null)
+    public function getContent(string $key, $default = null)
     {
         return array_get($this->items, $key, $default);
     }

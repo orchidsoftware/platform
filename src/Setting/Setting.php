@@ -104,7 +104,7 @@ class Setting extends Model
      * @param string|array $key
      * @param string|array|null $default
      *
-     * @return null
+     * @return string|array|null
      */
     public function getNoCache($key, $default = null)
     {
