@@ -458,19 +458,10 @@ class Post extends Model
     }
 
     /**
-     * Retrieve the model for a bound value.
-     *
-     * @param  mixed  $value
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return string
      */
-    public function resolveRouteBinding($value)
+    public function getRouteKeyName() : string
     {
-        $post = Dashboard::modelClass(self::class);
-
-        if (is_numeric($value)) {
-            return $post->where('id', $value)->firstOrFail();
-        }
-
-        return $post->where('slug', $value)->firstOrFail();
+        return 'slug';
     }
 }

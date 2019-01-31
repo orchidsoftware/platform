@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Orchid\Screen\Fields\SelectField;
 use Orchid\Screen\Fields\DateTimerField;
 
-abstract class Single implements EntityContract
+abstract class Single implements EntityContract, UrlRoutable
 {
     use Structure, Actions;
 
