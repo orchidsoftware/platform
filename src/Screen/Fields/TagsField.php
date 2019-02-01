@@ -94,16 +94,16 @@ class TagsField extends Field
     ];
 
     /**
-     * @param null $name
+     * @param string|null $name
      * @return TagsField
      */
-    public static function make($name = null): self
+    public static function make(string $name = null): self
     {
         return (new static)->name($name);
     }
 
     /**
-     * @param $name
+     * @param string|\Closure $name
      *
      * @return \Orchid\Screen\Field|void
      */
@@ -117,7 +117,7 @@ class TagsField extends Field
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return mixed
      */

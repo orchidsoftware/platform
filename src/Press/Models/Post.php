@@ -5,23 +5,23 @@ declare(strict_types=1);
 namespace Orchid\Press\Models;
 
 use Carbon\Carbon;
-use Laravel\Scout\Searchable;
-use Orchid\Platform\Models\User;
-use Illuminate\Support\Collection;
-use Orchid\Support\Facades\Dashboard;
-use Orchid\Press\Traits\TaggableTrait;
-use Illuminate\Database\Eloquent\Model;
-use Orchid\Platform\Traits\AttachTrait;
-use Orchid\Platform\Traits\FilterTrait;
-use Illuminate\Database\Eloquent\Builder;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Orchid\Platform\Traits\MultiLanguageTrait;
-use Orchid\Press\Exceptions\EntityTypeException;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
+use Laravel\Scout\Searchable;
+use Orchid\Platform\Models\User;
+use Orchid\Platform\Traits\AttachTrait;
+use Orchid\Platform\Traits\FilterTrait;
+use Orchid\Platform\Traits\MultiLanguageTrait;
+use Orchid\Press\Exceptions\EntityTypeException;
+use Orchid\Press\Traits\TaggableTrait;
+use Orchid\Support\Facades\Dashboard;
 
 /**
  * Class Post.
@@ -163,7 +163,7 @@ class Post extends Model
     /**
      * Get Behavior Class.
      *
-     * @param null $slug
+     * @param string|null $slug
      *
      * @return \Orchid\Press\Entities\Many|\Orchid\Press\Entities\Single|null
      *
@@ -175,7 +175,7 @@ class Post extends Model
             return $this->entity;
         }
 
-        return $this->getEntity($slug ?: $this->getAttribute('type'))->entity;
+        return $this->getEntity($slug ?? $this->getAttribute('type'))->entity;
     }
 
     /**
@@ -203,8 +203,8 @@ class Post extends Model
     }
 
     /**
-     * @param      string $key
-     * @param null $default
+     * @param string $key
+     * @param mixed|null $default
      *
      * @return null
      */
@@ -232,7 +232,7 @@ class Post extends Model
     {
         $locale = $this->getOption('locale', []);
 
-        if (array_key_exists($key, $locale)) {
+        if (array_key_exists($key, array_wrap($locale))) {
             return filter_var($locale[$key], FILTER_VALIDATE_BOOLEAN);
         }
 

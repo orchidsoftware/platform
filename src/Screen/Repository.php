@@ -19,7 +19,7 @@ class Repository extends \Illuminate\Config\Repository implements Iterator, Coun
 
     /**
      * @param string $key
-     * @param null $default
+     * @param mixed|null $default
      *
      * @return mixed
      */

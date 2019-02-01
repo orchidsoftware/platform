@@ -27,9 +27,9 @@ abstract class Metric extends Base
     public $labels = [];
 
     /**
-     * @var array
+     * @var string
      */
-    public $data = [];
+    public $data;
 
     /**
      * @var string

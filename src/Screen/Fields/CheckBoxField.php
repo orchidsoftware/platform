@@ -99,10 +99,10 @@ class CheckBoxField extends Field
     ];
 
     /**
-     * @param null $name
-     * @return CheckBoxField
+     * @param string|null $name
+     * @return self
      */
-    public static function make($name = null): self
+    public static function make(string $name = null): self
     {
         return (new static)->name($name);
     }

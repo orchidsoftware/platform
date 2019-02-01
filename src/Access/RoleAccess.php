@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Access;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait RoleAccess
 {
@@ -45,10 +45,10 @@ trait RoleAccess
     }
 
     /**
-     * @return bool
+     * @return bool|null
      * @throws \Exception
      */
-    public function delete(): bool
+    public function delete(): ?bool
     {
         $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
         if ($this->exists && ! $isSoftDeleted) {

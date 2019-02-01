@@ -48,7 +48,7 @@ class RoleTest extends TestFeatureCase
 
         $response
             ->assertOk()
-            ->assertSee('field--roleslug');
+            ->assertSee('field-roles');
     }
 
     public function test_route_SystemsRolesEdit()
@@ -58,7 +58,7 @@ class RoleTest extends TestFeatureCase
             ->get(route('platform.systems.roles.edit', $this->role->slug));
 
         $response->assertOk()
-        ->assertSee('field--roleslug')
+        ->assertSee('field-roles')
         ->assertSee($this->role->name)
         ->assertSee($this->role->slug);
     }

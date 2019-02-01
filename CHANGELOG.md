@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.7.2 - 2019-02-01
+
+### Fixed
+- Correct slug (id) generation for the input field
+- Fixed rights verification in the screen when the value of the array
+
 ## 3.7.1 - 2019-01-31
 
 ### Fixed

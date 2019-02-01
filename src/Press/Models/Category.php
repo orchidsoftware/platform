@@ -22,9 +22,9 @@ class Category extends Taxonomy
     /**
      * Set taxonomy.
      *
-     * @return $this
+     * @return self
      */
-    public function setTaxonomy()
+    public function setTaxonomy() : self
     {
         $this['taxonomy'] = $this->taxonomy;
 
@@ -33,7 +33,6 @@ class Category extends Taxonomy
 
     /**
      * Select all categories, except current.
-     *
      *
      * @return array
      */
@@ -51,7 +50,7 @@ class Category extends Taxonomy
      *
      * @param array $term
      *
-     * @return $this
+     * @return self
      */
     public function newWithCreateTerm($term): self
     {
@@ -66,13 +65,15 @@ class Category extends Taxonomy
     /**
      * Set parent category.
      *
-     * @param int $parent_id
+     * @param int|null $parent_id
      *
-     * @return \Orchid\Press\Models\Category
+     * @return self
      */
-    public function setParent($parent_id = 0): self
+    public function setParent($parent_id = null): self
     {
-        $this->parent_id = ((int) $parent_id > 0) ? (int) $parent_id : null;
+        $parent_id = ((int) $parent_id > 0) ? (int) $parent_id : null;
+
+        $this->setAttribute('parent_id',$parent_id);
 
         return $this;
     }

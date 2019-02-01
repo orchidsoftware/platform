@@ -25,6 +25,7 @@ use Orchid\Screen\Exceptions\FieldRequiredAttributeException;
  * @method $this tabindex($value = true)
  * @method $this title(string $value = null)
  * @method $this options($value = true)
+ * @method $this autocomplete($value = true)
  */
 class Field implements FieldContract
 {
@@ -56,35 +57,10 @@ class Field implements FieldContract
     ];
 
     /**
-     * @var
-     */
-    public $id;
-
-    /**
-     * @var
-     */
-    public $name;
-
-    /**
-     * @var
-     */
-    public $old;
-
-    /**
-     * @var
-     */
-    public $error;
-
-    /**
-     * @var
-     */
-    public $slug;
-
-    /**
      * Vertical or Horizontal
      * bootstrap forms.
      *
-     * @var string
+     * @var string|null
      */
     public $typeForm;
 
@@ -120,6 +96,7 @@ class Field implements FieldContract
         'tabindex',
         'title',
         'xml:lang',
+        'autocomplete'
     ];
 
     /**
@@ -130,12 +107,12 @@ class Field implements FieldContract
     public $inlineAttributes = [];
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param array $arguments
      *
-     * @return Field
+     * @return self
      */
-    public function __call($name, $arguments)
+    public function __call(string  $name, array $arguments): self
     {
         foreach ($arguments as $key => $argument) {
             if ($argument instanceof \Closure) {
@@ -151,8 +128,8 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $value
-     * @return $this
+     * @param mixed $value
+     * @return self
      */
     public function value($value): self
     {
@@ -162,12 +139,12 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
-     * @return $this
+     * @return self
      */
-    public function set($key, $value = true)
+    public function set(string $key, $value = true) : self
     {
         $this->attributes[$key] = $value;
 
@@ -216,7 +193,7 @@ class Field implements FieldContract
     public function render()
     {
         if (! $this->display) {
-            return;
+            return null;
         }
 
         $this->checkRequired();
@@ -300,9 +277,9 @@ class Field implements FieldContract
     public function getId(): string
     {
         $lang = $this->get('lang');
-        $slug = $this->getSlug();
+        $slug = $this->get('name');
 
-        return "field-$lang-$slug";
+        return str_slug("field-$lang-$slug");
     }
 
     /**
@@ -356,9 +333,9 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $name
+     * @param mixed $name
      *
-     * @return Field
+     * @return self
      */
     public function modifyName($name)
     {
@@ -387,7 +364,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return Field
      */
@@ -417,7 +394,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * @return self
      */
     public function vertical(): self
     {
@@ -427,7 +404,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * @return self
      */
     public function horizontal(): self
     {
@@ -437,7 +414,7 @@ class Field implements FieldContract
     }
 
     /**
-     * @return \Orchid\Screen\Field
+     * @return self
      */
     public function hr(): self
     {

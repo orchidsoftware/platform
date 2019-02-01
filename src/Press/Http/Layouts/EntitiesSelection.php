@@ -14,11 +14,6 @@ class EntitiesSelection extends Selection
     public $filters = [];
 
     /**
-     * @var
-     */
-    public $entity;
-
-    /**
      * EntitiesSelection constructor.
      *
      * @param array $filters

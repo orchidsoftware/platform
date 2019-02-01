@@ -19,7 +19,7 @@ abstract class Base
     abstract public function build(Repository $query);
 
     /**
-     * @param $query
+     * @param Repository $query
      *
      * @return bool
      */

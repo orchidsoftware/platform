@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
-use Orchid\Press\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
+use Orchid\Press\Models\Tag;
 
 trait TaggableTrait
 {
@@ -39,11 +39,11 @@ trait TaggableTrait
     }
 
     /**
-     * @param $delimiter
+     * @param string $delimiter
      *
      * @return string
      */
-    public static function setTagsDelimiter($delimiter)
+    public static function setTagsDelimiter(string $delimiter)
     {
         static::$delimiter = $delimiter;
 
@@ -59,9 +59,9 @@ trait TaggableTrait
     }
 
     /**
-     * @param $model
+     * @param string $model
      */
-    public static function setTagsModel($model)
+    public static function setTagsModel(string $model)
     {
         static::$tagsModel = $model;
     }
@@ -69,15 +69,15 @@ trait TaggableTrait
     /**
      * @return string
      */
-    public static function getSlugGenerator()
+    public static function getSlugGenerator() : string
     {
         return static::$slugGenerator;
     }
 
     /**
-     * @param $slugGenerator
+     * @param string $slugGenerator
      */
-    public static function setSlugGenerator($slugGenerator)
+    public static function setSlugGenerator(string $slugGenerator)
     {
         static::$slugGenerator = $slugGenerator;
     }
@@ -104,7 +104,7 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
+     * @param mixed $tags
      * @param string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -124,7 +124,7 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
+     * @param mixed $tags
      * @param string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -140,7 +140,7 @@ trait TaggableTrait
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $tags
+     * @param mixed $tags
      * @param string $type
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -155,7 +155,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param $tags
+     * @param mixed $tags
      *
      * @return bool
      */
@@ -169,7 +169,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param null $tags
+     * @param mixed|null $tags
      *
      * @return bool
      */
@@ -185,7 +185,7 @@ trait TaggableTrait
     }
 
     /**
-     * @param        $tags
+     * @param  mixed $tags
      * @param string $type
      *
      * @return bool
@@ -216,9 +216,9 @@ trait TaggableTrait
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
-    public function addTag($name)
+    public function addTag(string $name)
     {
         $tag = $this->createTagsModel()->firstOrNew([
             'slug'      => $this->generateTagSlug($name),
@@ -241,9 +241,9 @@ trait TaggableTrait
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
-    public function removeTag($name)
+    public function removeTag(string $name)
     {
         $slug = $this->generateTagSlug($name);
 
@@ -269,11 +269,11 @@ trait TaggableTrait
     }
 
     /**
-     * @param $tags
+     * @param mixed $tags
      *
      * @return array
      */
-    public function prepareTags($tags)
+    public function prepareTags($tags) : array
     {
         if (is_null($tags)) {
             return [];
@@ -304,7 +304,7 @@ trait TaggableTrait
      * @param  string $name
      * @return string
      */
-    protected function generateTagSlug($name)
+    protected function generateTagSlug(string $name) : string
     {
         return call_user_func(static::$slugGenerator, $name);
     }
@@ -314,12 +314,8 @@ trait TaggableTrait
      *
      * @return string
      */
-    protected function getEntityClassName()
+    protected function getEntityClassName() : string
     {
-        if (isset(static::$entityNamespace)) {
-            return static::$entityNamespace;
-        }
-
         return $this->tags()->getMorphClass();
     }
 }

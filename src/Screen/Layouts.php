@@ -18,7 +18,7 @@ use Orchid\Screen\Layouts\Rows;
 class Layouts
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $active;
 
@@ -53,7 +53,7 @@ class Layouts
     public $async = false;
 
     /**
-     * @var
+     * @var string
      */
     public $slug;
 
@@ -71,12 +71,12 @@ class Layouts
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param mixed $arguments
      *
-     * @return mixed
+     * @return self
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, $arguments) : self
     {
         $new = new static;
         $new->active = $name;
@@ -85,32 +85,13 @@ class Layouts
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param mixed $property
      *
-     * @return mixed
-     */
-    public function __call($name, $arguments)
-    {
-        if (is_null($name)) {
-            $this->active = $name;
-
-            return call_user_func_array([$this, 'setLayouts'], $arguments);
-        }
-
-        $this->compose[$name] = array_shift($arguments);
-
-        return $this;
-    }
-
-    /**
-     * @param $property
-     *
-     * @return $this
+     * @return self
      *
      * @throws \ReflectionException
      */
-    protected function setLayouts($property)
+    protected function setLayouts($property) : self
     {
         $this->layouts = $property;
 

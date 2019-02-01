@@ -94,10 +94,10 @@ class UTMField extends Field
     ];
 
     /**
-     * @param null $name
+     * @param string|null $name
      * @return UTMField
      */
-    public static function make($name = null): self
+    public static function make(string $name = null): self
     {
         return (new static)->name($name);
     }

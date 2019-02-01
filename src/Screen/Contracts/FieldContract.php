@@ -33,20 +33,20 @@ interface FieldContract
     public function checkRequired();
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */
     public function get($key, $value = null);
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */
-    public function set($key, $value);
+    public function set(string $key, $value);
 
     /**
      * @return array

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
+use Orchid\Screen\Layouts\Base;
+use ReflectionClass;
+use ReflectionParameter;
 
 /**
  * Class Screen.
@@ -36,7 +39,7 @@ abstract class Screen extends Controller
     /**
      * Permission.
      *
-     * @var string
+     * @var string|array
      */
     public $permission;
 
@@ -68,7 +71,7 @@ abstract class Screen extends Controller
     /**
      * Views.
      *
-     * @return array
+     * @return Layouts[]
      */
     abstract public function layout(): array;
 
@@ -102,7 +105,7 @@ abstract class Screen extends Controller
 
         foreach ($this->layout() as $layout) {
             if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
-                return $layout->build($post, true);
+                return $layout->build($post,true);
             }
         }
     }
@@ -123,9 +126,9 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param array $parameters
+     * @param mixed ...$parameters
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return \Illuminate\Contracts\View\Factory|View|\Illuminate\View\View|mixed
      * @throws \ReflectionException
      * @throws \Throwable
      */
@@ -152,13 +155,13 @@ abstract class Screen extends Controller
     }
 
     /**
-     * @param $method
+     * @param string $method
      *
      * @throws \ReflectionException
      */
-    public function reflectionParams($method)
+    public function reflectionParams(string $method)
     {
-        $class = new \ReflectionClass($this);
+        $class = new ReflectionClass($this);
 
         if (! is_string($method)) {
             return;
@@ -175,12 +178,13 @@ abstract class Screen extends Controller
         foreach ($parameters as $key => $parameter) {
             $arguments[] = $this->bind($key, $parameter);
         }
+
         $this->arguments = $arguments;
     }
 
     /**
-     * @param $key
-     * @param $parameter
+     * @param int|string $key
+     * @param ReflectionParameter|null $parameter
      *
      * @return mixed
      */
@@ -212,15 +216,13 @@ abstract class Screen extends Controller
      */
     private function checkAccess(): bool
     {
-        if (is_null($this->permission)) {
+        if (empty($this->permission)) {
             return true;
         }
 
-        if (is_string($this->permission)) {
-            $this->permission = [$this->permission];
-        }
+        $permissions = array_wrap($this->permission);
 
-        foreach ($this->permission as $item) {
+        foreach ($permissions as $item) {
             if (Auth::user()->hasAccess($item)) {
                 return true;
             }
@@ -234,11 +236,10 @@ abstract class Screen extends Controller
      */
     public function buildCommandBar() : array
     {
-        $commands = [];
         foreach ($this->commandBar() as $command) {
             $commands[] = $command->build($this->post, $this->arguments);
         }
 
-        return $commands;
+        return $commands ?? [];
     }
 }

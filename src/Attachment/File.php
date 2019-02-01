@@ -60,7 +60,7 @@ class File
     public $disk;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $group;
 
@@ -97,7 +97,7 @@ class File
     /**
      * @return string
      */
-    public function getHashFile()
+    public function getHashFile() : string
     {
         return sha1_file($this->file->getRealPath());
     }

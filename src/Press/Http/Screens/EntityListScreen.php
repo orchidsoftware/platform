@@ -110,8 +110,7 @@ class EntityListScreen extends Screen
      */
     public function restore(EntityContract $type, int $id) : RedirectResponse
     {
-        $post = Post::onlyTrashed()->find($id);
-        $post->restore();
+        Post::onlyTrashed()->findOrFail($id)->restore();
 
         Alert::success(__('Operation completed successfully.'));
 

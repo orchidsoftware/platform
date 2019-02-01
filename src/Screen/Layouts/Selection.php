@@ -27,7 +27,7 @@ abstract class Selection extends Base
         $count = $filters->count();
 
         if ($count === 0) {
-            return;
+            return null;
         }
 
         foreach ($filters as $key => $filter) {

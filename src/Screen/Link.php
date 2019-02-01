@@ -22,37 +22,32 @@ class Link
     use CanSee;
 
     /**
-     * @var
-     */
-    public $slug;
-
-    /**
-     * @var
+     * @var string|null
      */
     public $name;
 
     /**
-     * @var
+     * @var string
      */
     public $method;
 
     /**
-     * @var
+     * @var string|null
      */
     public $icon;
 
     /**
-     * @var
+     * @var string|null
      */
     public $modal;
 
     /**
-     * @var
+     * @var string|null
      */
     public $title;
 
     /**
-     * @var
+     * @var string|null
      */
     public $link;
 
@@ -62,28 +57,28 @@ class Link
     public $group = [];
 
     /**
-     * @var string
+     * @var string|null
      */
     public $view;
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param mixed|null $arguments
      *
      * @return mixed
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, $arguments)
     {
         return (new static)->rewriteProperty($name, $arguments[0]);
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param mixed|null $arguments
      *
-     * @return mixed
+     * @return self
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, $arguments) : self
     {
         return call_user_func([$this, 'rewriteProperty'], $name, $arguments[0]);
     }
@@ -94,10 +89,10 @@ class Link
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function build($query, $arguments = null)
+    public function build(Repository $query, $arguments = null)
     {
         if (! $this->display) {
-            return;
+            return null;
         }
 
         if (! is_null($this->view)) {
@@ -105,7 +100,6 @@ class Link
         }
 
         return view('platform::container.layouts.link', [
-            'slug'      => $this->slug,
             'name'      => $this->name,
             'method'    => $this->method,
             'icon'      => $this->icon,
@@ -119,12 +113,12 @@ class Link
     }
 
     /**
-     * @param $name
-     * @param $property
+     * @param string $name
+     * @param mixed|null $property
      *
-     * @return $this
+     * @return self
      */
-    protected function rewriteProperty($name, $property)
+    protected function rewriteProperty(string $name, $property) : self
     {
         $this->$name = $property;
 
@@ -134,9 +128,9 @@ class Link
     /**
      * @param array $links
      *
-     * @return $this
+     * @return self
      */
-    public function dropdown(array $links)
+    public function dropdown(array $links) : self
     {
         $this->group = $links;
 
@@ -146,9 +140,9 @@ class Link
     /**
      * @param string $view
      *
-     * @return $this
+     * @return self
      */
-    public static function view(string $view)
+    public static function view(string $view): self
     {
         $link = new static;
         $link->view = $view;
