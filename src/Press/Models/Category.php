@@ -73,7 +73,7 @@ class Category extends Taxonomy
     {
         $parent_id = ((int) $parent_id > 0) ? (int) $parent_id : null;
 
-        $this->setAttribute('parent_id',$parent_id);
+        $this->setAttribute('parent_id', $parent_id);
 
         return $this;
     }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Orchid\Screen;
 
+use ReflectionClass;
+use ReflectionParameter;
 use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
-use Orchid\Screen\Layouts\Base;
-use ReflectionClass;
-use ReflectionParameter;
 
 /**
  * Class Screen.
@@ -105,7 +105,7 @@ abstract class Screen extends Controller
 
         foreach ($this->layout() as $layout) {
             if (property_exists($layout, 'slug') && $layout->slug === $slugLayouts) {
-                return $layout->build($post,true);
+                return $layout->build($post, true);
             }
         }
     }

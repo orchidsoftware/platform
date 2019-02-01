@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
 use Orchid\Press\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 
 trait TaggableTrait
 {
