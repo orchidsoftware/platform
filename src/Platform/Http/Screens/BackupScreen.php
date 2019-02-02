@@ -70,6 +70,7 @@ class BackupScreen extends Screen
     {
         return [
             Link::name(__('Create'))
+                ->icon('icon-plus')
                 ->method('runBackup'),
         ];
     }

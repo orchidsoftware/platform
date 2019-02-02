@@ -95,6 +95,12 @@ class BootModelScreen extends Screen
     public function commandBar(): array
     {
         return [
+
+            Link::name(__('Delete'))
+                ->icon('icon-trash')
+                ->canSee($this->exist)
+                ->method('delete'),
+
             Link::name(__('Build all models'))
                 ->icon('icon-magic-wand')
                 ->canSee($this->exist)
@@ -105,11 +111,6 @@ class BootModelScreen extends Screen
                 ->modal('CreateModelModal')
                 ->title(__('Add new model'))
                 ->method('createModel'),
-
-            Link::name(__('Delete'))
-                ->icon('icon-trash')
-                ->canSee($this->exist)
-                ->method('delete'),
         ];
     }
 
