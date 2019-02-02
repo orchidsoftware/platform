@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Color palette, indents of elements and minor edits
+- The image field no longer supports additional features.
+
+### Fixed
+- Opening file information in modal window
 
 ## 3.7.2 - 2019-02-01
 

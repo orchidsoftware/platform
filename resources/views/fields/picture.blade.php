@@ -37,156 +37,30 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content-wrapper">
                     <div class="modal-content">
-                        <div class="modal-header clearfix">
-                            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span
-                                        aria-hidden="true">×</span></button>
-                            <h5>{{ __('Crop image') }}</h5>
+                        <div class="position-relative">
+                            <img class="upload-panel">
                         </div>
-                        <div class="row">
-                            <div class="col-8">
-                                <img class="upload-panel">
-                            </div>
-                            <div class="col-4">
-                                <div class="preview"></div>
-                                <div class="docs-data">
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">X</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataX"
-                                               placeholder="x">
-                                        <span class="input-group-append">
-                                      <span class="input-group-text">px</span>
-                                    </span>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">Y</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataY"
-                                               placeholder="y">
-                                        <span class="input-group-append">
-                                      <span class="input-group-text">px</span>
-                                    </span>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">Width</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataWidth"
-                                               placeholder="width">
-                                        <span class="input-group-append">
-                                      <span class="input-group-text">px</span>
-                                    </span>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">Height</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataHeight"
-                                               placeholder="height">
-                                        <span class="input-group-append">
-                                      <span class="input-group-text">px</span>
-                                    </span>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">Rotate</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataRotate"
-                                               placeholder="rotate">
-                                        <span class="input-group-append">
-                                      <span class="input-group-text">deg</span>
-                                    </span>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">ScaleX</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataScaleX"
-                                               placeholder="scaleX">
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                    <span class="input-group-prepend">
-                                      <label class="input-group-text">ScaleY</label>
-                                    </span>
-                                        <input type="text" class="form-control picture-datas picture-dataScaleY"
-                                               placeholder="scaleY">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="modal-footer">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#zoomin"
-                                        title="Zoom In">
-                                    <i class="icon-magnifier-add icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#zoomout"
-                                        title="Zoom Out">
-                                    <i class="icon-magnifier-remove icons"></i>
+
+                            <button type="button"
+                                    class="btn btn-default"
+                                    data-action="fields--picture#crop">
+                                {{ __('Crop') }}
+                            </button>
+
+
+                            <div class="bg-white">
+                                <button type="button"
+                                        class="btn btn-outline-danger"
+                                        data-dismiss="modal">
+                                    {{ __('Close') }}
                                 </button>
                             </div>
 
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#moveleft"
-                                        title="Move Left">
-                                    <i class="icon-arrow-left icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#moveright"
-                                        title="Move Right">
-                                    <i class="icon-arrow-right icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#moveup"
-                                        title="Move Up">
-                                    <i class="icon-arrow-up icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#movedown"
-                                        title="Move Down">
-                                    <i class="icon-arrow-down icons"></i>
-                                </button>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#rotateleft"
-                                        title="Rotate Left">
-                                    <i class="icon-action-undo icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#rotateright"
-                                        title="Rotate Right">
-                                    <i class="icon-action-redo icons"></i>
-                                </button>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#scalex"
-                                        title="Flip Horizontal">
-                                    <i class="icon-arrow-left-circle icons"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#scaley"
-                                        title="Flip Vertical">
-                                    <i class="icon-arrow-up-circle icons"></i>
-                                </button>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#aspectratiowh"
-                                        title="Aspect Ratio Width/Height ">
-                                    W:H
-                                </button>
-                                <button type="button" class="btn btn-primary" data-action="fields--picture#aspectratiofree"
-                                        title="Free Aspect Ratio">
-                                    Free
-                                </button>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary"
-                                    data-action="fields--picture#crop">{{ __('Crop') }}</button>
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">{{ __('Close') }}</button>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

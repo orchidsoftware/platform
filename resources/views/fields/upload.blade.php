@@ -31,8 +31,8 @@
       <small class="w-b-k">{{__('(Files are processed automatically, you just need to specify their order)')}}</small>
     </div>
 
-     <div class="modal fade slide-up disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
-         <div class="modal-dialog">
+     <div class="modal fade disable-scroll" tabindex="-1" role="dialog" aria-hidden="false">
+         <div class="modal-dialog slide-up">
              <div class="modal-content-wrapper">
                  <div class="modal-content">
                      <div class="modal-header clearfix">
