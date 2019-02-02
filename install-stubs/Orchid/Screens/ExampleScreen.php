@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens;
 
+use Illuminate\Support\Facades\Auth;
+use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
@@ -166,6 +168,13 @@ class ExampleScreen extends Screen
     public function example()
     {
         Alert::warning('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel vulputate mi.');
+
+        Auth::user()->notify(new DashboardNotification([
+            'title'   => 'Hello Word',
+            'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            'action'  => 'http://orchid.software',
+            'type'    => DashboardNotification::INFO,
+        ]));
 
         return back();
     }

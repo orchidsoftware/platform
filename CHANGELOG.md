@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.7.3 - 2019-02-02
+
+### Changed
+- Color palette, indents of elements and minor edits
+
 ## 3.7.2 - 2019-02-01
 
 ### Fixed

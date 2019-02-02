@@ -235,3 +235,11 @@ div.mce-fullscreen {
 .graph-svg-tip {
   @extend .bg-dark;
 }
+
+
+// leaflet-touch
+
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+  font-size: $font-size-base;
+}

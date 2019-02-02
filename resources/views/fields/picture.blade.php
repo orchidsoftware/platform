@@ -4,13 +4,15 @@
          data-fields--picture-storage="{{$storage ?? 'public'}}"
          data-fields--picture-width="{{$width}}"
          data-fields--picture-height="{{$height}}">
-        <div class="b text-center wrapper-lg picture-actions">
+        <div class="b text-right wrapper picture-actions">
 
-            <div class="fields--picture-container m-b-md">
-                <img src="#" class="picture-preview img-fluid img-thumbnail" alt="">
+            <div class="fields--picture-container">
+                <img src="#" class="picture-preview img-fluid img-full m-b-md b" alt="">
             </div>
 
-            <label class="btn btn-link">
+            <span class="mt-1 float-left">{{ __('Upload image from your computer:') }}</span>
+
+            <label class="btn btn-default m-n">
                 <i class="icon-cloud-upload"></i> {{ __('Browse') }}
                 <input type="file"
                        accept="image/*"
@@ -19,7 +21,7 @@
                        class="d-none">
             </label>
 
-            <button type="button" class="btn btn-danger picture-remove"
+            <button type="button" class="btn btn-outline-danger picture-remove"
                     data-action="fields--picture#clear">{{ __('Remove') }}</button>
 
             <input type="file" class="d-none">

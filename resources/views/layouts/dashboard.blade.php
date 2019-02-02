@@ -36,7 +36,7 @@
             <div class="h-100 w-100 position-relative to-top cursor b-b mt-md-5"
                  data-action="click->layouts--html-load#goToTop"
                  title="{{ __('Go to top') }}"
-                 style="border-bottom: 1px solid #5c6269;">
+                 style="border-bottom: 1px solid rgba(233, 236, 239, 0.05);">
                 <div class="bottom-left w-100 mb-2">
                     <small><i class="icon-arrow-up m-r-xs"></i> {{ __('Go to top') }}</small>
                 </div>

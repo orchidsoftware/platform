@@ -14,7 +14,7 @@
             @endif
         >
             @isset($badge)
-                <b class="badge {{$badge['class']}} pull-right">{{$badge['data']()}}</b>
+                <b class="badge {{$badge['class']}} pull-right mr-3">{{$badge['data']()}}</b>
             @endisset
             <i class="{{$icon}} m-r-xs"></i>
             {{ __($label) }}
