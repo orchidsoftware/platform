@@ -46,7 +46,7 @@ Once these commands have completed, you are ready to enjoy platform!
 
 ###### Simple screenshot:
 
-![screenshot](https://user-images.githubusercontent.com/5102591/52168099-94d1b780-2736-11e9-94b5-a4d3be7e0a47.png)
+![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
 
 ## Change log
 
