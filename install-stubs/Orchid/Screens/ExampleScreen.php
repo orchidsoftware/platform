@@ -2,13 +2,12 @@
 
 namespace App\Orchid\Screens;
 
-use Illuminate\Support\Facades\Auth;
-use Orchid\Platform\Notifications\DashboardNotification;
 use Orchid\Screen\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layouts;
 use Orchid\Screen\Repository;
 use Orchid\Support\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 use Orchid\Screen\Fields\InputField;
 use App\Orchid\Layouts\Examples\RowExample;
 use App\Orchid\Layouts\Examples\TableExample;
@@ -16,6 +15,7 @@ use App\Orchid\Layouts\Examples\MetricsExample;
 use App\Orchid\Layouts\Examples\ChartBarExample;
 use App\Orchid\Layouts\Examples\ChartPieExample;
 use App\Orchid\Layouts\Examples\ChartLineExample;
+use Orchid\Platform\Notifications\DashboardNotification;
 
 class ExampleScreen extends Screen
 {
