@@ -92,7 +92,7 @@ class Link
     public function build(Repository $query, $arguments = null)
     {
         if (! $this->display) {
-            return null;
+            return;
         }
 
         if (! is_null($this->view)) {

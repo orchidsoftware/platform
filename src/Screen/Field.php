@@ -96,7 +96,7 @@ class Field implements FieldContract
         'tabindex',
         'title',
         'xml:lang',
-        'autocomplete'
+        'autocomplete',
     ];
 
     /**
@@ -193,7 +193,7 @@ class Field implements FieldContract
     public function render()
     {
         if (! $this->display) {
-            return null;
+            return;
         }
 
         $this->checkRequired();
