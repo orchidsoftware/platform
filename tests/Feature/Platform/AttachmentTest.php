@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
 use Illuminate\Http\UploadedFile;
+use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class AttachmentTest extends TestFeatureCase
@@ -121,5 +121,37 @@ class AttachmentTest extends TestFeatureCase
                 'id' => $upload->id,
             ]);
         */
+    }
+
+    /**
+     * @test
+     */
+    public function testAttachmentHttpUpdate()
+    {
+        /** @var $response \Illuminate\Foundation\Testing\TestResponse */
+        $response = $this
+            ->actingAs($this->getUser())
+            ->post(route('platform.systems.files.upload'), [
+                'files' => UploadedFile::fake()->image('avatar.jpg'),
+            ]);
+
+        /** @var $upload \Orchid\Attachment\Models\Attachment */
+        $upload = $response->original;
+
+        $response = $this
+            ->actingAs($this->getUser())
+            ->put(route('platform.systems.files.update', $upload->id), [
+                'name'        => 'New name',
+                'description' => 'New description',
+                'alt'         => 'New alt',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertJson([
+                'name'        => 'New name',
+                'description' => 'New description',
+                'alt'         => 'New alt',
+            ]);
     }
 }

@@ -60,22 +60,6 @@ abstract class Many implements EntityContract, UrlRoutable
     }
 
     /**
-     * Display form for filtering.
-     *
-     * @return View
-     */
-    public function showFilterDashboard(): View
-    {
-        $dashboardFilter = $this->getFilters();
-        $chunk = ceil($dashboardFilter->count() / 4);
-
-        return view('platform::container.posts.filter', [
-            'filters' => $dashboardFilter,
-            'chunk'   => $chunk,
-        ]);
-    }
-
-    /**
      * Get all the filters.
      *
      * @return Collection

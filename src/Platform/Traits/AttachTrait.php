@@ -31,6 +31,7 @@ trait AttachTrait
             $query->where('attachmentable_group', $group);
         }
 
-        return $query;
+        return $query
+            ->orderBy('sort','asc');
     }
 }

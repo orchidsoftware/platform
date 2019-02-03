@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Http\Controllers\Systems;
 
-use Orchid\Attachment\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Orchid\Attachment\File;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Platform\Http\Controllers\Controller;
 
@@ -80,20 +80,6 @@ class AttachmentController extends Controller
     }
 
     /**
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getFilesByIds(Request $request)
-    {
-        $files = Attachment::whereIn('id', $request->get('files'))
-            ->oldest('sort')
-            ->get();
-
-        return response()->json($files);
-    }
-
-    /**
      * @param int $id
      * @param Request $request
      *
@@ -101,11 +87,12 @@ class AttachmentController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        Attachment::findOrFail($id)
-            ->fill($request->all())
-            ->save();
+        $attachment = Attachment::findOrFail($id)
+            ->fill($request->all());
 
-        return response(200);
+        $attachment->save();
+
+        return response()->json($attachment);
     }
 
     /**

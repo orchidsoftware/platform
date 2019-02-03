@@ -146,8 +146,24 @@ export default class extends Controller {
 
     /**
      *
+     * @param dropname
+     * @param name
+     * @param file
+     */
+    addSortDataAtributes(dropname, name, file) {
+        $(`${dropname} .dz-preview:last-child`)
+            .attr('data-file-id', file.id)
+            .addClass('file-sort');
+        $(
+            `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
+        ).appendTo(dropname);
+    }
+
+    /**
+     *
      */
     initDropZone() {
+        const self = this;
         const data = this.data.get('data') && JSON.parse(this.data.get('data'));
         const storage = this.data.get('storage');
         const name = this.data.get('name');
@@ -192,6 +208,11 @@ export default class extends Controller {
 
                     e.previewElement.appendChild(removeButton);
                     e.previewElement.appendChild(editButton);
+
+
+                    if(e.data !== undefined) {
+                        self.addSortDataAtributes(dropname, name, e.data);
+                    }
                 });
 
                 this.on('completemultiple', () => {
@@ -215,12 +236,8 @@ export default class extends Controller {
                         this.emit('addedfile', mockFile);
                         this.emit('thumbnail', mockFile, mockFile.url);
                         this.files.push(mockFile);
-                        $(`${dropname}.dz-preview:last-child`)
-                            .attr('data-file-id', item.id)
-                            .addClass('file-sort');
-                        $(
-                            `<input type='hidden' class='files-${item.id}' name='${name}[]' value='${item.id}'  />`
-                        ).appendTo(dropname);
+
+                        self.addSortDataAtributes(dropname, name, item);
                     });
                 }
 
@@ -242,6 +259,7 @@ export default class extends Controller {
                 });
             },
             error(file, response) {
+
                 if ($.type(response) === 'string') {
                     return response; //dropzone sends it's own error messages in string
                 }
@@ -261,12 +279,7 @@ export default class extends Controller {
                     }
                 });
 
-                $(`${dropname} .dz-preview:last-child`)
-                    .attr('data-file-id', file.data.id)
-                    .addClass('file-sort');
-                $(
-                    `<input type='hidden' class='files-${file.data.id}' name='${name}[]' value='${file.data.id}'  />`
-                ).appendTo(dropname);
+                self.addSortDataAtributes(dropname, name, file.data);
             },
         });
     }

@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.7.4 - 2019-02-03
+
+### Changed
+- Menus can no longer be filled with an array.
+
+### Fixed
+- Sorting with nesting attachment
+
 ## 3.7.3 - 2019-02-02
 
 ### Changed

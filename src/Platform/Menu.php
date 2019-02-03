@@ -59,68 +59,16 @@ class Menu
     }
 
     /**
-     * Setting the menu position.
-     *
-     * @param $location
-     *
-     * @return Menu
-     */
-    public function place(string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * @param $template
-     *
-     * @return Menu
-     */
-    public function template(string $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
-    /**
-     * @param $arg
-     *
-     * @return $this
-     */
-    public function with($arg)
-    {
-        $this->arg = $arg;
-
-        return $this;
-    }
-
-    /**
-     * @param $sort
-     *
-     * @return Menu
-     */
-    public function sortBy(int $sort): self
-    {
-        $this->sort = $sort;
-
-        return $this;
-    }
-
-    /**
      * Adding a new element to the container.
      *
      * @param string $place
-     * @param array|ItemMenu $arg
+     * @param ItemMenu $arg
      *
      * @return $this
      */
-    public function add(string $place, $arg)
+    public function add(string $place, ItemMenu $arg)
     {
-        if ($arg instanceof ItemMenu) {
-            $arg = get_object_vars($arg);
-        }
+        $arg = get_object_vars($arg);
 
         if (array_key_exists('show', $arg) && ! $arg['show']) {
             return $this;
