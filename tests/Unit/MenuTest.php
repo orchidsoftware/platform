@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Unit;
 
-use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemMenu;
+use Orchid\Platform\Dashboard;
 use Orchid\Tests\TestUnitCase;
 
 /**
@@ -13,7 +13,6 @@ use Orchid\Tests\TestUnitCase;
  */
 class MenuTest extends TestUnitCase
 {
-
     public function testIsMenu()
     {
         $menu = (new Dashboard())->menu;
@@ -26,7 +25,7 @@ class MenuTest extends TestUnitCase
             ->setSort(1000)
         );
 
-        $this->assertEquals(!is_null($menu->render('Main')), true);
+        $this->assertEquals(! is_null($menu->render('Main')), true);
         $this->assertEquals($menu->container->count(), 1);
 
         $menu->add('Test', ItemMenu::setLabel('Users')
@@ -38,7 +37,7 @@ class MenuTest extends TestUnitCase
             ->setSort(503)
         );
 
-        $this->assertEquals(!is_null($menu->render('Test')), true);
+        $this->assertEquals(! is_null($menu->render('Test')), true);
     }
 
     public function test_count_location()

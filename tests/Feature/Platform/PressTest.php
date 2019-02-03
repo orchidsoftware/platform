@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Orchid\Tests\Feature\Platform;
 
-use Orchid\Platform\Models\User;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Models\User;
 use Orchid\Tests\TestFeatureCase;
 
 class PressTest extends TestFeatureCase
@@ -107,7 +107,6 @@ class PressTest extends TestFeatureCase
     {
         $post = factory(Post::class)->create();
 
-
         $response = $this->actingAs($this->user)
             ->post(
                 route('platform.entities.type.edit', ['example-post', $post->slug, 'destroy'])
@@ -115,7 +114,6 @@ class PressTest extends TestFeatureCase
 
         $response->assertStatus(302);
         $this->assertContains('success', $response->baseResponse->getRequest()->getSession()->get('flash_notification')['level']);
-
 
         $response = $this->actingAs($this->user)
             ->post(

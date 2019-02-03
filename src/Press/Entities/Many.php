@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Entities;
 
-use Illuminate\View\View;
 use Orchid\Press\Models\Post;
 use Illuminate\Support\Collection;
 use Orchid\Screen\Fields\InputField;

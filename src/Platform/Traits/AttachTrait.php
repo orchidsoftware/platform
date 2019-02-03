@@ -32,6 +32,6 @@ trait AttachTrait
         }
 
         return $query
-            ->orderBy('sort','asc');
+            ->orderBy('sort', 'asc');
     }
 }
