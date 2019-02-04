@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class Updates
 {
@@ -96,8 +96,7 @@ class Updates
     public function getStatus(): bool
     {
         foreach ($this->requestVersion() as $key => $version) {
-
-            if (!str_contains($key, 'dev')) {
+            if (! str_contains($key, 'dev')) {
                 continue;
             }
 
