@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.7.5 - 2019-02-04
+
+### Fixed
+- Redirect entity for save
+
 ## 3.7.4 - 2019-02-03
 
 ### Changed
