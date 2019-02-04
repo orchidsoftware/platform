@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Redirect entity for save
 
+### Removed
+- dependency `composer/semver`
+
 ## 3.7.4 - 2019-02-03
 
 ### Changed

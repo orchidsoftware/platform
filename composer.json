@@ -32,7 +32,6 @@
   "require": {
     "ext-curl": "*",
     "ext-json": "*",
-    "composer/semver": "^1.4",
     "cviebrock/eloquent-sluggable": "^4.6",
     "davejamesmiller/laravel-breadcrumbs": "^5.1",
     "laracasts/generators": "^1.1",

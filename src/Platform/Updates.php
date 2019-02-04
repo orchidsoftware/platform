@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform;
 
-use Composer\Semver\Comparator;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class Updates
 {
@@ -97,8 +96,12 @@ class Updates
     public function getStatus(): bool
     {
         foreach ($this->requestVersion() as $key => $version) {
-            if ($key !== 'dev-master' && Comparator::greaterThan($version['version'],
-                    $this->currentVersion)) {
+
+            if (!str_contains($key, 'dev')) {
+                continue;
+            }
+
+            if (version_compare($version['version'], $this->currentVersion, '>')) {
                 return true;
             }
         }
@@ -114,7 +117,9 @@ class Updates
     public function requestVersion(): array
     {
         try {
-            return json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
+            $versions = json_decode(file_get_contents($this->apiURL), true)['packages']['orchid/platform'];
+
+            return array_reverse($versions);
         } catch (\Exception $exception) {
             Log::alert($exception->getMessage());
 
