@@ -1,5 +1,5 @@
 @component($typeForm,get_defined_vars())
-    @if(isset($fieldNames))
+    @isset($fieldNames)
         <p id="{{$id}}">{{$fieldNames ?? ''}}</p>
-    @endif
+    @endisset
 @endcomponent

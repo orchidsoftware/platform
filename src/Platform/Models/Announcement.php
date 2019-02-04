@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Models;
 
-use Parsedown;
-use Orchid\Platform\Dashboard;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Orchid\Platform\Dashboard;
+use Parsedown;
 
 class Announcement extends Model
 {
@@ -34,6 +34,18 @@ class Announcement extends Model
      * @var array
      */
     protected $appends = ['parsed_content'];
+
+    /**
+     *
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function () {
+            self::disableAll();
+        });
+    }
 
     /**
      * Get the user that created the announcement.
