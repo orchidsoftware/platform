@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.8.0 - 2019-02-07
+
+### Added
+- Route `platform.resource` for static file from package
+- Register `public` directory for packages `addPublicDirectory` and `getPublicDirectory`
+- Function `orchid_mix` for packages
+
+### Fixed
+- Route cache closure
+
+### Removed
+- Command `orchid:link`
+- Method for clear opcache
+
 ## 3.7.5 - 2019-02-04
 
 ### Fixed

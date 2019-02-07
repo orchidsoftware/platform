@@ -46,11 +46,6 @@ class Menu
     private $item;
 
     /**
-     * @var
-     */
-    private $template;
-
-    /**
      * DashboardMenu constructor.
      */
     public function __construct()

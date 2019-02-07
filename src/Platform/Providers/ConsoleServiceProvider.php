@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
@@ -27,7 +26,6 @@ class ConsoleServiceProvider extends ServiceProvider
         InstallCommand::class,
         AdminCommand::class,
         FilterCommand::class,
-        LinkCommand::class,
         RowsCommand::class,
         ScreenCommand::class,
         TableCommand::class,

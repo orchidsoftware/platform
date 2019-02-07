@@ -73,6 +73,12 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         /*
+         * Public
+         */
+        Route::domain((string) config('platform.domain'))
+            ->group(realpath(PLATFORM_PATH.'/routes/public.php'));
+
+        /*
          * Dashboard
          */
         Route::domain((string) config('platform.domain'))

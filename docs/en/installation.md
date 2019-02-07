@@ -43,10 +43,6 @@ Run process
 php artisan orchid:install
 ```
 
-
-> **Notice.** Some platforms (vagrant) can not create symbolic links with this commands. And it may become necessary to manually perform the following commands 
-`cp -rf vendor/orchid/platform/public public/orchid` and `mkdir -p public/storage/public`
-
 ## Create user
 
 Run the following command to create a user with supreme (at the moment of creation) rights passing the username, e-mail and password:

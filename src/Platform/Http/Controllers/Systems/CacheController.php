@@ -63,12 +63,4 @@ class CacheController extends Controller
     {
         Artisan::call('view:clear');
     }
-
-    /**
-     * Resets the contents of the opcode cache.
-     */
-    protected function opcache()
-    {
-        opcache_reset();
-    }
 }

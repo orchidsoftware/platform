@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.7.5';
+    public const VERSION = '3.8.0';
 
     /**
      * The Dashboard configuration options.
@@ -50,6 +50,11 @@ class Dashboard
     private $globalSearch;
 
     /**
+     * @var Collection
+     */
+    private $publicDirectories;
+
+    /**
      * Dashboard constructor.
      */
     public function __construct()
@@ -62,6 +67,7 @@ class Dashboard
         $this->resources = collect();
         $this->entities = collect();
         $this->globalSearch = collect();
+        $this->publicDirectories = collect();
     }
 
     /**
@@ -284,10 +290,32 @@ class Dashboard
      *
      * @return $this
      */
-    public function removePermission(string $key)
+    public function removePermission(string $key) : self
     {
         $this->permission->get('removed')->push($key);
 
         return $this;
     }
+
+    /**
+     * @param string $package
+     * @param string $path
+     *
+     * @return Dashboard
+     */
+    public function addPublicDirectory(string $package, string $path) : self
+    {
+        $this->publicDirectories->put($package,$path);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getPublicDirectory() : Collection
+    {
+        return $this->publicDirectories;
+    }
+
 }

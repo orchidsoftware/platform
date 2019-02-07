@@ -81,10 +81,8 @@ class InstallCommand extends Command
                     'migrations',
                 ], ])
             ->executeCommand('migrate')
-            ->executeCommand('storage:link')
-            ->executeCommand('orchid:link');
+            ->executeCommand('storage:link');
 
-        $this->addLinkGitIgnore();
         $this->changeUserModel();
         $this->progressBar->finish();
         $this->info(' Completed!');
@@ -143,26 +141,6 @@ class InstallCommand extends Command
         if ($str !== false) {
             $str = str_replace('Illuminate\Foundation\Auth\User', 'Orchid\Platform\Models\User', $str);
             file_put_contents(app_path('User.php'), $str);
-        }
-    }
-
-    private function addLinkGitIgnore(): void
-    {
-        $this->progressBar->advance();
-
-        $this->info(' Add semantic links to public files to ignore VCS');
-
-        if (! file_exists(app_path('../.gitignore'))) {
-            $this->warn('Unable to locate ".gitignore".  Did you move this file?');
-            $this->warn('A semantic link to public files was not added to the ignore list');
-
-            return;
-        }
-
-        $str = $this->fileGetContent(app_path('../.gitignore'));
-
-        if ($str !== false && strpos($str, '/public/orchid') === false) {
-            file_put_contents(app_path('../.gitignore'), $str.PHP_EOL.'/public/orchid'.PHP_EOL);
         }
     }
 

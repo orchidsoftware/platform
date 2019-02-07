@@ -35,7 +35,8 @@ class PlatformServiceProvider extends ServiceProvider
             ->registerResource('stylesheets', config('platform.resource.stylesheets', null))
             ->registerResource('scripts', config('platform.resource.scripts', null))
             ->registerPermissions($this->registerPermissionsMain())
-            ->registerPermissions($this->registerPermissionsSystems());
+            ->registerPermissions($this->registerPermissionsSystems())
+            ->addPublicDirectory('orchid',PLATFORM_PATH.'/public/');
     }
 
     /**

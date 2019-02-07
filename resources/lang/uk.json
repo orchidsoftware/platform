@@ -51,8 +51,6 @@
   "Clear cache": "Очистити кеш",
   "Clear configuration settings": "Очистити кеш конфігурації",
   "Clear displayed files": "Перекомпілювати шаблони",
-  "Clear opcache": "Очистити opcache",
-  "Clears the contents of the operation transaction cache": "Видалити всі дані opcache",
   "Close": "Закрити",
   "Columns": "Колонки",
   "Comment": "Коментар",

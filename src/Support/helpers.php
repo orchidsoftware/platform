@@ -157,3 +157,45 @@ if (! function_exists('revert_sort')) {
         return $filter->revertSort($property);
     }
 }
+
+if (! function_exists('orchid_mix')) {
+    /**
+     * @param string $file
+     * @param string $package
+     * @param string $dir
+     *
+     * @return string
+     * @throws Exception
+     */
+    function orchid_mix(string $file, string $package, string $dir = '')
+    {
+        $manifest = null;
+
+        $in = \Orchid\Support\Facades\Dashboard::getPublicDirectory()
+            ->get($package);
+
+        $resources = (new \Symfony\Component\Finder\Finder())
+            ->ignoreUnreadableDirs()
+            ->in($in)
+            ->files()
+            ->path($dir . 'mix-manifest.json');
+
+        foreach ($resources as $resource) {
+            $manifest = $resource;
+        }
+
+        if(is_null($manifest)){
+            throw new Exception('mix-manifest.json file not found');
+        }
+
+        $manifest = json_decode($manifest->getContents(), true);
+
+        $mixPath = $manifest[$file];
+
+        if (\Illuminate\Support\Str::startsWith($mixPath, '/')) {
+            $mixPath = ltrim($mixPath, '/');
+        }
+
+        return route('platform.resource', [$package, $mixPath]);
+    }
+}

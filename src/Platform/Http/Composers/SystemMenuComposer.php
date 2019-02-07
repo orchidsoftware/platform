@@ -56,13 +56,6 @@ class SystemMenuComposer
                     ->setRoute(route('platform.systems.cache', ['action' => 'view']))
                     ->setGroupName(__('Clear all compiled view files'))
             )
-            ->add('Cache',
-                ItemMenu::setLabel(__('Clear opcache'))
-                    ->setIcon('icon-settings')
-                    ->setRoute(route('platform.systems.cache', ['action' => 'opcache']))
-                    ->setGroupName(__('Clears the contents of the operation transaction cache'))
-                    ->setShow(function_exists('opcache_reset'))
-            )
             ->add('Systems',
                 ItemMenu::setLabel(__('Tools'))
                     ->setSlug('Tools')
