@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Platform\Http\Controllers\Systems;
 
 /**
- * Class IndexController
+ * Class IndexController.
  */
 class IndexController
 {
-
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -25,5 +24,4 @@ class IndexController
     {
         return view('platform::errors.404');
     }
-
 }

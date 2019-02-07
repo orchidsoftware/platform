@@ -305,7 +305,7 @@ class Dashboard
      */
     public function addPublicDirectory(string $package, string $path) : self
     {
-        $this->publicDirectories->put($package,$path);
+        $this->publicDirectories->put($package, $path);
 
         return $this;
     }
@@ -317,5 +317,4 @@ class Dashboard
     {
         return $this->publicDirectories;
     }
-
 }

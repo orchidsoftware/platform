@@ -178,13 +178,13 @@ if (! function_exists('orchid_mix')) {
             ->ignoreUnreadableDirs()
             ->in($in)
             ->files()
-            ->path($dir . 'mix-manifest.json');
+            ->path($dir.'mix-manifest.json');
 
         foreach ($resources as $resource) {
             $manifest = $resource;
         }
 
-        if(is_null($manifest)){
+        if (is_null($manifest)) {
             throw new Exception('mix-manifest.json file not found');
         }
 
