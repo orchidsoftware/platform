@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Orchid\Platform\Http\Controllers\Systems\IndexController;
 use Orchid\Platform\Http\Screens\BackupScreen;
 use Orchid\Platform\Http\Screens\AnnouncementScreen;
+use Orchid\Platform\Http\Controllers\Systems\IndexController;
 use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
 /*
@@ -18,7 +18,7 @@ use Orchid\Platform\Http\Controllers\Systems\SearchController;
 
 // Index and default...
 $this->get('/', [IndexController::class, 'index'])->name('platform.index');
-$this->fallback([IndexController::class,'fallback']);
+$this->fallback([IndexController::class, 'fallback']);
 
 $this->post('/search/{query}', [SearchController::class, 'index'])->name('platform.search');
 
