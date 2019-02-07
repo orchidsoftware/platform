@@ -38,7 +38,14 @@ class ResourceController
 
         abort_if(is_null($dir), 404);
 
-        foreach ((new Finder)->ignoreUnreadableDirs()->in($dir)->files()->path($path)->name(basename($path)) as $resource) {
+        $resources = (new Finder)
+            ->ignoreUnreadableDirs()
+            ->in($dir)
+            ->files()
+            ->path($path)
+            ->name(basename($path));
+
+        foreach ($resources as $resource) {
             $this->resource = $resource;
         }
 
@@ -47,14 +54,10 @@ class ResourceController
         $mime = new MimeTypes();
         $mime = $mime->getMimeType($this->resource->getExtension());
 
-        return response(
-            $this->resource->getContents(),
-            200,
-            [
-                'Content-Type' => $mime ?? 'text/plain',
-                "Cache-Control" => "public, max-age=31536000"
-            ]
-        );
+        return response($this->resource->getContents(), 200, [
+            'Content-Type'  => $mime ?? 'text/plain',
+            "Cache-Control" => "public, max-age=31536000",
+        ]);
     }
 
 }
