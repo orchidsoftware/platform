@@ -10,11 +10,10 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Class ResourceController
+ * Class ResourceController.
  */
 class ResourceController
 {
-
     /**
      * @var SplFileInfo|null
      */
@@ -56,8 +55,7 @@ class ResourceController
 
         return response($this->resource->getContents(), 200, [
             'Content-Type'  => $mime ?? 'text/plain',
-            "Cache-Control" => "public, max-age=31536000",
+            'Cache-Control' => 'public, max-age=31536000',
         ]);
     }
-
 }
