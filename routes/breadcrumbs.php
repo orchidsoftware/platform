@@ -43,12 +43,6 @@ Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '')
     }
 });
 
-// Platform > System > Backup
-Breadcrumbs::for('platform.systems.backups', function ($trail) {
-    $trail->parent('platform.systems.index');
-    $trail->push(__('Backup'), route('platform.systems.backups'));
-});
-
 // Platform > System > Bulldozer
 Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
     $trail->parent('platform.systems.index');

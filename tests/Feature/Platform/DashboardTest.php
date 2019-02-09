@@ -44,22 +44,4 @@ class DashboardTest extends TestFeatureCase
             ->assertStatus(302)
             ->assertRedirect('/dashboard/login');
     }
-
-    public function test_route_SaviorBackups()
-    {
-        $response = $this
-            ->actingAs($this->getUser())
-            ->get(route('platform.systems.backups'));
-
-        $response->assertOk();
-    }
-
-    public function test_route_SaviorBackups_method_runBackup()
-    {
-        $response = $this
-            ->actingAs($this->getUser())
-            ->post(route('platform.systems.backups', 'runBackup'));
-
-        $response->assertStatus(302);
-    }
 }

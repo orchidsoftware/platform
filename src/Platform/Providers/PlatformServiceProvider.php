@@ -78,10 +78,6 @@ class PlatformServiceProvider extends ServiceProvider
                     'description' => __('Cache'),
                 ],
                 [
-                    'slug'        => 'platform.systems.backups',
-                    'description' => __('Backups'),
-                ],
-                [
                     'slug'        => 'platform.systems.announcement',
                     'description' => __('Announcement'),
                 ],

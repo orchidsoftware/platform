@@ -22,5 +22,4 @@ $this->fallback([IndexController::class, 'fallback']);
 
 $this->post('/search/{query}', [SearchController::class, 'index'])->name('platform.search');
 
-$this->screen('/backups', BackupScreen::class)->name('platform.systems.backups');
 $this->screen('/announcement', AnnouncementScreen::class)->name('platform.systems.announcement');
