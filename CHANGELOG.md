@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.8.1 - 2019-02-09
+
+### Fixed
+- Install rewrite user model [777](https://github.com/orchidsoftware/platform/issues/777)
+
 ## 3.8.0 - 2019-02-07
 
 ### Added
