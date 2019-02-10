@@ -127,20 +127,9 @@ Every extension may be called separately, for example if you need to get only pi
 
 ```php
 $item = Post::find(42);
-$item->attachment('image')->get();
+$image = $item->attachment()->first();
+$image->url();
 ```
-
-Definitions are set to all uploaded pictures automatically according to values set in the `config/platform` file.
-To get them you may use the key noted above.
-If there's no images for that definition, the source file will be returned.
-
-```php
-$image = $item->attachment('image')->fisrt();
-
-//Returns the standard image url with required definition
-$image->url('standart');
-```
-
 
 ## Full-text search
 
@@ -197,7 +186,7 @@ We've returned all data in English with index.
 To import it we have to perform the following command:
 
 ```php
-php artisan scout:import Orchid\\Platform\\Core\\Models\\Post
+php artisan scout:import Orchid\\Press\\Models\\Post
 ```
 
 Now we may use the search in our project:
