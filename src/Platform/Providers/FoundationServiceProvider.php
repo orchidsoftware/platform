@@ -11,8 +11,6 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Scout\ScoutServiceProvider;
 use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-use Laracasts\Generators\GeneratorsServiceProvider;
-use Orchid\Attachment\Providers\AttachmentServiceProvider;
 use Orchid\Platform\Commands\RowsCommand;
 use Orchid\Platform\Commands\AdminCommand;
 use Orchid\Platform\Commands\ChartCommand;
@@ -22,6 +20,7 @@ use Orchid\Platform\Commands\ScreenCommand;
 use Orchid\Platform\Commands\InstallCommand;
 use Orchid\Platform\Commands\MetricsCommand;
 use Orchid\Platform\Commands\SelectionCommand;
+use Orchid\Attachment\Providers\AttachmentServiceProvider;
 
 /**
  * Class FoundationServiceProvider.
@@ -29,7 +28,6 @@ use Orchid\Platform\Commands\SelectionCommand;
  */
 class FoundationServiceProvider extends ServiceProvider
 {
-
     /**
      * The available command shortname.
      *
