@@ -180,9 +180,9 @@ Link::name('Внешняя ссылка')->link('http://google.com/');
 // По нажатию будет показано модальное окно (CreateUserModal),
 // в котором можно выполнить метод "save"
 Link::name('Модальное окно')
-->modal('CreateUserModal')
-->title('Добавить пользователя')
-->method('save'),
+    ->modal('CreateUserModal')
+    ->title('Добавить пользователя')
+    ->method('save'),
 ```
 
 
