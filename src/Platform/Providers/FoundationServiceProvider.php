@@ -13,6 +13,15 @@ use Watson\Active\ActiveServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Laracasts\Generators\GeneratorsServiceProvider;
 use Orchid\Attachment\Providers\AttachmentServiceProvider;
+use Orchid\Platform\Commands\RowsCommand;
+use Orchid\Platform\Commands\AdminCommand;
+use Orchid\Platform\Commands\ChartCommand;
+use Orchid\Platform\Commands\TableCommand;
+use Orchid\Platform\Commands\FilterCommand;
+use Orchid\Platform\Commands\ScreenCommand;
+use Orchid\Platform\Commands\InstallCommand;
+use Orchid\Platform\Commands\MetricsCommand;
+use Orchid\Platform\Commands\SelectionCommand;
 
 /**
  * Class FoundationServiceProvider.
@@ -20,6 +29,24 @@ use Orchid\Attachment\Providers\AttachmentServiceProvider;
  */
 class FoundationServiceProvider extends ServiceProvider
 {
+
+    /**
+     * The available command shortname.
+     *
+     * @var array
+     */
+    protected $commands = [
+        InstallCommand::class,
+        AdminCommand::class,
+        FilterCommand::class,
+        RowsCommand::class,
+        ScreenCommand::class,
+        TableCommand::class,
+        ChartCommand::class,
+        MetricsCommand::class,
+        SelectionCommand::class,
+    ];
+
     /**
      * Boot the application events.
      */
@@ -135,11 +162,9 @@ class FoundationServiceProvider extends ServiceProvider
         return [
             ScoutServiceProvider::class,
             AttachmentServiceProvider::class,
-            GeneratorsServiceProvider::class,
             ActiveServiceProvider::class,
             RouteServiceProvider::class,
             AlertServiceProvider::class,
-            ConsoleServiceProvider::class,
             EventServiceProvider::class,
             PlatformServiceProvider::class,
         ];
@@ -150,6 +175,8 @@ class FoundationServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->commands($this->commands);
+
         $this->app->singleton(Dashboard::class, function () {
             return new Dashboard();
         });

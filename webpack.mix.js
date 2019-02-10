@@ -29,6 +29,9 @@ mix
     .sass('resources/sass/app.scss', 'css/orchid.css', {
         implementation: require('node-sass')
     })
+    .options({
+        processCssUrls: false
+    })
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
         'stimulus', 'turbolinks', 'stimulus/webpack-helpers',

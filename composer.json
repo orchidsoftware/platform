@@ -34,14 +34,12 @@
     "ext-json": "*",
     "cviebrock/eloquent-sluggable": "^4.6",
     "davejamesmiller/laravel-breadcrumbs": "^5.1",
-    "laracasts/generators": "^1.1",
     "laravel/framework": "5.7.*",
-    "laravel/scout": "^5.0",
+    "laravel/scout": "^7.0",
     "orchid/widget": "^1.2",
     "ralouphie/mimey": "^2.0",
     "spomky-labs/base64url": "^2.0",
-    "watson/active": "^3.0",
-    "zendframework/zend-code": "^3.3"
+    "watson/active": "^3.0"
   },
   "require-dev": {
     "fzaninotto/faker": "^1.4",
@@ -56,9 +54,6 @@
       "Orchid\\Access\\": "src/Access/",
       "Orchid\\Alert\\": "src/Alert/",
       "Orchid\\Attachment\\": "src/Attachment/",
-      "Orchid\\Auth\\": "src/Auth/",
-      "Orchid\\Bulldozer\\": "src/Bulldozer/",
-      "Orchid\\Forms\\": "src/Forms/",
       "Orchid\\Platform\\": "src/Platform/",
       "Orchid\\Press\\": "src/Press/",
       "Orchid\\Screen\\": "src/Screen/",
@@ -83,8 +78,7 @@
     "laravel": {
       "providers": [
         "Orchid\\Platform\\Providers\\FoundationServiceProvider",
-        "Orchid\\Press\\Providers\\PressServiceProvider",
-        "Orchid\\Bulldozer\\Providers\\BulldozerServiceProvider"
+        "Orchid\\Press\\Providers\\PressServiceProvider"
       ],
       "aliases": {
         "Alert": "Orchid\\Support\\Facades\\Alert",

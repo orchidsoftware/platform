@@ -43,12 +43,6 @@ Breadcrumbs::for('platform.systems.media.index', function ($trail, $params = '')
     }
 });
 
-// Platform > System > Bulldozer
-Breadcrumbs::for('platform.bulldozer.index', function ($trail) {
-    $trail->parent('platform.systems.index');
-    $trail->push(__('Model Builder'), route('platform.bulldozer.index'));
-});
-
 // Platform > System > Announcement
 Breadcrumbs::for('platform.systems.announcement', function ($trail) {
     $trail->parent('platform.systems.index');

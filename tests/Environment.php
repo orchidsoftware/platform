@@ -134,7 +134,6 @@ trait Environment
         return [
             FoundationServiceProvider::class,
             PressServiceProvider::class,
-            BulldozerServiceProvider::class,
         ];
     }
 

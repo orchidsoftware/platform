@@ -6,10 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 3.9.0 - 2019-02-09
+## 3.9.0 - 2019-02-10
+
+### Changed
+- Laravel Scout upgrade to ^7.0
+- Route `platform.resource` has a panel prefix
+
+### Fixed
+- Show model animate [778](https://github.com/orchidsoftware/platform/issues/778)
 
 ### Removed
 - Backups as a package [769](https://github.com/orchidsoftware/platform/issues/769)
+- Builder as package [770](https://github.com/orchidsoftware/platform/issues/770)
 
 ## 3.8.1 - 2019-02-09
 
