@@ -11,7 +11,6 @@ use Orchid\Support\Facades\Dashboard;
 use Illuminate\Support\Facades\Schema;
 use Orchid\Press\Providers\PressServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
-use Orchid\Bulldozer\Providers\BulldozerServiceProvider;
 use Orchid\Platform\Providers\FoundationServiceProvider;
 
 /**
