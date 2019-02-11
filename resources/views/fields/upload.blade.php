@@ -65,9 +65,7 @@
                                                    data-target="fields--upload.description"
                                                    placeholder="{{ __('Description') }}"
                                                    maxlength="255"
-                                                   rows="3">
-
-                    </textarea>
+                                                   rows="3"></textarea>
                                      </div>
                                  </div>
                              </div>
