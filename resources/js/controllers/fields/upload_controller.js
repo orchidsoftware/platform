@@ -42,6 +42,7 @@ export default class extends Controller {
             'name': this[this.getAttachmentTargetKey('name')].value,
             'alt': this[this.getAttachmentTargetKey('alt')].value,
             'description': this[this.getAttachmentTargetKey('description')].value,
+            'original_name': this[this.getAttachmentTargetKey('original')].value,
         };
     }
 
@@ -56,6 +57,7 @@ export default class extends Controller {
         this[this.getAttachmentTargetKey('original')].value = data.original_name;
         this[this.getAttachmentTargetKey('alt')].value = data.alt;
         this[this.getAttachmentTargetKey('description')].value = data.description;
+
 
         //this[this.getAttachmentTargetKey('url')].value = data.url;
         this.data.set('url', data.url);
@@ -91,6 +93,7 @@ export default class extends Controller {
             this.attachments[name].name = attach.name;
             this.attachments[name].alt = attach.alt;
             this.attachments[name].description = attach.description;
+            this.attachments[name].original_name = attach.original_name;
         }
 
         axios
