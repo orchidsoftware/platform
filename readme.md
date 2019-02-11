@@ -1,4 +1,3 @@
-
 <h1 align="center">
   <br>
   <a href="https://orchid.software/"><img src="https://orchid.software/img/orchid.svg" alt="ORCHID" width="250"></a>
@@ -47,6 +46,7 @@ Once these commands have completed, you are ready to enjoy platform!
 ###### Simple screenshot:
 
 ![screenshot](https://user-images.githubusercontent.com/5102591/52168128-014cb680-2737-11e9-9ed3-28637780cf64.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Forchidsoftware%2Fplatform.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Forchidsoftware%2Fplatform?ref=badge_shield)
 
 ## Change log
 
@@ -73,3 +73,6 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 > [orchid.software](https://orchid.software) &nbsp;&middot;&nbsp;
 > GitHub [@tabuna](https://github.com/tabuna) &nbsp;&middot;&nbsp;
 > Twitter [@orchid_platform](https://twitter.com/orchid_platform)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Forchidsoftware%2Fplatform.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Forchidsoftware%2Fplatform?ref=badge_large)
