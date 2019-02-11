@@ -9,7 +9,7 @@
   "theme_color": "transparent",
   "description": "Building a rapid business application",
   "orientation": "any",
-  "background_color": "none",
+  "background_color": "#fff",
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [

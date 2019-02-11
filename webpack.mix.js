@@ -17,8 +17,6 @@ if (!mix.inProduction()) {
             devtool: 'source-map',
         })
         .sourceMaps();
-} else {
-    mix.version();
 }
 
 mix
@@ -46,4 +44,5 @@ mix
             'select2'
         ],
     })
-    .setPublicPath('public');
+    .setPublicPath('public')
+    .version();

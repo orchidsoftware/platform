@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## 3.9.2 - 2019-02-11
+
+### Added
+- Ajax for base screen form
+
+### Fixed
+- Original name edit attachment
+
 ## 3.9.1 - 2019-02-11
 
 ### Fixed
