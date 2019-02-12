@@ -3,7 +3,12 @@
 
 @section('content')
     <p class="m-t-lg text-black">{{__('Sign in to your account')}}</p>
-    <form class="m-t-md" role="form" method="POST" action="{{ route('platform.login.auth') }}">
+    <form class="m-t-md"
+          role="form"
+          method="POST"
+          data-controller="layouts--form"
+          data-action="layouts--form#submit"
+          action="{{ route('platform.login.auth') }}">
         @csrf
     <div class="form-group">
         <label class="form-label">{{__('Email address')}}</label>

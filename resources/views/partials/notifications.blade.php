@@ -40,7 +40,10 @@
         @if(count($notifications) > 0)
             <div class="dropdown-divider"></div>
 
+
             <form action="{{route('platform.notification.read')}}"
+                  data-controller="layouts--form"
+                  data-action="layouts--form#submit"
                   method="post"
                   id="clear-notications-form">
                 <button type="submit" class="btn btn-sm btn-link inline dropdown-item text-center text-muted-dark">

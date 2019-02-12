@@ -8,7 +8,11 @@
             {{ session('status') }}
         </div>
     @endif
-    <form class="m-t-md" role="form" method="POST"
+    <form class="m-t-md"
+          role="form"
+          method="POST"
+          data-controller="layouts--form"
+          data-action="layouts--form#submit"
           action="{{ route('platform.password.email') }}">
         @csrf
         <div class="form-group {{ $errors->has('email') ? ' is-invalid' : '' }}">

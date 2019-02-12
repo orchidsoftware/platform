@@ -27,12 +27,17 @@
             @if(session()->has('original_user'))
                 <a href="{{route('platform.systems.users')}}"
                    class="dropdown-item"
-                   onclick="event.preventDefault();document.getElementById('return-original-user').submit();"
+                   data-controller="layouts--form"
+                   data-action="layouts--form#submitByForm"
+                   data-layouts--form-id="return-original-user"
                 >
                     <i class="icon-logout m-r-xs" aria-hidden="true"></i>
                     <span>{{ __('Back to my account') }}</span>
                 </a>
-                <form id="return-original-user" class="hidden"
+                <form id="return-original-user"
+                      class="hidden"
+                      data-controller="layouts--form"
+                      data-action="layouts--form#submit"
                       action="{{ route('platform.systems.users.edit',[Auth::user(),'switchUserStop']) }}"
                       method="POST">
                     @csrf
@@ -40,13 +45,20 @@
             @else
                 <a href="{{ route('platform.logout') }}"
                    class="dropdown-item"
-                   onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                   data-controller="layouts--form"
+                   data-action="layouts--form#submitByForm"
+                   data-layouts--form-id="logout-form"
                    dusk="logout-button">
                     <i class="icon-logout m-r-xs" aria-hidden="true"></i>
                     <span>{{ __('Sign out') }}</span>
                 </a>
-                <form id="logout-form" class="hidden" action="{{ route('platform.logout') }}"
-                      method="POST">
+                <form id="logout-form"
+                      class="hidden"
+                      action="{{ route('platform.logout') }}"
+                      method="POST"
+                      data-controller="layouts--form"
+                      data-action="layouts--form#submit"
+                >
                     @csrf
                 </form>
             @endif

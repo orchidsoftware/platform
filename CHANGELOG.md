@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.9.3 - 2019-02-13
+
+### Changed
+- Basic forms now use AJAX
+
+### Fixed
+- Validation form responsive
+- Submit form event [783](https://github.com/orchidsoftware/platform/issues/783)
 
 ## 3.9.2 - 2019-02-11
 

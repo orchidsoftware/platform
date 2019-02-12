@@ -21,17 +21,13 @@
     </button>
 @elseif(!is_null($method))
 
-    <div data-controller="layouts--submit">
-        <button type="button"
-                data-action="layouts--submit#send"
+        <button type="submit"
                 formaction="{{ route(Route::currentRouteName(),$arguments )}}/{{ $method }}"
-                data-text-validation="{{__('Please check the entered data, it may be necessary to specify in other languages.')}}"
                 form="post-form"
                 class="btn btn-link dropdown-item">
             @isset($icon)<i class="{{ $icon }} m-r-xs"></i>@endisset
             {{ $name ?? '' }}
         </button>
-    </div>
 @else
 
     <a href="{{ $link ?? '' }}" class="btn btn-link dropdown-item">

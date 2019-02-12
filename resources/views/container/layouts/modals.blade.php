@@ -12,7 +12,12 @@
              data-screen--modal-url="{{$templateAsyncRoute?route($templateAsyncRoute):url()->current()}}"
         >
             <div class="modal-dialog {{$compose['class'] ?? ''}}" role="document" id="screen-modal-type-{{$key}}">
-                <form class="modal-content" method="post" enctype="multipart/form-data">
+                <form class="modal-content"
+                      method="post"
+                      enctype="multipart/form-data"
+                      data-controller="layouts--form"
+                      data-action="layouts--form#submit"
+                >
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class="icon-cross icons"></i></button>
