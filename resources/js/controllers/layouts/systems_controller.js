@@ -10,13 +10,12 @@ export default class extends Controller {
 
         $('.admin-element-item')
             .hide()
-            .filter(function () {
-                return $(this).html().trim().toLowerCase()
-                    .indexOf(search) !== -1;
-            }).show();
+            .filter((key, item) => $(item).html().trim().toLowerCase().indexOf(search) !== -1)
+            .show();
 
-        $('.admin-element').show().filter(function () {
-            return $(this).children('.list-group').children(':visible').length === 0;
-        }).hide();
+        $('.admin-element')
+            .show()
+            .filter((key, item) => $(item).children('.list-group').children(':visible').length === 0)
+            .hide();
     }
 }
