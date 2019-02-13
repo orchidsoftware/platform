@@ -33,15 +33,15 @@ mix
     .js('resources/js/app.js', 'js/orchid.js')
     .extract([
         'stimulus', 'turbolinks', 'stimulus/webpack-helpers',
-        'jquery', 'popper.js', 'jquery-ui-bundle', 'bootstrap',
+        'jquery', 'popper.js', 'bootstrap',
         'dropzone', 'nestable', 'select2', 'cropperjs', 'frappe-charts', 'inputmask',
-        'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr'
+        'simplemde', 'tinymce', 'axios', 'leaflet', 'codeflask', 'stimulus-flatpickr',
+        'flatpickr', 'quill', 'codemirror', 'typo-js', 'sortablejs'
     ])
     .autoload({
         jquery: [
             '$', 'window.jQuery', 'jQuery', 'jquery',
-            'bootstrap', 'jquery-ui-bundle', 'nestable',
-            'select2'
+            'bootstrap', 'nestable', 'select2'
         ],
     })
     .setPublicPath('public')

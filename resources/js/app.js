@@ -4,7 +4,6 @@ import { definitionsFromContext } from 'stimulus/webpack-helpers';
 global.$ = global.jQuery = require('jquery');
 
 require('popper.js');
-require('jquery-ui-bundle');
 require('bootstrap');
 require('select2');
 require('nestable');

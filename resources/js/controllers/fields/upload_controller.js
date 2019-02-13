@@ -1,5 +1,6 @@
-import {Controller} from "stimulus"
-import Dropzone     from 'dropzone';
+import {Controller} from "stimulus";
+import Dropzone from 'dropzone';
+import Sortable from 'sortablejs';
 
 export default class extends Controller {
 
@@ -126,7 +127,32 @@ export default class extends Controller {
     /**
      *
      */
+    resortElement() {
+        const items = {};
+        $('.file-sort').each((index, value) => {
+            const id = $(value).attr('data-file-id');
+            items[id] = index;
+        });
+
+        axios
+            .post(platform.prefix('/systems/files/sort'), {
+                files: items,
+            })
+            .then();
+    }
+
+    /**
+     *
+     */
     initSortable() {
+
+
+        new Sortable(document.querySelector(this.dropname + ' .sortable-dropzone'), {
+            animation: 150,
+            onChange: this.resortElement,
+        });
+
+/*
         $(this.dropname + ' .sortable-dropzone').sortable({
             scroll: false,
             containment: "parent",
@@ -145,6 +171,7 @@ export default class extends Controller {
 
             },
         });
+        */
     }
 
     /**
@@ -160,6 +187,8 @@ export default class extends Controller {
         $(
             `<input type='hidden' class='files-${file.id}' name='${name}[]' value='${file.id}'  />`
         ).appendTo(dropname);
+
+        this.resortElement();
     }
 
     /**

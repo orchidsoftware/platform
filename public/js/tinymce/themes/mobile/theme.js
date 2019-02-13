@@ -804,7 +804,7 @@ var mobile = (function () {
       div.innerHTML = html;
       if (!div.hasChildNodes() || div.childNodes.length > 1) {
         console.error('HTML does not have a single root node', html);
-        throw 'HTML must have a single root node';
+        throw new Error('HTML must have a single root node');
       }
       return fromDom(div.childNodes[0]);
     };
@@ -819,8 +819,9 @@ var mobile = (function () {
       return fromDom(node);
     };
     var fromDom = function (node) {
-      if (node === null || node === undefined)
+      if (node === null || node === undefined) {
         throw new Error('Node cannot be null or undefined');
+      }
       return { dom: constant(node) };
     };
     var fromPoint = function (docElm, x, y) {
@@ -871,10 +872,11 @@ var mobile = (function () {
       return getBody(Element$$1.fromDom(document));
     });
     var getBody = function (doc) {
-      var body = doc.dom().body;
-      if (body === null || body === undefined)
-        throw 'Body is not available yet';
-      return Element$$1.fromDom(body);
+      var b = doc.dom().body;
+      if (b === null || b === undefined) {
+        throw new Error('Body is not available yet');
+      }
+      return Element$$1.fromDom(b);
     };
 
     var Immutable = function () {
@@ -1004,18 +1006,19 @@ var mobile = (function () {
     var DOCUMENT$1 = DOCUMENT;
     var is = function (element, selector) {
       var elem = element.dom();
-      if (elem.nodeType !== ELEMENT$1)
+      if (elem.nodeType !== ELEMENT$1) {
         return false;
-      else if (elem.matches !== undefined)
+      } else if (elem.matches !== undefined) {
         return elem.matches(selector);
-      else if (elem.msMatchesSelector !== undefined)
+      } else if (elem.msMatchesSelector !== undefined) {
         return elem.msMatchesSelector(selector);
-      else if (elem.webkitMatchesSelector !== undefined)
+      } else if (elem.webkitMatchesSelector !== undefined) {
         return elem.webkitMatchesSelector(selector);
-      else if (elem.mozMatchesSelector !== undefined)
+      } else if (elem.mozMatchesSelector !== undefined) {
         return elem.mozMatchesSelector(selector);
-      else
+      } else {
         throw new Error('Browser lacks native selectors');
+      }
     };
     var bypassSelector = function (dom) {
       return dom.nodeType !== ELEMENT$1 && dom.nodeType !== DOCUMENT$1 || dom.childElementCount === 0;
@@ -1033,7 +1036,8 @@ var mobile = (function () {
       return e1.dom() === e2.dom();
     };
     var regularContains = function (e1, e2) {
-      var d1 = e1.dom(), d2 = e2.dom();
+      var d1 = e1.dom();
+      var d2 = e2.dom();
       return d1 === d2 ? false : d1.contains(d2);
     };
     var ieContains = function (e1, e2) {
@@ -1047,8 +1051,8 @@ var mobile = (function () {
     };
     var defaultView = function (element) {
       var el = element.dom();
-      var defaultView = el.ownerDocument.defaultView;
-      return Element$$1.fromDom(defaultView);
+      var defView = el.ownerDocument.defaultView;
+      return Element$$1.fromDom(defView);
     };
     var parent = function (element) {
       var dom = element.dom();
@@ -1060,12 +1064,13 @@ var mobile = (function () {
       var ret = [];
       while (dom.parentNode !== null && dom.parentNode !== undefined) {
         var rawParent = dom.parentNode;
-        var parent = Element$$1.fromDom(rawParent);
-        ret.push(parent);
-        if (stop(parent) === true)
+        var p = Element$$1.fromDom(rawParent);
+        ret.push(p);
+        if (stop(p) === true) {
           break;
-        else
+        } else {
           dom = rawParent;
+        }
       }
       return ret;
     };
@@ -1086,8 +1091,8 @@ var mobile = (function () {
       return map$1(dom.childNodes, Element$$1.fromDom);
     };
     var child = function (element, index) {
-      var children = element.dom().childNodes;
-      return Option.from(children[index]).map(Element$$1.fromDom);
+      var cs = element.dom().childNodes;
+      return Option.from(cs[index]).map(Element$$1.fromDom);
     };
     var firstChild = function (element) {
       return child(element, 0);
@@ -1137,8 +1142,9 @@ var mobile = (function () {
     };
     var remove = function (element) {
       var dom = element.dom();
-      if (dom.parentNode !== null)
+      if (dom.parentNode !== null) {
         dom.parentNode.removeChild(dom);
+      }
     };
 
     var fireDetaching = function (component) {
@@ -2425,10 +2431,11 @@ var mobile = (function () {
       var nu = filter(read$1(element, attr), function (v) {
         return v !== id;
       });
-      if (nu.length > 0)
+      if (nu.length > 0) {
         set(element, attr, nu.join(' '));
-      else
+      } else {
         remove$1(element, attr);
+      }
       return false;
     };
 
@@ -2453,10 +2460,11 @@ var mobile = (function () {
     };
 
     var add$2 = function (element, clazz) {
-      if (supports(element))
+      if (supports(element)) {
         element.dom().classList.add(clazz);
-      else
+      } else {
         add$1(element, clazz);
+      }
     };
     var cleanClass = function (element) {
       var classList = supports(element) ? element.dom().classList : get$2(element);
@@ -2468,8 +2476,9 @@ var mobile = (function () {
       if (supports(element)) {
         var classList = element.dom().classList;
         classList.remove(clazz);
-      } else
+      } else {
         remove$3(element, clazz);
+      }
       cleanClass(element);
     };
     var toggle$1 = function (element, clazz) {
@@ -2547,27 +2556,30 @@ var mobile = (function () {
       while (element.parentNode) {
         element = element.parentNode;
         var el = Element$$1.fromDom(element);
-        if (predicate(el))
+        if (predicate(el)) {
           return Option.some(el);
-        else if (stop(el))
+        } else if (stop(el)) {
           break;
+        }
       }
       return Option.none();
     };
     var closest = function (scope, predicate, isRoot) {
-      var is = function (scope) {
-        return predicate(scope);
+      var is = function (s) {
+        return predicate(s);
       };
       return ClosestOrAncestor(is, ancestor, scope, predicate, isRoot);
     };
     var descendant = function (scope, predicate) {
       var descend = function (node) {
         for (var i = 0; i < node.childNodes.length; i++) {
-          if (predicate(Element$$1.fromDom(node.childNodes[i])))
+          if (predicate(Element$$1.fromDom(node.childNodes[i]))) {
             return Option.some(Element$$1.fromDom(node.childNodes[i]));
+          }
           var res = descend(node.childNodes[i]);
-          if (res.isSome())
+          if (res.isSome()) {
             return res;
+          }
         }
         return Option.none();
       };
@@ -2584,8 +2596,8 @@ var mobile = (function () {
       var doc = owner(element).dom();
       return element.dom() === doc.activeElement;
     };
-    var active = function (_doc) {
-      var doc = _doc !== undefined ? _doc.dom() : document;
+    var active = function (_DOC) {
+      var doc = _DOC !== undefined ? _DOC.dom() : document;
       return Option.from(doc.activeElement).map(Element$$1.fromDom);
     };
     var search = function (element) {
@@ -2653,8 +2665,8 @@ var mobile = (function () {
       return get$3(container);
     };
 
-    var clone$1 = function (original, deep) {
-      return Element$$1.fromDom(original.dom().cloneNode(deep));
+    var clone$1 = function (original, isDeep) {
+      return Element$$1.fromDom(original.dom().cloneNode(isDeep));
     };
     var shallow$1 = function (original) {
       return clone$1(original, false);
@@ -3085,12 +3097,14 @@ var mobile = (function () {
         console.error('Invalid call to CSS.set. Property ', property, ':: Value ', value$$1, ':: Element ', dom);
         throw new Error('CSS value must be a string: ' + value$$1);
       }
-      if (isSupported(dom))
+      if (isSupported(dom)) {
         dom.style.setProperty(property, value$$1);
+      }
     };
     var internalRemove = function (dom, property) {
-      if (isSupported(dom))
+      if (isSupported(dom)) {
         dom.style.removeProperty(property);
+      }
     };
     var set$2 = function (element, property, value$$1) {
       var dom = element.dom();
@@ -3132,11 +3146,13 @@ var mobile = (function () {
 
     function Dimension (name, getOffset) {
       var set = function (element, h) {
-        if (!isNumber(h) && !h.match(/^[0-9]+$/))
-          throw name + '.set accepts only positive integer values. Value was ' + h;
+        if (!isNumber(h) && !h.match(/^[0-9]+$/)) {
+          throw new Error(name + '.set accepts only positive integer values. Value was ' + h);
+        }
         var dom = element.dom();
-        if (isSupported(dom))
+        if (isSupported(dom)) {
           dom.style[name] = h + 'px';
+        }
       };
       var get = function (element) {
         var r = getOffset(element);
@@ -6253,8 +6269,9 @@ var mobile = (function () {
       return element.dom().value;
     };
     var set$6 = function (element, value) {
-      if (value === undefined)
+      if (value === undefined) {
         throw new Error('Value.set was undefined');
+      }
       element.dom().value = value;
     };
 
@@ -8918,19 +8935,20 @@ var mobile = (function () {
 
     var mkEvent = function (target, x, y, stop, prevent, kill, raw) {
       return {
-        'target': constant(target),
-        'x': constant(x),
-        'y': constant(y),
-        'stop': stop,
-        'prevent': prevent,
-        'kill': kill,
-        'raw': constant(raw)
+        target: constant(target),
+        x: constant(x),
+        y: constant(y),
+        stop: stop,
+        prevent: prevent,
+        kill: kill,
+        raw: constant(raw)
       };
     };
     var handle = function (filter, handler) {
       return function (rawEvent) {
-        if (!filter(rawEvent))
+        if (!filter(rawEvent)) {
           return;
+        }
         var target = Element$$1.fromDom(rawEvent.target);
         var stop = function () {
           rawEvent.stopPropagation();
@@ -9211,8 +9229,9 @@ var mobile = (function () {
 
     function NodeValue (is, name) {
       var get = function (element) {
-        if (!is(element))
+        if (!is(element)) {
           throw new Error('Can only get ' + name + ' value of a ' + name + ' node');
+        }
         return getOption(element).getOr('');
       };
       var getOptionIE10 = function (element) {
@@ -9228,8 +9247,9 @@ var mobile = (function () {
       var browser = PlatformDetection$1.detect().browser;
       var getOption = browser.isIE() && browser.version.major === 10 ? getOptionIE10 : getOptionSafe;
       var set = function (element, value) {
-        if (!is(element))
+        if (!is(element)) {
           throw new Error('Can only set raw ' + name + ' value of a ' + name + ' node');
+        }
         element.dom().nodeValue = value;
       };
       return {
@@ -9270,9 +9290,9 @@ var mobile = (function () {
     };
 
     var adt$4 = Adt.generate([
-      { 'before': ['element'] },
+      { before: ['element'] },
       {
-        'on': [
+        on: [
           'element',
           'offset'
         ]
@@ -9465,10 +9485,11 @@ var mobile = (function () {
     };
 
     var searchForPoint = function (rectForOffset, x, y, maxX, length) {
-      if (length === 0)
+      if (length === 0) {
         return 0;
-      else if (x === maxX)
+      } else if (x === maxX) {
         return length - 1;
+      }
       var xDelta = maxX;
       for (var i = 1; i < length; i++) {
         var rect = rectForOffset(i);
@@ -9488,14 +9509,14 @@ var mobile = (function () {
     };
 
     var locateOffset = function (doc, textnode, x, y, rect) {
-      var rangeForOffset = function (offset) {
+      var rangeForOffset = function (o) {
         var r = doc.dom().createRange();
-        r.setStart(textnode.dom(), offset);
+        r.setStart(textnode.dom(), o);
         r.collapse(true);
         return r;
       };
-      var rectForOffset = function (offset) {
-        var r = rangeForOffset(offset);
+      var rectForOffset = function (o) {
+        var r = rangeForOffset(o);
         return r.getBoundingClientRect();
       };
       var length = get$d(textnode).length;
@@ -9546,11 +9567,13 @@ var mobile = (function () {
         var children$$1 = children(element);
         for (var i = children$$1.length - 1; i >= 0; i--) {
           var child$$1 = children$$1[i];
-          if (predicate(child$$1))
+          if (predicate(child$$1)) {
             return Option.some(child$$1);
+          }
           var res = descend(child$$1);
-          if (res.isSome())
+          if (res.isSome()) {
             return res;
+          }
         }
         return Option.none();
       };
@@ -9590,8 +9613,9 @@ var mobile = (function () {
 
     var caretPositionFromPoint = function (doc, x, y) {
       return Option.from(doc.dom().caretPositionFromPoint(x, y)).bind(function (pos) {
-        if (pos.offsetNode === null)
+        if (pos.offsetNode === null) {
           return Option.none();
+        }
         var r = doc.dom().createRange();
         r.setStart(pos.offsetNode, pos.offset);
         r.collapse();
@@ -9621,15 +9645,16 @@ var mobile = (function () {
 
     var beforeSpecial = function (element, offset) {
       var name$$1 = name(element);
-      if ('input' === name$$1)
+      if ('input' === name$$1) {
         return Situ.after(element);
-      else if (!contains([
+      } else if (!contains([
           'br',
           'img'
-        ], name$$1))
+        ], name$$1)) {
         return Situ.on(element, offset);
-      else
+      } else {
         return offset === 0 ? Situ.before(element) : Situ.after(element);
+      }
     };
     var preprocessExact = function (start, soffset, finish, foffset) {
       var startSitu = beforeSpecial(start, soffset);
