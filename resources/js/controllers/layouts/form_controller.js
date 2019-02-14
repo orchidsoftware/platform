@@ -26,26 +26,28 @@ export default class extends Controller {
 
         event.preventDefault();
 
-        let formAction = this.element.getAttribute("action");
-        let activeElementAction = document.activeElement.getAttribute("formaction");
-        let action = activeElementAction || formAction;
+        setTimeout(() => {
+            let formAction = this.element.getAttribute("action");
+            let activeElementAction = document.activeElement.getAttribute("formaction");
+            let action = activeElementAction || formAction;
 
-        let form = new FormData(event.target);
+            let form = new FormData(event.target);
 
-        axios.post(action, form, {
-            headers: {
-                'X-Requested-With': null,
-                'Accept': 'text/html,application/xhtml+xml,application/xml'
-            }
-        })
-            .then((response) => {
-                let url = response.request.responseURL;
-                Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
-                Turbolinks.visit(url, {action: 'restore'});
+            axios.post(action, form, {
+                headers: {
+                    'X-Requested-With': null,
+                    'Accept': 'text/html,application/xhtml+xml,application/xml'
+                }
             })
-            .catch((error) => {
-                console.warn(error);
-            });
+                .then((response) => {
+                    let url = response.request.responseURL;
+                    Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
+                    Turbolinks.visit(url, {action: 'restore'});
+                })
+                .catch((error) => {
+                    console.warn(error);
+                });
+        });
 
         return false;
     }

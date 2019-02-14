@@ -6,9 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
+## 3.9.4 - 2019-02-14
 
+### Changed
 - Jquery-ui replace sortablejs
+
+### Fixed
+- Chart not remove event see https://github.com/frappe/charts/issues/212
+- Remove mask for submit
 
 ## 3.9.3 - 2019-02-13
 

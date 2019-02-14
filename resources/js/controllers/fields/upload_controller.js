@@ -248,7 +248,7 @@ export default class extends Controller {
                 });
 
                 this.on('completemultiple', () => {
-                    $(`${dropname}.sortable-dropzone`).sortable('enable');
+                    //$(`${dropname}.sortable-dropzone`).sortable('enable');
                 });
 
                 const images = data;

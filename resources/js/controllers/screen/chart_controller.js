@@ -1,5 +1,5 @@
-import { Controller } from 'stimulus';
-import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm';
+import {Controller} from 'stimulus';
+import {Chart}      from 'frappe-charts/dist/frappe-charts.min.esm';
 
 export default class extends Controller {
     /**
@@ -17,5 +17,18 @@ export default class extends Controller {
 
             colors: JSON.parse(this.data.get('colors')),
         });
+    }
+
+    /**
+     * @see https://github.com/frappe/charts/issues/212
+     */
+    disconnect() {
+        window.addEventListener('resize', (event) => {
+            event.stopPropagation();
+        }, true);
+
+        window.addEventListener('orientationchange', (event) => {
+            event.stopPropagation();
+        }, true);
     }
 }
