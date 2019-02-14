@@ -14,7 +14,7 @@ class ItemPermission
     /**
      * @var array[]
      */
-    public $items;
+    public $items = [];
 
     /**
      * @param string $group
