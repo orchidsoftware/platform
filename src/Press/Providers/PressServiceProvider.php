@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Entities\Single;
-use Illuminate\Support\Facades\View;
-use Symfony\Component\Finder\Finder;
-use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
+use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -134,43 +135,33 @@ class PressServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsEntities(): array
+    protected function registerPermissionsEntities(): ItemPermission
     {
+        $permissions = new ItemPermission();
+
         $posts = $this->dashboard
             ->getEntities()
             ->where('display', true)
-            ->map(function ($post) {
-                return [
-                    'slug'        => 'platform.entities.type.'.$post->slug,
-                    'description' => $post->name,
-                ];
+            ->each(function ($post) use ($permissions) {
+                $permissions->addPermission('platform.entities.type.'.$post->slug,$post->name);
             });
 
         if ($posts->count() > 0) {
-            $permissions[__('Posts')] = $posts->toArray();
+            $permissions->group = __('Posts');
         }
 
-        return $permissions ?? [];
+        return $permissions;
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissions(): array
+    protected function registerPermissions(): ItemPermission
     {
-        return [
-            __('Systems') => [
-                [
-                    'slug'        => 'platform.systems.menu',
-                    'description' => __('Menu'),
-                ],
-                [
-                    'slug'        => 'platform.systems.media',
-                    'description' => __('Media'),
-                ],
-            ],
-        ];
+        return ItemPermission::setGroup(__('Systems'))
+            ->addPermission('platform.systems.menu', __('Menu'))
+            ->addPermission('platform.systems.media', __('Media'));
     }
 }

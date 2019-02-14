@@ -39,21 +39,22 @@ class ResourceController
 
         $resources = (new Finder)
             ->ignoreUnreadableDirs()
+            ->followLinks()
             ->in($dir)
             ->files()
-            ->path($path)
-            ->name(basename($path));
+            ->path($path);
 
-        foreach ($resources as $resource) {
-            $this->resource = $resource;
-        }
+        $iterator = tap($resources->getIterator())
+            ->rewind();
+
+        $this->resource = $iterator->current();
 
         abort_if(is_null($this->resource), 404);
 
         $mime = new MimeTypes();
         $mime = $mime->getMimeType($this->resource->getExtension());
 
-        return response($this->resource->getContents(), 200, [
+        return response()->file($this->resource->getRealPath(),[
             'Content-Type'  => $mime ?? 'text/plain',
             'Cache-Control' => 'public, max-age=31536000',
         ]);

@@ -11,6 +11,10 @@ export default class extends Controller {
         Turbolinks.start();
         Turbolinks.setProgressBarDelay(50);
         window.platform = platform();
+
+        document.addEventListener("turbolinks:load", () => {
+            this.csrf();
+        });
     }
 
     /**

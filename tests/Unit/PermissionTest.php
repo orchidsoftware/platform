@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
@@ -76,9 +77,10 @@ class PermissionTest extends TestUnitCase
     }
 
     /**
+     * @deprecated removed 4.0
      * Dashboard registered permission.
      */
-    public function testIsRegisteredPermission()
+    public function testIsRegisteredForArrayPermission()
     {
         $dashboard = new Dashboard();
 
@@ -90,6 +92,21 @@ class PermissionTest extends TestUnitCase
                 ],
             ],
         ]);
+
+        $this->assertEquals($dashboard->getPermission()->count(), 1);
+    }
+
+    /**
+     * Dashboard registered permission.
+     */
+    public function testIsRegisteredPermission()
+    {
+        $dashboard = new Dashboard();
+
+        $permission = ItemPermission::setGroup('Test')
+            ->addPermission('test','Test Description');
+
+        $dashboard->registerPermissions($permission);
 
         $this->assertEquals($dashboard->getPermission()->count(), 1);
     }

@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Platform\Dashboard;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use App\Orchid\Composers\MainMenuComposer;
 use App\Orchid\Composers\SystemMenuComposer;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 
 class PlatformProvider extends ServiceProvider
 {
@@ -32,52 +33,25 @@ class PlatformProvider extends ServiceProvider
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsMain(): array
+    protected function registerPermissionsMain(): ItemPermission
     {
-        return [
-            __('Main') => [
-                [
-                    'slug'        => 'platform.index',
-                    'description' => __('Main'),
-                ],
-                [
-                    'slug'        => 'platform.systems',
-                    'description' => __('Systems'),
-                ],
-                [
-                    'slug'        => 'platform.systems.index',
-                    'description' => __('Settings'),
-                ],
-            ],
-        ];
+        return ItemPermission::setGroup(__('Main'))
+            ->addPermission('platform.index', __('Main'))
+            ->addPermission('platform.systems', __('Systems'))
+            ->addPermission('platform.systems.index', __('Settings'));
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsSystems(): array
+    protected function registerPermissionsSystems(): ItemPermission
     {
-        return [
-            __('Systems') => [
-                [
-                    'slug'        => 'platform.systems.roles',
-                    'description' => __('Roles'),
-                ],
-                [
-                    'slug'        => 'platform.systems.users',
-                    'description' => __('Users'),
-                ],
-                [
-                    'slug'        => 'platform.systems.comments',
-                    'description' => __('Comments'),
-                ],
-                [
-                    'slug'        => 'platform.systems.category',
-                    'description' => __('Category'),
-                ],
-            ],
-        ];
+        return ItemPermission::setGroup(__('Systems'))
+            ->addPermission('platform.systems.roles', __('Roles'))
+            ->addPermission('platform.systems.users', __('Users'))
+            ->addPermission('platform.systems.comments', __('Comments'))
+            ->addPermission('platform.systems.category', __('Category'));
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\SystemMenuComposer;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
+use Orchid\Platform\ItemPermission;
 
 class PlatformServiceProvider extends ServiceProvider
 {
@@ -40,49 +41,25 @@ class PlatformServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
-    protected function registerPermissionsMain(): array
+    protected function registerPermissionsMain(): ItemPermission
     {
-        return [
-            __('Main') => [
-                [
-                    'slug'        => 'platform.index',
-                    'description' => __('Main'),
-                ],
-                [
-                    'slug'        => 'platform.systems',
-                    'description' => __('Systems'),
-                ],
-                [
-                    'slug'        => 'platform.systems.index',
-                    'description' => __('Settings'),
-                ],
-            ],
-        ];
+        return ItemPermission::setGroup(__('Main'))
+            ->addPermission('platform.index',__('Main'))
+            ->addPermission('platform.systems',__('Systems'))
+            ->addPermission('platform.systems.index',__('Settings'));
     }
 
     /**
      * @return array
      */
-    protected function registerPermissionsSystems(): array
+    protected function registerPermissionsSystems(): ItemPermission
     {
-        return [
-            __('Systems') => [
-                [
-                    'slug'        => 'platform.systems.attachment',
-                    'description' => __('Attachment'),
-                ],
-                [
-                    'slug'        => 'platform.systems.cache',
-                    'description' => __('Cache'),
-                ],
-                [
-                    'slug'        => 'platform.systems.announcement',
-                    'description' => __('Announcement'),
-                ],
-            ],
-        ];
+        return ItemPermission::setGroup(__('Systems'))
+            ->addPermission('platform.systems.attachment',__('Attachment'))
+            ->addPermission('platform.systems.cache',__('Cache'))
+            ->addPermission('platform.systems.announcement',__('Announcement'));
     }
 
     /**

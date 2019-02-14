@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.9.5 - 2019-02-14
+
+### Changed
+- Turbolink no-cache all page
+- Removed years for license
+
+### Fixed
+- Update `csrf` token
+
+### Deprecated
+- `Dashboard::registerPermissions` accept array argument
+
 ## 3.9.4 - 2019-02-14
 
 ### Changed

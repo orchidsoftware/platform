@@ -11,7 +11,7 @@ class Dashboard
     /**
      * ORCHID Version.
      */
-    public const VERSION = '3.9.4';
+    public const VERSION = '3.9.5';
 
     /**
      * The Dashboard configuration options.
@@ -165,17 +165,31 @@ class Dashboard
     }
 
     /**
-     * @param array $permission
+     * @param array|ItemPermission $permission
      *
      * @return $this
      */
-    public function registerPermissions(array $permission): self
+    public function registerPermissions($permission): self
     {
-        foreach ($permission as $key => $item) {
-            $old = $this->permission->get('all')->get($key, []);
-            $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
+        /*
+         * Deprecated
+         * Removed for 4.0
+         */
+        if(is_array($permission)) {
+            foreach ($permission as $key => $item) {
+                $old = $this->permission->get('all')->get($key, []);
+                $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
+            }
+
+            return $this;
         }
 
+        $old = $this->permission->get('all')
+            ->get($permission->group, []);
+
+        $this->permission->get('all')
+            ->put($permission->group, array_merge_recursive($old, $permission->items));
+        
         return $this;
     }
 
