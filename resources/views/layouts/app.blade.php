@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title','ORCHID') - @yield('description','Admin')</title>
-    <meta name="csrf_token" content="{{csrf_token()}}">
-    <meta name="auth" content="{{Auth::check()}}">
+    <meta name="csrf_token" content="{{csrf_token()}}" id="csrf_token" data-turbolinks-permanent>
+    <meta name="auth" content="{{Auth::check()}}"  id="auth" data-turbolinks-permanent>
     <link rel="stylesheet" type="text/css" href="{{orchid_mix('/css/orchid.css','orchid')}}">
 
     @stack('head')
