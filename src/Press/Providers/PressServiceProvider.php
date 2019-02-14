@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemPermission;
 use Orchid\Press\Entities\Many;
 use Orchid\Press\Entities\Single;
+use Orchid\Platform\ItemPermission;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\Finder\Finder;
+use Illuminate\Support\ServiceProvider;
 use Orchid\Press\Http\Composers\PressMenuComposer;
 use Orchid\Press\Http\Composers\SystemMenuComposer;
-use Symfony\Component\Finder\Finder;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -145,7 +145,7 @@ class PressServiceProvider extends ServiceProvider
             ->getEntities()
             ->where('display', true)
             ->each(function ($post) use ($permissions) {
-                $permissions->addPermission('platform.entities.type.'.$post->slug,$post->name);
+                $permissions->addPermission('platform.entities.type.'.$post->slug, $post->name);
             });
 
         if ($posts->count() > 0) {

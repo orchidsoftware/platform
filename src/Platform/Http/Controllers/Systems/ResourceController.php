@@ -54,7 +54,7 @@ class ResourceController
         $mime = new MimeTypes();
         $mime = $mime->getMimeType($this->resource->getExtension());
 
-        return response()->file($this->resource->getRealPath(),[
+        return response()->file($this->resource->getRealPath(), [
             'Content-Type'  => $mime ?? 'text/plain',
             'Cache-Control' => 'public, max-age=31536000',
         ]);

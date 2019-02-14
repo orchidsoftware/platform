@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Orchid\Tests\Unit;
 
 use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemPermission;
 use Orchid\Tests\TestUnitCase;
 use Orchid\Platform\Models\Role;
 use Orchid\Platform\Models\User;
+use Orchid\Platform\ItemPermission;
 
 /**
  * Class PermissionTest.
@@ -104,7 +104,7 @@ class PermissionTest extends TestUnitCase
         $dashboard = new Dashboard();
 
         $permission = ItemPermission::setGroup('Test')
-            ->addPermission('test','Test Description');
+            ->addPermission('test', 'Test Description');
 
         $dashboard->registerPermissions($permission);
 

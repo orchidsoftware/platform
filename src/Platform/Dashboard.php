@@ -175,7 +175,7 @@ class Dashboard
          * Deprecated
          * Removed for 4.0
          */
-        if(is_array($permission)) {
+        if (is_array($permission)) {
             foreach ($permission as $key => $item) {
                 $old = $this->permission->get('all')->get($key, []);
                 $this->permission->get('all')->put($key, array_merge_recursive($old, $item));
@@ -189,7 +189,7 @@ class Dashboard
 
         $this->permission->get('all')
             ->put($permission->group, array_merge_recursive($old, $permission->items));
-        
+
         return $this;
     }
 
