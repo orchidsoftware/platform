@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Platform\Providers;
 
 use Orchid\Platform\Dashboard;
+use Orchid\Platform\ItemPermission;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Orchid\Platform\Http\Composers\SystemMenuComposer;
 use Orchid\Platform\Http\Composers\AnnouncementsComposer;
 use Orchid\Platform\Http\Composers\NotificationsComposer;
-use Orchid\Platform\ItemPermission;
 
 class PlatformServiceProvider extends ServiceProvider
 {
@@ -46,9 +46,9 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsMain(): ItemPermission
     {
         return ItemPermission::setGroup(__('Main'))
-            ->addPermission('platform.index',__('Main'))
-            ->addPermission('platform.systems',__('Systems'))
-            ->addPermission('platform.systems.index',__('Settings'));
+            ->addPermission('platform.index', __('Main'))
+            ->addPermission('platform.systems', __('Systems'))
+            ->addPermission('platform.systems.index', __('Settings'));
     }
 
     /**
@@ -57,9 +57,9 @@ class PlatformServiceProvider extends ServiceProvider
     protected function registerPermissionsSystems(): ItemPermission
     {
         return ItemPermission::setGroup(__('Systems'))
-            ->addPermission('platform.systems.attachment',__('Attachment'))
-            ->addPermission('platform.systems.cache',__('Cache'))
-            ->addPermission('platform.systems.announcement',__('Announcement'));
+            ->addPermission('platform.systems.attachment', __('Attachment'))
+            ->addPermission('platform.systems.cache', __('Cache'))
+            ->addPermission('platform.systems.announcement', __('Announcement'));
     }
 
     /**
