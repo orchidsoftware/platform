@@ -196,7 +196,7 @@ if (! function_exists('orchid_mix')) {
             $mixPath = ltrim($mixPath, '/');
         }
 
-        if(file_exists(public_path('/resources'))){
+        if (file_exists(public_path('/resources'))) {
             return url("/resources/$package/$mixPath");
         }
 

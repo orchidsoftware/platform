@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Commands;
 
-use Illuminate\Console\Command;
 use Orchid\Platform\Dashboard;
+use Illuminate\Console\Command;
 
 class LinkCommand extends Command
 {
@@ -41,15 +41,12 @@ class LinkCommand extends Command
         }
 
         $dashboard->getPublicDirectory()->each(function ($path, $package) use ($prefix) {
-
-            $package = $prefix . '/' . $package;
+            $package = $prefix.'/'.$package;
             $path = rtrim($path, '/');
-
 
             $this->getLaravel()->make('files')->makeDirectory($prefix, 0755, true);
             $this->getLaravel()->make('files')->link($path, $package);
         });
-
 
         $this->info("The [$prefix] directory has been linked.");
     }
