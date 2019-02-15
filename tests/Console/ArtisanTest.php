@@ -98,4 +98,15 @@ class ArtisanTest extends TestConsoleCase
             ->expectsQuestion('What prefix to use the panel?', 'dashboard')
             ->expectsOutput("To start the embedded server, run 'artisan serve'");
     }
+
+    public function test_artisan_orchid_link()
+    {
+        $resources = public_path('resources');
+
+        $this->artisan('orchid:link')
+            ->expectsOutput("The [$resources] directory has been linked.");
+
+        $this->artisan('orchid:link')
+            ->expectsOutput("The [$resources] directory already exists.");
+    }
 }

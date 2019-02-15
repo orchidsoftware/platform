@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Orchid\Platform\Providers;
 
+use Orchid\Platform\Commands\LinkCommand;
 use Orchid\Platform\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Orchid\Alert\AlertServiceProvider;
@@ -35,6 +36,7 @@ class FoundationServiceProvider extends ServiceProvider
      */
     protected $commands = [
         InstallCommand::class,
+        LinkCommand::class,
         AdminCommand::class,
         FilterCommand::class,
         RowsCommand::class,

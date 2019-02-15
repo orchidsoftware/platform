@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.9.6 - 2019-02-15
+
+### Changed
+- Revert command `orchid:link` for symlink resource
+
 ## 3.9.5 - 2019-02-14
 
 ### Changed
