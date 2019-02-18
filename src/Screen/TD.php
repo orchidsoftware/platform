@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Orchid\Screen;
 
 use Closure;
+use Illuminate\Support\Traits\Macroable;
 
 class TD
 {
+    use Macroable;
+
     /**
      * Align the cell to the left.
      */
