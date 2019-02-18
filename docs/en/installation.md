@@ -1,8 +1,7 @@
 # Installation
 ----------
 
-This beginner guide will help you to start using ORCHID. We've listed up the main steps you should perform to launch the project. The platform is based on the [Laravel Framework](http://laravel.com), 
-therefore first thing you shall do is install [`Laravel`](http://laravel.com) and check if your computer meets the system [requirements](/en/docs/requirements/).
+This beginner guide will help you to start using ORCHID. We've listed up the main steps you should perform to launch the project.
 
 ## Create project
 
