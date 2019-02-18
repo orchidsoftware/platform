@@ -71,7 +71,7 @@ class ViewField extends Field
     /**
      * @param string $view
      *
-     * @return $this
+     * @return self
      */
     public function view(string $view)
     {

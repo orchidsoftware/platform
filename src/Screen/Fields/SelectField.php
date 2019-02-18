@@ -54,7 +54,7 @@ class SelectField extends Field
     ];
 
     /**
-     * @return $this
+     * @return self
      */
     public function multiple(): self
     {
