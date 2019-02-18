@@ -80,6 +80,7 @@ php artisan orchid:admin nickname email@email.com secretpassword
 
 ```php
 use Illuminate\Support\ServiceProvider;
+use Orchid\Platform\ItemPermission;
 use Orchid\Platform\Dashboard;
 
 class PermissionServiceProvider extends ServiceProvider
@@ -89,15 +90,11 @@ class PermissionServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        $dashboard->registerPermissions(
-            [
-                'modules' => [
-                    [
-                        'slug'        => 'Analytics',
-                        'description' => 'Description',
-                    ],
-                ],
-            ]);
+        $permissions = ItemPermission::setGroup('modules')
+            ->addPermission('analytics', 'Access to data analytics')
+            ->addPermission('monitor', 'Access to the system monitor');
+
+        $dashboard->registerPermissions($permissions);
     }
 }
 ```
