@@ -130,7 +130,7 @@ class Layouts
 
     /**
      * @param array $layouts
-     * @param $key
+     * @param int|string $key
      * @param Repository $repository
      *
      * @return array

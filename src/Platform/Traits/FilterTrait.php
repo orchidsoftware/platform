@@ -44,12 +44,12 @@ trait FilterTrait
 
     /**
      * @param Builder $builder
-     * @param         $column
+     * @param string $column
      * @param string $direction
      *
      * @return Builder
      */
-    public function scopeDefaultSort(Builder $builder, $column, $direction = 'asc')
+    public function scopeDefaultSort(Builder $builder, string $column, string $direction = 'asc')
     {
         if (is_null($builder->getQuery()->orders)) {
             $builder->orderBy($column, $direction);

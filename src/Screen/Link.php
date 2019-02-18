@@ -80,7 +80,7 @@ class Link
      */
     public function __call(string $name, $arguments) : self
     {
-        return call_user_func([$this, 'rewriteProperty'], $name, $arguments[0]);
+        return $this->rewriteProperty($name, $arguments[0]);
     }
 
     /**
@@ -126,7 +126,7 @@ class Link
     }
 
     /**
-     * @param array $links
+     * @param Link[] $links
      *
      * @return self
      */

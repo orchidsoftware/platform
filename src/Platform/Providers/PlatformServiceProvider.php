@@ -52,7 +52,7 @@ class PlatformServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return array
+     * @return ItemPermission
      */
     protected function registerPermissionsSystems(): ItemPermission
     {
