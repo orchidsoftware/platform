@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.10.0 - 2019-02-19
+
+### Added
+- Macros for TD [785](https://github.com/orchidsoftware/platform/issues/785)
+
 ## 3.9.6 - 2019-02-15
 
 ### Changed
