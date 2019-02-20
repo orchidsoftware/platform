@@ -6,10 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 3.10.0 - 2019-02-19
+## 3.10.0 - 2019-02-20
 
 ### Added
 - Macros for TD [785](https://github.com/orchidsoftware/platform/issues/785)
+
+### Changed
+- Removed links for welcome template [786](https://github.com/orchidsoftware/platform/issues/786)
+
+### Fixed
+- Modal not open PictureField [787](https://github.com/orchidsoftware/platform/issues/787)
 
 ## 3.9.6 - 2019-02-15
 

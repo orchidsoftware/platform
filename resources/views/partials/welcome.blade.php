@@ -17,13 +17,11 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -34,13 +32,11 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -51,13 +47,11 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -72,13 +66,11 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -89,30 +81,26 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-energy"></i> Behaviors
+                        <i class="icon-fingerprint"></i> Access
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -144,30 +132,26 @@
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="admin-element w-full">
                     <h3 class="font-thin h3 text-black">
-                        <i class="icon-docs"></i> Posts
+                        <i class="icon-docs"></i> Entity
                     </h3>
                     <div class="line line-dashed b-b line-lg"></div>
                     <div class="list-group no-bg no-borders pull-in auto">
                         <div class="list-group-item padder-v admin-element-item">
-                            <a href="http://localhost:8000/dashboard/press/menu" class="d-block">
-                                <small class="text-muted">Something short and leading about the collection below—its
-                                                          contents, the creator, etc.
-                                                          Make it short and sweet, but not too short so folks don't
-                                                          simply skip over it entirely.
-                                </small>
-                            </a>
+                            <small class="text-muted">Something short and leading about the collection below—its
+                                                      contents, the creator, etc.
+                                                      Make it short and sweet, but not too short so folks don't
+                                                      simply skip over it entirely.
+                            </small>
                         </div>
                     </div>
                 </div>

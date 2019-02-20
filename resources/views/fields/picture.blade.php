@@ -17,7 +17,7 @@
                 <input type="file"
                        accept="image/*"
                        data-target="fields--picture.upload"
-                       data-action="fields--picture#upload"
+                       data-action="change->fields--picture#upload click->fields--picture#openModal"
                        class="d-none">
             </label>
 

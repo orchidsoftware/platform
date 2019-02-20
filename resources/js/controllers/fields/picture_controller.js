@@ -42,9 +42,12 @@ export default class extends Controller {
      */
     upload(event) {
 
+
         if (!event.target.files[0]) {
+            $(this.element.querySelector('.modal')).modal('show');
             return;
         }
+
 
         let reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
@@ -52,6 +55,19 @@ export default class extends Controller {
         reader.onloadend = () => {
             this.cropper.replace(reader.result)
         };
+
+        $(this.element.querySelector('.modal')).modal('show');
+    }
+
+    /**
+     *
+     */
+    openModal(event)
+    {
+        if (!event.target.files[0]) {
+            return;
+        }
+
         $(this.element.querySelector('.modal')).modal('show');
     }
 
