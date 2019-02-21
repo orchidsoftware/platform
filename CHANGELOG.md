@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Modal not open PictureField [787](https://github.com/orchidsoftware/platform/issues/787)
 - Error for resize event 
+- Route cache not register route
 
 ## 3.9.6 - 2019-02-15
 
