@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.10.1 - 2019-02-22
+
+### Fixed
+- Disabled preview for turbolinks
+
 ## 3.10.0 - 2019-02-22
 
 ### Added
