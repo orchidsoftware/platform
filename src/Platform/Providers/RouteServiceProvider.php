@@ -30,7 +30,6 @@ class RouteServiceProvider extends ServiceProvider
 
         require PLATFORM_PATH.'/routes/breadcrumbs.php';
 
-
         parent::boot();
     }
 
