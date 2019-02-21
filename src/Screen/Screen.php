@@ -7,7 +7,6 @@ namespace Orchid\Screen;
 use ReflectionClass;
 use ReflectionParameter;
 use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Base;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Http\Controllers\Controller;
