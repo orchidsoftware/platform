@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace Orchid\Press\Providers;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Orchid\Platform\Dashboard;
-use Orchid\Platform\ItemPermission;
-use Orchid\Press\Commands\MakeManyBehavior;
-use Orchid\Press\Commands\MakeSingleBehavior;
-use Orchid\Press\Entities\Many;
-use Orchid\Press\Entities\Single;
-use Orchid\Press\Http\Composers\PressMenuComposer;
-use Orchid\Press\Http\Composers\SystemMenuComposer;
-use Orchid\Press\Models\Category;
 use Orchid\Press\Models\Page;
 use Orchid\Press\Models\Post;
+use Orchid\Platform\Dashboard;
+use Orchid\Press\Entities\Many;
+use Orchid\Press\Entities\Single;
+use Orchid\Press\Models\Category;
+use Orchid\Platform\ItemPermission;
+use Illuminate\Support\Facades\View;
 use Symfony\Component\Finder\Finder;
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Orchid\Press\Commands\MakeManyBehavior;
+use Orchid\Press\Commands\MakeSingleBehavior;
+use Orchid\Press\Http\Composers\PressMenuComposer;
+use Orchid\Press\Http\Composers\SystemMenuComposer;
 
 class PressServiceProvider extends ServiceProvider
 {
@@ -48,12 +47,10 @@ class PressServiceProvider extends ServiceProvider
     {
         $this->dashboard = $dashboard;
 
-
         $this->app->booted(function () {
             $this->registerRoutes();
             $this->registerBinding();
         });
-
 
         $this->registerDatabase()
             ->registerConfig()
@@ -77,11 +74,11 @@ class PressServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::domain((string)config('platform.domain'))
+        Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/press'))
             ->as('platform.')
             ->middleware(config('platform.middleware.private'))
-            ->group(realpath(PLATFORM_PATH . '/routes/press.php'));
+            ->group(realpath(PLATFORM_PATH.'/routes/press.php'));
     }
 
     /**
@@ -92,11 +89,11 @@ class PressServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            realpath(PLATFORM_PATH . '/config/press.php') => config_path('press.php'),
+            realpath(PLATFORM_PATH.'/config/press.php') => config_path('press.php'),
         ], 'config');
 
         $this->mergeConfigFrom(
-            realpath(PLATFORM_PATH . '/config/press.php'), 'press'
+            realpath(PLATFORM_PATH.'/config/press.php'), 'press'
         );
 
         return $this;
@@ -109,7 +106,7 @@ class PressServiceProvider extends ServiceProvider
      */
     protected function registerDatabase()
     {
-        $this->loadMigrationsFrom(realpath(PLATFORM_PATH . '/database/migrations/press'));
+        $this->loadMigrationsFrom(realpath(PLATFORM_PATH.'/database/migrations/press'));
 
         return $this;
     }
@@ -123,15 +120,15 @@ class PressServiceProvider extends ServiceProvider
         $directory = app_path('Orchid/Entities');
         $resources = [];
 
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             return [];
         }
 
         foreach ((new Finder)->in($directory)->files() as $resource) {
-            $resource = $namespace . str_replace(
+            $resource = $namespace.str_replace(
                     ['/', '.php'],
                     ['\\', ''],
-                    Str::after($resource->getPathname(), app_path() . DIRECTORY_SEPARATOR)
+                    Str::after($resource->getPathname(), app_path().DIRECTORY_SEPARATOR)
                 );
 
             if (is_subclass_of($resource, Many::class) ||
@@ -154,7 +151,7 @@ class PressServiceProvider extends ServiceProvider
             ->getEntities()
             ->where('display', true)
             ->each(function ($post) use ($permissions) {
-                $permissions->addPermission('platform.entities.type.' . $post->slug, $post->name);
+                $permissions->addPermission('platform.entities.type.'.$post->slug, $post->name);
             });
 
         if ($posts->count() > 0) {
@@ -204,7 +201,7 @@ class PressServiceProvider extends ServiceProvider
 
             if (is_null($page)) {
                 $model->slug = $value;
-                $page        = $model;
+                $page = $model;
             }
 
             return $page;
