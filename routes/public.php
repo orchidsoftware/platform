@@ -6,4 +6,4 @@ use Orchid\Platform\Http\Controllers\Systems\ResourceController;
 
 $this->get('/resources/{package}/{patch}', [ResourceController::class, 'show'])
     ->where('patch', '.*')
-    ->name('platform.resource');
+    ->name('resource');

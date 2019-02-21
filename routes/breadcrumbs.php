@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+
 // Platform
 Breadcrumbs::for('platform.index', function ($trail) {
     $trail->push(__('Platform'), route('platform.index'));

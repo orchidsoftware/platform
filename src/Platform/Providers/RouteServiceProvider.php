@@ -28,9 +28,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->binding();
 
-        if (class_exists('Breadcrumbs')) {
-            require PLATFORM_PATH.'/routes/breadcrumbs.php';
-        }
+        require PLATFORM_PATH.'/routes/breadcrumbs.php';
+
 
         parent::boot();
     }
@@ -43,11 +42,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('roles', function ($value) {
             $role = Dashboard::modelClass(Role::class);
 
-            if (is_numeric($value)) {
-                return $role->where('id', $value)->firstOrFail();
-            }
-
-            return $role->where('slug', $value)->firstOrFail();
+            return is_numeric($value)
+                ? $role->where('id', $value)->firstOrFail()
+                : $role->where('slug', $value)->firstOrFail();
         });
 
         Route::bind('widget', function ($value) {
@@ -77,6 +74,7 @@ class RouteServiceProvider extends ServiceProvider
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
+            ->as('platform.')
             ->group(realpath(PLATFORM_PATH.'/routes/public.php'));
 
         /*
@@ -84,6 +82,7 @@ class RouteServiceProvider extends ServiceProvider
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
+            ->as('platform.')
             ->middleware(config('platform.middleware.private'))
             ->group(realpath(PLATFORM_PATH.'/routes/dashboard.php'));
 
@@ -92,6 +91,7 @@ class RouteServiceProvider extends ServiceProvider
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/'))
+            ->as('platform.')
             ->middleware(config('platform.middleware.public'))
             ->group(realpath(PLATFORM_PATH.'/routes/auth.php'));
 
@@ -100,6 +100,7 @@ class RouteServiceProvider extends ServiceProvider
          */
         Route::domain((string) config('platform.domain'))
             ->prefix(Dashboard::prefix('/systems'))
+            ->as('platform.')
             ->middleware(config('platform.middleware.private'))
             ->group(realpath(PLATFORM_PATH.'/routes/systems.php'));
 

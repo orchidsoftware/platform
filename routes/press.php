@@ -16,26 +16,26 @@ use Orchid\Press\Http\Controllers\MediaController;
 |
 */
 
-$this->screen('entities/{type}/{post?}/edit', EntityEditScreen::class)->name('platform.entities.type.edit');
-$this->screen('entities/{type}/create', EntityEditScreen::class)->name('platform.entities.type.create');
-$this->screen('entities/{type}/{page?}/page', EntityEditScreen::class)->name('platform.entities.type.page');
-$this->screen('entities/{type}', EntityListScreen::class)->name('platform.entities.type');
+$this->screen('entities/{type}/{post?}/edit', EntityEditScreen::class)->name('entities.type.edit');
+$this->screen('entities/{type}/create', EntityEditScreen::class)->name('entities.type.create');
+$this->screen('entities/{type}/{page?}/page', EntityEditScreen::class)->name('entities.type.page');
+$this->screen('entities/{type}', EntityListScreen::class)->name('entities.type');
 
 $this->resource('menu', MenuController::class, [
     'only'  => [
         'index', 'show', 'update', 'create', 'destroy',
     ],
     'names' => [
-        'index'   => 'platform.systems.menu.index',
-        'show'    => 'platform.systems.menu.show',
-        'update'  => 'platform.systems.menu.update',
-        'create'  => 'platform.systems.menu.create',
-        'destroy' => 'platform.systems.menu.destroy',
+        'index'   => 'systems.menu.index',
+        'show'    => 'systems.menu.show',
+        'update'  => 'systems.menu.update',
+        'create'  => 'systems.menu.create',
+        'destroy' => 'systems.menu.destroy',
     ],
 ]);
 
 $this->group([
-    'as'     => 'platform.systems.media.',
+    'as'     => 'systems.media.',
     'prefix' => 'media',
 ], function () {
     $this->get('/{parameters?}', ['uses' => MediaController::class.'@index', 'as' => 'index'])->where('parameters', '.*');

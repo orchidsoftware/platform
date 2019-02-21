@@ -19,34 +19,34 @@ use Orchid\Platform\Http\Controllers\Systems\NotificationController;
 */
 
 $this->get('/', [SystemController::class, 'index'])
-    ->name('platform.systems.index');
+    ->name('systems.index');
 
 $this->get('cache', [CacheController::class, 'store'])
-    ->name('platform.systems.cache');
+    ->name('systems.cache');
 
 $this->post('notification/read', [NotificationController::class, 'markAllAsRead'])
-    ->name('platform.notification.read');
+    ->name('notification.read');
 
 $this->post('notification/remove', [NotificationController::class, 'remove'])
-    ->name('platform.notification.remove');
+    ->name('notification.remove');
 
 $this->post('files', [AttachmentController::class, 'upload'])
-    ->name('platform.systems.files.upload');
+    ->name('systems.files.upload');
 
 $this->post('files/sort', [AttachmentController::class, 'sort'])
-    ->name('platform.systems.files.sort');
+    ->name('systems.files.sort');
 
 $this->delete('files/{id}', [AttachmentController::class, 'destroy'])
-    ->name('platform.systems.files.destroy');
+    ->name('systems.files.destroy');
 
 $this->post('files/get', [AttachmentController::class, 'getFilesByIds'])
-    ->name('platform.systems.files.getFilesByIds');
+    ->name('systems.files.getFilesByIds');
 
 $this->put('files/post/{id}', [AttachmentController::class, 'update'])
-    ->name('platform.systems.files.update');
+    ->name('systems.files.update');
 
 $this->get('tags/{tags?}', [TagsController::class, 'show'])
-    ->name('platform.systems.tag.search');
+    ->name('systems.tag.search');
 
 $this->post('widget/{widget}/{key?}', [WidgetController::class, 'index'])
-    ->name('platform.systems.widget');
+    ->name('systems.widget');
