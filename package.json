@@ -14,6 +14,7 @@
     "axios": "^0.18",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.7.3",
     "codeflask": "^1.4.0",
     "cropperjs": "^1.4.3",
     "cross-env": "^5.2.0",
