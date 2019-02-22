@@ -383,7 +383,7 @@ class Post extends Model
      * @return Builder
      * @throws \Throwable
      */
-    public function scopeFiltersApply(Builder $query, string $entity = null): Builder
+    public function scopeFiltersApply(Builder $query, $entity = null): Builder
     {
         if (! is_null($entity)) {
             try {
@@ -418,7 +418,7 @@ class Post extends Model
      * @return Builder
      * @throws \Throwable | EntityTypeException
      */
-    public function scopeFiltersApplyDashboard(Builder $query, string $entity = null): Builder
+    public function scopeFiltersApplyDashboard(Builder $query, $entity = null): Builder
     {
         if (! is_null($entity)) {
             $this->getEntity($entity);
