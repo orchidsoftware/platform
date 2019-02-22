@@ -159,7 +159,7 @@ class ItemMenu
         // Remove try/catch for major realise 4.0
         try {
             $this->route = route($name, $parameters, $absolute);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $this->route = $name;
         }
 
