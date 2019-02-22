@@ -19,7 +19,7 @@ class ItemMenu
     /**
      * @var string
      */
-    public $route;
+    public $route = '#';
 
     /**
      * @var string
@@ -142,13 +142,38 @@ class ItemMenu
     }
 
     /**
-     * @param string $route
+     * Generate the URL to a named route.
+     *
+     * @deprecated params to ->setRoute(route('platform.*'))
+     * This method will be saved, but will explicitly respond to its name.
+     * If you want to create links otherwise use ->setUrl()
+     *
+     * @param  array|string  $name
+     * @param  mixed  $parameters
+     * @param  bool  $absolute
      *
      * @return ItemMenu
      */
-    public function setRoute(string $route): self
+    public function setRoute(string $name, array $parameters = [], bool $absolute = true): self
     {
-        $this->route = $route;
+        // Remove try/catch for major realise 4.0
+        try {
+            $this->route = route($name, $parameters, $absolute);
+        }catch (\Exception $exception){
+            $this->route = $name;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return ItemMenu
+     */
+    public function setUrl(string $url) : self
+    {
+        $this->route = $url;
 
         return $this;
     }

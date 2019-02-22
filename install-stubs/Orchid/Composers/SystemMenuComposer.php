@@ -41,7 +41,7 @@ class SystemMenuComposer
             ->add('Auth',
                 ItemMenu::setLabel(__('Users'))
                     ->setIcon('icon-user')
-                    ->setRoute(route('platform.systems.users'))
+                    ->setRoute('platform.systems.users')
                     ->setPermission('platform.systems.users')
                     ->setSort(1000)
                     ->setGroupName(__('All registered users'))
@@ -49,7 +49,7 @@ class SystemMenuComposer
             ->add('Auth',
                 ItemMenu::setLabel(__('Roles'))
                     ->setIcon('icon-lock')
-                    ->setRoute(route('platform.systems.roles'))
+                    ->setRoute('platform.systems.roles')
                     ->setPermission('platform.systems.roles')
                     ->setSort(1000)
                     ->setGroupName(__('A Role defines a set of tasks a user assigned the role is allowed to perform. '))
@@ -57,7 +57,7 @@ class SystemMenuComposer
             ->add('CMS',
                 ItemMenu::setLabel(__('Categories'))
                     ->setIcon('icon-briefcase')
-                    ->setRoute(route('platform.systems.category'))
+                    ->setRoute('platform.systems.category')
                     ->setPermission('platform.systems.category')
                     ->setSort(1000)
                     ->setGroupName(__('Sort entries into groups of posts on a given topic. This helps the user to find the necessary information on the site.'))
@@ -65,7 +65,7 @@ class SystemMenuComposer
             ->add('CMS',
                 ItemMenu::setLabel(__('Comments'))
                     ->setIcon('icon-bubbles')
-                    ->setRoute(route('platform.systems.comments'))
+                    ->setRoute('platform.systems.comments')
                     ->setPermission('platform.systems.comments')
                     ->setSort(1000)
                     ->setGroupName(__("Comments allow your website's visitors to have a discussion with you and each other."))

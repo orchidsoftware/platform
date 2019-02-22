@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.10.3 - 2019-02-22
+
+### Changed
+- Display error pages
+
+### Fixed
+- 405 Method Not Allowed for Ajax
+- Positioning buttons in password recovery forms
+
+### Deprecated
+- params to `->setRoute(route('platform.*'))`
+  This method will be saved, but will explicitly respond to its name.
+  If you want to create links otherwise use `->setUrl()`
+
 ## 3.10.1 - 2019-02-22
 
 ### Fixed

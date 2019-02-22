@@ -52,31 +52,30 @@ class MainMenuComposer
             ->add('Main',
                 ItemMenu::setLabel('Example 4')
                     ->setIcon('icon-folder')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
                     ->setGroupName('Example boilerplate')
             )
             ->add('Main',
                 ItemMenu::setLabel('Example 5 menu')
                     ->setSlug('example-menu')
                     ->setIcon('icon-heart')
-                    ->setRoute('#')
                     ->setChilds(true)
             )
             ->add('example-menu',
                 ItemMenu::setLabel('Example sub 1')
                     ->setIcon('icon-bag')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
             )
             ->add('example-menu',
                 ItemMenu::setLabel('Example sub 2')
                     ->setIcon('icon-heart')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
                     ->setGroupName('Separate')
             )
             ->add('Main',
                 ItemMenu::setLabel('Example 6')
                     ->setIcon('icon-code')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
             )
             ->add('Main',
                 ItemMenu::setLabel('Example 7')
@@ -86,7 +85,7 @@ class MainMenuComposer
             ->add('Main',
                 ItemMenu::setLabel('Example 8')
                     ->setIcon('icon-folder')
-                    ->setRoute(route('platform.example'))
+                    ->setRoute('platform.example')
             );
     }
 }

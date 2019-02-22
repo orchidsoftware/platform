@@ -47,12 +47,10 @@
                 @endif
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6 col-xs-12 offset-md-6">
-                <button class="btn btn-default btn-block" type="submit">
-                    <i class="icon-refresh text-xs m-r-xs"></i>  {{ __('Reset Password') }}
-                </button>
-            </div>
+        <div class="form-group">
+            <button class="btn btn-default btn-block" type="submit">
+                <i class="icon-refresh text-xs m-r-xs"></i>  {{ __('Reset Password') }}
+            </button>
         </div>
     </form>
 @endsection

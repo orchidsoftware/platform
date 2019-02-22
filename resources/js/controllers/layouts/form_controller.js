@@ -41,11 +41,12 @@ export default class extends Controller {
             })
                 .then((response) => {
                     let url = response.request.responseURL;
-                    Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
-                    Turbolinks.visit(url, {action: 'restore'});
+                    window.Turbolinks.controller.cache.put(url, Turbolinks.Snapshot.wrap(response.data));
+                    window.Turbolinks.visit(url, {action: 'restore'});
                 })
                 .catch((error) => {
-                    console.warn(error);
+                    window.history.pushState({"html": error.response.data}, "", error.request.responseURL);
+                    document.documentElement.innerHTML = error.response.data;
                 });
         });
 

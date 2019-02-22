@@ -167,7 +167,7 @@ if (! function_exists('orchid_mix')) {
      * @return string
      * @throws Exception
      */
-    function orchid_mix(string $file, string $package, string $dir = '')
+    function orchid_mix(string $file, string $package, string $dir = '') : string
     {
         $manifest = null;
 

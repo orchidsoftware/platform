@@ -40,7 +40,7 @@ class SystemMenuComposer
             ->add('CMS',
                 ItemMenu::setLabel(__('Menu'))
                     ->setIcon('icon-menu')
-                    ->setRoute(route('platform.systems.menu.index'))
+                    ->setRoute('platform.systems.menu.index')
                     ->setPermission('platform.systems.menu')
                     ->setShow(count(config('press.menu', [])) > 0)
                     ->setGroupName(__('Editing of a custom menu (navigation) using drag & drop and localization support.'))
@@ -48,7 +48,7 @@ class SystemMenuComposer
             ->add('CMS',
                 ItemMenu::setLabel(__('Media'))
                     ->setIcon('icon-folder-alt')
-                    ->setRoute(route('platform.systems.media.index'))
+                    ->setRoute('platform.systems.media.index')
                     ->setPermission('platform.systems.media')
                     ->setGroupName(__('File Manager allows you to perform the most frequent operations on files - create, open, move, rename, delete'))
             );

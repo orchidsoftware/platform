@@ -53,7 +53,7 @@ class PressMenuComposer
                         ->setSlug($page->slug)
                         ->setIcon($page->icon)
                         ->setGroupName($page->groupname)
-                        ->setRoute(route($route, $params))
+                        ->setRoute($route, $params)
                         ->setPermission('platform.entities.type.'.$page->slug)
                         ->setActive(route($route, $params).'*')
                         ->setSort($page->sort)
