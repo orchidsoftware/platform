@@ -97,27 +97,16 @@ class Menu
      *
      * @return string
      */
-    public function render(string $location, string $template = null): string
+    public function render(string $location, string $template = 'platform::partials.mainMenu'): string
     {
         $this->checkAccess();
 
-        $html = '';
-
-        $this->findAllChildren($location)
+        return $this->findAllChildren($location)
             ->sortBy('sort')
-            ->each(function ($value) use ($template, &$html) {
-                if (! array_key_exists('template', $value)) {
-                    $value['template'] = 'platform::partials.mainMenu';
-                }
-
-                if (! is_null($template)) {
-                    $value['template'] = $template;
-                }
-
-                $html .= view($value['template'], $value);
-            });
-
-        return $html;
+            ->map(function ($value) use ($template, &$html) {
+                return view($template, $value)->render();
+            })
+            ->implode(' ');
     }
 
     /**
