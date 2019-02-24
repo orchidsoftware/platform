@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - ItemMenu allow array or string with `setActive` method
 - Colors for pagination
 - Unification of button colors
+- If a submenu is declared, then activation will come from the child elements.
 
 ### Fixed
 - Padding for numeric filter

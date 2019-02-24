@@ -99,21 +99,22 @@ class Menu
      */
     public function render(string $location, string $template = null): string
     {
+        $this->checkAccess();
+
         $html = '';
 
-        $this->checkAccess()
-            ->where('location', $location)
+        $this->findAllChildren($location)
             ->sortBy('sort')
             ->each(function ($value) use ($template, &$html) {
-                if (! array_key_exists('template', $value)) {
+                if (!array_key_exists('template', $value)) {
                     $value['template'] = 'platform::partials.mainMenu';
                 }
 
-                if (! is_null($template)) {
+                if (!is_null($template)) {
                     $value['template'] = $template;
                 }
 
-                $html .= view($value['template'], collect($value['arg']));
+                $html .= view($value['template'], $value);
             });
 
         return $html;
@@ -162,7 +163,14 @@ class Menu
             ->sortBy('sort')
             ->map(function ($item, $key) {
                 $item = $item['arg'];
-                $item['children'] = $this->findAllChildren($key);
+
+                $childrens = $this->findAllChildren($key);
+
+                $item['children'] = $childrens;
+
+                $childrens->each(function ($children) use (&$item) {
+                   $item['active'] += $children['active'];
+                });
 
                 return $item;
             });

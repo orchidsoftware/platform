@@ -57,9 +57,9 @@ class ItemMenu
     public $show = true;
 
     /**
-     * @var string|array
+     * @var array
      */
-    public $active;
+    public $active = [];
 
     /**
      * @var string
@@ -85,7 +85,7 @@ class ItemMenu
      */
     public function setActive($active): self
     {
-        $this->active = $active;
+        $this->active = array_wrap($active);
 
         return $this;
     }
