@@ -106,11 +106,11 @@ class Menu
         $this->findAllChildren($location)
             ->sortBy('sort')
             ->each(function ($value) use ($template, &$html) {
-                if (!array_key_exists('template', $value)) {
+                if (! array_key_exists('template', $value)) {
                     $value['template'] = 'platform::partials.mainMenu';
                 }
 
-                if (!is_null($template)) {
+                if (! is_null($template)) {
                     $value['template'] = $template;
                 }
 
@@ -169,7 +169,7 @@ class Menu
                 $item['children'] = $childrens;
 
                 $childrens->each(function ($children) use (&$item) {
-                   $item['active'] += $children['active'];
+                    $item['active'] += $children['active'];
                 });
 
                 return $item;
